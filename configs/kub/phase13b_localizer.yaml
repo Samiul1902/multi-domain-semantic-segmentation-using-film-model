@@ -1,0 +1,30 @@
+phase: 13B
+seed: 42
+resolutions: [512, 768]
+sigmas: [3, 5, 7]
+model:
+  name: kub_localizer
+  base_channels: 16
+  initialization: random_kaiming
+  pretrained: false
+loss:
+  name: soft_focal_dice
+  focal_weight: 0.75
+  dice_weight: 0.25
+  alpha: 0.25
+  gamma: 2.0
+optimizer: {name: AdamW, learning_rate: 0.0001, weight_decay: 0.0001}
+scheduler: {name: CosineAnnealingLR, T_max: 100}
+training:
+  max_epochs: 100
+  patience: 15
+  effective_batch: 4
+  amp: true
+proposal_search:
+  thresholds: [0.10, 0.20, 0.30, 0.40, 0.50]
+  margins: [0.10, 0.20]
+  top_k: [3, 5]
+  nms_iou: 0.30
+coverage_primary: 0.90
+allow_test: false
+allow_external: false

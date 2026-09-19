@@ -1,0 +1,59 @@
+phase: 10
+manifest_version: phase4_v2
+models:
+  - key: attention_unet
+    display_name: Attention U-Net
+    experiment_id: phase10_kub_attention_unet_seed42_512
+    architecture: attention_unet_4_stage_additive_gates
+  - key: unetpp
+    display_name: UNet++
+    experiment_id: phase10_kub_unetpp_seed42_512
+    architecture: unetpp_nested_4_level_no_deep_supervision
+  - key: deeplabv3plus
+    display_name: DeepLabV3+
+    experiment_id: phase10_kub_deeplabv3plus_seed42_512
+    architecture: deeplabv3plus_resnet50_os16
+model:
+  input_channels: 1
+  output_channels: 1
+  base_channels: 32
+input_resolution: 512
+preprocessing:
+  strategy: aspect_ratio_resize_symmetric_pad
+  image_interpolation: bilinear
+  mask_interpolation: nearest
+  image_scaling: [0.0, 1.0]
+augmentation:
+  horizontal_flip_probability: 0.5
+  rotation_degrees: 5.0
+  brightness: 0.1
+  contrast: 0.1
+  vertical_flip: false
+loss:
+  name: bce_dice
+  bce_weight: 0.5
+  dice_weight: 0.5
+  dice_epsilon: 1.0e-6
+optimizer:
+  name: AdamW
+  learning_rate: 1.0e-4
+  weight_decay: 1.0e-4
+scheduler:
+  name: CosineAnnealingLR
+  max_epochs: 100
+training:
+  max_epochs: 100
+  early_stopping_patience: 15
+  monitor: val_macro_dice_true_per_image
+  threshold: 0.5
+  seed: 42
+  amp: true
+  preferred_physical_batch: 4
+  target_effective_batch: 4
+  num_workers: 0
+  pin_memory: true
+initialization:
+  policy: random_kaiming_no_pretrained_weights
+  pretrained_weights: false
+allow_test: false
+allow_external: false

@@ -1,0 +1,31 @@
+{
+  "research_questions": "How to optimize RA-MedFiLM-Seg++ performance while maintaining strict data separation?",
+  "hypotheses": "Multi-seed fusion provides robust generalization.",
+  "datasets": ["KUB", "ISIC", "BUSI", "Kvasir"],
+  "task_ids": ["RA-MedFiLM-Seg++-01"],
+  "policies": {
+    "train_val_test": "Strict separation and locking applied.",
+    "test_lock": "Test data MUST NOT be used for development or model selection.",
+    "external_data": "External data MUST NOT be used for tuning.",
+    "kub_characterization": "Standardized KUB diagnostic criteria applied.",
+    "model_complexity": ["Tiny", "Small", "Medium", "Large"],
+    "roi_settings": ["Oracle", "Predicted"],
+    "regional_refinement": "Enabled for high-resolution foci.",
+    "model_selection": "Based on validation set metrics exclusively.",
+    "segmentation_threshold": "Thresholding independent of test set.",
+    "optimizer": "AdamW",
+    "learning_rate": 1e-4,
+    "weight_decay": 1e-4,
+    "scheduler": "CosineAnnealingLR",
+    "epochs": 100,
+    "early_stopping_patience": 15,
+    "seed_policy": 42,
+    "checkpoint_policy": "Save best and latest.",
+    "multi_seed": [42, 123, 3407],
+    "statistics_policy": "Mean with std dev.",
+    "efficiency_policy": "CUDA usage maximized.",
+    "interpretability_policy": "Saliency mapping required.",
+    "robustness_policy": "Multi-seed validation.",
+    "publication_artifact_policy": "Archive all source code, results, checkpoints."
+  }
+}
