@@ -1,0 +1,69 @@
+{
+  "study_id": "C1_FILM_ATTRIBUTION_V1",
+  "status": "PROTOCOL_READY_FOR_APPROVAL__NOT_APPROVED",
+  "arms": ["C1-T", "C1-C"],
+  "seeds": [42, 123, 3407],
+  "dataset": {
+    "dataset_id": "MULTI_DOMAIN_ISIC_BUSI_KVASIR_KUB",
+    "manifest_version": "phase4_v3",
+    "task_ids": {"ISIC": 0, "BUSI": 1, "KVASIR": 2, "KUB": 3},
+    "populations": {
+      "TRAIN": {"path": "manifests/phase4_v3/train.csv", "n": 5832, "sha256": "28702fc3a5ff8b950db372f03232d335e3a30b1fc2f21db7cd8c066055826ed6"},
+      "VAL": {"path": "manifests/phase4_v3/val.csv", "n": 808, "sha256": "082c80b2bda63fd73f371f109c34643adf01edaead921643fb2e44993ba53315"}
+    },
+    "prohibited": ["TEST", "ROUTER_HOLDOUT", "EXTERNAL", "QUARANTINE"]
+  },
+  "recipe": {
+    "resolution": 512,
+    "channels": 3,
+    "channel_policy": "RGB_3CH",
+    "loss": "bce_dice",
+    "bce_weight": 0.5,
+    "dice_weight": 0.5,
+    "dice_epsilon": 0.000001,
+    "optimizer": "AdamW",
+    "learning_rate": 0.0001,
+    "weight_decay": 0.0001,
+    "scheduler": "CosineAnnealingLR",
+    "T_max": 100,
+    "train_batch_size": 4,
+    "eval_batch_size": 8,
+    "train_workers": 4,
+    "eval_workers": 2,
+    "persistent_workers": false,
+    "gradient_accumulation_steps": 1,
+    "max_epochs": 100,
+    "early_stop_patience": 15,
+    "amp": true,
+    "sampling_policy": "phase20_domain_balanced_uniform_v1",
+    "threshold": 0.5,
+    "selection_rule": "phase20_macro_domain_mean_dice_v1",
+    "selection_tolerance": 1e-12,
+    "tie_break": "lower_val_loss_then_earlier_epoch",
+    "augmentation": "horizontal_mirror_0.5_rotation_5deg_brightness_0.1_contrast_0.1"
+  },
+  "analysis": {
+    "primary": "seed_average_of_paired_equal_domain_macro_Dice_T_minus_C_on_selected_VAL",
+    "secondary": ["per_domain_Dice", "per_domain_IoU"],
+    "ci": "conditional_on_three_fixed_training_seeds_domain_stratified_paired_cluster_percentile_bootstrap",
+    "resamples": 10000,
+    "bootstrap_seed": 20261027,
+    "confidence": 0.95,
+    "group_rule": "KUB_patient_id_required_nonKUB_per_case_disclose_unavailable_patient_and_source_ids",
+    "seed_uncertainty": "report_all_three_paired_seed_effects_mean_sample_SD_range_no_population_seed_inference",
+    "multiplicity": "one_primary_contrast_secondary_descriptive_no_secondary_significance_claims",
+    "interpretation": "CI_above_zero_positive_below_zero_negative_crossing_zero_inconclusive_no_equivalence_claim"
+  },
+  "execution": {
+    "scientific_execution_enabled": false,
+    "real_data_driver_included": false,
+    "logical_runs": 6,
+    "maximum_completed_epochs_per_run": 100,
+    "maximum_cumulative_active_hours": 96,
+    "failure_policy": "STOP_no_recipe_change_no_restart_for_score_resume_same_run_only_after_recovery_review",
+    "missing_run_policy": "no_primary_claim_until_all_six_runs_complete",
+    "separate_launch_required": true,
+    "output_namespace": "experiments/c1_film_attribution_v1/ and checkpoints/c1_film_attribution_v1/ only"
+  },
+  "claim_boundary": "C1_development_selection_consumed_only_not_C2_C3_clinical_safety_or_independent_generalization"
+}
