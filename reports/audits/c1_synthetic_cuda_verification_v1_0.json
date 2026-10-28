@@ -1,0 +1,118 @@
+{
+  "gate": "c1_synthetic_cuda_verification",
+  "version": "1.0",
+  "timestamp_utc": "AUTHOR_ENTERED_AT_WRITE",
+  "results": [
+    {
+      "check": "GPU_AVAILABLE",
+      "status": "PASS",
+      "detail": "NVIDIA GeForce RTX 3060 Ti, VRAM=8191.4 MiB, CUDA=12.4, CC=(8, 6)"
+    },
+    {
+      "check": "VRAM_HEADROOM",
+      "status": "PASS",
+      "detail": "Free VRAM ~8191.4 MiB (need >1000 MiB)"
+    },
+    {
+      "check": "FORWARD_BACKWARD_C1-T",
+      "status": "PASS",
+      "detail": "logits=torch.Size([1, 1, 32, 32]), loss=0.864690, grads=True"
+    },
+    {
+      "check": "C1_T_MODULATION_CUDA",
+      "status": "PASS",
+      "detail": "Conditioning params with grads=21 (expected >0)"
+    },
+    {
+      "check": "FORWARD_BACKWARD_C1-C",
+      "status": "PASS",
+      "detail": "logits=torch.Size([1, 1, 32, 32]), loss=0.864690, grads=True"
+    },
+    {
+      "check": "C1_C_IDENTITY_CUDA",
+      "status": "PASS",
+      "detail": "Identity verified, conditioning grads=0 (expected 0)"
+    },
+    {
+      "check": "OPTIMIZER_UPDATE_CUDA",
+      "status": "PASS",
+      "detail": "Head weight changed after 10 steps (max_diff=0.000703)"
+    },
+    {
+      "check": "AMP_FORWARD",
+      "status": "PASS",
+      "detail": "AMP loss finite: 0.883269, dtype=torch.float16"
+    },
+    {
+      "check": "AMP_BACKWARD",
+      "status": "PASS",
+      "detail": "Scaler scale=32768.0, step+update OK"
+    },
+    {
+      "check": "CHECKPOINT_CREATION_CUDA",
+      "status": "PASS",
+      "detail": "epoch=1, file=epoch-0001-d1f264630ba44f40b28..., size=56532620 bytes, CUDA RNG captured"
+    },
+    {
+      "check": "RESUME_MODEL_RESTORE",
+      "status": "PASS",
+      "detail": "model_state_dict exact_match=False, max_abs_diff=2.82e-04 (CUDA nondeterminism expected for backward kernels)"
+    },
+    {
+      "check": "RESUME_OPTIMIZER_RESTORE",
+      "status": "PASS",
+      "detail": "optimizer_state structural match=True"
+    },
+    {
+      "check": "RESUME_HISTORY_MATCH",
+      "status": "PASS",
+      "detail": "history exact_match=False (CUDA nondeterminism); deviations: ep1: macro_diff=8.74e-05, loss_diff=9.24e-07; ep2: macro_diff=1.13e-04, loss_diff=6.26e-07; ep3: macro_diff=1.82e-04, loss_diff=6.38e-06"
+    },
+    {
+      "check": "RESUME_BEST_EPOCH",
+      "status": "PASS",
+      "detail": "best_epoch match=True (full=2, resumed=2), best_macro_diff=1.13e-04"
+    },
+    {
+      "check": "CUDA_RNG_CAPTURED",
+      "status": "PASS",
+      "detail": "full CUDA RNG entries=1, resumed=1"
+    },
+    {
+      "check": "CUDA_RNG_ROUNDTRIP",
+      "status": "PASS",
+      "detail": "CUDA RNG restore produces identical sequence: True"
+    },
+    {
+      "check": "MATCHED_INIT_CUDA",
+      "status": "PASS",
+      "detail": "initial_sha256 match: True"
+    },
+    {
+      "check": "ARM_IDENTITY_DIFFER",
+      "status": "PASS",
+      "detail": "T identity != C identity: True"
+    },
+    {
+      "check": "PARAM_COUNTS_CUDA",
+      "status": "PASS",
+      "detail": "T total=3523001, C trainable=3432233, C frozen=90768"
+    },
+    {
+      "check": "CUDA_FORWARD_DETERMINISM",
+      "status": "PASS",
+      "detail": "Forward deterministic (same input, same output): True"
+    },
+    {
+      "check": "LIFECYCLE_COMPLETE",
+      "status": "PASS",
+      "detail": "lifecycle state=COMPLETE"
+    },
+    {
+      "check": "BITWISE_EQUIVALENCE_DISCLAIMER",
+      "status": "PASS",
+      "detail": "Bitwise equivalence NOT claimed for CUDA backward kernels; cudnn.deterministic=True, benchmark=False set per protocol. Forward is deterministic; backward has known nondeterminism for interpolate/scatter ops. CPU synthetic tests verify exact resume equivalence. CUDA test verifies recovery mechanism correctness (checkpoint, state, RNG, lifecycle)."
+    }
+  ],
+  "terminal": "C1_SYNTHETIC_CUDA_VERIFICATION_PASSED"
+}

@@ -1,0 +1,105 @@
+{
+  "artifact": "C1_REMAINING_LAUNCH_IMPLEMENTATION_REQUIREMENTS",
+  "version": "1.0",
+  "status": "DESIGN_ONLY__LAUNCH_NOT_ACTIVATED",
+  "frozen_package_immutable": true,
+  "protocol_sha256": "531e3eb255a66381201d1aaf49bbe55abfdbe529640f5c584ef100d298087a61",
+  "must_not_modify": [
+    "src/research/c1_film/readiness.py",
+    "src/research/c1_film/control.py",
+    "src/research/c1_film/__init__.py",
+    "reports/planning/c1_film_attribution_v1/protocol.json",
+    "reports/planning/c1_film_attribution_v1/package_identities.json",
+    "src/models/film/global_medfilm.py",
+    "any Phase-21 authority artifact",
+    "any historical checkpoint",
+    "BARR-M1 RC1"
+  ],
+  "identified_gap": {
+    "id": "C1_EXECUTABLE_IDENTITY_INCOMPLETE",
+    "severity": "BLOCKING_FOR_LAUNCH",
+    "detail": "The frozen package_identities.json binds only 3 of 8 c1_film modules. The five training-integration modules added at commit ec51359 are not covered by any external frozen reference, so their integrity check is self-consistent rather than tamper-evident.",
+    "bound_modules": [
+      "src/research/c1_film/__init__.py",
+      "src/research/c1_film/control.py",
+      "src/research/c1_film/readiness.py"
+    ],
+    "unbound_modules": [
+      "src/research/c1_film/integration_contract.py",
+      "src/research/c1_film/recovery_store.py",
+      "src/research/c1_film/synthetic_fixture.py",
+      "src/research/c1_film/train_driver.py",
+      "src/research/c1_film/training_engine.py"
+    ],
+    "unbound_tests": [
+      "tests/test_c1_training_integration.py"
+    ],
+    "remedy": "Additive manifest_v2.json in a new launch package. Do not edit the frozen manifest."
+  },
+  "required_new_package": {
+    "path": "src/research/c1_film_launch/",
+    "files": [
+      {"name": "manifest_v2.json", "purpose": "Bind all 8 c1_film modules, both C1 test files, the launch package itself, protocol digest, recipe digest, dependency-spec digest"},
+      {"name": "release_identity.py", "purpose": "Compute release digest over manifest_v2 + protocol + architecture + dependency spec + interpreter/torch/CUDA identity"},
+      {"name": "launch_gate.py", "purpose": "assert_launch_authorized(auth, instruction, release) implementing all 10 checks; fail-closed"},
+      {"name": "launch_driver.py", "purpose": "Sole module permitted to construct a real Trainer; mints opaque LaunchGrant"}
+    ]
+  },
+  "required_minimal_edits": [
+    {
+      "file": "src/research/c1_film/training_engine.py",
+      "change": "Trainer.__init__ non-synthetic branch: replace assert_launch_allowed(load_protocol()) with grant requirement + grant.verify()",
+      "backward_compatible": true,
+      "note": "grant defaults to None so all existing synthetic call sites and the 34 tests are unaffected"
+    },
+    {
+      "file": "src/research/c1_film/train_driver.py",
+      "change": "run_real(arm, seed, *, grant): keep verify_preparation() as precondition; remove the scientific_execution_enabled branch; call launch_gate instead of the preparation gate; keep CUDA availability guard",
+      "backward_compatible": true
+    },
+    {
+      "file": "src/research/c1_film/train_driver.py",
+      "change": "real_loader_factory: swap preparation gate for launch gate",
+      "backward_compatible": true
+    },
+    {
+      "file": "tests/ (new file)",
+      "change": "Add synthetic recovery test at production worker configuration (num_workers=4 train / 2 eval) to close the worker-config gap",
+      "backward_compatible": true,
+      "note": "Additive test only; no study-design change"
+    }
+  ],
+  "ten_mandatory_launch_verifications": [
+    {"id": 1, "requirement": "Exact executable/source identity", "check": "Recompute manifest_v2 over all 8 modules + tests + launch package; compare to published release digest; also re-run verify_preparation()"},
+    {"id": 2, "requirement": "C1-specific scientific authorization", "check": "scope==C1_FILM_ATTRIBUTION_V1; protocol_sha256 matches; release_digest matches; institutional fields non-empty; scope==BARR-M1 explicitly rejected"},
+    {"id": 3, "requirement": "Frozen treatment and control definitions", "check": "arms=={C1-T,C1-C}; runtime parameter accounting == 3523001/3432233/90768; verify_identity_control passes before epoch 1"},
+    {"id": 4, "requirement": "Frozen protocol identity", "check": "sha256(protocol.json)==531e3eb2...; study_id, seeds, dataset, recipe deep-equal frozen values"},
+    {"id": 5, "requirement": "Approved seed list", "check": "auth.seeds==[42,123,3407]; run plan is exactly the 6 arm x seed combinations"},
+    {"id": 6, "requirement": "Approved training and validation population", "check": "TRAIN train.csv n=5832 sha 28702fc3...; VAL val.csv n=808 sha 082c80b2...; bytes re-hashed on disk; TRAIN cap VAL sample_id empty"},
+    {"id": 7, "requirement": "Prohibition of TEST and ROUTER_HOLDOUT", "check": "EXCLUSIONS superset of {TEST,ROUTER_HOLDOUT,EXTERNAL,QUARANTINE,BARR-M1,C2,C3}; no resolved path under prohibited manifests; create_loader TEST rejection active"},
+    {"id": 8, "requirement": "Resource and aggregate training-budget limits", "check": "logical_runs==6; max_epochs<=100; cumulative active_seconds<=96h per run and summed; free disk re-measured >= 3x worst-case aggregate (~75 GiB)"},
+    {"id": 9, "requirement": "Checkpoint/recovery integrity", "check": "EpochStore pointer+SHA; writer_lock exclusivity; restore() contract/identity/selection replay; CUDA RNG topology guard; exercised at production worker configuration"},
+    {"id": 10, "requirement": "Separate explicit launch instruction", "check": "Distinct artifact, unique launch_id, issued after release digest exists, naming exact release digest and exact six runs; absence -> C1_SEPARATE_LAUNCH_REQUIRED"}
+  ],
+  "ordering_constraint": {
+    "rule": "Artifact identity MUST precede approval",
+    "admissible_sequence": [
+      "1. Build launch package and write manifest_v2.json",
+      "2. Compute and publish release digest",
+      "3. Obtain C1-specific scientific authorization naming that digest",
+      "4. Obtain separate launch instruction naming that digest and the six runs",
+      "5. Execute"
+    ],
+    "inadmissible": [
+      "Approval obtained before the release digest exists",
+      "Approval naming a digest computed after approval",
+      "Any post-approval edit to a bound file (voids approval; requires new digest and new approval)"
+    ]
+  },
+  "explicit_non_authorizations": [
+    "This artifact does not authorize training",
+    "BARR-M1 authorization cannot satisfy C1 scope",
+    "assert_launch_allowed remains frozen and raises unconditionally",
+    "No launch artifact is created in this task"
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "spec_name": "C1_Reproducible_Environment_Spec_v1",
+  "generated_at": "AUTHOR_ENTERED_AT_WRITE",
+  "workspace": "D:/Softfors/jup",
+  "venv": ".venv",
+  "python_version": "3.11.9",
+  "python_path": ".venv/Scripts/python.exe",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "machine": "AMD64",
+  "gpu": {
+    "name": "NVIDIA GeForce RTX 3060 Ti",
+    "vram_total_mib": 8192,
+    "driver_version": "610.88",
+    "compute_capability": "8.6",
+    "cuda_runtime_in_torch": "12.4",
+    "cudnn_version": "90100"
+  },
+  "direct_dependencies": {
+    "torch": {"version": "2.6.0+cu124", "source": "pytorch_cu124 wheel index", "reproducible": true, "install_command": "pip install torch==2.6.0+cu124 --index-url https://download.pytorch.org/whl/cu124"},
+    "torchvision": {"version": "0.21.0+cu124", "source": "pytorch_cu124 wheel index", "reproducible": true, "install_command": "pip install torchvision==0.21.0+cu124 --index-url https://download.pytorch.org/whl/cu124"},
+    "numpy": {"version": "2.4.6", "source": "PyPI", "reproducible": true},
+    "pandas": {"version": "3.0.5", "source": "PyPI", "reproducible": true},
+    "matplotlib": {"version": "3.11.2", "source": "PyPI", "reproducible": true},
+    "scikit-learn": {"version": "1.9.1", "source": "PyPI", "reproducible": true},
+    "tqdm": {"version": "4.70.1", "source": "PyPI", "reproducible": true},
+    "pyyaml": {"version": "6.0.3", "source": "PyPI", "reproducible": true},
+    "scikit-image": {"version": "0.26.0", "source": "PyPI", "reproducible": true},
+    "tensorboard": {"version": "2.21.0", "source": "PyPI", "reproducible": true},
+    "seaborn": {"version": "0.13.2", "source": "PyPI", "reproducible": true},
+    "ipython": {"version": "9.17.1", "source": "PyPI", "reproducible": true},
+    "nbformat": {"version": "5.11.1", "source": "PyPI", "reproducible": true},
+    "nbclient": {"version": "0.11.0", "source": "PyPI", "reproducible": true},
+    "ipykernel": {"version": "7.3.0", "source": "PyPI", "reproducible": true}
+  },
+  "version_pin_status": {
+    "requirements_txt": "ALL UNPINNED (bare names only, no version specifiers)",
+    "pyproject_toml": "ALL UNPINNED (bare names only, no version specifiers)",
+    "installed_venv": "All versions captured via pip freeze; reproducible from frozen list"
+  },
+  "classification": {
+    "version_pinned_and_available": "All 15 direct dependencies have verified installed versions in the venv. A pip freeze snapshot is the reproducible specification.",
+    "installed_but_not_reproducibly_specified": "requirements.txt and pyproject.toml specify NO version pins. Any fresh install would resolve to latest versions, which may differ from the verified set. This is a reproducibility gap in specification (not in the installed environment).",
+    "workspace_local_or_untracked": [
+      ".venv/ (virtual environment, workspace-local, not tracked in git)",
+      "src/research/c1_film/ (untracked in git, not in requirements)",
+      "tests/test_c1_*.py (untracked in git)",
+      "scripts/verification/c1_synthetic_cuda_verification.py (new, untracked)",
+      "reports/planning/c1_film_attribution_v1/ (untracked in git)",
+      "reports/audits/c1_synthetic_cuda_verification_v1_0.json (new, untracked)"
+    ],
+    "missing_or_incompatible": "None detected. All imports resolve. torch+cu124 matches GPU compute capability 8.6 and driver 610.88."
+  },
+  "transitive_dependencies": {
+    "note": "See pip freeze output for complete transitive dependency list (77 packages total). All versions are exact-pinned in the installed environment.",
+    "key_transitive": {
+      "scipy": "1.17.1",
+      "pillow": "12.3.0",
+      "filelock": "3.32.3",
+      "fsspec": "2026.7.0",
+      "sympy": "1.13.1",
+      "networkx": "3.6.1",
+      "typing_extensions": "4.16.0",
+      "jinja2": "3.1.6",
+      "markupsafe": "3.0.3"
+    }
+  },
+  "reproducible_install": {
+    "step_1": "python -m venv .venv",
+    "step_2": ".venv/Scripts/pip install torch==2.6.0+cu124 torchvision==0.21.0+cu124 --index-url https://download.pytorch.org/whl/cu124",
+    "step_3": ".venv/Scripts/pip install numpy==2.4.6 pandas==3.0.5 matplotlib==3.11.2 scikit-learn==1.9.1 tqdm==4.70.1 pyyaml==6.0.3 scikit-image==0.26.0 tensorboard==2.21.0 seaborn==0.13.2 ipython==9.17.1 nbformat==5.11.1 nbclient==0.11.0 ipykernel==7.3.0",
+    "step_4": "Verify: python -c 'import torch; print(torch.__version__, torch.cuda.is_available())'"
+  },
+  "exclusions": {
+    "secrets": "None present in environment spec",
+    "datasets": "No datasets in dependency package; data manifests are in manifests/phase4_v3/ with SHA-256 digests in protocol.json",
+    "checkpoints": "No checkpoints in dependency package; existing checkpoints/ are workspace-local artifacts"
+  }
+}

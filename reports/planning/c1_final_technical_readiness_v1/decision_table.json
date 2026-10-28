@@ -1,0 +1,124 @@
+{
+  "artifact": "C1_FINAL_EXECUTION_READINESS_DECISION_TABLE",
+  "version": "1.0",
+  "assessed_at": "AUTHOR_ENTERED_AT_WRITE",
+  "repository": "D:/Softfors/jup",
+  "branch": "master",
+  "baseline_head": "ec51359370c673f0038a3655379b70af7da33d03",
+  "protocol_sha256": "531e3eb255a66381201d1aaf49bbe55abfdbe529640f5c584ef100d298087a61",
+  "protocol_sha256_verified_unmodified": true,
+  "technical_readiness": [
+    {
+      "item": "C1 treatment/control implementation",
+      "status": "PASS",
+      "evidence": "8 modules present; parameter accounting 3523001 total / 3432233 control-trainable / 90768 frozen asserted at construction; identity FiLM exact (zero-init output, tanh(0)=0, F_hat=F bit-preserving)"
+    },
+    {
+      "item": "CPU synthetic verification",
+      "status": "PASS",
+      "evidence": "34 tests + 23 subtests passed in 31.53 s (tests/test_c1_film_preparation.py, tests/test_c1_training_integration.py)"
+    },
+    {
+      "item": "CUDA synthetic verification",
+      "status": "PASS",
+      "evidence": "22/22 checks passed on RTX 3060 Ti (8192 MiB, driver 610.88, CC 8.6, torch 2.6.0+cu124, CUDA 12.4, cuDNN 9.1.0); 0 blocked, 0 failed; artifact reports/audits/c1_synthetic_cuda_verification_v1_0.json",
+      "determinism_note": "No bitwise claim. Forward bit-identical; backward nondeterministic (interpolate-backward, scatter/gather). Measured uninterrupted-vs-resumed max |delta| = 2.82e-4 model, <=1.82e-4 macro-Dice, <=6.4e-6 val-loss; selected epoch identical. CPU path exactly reproducible."
+    },
+    {
+      "item": "Dependency reproducibility",
+      "status": "BLOCKED",
+      "evidence": "Installed venv verified (77 packages, all imports resolve, CUDA stack compatible) and fully captured, BUT requirements.txt and pyproject.toml contain zero version specifiers, no lock file, no hashes. A fresh install would not reproduce the verified set.",
+      "remedy": "Pin declarations to verified versions using reproducible_environment_spec.json (two-stage install: pytorch cu124 index then PyPI). Specification change requiring separate review; not performed here.",
+      "no_install_performed": true
+    },
+    {
+      "item": "GPU/storage feasibility",
+      "status": "PASS",
+      "evidence": "MEASURED at frozen recipe with artificial tensors: TRAIN 512x512 B=4 AMP peak reserved 3866.0 MiB of 8192 (headroom 4326.0); EVAL 512x512 B=8 AMP peak reserved 2954.0 MiB (headroom 5238.0). Free disk 128.3 GiB (137772544000 B). Per-checkpoint 42369710 B measured. Six-run aggregate ESTIMATE: 24.83 GiB worst case (100 epochs), 9.93 GiB typical (~40 epochs). No competing compute process.",
+      "no_runtime_measured": "No wall-clock training duration estimated or claimed"
+    },
+    {
+      "item": "Clock reliability",
+      "status": "BLOCKED",
+      "evidence": "w32time service Stopped, StartType Manual; w32tm /query /status|source|peers all return 0x80070426 (service not started). No NTP source, no measured offset, no drift bound. Kernel-Power 41: 0 since current boot (uptime 10h42m) but 85 in retained log. No UPS/battery enumerated.",
+      "consequence": "Absolute timestamps carry unquantified offset; only within-session ordering trustworthy. Host power stability over a training campaign NOT_VERIFIED."
+    },
+    {
+      "item": "Prospective protocol",
+      "status": "PASS",
+      "evidence": "protocol.json byte-identical at 531e3eb2...087a61; status PROTOCOL_READY_FOR_APPROVAL__NOT_APPROVED; scientific_execution_enabled=false preserved (must NOT be flipped - flipping changes digest and destroys frozen identity chain)"
+    },
+    {
+      "item": "Launch-capable release identity",
+      "status": "BLOCKED",
+      "evidence": "Not built; design only. Blocking gap: frozen package_identities.json binds only 3 of 8 c1_film modules. integration_contract.py, recovery_store.py, synthetic_fixture.py, train_driver.py, training_engine.py and tests/test_c1_training_integration.py are bound by NO external frozen reference; integration_sources is self-consistent, not tamper-evident. Fails launch requirement 1.",
+      "remedy": "Additive src/research/c1_film_launch/ with manifest_v2.json binding all 8 modules + both tests + launch package; release_identity.py; fail-closed launch_gate.py (10 checks); launch_driver.py. Two backward-compatible edits to training_engine.py and train_driver.py. Do NOT edit the frozen manifest."
+    }
+  ],
+  "scientific_authorization": [
+    {
+      "item": "Scientific approval",
+      "status": "BLOCKED",
+      "evidence": "authorization: PENDING; no C1-specific authorization artifact exists; protocol status PROTOCOL_READY_FOR_APPROVAL__NOT_APPROVED. BARR-M1 authorization cannot satisfy C1 scope."
+    },
+    {
+      "item": "Separate launch authorization",
+      "status": "BLOCKED",
+      "evidence": "Not issued. Ordering constraint: release digest must exist before approval, and launch instruction must name that digest. Artifact identity precedes approval."
+    }
+  ],
+  "experiment_validity": {
+    "overall": "BLOCKED",
+    "passed": 7,
+    "failed": 1,
+    "checks": [
+      {"id": 1, "item": "Matched backbone initializations preserved", "status": "PASS", "note": "single construction under fork_rng + deepcopy before optimization; initial_sha256 equal; ambient RNG untouched"},
+      {"id": 2, "item": "Identity FiLM mathematically inactive throughout control training", "status": "PASS", "note": "zero-init output => gamma=beta=0 => F_hat=F bit-preserving; frozen; re-verified every epoch and after restore; network output torch.equal to bypass reference for all 4 tasks"},
+      {"id": 3, "item": "Different trainable parameter counts transparently reported", "status": "PASS", "note": "3523001 total both arms; 3432233 vs 3523001 trainable; 90768 (2.58%) frozen; stored in every checkpoint"},
+      {"id": 4, "item": "Primary endpoint exactly defined", "status": "PASS", "note": "ambiguity documented: 'selected_VAL' does not state stored best_records vs recomputed pass (numerically identical today); endpoint is in-sample on selection-consumed VAL808"},
+      {"id": 5, "item": "Treatment and control checkpoint-selection rules identical", "status": "PASS", "note": "one frozen phase20_macro_domain_mean_dice_v1, tolerance 1e-12, replayed on restore; no arm-conditional branch"},
+      {"id": 6, "item": "Seed variation distinguished from patient/case sampling", "status": "PASS", "note": "limitations: n=3 seeds (2 df, descriptive only, no seed-population inference); patient clustering available only in KUB (267), other domains cluster on images"},
+      {"id": 7, "item": "Selection-consumed VAL808 classified as development evidence", "status": "PASS", "note": "claim_boundary = C1_development_selection_consumed_only_not_C2_C3_clinical_safety_or_independent_generalization"},
+      {"id": 8, "item": "Worker configuration matches what recovery tests support", "status": "FAIL", "note": "production num_workers=4 train / 2 eval; every recovery test uses 0. Worker-process determinism under Windows spawn, MultiDomainDataset picklability, and recovery at workers>0 untested. loader_states is audit-only (epochs rebuilt from derive_epoch_seed). Documented, not silently changed."}
+    ]
+  },
+  "git": {
+    "branch": "master",
+    "baseline_head": "ec51359370c673f0038a3655379b70af7da33d03",
+    "frozen_c1_files_unmodified": true,
+    "unrelated_tracked_changes_preserved": 40,
+    "commit_sha": "SEE_FINAL_RESPONSE",
+    "remote_configured": false,
+    "push_status": "BLOCKED",
+    "push_blocker_code": "GIT_REMOTE_CONFIGURATION_REQUIRED"
+  },
+  "prerequisites_before_authorized_training": [
+    "Start w32time, configure working NTP source, record measured offset",
+    "Attach UPS; demonstrate clean-power window materially longer than 10 hours",
+    "Pin dependency declarations to verified versions (separate reviewed spec change)",
+    "Build additive src/research/c1_film_launch/ with manifest_v2.json covering all 8 modules + both tests + launch package",
+    "Close executable-identity gap (5 currently unbound modules)",
+    "Add and pass worker-config recovery test at num_workers=4/2",
+    "Compute and publish release digest BEFORE seeking approval",
+    "Obtain C1-specific scientific authorization naming that digest (scope, arms, seeds, exclusions); BARR-M1 insufficient",
+    "Obtain separate launch instruction with distinct launch_id naming release digest and exact six runs",
+    "Re-measure free disk immediately before launch (>= 3x worst-case aggregate)",
+    "Pin endpoint wording (stored best_records vs recomputed) and write patient-clustering limitation into analysis plan"
+  ],
+  "terminal": "RA_MEDFILM_BARR_C1_FINAL_TECHNICAL_READINESS_ASSESSED__SCIENTIFIC_EXECUTION_PENDING",
+  "scientific_execution_status": "PENDING__NOT_STARTED",
+  "restrictions_honoured": [
+    "NO real-data training",
+    "NO real-data inference",
+    "NO TEST access",
+    "NO ROUTER_HOLDOUT access",
+    "NO historical checkpoint modification",
+    "NO frozen protocol modification",
+    "NO BARR-M1 execution or authorization reuse",
+    "NO fabricated approval",
+    "NO activation of the production launch path",
+    "NO package installation",
+    "NO physical power-off fault injection",
+    "NO new data-derived model selection or scientific analysis"
+  ]
+}
