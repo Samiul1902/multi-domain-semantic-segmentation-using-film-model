@@ -1,0 +1,164 @@
+{
+  "schema": "c1_rc2_release_report_v1_0",
+  "study_id": "C1_FILM_ATTRIBUTION_V1",
+  "generated_utc": "2026-10-28T17:04:26.164144+00:00",
+  "timestamp_caveat": "HOST CLOCK NOT SYNCHRONISED (w32tm Leap Indicator 3, Source Local CMOS Clock). Unquantified offset; do not bind to a trusted reference.",
+  "scientific_execution": "NONE",
+  "mission_a_git_reconstruction": {
+    "starting_head_expected": "fdf13a1cf4e4a56e5c66140599188191aafe5aa6",
+    "starting_head_actual": "0253a39",
+    "head_discrepancy": "Mission A had already been completed by an earlier interrupted run; commit 0253a39 'chore(research): preserve exact C1 release bytes in Git' already existed with the required message. Work was verified rather than duplicated; no duplicate commit was created.",
+    "phase20_approved_files": [
+      {
+        "path": "src/data/loaders.py",
+        "approved_sha256": "EB0C1B5D295D3B77B3E9745FCDEB4FF93F985FD7A58FC8909D8098B5820A8F1A",
+        "actual_sha256": "EB0C1B5D295D3B77B3E9745FCDEB4FF93F985FD7A58FC8909D8098B5820A8F1A",
+        "matches": true
+      },
+      {
+        "path": "src/data/transforms.py",
+        "approved_sha256": "09FCFF4887FF8CDA4DAA215EFAD1D504D4D61F70982262022B6C2A30C8CF8BD1",
+        "actual_sha256": "09FCFF4887FF8CDA4DAA215EFAD1D504D4D61F70982262022B6C2A30C8CF8BD1",
+        "matches": true
+      }
+    ],
+    "gitattributes_rules_rc1": 33,
+    "gitattributes_rules_rc2": 11,
+    "repo_wide_normalisation": false,
+    "rc1_blob_identity": "33/33",
+    "rc2_blob_identity": "9/9",
+    "clean_checkout": {
+      "core.autocrlf=true": {
+        "rc1": "33/33",
+        "rc2": "9/9",
+        "result": "PASS"
+      },
+      "core.autocrlf=false": {
+        "rc1": "33/33",
+        "rc2": "9/9",
+        "result": "PASS"
+      },
+      "core.autocrlf=input": {
+        "rc1": "33/33",
+        "rc2": "9/9",
+        "result": "PASS"
+      }
+    }
+  },
+  "mission_b_rc2": {
+    "rc1_preserved": {
+      "release_digest": "1aec5e17ee79eb8845ea36808d5a087ea99c091be798ec5a41b4e412f93ff9c1",
+      "manifest_file_sha256": "0e3f171983ceb53b966dd1eb14547f39729a228d644e47642f67375b61736cfe",
+      "bound_source_count": 33,
+      "unchanged": true
+    },
+    "rc2_identity": {
+      "release_id": "C1_FILM_ATTRIBUTION_V1_LAUNCH_RC2",
+      "release_digest": "54794efc6d99d94fae9eaebd992e01e4e9923b5055d024ea1d5f02a8a5e737ed",
+      "manifest_file_sha256": "f5169cedce9896da5eeb78866dd36571f81fc11822b64e718235e438b397f71c",
+      "bound_source_count": 9,
+      "protocol_sha256": "531e3eb255a66381201d1aaf49bbe55abfdbe529640f5c584ef100d298087a61",
+      "architecture_sha256": "a04ff3e61b4d900ff47c2f390da4a999e73bd6047b28a19e41b05115e431d11f",
+      "supersedes": {
+        "manifest_path": "src/research/c1_film_launch/manifest_v2.json",
+        "manifest_sha256": "0e3f171983ceb53b966dd1eb14547f39729a228d644e47642f67375b61736cfe",
+        "release_digest": "1aec5e17ee79eb8845ea36808d5a087ea99c091be798ec5a41b4e412f93ff9c1",
+        "release_id": "C1_FILM_ATTRIBUTION_V1_LAUNCH_RC1"
+      }
+    },
+    "b1_trust": {
+      "mechanism": "EXTERNAL_INSTITUTIONAL_TRUST_STORE_SIGNED_POLICY",
+      "store_location": "OS_SCOPE_DEFAULT_OUTSIDE_REPOSITORY",
+      "windows_store_path": "%ProgramData%\\InstitutionalC1Trust",
+      "shipped_trust_keys": 0,
+      "shipped_policy": false,
+      "production_provisioned": false,
+      "provisioning_requires_release_revision": false,
+      "policy_content_authenticated_by_signature": true,
+      "refusals_diagnostic": true,
+      "distinct_trust_refusal_codes": [
+        "C1_RC2_SIGNATURE_KEY_UNTRUSTED",
+        "C1_RC2_SIGNATURE_KEY_REVOKED",
+        "C1_RC2_SIGNATURE_KEY_ROLE",
+        "C1_RC2_SIGNATURE_INVALID",
+        "C1_RC2_TRUST_POLICY_SIGNATURE_INVALID"
+      ],
+      "in_process_tampering_defeated": false,
+      "honest_limitation": "A Python module cannot resist arbitrary in-process code execution; the boundary is OS ownership/ACLs plus institutional provisioning. Windows ACLs are advisory only here (location check), declared as a provisioning requirement."
+    },
+    "b2_time": {
+      "unsigned_trusted_time_accepted": false,
+      "proof_signed": true,
+      "identity_bound_to": [
+        "release_digest",
+        "authorization_id",
+        "launch_id"
+      ],
+      "single_use_nonce": true,
+      "replay_ledger": "DURABLE_ON_DISK_JSONL",
+      "max_age_seconds": 300,
+      "host_clock_trust": "NOT_ESTABLISHED",
+      "production_training_blocked_on_host_clock": true,
+      "windows_clock_modified": false
+    },
+    "b3_synthetic_isolation": {
+      "grant_classes": [
+        "PRODUCTION",
+        "SYNTHETIC_TEST"
+      ],
+      "synthetic_grant_can_train": false,
+      "synthetic_grant_can_open_real_loader": false,
+      "positive_path_exercised": true,
+      "production_training_enabled_by_tests": false
+    },
+    "b4_verification": {
+      "rc2_tests": {
+        "passed": 43,
+        "failed": 0
+      },
+      "rc1_cpu_tests": {
+        "passed": 89,
+        "subtests_passed": 23,
+        "failed": 0
+      },
+      "cuda_synthetic": {
+        "passed": 22,
+        "failed": 0,
+        "blocked": 0
+      },
+      "windows_multiprocessing_recovery": {
+        "passed": 13,
+        "failed": 0,
+        "duration_s": 183.47
+      },
+      "independent_verifier": "VERIFICATION_PASSED",
+      "freeze_check": "RELEASE_CURRENT"
+    }
+  },
+  "mission_c_git": {
+    "commits": {
+      "0253a39": "chore(research): preserve exact C1 release bytes in Git (pre-existing)",
+      "e5800c0": "chore(research): preserve exact RC2 release bytes in Git",
+      "55c90c3": "feat(research): implement and freeze C1 RC2 authorization repair"
+    },
+    "rc1_commit_amended": false,
+    "history_rewritten": false,
+    "remotes": [],
+    "upstream_configured": false,
+    "git_remote": "NONE",
+    "git_push_status": "BLOCKED",
+    "push_blocker": "GIT_REMOTE_CONFIGURATION_REQUIRED",
+    "secrets_screen": {
+      "files_screened": 11,
+      "hits": 0
+    }
+  },
+  "remaining_external_requirements": [
+    "Institutional trust store must be provisioned at the OS-scope path by the institution.",
+    "A genuine supervisor approval must be signed by a key listed in that policy.",
+    "Host time must be independently verified (O8: CMOS battery, UPS, NTP).",
+    "A signed, identity-bound, single-use time proof must accompany the launch.",
+    "Scientific approval is not created by this mission and remains absent."
+  ],
+  "terminal": "C1_RC2_GIT_RECONSTRUCTIBLE__RELEASE_FROZEN__EXTERNAL_AUTHORIZATION_PENDING__NO_SCIENTIFIC_EXECUTION"
+}
