@@ -1,0 +1,89 @@
+{
+  "architecture": {
+    "path": "src/models/film/global_medfilm.py",
+    "sha256": "a04ff3e61b4d900ff47c2f390da4a999e73bd6047b28a19e41b05115e431d11f"
+  },
+  "bound_sources": [
+    {
+      "bytes": 3168,
+      "path": "scripts/verification/c1_launch_rc2_freeze.py",
+      "sha256": "f01afd324f3b2df650fdbe064a95258abd62f67572b9533b5789649757175937"
+    },
+    {
+      "bytes": 5036,
+      "path": "scripts/verification/c1_launch_rc2_verify.py",
+      "sha256": "7a0a85e64d46c3248825ab0542e80ac7422ea2d93a1fc7699487ce6870424f02"
+    },
+    {
+      "bytes": 1209,
+      "path": "src/research/c1_film_launch_rc2/__init__.py",
+      "sha256": "6e9bbaeb0404b80f029a052a8eb4866ded8d185a2d321a22a63277e443a5948f"
+    },
+    {
+      "bytes": 2576,
+      "path": "src/research/c1_film_launch_rc2/launch_driver_rc2.py",
+      "sha256": "e12cc083be82ee762be99fb2a264ea80cd31483dfe26d4c7116328a5fe011ec5"
+    },
+    {
+      "bytes": 10270,
+      "path": "src/research/c1_film_launch_rc2/rc2_gate.py",
+      "sha256": "1f5b6c69cc06d3f4e14d9fc019213d173b93a96582a99b780b6db9e55d8fb679"
+    },
+    {
+      "bytes": 15215,
+      "path": "src/research/c1_film_launch_rc2/release_identity_rc2.py",
+      "sha256": "6c86729643a8387cf56f036600e647c13de44455b42670de74df3ec228cf9c2c"
+    },
+    {
+      "bytes": 6833,
+      "path": "src/research/c1_film_launch_rc2/time_status.py",
+      "sha256": "72ae586679e51bcb521c48eeb03d57fa13c9508e2c84f6795479adab2853980e"
+    },
+    {
+      "bytes": 12858,
+      "path": "src/research/c1_film_launch_rc2/trust_policy.py",
+      "sha256": "7b1456d07c476039aaf17ac1f97bb453cf985d095efe32dbdcbbd04c71d23dc5"
+    },
+    {
+      "bytes": 25889,
+      "path": "tests/test_c1_launch_rc2.py",
+      "sha256": "c89266b39998d98121fd1409496646804b8126a4f2635b0dac289f1f9af1925e"
+    }
+  ],
+  "canonicalisation": "json.dumps(obj,sort_keys=True,separators=(',',':'),ensure_ascii=False,allow_nan=False).encode('utf-8')",
+  "dependency_lock": {
+    "path": "reports/planning/c1_launch_release_v1/c1_dependency_lock.json",
+    "sha256": "b4cdea3ab219db05d26725c74f2dbe42955a3cbe4daaba9f3b296ac201b0b36d"
+  },
+  "digest_rule": "sha256(canonical_json(manifest))",
+  "host_clock": {
+    "required": true,
+    "trust": "NOT_ESTABLISHED",
+    "verification": "EXTERNAL_O8_REQUIRED"
+  },
+  "protocol": {
+    "path": "reports/planning/c1_film_attribution_v1/protocol.json",
+    "sha256": "531e3eb255a66381201d1aaf49bbe55abfdbe529640f5c584ef100d298087a61"
+  },
+  "recipe_digest": "275f20a935d6b78342306166ff067eae88ad1b6baaf9ed2a6ab786bba281f14c",
+  "release_id": "C1_FILM_ATTRIBUTION_V1_LAUNCH_RC2",
+  "schema": 3,
+  "self_excluded": [
+    "src/research/c1_film_launch_rc2/manifest_rc2.json",
+    "src/research/c1_film_launch_rc2/RELEASE_DIGEST_RC2.txt"
+  ],
+  "study_id": "C1_FILM_ATTRIBUTION_V1",
+  "supersedes": {
+    "manifest_path": "src/research/c1_film_launch/manifest_v2.json",
+    "manifest_sha256": "0e3f171983ceb53b966dd1eb14547f39729a228d644e47642f67375b61736cfe",
+    "release_digest": "1aec5e17ee79eb8845ea36808d5a087ea99c091be798ec5a41b4e412f93ff9c1",
+    "release_id": "C1_FILM_ATTRIBUTION_V1_LAUNCH_RC1"
+  },
+  "trust_store": {
+    "anchors_shipped": 0,
+    "inside_release": false,
+    "production_root": "OS_SCOPE_DEFAULT",
+    "provisioned": false,
+    "provisioning": "INSTITUTIONAL_EXTERNAL_NO_RELEASE_REVISION"
+  }
+}
