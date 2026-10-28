@@ -17,15 +17,15 @@ protocol modification, no activation of the production launch path.
 All seven files were reviewed against `manifest_v2.json` and scanned for credentials, patient data,
 dataset records, binaries and licensing restrictions. Contents were **not edited**.
 
-| File | Bytes | Verdict |
+| File | Bytes (measured) | Verdict |
 |---|---|---|
-| `scripts/training/phase21_common.py` | 4 178 | clean |
-| `src/data/domain_balanced_sampler.py` | 3 331 | clean |
-| `src/data/multidomain_dataset.py` | 5 767 | clean |
-| `src/models/film/__init__.py` | 546 | clean |
+| `scripts/training/phase21_common.py` | 5 991 | clean |
+| `src/data/domain_balanced_sampler.py` | 3 458 | clean |
+| `src/data/multidomain_dataset.py` | 5 969 | clean |
+| `src/models/film/__init__.py` | 566 | clean |
 | `src/models/film/global_medfilm.py` | 12 458 | clean |
-| `src/training/phase20_selection.py` | 3 100 | clean |
-| `src/utils/run_lock.py` | 6 239 | clean |
+| `src/training/phase20_selection.py` | 3 228 | clean |
+| `src/utils/run_lock.py` | 5 974 | clean |
 
 `ALL_SEVEN_VERIFIED: True` · `CRLF_count_in_bound_bytes: 0` for the seven at review time.
 No secrets, no credentials, no patient identifiers, no dataset records, no binary payloads, no
