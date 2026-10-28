@@ -1,0 +1,482 @@
+{
+  "schema": "c1_rc1_audit_v1_0",
+  "study_id": "C1_FILM_ATTRIBUTION_V1",
+  "record_generated_utc": "2026-10-28T02:39:47.051844+00:00",
+  "timestamp_caveat": "HOST CLOCK NOT SYNCHRONISED (w32tm Leap Indicator 3, Source Local CMOS Clock). This timestamp carries an unquantified offset and must not be bound to a trusted reference. Within-session ordering only.",
+  "scientific_execution": "NONE",
+  "git": {
+    "branch": "master",
+    "head_commit": "fbc0af25524018b0ef0a1105d7a2b00827a443c5",
+    "rc1_commit": "bdb0f9d",
+    "dependency_tracking_commit": "fbc0af2",
+    "rc1_amended": false,
+    "remotes": [],
+    "upstream_configured": false,
+    "core_autocrlf": "true",
+    "gitattributes_present": false,
+    "push_status": "BLOCKED",
+    "push_blocker": "GIT_REMOTE_CONFIGURATION_REQUIRED"
+  },
+  "task_a_review": {
+    "files_reviewed": 7,
+    "all_verified_against_manifest": true,
+    "secrets_found": 0,
+    "patient_data_found": 0,
+    "dataset_records_found": 0,
+    "binaries_found": 0,
+    "licensing_restrictions_found": 0,
+    "contents_edited": false
+  },
+  "task_b_commit": {
+    "commit": "fbc0af2",
+    "message": "chore(research): track C1 release-bound scientific dependencies",
+    "files_changed": 7,
+    "insertions": 944,
+    "deletions": 0,
+    "files": [
+      {
+        "path": "scripts/training/phase21_common.py",
+        "tracked": true,
+        "head_blob_matches_manifest": true
+      },
+      {
+        "path": "src/data/domain_balanced_sampler.py",
+        "tracked": true,
+        "head_blob_matches_manifest": true
+      },
+      {
+        "path": "src/data/multidomain_dataset.py",
+        "tracked": true,
+        "head_blob_matches_manifest": true
+      },
+      {
+        "path": "src/models/film/__init__.py",
+        "tracked": true,
+        "head_blob_matches_manifest": true
+      },
+      {
+        "path": "src/models/film/global_medfilm.py",
+        "tracked": true,
+        "head_blob_matches_manifest": true
+      },
+      {
+        "path": "src/training/phase20_selection.py",
+        "tracked": true,
+        "head_blob_matches_manifest": true
+      },
+      {
+        "path": "src/utils/run_lock.py",
+        "tracked": true,
+        "head_blob_matches_manifest": true
+      }
+    ],
+    "all_seven_tracked": true,
+    "all_seven_blob_identical": true
+  },
+  "task_c_reverification": {
+    "release_digest": "1aec5e17ee79eb8845ea36808d5a087ea99c091be798ec5a41b4e412f93ff9c1",
+    "release_digest_published_matches": true,
+    "manifest_file_sha256": "0e3f171983ceb53b966dd1eb14547f39729a228d644e47642f67375b61736cfe",
+    "protocol_sha256": "531e3eb255a66381201d1aaf49bbe55abfdbe529640f5c584ef100d298087a61",
+    "architecture_sha256": "a04ff3e61b4d900ff47c2f390da4a999e73bd6047b28a19e41b05115e431d11f",
+    "bound_source_count": 33,
+    "c1_module_count": 8,
+    "bound_hashes_matching_working_tree": "33/33",
+    "bound_hashes_matching_head_blob": "18/33",
+    "bound_hashes_matching_fresh_checkout": "13/33",
+    "release_identity": "RELEASE_IDENTITY_VALID",
+    "independent_verifier": "VERIFICATION_PASSED",
+    "freeze_check": "RELEASE_CURRENT",
+    "tests": {
+      "tests/test_c1_launch_release.py": {
+        "passed": 55,
+        "failed": 0
+      },
+      "tests/test_c1_launch_multiprocessing.py": {
+        "passed": 13,
+        "failed": 0,
+        "duration_s": 171.89
+      },
+      "total_passed": 68
+    }
+  },
+  "task_c_finding_git_reconstructibility": {
+    "verdict": "NOT_BYTE_EXACT_ACROSS_ALL_33",
+    "working_tree_vs_manifest": "33/33",
+    "head_blob_vs_manifest": "18/33",
+    "fresh_checkout_vs_manifest": "13/33",
+    "cause": "core.autocrlf=true with no .gitattributes; normalisation acts in both directions",
+    "lf_bound_files_corrupted_on_checkout": 18,
+    "crlf_bound_files_normalised_in_blob": 15,
+    "genuine_uncommitted_content": [
+      "src/data/loaders.py",
+      "src/data/transforms.py"
+    ],
+    "single_autocrlf_setting_suffices": false,
+    "minimum_correction": "add .gitattributes with a -text rule for bound paths, git add --renormalize, commit; rewrites 15 blobs but leaves working tree and release digest unchanged; NOT performed here, requires separate review",
+    "requires_release_revision": false,
+    "per_file": [
+      {
+        "path": "reports/planning/c1_launch_release_v1/c1_dependency_lock.json",
+        "expected_sha256": "b4cdea3ab219db05d26725c74f2dbe42955a3cbe4daaba9f3b296ac201b0b36d",
+        "working_tree_matches": true,
+        "head_blob_matches": false,
+        "working_tree_crlf": 788,
+        "head_blob_crlf": 0
+      },
+      {
+        "path": "reports/planning/c1_launch_release_v1/endpoint_clarification_addendum.md",
+        "expected_sha256": "57ec4cc276681748d558863202655b32f8ce5f7d40126bd98971c7ca581bc633",
+        "working_tree_matches": true,
+        "head_blob_matches": true,
+        "working_tree_crlf": 0,
+        "head_blob_crlf": 0
+      },
+      {
+        "path": "scripts/training/phase21_common.py",
+        "expected_sha256": "7591a8a44715ad29d06065dc065b7057eca0866b89ebd265626dd76061e59338",
+        "working_tree_matches": true,
+        "head_blob_matches": true,
+        "working_tree_crlf": 0,
+        "head_blob_crlf": 0
+      },
+      {
+        "path": "scripts/verification/c1_build_dependency_lock.py",
+        "expected_sha256": "5c8dfd0510d471341bdcf19a4f8a79afffea9f558330febc6af99263bbc0de68",
+        "working_tree_matches": true,
+        "head_blob_matches": true,
+        "working_tree_crlf": 0,
+        "head_blob_crlf": 0
+      },
+      {
+        "path": "scripts/verification/c1_launch_release_freeze.py",
+        "expected_sha256": "1d25ffdc96a00ddda87f89ed2611aa0ceb4ed638d41cb4e9616df1b0da0cb91c",
+        "working_tree_matches": true,
+        "head_blob_matches": true,
+        "working_tree_crlf": 0,
+        "head_blob_crlf": 0
+      },
+      {
+        "path": "scripts/verification/c1_launch_release_verify.py",
+        "expected_sha256": "cc5335d4a7df9a97445ce0b92835133bd11ab7ac7e850f149c1f6d3a2982219b",
+        "working_tree_matches": true,
+        "head_blob_matches": true,
+        "working_tree_crlf": 0,
+        "head_blob_crlf": 0
+      },
+      {
+        "path": "scripts/verification/c1_synthetic_cuda_verification.py",
+        "expected_sha256": "9ebc1e8a9b5c6421fcb50f86d48a356de37c3088c45451b710527ddbb817a1ed",
+        "working_tree_matches": true,
+        "head_blob_matches": true,
+        "working_tree_crlf": 0,
+        "head_blob_crlf": 0
+      },
+      {
+        "path": "src/data/domain_balanced_sampler.py",
+        "expected_sha256": "a59782f1aa85882aa6c1f0dddd75a9888ec34ecc1bdbcc7f0cd733a4ae0ef0d2",
+        "working_tree_matches": true,
+        "head_blob_matches": true,
+        "working_tree_crlf": 0,
+        "head_blob_crlf": 0
+      },
+      {
+        "path": "src/data/loaders.py",
+        "expected_sha256": "eb0c1b5d295d3b77b3e9745fcdeb4ff93f985fd7a58fc8909d8098b5820a8f1a",
+        "working_tree_matches": true,
+        "head_blob_matches": false,
+        "working_tree_crlf": 25,
+        "head_blob_crlf": 0
+      },
+      {
+        "path": "src/data/multidomain_dataset.py",
+        "expected_sha256": "461062e5d6bf564872645c51c4175e69cb6169b729f1e5f311f2783f3f0b70b3",
+        "working_tree_matches": true,
+        "head_blob_matches": true,
+        "working_tree_crlf": 0,
+        "head_blob_crlf": 0
+      },
+      {
+        "path": "src/data/transforms.py",
+        "expected_sha256": "09fcff4887ff8cda4daa215efad1d504d4d61f70982262022b6c2a30c8cf8bd1",
+        "working_tree_matches": true,
+        "head_blob_matches": false,
+        "working_tree_crlf": 58,
+        "head_blob_crlf": 0
+      },
+      {
+        "path": "src/losses/segmentation.py",
+        "expected_sha256": "2af539bd47a07c966d4a2784f4df7d81bce0620af8ef8e8ddc8b34a3e6de0e8f",
+        "working_tree_matches": true,
+        "head_blob_matches": false,
+        "working_tree_crlf": 23,
+        "head_blob_crlf": 0
+      },
+      {
+        "path": "src/models/film/__init__.py",
+        "expected_sha256": "3df73eaa3439429137bd09ea8c53f73baa75edcdc1acf57a3c57160da2ebeca7",
+        "working_tree_matches": true,
+        "head_blob_matches": true,
+        "working_tree_crlf": 0,
+        "head_blob_crlf": 0
+      },
+      {
+        "path": "src/models/film/global_medfilm.py",
+        "expected_sha256": "a04ff3e61b4d900ff47c2f390da4a999e73bd6047b28a19e41b05115e431d11f",
+        "working_tree_matches": true,
+        "head_blob_matches": true,
+        "working_tree_crlf": 0,
+        "head_blob_crlf": 0
+      },
+      {
+        "path": "src/research/c1_film/__init__.py",
+        "expected_sha256": "ef50694b30628bc249b822fb0b339c7b11a5f3eea1e26ef46536c8b859e7a2a1",
+        "working_tree_matches": true,
+        "head_blob_matches": false,
+        "working_tree_crlf": 1,
+        "head_blob_crlf": 0
+      },
+      {
+        "path": "src/research/c1_film/control.py",
+        "expected_sha256": "c2fc3bac59c50ca31d8edc9e958786899cc2acfe7414ba5874a742dd7c4c983d",
+        "working_tree_matches": true,
+        "head_blob_matches": false,
+        "working_tree_crlf": 97,
+        "head_blob_crlf": 0
+      },
+      {
+        "path": "src/research/c1_film/integration_contract.py",
+        "expected_sha256": "cedbe01f534b9edbb54c1193bea838806dc9017e87a70abc3409eb3a2489e17d",
+        "working_tree_matches": true,
+        "head_blob_matches": false,
+        "working_tree_crlf": 74,
+        "head_blob_crlf": 0
+      },
+      {
+        "path": "src/research/c1_film/readiness.py",
+        "expected_sha256": "97442c17bfb87ebf3fadbda2584c3c9acd51414218f5c04ccc7d41c0141c1b3b",
+        "working_tree_matches": true,
+        "head_blob_matches": false,
+        "working_tree_crlf": 108,
+        "head_blob_crlf": 0
+      },
+      {
+        "path": "src/research/c1_film/recovery_store.py",
+        "expected_sha256": "5c2d46f6ab1f7231f12f9ebbc071890182ad218c7c89c693f866a03efb5c4a5d",
+        "working_tree_matches": true,
+        "head_blob_matches": false,
+        "working_tree_crlf": 115,
+        "head_blob_crlf": 0
+      },
+      {
+        "path": "src/research/c1_film/synthetic_fixture.py",
+        "expected_sha256": "9baffa4f50df6cfd8c80205ba3b749436da8087a3c5b7550792dccaa0328b991",
+        "working_tree_matches": true,
+        "head_blob_matches": false,
+        "working_tree_crlf": 55,
+        "head_blob_crlf": 0
+      },
+      {
+        "path": "src/research/c1_film/train_driver.py",
+        "expected_sha256": "eab54540a2a33b3897b624f2749d8606041c4405bcae2161535e1c7499fc20bb",
+        "working_tree_matches": true,
+        "head_blob_matches": false,
+        "working_tree_crlf": 115,
+        "head_blob_crlf": 0
+      },
+      {
+        "path": "src/research/c1_film/training_engine.py",
+        "expected_sha256": "9c71cf4667b169c5fe26809d0efc5ab05a35685f572f54005fd224b33e9da6b6",
+        "working_tree_matches": true,
+        "head_blob_matches": false,
+        "working_tree_crlf": 265,
+        "head_blob_crlf": 0
+      },
+      {
+        "path": "src/research/c1_film_launch/__init__.py",
+        "expected_sha256": "e6a05be0b2d035d7175354c7ebd3dfefbc853d41db69dcf4147f2544879e59af",
+        "working_tree_matches": true,
+        "head_blob_matches": true,
+        "working_tree_crlf": 0,
+        "head_blob_crlf": 0
+      },
+      {
+        "path": "src/research/c1_film_launch/launch_driver.py",
+        "expected_sha256": "64a0b2f6ceee196cd9aa8c0deee3bc2ba010c38bca78abea9f83b23cb50534c1",
+        "working_tree_matches": true,
+        "head_blob_matches": true,
+        "working_tree_crlf": 0,
+        "head_blob_crlf": 0
+      },
+      {
+        "path": "src/research/c1_film_launch/launch_gate.py",
+        "expected_sha256": "fb17a86502a06ec8a0b7b0487f3a63fc03d03148120162a8b3caadd834d515b3",
+        "working_tree_matches": true,
+        "head_blob_matches": true,
+        "working_tree_crlf": 0,
+        "head_blob_crlf": 0
+      },
+      {
+        "path": "src/research/c1_film_launch/release_identity.py",
+        "expected_sha256": "77690ebb43ab653d6fa7d30478396184469473b9184637e14ccb9e8cfeb5c429",
+        "working_tree_matches": true,
+        "head_blob_matches": true,
+        "working_tree_crlf": 0,
+        "head_blob_crlf": 0
+      },
+      {
+        "path": "src/training/phase20_selection.py",
+        "expected_sha256": "99d412361445c10e45f148ba87dfc39b95e9ca51f82b2a1571964ca2df9421c3",
+        "working_tree_matches": true,
+        "head_blob_matches": true,
+        "working_tree_crlf": 0,
+        "head_blob_crlf": 0
+      },
+      {
+        "path": "src/utils/reproducibility.py",
+        "expected_sha256": "1f4e1fd2de7ed8b1697eb2b3e8ebe6d98a90fc84b66e35b0c6e46dbdeea374ee",
+        "working_tree_matches": true,
+        "head_blob_matches": false,
+        "working_tree_crlf": 35,
+        "head_blob_crlf": 0
+      },
+      {
+        "path": "src/utils/run_lock.py",
+        "expected_sha256": "0a38f2338775fbf6b6a8c12c3bf2e65d0fe1b410c6bb9f8f6d158b4633c0fada",
+        "working_tree_matches": true,
+        "head_blob_matches": true,
+        "working_tree_crlf": 0,
+        "head_blob_crlf": 0
+      },
+      {
+        "path": "tests/test_c1_film_preparation.py",
+        "expected_sha256": "19a79e15bcbd71bdbba3102a63b4318315d2e56ea5322a19103287023767d791",
+        "working_tree_matches": true,
+        "head_blob_matches": false,
+        "working_tree_crlf": 193,
+        "head_blob_crlf": 0
+      },
+      {
+        "path": "tests/test_c1_launch_multiprocessing.py",
+        "expected_sha256": "624616d887ce981b9da98dd9f4747c226e1161959592d37c60e78fe808788199",
+        "working_tree_matches": true,
+        "head_blob_matches": true,
+        "working_tree_crlf": 0,
+        "head_blob_crlf": 0
+      },
+      {
+        "path": "tests/test_c1_launch_release.py",
+        "expected_sha256": "338b1eeb90b3d6773d53bc5fbca763ee453260d38accf5b1b9ac1e39351ed124",
+        "working_tree_matches": true,
+        "head_blob_matches": true,
+        "working_tree_crlf": 0,
+        "head_blob_crlf": 0
+      },
+      {
+        "path": "tests/test_c1_training_integration.py",
+        "expected_sha256": "3dc4f6c82ecb2f58ece8dfedce32bd26a184c58b64130b25d484b9395b1b89f9",
+        "working_tree_matches": true,
+        "head_blob_matches": false,
+        "working_tree_crlf": 299,
+        "head_blob_crlf": 0
+      }
+    ]
+  },
+  "task_d_trust_mechanism": {
+    "mechanism": "HARDCODED_EMPTY_MODULE_LEVEL_ALLOWLIST",
+    "location": "src/research/c1_film_launch/launch_gate.py:61",
+    "literal": "AUTHORIZED_ANCHOR_SHA256: tuple[str, ...] = ()",
+    "allowlist_length": 0,
+    "external_provisioning_paths_found": 0,
+    "env_or_config_lookup": "none",
+    "entry_point_accepts_allowlist_parameter": false,
+    "phase_a_checks_before_trust": 9,
+    "trust_call_line": 383,
+    "allowlist_test_line": 329,
+    "probe_correctly_signed_approval": "REFUSED:C1_TRUST_ANCHOR_NOT_ALLOWLISTED",
+    "question": "CAN THE FROZEN RC1 VALIDATE A LEGITIMATE SUPERVISOR APPROVAL WITHOUT ANY SOURCE MODIFICATION?",
+    "answer": "NO",
+    "verdict": "RC1_AUTHORIZATION_PATH_NOT_ACTIVATABLE",
+    "minimum_correction": "populate AUTHORIZED_ANCHOR_SHA256 with the supervisor's SHA-256 SPKI fingerprint; this edits a bound source, changes the release digest and voids RC1",
+    "requires_release_revision": true
+  },
+  "task_e_trusted_time": {
+    "authenticated": false,
+    "classification": "CALLER_SUPPLIED_METADATA",
+    "signed_by_any_verified_signature": false,
+    "signed_payloads": [
+      "approval",
+      "instruction"
+    ],
+    "trusted_time_in_signed_payload": false,
+    "caller_controls_now": true,
+    "nonce_or_one_shot": false,
+    "checks": {
+      "synchronized_is_true": "self-declared",
+      "source_in_ntp_gps_ptp": "self-declared string",
+      "abs_offset_seconds_le_2_0": "self-declared",
+      "measured_at_utc_within_24h_of_now": "caller-controlled"
+    },
+    "probes": {
+      "E1_fabricated_attestation_passes_phase_a": true,
+      "E3_stale_attestation_honest_now": "REFUSED:C1_TRUSTED_TIME_UNVERIFIED",
+      "E3b_stale_attestation_caller_now": "REFUSED:C1_LAUNCH_ORDER_VIOLATION",
+      "E4_offset_1_99_passes": true,
+      "E4b_offset_2_01": "REFUSED:C1_TRUSTED_TIME_UNVERIFIED"
+    },
+    "residual_constraint": "signed issued_at bounds caller-supplied now to <=24h, preventing unbounded time travel but not authenticating the time source",
+    "host_clock_synchronised": false,
+    "consequence": "an NTP-sourced attestation produced on this host would be false and the gate accepts it"
+  },
+  "task_f_short_circuit": {
+    "phase_b_short_circuited": true,
+    "phase_a_short_circuited": false,
+    "unreachable_refusals_in_rc1": [
+      "C1_AUTHORIZATION_SOURCE_MISMATCH",
+      "C1_AUTHORIZATION_ROLE_MISMATCH",
+      "C1_APPROVAL_SIGNATURE_INVALID",
+      "C1_LAUNCH_SIGNATURE_INVALID"
+    ],
+    "probes": {
+      "F1_corrupted_approval_signature": "C1_TRUST_ANCHOR_NOT_ALLOWLISTED",
+      "F2_absent_approval_signature": "C1_TRUST_ANCHOR_NOT_ALLOWLISTED",
+      "F3_corrupted_instruction_signature": "C1_TRUST_ANCHOR_NOT_ALLOWLISTED",
+      "F4_wrong_institution_role_signature": "C1_TRUST_ANCHOR_NOT_ALLOWLISTED"
+    },
+    "trust_boundary_diagnostic": false,
+    "fail_closed": true,
+    "addendum_allowlist_mutable": {
+      "in_process_patch_authorizes": true,
+      "release_digest_changed_by_patch": false,
+      "contradicts_module_docstring": true,
+      "defence_boundary": "PROCESS_NOT_MODULE"
+    }
+  },
+  "task_h_readiness": {
+    "items": {
+      "1_dependencies_reviewed_clean": "PASS",
+      "2_scoped_tracking_commit": "PASS",
+      "3_rc1_identity_reverified": "PASS",
+      "4_tests_pass": "PASS",
+      "5_byte_exact_git_reconstructibility": "FAIL",
+      "6_legitimate_approval_validatable": "FAIL",
+      "7_trusted_time_authenticated": "FAIL",
+      "8_trust_boundary_diagnostic": "FAIL",
+      "9_allowlist_immutable": "FAIL",
+      "10_off_host_durability": "FAIL"
+    },
+    "failures_fixable_without_release_revision": [
+      5,
+      10
+    ],
+    "failures_requiring_release_revision": [
+      6,
+      7,
+      8,
+      9
+    ],
+    "rc2_created": false,
+    "production_launch_path_activated": false,
+    "terminal": "C1_RC1_AUTHORIZATION_PATH_BLOCKED__RELEASE_REVISION_REQUIRED__NO_SCIENTIFIC_EXECUTION"
+  }
+}
