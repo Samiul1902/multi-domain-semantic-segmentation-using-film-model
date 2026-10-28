@@ -12,15 +12,24 @@ from .integration_contract import make_contract, validate_synthetic_output, veri
 from .readiness import ROOT, ReadinessError, assert_launch_allowed
 
 
-def real_loader_factory(protocol):
-    """Integrated adapter kept unreachable by the immutable preparation gate."""
-    assert_launch_allowed(protocol)  # Refuse before even importing a data reader.
-    return _verified_loader_adapter(protocol)
+def _require_grant(grant):
+    if grant is None:
+        raise ReadinessError("C1_LAUNCH_GRANT_REQUIRED")
+    authorize = getattr(grant, "authorize_loader", None)
+    if not callable(authorize):
+        raise ReadinessError("C1_LAUNCH_GRANT_INVALID")
+    return authorize
 
 
-def _verified_loader_adapter(protocol):
+def real_loader_factory(protocol, *, grant=None):
+    """Integrated adapter; refuses before importing any data reader unless granted."""
+    _require_grant(grant)(protocol)
+    return _verified_loader_adapter(protocol, grant=grant)
+
+
+def _verified_loader_adapter(protocol, *, grant=None):
     # Internal integration body; still gated if invoked directly.
-    assert_launch_allowed(protocol)
+    _require_grant(grant)(protocol)
     import hashlib
     from src.data.domain_balanced_sampler import build_domain_balanced_sampler, derive_epoch_seed
     from src.data.loaders import create_loader
@@ -52,22 +61,29 @@ def _verified_loader_adapter(protocol):
     return factory
 
 
-def run_real(arm, seed, *, approval=None, launch=None):
-    """Gate always refuses this release before outputs, CUDA models or data access."""
-    protocol = verify_preparation()
-    assert_launch_allowed(protocol, approval, launch)
-    # Deliberately unreachable until a separately reviewed approval integration.
-    # This release's gate always raises, including for self-asserted approvals.
+def run_real(arm, seed, *, approval=None, launch=None, grant=None):
+    """Real-data entry. Requires a verified LaunchGrant; approval dicts never suffice.
+
+    ``approval`` and ``launch`` are retained only so that legacy self-asserted
+    dictionaries raise a scope error instead of a TypeError. They are never
+    consulted for authorization: a local dict containing approved=true, an
+    institutional name, or a signature-shaped string cannot grant execution.
+    """
+    protocol = verify_preparation()  # Frozen package must still be intact.
+    if grant is None:
+        raise ReadinessError("C1_LAUNCH_GRANT_REQUIRED")
+    authorize = getattr(grant, "authorize_launch", None)
+    if not callable(authorize):
+        raise ReadinessError("C1_LAUNCH_GRANT_INVALID")
+    authorize(protocol, arm, seed)
     import torch
     from .training_engine import Trainer
-    if not protocol["execution"]["scientific_execution_enabled"]:
-        raise ReadinessError("C1_FROZEN_PROTOCOL_EXECUTION_DISABLED")
     if not torch.cuda.is_available():
         raise ReadinessError("C1_CUDA_REQUIRED")
     contract = make_contract(arm, seed, synthetic=False, device="cuda")
-    loaders = real_loader_factory(protocol)
+    loaders = real_loader_factory(protocol, grant=grant)
     output = ROOT / "experiments/c1_film_attribution_v1" / f"seed{seed}" / arm
-    return Trainer(contract).run(output, loaders)
+    return Trainer(contract, grant=grant).run(output, loaders)
 
 
 def run_synthetic(arm, seed, output: Path, *, resume=False):

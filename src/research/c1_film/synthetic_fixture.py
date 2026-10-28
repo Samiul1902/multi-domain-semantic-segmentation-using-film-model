@@ -38,3 +38,18 @@ def fixture_loaders(seed, epoch):
     return (create_loader(train, 4, False, derive_epoch_seed(seed, epoch), num_workers=0,
                           pin_memory=False, sampler=sampler),
             create_loader(val, 4, False, seed, num_workers=0, pin_memory=False))
+
+
+def fixture_loaders_workers(seed, epoch):
+    """Production worker topology (train 4 / eval 2) over artificial tensors.
+
+    Mirrors the frozen protocol's ``train_workers=4`` / ``eval_workers=2`` and
+    ``persistent_workers=False`` so multiprocessing recovery can be exercised
+    without touching real research images.
+    """
+    train, val = ArtificialDataset("TRAIN"), ArtificialDataset("VAL")
+    sampler = build_domain_balanced_sampler(train.domains, seed, epoch)
+    return (create_loader(train, 4, False, derive_epoch_seed(seed, epoch), num_workers=4,
+                          pin_memory=False, persistent_workers=False, sampler=sampler),
+            create_loader(val, 4, False, seed, num_workers=2,
+                          pin_memory=False, persistent_workers=False))

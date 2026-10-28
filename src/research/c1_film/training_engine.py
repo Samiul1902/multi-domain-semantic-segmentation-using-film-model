@@ -47,11 +47,19 @@ def initial_digest(model) -> str:
 
 
 class Trainer:
-    def __init__(self, contract: dict):
+    def __init__(self, contract: dict, *, grant=None):
         validate_contract(contract)
         if contract["mode"] != "SYNTHETIC_ONLY":
-            from .readiness import assert_launch_allowed, load_protocol
-            assert_launch_allowed(load_protocol())
+            # The preparation gate (assert_launch_allowed) remains frozen and can
+            # never return. Real execution requires a LaunchGrant minted by the
+            # additive launch release after the full authorization chain passes.
+            from .readiness import ReadinessError
+            if grant is None:
+                raise ReadinessError("C1_LAUNCH_GRANT_REQUIRED")
+            authorize = getattr(grant, "authorize_trainer", None)
+            if not callable(authorize):
+                raise ReadinessError("C1_LAUNCH_GRANT_INVALID")
+            authorize(contract)
         self.contract = copy.deepcopy(contract)
         self.identity = digest(contract)
         self.device = torch.device(contract["device"])
