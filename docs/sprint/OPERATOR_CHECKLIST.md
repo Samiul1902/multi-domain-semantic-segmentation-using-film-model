@@ -34,19 +34,30 @@ If offset > 1.0 s, stop. Do not proceed until clock is corrected.
 
 ## Step 2 — Provision OS-Scope Trust Store
 
-Create the production trust store directory with restricted ACLs:
+The institutional trust root (`C:\ProgramData\InstitutionalC1Trust` on Windows, `/etc/institutional-c1-trust` on POSIX) represents institutional authority and must be provisioned and owned by an **OS Administrator**, completely separate from the ordinary researcher account.
+
+### 2a. Directory Creation & Ownership Separation (Administrator PowerShell)
 ```powershell
+# Execute in an elevated (Administrator) console ONLY
 New-Item -ItemType Directory -Path "C:\ProgramData\InstitutionalC1Trust" -Force
-icacls "C:\ProgramData\InstitutionalC1Trust" /inheritance:r /grant:r "$($env:USERNAME):(OI)(CI)F"
+
+# Secure ACLs: ONLY Administrators and SYSTEM may write/modify.
+# The researcher account must have READ-ONLY access.
+icacls "C:\ProgramData\InstitutionalC1Trust" /inheritance:r `
+    /grant:r "BUILTIN\Administrators:(OI)(CI)F" `
+    /grant:r "NT AUTHORITY\SYSTEM:(OI)(CI)F" `
+    /grant:r "$($env:USERNAME):(OI)(CI)RX"
 ```
+**CRITICAL SECURITY RULE:** Do NOT grant `$($env:USERNAME)` Full Control (`F`) or Write (`M`) permissions over `C:\ProgramData\InstitutionalC1Trust`. The researcher must never be able to alter trust anchors, inject approval keys, or overwrite binding policies.
 
-Generate ECDSA-P256 keypairs for three roles:
-- `TIME_AUTHORITY` — signs clock attestations
-- `SUPERVISOR` (APPROVAL role) — signs scientific approval
-- `LAUNCH_OPERATOR` — signs launch instruction
+### 2b. Institutional Roles and Key Custody
+The trust store holds the public deployment binding (`c1_rc2_binding.json`) and the signed policy file. Private keys for institutional roles must be retained in an external HSM or secure institutional key vault, NEVER placed in the project repository or trust directory:
+- `POLICY_OWNER` — Signs the trust policy.
+- `TIME_AUTHORITY` — Signs the host clock attestation proof.
+- `SUPERVISOR` / `INSTITUTIONAL_APPROVER` — Signs the C1 scientific approval payload.
+- `LAUNCH_OPERATOR` — Signs the separate C1 launch instruction token.
 
-Build and sign the trust policy JSON (`c1_rc2_binding.json` + policy file) using your institutional key management process.  
-**Do not generate keys inside the repository.**
+Build and sign the trust policy JSON using institutional offline procedures. Copy the resulting public binding and signed policy into `C:\ProgramData\InstitutionalC1Trust`.
 
 ---
 
@@ -80,7 +91,7 @@ The attestation is valid for 24 hours. Re-run before each launch session if expi
 The institutional SUPERVISOR signs an approval record binding:
 - `study_id`: `C1_FILM_ATTRIBUTION_V1`
 - `protocol_sha256`: `531e3eb255a66381201d1aaf49bbe55abfdbe529640f5c584ef100d298087a61`
-- `release_digest` (RC2): `54794efc6d99d94fae9eaebd992e01e4e9923b5055d024ea1d5f02a8a5e737ed`
+- `release_digest` (RC3): `54d1273a53db7dae58118a4bb69c2a96ba2e474a72512a9dccb4c98c9513549f`
 - `arms`: `["C1-T", "C1-C"]`
 - `seeds`: `[42, 123, 3407]`
 - `exclusions`: `["TEST", "ROUTER_HOLDOUT", "EXTERNAL", "QUARANTINE", "BARR-M1", "C2", "C3"]`
