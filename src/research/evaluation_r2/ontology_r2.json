@@ -1,0 +1,186 @@
+﻿{
+  "schema_version": "canonical_four_domain_v2",
+  "scope": "Canonical four-domain ontology, label definitions, split rules and physical spacing integrity",
+  "verification_metadata": {
+    "ontology_status": "IMPLEMENTATION_AND_METADATA_VERIFIED",
+    "evaluation_split_policy": "STRICT_ISOLATION_NO_TEST_OR_ROUTER_HOLDOUT_ACCESS",
+    "scientific_execution_status": "UNCHANGED__NO_SCIENTIFIC_EXECUTION__NOT_AUTHORIZED"
+  },
+  "domains": {
+    "KUB": {
+      "canonical_id": "KUB",
+      "task_id": 3,
+      "valid_aliases": ["KUB", "kub", "KUB-Stone", "KUB-StoneX"],
+      "dataset_identity": "KUB-StoneX",
+      "modality": "radiograph",
+      "anatomy": "kidney / ureter / bladder",
+      "prediction_task": "Urinary stone segmentation",
+      "foreground_definition": "Urinary calculi (stones) in renal/ureteral/vesical tract",
+      "background_definition": "All non-stone tissue, bone and radiograph field",
+      "native_mask_encoding": {
+        "observed_values": [0, 1, 2, 3, 255],
+        "harmonized_foreground_rule": "mask > 0",
+        "harmonized_background_rule": "mask == 0",
+        "semantic_subclasses_in_mask": false,
+        "evidence_status": "VERIFIED_FROM_IMPLEMENTATION"
+      },
+      "annotation_type": "binary",
+      "subclass_status": "NOT_AVAILABLE",
+      "metadata_subgroups": {
+        "status": "METADATA_VERIFIED",
+        "categories": ["Kidney_Stone", "Bladder_Stone", "Ureteric_Stone"],
+        "qualification": "Acquisition directory / clinical category metadata; not annotated pixel classes"
+      },
+      "patient_identifiers": {
+        "status": "VERIFIED_FROM_AUTHORITY",
+        "available_fraction_train": 1.0,
+        "available_fraction_val": 1.0,
+        "source_key": "manifest.patient_id",
+        "disjoint_split_verified": true,
+        "cluster_bootstrap_eligible": true
+      },
+      "physical_pixel_spacing": {
+        "status": "NOT_AVAILABLE",
+        "spacing_units": "pixel",
+        "measured_mm_available": false,
+        "default_one_one_is_physical": false
+      }
+    },
+    "ISIC": {
+      "canonical_id": "ISIC",
+      "task_id": 0,
+      "valid_aliases": ["ISIC", "isic", "DERM", "derm", "ISIC2018", "ISIC_2018"],
+      "dataset_identity": "ISIC 2018 Task 1",
+      "modality": "dermoscopy",
+      "anatomy": "skin",
+      "prediction_task": "Skin lesion segmentation",
+      "foreground_definition": "Pigmented skin lesion boundary",
+      "background_definition": "Normal perilesional skin and background/dermatoscope artifact",
+      "native_mask_encoding": {
+        "observed_values": [0, 255],
+        "harmonized_foreground_rule": "mask > 0",
+        "harmonized_background_rule": "mask == 0",
+        "semantic_subclasses_in_mask": false,
+        "evidence_status": "VERIFIED_FROM_IMPLEMENTATION"
+      },
+      "annotation_type": "binary",
+      "subclass_status": "NOT_AVAILABLE",
+      "metadata_subgroups": {
+        "status": "NOT_AVAILABLE",
+        "categories": [],
+        "qualification": "No lesion histological subtype metadata in segmentation manifests"
+      },
+      "patient_identifiers": {
+        "status": "NOT_AVAILABLE",
+        "available_fraction_train": 0.0,
+        "available_fraction_val": 0.0,
+        "source_key": null,
+        "disjoint_split_verified": false,
+        "cluster_bootstrap_eligible": false,
+        "clarification_reconciliation": "No patient IDs exist in ISIC segmentation manifests; R1 image-level bootstrap fallback is mandatory. Filenames are image-level IDs, not patient IDs."
+      },
+      "physical_pixel_spacing": {
+        "status": "NOT_AVAILABLE",
+        "spacing_units": "pixel",
+        "measured_mm_available": false,
+        "default_one_one_is_physical": false
+      }
+    },
+    "BUSI": {
+      "canonical_id": "BUSI",
+      "task_id": 1,
+      "valid_aliases": ["BUSI", "busi", "WHU_BUSI", "Breast_Ultrasound"],
+      "dataset_identity": "BUSI (WHU Breast Ultrasound)",
+      "modality": "breast ultrasound",
+      "anatomy": "breast",
+      "prediction_task": "Breast lesion segmentation",
+      "foreground_definition": "Breast tumor / mass (benign/malignant/normal-mask)",
+      "background_definition": "Normal fibroglandular parenchyma and ultrasound background",
+      "native_mask_encoding": {
+        "observed_values": [0, 255],
+        "harmonized_foreground_rule": "mask > 0",
+        "harmonized_background_rule": "mask == 0",
+        "semantic_subclasses_in_mask": false,
+        "evidence_status": "VERIFIED_FROM_IMPLEMENTATION"
+      },
+      "annotation_type": "binary",
+      "subclass_status": "NOT_AVAILABLE",
+      "metadata_subgroups": {
+        "status": "METADATA_VERIFIED",
+        "categories": ["benign", "malignant", "normal"],
+        "qualification": "Folder/source classification categories; harmonized to single binary foreground"
+      },
+      "patient_identifiers": {
+        "status": "INFERRED",
+        "available_fraction_train": 0.0,
+        "available_fraction_val": 0.0,
+        "source_key": "reports/tables/phase05_busi_patient_group_mapping.csv",
+        "disjoint_split_verified": true,
+        "cluster_bootstrap_eligible": false,
+        "clarification_reconciliation": "Sidecar mapping exists in Phase-05 audit for split construction, but canonical manifests lack patient_id column. Under frozen C1 plan, patient cluster bootstrap is NOT permitted; fallback to case-level bootstrap is required."
+      },
+      "physical_pixel_spacing": {
+        "status": "NOT_AVAILABLE",
+        "spacing_units": "pixel",
+        "measured_mm_available": false,
+        "default_one_one_is_physical": false
+      }
+    },
+    "KVASIR": {
+      "canonical_id": "KVASIR",
+      "task_id": 2,
+      "valid_aliases": ["KVASIR", "kvasir", "POLYP", "polyp", "Kvasir-SEG", "CVC-ClinicDB"],
+      "dataset_identity": "Kvasir-SEG",
+      "modality": "endoscopy",
+      "anatomy": "gastrointestinal tract (colon)",
+      "prediction_task": "Colorectal polyp segmentation",
+      "foreground_definition": "Colorectal mucosal polyp / adenoma",
+      "background_definition": "Normal mucosal lumen, colon wall and endoscopic artifacts",
+      "native_mask_encoding": {
+        "observed_values": [0, 1, 2, 3, 4, 5, 6, 7, 247, 248, 249, 250, 251, 252, 253, 254, 255],
+        "harmonized_foreground_rule": "mask > 0",
+        "harmonized_background_rule": "mask == 0",
+        "semantic_subclasses_in_mask": false,
+        "evidence_status": "VERIFIED_FROM_IMPLEMENTATION",
+        "note": "RGB JPEG compression artifacts; first-channel thresholded strictly at > 0"
+      },
+      "annotation_type": "binary",
+      "subclass_status": "NOT_AVAILABLE",
+      "metadata_subgroups": {
+        "status": "NOT_AVAILABLE",
+        "categories": [],
+        "qualification": "No polyp histological / morphological subclasses in segmentation mask"
+      },
+      "patient_identifiers": {
+        "status": "NOT_AVAILABLE",
+        "available_fraction_train": 0.0,
+        "available_fraction_val": 0.0,
+        "source_key": null,
+        "disjoint_split_verified": false,
+        "cluster_bootstrap_eligible": false,
+        "clarification_reconciliation": "No patient IDs available. Split relies on sample-level de-duplication. Must use image-level bootstrap."
+      },
+      "physical_pixel_spacing": {
+        "status": "NOT_AVAILABLE",
+        "spacing_units": "pixel",
+        "measured_mm_available": false,
+        "default_one_one_is_physical": false
+      }
+    }
+  },
+  "canonical_manifest_references": {
+    "manifest_version": "phase4_v3",
+    "registry_path": "manifests/manifest_registry.json",
+    "train_path": "manifests/phase4_v3/train.csv",
+    "train_sha256": "28702fc3a5ff8b950db372f03232d335e3a30b1fc2f21db7cd8c066055826ed6",
+    "train_count": 5832,
+    "val_path": "manifests/phase4_v3/val.csv",
+    "val_sha256": "082c80b2bda63fd73f371f109c34643adf01edaead921643fb2e44993ba53315",
+    "val_count": 808,
+    "test_path": "manifests/phase4_v3/test.csv",
+    "test_sha256": "9361eba61c91c034a9aa4988a4df229bba591a5cbd553c98689ac7915da29727",
+    "test_count": 1683,
+    "quarantined_count": 118,
+    "total_count": 8441
+  }
+}
