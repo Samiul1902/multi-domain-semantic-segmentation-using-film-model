@@ -1,0 +1,25 @@
+{
+  "schema_version": "harmonized_binary_v1",
+  "scope": "Existing project harmonized tasks; not an assertion about every native annotation",
+  "common": {
+    "segmentation": {"status": "VERIFIED_FROM_SOURCE", "value": "binary semantic segmentation"},
+    "harmonized_labels": {"status": "VERIFIED_FROM_SOURCE", "value": {"0": "background", "1": "foreground"}},
+    "native_encoding": {"status": "VERIFIED_FROM_SOURCE", "value": "zero background; all nonzero foreground; native vocabularies heterogeneous"},
+    "native_resolution": {"status": "VERIFIED_FROM_SOURCE", "value": "variable; development summary ranges in each domain, not per-sample geometry"},
+    "physical_spacing": {"status": "NOT_AVAILABLE", "value": null},
+    "annotation_provenance": {"status": "NOT_AVAILABLE", "value": null},
+    "annotated_subclasses": {"status": "NOT_AVAILABLE", "value": []},
+    "sample_id": {"status": "VERIFIED_FROM_SOURCE", "value": "manifest sample_id; not a patient ID"}
+  },
+  "domains": {
+    "ISIC": {"task_id": 0, "dataset": "ISIC 2018 Task 1", "source_type": "dermoscopy", "foreground": "skin lesion", "native_resolution_width_min_median_max": [576, 3008, 6828], "native_resolution_height_min_median_max": [480, 2000, 4519], "native_label_values": {"status": "VERIFIED_FROM_SOURCE", "value": [0, 255], "qualification": "observed development signatures, not new inspection"}, "patient_source_ids": {"status": "NOT_AVAILABLE", "value": null}},
+    "BUSI": {"task_id": 1, "dataset": "BUSI (WHU Breast Ultrasound)", "source_type": "breast ultrasound", "foreground": "breast lesion", "native_resolution_width_min_median_max": [243, 433, 957], "native_resolution_height_min_median_max": [233, 398.5, 693], "native_label_values": {"status": "VERIFIED_FROM_SOURCE", "value": [0, 255], "qualification": "observed development signatures"}, "patient_source_ids": {"status": "NOT_AVAILABLE", "value": "not in canonical manifests/frozen C1; historical grouping sidecar recorded but not opened or adopted"}},
+    "KVASIR": {"task_id": 2, "dataset": "Kvasir-SEG", "source_type": "gastrointestinal endoscopy", "foreground": "polyp", "native_resolution_width_min_median_max": [332, 621, 1920], "native_resolution_height_min_median_max": [352, 530, 1072], "native_label_values": {"status": "VERIFIED_FROM_SOURCE", "value": [0, 1, 2, 3, 4, 5, 6, 7, 247, 248, 249, 250, 251, 252, 253, 254, 255], "qualification": "union of observed development signatures of RGB JPEG masks, first channel reduced; intensity values are not classes"}, "patient_source_ids": {"status": "NOT_AVAILABLE", "value": null}},
+    "KUB": {"task_id": 3, "dataset": "KUB-StoneX", "source_type": "radiograph", "foreground": "stone", "native_resolution_width_min_median_max": [41, 134.5, 3096], "native_resolution_height_min_median_max": [45, 146, 3528], "native_label_values": {"status": "VERIFIED_FROM_SOURCE", "value": [0, 1, 2, 3, 255], "qualification": "observed examples, not claimed exhaustive; nonzero values do not define semantic subclasses"}, "patient_source_ids": {"status": "VERIFIED_FROM_SOURCE", "value": "patient_id required by frozen C1 plan; case_id may be unavailable"}, "acquisition_subgroups": {"status": "VERIFIED_FROM_SOURCE", "value": "ROI or FULL_FIELD inferred from directory semantics; UNKNOWN otherwise"}, "category_metadata": {"status": "VERIFIED_FROM_SOURCE", "value": ["Kidney_Stone", "Bladder_Stone", "Ureteric_Stone"], "qualification": "subgroup metadata, not pixel-level semantic classes"}}
+  },
+  "domain_fields_status": "VERIFIED_FROM_SOURCE except fields explicitly marked otherwise",
+  "inferred_not_confirmed": [{"status": "INFERRED_NOT_CONFIRMED", "field": "BUSI sidecar patient semantics and availability for evaluation", "value": "historical table records a grouping sidecar; not evidence that canonical C1 records contain verified patient IDs; no protocol change"}],
+  "development_inventory_scope": "Phase19 TRAIN and VAL inventory only. Resolution summaries are not paired minimum/maximum image shapes. Native label unions are observed intensities, not semantic subclasses.",
+  "sources": ["src/data/multidomain_dataset.py", "src/utils/targets.py", "src/inference/predict.py", "src/data/kub_dataset.py", "PROJECT_MASTER_PLAN.md", "reports/planning/c1_launch_release_v1/endpoint_clarification_addendum.md", "reports/tables/phase19_dataset_inventory.csv", "reports/tables/phase19_task_id_registry.csv", "reports/tables/phase19_group_key_availability.csv", "reports/audits/phase19_preprocessing_contract.json"],
+  "restriction": "No native images, masks, TEST or ROUTER_HOLDOUT records were opened for ontology construction."
+}
