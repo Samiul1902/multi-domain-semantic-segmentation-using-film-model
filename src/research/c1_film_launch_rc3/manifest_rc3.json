@@ -1,0 +1,87 @@
+{
+  "architecture": {
+    "path": "src/models/film/global_medfilm.py",
+    "sha256": "a04ff3e61b4d900ff47c2f390da4a999e73bd6047b28a19e41b05115e431d11f"
+  },
+  "bound_sources": [
+    {
+      "bytes": 2525,
+      "path": "scripts/verification/c1_launch_rc3_freeze.py",
+      "sha256": "14883e514003e8a4806db8b4784069d5706105e595c758bdf4579fe0151d6b04"
+    },
+    {
+      "bytes": 5015,
+      "path": "scripts/verification/c1_launch_rc3_verify.py",
+      "sha256": "046f112b7c7a2b811464466f8e56ded91399c4e030abfc60b373cb5176785bcc"
+    },
+    {
+      "bytes": 435,
+      "path": "src/research/c1_film_launch_rc3/__init__.py",
+      "sha256": "495b4f447c0e3c33c51fe3d54216ff30ba3eb5cc3bdcc42638a74b68a2ebb3d5"
+    },
+    {
+      "bytes": 2021,
+      "path": "src/research/c1_film_launch_rc3/launch_driver_rc3.py",
+      "sha256": "6a72816bdba75501bebbf6a9e1040649cecc4020185b75ab7cd1abeded9cfa95"
+    },
+    {
+      "bytes": 7065,
+      "path": "src/research/c1_film_launch_rc3/rc3_gate.py",
+      "sha256": "82bf4a78456fc47d1ff812d18b12e8c778aea10f7557701a36dfd6bad2eb83d0"
+    },
+    {
+      "bytes": 8801,
+      "path": "src/research/c1_film_launch_rc3/release_identity_rc3.py",
+      "sha256": "b1bcf34377717ac1c166df52a58fda16b2742258cc10ca6592bad498655a9612"
+    },
+    {
+      "bytes": 12034,
+      "path": "src/research/c1_film_launch_rc3/time_status_rc3.py",
+      "sha256": "cbd9a413766bb5086ee4fae0226d765775031f4a19a84c5e91d1820c56399f5c"
+    },
+    {
+      "bytes": 21313,
+      "path": "tests/test_c1_launch_rc3.py",
+      "sha256": "cd40dbf1a392f14229568bf47c5a5dd01b5effc8fc825298bcf7d49b12e5200a"
+    }
+  ],
+  "canonicalisation": "json.dumps(obj,sort_keys=True,separators=(',',':'),ensure_ascii=False,allow_nan=False).encode('utf-8')",
+  "dependency_lock": {
+    "path": "reports/planning/c1_launch_release_v1/c1_dependency_lock.json",
+    "sha256": "b4cdea3ab219db05d26725c74f2dbe42955a3cbe4daaba9f3b296ac201b0b36d"
+  },
+  "digest_rule": "sha256(canonical_json(manifest))",
+  "host_clock": {
+    "attestation_type": "C1_RC3_HOST_CLOCK_ATTESTATION",
+    "default_trust_level": "NOT_ESTABLISHED",
+    "verification_mechanism": "SIGNED_NTP_ATTESTATION_VIA_TIME_AUTHORITY",
+    "verified_trust_level": "VERIFIED"
+  },
+  "protocol": {
+    "path": "reports/planning/c1_film_attribution_v1/protocol.json",
+    "sha256": "531e3eb255a66381201d1aaf49bbe55abfdbe529640f5c584ef100d298087a61"
+  },
+  "recipe_digest": "275f20a935d6b78342306166ff067eae88ad1b6baaf9ed2a6ab786bba281f14c",
+  "release_id": "C1_FILM_ATTRIBUTION_V1_LAUNCH_RC3",
+  "schema": 4,
+  "study_id": "C1_FILM_ATTRIBUTION_V1",
+  "supersedes": {
+    "rc1": {
+      "manifest_path": "src/research/c1_film_launch/manifest_v2.json",
+      "manifest_sha256": "0e3f171983ceb53b966dd1eb14547f39729a228d644e47642f67375b61736cfe",
+      "release_digest": "1aec5e17ee79eb8845ea36808d5a087ea99c091be798ec5a41b4e412f93ff9c1",
+      "release_id": "C1_FILM_ATTRIBUTION_V1_LAUNCH_RC1"
+    },
+    "rc2": {
+      "manifest_path": "src/research/c1_film_launch_rc2/manifest_rc2.json",
+      "manifest_sha256": "f5169cedce9896da5eeb78866dd36571f81fc11822b64e718235e438b397f71c",
+      "release_digest": "54794efc6d99d94fae9eaebd992e01e4e9923b5055d024ea1d5f02a8a5e737ed",
+      "release_id": "C1_FILM_ATTRIBUTION_V1_LAUNCH_RC2"
+    }
+  },
+  "trust_store": {
+    "anchors_shipped": 0,
+    "inside_release": false,
+    "production_root": "OS_SCOPE_DEFAULT"
+  }
+}
