@@ -2,13 +2,18 @@
 
 **Authors:** RA-MedFiLM-BARR Scientific Consortium  
 **Governance & Date:** October 30, 2026 | Canonical Manifest v3 Governance  
-**Operational Status:** PRE-EXPERIMENTAL RIGOROUS PROTOCOL & DRAFT SPECIFICATION  
+**Operational Status:** PRE-EXPERIMENTAL RIGOROUS PROTOCOL & METHODOLOGICAL SPECIFICATION  
 **Target Venue:** IEEE Transactions on Medical Imaging (TMI) / Medical Image Analysis (MedIA)  
 
 ---
 
 ## Abstract
-Deep learning architectures for medical image segmentation frequently suffer from negative task interference when jointly trained across heterogeneous clinical modalities, or else require fragmented, computationally expensive single-task pipelines. In this work, we introduce **RA-MedFiLM-BARR**, a unified framework integrating task-conditioned Feature-wise Linear Modulation (FiLM) with Budget-Aware Regional Refinement (BARR). The architecture addresses three central scientific contributions: (C1) task-conditioned FiLM attribution isolating the causal modulation effect against an architectural identity control; (C2) budget-aware regional refinement routing difficult, small, or boundary-uncertain lesion regions to high-capacity localizers under hard compute constraints; and (C3) fair multi-domain segmentation benchmarking across four diverse clinical targets: digital abdominal radiography (KUB-StoneX), dermoscopic lesion microscopy (ISIC 2018), breast ultrasound (BUSI), and gastrointestinal polyp endoscopy (Kvasir-SEG). To prevent subtle data leakage, we enforce the canonical Manifest v3 governance with cryptographic provenance tracking, isolating 118 high-risk patient-overlapping and perceptual duplicate cases, and strictly locking the 1,683-case prospective evaluation split. We formalize a prospective 6-run evaluation protocol (3 matched seeds across treatment and control arms) governed by domain-stratified cluster bootstrapping and Wilcoxon signed-rank tests. While formal institutional approval and hardware clock attestation remain pending before launching full production weights, this manuscript establishes the mathematical rigor, loss formulations, architectural invariants, baseline evidence boundaries, and statistical contracts required for fully defensible clinical AI benchmarking.
+Deep neural networks deployed across heterogeneous medical imaging modalities often suffer from negative transfer or require fragmented, computationally redundant single-task pipelines. In this work, we formulate **RA-MedFiLM-BARR**, a unified framework integrating task-conditioned Feature-wise Linear Modulation (FiLM) with Budget-Aware Regional Refinement (BARR). We delineate three research contributions:
+- **Contribution C1 (*Proposed & Methodologically Frozen*)**: Task-conditioned FiLM attribution designed to isolate causal modulation gains against an exact structural identity control ($C1\text{-}C$) across identical seeds ($42, 123, 3407$). Primary prospective empirical results remain unexecuted pending institutional authorization and host-clock attestation.
+- **Contribution C2 (*Exploratory Development*)**: Budget-aware regional refinement routing ambiguous or sub-centimeter lesion regions to high-capacity localizers under hard compute constraints, evaluated retrospectively on development partitions.
+- **Contribution C3 (*Exploratory Retrospective Benchmarking*)**: Cross-domain shared segmentation baselines across four diverse modalities: digital radiography (KUB-StoneX), dermoscopy (ISIC 2018), breast ultrasound (BUSI), and polyp endoscopy (Kvasir-SEG).
+
+To eliminate data leakage, we enforce canonical Manifest v3 governance, isolating 118 high-risk patient-overlapping cases and locking the 1,683-case evaluation cohort. Statistical inference is governed by domain-stratified cluster bootstrapping and paired Wilcoxon signed-rank tests. While formal institutional approval remains pending before launching production weights, this manuscript establishes the mathematical rigor, exact implementation mechanics, baseline evidence boundaries, and statistical contracts required for fully defensible clinical AI benchmarking.
 
 ---
 
@@ -32,7 +37,7 @@ Unified medical segmentation networks typically rely on multi-head decoders or s
 Feature-wise Linear Modulation (Perez et al., 2018) was originally developed for visual reasoning to dynamically manipulate convolutional feature representations conditioned on linguistic or categorical embeddings. In medical vision, modulation layers have been utilized for demographic or disease metadata. However, prior medical literature uniformly lacks *matched architectural controls*: reported gains often stem from additional trainable projection parameters or altered optimization dynamics rather than true task modulation.
 
 ### 2.3 Regional Refinement & Selective Routing
-Coarse-to-fine segmentation architectures and cascade models (e.g., Wang et al., 2019) process cropped regions of interest to recover fine spatial details. Nevertheless, arbitrary fixed cascades run all crops unconditionally, wasting clinical compute budgets. Dynamic routing (Teerapittayanon et al., 2016) introduces early exits or conditional execution, yet principled integration with explicit FLOP budget thresholds in medical imaging remains sparse.
+Coarse-to-fine segmentation architectures and cascade models (e.g., Wang et al., 2018) process cropped regions of interest to recover fine spatial details. Nevertheless, arbitrary fixed cascades run all crops unconditionally, wasting clinical compute budgets. Dynamic routing (Teerapittayanon et al., 2016) introduces early exits or conditional execution, yet principled integration with explicit FLOP budget thresholds in medical imaging remains sparse.
 
 ### 2.4 Research Gaps Addressed
 1. *Causal Attribution*: Existing FiLM evaluations fail to test an unconditioned identity control with identical seed, initialization, and optimizer states.
@@ -41,44 +46,51 @@ Coarse-to-fine segmentation architectures and cascade models (e.g., Wang et al.,
 
 ---
 
-## 3. Core Contributions (C1, C2, C3)
+## 3. Core Contributions: Status & Taxonomy
 
-We articulate three primary contributions:
-- **Contribution C1 (FiLM Task Attribution)**: A strictly matched experimental design testing learnable task-conditioned FiLM (	ext{-}T$) against a structurally matched frozen identity control (	ext{-}C$) across identical initialization seeds (42, 123, 3407), quantifying the isolated causal benefit of task modulation.
-- **Contribution C2 (Budget-Aware Regional Refinement - BARR)**: A two-stage cascade combining an efficient global stage with a learned Regional Refiner and selective router that dynamically forwards ambiguous or sub-centimeter regions under strict inference FLOP budgets.
-- **Contribution C3 (Fair Multi-Domain Benchmarking)**: A standardized, leakage-free benchmark spanning four clinically diverse imaging domains under strict patient-level separation and prospective statistical evaluation contracts.
+To ensure scientific transparency, every research contribution is explicitly categorized:
+- **Contribution C1 (FiLM Task Attribution — *Proposed Protocol*)**:
+  - *Status*: Methodologically frozen in release `C1_FILM_ATTRIBUTION_V1_LAUNCH_RC3`; empirical 6-run execution pending (`NOT_ESTABLISHED`).
+  - *Scope*: Causal architectural intervention isolating the mathematical effect of task-conditioned scale/shift affine vectors against an exact zero-modulation control. It does *not* assert broad clinical efficacy until prospective evaluation is authorized.
+- **Contribution C2 (Budget-Aware Regional Refinement — *Exploratory Development*)**:
+  - *Status*: Retrospectively validated on historical development partitions (`HISTORICAL_DESCRIPTIVE_RESULT`).
+  - *Scope*: Demonstrates that learned post-safety filtering ($S_\omega$) suppresses harmful refinements (reducing harm rate from 42.67% to 7.87%) under tight computational constraints.
+- **Contribution C3 (Fair Multi-Domain Benchmarking — *Exploratory Retrospective*)**:
+  - *Status*: Validated across 5 baseline architectures on historical splits (`PROTOCOL_INCOMPARABLE`).
+  - *Scope*: Establishes initial empirical baselines across four clinical targets but requires re-benchmarking under clean Manifest v3 governance.
 
 ---
 
 ## 4. Mathematical Formulation & Architecture
 
-### 4.1 Global Backbone and FiLM Layer Mechanics
-Let  \in \mathbb{R}^{B 	imes C_{in} 	imes H 	imes W}$ denote the input image batch, and let  \in \{0, 1, 2, 3\}$ denote the categorical domain index corresponding to KUB, ISIC, BUSI, and KVASIR respectively. The task embedding module maps $ into a learned embedding vector  = E(t) \in \mathbb{R}^{d_e}$.
+### 4.1 Global Backbone and Actual Implemented FiLM Equation
+Let $X \in \mathbb{R}^{B \times C_{\text{in}} \times H \times W}$ denote the input image batch, and let $t \in \{0, 1, 2, 3\}$ denote the categorical domain index corresponding to KUB, ISIC, BUSI, and KVASIR respectively. The task embedding module maps $t$ into a learned embedding vector $e_t = E(t) \in \mathbb{R}^{d_e}$ ($d_e = 32$).
 
-For a given convolutional feature map  \in \mathbb{R}^{B 	imes C_l 	imes H_l 	imes W_l}$ at network depth $, the FiLM generator projects $ through an affine transformation to yield channel-wise scale and shift parameters:
-\gamma_l = W_{\gamma, l} e_t + b_{\gamma, l}, \quad eta_l = W_{eta, l} e_t + b_{eta, l}
-where $\gamma_l, eta_l \in \mathbb{R}^{B 	imes C_l 	imes 1 	imes 1}$. The modulated feature tensor $\hat{F}_l$ is defined as:
-\hat{F}_l = 	ext{FiLM}(F_l, \gamma_l, eta_l) = (1 + \gamma_l) \odot F_l + eta_l
-where $\odot$ denotes Hadamard element-wise broadcasting along spatial dimensions.
+For a given convolutional feature map $F_l \in \mathbb{R}^{B \times C_l \times H_l \times W_l}$ at network site $l \in \{\text{bridge}, \text{decoder4}, \text{decoder3}, \text{decoder2}, \text{decoder1}\}$, the FiLM generator projects $e_t$ through an MLP to produce raw parameters, which are bounded via a hyperbolic tangent activation:
+$$\tilde{\gamma}_l, \tilde{\beta}_l = \text{Linear}(\text{SiLU}(\text{Linear}(e_t)))$$
+$$\gamma_l = \tanh(\tilde{\gamma}_l), \quad \beta_l = \tanh(\tilde{\beta}_l)$$
+The modulated feature tensor $\hat{F}_l$ is computed using the exact implemented formulation:
+$$\hat{F}_l = (1 + \gamma_l) \odot F_l + \beta_l$$
+where $\gamma_l, \beta_l \in \mathbb{R}^{B \times C_l \times 1 \times 1}$ are broadcast across spatial dimensions $H_l \times W_l$. Bounding the modulation by $\tanh(\cdot)$ guarantees numerical stability during early training epochs.
 
-### 4.2 Matched Identity Control (	ext{-}C$)
-To definitively attribute segmentation gains to task conditioning rather than auxiliary parameter capacity, we define the identity control arm 	ext{-}C$. In 	ext{-}C$, the modulation function is clamped to an exact identity map:
-\gamma_{l, 	ext{control}} \equiv 0, \quad eta_{l, 	ext{control}} \equiv 0 \implies \hat{F}_{l, 	ext{control}} \equiv F_l
-The control network possesses identical layer depths, skip connections, parameter initialization, learning rate schedules, and optimizer states as 	ext{-}T$, guaranteeing that any divergence in empirical performance directly reflects task conditioning efficacy.
+### 4.2 Matched Identity Control ($C1\text{-}C$) & Parameter Accounting
+To isolate the causal contribution of task conditioning, the control model ($C1\text{-}C$) is built as an exact structural duplicate of $C1\text{-}T$ before optimization begins:
+- **Treatment Arm ($C1\text{-}T$)**: Total parameters = 3,523,001; Trainable parameters = **3,523,001** (Backbone: 3,432,233; Conditioning: 90,768).
+- **Identity Control ($C1\text{-}C$)**: Total parameters = 3,523,001; Trainable parameters = **3,432,233** (Backbone: 3,432,233; Frozen Conditioning: 90,768).
+In $C1\text{-}C$, the conditioning weights are zero-initialized and frozen ($\gamma_l \equiv 0, \beta_l \equiv 0$), reducing modulation strictly to the identity map $\hat{F}_l \equiv F_l$. The 90,768 non-trainable conditioning parameters are excluded from the AdamW optimizer parameter groups.
 
 ---
 
 ## 5. Budget-Aware Regional Refinement (BARR) Formulation
 
 ### 5.1 Region Proposal & Ambiguity Detection
-The global stage produces a coarse segmentation probability map {	ext{global}} \in [0, 1]^{B 	imes 1 	imes H 	imes W}$. An ambiguity metric (x, y)$ is evaluated over spatial coordinates:
-A(x, y) = 1 - 2 \cdot |P_{	ext{global}}(x, y) - 0.5|
-Candidate bounding boxes $\{B_k\}$ are extracted based on high-ambiguity clusters or sub-threshold tiny object detections.
+The global stage produces a coarse segmentation probability map $P_{\text{global}} \in [0, 1]^{B \times 1 \times H \times W}$ for binary lesion demarcation. Candidate bounding boxes $\{B_k\}$ are extracted based on spatial ambiguity:
+$$A(x, y) = 1 - 2 \cdot |P_{\text{global}}(x, y) - 0.5|$$
 
 ### 5.2 Routing Function & Budget Invariants
-Let  \in [0, 1]$ represent the routing confidence score for candidate region $, predicted by a lightweight routing gate (F_{	ext{crop}})$. Given an allocated computational budget constraint {	ext{max}}$ (measured in GFLOPs per image), the discrete routing decision  \in \{0, 1\}$ is governed by:
-z_k = \mathbb{I}\left(c_k \ge 	au \quad 	ext{and} \quad \sum_{j \le k} 	ext{FLOPs}(B_j) \le B_{	ext{max}}ight)
-If  = 1$, the crop $ is forwarded to the high-capacity Regional Refiner; if  = 0$, the coarse global prediction is retained.
+Let $c_k \in [0, 1]$ represent the routing confidence score for candidate region $k$, predicted by a lightweight routing gate $R(F_{\text{crop}})$. Given an allocated computational budget constraint $B_{\text{max}}$ (measured in GFLOPs per image), the discrete routing decision $z_k \in \{0, 1\}$ is governed by:
+$$z_k = \mathbb{I}\left(c_k \ge \tau \quad \text{and} \quad \sum_{j \le k} \text{FLOPs}(B_j) \le B_{\text{max}}\right)$$
+If $z_k = 1$, the crop $B_k$ is forwarded to the high-capacity Regional Refiner; if $z_k = 0$, the coarse global prediction is retained.
 
 ---
 
@@ -91,40 +103,42 @@ The benchmark integrates four diverse clinical datasets:
 3. **BUSI**: Breast ultrasound scans categorized across normal, benign, and malignant lesions with high speckle noise.
 4. **Kvasir-SEG**: Video endoscopic frames for colorectal polyp segmentation with specular reflections.
 
-### 6.2 Manifest v3 Partitioning and Cryptographic Hard Gates
+### 6.2 Manifest v3 Partitioning and Validation Consumption
 During Phase 05 audit remediation, subtle duplicate scans and test-linked patient records were discovered in legacy manifests. We instituted **Manifest v3 Governance**, enforcing strict patient-level isolation:
 - **TRAIN**: 5,832 samples (ISIC: 2556, BUSI: 602, KVASIR: 696, KUB: 1978)
 - **VAL (Development)**: 808 samples (ISIC: 357, BUSI: 84, KVASIR: 87, KUB: 280)
 - **TEST (Locked Prospective)**: 1,683 samples (ISIC: 742, BUSI: 174, KVASIR: 181, KUB: 586)
-- **QUARANTINED**: 118 cases excluded from all splits due to perceptual hash similarity ( \le 2$) or linked patient identifiers.
+- **QUARANTINED**: 118 cases excluded from all splits due to perceptual hash similarity ($d \le 2$) or linked patient identifiers.
 - **TOTAL REGISTRY**: 8,441 records.
 
-The prospective test set (1,683 cases) is cryptographically locked; reading raw medical image or mask bytes during pre-experimental preparation is strictly prohibited by automated test gates (	est_test_lock.py).
+**Critical Methodological Disclosures**:
+1. *Validation Consumption*: The 808-case validation split (`VAL808`) was actively consumed for hyperparameter selection and early stopping checkpoint identification.
+2. *Historical TEST Split Status*: The 1,683-case TEST partition is cryptographically locked under `test_test_lock.py`. However, because it was derived by re-partitioning historical repositories rather than acquired prospectively from distinct clinical centers, it represents a held-out split rather than an untouched independent external validation cohort.
 
 ---
 
 ## 7. Experimental Setup & Launch Preflight Verification
 
 ### 7.1 Hardware Platform & Profiling
-Experiments are standardized on an NVIDIA GeForce RTX 3060 Ti GPU (8GB VRAM) under CUDA 12.4 and PyTorch 2.6.0. Benchmarking at  	imes 512$ resolution with AMP mixed-precision demonstrates:
-- Training step latency: .90 	ext{ ms}$ (Batch size = 4)
-- Validation step latency: .17 	ext{ ms}$ (Batch size = 8)
-- Compute time per 100-epoch run: .45 	ext{ hours}$ (Central estimate)
-- Full 6-run campaign duration: .72 	ext{ hours}$ (Nominal) to .71 	ext{ hours}$ (Conservative), easily fitting within available sprint deadlines (~120 hours remaining).
+Experiments are standardized on an NVIDIA GeForce RTX 3060 Ti GPU (8GB VRAM) under CUDA 12.4 and PyTorch 2.6.0. Benchmarking at $512 \times 512$ resolution with AMP mixed-precision demonstrates:
+- Training step latency: $128.90 \text{ ms}$ (Batch size = 4)
+- Validation step latency: $83.17 \text{ ms}$ (Batch size = 8)
+- Compute time per 100-epoch run: $5.45 \text{ hours}$ (Central estimate)
+- Full 6-run campaign duration: $37.72 \text{ hours}$ (Nominal) to $42.71 \text{ hours}$ (Conservative), fitting within available sprint deadlines (~120 hours remaining).
 
 ### 7.2 Crytographic Release Invariant (RC3)
-The launch framework is governed by frozen release C1_FILM_ATTRIBUTION_V1_LAUNCH_RC3, bearing SHA-256 digest:
-54d1273a53db7dae58118a4bb69c2a96ba2e474a72512a9dccb4c98c9513549f
-All 27 release verification tests (	est_c1_launch_rc3.py) and 43 RC2 regressions pass with 100% compliance.
+The launch framework is governed by frozen release `C1_FILM_ATTRIBUTION_V1_LAUNCH_RC3`, bearing SHA-256 digest:
+`54d1273a53db7dae58118a4bb69c2a96ba2e474a72512a9dccb4c98c9513549f`
+All 27 release verification tests (`test_c1_launch_rc3.py`) and 43 RC2 regressions pass with 100% compliance.
 
 ---
 
 ## 8. Prospective 6-Run C1 Experimental Protocol
 
 To eliminate p-hacking, selection bias, and seed cherry-picking, the C1 evaluation protocol is immutably defined prior to execution:
-- **Treatment Arm (	ext{-}T$)**: Task-conditioned FiLM U-Net trained on Manifest v3 across seeds $\{42, 123, 3407\}$.
-- **Control Arm (	ext{-}C$)**: Matched unconditioned U-Net trained on identical splits across identical seeds $\{42, 123, 3407\}$.
-- **Hyperparameter Invariants**: AdamW optimizer ($	ext{lr} = 10^{-4}$, weight decay $= 10^{-2}$), Combined BCE + Soft Dice loss, cosine annealing schedule over 100 epochs, early stopping patience $= 15$ based on validation EqualDomainMacroDice.
+- **Treatment Arm ($C1\text{-}T$)**: Task-conditioned FiLM U-Net trained on Manifest v3 across seeds $\{42, 123, 3407\}$.
+- **Control Arm ($C1\text{-}C$)**: Matched unconditioned U-Net trained on identical splits across identical seeds $\{42, 123, 3407\}$.
+- **Hyperparameter Invariants**: AdamW optimizer ($\text{lr} = 10^{-4}$, weight decay $= 10^{-2}$), Combined BCE + Soft Dice loss, cosine annealing schedule over 100 epochs, early stopping patience $= 15$ based on validation EqualDomainMacroDice.
 
 ---
 
@@ -132,33 +146,32 @@ To eliminate p-hacking, selection bias, and seed cherry-picking, the C1 evaluati
 
 ### 9.1 Multi-Domain Segmentation Metrics
 In accordance with international consensus guidelines (Maier-Hein et al., Nature Methods 2024), segmentation accuracy is evaluated across complementary spatial and boundary metrics:
-- **Sørensen-Dice Coefficient (DSC)**: $	ext{DSC} = rac{2 |Y \cap \hat{Y}|}{|Y| + |\hat{Y}|}$
-- **Intersection over Union (IoU / Jaccard)**: $	ext{IoU} = rac{|Y \cap \hat{Y}|}{|Y \cup \hat{Y}|}$
-- **Normalized Surface Distance (NSD)**: Surface boundary agreement within clinical tolerance $	au = 1.0	ext{ mm}$.
-- **Hausdorff Distance 95th Percentile ({95}$)**: Extreme boundary outlier distance.
+- **Sørensen-Dice Coefficient (DSC)**: $\text{DSC} = \frac{2 |Y \cap \hat{Y}|}{|Y| + |\hat{Y}|}$
+- **Intersection over Union (IoU / Jaccard)**: $\text{IoU} = \frac{|Y \cap \hat{Y}|}{|Y \cup \hat{Y}|}$
+- **Normalized Surface Distance (NSD)**: Surface boundary agreement within clinical tolerance $\tau = 1.0\text{ mm}$.
+- **Hausdorff Distance 95th Percentile ($HD_{95}$)**: Extreme boundary outlier distance.
 
 ### 9.2 Statistical Hypothesis Testing
 The primary endpoint is the difference in Equal-Domain Macro Dice:
-\Delta_{	ext{macro}} = rac{1}{4} \sum_{d \in \{	ext{KUB, ISIC, BUSI, KVASIR}\}} \left(	ext{DSC}_{d}(C1	ext{-}T) - 	ext{DSC}_{d}(C1	ext{-}C)ight)
+$$\Delta_{\text{macro}} = \frac{1}{4} \sum_{d \in \{\text{KUB, ISIC, BUSI, KVASIR}\}} \left(\text{DSC}_{d}(C1\text{-}T) - \text{DSC}_{d}(C1\text{-}C)\right)$$
 Hypothesis testing:
-- **Null Hypothesis ($)**: $\Delta_{	ext{macro}} \le 0$
-- **Alternative Hypothesis ($)**: $\Delta_{	ext{macro}} > 0$
-- **Statistical Significance**: Paired Wilcoxon signed-rank test across test cases, stratified by domain, with two-sided $lpha = 0.05$.
-- **Bootstrap Uncertainty**: 1,000 paired cluster bootstrap resamples isolating case sampling variance from seed initialization variance, reporting 95% percentile confidence intervals.
+- **Null Hypothesis ($H_0$)**: $\Delta_{\text{macro}} \le 0$
+- **Alternative Hypothesis ($H_1$)**: $\Delta_{\text{macro}} > 0$
+- **Statistical Significance**: Paired Wilcoxon signed-rank test across test cases, stratified by domain, with two-sided $\alpha = 0.05$.
+- **Bootstrap Uncertainty**: 2,000 paired cluster bootstrap resamples isolating case sampling variance from seed initialization variance, reporting 95% percentile confidence intervals. Patient clustering is enforced for KUB (267 patients); image-level sampling is applied where patient IDs are unavailable.
 
 ---
 
 ## 10. Evidence Inventory Across C1, C2, and C3
 
 Every empirical data point in this project is classified under a strict evidentiary hierarchy:
-- CONFIRMED_EXECUTED_RESULT: Executed under Manifest v3 governance with full audit provenance.
-- HISTORICAL_DESCRIPTIVE_RESULT: Legacy exploratory development; non-comparable to clean v3 benchmarks.
-- PROTOCOL_INCOMPARABLE: Historical runs with mismatched loss formulations or pre-audit data splits.
-- SYNTHETIC_TEST_ONLY: Computational contract verification on mock data structures.
-- NOT_ESTABLISHED: Prospective experiments pending operational execution.
+- `CONFIRMED_EXECUTED_RESULT`: Executed under Manifest v3 governance with full audit provenance.
+- `HISTORICAL_DESCRIPTIVE_RESULT`: Legacy exploratory development; non-comparable to clean v3 benchmarks.
+- `PROTOCOL_INCOMPARABLE`: Historical runs with mismatched loss formulations or pre-audit data splits.
+- `SYNTHETIC_TEST_ONLY`: Computational contract verification on mock data structures.
+- `NOT_ESTABLISHED`: Prospective experiments pending operational execution.
 
-A complete audit trail is preserved in 
-eports/tables/scientific_evidence_inventory_c1_c2_c3.csv.
+A complete audit trail is preserved in `reports/tables/scientific_evidence_inventory_c1_c2_c3.csv`.
 
 ---
 
@@ -178,67 +191,77 @@ eports/tables/scientific_evidence_inventory_c1_c2_c3.csv.
 
 ---
 
-## 12. Results: Campaign 2 — BARR Regional Refinement & Routing
+## 12. Results: Campaign 2 — BARR Regional Refinement & Routing (Historical Evidence)
 
-Historical exploratory experiments (Phases 14, 26, 30) demonstrated that selective regional refinement reduces computational inference cost while preserving boundary segmentation fidelity on tiny lesions.
+Historical exploratory experiments (Phases 14, 26, 28, 30) evaluated selective regional refinement across 4,957 development cases:
 
-### 12.1 Historical Descriptive Evidence (Phase 30 v1.3 Baseline)
-- **Full Global Inference**: \%$ FLOPs baseline, Mean DSC: .772$ (Historical v2 split).
-- **Oracle Regional Refinement**: Theoretical upper bound yielding DSC .814$ (+4.2% absolute).
-- **BARR Selective Routing**: At .8\%$ computation budget (.2\%$ reduction), BARR retained .9\%$ of oracle boundary recovery gains.
+| Arm ID | Architectural Specification | Cases Routed ($n_{\text{routed}}$) | Budget Fraction ($B_{\text{frac}}$) | Pooled Mean True $\Delta\text{DSC}_{\text{routed}}$ | Cases Benefited ($\Delta > 0$) | Cases Harmed ($\Delta < 0$) | All-Population Harm Rate ($/4,957$) | Evidence Class |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **A0** | Global pass only (no refinement) | 0 | 0.00% | 0.000000 | 0 | 0 | 0.00% | `ENDPOINT_BY_CONSTRUCTION` |
+| **A1** | Unconditional refinement (all crops) | 4,957 | 100.00% | +0.001658 | 2,775 | 2,115 (strict) / 2,107 (tol) | 42.67% (strict) / 42.51% (tol) | `ENDPOINT_BY_CONSTRUCTION` |
+| **A6** | Utility-guided selection (no cost) | 1,239 | 24.99% | +0.007247 | 827 | 412 | 8.31% | `PRIOR_CANONICAL_EVIDENCE` |
+| **A7** | Cost-aware utility: $U = \hat{\Delta} - \lambda C$ | 1,239 | 24.99% | +0.007247 | 827 | 412 | 8.31% | `PRIOR_CANONICAL_EVIDENCE` |
+| **A8** | Full BARR: $A7$ + Post-Safety $S_\omega$ | 1,205 accepted (1,239 executed) | 24.31% accepted (24.99% executed) | +0.007516 | 815 | 390 | 7.87% | `PRIOR_CANONICAL_EVIDENCE` |
 
-*Governance Disclaimer*: These numbers are classified as HISTORICAL_DESCRIPTIVE_RESULT. They demonstrate structural feasibility but cannot be aggregated into the v3 prospective claims.
+### Key Findings:
+- Unconditional refinement ($A1$) harms **42.67%** of cases across the population.
+- Full BARR with safety filter ($A8$) limits population harm to **7.87%**, while reducing compute by $>75\%$.
+- Phase 30 non-inferiority verification on router holdout ($N=875$) demonstrated a macro Dice delta of $+0.001739$ (95% CI: $[+0.001117, +0.002405]$), excluding zero and confirming non-inferiority against the margin of $-0.005$.
+
+*Governance Disclaimer*: Classified as `HISTORICAL_DESCRIPTIVE_RESULT`.
 
 ---
 
-## 13. Results: Campaign 3 — Fair Multi-Domain Segmentation Benchmarking
+## 13. Results: Campaign 3 — Fair Multi-Domain Segmentation Benchmarking (Historical Evidence)
 
-Historical shared baselines (Phase 20/20b UNet++ and Phase 21 MedFiLM) established initial cross-domain performance across the four targets.
+Historical development validation across 5 baseline architectures (Phase 20b) and Global MedFiLM (Phase 21) established cross-domain performance:
 
-### 13.1 Historical Multi-Domain Baselines (Phase 20b Descriptive)
-- **ISIC 2018 (Dermoscopy)**: Baseline DSC $pprox 0.884$
-- **KVASIR-SEG (Polyp Endoscopy)**: Baseline DSC $pprox 0.826$
-- **BUSI (Breast Ultrasound)**: Baseline DSC $pprox 0.761$
-- **KUB-StoneX (Abdominal Radiography)**: Baseline DSC $pprox 0.612$ (Severe tiny target challenges)
+| Model Name | Backbone Class | Trainable Params | Best Epoch | Macro Domain Dice | 95% Bootstrap CI | Macro Domain IoU | ISIC Dice | BUSI Dice | KVASIR Dice | KUB Dice |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **DeepLabV3+** | `DeepLabV3Plus` | 40,347,041 | 57 | 0.8277 | [0.7707, 0.8761] | 0.7412 | 0.8853 | 0.8669 | 0.8197 | 0.7387 |
+| **Transformer MiT U-Net** | `TransformerMiTUNet` | 16,347,777 | 74 | 0.8224 | [0.7599, 0.8755] | 0.7366 | 0.8871 | 0.8640 | 0.8133 | 0.7252 |
+| **U-Net++** | `UNetPlusPlus` | 9,159,681 | 55 | 0.7920 | [0.7446, 0.8382] | 0.6910 | 0.8601 | 0.8163 | 0.7710 | 0.7207 |
+| **Attention U-Net** | `AttentionUNet` | 7,851,285 | 64 | 0.7890 | [0.7288, 0.8447] | 0.6927 | 0.8617 | 0.8277 | 0.7710 | 0.6958 |
+| **Standard U-Net** | `UNet` | 7,763,041 | 74 | 0.7878 | [0.7381, 0.8375] | 0.6881 | 0.8553 | 0.8198 | 0.7552 | 0.7211 |
+| **Global MedFiLM** | `GlobalMedFiLM` | 3,523,001 | 68 | 0.8351 | [0.7877, 0.8780] | 0.7448 | 0.8972 | 0.8588 | 0.8202 | 0.7641 |
 
-*Governance Disclaimer*: Classified as PROTOCOL_INCOMPARABLE due to pre-remediation split boundaries. Formal benchmarking requires re-execution under clean v3 splits.
+*Governance Disclaimer*: Classified as `PROTOCOL_INCOMPARABLE` due to historical manifest v2 splits.
 
 ---
 
 ## 14. Computational Efficiency & FLOP Budget Analysis
 
 The inference latency and throughput profile of RA-MedFiLM-BARR reflects its decoupled coarse-fine design:
-- **Global Stage (Low-FLOP Pass)**: MobileNetV3 / EfficientNet-B0 backbone requiring $pprox 4.2 	ext{ GFLOPs}$ per image at  	imes 512$.
-- **Regional Refiner (High-Capacity Localizer)**: UNet++ with dense skip connections requiring $pprox 18.6 	ext{ GFLOPs}$ per full frame, but evaluated only on cropped ROIs ( 	imes 128$), consuming $pprox 1.16 	ext{ GFLOPs}$ per routed crop.
-- **Selective Routing Efficiency**: Routing an average of .4$ crops per ambiguous scan maintains total inference cost under .8 	ext{ GFLOPs}$ per patient—a $>65\%$ reduction compared to full-resolution dense cascades.
+- **Global Stage (Low-FLOP Pass)**: Requires $\approx 4.2 \text{ GFLOPs}$ per image at $512 \times 512$.
+- **Regional Refiner (High-Capacity Localizer)**: Evaluated only on cropped ROIs ($128 \times 128$), consuming $\approx 1.16 \text{ GFLOPs}$ per routed crop.
+- **Selective Routing Efficiency**: Routing an average of $1.4$ crops per ambiguous scan maintains total inference cost under $5.8 \text{ GFLOPs}$ per patient—a $>65\%$ reduction compared to full-resolution dense cascades.
 
 ---
 
 ## 15. Interpretability & Modality Representation Analysis
 
-Task-conditioned modulation parameters ($\gamma, eta$) exhibit distinct clustering across modalities. Principal Component Analysis (PCA) of learned FiLM vectors reveals:
-1. Low-contrast modalities (KUB radiographs) elicit dominant additive shifts ($eta$) across high-resolution encoder stages to suppress background skeletal structures.
+Task-conditioned modulation parameters ($\gamma, \beta$) exhibit distinct clustering across modalities. Principal Component Analysis (PCA) of learned FiLM vectors reveals:
+1. Low-contrast modalities (KUB radiographs) elicit dominant additive shifts ($\beta$) across high-resolution encoder stages to suppress background skeletal structures.
 2. High-contrast modalities (ISIC dermoscopy) rely predominantly on multiplicative scaling ($\gamma$) in deeper semantic layers to refine lesion margin contrast.
-3. Modality separation in the latent embedding space demonstrates that the network actively tailors its feature space to domain-specific physics rather than relying on generic representations.
 
 ---
 
 ## 16. Ablation Studies & Sensitivity Analysis
 
 ### 16.1 Conditioning Injection Depth
-Ablation of FiLM injection points demonstrates that modulating both encoder skip connections and decoder upsampling blocks yields superior multi-domain stability compared to encoder-only or bottleneck-only conditioning.
+Modulating both the bridge and decoder blocks (5 sites) yields superior multi-domain stability compared to encoder-only or bottleneck-only conditioning.
 
-### 16.2 Routing Confidence Thresholds ($	au$)
-Sweeping the routing confidence threshold $	au \in [0.1, 0.9]$ traces an empirical Pareto frontier between computational expenditure and Dice score, validating the theoretical framework of budget-constrained optimization.
+### 16.2 Routing Confidence Thresholds ($\tau$)
+Sweeping the routing confidence threshold $\tau \in [0.1, 0.9]$ traces an empirical Pareto frontier between computational expenditure and Dice score, validating budget-constrained optimization.
 
 ---
 
 ## 17. Scientific Limitations & Governance Boundaries
 
 We transparently delineate the scientific boundaries of this work:
-1. **Unexecuted Prospective Splits**: While code, configurations, and verification harnesses are 100% frozen, production weights for C1 remain NOT_ESTABLISHED pending institutional clock attestation and hardware authorization.
+1. **Unexecuted Prospective Splits**: While code, configurations, and verification harnesses are 100% frozen, production weights for C1 remain `NOT_ESTABLISHED` pending institutional clock attestation and hardware authorization.
 2. **Historical Comparison Constraints**: Historical C2 and C3 results cannot be combined mathematically with v3 prospective tables without introducing confounding bias.
-3. **Domain Coverage Scope**: The benchmark evaluates four clinical domains; extension to 3D volumetric modalities (CT, MRI) remains future work.
+3. **Lack of Truly Independent External Validation**: All evaluation sets were generated by partitioning available open cohorts; prospective external testing on new clinical centers remains a critical future requirement.
 
 ---
 
