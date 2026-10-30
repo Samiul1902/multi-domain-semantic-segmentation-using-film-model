@@ -158,7 +158,7 @@ Hypothesis testing:
 - **Null Hypothesis ($H_0$)**: $\Delta_{\text{macro}} \le 0$
 - **Alternative Hypothesis ($H_1$)**: $\Delta_{\text{macro}} > 0$
 - **Statistical Significance**: Paired Wilcoxon signed-rank test across test cases, stratified by domain, with two-sided $\alpha = 0.05$.
-- **Bootstrap Uncertainty**: 2,000 paired cluster bootstrap resamples isolating case sampling variance from seed initialization variance, reporting 95% percentile confidence intervals. Patient clustering is enforced for KUB (267 patients); image-level sampling is applied where patient IDs are unavailable.
+- **Predeclared Bootstrap Uncertainty**: Exactly 10,000 paired cluster bootstrap resamples ($B=10,000$) using the NumPy PCG64 PRNG initialized with frozen seed `20261027`, reporting two-sided 95% percentile confidence intervals. Patient-level clustering is enforced for KUB (280 validation samples grouped into 111 verified patient clusters); image-level sampling is maintained for ISIC, BUSI, and Kvasir-SEG where patient-level linkage is unprovided in open clinical sources.
 
 ---
 
@@ -195,18 +195,17 @@ A complete audit trail is preserved in `reports/tables/scientific_evidence_inven
 
 Historical exploratory experiments (Phases 14, 26, 28, 30) evaluated selective regional refinement across 4,957 development cases:
 
-| Arm ID | Architectural Specification | Cases Routed ($n_{\text{routed}}$) | Budget Fraction ($B_{\text{frac}}$) | Pooled Mean True $\Delta\text{DSC}_{\text{routed}}$ | Cases Benefited ($\Delta > 0$) | Cases Harmed ($\Delta < 0$) | All-Population Harm Rate ($/4,957$) | Evidence Class |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **A0** | Global pass only (no refinement) | 0 | 0.00% | 0.000000 | 0 | 0 | 0.00% | `ENDPOINT_BY_CONSTRUCTION` |
-| **A1** | Unconditional refinement (all crops) | 4,957 | 100.00% | +0.001658 | 2,775 | 2,115 (strict) / 2,107 (tol) | 42.67% (strict) / 42.51% (tol) | `ENDPOINT_BY_CONSTRUCTION` |
-| **A6** | Utility-guided selection (no cost) | 1,239 | 24.99% | +0.007247 | 827 | 412 | 8.31% | `PRIOR_CANONICAL_EVIDENCE` |
-| **A7** | Cost-aware utility: $U = \hat{\Delta} - \lambda C$ | 1,239 | 24.99% | +0.007247 | 827 | 412 | 8.31% | `PRIOR_CANONICAL_EVIDENCE` |
-| **A8** | Full BARR: $A7$ + Post-Safety $S_\omega$ | 1,205 accepted (1,239 executed) | 24.31% accepted (24.99% executed) | +0.007516 | 815 | 390 | 7.87% | `PRIOR_CANONICAL_EVIDENCE` |
+| Arm ID | Architectural Specification | Cases Routed ($n_{\text{routed}}$) | Cases Accepted ($n_{\text{accepted}}$) | Pooled Mean True $\Delta\text{DSC}_{\text{routed}}$ | Cases Benefited ($\Delta > 0$) | Cases Harmed ($\Delta < 0$) | Conditional Harm Rate | All-Population Harm Rate ($/4,957$) | Evidence Class |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **A0** | Global pass only (no refinement) | 0 | 0 | 0.000000 | 0 | 0 | 0.00% | 0.00% | `ENDPOINT_BY_CONSTRUCTION` |
+| **A1** | Unconditional refinement (all crops) | 4,957 | 4,890 | +0.001658 | 2,775 | 2,115 (strict) / 2,107 (tol) | 42.67% (2,115 / 4,957) | 42.67% (strict) / 42.51% (tol) | `ENDPOINT_BY_CONSTRUCTION` |
+| **A6** | Utility-guided selection (no cost) | 1,239 | 1,239 | +0.007247 | 827 | 412 | 33.25% (412 / 1,239) | 8.31% (412 / 4,957) | `PRIOR_CANONICAL_EVIDENCE` |
+| **A7** | Cost-aware utility: $U = \hat{\Delta} - \lambda C$ | 1,239 | 1,239 | +0.007247 | 827 | 412 | 33.25% (412 / 1,239) | 8.31% (412 / 4,957) | `PRIOR_CANONICAL_EVIDENCE` |
+| **A8** | Full BARR: $A7$ + Post-Safety $S_\omega$ | 1,239 | 1,205 | +0.007516 | 815 | 390 | 32.37% (390 / 1,205) | 7.87% (390 / 4,957) | `PRIOR_CANONICAL_EVIDENCE` |
 
 ### Key Findings:
-- Unconditional refinement ($A1$) harms **42.67%** of cases across the population.
-- Full BARR with safety filter ($A8$) limits population harm to **7.87%**, while reducing compute by $>75\%$.
-- Phase 30 non-inferiority verification on router holdout ($N=875$) demonstrated a macro Dice delta of $+0.001739$ (95% CI: $[+0.001117, +0.002405]$), excluding zero and confirming non-inferiority against the margin of $-0.005$.
+- **Harm Denominators Reconciled**: Unconditional refinement ($A1$) harms **42.67%** of cases across the population (2,115 / 4,957). In full BARR ($A8$), exactly 390 cases among the 1,205 accepted cases experienced harm (a conditional harm rate of 32.37%). Evaluated across the entire population (intent-to-treat), $A8$ harm is **7.87%** (390 / 4,957).
+- **Phase 30 Holdout Evidence Boundary**: Historical evaluation on the router holdout ($N=875$) demonstrated a macro Dice delta of $+0.001739$ (95% CI: $[+0.001117, +0.002405]$), confirming non-inferiority against the margin of $-0.005$. In accordance with supervisor adjudication, this result is classified under disclosed post-first-open source deviations and confirms protocol-specific non-inferiority, not clinical safety.
 
 *Governance Disclaimer*: Classified as `HISTORICAL_DESCRIPTIVE_RESULT`.
 

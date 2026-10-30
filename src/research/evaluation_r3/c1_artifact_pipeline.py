@@ -1,10 +1,11 @@
 """
 Adapter and comprehensive pipeline connecting C1 real-artifact production outputs
-to the R3 analysis and statistical evaluation contracts.
+to the authoritative R3/R1 statistical evaluation contracts.
 """
 from __future__ import annotations
 
 import copy
+import csv
 import hashlib
 import io
 import json
@@ -23,12 +24,38 @@ EXPECTED_SEEDS = (42, 123, 3407)
 EXPECTED_DOMAINS = ("KUB", "ISIC", "BUSI", "KVASIR")
 VAL808_COUNTS = {"ISIC": 357, "BUSI": 84, "KVASIR": 87, "KUB": 280}
 
+FROZEN_C1_N_BOOT = 10000
+FROZEN_C1_RNG_SEED = 20261027
+FROZEN_C1_CONFIDENCE = 0.95
+FROZEN_C1_PATIENT_DOMAINS = ("KUB",)
+
+
+def load_val808_patient_roster(manifest_path: Optional[Path] = None) -> Dict[str, Optional[str]]:
+    """Loads sample_id -> patient_id mapping from canonical Manifest v3 val.csv."""
+    if manifest_path is None:
+        manifest_path = Path(__file__).resolve().parents[3] / "manifests/phase4_v3/val.csv"
+    if not manifest_path.exists():
+        raise FileNotFoundError(f"Canonical validation manifest not found at {manifest_path}")
+
+    roster = {}
+    with open(manifest_path, "r", encoding="utf-8", newline="") as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            sid = row["sample_id"]
+            pid = row.get("patient_id")
+            if pid is None or pid.strip() == "" or pid.upper() == "NOT_AVAILABLE":
+                roster[sid] = None
+            else:
+                roster[sid] = pid.strip()
+    return roster
+
 
 class C1ArtifactAnalysisPipeline:
     """Reads genuine (or synthetic fixture) C1 experiment runs and executes statistical analysis."""
 
-    def __init__(self, experiment_root: Path):
+    def __init__(self, experiment_root: Path, patient_roster: Optional[Dict[str, Optional[str]]] = None):
         self.root = Path(experiment_root)
+        self.patient_roster = patient_roster
 
     def discover_and_validate_run(self, seed: int, arm: str) -> Dict[str, Any]:
         """Verify directory structure, lifecycle, checkpoint pointers, and payload for one arm/seed."""
@@ -100,8 +127,19 @@ class C1ArtifactAnalysisPipeline:
             "mode": contract.get("mode", "SCIENTIFIC_C1"),
         }
 
-    def execute_campaign_analysis(self, *, allow_synthetic: bool = False) -> Dict[str, Any]:
+    def execute_campaign_analysis(
+        self,
+        *,
+        allow_synthetic: bool = False,
+        n_boot: Optional[int] = None,
+        rng_seed: Optional[int] = None,
+    ) -> Dict[str, Any]:
         """Verify all 6 runs and perform paired treatment-control statistical evaluation."""
+        if n_boot is None:
+            n_boot = 200 if allow_synthetic else FROZEN_C1_N_BOOT
+        if rng_seed is None:
+            rng_seed = FROZEN_C1_RNG_SEED
+
         t_records = {}
         c_records = {}
         all_runs = []
@@ -127,6 +165,8 @@ class C1ArtifactAnalysisPipeline:
 
         # Step 3: Align case-level records across pairs
         paired_case_rows = []
+        cluster_census = {"KUB_patients": set(), "image_only_cases": 0}
+
         for seed in EXPECTED_SEEDS:
             t_cases = {r["sample_id"]: r for r in t_records[seed]["best_records"]}
             c_cases = {r["sample_id"]: r for r in c_records[seed]["best_records"]}
@@ -137,13 +177,28 @@ class C1ArtifactAnalysisPipeline:
             for sid, t_item in t_cases.items():
                 c_item = c_cases[sid]
                 domain = t_item["domain"]
+
+                # Patient cluster identifier lookup
+                patient_id = None
+                if domain in FROZEN_C1_PATIENT_DOMAINS:
+                    if self.patient_roster is not None and sid in self.patient_roster:
+                        patient_id = self.patient_roster[sid]
+                    elif allow_synthetic:
+                        # For synthetic test fixture, establish mock patient clustering
+                        patient_id = f"synthetic_pat_{sid}"
+                    else:
+                        raise ValueError(f"Verified patient ID missing for {domain} sample {sid}")
+                    cluster_census["KUB_patients"].add(patient_id)
+                else:
+                    cluster_census["image_only_cases"] += 1
+
                 paired_case_rows.append({
                     "domain": domain,
                     "sample_id": sid,
                     "seed": seed,
                     "treatment": float(t_item["dice"]),
                     "control": float(c_item["dice"]),
-                    "patient_id": sid if domain == "KUB" else None,
+                    "patient_id": patient_id,
                 })
 
         # Step 4: Run paired cluster bootstrap
@@ -151,8 +206,10 @@ class C1ArtifactAnalysisPipeline:
             paired_case_rows,
             seeds=EXPECTED_SEEDS,
             domains=EXPECTED_DOMAINS,
-            n_boot=2000 if not allow_synthetic else 200,
-            rng_seed=42
+            n_boot=n_boot,
+            rng_seed=rng_seed,
+            confidence=FROZEN_C1_CONFIDENCE,
+            patient_domains=FROZEN_C1_PATIENT_DOMAINS,
         )
 
         ci_low = boot_res["ci"][0]
@@ -164,6 +221,13 @@ class C1ArtifactAnalysisPipeline:
         )
         summary["status"] = "CONFIRMED_EXECUTED_RESULT" if not allow_synthetic else "SYNTHETIC_TEST_ONLY"
         summary["case_level_bootstrap_result"] = boot_res
+        summary["cluster_census"] = {
+            "KUB_patient_clusters": len(cluster_census["KUB_patients"]),
+            "patient_domains": list(FROZEN_C1_PATIENT_DOMAINS),
+            "bootstrap_draws": n_boot,
+            "rng_seed": rng_seed,
+            "ci_method": boot_res.get("ci_method"),
+        }
 
         # Add domain-level details
         domain_summary = {}

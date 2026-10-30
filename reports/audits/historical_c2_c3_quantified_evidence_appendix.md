@@ -11,38 +11,38 @@
 Budget-Aware Regional Refinement (BARR) combines an unrefined global segmentation pass ($A0$) with a localized high-capacity regional refiner ($R_\psi$) and a learned post-safety filter ($S_\omega$).
 
 ### 1.1 Ablation Family and Arm Invariants ($N_{\text{pop}} = 4,957$ Dev Cases)
-Measured from frozen authority [`reports/tables/phase28_table_02_arm_primary_metrics.csv`](file:///d:/Softfors/jup/reports/tables/phase28_table_02_arm_primary_metrics.csv) and [`reports/audits/barr_m1_v1_0c_precision_audit.json`](file:///d:/Softfors/jup/reports/audits/barr_m1_v1_0c_precision_audit.json):
+Measured from frozen authority [`reports/tables/phase28_table_02_arm_primary_metrics.csv`](file:///d:/Softfors/jup/reports/tables/phase28_table_02_arm_primary_metrics.csv) and [`reports/audits/barr_m1_v1_0b_harm_denominator_audit.json`](file:///d:/Softfors/jup/reports/audits/barr_m1_v1_0b_harm_denominator_audit.json):
 
-| Arm ID | Architectural Specification | Cases Routed ($n_{\text{routed}}$) | Budget Fraction ($B_{\text{frac}}$) | Pooled Mean True $\Delta\text{DSC}_{\text{routed}}$ | Cases Benefited ($\Delta > 0$) | Cases Harmed ($\Delta < 0$) | All-Population Harm Rate ($/4,957$) | Evidence Class |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **A0** | Global pass only (no refinement) | 0 | 0.00% | 0.000000 | 0 | 0 | 0.00% | `ENDPOINT_BY_CONSTRUCTION` |
-| **A1** | Unconditional refinement (all crops) | 4,957 | 100.00% | +0.001658 | 2,775 | 2,115 (strict) / 2,107 (tol) | 42.67% (strict) / 42.51% (tol) | `ENDPOINT_BY_CONSTRUCTION` |
-| **A6** | Utility-guided selection (no cost) | 1,239 | 24.99% | +0.007247 | 827 | 412 | 8.31% | `PRIOR_CANONICAL_EVIDENCE` |
-| **A7** | Cost-aware utility: $U = \hat{\Delta} - \lambda C$ | 1,239 | 24.99% | +0.007247 | 827 | 412 | 8.31% | `PRIOR_CANONICAL_EVIDENCE` |
-| **A8** | Full BARR: $A7$ + Post-Safety $S_\omega$ | 1,205 accepted (1,239 executed) | 24.31% accepted (24.99% executed) | +0.007516 | 815 | 390 | 7.87% | `PRIOR_CANONICAL_EVIDENCE` |
+| Arm ID | Architectural Specification | Cases Routed ($n_{\text{routed}}$) | Cases Accepted ($n_{\text{accepted}}$) | Pooled Mean True $\Delta\text{DSC}_{\text{routed}}$ | Cases Benefited ($\Delta > 0$) | Cases Harmed ($\Delta < 0$) | Conditional Harm Rate | All-Population Harm Rate ($/4,957$) | Evidence Class |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **A0** | Global pass only (no refinement) | 0 | 0 | 0.000000 | 0 | 0 | 0.00% | 0.00% | `ENDPOINT_BY_CONSTRUCTION` |
+| **A1** | Unconditional refinement (all crops) | 4,957 | 4,890 | +0.001658 | 2,775 | 2,115 (strict) / 2,107 (tol) | 42.67% (2,115 / 4,957) | 42.67% (strict) / 42.51% (tol) | `ENDPOINT_BY_CONSTRUCTION` |
+| **A6** | Utility-guided selection (no cost) | 1,239 | 1,239 | +0.007247 | 827 | 412 | 33.25% (412 / 1,239) | 8.31% (412 / 4,957) | `PRIOR_CANONICAL_EVIDENCE` |
+| **A7** | Cost-aware utility: $U = \hat{\Delta} - \lambda C$ | 1,239 | 1,239 | +0.007247 | 827 | 412 | 33.25% (412 / 1,239) | 8.31% (412 / 4,957) | `PRIOR_CANONICAL_EVIDENCE` |
+| **A8** | Full BARR: $A7$ + Post-Safety $S_\omega$ | 1,239 | 1,205 | +0.007516 | 815 | 390 | 32.37% (390 / 1,205) | 7.87% (390 / 4,957) | `PRIOR_CANONICAL_EVIDENCE` |
 
-### 1.2 Key Behavioral Findings & Denominator Precision
-1. **Execution vs. Acceptance ($A8$)**:
-   - $n_{\text{selected}} = n_{\text{executed}} = 1,239$ cases routed to refiner.
-   - $n_{\text{accepted}} = 1,205$ cases (97.26% of executed) where $S_\omega$ allowed refined mask substitution.
-   - $n_{\text{rejected}} = 34$ cases (2.74% of executed) where $S_\omega$ reverted refinement to global mask ($\Delta \text{DSC} \equiv 0.0$).
-2. **Harm Mitigation**:
-   - Unconditional refinement ($A1$) harms **42.67%** of cases across the population (2,115 / 4,957).
-   - Full BARR with safety filter ($A8$) limits population harm to **7.87%** (390 / 4,957), eliminating 1,725 harmed cases while reducing compute by $>75\%$.
-3. **Phase 30 Non-Inferiority Verification on Router Holdout ($N=875$)**:
-   - Estimand: Equal-domain macro Dice delta between BARR ($A8$) and Global baseline ($A0$).
-   - Point Estimate: $\Delta_{\text{macro}} = +0.001739$
-   - 95% Domain-Stratified Group Bootstrap CI ($B=2,000$): $[+0.001117, +0.002405]$
-   - **Non-inferiority bound**: Lower bound $+0.001117 > -0.005$ margin; non-inferiority rigorously established.
-   - **Per-Domain Deltas**:
-     - KUB: $+0.005945$ (95% CI: $[+0.003635, +0.008456]$) — largest regional benefit.
-     - ISIC: $+0.000986$ (95% CI: $[+0.000329, +0.001764]$)
-     - BUSI: $+0.000005$ (95% CI: $[0.000000, +0.000015]$)
-     - KVASIR: $+0.000020$ (95% CI: $[0.000000, +0.000060]$)
+### 1.2 Mathematical Harm Reconciliations & Denominator Precision
+1. **Meaning of the 390 Harmed Cases ($A8$)**:
+   - In Arm $A8$, exactly **390 cases** experienced a negative Dice change ($\Delta \text{DSC} < 0$).
+   - All 390 harmed cases lie strictly within the **1,205 accepted cases** ($n_{\text{accepted}}$).
+   - Unselected cases ($3,718$) and rejected cases ($34$) revert to the global mask ($A0$), yielding $\Delta \text{DSC} \equiv 0.0$.
+2. **Conditional vs. All-Population Harm Rates**:
+   - **Conditional on Acceptance**: $390 / 1,205 = \mathbf{32.37\%}$.
+   - **All-Population (Intent-to-Treat)**: $390 / 4,957 = \mathbf{7.87\%}$.
+   - Comparing $A1$'s all-population harm rate ($42.67\%$) directly to $32.37\%$ was an earlier denominator error. Like-for-like all-population comparison shows harm dropped from **42.67%** ($A1$) to **7.87%** ($A8$), eliminating 1,725 harmed cases while reducing compute by $>75\%$.
+3. **Historical Router Holdout ($N=875$) Provenance & Non-Inferiority Status**:
+   - Evaluated during Phase 30 under specification revision `v1.3`.
+   - Adjudicated evidence class: `ONE_SHOT_ROUTER_HOLDOUT_RESULT_WITH_DISCLOSED_POST_FIRST_OPEN_SCIENTIFIC_SOURCE_FREEZE_DEVIATION` ([`phase30_supervisor_evidence_class_adjudication.json`](file:///d:/Softfors/jup/reports/audits/phase30_supervisor_evidence_class_adjudication.json)).
+   - Prior to opening, holdout isolation was verified ([`phase30_router_holdout_first_open_precondition.json`](file:///d:/Softfors/jup/reports/audits/phase30_router_holdout_first_open_precondition.json)).
+   - During execution, a post-scoring `TypeError` occurred, requiring a documented source re-bind. The supervisor ruled that numerical outputs remain frozen, but perfect pre-registration cannot be claimed.
+   - **Primary Non-Inferiority Estimand**: Equal-domain macro Dice delta between $A8$ and $A0$:
+     - Point estimate: $\Delta_{\text{macro}} = +0.001739$
+     - 95% Domain-Stratified Group Bootstrap CI ($B=2,000$): $[+0.001117, +0.002405]$
+     - **Verdict**: Lower bound $+0.001117 > -0.005$ non-inferiority margin. Confirms historical non-inferiority under this specific protocol, but does **not** constitute independent confirmatory proof or clinical safety.
 
 ---
 
-## 2. Campaign 3 — Fair Multi-Domain Segmentation Benchmarking (Phase 20 / Phase 20b / Phase 21)
+## 2. Campaign 3 — Multi-Domain Segmentation Benchmarking (Phase 20 / Phase 20b / Phase 21)
 
 All historical shared multi-domain models trained under Phase 20/20b/21 are summarized below.
 
@@ -69,7 +69,7 @@ Measured from authoritative summary [`reports/tables/phase21_six_model_compariso
   - KUB: $0.7641$
 - **Comparison to DeepLabV3+**: Achieved $+0.0074$ higher macro Dice with **11.4x fewer parameters** (3.52M vs 40.35M).
 
-### 2.3 Protocol Incomparability & Governance Boundaries
+### 2.3 Protocol Incomparability & Scientific Boundaries
 These historical C3 results **cannot be claimed as a clean prospective benchmark** because:
 1. They were trained on Phase 2 v2 manifests prior to the Phase 05 leakage audit.
 2. 118 quarantined patient-linked and perceptual duplicate cases were active in training.

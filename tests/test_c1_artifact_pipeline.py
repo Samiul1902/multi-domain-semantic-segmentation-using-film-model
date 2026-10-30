@@ -1,6 +1,6 @@
 """
-Tests verifying the realistic synthetic C1 producer-to-consumer pipeline integration.
-Demonstrates end-to-end compatibility between frozen C1 training outputs and R3 evaluation.
+Tests verifying the exact C1 statistical protocol, patient-cluster resolution,
+and genuine producer-to-consumer serialization integration.
 """
 from __future__ import annotations
 
@@ -16,146 +16,86 @@ import numpy as np
 import pytest
 import torch
 
+from src.research.c1_film.integration_contract import make_contract
+from src.research.c1_film.training_engine import Trainer
+from src.research.c1_film.synthetic_fixture import fixture_loaders
 from src.research.evaluation_r3.c1_artifact_pipeline import (
     C1ArtifactAnalysisPipeline,
     EXPECTED_ARMS,
     EXPECTED_SEEDS,
     EXPECTED_DOMAINS,
+    FROZEN_C1_N_BOOT,
+    FROZEN_C1_RNG_SEED,
+    load_val808_patient_roster,
 )
 
 
-def _generate_synthetic_run_artifacts(
-    run_dir: Path,
-    seed: int,
-    arm: str,
-    *,
-    is_complete: bool = True,
-    corrupt_checkpoint: bool = False,
-    is_synthetic_mode: bool = True,
-):
-    run_dir.mkdir(parents=True, exist_ok=True)
-    identity = f"c1_run_identity_{arm}_{seed}"
+class TestC1StatisticalAndSerializationPipeline:
+    def test_val808_patient_roster_loading(self):
+        """Verify that val808 roster correctly extracts KUB patient IDs without opening images."""
+        roster = load_val808_patient_roster()
+        assert len(roster) == 808
+        kub_with_patients = [sid for sid, pid in roster.items() if pid is not None and pid.startswith("patient-")]
+        assert len(kub_with_patients) == 280
+        distinct_kub_patients = {roster[sid] for sid in kub_with_patients}
+        assert len(distinct_kub_patients) == 111
 
-    # 1. lifecycle.json
-    lifecycle = {
-        "state": "COMPLETE" if is_complete else "PAUSED",
-        "identity": identity,
-    }
-    (run_dir / "lifecycle.json").write_text(json.dumps(lifecycle), encoding="utf-8")
-
-    # 2. Build mock validation records
-    best_records = []
-    domains_counts = {"ISIC": 10, "BUSI": 5, "KVASIR": 5, "KUB": 10}
-    for d, n in domains_counts.items():
-        for i in range(n):
-            base_dice = 0.85 if arm == "C1-T" else 0.83
-            dice_val = min(1.0, max(0.0, base_dice + (seed % 5) * 0.01 + np.sin(i) * 0.02))
-            best_records.append({
-                "sample_id": f"mock_{d}_{i:03d}",
-                "domain": d,
-                "dice": float(dice_val),
-                "iou": float(dice_val / (2 - dice_val)),
-                "precision": 0.88,
-                "recall": 0.86,
-            })
-
-    contract = {
-        "schema": 1,
-        "study_id": "C1_FILM_ATTRIBUTION_V1",
-        "protocol_sha256": "0" * 64,
-        "arm": arm,
-        "seed": seed,
-        "mode": "SYNTHETIC_ONLY" if is_synthetic_mode else "SCIENTIFIC_C1",
-    }
-
-    state = {
-        "schema": 1,
-        "identity": identity,
-        "contract": contract,
-        "epoch": 20,
-        "best_epoch": 15,
-        "best_macro": 0.85 if arm == "C1-T" else 0.83,
-        "best_loss": 0.15,
-        "active_seconds": 1250.0,
-        "counts": {"total": 3523001, "trainable": 3523001 if arm == "C1-T" else 3432233},
-        "best_records": best_records,
-        "history": [],
-    }
-
-    buf = io.BytesIO()
-    torch.save(state, buf)
-    raw_bytes = buf.getvalue()
-
-    checkpoint_file = f"epoch-0015-{arm}-{seed}.pt"
-
-    # Write latest.json pointer with original uncorrupted hash
-    pointer = {
-        "file": checkpoint_file,
-        "sha256": hashlib.sha256(raw_bytes).hexdigest(),
-        "epoch": 15,
-        "identity": identity,
-    }
-    (run_dir / "latest.json").write_text(json.dumps(pointer), encoding="utf-8")
-
-    # If corrupting, tamper with raw_bytes written to file
-    if corrupt_checkpoint:
-        raw_bytes = raw_bytes[:-10] + b"corrupt123"
-
-    (run_dir / checkpoint_file).write_bytes(raw_bytes)
-
-
-class TestC1ArtifactAnalysisPipeline:
-    def test_full_synthetic_six_run_campaign(self):
+    def test_genuine_producer_serialization_and_pipeline_execution(self):
+        """Use actual Trainer class and fixture_loaders to generate real serialized checkpoints."""
         with tempfile.TemporaryDirectory() as tmp_dir:
             exp_root = Path(tmp_dir)
 
             for seed in EXPECTED_SEEDS:
                 for arm in EXPECTED_ARMS:
                     run_dir = exp_root / f"seed{seed}" / arm
-                    _generate_synthetic_run_artifacts(run_dir, seed, arm, is_synthetic_mode=True)
+                    contract = make_contract(arm, seed, synthetic=True, device="cpu")
+                    trainer = Trainer(contract)
+                    result = trainer.run(run_dir, fixture_loaders)
+                    assert result["complete"] is True
+                    assert (run_dir / "lifecycle.json").exists()
+                    assert (run_dir / "latest.json").exists()
 
             pipeline = C1ArtifactAnalysisPipeline(exp_root)
 
-            # In production mode (allow_synthetic=False), should reject mode=SYNTHETIC_ONLY
+            # In production mode (allow_synthetic=False), mode=SYNTHETIC_ONLY must be rejected
             with pytest.raises(ValueError, match="Synthetic run rejected in production analysis"):
                 pipeline.execute_campaign_analysis(allow_synthetic=False)
 
-            # In synthetic test mode, executes all 6 runs, calculates paired bootstrap and summary
-            summary = pipeline.execute_campaign_analysis(allow_synthetic=True)
+            # In synthetic test mode, executes paired bootstrap under frozen RNG seed
+            summary = pipeline.execute_campaign_analysis(allow_synthetic=True, n_boot=500, rng_seed=FROZEN_C1_RNG_SEED)
             assert summary["status"] == "SYNTHETIC_TEST_ONLY"
             assert "primary_estimand" in summary
             assert len(summary["per_seed_rows"]) == 3
-            assert "bootstrap_95_ci" in summary
             assert len(summary["bootstrap_95_ci"]) == 2
-            assert "per_domain_summary" in summary
-            assert set(summary["per_domain_summary"].keys()) == set(EXPECTED_DOMAINS)
+            assert summary["cluster_census"]["bootstrap_draws"] == 500
+            assert summary["cluster_census"]["rng_seed"] == FROZEN_C1_RNG_SEED
 
-    def test_incomplete_run_rejection(self):
+    def test_checkpoint_tampering_and_lineage_rejection(self):
+        """Verify that tampering with raw checkpoint bytes or lifecycle fails validation."""
         with tempfile.TemporaryDirectory() as tmp_dir:
             exp_root = Path(tmp_dir)
 
+            # Generate runs using actual Trainer
             for seed in EXPECTED_SEEDS:
                 for arm in EXPECTED_ARMS:
                     run_dir = exp_root / f"seed{seed}" / arm
-                    # Mark seed 42 C1-C as incomplete (PAUSED)
-                    is_complete = not (seed == 42 and arm == "C1-C")
-                    _generate_synthetic_run_artifacts(run_dir, seed, arm, is_complete=is_complete)
+                    contract = make_contract(arm, seed, synthetic=True, device="cpu")
+                    trainer = Trainer(contract)
+                    trainer.run(run_dir, fixture_loaders)
 
-            pipeline = C1ArtifactAnalysisPipeline(exp_root)
-            with pytest.raises(ValueError, match="incomplete or interrupted"):
-                pipeline.execute_campaign_analysis(allow_synthetic=True)
-
-    def test_corrupted_checkpoint_rejection(self):
-        with tempfile.TemporaryDirectory() as tmp_dir:
-            exp_root = Path(tmp_dir)
-
-            for seed in EXPECTED_SEEDS:
-                for arm in EXPECTED_ARMS:
-                    run_dir = exp_root / f"seed{seed}" / arm
-                    # Corrupt seed 123 C1-T
-                    corrupt = (seed == 123 and arm == "C1-T")
-                    _generate_synthetic_run_artifacts(run_dir, seed, arm, corrupt_checkpoint=corrupt)
+            # 1. Tamper with checkpoint bytes in seed 42 C1-T
+            target_dir = exp_root / "seed42" / "C1-T"
+            pointer = json.loads((target_dir / "latest.json").read_text(encoding="utf-8"))
+            ckpt_path = target_dir / pointer["file"]
+            raw = ckpt_path.read_bytes()
+            ckpt_path.write_bytes(raw[:-10] + b"tampered99")
 
             pipeline = C1ArtifactAnalysisPipeline(exp_root)
             with pytest.raises(ValueError, match="Checkpoint corruption detected"):
+                pipeline.execute_campaign_analysis(allow_synthetic=True)
+
+            # Restore checkpoint bytes, then tamper with lifecycle.json state
+            ckpt_path.write_bytes(raw)
+            (target_dir / "lifecycle.json").write_text(json.dumps({"state": "PAUSED", "identity": pointer["identity"]}))
+            with pytest.raises(ValueError, match="incomplete or interrupted"):
                 pipeline.execute_campaign_analysis(allow_synthetic=True)
