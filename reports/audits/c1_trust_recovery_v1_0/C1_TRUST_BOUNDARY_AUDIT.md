@@ -363,7 +363,26 @@ Neither script was executed in this session. No force-push, no hook bypass, no r
 
 ---
 
-## 9. Final status
+## 9. Audit-integrity note — concurrent writer in the workspace
+
+During this audit, four files appeared in the working tree that this session did not create:
+
+```
+paper_doc/fig1_model_comparison.png        2026-10-30 11:37:53
+paper_doc/fig2_domain_performance.png      2026-10-30 11:37:54
+paper_doc/fig3_safety_compute.png          2026-10-30 11:37:54
+scripts/analysis/generate_word_report.py   2026-10-30 11:39:08
+```
+
+A separate agent runtime (`rea-agents`) is running against this workspace, with repeated process
+starts through the audit window. They are unrelated to the trust boundary and were **not** committed
+by this session. They are recorded here because a repository that another process is writing to during
+a provenance audit cannot be treated as a static evidentiary artefact: any future claim about "the
+state of the tree at audit time" must be pinned to a commit, not to wall-clock time.
+
+The RC3 release is unaffected — all 8 bound sources and the published digest verified before and after.
+
+## 10. Final status
 
 Production trust root contains agent-generated authority material.
 
