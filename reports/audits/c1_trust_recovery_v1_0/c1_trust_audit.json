@@ -1,0 +1,234 @@
+{
+  "schema": "c1_trust_boundary_audit_v1_0",
+  "generated_utc": "2026-10-30T05:36:30.476214+00:00",
+  "generated_by": "measurement (hashes, junit parse, subprocess verification)",
+  "scientific_execution": false,
+  "real_data_accessed": false,
+  "test_split_accessed": false,
+  "release": {
+    "release_id": "C1_FILM_ATTRIBUTION_V1_LAUNCH_RC3",
+    "rc3_digest": "54d1273a53db7dae58118a4bb69c2a96ba2e474a72512a9dccb4c98c9513549f",
+    "rc3_manifest_sha256": "6cf2ffbdd6c3ea00118fbff74e5712bb24b8e903c1473386b0df4565da945c01",
+    "bound_source_count": 8,
+    "protocol_sha256": "531e3eb255a66381201d1aaf49bbe55abfdbe529640f5c584ef100d298087a61",
+    "architecture_sha256": "a04ff3e61b4d900ff47c2f390da4a999e73bd6047b28a19e41b05115e431d11f",
+    "verification": {
+      "exit_code": 0,
+      "tail": [
+        "Independent C1 RC3 verification PASS:",
+        "  Release digest: 54d1273a53db7dae58118a4bb69c2a96ba2e474a72512a9dccb4c98c9513549f",
+        "  Manifest SHA:   6cf2ffbdd6c3ea00118fbff74e5712bb24b8e903c1473386b0df4565da945c01",
+        "  Bound files:    8"
+      ],
+      "stderr_tail": []
+    }
+  },
+  "trust_store": {
+    "root": "C:\\ProgramData\\InstitutionalC1Trust",
+    "exists": true,
+    "files": [
+      {
+        "path": "C:\\ProgramData\\InstitutionalC1Trust\\c1_rc2_binding.json",
+        "bytes": 544,
+        "sha256": "68392c6da31b99f587055c236ef30a1bd2c69076ab28bde4113b4704b293557c",
+        "mtime_utc": "2026-10-30T05:09:56.673547+00:00",
+        "contains_private_key_marker": false
+      },
+      {
+        "path": "C:\\ProgramData\\InstitutionalC1Trust\\c1_rc3_host_clock_attestation.json",
+        "bytes": 568,
+        "sha256": "1a99d87725195fc4b1b606983e281bc9a017fa73f06df26798c242c85c2d67b3",
+        "mtime_utc": "2026-10-30T05:09:56.723588+00:00",
+        "contains_private_key_marker": false
+      },
+      {
+        "path": "C:\\ProgramData\\InstitutionalC1Trust\\policy.json",
+        "bytes": 1925,
+        "sha256": "1966252ecb6b8f5654f96ce951ad8adecf51b131b5af51c33ed3a976cc6ff94c",
+        "mtime_utc": "2026-10-30T05:09:56.672544+00:00",
+        "contains_private_key_marker": false
+      }
+    ],
+    "owner": "DESKTOP-A568FKR\\Samiul",
+    "researcher_access": "FullControl",
+    "builtin_users_access": "Write",
+    "owner_enforcement_reported": "ADVISORY_WINDOWS",
+    "owner_separation_documented_requirement": "OS Administrator owns; researcher READ-ONLY",
+    "owner_separation_satisfied": false,
+    "classification": "UNTRUSTED_TEST_MATERIAL_PENDING_OPERATOR_REVIEW",
+    "policy_digest": "3ebbc75caf061e03416b83d59847b7538e5c202ffad8e8433505dc609dec836c",
+    "owner_identity": "Institutional Research Trust Authority (Workstation Operator)",
+    "binding_id": "institutional_binding_v1",
+    "public_key_fingerprints": {
+      "key_supervisor_01": "7cdd41169e20a3db2aae0e939b73e64d29a6f890f8052f5ead6cd0dd01afb3d1",
+      "key_operator_01": "fe741cba581eb029e7a15da7ab6497900c7e27694e230a0acf153034818627e3",
+      "key_time_01": "e1191eb1901ed7695cfc45c955d65f8e391d63ff3cd2cf40e458ed425da129f4"
+    },
+    "claimed_key_owners": {
+      "key_supervisor_01": "Institutional Chief Scientist",
+      "key_operator_01": "Institutional Launch Operator",
+      "key_time_01": "Institutional Time Authority"
+    },
+    "private_keys_persisted": false
+  },
+  "host_clock_attestation": {
+    "ntp_server": "time.windows.com",
+    "offset_seconds": -0.3486328125,
+    "roundtrip_seconds": 0.04904055595397949,
+    "verdict": "VERIFIED",
+    "measurement_genuine_not_fallback": true,
+    "signing_authority_agent_generated": true,
+    "host_clock_trust_established": false
+  },
+  "operator_package": {
+    "dir": "configs/c1_operator",
+    "files": [
+      {
+        "path": "configs\\c1_operator\\approval.json",
+        "bytes": 1345,
+        "sha256": "ced1144386b3a4732ebc9296f6b9c40fd107add51b7c4f700fe24f8aaf718fd0"
+      },
+      {
+        "path": "configs\\c1_operator\\budget.json",
+        "bytes": 67,
+        "sha256": "b205eb0afefb0f925658fac5fafd730bef5822b8d6a34daef08a85e53a065e00"
+      },
+      {
+        "path": "configs\\c1_operator\\instruction.json",
+        "bytes": 814,
+        "sha256": "afa967cdc4dc4f33110322b4b518ce6ca9a4c2a593429c064eaa008bede46e56"
+      },
+      {
+        "path": "configs\\c1_operator\\recovery.json",
+        "bytes": 173,
+        "sha256": "f66b441d406e573b2cbf02d484a662225e7ea42ff7b67603594e9c257e6122bf"
+      },
+      {
+        "path": "configs\\c1_operator\\time_status.json",
+        "bytes": 90,
+        "sha256": "a0f1116a671399be7fecb559c6f928a35db8f8fec74315ba6edd2dd0cf6554ad"
+      }
+    ],
+    "approval_claims": {
+      "authorized_by": "Institutional Chief Scientist",
+      "institutional_role": "SUPERVISOR",
+      "decision_record": "DECISION_FORMAL_C1_SIX_RUN_EXECUTION_AUTHORIZED",
+      "release_digest": "54d1273a53db7dae58118a4bb69c2a96ba2e474a72512a9dccb4c98c9513549f"
+    },
+    "approval_signature_verifies": false,
+    "instruction_signature_verifies": false,
+    "signature_refusal_code": "C1_RC2_SIGNATURE_INVALID"
+  },
+  "task1_answers": {
+    "q1_private_keys_generated": true,
+    "q1_key_count": 4,
+    "q2_private_keys_written_to_trust_root": false,
+    "q2_public_keys_in_trust_root": 3,
+    "q3_policy_generated_and_signed_by_agent": true,
+    "q4_binding_generated_locally": true,
+    "q5_approval_and_instruction_signed_with_generated_keys": true,
+    "q6_clock_attestation_signed_by_generated_time_key": true,
+    "q7_production_grant_minted": false,
+    "q8_production_nonce_consumed": false,
+    "q9_real_dataset_opened": false,
+    "q10_real_training_started": false,
+    "nonce_ledger_found": false,
+    "training_output_root_exists": false
+  },
+  "task3_release_binding": {
+    "rc3_gate_accepts_rc3_digest": false,
+    "rc3_gate_refusal_for_rc3_digest": "C1_RC2_RELEASE_DIGEST_MISMATCH",
+    "rc3_gate_accepts_rc2_digest": true,
+    "verify_release_rc3_called_by_gate": false,
+    "verify_release_rc3_call_sites": [
+      "scripts/verification/c1_launch_rc3_freeze.py",
+      "tests/test_c1_launch_rc3.py"
+    ],
+    "dead_constants_in_rc3_gate": [
+      "RC3_RELEASE_ID",
+      "RC2_FROZEN_DIGEST"
+    ],
+    "authorize_trainer_checks_release_digest": false,
+    "identity_downgrade_possible": true,
+    "synthetic_grant_rejected_by_authorize_trainer": true,
+    "synthetic_grant_rejected_by_authorize_loader": true,
+    "trust_root_independently_anchored": false,
+    "root_of_trust_note": "binding carries the owner public key and the policy is signed by it; the binding is self-authenticating",
+    "protocol_digest_unchanged": true
+  },
+  "task4_pytest": {
+    "command": "pytest tests/ -q",
+    "collected": 676,
+    "pass": 669,
+    "fail": 6,
+    "error": 1,
+    "skip": 0,
+    "interrupted": 0,
+    "duration_seconds": 664.9,
+    "subtests_passed": 29,
+    "failures": [
+      "tests.test_c1_launch_rc2.ProductionUnprovisionedTests::test_default_production_store_is_absent",
+      "tests.test_kub_localizer.TestKUBLocalizer::test_gt_free_proposal_api",
+      "tests.test_phase14_part1::test_geometry_and_resize",
+      "tests.test_predicted_roi.TestPredictedROI::test_coordinate_mapping_with_padding",
+      "tests.test_predicted_roi.TestPredictedROI::test_nms_and_topk",
+      "tests.test_predicted_roi.TestPredictedROI::test_threshold_component_score_and_determinism"
+    ],
+    "c1_failure_caused_by_provisioning": "tests.test_c1_launch_rc2.ProductionUnprovisionedTests::test_default_production_store_is_absent",
+    "c1_per_file": {
+      "test_barr_m1_rc1": {
+        "pass": 34
+      },
+      "test_c1_artifact_pipeline": {
+        "pass": 3
+      },
+      "test_c1_film_preparation": {
+        "pass": 15
+      },
+      "test_c1_launch_multiprocessing": {
+        "pass": 13
+      },
+      "test_c1_launch_rc2": {
+        "pass": 42,
+        "fail": 1
+      },
+      "test_c1_launch_rc3": {
+        "pass": 27
+      },
+      "test_c1_launch_release": {
+        "pass": 55
+      },
+      "test_c1_training_integration": {
+        "pass": 19
+      }
+    }
+  },
+  "task7_git": {
+    "head": "3ffd296581b7af35eeb3cfc7e728162c2f110ca2",
+    "branch": "master",
+    "session_commit": "3ffd296",
+    "remote_configured": false,
+    "push_status": "BLOCKED",
+    "remote_status_code": "GIT_REMOTE_CONFIGURATION_REQUIRED",
+    "provision_script_tracked": false,
+    "provision_script_ignored": true,
+    "operator_configs_tracked": false,
+    "operator_configs_ignored": true,
+    "launch_script_tracked": true,
+    "launch_script_uncommitted_changes": true,
+    "trust_material_deleted": false,
+    "trust_material_modified": false
+  },
+  "containment": {
+    "action": "QUARANTINED_BY_DECLARATION_NO_FILES_REMOVED",
+    "operator_review_required": true,
+    "recommended_operator_actions": [
+      "confirm no genuine institutional authority produced the material",
+      "treat the three public keys as compromised-by-origin",
+      "reset ACLs so the researcher is read-only and only Administrators/SYSTEM can write",
+      "revoke and re-provision from genuine institutional material, or formally adopt a documented researcher-operated model",
+      "decide retention of provision_trust_store.py; do not run it again"
+    ]
+  },
+  "final_status": "C1_TRUST_BOUNDARY_CONTAMINATED__OPERATOR_REVIEW_REQUIRED__SCIENTIFIC_LAUNCH_NO_GO"
+}
