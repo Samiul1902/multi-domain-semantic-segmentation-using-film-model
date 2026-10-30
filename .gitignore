@@ -48,3 +48,10 @@ checkpoints/
 tmp_*.json
 _tmp_*.json
 *.log
+
+# C1 operator authorization material — must never enter version control.
+# configs/c1_operator/ holds signed approvals, launch instructions and time
+# status records; scripts/analysis/provision_trust_store.py generates
+# institutional signing keys. Neither may be committed.
+configs/c1_operator/
+scripts/analysis/provision_trust_store.py
