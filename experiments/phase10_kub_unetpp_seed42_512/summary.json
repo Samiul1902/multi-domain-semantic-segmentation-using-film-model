@@ -1,0 +1,165 @@
+{
+  "experiment_id": "phase10_kub_unetpp_seed42_512",
+  "status": "COMPLETED",
+  "model": "unetpp",
+  "display_name": "UNet++",
+  "architecture": "unetpp_nested_4_level_no_deep_supervision",
+  "parameter_count": 9159105,
+  "seed": 42,
+  "epochs_completed": 92,
+  "best_epoch": 77,
+  "best_val_dice_checkpoint_selection": 0.7625221610069275,
+  "physical_batch": 4,
+  "gradient_accumulation_steps": 1,
+  "effective_batch": 4,
+  "training_seconds": 16292.141338799993,
+  "mean_epoch_seconds": 177.0884928130434,
+  "peak_gpu_allocated": 5330496000,
+  "peak_gpu_reserved": 5997854720,
+  "initialization": "random_kaiming_no_pretrained_weights",
+  "pretrained_weights": false,
+  "manifest_version": "phase4_v2",
+  "manifest_hashes": {
+    "all_paired": "66350d465209e4bf0948a16f0da213abb9f8f87c0b222ead7632d2350463f7cc",
+    "train": "d67b549a6cc80b579dfaf4976b9b51630f6d703d8c6bfb33188355cfa6056bc3",
+    "val": "46079b594ed9535c2de953bb976684b8b0bab30c27c6e6e4f2b9f9314b4cc5f4",
+    "test": "9361eba61c91c034a9aa4988a4df229bba591a5cbd553c98689ac7915da29727"
+  },
+  "best_checkpoint": "D:\\Softfors\\jup\\checkpoints\\phase10_kub_unetpp_seed42_512\\best.pt",
+  "latest_checkpoint": "D:\\Softfors\\jup\\checkpoints\\phase10_kub_unetpp_seed42_512\\latest.pt",
+  "test_accessed": false,
+  "external_accessed": false,
+  "experiment_a_modified": false,
+  "validation_metrics": {
+    "N_Samples": 283.0,
+    "Macro_Dice": 0.762494429987936,
+    "Macro_IoU": 0.6514949014850026,
+    "Macro_Precision": 0.8227981637975326,
+    "Macro_Recall": 0.7755986111667984,
+    "Micro_Dice": 0.8436851526123579,
+    "Micro_IoU": 0.7296327246151165,
+    "HD95_Valid_N": 275.0,
+    "HD95_Invalid_N": 8.0,
+    "Empty_Predictions_N": 8.0,
+    "Empty_Prediction_Rate": 0.028268551236749116,
+    "Median_Valid_HD95": 35.510561809129406,
+    "Mean_Valid_HD95": 48.09378037205297
+  },
+  "fov_metrics": [
+    {
+      "View_Type": "FULL_FIELD",
+      "N_Samples": 106,
+      "Macro_Dice": 0.6527764131996552,
+      "Macro_IoU": 0.5377659031590323,
+      "Macro_Precision": 0.7724476308850675,
+      "Macro_Recall": 0.6719901696624615,
+      "Empty_Prediction_Rate": 0.0660377358490566,
+      "Object_Recall": 0.8387096774193549,
+      "FP_Components_Per_Image": 0.3867924528301887
+    },
+    {
+      "View_Type": "ROI_CROP",
+      "N_Samples": 177,
+      "Macro_Dice": 0.8282012649006919,
+      "Macro_IoU": 0.7196037931378434,
+      "Macro_Precision": 0.8529515902874834,
+      "Macro_Recall": 0.837646604384085,
+      "Empty_Prediction_Rate": 0.005649717514124294,
+      "Object_Recall": 0.9943502824858758,
+      "FP_Components_Per_Image": 2.209039548022599
+    }
+  ],
+  "category_metrics": [
+    {
+      "Category": "Bladder_Stone",
+      "N_Samples": 145,
+      "Macro_Dice": 0.7441758394863064,
+      "Macro_IoU": 0.6309951814962865,
+      "Macro_Precision": 0.8118765330014672,
+      "Macro_Recall": 0.7715028753287754,
+      "Empty_Prediction_Rate": 0.04827586206896552,
+      "Object_Recall": 0.9107142857142857,
+      "FP_Components_Per_Image": 1.4896551724137932
+    },
+    {
+      "Category": "Kidney_Stone",
+      "N_Samples": 114,
+      "Macro_Dice": 0.777686126032482,
+      "Macro_IoU": 0.6705142399057588,
+      "Macro_Precision": 0.8386061001189755,
+      "Macro_Recall": 0.7688740209171199,
+      "Empty_Prediction_Rate": 0.008771929824561403,
+      "Object_Recall": 0.9411764705882353,
+      "FP_Components_Per_Image": 1.6578947368421053
+    },
+    {
+      "Category": "Ureteric_Stone",
+      "N_Samples": 24,
+      "Macro_Dice": 0.8010086913903555,
+      "Macro_IoU": 0.6850055189182361,
+      "Macro_Precision": 0.8136953189969063,
+      "Macro_Recall": 0.8322854855408272,
+      "Empty_Prediction_Rate": 0.0,
+      "Object_Recall": 0.8928571428571429,
+      "FP_Components_Per_Image": 1.125
+    }
+  ],
+  "size_metrics": [
+    {
+      "Stratum": "LARGE",
+      "Original_GT_Components": 18,
+      "Detected_Components": 17,
+      "Object_Recall": 0.9444444444444444
+    },
+    {
+      "Stratum": "MEDIUM",
+      "Original_GT_Components": 36,
+      "Detected_Components": 32,
+      "Object_Recall": 0.8888888888888888
+    },
+    {
+      "Stratum": "SMALL",
+      "Original_GT_Components": 29,
+      "Detected_Components": 25,
+      "Object_Recall": 0.8620689655172413
+    },
+    {
+      "Stratum": "TINY",
+      "Original_GT_Components": 73,
+      "Detected_Components": 57,
+      "Object_Recall": 0.7808219178082192
+    }
+  ],
+  "object_metrics": {
+    "Evaluation_GT_Components": 332.0,
+    "Predicted_Components": 1111.0,
+    "Detected_GT_Components": 306.0,
+    "Missed_GT_Components": 26.0,
+    "Object_Recall": 0.9216867469879518,
+    "Missed_Object_Rate": 0.0783132530120482,
+    "False_Positive_Components": 432.0,
+    "FP_Components_Per_Image": 1.5265017667844523
+  },
+  "multicomponent_metrics": [
+    {
+      "Component_Group": "MULTI_COMPONENT",
+      "N_Images": 50,
+      "Macro_Dice": 0.6522158202321526,
+      "Original_GT_Components": 100,
+      "Detected_Original_Components": 82,
+      "Object_Recall": 0.82,
+      "Missed_Object_Rate": 0.18000000000000005
+    },
+    {
+      "Component_Group": "SINGLE_COMPONENT",
+      "N_Images": 56,
+      "Macro_Dice": 0.653276942634925,
+      "Original_GT_Components": 56,
+      "Detected_Original_Components": 49,
+      "Object_Recall": 0.875,
+      "Missed_Object_Rate": 0.125
+    }
+  ],
+  "evaluation_space": "512x512",
+  "size_component_space": "original"
+}

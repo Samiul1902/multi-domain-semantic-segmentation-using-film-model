@@ -1,0 +1,1449 @@
+<USER_REQUEST>
+====================================================================
+PHASE 14 — REGIONAL REFINER DIAGNOSTIC
+PART 3 — FROZEN FULL VALIDATION DIAGNOSTIC EVALUATION
+====================================================================
+
+MODEL:
+Gemini 3.8 Flash Medium
+
+PROJECT ROOT:
+D:\Softfors\jup
+
+EXACT INTERPRETER:
+D:\Softfors\jup\.venv\Scripts\python.exe
+
+NO TRAINING.
+
+NO OPTIMIZER.STEP.
+
+NO BACKWARD.
+
+NO MODEL.TRAIN.
+
+NO HYPERPARAMETER SEARCH.
+
+NO THRESHOLD SEARCH.
+
+NO PROPOSAL RETUNING.
+
+NO FUSION RETUNING.
+
+NO TEST CONTENT.
+
+NO EXTERNAL DATA.
+
+NO PHASE 15.
+
+====================================================================
+0. SUPERVISOR AUTHORIZATION
+====================================================================
+
+Phase 14 Parts 1 and 2 are accepted.
+
+Regional-refiner training experiment:
+
+phase14_diag_regional_unet_oracletrain_a3_seed42_v1
+
+Training validity:
+
+VALID_SAME_EXPERIMENT
+
+Best regional checkpoint:
+
+D:\Softfors\jup\checkpoints\
+phase14_diag_regional_unet_oracletrain_a3_seed42_v1\
+best.pt
+
+Best epoch:
+
+14
+
+Best oracle VAL crop Dice:
+
+0.8437233057743712
+
+Best checkpoint SHA-256:
+
+89ada72700385ed56b49b6caf34d9061349c24a566794176911b83fb0c8cd9f0
+
+Accepted canonical notebook before Part 3:
+
+notebooks/13_phase14_regional_refiner_diagnostic.ipynb
+
+Accepted SHA:
+
+81163a905efdb57987f47ea2fc5aa81165df5fbe323ecc2a651c6503618f5632
+
+This part authorizes ONLY the frozen FULL validation diagnostic evaluation.
+
+====================================================================
+1. SCIENTIFIC QUESTION
+====================================================================
+
+Evaluate the SAME trained regional refiner under three conditions:
+
+A. GLOBAL_ONLY
+
+B. ORACLE_REGIONAL
+
+C. PREDICTED_REGIONAL
+
+The objective is to separate:
+
+1. regional-refiner potential under ideal ROI localization
+
+from
+
+2. performance loss caused by the frozen predicted proposal system
+
+from
+
+3. practical end-to-end benefit of the current predicted regional cascade.
+
+Do not retrain any model.
+
+====================================================================
+2. PRIMARY POPULATION — FROZEN
+====================================================================
+
+PRIMARY Phase-14 population:
+
+KUB FULL_FIELD VAL only
+
+Expected:
+
+images:
+106
+
+authoritative components:
+156
+
+Tiny:
+73
+
+Small:
+29
+
+Medium:
+36
+
+Large:
+18
+
+ROI_CROP VAL images:
+
+177
+
+must NOT be processed by the regional pipeline.
+
+Do not mix ROI_CROP into the primary diagnostic metrics.
+
+If a secondary whole-KUB metric is later reported:
+
+FULL_FIELD:
+regional cascade
+
+ROI_CROP:
+unchanged frozen global prediction
+
+and it must be labeled:
+
+HYBRID DEVELOPMENT PIPELINE METRIC
+
+But the primary gate is FULL_FIELD only.
+
+====================================================================
+3. FROZEN GLOBAL BASELINE
+====================================================================
+
+Global checkpoint:
+
+D:\Softfors\jup\checkpoints\
+phase10_kub_unetpp_seed42_512\
+best.pt
+
+Required SHA-256:
+
+4bffcf926227fb11029ead6bcd8e7dd8ed246e0f1678e3efb2ce4297439a3f2d
+
+Frozen canonical Phase-14 gate references:
+
+FULL_FIELD Dice:
+
+Dg = 0.652776
+
+Tiny Recall@90:
+
+Tg = 0.780822
+
+Do NOT replace these gate reference constants by newly rounded/recomputed
+values.
+
+However, re-evaluate GLOBAL_ONLY on the exact 106-image FULL_FIELD VAL
+population as a sanity check using the authoritative evaluator.
+
+Report the fresh result separately.
+
+If fresh reconstruction materially conflicts with the frozen canonical
+baseline due to evaluator/preprocessing mismatch:
+
+STATUS = CHECK_REQUIRED
+
+Do not silently redefine Dg or Tg.
+
+====================================================================
+4. FROZEN REGIONAL CHECKPOINT
+====================================================================
+
+Verify before inference:
+
+best regional checkpoint SHA:
+
+89ada72700385ed56b49b6caf34d9061349c24a566794176911b83fb0c8cd9f0
+
+Checkpoint epoch:
+
+14
+
+Architecture:
+
+UNet
+
+in_channels:
+1
+
+out_channels:
+1
+
+base_channels:
+32
+
+params:
+7,762,465
+
+crop resolution:
+256x256
+
+Load checkpoint only.
+
+No training.
+
+====================================================================
+5. FROZEN STAGE-4D LOCALIZER
+====================================================================
+
+Predicted-regional mode must use ONLY:
+
+phase13b_kub_localizer_r512_h128_sigmaeq075_centernetfocal_seed42_v1
+
+Checkpoint SHA:
+
+ece906df6c73f2e93c3f873661490bf3cb1a6b82be2d2d93b58c25bc967cbace
+
+Frozen config:
+
+threshold:
+0.10
+
+margin:
+0.20
+
+TopK:
+5
+
+NMS:
+0.30
+
+No changes.
+
+No threshold search.
+
+No margin search.
+
+No TopK change.
+
+No NMS change.
+
+No additional margin.
+
+====================================================================
+6. COMMON INFERENCE PIPELINE
+====================================================================
+
+Oracle and predicted regional modes must use:
+
+same regional checkpoint
+
+same crop preprocessing
+
+same 256x256 regional input
+
+same image interpolation
+
+same probability restoration
+
+same overlap rule
+
+same fusion rule
+
+same final threshold
+
+Only proposal source differs.
+
+Use deterministic evaluation.
+
+Use:
+
+model.eval()
+
+torch.inference_mode()
+
+No stochastic training augmentation.
+
+Use the project's authoritative evaluation-time normalization and image
+preprocessing.
+
+If inference precision is explicitly frozen by project artifacts, preserve
+it.
+
+If not otherwise specified, use deterministic FP32 metric inference and
+record that fact.
+
+Do not change precision based on observed results.
+
+====================================================================
+7. GLOBAL_ONLY MODE
+====================================================================
+
+For each of the 106 FULL_FIELD VAL images:
+
+run frozen global UNet++ baseline.
+
+Produce:
+
+Pglobal
+
+Final mask:
+
+Pglobal >= 0.50
+
+No regional processing.
+
+No proposals.
+
+This establishes the fresh evaluator sanity-check result.
+
+====================================================================
+8. ORACLE_REGIONAL MODE
+====================================================================
+
+Proposal source:
+
+authoritative GT connected components.
+
+For every component:
+
+apply exactly one context margin:
+
+0.20
+
+VAL maximum components/image is expected:
+
+2
+
+Therefore no VAL image should exceed TopK=5.
+
+Verify:
+
+VAL images >5 components:
+0
+
+Use all authoritative GT components.
+
+For overlapping regional predictions:
+
+Pregional_union(x) =
+max_i Pregional_i(x)
+
+Fusion:
+
+Pfinal(x) =
+    Pregional_union(x), inside oracle ROI union
+    Pglobal(x),         outside oracle ROI union
+
+Final threshold:
+
+0.50
+
+No oracle-specific threshold/fusion.
+
+====================================================================
+9. PREDICTED_REGIONAL MODE
+====================================================================
+
+For every FULL_FIELD VAL image:
+
+generate/load frozen Stage-4D proposals.
+
+For each proposal:
+
+use proposal crop_geometry AS-IS
+
+No second margin.
+
+Regional inference:
+
+best Phase-14 checkpoint
+
+Aggregate overlapping regional maps:
+
+pixelwise MAX
+
+Fusion:
+
+Pfinal(x) =
+    Pregional_union(x), inside predicted ROI union
+    Pglobal(x),         outside predicted ROI union
+
+If zero predicted proposals:
+
+Pfinal = Pglobal everywhere
+
+Final threshold:
+
+0.50
+
+====================================================================
+10. AUTHORITATIVE COMPONENT EVALUATION
+====================================================================
+
+Reuse the existing authoritative KUB connected-component matching and
+Recall@90 implementation.
+
+Do NOT redefine:
+
+components
+
+IoU/overlap matching
+
+Tiny/Small/Medium/Large bins
+
+Recall@90 criterion
+
+multi-component semantics
+
+Use the frozen original-space component metadata.
+
+Report exact evaluator code/artifact provenance.
+
+====================================================================
+11. HARD-TINY SET — FROZEN
+====================================================================
+
+Use the PRE-EXISTING authoritative hard-Tiny set from the Phase-11/12
+failure-analysis artifacts.
+
+Expected hard-Tiny denominator:
+
+16
+
+Do NOT create a new hard-Tiny definition after observing Part-3 outputs.
+
+Verify exact sample/component identities and provenance.
+
+For each mode report:
+
+hard Tiny recovered / 16
+
+where "recovered" follows the previously frozen component-level success
+definition.
+
+If the authoritative 16-case set cannot be reconstructed exactly:
+
+CHECK_REQUIRED.
+
+====================================================================
+12. GLOBAL-EMPTY SET — FROZEN
+====================================================================
+
+Use the PRE-EXISTING authoritative global-empty failure set.
+
+Expected denominator:
+
+7
+
+Do NOT redefine the set.
+
+Verify exact sample identities and provenance.
+
+Report:
+
+global-empty recovered / 7
+
+for oracle and predicted regional modes under the frozen existing
+definition.
+
+If the frozen 7-case set cannot be reconstructed exactly:
+
+CHECK_REQUIRED.
+
+====================================================================
+13. REQUIRED PRIMARY METRICS
+====================================================================
+
+For EACH:
+
+GLOBAL_ONLY
+ORACLE_REGIONAL
+PREDICTED_REGIONAL
+
+report at minimum:
+
+FULL_FIELD image Dice:
+mean
+
+FULL_FIELD image Dice:
+median
+
+overall Component Recall@90
+
+Tiny Recall@90
+
+Small Recall@90
+
+Medium Recall@90
+
+Large Recall@90
+
+hard-Tiny recovered
+
+global-empty recovered
+
+false-positive components/image
+
+zero-foreground prediction images if applicable
+
+For regional modes additionally report:
+
+mean ROI area fraction
+
+median ROI area fraction
+
+P90 ROI area fraction
+
+P95 ROI area fraction
+
+max ROI area fraction
+
+mean proposals/image
+
+median proposals/image
+
+zero-proposal images
+
+multi-proposal images
+
+====================================================================
+14. PER-IMAGE TABLE
+====================================================================
+
+Create a row for each of the 106 FULL_FIELD VAL images.
+
+Required fields include where meaningful:
+
+sample_id
+
+global_dice
+
+oracle_dice
+
+predicted_dice
+
+oracle_proposals
+
+predicted_proposals
+
+oracle_roi_area_fraction
+
+predicted_roi_area_fraction
+
+global_fp_components
+
+oracle_fp_components
+
+predicted_fp_components
+
+hard_case flags if applicable
+
+global-empty flag if applicable
+
+runtime fields
+
+Save:
+
+reports/tables/phase14_part3_image_metrics.csv
+
+====================================================================
+15. PER-COMPONENT TABLE
+====================================================================
+
+Create one row per authoritative component.
+
+Expected:
+
+156 rows
+
+Include:
+
+sample_id
+
+component_id
+
+size_group
+
+component_area
+
+global_recall90_success
+
+oracle_recall90_success
+
+predicted_recall90_success
+
+hard_tiny_flag
+
+matched prediction details required by existing evaluator
+
+Save:
+
+reports/tables/phase14_part3_component_metrics.csv
+
+Do not generate new size bins.
+
+====================================================================
+16. MODE SUMMARY TABLE
+====================================================================
+
+Create:
+
+reports/tables/phase14_part3_mode_summary.csv
+
+One row per mode:
+
+GLOBAL_ONLY
+ORACLE_REGIONAL
+PREDICTED_REGIONAL
+
+Include all primary metrics.
+
+====================================================================
+17. HARD-CASE TABLE
+====================================================================
+
+Create:
+
+reports/tables/phase14_part3_hardcase_summary.csv
+
+Include the authoritative:
+
+16 hard Tiny cases
+
+7 global-empty cases
+
+and per-mode recovery status.
+
+Keep the two frozen sets identifiable.
+
+====================================================================
+18. ROI / PROPOSAL BURDEN TABLE
+====================================================================
+
+Create:
+
+reports/tables/phase14_part3_roi_proposal_burden.csv
+
+For ORACLE and PREDICTED modes report:
+
+proposal count distribution
+
+ROI area distribution
+
+zero-proposal count
+
+multi-proposal count
+
+mean/median/P90/P95/max area fraction
+
+Do not retune based on these values.
+
+====================================================================
+19. RUNTIME / EFFICIENCY
+====================================================================
+
+Measure development inference runtime descriptively.
+
+Use CUDA synchronization around GPU timing where required.
+
+Report separately where feasible:
+
+global model time
+
+Stage-4D localizer time
+
+regional-refiner time
+
+fusion/postprocessing time
+
+total pipeline time
+
+Report:
+
+mean ms/image
+
+median ms/image
+
+P90 ms/image
+
+For GLOBAL_ONLY and PREDICTED_REGIONAL.
+
+Oracle runtime may be reported descriptively but is not a deployable
+pipeline because its ROI source uses GT.
+
+Do not change inference settings to optimize runtime.
+
+Create:
+
+reports/tables/phase14_part3_runtime.csv
+
+====================================================================
+20. FROZEN DIAGNOSTIC CONTRASTS
+====================================================================
+
+Compute using FULL_FIELD VAL only.
+
+Frozen references:
+
+Tg = 0.780822
+
+Dg = 0.652776
+
+Measured:
+
+To =
+ORACLE_REGIONAL Tiny Recall@90
+
+Tp =
+PREDICTED_REGIONAL Tiny Recall@90
+
+Do =
+ORACLE_REGIONAL FULL_FIELD mean Dice
+
+Dp =
+PREDICTED_REGIONAL FULL_FIELD mean Dice
+
+Compute:
+
+G = To - Tg
+
+If G > 0:
+
+R = (Tp - Tg) / G
+
+Else:
+
+R = NOT_DEFINED
+
+Do not alter formulas.
+
+====================================================================
+21. GATE STEP 1 — REFINER POTENTIAL
+====================================================================
+
+PASS only if BOTH:
+
+G >= 0.05
+
+AND
+
+Do >= 0.632776
+
+Report exact arithmetic.
+
+If Step 1 fails:
+
+regional refiner diagnostic potential gate fails.
+
+Do not modify thresholds.
+
+====================================================================
+22. GATE STEP 2 — PROPOSAL RETENTION
+====================================================================
+
+Only meaningful if G > 0.
+
+PASS if:
+
+R >= 0.50
+
+Report exact arithmetic.
+
+Do not substitute another retention measure.
+
+====================================================================
+23. GATE STEP 3 — PRACTICAL SIGNAL
+====================================================================
+
+PASS only if ALL:
+
+Tp >= 0.780822
+
+Dp >= 0.632776
+
+Predicted-regional hard Tiny recovered >= 2/16
+
+Predicted-regional global-empty recovered >= 1/7
+
+No threshold changes.
+
+====================================================================
+24. FINAL DIAGNOSTIC CLASSIFICATION
+====================================================================
+
+Use the hierarchy frozen in the protocol artifact.
+
+If exact status names already exist there, use them verbatim.
+
+Logical interpretation must remain:
+
+If Step 1 fails:
+
+DIAGNOSTIC_REFUTED_REFINER_INEFFECTIVE
+
+Else if Step 2 fails:
+
+DIAGNOSTIC_PROPOSAL_BOTTLENECK
+
+Else if Step 3 fails:
+
+DIAGNOSTIC_PRACTICAL_SIGNAL_INSUFFICIENT
+
+Else:
+
+DIAGNOSTIC_PROMISING_SUPPORTING_REFINER
+
+Do not modify classification to enable Phase 15.
+
+====================================================================
+25. PHASE-15 CONSEQUENCE
+====================================================================
+
+Only if final classification is:
+
+DIAGNOSTIC_PROMISING_SUPPORTING_REFINER
+
+then report:
+
+PHASE15 STATUS:
+ELIGIBLE_FOR_SUPERVISOR_REVIEW
+
+NOT:
+
+AUTHORIZED
+
+Otherwise:
+
+PHASE15 remains NOT_AUTHORIZED under the frozen rule.
+
+Do not start Phase 15.
+
+====================================================================
+26. BASELINE SANITY CHECK
+====================================================================
+
+Fresh GLOBAL_ONLY evaluation is a sanity check against frozen references.
+
+Report:
+
+fresh FULL_FIELD Dice
+vs
+0.652776
+
+fresh Tiny Recall@90
+vs
+0.780822
+
+If discrepancy is only expected floating-point/rounding noise:
+
+document it.
+
+If materially different:
+
+CHECK_REQUIRED
+
+before interpreting G/R/gates.
+
+Do NOT silently replace the frozen baseline.
+
+====================================================================
+27. NO STATISTICAL SIGNIFICANCE CLAIM
+====================================================================
+
+This diagnostic development part does NOT authorize claims of statistical
+significance.
+
+You may report:
+
+paired per-image differences
+
+effect magnitudes
+
+descriptive distributions
+
+but do NOT write:
+
+statistically significant
+
+unless a separately authorized paired statistical analysis is run.
+
+====================================================================
+28. AUDIT ARTIFACTS
+====================================================================
+
+Create:
+
+reports/audits/phase14_part3_diagnostic_evaluation.json
+
+reports/audits/phase14_part3_diagnostic_evaluation.md
+
+The JSON must contain machine-readable:
+
+population
+
+checkpoint SHAs
+
+frozen configuration
+
+all three mode summaries
+
+G
+
+R
+
+Step 1 result
+
+Step 2 result
+
+Step 3 result
+
+final diagnostic classification
+
+Phase-15 eligibility status
+
+governance locks
+
+====================================================================
+29. NOTEBOOK — SAME CANONICAL NOTEBOOK
+====================================================================
+
+Update:
+
+D:\Softfors\jup\notebooks\
+13_phase14_regional_refiner_diagnostic.ipynb
+
+Do NOT create a new Phase-14 notebook.
+
+Preserve Part 1 and Part 2 history.
+
+Append:
+
+PHASE 14 — PART 3 FULL DIAGNOSTIC EVALUATION
+
+The notebook should READ the saved Part-3 CSV/JSON artifacts.
+
+Do NOT rerun the full expensive evaluation on notebook Run All.
+
+Include executable/read-only cells showing:
+
+mode summary
+
+component-size comparison
+
+hard-Tiny recovery
+
+global-empty recovery
+
+ROI/proposal burden
+
+runtime
+
+G calculation
+
+R calculation
+
+Step 1
+
+Step 2
+
+Step 3
+
+final diagnostic classification
+
+Phase-15 eligibility
+
+Create scientifically useful figures, e.g.:
+
+GLOBAL vs ORACLE vs PREDICTED FULL_FIELD Dice
+
+Tiny/Small/Medium/Large Recall@90 by mode
+
+hard-case recovery summary
+
+ROI/proposal burden if informative
+
+No decorative figures.
+
+Notebook must remain training-free.
+
+No:
+
+optimizer.step
+backward
+model.train
+
+Run All.
+
+0 errors.
+
+Compute final notebook SHA-256.
+
+====================================================================
+30. EVALUATION REPRODUCIBILITY
+====================================================================
+
+Record exact evaluation script SHA-256.
+
+Record:
+
+Python
+
+PyTorch
+
+CUDA runtime
+
+GPU
+
+global checkpoint SHA
+
+regional checkpoint SHA
+
+Stage-4D checkpoint SHA
+
+manifest/split identity
+
+evaluator provenance
+
+seed if any stochastic machinery remains
+
+No unrecorded parameter.
+
+====================================================================
+31. TEST / EXTERNAL LOCK
+====================================================================
+
+Required throughout:
+
+TEST content reads:
+0
+
+TEST metrics:
+NONE
+
+external:
+NO
+
+Experiment A modified:
+NO
+
+Do not access TEST pixels/masks.
+
+Do not inspect external dataset contents.
+
+====================================================================
+32. PART-3 PASS GATE
+====================================================================
+
+PASS only if:
+
+A.
+106 FULL_FIELD VAL images evaluated
+
+B.
+156 authoritative components evaluated
+
+C.
+size counts exactly 73/29/36/18
+
+D.
+global checkpoint SHA exact
+
+E.
+regional checkpoint SHA exact
+
+F.
+Stage-4D checkpoint SHA exact
+
+G.
+fresh global sanity check reconciles with frozen baseline
+
+H.
+oracle mode uses GT proposals with margin 0.20 once
+
+I.
+predicted mode uses frozen Stage-4D proposals
+
+J.
+same regional checkpoint used for oracle/predicted
+
+K.
+same downstream regional pipeline used
+
+L.
+direct replacement fusion used
+
+M.
+threshold remains 0.50
+
+N.
+hard-Tiny frozen set exactly 16 reconstructed
+
+O.
+global-empty frozen set exactly 7 reconstructed
+
+P.
+all primary metrics generated
+
+Q.
+per-image table complete
+
+R.
+per-component table complete
+
+S.
+ROI/proposal burden complete
+
+T.
+runtime table complete
+
+U.
+G computed exactly
+
+V.
+R computed exactly or correctly NOT_DEFINED
+
+W.
+Steps 1–3 evaluated exactly
+
+X.
+final classification follows frozen hierarchy
+
+Y.
+no TEST content reads
+
+Z.
+no TEST metrics
+
+AA.
+external = NO
+
+AB.
+Experiment A modified = NO
+
+AC.
+notebook Run All PASS
+
+AD.
+notebook has no training side effects
+
+AE.
+Phase 15 not automatically started
+
+If any material item fails:
+
+CHECK_REQUIRED
+
+Do not start Phase 15.
+
+====================================================================
+33. REQUIRED FINAL NOTE
+====================================================================
+
+Return:
+
+================ ANTIGRAVITY PHASE-14 PART-3 NOTE ================
+
+STATUS:
+PASS / CHECK_REQUIRED / FAIL
+
+MODEL:
+Gemini 3.8 Flash Medium
+
+PHASE:
+14 — Regional Refiner
+
+PART:
+3 — Frozen Full Validation Diagnostic Evaluation
+
+TRAINING EXECUTED:
+NO
+
+GLOBAL CHECKPOINT SHA:
+...
+
+REGIONAL CHECKPOINT SHA:
+...
+
+STAGE-4D CHECKPOINT SHA:
+...
+
+PRIMARY POPULATION:
+FULL_FIELD VAL
+
+VAL IMAGES:
+...
+
+VAL COMPONENTS:
+...
+
+SIZE COUNTS:
+- Tiny:
+- Small:
+- Medium:
+- Large:
+
+GLOBAL-ONLY:
+- mean Dice:
+- median Dice:
+- overall Recall@90:
+- Tiny Recall@90:
+- Small Recall@90:
+- Medium Recall@90:
+- Large Recall@90:
+- hard Tiny:
+- global-empty:
+- FP components/image:
+
+ORACLE-REGIONAL:
+- mean Dice:
+- median Dice:
+- overall Recall@90:
+- Tiny Recall@90:
+- Small Recall@90:
+- Medium Recall@90:
+- Large Recall@90:
+- hard Tiny:
+- global-empty:
+- FP components/image:
+- mean ROI area:
+- median ROI area:
+- P90 ROI area:
+- P95 ROI area:
+- max ROI area:
+- proposals/image:
+
+PREDICTED-REGIONAL:
+- mean Dice:
+- median Dice:
+- overall Recall@90:
+- Tiny Recall@90:
+- Small Recall@90:
+- Medium Recall@90:
+- Large Recall@90:
+- hard Tiny:
+- global-empty:
+- FP components/image:
+- mean ROI area:
+- median ROI area:
+- P90 ROI area:
+- P95 ROI area:
+- max ROI area:
+- proposals/image:
+- zero-proposal images:
+
+FRESH GLOBAL SANITY:
+- Dice difference vs 0.652776:
+- Tiny difference vs 0.780822:
+- status:
+
+Tg:
+0.780822
+
+To:
+...
+
+Tp:
+...
+
+Dg:
+0.652776
+
+Do:
+...
+
+Dp:
+...
+
+G = To - Tg:
+...
+
+R = (Tp - Tg) / G:
+...
+
+GATE STEP 1:
+PASS/FAIL
+
+STEP-1 DETAILS:
+...
+
+GATE STEP 2:
+PASS/FAIL/NOT_DEFINED
+
+STEP-2 DETAILS:
+...
+
+GATE STEP 3:
+PASS/FAIL
+
+STEP-3 DETAILS:
+...
+
+FINAL DIAGNOSTIC CLASSIFICATION:
+...
+
+PHASE15 STATUS:
+ELIGIBLE_FOR_SUPERVISOR_REVIEW /
+NOT_AUTHORIZED
+
+RUNTIME:
+...
+
+IMAGE TABLE:
+reports/tables/phase14_part3_image_metrics.csv
+
+COMPONENT TABLE:
+reports/tables/phase14_part3_component_metrics.csv
+
+MODE SUMMARY:
+reports/tables/phase14_part3_mode_summary.csv
+
+HARDCASE TABLE:
+reports/tables/phase14_part3_hardcase_summary.csv
+
+ROI/PROPOSAL TABLE:
+reports/tables/phase14_part3_roi_proposal_burden.csv
+
+RUNTIME TABLE:
+reports/tables/phase14_part3_runtime.csv
+
+AUDIT:
+reports/audits/phase14_part3_diagnostic_evaluation.json
+reports/audits/phase14_part3_diagnostic_evaluation.md
+
+EVALUATION SCRIPT:
+...
+
+EVALUATION SCRIPT SHA:
+...
+
+NOTEBOOK:
+D:\Softfors\jup\notebooks\
+13_phase14_regional_refiner_diagnostic.ipynb
+
+PREVIOUS NOTEBOOK SHA:
+81163a905efdb57987f47ea2fc5aa81165df5fbe323ecc2a651c6503618f5632
+
+FINAL NOTEBOOK SHA:
+...
+
+NOTEBOOK RUN ALL:
+PASS/FAIL
+
+NOTEBOOK TRAINING SIDE EFFECTS:
+NONE / ...
+
+TEST CONTENT READS:
+0
+
+TEST METRICS:
+NONE
+
+EXTERNAL:
+NO
+
+EXPERIMENT A MODIFIED:
+NO
+
+PHASE14 COMPLETE:
+NO
+
+PHASE15 AUTHORIZED:
+NO
+
+PART-3 GATE:
+A:
+B:
+C:
+D:
+E:
+F:
+G:
+H:
+I:
+J:
+K:
+L:
+M:
+N:
+O:
+P:
+Q:
+R:
+S:
+T:
+U:
+V:
+W:
+X:
+Y:
+Z:
+AA:
+AB:
+AC:
+AD:
+AE:
+
+NEXT ACTION:
+WAIT_FOR_SUPERVISOR_REVIEW
+
+STOPPED:
+YES
+
+====================================================================
+
+STOP.
+
+DO NOT START PHASE 15.
+
+WAIT FOR SUPERVISOR REVIEW.
+====================================================================
+</USER_REQUEST>
+<ADDITIONAL_METADATA>
+The current local time is: 2026-09-18T22:05:07+06:00.
+
+The user's current state is as follows:
+Other open documents:
+- d:\Softfors\jup\notebooks\13_phase14_regional_refiner_diagnostic.ipynb (LANGUAGE_UNSPECIFIED)
+- d:\Softfors\jup\configs\research_protocol.json (LANGUAGE_UNSPECIFIED)
+- d:\Softfors\jup\reports\audits\research_protocol.md (LANGUAGE_UNSPECIFIED)
+- d:\Softfors\jup\experiments\registry.csv (LANGUAGE_UNSPECIFIED)
+- d:\Softfors\jup\src\metrics\segmentation.py (LANGUAGE_UNSPECIFIED)
+</ADDITIONAL_METADATA>

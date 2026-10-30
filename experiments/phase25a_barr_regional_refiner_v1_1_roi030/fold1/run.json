@@ -1,0 +1,68 @@
+{
+ "run": "fold1",
+ "outer_fold": 1,
+ "classification": "CANONICAL_PHASE25A",
+ "cache_root": "data_cache\\phase25a_barr_roi030_cache",
+ "roi_proposal_threshold": 0.3,
+ "segmentation_output_threshold": 0.5,
+ "n_fit_action_available": 2975,
+ "n_early_stop_action_available": 330,
+ "epochs_completed": 36,
+ "epochs_target": 100,
+ "best_epoch": 20,
+ "best_early_stop_loss": 0.0886393658365264,
+ "final_train_loss": 0.09066848348168766,
+ "stop_reason": "early_stopping_patience_15",
+ "resume_count": 0,
+ "checkpoint_events": 12,
+ "checkpoint_sha256": {
+  "best.pt": "512cc116b2a1baa5368711f438dfd0b2aabff1448d02fbc0c369b91da8ffc1ce",
+  "latest.pt": "ca6b9f6b204e26cedcfeaf763df0dc80d7bf2d4b51e80e398ed24865ff3c3aad"
+ },
+ "history_sha256": "68d3baf575379d83a0273a76930b4f0e64ca5cca4a81e128b069a71c9cc7398f",
+ "parameter_count": 1276401,
+ "bindings": {
+  "phase24_exact_spec": {
+   "path": "reports\\audits\\phase24_exact_implementation_spec.json",
+   "sha256": "6b1a71d5e88ce06baa8f200523be32773428417ffd233ff218d7e50b6af271dd"
+  },
+  "roi_threshold_adjudication": {
+   "path": "reports\\audits\\phase24_phase25_roi_threshold_adjudication.json",
+   "sha256": "c30ffb1fc6b507166ae9ca4d36d2be8d51a0f2221fae6d8de3d3efaed643cc9d"
+  },
+  "roi050_supersession": {
+   "path": "reports\\audits\\phase25a_roi050_supersession.json",
+   "sha256": "84f736a834fa1d5155bbcf45b9421b3a8f92619befa2fbfd4b3a3d0f4cee88e1"
+  },
+  "global_checkpoint": {
+   "path": "checkpoints\\phase21_global_medfilm_fourdomain_seed42_clean_v3\\best.pt",
+   "sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7"
+  },
+  "augmentation_binding": {
+   "path": "reports\\audits\\phase25a_augmentation_binding.json",
+   "sha256": "b8b0f817e765dd5db267df6f5e5c5b33da4f81ff58b177f8a410e5d985e97f59"
+  },
+  "roi_transform_audit": {
+   "path": "reports\\audits\\phase25a_roi_transform_audit.json",
+   "sha256": "1c756de5623de96b0a790ecbe0650f5dba2cf3116cb6e33ca7264c000ec323dc"
+  },
+  "crossfit_protocol": {
+   "path": "reports\\audits\\phase25a_crossfit_protocol.json",
+   "sha256": "6868b5562fe02929e13d63905ca74a759e20dec3c01b14eef331e4cb948f55ce"
+  },
+  "model_source": {
+   "path": "src\\models\\barr\\regional_refiner.py",
+   "sha256": "4fe0abde3ec3a183d930f676c4400b4d9ba778793ea64abf1755c5b8dabf947a"
+  },
+  "dataset_source": {
+   "path": "src\\data\\barr_refiner_dataset.py",
+   "sha256": "6bbf0eb51f9a4f646fe9222f2d3035761577f8d41cc5c229109139bfc937e095"
+  },
+  "roi_source": {
+   "path": "src\\data\\barr_roi.py",
+   "sha256": "4b1015275e4e31f9cc2b662a290c18f988eaea65cec64082cea217fad9aba9d6"
+  }
+ },
+ "seed": 42,
+ "test_reads": 0
+}

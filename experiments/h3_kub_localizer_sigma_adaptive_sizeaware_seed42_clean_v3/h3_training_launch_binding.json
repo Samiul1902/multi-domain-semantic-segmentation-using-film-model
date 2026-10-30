@@ -1,0 +1,71 @@
+{
+  "supervisor_ruling": "H3_FINAL_LAUNCH_SAFETY_CHECK_PLUS_PROSPECTIVE_TRAINING_AUTHORIZATION",
+  "experiment_id": "h3_kub_localizer_sigma_adaptive_sizeaware_seed42_clean_v3",
+  "checkpoint_namespace": "checkpoints/h3_kub_localizer_sigma_adaptive_sizeaware_seed42_clean_v3/",
+  "classification": "OPERATIONAL_OUTPUT_ISOLATION__NO_SCIENTIFIC_AXIS_CHANGE",
+  "scientific_axis": "A_PROPOSAL_SUPPLY_RECALL_LIMITATION / A_TARGET_SUPPORT_REDESIGN (single authorized axis)",
+  "output_paths": {
+    "experiments": "D:\\Softfors\\jup\\experiments\\h3_kub_localizer_sigma_adaptive_sizeaware_seed42_clean_v3",
+    "checkpoints": "D:\\Softfors\\jup\\checkpoints\\h3_kub_localizer_sigma_adaptive_sizeaware_seed42_clean_v3",
+    "best_checkpoint": "D:\\Softfors\\jup\\checkpoints\\h3_kub_localizer_sigma_adaptive_sizeaware_seed42_clean_v3\\best.pt",
+    "latest_checkpoint": "D:\\Softfors\\jup\\checkpoints\\h3_kub_localizer_sigma_adaptive_sizeaware_seed42_clean_v3\\latest.pt",
+    "history": "D:\\Softfors\\jup\\experiments\\h3_kub_localizer_sigma_adaptive_sizeaware_seed42_clean_v3\\history.csv"
+  },
+  "final_shas": {
+    "trainer": "9099d6de339aba43d5e92284ea741568f16c7f5c39e7c189c595301ca5cb88f9",
+    "dataset_module": "77aba36b0ba65b951c49a5caf2e1abcdc2092ca0cd3e2d50ac2a896dd4c1f384",
+    "selection_module": "807a70181c1f0da7481a26f1d06e1a1f2ca21dd0e93d44d987e630f38f500fbb",
+    "checkpointing_module": "08366f72f3141e5d18f008981465f5e9138c0b51336fd65cae7c619456ee1eca",
+    "config": "320a367068b6bec4ea357ebea4bca1460db2c7f7a435f19403af64fb4a05f854",
+    "train_manifest": "28702fc3a5ff8b950db372f03232d335e3a30b1fc2f21db7cd8c066055826ed6",
+    "val_manifest": "082c80b2bda63fd73f371f109c34643adf01edaead921643fb2e44993ba53315"
+  },
+  "train_population": {
+    "images": 770,
+    "canonical_components": 1161,
+    "orphan_excluded": true
+  },
+  "val_population": {
+    "images": 103,
+    "canonical_components": 152,
+    "tiny_components": 72
+  },
+  "fixed_decode": {
+    "threshold": 0.1,
+    "margin": 0.2,
+    "top_k": 5,
+    "nms_iou": 0.3
+  },
+  "selection_tuple": {
+    "terms": [
+      "val_localization_recall",
+      "negative_val_loss"
+    ],
+    "rule": "MAX val_localization_recall then MIN val_loss",
+    "tuple": [
+      0.9,
+      -0.1
+    ]
+  },
+  "scientific_config": {
+    "seed": 42,
+    "resolution": 512,
+    "heatmap_resolution": 128,
+    "size_adaptive_sigma": true,
+    "A_ref": 13.0,
+    "sigma_min": 0.35,
+    "sigma_max": 0.75,
+    "loss": "CenterNetFocalLoss(alpha=2.0,beta=4.0,dice_weight=0.0)",
+    "optimizer": "AdamW(lr=1e-4,wd=1e-4)",
+    "scheduler": "CosineAnnealingLR(T_max=100)",
+    "max_epochs": 100,
+    "patience": 15,
+    "proposal_configurations_evaluated_per_epoch": 1,
+    "grid_search_enabled": false
+  },
+  "test_reads": 0,
+  "exact_training_command": "python scripts/training/train_phase13b_localizer.py --h3 --config configs/kub/phase13b_localizer_h3_size_adaptive_sigma.yaml --sigma 0.75",
+  "status": "H3_TRAINING_PROSPECTIVELY_AUTHORIZED__READY_TO_LAUNCH",
+  "written_before_epoch_1": true,
+  "timestamp_utc": "2026-09-25T06:03:40.835284+00:00"
+}

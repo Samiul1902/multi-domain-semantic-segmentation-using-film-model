@@ -1,0 +1,116 @@
+{
+  "artifact": "phase20b_training_closure",
+  "phase": 20,
+  "subphase": "20B",
+  "model_key": "unet",
+  "model_display_name": "U-Net",
+  "experiment_id": "phase20b_shared_unet_fourdomain_seed42_clean_v3",
+  "manifest_version": "phase4_v3",
+  "architecture": "unet_4_stage_plain_skip_base32",
+  "model_class": "UNet",
+  "model_source_file": "src/models/unet.py",
+  "model_source_sha256": "62edc8fb481eb02c46c2c64f6e7219254a57d7ba935a4c840a5a7965b41bdfc2",
+  "architecture_binding_path": "reports/audits/phase20b_unet_architecture_binding.json",
+  "architecture_binding_sha256": "edc2b1268218a4fe931ed6e1dd3184fb5b1a555cf55904c480a72c5d2759fbae",
+  "pre_execution_check_path": "reports/audits/phase20b_unet_pre_execution_check.json",
+  "pre_execution_check_sha256": "972b364068d468daa1839b4777f5bede272e9f694d2db13b87c97d6ec641b968",
+  "protocol_sha256": "b74f1f9f429adbce374f0306180943b9f373f872e1e69e115b7d17e81414283c",
+  "selection_rule_id": "phase20_macro_domain_mean_dice_v1",
+  "best_epoch": 74,
+  "best_macro_domain_dice": 0.787832506974712,
+  "best_val_loss": 0.1934116787765876,
+  "per_domain_dice_at_best": {
+    "ISIC": 0.8552744720831389,
+    "BUSI": 0.8197688641298048,
+    "KVASIR": 0.7551979881594655,
+    "KUB": 0.7210887035264385
+  },
+  "final_epoch": 89,
+  "total_completed_epochs": 89,
+  "stop_reason": "EARLY_STOPPING_PATIENCE",
+  "early_stopping_patience": 15,
+  "history_path": "experiments/phase20b_shared_unet_fourdomain_seed42_clean_v3/history.csv",
+  "history_sha256": "7dcf6088b5ce51fb1ffcca706aa84dc231aae373c09d369e79fbd52f46e7c683",
+  "best_checkpoint_sha256": "62fde8f4b0de50803e510c609f4cb943b7d72bd1ab7a5b1ff1534b38a76a5634",
+  "latest_checkpoint_sha256": "7a9512bbb4f7c36e699c9ab08c1b75380603c7de37cec51d827972200964d7ca",
+  "trainer_path": "scripts/training/train_phase20b_shared_baseline.py",
+  "trainer_sha256": "43d3c0e4470d56e462c05b0367630b9d480880befbd77c42e829543a2e36bb70",
+  "resume_events": [
+    {
+      "at": "2026-09-27T02:12:29",
+      "resumed_from_epoch": 69
+    }
+  ],
+  "resume_count": 1,
+  "independent_duplicate_runs": 0,
+  "test_reads": {
+    "test_image_reads": 0,
+    "test_mask_reads": 0,
+    "test_inference": 0,
+    "test_visualization": 0
+  },
+  "training_performed": true,
+  "model_params": 7763041,
+  "total_elapsed_seconds": 8134.099326372147,
+  "configuration": {
+    "experiment_id": "phase20b_shared_unet_fourdomain_seed42_clean_v3",
+    "phase": 20,
+    "subphase": "20B",
+    "parent_phase20a_experiment": "phase20_shared_unetpp_fourdomain_seed42_clean_v3",
+    "manifest_version": "phase4_v3",
+    "dataset": "MULTI_DOMAIN_ISIC_BUSI_KVASIR_KUB",
+    "architecture": "unet_4_stage_plain_skip_base32",
+    "model": {
+      "name": "UNet",
+      "in_channels": 3,
+      "out_channels": 1,
+      "base_channels": 32
+    },
+    "input_channel_policy": "RGB_3CH",
+    "input_resolution": 512,
+    "loss": {
+      "name": "bce_dice",
+      "bce_weight": 0.5,
+      "dice_weight": 0.5,
+      "dice_epsilon": 1e-06
+    },
+    "optimizer": {
+      "name": "AdamW",
+      "learning_rate": 0.0001,
+      "weight_decay": 0.0001
+    },
+    "scheduler": {
+      "name": "CosineAnnealingLR",
+      "T_max": 100,
+      "step": "per_epoch_after_train_and_val"
+    },
+    "training": {
+      "batch_size": 4,
+      "eval_batch_size": 8,
+      "num_workers": 4,
+      "persistent_workers": false,
+      "max_epochs": 100,
+      "early_stopping_patience": 15,
+      "amp": true,
+      "seed": 42,
+      "gradient_accumulation_steps": 1,
+      "effective_batch_size": 4,
+      "threshold": 0.5,
+      "sampling_policy": "phase20_domain_balanced_uniform_v1",
+      "checkpoint_metric": "phase20_macro_domain_mean_dice_v1",
+      "checkpoint_metric_description": "macro-domain mean VAL Dice (unweighted mean of the four per-domain per-image macro Dice)",
+      "tie_break": "lower validation loss"
+    },
+    "augmentation_policy": "src.data.transforms.SegmentationTransform(train=True): horizontal mirror p=0.5, rotation +/-5 deg, brightness +/-0.10, contrast +/-0.10; mask NEAREST; VAL disabled",
+    "governance": {
+      "allow_test": false,
+      "allow_external": false,
+      "task_id_as_model_input": false,
+      "film": false,
+      "regional_module": false,
+      "localizer": false,
+      "roi_proposal": false
+    },
+    "taxonomy_id": null
+  }
+}

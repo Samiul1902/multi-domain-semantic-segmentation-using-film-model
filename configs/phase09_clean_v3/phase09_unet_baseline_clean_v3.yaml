@@ -1,0 +1,55 @@
+experiment_id: phase9_kub_unet_baseline_seed42_512_clean_v3
+phase: 9
+dataset: KUB
+manifest_version: phase4_v3
+taxonomy_id: kub_size_clean_v3_v1
+status: RECONSTRUCTED_AND_READY
+authorization_required: Phase-09 clean rerun authorization
+model:
+  name: unet
+  input_channels: 1
+  output_channels: 1
+  base_channels: 32
+input_resolution: 512
+preprocessing:
+  strategy: aspect_ratio_resize_symmetric_pad
+  image_interpolation: bilinear
+  mask_interpolation: nearest
+  image_scaling:
+  - 0.0
+  - 1.0
+augmentation:
+  horizontal_flip_probability: 0.5
+  rotation_degrees: 5.0
+  brightness: 0.1
+  contrast: 0.1
+  vertical_flip: false
+loss:
+  name: bce_dice
+  bce_weight: 0.5
+  dice_weight: 0.5
+  dice_epsilon: 1.0e-06
+optimizer:
+  name: AdamW
+  learning_rate: 0.0001
+  weight_decay: 0.0001
+scheduler:
+  name: CosineAnnealingLR
+  max_epochs: 100
+training:
+  max_epochs: 100
+  early_stopping_patience: 15
+  monitor: val_macro_dice
+  threshold: 0.5
+  seed: 42
+  amp: true
+  batch_size: 4
+  gradient_accumulation_steps: 1
+  effective_batch_size: 4
+  num_workers: 0
+  pin_memory: true
+  persistent_workers: false
+device_contract: src.utils.device.get_device(require_cuda=True)
+target_contract: src.utils.targets.binarize_mask
+single_writer_lock: src.utils.run_lock
+allow_test: false

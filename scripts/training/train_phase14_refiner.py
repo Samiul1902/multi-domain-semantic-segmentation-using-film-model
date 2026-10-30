@@ -1,289 +1,371 @@
-"""Phase 14 Regional Refiner Diagnostic - Single Frozen Training Run.
-Experiment: phase14_diag_regional_unet_oracletrain_a3_seed42_v1
+"""
+Phase 14 — Regional Refiner Diagnostic — Clean-v3 Training
+Frozen protocol: reports/audits/phase14_diagnostic_protocol_amendment.json
+Experiment: phase14_kub_refiner_unet_a3_256_seed42_clean_v3
 """
 import os
 import sys
-import time
 import json
-from pathlib import Path
+import time
 import random
+import argparse
+import hashlib
+from pathlib import Path
+
+import torch
+import torch.nn as nn
+from torch.utils.data import DataLoader
+from torch.optim import AdamW
+from torch.optim.lr_scheduler import CosineAnnealingLR
 import numpy as np
 import pandas as pd
-import torch
-from torch.utils.data import DataLoader
+from PIL import Image
 
-PROJECT_ROOT = Path(__file__).resolve().parents[2]
-if str(PROJECT_ROOT) not in sys.path:
-    sys.path.insert(0, str(PROJECT_ROOT))
+# Project root
+PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
+sys.path.insert(0, str(PROJECT_ROOT))
 
 from src.models.unet import UNet
 from src.losses.segmentation import BCEDiceLoss
-from src.data.regional_dataset import RegionalCropDataset
-from src.utils.checkpointing import save_training_checkpoint, load_training_checkpoint
-from src.utils.manifest_guard import verify_manifests
-from src.utils.test_lock import verify_test_lock
-from src.utils.reproducibility import set_seed, make_generator, seed_worker
+from src.data.regional_dataset import (
+    RegionalCropDataset,
+    ORACLE_DERIVED_REFINER_MARGIN,
+    PREDICTED_PROPOSAL_MARGIN,
+)
+from src.utils.device import get_device
+from src.utils.config import validate_experiment_config
 
-def main():
-    print("=== Phase 14 Regional Refiner Training ===")
-    
-    # 1. Interpreter & CUDA check
-    expected_exe = Path(r"D:\Softfors\jup\.venv\Scripts\python.exe").resolve()
-    actual_exe = Path(sys.executable).resolve()
-    assert actual_exe == expected_exe, f"Wrong python interpreter: {actual_exe}"
-    
-    if not torch.cuda.is_available():
-        raise RuntimeError("CUDA is required but not available!")
-    
-    device = torch.device('cuda')
-    gpu_name = torch.cuda.get_device_name(0)
-    print(f"Python: {sys.version.split()[0]}")
-    print(f"PyTorch: {torch.__version__}, CUDA runtime: {torch.version.cuda}")
-    print(f"GPU: {gpu_name}")
-    assert "3060" in gpu_name, f"Expected RTX 3060 Ti, got {gpu_name}"
-    
-    # 2. Governance verification
-    verify_manifests()
-    verify_test_lock(PROJECT_ROOT)
-    print("Governance locks verified: TEST content not accessed, external blocked.")
-    
-    # 3. Seed & Reproducibility
-    seed = 42
-    set_seed(seed, deterministic=True)
-    generator = make_generator(seed)
-    
-    # 4. Datasets
-    print("Loading datasets...")
-    train_ds = RegionalCropDataset(str(PROJECT_ROOT / 'manifests/train.csv'), 'TRAIN', seed=seed)
-    val_ds = RegionalCropDataset(str(PROJECT_ROOT / 'manifests/val.csv'), 'VAL', seed=seed)
-    
-    assert len(train_ds) == 5028, f"Expected 5028 train examples, got {len(train_ds)}"
-    assert len(val_ds) == 156, f"Expected 156 oracle val crops, got {len(val_ds)}"
-    print(f"Train dataset: {len(train_ds)} crops (1162 base + 2324 perturbed + 1542 negatives)")
-    print(f"Val dataset: {len(val_ds)} oracle crops")
-    
-    train_loader = DataLoader(
-        train_ds, batch_size=8, shuffle=True, num_workers=0,
-        pin_memory=True, worker_init_fn=seed_worker, generator=generator
-    )
-    val_loader = DataLoader(
-        val_ds, batch_size=8, shuffle=False, num_workers=0,
-        pin_memory=True, worker_init_fn=seed_worker, generator=make_generator(seed)
-    )
-    
-    # 5. Model
-    model = UNet(in_channels=1, out_channels=1, base_channels=32).to(device)
-    trainable_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
-    print(f"Model parameters: {trainable_params}")
-    assert trainable_params == 7762465, f"Expected 7762465 params, got {trainable_params}"
-    
-    # 6. Loss, Optimizer, Scheduler, Scaler
-    loss_fn = BCEDiceLoss(bce_weight=0.5, dice_weight=0.5, epsilon=1e-6)
-    optimizer = torch.optim.AdamW(model.parameters(), lr=1e-4, weight_decay=1e-4)
-    scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=100)
-    scaler = torch.amp.GradScaler('cuda')
-    
-    # 7. Checkpoint Paths
-    exp_id = "phase14_diag_regional_unet_oracletrain_a3_seed42_v1"
-    chk_dir = PROJECT_ROOT / "checkpoints" / exp_id
-    chk_dir.mkdir(parents=True, exist_ok=True)
-    best_ckpt_path = chk_dir / "best.pt"
-    latest_ckpt_path = chk_dir / "latest.pt"
-    history_csv_path = chk_dir / "history.csv"
-    config_json_path = chk_dir / "config.json"
-    
-    config_data = {
-        "experiment_id": exp_id,
-        "phase": 14,
-        "dataset": "KUB",
-        "population": "FULL_FIELD",
-        "train_samples": 771,
-        "train_components": 1162,
-        "val_samples": 106,
-        "val_components": 156,
-        "train_crops": 5028,
-        "val_crops": 156,
-        "architecture": "UNet",
-        "in_channels": 1,
-        "out_channels": 1,
-        "base_channels": 32,
-        "trainable_params": trainable_params,
-        "resolution": 256,
-        "margin": 0.20,
-        "optimizer": "AdamW",
-        "lr": 1e-4,
-        "weight_decay": 1e-4,
-        "scheduler": "CosineAnnealingLR",
-        "scheduler_t_max": 100,
-        "loss": "0.5_BCE + 0.5_SoftDice",
-        "batch_size": 8,
-        "amp": True,
-        "seed": 42,
-        "max_epochs": 100,
-        "patience": 15,
-        "checkpoint_metric": "best_val_crop_dice"
-    }
-    with open(config_json_path, 'w', encoding='utf-8') as f:
-        json.dump(config_data, f, indent=2)
-        
-    manifest_hashes = json.loads((PROJECT_ROOT / "manifests/manifest_metadata.json").read_text(encoding='utf-8'))['hashes']
-    
-    # Check for resumption
-    start_epoch = 1
-    history = []
-    best_val_crop_dice = -1.0
-    best_epoch = 0
-    bad_epochs = 0
-    global_step = 0
-    
-    if latest_ckpt_path.exists():
-        print(f"Resuming from existing latest checkpoint: {latest_ckpt_path}")
-        state = load_training_checkpoint(latest_ckpt_path, model, optimizer, scheduler, scaler, True, device)
-        start_epoch = state['epoch'] + 1
-        history = state.get('training_history', [])
-        best_val_crop_dice = state.get('best_validation_score', -1.0)
-        early = state.get('early_stopping_state', {})
-        bad_epochs = int(early.get('bad_epochs', 0))
-        best_epoch = int(early.get('best_epoch', start_epoch - 1))
-        global_step = state.get('global_step', 0)
-        gen_states = state.get('loader_generator_states')
-        if gen_states and 'train' in gen_states and gen_states['train'] is not None:
-            generator.set_state(gen_states['train'].detach().cpu().to(torch.uint8))
-        print(f"Resumed at epoch {start_epoch}, best score: {best_val_crop_dice:.6f} (epoch {best_epoch}), bad_epochs: {bad_epochs}")
-    
-    # 8. Training Loop
-    max_epochs = 100
-    patience = 15
-    stop_reason = "MAX_EPOCHS_REACHED"
-    
-    print(f"\n--- Starting Training (Epochs {start_epoch} to {max_epochs}, Patience {patience}) ---")
-    
-    for epoch in range(start_epoch, max_epochs + 1):
-        epoch_start_time = time.perf_counter()
-        torch.cuda.reset_peak_memory_stats()
-        
-        # --- Train Phase ---
-        model.train()
-        train_losses = []
-        
-        for batch_idx, batch in enumerate(train_loader):
-            images = batch['image'].to(device, non_blocking=True)
-            masks = batch['mask'].to(device, non_blocking=True)
-            
-            optimizer.zero_grad(set_to_none=True)
-            with torch.amp.autocast('cuda'):
-                logits = model(images)
-                loss = loss_fn(logits, masks)
-                
-            if not torch.isfinite(loss):
-                raise RuntimeError(f"Non-finite loss encountered at epoch {epoch}, batch {batch_idx}: {loss.item()}")
-                
+EXPERIMENT_ID = "phase14_kub_refiner_unet_a3_256_seed42_clean_v3"
+CHECKPOINT_DIR = PROJECT_ROOT / "checkpoints" / EXPERIMENT_ID
+EXPERIMENT_DIR = PROJECT_ROOT / "experiments" / EXPERIMENT_ID
+CHECKPOINT_DIR.mkdir(parents=True, exist_ok=True)
+EXPERIMENT_DIR.mkdir(parents=True, exist_ok=True)
+
+
+def sha_file(p: Path) -> str:
+    return hashlib.sha256(p.read_bytes()).hexdigest()
+
+
+def compute_crop_dice(pred_logits, target_mask, epsilon=1e-6):
+    """Compute Dice per crop. pred_logits: [B,1,H,W], target_mask: [B,1,H,W]."""
+    probs = torch.sigmoid(pred_logits)
+    pred_bin = (probs >= 0.5).float()
+    dims = tuple(range(1, pred_logits.ndim))
+    intersection = (pred_bin * target_mask).sum(dims)
+    denominator = pred_bin.sum(dims) + target_mask.sum(dims)
+    dice = (2.0 * intersection + epsilon) / (denominator + epsilon)
+    return dice.mean().item()
+
+
+def train_epoch(model, loader, criterion, optimizer, scaler, device):
+    model.train()
+    losses = []
+    for batch in loader:
+        imgs = batch['image'].to(device)
+        masks = batch['mask'].to(device)
+        optimizer.zero_grad()
+        with torch.amp.autocast('cuda', enabled=scaler is not None):
+            logits = model(imgs)
+            loss = criterion(logits, masks)
+        if scaler is not None:
             scaler.scale(loss).backward()
             scaler.step(optimizer)
             scaler.update()
-            
-            train_losses.append(loss.item())
-            global_step += 1
-            
-        avg_train_loss = float(np.mean(train_losses))
-        
-        # --- Validation Phase (Oracle VAL crops) ---
-        model.eval()
-        val_dices = []
-        
-        with torch.inference_mode():
-            for batch in val_loader:
-                images = batch['image'].to(device, non_blocking=True)
-                masks = batch['mask'].to(device, non_blocking=True)
-                
-                with torch.amp.autocast('cuda'):
-                    logits = model(images)
-                    preds = (torch.sigmoid(logits) >= 0.50).float()
-                    
-                # Compute per-crop Dice
-                for p, t in zip(preds, masks):
-                    intersection = (p * t).sum().item()
-                    total = p.sum().item() + t.sum().item()
-                    if total == 0:
-                        crop_dice = 1.0
-                    else:
-                        crop_dice = (2.0 * intersection + 1e-7) / (total + 1e-7)
-                    val_dices.append(crop_dice)
-                    
-        avg_val_crop_dice = float(np.mean(val_dices))
-        
-        # --- Scheduler Step (per epoch) ---
-        current_lr = optimizer.param_groups[0]['lr']
+        else:
+            loss.backward()
+            optimizer.step()
+        losses.append(loss.item())
+    return float(np.mean(losses))
+
+
+@torch.no_grad()
+def validate(model, loader, criterion, device):
+    model.eval()
+    losses = []
+    dices = []
+    for batch in loader:
+        imgs = batch['image'].to(device)
+        masks = batch['mask'].to(device)
+        logits = model(imgs)
+        loss = criterion(logits, masks)
+        losses.append(loss.item())
+        dices.append(compute_crop_dice(logits, masks))
+    return float(np.mean(losses)), float(np.mean(dices))
+
+
+# --- Execution-mechanism support: interruption-resilient resume ----------------
+# The host terminates long-running child processes when the launching session's
+# process tree is torn down. This is an OPERATIONAL constraint only; it does not
+# change any scientific computation. To let a long run converge across such
+# interruptions, the trainer records and restores the complete RNG state so that
+# a resumed run is a BIT-EXACT continuation of the interrupted trajectory.
+#
+# RNG sources that must survive a restart:
+#   - the dataset's own random.Random (used for perturbation jitter, augmentation)
+#   - the global Python random module
+#   - the global numpy RNG (used for background-negative sampling retries)
+#   - the global torch CPU RNG (DataLoader shuffle permutation)
+#   - the torch CUDA RNGs (dropout / any stochastic CUDA op)
+def capture_rng_state(ds_train, ds_val):
+    state = {
+        'global_random': random.getstate(),
+        'global_numpy': np.random.get_state(),
+        'global_torch': torch.get_rng_state(),
+        'dataset_train': ds_train.rng.getstate(),
+        'dataset_val': ds_val.rng.getstate(),
+    }
+    if torch.cuda.is_available():
+        state['cuda'] = torch.cuda.get_rng_state_all()
+    return state
+
+
+def _as_cpu_byte_tensor(t):
+    """Coerce a stored RNG state into a CPU torch.ByteTensor.
+
+    torch.set_rng_state / torch.cuda.set_rng_state_all require a ByteTensor, and
+    the CPU default generator requires it to live on the CPU. Checkpoints are
+    loaded with map_location=<cuda device>, which relocates saved tensors, so the
+    device must be forced back to CPU here.
+    """
+    if isinstance(t, torch.Tensor):
+        return t.detach().to(device='cpu', dtype=torch.uint8).contiguous()
+    return torch.tensor(list(t), dtype=torch.uint8)
+
+
+def restore_rng_state(state, ds_train, ds_val):
+    random.setstate(state['global_random'])
+    np.random.set_state(state['global_numpy'])
+    torch.set_rng_state(_as_cpu_byte_tensor(state['global_torch']))
+    ds_train.rng.setstate(state['dataset_train'])
+    ds_val.rng.setstate(state['dataset_val'])
+    if torch.cuda.is_available() and 'cuda' in state:
+        cuda_states = [_as_cpu_byte_tensor(s) for s in state['cuda']]
+        if len(cuda_states) == torch.cuda.device_count():
+            torch.cuda.set_rng_state_all(cuda_states)
+
+
+def main():
+    ap = argparse.ArgumentParser(description='Phase-14 clean-v3 regional refiner (OPTION_A3).')
+    ap.add_argument('--resume', action='store_true',
+                    help='Resume from latest.pt if present (execution-mechanism recovery only; '
+                         'restores full optimizer/scheduler/scaler and RNG state for bit-exact continuation).')
+    args = ap.parse_args()
+
+    seed = 42
+    torch.manual_seed(seed)
+    np.random.seed(seed)
+    if torch.cuda.is_available():
+        torch.cuda.manual_seed_all(seed)
+
+    device = get_device(require_cuda=True)
+    print(f"Device: {device}")
+
+    # Datasets
+    # Role-resolved margins (reports/audits/phase14_roi_margin_role_resolution.json):
+    # the refiner's oracle-derived TRAIN and crop-level VAL crops use
+    # ORACLE_DERIVED_REFINER_MARGIN; the predicted-proposal margin is a separate,
+    # downstream, frozen contract value and is never used for crop construction.
+    ds_train = RegionalCropDataset(
+        PROJECT_ROOT / 'manifests/phase4_v3/train.csv',
+        split='TRAIN', target_size=256, margin=ORACLE_DERIVED_REFINER_MARGIN, seed=seed
+    )
+    ds_val = RegionalCropDataset(
+        PROJECT_ROOT / 'manifests/phase4_v3/val.csv',
+        split='VAL', target_size=256, margin=ORACLE_DERIVED_REFINER_MARGIN, seed=seed
+    )
+    print(f"Train items: {len(ds_train)} | Val items: {len(ds_val)}")
+    print(f"Crop margin (oracle-derived refiner): {ORACLE_DERIVED_REFINER_MARGIN}")
+    print(f"Predicted proposal margin (downstream, frozen): {PREDICTED_PROPOSAL_MARGIN}")
+    assert abs(ds_train.margin - ORACLE_DERIVED_REFINER_MARGIN) < 1e-12, "TRAIN margin role mismatch"
+    assert abs(ds_val.margin - ORACLE_DERIVED_REFINER_MARGIN) < 1e-12, "VAL margin role mismatch"
+
+    loader_train = DataLoader(ds_train, batch_size=8, shuffle=True, num_workers=0, pin_memory=True)
+    loader_val = DataLoader(ds_val, batch_size=8, shuffle=False, num_workers=0, pin_memory=True)
+
+    # Model
+    model = UNet(in_channels=1, out_channels=1, base_channels=32).to(device)
+    print(f"Model params: {sum(p.numel() for p in model.parameters() if p.requires_grad):,}")
+
+    # Loss, optimizer, scheduler
+    criterion = BCEDiceLoss(bce_weight=0.5, dice_weight=0.5, epsilon=1e-6)
+    optimizer = AdamW(model.parameters(), lr=1e-4, weight_decay=1e-4)
+    scheduler = CosineAnnealingLR(optimizer, T_max=100)
+    scaler = torch.amp.GradScaler('cuda') if torch.cuda.is_available() else None
+
+    # Early stopping state
+    best_val_dice = -1.0
+    best_epoch = 0
+    bad_epochs = 0
+    patience = 15
+    history = []
+    start_epoch = 1
+    resume_source = None
+    run_start = time.time()
+
+    # Durable run log: unbuffered, flushed per line, with cumulative elapsed.
+    run_log_path = PROJECT_ROOT / 'logs' / f'{EXPERIMENT_ID}.run.log'
+    run_log_path.parent.mkdir(parents=True, exist_ok=True)
+    run_log = open(run_log_path, 'a', encoding='utf-8', buffering=1)
+
+    def log(msg):
+        line = f"[{time.strftime('%Y-%m-%dT%H:%M:%S')}] +{time.time() - run_start:9.1f}s {msg}"
+        print(line)
+        run_log.write(line + '\n')
+        run_log.flush()
+        sys.stdout.flush()
+
+    # --- Resume (execution-mechanism recovery only) --------------------------
+    # Restores model/optimizer/scheduler/scaler AND all RNG state, so the
+    # continuation is bit-exact with respect to the interrupted trajectory.
+    # No scientific parameter is affected by resuming.
+    if args.resume:
+        latest_path = CHECKPOINT_DIR / 'latest.pt'
+        if latest_path.exists():
+            ck = torch.load(latest_path, map_location=device, weights_only=False)
+            model.load_state_dict(ck['model_state'])
+            optimizer.load_state_dict(ck['optimizer_state'])
+            scheduler.load_state_dict(ck['scheduler_state'])
+            if scaler is not None and ck.get('grad_scaler_state'):
+                scaler.load_state_dict(ck['grad_scaler_state'])
+            best_val_dice = float(ck['best_val_crop_dice'])
+            best_epoch = int(ck.get('best_epoch', ck['epoch']))
+            bad_epochs = int(ck.get('bad_epochs', 0))
+            start_epoch = int(ck['epoch']) + 1
+            if 'rng_state' in ck:
+                restore_rng_state(ck['rng_state'], ds_train, ds_val)
+                rng_restored = True
+            else:
+                rng_restored = False
+            hist_path = EXPERIMENT_DIR / 'history.csv'
+            if hist_path.exists():
+                history = pd.read_csv(hist_path).to_dict('records')
+            resume_source = str(latest_path)
+            log(f"RESUME loaded={resume_source} from_epoch={ck['epoch']} next_epoch={start_epoch} "
+                f"best_val_crop_dice={best_val_dice:.6f} best_epoch={best_epoch} bad_epochs={bad_epochs} "
+                f"rng_state_restored={rng_restored} history_rows={len(history)}")
+            if not rng_restored:
+                raise RuntimeError("REFUSING to resume without RNG state: continuation would not be "
+                                   "bit-exact. Checkpoint predates RNG persistence.")
+        else:
+            log("RESUME requested but no latest.pt found; starting from epoch 1")
+
+    log(f"RUN START experiment={EXPERIMENT_ID} seed={seed} device={device} "
+        f"start_epoch={start_epoch} resumed={resume_source is not None}")
+    log(f"ROLE MARGINS trainer_crop={ORACLE_DERIVED_REFINER_MARGIN} predicted_proposal={PREDICTED_PROPOSAL_MARGIN}")
+
+    config = {
+        'experiment_id': EXPERIMENT_ID,
+        'model': {'name': 'UNet', 'in_channels': 1, 'out_channels': 1, 'base_channels': 32},
+        'loss': {'name': 'BCEDiceLoss', 'bce_weight': 0.5, 'dice_weight': 0.5, 'epsilon': 1e-6},
+        'optimizer': {'name': 'AdamW', 'lr': 1e-4, 'weight_decay': 1e-4},
+        'scheduler': {'name': 'CosineAnnealingLR', 'T_max': 100},
+        'training': {'batch_size': 8, 'seed': seed, 'max_epochs': 100, 'early_stopping_patience': 15,
+                     'checkpoint_metric': 'val_crop_dice', 'amp': True},
+        'dataset': {'train_manifest': 'manifests/phase4_v3/train.csv',
+                    'val_manifest': 'manifests/phase4_v3/val.csv',
+                    'target_size': 256, 'option': 'A3',
+                    'margin': ORACLE_DERIVED_REFINER_MARGIN,
+                    'margin_role': 'ORACLE_DERIVED_REFINER_TRAIN_VAL_CROP_CONSTRUCTION',
+                    'predicted_proposal_margin': PREDICTED_PROPOSAL_MARGIN,
+                    'margin_resolution_artifact': 'reports/audits/phase14_roi_margin_role_resolution.json'},
+    }
+
+    for epoch in range(start_epoch, 101):
+        t0 = time.time()
+        train_loss = train_epoch(model, loader_train, criterion, optimizer, scaler, device)
+        val_loss, val_dice = validate(model, loader_val, criterion, device)
         scheduler.step()
-        
-        # --- Tracking & Early Stopping ---
-        improved = avg_val_crop_dice > best_val_crop_dice
-        if improved:
-            best_val_crop_dice = avg_val_crop_dice
+        elapsed = time.time() - t0
+
+        is_new_best = val_dice > best_val_dice
+        if is_new_best:
+            best_val_dice = val_dice
             best_epoch = epoch
             bad_epochs = 0
         else:
             bad_epochs += 1
-            
-        elapsed_sec = time.perf_counter() - epoch_start_time
-        peak_vram = torch.cuda.max_memory_allocated() / (1024**2)
-        
-        epoch_record = {
-            "epoch": epoch,
-            "train_loss": avg_train_loss,
-            "val_crop_dice": avg_val_crop_dice,
-            "learning_rate": current_lr,
-            "elapsed_seconds": elapsed_sec,
-            "peak_vram_mb": peak_vram,
-            "best_val_crop_dice": best_val_crop_dice,
-            "best_epoch": best_epoch,
-            "bad_epochs": bad_epochs,
-            "improved": improved
+
+        row = {
+            'epoch': epoch,
+            'train_loss': train_loss,
+            'val_loss': val_loss,
+            'val_crop_dice': val_dice,
+            'learning_rate': optimizer.param_groups[0]['lr'],
+            'is_new_best': is_new_best,
+            'best_epoch_so_far': best_epoch,
+            'bad_epochs': bad_epochs,
+            'elapsed_seconds': elapsed,
+            'cumulative_elapsed_seconds': time.time() - run_start,
         }
-        history.append(epoch_record)
-        
-        # Print progress
-        print(f"Epoch {epoch:03d}/{max_epochs:03d} | Train Loss: {avg_train_loss:.4f} | Val Crop Dice: {avg_val_crop_dice:.4f} "
-              f"| Best: {best_val_crop_dice:.4f} (ep {best_epoch}) | Bad: {bad_epochs}/{patience} | LR: {current_lr:.2e} | Time: {elapsed_sec:.1f}s")
-        
-        # Save checkpoints
-        early_state = {
-            "best_score": best_val_crop_dice,
-            "best_epoch": best_epoch,
-            "bad_epochs": bad_epochs,
-            "patience": patience,
-            "stopped": bad_epochs >= patience
+        history.append(row)
+        log(f"EPOCH {epoch:03d} train_loss={train_loss:.4f} val_loss={val_loss:.4f} "
+            f"val_dice={val_dice:.6f} best_epoch={best_epoch} bad={bad_epochs} "
+            f"lr={optimizer.param_groups[0]['lr']:.6f} epoch_s={elapsed:.1f}")
+
+        # Durable logging: persist history after EVERY epoch so that an
+        # externally terminated process still leaves a complete, readable
+        # per-epoch record on disk. The predecessor implementation wrote
+        # history.csv only after the loop completed, so an external stop left
+        # no training history at all.
+        pd.DataFrame(history).to_csv(EXPERIMENT_DIR / 'history.csv', index=False)
+
+        # Save checkpoint
+        ckpt = {
+            'model_state': model.state_dict(),
+            'optimizer_state': optimizer.state_dict(),
+            'scheduler_state': scheduler.state_dict(),
+            'grad_scaler_state': scaler.state_dict() if scaler else None,
+            'epoch': epoch,
+            'best_val_crop_dice': best_val_dice,
+            'best_epoch': best_epoch,
+            'bad_epochs': bad_epochs,
+            'rng_state': capture_rng_state(ds_train, ds_val),
+            'configuration': config,
+            'seed': seed,
+            'experiment_id': EXPERIMENT_ID,
         }
-        
-        common_args = (
-            model, optimizer, scheduler, scaler, epoch, global_step,
-            best_val_crop_dice, config_data, seed, history,
-            "phase14_v1", manifest_hashes, exp_id, "unet", 256, 0.50
-        )
-        
-        gen_state_dict = {'train': generator.get_state()}
-        save_training_checkpoint(latest_ckpt_path, *common_args, early_stopping_state=early_state, loader_generator_states=gen_state_dict)
-        if improved:
-            save_training_checkpoint(best_ckpt_path, *common_args, early_stopping_state=early_state, loader_generator_states=gen_state_dict)
-            print(f"  --> Saved new best checkpoint at epoch {epoch} (Val Crop Dice: {best_val_crop_dice:.4f})")
-            
-        # Update history.csv
-        pd.DataFrame(history).to_csv(history_csv_path, index=False)
-        
-        # Early stop check
+        latest_path = CHECKPOINT_DIR / 'latest.pt'
+        torch.save(ckpt, latest_path)
+        if is_new_best:
+            best_path = CHECKPOINT_DIR / 'best.pt'
+            torch.save(ckpt, best_path)
+            print(f"  -> Saved new best checkpoint (val_dice={val_dice:.6f})")
+
+        # Early stopping
         if bad_epochs >= patience:
-            print(f"\nEarly stopping triggered: no improvement for {patience} consecutive epochs.")
-            stop_reason = f"EARLY_STOPPING_PATIENCE_{patience}"
+            log(f"EARLY STOPPING at epoch {epoch} (patience={patience})")
             break
-            
-    print("\n=== Training Complete ===")
-    print(f"Final Epoch: {history[-1]['epoch']}")
-    print(f"Stop Reason: {stop_reason}")
-    print(f"Best Epoch: {best_epoch}")
-    print(f"Best Val Crop Dice: {best_val_crop_dice:.6f}")
-    print(f"Best Checkpoint: {best_ckpt_path}")
-    print(f"Latest Checkpoint: {latest_ckpt_path}")
+
+    # Save history (also written incrementally above; this is the final flush)
+    df = pd.DataFrame(history)
+    df.to_csv(EXPERIMENT_DIR / 'history.csv', index=False)
+
+    # Write closure summary
+    closure = {
+        'experiment_id': EXPERIMENT_ID,
+        'best_epoch': best_epoch,
+        'best_val_crop_dice': best_val_dice,
+        'total_epochs': epoch,
+        'stop_reason': 'EARLY_STOPPING_PATIENCE_15' if bad_epochs >= patience else 'MAX_EPOCHS',
+        'best_checkpoint_sha256': sha_file(CHECKPOINT_DIR / 'best.pt'),
+        'latest_checkpoint_sha256': sha_file(CHECKPOINT_DIR / 'latest.pt'),
+        'history_sha256': sha_file(EXPERIMENT_DIR / 'history.csv'),
+        'crop_margin': ORACLE_DERIVED_REFINER_MARGIN,
+        'crop_margin_role': 'ORACLE_DERIVED_REFINER_TRAIN_VAL_CROP_CONSTRUCTION',
+        'predicted_proposal_margin': PREDICTED_PROPOSAL_MARGIN,
+        'margin_resolution_artifact': 'reports/audits/phase14_roi_margin_role_resolution.json',
+        'total_elapsed_seconds': time.time() - run_start,
+        'history_written_incrementally': True,
+        'start_epoch': start_epoch,
+        'resumed': resume_source is not None,
+        'resume_source': resume_source,
+        'rng_state_persisted_in_checkpoints': True,
+    }
+    json.dump(closure, open(EXPERIMENT_DIR / 'closure.json', 'w', encoding='utf-8'), indent=2)
+    log(f"TRAINING COMPLETE best_epoch={best_epoch} best_val_crop_dice={best_val_dice:.6f} "
+        f"total_epochs={epoch} stop_reason={closure['stop_reason']}")
+    run_log.close()
+
 
 if __name__ == '__main__':
     main()
-

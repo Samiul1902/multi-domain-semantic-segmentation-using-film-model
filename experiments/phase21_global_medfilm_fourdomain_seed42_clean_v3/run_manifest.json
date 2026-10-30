@@ -1,0 +1,155 @@
+{
+  "artifact": "phase21_run_manifest",
+  "experiment_id": "phase21_global_medfilm_fourdomain_seed42_clean_v3",
+  "phase": 21,
+  "architecture_id": "global_medfilm_shared_residual_unet_film5_no_se_no_deep_supervision_v1",
+  "manifest_version": "phase4_v3",
+  "dataset_populations": {
+    "TRAIN": {
+      "ISIC": 2556,
+      "KUB": 1978,
+      "KVASIR": 696,
+      "BUSI": 602
+    },
+    "VAL": {
+      "ISIC": 357,
+      "KUB": 280,
+      "KVASIR": 87,
+      "BUSI": 84
+    },
+    "TRAIN_total": 5832,
+    "VAL_total": 808,
+    "task_ids": {
+      "ISIC": 0,
+      "BUSI": 1,
+      "KVASIR": 2,
+      "KUB": 3
+    }
+  },
+  "frozen_protocol": {
+    "path": "reports/audits/phase20_shared_global_baseline_protocol.json",
+    "sha256": "b74f1f9f429adbce374f0306180943b9f373f872e1e69e115b7d17e81414283c"
+  },
+  "binding_artifacts": {
+    "protocol_binding": "reports/audits/phase21_protocol_binding.json",
+    "protocol_binding_sha256": "d86a6b04c080ddad33df885977b114a152b4bd7c39849332ce0d921cb3717882",
+    "architecture_binding": "reports/audits/phase21_global_medfilm_architecture_binding.json",
+    "architecture_binding_sha256": "21e2c195c8da33da761965817bab99f0eeec5fa84a846d05ae765b9567017e78",
+    "entry_gate": "reports/audits/phase21_entry_gate.json",
+    "entry_gate_sha256": "567093d222e9fc73ba8ae148b2c96c4f24e3767321344373fb6ef5d21f33d03a",
+    "pre_execution_check": "reports/audits/phase21_pre_execution_check.json",
+    "pre_execution_check_sha256": "d1becc85f1ad9c1aea9d07f8de86c5739cd21f5aeb478ad978d5d7b03b574672"
+  },
+  "code_shas": {
+    "scripts/training/train_phase21_global_medfilm.py": "ec17641b8e6e680af4e912332dbae00cf5d66e56b33cac70229e39d506f20785",
+    "scripts/training/phase21_common.py": "7591a8a44715ad29d06065dc065b7057eca0866b89ebd265626dd76061e59338",
+    "src/models/film/global_medfilm.py": "a04ff3e61b4d900ff47c2f390da4a999e73bd6047b28a19e41b05115e431d11f",
+    "src/models/film/__init__.py": "3df73eaa3439429137bd09ea8c53f73baa75edcdc1acf57a3c57160da2ebeca7",
+    "src/models/factory.py": "f97f97a5632675ae54e4c42a629d06d1b5e265f73c85ba6d0a2077b9147afdde"
+  },
+  "environment": {
+    "python": "3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "torch": "2.6.0+cu124",
+    "cuda": "12.4",
+    "cudnn": 90100,
+    "device": "cuda:0",
+    "gpu_name": "NVIDIA GeForce RTX 3060 Ti",
+    "gpu_total_memory_bytes": 8589279232,
+    "numpy": "2.4.6",
+    "pandas": "3.0.5"
+  },
+  "configuration": {
+    "experiment_id": "phase21_global_medfilm_fourdomain_seed42_clean_v3",
+    "phase": 21,
+    "manifest_version": "phase4_v3",
+    "dataset": "MULTI_DOMAIN_ISIC_BUSI_KVASIR_KUB",
+    "architecture": "global_medfilm_shared_residual_unet_film5_no_se_no_deep_supervision_v1",
+    "model": {
+      "name": "GlobalMedFiLM",
+      "task_count": 4,
+      "in_channels": 3,
+      "out_channels": 1,
+      "channels": [
+        24,
+        48,
+        96,
+        192,
+        256
+      ],
+      "task_embedding_dim": 32,
+      "film_hidden_dim": 64,
+      "film_sites": [
+        "bridge",
+        "decoder4",
+        "decoder3",
+        "decoder2",
+        "decoder1"
+      ],
+      "film_equation": "F_hat = (1 + gamma(t)) * F + beta(t); gamma=tanh(gamma_raw), beta=tanh(beta_raw)",
+      "film_output_projection": "zero_initialised__identity_at_init",
+      "heads": "ONE shared 1x1 foreground head (no dataset-specific head)"
+    },
+    "input_channel_policy": "RGB_3CH",
+    "input_resolution": 512,
+    "loss": {
+      "name": "bce_dice",
+      "bce_weight": 0.5,
+      "dice_weight": 0.5,
+      "dice_epsilon": 1e-06
+    },
+    "optimizer": {
+      "name": "AdamW",
+      "learning_rate": 0.0001,
+      "weight_decay": 0.0001
+    },
+    "scheduler": {
+      "name": "CosineAnnealingLR",
+      "T_max": 100,
+      "step": "per_epoch_after_train_and_val"
+    },
+    "training": {
+      "batch_size": 4,
+      "eval_batch_size": 8,
+      "num_workers": 4,
+      "persistent_workers": false,
+      "max_epochs": 100,
+      "early_stopping_patience": 15,
+      "amp": true,
+      "seed": 42,
+      "gradient_accumulation_steps": 1,
+      "effective_batch_size": 4,
+      "threshold": 0.5,
+      "sampling_policy": "phase20_domain_balanced_uniform_v1",
+      "checkpoint_metric": "phase20_macro_domain_mean_dice_v1",
+      "checkpoint_metric_description": "macro-domain mean VAL Dice (unweighted mean of the four per-domain per-image macro Dice)",
+      "tie_break": "lower validation loss"
+    },
+    "augmentation_policy": "src.data.transforms.SegmentationTransform(train=True): horizontal mirror p=0.5, rotation +/-5 deg, brightness +/-0.10, contrast +/-0.10; mask NEAREST; VAL disabled",
+    "governance": {
+      "allow_test": false,
+      "allow_external": false,
+      "task_id_as_model_input": "CONDITIONING_ALLOWED",
+      "task_id_forbidden_channels": [
+        "mask_path",
+        "foreground",
+        "patient",
+        "case",
+        "gt_derived",
+        "kub_category",
+        "object_size_bin",
+        "roi_coords"
+      ],
+      "film": true,
+      "regional_module": false,
+      "localizer": false,
+      "roi_proposal": false,
+      "benefit_router": false,
+      "test_evaluation": false
+    },
+    "taxonomy_id": "kub_size_clean_v3_v1"
+  },
+  "model_params": 3523001,
+  "run_started_utc": "2026-09-28T16:21:11",
+  "test_reads": 0
+}

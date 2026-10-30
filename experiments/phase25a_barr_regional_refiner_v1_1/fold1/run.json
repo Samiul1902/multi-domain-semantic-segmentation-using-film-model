@@ -1,0 +1,56 @@
+{
+ "run": "fold1",
+ "outer_fold": 1,
+ "n_fit_action_available": 2975,
+ "n_early_stop_action_available": 330,
+ "epochs_completed": 43,
+ "epochs_target": 100,
+ "best_epoch": 27,
+ "best_early_stop_loss": 0.09020926934300047,
+ "final_train_loss": 0.08904711002061347,
+ "stop_reason": "early_stopping_patience_15",
+ "resume_count": 0,
+ "checkpoint_events": 12,
+ "checkpoint_sha256": {
+  "best.pt": "b5f50b743b89b6153ad782c632edd89a7e13285e66573ccd5de9faddb8f1599b",
+  "latest.pt": "c06a6a872bb765a1bd46ca63e5ef57520b6ca40a65a007d770a3cbf83c6e4911"
+ },
+ "history_sha256": "e1a72dfb80801f617b423861005ebeb07c9a38ff3a9d165f7d386a97f0ff7b31",
+ "parameter_count": 1276401,
+ "bindings": {
+  "phase24_exact_spec": {
+   "path": "reports\\audits\\phase24_exact_implementation_spec.json",
+   "sha256": "6b1a71d5e88ce06baa8f200523be32773428417ffd233ff218d7e50b6af271dd"
+  },
+  "global_checkpoint": {
+   "path": "checkpoints\\phase21_global_medfilm_fourdomain_seed42_clean_v3\\best.pt",
+   "sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7"
+  },
+  "augmentation_binding": {
+   "path": "reports\\audits\\phase25a_augmentation_binding.json",
+   "sha256": "b8b0f817e765dd5db267df6f5e5c5b33da4f81ff58b177f8a410e5d985e97f59"
+  },
+  "roi_transform_audit": {
+   "path": "reports\\audits\\phase25a_roi_transform_audit.json",
+   "sha256": "1c756de5623de96b0a790ecbe0650f5dba2cf3116cb6e33ca7264c000ec323dc"
+  },
+  "crossfit_protocol": {
+   "path": "reports\\audits\\phase25a_crossfit_protocol.json",
+   "sha256": "6868b5562fe02929e13d63905ca74a759e20dec3c01b14eef331e4cb948f55ce"
+  },
+  "model_source": {
+   "path": "src\\models\\barr\\regional_refiner.py",
+   "sha256": "4fe0abde3ec3a183d930f676c4400b4d9ba778793ea64abf1755c5b8dabf947a"
+  },
+  "dataset_source": {
+   "path": "src\\data\\barr_refiner_dataset.py",
+   "sha256": "c77838c65744fb5d3ff5d791629ffe9b1e9ff4b459a6879e180edcbe0864b5bd"
+  },
+  "roi_source": {
+   "path": "src\\data\\barr_roi.py",
+   "sha256": "24ba404e5d8a9c1cf8cea35c07d1ac4a8e58acd78b765e7d9b6f7cf5352f3308"
+  }
+ },
+ "seed": 42,
+ "test_reads": 0
+}

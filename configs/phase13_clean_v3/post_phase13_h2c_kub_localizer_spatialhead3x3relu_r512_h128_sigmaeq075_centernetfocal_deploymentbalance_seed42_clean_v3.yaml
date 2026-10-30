@@ -1,0 +1,470 @@
+# ============================================================================
+# POST-PHASE-13 H2-C-B1 — Clean-v3 KUB Localizer Executable Config (frozen spatial head)
+# ONLY scientific change vs H2A: LOCALIZER PREDICTION-HEAD ARCHITECTURE (CHANGE_H2C_001).
+# ============================================================================
+# Binding type : NON_SCIENTIFIC_EXECUTION_BINDING
+# Scientific   : reports/audits/phase13_clean_v3_localizer_protocol_frozen_r2.json
+#                SHA ab451e03366c589fae5c303ebf1382e086f4f115b97768eb36d491256a3b5e53
+# This file does NOT supersede R2. It BINDS R2 to an executable artifact.
+# ----------------------------------------------------------------------------
+# Source precedence (frozen by Phase 13):
+#   A. R2 protocol (authoritative for everything R2 enumerates)
+#   B. accepted Part-1A reconstruction / candidate (only where R2 is silent)
+#      reports/tables/phase13_clean_v3_localizer_protocol_candidate.csv
+#      notebooks/.../code/phase13_localizer_protocol.py (PROTOCOL_MATRIX)
+# ============================================================================
+
+# ============================================================================
+# 1. Supervisor-supplied exact experiment ID (SUPERVISOR_EXECUTION_ID)
+# ============================================================================
+experiment_id: post_phase13_h2c_kub_localizer_spatialhead3x3relu_r512_h128_sigmaeq075_centernetfocal_deploymentbalance_seed42_clean_v3
+
+# ============================================================================
+# 2. Phase binding + governance identity
+# ============================================================================
+phase: 13
+part: H2C_B1
+document_type: CLEAN_V3_LOCALIZER_EXECUTABLE_CONFIG
+
+manifest_version: phase4_v3
+taxonomy_id: kub_size_clean_v3_v1
+
+dataset: KUB
+acquisition_regime: FULL_FIELD
+
+# ============================================================================
+# 3. Population (R2 protocol — VERIFIED, re-verified against manifest v3)
+# ============================================================================
+train_cases_expected: 770
+train_components_expected: 1161
+val_cases_expected: 103
+val_components_expected: 152
+val_strata_expected:
+  TINY: 72
+  SMALL: 28
+  MEDIUM: 36
+  LARGE: 16
+train_val_patient_overlap_expected: 0
+
+# ============================================================================
+# 4. Data rules (R2 protocol)
+# ============================================================================
+foreground_rule: "mask > 0"
+connectivity: 8
+roi_inclusion: false
+test_allowed: false
+
+# ============================================================================
+# 5. Architecture (PART1A_HISTORICAL_CARRY_FORWARD)
+#    provenance: src/models/kub_localizer.py ; PROTOCOL_MATRIX A/D/E
+# ============================================================================
+architecture:
+  name: KUBLocalizer
+  description: "Compact 3-stage U-Net heatmap localizer for FULL_FIELD KUB images"
+  module: src.models.kub_localizer
+  factory_key: kub_localizer
+  in_channels: 1
+  out_channels: 1
+  base_channels: 16
+  input_resolution: 512
+  heatmap_resolution: 128
+  heatmap_output_shape: [1, 128, 128]
+  downsample_mechanism: "AvgPool2d(stride=4) from the stride-4 block"
+  initialization: random_kaiming
+  pretrained: false
+  head_init:
+    weight: 0.0
+    bias: "log(0.1/0.9)"
+  # ---- H2C CHANGE_H2C_001 : frozen prediction head ----
+  h2c_head:
+    name: SPATIAL_DISCRIMINATIVE_HEAD_3X3_RELU_1X1_V1
+    structure:
+      - "Conv2d(16, 16, kernel_size=3, stride=1, padding=1, bias=True)"
+      - "ReLU(inplace=False)"
+      - "Conv2d(16, 1, kernel_size=1, stride=1, padding=0, bias=True)"
+    hidden_width: 16
+    init:
+      conv3x3_weight: "kaiming_normal_(nonlinearity='relu')"
+      conv3x3_bias: 0
+      conv1x1_weight: ZERO
+      conv1x1_bias: "log(0.1/0.9)"
+    normalization: NONE
+    dropout: NONE
+    backbone_changed: false
+    protocol: reports/audits/post_phase13_h2c_protocol_frozen.json
+    protocol_sha: "91166259c10a84e9526eda43e83b227cc760a37b8834a4d4a65fe3e5a90ba4b6"
+
+# ============================================================================
+# 6. Target representation (PART1A_HISTORICAL_CARRY_FORWARD)
+# ============================================================================
+target:
+  representation: "component-centre Gaussian heatmap, pixelwise MAX"
+  sigma: 0.75
+  sigma_space: "128-space pixels"
+  sigma_512_equivalent: 3.0
+  generator: "src.inference.heatmap_targets.make_gaussian_heatmap"
+  nearest_integer_pixel_forced_to: 1.0
+  multi_component_combination: "pixelwise MAX"
+
+# ============================================================================
+# 7. Loss — R2A_LOSS_BINDING (supervisor L1 decision, EXECUTABLE)
+# ----------------------------------------------------------------------------
+# Supervisor LOSS DECISION L1: the primary clean-v3 localizer objective is the
+# historical EXECUTING objective. This block is the sole executable loss
+# semantics consumed by the runner. There is NO Dice term and NO composite
+# weighting on the executable path.
+# Amendment : reports/audits/phase13_clean_v3_localizer_loss_binding_r2a.json
+# Base      : R2 frozen protocol (SILENT on loss) — not superseded, amended.
+# ============================================================================
+loss:
+  name: CenterNetFocalLoss
+  implementation: src.losses.localization.CenterNetFocalLoss
+  alpha: 2.0
+  beta: 4.0
+  dice_weight: 0.0
+  dice_term: NONE
+  provenance: EXECUTING_HISTORICAL_CODE
+  amendment: R2A_LOSS_BINDING
+  binding_label: EXECUTING_HISTORICAL_CENTERNET_FOCAL_L1
+  binding_role: PRIMARY_PHASE13_CLEAN_V3_LOCALIZER_OBJECTIVE
+  # ---- NON-EXECUTABLE PROVENANCE (never read by the runner) ----------------
+  # The following text is documentation only. It records the SUPERSEDED
+  # composite contract string so provenance is preserved. It has NO executable
+  # effect — the runner reads only alpha/beta above.
+  historical_source: scripts/training/train_phase13b_localizer.py
+  historical_source_line: 121
+  historical_source_sha: 5985b9eb2fe43018babbd88004bf7e5b99d2783dcfa78c7404591a02bdcb555a
+  superseded_composite_contract:
+    status: SUPERSEDED_DOCUMENTED_NOT_EXECUTING_OBJECTIVE
+    documented_string: "0.75 CenterNet focal (alpha 0.25, gamma 2.0) + 0.25 soft Dice"
+    documented_provenance: "reports/tables/phase13_clean_v3_localizer_protocol_candidate.csv (row: loss)"
+    executable: false
+    note: >-
+      Retained for provenance only. This composite objective was NEVER
+      instantiated by the executing historical trainer and is NOT the
+      executable objective for clean-v3.
+  non_primary_implementation_defect:
+    class: src.losses.localization.SoftFocalDiceLoss
+    status: NON_PRIMARY_IMPLEMENTATION_DEFECT
+    executable: false
+    note: >-
+      SoftFocalDiceLoss contains a normalisation defect (focal_values.mean()).
+      It is dead code on the executable path and is NOT repaired here because
+      it is not the primary objective.
+
+# ============================================================================
+# 8. Optimizer (PART1A_HISTORICAL_CARRY_FORWARD)
+# ============================================================================
+optimizer:
+  name: AdamW
+  learning_rate: 1.0e-4
+  weight_decay: 1.0e-4
+
+# ============================================================================
+# 9. Scheduler (PART1A_HISTORICAL_CARRY_FORWARD)
+# ============================================================================
+scheduler:
+  name: CosineAnnealingLR
+  T_max: 100
+  warmup: false
+
+# ============================================================================
+# 10. Training (PART1A_HISTORICAL_CARRY_FORWARD)
+# ============================================================================
+training:
+  max_epochs: 100
+  early_stopping_patience: 15
+  batch_size: 4
+  accumulation_steps: 1
+  effective_batch_size: 4
+  physical_batch_provenance: >-
+    VERIFIED from the historical checkpoint
+    checkpoints/phase13b_kub_localizer_r512_h128_sigmaeq075_centernetfocal_seed42_v1/best.pt
+    configuration.candidate.physical_batch=4, accumulation=1, effective_batch=4.
+    PHASE13B.md declares effective_batch=4 with a physical fallback ladder
+    4 / (2+accum2) / (1+accum4); the historical run physically realised 4.
+  amp: true
+  amp_dtype: float16
+  seed: 42
+  cuda_required: true
+
+# ============================================================================
+# 11. Augmentation (PART1A_HISTORICAL_CARRY_FORWARD from KUBLocalizerDataset)
+#     TRAIN only. VERIFIED from src/data/kub_localizer_dataset.py.
+# ============================================================================
+augmentation:
+  applied_split: TRAIN
+  horizontal_flip_probability: 0.5
+  rotation_range_degrees: 5.0
+  brightness_range: [0.9, 1.1]
+  contrast_range: [0.9, 1.1]
+  val_augmentation: false
+  note: "VAL is resize+centre-pad only; no stochastic transform."
+
+# ============================================================================
+# 12. Heatmap-resolution contract (R2 heatmap_contract)
+# ============================================================================
+heatmap_contract:
+  input_spatial: [512, 512]
+  output_heatmap_spatial: [128, 128]
+  heatmap_resolution: 128
+  explicit_argument_required: true
+  never_rely_on_constructor_default: true
+  fail_loud_assertions:
+    - "model output spatial shape == (128, 128)"
+    - "target heatmap spatial shape == (128, 128)"
+    - "prediction and target shapes identical"
+  applies_to: [training, validation, checkpoint_reproduction, proposal_inference]
+  historical_helper_defect: "src/inference/learned_roi.predict_localizer omits heatmap_resolution=128"
+  remediation: "B — clean-v3-safe wrapper (src/inference/learned_roi_clean_v3.py)"
+
+# ============================================================================
+# 13. Proposal configuration (R2 proposal_configuration — FROZEN)
+# ============================================================================
+proposal_configuration:
+  threshold: 0.10
+  margin: 0.20
+  top_k: 5
+  nms_iou: 0.30
+  endpoint: "PREDICTED_REGION_FLOAT_GLOBAL_RETAINED"
+  provenance: "VERIFIED_HISTORICAL_SELECTION + PROSPECTIVELY_FROZEN_FOR_CLEAN_V3_PRIMARY"
+  proposal_configurations_for_primary_training: 1
+  grid_search_enabled: false
+  per_epoch_proposal_grid_search: false
+  historical_20_grid: DEFERRED_SECONDARY_SENSITIVITY_ONLY
+  historical_20_grid_authorization_required: true
+  historical_20_grid_prerequisite: "primary checkpoint, primary proposal config and primary result frozen first"
+  oracle_comparator_margin: 0.25
+  must_not_change_margin_to_phase12_oracle_margin: 0.25
+
+# ============================================================================
+# 14. Coverage contract (R2 coverage_contract)
+# ============================================================================
+coverage_contract:
+  primary_threshold: 0.90
+  primary_name: covered90
+  definition: "component coverage fraction >= 0.90"
+  descriptive_preserved: [covered50, any_overlap, coverage_fraction]
+  new_threshold_after_training: false
+
+# ============================================================================
+# 15. Checkpoint selection (R2 checkpoint_selection — PRIMARY)
+# ============================================================================
+checkpoint_selection:
+  label: H2C_DEPLOYMENT_BALANCED_6TERM_FIXED_CONFIG_SELECTION_INHERITED_FROM_H2A
+  role: PRIMARY
+  frozen_by: reports/audits/post_phase13_h2c_protocol_frozen.json
+  tuple:
+    - DEPLOYMENT_BALANCE_HMEAN_P_TINY90_OVERALL90
+    - tiny_recall90
+    - overall_recall90
+    - PROPOSAL_PIXEL_ANY_HIT_PRECISION
+    - -mean_roi_area_fraction
+    - -val_loss
+  tuple_length: 6
+  primary_utility_definition: "0.0 if any of P,T,O <= 0 else 3 / (1/P + 1/T + 1/O)"
+  primary_utility_is_statistical_f1: false
+  primary_utility_weighted: false
+  primary_utility_clipped: false
+  comparison: STRICT_LEXICOGRAPHIC_GREATER_THAN
+  strict_lexicographic_comparison: true
+  improvement_rule: "new_score > best_score (strict)"
+  ties: BAD_EPOCH
+  patience: 15
+  best_pt_save: "only on strict tuple improvement"
+  latest_pt_save: "every completed epoch"
+  checkpoint_metadata_must_store: [complete_tuple, tuple_term_names]
+  evaluated_at: "ONE FIXED PROPOSAL CONFIGURATION ONLY (0.10 / 0.20 / 5 / 0.30)"
+  zero_denominator_rule: "STOP / CHECK_REQUIRED BEFORE TRAINING"
+  checkpoint_key: best_validation_score
+  no_rounding_before_comparison: true
+
+# ============================================================================
+# 16. Secondary diagnostics (R2 diagnostic_metrics — NOT selection terms)
+# ============================================================================
+secondary_diagnostics:
+  hard_tiny_recovered90:
+    label: SECONDARY_DIAGNOSTIC_NOT_SELECTION_TERM
+    role: PRE_FROZEN_SECONDARY_DIAGNOSTIC_COHORT
+  global_empty_images_covered90:
+    label: SECONDARY_DIAGNOSTIC_NOT_SELECTION_TERM
+    role: PRE_FROZEN_SECONDARY_DIAGNOSTIC_COHORT
+  multi_component_recall90:
+    label: SECONDARY_DIAGNOSTIC_NOT_SELECTION_TERM
+  mean_proposals_per_image:
+    label: SECONDARY_DIAGNOSTIC_NOT_SELECTION_TERM
+  participate_in_primary_checkpoint_selection: false
+  computed_and_logged_per_epoch: true
+
+# ============================================================================
+# 17. Hard sets (R2 hard_sets — secondary diagnostic only)
+# ============================================================================
+hard_sets:
+  hard_tiny:
+    path: reports/tables/phase13_clean_v3_hard_tiny_replication_set.csv
+    sha256: "2f9828d77c008e7c90cd69e82d0af3568902ca9d508fdfcb9d8ccf8abd569538"
+    count: 15
+    role: SECONDARY_DIAGNOSTIC_NOT_SELECTION_TERM
+    anchor_model: UNet++
+    anchor_role: HISTORICAL_PHASE13_HARDSET_REPLICATION_ANCHOR_ONLY
+  global_empty:
+    path: reports/tables/phase13_clean_v3_global_empty_replication_set.csv
+    sha256: "a0b332cad6bca4466ccc528cbe18cc527ef6503603ab69c55b9d699d7979f0ea"
+    count: 5
+    role: SECONDARY_DIAGNOSTIC_NOT_SELECTION_TERM
+    anchor_model: UNet++
+    anchor_role: HISTORICAL_PHASE13_HARDSET_REPLICATION_ANCHOR_ONLY
+  historical_v2_counts:
+    hard_tiny: 16
+    global_empty: 7
+  counts_need_not_equal_historical: true
+
+# ============================================================================
+# 18. Training / VAL / scheduler order (R2 + historical reconstructed order)
+# ============================================================================
+training_order:
+  - TRAIN_epoch
+  - VAL_evaluate
+  - fixed_proposal_metrics_at_one_frozen_config
+  - compute_6_term_checkpoint_score
+  - strict_improvement_decision_bad_epochs_update
+  - scheduler_step
+  - append_history_row
+  - save_latest_pt
+  - save_best_pt_if_improved
+  - stop_decision
+no_best_of_20_grid_stage: true
+scheduler_steps_per_epoch: 1
+scheduler_step_after_selection_bookkeeping: true
+
+# ============================================================================
+# 19. Data loading (phase4_v3 binding — NO historical manifest)
+# ============================================================================
+data:
+  sample_table_train: reports/tables/kub_train_samples_sized.csv
+  sample_table_val: reports/tables/kub_val_samples_sized.csv
+  view_type_inventory: reports/tables/kub_view_type_inventory.csv
+  manifest_version: phase4_v3
+  manifest_train: manifests/phase4_v3/train.csv
+  manifest_val: manifests/phase4_v3/val.csv
+  manifest_test: manifests/phase4_v3/test.csv
+  filter_to_manifest: true
+  residual_full_field_removed_by_manifest_join: 1
+  num_workers: 0
+  pin_memory: true
+  dataset_class: src.data.kub_localizer_dataset.KUBLocalizerDataset
+  forbidden_executable_manifest: [phase4_v2, manifests/train.csv, manifests/val.csv]
+  provenance_note: >-
+    The v3 manifest is joined into the sized sample tables. kub_*_samples_sized.csv
+    are v2-derived and carry FULL_FIELD 771/106; the v3 join removes exactly
+    1 TRAIN residual (771->770) and 3 VAL residual (106->103), reproducing the
+    R2 population.
+
+# ============================================================================
+# 20. Downstream (R2 downstream_* — prospectively frozen, NOT executed in R0)
+# ============================================================================
+downstream:
+  composition: PREDICTED_REGION_FLOAT_GLOBAL_RETAINED
+  regional_crop_resolution: 512
+  regional_probability_restoration: FLOAT_BILINEAR
+  multiple_predicted_regional_crops: "pixelwise MAX among REGIONAL probabilities"
+  global_outside_proposal_union: "RETAIN GLOBAL probability"
+  inside_proposal_support: "REPLACE with REGIONAL probability"
+  final_threshold_full_native_probability: 0.5
+  retention_label: PRACTICAL_GT_FREE_ORACLE_BENEFIT_RETENTION
+  forbidden: [max(global,regional)_inside_support, averaging, learned_fusion]
+
+# ============================================================================
+# 21. Resume contract
+# ============================================================================
+resume:
+  same_experiment_id: true
+  state_to_restore:
+    - model_state
+    - optimizer_state
+    - scheduler_state
+    - AMP_GradScaler_state
+    - epoch
+    - global_step
+    - complete_checkpoint_selection_tuple
+    - tuple_term_names
+    - best_validation_score
+    - best_epoch
+    - bad_epoch_count
+    - early_stopping_state
+    - configuration
+    - experiment_id
+    - manifest_version
+    - taxonomy_id
+    - seed
+    - proposal_configuration
+    - heatmap_resolution
+    - random_state
+    - loader_generator_states
+
+# ============================================================================
+# 22. History contract
+# ============================================================================
+history:
+  one_immutable_row_per_completed_epoch: true
+  atomic_write: true
+  required_fields:
+    - epoch
+    - train_loss
+    - val_loss
+    - learning_rate
+    - tiny_recall90
+    - overall_recall90
+    - mean_roi_area_fraction
+    - proposal_pixel_hit_count
+    - proposal_total_count
+    - proposal_pixel_any_hit_precision
+    - deployment_balance_hmean
+    - selection_term_1_deployment_balance_hmean
+    - selection_term_2_tiny_recall90
+    - selection_term_3_overall_recall90
+    - selection_term_4_proposal_pixel_any_hit_precision
+    - selection_term_5_negative_mean_roi_area_fraction
+    - selection_term_6_negative_val_loss
+    - selection_tuple
+    - is_new_best
+    - best_epoch_so_far
+    - bad_epochs
+    - hard_tiny_recovered90
+    - global_empty_images_covered90
+    - multi_component_recall90
+    - mean_proposals_per_image
+
+# ============================================================================
+# 23. Failure semantics
+# ============================================================================
+failure_semantics:
+  fail_loudly_on: [NaN, Inf, zero_denominator, shape_mismatch]
+  silent_skip_forbidden: true
+
+# ============================================================================
+# 24. R2 protocol reference
+# ============================================================================
+scientific_protocol:
+  path: reports/audits/phase13_clean_v3_localizer_protocol_frozen_r2.json
+  sha256: "ab451e03366c589fae5c303ebf1382e086f4f115b97768eb36d491256a3b5e53"
+  required_status: SUPERVISOR_FROZEN_R2_READY_FOR_PART1B_TRAINING
+  superseded_by_this_artifact: false
+  binding_type: NON_SCIENTIFIC_EXECUTION_BINDING
+
+# ============================================================================
+# 25. Governance (R0 — nothing executed)
+# ============================================================================
+governance:
+  training: 0
+  inference: 0
+  proposals_generated: 0
+  model_constructions: 0
+  forward_passes: 0
+  optimizer_creations: 0
+  test_content_reads: 0
+  phase14_started: false
+  winner_declared: false
+  reference_model_selected: false
+  regional_mechanism_promoted: false
+  historical_artifacts_modified: false

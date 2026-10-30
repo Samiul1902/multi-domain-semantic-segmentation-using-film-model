@@ -1,0 +1,45 @@
+{
+ "artifact": "phase26_state_machine_contract",
+ "method": "RA-MedFiLM-BARR",
+ "states": [
+  "FORCED_SKIP",
+  "SKIP_GLOBAL",
+  "EXECUTE_THEN_ACCEPT",
+  "EXECUTE_THEN_REJECT"
+ ],
+ "global_forward_count_per_input": 1,
+ "transitions": [
+  {
+   "guard": "action unavailable",
+   "state": "FORCED_SKIP",
+   "refiner": 0,
+   "s_omega": 0,
+   "final_probability": "p_global"
+  },
+  {
+   "guard": "action available & U < tau_C8_final",
+   "state": "SKIP_GLOBAL",
+   "refiner": 0,
+   "s_omega": 0,
+   "final_probability": "p_global"
+  },
+  {
+   "guard": "router EXECUTE & safety ACCEPT",
+   "state": "EXECUTE_THEN_ACCEPT",
+   "refiner": 1,
+   "s_omega": 1,
+   "final_probability": "regional_fused_candidate"
+  },
+  {
+   "guard": "router EXECUTE & safety REJECT",
+   "state": "EXECUTE_THEN_REJECT",
+   "refiner": 1,
+   "s_omega": 1,
+   "final_probability": "p_global"
+  }
+ ],
+ "fusion": "outside frozen ROI p_global; inside frozen ROI resized p_refined; no alpha blending",
+ "safety_accept": "sigmoid(logit) >= 0.50",
+ "final_segmentation": "p_final >= 0.50",
+ "all_pass": true
+}

@@ -10,6 +10,19 @@ import sys
 
 from src.inference.predicted_roi import apply_context_margin
 
+# --- Phase-14 clean-v3 ROI margin role constants -------------------------------
+# These constants exist so that no ambiguous bare scalar can conflate the
+# distinct margin roles resolved in:
+#   reports/audits/phase14_roi_margin_role_resolution.json
+#
+# ORACLE_DERIVED_REFINER_MARGIN governs CROP CONSTRUCTION for refiner TRAIN and
+# crop-level VAL crops derived from ground-truth (oracle) component ROIs.
+# It is deliberately NOT shared with the predicted-proposal margin (0.20), which
+# is frozen by the Phase-13B clean-v3 proposal contract and applied downstream.
+ORACLE_DERIVED_REFINER_MARGIN = 0.25
+PREDICTED_PROPOSAL_MARGIN = 0.20
+
+
 class TestAccessError(RuntimeError):
     pass
 
@@ -46,7 +59,7 @@ def crop_and_preprocess(raw_image: Image.Image, raw_mask: Image.Image, crop_geom
 
 
 class RegionalCropDataset(Dataset):
-    def __init__(self, manifest_path, split, target_size=256, margin=0.20, seed=42):
+    def __init__(self, manifest_path, split, target_size=256, margin=ORACLE_DERIVED_REFINER_MARGIN, seed=42):
         self.split = split.upper()
         if self.split == 'TEST':
             raise TestAccessError('TEST is frozen')
@@ -61,8 +74,9 @@ class RegionalCropDataset(Dataset):
         df = pd.read_csv(manifest_path)
         self.manifest = df[(df['dataset'] == 'KUB') & (df['split'].str.upper() == self.split)].copy().reset_index(drop=True)
         
-        # Load View Type from inventory
-        vt_df = pd.read_csv(Path(manifest_path).parent.parent / 'reports/tables/kub_view_type_inventory.csv')
+        # Load View Type from inventory (resolve from project root via __file__)
+        proj_root = Path(__file__).resolve().parent.parent.parent
+        vt_df = pd.read_csv(proj_root / 'reports/tables/kub_view_type_inventory.csv')
         self.manifest = pd.merge(self.manifest, vt_df[['sample_id', 'view_type']], on='sample_id', how='left')
         self.manifest = self.manifest[self.manifest['view_type'] == 'FULL_FIELD'].copy().reset_index(drop=True)
         

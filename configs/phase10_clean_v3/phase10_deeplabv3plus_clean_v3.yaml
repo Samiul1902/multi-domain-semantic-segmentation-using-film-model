@@ -1,0 +1,99 @@
+experiment_id: phase10_kub_deeplabv3plus_seed42_512_clean_v3
+phase: 10
+dataset: KUB
+manifest_version: phase4_v3
+taxonomy_id: kub_size_clean_v3_v1
+status: RECONSTRUCTED_AND_READY
+authorization_required: Phase-10 Part 1C DeepLabV3+ clean rerun authorization
+
+model:
+  name: deeplabv3plus
+  input_channels: 1
+  output_channels: 1
+  base_channels: 32
+  architecture_note: "deeplabv3plus_resnet50_os16 - canonical V3+ ASPP/low-level decoder; base_channels accepted for factory-signature compatibility but unused (canonical decoder width is 256)"
+  backbone: resnet50
+  backbone_pretrained: false
+  replace_stride_with_dilation: [false, false, true]
+  output_stride: 16
+  input_channel_handling: "backbone.conv1 replaced with Conv2d(1, 64, 7, stride=2, padding=3, bias=False)"
+  aspp:
+    in_channels: 2048
+    out_channels: 256
+    rates: [6, 12, 18]
+    image_pooling: true
+    project_dropout: 0.1
+  low_level_projection_channels: 48
+  decoder_channels: [304, 256, 256]
+  decoder_final_kernel: 1
+  normalization: BatchNorm2d
+  auxiliary_head: false
+  align_corners: false
+  upsampling: bilinear
+
+input_resolution: 512
+
+preprocessing:
+  strategy: aspect_ratio_resize_symmetric_pad
+  image_interpolation: bilinear
+  mask_interpolation: nearest
+  image_scaling: [0.0, 1.0]
+
+augmentation:
+  horizontal_flip_probability: 0.5
+  rotation_degrees: 5.0
+  brightness: 0.1
+  contrast: 0.1
+  vertical_flip: false
+
+loss:
+  name: bce_dice
+  bce_weight: 0.5
+  dice_weight: 0.5
+  dice_epsilon: 1.0e-6
+
+optimizer:
+  name: AdamW
+  learning_rate: 1.0e-4
+  weight_decay: 1.0e-4
+
+scheduler:
+  name: CosineAnnealingLR
+  max_epochs: 100
+
+training:
+  max_epochs: 100
+  early_stopping_patience: 15
+  monitor: val_macro_dice
+  threshold: 0.5
+  seed: 42
+  amp: true
+  batch_size: 4
+  gradient_accumulation_steps: 1
+  effective_batch_size: 4
+  num_workers: 0
+  pin_memory: true
+  persistent_workers: false
+  gradient_clipping: null
+
+device_contract: src.utils.device.get_device(require_cuda=True)
+target_contract: src.utils.targets.binarize_mask
+single_writer_lock: src.utils.run_lock
+allow_test: false
+
+initialization:
+  policy: random_kaiming_no_pretrained_weights
+  pretrained_weights: false
+
+historical_reference:
+  historical_experiment_id: phase10_kub_deeplabv3plus_seed42_512
+  historical_manifest_version: phase4_v2
+  historical_taxonomy_id: null
+  historical_architecture: deeplabv3plus_resnet50_os16
+  historical_parameter_count: 40340769
+  historical_best_epoch: 37
+  historical_best_val_macro_dice: 0.7487905025482178
+  historical_final_epoch: 52
+  historical_stop_reason: EARLY_STOP
+  historical_trainer: scripts/training/train_phase10_baselines.py
+  historical_model_source: src/models/deeplabv3plus.py

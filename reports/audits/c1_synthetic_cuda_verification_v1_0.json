@@ -51,12 +51,12 @@
     {
       "check": "CHECKPOINT_CREATION_CUDA",
       "status": "PASS",
-      "detail": "epoch=1, file=epoch-0001-d1f264630ba44f40b28..., size=56532620 bytes, CUDA RNG captured"
+      "detail": "epoch=1, file=epoch-0001-32fd566569da4eeca15..., size=56532620 bytes, CUDA RNG captured"
     },
     {
       "check": "RESUME_MODEL_RESTORE",
       "status": "PASS",
-      "detail": "model_state_dict exact_match=False, max_abs_diff=2.82e-04 (CUDA nondeterminism expected for backward kernels)"
+      "detail": "model_state_dict exact_match=False, max_abs_diff=1.97e-04 (CUDA nondeterminism expected for backward kernels)"
     },
     {
       "check": "RESUME_OPTIMIZER_RESTORE",
@@ -66,12 +66,12 @@
     {
       "check": "RESUME_HISTORY_MATCH",
       "status": "PASS",
-      "detail": "history exact_match=False (CUDA nondeterminism); deviations: ep1: macro_diff=8.74e-05, loss_diff=9.24e-07; ep2: macro_diff=1.13e-04, loss_diff=6.26e-07; ep3: macro_diff=1.82e-04, loss_diff=6.38e-06"
+      "detail": "history exact_match=False (CUDA nondeterminism); deviations: ep1: macro_diff=3.00e-05, loss_diff=2.09e-07; ep2: macro_diff=1.11e-04, loss_diff=1.16e-06; ep3: macro_diff=3.35e-07, loss_diff=8.05e-07"
     },
     {
       "check": "RESUME_BEST_EPOCH",
       "status": "PASS",
-      "detail": "best_epoch match=True (full=2, resumed=2), best_macro_diff=1.13e-04"
+      "detail": "best_epoch match=True (full=2, resumed=2), best_macro_diff=1.11e-04"
     },
     {
       "check": "CUDA_RNG_CAPTURED",

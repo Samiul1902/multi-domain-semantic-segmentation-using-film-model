@@ -1,0 +1,111 @@
+{
+  "artifact": "phase20b_training_closure",
+  "phase": 20,
+  "subphase": "20B",
+  "model_key": "transformer_mit_unet",
+  "model_display_name": "Transformer/MiT-style U-Net",
+  "experiment_id": "phase20b_shared_transformer_mit_unet_fourdomain_seed42_clean_v3",
+  "manifest_version": "phase4_v3",
+  "architecture": "transformer_mit_style_unet_local_random_init",
+  "model_class": "TransformerMiTUNet",
+  "model_source_file": "src/models/transformer_mit_unet.py",
+  "model_source_sha256": "46c445adf0aaa190b022a7782af3dd0646f29b1978db0cf297cc38eed3d47641",
+  "architecture_binding_path": "reports/audits/phase20b_transformer_mit_unet_architecture_binding.json",
+  "architecture_binding_sha256": "8297ab13a61005848711b5a7021567b3bf6b4d5b2ab50b4a4b9acf749d35e01f",
+  "pre_execution_check_path": "reports/audits/phase20b_transformer_mit_unet_pre_execution_check.json",
+  "pre_execution_check_sha256": "d8dc15e2ff4aec895be4d8d6190f79fd7ca5cc378fe76db6ee29ad041feb52a0",
+  "protocol_sha256": "b74f1f9f429adbce374f0306180943b9f373f872e1e69e115b7d17e81414283c",
+  "selection_rule_id": "phase20_macro_domain_mean_dice_v1",
+  "best_epoch": 74,
+  "best_macro_domain_dice": 0.8223808915834625,
+  "best_val_loss": 0.16078915793706874,
+  "per_domain_dice_at_best": {
+    "ISIC": 0.8870889668872043,
+    "BUSI": 0.8639802347338391,
+    "KVASIR": 0.8132754249562769,
+    "KUB": 0.7251789397565297
+  },
+  "final_epoch": 89,
+  "total_completed_epochs": 89,
+  "stop_reason": "EARLY_STOPPING_PATIENCE",
+  "early_stopping_patience": 15,
+  "history_path": "experiments/phase20b_shared_transformer_mit_unet_fourdomain_seed42_clean_v3/history.csv",
+  "history_sha256": "2fcfa684b5d7a242a473ede510199d0b4f622d14f605e96cb5d6a41e93298075",
+  "best_checkpoint_sha256": "e2c1fca196348d57e4bc8d8ae0f17d82ff0252142e8d94631f7e0ba7d69149e2",
+  "latest_checkpoint_sha256": "1677a209210e424dee4bfdd620fa6f6153d39f39104b9ba1b6b26ebc7c39e6b4",
+  "trainer_path": "scripts/training/train_phase20b_shared_baseline.py",
+  "trainer_sha256": "43d3c0e4470d56e462c05b0367630b9d480880befbd77c42e829543a2e36bb70",
+  "resume_events": [],
+  "resume_count": 0,
+  "independent_duplicate_runs": 0,
+  "test_reads": {
+    "test_image_reads": 0,
+    "test_mask_reads": 0,
+    "test_inference": 0,
+    "test_visualization": 0
+  },
+  "training_performed": true,
+  "model_params": 16347777,
+  "total_elapsed_seconds": 42331.81869292259,
+  "configuration": {
+    "experiment_id": "phase20b_shared_transformer_mit_unet_fourdomain_seed42_clean_v3",
+    "phase": 20,
+    "subphase": "20B",
+    "parent_phase20a_experiment": "phase20_shared_unetpp_fourdomain_seed42_clean_v3",
+    "manifest_version": "phase4_v3",
+    "dataset": "MULTI_DOMAIN_ISIC_BUSI_KVASIR_KUB",
+    "architecture": "transformer_mit_style_unet_local_random_init",
+    "model": {
+      "name": "TransformerMiTUNet",
+      "in_channels": 3,
+      "out_channels": 1,
+      "base_channels": 32
+    },
+    "input_channel_policy": "RGB_3CH",
+    "input_resolution": 512,
+    "loss": {
+      "name": "bce_dice",
+      "bce_weight": 0.5,
+      "dice_weight": 0.5,
+      "dice_epsilon": 1e-06
+    },
+    "optimizer": {
+      "name": "AdamW",
+      "learning_rate": 0.0001,
+      "weight_decay": 0.0001
+    },
+    "scheduler": {
+      "name": "CosineAnnealingLR",
+      "T_max": 100,
+      "step": "per_epoch_after_train_and_val"
+    },
+    "training": {
+      "batch_size": 4,
+      "eval_batch_size": 8,
+      "num_workers": 4,
+      "persistent_workers": false,
+      "max_epochs": 100,
+      "early_stopping_patience": 15,
+      "amp": true,
+      "seed": 42,
+      "gradient_accumulation_steps": 1,
+      "effective_batch_size": 4,
+      "threshold": 0.5,
+      "sampling_policy": "phase20_domain_balanced_uniform_v1",
+      "checkpoint_metric": "phase20_macro_domain_mean_dice_v1",
+      "checkpoint_metric_description": "macro-domain mean VAL Dice (unweighted mean of the four per-domain per-image macro Dice)",
+      "tie_break": "lower validation loss"
+    },
+    "augmentation_policy": "src.data.transforms.SegmentationTransform(train=True): horizontal mirror p=0.5, rotation +/-5 deg, brightness +/-0.10, contrast +/-0.10; mask NEAREST; VAL disabled",
+    "governance": {
+      "allow_test": false,
+      "allow_external": false,
+      "task_id_as_model_input": false,
+      "film": false,
+      "regional_module": false,
+      "localizer": false,
+      "roi_proposal": false
+    },
+    "taxonomy_id": null
+  }
+}

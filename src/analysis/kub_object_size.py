@@ -173,3 +173,140 @@ def compute_patient_stratum_summary(sized_components):
                      for name in STRATA],
     })
     return summary, per_stratum
+
+
+# ===========================================================================
+# VERSIONED TAXONOMY REGISTRY (Phase 07 Part 1B)
+# ---------------------------------------------------------------------------
+# kub_size_v1            : historical, FROZEN, IMMUTABLE. Unchanged above.
+# kub_size_clean_v3_v1   : clean-v3, derived from phase4_v3 TRAIN FULL_FIELD.
+#
+# The historical taxonomy behaviour above is preserved exactly. The clean-v3
+# taxonomy is a SEPARATE, explicitly versioned entry. There is no silent
+# semantic replacement: callers must name the taxonomy they want.
+# ===========================================================================
+
+CLEAN_V3_TAXONOMY_ID = "kub_size_clean_v3_v1"
+HISTORICAL_TAXONOMY_ID = TAXONOMY_VERSION          # "kub_size_v1"
+ROI_NOT_PRIMARY_BINNED = "ROI_NOT_PRIMARY_BINNED"
+
+# Historical kub_size_v1 thresholds — FROZEN, never recomputed, never edited.
+KUB_SIZE_V1_THRESHOLDS = {
+    "Q25": 0.0001499766777599,
+    "Q50": 0.00033976472454305,
+    "Q75": 0.0008266496069636999,
+}
+
+# Clean-v3 thresholds are populated by load_clean_v3_taxonomy() from the frozen
+# artifact written by Phase 07 Part 1B. They are NOT hardcoded here.
+_CLEAN_V3_THRESHOLDS_CACHE = None
+CLEAN_V3_THRESHOLD_ARTIFACT = (
+    Path(r"D:\Softfors\jup") / "reports" / "audits" / "kub_size_clean_v3_v1_thresholds.json"
+)
+
+
+def load_clean_v3_taxonomy(path=None):
+    """Load the frozen kub_size_clean_v3_v1 thresholds from the freeze artifact."""
+    global _CLEAN_V3_THRESHOLDS_CACHE
+    if _CLEAN_V3_THRESHOLDS_CACHE is not None and path is None:
+        return _CLEAN_V3_THRESHOLDS_CACHE
+    p = Path(path) if path is not None else CLEAN_V3_THRESHOLD_ARTIFACT
+    if not p.exists():
+        raise FileNotFoundError(
+            f"Frozen clean-v3 taxonomy artifact not found: {p}. "
+            "Run Phase 07 Part 1B derivation before using kub_size_clean_v3_v1."
+        )
+    import json
+    payload = json.loads(Path(p).read_text(encoding="utf-8"))
+    if payload.get("status") != "FROZEN":
+        raise ValueError("clean-v3 taxonomy artifact is not marked FROZEN")
+    thresholds = {
+        "Q25": float(payload["Q25"]),
+        "Q50": float(payload["Q50"]),
+        "Q75": float(payload["Q75"]),
+    }
+    if not (thresholds["Q25"] < thresholds["Q50"] < thresholds["Q75"]):
+        raise ValueError("Invalid or collapsed clean-v3 quartile thresholds")
+    if path is None:
+        _CLEAN_V3_THRESHOLDS_CACHE = thresholds
+    return thresholds
+
+
+def get_kub_size_taxonomy(taxonomy_id):
+    """
+    Return the threshold dict for an explicit taxonomy id.
+
+    Raises ValueError on an unknown id. There is no default: the caller must
+    state which taxonomy it means, so historical and clean results can never be
+    silently conflated.
+    """
+    if taxonomy_id == HISTORICAL_TAXONOMY_ID:
+        return dict(KUB_SIZE_V1_THRESHOLDS)
+    if taxonomy_id == CLEAN_V3_TAXONOMY_ID:
+        return dict(load_clean_v3_taxonomy())
+    raise ValueError(
+        f"Unknown taxonomy_id '{taxonomy_id}'. "
+        f"Valid: ['{HISTORICAL_TAXONOMY_ID}', '{CLEAN_V3_TAXONOMY_ID}']"
+    )
+
+
+def classify_component_ratio(value, thresholds):
+    """
+    Classify a component_ratio using the frozen boundary semantics.
+
+    TINY   : x <= Q25
+    SMALL  : Q25 < x <= Q50
+    MEDIUM : Q50 < x <= Q75
+    LARGE  : x > Q75
+
+    The value is NOT rounded before classification. Boundary values fall into
+    the LOWER bin.
+    """
+    if value <= thresholds["Q25"]:
+        return "TINY"
+    if value <= thresholds["Q50"]:
+        return "SMALL"
+    if value <= thresholds["Q75"]:
+        return "MEDIUM"
+    return "LARGE"
+
+
+def assign_versioned_strata(components, taxonomy_id):
+    """
+    Assign size strata to components under an explicit taxonomy id.
+
+    Only FULL_FIELD components are primary-binned; ROI components receive
+    ROI_NOT_PRIMARY_BINNED. Adds taxonomy provenance columns.
+    """
+    thresholds = get_kub_size_taxonomy(taxonomy_id)
+    result = components.copy()
+    reference = result["component_ratio"].map(
+        lambda v: classify_component_ratio(v, thresholds))
+    result["size_stratum"] = np.where(
+        result["view_type"].eq("FULL_FIELD"),
+        reference,
+        ROI_NOT_PRIMARY_BINNED,
+    )
+    result["fullfield_reference_stratum"] = reference
+    result["taxonomy_id"] = taxonomy_id
+    result["threshold_source"] = (
+        "TRAIN_ONLY" if taxonomy_id == HISTORICAL_TAXONOMY_ID else "CLEAN_V3_TRAIN_ONLY")
+    return result
+
+
+def derive_quartiles(values):
+    """
+    The historical quantile algorithm, applied verbatim.
+
+    Implementation : numpy.quantile
+    Method         : default 'linear' interpolation
+    Sort / NaN     : numpy handles ordering internally; no NaN expected
+    Precision      : float64
+    """
+    arr = np.asarray(values, dtype=float)
+    if not np.isfinite(arr).all():
+        raise ValueError("Non-finite value encountered in quantile input")
+    q25, q50, q75 = np.quantile(arr, [0.25, 0.50, 0.75])
+    if not (q25 < q50 < q75):
+        raise ValueError("Invalid or collapsed quartile thresholds")
+    return float(q25), float(q50), float(q75)

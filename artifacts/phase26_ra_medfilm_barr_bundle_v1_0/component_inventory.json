@@ -1,0 +1,69 @@
+{
+ "artifact": "phase26_component_inventory",
+ "method": "RA-MedFiLM-BARR",
+ "bundle_revision": "ra_medfilm_barr_bundle_v1_0",
+ "components": [
+  {
+   "symbol": "G",
+   "model_class": "GlobalMedFiLM",
+   "checkpoint_path": "checkpoints/phase21_global_medfilm_fourdomain_seed42_clean_v3/best.pt",
+   "checkpoint_sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+   "role": "GLOBAL_SEGMENTER",
+   "conditional": false,
+   "binding": {
+    "path": "checkpoints/phase21_global_medfilm_fourdomain_seed42_clean_v3/best.pt",
+    "exists": true,
+    "sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+    "expected_sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+    "match": true
+   }
+  },
+  {
+   "symbol": "R_psi",
+   "model_class": "BARRRegionalRefinerV1",
+   "checkpoint_path": "checkpoints/phase25a_barr_regional_refiner_v1_1_roi030/final/final.pt",
+   "checkpoint_sha256": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109",
+   "role": "REGIONAL_REFINER",
+   "conditional": true,
+   "binding": {
+    "path": "checkpoints/phase25a_barr_regional_refiner_v1_1_roi030/final/final.pt",
+    "exists": true,
+    "sha256": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109",
+    "expected_sha256": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109",
+    "match": true
+   }
+  },
+  {
+   "symbol": "B_phi",
+   "model_class": "BARRBenefitRouterV1",
+   "checkpoint_path": "checkpoints/phase25d_barr_benefit_router_v1_2_1_seed42/final/final.pt",
+   "checkpoint_sha256": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+   "role": "BENEFIT_ROUTER",
+   "conditional": true,
+   "binding": {
+    "path": "checkpoints/phase25d_barr_benefit_router_v1_2_1_seed42/final/final.pt",
+    "exists": true,
+    "sha256": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+    "expected_sha256": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+    "match": true
+   }
+  },
+  {
+   "symbol": "S_omega",
+   "model_class": "BARRPostSafetyV1",
+   "checkpoint_path": "checkpoints/phase25f_barr_post_safety_v1_0_seed42/final/final.pt",
+   "checkpoint_sha256": "eee9b97b9921e53fc07eac9281dce64ba518c6e1659916b97b0b3bec21ec6d2e",
+   "role": "POST_SAFETY",
+   "conditional": true,
+   "binding": {
+    "path": "checkpoints/phase25f_barr_post_safety_v1_0_seed42/final/final.pt",
+    "exists": true,
+    "sha256": "eee9b97b9921e53fc07eac9281dce64ba518c6e1659916b97b0b3bec21ec6d2e",
+    "expected_sha256": "eee9b97b9921e53fc07eac9281dce64ba518c6e1659916b97b0b3bec21ec6d2e",
+    "match": true
+   }
+  }
+ ],
+ "weights_copied": false,
+ "all_pass": true
+}

@@ -1,0 +1,111 @@
+{
+  "artifact": "phase20b_training_closure",
+  "phase": 20,
+  "subphase": "20B",
+  "model_key": "deeplabv3plus",
+  "model_display_name": "DeepLabV3+",
+  "experiment_id": "phase20b_shared_deeplabv3plus_fourdomain_seed42_clean_v3",
+  "manifest_version": "phase4_v3",
+  "architecture": "deeplabv3plus_resnet50_os16_random_init_no_pretrained_aspp_rates_6_12_18",
+  "model_class": "DeepLabV3Plus",
+  "model_source_file": "src/models/deeplabv3plus.py",
+  "model_source_sha256": "751a1ead9aca93c7372750924f7483b3de3ad3f5f40edd3a648e9e39bdd77406",
+  "architecture_binding_path": "reports/audits/phase20b_deeplabv3plus_architecture_binding.json",
+  "architecture_binding_sha256": "1fcf38a67791e81218f94086fd9e8c636428d24ed8c6a3461b355c01d827d561",
+  "pre_execution_check_path": "reports/audits/phase20b_deeplabv3plus_pre_execution_check.json",
+  "pre_execution_check_sha256": "11d62c7f54fea55b44db6b5d433dc2844dc58d35de8f43cbb2216d5cd1e83260",
+  "protocol_sha256": "b74f1f9f429adbce374f0306180943b9f373f872e1e69e115b7d17e81414283c",
+  "selection_rule_id": "phase20_macro_domain_mean_dice_v1",
+  "best_epoch": 57,
+  "best_macro_domain_dice": 0.8276526736178511,
+  "best_val_loss": 0.16272314173160213,
+  "per_domain_dice_at_best": {
+    "ISIC": 0.8853446280255037,
+    "BUSI": 0.8669190868027629,
+    "KVASIR": 0.8196865600672947,
+    "KUB": 0.7386604195758434
+  },
+  "final_epoch": 72,
+  "total_completed_epochs": 72,
+  "stop_reason": "EARLY_STOPPING_PATIENCE",
+  "early_stopping_patience": 15,
+  "history_path": "experiments/phase20b_shared_deeplabv3plus_fourdomain_seed42_clean_v3/history.csv",
+  "history_sha256": "5ddc59442e1163d6762772c04645230bd9770457e6f76fa5dbd6e2427826631c",
+  "best_checkpoint_sha256": "0bd9548f141174f05f842d2015dceda6db4587921d241590b63e9ae0099d3ff8",
+  "latest_checkpoint_sha256": "3d339cd3c8c3b2ecba78b2625b17bf22c066c66f96accd77712ff285b4a8d410",
+  "trainer_path": "scripts/training/train_phase20b_shared_baseline.py",
+  "trainer_sha256": "43d3c0e4470d56e462c05b0367630b9d480880befbd77c42e829543a2e36bb70",
+  "resume_events": [],
+  "resume_count": 0,
+  "independent_duplicate_runs": 0,
+  "test_reads": {
+    "test_image_reads": 0,
+    "test_mask_reads": 0,
+    "test_inference": 0,
+    "test_visualization": 0
+  },
+  "training_performed": true,
+  "model_params": 40347041,
+  "total_elapsed_seconds": 32450.780526161194,
+  "configuration": {
+    "experiment_id": "phase20b_shared_deeplabv3plus_fourdomain_seed42_clean_v3",
+    "phase": 20,
+    "subphase": "20B",
+    "parent_phase20a_experiment": "phase20_shared_unetpp_fourdomain_seed42_clean_v3",
+    "manifest_version": "phase4_v3",
+    "dataset": "MULTI_DOMAIN_ISIC_BUSI_KVASIR_KUB",
+    "architecture": "deeplabv3plus_resnet50_os16_random_init_no_pretrained_aspp_rates_6_12_18",
+    "model": {
+      "name": "DeepLabV3Plus",
+      "in_channels": 3,
+      "out_channels": 1,
+      "base_channels": 32
+    },
+    "input_channel_policy": "RGB_3CH",
+    "input_resolution": 512,
+    "loss": {
+      "name": "bce_dice",
+      "bce_weight": 0.5,
+      "dice_weight": 0.5,
+      "dice_epsilon": 1e-06
+    },
+    "optimizer": {
+      "name": "AdamW",
+      "learning_rate": 0.0001,
+      "weight_decay": 0.0001
+    },
+    "scheduler": {
+      "name": "CosineAnnealingLR",
+      "T_max": 100,
+      "step": "per_epoch_after_train_and_val"
+    },
+    "training": {
+      "batch_size": 4,
+      "eval_batch_size": 8,
+      "num_workers": 4,
+      "persistent_workers": false,
+      "max_epochs": 100,
+      "early_stopping_patience": 15,
+      "amp": true,
+      "seed": 42,
+      "gradient_accumulation_steps": 1,
+      "effective_batch_size": 4,
+      "threshold": 0.5,
+      "sampling_policy": "phase20_domain_balanced_uniform_v1",
+      "checkpoint_metric": "phase20_macro_domain_mean_dice_v1",
+      "checkpoint_metric_description": "macro-domain mean VAL Dice (unweighted mean of the four per-domain per-image macro Dice)",
+      "tie_break": "lower validation loss"
+    },
+    "augmentation_policy": "src.data.transforms.SegmentationTransform(train=True): horizontal mirror p=0.5, rotation +/-5 deg, brightness +/-0.10, contrast +/-0.10; mask NEAREST; VAL disabled",
+    "governance": {
+      "allow_test": false,
+      "allow_external": false,
+      "task_id_as_model_input": false,
+      "film": false,
+      "regional_module": false,
+      "localizer": false,
+      "roi_proposal": false
+    },
+    "taxonomy_id": null
+  }
+}

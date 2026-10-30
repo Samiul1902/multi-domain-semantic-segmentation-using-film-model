@@ -1,0 +1,61 @@
+{
+  "experiment_id": "phase20b_shared_attention_unet_fourdomain_seed42_clean_v3",
+  "phase": 20,
+  "subphase": "20B",
+  "parent_phase20a_experiment": "phase20_shared_unetpp_fourdomain_seed42_clean_v3",
+  "manifest_version": "phase4_v3",
+  "dataset": "MULTI_DOMAIN_ISIC_BUSI_KVASIR_KUB",
+  "architecture": "attention_unet_4_stage_additive_skip_gates_base32",
+  "model": {
+    "name": "AttentionUNet",
+    "in_channels": 3,
+    "out_channels": 1,
+    "base_channels": 32
+  },
+  "input_channel_policy": "RGB_3CH",
+  "input_resolution": 512,
+  "loss": {
+    "name": "bce_dice",
+    "bce_weight": 0.5,
+    "dice_weight": 0.5,
+    "dice_epsilon": 1e-06
+  },
+  "optimizer": {
+    "name": "AdamW",
+    "learning_rate": 0.0001,
+    "weight_decay": 0.0001
+  },
+  "scheduler": {
+    "name": "CosineAnnealingLR",
+    "T_max": 100,
+    "step": "per_epoch_after_train_and_val"
+  },
+  "training": {
+    "batch_size": 4,
+    "eval_batch_size": 8,
+    "num_workers": 4,
+    "persistent_workers": false,
+    "max_epochs": 100,
+    "early_stopping_patience": 15,
+    "amp": true,
+    "seed": 42,
+    "gradient_accumulation_steps": 1,
+    "effective_batch_size": 4,
+    "threshold": 0.5,
+    "sampling_policy": "phase20_domain_balanced_uniform_v1",
+    "checkpoint_metric": "phase20_macro_domain_mean_dice_v1",
+    "checkpoint_metric_description": "macro-domain mean VAL Dice (unweighted mean of the four per-domain per-image macro Dice)",
+    "tie_break": "lower validation loss"
+  },
+  "augmentation_policy": "src.data.transforms.SegmentationTransform(train=True): horizontal mirror p=0.5, rotation +/-5 deg, brightness +/-0.10, contrast +/-0.10; mask NEAREST; VAL disabled",
+  "governance": {
+    "allow_test": false,
+    "allow_external": false,
+    "task_id_as_model_input": false,
+    "film": false,
+    "regional_module": false,
+    "localizer": false,
+    "roi_proposal": false
+  },
+  "taxonomy_id": null
+}

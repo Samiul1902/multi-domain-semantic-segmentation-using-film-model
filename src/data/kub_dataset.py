@@ -8,9 +8,27 @@ import numpy as np
 from torch.utils.data import Dataset
 
 from .transforms import SegmentationTransform
+from src.utils.targets import binarize_mask
+
+
+def derive_acquisition_type(image_path):
+    """
+    Acquisition type from directory semantics (never from dimensions).
+
+    A 'ROI' directory component means an ROI crop; an 'Images' directory means a
+    full-field radiograph. Anything else is reported as UNKNOWN.
+    """
+    parts = {part.casefold() for part in Path(str(image_path)).parts}
+    if "roi" in parts:
+        return "ROI"
+    if "images" in parts:
+        return "FULL_FIELD"
+    return "UNKNOWN"
 
 
 class TestAccessError(RuntimeError):
+    # Not a test case: tells pytest not to collect this class.
+    __test__ = False
     pass
 
 
@@ -81,10 +99,10 @@ class KUBDataset(Dataset):
             img = ImageEnhance.Contrast(img).enhance(random.uniform(1-self.transform.contrast, 1+self.transform.contrast))
             
             image_t = torch.from_numpy(np.asarray(img, dtype=np.float32).copy()).unsqueeze(0) / 255.0
-            mask_t = torch.from_numpy((np.asarray(mask).copy() > 0).astype(np.float32)).unsqueeze(0)
+            mask_t = torch.from_numpy(binarize_mask(mask)).unsqueeze(0)
         else:
             image_t = torch.from_numpy(np.asarray(raw_image, dtype=np.float32).copy()).unsqueeze(0) / 255.0
-            mask_t = torch.from_numpy((np.asarray(raw_mask).copy() > 0).astype(np.float32)).unsqueeze(0)
+            mask_t = torch.from_numpy(binarize_mask(raw_mask)).unsqueeze(0)
 
         item = {
             "image": image_t, "mask": mask_t, "sample_id": row.sample_id,
@@ -94,6 +112,7 @@ class KUBDataset(Dataset):
             "original_width": original_width, "image_path": row.image_path,
             "mask_path": row.mask_path, "resize_scale": scale,
             "padding": torch.tensor(padding),
+            "acquisition_type": derive_acquisition_type(row.image_path),
         }
         if self.metadata is not None and row.sample_id in self.metadata.index:
             meta = self.metadata.loc[row.sample_id]

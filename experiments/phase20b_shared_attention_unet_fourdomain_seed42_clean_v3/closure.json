@@ -1,0 +1,111 @@
+{
+  "artifact": "phase20b_training_closure",
+  "phase": 20,
+  "subphase": "20B",
+  "model_key": "attention_unet",
+  "model_display_name": "Attention U-Net",
+  "experiment_id": "phase20b_shared_attention_unet_fourdomain_seed42_clean_v3",
+  "manifest_version": "phase4_v3",
+  "architecture": "attention_unet_4_stage_additive_skip_gates_base32",
+  "model_class": "AttentionUNet",
+  "model_source_file": "src/models/attention_unet.py",
+  "model_source_sha256": "834c02170aafc1093de9edb2afad99f76a200ae1eb5ecae16ad57eb7c2e21690",
+  "architecture_binding_path": "reports/audits/phase20b_attention_unet_architecture_binding.json",
+  "architecture_binding_sha256": "ebdeb453356f9d683bf14773c54bd9d25287fc37b0701054f7a5ac992a4ec15f",
+  "pre_execution_check_path": "reports/audits/phase20b_attention_unet_pre_execution_check.json",
+  "pre_execution_check_sha256": "1e484bd7b424b7444b5638635d7b89687b23f23e024d8f39080384aaeb060665",
+  "protocol_sha256": "b74f1f9f429adbce374f0306180943b9f373f872e1e69e115b7d17e81414283c",
+  "selection_rule_id": "phase20_macro_domain_mean_dice_v1",
+  "best_epoch": 64,
+  "best_macro_domain_dice": 0.7890388550575124,
+  "best_val_loss": 0.19312862074463674,
+  "per_domain_dice_at_best": {
+    "ISIC": 0.861694912937533,
+    "BUSI": 0.827679296334774,
+    "KVASIR": 0.7709997009042813,
+    "KUB": 0.6957815100534616
+  },
+  "final_epoch": 79,
+  "total_completed_epochs": 79,
+  "stop_reason": "EARLY_STOPPING_PATIENCE",
+  "early_stopping_patience": 15,
+  "history_path": "experiments/phase20b_shared_attention_unet_fourdomain_seed42_clean_v3/history.csv",
+  "history_sha256": "f8448b85a4f4b6b37cbc9ed7e5b1a4ae31e6c933f3eb42dd2dbe19d6f6ce66d7",
+  "best_checkpoint_sha256": "feb0eb0577841f3a9cfc1efb3a46dd4cdd5f749e3f3b08b85d80e472f7dd2b35",
+  "latest_checkpoint_sha256": "f962cc735f32edf01ebd3426d258808ca0a64233ef903fe8170360657b3ee421",
+  "trainer_path": "scripts/training/train_phase20b_shared_baseline.py",
+  "trainer_sha256": "43d3c0e4470d56e462c05b0367630b9d480880befbd77c42e829543a2e36bb70",
+  "resume_events": [],
+  "resume_count": 0,
+  "independent_duplicate_runs": 0,
+  "test_reads": {
+    "test_image_reads": 0,
+    "test_mask_reads": 0,
+    "test_inference": 0,
+    "test_visualization": 0
+  },
+  "training_performed": true,
+  "model_params": 7851285,
+  "total_elapsed_seconds": 36053.16579246521,
+  "configuration": {
+    "experiment_id": "phase20b_shared_attention_unet_fourdomain_seed42_clean_v3",
+    "phase": 20,
+    "subphase": "20B",
+    "parent_phase20a_experiment": "phase20_shared_unetpp_fourdomain_seed42_clean_v3",
+    "manifest_version": "phase4_v3",
+    "dataset": "MULTI_DOMAIN_ISIC_BUSI_KVASIR_KUB",
+    "architecture": "attention_unet_4_stage_additive_skip_gates_base32",
+    "model": {
+      "name": "AttentionUNet",
+      "in_channels": 3,
+      "out_channels": 1,
+      "base_channels": 32
+    },
+    "input_channel_policy": "RGB_3CH",
+    "input_resolution": 512,
+    "loss": {
+      "name": "bce_dice",
+      "bce_weight": 0.5,
+      "dice_weight": 0.5,
+      "dice_epsilon": 1e-06
+    },
+    "optimizer": {
+      "name": "AdamW",
+      "learning_rate": 0.0001,
+      "weight_decay": 0.0001
+    },
+    "scheduler": {
+      "name": "CosineAnnealingLR",
+      "T_max": 100,
+      "step": "per_epoch_after_train_and_val"
+    },
+    "training": {
+      "batch_size": 4,
+      "eval_batch_size": 8,
+      "num_workers": 4,
+      "persistent_workers": false,
+      "max_epochs": 100,
+      "early_stopping_patience": 15,
+      "amp": true,
+      "seed": 42,
+      "gradient_accumulation_steps": 1,
+      "effective_batch_size": 4,
+      "threshold": 0.5,
+      "sampling_policy": "phase20_domain_balanced_uniform_v1",
+      "checkpoint_metric": "phase20_macro_domain_mean_dice_v1",
+      "checkpoint_metric_description": "macro-domain mean VAL Dice (unweighted mean of the four per-domain per-image macro Dice)",
+      "tie_break": "lower validation loss"
+    },
+    "augmentation_policy": "src.data.transforms.SegmentationTransform(train=True): horizontal mirror p=0.5, rotation +/-5 deg, brightness +/-0.10, contrast +/-0.10; mask NEAREST; VAL disabled",
+    "governance": {
+      "allow_test": false,
+      "allow_external": false,
+      "task_id_as_model_input": false,
+      "film": false,
+      "regional_module": false,
+      "localizer": false,
+      "roi_proposal": false
+    },
+    "taxonomy_id": null
+  }
+}

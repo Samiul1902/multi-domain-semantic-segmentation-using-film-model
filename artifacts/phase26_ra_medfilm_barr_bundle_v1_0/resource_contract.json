@@ -1,0 +1,20 @@
+{
+ "artifact": "phase26_resource_contract",
+ "method": "RA-MedFiLM-BARR",
+ "label": "ANALYTICAL MAC LOWER BOUND",
+ "global_macs": 31551740928,
+ "benefit_router_macs": 36160,
+ "regional_refiner_macs": 3230662656,
+ "s_omega_macs": 1168,
+ "never_call": [
+  "latency",
+  "runtime",
+  "energy",
+  "mobile performance"
+ ],
+ "conditional_components": {
+  "regional_refiner": "EXECUTE branch only",
+  "s_omega": "EXECUTE branch only"
+ },
+ "all_pass": true
+}

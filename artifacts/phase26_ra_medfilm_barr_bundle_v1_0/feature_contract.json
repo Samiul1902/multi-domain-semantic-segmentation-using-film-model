@@ -1,0 +1,28 @@
+{
+ "artifact": "phase26_feature_contract",
+ "method": "RA-MedFiLM-BARR",
+ "router_feature": {
+  "dimension_numeric": 202,
+  "task_embedding_dim": 16,
+  "b_phi_input_dim": 218,
+  "schema_path": "reports/tables/phase25b_feature_schema.csv",
+  "schema_sha256": "da76aa34f14006146f46ca799f173378274d8c9d0792dc18edb30711a2486dd4",
+  "dtype": "float32",
+  "gt_free": true,
+  "normalization": "reports/tables/phase25d_final_normalization_stats.csv",
+  "normalization_sha256": "ba37742e96610ec5e46fb47c093bf71ae1afd85b2a0db9696b612c873a4ba1fb",
+  "normalization_refit_forbidden": true
+ },
+ "post_safety_feature": {
+  "dimension_numeric": 16,
+  "onehot_dim": 4,
+  "total_dim": 20,
+  "schema_path": "reports/tables/phase25f_feature_schema_v1_0.csv",
+  "dtype": "float32",
+  "gt_free": true,
+  "normalization": "reports/tables/phase25f_final_normalization_stats.csv",
+  "normalized_indices": "0..15",
+  "not_normalized_indices": "16..19"
+ },
+ "all_pass": true
+}

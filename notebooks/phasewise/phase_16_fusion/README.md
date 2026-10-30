@@ -3,7 +3,7 @@
 ## 1. Scientific Overview
 - **Phase ID:** phase_16_fusion
 - **Scientific Title:** Regional-Global Mask Fusion & False Positive Suppression
-- **Current Status:** NOT_STARTED
+- **Current Status:** DEFERRED_CONDITIONAL__NOT_EXECUTED
 - **Core Question:** Phase 16 develops intelligent fusion between global baseline and regional refiner.
 
 ## 2. Rationale & Academic Significance
@@ -21,3 +21,7 @@ Understanding the specific scientific role of this phase within the 41-phase can
 ## 5. Visual Standards
 - **Sample Visualizations:** $\ge 12$ deterministic cases where applicable.
 - **Prediction Panels:** $\ge 16$ deterministic cases with TP/FP/FN error maps.
+
+## Phase-16 deferral
+
+Phase 16 is **DEFERRED_CONDITIONAL_AFTER_H3_INSUFFICIENCY**: scientific execution is `NOT_EXECUTED` and it is not authorized at this time. The phase is not deleted and is not renumbered; it may be resumed only under a fresh supervisor authorization after the main multi-domain program is established.

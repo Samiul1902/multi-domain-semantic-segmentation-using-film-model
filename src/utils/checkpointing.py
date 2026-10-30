@@ -8,7 +8,8 @@ def save_training_checkpoint(path, model, optimizer, scheduler, scaler, epoch, g
                              best_validation_score, configuration, seed, training_history,
                              manifest_version, manifest_hashes, experiment_id, model_name,
                              input_resolution, threshold, git_commit=None,
-                             early_stopping_state=None, loader_generator_states=None):
+                             early_stopping_state=None, loader_generator_states=None,
+                             taxonomy_id=None):
     path=Path(path); path.parent.mkdir(parents=True, exist_ok=True)
     state={"model_state":model.state_dict(),"optimizer_state":optimizer.state_dict(),
            "scheduler_state":scheduler.state_dict() if scheduler else None,
@@ -18,6 +19,7 @@ def save_training_checkpoint(path, model, optimizer, scheduler, scaler, epoch, g
            "manifest_version":manifest_version,"manifest_hashes":manifest_hashes,
            "experiment_id":experiment_id,"model_name":model_name,"input_resolution":input_resolution,
            "threshold":threshold,"git_commit":git_commit,"pytorch_version":torch.__version__,
+           "taxonomy_id":taxonomy_id,
            "cuda_available":torch.cuda.is_available(),"cuda_runtime":torch.version.cuda,
            "gpu_name":torch.cuda.get_device_name(0) if torch.cuda.is_available() else None,
            "random_state":capture_random_state(),

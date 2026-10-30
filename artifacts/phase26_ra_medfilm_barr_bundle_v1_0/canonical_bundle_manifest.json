@@ -1,0 +1,137 @@
+{
+ "artifact": "phase26_canonical_bundle_manifest",
+ "method": "RA-MedFiLM-BARR",
+ "bundle_revision": "ra_medfilm_barr_bundle_v1_0",
+ "phase26_revision": "ra_medfilm_barr_phase26_integration_v1_0",
+ "router_semantics_revision": "phase26_v1_2",
+ "variant": "A8_C9",
+ "nominal_budget": 0.25,
+ "canonical_lambda": 0.25,
+ "lambda_role": "MEMBERSHIP_EQUIVALENT_SERIALIZATION_REPRESENTATIVE",
+ "lambda_performance_selected": false,
+ "selection_time": "POST_PHASE25_DEVELOPMENT__PRE_PHASE30_HOLDOUT",
+ "components": {
+  "global_medfilm": {
+   "path": "checkpoints/phase21_global_medfilm_fourdomain_seed42_clean_v3/best.pt",
+   "exists": true,
+   "sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+   "expected_sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+   "match": true
+  },
+  "regional_refiner": {
+   "path": "checkpoints/phase25a_barr_regional_refiner_v1_1_roi030/final/final.pt",
+   "exists": true,
+   "sha256": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109",
+   "expected_sha256": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109",
+   "match": true
+  },
+  "benefit_router": {
+   "path": "checkpoints/phase25d_barr_benefit_router_v1_2_1_seed42/final/final.pt",
+   "exists": true,
+   "sha256": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+   "expected_sha256": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+   "match": true
+  },
+  "post_safety": {
+   "path": "checkpoints/phase25f_barr_post_safety_v1_0_seed42/final/final.pt",
+   "exists": true,
+   "sha256": "eee9b97b9921e53fc07eac9281dce64ba518c6e1659916b97b0b3bec21ec6d2e",
+   "expected_sha256": "eee9b97b9921e53fc07eac9281dce64ba518c6e1659916b97b0b3bec21ec6d2e",
+   "match": true
+  }
+ },
+ "normalizations": {
+  "router_normalization": {
+   "path": "reports/tables/phase25d_final_normalization_stats.csv",
+   "exists": true,
+   "sha256": "ba37742e96610ec5e46fb47c093bf71ae1afd85b2a0db9696b612c873a4ba1fb",
+   "expected_sha256": "ba37742e96610ec5e46fb47c093bf71ae1afd85b2a0db9696b612c873a4ba1fb",
+   "match": true
+  },
+  "post_safety_normalization": {
+   "path": "reports/tables/phase25f_final_normalization_stats.csv",
+   "exists": true,
+   "sha256": "e112e18b134c6edcdcd0c254c362d0a954a75faffe634cc37a2a17e4fe6f4e7b",
+   "expected_sha256": null,
+   "match": true
+  }
+ },
+ "schemas": {
+  "router_schema": {
+   "path": "reports/tables/phase25b_feature_schema.csv",
+   "exists": true,
+   "sha256": "da76aa34f14006146f46ca799f173378274d8c9d0792dc18edb30711a2486dd4",
+   "expected_sha256": "da76aa34f14006146f46ca799f173378274d8c9d0792dc18edb30711a2486dd4",
+   "match": true
+  },
+  "post_safety_schema": {
+   "path": "reports/tables/phase25f_feature_schema_v1_0.csv",
+   "exists": true,
+   "sha256": "3e70e20c541b93de752980c34cdfb6fe5af17ebe4c18cbb64397c0bbae465ee5",
+   "expected_sha256": null,
+   "match": true
+  }
+ },
+ "A_OOF_SCIENTIFIC_EVIDENCE": {
+  "block": "A_OOF_SCIENTIFIC_EVIDENCE",
+  "score_variable": "delta_hat_oof",
+  "raw_threshold_exact": "29487973/10000000000",
+  "resource_threshold_exact": "-2326256430798223/102707490000000000",
+  "role": "SCIENTIFIC_OOF_POLICY_THRESHOLD_PROVENANCE",
+  "runtime_authority": false,
+  "oof_selected_count": 1239,
+  "oof_membership_sha256": "e71e368cbb95b8d3398b47427df243bb8b387dd6d442ccf038188446677f446f"
+ },
+ "B_FINAL_ROUTER_RUNTIME_CALIBRATION": {
+  "block": "B_FINAL_ROUTER_RUNTIME_CALIBRATION",
+  "score_variable": "delta_hat_final",
+  "producer": "FINAL Phase25D B_phi",
+  "raw_threshold_exact": "24796109646558761/20000000000000000000",
+  "normalized_action_cost_exact": "1051648/10270749",
+  "lambda": "1/4",
+  "lambda_C_exact": "262912/10270749",
+  "resource_utility_threshold_exact": "-5003565381643716252018011/205414980000000000000000000",
+  "role": "CANONICAL_FINAL_ROUTER_RUNTIME_CALIBRATION",
+  "runtime_authority": true,
+  "dev_calibration_selected_count": 1239,
+  "final_router_calibration_membership_sha256": "10de16dec21e6750c8e9451af96bed0ca3f2686bbf0d6084a6300cf0d4adbbe5"
+ },
+ "operational_threshold": "FINAL_ROUTER_RUNTIME_CALIBRATION.resource_utility_threshold",
+ "runtime_score": "delta_hat_final - 0.25*C",
+ "future_cohort_policy": "FIXED_DEV_CALIBRATED_THRESHOLD",
+ "future_cohort_forbidden": {
+  "top_k_forcing": true,
+  "exact_25pct_cohort_ranking": true,
+  "holdout_threshold_fitting": true,
+  "holdout_quantile_recalibration": true
+ },
+ "phase30_nominal_budget": 0.25,
+ "phase30_realized_activation_fraction": "OBSERVED_AFTER_FIXED_THRESHOLD_APPLICATION",
+ "thresholds_distinct": {
+  "roi_proposal_threshold": 0.3,
+  "s_omega_accept_threshold": 0.5,
+  "segmentation_output_threshold": 0.5,
+  "note": "separate contract fields even when numerically equal"
+ },
+ "resource_accounting": {
+  "global_macs": 31551740928,
+  "benefit_router_macs": 36160,
+  "regional_refiner_macs": 3230662656,
+  "s_omega_macs": 1168,
+  "label": "ANALYTICAL MAC LOWER BOUND",
+  "never_call": [
+   "latency",
+   "runtime",
+   "energy",
+   "mobile performance"
+  ]
+ },
+ "locks": {
+  "router_holdout_owner": "PHASE30",
+  "router_holdout_state": "RESERVED_UNOPENED_FOR_PHASE30",
+  "val808": "UNOPENED",
+  "test": "LOCKED_UNTIL_PHASE39"
+ },
+ "weights_copied": false,
+ "note": "manifest only - original canonical checkpoint files remain authoritative"
+}

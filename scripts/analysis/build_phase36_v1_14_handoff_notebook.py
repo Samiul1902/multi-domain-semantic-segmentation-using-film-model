@@ -1,0 +1,452 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""Deterministic builder for
+``notebooks/RA_MedFiLM_Phase_Handoff_Builder.ipynb``.
+
+PHASE-WISE CHATGPT HANDOFF PACKAGING TOOL.  Emits a reusable notebook that
+profiles a single (PHASE, REVISION) into ONE compact ZIP for external review.
+
+The notebook performs ONLY: pathlib/filesystem inspection, read_bytes, SHA-256
+hashing, shutil.copy2, JSON/Markdown generation, ZIP generation, and directory
+creation under ``reports/chatgpt_handoff/``.
+
+NO torch.  NO model.  NO checkpoint deserialization.  NO smoke.  NO science.
+NO VAL/GT read.  NO TEST.  NO ROUTER_HOLDOUT.  NO training.
+NO mutation of any scientific/governance artifact.
+
+This builder is write-once: it refuses to overwrite an existing notebook.
+"""
+from __future__ import annotations
+
+import json
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[2]
+OUT = ROOT / "notebooks" / "RA_MedFiLM_Phase_Handoff_Builder.ipynb"
+
+
+def md(text: str) -> dict:
+    return {"cell_type": "markdown", "metadata": {}, "source": text.splitlines(keepends=True)}
+
+
+def code(text: str) -> dict:
+    return {"cell_type": "code", "execution_count": None, "metadata": {},
+            "outputs": [], "source": text.splitlines(keepends=True)}
+
+
+CELLS = []
+
+# ---------------------------------------------------------------- title ------
+CELLS.append(md(
+    "# RA-MedFiLM-BARR — Phase-wise ChatGPT Handoff Builder\n"
+    "## PACKAGING / NAVIGATION TOOL ONLY — NOT SCIENTIFIC AUTHORITY\n\n"
+    "Collects the reviewable source + governance + audit material for ONE\n"
+    "`(PHASE, REVISION)` profile into a single compact ZIP so that future\n"
+    "research review needs **one upload** instead of many individual files.\n\n"
+    "**This notebook performs no scientific execution.** It does not import\n"
+    "`torch`, load checkpoints, build models, run forward passes, execute smoke\n"
+    "or science, read VAL images / GT masks, read the TEST split, read\n"
+    "ROUTER_HOLDOUT, or train anything. It only copies and hashes existing\n"
+    "files, and writes a manifest + summary + ZIP under `reports/chatgpt_handoff/`.\n\n"
+    "**Checkpoint binaries (`.pt/.pth/.ckpt`) and datasets are NEVER copied into\n"
+    "the ZIP** — only their hashes/paths may appear inside the manifest/audits.\n\n"
+    "**A missing required artifact is recorded, never recreated.** Missing files\n"
+    "are listed in `HANDOFF_INDEX.json -> missing_files` and in\n"
+    "`HANDOFF_SUMMARY.md -> Missing files`.\n\n"
+    "### Phase-wise design\n"
+    "Profiles are declared explicitly in the `PROFILES` dict (Section 2).\n"
+    "Future profiles — e.g. `(37, \"v1_0\")`, `(38, \"v1_0\")`, `(39, \"v1_0\")` —\n"
+    "**must be added by hand**; the notebook never infers future scientific\n"
+    "files automatically."
+))
+
+# -------------------------------------------------------------- section 1 ----
+CELLS.append(md("## 1. Runtime / interpreter identity + imports\n"
+                "Confirms the canonical project interpreter and the allowed import set."))
+CELLS.append(code(
+    "import sys, os, json, hashlib, zipfile, shutil, datetime\n"
+    "from pathlib import Path\n\n"
+    "EXPECTED_INTERPRETER = Path(r\"D:\\Softfors\\jup\\.venv\\Scripts\\python.exe\")\n"
+    "print(\"sys.executable     :\", sys.executable)\n"
+    "_ok = os.path.normcase(os.path.realpath(sys.executable)) == \\\n"
+    "      os.path.normcase(os.path.realpath(str(EXPECTED_INTERPRETER)))\n"
+    "print(\"canonical venv match:\", _ok)\n"
+    "assert _ok, (\"WRONG INTERPRETER — run with \" + str(EXPECTED_INTERPRETER))\n\n"
+    "# Forbidden-import guard (defence in depth; the static audit is authoritative).\n"
+    "for _mod in (\"torch\", \"tensorflow\", \"cv2\", \"sklearn\"):\n"
+    "    assert _mod not in sys.modules, f\"forbidden module already imported: {_mod}\"\n"
+    "print(\"allowed imports only  : OK\")\n"
+    "print(\"STDLIB packaging ops   : read_bytes / sha256 / shutil.copy2 / zipfile\")\n"
+))
+
+# -------------------------------------------------------------- section 2 ----
+CELLS.append(md(
+    "## 2. Phase-wise PROFILES — declare `(PHASE, REVISION)` explicitly\n\n"
+    "Each profile fixes:\n"
+    "* `root`-relative **required source files**,\n"
+    "* **required governance/audit files**,\n"
+    "* **minimal lineage/evidence files** (history),\n"
+    "* **expected raw-byte SHA-256 pins** where known (empty ⇒ not pinned yet).\n\n"
+    "> Current target: **Phase 36 / v1.14**. Add future phases here by hand."
+))
+CELLS.append(code(
+    "ROOT = Path(r\"D:\\Softfors\\jup\")\n"
+    "assert (ROOT / \"reports\" / \"audits\").is_dir(), ROOT\n\n"
+    "PROFILES = {\n"
+    "    (36, \"v1_14\"): {\n"
+    "        \"source_files\": [\n"
+    "            \"scripts/analysis/phase36_robustness_execution_v1_14.py\",\n"
+    "            \"scripts/analysis/launch_phase36_v1_14.py\",\n"
+    "            \"scripts/analysis/phase36_robustness_unit_v1_14.py\",\n"
+    "            \"scripts/analysis/phase36_robustness_preflight_v1_14.py\",\n"
+    "            \"scripts/analysis/phase36_robustness_negative_controls_v1_14.py\",\n"
+    "        ],\n"
+    "        \"audit_files\": [\n"
+    "            \"reports/audits/PHASE36_CURRENT_FILE_INDEX.md\",\n"
+    "            \"reports/audits/phase36_v1_14_runtime_source_integrity_manifest.json\",\n"
+    "            \"reports/audits/phase36_preexecution_source_freeze_v1_14.json\",\n"
+    "            \"reports/audits/phase36_synthetic_smoke_eligibility_v1_14.json\",\n"
+    "            \"reports/audits/phase36_v1_13_to_v1_14_semantic_diff.json\",\n"
+    "            \"reports/audits/phase36_v1_14_direct_source_byte_audit.json\",\n"
+    "            \"reports/audits/phase36_v1_14_no_scientific_execution_audit.json\",\n"
+    "            \"reports/audits/phase36_v1_14_science_release_attestation_contract.json\",\n"
+    "            \"reports/audits/phase36_v1_14_launcher_co_edit_negative_control.json\",\n"
+    "            \"reports/audits/phase36_robustness_unit_v1_14.json\",\n"
+    "            \"reports/audits/phase36_robustness_preflight_v1_14.json\",\n"
+    "            \"reports/audits/phase36_v1_14_negative_controls.json\",\n"
+    "        ],\n"
+    "        \"lineage_files\": [\n"
+    "            \"reports/audits/phase36_robustness_smoke_start_v1_12.json\",\n"
+    "            \"reports/audits/phase36_robustness_smoke_failure_v1_12.json\",\n"
+    "            \"reports/audits/phase36_v1_12_smoke_console_first_attempt.txt\",\n"
+    "            \"reports/audits/phase36_v1_12_cuda_environment_diagnosis.json\",\n"
+    "            \"reports/audits/phase36_v1_12_failed_smoke_adjudication.json\",\n"
+    "            \"reports/audits/phase36_preexecution_source_freeze_v1_13.json\",\n"
+    "            \"reports/audits/phase36_synthetic_smoke_eligibility_v1_13.json\",\n"
+    "        ],\n"
+    "        # raw-byte SHA-256 pins (files verified byte-for-byte before packaging)\n"
+    "        \"pins\": {\n"
+    "            \"scripts/analysis/phase36_robustness_execution_v1_14.py\":\n"
+    "                \"ac09ff8ded3610244920e66612145b246b33127140d344a9730d454bab27cff5\",\n"
+    "            \"scripts/analysis/launch_phase36_v1_14.py\":\n"
+    "                \"2339d6afa1507d68decd1b63b3f3250d86ecd01659580394c6f8dace4052e2c3\",\n"
+    "            \"scripts/analysis/phase36_robustness_unit_v1_14.py\":\n"
+    "                \"f837de2421ca464910b1b41c1ac29c5eae8fb686ba01e8b41fc499305b8ab7e7\",\n"
+    "            \"scripts/analysis/phase36_robustness_preflight_v1_14.py\":\n"
+    "                \"5ef73cc0a468c736ebce577c7be8186adbd37996ec48ddb29ed43e9c341143b8\",\n"
+    "            \"scripts/analysis/phase36_robustness_negative_controls_v1_14.py\":\n"
+    "                \"640b69b158018885a8990b9759f86aef9bf92097cbfe3dc48d57c334a9f6559a\",\n"
+    "            \"reports/audits/phase36_v1_14_runtime_source_integrity_manifest.json\":\n"
+    "                \"b4c358dfcb5e7b59beb6ae1ba2cffc64677d10049e12568b4c8eea8e79bb911e\",\n"
+    "            \"reports/audits/phase36_preexecution_source_freeze_v1_14.json\":\n"
+    "                \"332e6ad8db0d62baf19fcc10ce2809daee367b38cf56f7cda99a95f049e64655\",\n"
+    "            \"reports/audits/phase36_synthetic_smoke_eligibility_v1_14.json\":\n"
+    "                \"63d9fd04d86541629675669cda4c7ed0b5482ff51a22b08b110816e4cfccffbb\",\n"
+    "            \"reports/audits/phase36_v1_13_to_v1_14_semantic_diff.json\":\n"
+    "                \"45d382c6180b449587c1af301ab51163057b89f3933dc4278c5f0b969ff4c3f8\",\n"
+    "        },\n"
+    "    },\n"
+    "    # ---- FUTURE PROFILES: add explicitly, e.g.\n"
+    "    # (37, \"v1_0\"): {\"source_files\": [...], \"audit_files\": [...],\n"
+    "    #               \"lineage_files\": [...], \"pins\": {...}},\n"
+    "}\n\n"
+    "PHASE = 36\n"
+    "REVISION = \"v1_14\"\n"
+    "PROFILE = PROFILES[(PHASE, REVISION)]\n"
+    "print(\"profile loaded:\", (PHASE, REVISION))\n"
+    "print(\"  source :\", len(PROFILE[\"source_files\"]))\n"
+    "print(\"  audit  :\", len(PROFILE[\"audit_files\"]))\n"
+    "print(\"  lineage:\", len(PROFILE[\"lineage_files\"]))\n"
+    "print(\"  pins   :\", len(PROFILE[\"pins\"]))\n"
+))
+
+# -------------------------------------------------------------- section 3 ----
+CELLS.append(md("## 3. Raw-byte hashing helper (NEVER text-normalized)\n"
+                "`sha256` is always computed over `read_bytes()` so CRLF/LF is preserved."))
+CELLS.append(code(
+    "def sha256_bytes(path: Path) -> str:\n"
+    "    return hashlib.sha256(Path(path).read_bytes()).hexdigest()\n\n"
+    "# sanity: hashing is raw-byte and stable\n"
+    "_probe = ROOT / PROFILE[\"audit_files\"][0]\n"
+    "print(\"probe:\", _probe.name, sha256_bytes(_probe)[:16], \"...\")\n"
+    "print(\"raw-byte hashing: OK (no CRLF/LF normalization)\")\n"
+))
+
+# -------------------------------------------------------------- section 4 ----
+CELLS.append(md("## 4. Verify pinned SHAs (raw-byte) BEFORE packaging\n"
+                "Each pinned path must exist and hash exactly. Any mismatch ⇒ STOP."))
+CELLS.append(code(
+    "pin_results = {}\n"
+    "for rel, expected in PROFILE[\"pins\"].items():\n"
+    "    p = ROOT / rel\n"
+    "    if not p.is_file():\n"
+    "        pin_results[rel] = {\"present\": False, \"match\": False,\n"
+    "                            \"expected\": expected, \"observed\": None}\n"
+    "        continue\n"
+    "    obs = sha256_bytes(p)\n"
+    "    pin_results[rel] = {\"present\": True, \"match\": (obs == expected),\n"
+    "                        \"expected\": expected, \"observed\": obs}\n\n"
+    "all_expected_pins_match = all(v[\"match\"] for v in pin_results.values())\n"
+    "for rel, v in pin_results.items():\n"
+    "    print((\"MATCH \" if v[\"match\"] else \"FAIL  \") + rel)\n"
+    "print(\"all_expected_pins_match:\", all_expected_pins_match)\n"
+    "assert all_expected_pins_match, \"PIN MISMATCH — STOP; do not package.\"\n"
+))
+
+# -------------------------------------------------------------- section 5 ----
+CELLS.append(md("## 5. Resolve the handoff file set (missing files recorded, never recreated)"))
+CELLS.append(code(
+    "def _classify(rels, kind):\n"
+    "    present, missing = [], []\n"
+    "    for rel in rels:\n"
+    "        (present if (ROOT / rel).is_file() else missing).append(rel)\n"
+    "    return {\"kind\": kind, \"present\": present, \"missing\": missing}\n\n"
+    "groups = [\n"
+    "    _classify(PROFILE[\"source_files\"], \"source\"),\n"
+    "    _classify(PROFILE[\"audit_files\"], \"audit\"),\n"
+    "    _classify(PROFILE[\"lineage_files\"], \"lineage\"),\n"
+    "]\n"
+    "present_files = [rel for g in groups for rel in g[\"present\"]]\n"
+    "missing_files = sorted(rel for g in groups for rel in g[\"missing\"])\n\n"
+    "print(\"present:\", len(present_files), \" missing:\", len(missing_files))\n"
+    "if missing_files:\n"
+    "    print(\"MISSING (recorded, NOT recreated):\")\n"
+    "    for m in missing_files:\n"
+    "        print(\"  -\", m)\n"
+))
+
+# -------------------------------------------------------------- section 6 ----
+CELLS.append(md("## 6. Build the bundle directory tree\n"
+                "`reports/chatgpt_handoff/phase<PHASE>/<REVISION>_<UTC>/`"))
+CELLS.append(code(
+    "utc = datetime.datetime.now(datetime.timezone.utc)\n"
+    "STAMP = utc.strftime(\"%Y%m%dT%H%M%SZ\")\n"
+    "BASE = ROOT / \"reports\" / \"chatgpt_handoff\" / f\"phase{PHASE}\"\n"
+    "BUNDLE = BASE / f\"{REVISION}_{STAMP}\"\n"
+    "BUNDLE.mkdir(parents=True, exist_ok=True)\n"
+    "(BUNDLE / \"scripts\").mkdir(exist_ok=True)\n"
+    "(BUNDLE / \"reports\").mkdir(exist_ok=True)\n"
+    "print(\"bundle dir:\", BUNDLE)\n"
+))
+
+# -------------------------------------------------------------- section 7 ----
+CELLS.append(md("## 7. Copy allowed material (raw bytes via `shutil.copy2`)\n"
+                "Source → `scripts/…`, audits/lineage → `reports/audits/…`.\n"
+                "**No `.pt/.pth/.ckpt`, no datasets, no TEST/ROUTER_HOLDOUT.**"))
+CELLS.append(code(
+    "FORBIDDEN_SUFFIXES = (\".pt\", \".pth\", \".ckpt\", \".npy\", \".npz\", \".pkl\")\n\n"
+    "copied = []\n"
+    "for rel in present_files:\n"
+    "    src = ROOT / rel\n"
+    "    if src.suffix.lower() in FORBIDDEN_SUFFIXES:\n"
+    "        raise SystemExit(f\"REFUSE to package binary/checkpoint: {rel}\")\n"
+    "    dst = BUNDLE / rel\n"
+    "    dst.parent.mkdir(parents=True, exist_ok=True)\n"
+    "    shutil.copy2(src, dst)\n"
+    "    copied.append({\"rel\": rel, \"sha256\": sha256_bytes(src),\n"
+    "                   \"size_bytes\": src.stat().st_size})\n\n"
+    "print(\"copied files:\", len(copied))\n"
+    "assert len(copied) == len(present_files)\n"
+))
+
+# -------------------------------------------------------------- section 8 ----
+CELLS.append(md("## 8. Write `HANDOFF_INDEX.json` (machine-readable manifest)"))
+CELLS.append(code(
+    "by_kind = {}\n"
+    "for rel in present_files:\n"
+    "    if rel.startswith(\"scripts/\"):\n"
+    "        k = \"source\"\n"
+    "    elif rel in PROFILE[\"lineage_files\"]:\n"
+    "        k = \"lineage\"\n"
+    "    else:\n"
+    "        k = \"audit\"\n"
+    "    by_kind.setdefault(k, []).append(rel)\n\n"
+    "handoff_index = {\n"
+    "    \"artifact\": \"phase36_chatgpt_handoff_index\",\n"
+    "    \"phase\": PHASE,\n"
+    "    \"revision\": REVISION,\n"
+    "    \"revision_id\": \"ra_medfilm_barr_phase36_robustness_v1_14\",\n"
+    "    \"generated_utc\": utc.isoformat(),\n"
+    "    \"purpose\": \"PHASE_WISE_CHATGPT_HANDOFF_PACKAGING_ONLY\",\n"
+    "    \"not_scientific_authority\": True,\n"
+    "    \"root\": str(ROOT),\n"
+    "    \"bundle_directory\": str(BUNDLE),\n"
+    "    \"interpreter\": sys.executable,\n"
+    "    \"n_files\": len(copied),\n"
+    "    \"files\": copied,\n"
+    "    \"by_kind\": by_kind,\n"
+    "    \"missing_files\": missing_files,\n"
+    "    \"pins\": pin_results,\n"
+    "    \"all_expected_pins_match\": all_expected_pins_match,\n"
+    "    \"checkpoint_binaries_included\": False,\n"
+    "    \"dataset_files_included\": False,\n"
+    "    \"test_files_included\": False,\n"
+    "    \"router_holdout_files_included\": False,\n"
+    "    \"smoke_run\": False,\n"
+    "    \"science_run\": False,\n"
+    "    \"model_execution\": False,\n"
+    "    \"scientific_output\": False,\n"
+    "}\n"
+    "(BUNDLE / \"HANDOFF_INDEX.json\").write_text(\n"
+    "    json.dumps(handoff_index, indent=1), encoding=\"utf-8\")\n"
+    "print(\"wrote:\", BUNDLE / \"HANDOFF_INDEX.json\")\n"
+))
+
+# -------------------------------------------------------------- section 9 ----
+CELLS.append(md("## 9. Write `HANDOFF_SUMMARY.md` (human-readable)"))
+CELLS.append(code(
+    "lines = []\n"
+    "lines.append(f\"# Phase {PHASE} {REVISION} — ChatGPT Handoff Summary\")\n"
+    "lines.append(\"\")\n"
+    "lines.append(\"**PACKAGING / NAVIGATION ONLY — NOT scientific authority.**\")\n"
+    "lines.append(\"\")\n"
+    "lines.append(f\"* Generated (UTC): `{utc.isoformat()}`\")\n"
+    "lines.append(f\"* Interpreter: `{sys.executable}`\")\n"
+    "lines.append(f\"* Files packaged: **{len(copied)}**\")\n"
+    "lines.append(f\"* All expected pins match: **{all_expected_pins_match}**\")\n"
+    "lines.append(\"\")\n"
+    "lines.append(\"## Evidence-class scope\")\n"
+    "lines.append(\"\")\n"
+    "lines.append(\"No smoke, no science, no model/checkpoint, no VAL/GT, \"\n"
+    "             \"no TEST, no ROUTER_HOLDOUT, no training was performed.\")\n"
+    "lines.append(\"Checkpoint binaries and datasets are NOT included.\")\n"
+    "lines.append(\"\")\n"
+    "lines.append(\"## Packaged files\")\n"
+    "lines.append(\"\")\n"
+    "for k in (\"source\", \"audit\", \"lineage\"):\n"
+    "    rels = by_kind.get(k, [])\n"
+    "    if not rels:\n"
+    "        continue\n"
+    "    lines.append(f\"### {k} ({len(rels)})\")\n"
+    "    lines.append(\"\")\n"
+    "    for rel in rels:\n"
+    "        lines.append(f\"* `{rel}`\")\n"
+    "lines.append(\"\")\n"
+    "lines.append(\"## Missing files\")\n"
+    "lines.append(\"\")\n"
+    "if missing_files:\n"
+    "    for m in missing_files:\n"
+    "        lines.append(f\"* `{m}`\")\n"
+    "else:\n"
+    "    lines.append(\"_None — all required files were present._\")\n"
+    "lines.append(\"\")\n"
+    "lines.append(\"## Pinned SHA-256 (raw-byte)\")\n"
+    "lines.append(\"\")\n"
+    "for rel, v in pin_results.items():\n"
+    "    lines.append(f\"* `{rel}`\")\n"
+    "    lines.append(f\"  * expected `{v['expected']}`\")\n"
+    "    lines.append(f\"  * observed `{v['observed']}`\")\n"
+    "    lines.append(f\"  * match **{v['match']}**\")\n"
+    "lines.append(\"\")\n"
+    "lines.append(\"## Current research state (UNCHANGED by this task)\")\n"
+    "lines.append(\"\")\n"
+    "lines.append(\"* v1.12 = CONSUMED_FAILED_PRE_MODEL / RETRY_FORBIDDEN\")\n"
+    "lines.append(\"* v1.13 = FROZEN_NEVER_CONSUMED\")\n"
+    "lines.append(\"* v1.14 smoke = ELIGIBLE_NOT_STARTED\")\n"
+    "lines.append(\"* v1.14 science = INELIGIBLE_NOT_STARTED\")\n"
+    "lines.append(\"* Phase37 = NOT_STARTED\")\n"
+    "lines.append(\"* TEST = REMAINS_PHASE39_ONLY\")\n"
+    "(BUNDLE / \"HANDOFF_SUMMARY.md\").write_text(\n"
+    "    \"\\n\".join(lines) + \"\\n\", encoding=\"utf-8\")\n"
+    "print(\"wrote:\", BUNDLE / \"HANDOFF_SUMMARY.md\")\n"
+))
+
+# ------------------------------------------------------------- section 10 ----
+CELLS.append(md("## 10. Build the ZIP and inspect its members\n"
+                "Fails if any forbidden member appears (checkpoints / datasets / TEST / ROUTER_HOLDOUT)."))
+CELLS.append(code(
+    "ZIP_PATH = BASE / f\"{REVISION}_{STAMP}.zip\"\n"
+    "with zipfile.ZipFile(ZIP_PATH, \"w\", zipfile.ZIP_DEFLATED) as zf:\n"
+    "    for f in sorted(BUNDLE.rglob(\"*\")):\n"
+    "        if f.is_file():\n"
+    "            zf.write(f, arcname=str(f.relative_to(BASE)))\n\n"
+    "with zipfile.ZipFile(ZIP_PATH, \"r\") as zf:\n"
+    "    members = zf.namelist()\n\n"
+    "_forbidden_suffixes = (\".pt\", \".pth\", \".ckpt\", \".npy\", \".npz\", \".pkl\")\n"
+    "_forbidden_tokens = (\"test_set\", \"router_holdout\", \"ground_truth\", \"gt_mask\",\n"
+    "                     \"images/\", \"masks/\", \"dataset\", \"/data/\")\n"
+    "bad = []\n"
+    "for m in members:\n"
+    "    low = m.lower()\n"
+    "    if low.endswith(_forbidden_suffixes) or any(t in low for t in _forbidden_tokens):\n"
+    "        bad.append(m)\n"
+    "print(\"zip members:\", len(members))\n"
+    "print(\"forbidden members:\", bad)\n"
+    "assert not bad, f\"FORBIDDEN ZIP MEMBERS: {bad}\"\n"
+    "for m in members:\n"
+    "    print(\"  \", m)\n"
+))
+
+# ------------------------------------------------------------- section 11 ----
+CELLS.append(md("## 11. ZIP integrity summary (sha-256 / size / count)"))
+CELLS.append(code(
+    "zip_sha = sha256_bytes(ZIP_PATH)\n"
+    "zip_size = ZIP_PATH.stat().st_size\n"
+    "print(\"zip           :\", ZIP_PATH)\n"
+    "print(\"zip sha256    :\", zip_sha)\n"
+    "print(\"zip size bytes:\", zip_size)\n"
+    "print(\"members       :\", len(members))\n"
+    "print(\"missing files :\", len(missing_files))\n"
+))
+
+# ------------------------------------------------------------- section 12 ----
+CELLS.append(md("## 12. Write the generation audit\n"
+                "`reports/audits/phase36_v1_14_chatgpt_handoff_generation.json`\n"
+                "(path derived from PHASE/REVISION so future profiles write their own)."))
+CELLS.append(code(
+    "AUD = ROOT / \"reports\" / \"audits\"\n"
+    "AUD.mkdir(parents=True, exist_ok=True)\n"
+    "gen_audit_name = f\"phase{PHASE}_{REVISION}_chatgpt_handoff_generation.json\"\n"
+    "GEN_AUDIT = AUD / gen_audit_name\n"
+    "generation = {\n"
+    "    \"artifact\": f\"phase{PHASE}_{REVISION}_chatgpt_handoff_generation\",\n"
+    "    \"phase\": PHASE,\n"
+    "    \"revision\": REVISION,\n"
+    "    \"generated_utc\": utc.isoformat(),\n"
+    "    \"interpreter\": sys.executable,\n"
+    "    \"bundle_directory\": str(BUNDLE),\n"
+    "    \"zip_path\": str(ZIP_PATH),\n"
+    "    \"zip_sha256\": zip_sha,\n"
+    "    \"zip_size_bytes\": zip_size,\n"
+    "    \"number_of_files\": len(copied),\n"
+    "    \"zip_member_count\": len(members),\n"
+    "    \"missing_files\": missing_files,\n"
+    "    \"all_expected_pins_match\": all_expected_pins_match,\n"
+    "    \"checkpoint_binaries_included\": False,\n"
+    "    \"dataset_files_included\": False,\n"
+    "    \"test_files_included\": False,\n"
+    "    \"router_holdout_files_included\": False,\n"
+    "    \"smoke_run\": False,\n"
+    "    \"science_run\": False,\n"
+    "    \"model_execution\": False,\n"
+    "    \"scientific_output\": False,\n"
+    "    \"terminal\": f\"PHASE{PHASE}_{REVISION.upper()}_CHATGPT_HANDOFF_PACKAGE_COMPLETE\",\n"
+    "}\n"
+    "GEN_AUDIT.write_text(json.dumps(generation, indent=1), encoding=\"utf-8\")\n"
+    "print(\"wrote:\", GEN_AUDIT)\n"
+    "print(\"terminal:\", generation[\"terminal\"])\n"
+    "print(\"NEXT: upload the ZIP to ChatGPT for the independent source-level audit.\")\n"
+))
+
+nb = {
+    "cells": CELLS,
+    "metadata": {
+        "kernelspec": {"display_name": "jup-venv", "language": "python", "name": "jup-venv"},
+        "language_info": {"name": "python", "version": "3.11.9"},
+        "ra_medfilm_barr": {
+            "purpose": "PHASE_WISE_CHATGPT_HANDOFF_PACKAGING_ONLY",
+            "not_scientific_authority": True,
+            "no_torch": True, "no_model": True, "no_checkpoint": True,
+            "no_smoke": True, "no_science": True, "no_val_gt": True,
+            "no_test": True, "no_router_holdout": True, "no_training": True,
+        },
+    },
+    "nbformat": 4,
+    "nbformat_minor": 5,
+}
+
+if OUT.exists():
+    raise SystemExit(f"REFUSE to overwrite existing notebook: {OUT}")
+OUT.parent.mkdir(parents=True, exist_ok=True)
+OUT.write_text(json.dumps(nb, indent=1) + "\n", encoding="utf-8")
+print("wrote", OUT, "cells:", len(CELLS))
