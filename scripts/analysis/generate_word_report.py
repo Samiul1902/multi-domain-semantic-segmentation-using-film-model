@@ -22,6 +22,7 @@ change, the document changes with them.
 """
 
 import json
+import os
 
 import docx
 import pandas as pd
@@ -172,10 +173,14 @@ def create_report():
     def callout(title, body, fill=HEX_HIGHLIGHT, color=COLOR_PRIMARY):
         t = doc.add_table(rows=1, cols=1)
         t.alignment = WD_TABLE_ALIGNMENT.CENTER
+        # a callout is one indivisible statement; never split it across a page break
+        t.rows[0]._tr.get_or_add_trPr().append(
+            parse_xml(f'<w:cantSplit {nsdecls("w")}/>'))
         c = t.rows[0].cells[0]
         set_cell_background(c, fill)
         set_cell_margins(c, top=160, bottom=160, left=200, right=200)
         p = c.paragraphs[0]
+        p.paragraph_format.keep_together = True
         rt = p.add_run(title + "\n")
         rt.font.bold = True
         rt.font.size = Pt(10.5)
@@ -259,8 +264,9 @@ def create_report():
                  ['Standard U-Net', 'Plain U-Net', '7,763,041', '78.78%', '68.81%', '72.11%']],
                 align_right_cols=(2, 3, 4, 5))
     caption('Table 1. Phase 21 six-model comparison on VAL808. Source: '
-            'reports/tables/phase21_six_model_comparison.csv. 95% bootstrap CIs are wide and overlap '
-            'between Global MedFiLM and DeepLabV3+; the two are not statistically distinguishable.')
+            'reports/tables/phase21_six_model_comparison.csv. The 95% bootstrap CIs are wide and overlap '
+            'between Global MedFiLM and DeepLabV3+, so this evidence does not resolve the difference between '
+            'them. Overlapping intervals are not evidence that the two models are equivalent.')
 
     h2('2.2 Regional BARR is a separate run and is not a Phase 21 arm')
     para('Regional BARR (Global MedFiLM + regional refiner R\u03c8 + benefit router B\u03c6 + post-safety '
@@ -324,10 +330,10 @@ def create_report():
     tbl3 = doc.add_table(rows=1, cols=5)
     style_table(tbl3, [1.0, 1.9, 0.6, 1.05, 2.0],
                 ['Stratum', 'Definition', 'n', 'Global Dice', 'Evidence status'],
-                [['TINY', 'Sub-centimetre calculi (<0.01% of field)', '44', '53.21%', 'Descriptive only; no BARR result'],
+                [['TINY', 'Annotated area <0.01% of field', '44', '53.21%', 'Descriptive only; no BARR result'],
                  ['SMALL', '0.01% - 0.05% of field', '19', '65.42%', 'Descriptive only; no BARR result'],
                  ['MEDIUM', '0.05% - 0.15% of field', '27', '69.98%', 'Descriptive only; no BARR result'],
-                 ['LARGE', 'Staghorn / mass (>0.15% of field)', '13', '70.82%', 'Descriptive only; no BARR result'],
+                 ['LARGE', 'Annotated area >0.15% of field', '13', '70.82%', 'Descriptive only; no BARR result'],
                  ['Other KUB', 'Not primary bin', '177', '84.74%', 'Descriptive only; no BARR result']],
                 align_right_cols=(2, 3), body_pt=8.5)
     caption('Table 4. KUB size stratification. Source: reports/tables/phase21_kub_size_stratification.csv, '
@@ -345,6 +351,19 @@ def create_report():
          '\u201cS\u03c9 eliminates 1,725 harmed cases\u201d attributed the whole system-level reduction to one '
          'component and is corrected here.', bold=False)
 
+    callout('Compute accounting: rejection is not free',
+            'The refiner workload is set by how many candidates the router SENDS, not by how many the '
+            'safety gate KEEPS. A7 routes 1,239 of 4,957 cases (25.0%) and every one of them executes a '
+            'regional forward pass. A8 routes exactly the same 1,239, executes the refiner on all of them, '
+            'and then S\u03c9 declines 34 \u2014 so 1,205 refinements are adopted and 34 are computed and '
+            'discarded. The true A8 refiner workload is therefore 1,239 forward passes (25.0% of the '
+            'population), not 1,205 (24.3%). The stored Phase 28 table records n_routed = 1,205 for A8 '
+            'while recording 1,239 for A7; that A8 field is an adoption count and reading it as a compute '
+            'count understates the workload by 34 passes. The conditional harm share 390/1,205 = 32.37% is '
+            'correct for what it measures \u2014 harm among adopted refinements \u2014 and is not a workload '
+            'figure. The earlier \u201c24.3% of the unconditional refiner workload\u201d is withdrawn.',
+            fill=HEX_WARN, color=COLOR_WARN)
+
     callout('In-sample caveat',
             'The 4,957 ROUTER_DEVELOPMENT rows are a subset of the 5,832 TRAIN samples. This is in-sample '
             'development evidence, not held-out evidence. A reduced average harm rate is also not evidence of '
@@ -353,7 +372,9 @@ def create_report():
 
     doc.add_picture('paper_doc/fig3_safety_compute.png', width=Inches(6.4))
     caption('Figure 3. Harm rate on an intent-to-treat denominator (left) and refiner workload (right), '
-            'decomposed by component. Source: reports/tables/phase28_table_02_arm_primary_metrics.csv.')
+            'decomposed by component. Source: reports/tables/phase28_table_02_arm_primary_metrics.csv. '
+            'A8 executes the same 1,239 crops as A7, because S\u03c9 rejects after the refiner has run; the '
+            '34 rejected crops are charged at full cost and 1,205 refinements are adopted.')
 
     # --------------------------------------------- 5. prediction panels
     h1('5. Single-Case Prediction Panels (internal)')
@@ -445,6 +466,18 @@ def create_report():
     para('No row was dropped after seeing a result. A case is kept even when its ground truth or its '
          'prediction is empty, because dropping degenerate cases would flatter the model.', italic=True)
 
+    para('BrEaST-Lesions-USG needs one clarification, because its counts do not obviously agree. The folder '
+         'holds 270 images and 252 tumour masks, so 18 images carry no mask, and they are of two different '
+         'kinds. Fourteen are additional \u201c_other\u201d views belonging to 7 cases that already contribute '
+         'a primary image (case022, case036, case038, case085, case092, case140, case151); none of them '
+         'entered the manifest. Four are primary images with no tumour mask at all \u2014 case045, case061, '
+         'case209 and case213 \u2014 and those are the four exclusions. The manifest therefore lists the 256 '
+         'primary images, of which 252 are analysed, so 270 = 252 analysed + 4 excluded + 14 additional views '
+         'that were never eligible. Because no case contributes more than one analysed image, 252 is a valid '
+         'case-level cluster count. It is not a verified patient count: the manifest records no patient '
+         'identifier, so two case_ids belonging to one patient could neither be detected nor ruled out, and '
+         'the intervals are described accordingly.')
+
     h2('6.2 Global MedFiLM: macro metrics per cohort')
     rows = []
     for key, label in (('cvc', 'CVC-ClinicDB'), ('breast', 'BrEaST-Lesions-USG'),
@@ -467,8 +500,10 @@ def create_report():
                  'HD95 (px)', 'NSD@2'],
                 rows, align_right_cols=(1, 2, 3, 4, 5, 6, 7, 8), body_pt=8)
     caption('Table 7. Global MedFiLM, macro mean over cases (equal case weight), threshold 0.50. '
-            'Intervals are percentile bootstrap over clusters (CVC: 29 sequences; BrEaST: 252 cases; '
-            'Stones: none, n = 20). HD95 and NSD are in PIXELS \u2014 no external cohort ships physical '
+            'Intervals are percentile bootstrap resampling clusters: CVC-ClinicDB by sequence (29 clusters), '
+            'BrEaST-Lesions-USG by case (252 clusters), and Stones by image, where each of the 20 images is '
+            'its own cluster. The Stones interval is therefore image-level and wide by construction, not a '
+            'population interval. HD95 and NSD are in PIXELS \u2014 no external cohort ships physical '
             'pixel spacing, so no millimetre value is reported or implied.')
 
     para('Surface metrics are not comparable across these cohorts: the three datasets have different '
@@ -501,9 +536,13 @@ def create_report():
 
     para('The single \u201cStones Dice\u201d of 8.08% is therefore not a segmentation score. It is the '
          'arithmetic consequence of scoring 14 empty-ground-truth images as zero plus six very poor '
-         'segmentations. The substantive finding is that the global model has no true-negative behaviour on '
-         'this cohort: it marked foreground on every stone-free image, with a mean predicted area far larger '
-         'than any annotated stone. This is a failure of domain transfer, and it is reported as one.')
+         'segmentations. The substantive finding is case-level, not pixel-level. The global model generated '
+         'foreground on all 14 stone-absent images, and none of the 14 was predicted empty, so case-level '
+         'specificity is 0 of 14. Pixel-level true-negative counts nonetheless remain large and nonzero '
+         '\u2014 median 259,214 of 262,144 pixels, minimum 231,793 \u2014 because the false-positive regions '
+         'are small relative to the frame. What fails is the decision to emit any foreground at all on an '
+         'image that contains no stone, not the per-pixel classification of background. This is a failure of '
+         'domain transfer, and it is reported as one.')
 
     h2('6.4 Regional BARR on the same cases')
     ex = S['exec']
@@ -533,6 +572,16 @@ def create_report():
             'the router sent to refinement; \u201cnot attempted\u201d cases keep the global mask. '
             'Accepted + Rejected + Not attempted + Failed equals n for every cohort.')
 
+    _acc = sum(states[k].get('ACCEPTED', 0) for k in states)
+    _rej = sum(states[k].get('REJECTED', 0) for k in states)
+    para(f'The same accounting rule applies here, and the execution trace records it directly. Across the '
+         f'884 cases the router selected {_acc + _rej}, and the campaign performed exactly {_acc + _rej} '
+         f'refiner forward passes \u2014 equal to accepted ({_acc}) plus rejected ({_rej}), not to accepted '
+         f'alone. A rejected case has already paid for its regional pass and for the S\u03c9 evaluation; only '
+         f'the output is discarded and the global mask restored. Counting {_acc} refinements as the external '
+         f'compute cost would understate the workload by {_rej} passes '
+         f'({_rej / (_acc + _rej) * 100:.1f}% of the refinement compute).', italic=True)
+
     p = S['paired']
     rows = []
     for key, label in (('cvc', 'CVC-ClinicDB'), ('breast', 'BrEaST-Lesions-USG'),
@@ -557,9 +606,13 @@ def create_report():
             'are unchanged; the mean is the informative column.')
 
     para('The effect is small and positive in all three cohorts, and it is the same order of magnitude as '
-         'the internal preservation result (+0.28 pp on VAL808). It is not an improvement claim: the '
-         'interquartile range straddles zero in every cohort, and in BrEaST the number of worsened cases '
-         '(20) is close to the number improved (27).', after=6)
+         'the internal preservation result (+0.28 pp on VAL808). The paired distribution must be described '
+         'carefully: the median and both quartiles are exactly zero in every cohort, so the interquartile '
+         'range is [0, 0] and sits on zero rather than straddling it. That is a consequence of construction, '
+         'not of a symmetric spread \u2014 700 of 884 cases are untouched because the router did not select '
+         'them or the safety gate rejected them. Among the 184 cases the router did select, 96 improve, 34 '
+         'worsen and 54 are exactly unchanged, and in BrEaST the number worsened (20) is close to the number '
+         'improved (27). The mean is the informative column; the quartiles are not.', after=6)
 
     para('One property of the router must be stated plainly. Its threshold was calibrated on the internal '
          'development population with a fixed 25% budget. On external cohorts the selection fraction is an '
@@ -599,23 +652,59 @@ def create_report():
     para('This is the substantive external result of the study. A model that reaches 83.51% macro-domain '
          'Dice on its internal validation split does not carry that performance to external data from the '
          'same nominal modalities, and the degradation is severe enough on one cohort to make the model '
-         'unusable there without domain adaptation.', italic=True)
+         'unusable there without domain adaptation. The shift itself is descriptive. Because these cohorts '
+         'differ from the internal data in population, annotation convention, acquisition protocol and '
+         'preprocessing all at once, the numbers cannot be attributed to scanner make, hospital site or any '
+         'single acquisition factor; no such attribution is made.', italic=True)
 
-    h2('6.6 Figures')
+    h2('6.6 Figures: per-cohort panels')
     doc.add_picture('reports/figures/fig6_external_cvc.png', width=Inches(6.9))
     caption('Figure 5. CVC-ClinicDB stress-test panels, 8 columns: input, ground truth, global prediction, '
             'global error map, global probability, BARR prediction, BARR error map and BARR decision trace. '
-            'Rows are the median-, best- and worst-Dice cases, selected by rule.')
+            'Rows are the median-, best- and worst-Dice cases, selected by rule. These rows are '
+            'predominantly NOT_ATTEMPTED, so they are retained as illustrative Global-equals-BARR unchanged '
+            'examples; the cases where BARR actually acted are in Figures 8 and 9.')
     doc.add_picture('reports/figures/fig7_external_breast.png', width=Inches(6.9))
-    caption('Figure 6. BrEaST-Lesions-USG stress-test panels, same column set and same selection rule.')
+    caption('Figure 6. BrEaST-Lesions-USG stress-test panels, same column set and same selection rule. '
+            'Likewise dominated by NOT_ATTEMPTED cases.')
     doc.add_picture('reports/figures/fig8_external_stones.png', width=Inches(6.9))
     caption('Figure 7. Stones stress-test panels. The cohort-wide median Dice is zero because 14 of 20 cases '
             'have an empty ground truth; that row is kept deliberately rather than replaced, because it '
             'shows the false-positive behaviour that defines this cohort.')
 
-    para('The error palette is identical to Figures 1\u20134: TP #00E600, FP #FF2020, FN #2060FF, TN #181818. '
-         'The cyan rectangle in column 8 is the frozen ROI window proposed from the predicted probability '
-         'map at threshold 0.30; it is geometry, not a model output.', italic=True)
+    h2('6.7 Figures: what BARR actually did')
+    para('Figures 5\u20137 answer \u201cwhat does the system output\u201d but are dominated by cases the router '
+         'declined, so they cannot show the refinement mechanism working. Figures 8 and 9 supply that, using '
+         'four cases selected by explicit rule from the saved records. No case was re-inferred and none was '
+         'chosen by eye; the rules are printed on the figures and recorded in '
+         'barr_action_figure.json.')
+
+    doc.add_picture('reports/figures/fig9_external_barr_action_adopted.png', width=Inches(6.9))
+    caption('Figure 8. Refinements that were adopted. Row A is the accepted case with the largest Dice gain '
+            '(CVC::160, 80.62% \u2192 92.09%, +11.47 pp); row B is the accepted case with the largest Dice '
+            'loss (CVC::135, 18.22% \u2192 13.43%, \u22124.78 pp). Both executed the refiner and passed the '
+            'S\u03c9 gate. The harm in row B is real: it is the mechanism the router and safety filter exist '
+            'to bound, and it is not hidden here.')
+    doc.add_picture('reports/figures/fig10_external_barr_action_notadopted.png', width=Inches(6.9))
+    caption('Figure 9. Outcomes that were not adopted. Row C is the most borderline rejection \u2014 the '
+            'rejected case with the highest S\u03c9 acceptance probability (CVC::358, p = 0.4966 against a '
+            '0.50 threshold) \u2014 so its BARR panels necessarily equal the global panels: the refinement '
+            'was computed and then discarded, and that equality IS the rejection. Row D is a case the router '
+            'never selected (CVC::541, score \u22120.001346 below \u03c4_C7), which keeps the global mask by '
+            'construction.')
+
+    para('Across the 884 cases, 139 refinements were adopted and 45 were computed and discarded. The router '
+         'selected 184 candidates in total, and 184 regional forward passes were executed. Of the 139 '
+         'adopted refinements, 14 lost Dice on CVC-ClinicDB, 20 on BrEaST-Lesions-USG and 0 on Stones; the '
+         'Stones cohort has no accepted case with a negative change, so no harmful Stones example exists and '
+         'none is shown.', italic=True)
+
+    para('The error palette is identical to Figures 1\u20139: TP #00E600, FP #FF2020, FN #2060FF, TN #181818. '
+         'In Figures 5\u20137 the cyan rectangle in column 8 is the frozen ROI window proposed from the '
+         'predicted probability map at threshold 0.30; in Figures 8\u20139 it is drawn on the input image. '
+         'It is geometry, not a model output. Figures 5\u20137 are 8-column reference panels and are meant '
+         'to be inspected at full resolution rather than at page width; Figures 8\u20139 are drawn at print '
+         'size so that their annotation is readable on the page.', italic=True)
 
     # ------------------------------------------- 7. dataset independence
     h1('7. Dataset Independence and Mask Provenance')
@@ -674,8 +763,10 @@ def create_report():
         'family of hypotheses is tested.',
         'Surface metrics on external data are in pixels. No cohort ships physical pixel spacing, so HD95, '
         'ASSD and NSD cannot be converted to millimetres and cannot be compared across cohorts.',
-        'The Stones cohort is n = 20 with 6 positive cases. It carries no interval estimate; point estimates '
-        'and counts are reported and no subgroup comparison is made.',
+        'The Stones cohort is n = 20 with 6 positive cases. Its 95% interval (8.08% [0.34, 18.99]) is a '
+        'percentile bootstrap over the 20 images with each image as its own cluster. It is therefore an '
+        'image-level descriptive interval and not a population interval, and at this sample size it is too '
+        'wide to support a subgroup comparison. Point estimates and counts are reported alongside it.',
         'The BARR router threshold was calibrated on the internal development population. Its external '
         'selection fraction is an outcome of that fixed threshold, not a controlled property of the cohort.',
         'TEST (n = 1,683) remains locked and was not accessed for any value in this report.',
@@ -687,8 +778,10 @@ def create_report():
 
     # ------------------------------------------------ 9. retractions
     h1('9. Corrections and Retractions Relative to the October 30 Build')
-    para('Items A\u2013H below are the corrections applied to this build. A\u2013D and H change what the report '
-         'asserts about external data; E\u2013G change how those assertions are framed and bounded.')
+    para('Items A\u2013L below are the corrections applied to this build. A\u2013D and H change what the '
+         'report asserts about external data; E\u2013G change how those assertions are framed and bounded; '
+         'I\u2013L correct a statistical contradiction, a distribution description and the compute '
+         'accounting.')
     tbl13 = doc.add_table(rows=1, cols=4)
     style_table(tbl13, [0.35, 1.85, 1.6, 2.5],
                 ['#', 'Statement in the previous build', 'Status', 'Correction'],
@@ -702,7 +795,8 @@ def create_report():
                  ['C', 'Figure 5 caption: "No BARR decision is shown because none was executed"',
                   'FALSE IN THIS BUILD',
                   'BARR has now been executed end-to-end on all 884 cases from verified artefacts. Figures '
-                  '5\u20137 show the BARR prediction, BARR error map and decision trace.'],
+                  '5\u20137 show the BARR prediction, BARR error map and decision trace; Figures 8\u20139 '
+                  'show four cases where the mechanism actually acted or was declined.'],
                  ['D', '"BARR S\u03c9 caught / rejected" external cases: no decision record exists',
                   'SUPERSEDED',
                   'A decision record now exists for every external case: 83 accepted and 35 rejected on CVC, '
@@ -718,10 +812,29 @@ def create_report():
                   'that surface metrics are in pixels.'],
                  ['H', '"No external validation exists"', 'SUPERSEDED',
                   'External measurement now exists and is reported with its limits. The claim that no '
-                  'external *validation* exists is retained, because none does.']],
+                  'external *validation* exists is retained, because none does.'],
+                 ['I', 'Table 7 reported a Stones 95% interval while the limitations said the cohort '
+                  '"carries no interval estimate"', 'CONTRADICTION RESOLVED',
+                  'The interval exists and is reproducible: a percentile bootstrap over 20 images with each '
+                  'image as its own cluster. It is labelled as an image-level descriptive interval and not '
+                  'a population interval; the limitations text now says so instead of denying the estimate.'],
+                 ['J', 'Paired change "interquartile range straddling zero"', 'CORRECTED',
+                  'The interquartile range is exactly [0, 0] in all three cohorts and sits on zero, because '
+                  '700 of 884 cases are untouched by construction. Straddling was the wrong description; '
+                  'the mean is the informative statistic and the quartiles are not.'],
+                 ['K', '"24.3% of the unconditional refiner workload"', 'CORRECTED',
+                  'The refiner workload is 1,239 of 4,957 (25.0%). A8 routes the same 1,239 candidates as '
+                  'A7, executes all of them, and adopts 1,205; the stored A8 field n_routed = 1,205 is an '
+                  'adoption count, and reading it as compute understates the workload by 34 forward passes.'],
+                 ['L', 'External deltas described as showing preservation "transfers"', 'REFINED',
+                  'The external deltas (+0.32, +0.03, +0.13 pp) are descriptive. The external study has no '
+                  'pre-specified margin and no eligible confirmatory paired procedure, so it cannot '
+                  'establish non-inferiority; the supportable claim is that macro Dice is not materially '
+                  'degraded.']],
                 body_pt=8)
-    caption('Table 13. Correction and retraction register for this build. External evidence trail in '
-            'reports/audits/c1_external_stress_v1_0/; earlier trail in '
+    caption('Table 13. Correction and retraction register for this build. Items A\u2013H were applied in the '
+            'first correction pass; I\u2013L in the final statistical and compute pass. External evidence '
+            'trail in reports/audits/c1_external_stress_v1_0/; earlier trail in '
             'reports/audits/c1_external_evidence_v1_0/.')
 
     para('The register below is carried forward unchanged from the October 30 correction pass. Those '
@@ -761,19 +874,26 @@ def create_report():
     h1('11. What the Evidence Does Support')
     callout('Defensible summary',
             '1. Global MedFiLM reaches 83.51% macro-domain Dice on VAL808 (n = 808) with 3.52M parameters, '
-            'ranking first of six under a single shared protocol, and is not statistically distinguishable '
-            'from DeepLabV3+.\n'
+            'ranking first of six under a single shared protocol. Its interval overlaps that of DeepLabV3+, '
+            'so this evidence does not resolve the difference between the two; overlap is not evidence that '
+            'they are equivalent.\n'
             '2. Regional BARR preserves macro Dice relative to Global MedFiLM: +0.28 pp on VAL808 (three-seed '
             'mean) and +0.17 pp on the one-shot ROUTER_HOLDOUT, within a \u22120.5 pp non-inferiority margin. '
             'This is a preservation result, not an improvement claim.\n'
             '3. On in-sample development data the router removes most harmful refinements and the post-safety '
-            'filter removes a further 22 cases, at 24.3% of the unconditional refiner workload.\n'
+            'filter removes a further 22 cases. The refiner workload is 1,239 of 4,957 cases (25.0%), because '
+            'all 1,239 routed candidates execute a regional forward pass and only 1,205 of those refinements '
+            'are adopted.\n'
             '4. On 884 external cases the frozen system runs end-to-end without error, and BARR changes the '
             'per-case Dice by a median of 0.00 pp in every cohort, with a macro change of '
             f"{(m('cvc', 'barr', 'Dice') - m('cvc', 'global', 'Dice')) * 100:+.2f} pp (CVC), "
             f"{(m('breast', 'barr', 'Dice') - m('breast', 'global', 'Dice')) * 100:+.2f} pp (BrEaST) and "
             f"{(m('stones', 'barr', 'Dice') - m('stones', 'global', 'Dice')) * 100:+.2f} pp (Stones). "
-            'Preservation transfers; improvement does not.\n'
+            'These external deltas are descriptive. The external study has no pre-specified non-inferiority '
+            'margin and no eligible confirmatory paired procedure, so it cannot establish non-inferiority: a '
+            'mean delta of this size is consistent with no material change, which is not the same as '
+            'demonstrating preservation. What the external data support is narrower \u2014 the frozen system '
+            'does not materially degrade macro Dice on these cohorts.\n'
             '5. External performance is far below internal performance: '
             f"{S['shift'][S['shift'].cohort == 'CVC-ClinicDB'].delta_vs_internal_pp.iloc[0]:+.1f} pp on "
             'CVC-ClinicDB, '
@@ -791,7 +911,8 @@ def create_report():
     r = p.add_run('Report date: ' + REPORT_DATE + '  |  RA-MedFiLM-BARR Scientific Investigation Team')
     r.font.size = Pt(8.5); r.font.italic = True; r.font.color.rgb = COLOR_SECONDARY
 
-    out_path = Path('paper_doc/RA_MedFiLM_BARR_Scientific_Report.docx')
+    out_path = Path(os.environ.get(
+        "REPORT_OUT", "paper_doc/RA_MedFiLM_BARR_Scientific_Report.docx"))
     doc.save(out_path)
     print(f'Report successfully saved to {out_path.resolve()}')
 

@@ -65,11 +65,11 @@
       "statement": "Regional BARR macro Dice 86.24% (previous report and Figure 1)",
       "value": null,
       "source_artifact": "scripts/analysis/generate_word_report.py",
-      "source_sha256": "a43e6f8919cda22a6e97e5af171469c4045c0ea599c1032e051fd27b693fb60b",
+      "source_sha256": "2f096840c754930d66920a5fe5e30699329b7e317625ddbe931da69e2fd785b9",
       "source_exists": true,
       "source_kind": "file",
       "verdict": "UNSUPPORTED",
-      "notes": "No JSON result record anywhere in reports/ contains 86.24. Contradicts INT-03 (83.79% on VAL808) and INT-04 (93.03% on holdout). Retracted. REBOUND 2026-10-31 during the external stress-test build: the report generator was rewritten, so this entry is re-bound from 9dea40931d584114… to a10453867b81b440…. The verdict is unchanged (UNSUPPORTED); the string 86.24 now survives only inside the carried-forward retraction register."
+      "notes": "No JSON result record anywhere in reports/ contains 86.24. Contradicts INT-03 (83.79% on VAL808) and INT-04 (93.03% on holdout). Retracted. REBOUND 2026-10-31 twice during the external stress-test build: once when the report generator was rewritten (9dea4093\u2026 to a1045386\u2026) and again in the final statistical and compute correction pass (a1045386\u2026 to 2f096840\u2026). The verdict is unchanged (UNSUPPORTED); the string 86.24 now survives only inside the carried-forward retraction register."
     },
     {
       "claim_id": "INT-06",

@@ -15,7 +15,7 @@ Deep neural networks deployed across heterogeneous medical imaging modalities of
 
 To eliminate data leakage, we enforce canonical Manifest v3 governance, isolating 118 high-risk patient-overlapping cases and locking the 1,683-case evaluation cohort. Statistical inference is governed by domain-stratified cluster bootstrapping; because no confirmatory significance procedure is eligible, all reported intervals are descriptive.
 
-On the VAL808 development split, Global MedFiLM attains 83.51% macro-domain Dice with 3.52M parameters and ranks first of six architectures under a single shared protocol, though it is not statistically distinguishable from DeepLabV3+. Regional BARR **preserves** this accuracy rather than improving on it: +0.28 pp on VAL808 (three-seed mean) and +0.17 pp on the one-shot ROUTER_HOLDOUT (95% CI [+0.11, +0.24]), within a pre-specified −0.5 pp non-inferiority margin. A retrospective external stress test on 884 cases from three public cohorts shows that this preservation transfers (+0.32 pp, +0.03 pp and +0.13 pp macro Dice on CVC-ClinicDB, BrEaST-Lesions-USG and Stones respectively) while absolute performance does not: external Dice falls 13.4, 15.1 and 68.3 pp below the internal anchors for the same nominal modalities, and on the Stones cohort the model marks foreground on 14 of 14 stone-free radiographs. The external study is explicitly not a validation study.
+On the VAL808 development split, Global MedFiLM attains 83.51% macro-domain Dice with 3.52M parameters and ranks first of six architectures under a single shared protocol, though its interval overlaps that of DeepLabV3+ and so this evidence does not resolve the difference between them. Regional BARR **preserves** this accuracy rather than improving on it: +0.28 pp on VAL808 (three-seed mean) and +0.17 pp on the one-shot ROUTER_HOLDOUT (95% CI [+0.11, +0.24]), within a pre-specified −0.5 pp non-inferiority margin. That margin and its interval are properties of the internal populations; the external study below has neither, and its deltas are reported descriptively. A retrospective external stress test on 884 cases from three public cohorts gives mean macro-Dice changes of +0.32 pp, +0.03 pp and +0.13 pp on CVC-ClinicDB, BrEaST-Lesions-USG and Stones respectively — small enough to be consistent with no material change, and not a demonstration of external non-inferiority — while absolute performance does not transfer: external Dice falls 13.4, 15.1 and 68.3 pp below the internal anchors for the same nominal modalities, and on the Stones cohort the model marks foreground on 14 of 14 stone-free radiographs. The external study is explicitly not a validation study.
 
 While formal institutional approval remains pending before launching production weights, this manuscript establishes the mathematical rigor, exact implementation mechanics, baseline evidence boundaries, and statistical contracts required for fully defensible clinical AI benchmarking.
 
@@ -141,10 +141,10 @@ During Phase 05 audit remediation, subtle duplicate scans and test-linked patien
 Experiments are standardized on an NVIDIA GeForce RTX 3060 Ti GPU (8GB VRAM) under CUDA 12.4 and PyTorch 2.6.0. Benchmarking at $512 \times 512$ resolution with AMP mixed-precision demonstrates:
 - Training step latency: $128.90 \text{ ms}$ (Batch size = 4)
 - Validation step latency: $83.17 \text{ ms}$ (Batch size = 8)
-- Compute time per 100-epoch run: $5.45 \text{ hours}$ (Central estimate)
-- Full 6-run campaign duration: $37.72 \text{ hours}$ (Nominal) to $42.71 \text{ hours}$ (Conservative), fitting within available sprint deadlines (~120 hours remaining).
+- Compute time per 100-epoch run: $6.29 \text{ hours}$ (Central estimate), derived as $37.72 / 6$ under equal workloads across the six runs
+- Full 6-run campaign duration: $37.72 \text{ hours}$ (Nominal) to $42.71 \text{ hours}$ (Conservative), i.e. $6.29$ to $7.12 \text{ hours}$ per run, fitting within available sprint deadlines (~120 hours remaining).
 
-### 7.2 Crytographic Release Invariant (RC3)
+### 7.2 Cryptographic Release Invariant (RC3)
 The launch framework is governed by frozen release `C1_FILM_ATTRIBUTION_V1_LAUNCH_RC3`, bearing SHA-256 digest:
 `54d1273a53db7dae58118a4bb69c2a96ba2e474a72512a9dccb4c98c9513549f`
 Release verification at the time of writing: 27 RC3 tests pass and 42 of 43 RC2 regression tests pass. One RC2 test fails because the default production trust store is present on the host (see §18.3); it is reported rather than suppressed.
@@ -173,12 +173,26 @@ In accordance with international consensus guidelines (Maier-Hein et al., Nature
 
 ### 9.2 Statistical Hypothesis Testing
 The primary endpoint is the difference in Equal-Domain Macro Dice:
-$$\Delta_{\text{macro}} = \frac{1}{4} \sum_{d \in \{\text{KUB, ISIC, BUSI, KVASIR}\}} \left(\text{DSC}_{d}(C1\text{-}T) - \text{DSC}_{d}(C1\text{-}C)\right)$$
-Hypothesis testing:
+$$\Delta_{\text{macro}} = \frac{1}{3}\sum_{s \in \{42,\,123,\,3407\}} \frac{1}{4} \sum_{d \in \{\text{KUB, ISIC, BUSI, KVASIR}\}} \left(\text{DSC}_{d}(C1\text{-}T_s) - \text{DSC}_{d}(C1\text{-}C_s)\right)$$
+
+This is the frozen primary endpoint, `seed_average_of_paired_equal_domain_macro_Dice_T_minus_C_on_selected_VAL`: a seed-average over the three matched seeds of the paired, equal-domain macro-Dice difference between the task-conditioned arm and its exact structural control, evaluated on the selection-consumed VAL808 split.
+
+Directional hypothesis, as frozen:
 - **Null Hypothesis ($H_0$)**: $\Delta_{\text{macro}} \le 0$
 - **Alternative Hypothesis ($H_1$)**: $\Delta_{\text{macro}} > 0$
-- **Statistical Significance**: Paired Wilcoxon signed-rank test across test cases, stratified by domain, with two-sided $\alpha = 0.05$.
-- **Predeclared Bootstrap Uncertainty**: Exactly 10,000 paired cluster bootstrap resamples ($B=10,000$) using the NumPy PCG64 PRNG initialized with frozen seed `20261027`, reporting two-sided 95% percentile confidence intervals. Patient-level clustering is enforced for KUB (280 validation samples grouped into 111 verified patient clusters); image-level sampling is maintained for ISIC, BUSI, and Kvasir-SEG where patient-level linkage is unprovided in open clinical sources.
+
+**No confirmatory significance test is eligible, and none is reported.** A paired signed-rank test across cases is *not* the frozen procedure and cannot be substituted for it, for four independent reasons:
+
+1. **The endpoint population is selection-consumed.** The epoch that supplies `best_records` is the epoch that won selection *on VAL808*, so a p-value computed on the same split is not calibrated; the selection event has already used the data.
+2. **TEST cannot supply the endpoint.** The endpoint is defined on selected VAL, not TEST. TEST ($n = 1{,}683$) is protected and was not opened for any value in this work, so substituting it would both change the estimand and breach the governance boundary.
+3. **A per-case signed-rank test does not estimate the endpoint.** The endpoint is a seed-average of a four-domain macro difference. Signed-rank over cases answers a different question, at a different unit of analysis, and its result would not be an estimate of $\Delta_{\text{macro}}$.
+4. **The cluster structure is not exchangeable cases.** KUB validation samples group into 111 verified patient clusters, so case-level ranks would treat non-independent observations as independent.
+
+The predeclared procedure is therefore the uncertainty statement, reported descriptively:
+
+- **Predeclared Bootstrap Uncertainty**: Exactly 10,000 paired cluster bootstrap resamples ($B=10{,}000$) using the NumPy PCG64 PRNG initialized with frozen seed `20261027`, reporting two-sided 95% percentile confidence intervals. Patient-level clustering is enforced for KUB (280 validation samples grouped into 111 verified patient clusters); image-level sampling is maintained for ISIC, BUSI, and Kvasir-SEG where patient-level linkage is unprovided in open clinical sources.
+
+Consequently the C1 result, when executed, will be reported as a point estimate of $\Delta_{\text{macro}}$ with its prespecified 95% bootstrap interval. It will not carry a p-value, and it will not be described as statistically significant.
 
 ---
 
@@ -262,6 +276,8 @@ An earlier draft reported a four-case pilot at n = 1 per dataset, run under a no
 
 **Cohorts.** CVC-ClinicDB (n = 612, task id 2, KVASIR analogue), BrEaST-Lesions-USG (n = 252, task id 1, BUSI analogue) and the Stones_where_are_you test split (n = 20, task id 3, KUB analogue). HAM10000 is excluded: the folder is the ISIC-2018 Task 3 classification release, which ships no masks, and the 10,015 masks present in it cannot be attributed to an annotator or licence. No HAM10000 inference was run.
 
+**BrEaST inventory.** The folder holds 270 images and 252 tumour masks. The 18 mask-less images are of two kinds: 14 are additional `_other` views of 7 cases that already contribute a primary image (case022, case036, case038, case085, case092, case140, case151) and never entered the manifest; 4 are primary images with no tumour mask (case045, case061, case209, case213) and are the four exclusions. The manifest lists the 256 primary images, of which 252 are analysed, so $270 = 252 + 4 + 14$. No case contributes more than one analysed image, which makes 252 a valid case-level cluster count; it is not a verified patient count, because the manifest records no patient identifier and two case_ids belonging to one patient could not be detected.
+
 **Protocol.** The canonical inference transform (RGB, aspect-preserving bilinear resize with $s=\min(512/W, 512/H)$, centred zero pad, $/255$), ground truth through the same geometry with nearest-neighbour resampling and binarised at $>0$, sigmoid threshold $0.5$, no per-cohort tuning, no test-time augmentation, no post-processing. Stones polygons are rasterised at native resolution and only category 7 (`stone`) is foreground. No row was dropped after a result was seen, and degenerate cases are kept and scored.
 
 **Global MedFiLM (macro over cases):**
@@ -272,11 +288,13 @@ An earlier draft reported a four-case pilot at n = 1 per dataset, run under a no
 | BrEaST-Lesions-USG (n = 252) | 70.78% | [67.68, 73.78] | 59.84% | 73.91% | 75.57% | 98.19% | 74.0 | 0.252 |
 | Stones (n = 20) | 8.08% | [0.34, 18.99] | 6.09% | 7.48% | 67.33% | 96.83% | 166.9 | 0.228 |
 
-Intervals are percentile bootstrap over clusters (CVC: 29 sequences; BrEaST: 252 cases; Stones: none). HD95 and NSD are in **pixels**: no external cohort ships physical pixel spacing, so no millimetre value is reported and surface metrics are not comparable across cohorts.
+Intervals are percentile bootstrap resampling clusters: CVC-ClinicDB by sequence (29 clusters), BrEaST-Lesions-USG by case (252 clusters), and Stones by image, where each of the 20 images is its own cluster. The Stones interval is therefore an image-level descriptive interval and is wide by construction; it is not a population interval and supports no subgroup comparison. HD95 and NSD are in **pixels**: no external cohort ships physical pixel spacing, so no millimetre value is reported and surface metrics are not comparable across cohorts.
 
-**Stones is three statements, not one.** The 8.08% headline is an artefact of scoring 14 empty-ground-truth images as zero. Stratified by annotation: the 6 stone-positive images reach 26.95% Dice with recall 67.33% and precision 24.93% (lesions are found but grossly over-segmented, median predicted area 3.7× the annotation); the 14 stone-absent images yield precision 0.00% because the model produced foreground on **14 of 14** stone-free radiographs. The substantive finding is an absence of true-negative behaviour, not a segmentation score.
+**Stones is three statements, not one.** The 8.08% headline is an artefact of scoring 14 empty-ground-truth images as zero. Stratified by annotation: the 6 stone-positive images reach 26.95% Dice with recall 67.33% and precision 24.93% (lesions are found but grossly over-segmented, median predicted area 3.7× the annotation); the 14 stone-absent images yield precision 0.00% because the model produced foreground on **14 of 14** stone-free radiographs. That statement is case-level. Pixel-level true-negative counts remain large and nonzero — median 259,214 of 262,144 pixels, minimum 231,793 — because the false-positive regions are small relative to the frame. What fails is the decision to emit any foreground at all on an image containing no stone (case-level specificity 0 of 14), not the per-pixel classification of background.
 
 **Regional BARR on the same cases.** All four components hash-matched their frozen bindings before the first forward pass, all state dictionaries loaded with `strict=True`, and the two equivalent forms of the routing decision agreed on all 884 cases. No case failed and no case fell back for lack of an ROI.
+
+**What the mechanism actually did.** Cohort means hide the per-case behaviour, so four cases were selected by explicit rule from the saved records (no re-inference) and rendered in the accompanying report (Figures 8 and 9): the accepted case with the largest gain (CVC::160, 80.62% → 92.09%, +11.47 pp), the accepted case with the largest loss (CVC::135, 18.22% → 13.43%, −4.78 pp), the most borderline rejection (CVC::358, $p(S_\omega) = 0.4966$ against a 0.50 threshold), and an unselected case (CVC::541, router score −0.001346 below $\tau_{C7}$). Of the 139 adopted refinements, 14 lost Dice on CVC-ClinicDB, 20 on BrEaST-Lesions-USG and none on Stones; Stones therefore has no harmful accepted example, and none is shown. The rejection case is instructive: its refinement was computed and then discarded, so its BARR output is identical to the global output by construction, and that identity is the rejection rather than a missing panel.
 
 | Cohort | Selected | Accepted | Rejected | Not attempted | Failed | Global Dice | BARR Dice | Difference |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -284,7 +302,7 @@ Intervals are percentile bootstrap over clusters (CVC: 29 sequences; BrEaST: 252
 | BrEaST-Lesions-USG | 22.22% | 47 | 9 | 196 | 0 | 70.78% | 70.81% | +0.03 pp |
 | Stones | 50.00% | 9 | 1 | 10 | 0 | 8.08% | 8.21% | +0.13 pp |
 
-The paired per-case change has median 0.00 pp in every cohort and an interquartile range straddling zero, because most cases are unchanged by construction: the router did not select them, or the safety gate rejected them. CVC shows 67 improved against 14 worsened; BrEaST 27 against 20. **Preservation transfers; improvement does not.**
+The paired per-case change has median 0.00 pp in every cohort and an interquartile range of exactly [0, 0]. That range sits **on** zero rather than straddling it, and the reason is construction rather than symmetry: 700 of the 884 cases are untouched because the router did not select them or the safety gate rejected them. Among the 184 selected cases, 96 improve, 34 worsen and 54 are exactly unchanged; CVC shows 67 improved against 14 worsened, BrEaST 27 against 20. The mean is the informative statistic here and the quartiles are not. Among selected cases the changes are small and two-sided, which is consistent with no material change and is not a demonstration of external non-inferiority.
 
 The router threshold was calibrated on the internal development population under a fixed 25% budget. The external selection fraction is therefore an outcome of that fixed threshold, not a controlled property of the cohort — the 50% figure on Stones reflects router scores sitting near $\tau_{C7}$, not that half of those images merited refinement. No recalibration was performed, because recalibrating on the evaluation cohort would make the result uninterpretable.
 
@@ -312,7 +330,8 @@ The inference cost profile of RA-MedFiLM-BARR is **not** a large saving over the
 | Always-refine (A1) | 34.782 G | 69.57 | 1.102 |
 | A8/C9 conditional (expected) | 32.438 G | 64.88 | **1.028** |
 
-- **Selective routing**: the expected analytical cost of the full policy is 2.8% **above** global-only and 6.7% **below** unconditional refinement, saving $2.345\times10^{9}$ MACs against always-refine at a 24.3% refiner workload.
+- **Selective routing**: the expected analytical cost of the full policy is 2.8% **above** global-only and 6.7% **below** unconditional refinement, saving $2.345\times10^{9}$ MACs against always-refine. That saving is computed at the frozen activation frequency $p_{\text{activate}} = 27.43\%$ (Phase 30), not at an adoption rate.
+- **Rejection is charged at full cost.** The contract records `EXECUTE_THEN_ACCEPT` and `EXECUTE_THEN_REJECT` as the same $34.782\text{ G}$ MACs (`accept_reject_differ: false`), because both EXECUTE states run the refiner and $S_\omega$. A rejected candidate is therefore never free, and a workload computed from adopted refinements alone understates the cost. On ROUTER_DEVELOPMENT the routed fraction is $1{,}239/4{,}957 = 25.0\%$, of which 1,205 refinements are adopted and 34 are computed and discarded; the earlier "24.3% refiner workload" conflated the adoption count with the routing count and is withdrawn.
 - **What BARR does not do**: it does not reduce inference cost below the global stage, and it does not deliver a large compute saving. Its benefit is boundary recovery on routed crops at a bounded cost premium.
 - These are analytical lower bounds from a Conv2d/Linear count, not wall-clock measurements. Measured latency on the RTX 3060 Ti is reported separately in Phase 34 and is hardware-specific.
 
@@ -353,7 +372,7 @@ We transparently delineate the scientific boundaries of this work:
 6. **In-Sample Safety Evidence**: The harm-rate decomposition of §12 is computed on ROUTER_DEVELOPMENT (n = 4,957), a subset of the 5,832 TRAIN samples.
 7. **External Surface Metrics Are Unscaled**: No external cohort ships physical pixel spacing, so HD95, ASSD and NSD are reported in pixels, cannot be converted to millimetres, and are not comparable across cohorts.
 8. **External Selection Fraction Is Not Controlled**: The router threshold is fixed from internal calibration. The external selection fractions (19.28%, 22.22%, 50.00%) are outcomes of that threshold, and no recalibration was performed on the evaluation cohorts.
-9. **Small External Subgroup**: The Stones cohort is n = 20 with 6 positive cases. It carries no interval estimate and supports no subgroup comparison.
+9. **Small External Subgroup**: The Stones cohort is n = 20 with 6 positive cases. Its 95% interval (8.08% [0.34, 18.99]) is a percentile bootstrap over the 20 images with each image as its own cluster, so it is an image-level descriptive interval and not a population interval; at this sample size it is too wide to support a subgroup comparison. Point estimates and counts are reported alongside it.
 
 ---
 
