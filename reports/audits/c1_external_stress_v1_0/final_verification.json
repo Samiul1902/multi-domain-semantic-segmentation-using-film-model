@@ -1,0 +1,288 @@
+{
+  "artifact": "c1_external_stress_final_verification",
+  "inference_rerun": false,
+  "method": "recomputed from saved prob/pred arrays and barr_states.csv",
+  "per_cohort": {
+    "cvc": {
+      "name": "CVC-ClinicDB",
+      "n": 612,
+      "n_dice_defined": 612,
+      "dice_global_mean": 0.6865678556474627,
+      "dice_barr_mean": 0.6897473779016254,
+      "paired_delta_mean": 0.003179522254162657,
+      "paired_delta_median": 0.0,
+      "paired_delta_q1": 0.0,
+      "paired_delta_q3": 0.0,
+      "n_improved": 67,
+      "n_unchanged": 531,
+      "n_worsened": 14,
+      "n_selected": 118,
+      "n_accepted": 83,
+      "n_rejected": 35,
+      "states": {
+        "NOT_ATTEMPTED": 494,
+        "ACCEPTED": 83,
+        "REJECTED": 35
+      },
+      "stage_counts": {
+        "router_forwards": 612,
+        "refiner_forwards": 118,
+        "somega_forwards": 118,
+        "roi_absent": 0
+      },
+      "refiner_forwards_equal_selected": true,
+      "arrays_match_recorded_digests": true
+    },
+    "breast": {
+      "name": "BrEaST-Lesions-USG",
+      "n": 252,
+      "n_dice_defined": 252,
+      "dice_global_mean": 0.7078220248388138,
+      "dice_barr_mean": 0.708098334415822,
+      "paired_delta_mean": 0.00027630957700823083,
+      "paired_delta_median": 0.0,
+      "paired_delta_q1": 0.0,
+      "paired_delta_q3": 0.0,
+      "n_improved": 27,
+      "n_unchanged": 205,
+      "n_worsened": 20,
+      "n_selected": 56,
+      "n_accepted": 47,
+      "n_rejected": 9,
+      "states": {
+        "NOT_ATTEMPTED": 196,
+        "ACCEPTED": 47,
+        "REJECTED": 9
+      },
+      "stage_counts": {
+        "router_forwards": 252,
+        "refiner_forwards": 56,
+        "somega_forwards": 56,
+        "roi_absent": 0
+      },
+      "refiner_forwards_equal_selected": true,
+      "arrays_match_recorded_digests": true
+    },
+    "stones": {
+      "name": "Stones_where_are_you",
+      "n": 20,
+      "n_dice_defined": 20,
+      "dice_global_mean": 0.08084046014614173,
+      "dice_barr_mean": 0.08212637637073465,
+      "paired_delta_mean": 0.0012859162245929378,
+      "paired_delta_median": 0.0,
+      "paired_delta_q1": 0.0,
+      "paired_delta_q3": 0.0,
+      "n_improved": 2,
+      "n_unchanged": 18,
+      "n_worsened": 0,
+      "n_selected": 10,
+      "n_accepted": 9,
+      "n_rejected": 1,
+      "states": {
+        "NOT_ATTEMPTED": 10,
+        "ACCEPTED": 9,
+        "REJECTED": 1
+      },
+      "stage_counts": {
+        "router_forwards": 20,
+        "refiner_forwards": 10,
+        "somega_forwards": 10,
+        "roi_absent": 0
+      },
+      "refiner_forwards_equal_selected": true,
+      "arrays_match_recorded_digests": true
+    }
+  },
+  "totals": {
+    "n_cases": 884,
+    "n_selected": 184,
+    "n_accepted": 139,
+    "n_rejected": 45,
+    "refiner_forwards": 184,
+    "somega_forwards": 184,
+    "router_forwards": 884,
+    "refiner_forwards_equal_selected": true
+  },
+  "compute_accounting": {
+    "principle": "rejection is decided after the refiner forward pass (c1_external_stress_eval.py: refiner_forwards += 1 at the call site, then S_omega decides accept/reject). A rejected candidate has already consumed refinement compute.",
+    "regional_forward_passes_external": 184,
+    "accepted_outputs_external": 139,
+    "rejected_outputs_external": 45,
+    "accepted_plus_rejected": 184,
+    "cost_should_be_counted_at": "selected (routed) candidates",
+    "external_routed": 184,
+    "internal_barr_m1_population": {
+      "note": "the 1,239 / 1,205 / 34 triple belongs to the internal BARR-M1 policy population, not to this external cohort",
+      "routed": 1239,
+      "accepted": 1205,
+      "rejected": 34,
+      "regional_forward_passes": 1239,
+      "reason": "1,239 = 1,205 accepted + 34 rejected; all 1,239 ran the refiner"
+    },
+    "measured_latency_s": {
+      "cvc": {
+        "median_global": 0.01639019999856825,
+        "median_barr": 0.0218864499984192,
+        "total_global": 10.069455400007397,
+        "total_barr": 15.68557340008553
+      },
+      "breast": {
+        "median_global": 0.0181307000020751,
+        "median_barr": 0.01877430000604355,
+        "total_global": 4.994704200042166,
+        "total_barr": 5.680419099997368
+      },
+      "stones": {
+        "median_global": 0.016566449994570548,
+        "median_barr": 0.02710790000128325,
+        "total_global": 0.4914379999681833,
+        "total_barr": 0.5814982999872875
+      }
+    }
+  },
+  "breast_inventory": {
+    "images_on_disk": 270,
+    "tumour_masks_on_disk": 252,
+    "images_without_mask": 18,
+    "without_mask_additional_views": 14,
+    "without_mask_primary_images": 4,
+    "primary_images_without_mask_ids": [
+      "case045",
+      "case061",
+      "case209",
+      "case213"
+    ],
+    "additional_view_owners": [
+      "case022",
+      "case036",
+      "case038",
+      "case085",
+      "case092",
+      "case140",
+      "case151"
+    ],
+    "additional_views_per_owner": {
+      "case022": 2,
+      "case036": 2,
+      "case038": 1,
+      "case085": 2,
+      "case092": 1,
+      "case140": 4,
+      "case151": 2
+    },
+    "manifest_rows": 256,
+    "manifest_unique_ids": 256,
+    "manifest_evaluable": 252,
+    "analysed": 252,
+    "images_not_in_manifest": [
+      "case022_other1",
+      "case022_other2",
+      "case036_other1",
+      "case036_other2",
+      "case038_other1",
+      "case085_other1",
+      "case085_other2",
+      "case092_other1",
+      "case140_other1",
+      "case140_other2",
+      "case140_other3",
+      "case140_other4",
+      "case151_other1",
+      "case151_other2"
+    ],
+    "manifest_rows_not_on_disk": [],
+    "reconciliation": "270 images = 252 primary images with a tumour mask + 14 additional non-primary views of 7 cases + 4 primary images with no mask. The manifest lists the 256 primary images only, so no additional view ever entered the cohort. 4 of those have no mask and are excluded pre-inference, leaving 252 analysed.",
+    "independent_case_groups": 252,
+    "independence_caveat": "252 analysed rows carry 252 distinct case_id values and no case contributes more than one analysed image, so 252 is a valid CASE-level cluster count. Patient-level independence is NOT verifiable: the manifest records no patient identifier, so two case_ids belonging to one patient cannot be detected or ruled out."
+  },
+  "identity": {
+    "global_checkpoint": {
+      "path": "checkpoints/phase21_global_medfilm_fourdomain_seed42_clean_v3/best.pt",
+      "sha256": "286689fdd5c63ad7...",
+      "matches": true
+    },
+    "global_config": {
+      "path": "experiments/phase21_global_medfilm_fourdomain_seed42_clean_v3/config.json",
+      "sha256": "66ec701aeac503cb...",
+      "matches": true
+    },
+    "refiner_checkpoint": {
+      "path": "checkpoints/phase25a_barr_regional_refiner_v1_1_roi030/final/final.pt",
+      "sha256": "6d28608a669df497...",
+      "matches": true
+    },
+    "router_checkpoint": {
+      "path": "checkpoints/phase25d_barr_benefit_router_v1_2_1_seed42/final/final.pt",
+      "sha256": "8a412b2fe82f225f...",
+      "matches": true
+    },
+    "safety_checkpoint": {
+      "path": "checkpoints/phase25f_barr_post_safety_v1_0_seed42/final/final.pt",
+      "sha256": "eee9b97b9921e53f...",
+      "matches": true
+    },
+    "cvc_manifest": {
+      "path": "reports/external_extension/manifests/ext02_cvc_clinicdb_manifest.csv",
+      "sha256": "b3a1ca429ba97476...",
+      "matches": true
+    },
+    "breast_manifest": {
+      "path": "reports/external_extension/manifests/ext02_breast_us_manifest.csv",
+      "sha256": "24697ef0e4226a70...",
+      "matches": true
+    },
+    "stones_manifest": {
+      "path": "reports/external_extension/manifests/ext02_1_stones_manifest_reconciled.csv",
+      "sha256": "31f08db493f83f1f...",
+      "matches": true
+    },
+    "transform_source": {
+      "path": "src/data/transforms.py",
+      "sha256": "09fcff4887ff8cda...",
+      "matches": true
+    },
+    "roi_source": {
+      "path": "src/data/barr_roi.py",
+      "sha256": "4b1015275e4e31f9...",
+      "matches": true
+    },
+    "pre_refinement_features_source": {
+      "path": "src/features/barr_pre_refinement_features.py",
+      "sha256": "f0323e78caa7a3f8...",
+      "matches": true
+    },
+    "global_model_source": {
+      "path": "src/models/film/global_medfilm.py",
+      "sha256": "a04ff3e61b4d900f...",
+      "matches": true
+    },
+    "refiner_source": {
+      "path": "src/models/barr/regional_refiner.py",
+      "sha256": "4fe0abde3ec3a183...",
+      "matches": true
+    },
+    "router_class_source": {
+      "path": "scripts/analysis/train_phase25d_router.py",
+      "sha256": "fc7c1bdf263ae455...",
+      "matches": true
+    },
+    "safety_class_source": {
+      "path": "scripts/analysis/phase25f_execution_common.py",
+      "sha256": "98cf958a377e2de3...",
+      "matches": true
+    },
+    "safety_features_source": {
+      "path": "scripts/analysis/phase25f_post_safety_features.py",
+      "sha256": "4f4763fa67eea833...",
+      "matches": true
+    },
+    "phase29_canonical_reference": {
+      "path": "scripts/analysis/phase29_phase_d_canonical_seed_inference.py",
+      "sha256": "7c0d0039e6e215b6...",
+      "matches": true
+    }
+  },
+  "verdict": "CONSISTENT",
+  "failures": []
+}

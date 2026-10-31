@@ -1,0 +1,97 @@
+{
+  "artifact": "c1_external_barr_action_figures",
+  "inference_rerun": false,
+  "source": "saved prob/pred arrays and barr_states.csv from the 884-case campaign",
+  "error_palette_rgb": {
+    "TP": [
+      0,
+      230,
+      0
+    ],
+    "FP": [
+      255,
+      32,
+      32
+    ],
+    "FN": [
+      32,
+      96,
+      255
+    ],
+    "TN": [
+      24,
+      24,
+      24
+    ]
+  },
+  "selection_rule": {
+    "A": "ACCEPTED case with the largest positive Dice change; ties broken by ascending sample_id",
+    "B": "ACCEPTED case with the largest negative Dice change, restricted to cases whose change is < 0; ties broken by ascending sample_id",
+    "C": "REJECTED case with the highest S_omega acceptance probability, i.e. the most borderline rejection; ties broken by ascending sample_id",
+    "D": "case the router did not select, whose global Dice is closest to its own cohort median; ties broken by ascending sample_id"
+  },
+  "figures": {
+    "fig9_external_barr_action_adopted.png": [
+      {
+        "panel": "A",
+        "cohort": "CVC-ClinicDB",
+        "sample_id": "CVC::160",
+        "state": "ACCEPTED",
+        "dice_global": 0.8062150543676773,
+        "dice_barr": 0.9208692346680183,
+        "delta": 0.11465418030034102,
+        "router_score": 0.0020320881158113,
+        "safety_prob": 0.9381341338157654,
+        "roi_present": true
+      },
+      {
+        "panel": "B",
+        "cohort": "CVC-ClinicDB",
+        "sample_id": "CVC::135",
+        "state": "ACCEPTED",
+        "dice_global": 0.18218623481781376,
+        "dice_barr": 0.13434439933126344,
+        "delta": -0.04784183548655033,
+        "router_score": 0.0066711921244859,
+        "safety_prob": 0.5327500104904175,
+        "roi_present": true
+      }
+    ],
+    "fig10_external_barr_action_notadopted.png": [
+      {
+        "panel": "C",
+        "cohort": "CVC-ClinicDB",
+        "sample_id": "CVC::358",
+        "state": "REJECTED",
+        "dice_global": 0.24713942771031558,
+        "dice_barr": 0.24713942771031558,
+        "delta": 0.0,
+        "router_score": 0.0035829897969961,
+        "safety_prob": 0.496639221906662,
+        "roi_present": true
+      },
+      {
+        "panel": "D",
+        "cohort": "CVC-ClinicDB",
+        "sample_id": "CVC::541",
+        "state": "NOT_ATTEMPTED",
+        "dice_global": 0.8296875671494263,
+        "dice_barr": 0.8296875671494263,
+        "delta": 0.0,
+        "router_score": -0.001346280798316,
+        "safety_prob": null,
+        "roi_present": true
+      }
+    ]
+  },
+  "accepted_with_negative_change": {
+    "cvc": 14,
+    "breast": 20,
+    "stones": 0
+  },
+  "stones_accepted_n": 9,
+  "stones_harmful_example": "ABSENT__no_accepted_case_lost_dice",
+  "stones_min_accepted_delta": 0.0,
+  "rejected_delta_note": "every REJECTED case has delta == 0 exactly, because the refined output is discarded and the global mask retained",
+  "legend_note": "A rejected candidate still executed the refiner and the safety head; only its output was discarded, so its BARR panels equal Global by construction. That equality is the rejection, not a missing panel."
+}

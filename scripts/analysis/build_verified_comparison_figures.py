@@ -241,7 +241,12 @@ def fig3():
 
     labels = ["A1\nunconditional refine", "A7\nrouter only", "A8\nrouter + S_omega"]
     harm = [allpop(a1), allpop(a7), allpop(a8)]
-    crops = [int(a1["n_routed"]), int(a7["n_routed"]), int(a8["n_routed"])]
+    # A8 routes exactly the same candidates as A7. S_omega decides AFTER the refiner
+    # has already run, so the number of crops EXECUTED is A7's routed count (1,239),
+    # not the adopted count that the Phase 28 table stores in A8's n_routed field
+    # (1,205). Charging only adopted refinements would hide 34 forward passes.
+    crops = [int(a1["n_routed"]), int(a7["n_routed"]), int(a7["n_routed"])]
+    adopted = [int(a1["n_routed"]), int(a7["n_routed"]), int(a8["n_routed"])]
     n_harm = [int(a1["n_harmful_routed"]), int(a7["n_harmful_routed"]), int(a8["n_harmful_routed"])]
 
     fig, (axL, axR) = plt.subplots(1, 2, figsize=(12.4, 5.6), dpi=300)
@@ -262,7 +267,10 @@ def fig3():
     axR.bar(x, crops, color=["#C00000", STEEL, "#2E7D32"], width=0.55,
             edgecolor="#222222", linewidth=0.7, zorder=3)
     for i, c in enumerate(crops):
-        axR.text(x[i], c + 80, f"{c:,}\n({c/N*100:.1f}%)", ha="center", va="bottom",
+        txt = f"{c:,}\n({c/N*100:.1f}%)"
+        if i == 2:
+            txt += f"\n{adopted[i]:,} adopted"
+        axR.text(x[i], c + 80, txt, ha="center", va="bottom",
                  fontsize=9.5, fontweight="bold")
     axR.set_xticks(x); axR.set_xticklabels(labels, fontsize=9.5)
     axR.set_ylabel("High-capacity crops processed", fontsize=10.5)
@@ -279,7 +287,9 @@ def fig3():
              "of the 5,832 TRAIN samples, so this is not held-out evidence.\n"
              "The router accounts for most of the reduction (A1 \u2192 A7: 2,115 \u2192 412 harmful). "
              "S_omega alone accounts for A7 \u2192 A8 (412 \u2192 390, i.e. 22 cases). "
-             "A reduced average harm rate is not evidence of zero harmful outcomes.",
+             "A reduced average harm rate is not evidence of zero harmful outcomes.\n"
+             "A8 executes the same 1,239 crops as A7: S_omega rejects 34 of them after the refiner has run, "
+             "so rejected crops are charged at full cost and only 1,205 refinements are adopted.",
              fontsize=7.8, ha="center", va="bottom", color="#333333", linespacing=1.55)
 
     fig.subplots_adjust(left=0.07, right=0.985, top=0.855, bottom=0.215, wspace=0.22)
