@@ -1,0 +1,372 @@
+{
+  "schema": "c1_external_evidence_provenance_v1_0",
+  "classification": "EXTERNAL_EVIDENCE_RECONCILIATION",
+  "generated_local": "2026-10-31",
+  "timestamp_source": "AUTHOR_ENTERED_AT_WRITE (host clock not synchronised)",
+  "scientific_execution": false,
+  "training_performed": false,
+  "test_or_router_holdout_accessed": false,
+  "protected_pixels_opened": false,
+  "note": "Inference in EXT-06 is CPU-only on 8 individual public images (4 VAL808, 4 external) with no gradient and no training, performed to verify published figure values.",
+  "entries": [
+    {
+      "claim_id": "INT-01",
+      "statement": "Global MedFiLM macro-domain Dice on VAL808 (n=808)",
+      "value": 83.5079,
+      "source_artifact": "reports/audits/phase21_analysis.json",
+      "source_sha256": "24a92bc09d3bf8f1c33eb7550421779fc8642747b5e0b914ea69781b7bed01b6",
+      "source_exists": true,
+      "source_kind": "file",
+      "verdict": "VERIFIED",
+      "notes": "95% bootstrap CI [78.77, 87.80]; params 3523001; rank 1 of 6. VAL808 is selection-consumed."
+    },
+    {
+      "claim_id": "INT-02",
+      "statement": "Phase 21 six-model macro Dice on VAL808",
+      "value": {
+        "global_medfilm": 83.5079,
+        "deeplabv3plus": 82.7652,
+        "transformer_mit_unet": 82.2383,
+        "unetpp": 79.201,
+        "attention_unet": 78.9037,
+        "unet": 78.7832
+      },
+      "source_artifact": "reports/tables/phase21_six_model_comparison.csv",
+      "source_sha256": "81ee9990f90c4ef7c035ec89195cddb4582f72a533e9dd0e6fe421f7ca4fae45",
+      "source_exists": true,
+      "source_kind": "file",
+      "verdict": "VERIFIED",
+      "notes": "Single shared protocol. Global MedFiLM vs DeepLabV3+ CIs overlap; not distinguishable."
+    },
+    {
+      "claim_id": "INT-03",
+      "statement": "Regional BARR macro Dice on VAL808 (Phase 29 three-seed mean)",
+      "value": 83.7902,
+      "source_artifact": "reports/audits/phase29_phase_d_three_seed_descriptive_summary.json",
+      "source_sha256": "6da8de08abd75fa7334695a84e1fa8b16b491b09a907b47adcffba0925b40e54",
+      "source_exists": true,
+      "source_kind": "file",
+      "verdict": "VERIFIED",
+      "notes": "Delta mean 0.002822 pp, seed range 0.002210-0.003388; sd 0.000590; descriptive only, no CI defined for this estimand."
+    },
+    {
+      "claim_id": "INT-04",
+      "statement": "Regional BARR macro Dice on ROUTER_HOLDOUT (n=875)",
+      "value": 93.0287,
+      "source_artifact": "reports/audits/phase30_primary_noninferiority_result.json",
+      "source_sha256": "6548aa6ba438b1763727696b7ec1e339ec9ebf541df1d763ebc0c90922459856",
+      "source_exists": true,
+      "source_kind": "file",
+      "verdict": "VERIFIED",
+      "notes": "Global 92.8548%; delta +0.1739 pp; 95% CI [+0.1117, +0.2405]; margin -0.5 pp; p_values_computed=0. Carries ONE_SHOT..._PROTOCOL_DEVIATION qualifier."
+    },
+    {
+      "claim_id": "INT-05",
+      "statement": "Regional BARR macro Dice 86.24% (previous report and Figure 1)",
+      "value": null,
+      "source_artifact": "scripts/analysis/generate_word_report.py",
+      "source_sha256": "9dea40931d584114a05718635e463b06f0dd72a0e8a30b93f6550285d68fe7e0",
+      "source_exists": true,
+      "source_kind": "file",
+      "verdict": "UNSUPPORTED",
+      "notes": "No JSON result record anywhere in reports/ contains 86.24. Contradicts INT-03 (83.79% on VAL808) and INT-04 (93.03% on holdout). Retracted."
+    },
+    {
+      "claim_id": "INT-06",
+      "statement": "Total BARR parameters (G + R_psi + B_phi + S_omega)",
+      "value": 4837420,
+      "source_artifact": "reports/audits/phase36_robustness_scientific_result_v1_23.json",
+      "source_sha256": "6c092fbd5354b3efcd55a2f5d13d3529c80dae1e699a9df3c88441a377eb5b1f",
+      "source_exists": true,
+      "source_kind": "file",
+      "verdict": "VERIFIED",
+      "notes": "Components: G=3523001, R_psi=1276401, B_phi=36801, S_omega=1217. Previous report stated 4.80M; correct value is 4.84M."
+    },
+    {
+      "claim_id": "INT-07",
+      "statement": "All-population harm rate, A1 vs A7 vs A8",
+      "value": {
+        "A1": 42.6669,
+        "A7": 8.3115,
+        "A8": 7.8677
+      },
+      "source_artifact": "reports/tables/phase28_table_02_arm_primary_metrics.csv",
+      "source_sha256": "171168f973d0a210913b567c4b743f134b1918f3d22be55a6e7046890400e3fc",
+      "source_exists": true,
+      "source_kind": "file",
+      "verdict": "VERIFIED",
+      "notes": "Counts 2115 / 412 / 390 over N=4957. ROUTER_DEVELOPMENT is a subset of TRAIN 5832 (in-sample). A8 conditional harm 390/1205 = 32.37%."
+    },
+    {
+      "claim_id": "INT-08",
+      "statement": "Attribution of the 1,725-case harm reduction to S_omega",
+      "value": 1725,
+      "source_artifact": "reports/tables/phase28_table_02_arm_primary_metrics.csv",
+      "source_sha256": "171168f973d0a210913b567c4b743f134b1918f3d22be55a6e7046890400e3fc",
+      "source_exists": true,
+      "source_kind": "file",
+      "verdict": "MISATTRIBUTED",
+      "notes": "1,725 = A1->A8 system-level (2115-390). Router A1->A7 accounts for 1,703; S_omega A7->A8 for 22. The previous report credited all 1,725 to the safety filter."
+    },
+    {
+      "claim_id": "INT-09",
+      "statement": "KUB lesion-size strata Dice (Global MedFiLM, VAL808)",
+      "value": {
+        "TINY": 53.2079,
+        "SMALL": 65.4176,
+        "MEDIUM": 69.9821,
+        "LARGE": 70.8226,
+        "ROI_NOT_PRIMARY_BINNED": 84.742
+      },
+      "source_artifact": "reports/tables/phase21_kub_size_stratification.csv",
+      "source_sha256": "ed4f8a9fcf736c61af8ddbd27cd6fe576502685a43a2543720655ecb0304c155",
+      "source_exists": true,
+      "source_kind": "file",
+      "verdict": "VERIFIED",
+      "notes": "role=REPORTING_ONLY__DESCRIPTIVE for every stratum. No BARR per-stratum result exists."
+    },
+    {
+      "claim_id": "INT-10",
+      "statement": "Claim that BARR lifts the TINY stratum from 53.21% to 85.57%",
+      "value": 85.57,
+      "source_artifact": "reports/tables/phase21_kub_size_stratification.csv",
+      "source_sha256": "ed4f8a9fcf736c61af8ddbd27cd6fe576502685a43a2543720655ecb0304c155",
+      "source_exists": true,
+      "source_kind": "file",
+      "verdict": "UNSUPPORTED",
+      "notes": "85.57% is the ROUTER_HOLDOUT KUB domain value, not a TINY-stratum BARR measurement. Retracted."
+    },
+    {
+      "claim_id": "EXT-01",
+      "statement": "HAM10000 external image overlap with frozen ISIC splits",
+      "value": {
+        "external_images": 10015,
+        "frozen_isic_unique": 3694,
+        "exact_overlap": 0
+      },
+      "source_artifact": "manifests/phase4_v3/all_paired.csv",
+      "source_sha256": "eb3062fa0e84f9952f994df79ed4d767417a912e18dce86560f6e2edcdd02ded",
+      "source_exists": true,
+      "source_kind": "file",
+      "verdict": "VERIFIED",
+      "notes": "0 of 10,015 external images appear in any frozen split. Supplied metadata has no lesion_id/patient grouping, so lesion-level independence is NOT established."
+    },
+    {
+      "claim_id": "EXT-02",
+      "statement": "HAM10000 segmentation-mask provenance",
+      "value": "UNDOCUMENTED",
+      "source_artifact": "D:/Softfors/final/external_test_ds/HAM10000/images/ATTRIBUTION.txt",
+      "source_sha256": "82cb351a94f3f0ef3c58b0fb6891c0ba8be4b9638429395e2e85eab1aaf47d8e",
+      "source_exists": true,
+      "source_kind": "file",
+      "verdict": "PARTIALLY_VERIFIED",
+      "notes": "ATTRIBUTION.txt identifies the folder as ISIC-2018 Task 3 (classification), which ships no segmentation masks. 10,015 masks are present with no provenance record. Any Dice computed against them is not a verified external score."
+    },
+    {
+      "claim_id": "EXT-03",
+      "statement": "CVC-ClinicDB image/mask pairing and sequence grouping",
+      "value": {
+        "images": 612,
+        "masks": 612,
+        "name_matched": 612,
+        "sequence_id_available": true
+      },
+      "source_artifact": "D:/Softfors/final/external_test_ds/CVC-ClinicDB/metadata.csv",
+      "source_sha256": "2f55a7b8a30bd2afe7739f453599fa7fccdfa0672890f23ad2c62e2180d5aceb",
+      "source_exists": true,
+      "source_kind": "file",
+      "verdict": "VERIFIED",
+      "notes": "612/612 paired by identical filename; metadata.csv supplies frame_id and sequence_id, so video-sequence grouping is available for clustered statistics."
+    },
+    {
+      "claim_id": "EXT-04",
+      "statement": "BrEaST-Lesions-USG image/mask pairing",
+      "value": {
+        "images": 270,
+        "masks": 252,
+        "unpaired_images": 18,
+        "case_level_grouping": true
+      },
+      "source_artifact": "D:/Softfors/final/external_test_ds/BrEaST-Lesions_USG-images_and_masks",
+      "source_sha256": null,
+      "source_exists": true,
+      "source_kind": "directory",
+      "verdict": "VERIFIED",
+      "notes": "18 of 270 images have no mask. Grouping is per case folder; some cases contribute more than one image."
+    },
+    {
+      "claim_id": "EXT-05",
+      "statement": "Stones_where_are_you? v3 identity, class mapping and annotation format",
+      "value": {
+        "n_categories": 10,
+        "category_7": "stone",
+        "test_images": 20,
+        "test_stone_annotations": 9,
+        "images_with_stone": 6,
+        "annotation_format": "COCO polygon segmentation"
+      },
+      "source_artifact": "D:/Softfors/final/external_test_ds/Stones_where_are_you-.v3i.coco-segmentation/test/_annotations.coco.json",
+      "source_sha256": "065be4fbb5d88cc5282c271c900b99c8644a7022fd5574600ea1804c1d03e078",
+      "source_exists": true,
+      "source_kind": "file",
+      "verdict": "VERIFIED",
+      "notes": "category_id 7 = 'stone' is a valid single-class mapping out of 10 anatomical categories. Public-domain licence (Roboflow). Only 6 of 20 test images contain a stone annotation."
+    },
+    {
+      "claim_id": "EXT-06",
+      "statement": "External and internal single-case metric reproduction",
+      "value": {
+        "F4 ISIC_0013798": {
+          "dice": 78.10244070127192,
+          "iou": 64.07219402143261,
+          "prec": 64.07219402143261,
+          "rec": 100.0,
+          "spec": 99.75594617789493,
+          "acc": 99.75700378417969,
+          "tp": 1136,
+          "fp": 637,
+          "fn": 0,
+          "tn": 260371
+        },
+        "F4 BUSI 00170": {
+          "dice": 87.24919093851132,
+          "iou": 77.38231917336394,
+          "prec": 80.42959427207637,
+          "rec": 95.33239038189534,
+          "spec": 99.87419936332604,
+          "acc": 99.84970092773438,
+          "tp": 1348,
+          "fp": 328,
+          "fn": 66,
+          "tn": 260402
+        },
+        "F4 Kvasir cju1alwgo": {
+          "dice": 80.00314580821056,
+          "iou": 66.67103595927819,
+          "prec": 95.9383841559258,
+          "rec": 68.60752663998922,
+          "spec": 99.73072450115255,
+          "acc": 97.09014892578125,
+          "tp": 15259,
+          "fp": 646,
+          "fn": 6982,
+          "tn": 239257
+        },
+        "F4 KUB 00001-00-2500001": {
+          "dice": 65.11627906976744,
+          "iou": 48.275862068965516,
+          "prec": 48.275862068965516,
+          "rec": 100.0,
+          "spec": 99.99427764849503,
+          "acc": 99.99427795410156,
+          "tp": 14,
+          "fp": 15,
+          "fn": 0,
+          "tn": 262115
+        },
+        "F5 HAM10000 ISIC_0024306": {
+          "dice": 79.15206703835472,
+          "iou": 65.49724525571818,
+          "prec": 100.0,
+          "rec": 65.49724525571818,
+          "spec": 100.0,
+          "acc": 88.17481994628906,
+          "tp": 58846,
+          "fp": 0,
+          "fn": 30999,
+          "tn": 172299
+        },
+        "F5 CVC 1.png": {
+          "dice": 42.69450082149415,
+          "iou": 27.141136860730875,
+          "prec": 97.02187472546781,
+          "rec": 27.369151467089615,
+          "spec": 99.84715409031885,
+          "acc": 88.69056701660156,
+          "tp": 11044,
+          "fp": 339,
+          "fn": 29308,
+          "tn": 221453
+        },
+        "F5 BrEaST case001": {
+          "dice": 18.855277856876874,
+          "iou": 10.408957894991415,
+          "prec": 16.531592087574417,
+          "rec": 21.939035579569783,
+          "spec": 91.03972357602896,
+          "acc": 85.86845397949219,
+          "tp": 4304,
+          "fp": 21731,
+          "fn": 15314,
+          "tn": 220795
+        },
+        "F5 Stones 1_png": {
+          "dice": 5.651460452904496,
+          "iou": 2.9078996251139855,
+          "prec": 2.9078996251139855,
+          "rec": 100.0,
+          "spec": 88.9973706670545,
+          "acc": 89.03350830078125,
+          "tp": 861,
+          "fp": 28748,
+          "fn": 0,
+          "tn": 232535
+        }
+      },
+      "source_artifact": "scripts/analysis/generate_prediction_panels.py",
+      "source_sha256": "dd82f2f6118f3312f67505c377d6464d4477cbedf9e0d8b83219202c551d8c1b",
+      "source_exists": true,
+      "source_kind": "file",
+      "verdict": "VERIFIED",
+      "notes": "All 8 cases reproduced independently to 2 dp from checkpoint 286689fd...5ba1b7 (3523001 params). Global MedFiLM only."
+    },
+    {
+      "claim_id": "EXT-07",
+      "statement": "BARR execution on external data (routing, refinement, S_omega rejection)",
+      "value": "NOT EXECUTED",
+      "source_artifact": "scripts/analysis/generate_prediction_panels.py",
+      "source_sha256": "dd82f2f6118f3312f67505c377d6464d4477cbedf9e0d8b83219202c551d8c1b",
+      "source_exists": true,
+      "source_kind": "file",
+      "verdict": "UNSUPPORTED",
+      "notes": "The panel generator instantiates GlobalMedFiLM only. No route-decision record exists for any external case. Claims that S_omega caught or rejected an external case are retracted."
+    },
+    {
+      "claim_id": "FIG-01",
+      "statement": "Figure inventory",
+      "value": {
+        "fig1_model_comparison.png": {
+          "exists": true,
+          "bytes": 334694,
+          "sha256": "7796dabcc3a941b08191a56aeacb35dc51bfaf270a63e0f4d9a736ac3ff8b5b1"
+        },
+        "fig2_domain_performance.png": {
+          "exists": true,
+          "bytes": 219336,
+          "sha256": "11e041c464eb7b366493e788e477735509ae2ff0697d283476f7f5c1539099c7"
+        },
+        "fig3_safety_compute.png": {
+          "exists": true,
+          "bytes": 262083,
+          "sha256": "ba6f4d8b79a59297b8a7ac26b2e24b6c6d515607e47c659c4b3ff11a14ea29d5"
+        },
+        "fig4_internal_4domain_predictions.png": {
+          "exists": true,
+          "bytes": 4562121,
+          "sha256": "81b9f1dc8a981dadf0c57c0098ab632fa9e10e076c697708798383a29ca23028"
+        },
+        "fig5_external_4domain_predictions.png": {
+          "exists": true,
+          "bytes": 6437020,
+          "sha256": "b9dac834455dad04c883095a05f836b4884942b8be80d7de84e08f9157fe8177"
+        }
+      },
+      "source_artifact": "paper_doc",
+      "source_sha256": null,
+      "source_exists": true,
+      "source_kind": "directory",
+      "verdict": "VERIFIED",
+      "notes": "fig1-3 generator: scripts/analysis/build_verified_comparison_figures.py (created by this task; previously absent). fig4-5 generator: scripts/analysis/generate_prediction_panels.py."
+    }
+  ]
+}
