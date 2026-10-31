@@ -15,7 +15,7 @@ Deep neural networks deployed across heterogeneous medical imaging modalities of
 
 To eliminate data leakage, we enforce canonical Manifest v3 governance, isolating 118 high-risk patient-overlapping cases and locking the 1,683-case evaluation cohort. Statistical inference is governed by domain-stratified cluster bootstrapping; because no confirmatory significance procedure is eligible, all reported intervals are descriptive.
 
-On the VAL808 development split, Global MedFiLM attains 83.51% macro-domain Dice with 3.52M parameters and ranks first of six architectures under a single shared protocol, though it is not statistically distinguishable from DeepLabV3+. Regional BARR **preserves** this accuracy rather than improving on it: +0.28 pp on VAL808 (three-seed mean) and +0.17 pp on the one-shot ROUTER_HOLDOUT (95% CI [+0.11, +0.24]), within a pre-specified −0.5 pp non-inferiority margin. A four-case external pilot is reported descriptively and explicitly does not constitute external validation.
+On the VAL808 development split, Global MedFiLM attains 83.51% macro-domain Dice with 3.52M parameters and ranks first of six architectures under a single shared protocol, though it is not statistically distinguishable from DeepLabV3+. Regional BARR **preserves** this accuracy rather than improving on it: +0.28 pp on VAL808 (three-seed mean) and +0.17 pp on the one-shot ROUTER_HOLDOUT (95% CI [+0.11, +0.24]), within a pre-specified −0.5 pp non-inferiority margin. A retrospective external stress test on 884 cases from three public cohorts shows that this preservation transfers (+0.32 pp, +0.03 pp and +0.13 pp macro Dice on CVC-ClinicDB, BrEaST-Lesions-USG and Stones respectively) while absolute performance does not: external Dice falls 13.4, 15.1 and 68.3 pp below the internal anchors for the same nominal modalities, and on the Stones cohort the model marks foreground on 14 of 14 stone-free radiographs. The external study is explicitly not a validation study.
 
 While formal institutional approval remains pending before launching production weights, this manuscript establishes the mathematical rigor, exact implementation mechanics, baseline evidence boundaries, and statistical contracts required for fully defensible clinical AI benchmarking.
 
@@ -62,7 +62,7 @@ To ensure scientific transparency, every research contribution is explicitly cat
 - **Contribution C3 (Fair Multi-Domain Benchmarking — *Exploratory Retrospective*)**:
   - *Status*: Validated across 5 baseline architectures on historical splits (`PROTOCOL_INCOMPARABLE`).
   - *Scope*: Establishes initial empirical baselines across four clinical targets but requires re-benchmarking under clean Manifest v3 governance.
-- **External pilot (not a contribution, *Descriptive Only*)**: A four-case external pilot (one case per dataset: HAM10000/ISIC-2018 Task 3, CVC-ClinicDB, BrEaST-Lesions-USG, Stones_where_are_you? v3) was executed with the Global MedFiLM checkpoint only. No BARR component was executed. This is not an external validation cohort; see §13.1.
+- **External stress test (not a contribution, *Descriptive Only*)**: A retrospective 884-case stress test (CVC-ClinicDB n = 612, BrEaST-Lesions-USG n = 252, Stones_where_are_you test split n = 20) was executed with both the Global MedFiLM checkpoint and the full frozen BARR assembly. HAM10000 was excluded before inference because the available masks have no documented provenance. This is not an external validation cohort; see §13.1.
 
 ---
 
@@ -166,8 +166,10 @@ To eliminate p-hacking, selection bias, and seed cherry-picking, the C1 evaluati
 In accordance with international consensus guidelines (Maier-Hein et al., Nature Methods 2024), segmentation accuracy is evaluated across complementary spatial and boundary metrics:
 - **Sørensen-Dice Coefficient (DSC)**: $\text{DSC} = \frac{2 |Y \cap \hat{Y}|}{|Y| + |\hat{Y}|}$
 - **Intersection over Union (IoU / Jaccard)**: $\text{IoU} = \frac{|Y \cap \hat{Y}|}{|Y \cup \hat{Y}|}$
-- **Normalized Surface Distance (NSD)**: Surface boundary agreement within clinical tolerance $\tau = 1.0\text{ mm}$.
-- **Hausdorff Distance 95th Percentile ($HD_{95}$)**: Extreme boundary outlier distance.
+- **Normalized Surface Distance (NSD)**: Surface boundary agreement within a tolerance $\tau$. The protocol target is $\tau = 1.0\text{ mm}$ where physical pixel spacing is available. **No external cohort in §13.1 ships pixel spacing**, so external NSD is computed at $\tau = 2$ pixels and reported in pixels; it is not comparable to an NSD computed in millimetres.
+- **Hausdorff Distance 95th Percentile ($HD_{95}$)**: Extreme boundary outlier distance, in millimetres when spacing is known and in **pixels** otherwise.
+- **Average Symmetric Surface Distance (ASSD)**: Mean of the symmetric surface-distance set, same unit rule as $HD_{95}$.
+- **Region size error**: $(|\hat{Y}| - |Y|)/|Y|$, reported alongside the counts so that over- and under-segmentation are distinguishable.
 
 ### 9.2 Statistical Hypothesis Testing
 The primary endpoint is the difference in Equal-Domain Macro Dice:
@@ -188,10 +190,10 @@ Every empirical data point in this project is classified under a strict evidenti
 - `PROTOCOL_INCOMPARABLE`: Historical runs with mismatched loss formulations or pre-audit data splits.
 - `SYNTHETIC_TEST_ONLY`: Computational contract verification on mock data structures.
 - `NOT_ESTABLISHED`: Prospective experiments pending operational execution.
-- `PARTIALLY_VERIFIED`: The computation is reproducible from a frozen artifact, but a required input (mask provenance, population identity) is undocumented. Reportable as a pilot observation only.
+- `PARTIALLY_VERIFIED`: The computation is reproducible from a frozen artifact, but a required input (mask provenance, population identity) is undocumented. Reportable as a descriptive observation only.
 - `UNSUPPORTED`: No stored record exists. Must not be quoted.
 
-Applied to the external pilot (§13.1), three datasets are `VERIFIED` at the level of image/mask pairing and identifier mapping, and HAM10000 is `PARTIALLY_VERIFIED` because its masks have undocumented provenance. The pilot as a whole is `DESCRIPTIVE_ONLY` and is not an external validation cohort.
+Applied to the external stress test (§13.1), all three analysed cohorts are `VERIFIED` at the level of image/mask pairing and identifier mapping. HAM10000 is excluded rather than downgraded: its masks cannot be attributed, so no computation against them would measure the model. The study as a whole is `DESCRIPTIVE_ONLY` and is not an external validation cohort.
 
 A complete audit trail is preserved in `reports/tables/scientific_evidence_inventory_c1_c2_c3.csv`.
 
@@ -252,24 +254,51 @@ Historical development validation across 5 baseline architectures (Phase 20b) an
 
 *Governance Disclaimer*: Classified as `PROTOCOL_INCOMPARABLE` due to historical manifest v2 splits.
 
-### 13.1 External pilot (descriptive only, n = 1 case per dataset)
+### 13.1 External stress test (retrospective, n = 884, Global and BARR)
 
-Four external datasets were obtained and inspected after the C1 handoff. One case per dataset was passed through the **Global MedFiLM** checkpoint (`286689fd…5ba1b7`, 3,523,001 parameters) at $512\times512$ with a sigmoid threshold of 0.5. **No BARR component was loaded or executed**, so no routing, refinement or safety decision exists for any external case.
+An earlier draft reported a four-case pilot at n = 1 per dataset, run under a non-canonical stretch-resize convention and including a HAM10000 row whose masks have no documented provenance. That pilot is withdrawn in full. What follows was produced by a design frozen and hashed (`c1_external_stress_plan_v1_0`) before any external probability array existed, and it supersedes the pilot.
 
-| Dataset | Documented source | Case | Dice | IoU | Prec | Recall | Spec | Acc | Evidence class |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| HAM10000 (ISIC-2018 Task 3) | ViDIR / MedUni Vienna, CC BY-NC 4.0 | ISIC_0024306 | 79.15% | 65.50% | 100.00% | 65.50% | 100.00% | 88.17% | `PARTIALLY_VERIFIED` |
-| CVC-ClinicDB | Public colonoscopy segmentation set | 1.png | 42.69% | 27.14% | 97.02% | 27.37% | 99.85% | 88.69% | `VERIFIED` |
-| BrEaST-Lesions-USG | Public breast ultrasound set | case001.png | 18.86% | 10.41% | 16.53% | 21.94% | 91.04% | 85.87% | `VERIFIED` |
-| Stones_where_are_you? v3 | Roboflow, public domain, COCO-seg | 1_png.rf.abc… | 5.65% | 2.91% | 2.91% | 100.00% | 89.00% | 89.03% | `VERIFIED` |
+**Classification.** `RETROSPECTIVE_EXTERNAL_STRESS_TEST`. The cohorts were not prospectively held out, and all three were previously inspected while building manifests and an evidence audit. No checkpoint, threshold, seed or preprocessing choice was selected using external performance. These are descriptive observations, not a validation study.
 
-All values were reproduced independently to two decimal places from the stated checkpoint.
+**Cohorts.** CVC-ClinicDB (n = 612, task id 2, KVASIR analogue), BrEaST-Lesions-USG (n = 252, task id 1, BUSI analogue) and the Stones_where_are_you test split (n = 20, task id 3, KUB analogue). HAM10000 is excluded: the folder is the ISIC-2018 Task 3 classification release, which ships no masks, and the 10,015 masks present in it cannot be attributed to an annotator or licence. No HAM10000 inference was run.
 
-**Mask provenance.** The HAM10000 folder is the ISIC-2018 **Task 3** archive, which supplies classification labels and no segmentation masks. The 10,015 masks in that folder therefore come from an undocumented source. The Dice above is a correct computation against the mask on disk, but that mask is not a documented ground truth, so the row is `PARTIALLY_VERIFIED` and must not be cited as an external segmentation score.
+**Protocol.** The canonical inference transform (RGB, aspect-preserving bilinear resize with $s=\min(512/W, 512/H)$, centred zero pad, $/255$), ground truth through the same geometry with nearest-neighbour resampling and binarised at $>0$, sigmoid threshold $0.5$, no per-cohort tuning, no test-time augmentation, no post-processing. Stones polygons are rasterised at native resolution and only category 7 (`stone`) is foreground. No row was dropped after a result was seen, and degenerate cases are kept and scored.
 
-**Independence.** Image identifiers for the external HAM10000 set are disjoint from the frozen ISIC set (0 of 10,015 overlap), and no filename or identifier overlap exists for the other three datasets. However, the supplied HAM10000 metadata contains no lesion or patient grouping field, so lesion-level independence from the training population cannot be established. Dataset-level independence is therefore **not** claimed for any external dataset, consistent with the Phase 32 finding that no prospective clean external cohort is eligible.
+**Global MedFiLM (macro over cases):**
 
-**Failure modes (descriptive).** Under-segmentation dominates the endoscopy and dermoscopy cases (recall 27.37% and 65.50% with high precision), while over-segmentation dominates the ultrasound and radiograph cases (precision 16.53% and 2.91% with near-complete recall). These are observations about four images. They are consistent with a domain-shift hypothesis but do not test it, and no causal attribution is made.
+| Cohort | Dice | 95% CI | IoU | Precision | Recall | Specificity | HD95 (px) | NSD@2px |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| CVC-ClinicDB (n = 612) | 68.66% | [62.65, 74.37] | 57.49% | 67.95% | 81.56% | 96.82% | 109.6 | 0.250 |
+| BrEaST-Lesions-USG (n = 252) | 70.78% | [67.68, 73.78] | 59.84% | 73.91% | 75.57% | 98.19% | 74.0 | 0.252 |
+| Stones (n = 20) | 8.08% | [0.34, 18.99] | 6.09% | 7.48% | 67.33% | 96.83% | 166.9 | 0.228 |
+
+Intervals are percentile bootstrap over clusters (CVC: 29 sequences; BrEaST: 252 cases; Stones: none). HD95 and NSD are in **pixels**: no external cohort ships physical pixel spacing, so no millimetre value is reported and surface metrics are not comparable across cohorts.
+
+**Stones is three statements, not one.** The 8.08% headline is an artefact of scoring 14 empty-ground-truth images as zero. Stratified by annotation: the 6 stone-positive images reach 26.95% Dice with recall 67.33% and precision 24.93% (lesions are found but grossly over-segmented, median predicted area 3.7× the annotation); the 14 stone-absent images yield precision 0.00% because the model produced foreground on **14 of 14** stone-free radiographs. The substantive finding is an absence of true-negative behaviour, not a segmentation score.
+
+**Regional BARR on the same cases.** All four components hash-matched their frozen bindings before the first forward pass, all state dictionaries loaded with `strict=True`, and the two equivalent forms of the routing decision agreed on all 884 cases. No case failed and no case fell back for lack of an ROI.
+
+| Cohort | Selected | Accepted | Rejected | Not attempted | Failed | Global Dice | BARR Dice | Difference |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| CVC-ClinicDB | 19.28% | 83 | 35 | 494 | 0 | 68.66% | 68.97% | +0.32 pp |
+| BrEaST-Lesions-USG | 22.22% | 47 | 9 | 196 | 0 | 70.78% | 70.81% | +0.03 pp |
+| Stones | 50.00% | 9 | 1 | 10 | 0 | 8.08% | 8.21% | +0.13 pp |
+
+The paired per-case change has median 0.00 pp in every cohort and an interquartile range straddling zero, because most cases are unchanged by construction: the router did not select them, or the safety gate rejected them. CVC shows 67 improved against 14 worsened; BrEaST 27 against 20. **Preservation transfers; improvement does not.**
+
+The router threshold was calibrated on the internal development population under a fixed 25% budget. The external selection fraction is therefore an outcome of that fixed threshold, not a controlled property of the cohort — the 50% figure on Stones reflects router scores sitting near $\tau_{C7}$, not that half of those images merited refinement. No recalibration was performed, because recalibrating on the evaluation cohort would make the result uninterpretable.
+
+**Domain shift against the internal anchors.** Comparing to the frozen Phase 21 VAL808 per-domain Dice for the same task id (a different population, used only as a shift anchor):
+
+| Cohort | Internal VAL808 | External Global | Shift | GT area (median) | Predicted area (median) |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| CVC-ClinicDB (KVASIR) | 82.02% | 68.66% | −13.37 pp | 5.13% | 6.91% |
+| BrEaST-Lesions-USG (BUSI) | 85.88% | 70.78% | −15.10 pp | 3.58% | 4.32% |
+| Stones (KUB) | 76.41% | 8.08% | −68.32 pp | 0.00% | 0.90% |
+
+A model that reaches 83.51% macro-domain Dice on its internal validation split does not carry that performance to external data from the same nominal modalities. Endoscopy loses 13.4 pp and breast ultrasound 15.1 pp; the Stones radiographs lose 68.3 pp, and the median-area column explains why — the model covers a far larger share of the canvas than the annotations do, so the failure is over-segmentation rather than a failure to respond.
+
+**What this does not establish.** Dataset-level independence is not claimed for any cohort, consistent with the Phase 32 finding that no prospective clean external cohort is eligible. The study bounds failure modes; it does not estimate generalisation, and no confirmatory p-value is computed.
 
 ---
 
@@ -318,17 +347,20 @@ The frozen architecture injects task conditioning at five sites (bridge, decoder
 We transparently delineate the scientific boundaries of this work:
 1. **Unexecuted Prospective Splits**: While code, configurations, and verification harnesses are frozen, production weights for C1 remain `NOT_ESTABLISHED` pending institutional clock attestation and hardware authorization.
 2. **Historical Comparison Constraints**: Historical C2 and C3 results cannot be combined mathematically with v3 prospective tables without introducing confounding bias.
-3. **Lack of Truly Independent External Validation**: All evaluation sets were generated by partitioning available open cohorts. The four-case external pilot in §13.1 is not an external validation cohort: it evaluates one case per dataset, uses only the global model, and for HAM10000 relies on a mask of undocumented provenance. Phase 32 established that no prospective clean external cohort is eligible, so external validation has **not** been performed.
-4. **No Confirmatory Statistics**: Phase 31 recorded zero eligible confirmatory procedures. Every interval in this manuscript is descriptive; no p-value is reported and none should be inferred.
+3. **Lack of Truly Independent External Validation**: All evaluation sets were generated by partitioning available open cohorts. The 884-case study in §13.1 is a retrospective stress test, not an external validation cohort: the three cohorts were previously inspected while building manifests and an evidence audit, and HAM10000 was excluded because its masks have no documented provenance. Phase 32 established that no prospective clean external cohort is eligible, so external validation has **not** been performed.
+4. **No Confirmatory Statistics**: Phase 31 recorded zero eligible confirmatory procedures. Every interval in this manuscript is descriptive; no p-value is reported and none should be inferred. External intervals are percentile bootstrap over clusters and are labelled as such.
 5. **Cross-Run Model Comparison**: The Phase 21 six-model comparison and the BARR results originate in different runs. BARR is therefore not a seventh arm of that comparison, and no controlled head-to-head between BARR and the baselines exists.
 6. **In-Sample Safety Evidence**: The harm-rate decomposition of §12 is computed on ROUTER_DEVELOPMENT (n = 4,957), a subset of the 5,832 TRAIN samples.
+7. **External Surface Metrics Are Unscaled**: No external cohort ships physical pixel spacing, so HD95, ASSD and NSD are reported in pixels, cannot be converted to millimetres, and are not comparable across cohorts.
+8. **External Selection Fraction Is Not Controlled**: The router threshold is fixed from internal calibration. The external selection fractions (19.28%, 22.22%, 50.00%) are outcomes of that threshold, and no recalibration was performed on the evaluation cohorts.
+9. **Small External Subgroup**: The Stones cohort is n = 20 with 6 positive cases. It carries no interval estimate and supports no subgroup comparison.
 
 ---
 
 ## 18. Ethical, Regulatory & Clinical AI Translation
 
 In compliance with trustworthy AI principles for healthcare:
-- **Patient Privacy**: All primary datasets were obtained from public, de-identified research repositories (ISIC 2018, BUSI, Kvasir-SEG, KUB-StoneX) under their respective licences. **No IRB or ethics approval was obtained for this secondary analysis**, and none is claimed. The HAM10000 material used in the external pilot is licensed CC BY-NC 4.0, which restricts its use to non-commercial purposes.
+- **Patient Privacy**: All primary datasets were obtained from public, de-identified research repositories (ISIC 2018, BUSI, Kvasir-SEG, KUB-StoneX) under their respective licences. **No IRB or ethics approval was obtained for this secondary analysis**, and none is claimed. The external cohorts in §13.1 (CVC-ClinicDB, BrEaST-Lesions-USG, Stones_where_are_you) are likewise public. HAM10000 material was **not** used: that cohort was excluded before inference because the available masks carry no documented provenance.
 - **Fail-Safe Routing**: BARR specifies a fallback to the global prediction when a crop is rejected. This fallback is a specified mechanism; its clinical safety has not been demonstrated, and 390 harmful refinements persist in $A8$ on the development population.
 - **Provenance Integrity (qualified)**: Experimental configurations are digest-bound and the C1 launch release is frozen by SHA-256 manifest. This makes reported results traceable to a specific code and data state. It does **not** make them immune to post-hoc selection, and it does not authenticate the human authority behind an approval: an audit found agent-generated signing material in the production trust root, and the RC3 gate currently refuses its own release digest. The trust boundary is under operator review, no scientific execution is authorised, and no production grant has been minted.
 
@@ -337,6 +369,8 @@ In compliance with trustworthy AI principles for healthcare:
 ## 19. Conclusion & Research Roadmap
 
 RA-MedFiLM-BARR presents a unified, mathematically formulated architecture for multi-domain medical image segmentation. By coupling task-conditioned FiLM modulation with budget-aware regional refinement and enforcing cryptographic data split governance, the framework resolves critical gaps in attribution and resource allocation. As soon as institutional trust authority is provisioned, the execution of the frozen 6-run campaign will deliver the definitive empirical verification of task modulation in clinical deep learning.
+
+The external stress test in §13.1 adds a boundary to that claim that should not be softened in revision. On 884 cases from three public cohorts the frozen system executes end-to-end without error and BARR's preservation property survives transfer, but absolute accuracy does not: external Dice falls 13.4, 15.1 and 68.3 pp below the internal anchors for the same nominal modalities. Any deployment claim therefore requires domain adaptation and a prospective cohort, neither of which this work provides.
 
 ---
 

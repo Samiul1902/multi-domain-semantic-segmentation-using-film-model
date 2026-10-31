@@ -179,9 +179,17 @@ def test_retracted_tiny_stratum_claim_is_not_asserted():
     assert "85.57%" in holdout[0]
 
 
-def test_report_states_that_barr_was_not_executed_externally():
+def test_report_states_that_barr_was_executed_externally():
+    """Superseded 2026-10-31: BARR is now executed on all 884 external cases.
+
+    The earlier build correctly said no BARR decision existed, because none had
+    been run. That is no longer true, so the assertion is inverted rather than
+    deleted: the report must now say BARR ran, and must still not invent a
+    "triggered" verdict anywhere.
+    """
     body, _ = docx_text()
-    assert "BARR components were not loaded" in body or "no BARR decision" in body.lower()
+    assert "BARR executed end-to-end" in body or "BARR has now been executed" in body
+    assert "BARR components were not loaded" not in body
     assert "Triggered" not in body
 
 
@@ -238,12 +246,20 @@ def test_manuscript_has_no_retracted_superiority_or_compute_claims():
     assert "superior multi-domain stability" not in t
 
 
-def test_manuscript_contains_the_external_pilot_with_qualification():
+def test_manuscript_contains_the_external_stress_test_with_qualification():
+    """Superseded 2026-10-31: the n=1 pilot is withdrawn and replaced.
+
+    The qualifications that mattered in the pilot still have to hold in the
+    stress test, so they are asserted here too: no validation claim, no clean
+    independence claim, and HAM10000 excluded rather than quietly scored.
+    """
     t = MS.read_text(encoding="utf-8")
-    assert "13.1 External pilot" in t
-    assert "PARTIALLY_VERIFIED" in t
+    assert "13.1 External stress test" in t
     assert "not an external validation cohort" in t
-    assert "undocumented source" in t
+    assert "Dataset-level independence is not claimed" in t
+    assert "HAM10000 is excluded" in t
+    # the withdrawn pilot must be named exactly once, as withdrawn
+    assert "withdrawn in full" in t
 
 
 def test_manuscript_states_preservation_not_improvement():
