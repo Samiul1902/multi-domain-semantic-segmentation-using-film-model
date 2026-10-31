@@ -123,6 +123,32 @@ verifier canonicalises envelope minus `signature`). NTP measurement itself was g
 `C1_TRUST_BOUNDARY_CONTAMINATED__OPERATOR_REVIEW_REQUIRED__SCIENTIFIC_LAUNCH_NO_GO`.
 Full detail → `2026-10-30.md`; report → `reports/audits/c1_trust_recovery_v1_0/`.
 
+## COMPUTE — `refiner_forwards == selected`, NOT accepted (settled 2026-10-31)
+Refiner runs **before** the S_omega gate ⇒ a rejected candidate already paid. Eval increments
+`refiner_forwards` at the call site *before* the decision. External: selected 184 = 139 acc + 45 rej.
+Internal: **1,239 = 1,205 acc + 34 rej** ⇒ the 1,239/1,205/34 triple is the **internal BARR-M1
+population**, never external. `A8.n_routed = 1,205` is an **ADOPTION count**; `A7.n_routed = 1,239`.
+Workload is **25.0%**, NOT 24.3% — the defect lived in `build_verified_comparison_figures.py::fig3()`,
+which charted A8's adoption count as crops executed. Cost contract preserved, not altered:
+`accept_reject_differ: false`; the 2.345×10⁹ MAC saving is at `p_activate = 27.43%`, not 24.3%.
+
+## EXTERNAL 884 — `VERDICT CONSISTENT`, 0 failures (2026-10-31, no re-inference)
+CVC 612 / BrEaST 252 / Stones 20. Global→BARR 68.66→68.97 · 70.78→70.81 · 8.08→8.21 pp. BrEaST
+`270 = 252 + 4 + 14` (14 `_other` views of 7 cases never in manifest + 4 excluded primaries); 252
+distinct `case_id`, patient-level independence **NOT verifiable**. Stones interval is REAL
+(`n_clusters=20`, singleton) ⇒ **image-level descriptive**, not population. 0/14 stone-absent predicted
+empty yet median TN 259,214/262,144 px ⇒ **case-level** failure. **IQR exactly [0,0]** (700/884
+untouched) ⇒ "sits on zero", NEVER "straddles". Accepted-with-negative-change: CVC 14, BrEaST 20,
+**Stones 0/9** ⇒ no harmful accepted Stones case exists; never fabricate one.
+
+## C1 HANDOFF — decision documented, NOT authorised (2026-10-31)
+`docs/c1_execution_handoff_decision_v1_0.md` (TRACKED). Decision **R** = declared researcher-operated
+model, gated on licence/ethics + O8 + a new additive revision + store quarantine. **RC3 defect
+re-verified live:** `RC3_RELEASE_ID`/`RC2_FROZEN_DIGEST` occur once each (defs only);
+`RC3Grant.release_digest` → `self._rc2_grant.release_digest`; `verify_release_rc3(` never called.
+**All 27 RC3 tests pass and none presents the release with its OWN digest** (only `"INVALID_DIGEST"`)
+⇒ that is why it shipped; any successor must test self-acceptance.
+
 ## PHASE36 — `NOT_COMPLETE_PENDING_V1_22_EXECUTION`, Phase37 NOT_STARTED
 **v1.22 ELIGIBLE_NOT_STARTED (never executed)**; v1.20/v1.21 consumed or frozen; D95/D96 repaired.
 Gate: `PHASE36_V1_22_EXECUTE=1` + `PHASE36_V1_22_LAUNCH_AUTHORITY`. **SHAs → NOTES_ARCHIVE.**
