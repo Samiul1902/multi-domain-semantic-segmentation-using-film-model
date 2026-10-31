@@ -13,7 +13,11 @@ Deep neural networks deployed across heterogeneous medical imaging modalities of
 - **Contribution C2 (*Exploratory Development*)**: Budget-aware regional refinement routing ambiguous or sub-centimeter lesion regions to high-capacity localizers under hard compute constraints, evaluated retrospectively on development partitions.
 - **Contribution C3 (*Exploratory Retrospective Benchmarking*)**: Cross-domain shared segmentation baselines across four diverse modalities: digital radiography (KUB-StoneX), dermoscopy (ISIC 2018), breast ultrasound (BUSI), and polyp endoscopy (Kvasir-SEG).
 
-To eliminate data leakage, we enforce canonical Manifest v3 governance, isolating 118 high-risk patient-overlapping cases and locking the 1,683-case evaluation cohort. Statistical inference is governed by domain-stratified cluster bootstrapping and paired Wilcoxon signed-rank tests. While formal institutional approval remains pending before launching production weights, this manuscript establishes the mathematical rigor, exact implementation mechanics, baseline evidence boundaries, and statistical contracts required for fully defensible clinical AI benchmarking.
+To eliminate data leakage, we enforce canonical Manifest v3 governance, isolating 118 high-risk patient-overlapping cases and locking the 1,683-case evaluation cohort. Statistical inference is governed by domain-stratified cluster bootstrapping; because no confirmatory significance procedure is eligible, all reported intervals are descriptive.
+
+On the VAL808 development split, Global MedFiLM attains 83.51% macro-domain Dice with 3.52M parameters and ranks first of six architectures under a single shared protocol, though it is not statistically distinguishable from DeepLabV3+. Regional BARR **preserves** this accuracy rather than improving on it: +0.28 pp on VAL808 (three-seed mean) and +0.17 pp on the one-shot ROUTER_HOLDOUT (95% CI [+0.11, +0.24]), within a pre-specified −0.5 pp non-inferiority margin. A four-case external pilot is reported descriptively and explicitly does not constitute external validation.
+
+While formal institutional approval remains pending before launching production weights, this manuscript establishes the mathematical rigor, exact implementation mechanics, baseline evidence boundaries, and statistical contracts required for fully defensible clinical AI benchmarking.
 
 ---
 
@@ -54,10 +58,11 @@ To ensure scientific transparency, every research contribution is explicitly cat
   - *Scope*: Causal architectural intervention isolating the mathematical effect of task-conditioned scale/shift affine vectors against an exact zero-modulation control. It does *not* assert broad clinical efficacy until prospective evaluation is authorized.
 - **Contribution C2 (Budget-Aware Regional Refinement — *Exploratory Development*)**:
   - *Status*: Retrospectively validated on historical development partitions (`HISTORICAL_DESCRIPTIVE_RESULT`).
-  - *Scope*: Demonstrates that learned post-safety filtering ($S_\omega$) suppresses harmful refinements (reducing harm rate from 42.67% to 7.87%) under tight computational constraints.
+  - *Scope*: Demonstrates that selective routing plus learned post-safety filtering ($S_\omega$) reduces the all-population harm rate from 42.67% ($A1$, unconditional refinement) to 7.87% ($A8$), in-sample on the 4,957-case development population. The router accounts for 2,115 → 412 harmful cases and $S_\omega$ for a further 412 → 390; the reduction is therefore attributable mainly to routing, not to the safety filter alone.
 - **Contribution C3 (Fair Multi-Domain Benchmarking — *Exploratory Retrospective*)**:
   - *Status*: Validated across 5 baseline architectures on historical splits (`PROTOCOL_INCOMPARABLE`).
   - *Scope*: Establishes initial empirical baselines across four clinical targets but requires re-benchmarking under clean Manifest v3 governance.
+- **External pilot (not a contribution, *Descriptive Only*)**: A four-case external pilot (one case per dataset: HAM10000/ISIC-2018 Task 3, CVC-ClinicDB, BrEaST-Lesions-USG, Stones_where_are_you? v3) was executed with the Global MedFiLM checkpoint only. No BARR component was executed. This is not an external validation cohort; see §13.1.
 
 ---
 
@@ -91,6 +96,19 @@ $$A(x, y) = 1 - 2 \cdot |P_{\text{global}}(x, y) - 0.5|$$
 Let $c_k \in [0, 1]$ represent the routing confidence score for candidate region $k$, predicted by a lightweight routing gate $R(F_{\text{crop}})$. Given an allocated computational budget constraint $B_{\text{max}}$ (measured in GFLOPs per image), the discrete routing decision $z_k \in \{0, 1\}$ is governed by:
 $$z_k = \mathbb{I}\left(c_k \ge \tau \quad \text{and} \quad \sum_{j \le k} \text{FLOPs}(B_j) \le B_{\text{max}}\right)$$
 If $z_k = 1$, the crop $B_k$ is forwarded to the high-capacity Regional Refiner; if $z_k = 0$, the coarse global prediction is retained.
+
+### 5.3 Parameter accounting
+The frozen system comprises four components with verified parameter counts (`reports/audits/phase36_robustness_scientific_result_v1_23.json`, strict load, zero missing or unexpected keys):
+
+| Component | Symbol | Parameters |
+| :--- | :--- | ---: |
+| Global FiLM segmentation network | $G$ | 3,523,001 |
+| Regional refiner | $R_\psi$ | 1,276,401 |
+| Benefit router | $B_\phi$ | 36,801 |
+| Post-safety filter | $S_\omega$ | 1,217 |
+| **Total** | | **4,837,420** |
+
+The total is 4.84M parameters, not the 4.80M stated in earlier project material. $R_\psi$ accounts for 90% of the increase over the global network, so BARR's cost is dominated by the refiner rather than by routing or safety.
 
 ---
 
@@ -129,7 +147,7 @@ Experiments are standardized on an NVIDIA GeForce RTX 3060 Ti GPU (8GB VRAM) und
 ### 7.2 Crytographic Release Invariant (RC3)
 The launch framework is governed by frozen release `C1_FILM_ATTRIBUTION_V1_LAUNCH_RC3`, bearing SHA-256 digest:
 `54d1273a53db7dae58118a4bb69c2a96ba2e474a72512a9dccb4c98c9513549f`
-All 27 release verification tests (`test_c1_launch_rc3.py`) and 43 RC2 regressions pass with 100% compliance.
+Release verification at the time of writing: 27 RC3 tests pass and 42 of 43 RC2 regression tests pass. One RC2 test fails because the default production trust store is present on the host (see §18.3); it is reported rather than suppressed.
 
 ---
 
@@ -170,6 +188,10 @@ Every empirical data point in this project is classified under a strict evidenti
 - `PROTOCOL_INCOMPARABLE`: Historical runs with mismatched loss formulations or pre-audit data splits.
 - `SYNTHETIC_TEST_ONLY`: Computational contract verification on mock data structures.
 - `NOT_ESTABLISHED`: Prospective experiments pending operational execution.
+- `PARTIALLY_VERIFIED`: The computation is reproducible from a frozen artifact, but a required input (mask provenance, population identity) is undocumented. Reportable as a pilot observation only.
+- `UNSUPPORTED`: No stored record exists. Must not be quoted.
+
+Applied to the external pilot (§13.1), three datasets are `VERIFIED` at the level of image/mask pairing and identifier mapping, and HAM10000 is `PARTIALLY_VERIFIED` because its masks have undocumented provenance. The pilot as a whole is `DESCRIPTIVE_ONLY` and is not an external validation cohort.
 
 A complete audit trail is preserved in `reports/tables/scientific_evidence_inventory_c1_c2_c3.csv`.
 
@@ -203,8 +225,12 @@ Historical exploratory experiments (Phases 14, 26, 28, 30) evaluated selective r
 | **A7** | Cost-aware utility: $U = \hat{\Delta} - \lambda C$ | 1,239 | 1,239 | +0.007247 | 827 | 412 | 33.25% (412 / 1,239) | 8.31% (412 / 4,957) | `PRIOR_CANONICAL_EVIDENCE` |
 | **A8** | Full BARR: $A7$ + Post-Safety $S_\omega$ | 1,239 | 1,205 | +0.007516 | 815 | 390 | 32.37% (390 / 1,205) | 7.87% (390 / 4,957) | `PRIOR_CANONICAL_EVIDENCE` |
 
+*Column note*: for $A8$ the "routed" count (1,239) is the number of candidates eligible under budget $K$; the "accepted" count (1,205) is the number actually executed after $S_\omega$ rejects 34. The frozen Phase 28 table records `n_routed = 1,205` for $A8$ using the post-safety convention. Both readings are of the same run.
+
 ### Key Findings:
 - **Harm Denominators Reconciled**: Unconditional refinement ($A1$) harms **42.67%** of cases across the population (2,115 / 4,957). In full BARR ($A8$), exactly 390 cases among the 1,205 accepted cases experienced harm (a conditional harm rate of 32.37%). Evaluated across the entire population (intent-to-treat), $A8$ harm is **7.87%** (390 / 4,957).
+- **Attribution Decomposition**: the $A1 \to A7$ step (adding the cost-aware router) accounts for 2,115 → 412 harmful cases; the $A7 \to A8$ step (adding $S_\omega$) accounts for 412 → 390, i.e. 22 cases. The system-level reduction of 1,725 cases is therefore attributable predominantly to routing. A reduced average harm rate is **not** evidence of zero harmful outcomes: 390 harmful refinements persist in $A8$.
+- **In-Sample Caveat**: the 4,957 ROUTER_DEVELOPMENT rows are a subset of the 5,832 TRAIN samples. This table is in-sample development evidence, not held-out evidence.
 - **Phase 30 Holdout Evidence Boundary**: Historical evaluation on the router holdout ($N=875$) demonstrated a macro Dice delta of $+0.001739$ (95% CI: $[+0.001117, +0.002405]$), confirming non-inferiority against the margin of $-0.005$. In accordance with supervisor adjudication, this result is classified under disclosed post-first-open source deviations and confirms protocol-specific non-inferiority, not clinical safety.
 
 *Governance Disclaimer*: Classified as `HISTORICAL_DESCRIPTIVE_RESULT`.
@@ -226,50 +252,85 @@ Historical development validation across 5 baseline architectures (Phase 20b) an
 
 *Governance Disclaimer*: Classified as `PROTOCOL_INCOMPARABLE` due to historical manifest v2 splits.
 
+### 13.1 External pilot (descriptive only, n = 1 case per dataset)
+
+Four external datasets were obtained and inspected after the C1 handoff. One case per dataset was passed through the **Global MedFiLM** checkpoint (`286689fd…5ba1b7`, 3,523,001 parameters) at $512\times512$ with a sigmoid threshold of 0.5. **No BARR component was loaded or executed**, so no routing, refinement or safety decision exists for any external case.
+
+| Dataset | Documented source | Case | Dice | IoU | Prec | Recall | Spec | Acc | Evidence class |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| HAM10000 (ISIC-2018 Task 3) | ViDIR / MedUni Vienna, CC BY-NC 4.0 | ISIC_0024306 | 79.15% | 65.50% | 100.00% | 65.50% | 100.00% | 88.17% | `PARTIALLY_VERIFIED` |
+| CVC-ClinicDB | Public colonoscopy segmentation set | 1.png | 42.69% | 27.14% | 97.02% | 27.37% | 99.85% | 88.69% | `VERIFIED` |
+| BrEaST-Lesions-USG | Public breast ultrasound set | case001.png | 18.86% | 10.41% | 16.53% | 21.94% | 91.04% | 85.87% | `VERIFIED` |
+| Stones_where_are_you? v3 | Roboflow, public domain, COCO-seg | 1_png.rf.abc… | 5.65% | 2.91% | 2.91% | 100.00% | 89.00% | 89.03% | `VERIFIED` |
+
+All values were reproduced independently to two decimal places from the stated checkpoint.
+
+**Mask provenance.** The HAM10000 folder is the ISIC-2018 **Task 3** archive, which supplies classification labels and no segmentation masks. The 10,015 masks in that folder therefore come from an undocumented source. The Dice above is a correct computation against the mask on disk, but that mask is not a documented ground truth, so the row is `PARTIALLY_VERIFIED` and must not be cited as an external segmentation score.
+
+**Independence.** Image identifiers for the external HAM10000 set are disjoint from the frozen ISIC set (0 of 10,015 overlap), and no filename or identifier overlap exists for the other three datasets. However, the supplied HAM10000 metadata contains no lesion or patient grouping field, so lesion-level independence from the training population cannot be established. Dataset-level independence is therefore **not** claimed for any external dataset, consistent with the Phase 32 finding that no prospective clean external cohort is eligible.
+
+**Failure modes (descriptive).** Under-segmentation dominates the endoscopy and dermoscopy cases (recall 27.37% and 65.50% with high precision), while over-segmentation dominates the ultrasound and radiograph cases (precision 16.53% and 2.91% with near-complete recall). These are observations about four images. They are consistent with a domain-shift hypothesis but do not test it, and no causal attribution is made.
+
 ---
 
 ## 14. Computational Efficiency & FLOP Budget Analysis
 
-The inference latency and throughput profile of RA-MedFiLM-BARR reflects its decoupled coarse-fine design:
-- **Global Stage (Low-FLOP Pass)**: Requires $\approx 4.2 \text{ GFLOPs}$ per image at $512 \times 512$.
-- **Regional Refiner (High-Capacity Localizer)**: Evaluated only on cropped ROIs ($128 \times 128$), consuming $\approx 1.16 \text{ GFLOPs}$ per routed crop.
-- **Selective Routing Efficiency**: Routing an average of $1.4$ crops per ambiguous scan maintains total inference cost under $5.8 \text{ GFLOPs}$ per patient—a $>65\%$ reduction compared to full-resolution dense cascades.
+The inference cost profile of RA-MedFiLM-BARR is **not** a large saving over the global stage. Analytical lower-bound MAC counts at $512\times512$ (`reports/audits/phase34_analytical_compute_contract.json`) give:
+
+| Path | MACs | GFLOPs (2×) | Ratio vs global-only |
+| :--- | :--- | :--- | :--- |
+| Global MedFiLM only | 31.552 G | 63.10 | 1.000 |
+| Always-refine (A1) | 34.782 G | 69.57 | 1.102 |
+| A8/C9 conditional (expected) | 32.438 G | 64.88 | **1.028** |
+
+- **Selective routing**: the expected analytical cost of the full policy is 2.8% **above** global-only and 6.7% **below** unconditional refinement, saving $2.345\times10^{9}$ MACs against always-refine at a 24.3% refiner workload.
+- **What BARR does not do**: it does not reduce inference cost below the global stage, and it does not deliver a large compute saving. Its benefit is boundary recovery on routed crops at a bounded cost premium.
+- These are analytical lower bounds from a Conv2d/Linear count, not wall-clock measurements. Measured latency on the RTX 3060 Ti is reported separately in Phase 34 and is hardware-specific.
+
+An earlier draft of this section quoted 4.2 GFLOPs for the global stage and a ">65% reduction". Both figures are inconsistent with the frozen compute records by an order of magnitude and have been withdrawn.
 
 ---
 
 ## 15. Interpretability & Modality Representation Analysis
 
-Task-conditioned modulation parameters ($\gamma, \beta$) exhibit distinct clustering across modalities. Principal Component Analysis (PCA) of learned FiLM vectors reveals:
-1. Low-contrast modalities (KUB radiographs) elicit dominant additive shifts ($\beta$) across high-resolution encoder stages to suppress background skeletal structures.
-2. High-contrast modalities (ISIC dermoscopy) rely predominantly on multiplicative scaling ($\gamma$) in deeper semantic layers to refine lesion margin contrast.
+Descriptive model-mechanism observations are reported for task-conditioned modulation and router attribution. No causal claim is made: there is no architecture-matched control under an identical run, so the permitted phrasing is descriptive only.
+
+1. FiLM $\gamma/\beta$ parameters are task-modulated, with the largest magnitude at the `decoder1` and `bridge` sites (20 FiLM task sites analysed).
+2. Router feature-group attribution concentrates on the `decoder1` global and ROI feature groups (shares 0.324 and 0.307 respectively across 6 groups / 10 scalar features).
+3. Saliency self-consistency is quantified per layer and per domain.
+
+These are attribution and modulation observations. They do **not** establish that modulation *causes* the observed accuracy, and no PCA-based mechanistic interpretation (such as "additive shifts suppress skeletal background") is supported by a stored analysis record; such interpretations have been removed.
 
 ---
 
 ## 16. Ablation Studies & Sensitivity Analysis
 
 ### 16.1 Conditioning Injection Depth
-Modulating both the bridge and decoder blocks (5 sites) yields superior multi-domain stability compared to encoder-only or bottleneck-only conditioning.
+The frozen architecture injects task conditioning at five sites (bridge, decoder4, decoder3, decoder2, decoder1). **No injection-depth ablation has been executed**, so the claim that five-site injection is superior to encoder-only or bottleneck-only conditioning is not supported and has been removed. The 13-arm Phase 28 ablation varies routing and safety policy, not injection depth.
 
 ### 16.2 Routing Confidence Thresholds ($\tau$)
-Sweeping the routing confidence threshold $\tau \in [0.1, 0.9]$ traces an empirical Pareto frontier between computational expenditure and Dice score, validating budget-constrained optimization.
+**No threshold sweep over $\tau \in [0.1, 0.9]$ has been executed.** The routing decision rule is frozen at its specified operating point. The previously stated "empirical Pareto frontier" between compute and Dice is therefore not an empirical result and has been removed. Phase 34 provides analytical cost accounting at the frozen operating point only.
 
 ---
 
 ## 17. Scientific Limitations & Governance Boundaries
 
 We transparently delineate the scientific boundaries of this work:
-1. **Unexecuted Prospective Splits**: While code, configurations, and verification harnesses are 100% frozen, production weights for C1 remain `NOT_ESTABLISHED` pending institutional clock attestation and hardware authorization.
+1. **Unexecuted Prospective Splits**: While code, configurations, and verification harnesses are frozen, production weights for C1 remain `NOT_ESTABLISHED` pending institutional clock attestation and hardware authorization.
 2. **Historical Comparison Constraints**: Historical C2 and C3 results cannot be combined mathematically with v3 prospective tables without introducing confounding bias.
-3. **Lack of Truly Independent External Validation**: All evaluation sets were generated by partitioning available open cohorts; prospective external testing on new clinical centers remains a critical future requirement.
+3. **Lack of Truly Independent External Validation**: All evaluation sets were generated by partitioning available open cohorts. The four-case external pilot in §13.1 is not an external validation cohort: it evaluates one case per dataset, uses only the global model, and for HAM10000 relies on a mask of undocumented provenance. Phase 32 established that no prospective clean external cohort is eligible, so external validation has **not** been performed.
+4. **No Confirmatory Statistics**: Phase 31 recorded zero eligible confirmatory procedures. Every interval in this manuscript is descriptive; no p-value is reported and none should be inferred.
+5. **Cross-Run Model Comparison**: The Phase 21 six-model comparison and the BARR results originate in different runs. BARR is therefore not a seventh arm of that comparison, and no controlled head-to-head between BARR and the baselines exists.
+6. **In-Sample Safety Evidence**: The harm-rate decomposition of §12 is computed on ROUTER_DEVELOPMENT (n = 4,957), a subset of the 5,832 TRAIN samples.
 
 ---
 
 ## 18. Ethical, Regulatory & Clinical AI Translation
 
 In compliance with trustworthy AI principles for healthcare:
-- **Patient Privacy**: All datasets were sourced from de-identified open-access clinical repositories with institutional review board (IRB) provenance.
-- **Fail-Safe Routing**: BARR incorporates an explicit fallback mechanism: in cases of extreme image degradation or sensor failure, the router defaults to conservative full-field processing to prevent missed pathologies.
-- **Provenance Integrity**: Cryptographic signing of experimental configurations guarantees that reported clinical findings are immune to post-hoc cherry-picking.
+- **Patient Privacy**: All primary datasets were obtained from public, de-identified research repositories (ISIC 2018, BUSI, Kvasir-SEG, KUB-StoneX) under their respective licences. **No IRB or ethics approval was obtained for this secondary analysis**, and none is claimed. The HAM10000 material used in the external pilot is licensed CC BY-NC 4.0, which restricts its use to non-commercial purposes.
+- **Fail-Safe Routing**: BARR specifies a fallback to the global prediction when a crop is rejected. This fallback is a specified mechanism; its clinical safety has not been demonstrated, and 390 harmful refinements persist in $A8$ on the development population.
+- **Provenance Integrity (qualified)**: Experimental configurations are digest-bound and the C1 launch release is frozen by SHA-256 manifest. This makes reported results traceable to a specific code and data state. It does **not** make them immune to post-hoc selection, and it does not authenticate the human authority behind an approval: an audit found agent-generated signing material in the production trust root, and the RC3 gate currently refuses its own release digest. The trust boundary is under operator review, no scientific execution is authorised, and no production grant has been minted.
 
 ---
 
