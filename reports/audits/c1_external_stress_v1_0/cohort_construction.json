@@ -1,0 +1,81 @@
+{
+  "artifact": "c1_external_stress_cohort_construction",
+  "cohorts": {
+    "cvc": {
+      "cohort": "CVC-ClinicDB",
+      "manifest": "reports/external_extension/manifests/ext02_cvc_clinicdb_manifest.csv",
+      "manifest_sha256": "b3a1ca429ba974766787709108d84344df2a963836fb00f3fe14aa47c02386c4",
+      "split_filter": null,
+      "rows_in_manifest": 612,
+      "rows_after_split_filter": 612,
+      "rows_evaluable": 612,
+      "rows_analysed": 612,
+      "excluded_by_manifest": [],
+      "exclusion_rule": "evaluable == True AND image_path resolves AND ground-truth reference resolves AND mask rasterises",
+      "task_id": 2,
+      "domain_analogue": "KVASIR",
+      "sample_ids_sha256": "6fa252042ccf9a57b93e1f58ee1006eac2f017baf3729b8c693c5e83c2ddc840",
+      "n_post_hoc_drops": 0
+    },
+    "breast": {
+      "cohort": "BrEaST-Lesions-USG",
+      "manifest": "reports/external_extension/manifests/ext02_breast_us_manifest.csv",
+      "manifest_sha256": "24697ef0e4226a70025e33dba428f238515d5ad1aa323c3230db5947dec0001b",
+      "split_filter": null,
+      "rows_in_manifest": 256,
+      "rows_after_split_filter": 256,
+      "rows_evaluable": 252,
+      "rows_analysed": 252,
+      "excluded_by_manifest": [
+        {
+          "sample_id": "BREAST::case045",
+          "reason": "GT_UNAVAILABLE__no_tumour_mask__excluded_pre_inference"
+        },
+        {
+          "sample_id": "BREAST::case061",
+          "reason": "GT_UNAVAILABLE__no_tumour_mask__excluded_pre_inference"
+        },
+        {
+          "sample_id": "BREAST::case209",
+          "reason": "GT_UNAVAILABLE__no_tumour_mask__excluded_pre_inference"
+        },
+        {
+          "sample_id": "BREAST::case213",
+          "reason": "GT_UNAVAILABLE__no_tumour_mask__excluded_pre_inference"
+        }
+      ],
+      "exclusion_rule": "evaluable == True AND image_path resolves AND ground-truth reference resolves AND mask rasterises",
+      "task_id": 1,
+      "domain_analogue": "BUSI",
+      "sample_ids_sha256": "a6565be55db3520630e11cd2d68d096be134d292cf9af99bc811489671f44986",
+      "n_post_hoc_drops": 0
+    },
+    "stones": {
+      "cohort": "Stones_where_are_you",
+      "manifest": "reports/external_extension/manifests/ext02_1_stones_manifest_reconciled.csv",
+      "manifest_sha256": "31f08db493f83f1f5ea85a0dbd385e82330484b63698f5d7c978ee0c4adc8b8b",
+      "split_filter": "test",
+      "rows_in_manifest": 460,
+      "rows_after_split_filter": 20,
+      "rows_evaluable": 20,
+      "rows_analysed": 20,
+      "excluded_by_manifest": [],
+      "exclusion_rule": "evaluable == True AND image_path resolves AND ground-truth reference resolves AND mask rasterises",
+      "task_id": 3,
+      "domain_analogue": "KUB",
+      "sample_ids_sha256": "015ad56cd6ce4917a87869f4991f883cbf49b71889562b34ee179caeac5b5290",
+      "n_post_hoc_drops": 0
+    },
+    "ham10000": {
+      "cohort": "HAM10000",
+      "manifest": "reports/external_extension/manifests/ext02_ham10000_manifest.csv",
+      "manifest_sha256": "991a7cc2a9d54ae731af27cd4912eaa342536204b42ee104e0e1069f6a6ab154",
+      "rows_in_manifest": 10015,
+      "rows_analysed": 0,
+      "status": "HAM10000_EXCLUDED__MASK_PROVENANCE_UNVERIFIED",
+      "reason": "The HAM10000 folder is the ISIC-2018 Task 3 classification release, which ships no segmentation masks. 10,015 mask files exist with no recorded provenance. No inference was run."
+    }
+  },
+  "total_analysed": 884,
+  "total_excluded": 4
+}

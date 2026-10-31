@@ -1,0 +1,167 @@
+{
+  "artifact": "c1_external_stress_inference",
+  "identities": {
+    "global_checkpoint": {
+      "path": "checkpoints/phase21_global_medfilm_fourdomain_seed42_clean_v3/best.pt",
+      "sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+      "matches_plan": true
+    },
+    "refiner_checkpoint": {
+      "path": "checkpoints/phase25a_barr_regional_refiner_v1_1_roi030/final/final.pt",
+      "sha256": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109",
+      "matches_plan": true
+    },
+    "router_checkpoint": {
+      "path": "checkpoints/phase25d_barr_benefit_router_v1_2_1_seed42/final/final.pt",
+      "sha256": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+      "matches_plan": true
+    },
+    "safety_checkpoint": {
+      "path": "checkpoints/phase25f_barr_post_safety_v1_0_seed42/final/final.pt",
+      "sha256": "eee9b97b9921e53fc07eac9281dce64ba518c6e1659916b97b0b3bec21ec6d2e",
+      "matches_plan": true
+    },
+    "router_class_source": {
+      "path": "scripts/analysis/train_phase25d_router.py",
+      "sha256": "fc7c1bdf263ae4551dcb8f170d3203adb8540fbc189846265b74f6eca1541e91",
+      "matches_plan": true
+    },
+    "safety_class_source": {
+      "path": "scripts/analysis/phase25f_execution_common.py",
+      "sha256": "98cf958a377e2de30e0b67e63fd56bafea418b2b061a362ee7284e852012cd2e",
+      "matches_plan": true
+    }
+  },
+  "numeric_mode": "FP32 eval, torch.inference_mode(), no autocast, batch size 1",
+  "device": "cuda",
+  "torch": "2.6.0+cu124",
+  "thresholds": {
+    "roi_proposal": 0.3,
+    "roi_margin": 0.25,
+    "segmentation_output": 0.5,
+    "somega_accept": 0.5,
+    "tau_c7": 0.001239805482327938,
+    "tau_c8": -0.024358327623641256,
+    "lambda_c": 0.025598133105969194
+  },
+  "barr_enabled": true,
+  "cohorts": {
+    "cvc": {
+      "name": "CVC-ClinicDB",
+      "n": 612,
+      "task_id": 2,
+      "states": {
+        "NOT_ATTEMPTED": 494,
+        "ROUTED": 0,
+        "EXECUTED": 0,
+        "ACCEPTED": 83,
+        "REJECTED": 35,
+        "FALLBACK_TO_GLOBAL": 0,
+        "FAILED": 0
+      },
+      "stage_counts": {
+        "router_forwards": 612,
+        "refiner_forwards": 118,
+        "somega_forwards": 118,
+        "roi_absent": 0
+      },
+      "n_roi_absent": 0,
+      "latency_global_median_s": 0.016390199998568278,
+      "latency_global_iqr_s": [
+        0.015770650003105402,
+        0.016997149996313965
+      ],
+      "latency_barr_median_s": 0.021886449998419266,
+      "latency_barr_iqr_s": [
+        0.019720999996934552,
+        0.024964025000372203
+      ],
+      "sha256": {
+        "prob_global.npy": "3818017e32be0bdcef46ad1bac2882692c4ebfe8ca8d3391b04112ee8ff240a5",
+        "pred_global.npy": "571bce20dad959a1abf7f9b7053c8284506079e9be33d66e63a1727881caecc4",
+        "gt.npy": "4705377e9c20ac3a2a0cf20e71e84bc8103add81c7a41c1dc4844f77ab7d917d",
+        "prob_barr.npy": "997f9327075ae21a8a8fb815dde5e412daa452edb93f903d710ee0eb4d68a40b",
+        "pred_barr.npy": "62c2dbf4feac8b739882709ef3f27490db5f52764a46c2c1d2c8cfea27893005"
+      },
+      "n_stone_positive": 0
+    },
+    "breast": {
+      "name": "BrEaST-Lesions-USG",
+      "n": 252,
+      "task_id": 1,
+      "states": {
+        "NOT_ATTEMPTED": 196,
+        "ROUTED": 0,
+        "EXECUTED": 0,
+        "ACCEPTED": 47,
+        "REJECTED": 9,
+        "FALLBACK_TO_GLOBAL": 0,
+        "FAILED": 0
+      },
+      "stage_counts": {
+        "router_forwards": 252,
+        "refiner_forwards": 56,
+        "somega_forwards": 56,
+        "roi_absent": 0
+      },
+      "n_roi_absent": 0,
+      "latency_global_median_s": 0.018130700002075173,
+      "latency_global_iqr_s": [
+        0.017318449998128926,
+        0.019067275006818818
+      ],
+      "latency_barr_median_s": 0.01877430000604363,
+      "latency_barr_iqr_s": [
+        0.01703887500843848,
+        0.022796175006078556
+      ],
+      "sha256": {
+        "prob_global.npy": "c49d11425a10c8d54efcac24e372a480e5bd214a0ea6bd3dbc4d7547f3971b09",
+        "pred_global.npy": "abceb4ed594be8c9ff4da979d1c08454073ee978c277a8bbb84523b9f64bec31",
+        "gt.npy": "2000d17abc8178ede8905341154a503d71f4acd024425b76a7cf7b7fb8dae98d",
+        "prob_barr.npy": "cb82ff82c43ef4e4de68968e60366f997c005a84264438b35854cc2875ab1f7e",
+        "pred_barr.npy": "01765d4d81e4372d081d9f1976c4e3713d7032f461d6dc6fff1c3bdce62dd51f"
+      },
+      "n_stone_positive": 0
+    },
+    "stones": {
+      "name": "Stones_where_are_you",
+      "n": 20,
+      "task_id": 3,
+      "states": {
+        "NOT_ATTEMPTED": 10,
+        "ROUTED": 0,
+        "EXECUTED": 0,
+        "ACCEPTED": 9,
+        "REJECTED": 1,
+        "FALLBACK_TO_GLOBAL": 0,
+        "FAILED": 0
+      },
+      "stage_counts": {
+        "router_forwards": 20,
+        "refiner_forwards": 10,
+        "somega_forwards": 10,
+        "roi_absent": 0
+      },
+      "n_roi_absent": 0,
+      "latency_global_median_s": 0.016566449994570576,
+      "latency_global_iqr_s": [
+        0.016484374998981366,
+        0.01725385000463575
+      ],
+      "latency_barr_median_s": 0.02710790000128327,
+      "latency_barr_iqr_s": [
+        0.01925837499584304,
+        0.03941204999500769
+      ],
+      "sha256": {
+        "prob_global.npy": "31e298570559f1e846837e258282d81572be666b7cff35bab1a4edaecc92ca9c",
+        "pred_global.npy": "be06df28a377581752e19267aaaebd97186f8ee08f6f2890bc7973e573bea346",
+        "gt.npy": "831ce232ad68e144d557e02c55a61a9929bf479c578719fac17946d34fdb33c5",
+        "prob_barr.npy": "9f8154804913e2b3485fbcd36e1c69e33cdf9072cb289c2d6f38200fb9517777",
+        "pred_barr.npy": "23b5c7dc2b67c62292b5ebf9ddb80426846e967264c5a73ac858b685591785bc"
+      },
+      "n_stone_positive": 6
+    }
+  }
+}

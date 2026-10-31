@@ -1,0 +1,131 @@
+{
+  "artifact": "c1_external_stress_metrics",
+  "p_values_computed": 0,
+  "surface_units": "pixels",
+  "surface_units_note": "No external cohort ships physical pixel spacing. Millimetre surface metrics are not computed and must not be quoted. Cross-cohort surface-metric comparison is prohibited.",
+  "aggregation_primary": "macro over cases (equal case weight)",
+  "aggregation_secondary": "pooled pixel-level (labelled secondary)",
+  "cross_cohort_pooling": false,
+  "n_cases": 884,
+  "per_cohort_n": {
+    "cvc": 612,
+    "breast": 252,
+    "stones": 20
+  },
+  "paired_global_vs_barr": {
+    "cvc": {
+      "n": 612,
+      "delta_median": 0.0,
+      "delta_q1": 0.0,
+      "delta_q3": 0.0,
+      "n_improved": 67,
+      "n_unchanged": 531,
+      "n_worsened": 14,
+      "n_selected": 118,
+      "selected_delta_median": 0.005519056651514531,
+      "selected_n_improved": 67,
+      "selected_n_worsened": 14
+    },
+    "breast": {
+      "n": 252,
+      "delta_median": 0.0,
+      "delta_q1": 0.0,
+      "delta_q3": 0.0,
+      "n_improved": 27,
+      "n_unchanged": 205,
+      "n_worsened": 20,
+      "n_selected": 56,
+      "selected_delta_median": 0.0,
+      "selected_n_improved": 27,
+      "selected_n_worsened": 20
+    },
+    "stones": {
+      "n": 20,
+      "delta_median": 0.0,
+      "delta_q1": 0.0,
+      "delta_q3": 0.0,
+      "n_improved": 2,
+      "n_unchanged": 18,
+      "n_worsened": 0,
+      "n_selected": 10,
+      "selected_delta_median": 0.0,
+      "selected_n_improved": 2,
+      "selected_n_worsened": 0
+    }
+  },
+  "domain_shift": [
+    {
+      "cohort": "CVC-ClinicDB",
+      "domain_analogue": "KVASIR",
+      "n": 612,
+      "internal_val808_dice": 0.8202473579060531,
+      "external_global_dice": 0.6865678556474627,
+      "delta_vs_internal_pp": -13.367950225859037,
+      "external_barr_dice": 0.6897473779016254,
+      "gt_area_fraction_median": 0.0512542724609375,
+      "pred_area_fraction_median": 0.0690765380859375,
+      "gt_empty_cases": 0,
+      "pred_empty_cases": 0,
+      "dice_q1": 0.5255777241247463,
+      "dice_q3": 0.8954354654849965,
+      "note": "internal reference is the frozen Phase 21 VAL808 per-domain value for the same task id; it is NOT this population and is quoted only as a shift anchor"
+    },
+    {
+      "cohort": "BrEaST-Lesions-USG",
+      "domain_analogue": "BUSI",
+      "n": 252,
+      "internal_val808_dice": 0.8588228931389639,
+      "external_global_dice": 0.7078220248388138,
+      "delta_vs_internal_pp": -15.100086830015002,
+      "external_barr_dice": 0.708098334415822,
+      "gt_area_fraction_median": 0.035762786865234375,
+      "pred_area_fraction_median": 0.04322052001953125,
+      "gt_empty_cases": 0,
+      "pred_empty_cases": 0,
+      "dice_q1": 0.6258894942233534,
+      "dice_q3": 0.8914792698813403,
+      "note": "internal reference is the frozen Phase 21 VAL808 per-domain value for the same task id; it is NOT this population and is quoted only as a shift anchor"
+    },
+    {
+      "cohort": "Stones_where_are_you",
+      "domain_analogue": "KUB",
+      "n": 20,
+      "internal_val808_dice": 0.7640582416103505,
+      "external_global_dice": 0.08084046014614173,
+      "delta_vs_internal_pp": -68.32177814642087,
+      "external_barr_dice": 0.08212637637073465,
+      "gt_area_fraction_median": 0.0,
+      "pred_area_fraction_median": 0.0089569091796875,
+      "gt_empty_cases": 14,
+      "pred_empty_cases": 0,
+      "dice_q1": 0.0,
+      "dice_q3": 0.0037947420601005095,
+      "note": "internal reference is the frozen Phase 21 VAL808 per-domain value for the same task id; it is NOT this population and is quoted only as a shift anchor"
+    }
+  ],
+  "barr_states": {
+    "cvc": {
+      "NOT_ATTEMPTED": 494,
+      "ACCEPTED": 83,
+      "REJECTED": 35
+    },
+    "breast": {
+      "NOT_ATTEMPTED": 196,
+      "ACCEPTED": 47,
+      "REJECTED": 9
+    },
+    "stones": {
+      "NOT_ATTEMPTED": 10,
+      "ACCEPTED": 9,
+      "REJECTED": 1
+    }
+  },
+  "files": {
+    "c1_external_stress_domain_shift.csv": "172bae0c7320794451bd71b0de56c29cfaca65398597a12b0d136e5d7a2a9642",
+    "c1_external_stress_paired.csv": "eb18c711d24e75e3452b399bde1a3e4a8f8b2ee4486462705330e46357a43126",
+    "c1_external_stress_per_case.csv": "f040678476d0a2c24a702cf45f02956ae7afedcd12b8b28399a591409d02f2b0",
+    "c1_external_stress_pooled.csv": "e7fc3897d0629644556e0d0beb3b4db08538ba144b8147e138ef74c6eb60de79",
+    "c1_external_stress_stones_subgroups.csv": "b6b60ea0e49522cc3e1e3922d60ea63950db0f618243624cf93cc2a2b8f650c6",
+    "c1_external_stress_summary.csv": "53eb4fe09bce46c5f3bab580789c9dfc81be4d6dd9d6cc17c84c7e22c62ed968"
+  }
+}

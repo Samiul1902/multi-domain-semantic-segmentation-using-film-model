@@ -1,0 +1,32 @@
+{
+  "artifact": "c1_external_stress_deviations",
+  "plan_revision": "c1_external_stress_plan_v1_0",
+  "n_deviations": 3,
+  "scientific_impact": "none on the reported values; DEV-03 narrows what the values mean",
+  "deviations": [
+    {
+      "id": "DEV-01",
+      "kind": "DELIVERABLE_NAMING",
+      "planned": "reports/figures/fig6_external_global.png and reports/figures/fig7_external_barr.png (two figures)",
+      "actual": "reports/figures/fig6_external_cvc.png, fig7_external_breast.png, fig8_external_stones.png (three figures)",
+      "reason": "The plan's column set requires 8 columns once BARR executes. A single two-figure split by arm cannot show the paired Global and BARR panels for the same case. Splitting by cohort instead keeps the 8 pre-registered columns legible at print resolution.",
+      "effect_on_results": "none - same cases, same metrics, same palette"
+    },
+    {
+      "id": "DEV-02",
+      "kind": "FIGURE_ROW_SELECTION_ADDITION",
+      "planned": "Stones rows: median / best / worst Dice, largest and smallest non-empty ground-truth lesion",
+      "actual": "the same five rows; an additional stone-positive median row was attempted but resolved to a case already selected, so it was deduplicated and the figure keeps five rows",
+      "reason": "The cohort-wide median Dice for Stones is 0 because 14 of 20 cases have an empty ground truth. That is the headline finding, so the row is kept rather than substituted; a stone-positive median was added only if it was a distinct case.",
+      "effect_on_results": "none - no case was added or removed"
+    },
+    {
+      "id": "DEV-03",
+      "kind": "METRIC_DEFINITION",
+      "planned": "The manuscript protocol (\u00a79.1) defines NSD at tau = 1.0 mm and reports HD95 in millimetres.",
+      "actual": "External NSD is computed at tau = 2 pixels and external HD95/ASSD are reported in pixels.",
+      "reason": "No external cohort ships physical pixel spacing: CVC-ClinicDB, BrEaST-Lesions-USG and Stones all provide pixel arrays with no DICOM header, calibration phantom or documented mm-per-pixel. A millimetre figure would be fabricated. The plan pre-registered the pixel convention (section 6.1) for exactly this reason.",
+      "effect_on_results": "External surface metrics are not comparable to internal millimetre values and not comparable across the three cohorts. Every document states the unit next to the number."
+    }
+  ]
+}

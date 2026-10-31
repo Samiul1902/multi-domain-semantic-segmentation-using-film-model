@@ -1,0 +1,82 @@
+{
+  "artifact": "c1_external_stress_barr_executability",
+  "determination": "BARR_EXECUTABLE_FROM_VERIFIED_ARTIFACTS",
+  "not_executable_code_not_triggered": "BARR_NOT_EXECUTABLE_FROM_VERIFIED_ARTIFACTS",
+  "evidence": {
+    "components_hash_verified_before_forward": true,
+    "strict_state_dict_loading": true,
+    "component_parameter_counts": {
+      "global_G": 3523001,
+      "refiner_R_psi": 1276401,
+      "router_B_phi": 36801,
+      "safety_S_omega": 1217,
+      "total": 4837420
+    },
+    "decision_form_agreement_asserted_per_case": true,
+    "n_cases_where_decision_forms_disagreed": 0,
+    "reference_composition": "scripts/analysis/phase29_phase_d_canonical_seed_inference.py",
+    "external_driver": "scripts/analysis/c1_external_stress_eval.py"
+  },
+  "what_the_driver_does_not_do": [
+    "It does not modify, retrain or partially reload any frozen component.",
+    "It does not reimplement the router or safety feature extractors; it imports the frozen modules and executes the frozen class bodies via AST extraction.",
+    "It supplies only the external population and the per-case bookkeeping."
+  ],
+  "observed_states": {
+    "cvc": {
+      "NOT_ATTEMPTED": 494,
+      "ROUTED": 0,
+      "EXECUTED": 0,
+      "ACCEPTED": 83,
+      "REJECTED": 35,
+      "FALLBACK_TO_GLOBAL": 0,
+      "FAILED": 0
+    },
+    "breast": {
+      "NOT_ATTEMPTED": 196,
+      "ROUTED": 0,
+      "EXECUTED": 0,
+      "ACCEPTED": 47,
+      "REJECTED": 9,
+      "FALLBACK_TO_GLOBAL": 0,
+      "FAILED": 0
+    },
+    "stones": {
+      "NOT_ATTEMPTED": 10,
+      "ROUTED": 0,
+      "EXECUTED": 0,
+      "ACCEPTED": 9,
+      "REJECTED": 1,
+      "FALLBACK_TO_GLOBAL": 0,
+      "FAILED": 0
+    }
+  },
+  "n_failed": 0,
+  "n_fallback_to_global": 0,
+  "stage_counts": {
+    "cvc": {
+      "router_forwards": 612,
+      "refiner_forwards": 118,
+      "somega_forwards": 118,
+      "roi_absent": 0
+    },
+    "breast": {
+      "router_forwards": 252,
+      "refiner_forwards": 56,
+      "somega_forwards": 56,
+      "roi_absent": 0
+    },
+    "stones": {
+      "router_forwards": 20,
+      "refiner_forwards": 10,
+      "somega_forwards": 10,
+      "roi_absent": 0
+    }
+  },
+  "selection_fraction": {
+    "cvc": 0.19281,
+    "breast": 0.222222,
+    "stones": 0.5
+  },
+  "caveat": "The frozen router threshold tau_C7 was calibrated on the internal development population with a fixed 25% budget. On external cohorts the selection fraction is an OUTCOME, not a controlled quantity, and no recalibration was performed."
+}
