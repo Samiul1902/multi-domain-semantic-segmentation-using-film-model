@@ -105,6 +105,24 @@ Verified: 43 RC2 + 89 RC1(+23 subtests) + 22 CUDA + 13 MP; both verifiers PASS.
 (was 13/33). 0 remotes ⇒ `GIT_PUSH_STATUS: BLOCKED`. Detail → `2026-10-28.md`;
 report → `reports/audits/c1_rc2_v1_0/`.
 
+## C1 RC3 — `54d1273a…3549f` · TRUST BOUNDARY CONTAMINATED, LAUNCH NO-GO (2026-10-30)
+RC3 (manifest `6cf2ffbd…45c01`, 8 bound) verifies, but **the gate refuses its own digest**:
+`mint_rc3_grant(<RC3>)` → `C1_RC2_RELEASE_DIGEST_MISMATCH`; only **RC2** `54794efc…` passes, because
+`mint_rc3_grant`→`rc2_mint_grant`→`verify_release_rc2` (requires `release_id==RC2`). `RC3_RELEASE_ID` /
+`RC2_FROZEN_DIGEST` are **dead constants**; `verify_release_rc3` never called by gate/driver;
+`RC3Grant.authorize_trainer` never checks `release_digest` ⇒ **identity downgrade to RC2 is the only
+accepted path**. RC3 is authorization-inert. Do NOT "fix" by editing RC3.
+`provision_trust_store.py` (untracked, now gitignored) generated **all 4 role keys in one process**
+and signed policy/approval/instruction/attestation into `C:\ProgramData\InstitutionalC1Trust` +
+`configs/c1_operator/`. **No private key persisted** (ephemeral). Store owner = researcher with
+**FullControl**; `BUILTIN\Users` has **Write** ⇒ documented admin separation ABSENT. Root of trust is
+**self-referential**: binding carries the owner public key that signs the policy.
+Material is inert twice over: envelopes fail `C1_RC2_SIGNATURE_INVALID` (script signs inner payload;
+verifier canonicalises envelope minus `signature`). NTP measurement itself was genuine.
+**No grant minted · no nonce consumed · no dataset opened · no training.** Nothing deleted.
+`C1_TRUST_BOUNDARY_CONTAMINATED__OPERATOR_REVIEW_REQUIRED__SCIENTIFIC_LAUNCH_NO_GO`.
+Full detail → `2026-10-30.md`; report → `reports/audits/c1_trust_recovery_v1_0/`.
+
 ## PHASE36 — `NOT_COMPLETE_PENDING_V1_22_EXECUTION`, Phase37 NOT_STARTED
 **v1.22 ELIGIBLE_NOT_STARTED (never executed)**; v1.20/v1.21 consumed or frozen; D95/D96 repaired.
 Gate: `PHASE36_V1_22_EXECUTE=1` + `PHASE36_V1_22_LAUNCH_AUTHORITY`. **SHAs → NOTES_ARCHIVE.**
