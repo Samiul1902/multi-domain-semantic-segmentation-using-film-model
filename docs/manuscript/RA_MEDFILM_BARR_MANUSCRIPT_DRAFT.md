@@ -19,7 +19,7 @@ On the VAL808 development split, Global MedFiLM attains 83.51% macro-domain Dice
 
 While formal institutional approval remains pending before launching production weights, this manuscript documents the mathematical formulation, implementation mechanics, baseline evidence boundaries and statistical contracts of the frozen C1 protocol. The central C1 attribution result is NOT_ESTABLISHED (0/6 real runs), controlled C3 baselines are pending, and no clinical readiness is claimed.
 
-> **Review-draft status.** Not ready for submission. Pending: the six real C1 runs and Figures 3–4, protocol-matched multi-seed baselines (C3), a legible main-text qualitative figure, and independent external validation. Literature citations are not independently re-verified in this draft; Wang et al. (2018) is marked UNVERIFIED as to its characterisation.
+> **Review-draft status.** Not ready for submission. Pending: the six real C1 runs and Figures 3–4, protocol-matched multi-seed baselines (C3), and independent external validation. Literature citations are not independently re-verified in this draft.
 
 ---
 
@@ -43,12 +43,12 @@ Unified medical segmentation networks typically rely on multi-head decoders or s
 Feature-wise Linear Modulation (Perez et al., 2018) was originally developed for visual reasoning to dynamically manipulate convolutional feature representations conditioned on linguistic or categorical embeddings. In medical vision, modulation layers have been utilized for demographic or disease metadata. However, a systematic literature review was not performed for this draft; a concern is that reported gains may stem from additional trainable projection parameters or altered optimization dynamics rather than true task modulation.
 
 ### 2.3 Regional Refinement & Selective Routing
-Coarse-to-fine segmentation architectures and cascade models (e.g., Wang et al., 2018 [UNVERIFIED characterisation]) process cropped regions of interest to recover fine spatial details. Fixed cascades that run every crop unconditionally incur the refiner cost on all cases. Dynamic routing (Teerapittayanon et al., 2016) introduces early exits or conditional execution; whether a cost-penalised benefit router has been combined with regional refinement in medical segmentation was not established by a systematic search here.
+Cropping-based refinement is common in segmentation systems. Interactive segmentation with image-specific fine-tuning (Wang et al., 2018) is related but differs from the present automatic batch-inference setting. Fixed cascades that run every crop unconditionally incur the refiner cost on all cases. Dynamic routing (Teerapittayanon et al., 2016) introduces early exits or conditional execution; whether a cost-penalised benefit router has been combined with regional refinement in medical segmentation was not established by a systematic search here.
 
 ### 2.4 Research Gaps Addressed
 1. *Causal Attribution*: Existing FiLM evaluations fail to test an unconditioned identity control with identical seed, initialization, and optimizer states.
 2. *Data Leakage Governance*: Multi-domain benchmarks frequently include inadvertent duplicate scans or linked patient records across train/validation/test splits.
-3. *Budget-Aware Spatial Allocation*: Lack of a unified router-refiner framework that bounds computational FLOPs while recovering tiny object boundaries.
+3. *Budget-Aware Spatial Allocation*: Need for explicit compute-aware router-refiner policies that bound additional cost while recovering tiny object boundaries.
 
 ---
 
@@ -427,9 +427,11 @@ The external stress test in §13.1 adds a boundary to that claim that should not
 | 5 | BARR routing funnel (development in-sample; external exploratory) | Ready | descriptive / exploratory |
 | 6 | VAL808 GlobalMedFiLM vs BARR by domain (three seeds, fixed global backbone, no CI) | Ready | descriptive (selection-consumed) |
 | 7 | External retrospective stress test: level, difference (axis ±1 pp), domain shift | Ready | exploratory |
-| 8 | Supplementary overview of external qualitative panels (reused raster; in-panel text legible only at full resolution; rule-based row selection; a legible main-text version is pending) | Supplementary | descriptive |
-| 9 | Failure behavior: 96/884 accepted-improved, 34/884 accepted-worsened, 45/884 safety-rejected, 700/884 not selected, 14/14 stone-free images with predicted foreground | Ready | exploratory |
+| 8 | Main-text qualitative comparisons from deterministic case selection: accepted beneficial, accepted harmful, safety-rejected, representative non-selected, and stone-free false-positive failure | Ready | exploratory |
+| 9 | Failure behavior with explicit denominator panels: all-external, routed-only, and stone-free-cohort rates | Ready | exploratory |
 | 10 | Analytical GMACs vs accuracy; measured batch-1 latency (separate panels) | Ready | analytical / descriptive |
+
+Supplementary qualitative overview retained: `paper_doc/figures/fig08s_qualitative_overview.*` (legacy reused composite panels, descriptive context only).
 
 Figure captions must repeat: Dice values are proportions (0–1); "pp" means percentage points of Dice; Figure 6 and Table 4 use development-selected or in-sample populations; baseline accuracies in Figure 10 are protocol-incomparable.
 

@@ -51,9 +51,21 @@ def test_c3_deterministic(tmp_path):
     assert run("c3_baseline_reporter.py", tmp_path / "a") == run("c3_baseline_reporter.py", tmp_path / "b")
 
 
-def test_missing_input_fails_clearly(tmp_path, monkeypatch):
-    import importlib.util
-    for script in ('c2_barr_aggregator.py', 'c3_baseline_reporter.py'):
-        src = (ROOT / 'scripts' / 'analysis' / script).read_text()
-        assert 'MISSING_REQUIRED_INPUT' in src and 'SystemExit(4)' in src
-
+def test_missing_input_fails_clearly(tmp_path):
+    scenarios = [
+        ("c2_barr_aggregator.py", ROOT / "reports" / "tables" / "phase29_val808_three_seed_summary.csv"),
+        ("c3_baseline_reporter.py", ROOT / "reports" / "tables" / "phase21_six_model_compute.csv"),
+    ]
+    for script, src in scenarios:
+        bak = src.with_suffix(src.suffix + ".bak_test")
+        src.rename(bak)
+        try:
+            r = subprocess.run(
+                [PY, str(ROOT / "scripts" / "analysis" / script), "--out-dir", str(tmp_path / script)],
+                capture_output=True, text=True, cwd=ROOT
+            )
+            assert r.returncode == 4
+            assert "MISSING_REQUIRED_INPUT:" in (r.stderr + r.stdout)
+            assert src.name in (r.stderr + r.stdout)
+        finally:
+            bak.rename(src)

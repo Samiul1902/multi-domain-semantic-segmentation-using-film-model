@@ -1,9 +1,9 @@
 **Table 8. Failure-case summary**
 
-| failure_case | count | denominator | source_artifact | population | n | metric_unit | evaluation_version | provenance_run | evidence_class |
-|---|---|---|---|---|---|---|---|---|---|
-| Accepted refinement that improved Dice | 96 | 884 | reports/tables/c1_external_stress_paired.csv | external retrospective | 884 | count | c1_external_stress v1 | single retrospective evaluation | exploratory |
-| Accepted refinement that worsened Dice | 34 | 884 | reports/tables/c1_external_stress_paired.csv | external retrospective | 884 | count | c1_external_stress v1 | single retrospective evaluation | exploratory |
-| Safety-rejected refinement | 45 | 884 | reports/tables/c1_external_stress_paired.csv | external retrospective | 884 | count | c1_external_stress v1 | single retrospective evaluation | exploratory |
-| Not selected (unchanged) | 700 | 884 | reports/tables/c1_external_stress_paired.csv | external retrospective | 884 | count | c1_external_stress v1 | single retrospective evaluation | exploratory |
-| Stone-free images with foreground predicted (global) | 14 | 14 | reports/tables/c1_external_stress_paired.csv | external retrospective | 14 | count | c1_external_stress v1 | single retrospective evaluation | exploratory |
+| failure_case | count | denominator | denominator_scope | source_artifact | population | n | metric_unit | evaluation_version | provenance_run | evidence_class |
+|---|---|---|---|---|---|---|---|---|---|---|
+| Beneficial accepted / all external | 96 | 884 | all external cases | reports/tables/c1_external_stress_paired.csv | all external cases | 884 | count | c1_external_stress v1 | single retrospective evaluation | exploratory |
+| Harmful accepted / all external | 34 | 884 | all external cases | reports/tables/c1_external_stress_paired.csv | all external cases | 884 | count | c1_external_stress v1 | single retrospective evaluation | exploratory |
+| Rejected / routed | 45 | 184 | routed cases only | reports/tables/c1_external_stress_paired.csv | routed cases only | 184 | count | c1_external_stress v1 | single retrospective evaluation | exploratory |
+| Never-selected / all external | 700 | 884 | all external cases | reports/tables/c1_external_stress_paired.csv | all external cases | 884 | count | c1_external_stress v1 | single retrospective evaluation | exploratory |
+| Stone-free false-positive / stone-free | 14 | 14 | stone-free stones cohort | reports/tables/c1_external_stress_per_case.csv | stone-free stones cohort | 14 | count | c1_external_stress v1 | single retrospective evaluation | exploratory |

@@ -22,14 +22,19 @@ import matplotlib  # noqa: E402
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt  # noqa: E402
 from matplotlib.patches import FancyBboxPatch, FancyArrowPatch  # noqa: E402
+import numpy as np  # noqa: E402
+from PIL import Image  # noqa: E402
 
 from src.research.paper_assets import validation as V  # noqa: E402
+from src.data.transforms import SegmentationTransform  # noqa: E402
 import c1_results_aggregator as AGG  # noqa: E402
+from c1_external_stress_eval import build_cohorts  # noqa: E402
 
 T = ROOT / "reports" / "tables"
 FIG = ROOT / "paper_doc" / "figures"
 TAB = ROOT / "paper_doc" / "tables"
 MANIFEST = ROOT / "paper_asset_manifest.json"
+CACHE = ROOT / "data_cache" / "c1_external_stress_v1_0"
 SHORT = {"CVC-ClinicDB": "CVC", "BrEaST-Lesions-USG": "BrEaST", "Stones_where_are_you": "Stones"}
 DOMAINS = ("ISIC", "BUSI", "KVASIR", "KUB")
 DOMAIN_NAMES = {"ISIC": "ISIC2018", "BUSI": "BUSI-WHU", "KVASIR": "Kvasir-SEG", "KUB": "KUB-StoneX"}
@@ -270,49 +275,239 @@ def fig7():
 
 # ---------------------------------------------------------------- Figures 8, 9
 def fig8():
+    def as_bool(v):
+        return str(v).strip().lower() in ("1", "true", "yes")
+
+    def err_map(pred, gt):
+        out = np.zeros((*pred.shape, 3), dtype=np.uint8)
+        out[:, :] = (24, 24, 24)  # TN
+        out[pred & gt] = (0, 230, 0)  # TP
+        out[pred & ~gt] = (255, 32, 32)  # FP
+        out[~pred & gt] = (32, 96, 255)  # FN
+        return out
+
+    paired = rd(T / "c1_external_stress_paired.csv")
+    per_case = rd(T / "c1_external_stress_per_case.csv")
+    global_rows = {r["sample_id"]: r for r in per_case if r["arm"] == "global"}
+    barr_rows = {r["sample_id"]: r for r in per_case if r["arm"] == "barr"}
+    accepted = [r for r in paired if r["state"] == "ACCEPTED"]
+    rejected = [r for r in paired if r["state"] == "REJECTED"]
+    not_selected = [r for r in paired if r["state"] == "NOT_ATTEMPTED"]
+    V.require_unique_ids([r["sample_id"] for r in paired], "external sample")
+
+    beneficial = sorted(accepted, key=lambda r: (-float(r["delta_dice"]), r["sample_id"]))[0]
+    harmful = sorted(accepted, key=lambda r: (float(r["delta_dice"]), r["sample_id"]))[0]
+    rejected_pick = sorted(
+        rejected,
+        key=lambda r: (
+            abs(float(barr_rows[r["sample_id"]]["safety_prob"]) - 0.5)
+            if barr_rows[r["sample_id"]]["safety_prob"] not in ("", "nan", "NaN")
+            else 999.0,
+            r["sample_id"],
+        ),
+    )[0]
+    stone_candidates = [r for r in global_rows.values()
+                        if r["cohort_key"] == "stones"
+                        and not as_bool(r["has_stone_annotation"])
+                        and as_bool(r["fp_only_case"])]
+    stone_fp = sorted(stone_candidates, key=lambda r: (-int(r["pred_pixels"]), r["sample_id"]))[0]
+    excluded = {stone_fp["sample_id"]}
+    ns_pool = [r for r in not_selected if r["sample_id"] not in excluded]
+    ns_dice = np.array([float(global_rows[r["sample_id"]]["Dice"]) for r in ns_pool], dtype=float)
+    ns_med = float(np.median(ns_dice))
+    non_selected_pick = sorted(
+        ns_pool,
+        key=lambda r: (abs(float(global_rows[r["sample_id"]]["Dice"]) - ns_med), r["sample_id"]),
+    )[0]
+
+    picks = [
+        ("Accepted beneficial refinement", beneficial["sample_id"]),
+        ("Accepted harmful refinement", harmful["sample_id"]),
+        ("Safety-rejected refinement", rejected_pick["sample_id"]),
+        ("Representative non-selected case", non_selected_pick["sample_id"]),
+        ("Stone-free false-positive failure", stone_fp["sample_id"]),
+    ]
+
+    cohorts = build_cohorts()
+    transform = SegmentationTransform(size=512, train=False, image_mode="RGB")
+    cache = {}
+    for key in ("cvc", "breast", "stones"):
+        d = CACHE / key
+        sample_ids = json.loads((d / "sample_ids.json").read_text(encoding="utf-8"))
+        cases_by_id = {c["sample_id"]: c for c in cohorts[key]["cases"]}
+        cache[key] = {
+            "index": {sid: i for i, sid in enumerate(sample_ids)},
+            "cases": cases_by_id,
+            "gt": np.load(d / "gt.npy").astype(bool),
+            "pg": np.load(d / "prob_global.npy"),
+            "pb": np.load(d / "prob_barr.npy"),
+        }
+
+    def cohort_for_sample(sample_id):
+        if sample_id.startswith("CVC::"):
+            return "cvc"
+        if sample_id.startswith("BREAST::"):
+            return "breast"
+        if sample_id.startswith("STONES::"):
+            return "stones"
+        raise ValueError(f"Unsupported sample_id: {sample_id}")
+
+    fig, axes = plt.subplots(len(picks), 6, figsize=(8.6, 8.8))
+    col_titles = ["Input", "Ground truth", "Global mask", "BARR mask", "Global error", "BARR error"]
+    for c, t in enumerate(col_titles):
+        axes[0, c].set_title(t, fontsize=7)
+    out_rows = []
+    for r_i, (label, sample_id) in enumerate(picks):
+        ck = cohort_for_sample(sample_id)
+        ci = cache[ck]["index"][sample_id]
+        case = cache[ck]["cases"][sample_id]
+        gt = cache[ck]["gt"][ci]
+        pg = cache[ck]["pg"][ci]
+        pb = cache[ck]["pb"][ci]
+        pred_g = pg >= 0.5
+        pred_b = pb >= 0.5
+        img = Image.open(case["image_path"])
+        img_t, _, _ = transform(img, Image.fromarray((gt.astype(np.uint8) * 255), mode="L"))
+        disp = np.clip(img_t.permute(1, 2, 0).numpy() * 255.0, 0, 255).astype(np.uint8)
+
+        axes[r_i, 0].imshow(disp)
+        axes[r_i, 1].imshow(gt, cmap="gray", vmin=0, vmax=1)
+        axes[r_i, 2].imshow(pred_g, cmap="gray", vmin=0, vmax=1)
+        axes[r_i, 3].imshow(pred_b, cmap="gray", vmin=0, vmax=1)
+        axes[r_i, 4].imshow(err_map(pred_g, gt))
+        axes[r_i, 5].imshow(err_map(pred_b, gt))
+        for c in range(6):
+            axes[r_i, c].set_xticks([])
+            axes[r_i, c].set_yticks([])
+
+        g = global_rows[sample_id]
+        b = barr_rows[sample_id]
+        state = b["state"]
+        delta_pp = (float(b["Dice"]) - float(g["Dice"])) * 100
+        info = f"{sample_id} | {state} | Dice {float(g['Dice']) * 100:.2f}% -> {float(b['Dice']) * 100:.2f}% ({delta_pp:+.2f} pp)"
+        if state == "REJECTED":
+            sp = b["safety_prob"]
+            if sp not in ("", "nan", "NaN"):
+                info += f"; S_omega={float(sp):.4f}"
+        if label.startswith("Stone-free"):
+            info += "; GT empty, foreground predicted"
+        axes[r_i, 0].set_ylabel(label, fontsize=6, rotation=0, labelpad=53, va="center")
+        axes[r_i, 5].text(1.02, 0.5, info, transform=axes[r_i, 5].transAxes, fontsize=5.8, va="center")
+
+        out_rows.append({
+            "row_label": label,
+            "sample_id": sample_id,
+            "cohort": g["cohort"],
+            "state": state,
+            "global_dice": round(float(g["Dice"]), 6),
+            "barr_dice": round(float(b["Dice"]), 6),
+            "delta_pp": round(delta_pp, 3),
+            "selection_rule": "beneficial=max accepted delta; harmful=min accepted delta; rejected=min abs(safety_prob-0.5); non-selected=closest to median global Dice among NOT_ATTEMPTED excluding stone-free FP case; stone-free FP=max pred_pixels among gt-empty fp_only stones",
+        })
+
+    fig.suptitle(
+        "Figure 8. Main-text qualitative comparisons (external retrospective, deterministic selection rule; no re-inference).",
+        x=0.01, ha="left", fontsize=8.3,
+    )
+    fig.subplots_adjust(left=0.17, right=0.82, top=0.90, bottom=0.05, wspace=0.18, hspace=0.45)
+    files = save_fig(fig, "fig08_main_qualitative", out_rows)
+    ready(
+        "fig08",
+        "Main-text qualitative comparisons",
+        files,
+        ["reports/tables/c1_external_stress_paired.csv", "reports/tables/c1_external_stress_per_case.csv",
+         "data_cache/c1_external_stress_v1_0/cvc/prob_global.npy", "data_cache/c1_external_stress_v1_0/cvc/prob_barr.npy",
+         "data_cache/c1_external_stress_v1_0/breast/prob_global.npy", "data_cache/c1_external_stress_v1_0/breast/prob_barr.npy",
+         "data_cache/c1_external_stress_v1_0/stones/prob_global.npy", "data_cache/c1_external_stress_v1_0/stones/prob_barr.npy"],
+        "exploratory",
+        "Five deterministic examples: accepted beneficial/harmful, safety-rejected, representative non-selected, and stone-free false-positive failure."
+    )
+
     import matplotlib.image as mpimg
     panels = [("fig6_external_cvc.png", "CVC-ClinicDB"), ("fig7_external_breast.png", "BrEaST-Lesions-USG"), ("fig8_external_stones.png", "Stones")]
-    fig, axes = plt.subplots(3, 1, figsize=(7.2, 7.5))
-    rows = []
-    srcs = []
-    for ax, (f, t) in zip(axes, panels):
+    fig_s, axes_s = plt.subplots(3, 1, figsize=(7.2, 7.5))
+    supp_rows = []
+    supp_srcs = []
+    for ax, (f, t) in zip(axes_s, panels):
         p = ROOT / "reports" / "figures" / f
-        ax.imshow(mpimg.imread(p)); ax.axis("off"); ax.set_title(t, fontsize=8, loc="left")
-        rows.append({"cohort": t, "reused_panel": rel(p), "sha256": sha(p)}); srcs.append(rel(p))
-    fig.suptitle("Figure 8 (supplementary overview). Reused external qualitative composites; rows chosen by rule (median/best/worst Dice;\nStones also largest/smallest lesion), including non-adopted cases. In-panel text is legible only in the full-resolution source files.", x=0.01, ha="left", fontsize=7)
-    files = save_fig(fig, "fig08_qualitative_reused", rows)
-    ready("fig08", "Qualitative comparisons (reused)", files, srcs, "descriptive",
-          "Composites reused from reports/figures (generated by build_external_stress_figures.py with rule-based row selection). Unreadable at journal column width: supplementary only; a legible main-text qualitative figure is pending regeneration.")
+        ax.imshow(mpimg.imread(p))
+        ax.axis("off")
+        ax.set_title(t, fontsize=8, loc="left")
+        supp_rows.append({"cohort": t, "reused_panel": rel(p), "sha256": sha(p)})
+        supp_srcs.append(rel(p))
+    fig_s.suptitle("Supplementary qualitative overview (legacy composites; full-resolution source text only).", x=0.01, ha="left", fontsize=7)
+    supp_files = save_fig(fig_s, "fig08s_qualitative_overview", supp_rows)
+    ready(
+        "fig08_supp",
+        "Supplementary qualitative overview",
+        supp_files,
+        supp_srcs,
+        "descriptive",
+        "Legacy reused composites from reports/figures; kept as supplementary context."
+    )
 
 
 def fig9():
     paired = rd(T / "c1_external_stress_paired.csv")
     st = {k: sum(1 for p in paired if (p["state"], p["outcome"]) == k) for k in
           [("ACCEPTED", "worsened"), ("ACCEPTED", "improved"), ("REJECTED", "unchanged"), ("NOT_ATTEMPTED", "unchanged")]}
+    accepted = sum(1 for p in paired if p["state"] == "ACCEPTED")
+    routed = accepted + st[("REJECTED", "unchanged")]
+    unchanged = accepted - st[("ACCEPTED", "worsened")] - st[("ACCEPTED", "improved")]
+    V.require_funnel(884, routed, accepted, st[("REJECTED", "unchanged")], st[("ACCEPTED", "improved")], st[("ACCEPTED", "worsened")], unchanged)
     stone = [p for p in rd(T / "c1_external_stress_per_case.csv") if p["cohort_key"] == "stones" and p["arm"] == "global"]
     free = [p for p in stone if p["has_stone_annotation"] in ("False", "0", "false")]
     fp_only = sum(p["fp_only_case"] in ("True", "1", "true") for p in free)
-    ds = rd(T / "c1_external_stress_domain_shift.csv")
-    rows = [{"category": "Accepted refinement that improved Dice", "count": st[("ACCEPTED", "improved")], "denominator": 884},
-            {"category": "Accepted refinement that worsened Dice", "count": st[("ACCEPTED", "worsened")], "denominator": 884},
-            {"category": "Safety-rejected refinement", "count": st[("REJECTED", "unchanged")], "denominator": 884},
-            {"category": "Not selected (unchanged)", "count": st[("NOT_ATTEMPTED", "unchanged")], "denominator": 884},
-            {"category": "Stone-free images with foreground predicted (global)", "count": fp_only, "denominator": len(free)}]
+    rows = [
+        {"category": "Beneficial accepted / all external", "count": st[("ACCEPTED", "improved")], "denominator": 884, "denominator_scope": "all external cases"},
+        {"category": "Harmful accepted / all external", "count": st[("ACCEPTED", "worsened")], "denominator": 884, "denominator_scope": "all external cases"},
+        {"category": "Rejected / routed", "count": st[("REJECTED", "unchanged")], "denominator": routed, "denominator_scope": "routed cases only"},
+        {"category": "Never-selected / all external", "count": st[("NOT_ATTEMPTED", "unchanged")], "denominator": 884, "denominator_scope": "all external cases"},
+        {"category": "Stone-free false-positive / stone-free", "count": fp_only, "denominator": len(free), "denominator_scope": "stone-free stones cohort"},
+    ]
     for r in rows:
-        assert r["count"] <= r["denominator"]
-    fig, (a, b) = plt.subplots(1, 2, figsize=(7.2, 3.2), gridspec_kw={"width_ratios": [1.5, 1]})
-    a.barh([r["category"] for r in rows][::-1], [100 * r["count"] / r["denominator"] for r in rows][::-1], color=[COL["ok"], COL["bad"], "#E69F00", "#BBBBBB", "#000000"][::-1])
-    for i, r in enumerate(rows[::-1]):
-        a.text(100 * r["count"] / r["denominator"] + 1, i, f"{r['count']}/{r['denominator']}", va="center", fontsize=7)
-    a.set_xlim(0, 115); a.set_xlabel("Percent of stated denominator"); a.tick_params(axis="y", labelsize=7)
-    b.bar([r["cohort"].split("_")[0].split("-Lesions")[0].replace("CVC-ClinicDB", "CVC").replace("BrEaST-USG", "BrEaST") for r in ds], [float(r["delta_vs_internal_pp"]) for r in ds], color=COL["grey"])
-    b.axhline(0, color="k", lw=0.8); b.set_ylabel("Global external minus VAL808 anchor (pp)"); b.tick_params(axis="x", labelsize=7); b.set_title("Domain shift", fontsize=8)
-    fig.suptitle("Figure 9. Failure behavior (external retrospective cases; denominators differ by bar)", x=0.01, ha="left", fontsize=9)
+        if r["count"] > r["denominator"]:
+            raise ValueError(f"Invalid denominator for {r['category']}: {r['count']}/{r['denominator']}")
+
+    fig, (a, b, c) = plt.subplots(1, 3, figsize=(7.2, 3.2), gridspec_kw={"width_ratios": [1.35, 1.0, 0.9]})
+    all_case = rows[:2] + [rows[3]]
+    a.barh([r["category"] for r in all_case][::-1],
+           [100 * r["count"] / r["denominator"] for r in all_case][::-1],
+           color=[COL["ok"], COL["bad"], "#BBBBBB"][::-1])
+    for i, r in enumerate(all_case[::-1]):
+        x = 100 * r["count"] / r["denominator"]
+        a.text(x + 0.8, i, f"{r['count']}/{r['denominator']}", va="center", fontsize=7)
+    a.set_xlim(0, 100)
+    a.set_xlabel("Rate (%)")
+    a.set_title("All external denominator (n=884)", fontsize=8)
+    a.tick_params(axis="y", labelsize=7)
+
+    routed_rows = [rows[2], {"category": "Accepted / routed", "count": accepted, "denominator": routed, "denominator_scope": "routed cases only"}]
+    b_labels = ["Rejected\n/ routed", "Accepted\n/ routed"]
+    b.bar(b_labels, [100 * r["count"] / r["denominator"] for r in routed_rows], color=["#E69F00", COL["global"]])
+    for i, r in enumerate(routed_rows):
+        y = 100 * r["count"] / r["denominator"]
+        b.text(i, y + 1.2, f"{r['count']}/{r['denominator']}", ha="center", fontsize=7)
+    b.set_ylim(0, 100)
+    b.set_ylabel("Rate (%)")
+    b.tick_params(axis="x", labelsize=7)
+    b.set_title("Routed denominator (n=184)", fontsize=8)
+
+    sf = rows[4]
+    y = 100 * sf["count"] / sf["denominator"]
+    c.bar(["False-positive"], [y], color="#000000")
+    c.text(0, y + 1.6, f"{sf['count']}/{sf['denominator']}", ha="center", fontsize=7)
+    c.set_ylim(0, 100)
+    c.set_ylabel("Rate (%)")
+    c.tick_params(axis="x", labelsize=7)
+    c.set_title("Stone-free cohort denominator", fontsize=8)
+
+    fig.suptitle("Figure 9. External failure behavior with explicit denominators", x=0.01, ha="left", fontsize=9)
     fig.tight_layout()
     files = save_fig(fig, "fig09_failure_analysis", rows)
     ready("fig09", "Failure analysis", files, ["reports/tables/c1_external_stress_paired.csv", "reports/tables/c1_external_stress_per_case.csv",
                                               "reports/tables/c1_external_stress_domain_shift.csv"], "exploratory",
-          "Stone-free failure shown unhidden; per-case qualitative examples are in Figure 8's reused panels (adopted/not-adopted).")
+          "Denominators are separated by panel: all external (n=884), routed (n=184), and stone-free cohort (n=14).")
     return rows
 
 
@@ -422,7 +617,10 @@ def tables(dev, ext, fail_rows, c1):
         "Table 7. Computational complexity (analytical and measured kept separate)")
     out["table8_failures"] = write_table("table8_failures", [
         {"failure_case": r["category"], "count": r["count"], "denominator": r["denominator"],
-         **prov("reports/tables/c1_external_stress_paired.csv", "external retrospective", r["denominator"], "count", "c1_external_stress v1", "single retrospective evaluation", "exploratory")} for r in fail_rows],
+         "denominator_scope": r.get("denominator_scope", "external retrospective"),
+         **prov("reports/tables/c1_external_stress_per_case.csv" if "stone-free" in r["category"].lower() else "reports/tables/c1_external_stress_paired.csv",
+                r.get("denominator_scope", "external retrospective"), r["denominator"], "count",
+                "c1_external_stress v1", "single retrospective evaluation", "exploratory")} for r in fail_rows],
         "Table 8. Failure-case summary")
     return out
 
@@ -445,7 +643,7 @@ def main(argv=None):
     manifest = {"schema": "paper_asset_manifest_v1", "c1_status": c1["status"], "c1_runs_completed": c1.get("runs_completed"),
                 "protocol_sha256": "531e3eb255a66381201d1aaf49bbe55abfdbe529640f5c584ef100d298087a61",
                 "figures": REG, "tables": {k: {"status": "READY", "files": v} for k, v in tabs.items()},
-                "unsupported_by_existing_evidence": ["Per-case Phase-29 BARR qualitative panels (no regenerated panels; Figure 8 reuses external panels only)"],
+                "unsupported_by_existing_evidence": [],
                 "protected_data_accessed": False}
     MANIFEST.write_text(json.dumps(manifest, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     bad = [k for k, v in REG.items() if v["status"] != "READY"]
