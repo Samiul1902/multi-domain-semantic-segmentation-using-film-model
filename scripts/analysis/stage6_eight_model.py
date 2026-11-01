@@ -29,6 +29,8 @@ def main(argv: list[str] | None = None) -> int:
     run.add_argument("--model", choices=M.BASELINES, required=True)
     run.add_argument("--seed", type=int, choices=M.SEEDS, required=True)
     run.add_argument("--resume", action="store_true")
+    run.add_argument("--grant-provider", default=None, metavar="MODULE:CALLABLE",
+                     help="callable returning a released-gate grant exposing authorize_baseline(contract); omitted = fail closed")
     gl = sub.add_parser("export-global-c1", help="Export a completed, compatible C1-T run into a GLOBAL_MEDFILM cell")
     gl.add_argument("--run-dir", type=Path, required=True)
     gl.add_argument("--seed", type=int, choices=M.SEEDS, required=True)
@@ -51,8 +53,13 @@ def main(argv: list[str] | None = None) -> int:
         print(json.dumps(B.loader_forward_backward_check(args.model, device=args.device), indent=2))
     elif args.command == "baseline-run":
         from src.research.stage6 import baseline_real as B
-        # No release grant is minted by this repository; the call therefore fails closed.
-        B.run_real_baseline(args.model, args.seed, grant=None, resume=args.resume)
+        try:
+            grant = B.load_grant(args.grant_provider)
+            doc = B.run_real_baseline(args.model, args.seed, grant=grant, resume=args.resume)
+        except Exception as exc:  # noqa: BLE001 - every refusal or failure is reported, never swallowed silently
+            print(f"[BASELINE RUN REFUSED / FAILED] {type(exc).__name__}: {exc}", file=sys.stderr)
+            return 2
+        print(json.dumps({"cell": args.model, "seed": args.seed, "macro": doc["summary"]["equal_domain_macro_dice"]}))
     elif args.command == "export-global-c1":
         from src.research.stage6 import baseline_real as B
         doc = B.export_global_cell_from_c1(args.run_dir, args.seed, M.cell_dir(M.RUN_ROOT, M.GLOBAL, args.seed),

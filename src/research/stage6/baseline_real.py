@@ -8,11 +8,17 @@ outputs forced outside the real run root and labelled ``synthetic``.
 from __future__ import annotations
 
 import copy
+import csv
 import hashlib
+import importlib
+import io
 import json
 import math
+import os
 import pickle
 import platform
+import shutil
+import tempfile
 import time
 from pathlib import Path
 from typing import Any, Callable, Iterable, Iterator, Mapping
@@ -73,6 +79,27 @@ def _authorize(contract: Mapping[str, Any], grant: Any) -> None:
     if not callable(authorize):
         raise BaselineExecutionError("STAGE6_BASELINE_LAUNCH_GRANT_INVALID")
     authorize(dict(contract))
+
+
+def load_grant(spec: str | None) -> Any:
+    """Resolve an operator-supplied grant provider ``package.module:callable`` into a grant object.
+
+    The provider is expected to wrap a released gate (as the C1 launcher does with its trust store); nothing is
+    minted here.  ``None`` yields no grant, so execution fails closed.  The returned object is validated by
+    ``_authorize`` against the run contract.
+    """
+    if spec is None:
+        return None
+    module_name, sep, attr = spec.partition(":")
+    if not sep or not module_name or not attr:
+        raise BaselineExecutionError("STAGE6_BASELINE_GRANT_PROVIDER_INVALID: expected 'package.module:callable'")
+    try:
+        provider = getattr(importlib.import_module(module_name), attr)
+    except (ImportError, AttributeError) as exc:
+        raise BaselineExecutionError(f"STAGE6_BASELINE_GRANT_PROVIDER_UNRESOLVABLE: {exc}") from exc
+    if not callable(provider):
+        raise BaselineExecutionError("STAGE6_BASELINE_GRANT_PROVIDER_INVALID: not callable")
+    return provider()
 
 
 # ----------------------------------------------------------------------------- real loaders
@@ -270,8 +297,13 @@ def _hardware(device: torch.device) -> dict[str, Any]:
 
 def export_cell(model: torch.nn.Module, samples: Iterable[Mapping[str, Any]], cell_dir: Path, *, model_key: str, seed: int,
                 real: bool, device: str, provenance: Mapping[str, Any], takes_task: bool = False,
-                macs_input: tuple[int, int, int, int] = (1, 3, 512, 512)) -> dict[str, Any]:
-    """Batch-1 fp32 per-image export through the shared exporter and the strict cell writer."""
+                macs_input: tuple[int, int, int, int] = (1, 3, 512, 512),
+                extra_artifacts: Mapping[str, Path] | None = None) -> dict[str, Any]:
+    """Batch-1 fp32 per-image export through the shared exporter and the strict cell writer.
+
+    Real cells are staged, fully validated and only then published; synthetic cells are written as-is (and are
+    always rejected by the validator).
+    """
     dev = torch.device(device)
     meta: list[Mapping[str, Any]] = []
 
@@ -290,7 +322,43 @@ def export_cell(model: torch.nn.Module, samples: Iterable[Mapping[str, Any]], ce
             "protocol_sha256": M.PROTOCOL_SHA256, "protected_splits_accessed": [],
             "evaluation_hardware": _hardware(dev), "evaluation_configuration": EVALUATION_CONFIGURATION,
             "macs_method": "Conv2d+Linear lower bound" if macs is not None else "not measured"}
-    return M.write_cell_result(Path(cell_dir), model_key=model_key, seed=seed, records=records, summary=summary, provenance=prov)
+    cell_dir = Path(cell_dir)
+    if not real:
+        for name, src in (extra_artifacts or {}).items():
+            cell_dir.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(src, cell_dir / name)
+        return M.write_cell_result(cell_dir, model_key=model_key, seed=seed, records=records, summary=summary, provenance=prov)
+    return _publish_validated(cell_dir, model_key, seed, records, summary, prov, extra_artifacts or {})
+
+
+def _publish_validated(cell_dir: Path, model_key: str, seed: int, records, summary, prov, extra: Mapping[str, Path]) -> dict:
+    """Write to a staging directory, validate it completely, and only then expose the controlled cell."""
+    if (cell_dir / "cell_result.json").exists():
+        raise BaselineExecutionError(f"controlled cell already exists and is never overwritten: {cell_dir}")
+    staging = cell_dir.parent / f".{cell_dir.name}.staging"
+    shutil.rmtree(staging, ignore_errors=True)
+    try:
+        doc = M.write_cell_result(staging, model_key=model_key, seed=seed, records=records, summary=summary, provenance=prov)
+        for name, src in extra.items():
+            shutil.copy2(src, staging / name)
+        _, reasons = M.validate_cell(staging, model_key, seed)
+        if reasons:
+            raise BaselineExecutionError("cell rejected before publication: " + "; ".join(reasons))
+        cell_dir.mkdir(parents=True, exist_ok=True)
+        names = [n for n in (*extra, "per_image.csv")] + ["cell_result.json"]  # result file last = completion marker
+        for name in names:
+            os.replace(staging / name, cell_dir / name)
+        return doc
+    finally:
+        shutil.rmtree(staging, ignore_errors=True)
+
+
+def _portable_path(path: Path) -> str:
+    path = Path(path).resolve()
+    try:
+        return str(path.relative_to(ROOT.resolve()))
+    except ValueError:
+        return str(path)
 
 
 def export_trained_baseline(contract: Mapping[str, Any], run_dir: Path, cell_dir: Path, samples: Iterable[Mapping[str, Any]],
@@ -306,7 +374,7 @@ def export_trained_baseline(contract: Mapping[str, Any], run_dir: Path, cell_dir
     model.load_state_dict(ck["model_state"], strict=True)
     cfg = contract["c3_config"]
     provenance = {
-        "checkpoint_sha256": manifest["best_checkpoint_sha256"], "checkpoint_path": str(best.relative_to(ROOT)) if real else str(best),
+        "checkpoint_sha256": manifest["best_checkpoint_sha256"], "checkpoint_path": _portable_path(best),
         "best_epoch": manifest["best_epoch"], "completed_epochs": manifest["completed_epochs"],
         "history_sha256": manifest["history_sha256"], "contract_sha256": contract["contract_sha256"],
         "training_protocol": contract["training_protocol"], "train_manifest_sha256": cfg["dataset"]["train_manifest_sha256"],
@@ -321,10 +389,10 @@ def export_trained_baseline(contract: Mapping[str, Any], run_dir: Path, cell_dir
 
 def run_real_baseline(model_key: str, seed: int, *, grant: Any, device: str = "cuda", resume: bool = False) -> dict[str, Any]:
     """Genuine TRAIN5832 training + VAL808 export.  Fails closed without a release grant."""
-    if device != "cuda" or not torch.cuda.is_available():
-        raise BaselineExecutionError("real baseline training requires CUDA (use the project .venv interpreter)")
     contract = make_contract(model_key, seed, device=device)
     _authorize(contract, grant)
+    if device != "cuda" or not torch.cuda.is_available():
+        raise BaselineExecutionError("real baseline training requires CUDA (use the project .venv interpreter)")
     run_dir = M.cell_dir(REAL_ROOT, model_key, seed) / "training"
     train_factory, val_loader = build_real_loaders(seed, train_workers=contract["train_workers"], eval_workers=contract["eval_workers"])
     fit_baseline(contract, train_factory, val_loader, run_dir, real=True, device=device, resume=resume)
@@ -333,12 +401,70 @@ def run_real_baseline(model_key: str, seed: int, *, grant: Any, device: str = "c
 
 
 # ----------------------------------------------------------------------------- GlobalMedFiLM via C1-T
-def global_manifest_from_c1(run_dir: Path, seed: int, *, allow_synthetic: bool = False) -> tuple[dict[str, Any], dict[str, Any]]:
-    """Read-only translation of a validated C1-T run into the compatibility manifest; never touches C1 code."""
+C1_EXPORT_FIELDS = ("sample_id", "domain", "dice", "iou", "precision", "recall")
+
+
+def write_c1_per_image_export(records: Iterable[Mapping[str, Any]], path: Path) -> str:
+    """Atomically write the C1-T selected-epoch per-image export; returns the SHA-256 of the file as written."""
+    buf = io.StringIO(newline="")
+    writer = csv.writer(buf, lineterminator="\n")
+    writer.writerow(C1_EXPORT_FIELDS)
+    for r in sorted(records, key=lambda r: r["sample_id"]):
+        writer.writerow([r[k] for k in C1_EXPORT_FIELDS])
+    path = Path(path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    tmp = path.with_name(path.name + ".tmp")
+    with open(tmp, "wb") as f:
+        f.write(buf.getvalue().encode("utf-8"))
+        f.flush()
+        os.fsync(f.fileno())
+    os.replace(tmp, path)
+    return C3.sha256_file(path)
+
+
+def verify_c1_per_image_export(path: Path, expected_sha256: str, history_row: Mapping[str, Any], *,
+                               check_roster: bool) -> None:
+    """Reload the export from disk: file hash, canonical VAL808 roster, and recomputed per-domain/macro Dice."""
+    path = Path(path)
+    if not path.is_file():
+        raise BaselineExecutionError("C1-T per-image export absent")
+    if C3.sha256_file(path) != expected_sha256:
+        raise BaselineExecutionError("C1-T per-image export hash mismatch after reload")
+    rows = M._read_per_image(path)
+    if check_roster:
+        reasons = M._roster_reasons({k: {**v, "task_id": M.TASK_IDS.get(v.get("domain"), -1)} for k, v in rows.items()})
+        if reasons:
+            raise BaselineExecutionError("C1-T per-image export roster invalid: " + "; ".join(reasons))
+    reported = {d: history_row[f"val_dice_{d}"] for d in M.DOMAINS}
+    reasons = M._recompute_reasons(rows, reported, history_row["macro_domain_dice"], tol=1e-6)
+    if reasons:
+        raise BaselineExecutionError("C1-T per-image export disagrees with recorded selected-epoch metrics: "
+                                     + "; ".join(reasons))
+
+
+def global_manifest_from_c1(run_dir: Path, seed: int, export_dir: Path, *,
+                            allow_synthetic: bool = False) -> tuple[dict[str, Any], dict[str, Any]]:
+    """Read-only translation of a validated C1-T run into the compatibility manifest; never touches C1 code.
+
+    The per-image export is written to ``export_dir`` and its own file hash is reported; the checkpoint is
+    hash-verified separately from the bytes that are then loaded.
+    """
     from src.research.paper_assets.c1_run_export import validate_run
 
-    report = validate_run(run_dir, expected_arm="C1-T", expected_seed=seed, allow_synthetic=allow_synthetic, check_continuity=False)
-    state = torch.load(Path(run_dir) / report["checkpoint_file"], map_location="cpu", weights_only=True)
+    run_dir = Path(run_dir)
+    report = validate_run(run_dir, expected_arm="C1-T", expected_seed=seed, allow_synthetic=allow_synthetic)
+    checkpoint = run_dir / report["checkpoint_file"]
+    raw = checkpoint.read_bytes()
+    if hashlib.sha256(raw).hexdigest() != report["checkpoint_sha256"]:
+        raise BaselineExecutionError("C1-T checkpoint SHA-256 changed after validation")
+    state = torch.load(io.BytesIO(raw), map_location="cpu", weights_only=True)
+    synthetic = report["synthetic"]
+    if synthetic and not allow_synthetic:
+        raise BaselineExecutionError("C1 run is synthetic")
+    export_path = Path(export_dir) / M.C1_EXPORT_NAME
+    export_sha = write_c1_per_image_export(report["_records"], export_path)
+    best_row = report["_history"][state["best_epoch"] - 1]
+    verify_c1_per_image_export(export_path, export_sha, best_row, check_roster=not synthetic)
     contract, recipe = state["contract"], state["contract"]["recipe"]
     pops = contract["dataset"]["populations"]
     manifest = {
@@ -346,8 +472,12 @@ def global_manifest_from_c1(run_dir: Path, seed: int, *, allow_synthetic: bool =
         "protocol_sha256": contract["protocol_sha256"], "train_n": pops["TRAIN"]["n"], "val_n": pops["VAL"]["n"],
         "resolution": recipe["resolution"], "channel_policy": recipe["channel_policy"],
         "selection_rule": recipe["selection_rule"], "threshold": recipe["threshold"],
-        "checkpoint_sha256": report["checkpoint_sha256"], "per_image_export_sha256": report["checkpoint_sha256"],
+        "checkpoint_sha256": report["checkpoint_sha256"], "checkpoint_path": _portable_path(checkpoint),
+        "per_image_export_sha256": export_sha, "per_image_export_path": str(export_path),
         "protected_splits_accessed": [], "mode": contract["mode"],
+        "best_model_state_sha256": report["best_model_state_sha256"],
+        "c1_selected_epoch_val_dice": {d: best_row[f"val_dice_{d}"] for d in M.DOMAINS},
+        "c1_selected_epoch_macro_dice": best_row["macro_domain_dice"],
         "training_protocol": {**{k: recipe.get(k) for k in M.EXPECTED_TRAINING_PROTOCOL if k in recipe},
                               "train_batch_size": recipe["train_batch_size"], "loss": recipe["loss"]},
         "val_manifest_sha256": pops["VAL"]["sha256"], "train_manifest_sha256": pops["TRAIN"]["sha256"],
@@ -357,24 +487,39 @@ def global_manifest_from_c1(run_dir: Path, seed: int, *, allow_synthetic: bool =
 
 def export_global_cell_from_c1(run_dir: Path, seed: int, cell_dir: Path, samples: Iterable[Mapping[str, Any]], *,
                                device: str = "cuda", allow_synthetic: bool = False) -> dict[str, Any]:
-    """Populate a GLOBAL_MEDFILM cell only when the C1-T artifact passes every compatibility check."""
+    """Populate a GLOBAL_MEDFILM cell only when the C1-T artifact passes every compatibility check.
+
+    Nothing is written to ``cell_dir`` unless the staged cell (including the verified C1-T per-image export)
+    passes the complete controlled-cell validator.
+    """
     from src.research.c1_film.control import build_matched_arms
 
-    manifest, state = global_manifest_from_c1(run_dir, seed, allow_synthetic=allow_synthetic)
-    ok, reasons = M.c1t_can_populate_global(manifest)
-    if manifest["mode"] == "SYNTHETIC_ONLY":
-        reasons = [*reasons, "C1 run is synthetic"]
-    if reasons:
-        raise BaselineExecutionError("C1-T not compatible with GLOBAL_MEDFILM cell: " + "; ".join(reasons))
-    model, _ = build_matched_arms(seed)
-    model.load_state_dict(state["best_model"], strict=True)
-    provenance = {
-        "checkpoint_sha256": manifest["checkpoint_sha256"], "checkpoint_source": "C1-T selected epoch best_model",
-        "best_epoch": state["best_epoch"], "contract_sha256": hashlib.sha256(json.dumps(state["contract"], sort_keys=True).encode()).hexdigest(),
-        "training_protocol": {**M.EXPECTED_TRAINING_PROTOCOL, **{k: manifest["training_protocol"][k] for k in manifest["training_protocol"]
-                                                                  if k in M.EXPECTED_TRAINING_PROTOCOL}},
-        "train_manifest_sha256": manifest["train_manifest_sha256"], "val_manifest_sha256": manifest["val_manifest_sha256"],
-        "reused_artifact": "C1-T", "historical_results_used": False,
-    }
-    return export_cell(model, samples, cell_dir, model_key=M.GLOBAL, seed=seed, real=True, device=device,
-                       provenance=provenance, takes_task=True)
+    scratch = Path(tempfile.mkdtemp(prefix="stage6_c1t_export_"))
+    try:
+        manifest, state = global_manifest_from_c1(run_dir, seed, scratch, allow_synthetic=allow_synthetic)
+        ok, reasons = M.c1t_can_populate_global(manifest)
+        if manifest["mode"] == "SYNTHETIC_ONLY":
+            reasons = [*reasons, "C1 run is synthetic"]
+        if reasons:
+            raise BaselineExecutionError("C1-T not compatible with GLOBAL_MEDFILM cell: " + "; ".join(reasons))
+        model, _ = build_matched_arms(seed)
+        model.load_state_dict(state["best_model"], strict=True)
+        provenance = {
+            "checkpoint_sha256": manifest["checkpoint_sha256"], "checkpoint_path": manifest["checkpoint_path"],
+            "checkpoint_source": "C1-T selected epoch best_model", "best_epoch": state["best_epoch"],
+            "best_model_state_sha256": manifest["best_model_state_sha256"],
+            "per_image_export_sha256": manifest["per_image_export_sha256"],
+            "c1_selected_epoch_val_dice": manifest["c1_selected_epoch_val_dice"],
+            "c1_selected_epoch_macro_dice": manifest["c1_selected_epoch_macro_dice"],
+            "contract_sha256": hashlib.sha256(json.dumps(state["contract"], sort_keys=True).encode()).hexdigest(),
+            "training_protocol": {**M.EXPECTED_TRAINING_PROTOCOL,
+                                  **{k: manifest["training_protocol"][k] for k in manifest["training_protocol"]
+                                     if k in M.EXPECTED_TRAINING_PROTOCOL}},
+            "train_manifest_sha256": manifest["train_manifest_sha256"], "val_manifest_sha256": manifest["val_manifest_sha256"],
+            "reused_artifact": "C1-T", "historical_results_used": False,
+        }
+        return export_cell(model, samples, cell_dir, model_key=M.GLOBAL, seed=seed, real=True,
+                           device=device, provenance=provenance, takes_task=True,
+                           extra_artifacts={M.C1_EXPORT_NAME: Path(manifest["per_image_export_path"])})
+    finally:
+        shutil.rmtree(scratch, ignore_errors=True)

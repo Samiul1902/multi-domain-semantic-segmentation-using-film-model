@@ -99,8 +99,13 @@ def c1t_can_populate_global(c1_manifest: Mapping[str, Any]) -> tuple[bool, list[
         reasons.append("seed not in 42/123/3407")
     if not c1_manifest.get("checkpoint_sha256"):
         reasons.append("missing checkpoint_sha256 provenance")
-    if not c1_manifest.get("per_image_export_sha256"):
+    ckpt, export = c1_manifest.get("checkpoint_sha256"), c1_manifest.get("per_image_export_sha256")
+    if not export:
         reasons.append("missing per-image VAL808 export")
+    elif not re.fullmatch(r"[0-9a-f]{64}", str(export)) or export == ckpt:
+        reasons.append("per_image_export_sha256 must be the SHA-256 of the per-image export file, not the checkpoint hash")
+    if ckpt and not re.fullmatch(r"[0-9a-f]{64}", str(ckpt)):
+        reasons.append("checkpoint_sha256 is not a SHA-256 digest")
     if c1_manifest.get("protected_splits_accessed"):
         reasons.append("protected split accessed")
     return not reasons, reasons
@@ -202,14 +207,28 @@ def _json_default(value: Any) -> Any:
     raise TypeError(type(value))
 
 
+_FLOAT_COLUMNS = ("dice", "global_dice", "delta_dice_vs_global", "iou", "precision", "recall")
+C1_EXPORT_NAME = "c1t_per_image_export.csv"
+
+
 def _read_per_image(path: Path) -> dict[str, dict[str, Any]]:
     with Path(path).open(newline="", encoding="utf-8") as f:
         rows = {}
         for row in csv.DictReader(f):
-            for key in ("dice", "global_dice", "delta_dice_vs_global"):
-                row[key] = float(row[key])
+            for key in _FLOAT_COLUMNS:
+                if key in row:
+                    try:
+                        row[key] = float(row[key])
+                    except (TypeError, ValueError):
+                        row[key] = float("nan")
             rows[row["sample_id"]] = row
     return rows
+
+
+def recompute_domain_dice(rows: Mapping[str, Mapping[str, Any]]) -> tuple[dict[str, float], float]:
+    """Per-domain mean Dice and equal-domain macro-Dice recomputed from per-image rows."""
+    per_domain = {d: float(np.mean([r["dice"] for r in rows.values() if r["domain"] == d])) for d in DOMAINS}
+    return per_domain, float(np.mean(list(per_domain.values())))
 
 
 def validate_cell(directory: Path, model_key: str, seed: int) -> tuple[dict[str, Any] | None, list[str]]:
@@ -253,7 +272,23 @@ def validate_cell(directory: Path, model_key: str, seed: int) -> tuple[dict[str,
     if not per_image.is_file() or hashlib.sha256(per_image.read_bytes()).hexdigest() != doc.get("per_image_sha256"):
         reasons.append("per-image export missing or hash mismatch")
     else:
-        reasons.extend(_roster_reasons(_read_per_image(per_image)))
+        rows = _read_per_image(per_image)
+        roster = _roster_reasons(rows)
+        reasons.extend(roster)
+        if not roster:
+            reasons.extend(_recompute_reasons(rows, doc.get("summary", {}).get("per_domain"),
+                                              doc.get("summary", {}).get("equal_domain_macro_dice")))
+    if model_key == GLOBAL:
+        reasons.extend(_c1_reuse_reasons(directory, prov))
+    ckpt_path = prov.get("checkpoint_path")
+    if ckpt_path is not None:
+        ckpt_file = Path(ckpt_path) if Path(ckpt_path).is_absolute() else ROOT / ckpt_path
+        if not ckpt_file.is_file():
+            reasons.append("checkpoint file missing")
+        elif hashlib.sha256(ckpt_file.read_bytes()).hexdigest() != prov.get("checkpoint_sha256"):
+            reasons.append("checkpoint file SHA-256 mismatch")
+    elif model_key in CONTROLLED_SINGLE_NETWORK:
+        reasons.append("checkpoint_path missing")
     summary = doc.get("summary", {})
     macro = summary.get("equal_domain_macro_dice")
     if not isinstance(macro, (int, float)) or not math.isfinite(macro) or not 0.0 <= macro <= 1.0:
@@ -278,10 +313,45 @@ def _roster_reasons(rows: Mapping[str, Mapping[str, Any]]) -> list[str]:
         reasons.append("per-image domain does not match VAL808 manifest")
     if any(int(rows[s].get("task_id", -1)) != truth[s][1] or TASK_IDS.get(rows[s]["domain"]) != truth[s][1] for s in rows):
         reasons.append("per-image task_id does not match domain/task mapping")
-    if not all(math.isfinite(rows[s][k]) and 0.0 <= rows[s][k] <= 1.0 + 1e-9
-               for s in rows for k in ("dice", "global_dice")) or not all(
+    present = [k for k in ("dice", "global_dice") if all(k in r for r in rows.values())]
+    if "dice" not in present or not all(math.isfinite(rows[s][k]) and 0.0 <= rows[s][k] <= 1.0 + 1e-9
+                                        for s in rows for k in present) or not all(
             math.isfinite(float(rows[s][k])) for s in rows for k in ("iou", "precision", "recall")):
         reasons.append("non-finite per-image metrics")
+    return reasons
+
+
+def _recompute_reasons(rows: Mapping[str, Mapping[str, Any]], per_domain: Mapping[str, Any] | None,
+                       macro: Any, *, tol: float = 1e-9) -> list[str]:
+    """Reported per-domain and equal-domain macro-Dice must equal values recomputed from the per-image export."""
+    got_domain, got_macro = recompute_domain_dice(rows)
+    reasons = []
+    if not isinstance(macro, (int, float)) or abs(got_macro - macro) > tol:
+        reasons.append(f"equal_domain_macro_dice {macro!r} != recomputed {got_macro!r}")
+    for d in DOMAINS:
+        reported = (per_domain or {}).get(d, {})
+        reported = reported.get("dice") if isinstance(reported, Mapping) else reported
+        if not isinstance(reported, (int, float)) or abs(got_domain[d] - reported) > tol:
+            reasons.append(f"per-domain Dice for {d} {reported!r} != recomputed {got_domain[d]!r}")
+    return reasons
+
+
+def _c1_reuse_reasons(directory: Path, prov: Mapping[str, Any]) -> list[str]:
+    """GLOBAL cells must carry a verifiable C1-T per-image export whose hash is not the checkpoint hash."""
+    if prov.get("reused_artifact") != "C1-T":
+        return ["GLOBAL_MEDFILM controlled cell must derive from a validated C1-T run"]
+    export_hash, ckpt_hash = prov.get("per_image_export_sha256"), prov.get("checkpoint_sha256")
+    path = Path(directory) / C1_EXPORT_NAME
+    if not re.fullmatch(r"[0-9a-f]{64}", str(export_hash)) or export_hash == ckpt_hash:
+        return ["per_image_export_sha256 missing, malformed, or equal to the checkpoint hash"]
+    if not path.is_file() or hashlib.sha256(path.read_bytes()).hexdigest() != export_hash:
+        return ["C1-T per-image export missing or hash mismatch"]
+    rows = _read_per_image(path)
+    reasons = [f"C1-T export: {r}" for r in _roster_reasons({k: {**v, "task_id": TASK_IDS.get(v.get("domain"), -1)}
+                                                              for k, v in rows.items()})]
+    if not reasons:
+        reasons += [f"C1-T export: {r}" for r in _recompute_reasons(
+            rows, prov.get("c1_selected_epoch_val_dice"), prov.get("c1_selected_epoch_macro_dice"), tol=1e-6)]
     return reasons
 
 
