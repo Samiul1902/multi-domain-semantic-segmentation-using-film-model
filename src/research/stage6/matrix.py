@@ -10,6 +10,7 @@ import csv
 import hashlib
 import json
 import math
+import re
 from pathlib import Path
 from typing import Any, Iterable, Mapping, Sequence
 
@@ -45,9 +46,21 @@ MODEL_REGISTRY: dict[str, dict[str, Any]] = {
 }
 for _key in BASELINES:
     MODEL_REGISTRY[_key] = {"role": "EXTERNAL_ARCHITECTURE_BASELINE", "c3_key": _key.lower(), "chain": (),
-                            "producer": "src/research/c3_baselines/experiment.py (train_run)",
-                            "multi_seed_producer": "BLOCKED: run-real raises pending separate authorization"}
+                            "producer": "src/research/stage6/baseline_real.py (run_real_baseline; CLI stage6_eight_model.py baseline-run)",
+                            "multi_seed_producer": "BLOCKED: no baseline launch grant exists (STAGE6_BASELINE_LAUNCH_GRANT_REQUIRED)"}
 
+REAL_EVIDENCE_CLASS = "REAL_VAL808_DEVELOPMENT"
+SYNTHETIC_EVIDENCE_CLASS = "SYNTHETIC_TEST_ONLY"
+VAL_MANIFEST = ROOT / "manifests" / "phase4_v3" / "val.csv"
+# Frozen C1 recipe fields that every controlled single-network cell (G and the five baselines) must share.
+EXPECTED_TRAINING_PROTOCOL: dict[str, Any] = {
+    "resolution": 512, "channel_policy": "RGB_3CH", "loss": "bce_dice", "bce_weight": 0.5, "dice_weight": 0.5,
+    "dice_epsilon": 1e-6, "optimizer": "AdamW", "learning_rate": 1e-4, "weight_decay": 1e-4,
+    "scheduler": "CosineAnnealingLR", "T_max": 100, "train_batch_size": 4, "eval_batch_size": 8,
+    "max_epochs": 100, "early_stop_patience": 15, "amp": True,
+    "sampling_policy": "phase20_domain_balanced_uniform_v1", "threshold": 0.5,
+    "selection_rule": "phase20_macro_domain_mean_dice_v1", "tie_break": "lower_val_loss_then_earlier_epoch"}
+CONTROLLED_SINGLE_NETWORK = (GLOBAL, *BASELINES)
 EVIDENCE_LABEL = "VAL808_DEVELOPMENT_SELECTION_CONSUMED__NOT_INDEPENDENT_CONFIRMATION"
 HISTORICAL_BASELINE_LABEL = "PROTOCOL_INCOMPARABLE"
 
@@ -223,12 +236,53 @@ def validate_cell(directory: Path, model_key: str, seed: int) -> tuple[dict[str,
         reasons.append("missing component chain provenance")
     if model_key == FULL and prov.get("global_only_substituted"):
         reasons.append("GlobalMedFiLM substituted for FULL")
+    if prov.get("model_key") != model_key:
+        reasons.append("provenance model identity mismatch")
+    if prov.get("evidence_class") != REAL_EVIDENCE_CLASS:
+        reasons.append(f"evidence_class must be {REAL_EVIDENCE_CLASS}")
+    if not re.fullmatch(r"[0-9a-f]{64}", str(prov.get("checkpoint_sha256", ""))):
+        reasons.append("checkpoint_sha256 is not a SHA-256 digest")
+    if model_key in CONTROLLED_SINGLE_NETWORK:
+        protocol = prov.get("training_protocol") or {}
+        bad = sorted(k for k, v in EXPECTED_TRAINING_PROTOCOL.items() if protocol.get(k) != v)
+        if bad:
+            reasons.append(f"training protocol incompatible with frozen recipe: {bad}")
+        if not prov.get("evaluation_configuration"):
+            reasons.append("evaluation_configuration missing")
     per_image = directory / "per_image.csv"
     if not per_image.is_file() or hashlib.sha256(per_image.read_bytes()).hexdigest() != doc.get("per_image_sha256"):
         reasons.append("per-image export missing or hash mismatch")
-    elif len(_read_per_image(per_image)) != VAL_N:
-        reasons.append(f"per-image export does not contain {VAL_N} unique images")
+    else:
+        reasons.extend(_roster_reasons(_read_per_image(per_image)))
+    summary = doc.get("summary", {})
+    macro = summary.get("equal_domain_macro_dice")
+    if not isinstance(macro, (int, float)) or not math.isfinite(macro) or not 0.0 <= macro <= 1.0:
+        reasons.append("summary equal_domain_macro_dice missing or non-finite")
+    if not isinstance(summary.get("parameters"), int) or summary["parameters"] <= 0:
+        reasons.append("summary parameters missing")
     return (None if reasons else doc), reasons
+
+
+def _roster_reasons(rows: Mapping[str, Mapping[str, Any]]) -> list[str]:
+    """Roster, task-ID and finiteness checks against the frozen VAL808 manifest (metadata only)."""
+    import pandas as pd
+
+    expected = pd.read_csv(VAL_MANIFEST, usecols=["sample_id", "dataset", "task_id"])
+    truth = {str(r.sample_id): (str(r.dataset), int(r.task_id)) for r in expected.itertuples()}
+    reasons: list[str] = []
+    if set(rows) != set(truth):
+        reasons.append(f"per-image roster differs from VAL808 (missing {len(set(truth) - set(rows))}, "
+                       f"unexpected {len(set(rows) - set(truth))})")
+        return reasons
+    if any(rows[s]["domain"] != truth[s][0] for s in rows):
+        reasons.append("per-image domain does not match VAL808 manifest")
+    if any(int(rows[s].get("task_id", -1)) != truth[s][1] or TASK_IDS.get(rows[s]["domain"]) != truth[s][1] for s in rows):
+        reasons.append("per-image task_id does not match domain/task mapping")
+    if not all(math.isfinite(rows[s][k]) and 0.0 <= rows[s][k] <= 1.0 + 1e-9
+               for s in rows for k in ("dice", "global_dice")) or not all(
+            math.isfinite(float(rows[s][k])) for s in rows for k in ("iou", "precision", "recall")):
+        reasons.append("non-finite per-image metrics")
+    return reasons
 
 
 def _mean_sd(values: Sequence[float]) -> dict[str, Any]:
