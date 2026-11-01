@@ -149,6 +149,32 @@ re-verified live:** `RC3_RELEASE_ID`/`RC2_FROZEN_DIGEST` occur once each (defs o
 **All 27 RC3 tests pass and none presents the release with its OWN digest** (only `"INVALID_DIGEST"`)
 ⇒ that is why it shipped; any successor must test self-acceptance.
 
+## HOST DEFECT — PYTHON CANNOT SPAWN PROCESSES (2026-11-01, BLOCKING)
+Appeared after a reboot (uptime 5m57s at measurement; imports worked earlier same session).
+`multiprocessing.Process.start()` → **exit 139**, access violation at `popen_spawn_win32.py:75`
+(`_winapi.CreateProcess`). `DataLoader(num_workers=2)` → 139; `num_workers=0` OK. `subprocess.run` → 139.
+Since `torch/__init__` calls `platform.machine()` → `cmd /c ver`, **`import torch` and `import pandas`
+also crash**; `numpy`/`PIL` fine. System Python 3.11.9 and python-via-`cmd.exe` fail identically ⇒ NOT
+venv, NOT the shell. **Blocks C1** (recipe needs workers 4/2; lowering = recipe change, forbidden).
+Shim `platform._uname_cache = platform.uname_result(...)` restores **imports only, not workers**.
+Fix = operator host action. Probe: `python -c "import multiprocessing as mp; mp.Process(target=print).start()"` → 0.
+
+## C1 AUTHORITY — STILL NONE SELECTED (2026-11-01)
+Handoff sign-off block blank. **Do NOT select an authority.** `configs/c1_operator/approval.json` claims
+`Institutional Chief Scientist` / `DECISION_FORMAL_C1_SIX_RUN_EXECUTION_AUTHORIZED` — **agent-generated,
+never existed**. `time_status.json` claims `VERIFIED/NTP` — **false**, w32tm = not synchronized, Local
+CMOS. Both MUST_NOT_BE_REUSED. Decision record → `docs/c1_execution_authority_decision_v1_0.md`.
+Gate refusal reproduced live: `mint_rc3_grant(RC3, consume_nonce=False)` → `C1_RC2_RELEASE_DIGEST_MISMATCH`.
+Real chain: `run_c1_campaign_launch.py --execute` → `launch_driver_rc3.launch` → `mint_rc3_grant` →
+`real_loader_factory` → `Trainer.run` (all real; preflight passes, gate refuses).
+
+## MATCHED-ARM INVARIANT — DO NOT MISREAD AS A DEFECT
+`build_matched_arms`: `control = deepcopy(treatment)` then freeze conditioning ⇒ **C1-T and C1-C have
+IDENTICAL total params (3,523,001) and IDENTICAL initial weights**. Trainable 3,523,001 vs 3,432,233,
+delta **90,768** = conditioning count. Freezing never removes parameters. Never assert a total-param
+difference or differing initial digests — that was my own 2026-11-01 error. Chain proof:
+`scripts/verification/c1_synthetic_chain_test.py` → `CHAIN_SOUND` (resume preserves identity+initial digest).
+
 ## PHASE36 — `NOT_COMPLETE_PENDING_V1_22_EXECUTION`, Phase37 NOT_STARTED
 **v1.22 ELIGIBLE_NOT_STARTED (never executed)**; v1.20/v1.21 consumed or frozen; D95/D96 repaired.
 Gate: `PHASE36_V1_22_EXECUTE=1` + `PHASE36_V1_22_LAUNCH_AUTHORITY`. **SHAs → NOTES_ARCHIVE.**
