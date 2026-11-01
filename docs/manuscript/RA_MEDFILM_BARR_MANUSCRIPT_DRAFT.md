@@ -15,9 +15,11 @@ Deep neural networks deployed across heterogeneous medical imaging modalities of
 
 To eliminate data leakage, we enforce canonical Manifest v3 governance, isolating 118 high-risk patient-overlapping cases and locking the 1,683-case evaluation cohort. Statistical inference is governed by domain-stratified cluster bootstrapping; because no confirmatory significance procedure is eligible, all reported intervals are descriptive.
 
-On the VAL808 development split, Global MedFiLM attains 83.51% macro-domain Dice with 3.52M parameters and has the highest point estimate among six historical single-run models. Those runs are PROTOCOL_INCOMPARABLE (historical manifest v2, one seed each, development-selected), the intervals overlap, and no controlled baseline superiority is claimed. Regional BARR **preserves** this accuracy rather than improving on it: +0.28 pp on VAL808 (three-seed mean) and +0.17 pp on the one-shot ROUTER_HOLDOUT (95% CI [+0.11, +0.24]), within a pre-specified −0.5 pp non-inferiority margin. That margin and its interval are properties of the internal populations; the external study below has neither, and its deltas are reported descriptively. A retrospective external stress test on 884 cases from three public cohorts gives mean macro-Dice changes of +0.32 pp, +0.03 pp and +0.13 pp on CVC-ClinicDB, BrEaST-Lesions-USG and Stones respectively — small enough to be consistent with no material change, and not a demonstration of external non-inferiority — while absolute performance does not transfer: external Dice falls 13.4, 15.1 and 68.3 pp below the internal anchors for the same nominal modalities, and on the Stones cohort the model marks foreground on 14 of 14 stone-free radiographs. The external study is explicitly not a validation study.
+On the VAL808 development split, Global MedFiLM attains 83.51% macro-domain Dice with 3.52M parameters and has the highest point estimate among six historical single-run models. Those runs are PROTOCOL_INCOMPARABLE (historical manifest v2, one seed each, development-selected), the intervals overlap, and no controlled baseline superiority is claimed. Regional BARR **preserves** this accuracy rather than improving on it: +0.28 pp on VAL808 (three-seed mean) and +0.17 pp on the historical ROUTER_HOLDOUT (n = 875; domain-stratified group bootstrap, descriptive 95% interval [+0.11, +0.24] pp, which lies above the −0.5 pp margin). That holdout was evaluated historically under a disclosed post-first-open source deviation and is not untouched prospective validation. That margin and its interval are properties of the internal populations; the external study below has neither, and its deltas are reported descriptively. A retrospective external stress test on 884 cases from three public cohorts gives mean macro-Dice changes of +0.32 pp, +0.03 pp and +0.13 pp on CVC-ClinicDB, BrEaST-Lesions-USG and Stones respectively — small enough to be consistent with no material change, and not a demonstration of external non-inferiority — while absolute performance does not transfer: external Dice falls 13.4, 15.1 and 68.3 pp below the internal anchors for the same nominal modalities, and on the Stones cohort the model marks foreground on 14 of 14 stone-free radiographs. The external study is explicitly not a validation study.
 
-While formal institutional approval remains pending before launching production weights, this manuscript establishes the mathematical rigor, exact implementation mechanics, baseline evidence boundaries, and statistical contracts required for fully defensible clinical AI benchmarking.
+While formal institutional approval remains pending before launching production weights, this manuscript documents the mathematical formulation, implementation mechanics, baseline evidence boundaries and statistical contracts of the frozen C1 protocol. The central C1 attribution result is NOT_ESTABLISHED (0/6 real runs), controlled C3 baselines are pending, and no clinical readiness is claimed.
+
+> **Review-draft status.** Not ready for submission. Pending: the six real C1 runs and Figures 3–4, protocol-matched multi-seed baselines (C3), a legible main-text qualitative figure, and independent external validation. Literature citations are not independently re-verified in this draft; Wang et al. (2018) is marked UNVERIFIED as to its characterisation.
 
 ---
 
@@ -35,13 +37,13 @@ The RA-MedFiLM-BARR framework formalizes this multi-domain paradigm. In this pap
 ## 2. Related Work & Research Gaps
 
 ### 2.1 Multi-Domain Medical Image Segmentation
-Unified medical segmentation networks typically rely on multi-head decoders or separate routing paths (Ronneberger et al., 2015; Isensee et al., 2021). While frameworks such as nnU-Net optimize single-domain hyperparameter heuristics, joint multi-modality learning often introduces gradient conflicts. Recent efforts explore unified backbones, but frequently fail to account for multi-center data contamination or subtle patient overlap across imaging series.
+Unified medical segmentation networks typically rely on multi-head decoders or separate routing paths (Ronneberger et al., 2015; Isensee et al., 2021). While frameworks such as nnU-Net optimize single-domain hyperparameter heuristics, joint multi-modality learning often introduces gradient conflicts. Recent efforts explore unified backbones, but may not account for (not surveyed systematically here) multi-center data contamination or subtle patient overlap across imaging series.
 
 ### 2.2 Feature-Wise Linear Modulation (FiLM)
-Feature-wise Linear Modulation (Perez et al., 2018) was originally developed for visual reasoning to dynamically manipulate convolutional feature representations conditioned on linguistic or categorical embeddings. In medical vision, modulation layers have been utilized for demographic or disease metadata. However, prior medical literature uniformly lacks *matched architectural controls*: reported gains often stem from additional trainable projection parameters or altered optimization dynamics rather than true task modulation.
+Feature-wise Linear Modulation (Perez et al., 2018) was originally developed for visual reasoning to dynamically manipulate convolutional feature representations conditioned on linguistic or categorical embeddings. In medical vision, modulation layers have been utilized for demographic or disease metadata. However, a systematic literature review was not performed for this draft; a concern is that reported gains may stem from additional trainable projection parameters or altered optimization dynamics rather than true task modulation.
 
 ### 2.3 Regional Refinement & Selective Routing
-Coarse-to-fine segmentation architectures and cascade models (e.g., Wang et al., 2018) process cropped regions of interest to recover fine spatial details. Nevertheless, arbitrary fixed cascades run all crops unconditionally, wasting clinical compute budgets. Dynamic routing (Teerapittayanon et al., 2016) introduces early exits or conditional execution, yet principled integration with explicit FLOP budget thresholds in medical imaging remains sparse.
+Coarse-to-fine segmentation architectures and cascade models (e.g., Wang et al., 2018 [UNVERIFIED characterisation]) process cropped regions of interest to recover fine spatial details. Fixed cascades that run every crop unconditionally incur the refiner cost on all cases. Dynamic routing (Teerapittayanon et al., 2016) introduces early exits or conditional execution; whether a cost-penalised benefit router has been combined with regional refinement in medical segmentation was not established by a systematic search here.
 
 ### 2.4 Research Gaps Addressed
 1. *Causal Attribution*: Existing FiLM evaluations fail to test an unconditioned identity control with identical seed, initialization, and optimizer states.
@@ -57,10 +59,10 @@ To ensure scientific transparency, every research contribution is explicitly cat
   - *Status*: Methodologically frozen in release `C1_FILM_ATTRIBUTION_V1_LAUNCH_RC3`; empirical 6-run execution pending (`NOT_ESTABLISHED`).
   - *Scope*: Causal architectural intervention isolating the mathematical effect of task-conditioned scale/shift affine vectors against an exact zero-modulation control. It does *not* assert broad clinical efficacy until prospective evaluation is authorized.
 - **Contribution C2 (Budget-Aware Regional Refinement — *Exploratory Development*)**:
-  - *Status*: Retrospectively validated on historical development partitions (`HISTORICAL_DESCRIPTIVE_RESULT`).
+  - *Status*: Descriptively reported on historical development partitions (`HISTORICAL_DESCRIPTIVE_RESULT`).
   - *Scope*: Demonstrates that selective routing plus learned post-safety filtering ($S_\omega$) reduces the all-population harm rate from 42.67% ($A1$, unconditional refinement) to 7.87% ($A8$), in-sample on the 4,957-case development population. The router accounts for 2,115 → 412 harmful cases and $S_\omega$ for a further 412 → 390; the reduction is therefore attributable mainly to routing, not to the safety filter alone.
 - **Contribution C3 (Fair Multi-Domain Benchmarking — *Exploratory Retrospective*)**:
-  - *Status*: Validated across 5 baseline architectures on historical splits (`PROTOCOL_INCOMPARABLE`).
+  - *Status*: Five baseline architectures plus Global MedFiLM reported as single-run results on historical splits (`PROTOCOL_INCOMPARABLE`).
   - *Scope*: Establishes initial empirical baselines across four clinical targets but requires re-benchmarking under clean Manifest v3 governance.
 - **External stress test (not a contribution, *Descriptive Only*)**: A retrospective 884-case stress test (CVC-ClinicDB n = 612, BrEaST-Lesions-USG n = 252, Stones_where_are_you test split n = 20) was executed with both the Global MedFiLM checkpoint and the full frozen BARR assembly. HAM10000 was excluded before inference because the available masks have no documented provenance. This is not an external validation cohort; see §13.1.
 
@@ -69,7 +71,7 @@ To ensure scientific transparency, every research contribution is explicitly cat
 ## 4. Mathematical Formulation & Architecture
 
 ### 4.1 Global Backbone and Actual Implemented FiLM Equation
-Let $X \in \mathbb{R}^{B \times C_{\text{in}} \times H \times W}$ denote the input image batch, and let $t \in \{0, 1, 2, 3\}$ denote the categorical domain index corresponding to KUB, ISIC, BUSI, and KVASIR respectively. The task embedding module maps $t$ into a learned embedding vector $e_t = E(t) \in \mathbb{R}^{d_e}$ ($d_e = 32$).
+Let $X \in \mathbb{R}^{B \times C_{\text{in}} \times H \times W}$ denote the input image batch, and let $t \in \{0, 1, 2, 3\}$ denote the categorical domain index corresponding to ISIC (0), BUSI (1), KVASIR (2) and KUB (3) respectively. The task embedding module maps $t$ into a learned embedding vector $e_t = E(t) \in \mathbb{R}^{d_e}$ ($d_e = 32$).
 
 For a given convolutional feature map $F_l \in \mathbb{R}^{B \times C_l \times H_l \times W_l}$ at network site $l \in \{\text{bridge}, \text{decoder4}, \text{decoder3}, \text{decoder2}, \text{decoder1}\}$, the FiLM generator projects $e_t$ through an MLP to produce raw parameters, which are bounded via a hyperbolic tangent activation:
 $$\tilde{\gamma}_l, \tilde{\beta}_l = \text{Linear}(\text{SiLU}(\text{Linear}(e_t)))$$
@@ -89,13 +91,15 @@ In $C1\text{-}C$, the conditioning weights are zero-initialized and frozen ($\ga
 ## 5. Budget-Aware Regional Refinement (BARR) Formulation
 
 ### 5.1 Region Proposal & Ambiguity Detection
-The global stage produces a coarse segmentation probability map $P_{\text{global}} \in [0, 1]^{B \times 1 \times H \times W}$ for binary lesion demarcation. Candidate bounding boxes $\{B_k\}$ are extracted based on spatial ambiguity:
-$$A(x, y) = 1 - 2 \cdot |P_{\text{global}}(x, y) - 0.5|$$
+The global stage produces a coarse probability map $P_{\text{global}} \in [0, 1]^{B \times 1 \times H \times W}$. The frozen implementation (`src/models/barr/ra_medfilm_barr.py`) proposes **one** region per image: the foreground set $\{P_{\text{global}} \ge 0.30\}$ is enclosed in a single bounding box, which is expanded by a centre-preserving factor of 1.5 and clipped to the image. If the set is empty the state is `FORCED_SKIP` and $P_{\text{global}}$ is returned. (An earlier draft described an ambiguity map and multiple candidate boxes; neither is implemented and both were removed.)
 
-### 5.2 Routing Function & Budget Invariants
-Let $c_k \in [0, 1]$ represent the routing confidence score for candidate region $k$, predicted by a lightweight routing gate $R(F_{\text{crop}})$. Given an allocated computational budget constraint $B_{\text{max}}$ (measured in GFLOPs per image), the discrete routing decision $z_k \in \{0, 1\}$ is governed by:
-$$z_k = \mathbb{I}\left(c_k \ge \tau \quad \text{and} \quad \sum_{j \le k} \text{FLOPs}(B_j) \le B_{\text{max}}\right)$$
-If $z_k = 1$, the crop $B_k$ is forwarded to the high-capacity Regional Refiner; if $z_k = 0$, the coarse global prediction is retained.
+### 5.2 Benefit routing and cost-aware decision
+$B_\phi$ receives a 202-dimensional ground-truth-free feature vector derived from the global output and the ROI, together with the task embedding, and predicts the expected Dice benefit $\hat{\Delta}$ of refinement. With action cost $C = 1{,}051{,}648/10{,}270{,}749$ and $\lambda = 1/4$, the utility is
+$$U = \hat{\Delta} - \lambda C,$$
+and the crop is executed iff $U \ge \tau_{C8}$, where $\tau_{C8} = \tau_{C7} - \lambda C$ and $\tau_{C7} \approx 0.0012398$ (frozen, calibrated on ROUTER_DEVELOPMENT under a 25% target routing fraction). The "budget" is this calibrated cost-penalised threshold; the implementation has no per-image FLOP-sum constraint. Non-executed cases are `SKIP_GLOBAL` and return $P_{\text{global}}$.
+
+### 5.2.1 Refinement, fusion and safety decision
+$R_\psi$ produces a $256\times256$ refined crop that is resized to the ROI and **replaces** $P_{\text{global}}$ inside the ROI (no alpha blending). $S_\omega$ takes 16 numeric post-refinement features plus a one-hot task vector and accepts iff $\sigma(\text{logit}) \ge 0.50$; on rejection $P_{\text{global}}$ is returned (`EXECUTE_THEN_REJECT`). The final mask is $P \ge 0.50$. The wrapper adds no trainable parameters. States: `FORCED_SKIP`, `SKIP_GLOBAL`, `EXECUTE_THEN_ACCEPT`, `EXECUTE_THEN_REJECT`.
 
 ### 5.3 Parameter accounting
 The frozen system comprises four components with verified parameter counts (`reports/audits/phase36_robustness_scientific_result_v1_23.json`, strict load, zero missing or unexpected keys):
@@ -108,7 +112,7 @@ The frozen system comprises four components with verified parameter counts (`rep
 | Post-safety filter | $S_\omega$ | 1,217 |
 | **Total** | | **4,837,420** |
 
-The total is 4.84M parameters, not the 4.80M stated in earlier project material. $R_\psi$ accounts for 90% of the increase over the global network, so BARR's cost is dominated by the refiner rather than by routing or safety.
+The total is 4.84M parameters, not the 4.80M stated in earlier project material. $R_\psi$ accounts for about 97% (1,276,401 of 1,314,419) of the increase over the global network, so BARR's cost is dominated by the refiner rather than by routing or safety.
 
 ---
 
@@ -142,12 +146,12 @@ Experiments are standardized on an NVIDIA GeForce RTX 3060 Ti GPU (8GB VRAM) und
 - Training step latency: $128.90 \text{ ms}$ (Batch size = 4)
 - Validation step latency: $83.17 \text{ ms}$ (Batch size = 8)
 - Compute time per 100-epoch run: $6.29 \text{ hours}$ (Central estimate), derived as $37.72 / 6$ under equal workloads across the six runs
-- Full 6-run campaign duration: $37.72 \text{ hours}$ (Nominal) to $42.71 \text{ hours}$ (Conservative), i.e. $6.29$ to $7.12 \text{ hours}$ per run, fitting within available sprint deadlines (~120 hours remaining).
+- Full 6-run campaign duration: $37.72 \text{ hours}$ (Nominal) to $42.71 \text{ hours}$ (Conservative), i.e. $6.29$ to $7.12 \text{ hours}$ per run; these are planning estimates, not measurements.
 
 ### 7.2 Cryptographic Release Invariant (RC3)
 The launch framework is governed by frozen release `C1_FILM_ATTRIBUTION_V1_LAUNCH_RC3`, bearing SHA-256 digest:
 `54d1273a53db7dae58118a4bb69c2a96ba2e474a72512a9dccb4c98c9513549f`
-Release verification at the time of writing: 27 RC3 tests pass and 42 of 43 RC2 regression tests pass. One RC2 test fails because the default production trust store is present on the host (see §18.3); it is reported rather than suppressed.
+Release verification: all RC1–RC4 release tests pass except one environment-dependent RC2 test (`test_default_production_store_is_absent`), which fails because the default production trust store is present on the host (see §18.3); it is reported rather than suppressed.
 
 ---
 
@@ -423,8 +427,8 @@ The external stress test in §13.1 adds a boundary to that claim that should not
 | 5 | BARR routing funnel (development in-sample; external exploratory) | Ready | descriptive / exploratory |
 | 6 | VAL808 GlobalMedFiLM vs BARR by domain (three seeds, fixed global backbone, no CI) | Ready | descriptive (selection-consumed) |
 | 7 | External retrospective stress test: level, difference (axis ±1 pp), domain shift | Ready | exploratory |
-| 8 | External qualitative panels reused unchanged from earlier generation | Ready (reused raster) | descriptive |
-| 9 | Failure behavior: 34/884 accepted-worsened, 45/884 safety-rejected, 700/884 not selected, 14/14 stone-free images with predicted foreground | Ready | exploratory |
+| 8 | Supplementary overview of external qualitative panels (reused raster; in-panel text legible only at full resolution; rule-based row selection; a legible main-text version is pending) | Supplementary | descriptive |
+| 9 | Failure behavior: 96/884 accepted-improved, 34/884 accepted-worsened, 45/884 safety-rejected, 700/884 not selected, 14/14 stone-free images with predicted foreground | Ready | exploratory |
 | 10 | Analytical GMACs vs accuracy; measured batch-1 latency (separate panels) | Ready | analytical / descriptive |
 
 Figure captions must repeat: Dice values are proportions (0–1); "pp" means percentage points of Dice; Figure 6 and Table 4 use development-selected or in-sample populations; baseline accuracies in Figure 10 are protocol-incomparable.

@@ -107,7 +107,7 @@ def fig1():
     ax.add_patch(FancyBboxPatch((0.01, 0.42), 0.60, 0.55, boxstyle="round,pad=0.01", fc="#EAF2FB", ec=COL["global"], lw=1.2, ls="--"))
     ax.text(0.02, 0.95, "C1: task-conditioned FiLM", fontsize=8, color=COL["global"], va="top", fontweight="bold")
     ax.add_patch(FancyBboxPatch((0.01, 0.02), 0.98, 0.34, boxstyle="round,pad=0.01", fc="#FDF0E6", ec=COL["barr"], lw=1.2, ls="--"))
-    ax.text(0.02, 0.34, "C2: budget-aware regional refinement (BARR), applied to selected cases only", fontsize=8, color=COL["barr"], va="top", fontweight="bold")
+    ax.text(0.98, 0.34, "C2: budget-aware regional refinement (BARR),\napplied to selected cases only", fontsize=8, color=COL["barr"], va="top", ha="right", fontweight="bold")
     box(ax, (0.03, 0.62), 0.12, 0.14, "Image\n512x512", "white")
     box(ax, (0.03, 0.45), 0.12, 0.12, "Task ID\n(4 domains)", "white")
     box(ax, (0.20, 0.60), 0.13, 0.18, "Shared\nencoder", "#D6E6F5")
@@ -149,8 +149,9 @@ def fig2():
     for k, (t, y, fc) in enumerate([("TRAIN5832 (used for training)", .86, "#D6E6F5"), ("VAL808 (selection-consumed)", .68, "#D6E6F5"),
                                     ("TEST1683 (protected, unopened)", .50, "#EEEEEE"), ("ROUTER_HOLDOUT875 (historical, no reuse)", .32, "#EEEEEE")]):
         box(b, (0.02, y - 0.06), 0.96, 0.11, t, fc, fs=7)
-    box(b, (0.02, 0.02), 0.96, 0.15, "C1: C1-T (learned FiLM) vs C1-C (frozen identity FiLM)\nseeds 42, 123, 3407 -> 6 runs; 0/6 completed", "#FDF0E6", fs=7)
+    box(b, (0.02, 0.02), 0.96, 0.15, "C1-T (learned FiLM) vs C1-C (frozen identity FiLM)\nseeds 42, 123, 3407 -> 6 runs; 0/6 completed", "#FDF0E6", fs=6.5)
     fig.suptitle("Figure 2. Domains, frozen splits and matched-control design", x=0.01, ha="left")
+    fig.tight_layout(rect=(0, 0, 1, 0.93))
     files = save_fig(fig, "fig02_dataset_protocol", rows)
     ready("fig02", "Dataset and experimental protocol", files, ["reports/planning/c1_film_attribution_v1/protocol.json", "manifests/phase4_v3/val.csv"],
           "descriptive", "Counts for VAL808 per domain; ISIC/BUSI/Kvasir lack patient IDs.")
@@ -188,10 +189,11 @@ def fig5():
         ax.barh(labs[::-1], vals[::-1], color=cols[::-1])
         for i, v in enumerate(vals[::-1]):
             ax.text(v + d["total"] * 0.01, i, f"{v:,}", va="center", fontsize=7)
-        ax.set_xlim(0, d["total"] * 1.18); ax.set_xlabel("Cases (count)"); ax.set_title(name, fontsize=8)
+        ax.set_xlim(0, d["total"] * 1.3); ax.set_xlabel("Cases (count)"); ax.set_title(name, fontsize=8)
         for l, v in zip(labs, vals):
             rows.append({"panel": name, "stage": l.replace("\n", " "), "count": v})
-    fig.suptitle("Figure 5. BARR routing funnel (counts; each stage's denominator is the preceding stage)", x=0.01, ha="left", fontsize=9)
+    fig.suptitle("Figure 5. BARR routing funnel (counts; routed = adopted + rejected; outcomes are subsets of adopted)", x=0.01, ha="left", fontsize=8)
+    fig.tight_layout(rect=(0, 0, 1, 0.94), w_pad=2.5)
     files = save_fig(fig, "fig05_barr_routing_safety", rows)
     ready("fig05", "BARR routing and safety funnel", files,
           ["reports/tables/phase28_table_02_arm_primary_metrics.csv", "reports/tables/c1_external_stress_paired.csv"],
@@ -244,15 +246,17 @@ def fig7():
     a.legend(fontsize=7, frameon=False); a.set_title("Performance level", fontsize=8)
     d = [(y - g) * 100 for g, y in zip(gl, br)]
     b.bar(list(x), d, color=COL["barr"]); b.axhline(0, color="k", lw=0.8)
-    b.set_xticks(list(x)); b.set_xticklabels([s.split("\n")[0][:7] for s in short], fontsize=7)
-    b.set_ylabel("BARR minus Global (Dice, percentage points)"); b.set_title("Difference (small)", fontsize=8)
+    brief = [s.split("\n")[0].replace("CVC-ClinicDB", "CVC").replace("BrEaST-Lesions-USG", "BrEaST") for s in short]
+    b.set_xticks(list(x)); b.set_xticklabels(brief, fontsize=7)
+    b.set_ylabel("BARR minus Global (Dice, pp)"); b.set_title("Difference (descriptive, no CI)", fontsize=8)
+    b.set_ylim(0, max(d) * 1.2)
     for i, v in enumerate(d):
         b.text(i, v, f"{v:+.2f}", ha="center", va="bottom", fontsize=7)
     shift = [float(r["delta_vs_internal_pp"]) for r in ds]
     for g, i_, s in zip(gl, intl, shift):
         V.require_pp_label(g - i_, s, 1e-6)
     c.bar(list(x), shift, color=COL["grey"]); c.axhline(0, color="k", lw=0.8)
-    c.set_xticks(list(x)); c.set_xticklabels([s.split("\n")[0][:7] for s in short], fontsize=7)
+    c.set_xticks(list(x)); c.set_xticklabels(brief, fontsize=7)
     c.set_ylabel("Global external minus VAL808 anchor (pp)"); c.set_title("Domain shift", fontsize=8)
     for r, i, g, y, dd, s in zip(ds, x, gl, br, d, shift):
         out.append({"cohort": r["cohort"], "n": r["n"], "internal_val808_dice": r["internal_val808_dice"], "global_dice": g, "barr_dice": y,
@@ -275,33 +279,34 @@ def fig8():
         p = ROOT / "reports" / "figures" / f
         ax.imshow(mpimg.imread(p)); ax.axis("off"); ax.set_title(t, fontsize=8, loc="left")
         rows.append({"cohort": t, "reused_panel": rel(p), "sha256": sha(p)}); srcs.append(rel(p))
-    fig.suptitle("Figure 8. Previously generated external qualitative panels (reused unchanged; selection rule is documented with the source artifact)", x=0.01, ha="left", fontsize=8)
+    fig.suptitle("Figure 8 (supplementary overview). Reused external qualitative composites; rows chosen by rule (median/best/worst Dice;\nStones also largest/smallest lesion), including non-adopted cases. In-panel text is legible only in the full-resolution source files.", x=0.01, ha="left", fontsize=7)
     files = save_fig(fig, "fig08_qualitative_reused", rows)
     ready("fig08", "Qualitative comparisons (reused)", files, srcs, "descriptive",
-          "Raster panels reused from earlier verified generation; not regenerated. Verify panel contents against the selection record before submission.")
+          "Composites reused from reports/figures (generated by build_external_stress_figures.py with rule-based row selection). Unreadable at journal column width: supplementary only; a legible main-text qualitative figure is pending regeneration.")
 
 
 def fig9():
     paired = rd(T / "c1_external_stress_paired.csv")
     st = {k: sum(1 for p in paired if (p["state"], p["outcome"]) == k) for k in
-          [("ACCEPTED", "worsened"), ("REJECTED", "unchanged"), ("NOT_ATTEMPTED", "unchanged")]}
+          [("ACCEPTED", "worsened"), ("ACCEPTED", "improved"), ("REJECTED", "unchanged"), ("NOT_ATTEMPTED", "unchanged")]}
     stone = [p for p in rd(T / "c1_external_stress_per_case.csv") if p["cohort_key"] == "stones" and p["arm"] == "global"]
     free = [p for p in stone if p["has_stone_annotation"] in ("False", "0", "false")]
     fp_only = sum(p["fp_only_case"] in ("True", "1", "true") for p in free)
     ds = rd(T / "c1_external_stress_domain_shift.csv")
-    rows = [{"category": "Accepted refinement that worsened Dice", "count": st[("ACCEPTED", "worsened")], "denominator": 884},
+    rows = [{"category": "Accepted refinement that improved Dice", "count": st[("ACCEPTED", "improved")], "denominator": 884},
+            {"category": "Accepted refinement that worsened Dice", "count": st[("ACCEPTED", "worsened")], "denominator": 884},
             {"category": "Safety-rejected refinement", "count": st[("REJECTED", "unchanged")], "denominator": 884},
             {"category": "Not selected (unchanged)", "count": st[("NOT_ATTEMPTED", "unchanged")], "denominator": 884},
             {"category": "Stone-free images with foreground predicted (global)", "count": fp_only, "denominator": len(free)}]
     for r in rows:
         assert r["count"] <= r["denominator"]
     fig, (a, b) = plt.subplots(1, 2, figsize=(7.2, 3.2), gridspec_kw={"width_ratios": [1.5, 1]})
-    a.barh([r["category"] for r in rows][::-1], [100 * r["count"] / r["denominator"] for r in rows][::-1], color=[COL["bad"], COL["ok"], "#BBBBBB", "#E69F00"][::-1][::-1][::-1])
+    a.barh([r["category"] for r in rows][::-1], [100 * r["count"] / r["denominator"] for r in rows][::-1], color=[COL["ok"], COL["bad"], "#E69F00", "#BBBBBB", "#000000"][::-1])
     for i, r in enumerate(rows[::-1]):
         a.text(100 * r["count"] / r["denominator"] + 1, i, f"{r['count']}/{r['denominator']}", va="center", fontsize=7)
     a.set_xlim(0, 115); a.set_xlabel("Percent of stated denominator"); a.tick_params(axis="y", labelsize=7)
-    b.bar([r["cohort"].split("_")[0].split("-Lesions")[0] for r in ds], [float(r["delta_vs_internal_pp"]) for r in ds], color=COL["grey"])
-    b.axhline(0, color="k", lw=0.8); b.set_ylabel("Cross-dataset Dice change (pp)"); b.tick_params(axis="x", labelsize=7)
+    b.bar([r["cohort"].split("_")[0].split("-Lesions")[0].replace("CVC-ClinicDB", "CVC").replace("BrEaST-USG", "BrEaST") for r in ds], [float(r["delta_vs_internal_pp"]) for r in ds], color=COL["grey"])
+    b.axhline(0, color="k", lw=0.8); b.set_ylabel("Global external minus VAL808 anchor (pp)"); b.tick_params(axis="x", labelsize=7); b.set_title("Domain shift", fontsize=8)
     fig.suptitle("Figure 9. Failure behavior (external retrospective cases; denominators differ by bar)", x=0.01, ha="left", fontsize=9)
     fig.tight_layout()
     files = save_fig(fig, "fig09_failure_analysis", rows)
@@ -326,9 +331,10 @@ def fig10():
         rows.append({"panel": "analytical", "model": r["display_name"], "params": r["params"], "analytical_gmacs": g, "macro_dice": dsc})
     a1 = float(ana["FINAL_A8_C9_EXPECTED_CONDITIONAL"]["macs"]) / 1e9
     a.axvline(float(ana["LITERAL_GLOBAL_ONLY_C1"]["macs"]) / 1e9, color=COL["global"], lw=0.5, ls=":")
-    a.set_xlabel("Analytical GMACs (lower bound, not measured)"); a.set_ylabel("Macro Dice (0-1; protocol-incomparable;\\ny-axis truncated at 0.70)")
+    a.set_xlabel("Analytical GMACs (lower bound, not measured)"); a.set_ylabel("Macro Dice (0-1)")
+    a.text(0.98, 0.03, "y-axis truncated at 0.70;\nbaselines protocol-incomparable", transform=a.transAxes, ha="right", va="bottom", fontsize=6, color=COL["grey"])
     a.set_ylim(0.7, 0.9); a.set_title("Analytical cost vs accuracy\n(marker area ~ parameters)", fontsize=8)
-    labs = [("GLOBAL_ONLY_C1", "Global only"), ("SKIP_CONTROLLED_PATH", "BARR\\nskip path"), ("EXECUTE_CONTROLLED_PATH", "BARR\\nexecute path")]
+    labs = [("GLOBAL_ONLY_C1", "Global only"), ("SKIP_CONTROLLED_PATH", "BARR\nskip path"), ("EXECUTE_CONTROLLED_PATH", "BARR\nexecute path")]
     vals = [float(lat[k]["mean_ms"]) for k, _ in labs]; sds = [float(lat[k]["std_ms"]) for k, _ in labs]
     b.bar([l for _, l in labs], vals, yerr=sds, color=[COL["global"], COL["grey"], COL["barr"]], capsize=3)
     for i, v in enumerate(vals):
@@ -339,7 +345,7 @@ def fig10():
         rows.append({"panel": "measured_latency", "model": l, "mean_ms": v, "std_ms": s, "n": lat[k]["n"]})
     rows.append({"panel": "analytical", "model": "BARR A8 expected conditional", "analytical_gmacs": a1})
     fig.suptitle("Figure 10. Accuracy versus computational cost: analytical and measured quantities kept separate", x=0.01, ha="left", fontsize=8)
-    fig.tight_layout()
+    fig.tight_layout(rect=(0, 0, 1, 0.94))
     files = save_fig(fig, "fig10_accuracy_vs_cost", [{k: r.get(k, "") for k in ("panel", "model", "params", "analytical_gmacs", "macro_dice", "mean_ms", "std_ms", "n")} for r in rows])
     ready("fig10", "Accuracy versus computational cost", files,
           ["reports/tables/phase21_six_model_compute.csv", "reports/tables/phase21_six_model_comparison.csv",

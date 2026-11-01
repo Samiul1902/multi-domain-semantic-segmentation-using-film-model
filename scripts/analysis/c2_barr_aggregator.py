@@ -213,4 +213,8 @@ def main(argv=None) -> int:
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    try:
+        raise SystemExit(main())
+    except FileNotFoundError as exc:
+        print(f"MISSING_REQUIRED_INPUT: {exc.filename or exc}", file=sys.stderr)
+        raise SystemExit(4)

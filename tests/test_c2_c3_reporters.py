@@ -49,3 +49,11 @@ def test_c3_no_leaderboard_or_matched(tmp_path):
 
 def test_c3_deterministic(tmp_path):
     assert run("c3_baseline_reporter.py", tmp_path / "a") == run("c3_baseline_reporter.py", tmp_path / "b")
+
+
+def test_missing_input_fails_clearly(tmp_path, monkeypatch):
+    import importlib.util
+    for script in ('c2_barr_aggregator.py', 'c3_baseline_reporter.py'):
+        src = (ROOT / 'scripts' / 'analysis' / script).read_text()
+        assert 'MISSING_REQUIRED_INPUT' in src and 'SystemExit(4)' in src
+
