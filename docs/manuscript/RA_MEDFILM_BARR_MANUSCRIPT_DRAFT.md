@@ -15,7 +15,7 @@ Deep neural networks deployed across heterogeneous medical imaging modalities of
 
 To eliminate data leakage, we enforce canonical Manifest v3 governance, isolating 118 high-risk patient-overlapping cases and locking the 1,683-case evaluation cohort. Statistical inference is governed by domain-stratified cluster bootstrapping; because no confirmatory significance procedure is eligible, all reported intervals are descriptive.
 
-On the VAL808 development split, Global MedFiLM attains 83.51% macro-domain Dice with 3.52M parameters and ranks first of six architectures under a single shared protocol, though its interval overlaps that of DeepLabV3+ and so this evidence does not resolve the difference between them. Regional BARR **preserves** this accuracy rather than improving on it: +0.28 pp on VAL808 (three-seed mean) and +0.17 pp on the one-shot ROUTER_HOLDOUT (95% CI [+0.11, +0.24]), within a pre-specified −0.5 pp non-inferiority margin. That margin and its interval are properties of the internal populations; the external study below has neither, and its deltas are reported descriptively. A retrospective external stress test on 884 cases from three public cohorts gives mean macro-Dice changes of +0.32 pp, +0.03 pp and +0.13 pp on CVC-ClinicDB, BrEaST-Lesions-USG and Stones respectively — small enough to be consistent with no material change, and not a demonstration of external non-inferiority — while absolute performance does not transfer: external Dice falls 13.4, 15.1 and 68.3 pp below the internal anchors for the same nominal modalities, and on the Stones cohort the model marks foreground on 14 of 14 stone-free radiographs. The external study is explicitly not a validation study.
+On the VAL808 development split, Global MedFiLM attains 83.51% macro-domain Dice with 3.52M parameters and has the highest point estimate among six historical single-run models. Those runs are PROTOCOL_INCOMPARABLE (historical manifest v2, one seed each, development-selected), the intervals overlap, and no controlled baseline superiority is claimed. Regional BARR **preserves** this accuracy rather than improving on it: +0.28 pp on VAL808 (three-seed mean) and +0.17 pp on the one-shot ROUTER_HOLDOUT (95% CI [+0.11, +0.24]), within a pre-specified −0.5 pp non-inferiority margin. That margin and its interval are properties of the internal populations; the external study below has neither, and its deltas are reported descriptively. A retrospective external stress test on 884 cases from three public cohorts gives mean macro-Dice changes of +0.32 pp, +0.03 pp and +0.13 pp on CVC-ClinicDB, BrEaST-Lesions-USG and Stones respectively — small enough to be consistent with no material change, and not a demonstration of external non-inferiority — while absolute performance does not transfer: external Dice falls 13.4, 15.1 and 68.3 pp below the internal anchors for the same nominal modalities, and on the Stones cohort the model marks foreground on 14 of 14 stone-free radiographs. The external study is explicitly not a validation study.
 
 While formal institutional approval remains pending before launching production weights, this manuscript establishes the mathematical rigor, exact implementation mechanics, baseline evidence boundaries, and statistical contracts required for fully defensible clinical AI benchmarking.
 
@@ -28,7 +28,7 @@ To overcome these structural limitations, two paradigms are required:
 1. *Adaptive Task Conditioning*: Conditioning intermediate neural activations upon domain priors dynamically without altering network topology.
 2. *Selective Regional Refinement*: Allocating dense high-resolution spatial compute only to complex, ambiguous, or sub-centimeter anatomical regions while processing standard background structures via low-cost global passes.
 
-The RA-MedFiLM-BARR framework formalizes this multi-domain paradigm. In this paper, we document the system architecture, mathematical formulations, data provenance safeguards, and prospective validation protocol.
+The RA-MedFiLM-BARR framework formalizes this multi-domain paradigm. In this paper, we document the system architecture, mathematical formulations, data provenance safeguards, and the pre-specified (not yet executed) C1 attribution protocol.
 
 ---
 
@@ -125,7 +125,7 @@ The benchmark integrates four diverse clinical datasets:
 During Phase 05 audit remediation, subtle duplicate scans and test-linked patient records were discovered in legacy manifests. We instituted **Manifest v3 Governance**, enforcing strict patient-level isolation:
 - **TRAIN**: 5,832 samples (ISIC: 2556, BUSI: 602, KVASIR: 696, KUB: 1978)
 - **VAL (Development)**: 808 samples (ISIC: 357, BUSI: 84, KVASIR: 87, KUB: 280)
-- **TEST (Locked Prospective)**: 1,683 samples (ISIC: 742, BUSI: 174, KVASIR: 181, KUB: 586)
+- **TEST (locked, never evaluated; re-partitioned from historical repositories, not prospectively acquired)**: 1,683 samples (ISIC: 742, BUSI: 174, KVASIR: 181, KUB: 586)
 - **QUARANTINED**: 118 cases excluded from all splits due to perceptual hash similarity ($d \le 2$) or linked patient identifiers.
 - **TOTAL REGISTRY**: 8,441 records.
 
@@ -156,7 +156,7 @@ Release verification at the time of writing: 27 RC3 tests pass and 42 of 43 RC2 
 To eliminate p-hacking, selection bias, and seed cherry-picking, the C1 evaluation protocol is immutably defined prior to execution:
 - **Treatment Arm ($C1\text{-}T$)**: Task-conditioned FiLM U-Net trained on Manifest v3 across seeds $\{42, 123, 3407\}$.
 - **Control Arm ($C1\text{-}C$)**: Matched unconditioned U-Net trained on identical splits across identical seeds $\{42, 123, 3407\}$.
-- **Hyperparameter Invariants**: AdamW optimizer ($\text{lr} = 10^{-4}$, weight decay $= 10^{-2}$), Combined BCE + Soft Dice loss, cosine annealing schedule over 100 epochs, early stopping patience $= 15$ based on validation EqualDomainMacroDice.
+- **Hyperparameter Invariants**: AdamW optimizer ($\text{lr} = 10^{-4}$, weight decay $= 10^{-4}$), Combined BCE + Soft Dice loss, cosine annealing schedule over 100 epochs, early stopping patience $= 15$ based on validation EqualDomainMacroDice.
 
 ---
 
@@ -264,7 +264,7 @@ Historical development validation across 5 baseline architectures (Phase 20b) an
 | **U-Net++** | `UNetPlusPlus` | 9,159,681 | 55 | 0.7920 | [0.7446, 0.8382] | 0.6910 | 0.8601 | 0.8163 | 0.7710 | 0.7207 |
 | **Attention U-Net** | `AttentionUNet` | 7,851,285 | 64 | 0.7890 | [0.7288, 0.8447] | 0.6927 | 0.8617 | 0.8277 | 0.7710 | 0.6958 |
 | **Standard U-Net** | `UNet` | 7,763,041 | 74 | 0.7878 | [0.7381, 0.8375] | 0.6881 | 0.8553 | 0.8198 | 0.7552 | 0.7211 |
-| **Global MedFiLM** | `GlobalMedFiLM` | 3,523,001 | 68 | 0.8351 | [0.7877, 0.8780] | 0.7448 | 0.8972 | 0.8588 | 0.8202 | 0.7641 |
+| **Global MedFiLM** | `GlobalMedFiLM` | 3,523,001 | 66 | 0.8351 | [0.7877, 0.8780] | 0.7448 | 0.8972 | 0.8588 | 0.8202 | 0.7641 |
 
 *Governance Disclaimer*: Classified as `PROTOCOL_INCOMPARABLE` due to historical manifest v2 splits.
 
@@ -444,12 +444,22 @@ Per-case external records retain `gt_empty`, `pred_empty` and `surface_undefined
 
 ### 21.6 Reproducible commands (tested)
 ```
+.\.venv\Scripts\python.exe scripts\analysis\c1_run_artifacts.py validate     # exit 3 until all 6 real runs are valid
+.\.venv\Scripts\python.exe scripts\analysis\c1_run_artifacts.py export       # learning curves, per-domain, per-image, provenance
 .\.venv\Scripts\python.exe scripts\analysis\c1_results_aggregator.py
+.\.venv\Scripts\python.exe scripts\analysis\c2_barr_aggregator.py            # -> reports/tables/c2_barr/
+.\.venv\Scripts\python.exe scripts\analysis\c3_baseline_reporter.py          # -> reports/tables/c3_baselines/
 .\.venv\Scripts\python.exe scripts\analysis\build_paper_assets.py            # partial build
 .\.venv\Scripts\python.exe scripts\analysis\build_paper_assets.py --strict   # exits 2 while C1 figures are pending
-.\.venv\Scripts\python.exe -m pytest tests\test_paper_assets.py tests\test_c1_artifact_pipeline.py tests\test_c1_training_integration.py -q
+.\.venv\Scripts\python.exe -m pytest tests\test_paper_assets.py tests\test_c1_stats_and_exports.py tests\test_c2_c3_reporters.py tests\test_c1_artifact_pipeline.py tests\test_c1_training_integration.py -q
 ```
-Synthetic C1 training, resume and checkpoint-recovery tests are in `tests/test_c1_training_integration.py`; roster and patient-cluster verification (808 VAL images, 111 KUB patients) is in `tests/test_c1_artifact_pipeline.py`. Two consecutive asset builds produced byte-identical outputs.
+Synthetic C1 training, resume and checkpoint-recovery tests are in `tests/test_c1_training_integration.py`; roster and patient-cluster verification (808 VAL images, 111 KUB patients) is in `tests/test_c1_artifact_pipeline.py`; bootstrap-protocol and run-artifact tests are in `tests/test_c1_stats_and_exports.py`. Two consecutive asset builds produced byte-identical outputs. Figure 1 shows FiLM at five sites (bridge, decoder4-1) and none in the encoder, matching `src/models/film/global_medfilm.py`.
+
+**C1 producer gaps (not invented).** The frozen trainer persists per-epoch history and best-epoch per-image Dice/IoU/precision/recall only. It does not persist predicted masks, HD95/ASSD, per-image metrics at non-best epochs, explicit resume events, per-epoch wall-clock or GPU memory, or the launching release identity; the exporters therefore report these as absent. Minimum compatible future amendment: an append-only `events.jsonl` written by the launcher. Synthetic runs are rejected by the exporters unless `--allow-synthetic` is given, and are then stamped SYNTHETIC.
+
+**Known issue.** `tests/test_c1_launch_rc2.py::test_default_production_store_is_absent` is environment-dependent and is documented rather than suppressed.
+
+**C2/C3 outputs.** The C2 aggregator never pools VAL808 (selection-consumed), ROUTER_DEVELOPMENT (in-sample), historical ROUTER_HOLDOUT875 and the 884-case retrospective external cohort; it preserves the 14/14 stone-free foreground failure. The C3 reporter emits six PROTOCOL_INCOMPARABLE single-run historical records, an empty protocol-matched section and no leaderboard. Analytical GMACs are lower bounds, not latency; BARR is not shown to be cheaper than Global (A8 expected analytical cost is 1.028x Global).
 
 ### 21.7 CLAIM 2024 coverage and gaps
 Covered by existing text: data sources, partitions, model description, training recipe, metrics, failure analysis, limitations. Not yet satisfied: primary C1 result, independent test-set evaluation, protocol-faithful baselines (C3), ethics/approval statement (none claimed), dataset licence verification per cohort, patient-level split verification for ISIC, BUSI and Kvasir. Clinical readiness is not claimed.

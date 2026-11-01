@@ -1,4 +1,4 @@
-﻿"""Single entry point for publication figures, tables and the asset manifest.
+"""Single entry point for publication figures, tables and the asset manifest.
 
 Partial build (default): builds everything supported by authentic artifacts and
 lists pending items. --strict: exits non-zero if any essential asset is not Ready.
@@ -111,11 +111,12 @@ def fig1():
     box(ax, (0.03, 0.62), 0.12, 0.14, "Image\n512x512", "white")
     box(ax, (0.03, 0.45), 0.12, 0.12, "Task ID\n(4 domains)", "white")
     box(ax, (0.20, 0.60), 0.13, 0.18, "Shared\nencoder", "#D6E6F5")
-    box(ax, (0.20, 0.45), 0.13, 0.11, "Task embedding\n+ FiLM (gamma, beta)", "#B8D4EE", fs=7)
-    box(ax, (0.38, 0.60), 0.13, 0.18, "Decoder", "#D6E6F5")
+    box(ax, (0.20, 0.45), 0.13, 0.11, "Task embed.\n(32-d) + FiLM", "#B8D4EE", fs=6.5)
+    box(ax, (0.38, 0.60), 0.13, 0.18, "Bridge +\nDecoder\n(4 blocks)", "#D6E6F5")
     box(ax, (0.66, 0.62), 0.30, 0.14, "Global mask (binary)", "white")
     arrow(ax, (0.15, 0.69), (0.20, 0.69)); arrow(ax, (0.15, 0.51), (0.20, 0.51))
-    arrow(ax, (0.265, 0.56), (0.265, 0.60)); arrow(ax, (0.33, 0.69), (0.38, 0.69))
+    arrow(ax, (0.33, 0.50), (0.42, 0.60), COL["global"]); arrow(ax, (0.33, 0.69), (0.38, 0.69))
+    ax.text(0.03, 0.86, "FiLM (gamma, beta) sites: bridge + decoder4-1\n(5 total); none in the encoder", fontsize=6.5, color=COL["global"], va="center")
     arrow(ax, (0.51, 0.69), (0.66, 0.69))
     box(ax, (0.34, 0.08), 0.16, 0.16, "Benefit router\nB_phi\n(budgeted)", "#F9D9C2", fs=7)
     box(ax, (0.54, 0.08), 0.14, 0.16, "ROI crop +\nregional\nrefiner", "#F9D9C2", fs=7)
@@ -126,7 +127,7 @@ def fig1():
     ax.text(0.03, 0.16, "Architectural specification;\nno performance values.", ha="left", va="center", fontsize=7, color=COL["grey"])
     ax.set_title("Figure 1. RA-MedFiLM-BARR overview", loc="left")
     files = save_fig(fig, "fig01_method_architecture")
-    ready("fig01", "Method architecture", files, ["docs/ARCHITECTURE.md"], "specification",
+    ready("fig01", "Method architecture", files, ["docs/ARCHITECTURE.md", "src/models/film/global_medfilm.py"], "specification",
           "Specification drawing; mapping to code in manuscript Methods.")
 
 
@@ -218,7 +219,7 @@ def fig6():
         ax.text(i, 1.02, f"n={rr[0]['n']}", ha="center", fontsize=7)
     ax.set_xticks(range(4)); ax.set_xticklabels([DOMAIN_NAMES[d] for d in DOMAINS])
     ax.set_ylim(0, 1.1); ax.set_ylabel("Dice (proportion, 0-1)")
-    ax.legend(fontsize=7, loc="lower left", frameon=False)
+    ax.legend(fontsize=7, loc="upper center", bbox_to_anchor=(0.5, -0.1), ncol=3, frameon=False)
     ax.set_title("Figure 6. VAL808 (selection-consumed): same images, fixed global backbone; no uncertainty interval shown", loc="left", fontsize=8)
     files = save_fig(fig, "fig06_internal_performance", out)
     ready("fig06", "Internal VAL808 Global vs BARR", files, ["reports/tables/phase29_val808_seedwise_domain_metrics.csv"], "descriptive",
