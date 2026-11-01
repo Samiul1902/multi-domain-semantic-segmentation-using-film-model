@@ -1,0 +1,90 @@
+{
+  "architecture": {
+    "path": "src/models/film/global_medfilm.py",
+    "sha256": "a04ff3e61b4d900ff47c2f390da4a999e73bd6047b28a19e41b05115e431d11f"
+  },
+  "bound_sources": [
+    {
+      "bytes": 2574,
+      "path": "scripts/verification/c1_launch_rc4_freeze.py",
+      "sha256": "5ee0642743c80ec52490d2b728a4f485ffbaac05e487e9cbc5313ec23fc9782e"
+    },
+    {
+      "bytes": 526,
+      "path": "src/research/c1_film_launch_rc4/__init__.py",
+      "sha256": "8f94b084186f3b4675967b886ab7bdc4b6627f1c86867d2264e34797aa670666"
+    },
+    {
+      "bytes": 2077,
+      "path": "src/research/c1_film_launch_rc4/launch_driver_rc4.py",
+      "sha256": "2e34d8c45b17e83cc48441c79a8830c972ad1e97a5986a4bf44bff7403d1f494"
+    },
+    {
+      "bytes": 10182,
+      "path": "src/research/c1_film_launch_rc4/rc4_gate.py",
+      "sha256": "4460fa046ba9c840d187387ea9f16b3f55de31d0f96e569270000fa08bef0bc6"
+    },
+    {
+      "bytes": 11854,
+      "path": "src/research/c1_film_launch_rc4/release_identity_rc4.py",
+      "sha256": "68b55d038a88694e95186c42f9cdef1799a0f77aea82630f4510a381e9650d04"
+    },
+    {
+      "bytes": 6612,
+      "path": "src/research/c1_film_launch_rc4/trust_rc4.py",
+      "sha256": "b45297fc40ebcb527b84b8380780983d8d74ed182db7f4ac100eeb0760bd5fed"
+    },
+    {
+      "bytes": 25563,
+      "path": "tests/test_c1_launch_rc4.py",
+      "sha256": "ab488624678abf8130d0e42da5e3518c365de3366249450e46c0685795682a32"
+    }
+  ],
+  "canonicalisation": "json.dumps(obj,sort_keys=True,separators=(',',':'),ensure_ascii=False,allow_nan=False).encode('utf-8')",
+  "code_digest": "b25a594c1a13c189bdbc51bab0b6f177f2e1b819a6c4c1c3dbcc85c346ade126",
+  "code_digest_rule": "sha256(canonical_json(sorted([path, sha256] for bound_sources)))",
+  "dependency_lock": {
+    "path": "reports/planning/c1_launch_release_v1/c1_dependency_lock.json",
+    "sha256": "b4cdea3ab219db05d26725c74f2dbe42955a3cbe4daaba9f3b296ac201b0b36d"
+  },
+  "digest_rule": "sha256(canonical_json(manifest))",
+  "protocol": {
+    "path": "reports/planning/c1_film_attribution_v1/protocol.json",
+    "sha256": "531e3eb255a66381201d1aaf49bbe55abfdbe529640f5c584ef100d298087a61"
+  },
+  "recipe_digest": "275f20a935d6b78342306166ff067eae88ad1b6baaf9ed2a6ab786bba281f14c",
+  "release_id": "C1_FILM_ATTRIBUTION_V1_LAUNCH_RC4",
+  "schema": 5,
+  "self_excluded": [
+    "src/research/c1_film_launch_rc4/manifest_rc4.json",
+    "src/research/c1_film_launch_rc4/RELEASE_DIGEST_RC4.txt"
+  ],
+  "study_id": "C1_FILM_ATTRIBUTION_V1",
+  "supersedes": {
+    "rc1": {
+      "manifest_path": "src/research/c1_film_launch/manifest_v2.json",
+      "manifest_sha256": "0e3f171983ceb53b966dd1eb14547f39729a228d644e47642f67375b61736cfe",
+      "release_digest": "1aec5e17ee79eb8845ea36808d5a087ea99c091be798ec5a41b4e412f93ff9c1",
+      "release_id": "C1_FILM_ATTRIBUTION_V1_LAUNCH_RC1"
+    },
+    "rc2": {
+      "manifest_path": "src/research/c1_film_launch_rc2/manifest_rc2.json",
+      "manifest_sha256": "f5169cedce9896da5eeb78866dd36571f81fc11822b64e718235e438b397f71c",
+      "release_digest": "54794efc6d99d94fae9eaebd992e01e4e9923b5055d024ea1d5f02a8a5e737ed",
+      "release_id": "C1_FILM_ATTRIBUTION_V1_LAUNCH_RC2"
+    },
+    "rc3": {
+      "manifest_path": "src/research/c1_film_launch_rc3/manifest_rc3.json",
+      "manifest_sha256": "6cf2ffbdd6c3ea00118fbff74e5712bb24b8e903c1473386b0df4565da945c01",
+      "release_digest": "54d1273a53db7dae58118a4bb69c2a96ba2e474a72512a9dccb4c98c9513549f",
+      "release_id": "C1_FILM_ATTRIBUTION_V1_LAUNCH_RC3"
+    }
+  },
+  "trust_model": {
+    "anchors_shipped": 0,
+    "decision": "DECISION_I",
+    "inside_release": false,
+    "legacy_rc2_rc3_root_accepted": false,
+    "production_root": "OS_SCOPE_RC4_DEFAULT"
+  }
+}

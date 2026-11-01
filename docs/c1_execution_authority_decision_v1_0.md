@@ -118,3 +118,25 @@ Neither choice alters the endpoint, the seeds, the recipe, the splits or the ana
 **Licence + ethics attestation (required for R only):** ______________________________________
 
 Terminal: `C1_EXECUTION_AUTHORITY_DECISION_RECORDED__AWAITING_OPERATOR_SELECTION__NO_LAUNCH`
+
+
+---
+
+## Addendum 2026-11-01 — DECISION_I selection recorded (not an institutional approval)
+
+| Field | Value |
+|---|---|
+| Selected model | `DECISION_I` |
+| Selection source | Researcher's explicit choice communicated through ChatGPT on 2026-11-01 |
+| Institutional approval | PENDING |
+| Actual institutional signatory | NOT YET IDENTIFIED |
+| Independent key custody | NOT ESTABLISHED |
+| Real training authorization | NO |
+| Real C1 runs completed | 0/6 |
+| Operator name / signature | Not entered (none independently supplied; no signature forged) |
+
+This conversational selection is not an institutional approval and does not authorize execution. The unsigned form above is left untouched.
+
+Release repair: RC3 delegated release identity to RC2 (`mint_rc3_grant` -> `rc2_mint_grant` -> `verify_release_rc2`), never invoked `verify_release_rc3`, and its grant reported RC2 identity. The additive successor `src/research/c1_film_launch_rc4/` binds its own identity, rejects RC1-RC3 identities, re-verifies release identity at trainer/loader/launch authorization, and uses a separate institutional trust root (`%ProgramData%\InstitutionalC1TrustRC4`, unprovisioned). RC1-RC3 are unchanged. The contaminated store is neither read nor accepted.
+
+Authorization request: `docs/c1_institutional_authorization_request_v1_0.md`.
