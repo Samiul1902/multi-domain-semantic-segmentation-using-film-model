@@ -110,11 +110,15 @@ class GTFreeBARRInference:
                  safety: nn.Module, router_state: Mapping[str, Any], safety_state: Mapping[str, Any],
                  tau_c8: float = TAU_C8_FINAL_FLOAT, accept_threshold: float = 0.5,
                  roi_threshold: float = 0.30, roi_margin: float = 0.25, device: str = "cpu",
-                 feature_builder=build_feature_vector, uses_tap_forward: bool = False):
+                 feature_builder=build_feature_vector, uses_tap_forward: bool = False,
+                 amp_global: bool | None = None, trace: bool = False):
         # ``uses_tap_forward`` selects the model's own ``forward_with_features`` (Lite G)
         # instead of forward hooks on the FULL-family modules.
         self.device = torch.device(device)
         self.feature_builder, self.uses_tap_forward = feature_builder, uses_tap_forward
+        # Canonical caches were built with an autocast G forward; mirror it on CUDA by default.
+        self.amp_global = (self.device.type == "cuda") if amp_global is None else bool(amp_global)
+        self.trace, self.last_trace = trace, {}
         self.g, self.r, self.b, self.s = (m.eval().requires_grad_(False).to(self.device)
                                           for m in (global_model, refiner, router, safety))
         self.r_mu, self.r_sig, self.r_const = _normaliser(router_state, len(ROUTER_SCALAR_IDX))
@@ -162,34 +166,52 @@ class GTFreeBARRInference:
         """Return the final segmentation for a ``[1,3,512,512]`` image in [0,1]."""
         if image.ndim != 4 or image.shape[0] != 1 or image.shape[1] != 3:
             raise InferenceValidityError(f"image must be [1,3,H,W], got {tuple(image.shape)}")
-        if int(task_id) not in range(4):
-            raise InferenceValidityError(f"task_id {task_id} not in 0..3")
+        if tuple(image.shape[-2:]) != (CANVAS, CANVAS):
+            raise InferenceValidityError(f"image must be {CANVAS}x{CANVAS}, got {tuple(image.shape[-2:])}")
+        if isinstance(task_id, bool) or int(task_id) != task_id or int(task_id) not in range(4):
+            raise InferenceValidityError(f"task_id {task_id!r} not an integer in 0..3")
+        if not torch.isfinite(image).all():
+            raise InferenceValidityError("image contains NaN or Inf")
+        if float(image.min()) < 0.0 or float(image.max()) > 1.0:
+            raise InferenceValidityError("image must be scaled to [0, 1]")
         image = image.to(self.device).float()
         task = torch.tensor([int(task_id)], device=self.device)
-        if self.uses_tap_forward:
-            logits, taps = self.g.forward_with_features(image, task)
-            cmaps = {t: taps[t].float().cpu().numpy()[0] for t in TAPS}
-        else:
-            rec = _TapRecorder(self.g)
-            try:
-                logits = self.g(image, task_ids=task)
-                cmaps = {t: rec.store[t].float().cpu().numpy()[0] for t in TAPS}
-            finally:
-                rec.close()
+        trace: dict[str, Any] = {"g_input": image[0].cpu().numpy()} if self.trace else {}
+        with torch.amp.autocast(device_type=self.device.type, enabled=self.amp_global):
+            if self.uses_tap_forward:
+                logits, taps = self.g.forward_with_features(image, task)
+                cmaps = {t: taps[t].float().cpu().numpy()[0] for t in TAPS}
+            else:
+                rec = _TapRecorder(self.g)
+                try:
+                    logits = self.g(image, task_ids=task)
+                    cmaps = {t: rec.store[t].float().cpu().numpy()[0] for t in TAPS}
+                finally:
+                    rec.close()
         self.counters["global"] += 1
         p512 = torch.sigmoid(logits.float())[0, 0].cpu().numpy().astype(np.float32)
+        if not np.isfinite(p512).all():
+            raise InferenceValidityError("global probability map is not finite")
         result = {"task_id": int(task_id), "global_probability": p512, "router_score": None,
                   "safety_probability": None, "roi": None}
+        if self.trace:
+            trace.update({"global_logits": logits.float()[0, 0].cpu().numpy(), "global_probability": p512,
+                          "taps": cmaps})
+            self.last_trace = trace
         geom = roi_geometry(p512, self.roi_threshold, self.roi_margin)
         if geom is None:
             return {**result, "state": "FORCED_SKIP", "final_probability": p512}
         result["roi"] = geom
+        trace["roi"] = dict(geom)
 
+        raw = self.feature_builder(cmaps, p512, geom).astype(np.float32)
         vec = self._router_vector(cmaps, p512, geom)
         score = float(self.b(torch.from_numpy(vec)[None].to(self.device),
                              torch.tensor([int(task_id)], device=self.device)).reshape(-1)[0])
         self.counters["router"] += 1
         result["router_score"] = score
+        trace.update({"router_vector_raw": raw, "router_vector_normalized": vec, "router_score": score,
+                      "router_utility": canonical_utility(score)})
         if canonical_utility(score) < self.tau_c8:
             return {**result, "state": "SKIP_GLOBAL", "final_probability": p512}
 
@@ -205,6 +227,8 @@ class GTFreeBARRInference:
         self.counters["safety"] += 1
         prob = float(torch.sigmoid(torch.tensor(logit)))
         result["safety_probability"] = prob
+        trace.update({"refiner_input": rin, "refined_crop": refined, "candidate_probability": candidate,
+                      "safety_vector": feat, "safety_logit": logit, "safety_probability": prob})
         if prob >= self.accept_threshold:
             return {**result, "state": "EXECUTE_THEN_ACCEPT", "final_probability": candidate}
         return {**result, "state": "EXECUTE_THEN_REJECT", "final_probability": p512}

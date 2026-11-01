@@ -238,3 +238,23 @@ def test_canonical_seed42_bundle_runs_end_to_end_on_cuda_without_ground_truth():
         assert out["final_probability"].shape == (512, 512)
     with pytest.raises(InferenceValidityError):
         GTFreeBARRInference.from_canonical_seed(123)
+
+
+def test_adapter_matches_canonical_reference_cuda():
+    import pytest
+    import torch
+    if not torch.cuda.is_available():
+        pytest.skip("CUDA required")
+    import sys
+    sys.path[:0] = ["scripts/analysis"]
+    import numpy as np
+    from PIL import Image
+    from src.research.stage6 import parity
+    from src.research.stage6.end_to_end import GTFreeBARRInference
+    s = GTFreeBARRInference.from_canonical_seed(42, device="cuda")
+    rng = np.random.default_rng(0)
+    yy, xx = np.mgrid[:512, :512]
+    blob = (np.hypot(yy - 256, xx - 256) < 90)[..., None] * np.array([120, 40, 40])
+    img = np.clip(blob + rng.integers(60, 90, (512, 512, 3)), 0, 255).astype("uint8")
+    c = parity.compare_adapter_to_reference(s, Image.fromarray(img), 0)
+    assert c["branch_agrees"] and c["worst_stage_difference"] <= 1e-5
