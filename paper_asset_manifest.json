@@ -12,11 +12,19 @@
       ],
       "source_sha256": {
         "docs/ARCHITECTURE.md": "03df4693737d31b067cfcfa29ee480acc119a712db2a9933b0ace993f2d26d92",
+        "scripts/analysis/phase25f_execution_common.py": "98cf958a377e2de30e0b67e63fd56bafea418b2b061a362ee7284e852012cd2e",
+        "scripts/analysis/train_phase25d_router.py": "fc7c1bdf263ae4551dcb8f170d3203adb8540fbc189846265b74f6eca1541e91",
+        "src/models/barr/ra_medfilm_barr.py": "342f2163690c2fa8d5a601ab1d18178b982d701b916935c33e0793b0801c3724",
+        "src/models/barr/regional_refiner.py": "4fe0abde3ec3a183d930f676c4400b4d9ba778793ea64abf1755c5b8dabf947a",
         "src/models/film/global_medfilm.py": "a04ff3e61b4d900ff47c2f390da4a999e73bd6047b28a19e41b05115e431d11f"
       },
       "sources": [
         "docs/ARCHITECTURE.md",
-        "src/models/film/global_medfilm.py"
+        "src/models/film/global_medfilm.py",
+        "src/models/barr/ra_medfilm_barr.py",
+        "src/models/barr/regional_refiner.py",
+        "scripts/analysis/train_phase25d_router.py",
+        "scripts/analysis/phase25f_execution_common.py"
       ],
       "status": "READY",
       "title": "Method architecture"
@@ -71,10 +79,10 @@
         "reports/tables/c1_external_stress_paired.csv"
       ],
       "status": "READY",
-      "title": "BARR routing and safety funnel"
+      "title": "RA-MedFiLM-BARR (FULL) routing and safety funnel"
     },
     "fig06": {
-      "caveat": "Development-selected population; global backbone fixed across seeds, so seed spread excludes backbone variability; no CI.",
+      "caveat": "VAL808 was selection-consumed. The full output includes BARR; its three downstream seeds share one fixed seed-42 global backbone and are not end-to-end seed replicates. No CI.",
       "evidence_class": "descriptive",
       "files": [
         "paper_doc/figures/fig06_internal_performance.pdf",
@@ -89,7 +97,7 @@
         "reports/tables/phase29_val808_seedwise_domain_metrics.csv"
       ],
       "status": "READY",
-      "title": "Internal VAL808 Global vs BARR"
+      "title": "RA-MedFiLM-BARR (FULL) versus internal GlobalMedFiLM reference"
     },
     "fig07": {
       "caveat": "884 cases; Stones n=20 (14 stone-free); no pixel spacing; internal anchor is a VAL808 reference, not the same population. pp = percentage points of Dice.",
@@ -110,7 +118,7 @@
       "title": "External retrospective stress test"
     },
     "fig08": {
-      "caveat": "Five deterministic examples: accepted beneficial/harmful, safety-rejected, representative non-selected, and stone-free false-positive failure.",
+      "caveat": "Five deterministic, source-image examples: accepted beneficial/harmful, safety-rejected, representative non-selected, and stone-free false-positive failure. The accompanying source CSV records sample IDs, cohort, outcome, and deterministic selection rule.",
       "evidence_class": "exploratory",
       "files": [
         "paper_doc/figures/fig08_main_qualitative.pdf",
@@ -119,22 +127,42 @@
         "paper_doc/figures/fig08_main_qualitative_source.csv"
       ],
       "source_sha256": {
+        "data_cache/c1_external_stress_v1_0/breast/gt.npy": "2000d17abc8178ede8905341154a503d71f4acd024425b76a7cf7b7fb8dae98d",
         "data_cache/c1_external_stress_v1_0/breast/prob_barr.npy": "cb82ff82c43ef4e4de68968e60366f997c005a84264438b35854cc2875ab1f7e",
         "data_cache/c1_external_stress_v1_0/breast/prob_global.npy": "c49d11425a10c8d54efcac24e372a480e5bd214a0ea6bd3dbc4d7547f3971b09",
+        "data_cache/c1_external_stress_v1_0/breast/sample_ids.json": "c9bd9734afe4ab2ce2a7de63922b604cf24707f219825be6fe696390dd5dff52",
+        "data_cache/c1_external_stress_v1_0/cvc/gt.npy": "4705377e9c20ac3a2a0cf20e71e84bc8103add81c7a41c1dc4844f77ab7d917d",
         "data_cache/c1_external_stress_v1_0/cvc/prob_barr.npy": "997f9327075ae21a8a8fb815dde5e412daa452edb93f903d710ee0eb4d68a40b",
         "data_cache/c1_external_stress_v1_0/cvc/prob_global.npy": "3818017e32be0bdcef46ad1bac2882692c4ebfe8ca8d3391b04112ee8ff240a5",
+        "data_cache/c1_external_stress_v1_0/cvc/sample_ids.json": "3eb9681efb6c10f0c357c203cef16e1e26fc437c25e576edfbba9f8b962ab0d8",
+        "data_cache/c1_external_stress_v1_0/stones/gt.npy": "831ce232ad68e144d557e02c55a61a9929bf479c578719fac17946d34fdb33c5",
         "data_cache/c1_external_stress_v1_0/stones/prob_barr.npy": "9f8154804913e2b3485fbcd36e1c69e33cdf9072cb289c2d6f38200fb9517777",
         "data_cache/c1_external_stress_v1_0/stones/prob_global.npy": "31e298570559f1e846837e258282d81572be666b7cff35bab1a4edaecc92ca9c",
+        "data_cache/c1_external_stress_v1_0/stones/sample_ids.json": "6a0adcea82d353b161486d28baab5c2a5dac8e43b1d2d5a9f4521ff1f04ec162",
+        "reports/audits/c1_external_stress_v1_0/EXTERNAL_STRESS_TEST_PLAN.md": "576213db14686aa412edbcadf3c3973827ef962ea601414f4daacd9a3c143ce4",
+        "reports/external_extension/manifests/ext02_1_stones_manifest_reconciled.csv": "31f08db493f83f1f5ea85a0dbd385e82330484b63698f5d7c978ee0c4adc8b8b",
+        "reports/external_extension/manifests/ext02_breast_us_manifest.csv": "24697ef0e4226a70025e33dba428f238515d5ad1aa323c3230db5947dec0001b",
+        "reports/external_extension/manifests/ext02_cvc_clinicdb_manifest.csv": "b3a1ca429ba974766787709108d84344df2a963836fb00f3fe14aa47c02386c4",
         "reports/tables/c1_external_stress_paired.csv": "eb18c711d24e75e3452b399bde1a3e4a8f8b2ee4486462705330e46357a43126",
         "reports/tables/c1_external_stress_per_case.csv": "f040678476d0a2c24a702cf45f02956ae7afedcd12b8b28399a591409d02f2b0"
       },
       "sources": [
+        "reports/audits/c1_external_stress_v1_0/EXTERNAL_STRESS_TEST_PLAN.md",
         "reports/tables/c1_external_stress_paired.csv",
         "reports/tables/c1_external_stress_per_case.csv",
+        "reports/external_extension/manifests/ext02_cvc_clinicdb_manifest.csv",
+        "reports/external_extension/manifests/ext02_breast_us_manifest.csv",
+        "reports/external_extension/manifests/ext02_1_stones_manifest_reconciled.csv",
+        "data_cache/c1_external_stress_v1_0/cvc/sample_ids.json",
+        "data_cache/c1_external_stress_v1_0/cvc/gt.npy",
         "data_cache/c1_external_stress_v1_0/cvc/prob_global.npy",
         "data_cache/c1_external_stress_v1_0/cvc/prob_barr.npy",
+        "data_cache/c1_external_stress_v1_0/breast/sample_ids.json",
+        "data_cache/c1_external_stress_v1_0/breast/gt.npy",
         "data_cache/c1_external_stress_v1_0/breast/prob_global.npy",
         "data_cache/c1_external_stress_v1_0/breast/prob_barr.npy",
+        "data_cache/c1_external_stress_v1_0/stones/sample_ids.json",
+        "data_cache/c1_external_stress_v1_0/stones/gt.npy",
         "data_cache/c1_external_stress_v1_0/stones/prob_global.npy",
         "data_cache/c1_external_stress_v1_0/stones/prob_barr.npy"
       ],
@@ -186,7 +214,7 @@
       "title": "Failure analysis"
     },
     "fig10": {
-      "caveat": "Baseline Dice values are protocol-incomparable; latency covers Global/skip/execute paths only and BARR is not shown to be cheaper than Global.",
+      "caveat": "Historical baseline Dice values are protocol-incomparable; latency covers Global/skip/execute paths only. No matched full-system-versus-baseline cost claim is established.",
       "evidence_class": "descriptive",
       "files": [
         "paper_doc/figures/fig10_accuracy_vs_cost.pdf",
@@ -198,13 +226,15 @@
         "reports/tables/phase21_six_model_comparison.csv": "81ee9990f90c4ef7c035ec89195cddb4582f72a533e9dd0e6fe421f7ca4fae45",
         "reports/tables/phase21_six_model_compute.csv": "5e88da50faaee41aba9efaf2c6ad07d92f5d5e6be058a727f00969d9ed9b8a24",
         "reports/tables/phase34_analytical_compute_summary_v1_3.csv": "bbe1d933c24e297454ec7afee0f64d00bc79dbcf815d747df2ec2f742c93f71f",
-        "reports/tables/phase34_batch1_latency_results_v1_4.csv": "da5292d4551209339b3880c0e64d4152007eb42e7c262ad296bc2c2ec586ab26"
+        "reports/tables/phase34_batch1_latency_results_v1_4.csv": "da5292d4551209339b3880c0e64d4152007eb42e7c262ad296bc2c2ec586ab26",
+        "src/research/c3_baselines/controlled_results_schema.json": "87d5d9978181f6c0cbacec21019485a9a211d097edb61a71681e617dbede40a2"
       },
       "sources": [
         "reports/tables/phase21_six_model_compute.csv",
         "reports/tables/phase21_six_model_comparison.csv",
         "reports/tables/phase34_batch1_latency_results_v1_4.csv",
-        "reports/tables/phase34_analytical_compute_summary_v1_3.csv"
+        "reports/tables/phase34_analytical_compute_summary_v1_3.csv",
+        "src/research/c3_baselines/controlled_results_schema.json"
       ],
       "status": "READY",
       "title": "Accuracy versus computational cost"

@@ -8,18 +8,11 @@
 ---
 
 ## Abstract
-Deep neural networks deployed across heterogeneous medical imaging modalities often suffer from negative transfer or require fragmented, computationally redundant single-task pipelines. In this work, we formulate **RA-MedFiLM-BARR**, a unified framework integrating task-conditioned Feature-wise Linear Modulation (FiLM) with Budget-Aware Regional Refinement (BARR). We delineate three research contributions:
-- **Contribution C1 (*Proposed & Methodologically Frozen*)**: Task-conditioned FiLM attribution designed to isolate causal modulation gains against an exact structural identity control ($C1\text{-}C$) across identical seeds ($42, 123, 3407$). Primary prospective empirical results remain unexecuted pending institutional authorization and host-clock attestation.
-- **Contribution C2 (*Exploratory Development*)**: Budget-aware regional refinement routing ambiguous or sub-centimeter lesion regions to high-capacity localizers under hard compute constraints, evaluated retrospectively on development partitions.
-- **Contribution C3 (*Exploratory Retrospective Benchmarking*)**: Cross-domain shared segmentation baselines across four diverse modalities: digital radiography (KUB-StoneX), dermoscopy (ISIC 2018), breast ultrasound (BUSI), and polyp endoscopy (Kvasir-SEG).
+The proposed method in this study is **RA-MedFiLM-BARR (FULL)**: a task-conditioned GlobalMedFiLM segmentation backbone followed by benefit-based routing, regional refinement, post-refinement acceptance, and deterministic output fusion. GlobalMedFiLM without BARR is an internal ablation reference, not the proposed final model. We report three distinct evidence tracks: (i) the frozen but not yet executed six-run C1 identity-FiLM attribution study; (ii) completed, development-selected BARR component and full-assembly analyses; and (iii) a prepared, protocol-matched comparison of the complete method against five external architecture baselines.
 
-To eliminate data leakage, we enforce canonical Manifest v3 governance, isolating 118 high-risk patient-overlapping cases and locking the 1,683-case evaluation cohort. Statistical inference is governed by domain-stratified cluster bootstrapping; because no confirmatory significance procedure is eligible, all reported intervals are descriptive.
+Existing full-system measurements are conditional on a single frozen seed-42 GlobalMedFiLM checkpoint. Phase-29 varies downstream BARR components across seeds 42, 123, and 3407 but does not vary the global backbone; these are downstream reproducibility observations, not independent end-to-end seed replicates. The existing external stress test is retrospective, and the 14/14 stone-free foreground-prediction failure is retained. Historical baseline scores are single-run, development-selected, and protocol-incomparable. The new primary full-system-versus-five-baseline matrix contains 18 model-seed cells; all remain missing, so controlled superiority is **NOT_ESTABLISHED**. No clinical readiness or prospective external validation is claimed.
 
-On the VAL808 development split, Global MedFiLM attains 83.51% macro-domain Dice with 3.52M parameters and has the highest point estimate among six historical single-run models. Those runs are PROTOCOL_INCOMPARABLE (historical manifest v2, one seed each, development-selected), the intervals overlap, and no controlled baseline superiority is claimed. Regional BARR **preserves** this accuracy rather than improving on it: +0.28 pp on VAL808 (three-seed mean) and +0.17 pp on the historical ROUTER_HOLDOUT (n = 875; domain-stratified group bootstrap, descriptive 95% interval [+0.11, +0.24] pp, which lies above the −0.5 pp margin). That holdout was evaluated historically under a disclosed post-first-open source deviation and is not untouched prospective validation. That margin and its interval are properties of the internal populations; the external study below has neither, and its deltas are reported descriptively. A retrospective external stress test on 884 cases from three public cohorts gives mean macro-Dice changes of +0.32 pp, +0.03 pp and +0.13 pp on CVC-ClinicDB, BrEaST-Lesions-USG and Stones respectively — small enough to be consistent with no material change, and not a demonstration of external non-inferiority — while absolute performance does not transfer: external Dice falls 13.4, 15.1 and 68.3 pp below the internal anchors for the same nominal modalities, and on the Stones cohort the model marks foreground on 14 of 14 stone-free radiographs. The external study is explicitly not a validation study.
-
-While formal institutional approval remains pending before launching production weights, this manuscript documents the mathematical formulation, implementation mechanics, baseline evidence boundaries and statistical contracts of the frozen C1 protocol. The central C1 attribution result is NOT_ESTABLISHED (0/6 real runs), controlled C3 baselines are pending, and no clinical readiness is claimed.
-
-> **Review-draft status.** Not ready for submission. Pending: the six real C1 runs and Figures 3–4, protocol-matched multi-seed baselines (C3), and independent external validation. Literature citations are not independently re-verified in this draft.
+> **Review-draft status.** Not ready for submission. The primary method is RA-MedFiLM-BARR (FULL). Pending: six real C1 runs, three compatible end-to-end full-model seed bundles, five matched external baselines across three seeds (18 cells total), and independent external validation. Existing Phase-29 results do not supply independent end-to-end full-model seeds. Literature citations are not independently re-verified in this draft.
 
 ---
 
@@ -55,6 +48,11 @@ Cropping-based refinement is common in segmentation systems. Interactive segment
 ## 3. Core Contributions: Status & Taxonomy
 
 To ensure scientific transparency, every research contribution is explicitly categorized:
+- **Primary proposed method — RA-MedFiLM-BARR (FULL)**:
+  - *Identity*: the executable system is GlobalMedFiLM `G` → benefit router `B_\phi` → regional refiner `R_\psi` when routed → post-refinement acceptance `S_\omega` → exact regional replacement fusion; the output is a full-system prediction, not a C1-T backbone score.
+  - *Status*: existing full-system results are conditional on the fixed seed-42 `G`; protocol-matched end-to-end C3 comparisons against five external baselines are **NOT_ESTABLISHED** (0/18 model-seed cells).
+- **Internal ablation reference — GlobalMedFiLM without BARR**:
+  - *Role*: global segmentation backbone and internal comparator for C1/C2 component studies; not the final proposed model and not the headline external-baseline comparator.
 - **Contribution C1 (FiLM Task Attribution — *Proposed Protocol*)**:
   - *Status*: Methodologically frozen in release `C1_FILM_ATTRIBUTION_V1_LAUNCH_RC3`; empirical 6-run execution pending (`NOT_ESTABLISHED`).
   - *Scope*: Causal architectural intervention isolating the mathematical effect of task-conditioned scale/shift affine vectors against an exact zero-modulation control. It does *not* assert broad clinical efficacy until prospective evaluation is authorized.
@@ -62,8 +60,8 @@ To ensure scientific transparency, every research contribution is explicitly cat
   - *Status*: Descriptively reported on historical development partitions (`HISTORICAL_DESCRIPTIVE_RESULT`).
   - *Scope*: Demonstrates that selective routing plus learned post-safety filtering ($S_\omega$) reduces the all-population harm rate from 42.67% ($A1$, unconditional refinement) to 7.87% ($A8$), in-sample on the 4,957-case development population. The router accounts for 2,115 → 412 harmful cases and $S_\omega$ for a further 412 → 390; the reduction is therefore attributable mainly to routing, not to the safety filter alone.
 - **Contribution C3 (Fair Multi-Domain Benchmarking — *Exploratory Retrospective*)**:
-  - *Status*: Five baseline architectures plus Global MedFiLM reported as single-run results on historical splits (`PROTOCOL_INCOMPARABLE`).
-  - *Scope*: Establishes initial empirical baselines across four clinical targets but requires re-benchmarking under clean Manifest v3 governance.
+  - *Status*: Five baseline architectures plus GlobalMedFiLM are reported as single-run results on historical splits (`PROTOCOL_INCOMPARABLE`). The full-system-versus-five-baseline matrix uses seeds 42, 123, and 3407 and is prepared but has 18 missing cells.
+  - *Scope*: The primary comparison is RA-MedFiLM-BARR (FULL) minus each external baseline on matched eligible cases; GlobalMedFiLM remains an internal reference.
 - **External stress test (not a contribution, *Descriptive Only*)**: A retrospective 884-case stress test (CVC-ClinicDB n = 612, BrEaST-Lesions-USG n = 252, Stones_where_are_you test split n = 20) was executed with both the Global MedFiLM checkpoint and the full frozen BARR assembly. HAM10000 was excluded before inference because the available masks have no documented provenance. This is not an external validation cohort; see §13.1.
 
 ---
@@ -255,22 +253,37 @@ Historical exploratory experiments (Phases 14, 26, 28, 30) evaluated selective r
 
 *Governance Disclaimer*: Classified as `HISTORICAL_DESCRIPTIVE_RESULT`.
 
+### 12.1 Internal ablation hierarchy and what the existing arms identify
+
+The progressive labels below are conceptual stages, not claims that every adjacent transition has a controlled causal estimate. All Phase-28 A-arms use the same historical seed-42 GlobalMedFiLM backbone and the 4,957-case `ROUTER_DEVELOPMENT` population (in-sample, a subset of TRAIN5832).
+
+| Stage | Intended system | Existing evidence mapping | Identification status |
+| :--- | :--- | :--- | :--- |
+| P0 | Identity-FiLM control, no BARR | C1-C is the intended mechanism control | **NOT_ESTABLISHED**; frozen C1 runs are pending |
+| P1 | Learned-FiLM GlobalMedFiLM, no BARR | Phase-21 GlobalMedFiLM; A0 is the global-only arm | Historical/internal reference only; A0 is not an identity-FiLM control |
+| P2 | P1 + regional refiner, no selective routing | A1 always-refine | In-sample endpoint-by-construction; not a controlled C1 attribution |
+| P3 | P1 + routing and regional refinement, without S_omega | A6 learned-gain routing; A7 adds the resource-cost term | Descriptive progression only; A1-to-A6/A7 changes routing and execution budget and is not an isolated component contrast |
+| P4 | Full RA-MedFiLM-BARR with routing, refinement, safety and fusion | A8; A7-to-A8 is the prespecified matched safety-filter contrast | A7/A8 differ only by S_omega on the matched 4,957-case population and selected set; this identifies the descriptive safety-filter contrast, not end-to-end generalization |
+
+A2-A5 are alternative routing comparators; R1-R3 and F1 are feature-set/model variants, not missing points in a single-factor P0-P4 progression. The frozen A7-versus-A8 contrast is the only one-factor matched contrast in the Phase-28 core map. The larger A1-to-A8 reduction in harm must not be attributed to the router alone or described as a sequence of independently identified component effects.
+
+Phase 29 adds downstream component-seed variation for R_psi, B_phi, and S_omega, but all three seed outputs use the same seed-42 GlobalMedFiLM checkpoint. These are conditional BARR-stack reproducibility observations. They are not three independent end-to-end RA-MedFiLM-BARR seeds, and they cannot fill the new full-model C3 cells.
+
 ---
 
-## 13. Results: Campaign 3 — Fair Multi-Domain Segmentation Benchmarking (Historical Evidence)
+## 13. Results: Primary Full-System Benchmark and Historical Context
 
-Historical development validation across 5 baseline architectures (Phase 20b) and Global MedFiLM (Phase 21) established cross-domain performance:
+The primary proposed-method row is **RA-MedFiLM-BARR (FULL)**. Its controlled comparison against U-Net, U-Net++, Attention U-Net, DeepLabV3+, and Transformer/MiT-style U-Net is **NOT_ESTABLISHED**: all 18 cells (six models × three matched seeds) remain missing. GlobalMedFiLM is retained below only as an internal ablation reference. The following quantitative rows are historical, development-selected single-run context and are **PROTOCOL_INCOMPARABLE**; they are not the proposed-method result or a controlled leaderboard.
 
-| Model Name | Backbone Class | Trainable Params | Best Epoch | Macro Domain Dice | 95% Bootstrap CI | Macro Domain IoU | ISIC Dice | BUSI Dice | KVASIR Dice | KUB Dice |
+| Model / role | Backbone Class | Parameters | Best Epoch | Macro Domain Dice | 95% Bootstrap CI | Macro Domain IoU | ISIC Dice | BUSI Dice | KVASIR Dice | KUB Dice | Status |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **DeepLabV3+** | `DeepLabV3Plus` | 40,347,041 | 57 | 0.8277 | [0.7707, 0.8761] | 0.7412 | 0.8853 | 0.8669 | 0.8197 | 0.7387 |
-| **Transformer MiT U-Net** | `TransformerMiTUNet` | 16,347,777 | 74 | 0.8224 | [0.7599, 0.8755] | 0.7366 | 0.8871 | 0.8640 | 0.8133 | 0.7252 |
-| **U-Net++** | `UNetPlusPlus` | 9,159,681 | 55 | 0.7920 | [0.7446, 0.8382] | 0.6910 | 0.8601 | 0.8163 | 0.7710 | 0.7207 |
-| **Attention U-Net** | `AttentionUNet` | 7,851,285 | 64 | 0.7890 | [0.7288, 0.8447] | 0.6927 | 0.8617 | 0.8277 | 0.7710 | 0.6958 |
-| **Standard U-Net** | `UNet` | 7,763,041 | 74 | 0.7878 | [0.7381, 0.8375] | 0.6881 | 0.8553 | 0.8198 | 0.7552 | 0.7211 |
-| **Global MedFiLM** | `GlobalMedFiLM` | 3,523,001 | 66 | 0.8351 | [0.7877, 0.8780] | 0.7448 | 0.8972 | 0.8588 | 0.8202 | 0.7641 |
-
-*Governance Disclaimer*: Classified as `PROTOCOL_INCOMPARABLE` due to historical manifest v2 splits.
+| **RA-MedFiLM-BARR (FULL), primary proposed method** | Full G/R/B/S system | 4,837,420 component parameters | — | **NOT_ESTABLISHED** | — | — | — | — | — | 0/3 compatible full-system seeds; 18/18 matrix cells missing |
+| DeepLabV3+ (historical external baseline) | `DeepLabV3Plus` | 40,347,041 | 57 | 0.8277 | [0.7707, 0.8761] | 0.7412 | 0.8853 | 0.8669 | 0.8197 | 0.7387 | `PROTOCOL_INCOMPARABLE` |
+| Transformer/MiT-style U-Net (historical external baseline) | `TransformerMiTUNet` | 16,347,777 | 74 | 0.8224 | [0.7599, 0.8755] | 0.7366 | 0.8871 | 0.8640 | 0.8133 | 0.7252 | `PROTOCOL_INCOMPARABLE` |
+| U-Net++ (historical external baseline) | `UNetPlusPlus` | 9,159,681 | 55 | 0.7920 | [0.7446, 0.8382] | 0.6910 | 0.8601 | 0.8163 | 0.7710 | 0.7207 | `PROTOCOL_INCOMPARABLE` |
+| Attention U-Net (historical external baseline) | `AttentionUNet` | 7,851,285 | 64 | 0.7890 | [0.7288, 0.8447] | 0.6927 | 0.8617 | 0.8277 | 0.7710 | 0.6958 | `PROTOCOL_INCOMPARABLE` |
+| U-Net (historical external baseline) | `UNet` | 7,763,041 | 74 | 0.7878 | [0.7381, 0.8375] | 0.6881 | 0.8553 | 0.8198 | 0.7552 | 0.7211 | `PROTOCOL_INCOMPARABLE` |
+| GlobalMedFiLM (internal ablation reference; not the proposed method) | `GlobalMedFiLM` | 3,523,001 | 66 | 0.8351 | [0.7877, 0.8780] | 0.7448 | 0.8972 | 0.8588 | 0.8202 | 0.7641 | Historical internal reference; `PROTOCOL_INCOMPARABLE` |
 
 ### 13.1 External stress test (retrospective, n = 884, Global and BARR)
 
@@ -284,7 +297,7 @@ An earlier draft reported a four-case pilot at n = 1 per dataset, run under a no
 
 **Protocol.** The canonical inference transform (RGB, aspect-preserving bilinear resize with $s=\min(512/W, 512/H)$, centred zero pad, $/255$), ground truth through the same geometry with nearest-neighbour resampling and binarised at $>0$, sigmoid threshold $0.5$, no per-cohort tuning, no test-time augmentation, no post-processing. Stones polygons are rasterised at native resolution and only category 7 (`stone`) is foreground. No row was dropped after a result was seen, and degenerate cases are kept and scored.
 
-**Global MedFiLM (macro over cases):**
+**GlobalMedFiLM internal ablation reference (macro over cases):**
 
 | Cohort | Dice | 95% CI | IoU | Precision | Recall | Specificity | HD95 (px) | NSD@2px |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |

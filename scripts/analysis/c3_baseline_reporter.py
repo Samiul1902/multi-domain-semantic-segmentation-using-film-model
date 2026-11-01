@@ -56,6 +56,7 @@ def build():
             problems.append(f"{k}: macro Dice is not the mean of four domains")
         records.append({
             "model_key": k, "name": c["display_name"],
+            "role": "INTERNAL_ABLATION_REFERENCE" if k == "global_medfilm" else "HISTORICAL_EXTERNAL_BASELINE",
             "phase": "21" if k == "global_medfilm" else "20B", "configuration_source": "frozen historical model definitions (see source artifacts)",
             "dataset": "four-domain pooled development set (ISIC, BUSI, Kvasir-SEG, KUB), Manifest v2 historical",
             "split": "historical development validation (selection-consumed); no TEST evaluation",
@@ -80,7 +81,17 @@ def main(argv=None):
     if problems:
         print("\n".join(problems), file=sys.stderr)
         return 4
-    result = {"schema": "c3_baseline_report_v1", "protocol_matched": [],
+    result = {"schema": "c3_baseline_report_v2",
+              "primary_proposed_method": "RA-MedFiLM-BARR (FULL)",
+              "global_medfilm_role": "INTERNAL_ABLATION_REFERENCE",
+              "controlled_matrix": {
+                  "comparison": "RA-MedFiLM-BARR (FULL) minus each external baseline",
+                  "expected_cells": 18,
+                  "complete_cells": 0,
+                  "status": "NOT_ESTABLISHED",
+                  "source_contract": "src/research/c3_baselines/controlled_results_schema.json",
+              },
+              "protocol_matched": [],
               "protocol_matched_status": "NONE_AVAILABLE - C3 protocol-faithful comparison is NOT_ESTABLISHED",
               "exploratory_historical": sorted(records, key=lambda r: r["model_key"]),
               "leaderboard": None, "controlled_superiority_claim": False,
@@ -90,7 +101,7 @@ def main(argv=None):
     out = a.out_dir
     out.mkdir(parents=True, exist_ok=True)
     (out / "c3_baseline_report.json").write_text(json.dumps(result, indent=2, sort_keys=True), encoding="utf-8")
-    cols = ["model_key", "name", "phase", "seed_count", "macro_domain_dice", "macro_domain_iou"] + [f"dice_{d}" for d in DOMAINS] + \
+    cols = ["model_key", "name", "role", "phase", "seed_count", "macro_domain_dice", "macro_domain_iou"] + [f"dice_{d}" for d in DOMAINS] + \
            ["params", "analytical_gmacs_lower_bound", "measured_latency_ms", "comparability", "evidence_class"]
     with open(out / "c3_exploratory_historical.csv", "w", newline="", encoding="utf-8") as f:
         w = csv.writer(f, lineterminator="\n")

@@ -1,12 +1,13 @@
-\begin{tabular}{llllllllll}
+\begin{tabular}{llllllllllll}
 \hline
-model & trainable\_params & gmacs\_analytical & source\_artifact & population & n & metric\_unit & evaluation\_version & provenance\_run & evidence\_class \\
+model & role & parameters & analytical\_gmacs\_lower\_bound & compute\_note & source\_artifact & population & n & metric\_unit & evaluation\_version & provenance\_run & evidence\_class \\
 \hline
-Global MedFiLM & 3523001 & 31.5517 & reports/tables/phase21\_six\_model\_compute.csv & input 1x3x512x512 & 1 & parameters; GMACs (lower bound) & phase21 & n/a & analytical \\
-DeepLabV3+ & 40347041 & 69.1394 & reports/tables/phase21\_six\_model\_compute.csv & input 1x3x512x512 & 1 & parameters; GMACs (lower bound) & phase21 & n/a & analytical \\
-Transformer/MiT-style U-Net & 16347777 & 99.0986 & reports/tables/phase21\_six\_model\_compute.csv & input 1x3x512x512 & 1 & parameters; GMACs (lower bound) & phase21 & n/a & analytical \\
-U-Net++ & 9159681 & 137.9423 & reports/tables/phase21\_six\_model\_compute.csv & input 1x3x512x512 & 1 & parameters; GMACs (lower bound) & phase21 & n/a & analytical \\
-Attention U-Net & 7851285 & 47.219 & reports/tables/phase21\_six\_model\_compute.csv & input 1x3x512x512 & 1 & parameters; GMACs (lower bound) & phase21 & n/a & analytical \\
-U-Net & 7763041 & 46.1373 & reports/tables/phase21\_six\_model\_compute.csv & input 1x3x512x512 & 1 & parameters; GMACs (lower bound) & phase21 & n/a & analytical \\
+RA-MedFiLM-BARR (FULL) & PRIMARY\_PROPOSED\_METHOD & 4837420 & conditional; see Table 7 & sum of G 3,523,001 + R\_psi 1,276,401 + B\_phi 36,801 + S\_omega 1,217; conditional R\_psi & reports/tables/phase34\_canonical\_component\_registry.csv & full inference bundle & 1 & total learned parameters; conditional computation & canonical component registry & historical fixed-G assembly & descriptive \\
+GlobalMedFiLM (internal ablation reference) & INTERNAL\_ABLATION\_REFERENCE & 3523001 & 31.5517 & historical single-model analytical count; PROTOCOL\_INCOMPARABLE & reports/tables/phase21\_six\_model\_compute.csv & input 1x3x512x512 & 1 & parameters; GMACs (lower bound) & phase21 & historical single run & PROTOCOL\_INCOMPARABLE \\
+DeepLabV3+ & HISTORICAL\_EXTERNAL\_BASELINE & 40347041 & 69.1394 & historical single-model analytical count; PROTOCOL\_INCOMPARABLE & reports/tables/phase21\_six\_model\_compute.csv & input 1x3x512x512 & 1 & parameters; GMACs (lower bound) & phase21 & historical single run & PROTOCOL\_INCOMPARABLE \\
+Transformer/MiT-style U-Net & HISTORICAL\_EXTERNAL\_BASELINE & 16347777 & 99.0986 & historical single-model analytical count; PROTOCOL\_INCOMPARABLE & reports/tables/phase21\_six\_model\_compute.csv & input 1x3x512x512 & 1 & parameters; GMACs (lower bound) & phase21 & historical single run & PROTOCOL\_INCOMPARABLE \\
+U-Net++ & HISTORICAL\_EXTERNAL\_BASELINE & 9159681 & 137.9423 & historical single-model analytical count; PROTOCOL\_INCOMPARABLE & reports/tables/phase21\_six\_model\_compute.csv & input 1x3x512x512 & 1 & parameters; GMACs (lower bound) & phase21 & historical single run & PROTOCOL\_INCOMPARABLE \\
+Attention U-Net & HISTORICAL\_EXTERNAL\_BASELINE & 7851285 & 47.219 & historical single-model analytical count; PROTOCOL\_INCOMPARABLE & reports/tables/phase21\_six\_model\_compute.csv & input 1x3x512x512 & 1 & parameters; GMACs (lower bound) & phase21 & historical single run & PROTOCOL\_INCOMPARABLE \\
+U-Net & HISTORICAL\_EXTERNAL\_BASELINE & 7763041 & 46.1373 & historical single-model analytical count; PROTOCOL\_INCOMPARABLE & reports/tables/phase21\_six\_model\_compute.csv & input 1x3x512x512 & 1 & parameters; GMACs (lower bound) & phase21 & historical single run & PROTOCOL\_INCOMPARABLE \\
 \hline
 \end{tabular}

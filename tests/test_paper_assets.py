@@ -63,6 +63,11 @@ class TestValidators:
         with pytest.raises(V.AssetValidationError):
             V.require_provenance(p)
 
+    def test_protocol_incomparable_is_a_valid_evidence_classification(self):
+        record = good_prov()
+        record["evidence_class"] = "PROTOCOL_INCOMPARABLE"
+        V.require_provenance(record)
+
     def test_synthetic_never_real(self):
         with pytest.raises(V.AssetValidationError):
             V.require_authentic("SYNTHETIC_TEST_ONLY")

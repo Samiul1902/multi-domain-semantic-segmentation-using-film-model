@@ -1,4 +1,4 @@
-**Table 4. C2 routing/safety ablation (in-sample; conditional on routed set, not all-image averages)**
+**Table 4. Internal RA-MedFiLM-BARR (FULL) routing/safety ablation (in-sample; conditional on routed set, not all-image averages)**
 
 | arm | n_routed | budget_fraction | mean_delta_dice_routed_proportion | beneficial | harmful | harmful_share_of_routed_proportion | source_artifact | population | n | metric_unit | evaluation_version | provenance_run | evidence_class |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|

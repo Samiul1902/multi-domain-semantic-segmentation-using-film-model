@@ -1,10 +1,11 @@
-**Table 2. Architecture and parameter comparison**
+**Table 2. Primary full-system parameters and historical component/architecture context (not a controlled benchmark)**
 
-| model | trainable_params | gmacs_analytical | source_artifact | population | n | metric_unit | evaluation_version | provenance_run | evidence_class |
-|---|---|---|---|---|---|---|---|---|---|
-| Global MedFiLM | 3523001 | 31.5517 | reports/tables/phase21_six_model_compute.csv | input 1x3x512x512 | 1 | parameters; GMACs (lower bound) | phase21 | n/a | analytical |
-| DeepLabV3+ | 40347041 | 69.1394 | reports/tables/phase21_six_model_compute.csv | input 1x3x512x512 | 1 | parameters; GMACs (lower bound) | phase21 | n/a | analytical |
-| Transformer/MiT-style U-Net | 16347777 | 99.0986 | reports/tables/phase21_six_model_compute.csv | input 1x3x512x512 | 1 | parameters; GMACs (lower bound) | phase21 | n/a | analytical |
-| U-Net++ | 9159681 | 137.9423 | reports/tables/phase21_six_model_compute.csv | input 1x3x512x512 | 1 | parameters; GMACs (lower bound) | phase21 | n/a | analytical |
-| Attention U-Net | 7851285 | 47.219 | reports/tables/phase21_six_model_compute.csv | input 1x3x512x512 | 1 | parameters; GMACs (lower bound) | phase21 | n/a | analytical |
-| U-Net | 7763041 | 46.1373 | reports/tables/phase21_six_model_compute.csv | input 1x3x512x512 | 1 | parameters; GMACs (lower bound) | phase21 | n/a | analytical |
+| model | role | parameters | analytical_gmacs_lower_bound | compute_note | source_artifact | population | n | metric_unit | evaluation_version | provenance_run | evidence_class |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| RA-MedFiLM-BARR (FULL) | PRIMARY_PROPOSED_METHOD | 4837420 | conditional; see Table 7 | sum of G 3,523,001 + R_psi 1,276,401 + B_phi 36,801 + S_omega 1,217; conditional R_psi | reports/tables/phase34_canonical_component_registry.csv | full inference bundle | 1 | total learned parameters; conditional computation | canonical component registry | historical fixed-G assembly | descriptive |
+| GlobalMedFiLM (internal ablation reference) | INTERNAL_ABLATION_REFERENCE | 3523001 | 31.5517 | historical single-model analytical count; PROTOCOL_INCOMPARABLE | reports/tables/phase21_six_model_compute.csv | input 1x3x512x512 | 1 | parameters; GMACs (lower bound) | phase21 | historical single run | PROTOCOL_INCOMPARABLE |
+| DeepLabV3+ | HISTORICAL_EXTERNAL_BASELINE | 40347041 | 69.1394 | historical single-model analytical count; PROTOCOL_INCOMPARABLE | reports/tables/phase21_six_model_compute.csv | input 1x3x512x512 | 1 | parameters; GMACs (lower bound) | phase21 | historical single run | PROTOCOL_INCOMPARABLE |
+| Transformer/MiT-style U-Net | HISTORICAL_EXTERNAL_BASELINE | 16347777 | 99.0986 | historical single-model analytical count; PROTOCOL_INCOMPARABLE | reports/tables/phase21_six_model_compute.csv | input 1x3x512x512 | 1 | parameters; GMACs (lower bound) | phase21 | historical single run | PROTOCOL_INCOMPARABLE |
+| U-Net++ | HISTORICAL_EXTERNAL_BASELINE | 9159681 | 137.9423 | historical single-model analytical count; PROTOCOL_INCOMPARABLE | reports/tables/phase21_six_model_compute.csv | input 1x3x512x512 | 1 | parameters; GMACs (lower bound) | phase21 | historical single run | PROTOCOL_INCOMPARABLE |
+| Attention U-Net | HISTORICAL_EXTERNAL_BASELINE | 7851285 | 47.219 | historical single-model analytical count; PROTOCOL_INCOMPARABLE | reports/tables/phase21_six_model_compute.csv | input 1x3x512x512 | 1 | parameters; GMACs (lower bound) | phase21 | historical single run | PROTOCOL_INCOMPARABLE |
+| U-Net | HISTORICAL_EXTERNAL_BASELINE | 7763041 | 46.1373 | historical single-model analytical count; PROTOCOL_INCOMPARABLE | reports/tables/phase21_six_model_compute.csv | input 1x3x512x512 | 1 | parameters; GMACs (lower bound) | phase21 | historical single run | PROTOCOL_INCOMPARABLE |

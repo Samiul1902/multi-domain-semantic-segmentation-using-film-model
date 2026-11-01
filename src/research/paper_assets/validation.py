@@ -6,7 +6,14 @@ from collections import Counter
 
 REQUIRED_PROVENANCE = ("source_artifact", "population", "n", "metric_unit",
                        "evaluation_version", "provenance_run", "evidence_class")
-EVIDENCE_CLASSES = {"matched", "exploratory", "descriptive", "analytical", "specification"}
+EVIDENCE_CLASSES = {
+    "matched",
+    "exploratory",
+    "descriptive",
+    "analytical",
+    "specification",
+    "PROTOCOL_INCOMPARABLE",
+}
 
 
 class AssetValidationError(ValueError):

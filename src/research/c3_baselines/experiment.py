@@ -31,6 +31,7 @@ from src.data.domain_balanced_sampler import (
     derive_epoch_seed,
 )
 from src.losses.segmentation import BCEDiceLoss
+from src.metrics.segmentation import hd95 as binary_hd95
 from src.training.phase20_selection import (
     DOMAIN_ORDER,
     SELECTION_RULE_ID,
@@ -116,9 +117,27 @@ ARCHITECTURES: dict[str, dict[str, str]] = {
     },
 }
 
-# GlobalMedFiLM is the matched reference, not an additional baseline run here.
-# Its three C1-T seeds are the planned comparator and must themselves complete.
-REFERENCE_ARM = "C1-T (GlobalMedFiLM; same seeds and frozen C1 recipe)"
+FULL_MODEL_KEY = "ra_medfilm_barr_full"
+FULL_MODEL_IDENTITY = "RA-MedFiLM-BARR (FULL)"
+EXTERNAL_BASELINE_KEYS = (
+    "unet",
+    "unetpp",
+    "attention_unet",
+    "deeplabv3plus",
+    "transformer_mit_unet",
+)
+EXPERIMENT_MODEL_KEYS = (FULL_MODEL_KEY, *EXTERNAL_BASELINE_KEYS)
+REFERENCE_ARM = FULL_MODEL_IDENTITY
+TASK_IDS = {"ISIC": 0, "BUSI": 1, "KVASIR": 2, "KUB": 3}
+FULL_MODEL_COMPONENTS = ("G", "R_psi", "B_phi", "S_omega", "routing_fusion")
+FULL_MODEL_PARAMETER_COUNTS = {
+    "G": 3_523_001,
+    "R_psi": 1_276_401,
+    "B_phi": 36_801,
+    "S_omega": 1_217,
+}
+FULL_MODEL_PARAMETER_COUNT = sum(FULL_MODEL_PARAMETER_COUNTS.values())
+FULL_MODEL_BUNDLE_SCHEMA = "ra_medfilm_barr_full_bundle_v1"
 RECIPE: dict[str, Any] = {
     "source": "C1 frozen protocol recipe; copied for prospective C3 baseline matching",
     "resolution": 512,
@@ -165,13 +184,72 @@ def _atomic_json(path: Path, payload: dict[str, Any]) -> None:
 
 
 def build_experiment_config(model_key: str, seed: int) -> dict[str, Any]:
-    if model_key not in ARCHITECTURES:
+    if model_key not in EXPERIMENT_MODEL_KEYS:
         raise C3ExecutionError(f"Unknown C3 architecture: {model_key}")
     if seed not in EXPECTED_SEEDS:
         raise C3ExecutionError(f"Seed must be one of {EXPECTED_SEEDS}, got {seed}")
     if sha256_file(PROTOCOL_PATH) != EXPECTED_PROTOCOL_SHA256:
         raise C3ExecutionError("Frozen C1 protocol digest mismatch; refusing to build C3 config")
     validate_manifest_contract()
+    if model_key == FULL_MODEL_KEY:
+        return {
+            "schema": "controlled_c3_run_config_v2",
+            "study_id": "C3_FULL_METHOD_VS_EXTERNAL_BASELINES_V1",
+            "model_key": FULL_MODEL_KEY,
+            "model": {
+                "display_name": FULL_MODEL_IDENTITY,
+                "architecture": "GlobalMedFiLM -> B_phi route -> R_psi ROI refinement -> S_omega acceptance -> regional replacement fusion",
+                "component_keys": list(FULL_MODEL_COMPONENTS),
+                "parameter_count": FULL_MODEL_PARAMETER_COUNT,
+                "component_parameter_counts": FULL_MODEL_PARAMETER_COUNTS,
+            },
+            "role": "PRIMARY_PROPOSED_METHOD",
+            "seed": seed,
+            "dataset": {
+                "manifest_version": "phase4_v3",
+                "train_manifest": "manifests/phase4_v3/train.csv",
+                "val_manifest": "manifests/phase4_v3/val.csv",
+                "train_n": EXPECTED_COUNTS["TRAIN"],
+                "val_n": EXPECTED_COUNTS["VAL"],
+                "domains": list(DOMAIN_ORDER),
+                "task_ids": TASK_IDS,
+                "train_manifest_sha256": sha256_file(MANIFEST_TRAIN),
+                "val_manifest_sha256": sha256_file(MANIFEST_VAL),
+                "test_access": False,
+                "external_access": False,
+            },
+            "protocol": {"path": "reports/planning/c1_film_attribution_v1/protocol.json",
+                         "sha256": EXPECTED_PROTOCOL_SHA256},
+            "selection": {
+                "primary_metric": "equal-domain macro VAL Dice",
+                "same_rule_for_all_models": True,
+                "population_role": "selection-consumed VAL808",
+                "tie_break": "lower validation loss, then earlier epoch",
+            },
+            "component_dependencies": {
+                "required": list(FULL_MODEL_COMPONENTS),
+                "same_master_seed": seed,
+                "global_backbone_seed": seed,
+                "downstream_training_must_bind_exact_global_checkpoint": True,
+                "router_must_bind_exact_global_and_refiner_family": True,
+                "safety_must_bind_exact_global_refiner_router_family": True,
+                "normalization_statistics_must_be_component_bound": True,
+                "phase29_fixed_global_seed42_artifacts_are_not_end_to_end_seed_replicates": True,
+                "training_order": ["G", "R_psi", "B_phi", "S_omega", "full_system_validation"],
+            },
+            "architecture_specific_difference": {
+                "task_conditioning": "learned task-conditioned FiLM in G; task identity also enters B_phi/S_omega as specified",
+                "regional_modules": ["R_psi", "B_phi", "S_omega"],
+                "execution": "conditional; final mask is the canonical fused full-system output",
+                "checkpoint_family": "new per-seed compatible full-system bundle required",
+            },
+            "existing_phase29_evidence": {
+                "classification": "DOWNSTREAM_REPRODUCIBILITY_CONDITIONED_ON_FIXED_GLOBAL",
+                "global_backbone_seed": 42,
+                "counts_as_end_to_end_c3_cell": False,
+            },
+            "run_mode": "PREPARED_NOT_EXECUTED",
+        }
     spec = ARCHITECTURES[model_key]
     source = ROOT / spec["source_file"]
     closure_path = ROOT / spec["historical_closure"]
@@ -190,9 +268,10 @@ def build_experiment_config(model_key: str, seed: int) -> dict[str, Any]:
             or not closure.get("best_checkpoint_sha256")):
         raise C3ExecutionError(f"historical source/checkpoint provenance incomplete: {model_key}")
     return {
-        "schema": "controlled_c3_run_config_v1",
-        "study_id": "C3_PROTOCOL_MATCHED_BASELINES_V1",
+        "schema": "controlled_c3_run_config_v2",
+        "study_id": "C3_FULL_METHOD_VS_EXTERNAL_BASELINES_V1",
         "model_key": model_key,
+        "role": "EXTERNAL_ARCHITECTURE_BASELINE",
         "model": {
             "display_name": spec["display_name"],
             "class_name": spec["class_name"],
@@ -203,7 +282,7 @@ def build_experiment_config(model_key: str, seed: int) -> dict[str, Any]:
             "base_channels": BASE_CHANNELS,
         },
         "seed": seed,
-        "reference_arm": REFERENCE_ARM,
+        "primary_comparator": FULL_MODEL_IDENTITY,
         "dataset": {
             "manifest_version": "phase4_v3",
             "train_manifest": "manifests/phase4_v3/train.csv",
@@ -211,7 +290,7 @@ def build_experiment_config(model_key: str, seed: int) -> dict[str, Any]:
             "train_n": EXPECTED_COUNTS["TRAIN"],
             "val_n": EXPECTED_COUNTS["VAL"],
             "domains": list(DOMAIN_ORDER),
-            "task_ids": {"ISIC": 0, "BUSI": 1, "KVASIR": 2, "KUB": 3},
+            "task_ids": TASK_IDS,
             "train_manifest_sha256": sha256_file(MANIFEST_TRAIN),
             "val_manifest_sha256": sha256_file(MANIFEST_VAL),
             "test_access": False,
@@ -264,7 +343,7 @@ def validate_manifest_contract() -> dict[str, Any]:
         required = {"sample_id", "dataset", "task_id", "split"}
         if not required.issubset(frame.columns) or frame["sample_id"].duplicated().any():
             raise C3ExecutionError(f"{split} manifest columns or IDs are invalid")
-        mapping = {"ISIC": 0, "BUSI": 1, "KVASIR": 2, "KUB": 3}
+        mapping = TASK_IDS
         if set(frame["dataset"].astype(str)) != set(DOMAIN_ORDER):
             raise C3ExecutionError(f"{split} domain roster mismatch")
         if any(mapping.get(str(d)) != int(t) for d, t in zip(frame["dataset"], frame["task_id"])):
@@ -427,7 +506,8 @@ def _validate_batch(batch: dict[str, Any], split: str) -> None:
 
 @torch.no_grad()
 def _evaluate(model: nn.Module, loader: Iterable[dict[str, Any]], criterion: nn.Module,
-              device: torch.device, threshold: float, amp: bool) -> tuple[float, dict[str, dict[str, float]], list[dict[str, Any]]]:
+              device: torch.device, threshold: float, amp: bool, *,
+              include_hd95: bool = False) -> tuple[float, dict[str, dict[str, Any]], list[dict[str, Any]]]:
     model.eval()
     losses: list[float] = []
     records: list[dict[str, Any]] = []
@@ -443,14 +523,25 @@ def _evaluate(model: nn.Module, loader: Iterable[dict[str, Any]], criterion: nn.
         losses.append(float(loss.item()))
         metrics = per_image_dice_iou_precision_recall(logits, masks, threshold)
         for i, sample_id in enumerate(batch["sample_id"]):
-            records.append({
+            record: dict[str, Any] = {
                 "sample_id": str(sample_id),
                 "domain": str(batch["dataset"][i]),
+                "task_id": int(batch["task_id"][i]),
+                "split": str(batch["split"][i]),
                 **{name: float(value[i].detach().cpu()) for name, value in metrics.items()},
-            })
+            }
+            if include_hd95:
+                prediction = torch.sigmoid(logits[i, 0]).ge(threshold).cpu().numpy()
+                target = masks[i, 0].bool().cpu().numpy()
+                boundary = binary_hd95(prediction, target)
+                record["hd95"] = boundary["hd95"] if boundary["hd95_valid"] else None
+                record["hd95_undefined_reason"] = (
+                    None if boundary["hd95_valid"] else boundary["invalid_reason"]
+                )
+            records.append(record)
     if not records or len({r["sample_id"] for r in records}) != len(records):
         raise C3ExecutionError("empty or duplicate validation sample IDs")
-    per_domain: dict[str, dict[str, float]] = {}
+    per_domain: dict[str, dict[str, Any]] = {}
     for domain in DOMAIN_ORDER:
         subset = [r for r in records if r["domain"] == domain]
         if not subset:
@@ -459,6 +550,12 @@ def _evaluate(model: nn.Module, loader: Iterable[dict[str, Any]], criterion: nn.
             key: float(np.mean([r[key] for r in subset]))
             for key in ("dice", "iou", "precision", "recall")
         }
+        if include_hd95:
+            defined_hd95 = [r["hd95"] for r in subset if r["hd95"] is not None]
+            per_domain[domain]["hd95"] = (
+                float(np.mean(defined_hd95)) if defined_hd95 else None
+            )
+            per_domain[domain]["hd95_n_defined"] = len(defined_hd95)
     return float(np.mean(losses)), per_domain, records
 
 
@@ -761,7 +858,8 @@ def evaluate_best_checkpoint(run_dir: Path, output_dir: Path | None = None) -> d
     model.load_state_dict(checkpoint["model_state"], strict=True)
     _, val_loader = make_synthetic_loaders(seed, image_size=64, samples_per_domain=2, batch_size=2)
     _, by_domain, per_image = _evaluate(
-        model, val_loader, BCEDiceLoss(0.5, 0.5, 1e-6), torch.device("cpu"), 0.5, False)
+        model, val_loader, BCEDiceLoss(0.5, 0.5, 1e-6), torch.device("cpu"), 0.5, False,
+        include_hd95=True)
     result = {
         "schema": "controlled_c3_evaluation_v1",
         "status": "SYNTHETIC_TEST_ONLY",
@@ -778,36 +876,66 @@ def evaluate_best_checkpoint(run_dir: Path, output_dir: Path | None = None) -> d
     }
     dest = Path(output_dir) if output_dir else run_dir
     _atomic_json(dest / "evaluation.json", result)
-    _write_csv(dest / "per_image_metrics.csv", per_image)
-    _write_csv(dest / "per_domain_metrics.csv", [
+    per_image_path = dest / "per_image_metrics.csv"
+    per_domain_path = dest / "per_domain_metrics.csv"
+    _write_csv(per_image_path, per_image)
+    _write_csv(per_domain_path, [
         {"domain": d, **by_domain[d], "n": sum(x["domain"] == d for x in per_image)}
         for d in DOMAIN_ORDER
     ])
+    if dest.resolve() == run_dir.resolve():
+        manifest["pre_evaluation_manifest_sha256"] = result["source_manifest_sha256"]
+        manifest["evaluation_sha256"] = sha256_file(dest / "evaluation.json")
+        manifest["per_image_metrics_sha256"] = sha256_file(per_image_path)
+        manifest["per_domain_metrics_sha256"] = sha256_file(per_domain_path)
+        _atomic_json(manifest_path, manifest)
     return result
 
 
 def write_empty_results_schema(output: Path) -> dict[str, Any]:
-    """Write all 15 expected cells as missing; never inserts fake metric values."""
-    configs = [build_experiment_config(model, seed) for model in ARCHITECTURES for seed in EXPECTED_SEEDS]
-    missing = [{"model_key": model, "seed": seed} for model in ARCHITECTURES for seed in EXPECTED_SEEDS]
+    """Write the full-method plus five-baseline matrix with all 18 cells missing."""
+    configs = [build_experiment_config(model, seed) for model in EXPERIMENT_MODEL_KEYS for seed in EXPECTED_SEEDS]
+    missing = [{"model_key": model, "seed": seed} for model in EXPERIMENT_MODEL_KEYS for seed in EXPECTED_SEEDS]
     schema = {
-        "schema": "controlled_c3_results_v1",
+        "schema": "controlled_c3_results_v2",
         "status": "NOT_ESTABLISHED",
-        "evidence_class": "no controlled C3 runs completed",
-        "reference_arm": REFERENCE_ARM,
+        "evidence_class": "no protocol-matched full-method C3 runs completed",
+        "primary_model": FULL_MODEL_IDENTITY,
+        "primary_model_key": FULL_MODEL_KEY,
+        "internal_ablation_reference": "GlobalMedFiLM without BARR; not the proposed-method row",
+        "external_baselines": [
+            {"model_key": key, "display_name": ARCHITECTURES[key]["display_name"]}
+            for key in EXTERNAL_BASELINE_KEYS
+        ],
+        "comparison_direction": "RA-MedFiLM-BARR (FULL) minus external baseline",
         "historical_protocol_incomparable": {
             "source": "reports/tables/c3_baselines/c3_baseline_report.json",
-            "status": "separate historical evidence; not merged",
+            "status": "separate historical evidence; GlobalMedFiLM is retained only as an internal ablation reference",
         },
         "expected_runs": [
             {"model_key": c["model_key"], "seed": c["seed"], "status": "MISSING",
+             "role": c["role"],
              "config_sha256": hashlib.sha256(json.dumps(c, sort_keys=True).encode()).hexdigest()}
             for c in configs
         ],
         "missing_runs": missing,
         "required_metrics": ["macro_equal_domain_dice", "per_domain_dice", "per_domain_iou",
-                             "per_image_dice", "best_epoch", "parameter_count", "analytical_macs_lower_bound"],
-        "comparison_policy": "Equal-domain macro Dice by paired seed against same-seed C1-T; no rank claim before all required runs are valid.",
+                             "per_domain_precision", "per_domain_recall", "per_domain_hd95",
+                             "per_image_metrics", "per_image_hd95_with_undefined_reason",
+                             "best_epoch", "parameter_count", "analytical_compute", "measured_latency"],
+        "comparison_policy": (
+            "Primary estimand is the paired-seed difference in equal-domain macro Dice, "
+            "RA-MedFiLM-BARR (FULL) minus each baseline, on identical VAL808 sample IDs. "
+            "No superiority or inferential claim is available until all 18 compatible cells pass validation."
+        ),
+        "full_model_component_contract": {
+            "bundle_schema": FULL_MODEL_BUNDLE_SCHEMA,
+            "required_components": list(FULL_MODEL_COMPONENTS),
+            "same_seed_end_to_end": True,
+            "component_checkpoint_family_binding_required": True,
+            "historical_fixed_global_seed42_phase29_runs_accepted": False,
+        },
+        "c1_status": "separate internal FiLM attribution; frozen 6-run protocol unchanged",
         "protocol_sha256": EXPECTED_PROTOCOL_SHA256,
         "protected_data_accessed": False,
     }
@@ -817,16 +945,21 @@ def write_empty_results_schema(output: Path) -> dict[str, Any]:
 
 
 def validate_controlled_results_schema(result: dict[str, Any]) -> None:
-    required = ("status", "evidence_class", "reference_arm", "expected_runs",
-                "missing_runs", "protocol_sha256", "protected_data_accessed")
-    if result.get("schema") != "controlled_c3_results_v1" or any(k not in result for k in required):
+    required = ("status", "evidence_class", "primary_model", "primary_model_key",
+                "comparison_direction", "expected_runs", "missing_runs",
+                "protocol_sha256", "protected_data_accessed")
+    if result.get("schema") != "controlled_c3_results_v2" or any(k not in result for k in required):
         raise C3ExecutionError("controlled C3 result schema top-level validation failed")
     if result["protocol_sha256"] != EXPECTED_PROTOCOL_SHA256 or result["protected_data_accessed"] is not False:
         raise C3ExecutionError("controlled C3 result scope validation failed")
-    expected = {(m, s) for m in ARCHITECTURES for s in EXPECTED_SEEDS}
+    if (result["primary_model_key"] != FULL_MODEL_KEY
+            or result["primary_model"] != FULL_MODEL_IDENTITY
+            or result["comparison_direction"] != "RA-MedFiLM-BARR (FULL) minus external baseline"):
+        raise C3ExecutionError("controlled C3 primary model identity/direction is invalid")
+    expected = {(m, s) for m in EXPERIMENT_MODEL_KEYS for s in EXPECTED_SEEDS}
     rows = result["expected_runs"]
     keys = {(r.get("model_key"), r.get("seed")) for r in rows}
-    if len(rows) != len(expected) or keys != expected:
+    if len(rows) != 18 or len(expected) != 18 or keys != expected:
         raise C3ExecutionError("controlled C3 result run matrix invalid")
     missing = {(r.get("model_key"), r.get("seed")) for r in result["missing_runs"]}
     if missing != { (r["model_key"], r["seed"]) for r in rows if r.get("status") == "MISSING" }:
@@ -838,9 +971,11 @@ def validate_controlled_results_schema(result: dict[str, Any]) -> None:
         if row.get("status") not in ("MISSING", "COMPLETE"):
             raise C3ExecutionError("unknown controlled C3 run status")
         if row.get("status") == "COMPLETE":
-            required_run = ("best_epoch", "macro_equal_domain_dice", "per_domain",
+            required_run = ("macro_equal_domain_dice", "per_domain",
                             "parameter_count", "analytical_compute", "config_sha256",
                             "history_sha256", "best_checkpoint_sha256")
+            if row["model_key"] != FULL_MODEL_KEY:
+                required_run = (*required_run, "best_epoch")
             if any(k not in row for k in required_run):
                 raise C3ExecutionError("completed controlled C3 row is incomplete")
             score = float(row["macro_equal_domain_dice"])
@@ -852,13 +987,59 @@ def validate_controlled_results_schema(result: dict[str, Any]) -> None:
                 dice_value = float(metrics["dice"])
                 if not math.isfinite(dice_value) or not 0 <= dice_value <= 1:
                     raise C3ExecutionError("completed controlled C3 domain metric is invalid")
+            if row["model_key"] == FULL_MODEL_KEY:
+                if row.get("model_identity") != FULL_MODEL_IDENTITY:
+                    raise C3ExecutionError("completed primary result is not the complete RA-MedFiLM-BARR model")
+                if row.get("full_model_bundle_manifest_sha256") is None:
+                    raise C3ExecutionError("completed primary result lacks component-bundle provenance")
+
+
+def validate_full_model_bundle(bundle: dict[str, Any], seed: int) -> None:
+    """Reject mixed-seed or cross-checkpoint-family FULL bundles."""
+    if bundle.get("schema") != FULL_MODEL_BUNDLE_SCHEMA:
+        raise C3ExecutionError("full-model bundle schema mismatch")
+    if bundle.get("model_identity") != FULL_MODEL_IDENTITY or bundle.get("master_seed") != seed:
+        raise C3ExecutionError("full-model bundle identity/seed mismatch")
+    components = bundle.get("components")
+    if not isinstance(components, dict) or set(components) != set(FULL_MODEL_COMPONENTS):
+        raise C3ExecutionError("full-model bundle component roster mismatch")
+    for key in ("G", "R_psi", "B_phi", "S_omega"):
+        item = components.get(key)
+        if not isinstance(item, dict):
+            raise C3ExecutionError(f"full-model component metadata missing: {key}")
+        digest = item.get("checkpoint_sha256")
+        if (not isinstance(digest, str) or len(digest) != 64
+                or any(char not in "0123456789abcdef" for char in digest.lower())):
+            raise C3ExecutionError(f"full-model component digest missing: {key}")
+        if not isinstance(item.get("checkpoint_path"), str) or not item["checkpoint_path"]:
+            raise C3ExecutionError(f"full-model component path missing: {key}")
+        if item.get("master_seed") != seed:
+            raise C3ExecutionError(f"full-model component seed mismatch: {key}")
+    g_sha = components["G"]["checkpoint_sha256"]
+    r_sha = components["R_psi"]["checkpoint_sha256"]
+    if components["R_psi"].get("trained_against_global_sha256") != g_sha:
+        raise C3ExecutionError("refiner was not trained against this exact global checkpoint")
+    if (components["B_phi"].get("trained_against_global_sha256") != g_sha
+            or components["B_phi"].get("trained_against_refiner_sha256") != r_sha):
+        raise C3ExecutionError("router training checkpoint family is incompatible")
+    if (components["S_omega"].get("trained_against_global_sha256") != g_sha
+            or components["S_omega"].get("trained_against_refiner_sha256") != r_sha
+            or components["S_omega"].get("trained_against_router_sha256")
+            != components["B_phi"]["checkpoint_sha256"]):
+        raise C3ExecutionError("safety training checkpoint family is incompatible")
+    source_digest = components["routing_fusion"].get("source_sha256")
+    if (not isinstance(source_digest, str) or len(source_digest) != 64
+            or any(char not in "0123456789abcdef" for char in source_digest.lower())):
+        raise C3ExecutionError("routing/fusion source provenance missing")
 
 
 def aggregate_controlled_results(
-    run_dirs: Iterable[Path], output: Path, *, c1_export_dir: Path | None = None
+    run_dirs: Iterable[Path], output: Path
 ) -> dict[str, Any]:
     """Validate future real run artifacts; synthetic outputs are never accepted."""
-    expected = {(m, s) for m in ARCHITECTURES for s in EXPECTED_SEEDS}
+    validate_manifest_contract()
+    expected_val_ids = set(pd.read_csv(MANIFEST_VAL)["sample_id"].astype(str))
+    expected = {(m, s) for m in EXPERIMENT_MODEL_KEYS for s in EXPECTED_SEEDS}
     accepted: dict[tuple[str, int], dict[str, Any]] = {}
     for directory in run_dirs:
         path = Path(directory)
@@ -885,15 +1066,44 @@ def aggregate_controlled_results(
         key = (str(config.get("model_key")), int(config.get("seed", -1)))
         if key not in expected:
             raise C3ExecutionError(f"unexpected model/seed cell: {key}")
+        if manifest.get("model_key") != key[0] or int(manifest.get("seed", -1)) != key[1]:
+            raise C3ExecutionError(f"run manifest model/seed identity mismatch: {path}")
         if key in accepted:
             raise C3ExecutionError(f"duplicate model/seed cell: {key}")
-        for artifact_name, digest_key in (("best.pt", "best_checkpoint_sha256"),
-                                          ("history.jsonl", "history_sha256"),
-                                          ("config.json", "config_file_sha256")):
+        for artifact_name, digest_key in (
+                ("best.pt", "best_checkpoint_sha256"),
+                ("history.jsonl", "history_sha256"),
+                ("config.json", "config_file_sha256"),
+                ("evaluation.json", "evaluation_sha256"),
+                ("per_image_metrics.csv", "per_image_metrics_sha256"),
+                ("per_domain_metrics.csv", "per_domain_metrics_sha256")):
             artifact = path / artifact_name
             if not artifact.is_file() or sha256_file(artifact) != manifest.get(digest_key):
                 raise C3ExecutionError(f"missing or hash-mismatched {artifact_name}: {path}")
-        if int(manifest.get("parameters_trainable", 0)) <= 0 or not manifest.get("analytical_compute"):
+        if key[0] == FULL_MODEL_KEY:
+            bundle_path = path / "full_model_bundle_manifest.json"
+            if (not bundle_path.is_file()
+                    or sha256_file(bundle_path) != manifest.get("full_model_bundle_manifest_sha256")):
+                raise C3ExecutionError(f"missing or hash-mismatched full-model bundle manifest: {path}")
+            try:
+                bundle = json.loads(bundle_path.read_text(encoding="utf-8"))
+            except json.JSONDecodeError as exc:
+                raise C3ExecutionError(f"corrupt full-model bundle manifest: {path}: {exc}") from exc
+            validate_full_model_bundle(bundle, key[1])
+            for component_key in ("G", "R_psi", "B_phi", "S_omega"):
+                checkpoint = (path / bundle["components"][component_key]["checkpoint_path"]).resolve()
+                if not checkpoint.is_relative_to(path.resolve()):
+                    raise C3ExecutionError(f"full-model checkpoint escapes its run directory: {path}")
+                if (not checkpoint.is_file()
+                        or sha256_file(checkpoint) != bundle["components"][component_key]["checkpoint_sha256"]):
+                    raise C3ExecutionError(f"full-model component checkpoint missing or corrupt: {component_key}")
+            if int(manifest.get("parameters_total", 0)) != FULL_MODEL_PARAMETER_COUNT:
+                raise C3ExecutionError(f"full-model parameter count mismatch: {path}")
+        parameter_count_value = (
+            int(manifest.get("parameters_total", 0)) if key[0] == FULL_MODEL_KEY
+            else int(manifest.get("parameters_trainable", 0))
+        )
+        if parameter_count_value <= 0 or not manifest.get("analytical_compute"):
             raise C3ExecutionError(f"parameter/compute provenance missing: {path}")
         try:
             history = [json.loads(line) for line in (path / "history.jsonl").read_text(encoding="utf-8").splitlines() if line.strip()]
@@ -907,7 +1117,11 @@ def aggregate_controlled_results(
             raise C3ExecutionError(f"best-checkpoint selection mismatch: {path}")
         if evaluation.get("synthetic_only") is not False:
             raise C3ExecutionError(f"evaluation is not authenticated as real: {path}")
-        if (evaluation.get("source_manifest_sha256") != sha256_file(path / "run_manifest.json")
+        if key[0] == FULL_MODEL_KEY and evaluation.get("model_identity") != FULL_MODEL_IDENTITY:
+            raise C3ExecutionError(f"primary evaluation does not identify the complete full system: {path}")
+        if int(evaluation.get("seed", -1)) != key[1]:
+            raise C3ExecutionError(f"evaluation seed identity mismatch: {path}")
+        if (evaluation.get("source_manifest_sha256") != manifest.get("pre_evaluation_manifest_sha256")
                 or evaluation.get("checkpoint_sha256") != manifest.get("best_checkpoint_sha256")):
             raise C3ExecutionError(f"evaluation provenance mismatch: {path}")
         score = float(evaluation["macro_equal_domain_dice"])
@@ -919,6 +1133,8 @@ def aggregate_controlled_results(
         ids = [str(row.get("sample_id", "")) for row in per_image]
         if not all(ids) or len(set(ids)) != EXPECTED_COUNTS["VAL"]:
             raise C3ExecutionError(f"VAL808 per-image IDs missing or duplicate: {path}")
+        if set(ids) != expected_val_ids:
+            raise C3ExecutionError(f"VAL808 sample roster differs from the frozen manifest: {path}")
         counts = {d: sum(row.get("domain") == d for row in per_image) for d in DOMAIN_ORDER}
         if counts != {"ISIC": 357, "BUSI": 84, "KVASIR": 87, "KUB": 280}:
             raise C3ExecutionError(f"VAL808 domain denominators mismatch: {path}: {counts}")
@@ -926,6 +1142,19 @@ def aggregate_controlled_results(
             vals = [float(row[k]) for k in ("dice", "iou", "precision", "recall")]
             if any(not math.isfinite(v) or not 0 <= v <= 1 for v in vals):
                 raise C3ExecutionError(f"invalid per-image metric: {path}")
+            domain = row.get("domain")
+            if row.get("task_id") != TASK_IDS.get(domain) or row.get("split") != "VAL":
+                raise C3ExecutionError(f"per-image task/split identity mismatch: {path}")
+            hd95_value = row.get("hd95")
+            undefined_reason = row.get("hd95_undefined_reason")
+            if hd95_value is None:
+                if undefined_reason not in {
+                        "both_empty", "empty_prediction", "empty_ground_truth"}:
+                    raise C3ExecutionError(f"undefined HD95 lacks an explicit reason: {path}")
+            elif (isinstance(hd95_value, bool) or not isinstance(hd95_value, (int, float))
+                  or not math.isfinite(float(hd95_value)) or float(hd95_value) < 0
+                  or undefined_reason is not None):
+                raise C3ExecutionError(f"invalid HD95 result: {path}")
         recomputed = macro_domain_dice({
             d: float(np.mean([float(r["dice"]) for r in per_image if r["domain"] == d]))
             for d in DOMAIN_ORDER
@@ -935,23 +1164,62 @@ def aggregate_controlled_results(
         if set(evaluation.get("per_domain", {})) != set(DOMAIN_ORDER):
             raise C3ExecutionError(f"per-domain result rows missing: {path}")
         for domain in DOMAIN_ORDER:
-            expected_domain_dice = float(np.mean([float(r["dice"]) for r in per_image if r["domain"] == domain]))
-            actual_domain_dice = float(evaluation["per_domain"][domain]["dice"])
-            if not math.isfinite(actual_domain_dice) or abs(expected_domain_dice - actual_domain_dice) > 1e-10:
-                raise C3ExecutionError(f"per-domain Dice mismatch: {path} domain={domain}")
-        accepted[key] = {"manifest": manifest, "evaluation": evaluation}
+            domain_rows = [r for r in per_image if r["domain"] == domain]
+            for metric in ("dice", "iou", "precision", "recall"):
+                expected_metric = float(np.mean([float(r[metric]) for r in domain_rows]))
+                actual_metric = float(evaluation["per_domain"][domain][metric])
+                if (not math.isfinite(actual_metric) or not 0 <= actual_metric <= 1
+                        or abs(expected_metric - actual_metric) > 1e-10):
+                    raise C3ExecutionError(
+                        f"per-domain {metric} mismatch: {path} domain={domain}"
+                    )
+            defined_hd95 = [
+                float(row["hd95"]) for row in per_image
+                if row["domain"] == domain and row["hd95"] is not None
+            ]
+            domain_metrics = evaluation["per_domain"][domain]
+            defined_count = domain_metrics.get("hd95_n_defined")
+            if (not isinstance(defined_count, int) or isinstance(defined_count, bool)
+                    or defined_count != len(defined_hd95)):
+                raise C3ExecutionError(f"per-domain HD95 denominator mismatch: {path} domain={domain}")
+            expected_hd95 = float(np.mean(defined_hd95)) if defined_hd95 else None
+            actual_hd95 = domain_metrics.get("hd95")
+            if expected_hd95 is None:
+                valid_hd95 = actual_hd95 is None
+            else:
+                valid_hd95 = (
+                    isinstance(actual_hd95, (int, float))
+                    and not isinstance(actual_hd95, bool)
+                    and math.isfinite(float(actual_hd95))
+                    and abs(float(actual_hd95) - expected_hd95) <= 1e-10
+                )
+            if not valid_hd95:
+                raise C3ExecutionError(f"per-domain HD95 mismatch: {path} domain={domain}")
+        accepted[key] = {"manifest": manifest, "evaluation": evaluation, "config": config}
+    for (model, seed), record in accepted.items():
+        dataset = record["config"].get("dataset", {})
+        if (dataset.get("train_manifest_sha256") != sha256_file(MANIFEST_TRAIN)
+                or dataset.get("val_manifest_sha256") != sha256_file(MANIFEST_VAL)
+                or dataset.get("train_n") != EXPECTED_COUNTS["TRAIN"]
+                or dataset.get("val_n") != EXPECTED_COUNTS["VAL"]):
+            raise C3ExecutionError(f"dataset contract mismatch for {model} seed {seed}")
     missing = sorted(expected - set(accepted))
     result = {
-        "schema": "controlled_c3_results_v1",
+        "schema": "controlled_c3_results_v2",
         "status": "NOT_ESTABLISHED" if missing else "COMPLETE_REQUIRES_REVIEW",
-        "evidence_class": "protocol-matched controlled evidence" if not missing else "incomplete controlled runs",
-        "reference_arm": REFERENCE_ARM,
+        "evidence_class": "protocol-matched full-method evidence" if not missing else "incomplete controlled full-method comparison",
+        "primary_model": FULL_MODEL_IDENTITY,
+        "primary_model_key": FULL_MODEL_KEY,
+        "internal_ablation_reference": "GlobalMedFiLM without BARR; C1 attribution remains separate",
+        "external_baselines": list(EXTERNAL_BASELINE_KEYS),
+        "comparison_direction": "RA-MedFiLM-BARR (FULL) minus external baseline",
         "historical_protocol_incomparable": {
             "source": "reports/tables/c3_baselines/c3_baseline_report.json",
             "status": "separate historical evidence; not merged",
         },
         "expected_runs": [
             {"model_key": m, "seed": s,
+             "role": "PRIMARY_PROPOSED_METHOD" if m == FULL_MODEL_KEY else "EXTERNAL_ARCHITECTURE_BASELINE",
              "status": "COMPLETE" if (m, s) in accepted else "MISSING",
              **({
                  "macro_equal_domain_dice": accepted[(m, s)]["evaluation"]["macro_equal_domain_dice"],
@@ -960,103 +1228,96 @@ def aggregate_controlled_results(
                  "best_checkpoint_sha256": accepted[(m, s)]["manifest"]["best_checkpoint_sha256"],
                  "history_sha256": accepted[(m, s)]["manifest"]["history_sha256"],
                  "per_domain": accepted[(m, s)]["evaluation"]["per_domain"],
-                 "parameter_count": accepted[(m, s)]["manifest"]["parameters_trainable"],
+                 "parameter_count": (
+                     accepted[(m, s)]["manifest"]["parameters_total"] if m == FULL_MODEL_KEY
+                     else accepted[(m, s)]["manifest"]["parameters_trainable"]
+                 ),
                  "analytical_compute": accepted[(m, s)]["manifest"]["analytical_compute"],
+                 **({"model_identity": FULL_MODEL_IDENTITY,
+                     "full_model_bundle_manifest_sha256": accepted[(m, s)]["manifest"]["full_model_bundle_manifest_sha256"]}
+                    if m == FULL_MODEL_KEY else {}),
              }
                 if (m, s) in accepted else {})}
-            for m, s in sorted(expected)
+            for m, s in sorted(expected, key=lambda x: (EXPERIMENT_MODEL_KEYS.index(x[0]), x[1]))
         ],
         "missing_runs": [{"model_key": m, "seed": s} for m, s in missing],
-        "paired_reference": "C1-T same seed; currently NOT_ESTABLISHED until the C1-T runs and all C3 cells are valid",
-        "paired_seed_effects": [],
+        "paired_reference": "RA-MedFiLM-BARR (FULL), same seed and exact VAL808 sample IDs",
+        "paired_comparisons": [],
         "protocol_sha256": EXPECTED_PROTOCOL_SHA256,
         "protected_data_accessed": False,
     }
-    if c1_export_dir is not None:
-        refs = load_c1_reference_exports(c1_export_dir)
-        result["paired_seed_effects"] = paired_seed_effects(accepted, refs)
-        result["paired_reference"] = "C1-T same seed, exact VAL808 sample roster; descriptive only"
-        by_model: dict[str, list[float]] = {model: [] for model in ARCHITECTURES}
-        for effect in result["paired_seed_effects"]:
-            by_model[effect["model_key"]].append(float(effect["macro_delta"]))
-        result["paired_seed_summary"] = {
-            model: {
-                "n_seeds": len(values),
-                "mean_baseline_minus_c1t": float(np.mean(values)) if values else None,
-                "sample_sd": float(np.std(values, ddof=1)) if len(values) > 1 else None,
-                "min": min(values) if values else None,
-                "max": max(values) if values else None,
-                "evidence_class": "descriptive across fixed seeds; no population-seed inference",
-            }
-            for model, values in by_model.items()
-        }
+    result["paired_comparisons"] = paired_full_vs_baselines(accepted)
     validate_controlled_results_schema(result)
     _atomic_json(Path(output), result)
     return result
 
 
-def load_c1_reference_exports(export_dir: Path) -> dict[int, list[dict[str, Any]]]:
-    """Load authentic same-seed C1-T selected-epoch VAL808 exports."""
-    import csv
-    directory = Path(export_dir)
-    references: dict[int, list[dict[str, Any]]] = {}
-    for seed in EXPECTED_SEEDS:
-        tag = f"seed{seed}_C1-T"
-        prov_path = directory / f"{tag}_provenance.json"
-        image_path = directory / f"{tag}_per_image.csv"
-        if not prov_path.is_file() or not image_path.is_file():
-            raise C3ExecutionError(f"missing C1-T reference export for seed {seed}")
-        provenance = json.loads(prov_path.read_text(encoding="utf-8"))
-        if provenance.get("synthetic") is not False or provenance.get("protocol_sha256") != EXPECTED_PROTOCOL_SHA256:
-            raise C3ExecutionError(f"C1-T reference is synthetic or protocol-mismatched for seed {seed}")
-        with image_path.open(newline="", encoding="utf-8") as f:
-            rows = list(csv.DictReader(f))
-        if len(rows) != EXPECTED_COUNTS["VAL"]:
-            raise C3ExecutionError(f"C1-T reference VAL count mismatch for seed {seed}")
-        ids = [r["sample_id"] for r in rows]
-        if len(set(ids)) != EXPECTED_COUNTS["VAL"]:
-            raise C3ExecutionError(f"C1-T reference duplicate IDs for seed {seed}")
-        for row in rows:
-            for field in ("dice", "iou", "precision", "recall"):
-                row[field] = float(row[field])
-        references[seed] = rows
-    return references
-
-
-def paired_seed_effects(
+def paired_full_vs_baselines(
     accepted: dict[tuple[str, int], dict[str, Any]],
-    references: dict[int, list[dict[str, Any]]],
 ) -> list[dict[str, Any]]:
+    """Compute matched per-seed FULL-minus-baseline effects on exact VAL IDs."""
     effects = []
-    for model_key in ARCHITECTURES:
-        for seed in EXPECTED_SEEDS:
-            key = (model_key, seed)
-            if key not in accepted:
+    for seed in EXPECTED_SEEDS:
+        full_key = (FULL_MODEL_KEY, seed)
+        if full_key not in accepted:
+            continue
+        full_rows = accepted[full_key]["evaluation"]["per_image"]
+        full_by_id = {str(row["sample_id"]): row for row in full_rows}
+        if len(full_by_id) != len(full_rows):
+            raise C3ExecutionError(f"duplicate full-model sample IDs for seed {seed}")
+        for sample_id, row in full_by_id.items():
+            score = row.get("dice")
+            if (not sample_id or row.get("split") != "VAL"
+                    or row.get("task_id") != TASK_IDS.get(row.get("domain"))
+                    or not isinstance(score, (int, float)) or isinstance(score, bool)
+                    or not math.isfinite(float(score)) or not 0 <= float(score) <= 1):
+                raise C3ExecutionError(f"invalid full-model paired result row for seed {seed}")
+        for baseline in EXTERNAL_BASELINE_KEYS:
+            baseline_key = (baseline, seed)
+            if baseline_key not in accepted:
                 continue
-            ref = {r["sample_id"]: r for r in references[seed]}
-            target_rows = accepted[key]["evaluation"]["per_image"]
-            target = {str(r["sample_id"]): r for r in target_rows}
-            if set(ref) != set(target):
-                raise C3ExecutionError(f"sample roster mismatch for {model_key} seed {seed}")
+            base_rows = accepted[baseline_key]["evaluation"]["per_image"]
+            base_by_id = {str(row["sample_id"]): row for row in base_rows}
+            if len(base_by_id) != len(base_rows):
+                raise C3ExecutionError(f"duplicate {baseline} sample IDs for seed {seed}")
+            for sample_id, row in base_by_id.items():
+                score = row.get("dice")
+                if (not sample_id or row.get("split") != "VAL"
+                        or row.get("task_id") != TASK_IDS.get(row.get("domain"))
+                        or not isinstance(score, (int, float)) or isinstance(score, bool)
+                        or not math.isfinite(float(score)) or not 0 <= float(score) <= 1):
+                    raise C3ExecutionError(f"invalid {baseline} paired result row for seed {seed}")
+            if set(full_by_id) != set(base_by_id):
+                raise C3ExecutionError(f"paired sample roster mismatch for {FULL_MODEL_IDENTITY} vs {baseline}, seed {seed}")
+            if any(
+                full_by_id[sid]["domain"] != base_by_id[sid]["domain"]
+                or full_by_id[sid].get("task_id") != base_by_id[sid].get("task_id")
+                or full_by_id[sid].get("task_id") != TASK_IDS.get(full_by_id[sid]["domain"])
+                or full_by_id[sid].get("split") != base_by_id[sid].get("split")
+                for sid in full_by_id
+            ):
+                raise C3ExecutionError(f"paired domain/task mismatch for {FULL_MODEL_IDENTITY} vs {baseline}, seed {seed}")
             per_domain = {}
             for domain in DOMAIN_ORDER:
-                shared = [sid for sid, row in ref.items() if row["domain"] == domain]
-                if not shared or any(target[sid]["domain"] != ref[sid]["domain"] for sid in shared):
-                    raise C3ExecutionError(f"paired domain mismatch for {model_key} seed {seed}")
-                ref_mean = float(np.mean([ref[sid]["dice"] for sid in shared]))
-                model_mean = float(np.mean([float(target[sid]["dice"]) for sid in shared]))
+                ids = [sid for sid, row in full_by_id.items() if row["domain"] == domain]
+                if not ids:
+                    raise C3ExecutionError(f"empty paired domain {domain}, seed {seed}")
+                full_mean = float(np.mean([float(full_by_id[sid]["dice"]) for sid in ids]))
+                base_mean = float(np.mean([float(base_by_id[sid]["dice"]) for sid in ids]))
                 per_domain[domain] = {
-                    "n": len(shared),
-                    "reference_dice": ref_mean,
-                    "baseline_dice": model_mean,
-                    "baseline_minus_reference": model_mean - ref_mean,
+                    "n": len(ids),
+                    "full_dice": full_mean,
+                    "baseline_dice": base_mean,
+                    "full_minus_baseline": full_mean - base_mean,
                 }
             effects.append({
-                "model_key": model_key,
+                "primary_model": FULL_MODEL_IDENTITY,
+                "baseline_model_key": baseline,
                 "seed": seed,
-                "estimand": "equal-domain mean of paired-domain per-image Dice difference",
+                "estimand": "equal-domain mean of paired per-image Dice difference",
+                "direction": "full_minus_baseline",
                 "per_domain": per_domain,
-                "macro_delta": float(np.mean([per_domain[d]["baseline_minus_reference"] for d in DOMAIN_ORDER])),
+                "macro_delta": float(np.mean([per_domain[d]["full_minus_baseline"] for d in DOMAIN_ORDER])),
                 "evidence_class": "descriptive paired-seed contrast; no inferential claim",
             })
     return effects
@@ -1064,22 +1325,24 @@ def paired_seed_effects(
 
 def _write_plan(path: Path) -> None:
     payload = {
-        "schema": "controlled_c3_experiment_plan_v1",
+        "schema": "controlled_c3_experiment_plan_v2",
         "status": "PREPARED_NOT_EXECUTED",
-        "reference_arm": REFERENCE_ARM,
-        "architecture_keys": list(ARCHITECTURES),
+        "primary_model": FULL_MODEL_IDENTITY,
+        "primary_model_key": FULL_MODEL_KEY,
+        "external_baseline_keys": list(EXTERNAL_BASELINE_KEYS),
+        "architecture_keys": list(EXPERIMENT_MODEL_KEYS),
         "seeds": list(EXPECTED_SEEDS),
-        "planned_real_runs": len(ARCHITECTURES) * len(EXPECTED_SEEDS),
-        "training_priority": "C1 six-run campaign takes priority; do not start C3 training concurrently.",
+        "planned_real_runs": len(EXPERIMENT_MODEL_KEYS) * len(EXPECTED_SEEDS),
+        "training_priority": "C1 attribution remains separate; full-model C3 requires compatible same-seed G/R/B/S bundles before comparison.",
         "real_execution": "BLOCKED_PENDING_SEPARATE_AUTHORIZATION",
-        "configurations": [build_experiment_config(m, s) for m in ARCHITECTURES for s in EXPECTED_SEEDS],
+        "configurations": [build_experiment_config(m, s) for m in EXPERIMENT_MODEL_KEYS for s in EXPECTED_SEEDS],
         "protocol_sha256": EXPECTED_PROTOCOL_SHA256,
     }
     _atomic_json(path, payload)
 
 
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description="Controlled C3 baseline preparation (synthetic smoke only).")
+    parser = argparse.ArgumentParser(description="Controlled full RA-MedFiLM-BARR versus baseline C3 preparation.")
     sub = parser.add_subparsers(dest="command", required=True)
     p_plan = sub.add_parser("prepare")
     p_plan.add_argument("--out", type=Path, default=ROOT / "reports" / "tables" / "c3_controlled" / "experiment_plan.json")
@@ -1093,12 +1356,14 @@ def main(argv: list[str] | None = None) -> int:
     p_smoke.add_argument("--device", default="cpu")
     p_smoke.add_argument("--image-size", type=int, default=64)
     p_smoke.add_argument("--base-channels", type=int, default=4)
+    p_full_smoke = sub.add_parser("full-smoke")
+    p_full_smoke.add_argument("--device", default="cpu")
+    p_full_smoke.add_argument("--image-size", type=int, default=64)
     p_run = sub.add_parser("run-real")
-    p_run.add_argument("--model", choices=tuple(ARCHITECTURES), required=True)
+    p_run.add_argument("--model", choices=EXPERIMENT_MODEL_KEYS, required=True)
     p_run.add_argument("--seed", type=int, choices=EXPECTED_SEEDS, required=True)
     p_agg = sub.add_parser("aggregate")
     p_agg.add_argument("--runs-root", type=Path, default=ROOT / "experiments" / "c3_controlled")
-    p_agg.add_argument("--c1-export-dir", type=Path, required=True)
     p_agg.add_argument("--out", type=Path, default=ROOT / "reports" / "tables" / "c3_controlled" / "results.json")
     p_agg.add_argument("--allow-incomplete", action="store_true")
     p_bench = sub.add_parser("benchmark")
@@ -1117,17 +1382,26 @@ def main(argv: list[str] | None = None) -> int:
         print(f"{result['status']}: {args.out} ({len(result['expected_runs'])} missing cells)")
         return 0
     if args.command == "run-real":
+        if args.model == FULL_MODEL_KEY:
+            raise C3ExecutionError(
+                "FULL_MODEL_REAL_EXECUTION_BLOCKED_PENDING_COMPATIBLE_COMPONENT_BUNDLE_AND_SEPARATE_AUTHORIZATION"
+            )
         raise C3ExecutionError("C3_REAL_EXECUTION_BLOCKED_PENDING_SEPARATE_AUTHORIZATION")
     if args.command == "aggregate":
-        runs = [args.runs_root / model / f"seed{seed}" for model in ARCHITECTURES for seed in EXPECTED_SEEDS]
+        runs = [args.runs_root / model / f"seed{seed}" for model in EXPERIMENT_MODEL_KEYS for seed in EXPECTED_SEEDS]
         existing = [p for p in runs if p.is_dir()]
-        result = aggregate_controlled_results(existing, args.out, c1_export_dir=args.c1_export_dir)
+        result = aggregate_controlled_results(existing, args.out)
         print(f"{result['status']}: {args.out}; missing={len(result['missing_runs'])}")
         return 0 if not result["missing_runs"] or args.allow_incomplete else 3
     if args.command == "benchmark":
         print(json.dumps(benchmark_synthetic_step(args.model, device=args.device,
                                                   image_size=args.image_size, batch_size=args.batch_size,
                                                   measured_steps=args.measured_steps), indent=2))
+        return 0
+    if args.command == "full-smoke":
+        from .full_system_smoke import run_synthetic_full_system_smoke
+        result = run_synthetic_full_system_smoke(device=args.device, image_size=args.image_size)
+        print(json.dumps(result, indent=2))
         return 0
     train_factory, val_loader = make_synthetic_loaders(
         args.seed, image_size=args.image_size, samples_per_domain=2, batch_size=2)

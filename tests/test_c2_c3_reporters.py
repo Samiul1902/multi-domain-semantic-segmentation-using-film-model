@@ -30,6 +30,10 @@ def test_c2_denominators_and_no_pooling(tmp_path):
     assert ext["Stones_where_are_you"]["stone_free_failure"]["n_stone_free"] == 14
     a8 = [x for x in d["development_arms"] if x["arm"] == "A8"][0]
     assert (a8["n_routed"], a8["harmful_routed"]) == (1205, 390)
+    external_rows = (tmp_path / "c2_external.csv").read_text(encoding="utf-8").splitlines()
+    assert external_rows[0].split(",")[1:3] == ["primary_model", "internal_reference"]
+    assert "RA-MedFiLM-BARR (FULL)" in external_rows[1]
+    assert "GlobalMedFiLM (internal ablation reference)" in external_rows[1]
     assert all(c["ok"] for c in d["checks"])
 
 
@@ -42,9 +46,16 @@ def test_c3_no_leaderboard_or_matched(tmp_path):
     d = json.loads((tmp_path / "c3_baseline_report.json").read_text())
     assert d["protocol_matched"] == [] and d["leaderboard"] is None and d["controlled_superiority_claim"] is False
     assert d["training_run"] is False
+    assert d["primary_proposed_method"] == "RA-MedFiLM-BARR (FULL)"
+    assert d["controlled_matrix"]["expected_cells"] == 18
+    assert d["controlled_matrix"]["complete_cells"] == 0
+    assert d["controlled_matrix"]["status"] == "NOT_ESTABLISHED"
     assert len(d["exploratory_historical"]) == 6
     for r in d["exploratory_historical"]:
         assert r["comparability"] == "PROTOCOL_INCOMPARABLE" and r["seed_count"] == 1 and r["measured_latency_ms"] is None
+    global_reference = [r for r in d["exploratory_historical"] if r["model_key"] == "global_medfilm"]
+    assert len(global_reference) == 1
+    assert global_reference[0]["role"] == "INTERNAL_ABLATION_REFERENCE"
 
 
 def test_c3_deterministic(tmp_path):

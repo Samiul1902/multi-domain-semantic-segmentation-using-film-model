@@ -72,7 +72,13 @@ def save_fig(fig, name, rows=None):
     FIG.mkdir(parents=True, exist_ok=True)
     files = []
     fig.savefig(FIG / f"{name}.pdf", bbox_inches="tight", metadata={"CreationDate": None, "Creator": None, "Producer": None})
-    fig.savefig(FIG / f"{name}.svg", bbox_inches="tight", metadata={"Date": None})
+    svg_path = FIG / f"{name}.svg"
+    fig.savefig(svg_path, bbox_inches="tight", metadata={"Date": None})
+    svg_path.write_text(
+        "\n".join(line.rstrip(" \t") for line in svg_path.read_text(encoding="utf-8").splitlines()) + "\n",
+        encoding="utf-8",
+        newline="",
+    )
     fig.savefig(FIG / f"{name}.png", bbox_inches="tight", dpi=600)
     files += [rel(FIG / f"{name}.{e}") for e in ("pdf", "svg", "png")]
     if rows:
@@ -123,16 +129,25 @@ def fig1():
     arrow(ax, (0.33, 0.50), (0.42, 0.60), COL["global"]); arrow(ax, (0.33, 0.69), (0.38, 0.69))
     ax.text(0.03, 0.86, "FiLM (gamma, beta) sites: bridge + decoder4-1\n(5 total); none in the encoder", fontsize=6.5, color=COL["global"], va="center")
     arrow(ax, (0.51, 0.69), (0.66, 0.69))
+    ax.plot([0.66, 0.59, 0.42], [0.62, 0.43, 0.43], color=COL["barr"], lw=1.0)
+    ax.text(0.52, 0.445, "global-output features", fontsize=6.2, color=COL["barr"], ha="center")
     box(ax, (0.34, 0.08), 0.16, 0.16, "Benefit router\nB_phi\n(budgeted)", "#F9D9C2", fs=7)
     box(ax, (0.54, 0.08), 0.14, 0.16, "ROI crop +\nregional\nrefiner", "#F9D9C2", fs=7)
     box(ax, (0.72, 0.08), 0.12, 0.16, "Safety\nfilter\nS_omega", "#F9D9C2", fs=7)
     box(ax, (0.87, 0.08), 0.11, 0.16, "Final mask:\nrefined if\naccepted", "white", fs=6)
     arrow(ax, (0.50, 0.16), (0.54, 0.16), COL["barr"]); arrow(ax, (0.68, 0.16), (0.72, 0.16), COL["barr"]); arrow(ax, (0.84, 0.16), (0.87, 0.16), COL["barr"])
-    arrow(ax, (0.42, 0.60), (0.42, 0.24), COL["barr"])
+    arrow(ax, (0.42, 0.43), (0.42, 0.24), COL["barr"])
     ax.text(0.03, 0.16, "Architectural specification;\nno performance values.", ha="left", va="center", fontsize=7, color=COL["grey"])
     ax.set_title("Figure 1. RA-MedFiLM-BARR overview", loc="left")
     files = save_fig(fig, "fig01_method_architecture")
-    ready("fig01", "Method architecture", files, ["docs/ARCHITECTURE.md", "src/models/film/global_medfilm.py"], "specification",
+    ready("fig01", "Method architecture", files, [
+        "docs/ARCHITECTURE.md",
+        "src/models/film/global_medfilm.py",
+        "src/models/barr/ra_medfilm_barr.py",
+        "src/models/barr/regional_refiner.py",
+        "scripts/analysis/train_phase25d_router.py",
+        "scripts/analysis/phase25f_execution_common.py",
+    ], "specification",
           "Specification drawing; mapping to code in manuscript Methods.")
 
 
@@ -197,10 +212,10 @@ def fig5():
         ax.set_xlim(0, d["total"] * 1.3); ax.set_xlabel("Cases (count)"); ax.set_title(name, fontsize=8)
         for l, v in zip(labs, vals):
             rows.append({"panel": name, "stage": l.replace("\n", " "), "count": v})
-    fig.suptitle("Figure 5. BARR routing funnel (counts; routed = adopted + rejected; outcomes are subsets of adopted)", x=0.01, ha="left", fontsize=8)
+    fig.suptitle("Figure 5. RA-MedFiLM-BARR (FULL) routing funnel (counts; outcomes are subsets of adopted)", x=0.01, ha="left", fontsize=8)
     fig.tight_layout(rect=(0, 0, 1, 0.94), w_pad=2.5)
     files = save_fig(fig, "fig05_barr_routing_safety", rows)
-    ready("fig05", "BARR routing and safety funnel", files,
+    ready("fig05", "RA-MedFiLM-BARR (FULL) routing and safety funnel", files,
           ["reports/tables/phase28_table_02_arm_primary_metrics.csv", "reports/tables/c1_external_stress_paired.csv"],
           "descriptive", "Development panel is in-sample (subset of TRAIN5832); external panel exploratory. Adopted-case outcomes are conditional, not all-case averages.")
     return dev, ext
@@ -218,19 +233,19 @@ def fig6():
         rr = [r for r in rows if r["domain"] == d]
         g = float(rr[0]["global_dice"]); f = [float(r["final_dice"]) for r in rr]
         V.require_finite([g] + f)
-        ax.bar(i - w / 2, g, w, color=COL["global"], label="GlobalMedFiLM" if i == 0 else None)
-        ax.bar(i + w / 2, sum(f) / len(f), w, color=COL["barr"], label="GlobalMedFiLM + BARR (mean of 3 seeds)" if i == 0 else None)
-        ax.scatter([i + w / 2] * len(f), f, c="k", s=8, zorder=3, label="Individual BARR seed" if i == 0 else None)
+        ax.bar(i - w / 2, g, w, color=COL["global"], label="GlobalMedFiLM (internal ablation reference)" if i == 0 else None)
+        ax.bar(i + w / 2, sum(f) / len(f), w, color=COL["barr"], label="RA-MedFiLM-BARR (FULL; mean of 3 downstream seeds)" if i == 0 else None)
+        ax.scatter([i + w / 2] * len(f), f, c="k", s=8, zorder=3, label="Individual downstream seed" if i == 0 else None)
         for r in rr:
             out.append({"domain": DOMAIN_NAMES[d], "n": r["n"], "seed": r["master_seed"], "global_dice": r["global_dice"], "barr_dice": r["final_dice"]})
         ax.text(i, 1.02, f"n={rr[0]['n']}", ha="center", fontsize=7)
     ax.set_xticks(range(4)); ax.set_xticklabels([DOMAIN_NAMES[d] for d in DOMAINS])
     ax.set_ylim(0, 1.1); ax.set_ylabel("Dice (proportion, 0-1)")
     ax.legend(fontsize=7, loc="upper center", bbox_to_anchor=(0.5, -0.1), ncol=3, frameon=False)
-    ax.set_title("Figure 6. VAL808 (selection-consumed): same images, fixed global backbone; no uncertainty interval shown", loc="left", fontsize=8)
+    ax.set_title("Figure 6. FULL-system VAL808 (selection-consumed); fixed seed-42 G across downstream seeds; no CI", loc="left", fontsize=8)
     files = save_fig(fig, "fig06_internal_performance", out)
-    ready("fig06", "Internal VAL808 Global vs BARR", files, ["reports/tables/phase29_val808_seedwise_domain_metrics.csv"], "descriptive",
-          "Development-selected population; global backbone fixed across seeds, so seed spread excludes backbone variability; no CI.")
+    ready("fig06", "RA-MedFiLM-BARR (FULL) versus internal GlobalMedFiLM reference", files, ["reports/tables/phase29_val808_seedwise_domain_metrics.csv"], "descriptive",
+          "VAL808 was selection-consumed. The full output includes BARR; its three downstream seeds share one fixed seed-42 global backbone and are not end-to-end seed replicates. No CI.")
 
 
 # ---------------------------------------------------------------- Figure 7
@@ -245,24 +260,26 @@ def fig7():
     intl = [float(r["internal_val808_dice"]) for r in ds]
     V.require_finite(gl + br + intl)
     a, b, c = axes
-    a.bar([i - w / 2 for i in x], gl, w, color=COL["global"], label="Global")
-    a.bar([i + w / 2 for i in x], br, w, color=COL["barr"], label="BARR")
+    a.bar([i - w / 2 for i in x], gl, w, color=COL["global"], label="GlobalMedFiLM internal reference")
+    a.bar([i + w / 2 for i in x], br, w, color=COL["barr"], label="RA-MedFiLM-BARR (FULL)")
     a.set_xticks(list(x)); a.set_xticklabels(short, fontsize=7); a.set_ylim(0, 1); a.set_ylabel("Dice (proportion)")
     a.legend(fontsize=7, frameon=False); a.set_title("Performance level", fontsize=8)
     d = [(y - g) * 100 for g, y in zip(gl, br)]
     b.bar(list(x), d, color=COL["barr"]); b.axhline(0, color="k", lw=0.8)
     brief = [s.split("\n")[0].replace("CVC-ClinicDB", "CVC").replace("BrEaST-Lesions-USG", "BrEaST") for s in short]
     b.set_xticks(list(x)); b.set_xticklabels(brief, fontsize=7)
-    b.set_ylabel("BARR minus Global (Dice, pp)"); b.set_title("Difference (descriptive, no CI)", fontsize=8)
-    b.set_ylim(0, max(d) * 1.2)
+    b.set_ylabel("FULL - Global (Dice pp)")
+    b.set_title("Difference (no CI; +/-1 pp)", fontsize=8)
+    b.set_ylim(-1.0, 1.0); b.set_yticks([-1.0, -0.5, 0, 0.5, 1.0])
     for i, v in enumerate(d):
-        b.text(i, v, f"{v:+.2f}", ha="center", va="bottom", fontsize=7)
+        b.text(i, v + (0.06 if v >= 0 else -0.06), f"{v:+.2f}",
+               ha="center", va="bottom" if v >= 0 else "top", fontsize=7)
     shift = [float(r["delta_vs_internal_pp"]) for r in ds]
     for g, i_, s in zip(gl, intl, shift):
         V.require_pp_label(g - i_, s, 1e-6)
     c.bar(list(x), shift, color=COL["grey"]); c.axhline(0, color="k", lw=0.8)
     c.set_xticks(list(x)); c.set_xticklabels(brief, fontsize=7)
-    c.set_ylabel("Global external minus VAL808 anchor (pp)"); c.set_title("Domain shift", fontsize=8)
+    c.set_ylabel("Global - VAL808 anchor (pp)"); c.set_title("Domain shift", fontsize=8)
     for r, i, g, y, dd, s in zip(ds, x, gl, br, d, shift):
         out.append({"cohort": r["cohort"], "n": r["n"], "internal_val808_dice": r["internal_val808_dice"], "global_dice": g, "barr_dice": y,
                     "barr_minus_global_pp": dd, "global_minus_internal_pp": s})
@@ -352,8 +369,9 @@ def fig8():
             return "stones"
         raise ValueError(f"Unsupported sample_id: {sample_id}")
 
-    fig, axes = plt.subplots(len(picks), 6, figsize=(8.6, 8.8))
-    col_titles = ["Input", "Ground truth", "Global mask", "BARR mask", "Global error", "BARR error"]
+    fig, axes = plt.subplots(len(picks), 6, figsize=(8.6, 7.8))
+    col_titles = ["Input (source)", "Ground truth", "Global ref.", "Full system",
+                  "Global errors", "Full-system errors"]
     for c, t in enumerate(col_titles):
         axes[0, c].set_title(t, fontsize=7)
     out_rows = []
@@ -384,21 +402,34 @@ def fig8():
         b = barr_rows[sample_id]
         state = b["state"]
         delta_pp = (float(b["Dice"]) - float(g["Dice"])) * 100
-        info = f"{sample_id} | {state} | Dice {float(g['Dice']) * 100:.2f}% -> {float(b['Dice']) * 100:.2f}% ({delta_pp:+.2f} pp)"
-        if state == "REJECTED":
-            sp = b["safety_prob"]
-            if sp not in ("", "nan", "NaN"):
-                info += f"; S_omega={float(sp):.4f}"
+        short_id = sample_id.split("::", 1)[-1]
+        cohort_tag = {
+            "CVC-ClinicDB": "CVC",
+            "BrEaST-Lesions-USG": "BrEaST",
+            "Stones_where_are_you": "Stones",
+        }.get(g["cohort"], str(g["cohort"]))
         if label.startswith("Stone-free"):
-            info += "; GT empty, foreground predicted"
-        axes[r_i, 0].set_ylabel(label, fontsize=6, rotation=0, labelpad=53, va="center")
-        axes[r_i, 5].text(1.02, 0.5, info, transform=axes[r_i, 5].transAxes, fontsize=5.8, va="center")
+            row_label = f"Stone-free FP\n{cohort_tag}; GT empty\n{delta_pp:+.2f} pp"
+        elif state == "REJECTED":
+            row_label = f"Safety rejected\n{cohort_tag} #{short_id[:12]}\np={float(b['safety_prob']):.4f}"
+        elif state == "NOT_ATTEMPTED":
+            row_label = f"Not selected\n{cohort_tag} #{short_id[:12]}\n{delta_pp:+.2f} pp"
+        elif label.startswith("Accepted beneficial"):
+            row_label = f"Beneficial accepted\n{cohort_tag} #{short_id[:12]}\n{delta_pp:+.2f} pp"
+        elif label.startswith("Accepted harmful"):
+            row_label = f"Harmful accepted\n{cohort_tag} #{short_id[:12]}\n{delta_pp:+.2f} pp"
+        else:
+            raise ValueError(f"Unknown qualitative case category: {label}")
+        axes[r_i, 0].set_ylabel(
+            row_label, fontsize=6.2, rotation=0, labelpad=44, va="center", ha="right"
+        )
 
         out_rows.append({
             "row_label": label,
             "sample_id": sample_id,
             "cohort": g["cohort"],
             "state": state,
+            "source_image": "original external retrospective cohort image",
             "global_dice": round(float(g["Dice"]), 6),
             "barr_dice": round(float(b["Dice"]), 6),
             "delta_pp": round(delta_pp, 3),
@@ -406,21 +437,35 @@ def fig8():
         })
 
     fig.suptitle(
-        "Figure 8. Main-text qualitative comparisons (external retrospective, deterministic selection rule; no re-inference).",
-        x=0.01, ha="left", fontsize=8.3,
+        "Figure 8. RA-MedFiLM-BARR (FULL): retrospective examples selected deterministically from existing outputs",
+        x=0.01, ha="left", fontsize=9,
     )
-    fig.subplots_adjust(left=0.17, right=0.82, top=0.90, bottom=0.05, wspace=0.18, hspace=0.45)
+    fig.text(
+        0.5, 0.015,
+        "Errors: green TP, red FP, blue FN, dark gray TN. Full sample IDs and selection rule are in the source CSV; no re-inference.",
+        ha="center", fontsize=6.5,
+    )
+    fig.subplots_adjust(left=0.19, right=0.99, top=0.89, bottom=0.07, wspace=0.08, hspace=0.22)
     files = save_fig(fig, "fig08_main_qualitative", out_rows)
     ready(
         "fig08",
         "Main-text qualitative comparisons",
         files,
-        ["reports/tables/c1_external_stress_paired.csv", "reports/tables/c1_external_stress_per_case.csv",
-         "data_cache/c1_external_stress_v1_0/cvc/prob_global.npy", "data_cache/c1_external_stress_v1_0/cvc/prob_barr.npy",
-         "data_cache/c1_external_stress_v1_0/breast/prob_global.npy", "data_cache/c1_external_stress_v1_0/breast/prob_barr.npy",
-         "data_cache/c1_external_stress_v1_0/stones/prob_global.npy", "data_cache/c1_external_stress_v1_0/stones/prob_barr.npy"],
+        [
+            "reports/audits/c1_external_stress_v1_0/EXTERNAL_STRESS_TEST_PLAN.md",
+            "reports/tables/c1_external_stress_paired.csv",
+            "reports/tables/c1_external_stress_per_case.csv",
+            "reports/external_extension/manifests/ext02_cvc_clinicdb_manifest.csv",
+            "reports/external_extension/manifests/ext02_breast_us_manifest.csv",
+            "reports/external_extension/manifests/ext02_1_stones_manifest_reconciled.csv",
+            *[
+                f"data_cache/c1_external_stress_v1_0/{cohort}/{artifact}"
+                for cohort in ("cvc", "breast", "stones")
+                for artifact in ("sample_ids.json", "gt.npy", "prob_global.npy", "prob_barr.npy")
+            ],
+        ],
         "exploratory",
-        "Five deterministic examples: accepted beneficial/harmful, safety-rejected, representative non-selected, and stone-free false-positive failure."
+        "Five deterministic, source-image examples: accepted beneficial/harmful, safety-rejected, representative non-selected, and stone-free false-positive failure. The accompanying source CSV records sample IDs, cohort, outcome, and deterministic selection rule."
     )
 
     import matplotlib.image as mpimg
@@ -496,13 +541,15 @@ def fig9():
     sf = rows[4]
     y = 100 * sf["count"] / sf["denominator"]
     c.bar(["False-positive"], [y], color="#000000")
-    c.text(0, y + 1.6, f"{sf['count']}/{sf['denominator']}", ha="center", fontsize=7)
+    c.text(0, y - 5 if y >= 95 else y + 1.6, f"{sf['count']}/{sf['denominator']}",
+           ha="center", va="top" if y >= 95 else "bottom",
+           fontsize=7, color="white" if y >= 95 else "black")
     c.set_ylim(0, 100)
     c.set_ylabel("Rate (%)")
     c.tick_params(axis="x", labelsize=7)
-    c.set_title("Stone-free cohort denominator", fontsize=8)
+    c.set_title("Stone-free cohort (n=14)", fontsize=8)
 
-    fig.suptitle("Figure 9. External failure behavior with explicit denominators", x=0.01, ha="left", fontsize=9)
+    fig.suptitle("Figure 9. RA-MedFiLM-BARR (FULL) external failure behavior with explicit denominators", x=0.01, ha="left", fontsize=9)
     fig.tight_layout()
     files = save_fig(fig, "fig09_failure_analysis", rows)
     ready("fig09", "Failure analysis", files, ["reports/tables/c1_external_stress_paired.csv", "reports/tables/c1_external_stress_per_case.csv",
@@ -526,10 +573,12 @@ def fig10():
         rows.append({"panel": "analytical", "model": r["display_name"], "params": r["params"], "analytical_gmacs": g, "macro_dice": dsc})
     a1 = float(ana["FINAL_A8_C9_EXPECTED_CONDITIONAL"]["macs"]) / 1e9
     a.axvline(float(ana["LITERAL_GLOBAL_ONLY_C1"]["macs"]) / 1e9, color=COL["global"], lw=0.5, ls=":")
+    a.axvline(a1, color=COL["barr"], lw=0.8, ls="--")
     a.set_xlabel("Analytical GMACs (lower bound, not measured)"); a.set_ylabel("Macro Dice (0-1)")
-    a.text(0.98, 0.03, "y-axis truncated at 0.70;\nbaselines protocol-incomparable", transform=a.transAxes, ha="right", va="bottom", fontsize=6, color=COL["grey"])
-    a.set_ylim(0.7, 0.9); a.set_title("Analytical cost vs accuracy\n(marker area ~ parameters)", fontsize=8)
-    labs = [("GLOBAL_ONLY_C1", "Global only"), ("SKIP_CONTROLLED_PATH", "BARR\nskip path"), ("EXECUTE_CONTROLLED_PATH", "BARR\nexecute path")]
+    a.text(0.98, 0.03, "Historical baseline scores are protocol-incomparable.\nFULL expected cost is shown; matched Dice is pending.",
+           transform=a.transAxes, ha="right", va="bottom", fontsize=6, color=COL["grey"])
+    a.set_ylim(0.7, 0.9); a.set_title("Historical scores vs analytical cost\n(marker area ~ parameters)", fontsize=8)
+    labs = [("GLOBAL_ONLY_C1", "GlobalMedFiLM\ninternal reference"), ("SKIP_CONTROLLED_PATH", "FULL\nskip path"), ("EXECUTE_CONTROLLED_PATH", "FULL\nexecute path")]
     vals = [float(lat[k]["mean_ms"]) for k, _ in labs]; sds = [float(lat[k]["std_ms"]) for k, _ in labs]
     b.bar([l for _, l in labs], vals, yerr=sds, color=[COL["global"], COL["grey"], COL["barr"]], capsize=3)
     for i, v in enumerate(vals):
@@ -538,14 +587,16 @@ def fig10():
     b.set_title("Measured latency, RTX 3060 Ti\n(1000 forwards; non-end-to-end)", fontsize=8)
     for (k, l), v, s in zip(labs, vals, sds):
         rows.append({"panel": "measured_latency", "model": l, "mean_ms": v, "std_ms": s, "n": lat[k]["n"]})
-    rows.append({"panel": "analytical", "model": "BARR A8 expected conditional", "analytical_gmacs": a1})
-    fig.suptitle("Figure 10. Accuracy versus computational cost: analytical and measured quantities kept separate", x=0.01, ha="left", fontsize=8)
+    rows.append({"panel": "analytical", "model": "RA-MedFiLM-BARR (FULL) A8 expected conditional", "analytical_gmacs": a1})
+    fig.suptitle("Figure 10. Full-system cost and historical context; matched full-model accuracy pending", x=0.01, ha="left", fontsize=8)
     fig.tight_layout(rect=(0, 0, 1, 0.94))
     files = save_fig(fig, "fig10_accuracy_vs_cost", [{k: r.get(k, "") for k in ("panel", "model", "params", "analytical_gmacs", "macro_dice", "mean_ms", "std_ms", "n")} for r in rows])
     ready("fig10", "Accuracy versus computational cost", files,
           ["reports/tables/phase21_six_model_compute.csv", "reports/tables/phase21_six_model_comparison.csv",
-           "reports/tables/phase34_batch1_latency_results_v1_4.csv", "reports/tables/phase34_analytical_compute_summary_v1_3.csv"], "descriptive",
-          "Baseline Dice values are protocol-incomparable; latency covers Global/skip/execute paths only and BARR is not shown to be cheaper than Global.")
+           "reports/tables/phase34_batch1_latency_results_v1_4.csv",
+           "reports/tables/phase34_analytical_compute_summary_v1_3.csv",
+           "src/research/c3_baselines/controlled_results_schema.json"], "descriptive",
+          "Historical baseline Dice values are protocol-incomparable; latency covers Global/skip/execute paths only. No matched full-system-versus-baseline cost claim is established.")
 
 
 # ---------------------------------------------------------------- Tables
@@ -581,10 +632,26 @@ def tables(dev, ext, fail_rows, c1):
          for s, n in [("TRAIN5832", 5832), ("VAL808", 808)]], "Table 1. Dataset and split description (TEST1683 and ROUTER_HOLDOUT875 not opened)")
     comp = {r["model_key"]: r for r in rd(T / "phase21_six_model_compute.csv")}
     perf = rd(T / "phase21_six_model_comparison.csv")
-    out["table2_architecture_params"] = write_table("table2_architecture_params", [
-        {"model": r["display_name"], "trainable_params": int(float(comp[r["model_key"]]["params"])), "gmacs_analytical": comp[r["model_key"]]["gmacs"],
-         **prov("reports/tables/phase21_six_model_compute.csv", "input 1x3x512x512", 1, "parameters; GMACs (lower bound)", "phase21", "n/a", "analytical")} for r in perf],
-        "Table 2. Architecture and parameter comparison")
+    historical_arch_rows = [
+        {"model": ("GlobalMedFiLM (internal ablation reference)" if r["model_key"] == "global_medfilm" else r["display_name"]),
+         "role": ("INTERNAL_ABLATION_REFERENCE" if r["model_key"] == "global_medfilm" else "HISTORICAL_EXTERNAL_BASELINE"),
+         "parameters": int(float(comp[r["model_key"]]["params"])),
+         "analytical_gmacs_lower_bound": comp[r["model_key"]]["gmacs"],
+         "compute_note": "historical single-model analytical count; PROTOCOL_INCOMPARABLE",
+         **prov("reports/tables/phase21_six_model_compute.csv", "input 1x3x512x512", 1, "parameters; GMACs (lower bound)", "phase21", "historical single run", "PROTOCOL_INCOMPARABLE")}
+        for r in perf
+    ]
+    full_arch_row = {
+        "model": "RA-MedFiLM-BARR (FULL)",
+        "role": "PRIMARY_PROPOSED_METHOD",
+        "parameters": 4_837_420,
+        "analytical_gmacs_lower_bound": "conditional; see Table 7",
+        "compute_note": "sum of G 3,523,001 + R_psi 1,276,401 + B_phi 36,801 + S_omega 1,217; conditional R_psi",
+        **prov("reports/tables/phase34_canonical_component_registry.csv", "full inference bundle", 1,
+               "total learned parameters; conditional computation", "canonical component registry", "historical fixed-G assembly", "descriptive")}
+    out["table2_architecture_params"] = write_table(
+        "table2_architecture_params", [full_arch_row] + historical_arch_rows,
+        "Table 2. Primary full-system parameters and historical component/architecture context (not a controlled benchmark)")
     out["table3_c1_paired"] = write_table("table3_c1_paired", [
         {"result": c1["status"], "estimate": "NOT_ESTABLISHED" if "estimate" not in c1 else c1["estimate"],
          "runs_completed": f"{c1.get('runs_completed', 6)}/6", **prov("reports/tables/c1_results/c1_aggregate.json", "VAL808", 808, "Dice proportion difference (T-C)", "frozen protocol 531e3eb2...", "0/6 real runs", "matched")}],
@@ -594,19 +661,41 @@ def tables(dev, ext, fail_rows, c1):
         {"arm": a, "n_routed": r["n_routed"], "budget_fraction": r["budget_fraction"], "mean_delta_dice_routed_proportion": r["mean_true_delta_dice_routed"],
          "beneficial": r["n_beneficial_routed"], "harmful": r["n_harmful_routed"], "harmful_share_of_routed_proportion": r["harmful_activation_share"],
          **prov("reports/tables/phase28_table_02_arm_primary_metrics.csv", "ROUTER_DEVELOPMENT (in-sample, subset of TRAIN5832)", 4957, "Dice proportion", "phase28 frozen ablations", "single canonical run", "descriptive")}
-        for a, r in t2.items()], "Table 4. C2 routing/safety ablation (in-sample; conditional on routed set, not all-image averages)")
-    out["table5_c3_baselines"] = write_table("table5_c3_baselines", [
-        {"model": r["display_name"], "macro_dice_proportion": round(float(r["macro_domain_dice"]), 4), "isic": round(float(r["dice_ISIC"]), 4), "busi": round(float(r["dice_BUSI"]), 4),
-         "kvasir": round(float(r["dice_KVASIR"]), 4), "kub": round(float(r["dice_KUB"]), 4), "seeds": 1,
-         "protocol": "PROTOCOL_INCOMPARABLE (historical manifest v2)",
-         **prov("reports/tables/phase21_six_model_comparison.csv", "VAL808 (selection-consumed)", 808, "Dice proportion", EVAL_VER, "historical single run", "descriptive")} for r in perf],
-        "Table 5. Historical baseline comparison (not a controlled comparison)")
+        for a, r in t2.items()], "Table 4. Internal RA-MedFiLM-BARR (FULL) routing/safety ablation (in-sample; conditional on routed set, not all-image averages)")
+    primary_c3_row = {
+        "model": "RA-MedFiLM-BARR (FULL)",
+        "role": "PRIMARY_PROPOSED_METHOD",
+        "macro_dice_proportion": "NOT_ESTABLISHED",
+        "isic": "NOT_ESTABLISHED",
+        "busi": "NOT_ESTABLISHED",
+        "kvasir": "NOT_ESTABLISHED",
+        "kub": "NOT_ESTABLISHED",
+        "seeds": "0/3",
+        "protocol": "CONTROLLED C3 PENDING; 18/18 cells missing",
+        **prov("src/research/c3_baselines/controlled_results_schema.json", "phase4_v3 VAL808; selection-consumed", 808,
+               "Dice proportion", "controlled_c3_results_v2", "no compatible full-model runs", "specification")}
+    historical_c3_rows = [
+        {"model": ("GlobalMedFiLM (internal ablation reference)" if r["model_key"] == "global_medfilm" else r["display_name"]),
+         "role": ("INTERNAL_ABLATION_REFERENCE" if r["model_key"] == "global_medfilm" else "HISTORICAL_EXTERNAL_BASELINE"),
+         "macro_dice_proportion": round(float(r["macro_domain_dice"]), 4),
+         "isic": round(float(r["dice_ISIC"]), 4), "busi": round(float(r["dice_BUSI"]), 4),
+         "kvasir": round(float(r["dice_KVASIR"]), 4), "kub": round(float(r["dice_KUB"]), 4),
+         "seeds": 1, "protocol": "PROTOCOL_INCOMPARABLE (historical manifest v2)",
+         **prov("reports/tables/phase21_six_model_comparison.csv", "VAL808 (selection-consumed)", 808,
+                "Dice proportion", EVAL_VER, "historical single run", "descriptive")}
+        for r in perf
+    ]
+    out["table5_c3_baselines"] = write_table(
+        "table5_c3_baselines", [primary_c3_row] + historical_c3_rows,
+        "Table 5. Primary full-method versus five external baselines (pending controlled results); historical results are separate and protocol-incomparable")
     ds = rd(T / "c1_external_stress_domain_shift.csv")
     out["table6_external"] = write_table("table6_external", [
-        {"cohort": r["cohort"], "analogue": r["domain_analogue"], "n": r["n"], "global_dice": round(float(r["external_global_dice"]), 4),
-         "barr_dice": round(float(r["external_barr_dice"]), 4), "barr_minus_global_pp": round((float(r["external_barr_dice"]) - float(r["external_global_dice"])) * 100, 3),
+        {"cohort": r["cohort"], "analogue": r["domain_analogue"], "n": r["n"],
+         "internal_global_reference_dice": round(float(r["external_global_dice"]), 4),
+         "full_model_dice": round(float(r["external_barr_dice"]), 4),
+         "full_minus_internal_reference_pp": round((float(r["external_barr_dice"]) - float(r["external_global_dice"])) * 100, 3),
          **prov("reports/tables/c1_external_stress_domain_shift.csv", r["cohort"], r["n"], "Dice proportion; difference in pp", "c1_external_stress v1", "single retrospective evaluation", "exploratory")} for r in ds],
-        "Table 6. External retrospective stress test (exploratory)")
+        "Table 6. RA-MedFiLM-BARR (FULL) versus internal reference on a retrospective external stress test (exploratory)")
     ana = rd(T / "phase34_analytical_compute_summary_v1_3.csv")
     lat = rd(T / "phase34_batch1_latency_results_v1_4.csv")
     out["table7_complexity"] = write_table("table7_complexity", [

@@ -1,9 +1,11 @@
 {
-  "schema": "controlled_c3_results_v1",
+  "schema": "controlled_c3_results_v2",
   "required_top_level": [
     "status",
     "evidence_class",
-    "reference_arm",
+    "primary_model",
+    "primary_model_key",
+    "comparison_direction",
     "expected_runs",
     "missing_runs",
     "protocol_sha256",
@@ -12,8 +14,8 @@
   "required_run_fields": [
     "model_key",
     "seed",
+    "role",
     "status",
-    "best_epoch",
     "macro_equal_domain_dice",
     "per_domain",
     "parameter_count",
@@ -22,9 +24,77 @@
     "history_sha256",
     "best_checkpoint_sha256"
   ],
+  "required_manifest_artifact_hashes": [
+    "config_file_sha256",
+    "history_sha256",
+    "best_checkpoint_sha256",
+    "evaluation_sha256",
+    "per_image_metrics_sha256",
+    "per_domain_metrics_sha256",
+    "pre_evaluation_manifest_sha256"
+  ],
   "forbidden_evidence_classes": [
     "SYNTHETIC_TEST_ONLY",
     "PROTOCOL_INCOMPARABLE"
   ],
-  "historical_results_policy": "Keep historical protocol-incomparable C3 results in a separate section; never merge them into controlled run records."
+  "primary_model": {
+    "model_key": "ra_medfilm_barr_full",
+    "identity": "RA-MedFiLM-BARR (FULL)",
+    "components": ["G", "R_psi", "B_phi", "S_omega", "routing_fusion"],
+    "comparison_direction": "RA-MedFiLM-BARR (FULL) minus external baseline"
+  },
+  "external_baselines": [
+    "unet",
+    "unetpp",
+    "attention_unet",
+    "deeplabv3plus",
+    "transformer_mit_unet"
+  ],
+  "expected_model_seed_cells": 18,
+  "seed_policy": [42, 123, 3407],
+  "full_model_bundle_policy": "A full-model result requires same-seed G/R_psi/B_phi/S_omega checkpoints and exact dependency hashes. Historical Phase 29 downstream seeds over fixed GlobalMedFiLM seed 42 are not independent end-to-end C3 cells.",
+  "selection_policy": {
+    "population": "phase4_v3 VAL808; selection-consumed",
+    "primary_metric": "equal-domain macro Dice",
+    "same_rule_for_all_models": true,
+    "tie_break": "lower validation loss, then earlier epoch",
+    "full_model_selection": "select only among compatible same-seed full bundles; never use GlobalMedFiLM-only outputs as FULL scores"
+  },
+  "metric_policy": {
+    "foreground": "binary",
+    "threshold": 0.5,
+    "primary": "equal-domain macro Dice",
+    "secondary": ["per-domain Dice", "IoU", "precision", "recall", "per-image paired differences", "HD95"],
+    "hd95": {
+      "unit": "pixels; no physical spacing is assumed",
+      "method": "symmetric 95th percentile surface distance with the repository's 8-connected boundary implementation",
+      "empty_or_undefined": "null per-image value with a nonempty undefined_reason; per-domain mean includes only defined cases and reports n_defined",
+      "undefined_reasons": ["both_empty", "empty_prediction", "empty_ground_truth"],
+      "empty_mask_convention": "both-empty, empty-prediction, and empty-ground-truth cases are explicitly undefined under the existing metric helper; identical for FULL and all baselines"
+    },
+    "paired_roster": "identical VAL sample IDs, domain labels, task IDs and denominators per matched seed"
+  },
+  "cost_policy": {
+    "parameter_count": "sum distinct learned component parameters; shared checkpoints counted once",
+    "analytical_compute": "component/path-specific MAC accounting; conditional route paths reported separately",
+    "latency": "measured separately with device, software, batch size, warm-up and repetition counts",
+    "unsupported_comparisons": "no lower-cost claim without compatible end-to-end measurements"
+  },
+  "secondary_evaluations": {
+    "component_ablation": "Existing A1-A8 evidence is in-sample; only A7-vs-A8 is the prespecified one-factor safety contrast.",
+    "router_budget_sensitivity": "pending separate non-primary analysis; do not retune on ROUTER_HOLDOUT or external cohorts",
+    "safety_harm_benefit": "retain all-case and conditional denominators; segmentation harm is not clinical safety",
+    "lesion_size_and_foreground_proportion": "pending eligible-label definition and preregistration",
+    "domain_shift_external_stress": "report existing 884-case retrospective cohort separately; no rerun",
+    "corruption_robustness": "pending a frozen corruption protocol; no execution",
+    "accuracy_compute_tradeoff": "pending matched full-system and baseline measurements"
+  },
+  "internal_ablation_hierarchy": {
+    "P0": "Identity-FiLM control; C1 NOT_ESTABLISHED",
+    "P1": "Learned-FiLM GlobalMedFiLM without BARR; internal reference",
+    "P2": "P1 plus always-on regional refinement; A1 descriptive in-sample endpoint",
+    "P3": "P1 plus router/refiner without post-safety; A6/A7 descriptive; not a controlled P2 progression",
+    "P4": "RA-MedFiLM-BARR (FULL); A8; A7-vs-A8 isolates S_omega only"
+  },
+  "historical_results_policy": "Keep historical protocol-incomparable C3 results in a separate section. GlobalMedFiLM remains an internal ablation reference and must never fill a full-model result cell."
 }

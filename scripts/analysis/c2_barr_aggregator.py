@@ -25,6 +25,46 @@ OUT = ROOT / "reports" / "tables" / "c2_barr"
 DOMAINS = ("ISIC", "BUSI", "KVASIR", "KUB")
 EPS = 1e-9
 SEEDS = (42, 123, 3407)
+FULL_MODEL = "RA-MedFiLM-BARR (FULL)"
+GLOBAL_REFERENCE = "GlobalMedFiLM (internal ablation reference)"
+
+ABLATION_HIERARCHY = [
+    {
+        "stage": "P0",
+        "identity": "Identity-FiLM control, without BARR",
+        "existing_arms": [],
+        "status": "NOT_ESTABLISHED",
+        "reason": "Frozen C1-C runs are pending; no Phase-28 A-arm is an identity-FiLM control.",
+    },
+    {
+        "stage": "P1",
+        "identity": "Learned-FiLM GlobalMedFiLM, without BARR",
+        "existing_arms": ["Phase-21 GlobalMedFiLM", "A0"],
+        "status": "HISTORICAL_INTERNAL_REFERENCE",
+        "reason": "A0 is a global-only learned-FiLM endpoint, not the C1 identity control.",
+    },
+    {
+        "stage": "P2",
+        "identity": "P1 plus regional refinement without selective routing",
+        "existing_arms": ["A1"],
+        "status": "IN_SAMPLE_ENDPOINT_BY_CONSTRUCTION",
+        "reason": "A1 is unconditional refinement on ROUTER_DEVELOPMENT; not a controlled C1 effect.",
+    },
+    {
+        "stage": "P3",
+        "identity": "P1 plus router and regional refinement without post-safety",
+        "existing_arms": ["A6", "A7"],
+        "status": "DESCRIPTIVE_COMPONENT_PROGRESSION",
+        "reason": "A1-to-A6/A7 changes routing and budget; it is not a one-factor matched contrast.",
+    },
+    {
+        "stage": "P4",
+        "identity": FULL_MODEL,
+        "existing_arms": ["A8"],
+        "status": "FULL_SYSTEM_DEVELOPMENT_EVIDENCE",
+        "reason": "A7-to-A8 is the prespecified matched S_omega contrast; A1-to-A8 is confounded.",
+    },
+]
 
 
 def rd(p):
@@ -187,7 +227,13 @@ def main(argv=None) -> int:
         "ROUTER_DEVELOPMENT": {"evidence_class": "in-sample (subset of TRAIN5832)", "n": 4957, "unit": "Dice proportion"},
         "ROUTER_HOLDOUT875": {"evidence_class": "historical; disclosed deviation; not to be reused for tuning", "n": 875, "unit": "Dice proportion"},
         "EXTERNAL_RETROSPECTIVE_884": {"evidence_class": "exploratory retrospective stress test; not prospective validation", "n": 884, "unit": "Dice proportion; differences in percentage points"}}
-    result = {"schema": "c2_barr_aggregate_v1", "populations": pops, "pooling": "NONE - populations are reported separately",
+    result = {"schema": "c2_barr_aggregate_v2",
+              "primary_model": FULL_MODEL,
+              "internal_reference": GLOBAL_REFERENCE,
+              "primary_model_outputs": "A8/full BARR and Phase-29 final outputs; never substitute GlobalMedFiLM-only outputs",
+              "ablation_hierarchy": ABLATION_HIERARCHY,
+              "phase29_seed_scope": "R_psi/B_phi/S_omega downstream seeds 42/123/3407 share one fixed seed-42 GlobalMedFiLM backbone; not end-to-end full-model seed replicates",
+              "populations": pops, "pooling": "NONE - populations are reported separately",
               "val808_by_seed": v, "router_holdout_historical": h, "development_arms": d, "external": e, "compute": cp,
               "denominator_policy": "all-case, routed, adopted, rejected and never-selected are reported separately; conditional means are not all-case averages",
               "checks": checks, "sources": {rel(p): sha(p) for p in srcs}, "inference_rerun": False, "protected_data_accessed": False}
@@ -197,17 +243,19 @@ def main(argv=None) -> int:
     def w(name, header, rows):
         with open(out / name, "w", newline="", encoding="utf-8") as f:
             wr = csv.writer(f, lineterminator="\n"); wr.writerow(header); wr.writerows(rows)
-    w("c2_val808_per_domain.csv", ["population", "seed", "domain", "n", "global_dice", "barr_dice", "delta_dice"],
-      [["VAL808", r["seed"], k, x["n"], x["global"], x["barr"], x["delta"]] for r in v for k, x in r["per_domain"].items() if k != "_macro"]
-      + [["VAL808", r["seed"], "MACRO_EQUAL_DOMAIN", 808, r["per_domain"]["_macro"]["global"], r["per_domain"]["_macro"]["barr"], r["per_domain"]["_macro"]["delta"]] for r in v])
+    w("c2_val808_per_domain.csv", ["population", "primary_model", "internal_reference", "seed", "domain", "n", "global_dice", "full_model_dice", "full_minus_global_dice"],
+      [["VAL808", FULL_MODEL, GLOBAL_REFERENCE, r["seed"], k, x["n"], x["global"], x["barr"], x["delta"]] for r in v for k, x in r["per_domain"].items() if k != "_macro"]
+      + [["VAL808", FULL_MODEL, GLOBAL_REFERENCE, r["seed"], "MACRO_EQUAL_DOMAIN", 808, r["per_domain"]["_macro"]["global"], r["per_domain"]["_macro"]["barr"], r["per_domain"]["_macro"]["delta"]] for r in v])
     fk = list(v[0]["funnel"].keys())
     w("c2_funnels.csv", ["population", "unit"] + fk,
       [["VAL808", f"seed{r['seed']}"] + [r["funnel"][k] for k in fk] for r in v]
       + [["ROUTER_HOLDOUT875 (historical)", "A8"] + [h["funnel"][k] for k in fk]]
       + [["EXTERNAL_884", k] + [x["funnel"][k2] for k2 in fk] for k, x in e.items()])
     w("c2_development_arms.csv", list(d[0].keys()), [list(x.values()) for x in d])
-    w("c2_external.csv", ["cohort", "n", "global_dice", "barr_dice", "barr_minus_global_pp"],
-      [[k, x["funnel"]["n_all"], x["global_dice"], x["barr_dice"], x["barr_minus_global_pp"]] for k, x in e.items()])
+    w("c2_external.csv", ["cohort", "primary_model", "internal_reference", "n", "global_dice",
+                          "full_model_dice", "full_minus_global_pp"],
+      [[k, FULL_MODEL, GLOBAL_REFERENCE, x["funnel"]["n_all"], x["global_dice"],
+        x["barr_dice"], x["barr_minus_global_pp"]] for k, x in e.items()])
     print("C2 aggregation OK;", len(checks), "checks passed; out:", rel(out))
     return 0
 
