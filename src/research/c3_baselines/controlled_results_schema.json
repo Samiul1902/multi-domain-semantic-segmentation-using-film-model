@@ -1,0 +1,30 @@
+{
+  "schema": "controlled_c3_results_v1",
+  "required_top_level": [
+    "status",
+    "evidence_class",
+    "reference_arm",
+    "expected_runs",
+    "missing_runs",
+    "protocol_sha256",
+    "protected_data_accessed"
+  ],
+  "required_run_fields": [
+    "model_key",
+    "seed",
+    "status",
+    "best_epoch",
+    "macro_equal_domain_dice",
+    "per_domain",
+    "parameter_count",
+    "analytical_compute",
+    "config_sha256",
+    "history_sha256",
+    "best_checkpoint_sha256"
+  ],
+  "forbidden_evidence_classes": [
+    "SYNTHETIC_TEST_ONLY",
+    "PROTOCOL_INCOMPARABLE"
+  ],
+  "historical_results_policy": "Keep historical protocol-incomparable C3 results in a separate section; never merge them into controlled run records."
+}
