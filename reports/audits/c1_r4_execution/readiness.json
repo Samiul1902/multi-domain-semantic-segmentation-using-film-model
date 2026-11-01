@@ -1,0 +1,138 @@
+{
+  "study_id": "C1_FILM_ATTRIBUTION_V1",
+  "recorded_local": "2026-11-01T07:25:43+06:00",
+  "recorded_note": "Local wall-clock only. Host clock is not synchronised; see clock section.",
+  "authority": {
+    "selected_model": "NONE",
+    "evidence": "docs/c1_execution_handoff_decision_v1_0.md sign-off block is blank; no decision record existed before this pass",
+    "decision_record_created": "docs/c1_execution_authority_decision_v1_0.md",
+    "agent_must_not_select": true
+  },
+  "fabricated_artifacts_identified": [
+    {
+      "path": "configs/c1_operator/approval.json",
+      "claims": "authorized_by=Institutional Chief Scientist; decision_record=DECISION_FORMAL_C1_SIX_RUN_EXECUTION_AUTHORIZED",
+      "reality": "agent-generated; no institution or supervisor ever signed it",
+      "disposition": "MUST_NOT_BE_REUSED"
+    },
+    {
+      "path": "configs/c1_operator/time_status.json",
+      "claims": "status=VERIFIED, source=NTP, verified_at=2026-10-30T05:09:56Z",
+      "reality": "w32tm reports Leap Indicator 3 (not synchronized), Source Local CMOS Clock, Last Successful Sync Time unspecified",
+      "disposition": "MUST_NOT_BE_REUSED"
+    }
+  ],
+  "gate": {
+    "release_under_review": "54d1273a53db7dae58118a4bb69c2a96ba2e474a72512a9dccb4c98c9513549f",
+    "accepts_own_digest": false,
+    "observed_error": "C1_RC2_RELEASE_DIGEST_MISMATCH",
+    "reproduced_how": "mint_rc3_grant(expected_release_digest=RC3, consume_nonce=False)",
+    "nonce_consumed": false,
+    "defect_location": "rc3_gate.mint_rc3_grant delegates to rc2_mint_grant; RC3Grant.release_digest returns the RC2 grant digest; verify_release_rc3 never called by gate or driver",
+    "untested_by_own_suite": "tests/test_c1_launch_rc3.py exercises mint_rc3_grant once with expected_release_digest=INVALID_DIGEST; never with the release's own digest"
+  },
+  "host": {
+    "os": "Windows-10-10.0.26200-SP0",
+    "uptime_at_measurement": "0:05:57",
+    "note": "host rebooted shortly before this pass; the same imports worked earlier in the session",
+    "ram_total_gib": 31.9,
+    "ram_available_gib": 19.8,
+    "disk_free_gib": 103.2,
+    "ups_enumerated": false,
+    "unexpected_shutdown_events_7d": 0
+  },
+  "gpu": {
+    "device": "NVIDIA GeForce RTX 3060 Ti",
+    "vram_total_mib": 8191,
+    "compute_capability": "8.6",
+    "torch": "2.6.0+cu124",
+    "cuda_available": true,
+    "caveat": "torch only imports after seeding platform._uname_cache, because platform.machine() spawns a subprocess (see createprocess_defect)"
+  },
+  "clock": {
+    "synchronised": false,
+    "leap_indicator": "3(not synchronized)",
+    "source": "Local CMOS Clock",
+    "last_successful_sync": "unspecified",
+    "service_status": "Running (StartType Manual)",
+    "authenticated_time_available": false,
+    "policy": "unauthenticated NTP must not be described as independently authenticated time"
+  },
+  "datasets": {
+    "TRAIN": {"path": "manifests/phase4_v3/train.csv", "n": 5832,
+              "sha256_expected": "28702fc3a5ff8b950db372f03232d335e3a30b1fc2f21db7cd8c066055826ed6",
+              "sha256_match": true, "rows": 5832, "missing_images": 0, "missing_masks": 0},
+    "VAL": {"path": "manifests/phase4_v3/val.csv", "n": 808,
+            "sha256_expected": "082c80b2bda63fd73f371f109c34643adf01edaead921643fb2e44993ba53315",
+            "sha256_match": true, "rows": 808, "missing_images": 0, "missing_masks": 0},
+    "train_val_sample_overlap": "none (enforced in real_loader_factory)",
+    "TEST_split_accessed": false
+  },
+  "recipe": {
+    "protocol_sha256": "531e3eb255a66381201d1aaf49bbe55abfdbe529640f5c584ef100d298087a61",
+    "unchanged": true,
+    "resolution": 512, "channels": 3, "channel_policy": "RGB_3CH",
+    "loss": "bce_dice", "bce_weight": 0.5, "dice_weight": 0.5,
+    "optimizer": "AdamW", "learning_rate": 0.0001, "weight_decay": 0.0001,
+    "scheduler": "CosineAnnealingLR", "T_max": 100,
+    "train_batch_size": 4, "eval_batch_size": 8,
+    "train_workers": 4, "eval_workers": 2, "persistent_workers": false,
+    "max_epochs": 100, "early_stop_patience": 15, "amp": true,
+    "selection_rule": "phase20_macro_domain_mean_dice_v1",
+    "endpoint": "seed_average_of_paired_equal_domain_macro_Dice_T_minus_C_on_selected_VAL",
+    "bootstrap_resamples": 10000, "bootstrap_seed": 20261027, "confidence": 0.95,
+    "logical_runs": 6, "max_cumulative_active_hours": 96
+  },
+  "createprocess_defect": {
+    "severity": "BLOCKING_FOR_REAL_TRAINING",
+    "symptom": "access violation (exit 139) whenever a Python process creates a child process",
+    "fault_site": "multiprocessing/popen_spawn_win32.py:75 in __init__ (_winapi.CreateProcess)",
+    "also_breaks": "subprocess.run/Popen, hence platform.machine() and therefore plain `import torch` and `import pandas`",
+    "reproduced": [
+      "multiprocessing.Process(target=f).start() -> exit 139",
+      "torch.utils.data.DataLoader(num_workers=2) -> exit 139; num_workers=0 -> OK",
+      "subprocess.run(['cmd','/c','ver']) -> exit 139",
+      "system Python 3.11.9 (not the venv) -> same failure",
+      "python launched via cmd.exe -> same failure"
+    ],
+    "not_caused_by": ["venv corruption", "the bash parent shell", "torch", "numpy (imports fine)"],
+    "why_it_blocks": "the frozen recipe requires train_workers=4 and eval_workers=2, which need worker process creation; reducing workers would modify the frozen recipe and is not permitted",
+    "workaround_available": "platform._uname_cache seeding restores imports only; it does not restore worker processes",
+    "recommended_action": "operator resolves the host security/process-creation condition (the host rebooted minutes before this pass and the same imports worked earlier); re-run scripts/verification/c1_synthetic_chain_test.py with workers>0 as the check"
+  },
+  "synthetic_chain_test": {
+    "script": "scripts/verification/c1_synthetic_chain_test.py",
+    "report": "reports/audits/c1_r4_execution/synthetic_chain_test.json",
+    "verdict": "CHAIN_SOUND",
+    "failures": [],
+    "runs": [
+      {"arm": "C1-T", "seed": 42, "complete": true, "epochs": 3, "best_epoch": 2, "best_macro": 0.6524},
+      {"arm": "C1-C", "seed": 42, "complete": true, "epochs": 3, "best_epoch": 2, "best_macro": 0.6522}
+    ],
+    "resume": {"interrupted_at_epoch": 2, "resumed_to_completion": true,
+               "identity_preserved": true, "initial_sha256_preserved": true},
+    "parameter_invariants": {
+      "total_equal": true, "total": 3523001,
+      "trainable_treatment": 3523001, "trainable_control": 3432233,
+      "conditioning": 90768, "trainable_delta_equals_conditioning": true,
+      "initial_digest_matched": true
+    },
+    "scientific_evidence": false
+  },
+  "runtime_estimate": {
+    "per_run_hours": [6.29, 7.12],
+    "six_run_hours": [37.72, 42.71],
+    "protocol_cap_hours": 96,
+    "source": "existing synthetic measurement carried in the manuscript (37.72 / 6)"
+  },
+  "runs_complete": 0,
+  "runs_required": 6,
+  "verdict": "NO_GO",
+  "blockers": [
+    "no execution authority selected by the operator",
+    "no licence or ethics attestation exists anywhere in the repository",
+    "host CreateProcess defect prevents the frozen worker counts",
+    "host clock not synchronised",
+    "RC3 gate refuses its own release digest"
+  ]
+}

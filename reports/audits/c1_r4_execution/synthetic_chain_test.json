@@ -1,0 +1,108 @@
+{
+  "synthetic_only": true,
+  "scientific_evidence": false,
+  "runs": [
+    {
+      "arm": "C1-T",
+      "seed": 42,
+      "result_complete": true,
+      "epochs": 3,
+      "best_epoch": 2,
+      "best_macro": 0.6524399220943451,
+      "identity": "170f02eaeba3550f30b05af0515aa797fe73e4949479c9b9b3b2fca63a5a7f66",
+      "initial_sha256": "77b74cf12446a28b36eb4813f7ed628e0e9da753bcf0c41b679d67cffc94fe11",
+      "counts": {
+        "total": 3523001,
+        "conditioning": 90768,
+        "backbone": 3432233,
+        "trainable": 3523001,
+        "frozen": 0,
+        "parameter_bytes_fp32": 14092004
+      },
+      "artifacts": {
+        "lifecycle": true,
+        "latest": true,
+        "epoch_ckpts": [
+          "epoch-0001-90e3316e369149c093864a73a3c334df.pt",
+          "epoch-0002-f5cb8ddaa72042aab95893b73b32e88a.pt",
+          "epoch-0003-43c3746d3c5546cd9f931ece811b1c0e.pt"
+        ]
+      },
+      "root": "C:\\Users\\user\\AppData\\Local\\Temp\\c1_synthetic_chain\\C1-T_seed42"
+    },
+    {
+      "arm": "C1-C",
+      "seed": 42,
+      "result_complete": true,
+      "epochs": 3,
+      "best_epoch": 2,
+      "best_macro": 0.6521595790982246,
+      "identity": "7ab38db0fc93760e156dd19ae382313201a941512c69a204771c63ae4fc01521",
+      "initial_sha256": "77b74cf12446a28b36eb4813f7ed628e0e9da753bcf0c41b679d67cffc94fe11",
+      "counts": {
+        "total": 3523001,
+        "conditioning": 90768,
+        "backbone": 3432233,
+        "trainable": 3432233,
+        "frozen": 90768,
+        "parameter_bytes_fp32": 14092004
+      },
+      "artifacts": {
+        "lifecycle": true,
+        "latest": true,
+        "epoch_ckpts": [
+          "epoch-0001-c5766a389693494a8d0ac6030c0be4f4.pt",
+          "epoch-0002-f1ea8756ec994784a8658fcc2d7bbe5d.pt",
+          "epoch-0003-cd58bdae331d4bca94dd45d23d32e21c.pt"
+        ]
+      },
+      "root": "C:\\Users\\user\\AppData\\Local\\Temp\\c1_synthetic_chain\\C1-C_seed42"
+    }
+  ],
+  "checks": {
+    "treatment": {
+      "total": 3523001,
+      "trainable": 3523001,
+      "conditioning": 90768
+    },
+    "control": {
+      "total": 3523001,
+      "trainable": 3432233,
+      "conditioning": 90768
+    },
+    "total_parameters_equal": true,
+    "trainable_delta": 90768,
+    "conditioning_parameters": 90768,
+    "initial_digest_matched": true
+  },
+  "failures": [],
+  "host_shim_required": "platform._uname_cache",
+  "resume": {
+    "identity_preserved": true,
+    "initial_sha256_preserved": true,
+    "mid_artifacts": {
+      "lifecycle": true,
+      "latest": true,
+      "epoch_ckpts": [
+        "epoch-0001-711f686b3215432a8f693b7af01c78e0.pt",
+        "epoch-0002-5630dc4d0faa49df986697f24e24b83f.pt"
+      ]
+    },
+    "final": {
+      "complete": true,
+      "epochs": 3,
+      "best_epoch": 2
+    },
+    "artifacts": {
+      "lifecycle": true,
+      "latest": true,
+      "epoch_ckpts": [
+        "epoch-0001-711f686b3215432a8f693b7af01c78e0.pt",
+        "epoch-0002-5630dc4d0faa49df986697f24e24b83f.pt",
+        "epoch-0003-49f51ae4b12d4488a59bbef2507c5717.pt"
+      ]
+    },
+    "root": "C:\\Users\\user\\AppData\\Local\\Temp\\c1_synthetic_chain\\C1-T_seed42_resume"
+  },
+  "verdict": "CHAIN_SOUND"
+}
