@@ -1,0 +1,251 @@
+{
+  "c1_runs_completed": 0,
+  "c1_status": "NOT_ESTABLISHED",
+  "figures": {
+    "fig01": {
+      "caveat": "Specification drawing; mapping to code in manuscript Methods.",
+      "evidence_class": "specification",
+      "files": [
+        "paper_doc/figures/fig01_method_architecture.pdf",
+        "paper_doc/figures/fig01_method_architecture.svg",
+        "paper_doc/figures/fig01_method_architecture.png"
+      ],
+      "source_sha256": {
+        "docs/ARCHITECTURE.md": "03df4693737d31b067cfcfa29ee480acc119a712db2a9933b0ace993f2d26d92"
+      },
+      "sources": [
+        "docs/ARCHITECTURE.md"
+      ],
+      "status": "READY",
+      "title": "Method architecture"
+    },
+    "fig02": {
+      "caveat": "Counts for VAL808 per domain; ISIC/BUSI/Kvasir lack patient IDs.",
+      "evidence_class": "descriptive",
+      "files": [
+        "paper_doc/figures/fig02_dataset_protocol.pdf",
+        "paper_doc/figures/fig02_dataset_protocol.svg",
+        "paper_doc/figures/fig02_dataset_protocol.png",
+        "paper_doc/figures/fig02_dataset_protocol_source.csv"
+      ],
+      "source_sha256": {
+        "manifests/phase4_v3/val.csv": "082c80b2bda63fd73f371f109c34643adf01edaead921643fb2e44993ba53315",
+        "reports/planning/c1_film_attribution_v1/protocol.json": "531e3eb255a66381201d1aaf49bbe55abfdbe529640f5c584ef100d298087a61"
+      },
+      "sources": [
+        "reports/planning/c1_film_attribution_v1/protocol.json",
+        "manifests/phase4_v3/val.csv"
+      ],
+      "status": "READY",
+      "title": "Dataset and experimental protocol"
+    },
+    "fig03": {
+      "files": [],
+      "reason": "C1 status NOT_ESTABLISHED: 0/6 runs completed",
+      "status": "PENDING_GENUINE_EXPERIMENTAL_DATA",
+      "title": "C1 paired FiLM attribution"
+    },
+    "fig04": {
+      "files": [],
+      "reason": "No real C1 run logs exist",
+      "status": "PENDING_GENUINE_EXPERIMENTAL_DATA",
+      "title": "C1 learning dynamics"
+    },
+    "fig05": {
+      "caveat": "Development panel is in-sample (subset of TRAIN5832); external panel exploratory. Adopted-case outcomes are conditional, not all-case averages.",
+      "evidence_class": "descriptive",
+      "files": [
+        "paper_doc/figures/fig05_barr_routing_safety.pdf",
+        "paper_doc/figures/fig05_barr_routing_safety.svg",
+        "paper_doc/figures/fig05_barr_routing_safety.png",
+        "paper_doc/figures/fig05_barr_routing_safety_source.csv"
+      ],
+      "source_sha256": {
+        "reports/tables/c1_external_stress_paired.csv": "eb18c711d24e75e3452b399bde1a3e4a8f8b2ee4486462705330e46357a43126",
+        "reports/tables/phase28_table_02_arm_primary_metrics.csv": "171168f973d0a210913b567c4b743f134b1918f3d22be55a6e7046890400e3fc"
+      },
+      "sources": [
+        "reports/tables/phase28_table_02_arm_primary_metrics.csv",
+        "reports/tables/c1_external_stress_paired.csv"
+      ],
+      "status": "READY",
+      "title": "BARR routing and safety funnel"
+    },
+    "fig06": {
+      "caveat": "Development-selected population; global backbone fixed across seeds, so seed spread excludes backbone variability; no CI.",
+      "evidence_class": "descriptive",
+      "files": [
+        "paper_doc/figures/fig06_internal_performance.pdf",
+        "paper_doc/figures/fig06_internal_performance.svg",
+        "paper_doc/figures/fig06_internal_performance.png",
+        "paper_doc/figures/fig06_internal_performance_source.csv"
+      ],
+      "source_sha256": {
+        "reports/tables/phase29_val808_seedwise_domain_metrics.csv": "0edbb9606c80196f5207f20f14a2e94ce220ea6a09b547cfcf6e00307982f37e"
+      },
+      "sources": [
+        "reports/tables/phase29_val808_seedwise_domain_metrics.csv"
+      ],
+      "status": "READY",
+      "title": "Internal VAL808 Global vs BARR"
+    },
+    "fig07": {
+      "caveat": "884 cases; Stones n=20 (14 stone-free); no pixel spacing; internal anchor is a VAL808 reference, not the same population. pp = percentage points of Dice.",
+      "evidence_class": "exploratory",
+      "files": [
+        "paper_doc/figures/fig07_external_stress_test.pdf",
+        "paper_doc/figures/fig07_external_stress_test.svg",
+        "paper_doc/figures/fig07_external_stress_test.png",
+        "paper_doc/figures/fig07_external_stress_test_source.csv"
+      ],
+      "source_sha256": {
+        "reports/tables/c1_external_stress_domain_shift.csv": "172bae0c7320794451bd71b0de56c29cfaca65398597a12b0d136e5d7a2a9642"
+      },
+      "sources": [
+        "reports/tables/c1_external_stress_domain_shift.csv"
+      ],
+      "status": "READY",
+      "title": "External retrospective stress test"
+    },
+    "fig08": {
+      "caveat": "Raster panels reused from earlier verified generation; not regenerated. Verify panel contents against the selection record before submission.",
+      "evidence_class": "descriptive",
+      "files": [
+        "paper_doc/figures/fig08_qualitative_reused.pdf",
+        "paper_doc/figures/fig08_qualitative_reused.svg",
+        "paper_doc/figures/fig08_qualitative_reused.png",
+        "paper_doc/figures/fig08_qualitative_reused_source.csv"
+      ],
+      "source_sha256": {
+        "reports/figures/fig6_external_cvc.png": "69f62d82fc83f860eabbe03490a4c7d766b04e6172b0bfc4c23bc4a7486b0c43",
+        "reports/figures/fig7_external_breast.png": "e7843088868068dbecea3ea28e0077d209bc3d04694b90b725bac569528152fd",
+        "reports/figures/fig8_external_stones.png": "542419f8cb752893825854ddfea7c9a171fbbee9519160c11a6841c568420bb0"
+      },
+      "sources": [
+        "reports/figures/fig6_external_cvc.png",
+        "reports/figures/fig7_external_breast.png",
+        "reports/figures/fig8_external_stones.png"
+      ],
+      "status": "READY",
+      "title": "Qualitative comparisons (reused)"
+    },
+    "fig09": {
+      "caveat": "Stone-free failure shown unhidden; per-case qualitative examples are in Figure 8's reused panels (adopted/not-adopted).",
+      "evidence_class": "exploratory",
+      "files": [
+        "paper_doc/figures/fig09_failure_analysis.pdf",
+        "paper_doc/figures/fig09_failure_analysis.svg",
+        "paper_doc/figures/fig09_failure_analysis.png",
+        "paper_doc/figures/fig09_failure_analysis_source.csv"
+      ],
+      "source_sha256": {
+        "reports/tables/c1_external_stress_domain_shift.csv": "172bae0c7320794451bd71b0de56c29cfaca65398597a12b0d136e5d7a2a9642",
+        "reports/tables/c1_external_stress_paired.csv": "eb18c711d24e75e3452b399bde1a3e4a8f8b2ee4486462705330e46357a43126",
+        "reports/tables/c1_external_stress_per_case.csv": "f040678476d0a2c24a702cf45f02956ae7afedcd12b8b28399a591409d02f2b0"
+      },
+      "sources": [
+        "reports/tables/c1_external_stress_paired.csv",
+        "reports/tables/c1_external_stress_per_case.csv",
+        "reports/tables/c1_external_stress_domain_shift.csv"
+      ],
+      "status": "READY",
+      "title": "Failure analysis"
+    },
+    "fig10": {
+      "caveat": "Baseline Dice values are protocol-incomparable; latency covers Global/skip/execute paths only and BARR is not shown to be cheaper than Global.",
+      "evidence_class": "descriptive",
+      "files": [
+        "paper_doc/figures/fig10_accuracy_vs_cost.pdf",
+        "paper_doc/figures/fig10_accuracy_vs_cost.svg",
+        "paper_doc/figures/fig10_accuracy_vs_cost.png",
+        "paper_doc/figures/fig10_accuracy_vs_cost_source.csv"
+      ],
+      "source_sha256": {
+        "reports/tables/phase21_six_model_comparison.csv": "81ee9990f90c4ef7c035ec89195cddb4582f72a533e9dd0e6fe421f7ca4fae45",
+        "reports/tables/phase21_six_model_compute.csv": "5e88da50faaee41aba9efaf2c6ad07d92f5d5e6be058a727f00969d9ed9b8a24",
+        "reports/tables/phase34_analytical_compute_summary_v1_3.csv": "bbe1d933c24e297454ec7afee0f64d00bc79dbcf815d747df2ec2f742c93f71f",
+        "reports/tables/phase34_batch1_latency_results_v1_4.csv": "da5292d4551209339b3880c0e64d4152007eb42e7c262ad296bc2c2ec586ab26"
+      },
+      "sources": [
+        "reports/tables/phase21_six_model_compute.csv",
+        "reports/tables/phase21_six_model_comparison.csv",
+        "reports/tables/phase34_batch1_latency_results_v1_4.csv",
+        "reports/tables/phase34_analytical_compute_summary_v1_3.csv"
+      ],
+      "status": "READY",
+      "title": "Accuracy versus computational cost"
+    }
+  },
+  "protected_data_accessed": false,
+  "protocol_sha256": "531e3eb255a66381201d1aaf49bbe55abfdbe529640f5c584ef100d298087a61",
+  "schema": "paper_asset_manifest_v1",
+  "tables": {
+    "table1_dataset_splits": {
+      "files": [
+        "paper_doc/tables/table1_dataset_splits.csv",
+        "paper_doc/tables/table1_dataset_splits.md",
+        "paper_doc/tables/table1_dataset_splits.tex"
+      ],
+      "status": "READY"
+    },
+    "table2_architecture_params": {
+      "files": [
+        "paper_doc/tables/table2_architecture_params.csv",
+        "paper_doc/tables/table2_architecture_params.md",
+        "paper_doc/tables/table2_architecture_params.tex"
+      ],
+      "status": "READY"
+    },
+    "table3_c1_paired": {
+      "files": [
+        "paper_doc/tables/table3_c1_paired.csv",
+        "paper_doc/tables/table3_c1_paired.md",
+        "paper_doc/tables/table3_c1_paired.tex"
+      ],
+      "status": "READY"
+    },
+    "table4_c2_ablation": {
+      "files": [
+        "paper_doc/tables/table4_c2_ablation.csv",
+        "paper_doc/tables/table4_c2_ablation.md",
+        "paper_doc/tables/table4_c2_ablation.tex"
+      ],
+      "status": "READY"
+    },
+    "table5_c3_baselines": {
+      "files": [
+        "paper_doc/tables/table5_c3_baselines.csv",
+        "paper_doc/tables/table5_c3_baselines.md",
+        "paper_doc/tables/table5_c3_baselines.tex"
+      ],
+      "status": "READY"
+    },
+    "table6_external": {
+      "files": [
+        "paper_doc/tables/table6_external.csv",
+        "paper_doc/tables/table6_external.md",
+        "paper_doc/tables/table6_external.tex"
+      ],
+      "status": "READY"
+    },
+    "table7_complexity": {
+      "files": [
+        "paper_doc/tables/table7_complexity.csv",
+        "paper_doc/tables/table7_complexity.md",
+        "paper_doc/tables/table7_complexity.tex"
+      ],
+      "status": "READY"
+    },
+    "table8_failures": {
+      "files": [
+        "paper_doc/tables/table8_failures.csv",
+        "paper_doc/tables/table8_failures.md",
+        "paper_doc/tables/table8_failures.tex"
+      ],
+      "status": "READY"
+    }
+  },
+  "unsupported_by_existing_evidence": [
+    "Per-case Phase-29 BARR qualitative panels (no regenerated panels; Figure 8 reuses external panels only)"
+  ]
+}

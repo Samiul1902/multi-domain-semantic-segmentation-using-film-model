@@ -405,3 +405,51 @@ The external stress test in §13.1 adds a boundary to that claim that should not
 8. **Ronneberger, O., Fischer, P., & Brox, T.** (2015). U-Net: Convolutional networks for biomedical image segmentation. *Medical Image Computing and Computer-Assisted Intervention (MICCAI)*, 234–241. [DOI: 10.1007/978-3-319-24574-4_28]
 9. **Teerapittayanon, S., McDanel, B., & Kung, H. T.** (2016). BranchyNet: Fast inference via early exiting from deep neural networks. *23rd International Conference on Pattern Recognition (ICPR)*, 2464–2469. [DOI: 10.1109/ICPR.2016.7900006]
 10. **Wang, G., Li, W., Zuluaga, M. A., Pratt, R., Patel, P. A., Aertsen, M., ... & Vercauteren, T.** (2018). Interactive medical image segmentation using deep learning with image-specific fine-tuning. *IEEE Transactions on Medical Imaging*, 37(7), 1562–1573. [DOI: 10.1109/TMI.2018.2794302]
+
+---
+
+## 21. Generated Paper Assets, Reproducibility and Reporting Status (added; earlier sections unchanged)
+
+**Status.** C1 has 0/6 real runs; the primary C1 result is `NOT_ESTABLISHED`. This manuscript is **not** ready for journal submission. Authoritative asset status is recorded in `paper_asset_manifest.json`.
+
+### 21.1 Figures (all under `paper_doc/figures/`; each exported as PDF, SVG, 600 DPI PNG, plus `*_source.csv`)
+
+| Figure | Content | Status | Evidence class |
+|---|---|---|---|
+| 1 | Architecture specification (C1 vs C2 regions) | Ready | specification |
+| 2 | Domains, VAL808 composition, frozen splits, matched-control design | Ready | descriptive |
+| 3 | C1 paired FiLM attribution | **Pending** (no real runs) | – |
+| 4 | C1 learning dynamics | **Pending** (no real run logs) | – |
+| 5 | BARR routing funnel (development in-sample; external exploratory) | Ready | descriptive / exploratory |
+| 6 | VAL808 GlobalMedFiLM vs BARR by domain (three seeds, fixed global backbone, no CI) | Ready | descriptive (selection-consumed) |
+| 7 | External retrospective stress test: level, difference (axis ±1 pp), domain shift | Ready | exploratory |
+| 8 | External qualitative panels reused unchanged from earlier generation | Ready (reused raster) | descriptive |
+| 9 | Failure behavior: 34/884 accepted-worsened, 45/884 safety-rejected, 700/884 not selected, 14/14 stone-free images with predicted foreground | Ready | exploratory |
+| 10 | Analytical GMACs vs accuracy; measured batch-1 latency (separate panels) | Ready | analytical / descriptive |
+
+Figure captions must repeat: Dice values are proportions (0–1); "pp" means percentage points of Dice; Figure 6 and Table 4 use development-selected or in-sample populations; baseline accuracies in Figure 10 are protocol-incomparable.
+
+### 21.2 Tables (`paper_doc/tables/*.csv|md|tex`)
+Table 1 dataset/splits; Table 2 architecture and parameters; Table 3 C1 paired attribution (**NOT_ESTABLISHED**); Table 4 C2 routing/safety ablation (ROUTER_DEVELOPMENT n=4,957, in-sample; conditional on routed sets); Table 5 historical baselines (PROTOCOL_INCOMPARABLE, one run each); Table 6 external retrospective cohorts; Table 7 computational complexity (analytical MACs and measured latency kept separate); Table 8 failure-case summary. Every row carries source artifact, population, n, metric unit, evaluation version, run provenance and evidence class.
+
+### 21.3 Verified denominators used in Figure 5
+- Development (A8, in-sample): 4,957 cases → 1,239 routed → 1,205 adopted / 34 rejected → 815 improved / 390 worsened among adopted (conditional harm 390/1,205; intent-to-treat 390/4,957).
+- External retrospective (n=884): 184 attempted → 139 adopted / 45 rejected → 96 improved / 34 worsened / 9 unchanged among adopted; 700 never attempted. Conditional improvements are **not** whole-cohort averages; whole-cohort BARR−Global Dice differences are +0.32 pp (CVC-ClinicDB), +0.03 pp (BrEaST), +0.13 pp (Stones), exploratory and uncertainty-free.
+
+### 21.4 Empty-mask and undefined-surface handling
+Per-case external records retain `gt_empty`, `pred_empty` and `surface_undefined_reason`; HD95/ASSD are undefined (excluded from means, with `n_defined` reported) when either mask is empty. Dice for empty-GT images is 0 when any foreground is predicted, so stone-free images (n=14) have Dice 0 and 14/14 received predicted foreground. Surface metrics are in pixels (no pixel spacing for external cohorts).
+
+### 21.5 C1 statistical analysis (implemented, awaiting data)
+`scripts/analysis/c1_results_aggregator.py` applies the frozen procedure: Δ_seed = mean over {ISIC, BUSI, Kvasir, KUB} of Dice(C1-T) − Dice(C1-C) on VAL808; estimate = mean of the three seed deltas; 10,000 domain-stratified paired cluster-percentile bootstrap draws, NumPy PCG64 seed 20261027, 95% interval; KUB resampled by patient (111 clusters), other domains by image because patient IDs are unavailable. Uncertainty is conditional on three fixed seeds; no p-value or confirmatory significance is claimed. With missing runs it emits `NOT_ESTABLISHED`; synthetic fixtures are labelled `SYNTHETIC_TEST_ONLY` and rejected in production mode.
+
+### 21.6 Reproducible commands (tested)
+```
+.\.venv\Scripts\python.exe scripts\analysis\c1_results_aggregator.py
+.\.venv\Scripts\python.exe scripts\analysis\build_paper_assets.py            # partial build
+.\.venv\Scripts\python.exe scripts\analysis\build_paper_assets.py --strict   # exits 2 while C1 figures are pending
+.\.venv\Scripts\python.exe -m pytest tests\test_paper_assets.py tests\test_c1_artifact_pipeline.py tests\test_c1_training_integration.py -q
+```
+Synthetic C1 training, resume and checkpoint-recovery tests are in `tests/test_c1_training_integration.py`; roster and patient-cluster verification (808 VAL images, 111 KUB patients) is in `tests/test_c1_artifact_pipeline.py`. Two consecutive asset builds produced byte-identical outputs.
+
+### 21.7 CLAIM 2024 coverage and gaps
+Covered by existing text: data sources, partitions, model description, training recipe, metrics, failure analysis, limitations. Not yet satisfied: primary C1 result, independent test-set evaluation, protocol-faithful baselines (C3), ethics/approval statement (none claimed), dataset licence verification per cohort, patient-level split verification for ISIC, BUSI and Kvasir. Clinical readiness is not claimed.
