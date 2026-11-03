@@ -15,10 +15,17 @@ class Metadata:
     resized_width: int = 64
     padding: tuple = (0,0,0,0)
 
+# ``extract_predicted_components`` is documented to take the **512-space** probability
+# map and rescale by ``512 // h_map``.  Production callers pass ``*_probability_512.npy``,
+# so a 64x64 fixture is interpreted as an 8x downsampled canvas and its coordinates are
+# multiplied by 8 -- which silently pushes blobs outside the content region.  These
+# fixtures therefore use 512x512 maps, matching the contract and the real callers.
+
 class TestPredictedROI(unittest.TestCase):
     def test_threshold_component_score_and_determinism(self):
-        p=np.zeros((64,64),np.float32); p[5:10,7:12]=.6; p[30:40,35:45]=.9
-        a=extract_predicted_components(p,.5,(64,64),Metadata()); b=extract_predicted_components(p,.5,(64,64),Metadata())
+        p=np.zeros((512,512),np.float32); p[5:10,7:12]=.6; p[30:40,35:45]=.9
+        meta=Metadata(resized_height=512,resized_width=512)
+        a=extract_predicted_components(p,.5,(512,512),meta); b=extract_predicted_components(p,.5,(512,512),meta)
         self.assertEqual(a,b); self.assertEqual(len(a),2); self.assertAlmostEqual(a[0]['max_probability'],.9,places=5)
     def test_zero_proposal(self):
         proposals=generate_predicted_rois(np.zeros((64,64),np.float32),Metadata(),(64,64),.2,.1,3,.5)
@@ -26,12 +33,14 @@ class TestPredictedROI(unittest.TestCase):
     def test_nms_and_topk(self):
         items=[{'bbox':(0,0,10,10),'max_probability':.9},{'bbox':(1,1,10,10),'max_probability':.8},{'bbox':(30,30,35,35),'max_probability':.7}]
         self.assertEqual(len(non_max_suppression(items,.3)),2)
-        p=np.zeros((64,64),np.float32); p[1:4,1:4]=.9;p[20:23,20:23]=.8;p[40:43,40:43]=.7
-        self.assertEqual(len(generate_predicted_rois(p,Metadata(),(64,64),.5,.1,2,.5)),2)
+        p=np.zeros((512,512),np.float32); p[1:4,1:4]=.9;p[20:23,20:23]=.8;p[40:43,40:43]=.7
+        meta=Metadata(resized_height=512,resized_width=512)
+        self.assertEqual(len(generate_predicted_rois(p,meta,(512,512),.5,.1,2,.5)),2)
     def test_margin_square_and_boundary(self):
         g=apply_context_margin((0,0,10,20),(64,64),.15); self.assertEqual(g['crop_side_pixels'],g['y2']-g['y1']); self.assertGreater(g['pad_top']+g['pad_left'],0); self.assertGreaterEqual(g['clip_y1'],0)
     def test_coordinate_mapping_with_padding(self):
-        meta=Metadata(scale=.5,resized_height=40,resized_width=60,padding=(2,12,2,12)); p=np.zeros((64,64),np.float32);p[17:22,7:12]=.8
+        # content region in 512 space is rows [top, top+resized_h) = [2, 42)
+        meta=Metadata(scale=.5,resized_height=40,resized_width=60,padding=(2,12,2,12)); p=np.zeros((512,512),np.float32);p[10:16,20:26]=.8
         c=extract_predicted_components(p,.5,(80,120),meta); self.assertEqual(len(c),1); self.assertTrue(0<=c[0]['bbox'][0]<80)
     def test_evaluation_separation_and_coverage(self):
         self.assertNotIn('gt',inspect.signature(generate_predicted_rois).parameters)
