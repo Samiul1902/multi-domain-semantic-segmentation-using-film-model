@@ -37,10 +37,6 @@ CANVAS = 512
 FORBIDDEN_NAMES = ("gt", "mask", "label", "target", "dice", "patient", "oracle", "truth")
 STATES = ("FORCED_SKIP", "SKIP_GLOBAL", "EXECUTE_THEN_ACCEPT", "EXECUTE_THEN_REJECT")
 
-#: public alias -- the three-tap recorder is reused by the FULL three-seed feature
-#: producer so that tap semantics stay single-sourced.
-TapRecorder = None  # bound below, after the class definition
-
 
 class InferenceValidityError(RuntimeError):
     pass
