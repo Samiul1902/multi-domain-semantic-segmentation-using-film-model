@@ -49,23 +49,9 @@ STAGE = "S"
 
 
 # --------------------------------------------------------------------------- #
-class BARRPostSafetyV1(nn.Module):
-    """Frozen Phase-25F post-safety module.  Returns one RAW logit."""
-
-    def __init__(self) -> None:
-        super().__init__()
-        self.fc1 = nn.Linear(R.S_FEATURE_DIM, R.S_HIDDEN[0])
-        self.fc2 = nn.Linear(R.S_HIDDEN[0], R.S_HIDDEN[1])
-        self.fc3 = nn.Linear(R.S_HIDDEN[1], 1)
-        for lin in (self.fc1, self.fc2, self.fc3):
-            nn.init.kaiming_uniform_(lin.weight, a=np.sqrt(5))
-            bound = 1.0 / np.sqrt(lin.in_features)
-            nn.init.uniform_(lin.bias, -bound, bound)
-
-    def forward(self, x: torch.Tensor) -> torch.Tensor:
-        x = nn.functional.silu(self.fc1(x))
-        x = nn.functional.silu(self.fc2(x))
-        return self.fc3(x).squeeze(-1)
+# S_omega is the single frozen Phase-25F definition, imported rather than copied.
+# See src/models/barr/phase25_models.py and tests/test_phase25_architecture_drift.py.
+from src.models.barr.phase25_models import BARRPostSafetyV1  # noqa: E402
 
 
 def count_params(model: nn.Module) -> int:

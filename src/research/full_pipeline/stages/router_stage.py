@@ -51,28 +51,10 @@ STAGE = "B"
 
 
 # --------------------------------------------------------------------------- #
-class BARRBenefitRouterV1(nn.Module):
-    """Frozen Phase-25D router.  Re-declared from the canonical producer because
-    that producer is a top-level script and cannot be imported."""
-
-    def __init__(self) -> None:
-        super().__init__()
-        self.task_embedding = nn.Embedding(4, R.B_TASK_EMBED_DIM)
-        self.net = nn.Sequential(
-            nn.Linear(R.B_TOTAL_DIM, R.B_HIDDEN[0]),
-            nn.LayerNorm(R.B_HIDDEN[0], elementwise_affine=True),
-            nn.SiLU(),
-            nn.Dropout(R.B_DROPOUT),
-            nn.Linear(R.B_HIDDEN[0], R.B_HIDDEN[1]),
-            nn.LayerNorm(R.B_HIDDEN[1], elementwise_affine=True),
-            nn.SiLU(),
-            nn.Dropout(R.B_DROPOUT),
-            nn.Linear(R.B_HIDDEN[1], 1),
-        )
-
-    def forward(self, x_numeric: torch.Tensor, task_ids: torch.Tensor) -> torch.Tensor:
-        emb = self.task_embedding(task_ids)
-        return self.net(torch.cat([x_numeric, emb], dim=-1)).squeeze(-1)
+# B_phi is the single frozen Phase-25D definition, imported rather than copied.
+# See src/models/barr/phase25_models.py for why the canonical producer cannot be
+# imported directly, and tests/test_phase25_architecture_drift.py for the guard.
+from src.models.barr.phase25_models import BARRBenefitRouterV1  # noqa: E402
 
 
 def count_params(model: nn.Module) -> int:
