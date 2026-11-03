@@ -30,7 +30,7 @@ from __future__ import annotations
 
 import time
 from pathlib import Path
-from typing import Dict, List
+from typing import Dict, List, Optional
 
 import numpy as np
 import pandas as pd
@@ -116,7 +116,8 @@ def _build_model(ctx: RunContext) -> BARRRegionalRefinerV1:
 
 def _train_one(ctx: RunContext, *, run_id: str, ckpt_dir: Path, exp_dir: Path,
                fit_csv: Path, es_csv: Path | None, seed: int, epochs_target: int,
-               early_stopping: bool, resume: bool, log) -> dict:
+               early_stopping: bool, resume: bool, log, model_factory=None,
+               architecture_id: str | None = None) -> dict:
     device = get_device(require_cuda=(ctx.bounds.device == "cuda"))
     amp = bool(ctx.bounds.amp) and device.type == "cuda"
     b = ctx.bounds
@@ -136,7 +137,7 @@ def _train_one(ctx: RunContext, *, run_id: str, ckpt_dir: Path, exp_dir: Path,
     if early_stopping and (ds_es is None or len(ds_es) == 0):
         raise RuntimeError(f"[R/{ctx.tag}/{run_id}] empty EARLY_STOP population")
 
-    model = _build_model(ctx).to(device)
+    model = (model_factory or _build_model)(ctx).to(device)
     bce = torch.nn.BCEWithLogitsLoss()
     from src.losses.segmentation import DiceLoss
     dice_loss = DiceLoss(R.R_LOSS["dice_epsilon"])
@@ -240,7 +241,7 @@ def _train_one(ctx: RunContext, *, run_id: str, ckpt_dir: Path, exp_dir: Path,
 
         env = build_envelope(
             component="R", seed=ctx.seed, run_id=run_id,
-            architecture_id=BARR_REFINER_ARCHITECTURE_ID,
+            architecture_id=architecture_id or BARR_REFINER_ARCHITECTURE_ID,
             model_state=model.state_dict(), upstream=upstream, epoch=epoch,
             best_epoch=best_epoch,
             selection={"rule": R.R_SELECTION, "best_loss": best_loss,
@@ -249,6 +250,7 @@ def _train_one(ctx: RunContext, *, run_id: str, ckpt_dir: Path, exp_dir: Path,
             recipe={"r": ctx.recipe.r, "thresholds": ctx.recipe.thresholds},
             history=history, optimizer_state=optimizer.state_dict(),
             scheduler_state=scheduler.state_dict(), rng_state=capture_rng(),
+            family=ctx.family_name,
             extra={"grad_scaler_state": scaler.state_dict(),
                    "operational_override": ctx.bounds.overrides(),
                    "cache_manifest_sha256": sha256_file(ctx.cache_dir / "manifest.json"),
@@ -288,7 +290,29 @@ def _train_one(ctx: RunContext, *, run_id: str, ckpt_dir: Path, exp_dir: Path,
 
 
 # --------------------------------------------------------------------------- #
-def run(ctx: RunContext, *, resume: bool = False, log=print) -> StageRecord:
+def run(ctx: RunContext, *, resume: bool = False, log=print,
+        model_factory=None, architecture_id: Optional[str] = None,
+        expected_parameters: Optional[int] = None) -> StageRecord:
+    """Produce R_psi: three outer folds plus a median-epoch refit.
+
+    ``model_factory`` / ``architecture_id`` / ``expected_parameters`` are the
+    injection points a different refiner family (Lite) uses to reuse this
+    producer.  All default to the frozen FULL values.
+    """
+    base_factory = model_factory or _build_model
+    if expected_parameters is None:
+        factory = base_factory
+    else:
+        frozen_expected = int(expected_parameters)
+
+        def factory(ctx, _base=base_factory, _expected=frozen_expected):
+            model = _base(ctx)
+            n = count_parameters(model)
+            if n != _expected:
+                raise RuntimeError(
+                    f"R_psi parameter count {n} != expected {_expected}")
+            return model
+
     seed_everything(ctx.family.run_seed("R", "main"))
     _write_fold_manifests(ctx)
     log(f"[R/{ctx.tag}] fold manifests written to {ctx.cache_dir / 'folds'}")
@@ -301,7 +325,8 @@ def run(ctx: RunContext, *, resume: bool = False, log=print) -> StageRecord:
                          exp_dir=ctx.r_dir / f"fold{k}", fit_csv=ctx.cache_dir / "folds" / f"fold{k}_fit.csv",
                          es_csv=ctx.cache_dir / "folds" / f"fold{k}_early_stop.csv",
                          seed=fold_seed, epochs_target=int(ctx.bounds.r_max_epochs),
-                         early_stopping=True, resume=resume, log=log)
+                         early_stopping=True, resume=resume, log=log,
+                         model_factory=factory, architecture_id=architecture_id)
         fold_records[k] = rec
         log(f"[R/{ctx.tag}] fold{k} best_epoch={rec['best_epoch']} stop={rec['stop_reason']}")
 
@@ -319,7 +344,8 @@ def run(ctx: RunContext, *, resume: bool = False, log=print) -> StageRecord:
                            exp_dir=ctx.r_dir / "final",
                            fit_csv=ctx.cache_dir / "folds" / "final_all_development.csv",
                            es_csv=None, seed=final_seed, epochs_target=refit_epochs,
-                           early_stopping=False, resume=resume, log=log)
+                           early_stopping=False, resume=resume, log=log,
+                           model_factory=factory, architecture_id=architecture_id)
     # the deployed refiner is the refit; expose it under the canonical name
     refit_latest = ctx.r_dir / "final" / "latest.pt"
     if not refit_latest.exists():
@@ -328,7 +354,8 @@ def run(ctx: RunContext, *, resume: bool = False, log=print) -> StageRecord:
     from ..provenance import atomic_write_bytes
     atomic_write_bytes(refit_latest.read_bytes(), ctx.r_dir / "final" / "final.pt")
 
-    record = {"artifact": "full_barr_stage_R", "stage": STAGE, "seed": ctx.seed,
+    record = {"artifact": f"{ctx.family_name.lower()}_barr_stage_R", "stage": STAGE,
+              "seed": ctx.seed,
               "tag": ctx.tag, "folds": fold_records, "final": final_rec,
               "refit_epochs": refit_epochs, "fold_best_epochs": best_epochs,
               "final_checkpoint_sha256": sha256_file(ctx.r_dir / "final" / "final.pt"),

@@ -130,7 +130,16 @@ def _make_datasets(ctx: RunContext) -> tuple:
     return ds_train, ds_val
 
 
-def run(ctx: RunContext, *, resume: bool = False, log=print) -> StageRecord:
+def run(ctx: RunContext, *, resume: bool = False, log=print,
+        model_factory=None, expected_parameters: Optional[int] = None,
+        architecture_id: Optional[str] = None) -> StageRecord:
+    """Produce the global backbone for ``ctx``.
+
+    ``model_factory`` / ``expected_parameters`` / ``architecture_id`` let a
+    different backbone family (RA-MedFiLM-BARR-Lite) reuse this exact trainer
+    without copying it.  All three default to the frozen FULL values, so the
+    FULL producer is unchanged.
+    """
     b = ctx.bounds
     device = get_device(require_cuda=(b.device == "cuda"))
     amp = bool(b.g_amp) and device.type == "cuda"
@@ -147,11 +156,12 @@ def run(ctx: RunContext, *, resume: bool = False, log=print) -> StageRecord:
     ds_train, ds_val = _make_datasets(ctx)
     log(f"[G/{ctx.tag}] TRAIN={len(ds_train)} VAL={len(ds_val)}")
 
-    model = build_model(ctx).to(device)
+    model = (model_factory or build_model)(ctx).to(device)
     n_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
-    if n_params != R.G_EXPECTED_PARAMETERS:
+    expected = R.G_EXPECTED_PARAMETERS if expected_parameters is None else int(expected_parameters)
+    if n_params != expected:
         raise RuntimeError(
-            f"G parameter count {n_params} != frozen {R.G_EXPECTED_PARAMETERS}")
+            f"G parameter count {n_params} != frozen {expected}")
 
     criterion = BCEDiceLoss(R.G_LOSS["bce_weight"], R.G_LOSS["dice_weight"],
                             R.G_LOSS["dice_epsilon"])
@@ -261,7 +271,8 @@ def run(ctx: RunContext, *, resume: bool = False, log=print) -> StageRecord:
         atomic_write_text(pd.DataFrame(history).to_csv(index=False), hist_path)
 
         env = build_envelope(
-            component="G", seed=ctx.seed, run_id=f"{ctx.tag}/G", architecture_id=R.G_ARCHITECTURE_ID,
+            component="G", seed=ctx.seed, run_id=f"{ctx.tag}/G",
+            architecture_id=architecture_id or R.G_ARCHITECTURE_ID,
             model_state=model.state_dict(), upstream={}, epoch=epoch, best_epoch=best_epoch,
             selection={"rule": SELECTION_RULE_ID, "best_macro_domain_dice": best_macro,
                        "best_epoch": best_epoch, "best_val_loss": best_val_loss,
@@ -269,6 +280,7 @@ def run(ctx: RunContext, *, resume: bool = False, log=print) -> StageRecord:
             recipe={"g": ctx.recipe.g, "thresholds": ctx.recipe.thresholds},
             history=history, optimizer_state=optimizer.state_dict(),
             scheduler_state=scheduler.state_dict(), rng_state=capture_rng(),
+            family=ctx.family_name,
             extra={"grad_scaler_state": scaler.state_dict(),
                    "operational_override": ctx.bounds.overrides(),
                    "dataset_populations": {
@@ -293,7 +305,7 @@ def run(ctx: RunContext, *, resume: bool = False, log=print) -> StageRecord:
         raise RuntimeError(f"[G/{ctx.tag}] no best checkpoint was written")
 
     record = {
-        "artifact": "full_barr_stage_G",
+        "artifact": f"{ctx.family_name.lower()}_barr_stage_G",
         "stage": STAGE, "seed": ctx.seed, "tag": ctx.tag,
         "best_epoch": best_epoch, "best_macro_domain_dice": best_macro,
         "best_val_loss": best_val_loss, "epochs_completed": len(history),

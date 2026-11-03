@@ -46,14 +46,23 @@ FAMILY_SEEDS = (42, 123, 3407)
 
 @dataclass(frozen=True)
 class SeedFamily:
-    """One independent replicate."""
+    """One independent replicate.
+
+    ``namespace`` namespaces the derived-seed hash.  It defaults to ``FULL`` so
+    every existing family keeps its exact seed stream; the Lite pipeline uses
+    ``LITE``, which guarantees that no Lite component can draw the same
+    initialisation stream as a FULL component of the same family seed.
+    """
 
     seed: int
     label: str = ""
+    namespace: str = "FULL"
 
     def __post_init__(self) -> None:
         if self.seed not in FAMILY_SEEDS:
             raise ValueError(f"seed {self.seed} is not one of {FAMILY_SEEDS}")
+        if not self.namespace:
+            raise ValueError("seed family namespace must be a non-empty string")
 
     @property
     def tag(self) -> str:
@@ -61,7 +70,7 @@ class SeedFamily:
 
     def run_seed(self, component: str, run: str = "main") -> int:
         """Deterministic per-(component, run) seed."""
-        return derived_seed(self.seed, component, run)
+        return derived_seed(self.seed, component, run, namespace=self.namespace)
 
 
 def canonical_family_seed(component: str, run_index: int) -> int:
@@ -78,8 +87,9 @@ def canonical_family_seed(component: str, run_index: int) -> int:
     return 42
 
 
-def derived_seed(family_seed: int, component: str, run: str) -> int:
-    key = f"RA-MedFiLM-BARR|FULL|{family_seed}|{component}|{run}".encode("utf-8")
+def derived_seed(family_seed: int, component: str, run: str,
+                 namespace: str = "FULL") -> int:
+    key = f"RA-MedFiLM-BARR|{namespace}|{family_seed}|{component}|{run}".encode("utf-8")
     return int(hashlib.sha256(key).hexdigest()[:8], 16) % (2 ** 31)
 
 

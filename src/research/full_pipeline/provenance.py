@@ -165,12 +165,20 @@ def build_envelope(*, component: str, seed: int, run_id: str, architecture_id: s
                    epoch: int, best_epoch: int, selection: Mapping[str, Any],
                    recipe: Mapping[str, Any], history: Optional[list] = None,
                    optimizer_state=None, scheduler_state=None, rng_state=None,
-                   extra: Optional[Mapping[str, Any]] = None) -> dict:
+                   extra: Optional[Mapping[str, Any]] = None,
+                   family: str = "FULL") -> dict:
     """Assemble a versioned checkpoint envelope.
 
     ``upstream`` maps component -> ``{"path": <repo-relative>, "sha256": <hex>}``
     for every component this checkpoint depends on.  An empty mapping is only
     legitimate for ``G``.
+
+    ``family`` discriminates the model family that produced the weights
+    (``FULL`` or ``LITE``).  The *schema* is deliberately shared: both families
+    use the same envelope layout, so one loader can read either, while the
+    ``family`` field is what prevents a Lite checkpoint from being consumed as a
+    FULL component (or the reverse).  The default keeps every existing caller
+    byte-identical.
     """
     if component not in COMPONENTS:
         raise ValueError(f"unknown component {component!r}")
@@ -182,7 +190,7 @@ def build_envelope(*, component: str, seed: int, run_id: str, architecture_id: s
     env = {
         "schema": CHECKPOINT_SCHEMA,
         "method": "RA-MedFiLM-BARR",
-        "family": "FULL",
+        "family": str(family),
         "component": component,
         "seed": int(seed),
         "run_id": str(run_id),
@@ -223,11 +231,13 @@ def describe_checkpoint(ckpt: Mapping[str, Any]) -> dict:
 
 def assert_compatible(ckpt: Mapping[str, Any], *, component: str, seed: int,
                       upstream: Optional[Mapping[str, str]] = None,
+                      family: Optional[str] = None,
                       path: Optional[os.PathLike | str] = None) -> None:
     """Fail closed unless ``ckpt`` belongs to the requested family.
 
-    Checks, in order: schema, component, seed, and every expected upstream digest.
-    ``upstream`` here maps component -> expected SHA-256.
+    Checks, in order: schema, component, seed, model family (when requested) and
+    every expected upstream digest.  ``upstream`` here maps component -> expected
+    SHA-256.
     """
     where = f" ({path})" if path else ""
     if ckpt.get("schema") != CHECKPOINT_SCHEMA:
@@ -239,6 +249,9 @@ def assert_compatible(ckpt: Mapping[str, Any], *, component: str, seed: int,
     if int(ckpt.get("seed", -1)) != int(seed):
         raise FamilyCompatibilityError(
             f"checkpoint seed {ckpt.get('seed')!r} != {seed!r}{where}")
+    if family is not None and ckpt.get("family") != family:
+        raise FamilyCompatibilityError(
+            f"checkpoint family {ckpt.get('family')!r} != {family!r}{where}")
     have = {k: (v or {}).get("sha256") for k, v in (ckpt.get("upstream") or {}).items()}
     for name, expected in (upstream or {}).items():
         if have.get(name) != expected:
@@ -249,13 +262,14 @@ def assert_compatible(ckpt: Mapping[str, Any], *, component: str, seed: int,
 
 def load_checkpoint(path: os.PathLike | str, *, map_location="cpu",
                     component: Optional[str] = None, seed: Optional[int] = None,
-                    upstream: Optional[Mapping[str, str]] = None) -> dict:
+                    upstream: Optional[Mapping[str, str]] = None,
+                    family: Optional[str] = None) -> dict:
     """Load and (optionally) verify a checkpoint envelope."""
     ck = torch.load(Path(path), map_location=map_location, weights_only=False)
     if not isinstance(ck, dict) or ck.get("schema") != CHECKPOINT_SCHEMA:
         raise FamilyCompatibilityError(f"{path} is not a {CHECKPOINT_SCHEMA} checkpoint")
-    if component is not None or seed is not None:
+    if component is not None or seed is not None or family is not None:
         assert_compatible(ck, component=component or ck.get("component"),
                           seed=seed if seed is not None else int(ck.get("seed")),
-                          upstream=upstream, path=path)
+                          upstream=upstream, family=family, path=path)
     return ck

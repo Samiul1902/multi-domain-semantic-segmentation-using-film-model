@@ -133,6 +133,13 @@ R_INNER_EARLY_STOP_FRACTION = 0.10
 # --------------------------------------------------------------------------- #
 # OOF paired-gain labels (Phase 25C)
 # --------------------------------------------------------------------------- #
+#: versioned identity of the *label construction* used by the primary pipeline.
+#: The primary construction is the one matched to the frozen Phase-25D/25F labels:
+#: refiner-OOF, router-OOF, safety-OOF but backbone-IN-SAMPLE.  A different
+#: construction (e.g. the optional strict backbone-OOF extension) MUST carry a
+#: different version string so the two can never be conflated.
+EXPERIMENTAL_PROTOCOL_VERSION = "ra_medfilm_barr_matched_full_oof_v1"
+
 LABEL_BENEFICIAL_DELTA = 0.02
 LABEL_HARMFUL_DELTA = -0.01
 LABEL_SAFETY_TARGET_RULE = "1 iff OOF refinement gain (delta_dice) > 0"

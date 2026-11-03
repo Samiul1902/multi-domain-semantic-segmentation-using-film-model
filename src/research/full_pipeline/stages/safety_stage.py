@@ -146,12 +146,22 @@ def _train_one(ctx: RunContext, *, run_id: str, ckpt_dir: Path, exp_dir: Path, s
     history: List[dict] = []
     start_epoch, best_loss, best_epoch, bad_epochs, resume_count = 1, float("inf"), -1, 0, 0
     if resume and latest_path.exists():
-        ck = load_checkpoint(latest_path, map_location="cpu", component="S", seed=ctx.seed)
+        ck = load_checkpoint(latest_path, map_location="cpu", component="S", seed=ctx.seed,
+                             family=ctx.family_name)
         model.load_state_dict(ck["model_state"])
         optimizer.load_state_dict(ck["optimizer_state"])
         scheduler.load_state_dict(ck["scheduler_state"])
         if ck.get("rng"):
             restore_rng(ck["rng"])
+        # the shuffled fit loader draws from a standalone torch.Generator that
+        # capture_rng() does not cover; without restoring it a resumed run
+        # repeats epoch 1's order instead of continuing, so the resume is not exact
+        order_state = ck.get("data_order_generator_state")
+        if order_state is None:
+            raise RuntimeError(
+                f"[S/{ctx.tag}/{run_id}] checkpoint has no data-order generator "
+                "state; an exact resume is not possible from it")
+        gen.set_state(order_state)
         start_epoch = int(ck["epoch"]) + 1
         best_loss = float(ck["selection"]["best_loss"])
         best_epoch = int(ck["selection"]["best_epoch"])
@@ -218,8 +228,10 @@ def _train_one(ctx: RunContext, *, run_id: str, ckpt_dir: Path, exp_dir: Path, s
             recipe={"s": ctx.recipe.s, "thresholds": ctx.recipe.thresholds},
             history=history, optimizer_state=optimizer.state_dict(),
             scheduler_state=scheduler.state_dict(), rng_state=capture_rng(),
+            family=ctx.family_name,
             extra={"normalizer_mu": mu.tolist(), "normalizer_sigma": sigma.tolist(),
                    "normalizer_constant_mask": const.tolist(),
+                   "data_order_generator_state": gen.get_state(),
                    "n_fit": int(len(fit_idx)), "n_early_stop": int(len(es_idx)),
                    "n_outer_target": int(len(ot_idx)),
                    "operational_override": ctx.bounds.overrides(),
@@ -327,7 +339,8 @@ def run(ctx: RunContext, *, resume: bool = False, log=print) -> StageRecord:
     prob = 1.0 / (1.0 + np.exp(-oof))
     pred = (prob >= R.SOMEGA_ACCEPT_THRESHOLD).astype(np.float32)
     acc = float((pred == y).mean())
-    record = {"artifact": "full_barr_stage_S", "stage": STAGE, "seed": ctx.seed,
+    record = {"artifact": f"{ctx.family_name.lower()}_barr_stage_S", "stage": STAGE,
+              "seed": ctx.seed,
               "tag": ctx.tag, "population_n": int(len(meta)),
               "positives": int(y.sum()), "negatives": int(len(y) - y.sum()),
               "folds": fold_records, "final": final["record"],
@@ -355,7 +368,7 @@ def is_complete(ctx: RunContext) -> bool:
 
 def verify(ctx: RunContext) -> dict:
     final = ctx.s_dir / "final" / "final.pt"
-    ck = load_checkpoint(final, component="S", seed=ctx.seed)
+    ck = load_checkpoint(final, component="S", seed=ctx.seed, family=ctx.family_name)
     return {"component": "S", "seed": ctx.seed, "sha256": sha256_file(final),
             "upstream": {k: v["sha256"] for k, v in ck["upstream"].items()},
             "verdict": "S_FAMILY_VERIFIED"}

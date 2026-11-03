@@ -108,18 +108,27 @@ def _forward(model, image_chw: np.ndarray, task_id: int, device, amp: bool):
 
 
 # --------------------------------------------------------------------------- #
-def run(ctx: RunContext, *, resume: bool = False, log=print) -> StageRecord:
+def run(ctx: RunContext, *, resume: bool = False, log=print,
+        model_loader=None, feature_builder=None) -> StageRecord:
+    """Build the per-seed crop cache and 202-D pre-refinement features.
+
+    ``model_loader(ctx, device)`` and ``feature_builder(cmaps, p512, geom)`` are
+    injection points so a different backbone family (Lite) reuses this producer
+    instead of duplicating the frozen ROI rule, the memmap layout and the
+    FORCED_SKIP accounting.  Both default to the FULL implementations.
+    """
     device = get_device(require_cuda=(ctx.bounds.device == "cuda"))
     amp = bool(ctx.bounds.amp) and device.type == "cuda"
     g_sha = ctx.g_sha()
     seed_everything(ctx.family.run_seed("CACHE", "main"))
+    build_features = feature_builder or build_feature_vector
 
     dev = ctx.population.development
     root = ctx.cache_dir
     root.mkdir(parents=True, exist_ok=True)
     log(f"[CACHE/{ctx.tag}] population={len(dev)} G={g_sha[:16]} device={device}")
 
-    model = _load_g(ctx, device)
+    model = (model_loader or _load_g)(ctx, device)
     manifest_path = root / "manifest.json"
     prev = read_json(manifest_path)
     if resume and prev.get("g_checkpoint_sha256") == g_sha and prev.get("complete"):
@@ -201,7 +210,7 @@ def run(ctx: RunContext, *, resume: bool = False, log=print) -> StageRecord:
             arrays[d]["rgb_crop"][i] = np.clip(rgb_c * 255.0 + 0.5, 0, 255).astype(np.uint8)
             arrays[d]["prob_crop"][i] = prob_c.astype(np.float16)
             arrays[d]["gt_crop"][i] = (gt_c[0] > 0.5).astype(np.uint8)
-            arrays[d]["router_features"][i] = build_feature_vector(cmaps, p512, geom)
+            arrays[d]["router_features"][i] = build_features(cmaps, p512, geom)
             n_avail += 1
             totals["action_available"] += 1
             meta_rows.append({**base,
@@ -222,7 +231,7 @@ def run(ctx: RunContext, *, resume: bool = False, log=print) -> StageRecord:
         raise RuntimeError("cache domain partition does not cover ROUTER_DEVELOPMENT")
 
     manifest = {
-        "artifact": "full_barr_crop_cache_manifest",
+        "artifact": f"{ctx.family_name.lower()}_barr_crop_cache_manifest",
         "stage": STAGE, "seed": ctx.seed, "tag": ctx.tag,
         "population": "ROUTER_DEVELOPMENT",
         "population_n": int(len(dev)),

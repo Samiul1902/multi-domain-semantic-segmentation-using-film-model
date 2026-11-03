@@ -46,6 +46,15 @@ class RunContext:
         return self.family.tag
 
     @property
+    def family_name(self) -> str:
+        """Model-family discriminator stamped into every checkpoint and manifest.
+
+        ``FULL`` for this context.  A Lite context overrides it, which is what
+        keeps a Lite checkpoint from ever being read as a FULL component.
+        """
+        return "FULL"
+
+    @property
     def run_root(self) -> Path:
         return self.root / self.tag
 
@@ -96,9 +105,9 @@ class RunContext:
     # ---- provenance ---------------------------------------------------- #
     def base_manifest(self) -> dict:
         return {
-            "artifact": "full_barr_family_manifest",
+            "artifact": f"{self.family_name.lower()}_barr_family_manifest",
             "method": "RA-MedFiLM-BARR",
-            "family": "FULL",
+            "family": self.family_name,
             "seed": self.seed,
             "tag": self.tag,
             "synthetic": bool(self.synthetic),

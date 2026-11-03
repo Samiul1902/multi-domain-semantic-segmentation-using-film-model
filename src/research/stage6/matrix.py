@@ -38,8 +38,15 @@ MODEL_REGISTRY: dict[str, dict[str, Any]] = {
                        "scripts/analysis/train_phase25d_router.py -> phase25f_execution_common.py",
            "multi_seed_producer": "MISSING: no automated multi-seed G->R->B->S pipeline"},
     LITE: {"role": "SECONDARY_PROPOSED", "chain": ("G", "R_psi", "B_phi", "S_omega"),
-           "producer": "src/research/stage6/lite_chain.py (G/R_psi/B_phi/S_omega trainers, synthetic-gated)",
-           "multi_seed_producer": "BLOCKED: needs Lite cross-fitted OOF labels + real-data release"},
+           "producer": "src/research/lite_pipeline/ (G_Lite -> CACHE_Lite -> R_Lite -> "
+                       "LABELS_Lite -> B_phi -> S_omega; CLI scripts/training/"
+                       "lite_barr_three_seed.py)",
+           "multi_seed_producer": "AVAILABLE_NOT_EXECUTED: the three-seed Lite DAG runs "
+                                  "end-to-end on synthetic data only; real training "
+                                  "requires an operator grant and has NOT been performed, "
+                                  "so no Lite cell can be completed",
+           "expected_parameters": 272601,
+           "evidence_status": "NO_LITE_RESULT_EXISTS"},
     GLOBAL: {"role": "INTERNAL_BACKBONE_REFERENCE", "chain": ("G",),
              "producer": "scripts/analysis/run_c1_campaign_launch.py (C1-T) / train_phase21_global_medfilm.py",
              "multi_seed_producer": "C1 six-run campaign (execution not authorized)"},

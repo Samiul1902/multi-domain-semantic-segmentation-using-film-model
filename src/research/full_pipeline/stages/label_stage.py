@@ -91,11 +91,12 @@ def _geometry_from_meta(row) -> dict:
 
 
 @torch.inference_mode()
-def _refine_fold(ctx: RunContext, fold: int, device, amp: bool) -> Dict[str, dict]:
+def _refine_fold(ctx: RunContext, fold: int, device, amp: bool,
+                 refiner_factory=None) -> Dict[str, dict]:
     """Run fold ``fold``'s refiner over that fold's outer target. Returns id -> row."""
     ck = load_checkpoint(ctx.r_dir / f"fold{fold}" / "best.pt", map_location="cpu",
-                         component="R", seed=ctx.seed)
-    model = BARRRegionalRefinerV1()
+                         component="R", seed=ctx.seed, family=ctx.family_name)
+    model = (refiner_factory or BARRRegionalRefinerV1)()
     model.load_state_dict(ck["model_state"])
     model = model.to(device).eval()
 
@@ -138,17 +139,68 @@ def oof_contract(ctx: RunContext) -> dict:
     deliberately: changing the G training population would break comparability with
     the historical labels.  It is recorded here, in machine-readable form, so the
     OOF claim can never be overstated as "fully out-of-fold".
+
+    The record is deliberately *complete* about populations, fold identity, group
+    boundaries and upstream checkpoints, because each of those is a way the claim
+    could be wrong while the headline booleans still read ``True``.
     """
+    outer = ctx.folds("outer3")
+    cv = ctx.folds("cv5")
+    dev = ctx.population.development
+    group_key_by_id = ctx.population.group_key_by_id
+    # a fold assignment is group-safe iff no group_key straddles two outer folds
+    straddling = []
+    seen: Dict[str, int] = {}
+    for k, v in outer.folds.items():
+        for sid in v["outer_target"]:
+            g = group_key_by_id.get(str(sid), f"SINGLETON::{sid}")
+            if seen.setdefault(g, k) != k:
+                straddling.append(g)
     return {
+        "contract_version": "ra_medfilm_barr_oof_contract_v2",
+        "family": ctx.family_name,
+        "experimental_protocol_version": R.EXPERIMENTAL_PROTOCOL_VERSION,
+        # ---- the load-bearing booleans -------------------------------- #
         "refiner_out_of_fold": True,
         "backbone_out_of_fold": False,
         "router_out_of_fold": True,
         "safety_out_of_fold": True,
+        "backbone_sees_target_sample": True,
+        # ---- populations ---------------------------------------------- #
+        "label_generation_population": "ROUTER_DEVELOPMENT",
+        "label_generation_n": int(len(dev)),
+        "label_generation_excludes_router_holdout": True,
+        "router_holdout_n": int(len(ctx.population.holdout_ids)),
         "backbone_training_population": "TRAIN",
         "backbone_training_n": int(R.TRAIN_N),
-        "backbone_sees_target_sample": True,
-        "refiner_cross_fit_folds": len(R.R_OUTER_FOLDS),
+        "backbone_training_n_semantics": (
+            "the frozen protocol TRAIN population size (5832), which is what a real "
+            "run trains on. A synthetic harness run materialises a smaller subset, so "
+            "the two counts differ there by construction; a synthetic artifact is not "
+            "a research result."),
+        "backbone_training_population_includes_label_population": True,
+        "validation_population_used_for_labels": False,
+        "test_population_reads": 0,
+        # ---- fold identities ------------------------------------------ #
+        "refiner_cross_fit_folds": len(outer.folds),
         "router_cross_fit_folds": int(R.B_CV_FOLDS),
+        "refiner_fold_source": outer.source,
+        "router_fold_source": cv.source,
+        "refiner_fold_manifest_sha256": dict(outer.manifest_shas),
+        "router_fold_manifest_sha256": dict(cv.manifest_shas),
+        "outer_target_union_equals_label_population": (
+            {str(s) for v in outer.folds.values() for s in v["outer_target"]}
+            == set(ctx.population.development_ids)),
+        # ---- group boundaries ----------------------------------------- #
+        "group_key_field": "group_key",
+        "group_keys_respect_outer_fold_boundary": not straddling,
+        "straddling_group_keys": sorted(set(straddling)),
+        # ---- upstream identity ---------------------------------------- #
+        "upstream_checkpoint_identity": {
+            "G": {"path": relpath_str(ctx.g_checkpoint()), "sha256": ctx.g_sha()},
+            "R_fold": {f"fold{k}": sha256_file(ctx.r_dir / f"fold{k}" / "best.pt")
+                       for k in sorted(outer.folds)},
+        },
         "consequence": (
             "delta_dice measures what a fold-k refiner does to the output of a G that "
             "already memorised the sample, so it is refiner-OOF but backbone-in-sample; "
@@ -158,10 +210,18 @@ def oof_contract(ctx: RunContext) -> dict:
     }
 
 
-def run(ctx: RunContext, *, resume: bool = False, log=print) -> StageRecord:
+def run(ctx: RunContext, *, resume: bool = False, log=print,
+        refiner_factory=None, contract_provider=None) -> StageRecord:
+    """Produce the cross-fitted paired-gain labels and the 16-D safety features.
+
+    ``refiner_factory`` and ``contract_provider`` are the injection points a
+    different refiner family (Lite) uses to reuse this producer while declaring
+    its own out-of-fold contract.  Both default to the FULL implementations.
+    """
     device = get_device(require_cuda=(ctx.bounds.device == "cuda"))
     amp = bool(ctx.bounds.amp) and device.type == "cuda"
     seed_everything(ctx.family.run_seed("L", "main"))
+    make_contract = contract_provider or oof_contract
 
     cache_manifest = read_json(ctx.cache_dir / "manifest.json")
     if not cache_manifest.get("complete"):
@@ -197,7 +257,7 @@ def run(ctx: RunContext, *, resume: bool = False, log=print) -> StageRecord:
     refined_crops: List[np.ndarray] = []
     for k in sorted(folds.folds):
         log(f"[L/{ctx.tag}] fold{k}: refining {len(folds.folds[k]['outer_target'])} samples")
-        refined = _refine_fold(ctx, k, device, amp)
+        refined = _refine_fold(ctx, k, device, amp, refiner_factory=refiner_factory)
         fold_ck_sha = sha256_file(ctx.r_dir / f"fold{k}" / "best.pt")
         for sid in folds.folds[k]["outer_target"]:
             meta = meta_by_id[sid]
@@ -300,7 +360,7 @@ def run(ctx: RunContext, *, resume: bool = False, log=print) -> StageRecord:
 
     cats = labels["gain_category"].value_counts().to_dict()
     manifest = {
-        "artifact": "full_barr_oof_paired_gain_labels", "stage": STAGE,
+        "artifact": f"{ctx.family_name.lower()}_barr_oof_paired_gain_labels", "stage": STAGE,
         "seed": ctx.seed, "tag": ctx.tag,
         "population_n": int(len(labels)),
         "population_source": "ROUTER_DEVELOPMENT",
@@ -312,7 +372,7 @@ def run(ctx: RunContext, *, resume: bool = False, log=print) -> StageRecord:
         "category_thresholds": {"BENEFICIAL": R.LABEL_BENEFICIAL_DELTA,
                                 "HARMFUL": R.LABEL_HARMFUL_DELTA},
         "cross_fit": "fold-k refiner labels fold-k outer target only",
-        "oof_contract": oof_contract(ctx),
+        "oof_contract": make_contract(ctx),
         "labels_sha256": sha256_file(label_path),
         "safety_targets_sha256": sha256_file(safety_path),
         "safety_features_path": relpath_str(sf_path),
