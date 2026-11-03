@@ -12,7 +12,7 @@ from src.models.factory import create_model
 from src.utils.checkpointing import save_training_checkpoint,load_training_checkpoint
 
 class Meta:
- scale=1.;resized_height=64;resized_width=64;padding=(0,0,0,0)
+ scale=1.;resized_height=512;resized_width=512;padding=(0,0,0,0)
 
 class TestKUBLocalizer(unittest.TestCase):
  def test_heatmap_centers_and_max_combination(self):
@@ -32,7 +32,13 @@ class TestKUBLocalizer(unittest.TestCase):
   loss=SoftFocalDiceLoss()(y,target);self.assertTrue(torch.isfinite(loss));loss.backward()
 
  def test_gt_free_proposal_api(self):
-  self.assertNotIn('gt',inspect.signature(generate_localizer_rois).parameters);h=np.zeros((64,64),np.float32);h[10:15,20:25]=.9;p=generate_localizer_rois(h,Meta(),(64,64),.5,.1,3,.3);self.assertEqual(len(p),1)
+  self.assertNotIn('gt',inspect.signature(generate_localizer_rois).parameters)
+  # ``extract_predicted_components`` takes the **512-space** probability map and
+  # rescales by ``512 // h_map``, so a 64x64 fixture is read as an 8x-downsampled
+  # canvas and its blobs are multiplied outside the metadata content region.  Build
+  # the fixture in 512 space with matching metadata, as in d597715.
+  h=np.zeros((512,512),np.float32);h[80:120,160:200]=.9
+  p=generate_localizer_rois(h,Meta(),(512,512),.5,.1,3,.3);self.assertEqual(len(p),1)
 
  def test_checkpoint_resume_roundtrip(self):
   model=create_model('kub_localizer',in_channels=1,out_channels=1,base_channels=4);opt=torch.optim.AdamW(model.parameters());sch=torch.optim.lr_scheduler.CosineAnnealingLR(opt,100);sc=torch.amp.GradScaler('cuda',enabled=False)

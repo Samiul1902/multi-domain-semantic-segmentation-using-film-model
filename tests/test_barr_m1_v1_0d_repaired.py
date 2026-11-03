@@ -292,16 +292,16 @@ class Boundaries(unittest.TestCase):
 
 
 for field, value in [("K", 0), ("K", 1200), ("budget", .5), ("n", 0), ("population", "TEST"), ("seed", 1), ("bootstrap_reps", 2)]:
-    def test(self, field=field, value=value):
+    def _config_case(self, field=field, value=value):
         config = copy.deepcopy(c.CONFIG); config[field] = value
         with self.assertRaisesRegex(c.Refusal, "E_CONFIG_FROZEN"):
             c.validate_config(config, {})
-    setattr(Boundaries, "test_config_"+field+"_"+str(value).replace(".", "_"), test)
+    setattr(Boundaries, "test_config_"+field+"_"+str(value).replace(".", "_"), _config_case)
 for path in ["TEST/data.csv", "ROUTER_HOLDOUT/data.csv", "external/data.csv", "checkpoints/model.pt", "../data.csv"]:
-    def test(self, path=path):
+    def _path_case(self, path=path):
         with self.assertRaises(c.Refusal):
             h.checked_path(".", path, {path})
-    setattr(Boundaries, "test_path_"+path.replace("/", "_").replace(".", "_"), test)
+    setattr(Boundaries, "test_path_"+path.replace("/", "_").replace(".", "_"), _path_case)
 
 
 class Restart(unittest.TestCase):
@@ -357,8 +357,12 @@ class Restart(unittest.TestCase):
             s.commit(self.root, self.binding, self.result, recover=True)
 
 
+# The helper below is bound onto ``Restart`` under a ``test_interruption_*`` name and
+# must NOT itself be named ``test``: a module-level function called ``test`` is
+# collected by pytest in its own right, and its first parameter ``self`` is then read
+# as a fixture request, which errors at setup with "fixture 'self' not found".
 for point in ["before_write", "during_write", "before_commit", "after_commit"]:
-    def test(self, point=point):
+    def _interruption_case(self, point=point):
         def crash(observed):
             if observed == point:
                 raise RuntimeError("synthetic interruption")
@@ -370,7 +374,7 @@ for point in ["before_write", "during_write", "before_commit", "after_commit"]:
         p = s.commit(self.root, self.binding, self.result, recover=True)
         self.assertEqual(p.read_bytes(), s.encode_result(self.binding, self.result))
         self.assertEqual(p, s.commit(self.root, self.binding, self.result))
-    setattr(Restart, "test_interruption_" + point, test)
+    setattr(Restart, "test_interruption_" + point, _interruption_case)
 
 
 if __name__ == "__main__":

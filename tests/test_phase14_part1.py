@@ -7,7 +7,9 @@ import hashlib
 import sys
 import os
 
-from src.data.regional_dataset import RegionalCropDataset, crop_and_preprocess
+from src.data.regional_dataset import (RegionalCropDataset, crop_and_preprocess,
+                                       ORACLE_DERIVED_REFINER_MARGIN,
+                                       PREDICTED_PROPOSAL_MARGIN)
 from src.inference.regional_evaluator import restore_regional_probability, aggregate_and_fuse, binarize
 from src.models.unet import UNet
 from src.losses.segmentation import BCEDiceLoss
@@ -63,9 +65,17 @@ def test_geometry_and_resize():
     bbox = (10, 10, 20, 20)
     geom = apply_context_margin(bbox, (100, 100), 0.20)
     assert geom['margin'] == 0.20
-    
+
+    # ``RegionalCropDataset`` defaults to the ORACLE-DERIVED REFINER margin (0.25),
+    # which governs TRAIN and crop-level VAL crop construction.  It is deliberately
+    # NOT the predicted-proposal margin (0.20) frozen by the Phase-13B clean-v3
+    # proposal contract.  See
+    # reports/audits/phase14_roi_margin_role_resolution.json (status
+    # RESOLVED_BY_FROZEN_CORPUS: ORACLE_DERIVED_REFINER_VAL_MARGIN = 0.25).
+    # Asserting the literal 0.20 here conflated the two roles; assert the constant.
     val_ds = RegionalCropDataset('manifests/val.csv', 'VAL')
-    assert val_ds.margin == 0.20
+    assert val_ds.margin == ORACLE_DERIVED_REFINER_MARGIN
+    assert val_ds.margin != PREDICTED_PROPOSAL_MARGIN
 
 def test_restoration_and_fusion():
     original_shape = (100, 100)
