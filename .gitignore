@@ -55,3 +55,9 @@ _tmp_*.json
 # institutional signing keys. Neither may be committed.
 configs/c1_operator/
 scripts/analysis/provision_trust_store.py
+
+# FULL three-seed pipeline execution artifacts.  These are produced by running
+# scripts/training/full_barr_three_seed.py; they are large (multi-GB per real
+# family), regenerable, and must never enter version control.  Only the source
+# under src/research/full_pipeline/ and its tests are tracked.
+runs/
