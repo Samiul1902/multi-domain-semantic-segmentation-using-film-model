@@ -1,0 +1,3560 @@
+{
+  "batch_scaling": [
+    {
+      "evidence_class": "SYNTHETIC_BENCHMARK",
+      "model_key": "GLOBAL_MEDFILM",
+      "note": "Batching changes throughput, not per-image work. A per-image latency claim must be made at batch 1.",
+      "rows": [
+        {
+          "batch_size": 1,
+          "model_forward_ms": {
+            "cold_first_call": 51.85059999348596,
+            "max": 49.27789999783272,
+            "mean": 23.49402000036207,
+            "measured_repeats": 10,
+            "median": 15.602600000420352,
+            "min": 15.223299997160211,
+            "n": 10,
+            "p90": 49.263230003998615,
+            "p95": 49.27056500091567,
+            "stdev": 14.063918369708839,
+            "unit": "milliseconds",
+            "warmup_iterations": 2
+          },
+          "peak_memory": {
+            "memory_unit": "MiB",
+            "peak_allocated_mib": 322.45556640625,
+            "peak_reserved_mib": 368.0
+          },
+          "per_image_ms": 15.602600000420352,
+          "throughput_images_per_s": 64.09188212048369
+        },
+        {
+          "batch_size": 2,
+          "model_forward_ms": {
+            "cold_first_call": 43.40859999501845,
+            "max": 24.800999999570195,
+            "mean": 24.514300000009825,
+            "measured_repeats": 10,
+            "median": 24.475649996020366,
+            "min": 24.27190000162227,
+            "n": 10,
+            "p90": 24.695159999100724,
+            "p95": 24.74807999933546,
+            "stdev": 0.15606267272157331,
+            "unit": "milliseconds",
+            "warmup_iterations": 2
+          },
+          "peak_memory": {
+            "memory_unit": "MiB",
+            "peak_allocated_mib": 599.45556640625,
+            "peak_reserved_mib": 698.0
+          },
+          "per_image_ms": 12.237824998010183,
+          "throughput_images_per_s": 81.71386665217027
+        },
+        {
+          "batch_size": 4,
+          "model_forward_ms": {
+            "cold_first_call": 52.167800000461284,
+            "max": 44.662799999059644,
+            "mean": 44.13999000098556,
+            "measured_repeats": 10,
+            "median": 44.082849999540485,
+            "min": 43.87040000437992,
+            "n": 10,
+            "p90": 44.33106000069529,
+            "p95": 44.496929999877466,
+            "stdev": 0.23762841774659926,
+            "unit": "milliseconds",
+            "warmup_iterations": 2
+          },
+          "peak_memory": {
+            "memory_unit": "MiB",
+            "peak_allocated_mib": 1153.4560546875,
+            "peak_reserved_mib": 1282.0
+          },
+          "per_image_ms": 11.020712499885121,
+          "throughput_images_per_s": 90.73823493811528
+        },
+        {
+          "batch_size": 8,
+          "model_forward_ms": {
+            "cold_first_call": 104.68469999614172,
+            "max": 83.65719999710564,
+            "mean": 83.14302999933716,
+            "measured_repeats": 10,
+            "median": 83.16590000322321,
+            "min": 82.55449999705888,
+            "n": 10,
+            "p90": 83.35479999950621,
+            "p95": 83.50599999830592,
+            "stdev": 0.2852381040027508,
+            "unit": "milliseconds",
+            "warmup_iterations": 2
+          },
+          "peak_memory": {
+            "memory_unit": "MiB",
+            "peak_allocated_mib": 2261.4580078125,
+            "peak_reserved_mib": 2694.0
+          },
+          "per_image_ms": 10.395737500402902,
+          "throughput_images_per_s": 96.19327151741217
+        }
+      ],
+      "seed": 42
+    },
+    {
+      "evidence_class": "SYNTHETIC_BENCHMARK",
+      "model_key": "UNET",
+      "note": "Batching changes throughput, not per-image work. A per-image latency claim must be made at batch 1.",
+      "rows": [
+        {
+          "batch_size": 1,
+          "model_forward_ms": {
+            "cold_first_call": 14.031099999556318,
+            "max": 11.60130000062054,
+            "mean": 11.37536000169348,
+            "measured_repeats": 10,
+            "median": 11.353850000887178,
+            "min": 11.284500003966969,
+            "n": 10,
+            "p90": 11.477909997483948,
+            "p95": 11.539604999052244,
+            "stdev": 0.09269609983097624,
+            "unit": "milliseconds",
+            "warmup_iterations": 2
+          },
+          "peak_memory": {
+            "memory_unit": "MiB",
+            "peak_allocated_mib": 282.75439453125,
+            "peak_reserved_mib": 394.0
+          },
+          "per_image_ms": 11.353850000887178,
+          "throughput_images_per_s": 88.07585091593258
+        },
+        {
+          "batch_size": 2,
+          "model_forward_ms": {
+            "cold_first_call": 31.967200004146434,
+            "max": 21.650799993949477,
+            "mean": 21.395149999443674,
+            "measured_repeats": 10,
+            "median": 21.365100001276005,
+            "min": 21.185999998124316,
+            "n": 10,
+            "p90": 21.62109999699169,
+            "p95": 21.635949995470583,
+            "stdev": 0.14344305164710172,
+            "unit": "milliseconds",
+            "warmup_iterations": 2
+          },
+          "peak_memory": {
+            "memory_unit": "MiB",
+            "peak_allocated_mib": 503.75439453125,
+            "peak_reserved_mib": 666.0
+          },
+          "per_image_ms": 10.682550000638003,
+          "throughput_images_per_s": 93.61060794850258
+        },
+        {
+          "batch_size": 4,
+          "model_forward_ms": {
+            "cold_first_call": 47.15769999893382,
+            "max": 40.423799997370224,
+            "mean": 40.255659998365445,
+            "measured_repeats": 10,
+            "median": 40.24049999861745,
+            "min": 40.14119999919785,
+            "n": 10,
+            "p90": 40.39058999987901,
+            "p95": 40.40719499862462,
+            "stdev": 0.09977214316633409,
+            "unit": "milliseconds",
+            "warmup_iterations": 2
+          },
+          "peak_memory": {
+            "memory_unit": "MiB",
+            "peak_allocated_mib": 945.75439453125,
+            "peak_reserved_mib": 1188.0
+          },
+          "per_image_ms": 10.060124999654363,
+          "throughput_images_per_s": 99.40234341366107
+        },
+        {
+          "batch_size": 8,
+          "model_forward_ms": {
+            "cold_first_call": 104.3299000011757,
+            "max": 81.02990000043064,
+            "mean": 80.82733999981428,
+            "measured_repeats": 10,
+            "median": 80.82115000070189,
+            "min": 80.68189999903552,
+            "n": 10,
+            "p90": 80.92918999973335,
+            "p95": 80.979545000082,
+            "stdev": 0.11070085982467448,
+            "unit": "milliseconds",
+            "warmup_iterations": 2
+          },
+          "peak_memory": {
+            "memory_unit": "MiB",
+            "peak_allocated_mib": 1829.75439453125,
+            "peak_reserved_mib": 2546.0
+          },
+          "per_image_ms": 10.102643750087736,
+          "throughput_images_per_s": 98.98399119451436
+        }
+      ],
+      "seed": 42
+    },
+    {
+      "evidence_class": "SYNTHETIC_BENCHMARK",
+      "model_key": "ATTENTION_UNET",
+      "note": "Batching changes throughput, not per-image work. A per-image latency claim must be made at batch 1.",
+      "rows": [
+        {
+          "batch_size": 1,
+          "model_forward_ms": {
+            "cold_first_call": 15.19719999487279,
+            "max": 13.093800000206102,
+            "mean": 12.851319999754196,
+            "measured_repeats": 10,
+            "median": 12.886700002127327,
+            "min": 12.654899997869506,
+            "n": 10,
+            "p90": 13.019639998674393,
+            "p95": 13.056719999440247,
+            "stdev": 0.1668248843705873,
+            "unit": "milliseconds",
+            "warmup_iterations": 2
+          },
+          "peak_memory": {
+            "memory_unit": "MiB",
+            "peak_allocated_mib": 343.10986328125,
+            "peak_reserved_mib": 422.0
+          },
+          "per_image_ms": 12.886700002127327,
+          "throughput_images_per_s": 77.59938540005749
+        },
+        {
+          "batch_size": 2,
+          "model_forward_ms": {
+            "cold_first_call": 28.56370000517927,
+            "max": 24.623500001325738,
+            "mean": 24.332129998947494,
+            "measured_repeats": 10,
+            "median": 24.316899998666486,
+            "min": 23.98630000243429,
+            "n": 10,
+            "p90": 24.593260000256123,
+            "p95": 24.60838000079093,
+            "stdev": 0.19964239104188544,
+            "unit": "milliseconds",
+            "warmup_iterations": 2
+          },
+          "peak_memory": {
+            "memory_unit": "MiB",
+            "peak_allocated_mib": 624.35986328125,
+            "peak_reserved_mib": 766.0
+          },
+          "per_image_ms": 12.158449999333243,
+          "throughput_images_per_s": 82.24732593832594
+        },
+        {
+          "batch_size": 4,
+          "model_forward_ms": {
+            "cold_first_call": 54.092900005343836,
+            "max": 46.99590000382159,
+            "mean": 46.85760000065784,
+            "measured_repeats": 10,
+            "median": 46.905200000765035,
+            "min": 46.5535000039381,
+            "n": 10,
+            "p90": 46.99554000108037,
+            "p95": 46.99572000245098,
+            "stdev": 0.15702160461520362,
+            "unit": "milliseconds",
+            "warmup_iterations": 2
+          },
+          "peak_memory": {
+            "memory_unit": "MiB",
+            "peak_allocated_mib": 1186.10986328125,
+            "peak_reserved_mib": 1416.0
+          },
+          "per_image_ms": 11.726300000191259,
+          "throughput_images_per_s": 85.27839130703545
+        },
+        {
+          "batch_size": 8,
+          "model_forward_ms": {
+            "cold_first_call": 106.02610000205459,
+            "max": 91.7260999995051,
+            "mean": 91.3715000016964,
+            "measured_repeats": 10,
+            "median": 91.3151500026288,
+            "min": 91.12199999799486,
+            "n": 10,
+            "p90": 91.6450100041402,
+            "p95": 91.68555500182265,
+            "stdev": 0.20077499789569037,
+            "unit": "milliseconds",
+            "warmup_iterations": 2
+          },
+          "peak_memory": {
+            "memory_unit": "MiB",
+            "peak_allocated_mib": 2310.10986328125,
+            "peak_reserved_mib": 2932.0
+          },
+          "per_image_ms": 11.4143937503286,
+          "throughput_images_per_s": 87.60868267499637
+        }
+      ],
+      "seed": 42
+    },
+    {
+      "evidence_class": "SYNTHETIC_BENCHMARK",
+      "model_key": "UNETPP",
+      "note": "Batching changes throughput, not per-image work. A per-image latency claim must be made at batch 1.",
+      "rows": [
+        {
+          "batch_size": 1,
+          "model_forward_ms": {
+            "cold_first_call": 37.34799999801908,
+            "max": 35.25000000081491,
+            "mean": 34.51167999955942,
+            "measured_repeats": 10,
+            "median": 34.7759500000393,
+            "min": 33.62560000095982,
+            "n": 10,
+            "p90": 35.16008999722544,
+            "p95": 35.205044999020174,
+            "stdev": 0.6503068750687014,
+            "unit": "milliseconds",
+            "warmup_iterations": 2
+          },
+          "peak_memory": {
+            "memory_unit": "MiB",
+            "peak_allocated_mib": 712.21875,
+            "peak_reserved_mib": 1052.0
+          },
+          "per_image_ms": 34.7759500000393,
+          "throughput_images_per_s": 28.755504881933344
+        },
+        {
+          "batch_size": 2,
+          "model_forward_ms": {
+            "cold_first_call": 68.09760000032838,
+            "max": 61.37789999775123,
+            "mean": 61.18606999880285,
+            "measured_repeats": 10,
+            "median": 61.1676999978954,
+            "min": 61.056899998220615,
+            "n": 10,
+            "p90": 61.25927999819396,
+            "p95": 61.318589997972595,
+            "stdev": 0.08777644644491517,
+            "unit": "milliseconds",
+            "warmup_iterations": 2
+          },
+          "peak_memory": {
+            "memory_unit": "MiB",
+            "peak_allocated_mib": 1357.21875,
+            "peak_reserved_mib": 2058.0
+          },
+          "per_image_ms": 30.5838499989477,
+          "throughput_images_per_s": 32.69699531074103
+        },
+        {
+          "batch_size": 4,
+          "model_forward_ms": {
+            "cold_first_call": 150.57119999983115,
+            "max": 136.8854000029387,
+            "mean": 136.23059000092326,
+            "measured_repeats": 10,
+            "median": 136.69605000177398,
+            "min": 132.82020000042394,
+            "n": 10,
+            "p90": 136.86038000232656,
+            "p95": 136.87289000263263,
+            "stdev": 1.2391431604449419,
+            "unit": "milliseconds",
+            "warmup_iterations": 2
+          },
+          "peak_memory": {
+            "memory_unit": "MiB",
+            "peak_allocated_mib": 2775.21875,
+            "peak_reserved_mib": 4166.0
+          },
+          "per_image_ms": 34.174012500443496,
+          "throughput_images_per_s": 29.262001352256263
+        },
+        {
+          "batch_size": 8,
+          "model_forward_ms": {
+            "cold_first_call": 1000.0366999956896,
+            "max": 928.8625999979558,
+            "mean": 912.9367399997136,
+            "measured_repeats": 10,
+            "median": 914.0770500016515,
+            "min": 896.8620000014198,
+            "n": 10,
+            "p90": 917.1436099983111,
+            "p95": 923.0031049981335,
+            "stdev": 8.066156515876914,
+            "unit": "milliseconds",
+            "warmup_iterations": 2
+          },
+          "peak_memory": {
+            "memory_unit": "MiB",
+            "peak_allocated_mib": 5483.21875,
+            "peak_reserved_mib": 8370.0
+          },
+          "per_image_ms": 114.25963125020644,
+          "throughput_images_per_s": 8.751997438274538
+        }
+      ],
+      "seed": 42
+    },
+    {
+      "evidence_class": "SYNTHETIC_BENCHMARK",
+      "model_key": "DEEPLABV3PLUS",
+      "note": "Batching changes throughput, not per-image work. A per-image latency claim must be made at batch 1.",
+      "rows": [
+        {
+          "batch_size": 1,
+          "model_forward_ms": {
+            "cold_first_call": 21.12669999769423,
+            "max": 17.15910000348231,
+            "mean": 15.833030001522275,
+            "measured_repeats": 10,
+            "median": 15.805800001544412,
+            "min": 14.545400001225062,
+            "n": 10,
+            "p90": 16.835730003367644,
+            "p95": 16.997415003424976,
+            "stdev": 0.7624555481139156,
+            "unit": "milliseconds",
+            "warmup_iterations": 2
+          },
+          "peak_memory": {
+            "memory_unit": "MiB",
+            "peak_allocated_mib": 308.921875,
+            "peak_reserved_mib": 334.0
+          },
+          "per_image_ms": 15.805800001544412,
+          "throughput_images_per_s": 63.26791430375484
+        },
+        {
+          "batch_size": 2,
+          "model_forward_ms": {
+            "cold_first_call": 43.81370000191964,
+            "max": 28.974299995752517,
+            "mean": 27.817420000064885,
+            "measured_repeats": 10,
+            "median": 27.734299994335743,
+            "min": 27.382200001738966,
+            "n": 10,
+            "p90": 27.964590001647593,
+            "p95": 28.469444998700055,
+            "stdev": 0.43251573449035496,
+            "unit": "milliseconds",
+            "warmup_iterations": 2
+          },
+          "peak_memory": {
+            "memory_unit": "MiB",
+            "peak_allocated_mib": 393.919921875,
+            "peak_reserved_mib": 426.0
+          },
+          "per_image_ms": 13.867149997167871,
+          "throughput_images_per_s": 72.11287108052
+        },
+        {
+          "batch_size": 4,
+          "model_forward_ms": {
+            "cold_first_call": 57.07779999647755,
+            "max": 52.57260000507813,
+            "mean": 52.29535000180476,
+            "measured_repeats": 10,
+            "median": 52.28250000072876,
+            "min": 52.087700001720805,
+            "n": 10,
+            "p90": 52.49772000461235,
+            "p95": 52.53516000484524,
+            "stdev": 0.15455346064561007,
+            "unit": "milliseconds",
+            "warmup_iterations": 2
+          },
+          "peak_memory": {
+            "memory_unit": "MiB",
+            "peak_allocated_mib": 597.919921875,
+            "peak_reserved_mib": 616.0
+          },
+          "per_image_ms": 13.07062500018219,
+          "throughput_images_per_s": 76.50743556532768
+        },
+        {
+          "batch_size": 8,
+          "model_forward_ms": {
+            "cold_first_call": 103.4393000009004,
+            "max": 98.0483000021195,
+            "mean": 97.3414700012654,
+            "measured_repeats": 10,
+            "median": 97.85399999964284,
+            "min": 95.26490000280319,
+            "n": 10,
+            "p90": 97.96369999967283,
+            "p95": 98.00600000089617,
+            "stdev": 1.0476073214403152,
+            "unit": "milliseconds",
+            "warmup_iterations": 2
+          },
+          "peak_memory": {
+            "memory_unit": "MiB",
+            "peak_allocated_mib": 1005.919921875,
+            "peak_reserved_mib": 1036.0
+          },
+          "per_image_ms": 12.231749999955355,
+          "throughput_images_per_s": 81.75445050819792
+        }
+      ],
+      "seed": 42
+    },
+    {
+      "evidence_class": "SYNTHETIC_BENCHMARK",
+      "model_key": "TRANSFORMER_MIT_UNET",
+      "note": "Batching changes throughput, not per-image work. A per-image latency claim must be made at batch 1.",
+      "rows": [
+        {
+          "batch_size": 1,
+          "model_forward_ms": {
+            "cold_first_call": 19.674000002851244,
+            "max": 14.971800002967939,
+            "mean": 13.460690001375042,
+            "measured_repeats": 10,
+            "median": 13.568149999628076,
+            "min": 11.424800002714619,
+            "n": 10,
+            "p90": 14.494080006261356,
+            "p95": 14.732940004614647,
+            "stdev": 1.0749878744853771,
+            "unit": "milliseconds",
+            "warmup_iterations": 2
+          },
+          "peak_memory": {
+            "memory_unit": "MiB",
+            "peak_allocated_mib": 208.61279296875,
+            "peak_reserved_mib": 272.0
+          },
+          "per_image_ms": 13.568149999628076,
+          "throughput_images_per_s": 73.7020153836309
+        },
+        {
+          "batch_size": 2,
+          "model_forward_ms": {
+            "cold_first_call": 40.01360000256682,
+            "max": 18.75080000172602,
+            "mean": 18.60554000013508,
+            "measured_repeats": 10,
+            "median": 18.61665000251378,
+            "min": 18.392599995422643,
+            "n": 10,
+            "p90": 18.749269996624207,
+            "p95": 18.750034999175114,
+            "stdev": 0.11437779811053768,
+            "unit": "milliseconds",
+            "warmup_iterations": 2
+          },
+          "peak_memory": {
+            "memory_unit": "MiB",
+            "peak_allocated_mib": 322.62109375,
+            "peak_reserved_mib": 460.0
+          },
+          "per_image_ms": 9.30832500125689,
+          "throughput_images_per_s": 107.43071388944536
+        },
+        {
+          "batch_size": 4,
+          "model_forward_ms": {
+            "cold_first_call": 39.32350000104634,
+            "max": 35.388899996178225,
+            "mean": 35.02001000015298,
+            "measured_repeats": 10,
+            "median": 35.037999998166924,
+            "min": 34.65709999727551,
+            "n": 10,
+            "p90": 35.332020001806086,
+            "p95": 35.360459998992155,
+            "stdev": 0.24916889557635272,
+            "unit": "milliseconds",
+            "warmup_iterations": 2
+          },
+          "peak_memory": {
+            "memory_unit": "MiB",
+            "peak_allocated_mib": 551.93359375,
+            "peak_reserved_mib": 770.0
+          },
+          "per_image_ms": 8.759499999541731,
+          "throughput_images_per_s": 114.1617672301292
+        },
+        {
+          "batch_size": 8,
+          "model_forward_ms": {
+            "cold_first_call": 74.24549999996088,
+            "max": 66.97539999731816,
+            "mean": 66.80406000014045,
+            "measured_repeats": 10,
+            "median": 66.80395000512362,
+            "min": 66.61519999761367,
+            "n": 10,
+            "p90": 66.90025000134483,
+            "p95": 66.9378249993315,
+            "stdev": 0.10267125700375182,
+            "unit": "milliseconds",
+            "warmup_iterations": 2
+          },
+          "peak_memory": {
+            "memory_unit": "MiB",
+            "peak_allocated_mib": 1004.93359375,
+            "peak_reserved_mib": 1414.0
+          },
+          "per_image_ms": 8.350493750640453,
+          "throughput_images_per_s": 119.75339780636368
+        }
+      ],
+      "seed": 42
+    }
+  ],
+  "conditions": {
+    "batch_size": 1,
+    "cuda_synchronized": true,
+    "cuda_version": "12.4",
+    "cudnn_version": 90100,
+    "determinism": {
+      "cudnn_benchmark": false,
+      "cudnn_deterministic": false
+    },
+    "device_name": "NVIDIA GeForce RTX 3060 Ti",
+    "device_total_memory_mib": 8191.375,
+    "device_type": "cuda",
+    "input_resolution": 512,
+    "measured_repeats": 30,
+    "note": "Latency is a property of this host and this build, not of the method. Synthetic weights: no accuracy claim follows from these numbers.",
+    "precision": "fp32",
+    "timing_source": "time.perf_counter around the measured call",
+    "torch_version": "2.6.0+cu124",
+    "warmup_iterations": 5
+  },
+  "environment": {
+    "cuda": "12.4",
+    "cudnn": 90100,
+    "device": "NVIDIA GeForce RTX 3060 Ti",
+    "evidence_class": "SYNTHETIC_BENCHMARK",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "python": "3.11.9",
+    "torch": "2.6.0+cu124"
+  },
+  "evidence_class": "SYNTHETIC_BENCHMARK",
+  "note": "SYNTHETIC_BENCHMARK. Fixture weights; routing outcomes are incidental. No accuracy or real-data performance claim follows.",
+  "precision": [
+    {
+      "amp": {
+        "cold_first_call": 89.90320000157226,
+        "max": 101.13369999453425,
+        "mean": 96.37008000087614,
+        "measured_repeats": 15,
+        "median": 97.02839999954449,
+        "min": 93.33180000248831,
+        "n": 15,
+        "p90": 99.56796000187751,
+        "p95": 100.17784999945434,
+        "stdev": 2.508159855551589,
+        "unit": "milliseconds",
+        "warmup_iterations": 5
+      },
+      "batch_size": 1,
+      "compared_field": "final probability field",
+      "evidence_class": "SYNTHETIC_BENCHMARK",
+      "fp32": {
+        "cold_first_call": 111.92840000148863,
+        "max": 95.33319999900414,
+        "mean": 88.20981333313587,
+        "measured_repeats": 15,
+        "median": 86.93379999749595,
+        "min": 84.16910000232747,
+        "n": 15,
+        "p90": 94.05622000194853,
+        "p95": 94.49873000121443,
+        "stdev": 3.6112995402942927,
+        "unit": "milliseconds",
+        "warmup_iterations": 5
+      },
+      "model_key": "RA_MEDFILM_BARR_FULL",
+      "numerical": {
+        "max_abs_difference": 0.0,
+        "note": "autocast changes the arithmetic; the delta is reported so a speed-up is never reported as free",
+        "shape_match": true
+      },
+      "peak_memory": {
+        "amp": {
+          "memory_unit": "MiB",
+          "peak_allocated_mib": 352.5419921875,
+          "peak_reserved_mib": 424.0
+        },
+        "fp32": {
+          "memory_unit": "MiB",
+          "peak_allocated_mib": 352.5419921875,
+          "peak_reserved_mib": 424.0
+        }
+      },
+      "seed": 42,
+      "speedup": 0.8959624192288451
+    },
+    {
+      "amp": {
+        "cold_first_call": 43.60319999977946,
+        "max": 23.823299998184666,
+        "mean": 23.335239999869373,
+        "measured_repeats": 15,
+        "median": 23.257699998794124,
+        "min": 22.875000002386514,
+        "n": 15,
+        "p90": 23.70589999918593,
+        "p95": 23.747980000189273,
+        "stdev": 0.31032955916628263,
+        "unit": "milliseconds",
+        "warmup_iterations": 5
+      },
+      "batch_size": 2,
+      "compared_field": "logits",
+      "evidence_class": "SYNTHETIC_BENCHMARK",
+      "fp32": {
+        "cold_first_call": 47.449500001675915,
+        "max": 25.80360000138171,
+        "mean": 25.019346665552195,
+        "measured_repeats": 15,
+        "median": 25.02929999900516,
+        "min": 23.806699995475356,
+        "n": 15,
+        "p90": 25.62047999672359,
+        "p95": 25.69831999935559,
+        "stdev": 0.577767415430345,
+        "unit": "milliseconds",
+        "warmup_iterations": 5
+      },
+      "model_key": "GLOBAL_MEDFILM",
+      "numerical": {
+        "max_abs_difference": 0.0012554973363876343,
+        "note": "autocast changes the arithmetic; the delta is reported so a speed-up is never reported as free",
+        "shape_match": true
+      },
+      "peak_memory": {
+        "amp": {
+          "memory_unit": "MiB",
+          "peak_allocated_mib": 626.513671875,
+          "peak_reserved_mib": 770.0
+        },
+        "fp32": {
+          "memory_unit": "MiB",
+          "peak_allocated_mib": 602.4560546875,
+          "peak_reserved_mib": 730.0
+        }
+      },
+      "seed": 42,
+      "speedup": 1.0761726224133465
+    },
+    {
+      "amp": {
+        "cold_first_call": 45.21350000140956,
+        "max": 47.72660000162432,
+        "mean": 45.43771333216379,
+        "measured_repeats": 15,
+        "median": 45.642199998837896,
+        "min": 43.624899997666944,
+        "n": 15,
+        "p90": 46.78663999802666,
+        "p95": 47.140279998711776,
+        "stdev": 1.2278045483570288,
+        "unit": "milliseconds",
+        "warmup_iterations": 5
+      },
+      "batch_size": 1,
+      "compared_field": "final probability field",
+      "evidence_class": "SYNTHETIC_BENCHMARK",
+      "fp32": {
+        "cold_first_call": 62.95449999743141,
+        "max": 50.529200001619756,
+        "mean": 47.15633333350221,
+        "measured_repeats": 15,
+        "median": 46.81929999787826,
+        "min": 44.947999995201826,
+        "n": 15,
+        "p90": 50.16567999846302,
+        "p95": 50.397459996747784,
+        "stdev": 1.8198368595803414,
+        "unit": "milliseconds",
+        "warmup_iterations": 5
+      },
+      "model_key": "RA_MEDFILM_BARR_LITE_DEPTHWISE",
+      "numerical": {
+        "max_abs_difference": 0.0,
+        "note": "autocast changes the arithmetic; the delta is reported so a speed-up is never reported as free",
+        "shape_match": true
+      },
+      "peak_memory": {
+        "amp": {
+          "memory_unit": "MiB",
+          "peak_allocated_mib": 227.61572265625,
+          "peak_reserved_mib": 294.0
+        },
+        "fp32": {
+          "memory_unit": "MiB",
+          "peak_allocated_mib": 227.61572265625,
+          "peak_reserved_mib": 294.0
+        }
+      },
+      "seed": 42,
+      "speedup": 1.0257897296596206
+    },
+    {
+      "amp": {
+        "cold_first_call": 37.66439999890281,
+        "max": 14.058000000659376,
+        "mean": 13.784960000096666,
+        "measured_repeats": 15,
+        "median": 13.755499996477738,
+        "min": 13.571600000432227,
+        "n": 15,
+        "p90": 13.998780000838451,
+        "p95": 14.02461000106996,
+        "stdev": 0.16142290006527205,
+        "unit": "milliseconds",
+        "warmup_iterations": 5
+      },
+      "batch_size": 2,
+      "compared_field": "logits",
+      "evidence_class": "SYNTHETIC_BENCHMARK",
+      "fp32": {
+        "cold_first_call": 39.181600004667416,
+        "max": 21.773500004201196,
+        "mean": 21.380533335225966,
+        "measured_repeats": 15,
+        "median": 21.33730000059586,
+        "min": 21.248400000331458,
+        "n": 15,
+        "p90": 21.59532000514446,
+        "p95": 21.72891000591335,
+        "stdev": 0.15446973791994636,
+        "unit": "milliseconds",
+        "warmup_iterations": 5
+      },
+      "model_key": "UNET",
+      "numerical": {
+        "max_abs_difference": 0.002362966537475586,
+        "note": "autocast changes the arithmetic; the delta is reported so a speed-up is never reported as free",
+        "shape_match": true
+      },
+      "peak_memory": {
+        "amp": {
+          "memory_unit": "MiB",
+          "peak_allocated_mib": 354.47705078125,
+          "peak_reserved_mib": 484.0
+        },
+        "fp32": {
+          "memory_unit": "MiB",
+          "peak_allocated_mib": 508.50439453125,
+          "peak_reserved_mib": 658.0
+        }
+      },
+      "seed": 42,
+      "speedup": 1.5511831635389142
+    },
+    {
+      "amp": {
+        "cold_first_call": 16.3068000038038,
+        "max": 16.063900002336595,
+        "mean": 15.571906667901203,
+        "measured_repeats": 15,
+        "median": 15.524599999480415,
+        "min": 15.177799999946728,
+        "n": 15,
+        "p90": 15.868480001518037,
+        "p95": 15.939650003565475,
+        "stdev": 0.2793701675941062,
+        "unit": "milliseconds",
+        "warmup_iterations": 5
+      },
+      "batch_size": 2,
+      "compared_field": "logits",
+      "evidence_class": "SYNTHETIC_BENCHMARK",
+      "fp32": {
+        "cold_first_call": 24.459799999021925,
+        "max": 24.630899999465328,
+        "mean": 24.376253332108416,
+        "measured_repeats": 15,
+        "median": 24.38329999858979,
+        "min": 24.159599997801706,
+        "n": 15,
+        "p90": 24.58778000145685,
+        "p95": 24.60122000265983,
+        "stdev": 0.1746130297507577,
+        "unit": "milliseconds",
+        "warmup_iterations": 5
+      },
+      "model_key": "ATTENTION_UNET",
+      "numerical": {
+        "max_abs_difference": 0.0018121004104614258,
+        "note": "autocast changes the arithmetic; the delta is reported so a speed-up is never reported as free",
+        "shape_match": true
+      },
+      "peak_memory": {
+        "amp": {
+          "memory_unit": "MiB",
+          "peak_allocated_mib": 414.83251953125,
+          "peak_reserved_mib": 452.0
+        },
+        "fp32": {
+          "memory_unit": "MiB",
+          "peak_allocated_mib": 628.85986328125,
+          "peak_reserved_mib": 792.0
+        }
+      },
+      "seed": 42,
+      "speedup": 1.570623397666018
+    },
+    {
+      "amp": {
+        "cold_first_call": 51.37599999579834,
+        "max": 51.77240000193706,
+        "mean": 51.49300666671479,
+        "measured_repeats": 15,
+        "median": 51.468799996655434,
+        "min": 51.32549999689218,
+        "n": 15,
+        "p90": 51.61189999926137,
+        "p95": 51.68119000009028,
+        "stdev": 0.10975864728820416,
+        "unit": "milliseconds",
+        "warmup_iterations": 5
+      },
+      "batch_size": 2,
+      "compared_field": "logits",
+      "evidence_class": "SYNTHETIC_BENCHMARK",
+      "fp32": {
+        "cold_first_call": 65.76969999878202,
+        "max": 62.77609999960987,
+        "mean": 60.39083333307644,
+        "measured_repeats": 15,
+        "median": 59.508199999982025,
+        "min": 59.34040000283858,
+        "n": 15,
+        "p90": 62.63403999764705,
+        "p95": 62.722549999307375,
+        "stdev": 1.3362649322560078,
+        "unit": "milliseconds",
+        "warmup_iterations": 5
+      },
+      "model_key": "UNETPP",
+      "numerical": {
+        "max_abs_difference": 0.0038472414016723633,
+        "note": "autocast changes the arithmetic; the delta is reported so a speed-up is never reported as free",
+        "shape_match": true
+      },
+      "peak_memory": {
+        "amp": {
+          "memory_unit": "MiB",
+          "peak_allocated_mib": 1134.21875,
+          "peak_reserved_mib": 1650.0
+        },
+        "fp32": {
+          "memory_unit": "MiB",
+          "peak_allocated_mib": 1360.21875,
+          "peak_reserved_mib": 2036.0
+        }
+      },
+      "seed": 42,
+      "speedup": 1.1561994840339975
+    },
+    {
+      "amp": {
+        "cold_first_call": 53.355300005932804,
+        "max": 17.30900000256952,
+        "mean": 16.76950666636306,
+        "measured_repeats": 15,
+        "median": 16.681199995218776,
+        "min": 16.37740000296617,
+        "n": 15,
+        "p90": 17.147420001856517,
+        "p95": 17.212190003920114,
+        "stdev": 0.27935296871340426,
+        "unit": "milliseconds",
+        "warmup_iterations": 5
+      },
+      "batch_size": 2,
+      "compared_field": "logits",
+      "evidence_class": "SYNTHETIC_BENCHMARK",
+      "fp32": {
+        "cold_first_call": 28.50840000610333,
+        "max": 28.559900005348027,
+        "mean": 27.9209399993609,
+        "measured_repeats": 15,
+        "median": 27.87920000264421,
+        "min": 27.532499996596016,
+        "n": 15,
+        "p90": 28.44757999991998,
+        "p95": 28.50068000261672,
+        "stdev": 0.3216223056526503,
+        "unit": "milliseconds",
+        "warmup_iterations": 5
+      },
+      "model_key": "DEEPLABV3PLUS",
+      "numerical": {
+        "max_abs_difference": 0.2942953109741211,
+        "note": "autocast changes the arithmetic; the delta is reported so a speed-up is never reported as free",
+        "shape_match": true
+      },
+      "peak_memory": {
+        "amp": {
+          "memory_unit": "MiB",
+          "peak_allocated_mib": 358.833984375,
+          "peak_reserved_mib": 406.0
+        },
+        "fp32": {
+          "memory_unit": "MiB",
+          "peak_allocated_mib": 399.669921875,
+          "peak_reserved_mib": 432.0
+        }
+      },
+      "seed": 42,
+      "speedup": 1.6712946317192434
+    },
+    {
+      "amp": {
+        "cold_first_call": 45.03429999749642,
+        "max": 17.943899998499546,
+        "mean": 16.710126665323816,
+        "measured_repeats": 15,
+        "median": 16.724000000976957,
+        "min": 15.994100001989864,
+        "n": 15,
+        "p90": 17.37793999927817,
+        "p95": 17.629740000120364,
+        "stdev": 0.56829940330975,
+        "unit": "milliseconds",
+        "warmup_iterations": 5
+      },
+      "batch_size": 2,
+      "compared_field": "logits",
+      "evidence_class": "SYNTHETIC_BENCHMARK",
+      "fp32": {
+        "cold_first_call": 18.689799995627254,
+        "max": 19.36839999689255,
+        "mean": 19.07329999861152,
+        "measured_repeats": 15,
+        "median": 19.10430000134511,
+        "min": 18.495199998142198,
+        "n": 15,
+        "p90": 19.219580001663417,
+        "p95": 19.267109999782406,
+        "stdev": 0.20314860492482748,
+        "unit": "milliseconds",
+        "warmup_iterations": 5
+      },
+      "model_key": "TRANSFORMER_MIT_UNET",
+      "numerical": {
+        "max_abs_difference": 0.005125522613525391,
+        "note": "autocast changes the arithmetic; the delta is reported so a speed-up is never reported as free",
+        "shape_match": true
+      },
+      "peak_memory": {
+        "amp": {
+          "memory_unit": "MiB",
+          "peak_allocated_mib": 255.08544921875,
+          "peak_reserved_mib": 296.0
+        },
+        "fp32": {
+          "memory_unit": "MiB",
+          "peak_allocated_mib": 325.43359375,
+          "peak_reserved_mib": 426.0
+        }
+      },
+      "seed": 42,
+      "speedup": 1.142328390350939
+    }
+  ],
+  "preprocessing": {
+    "cold_first_call": 7.450499993865378,
+    "max": 7.74210000236053,
+    "mean": 6.75392499906593,
+    "measured_repeats": 20,
+    "median": 6.797900001402013,
+    "min": 5.688400000508409,
+    "n": 20,
+    "note": "PIL decode + resize/pad to 512 + normalise; CPU only, by contract",
+    "p90": 7.278499998210465,
+    "p95": 7.705239998176694,
+    "preprocessing_id": "phase4_v3_resizepad_512_rgb_bilinear_mask_nearest_v1",
+    "stdev": 0.48974149430573666,
+    "unit": "milliseconds",
+    "warmup_iterations": 3
+  },
+  "records": [
+    {
+      "adapter_kind": "ROUTED",
+      "batched_forward": false,
+      "component_ms": {
+        "B": {
+          "cold_first_call": 0.6100000027799979,
+          "max": 0.44949999573873356,
+          "mean": 0.43859999932465144,
+          "measured_repeats": 10,
+          "median": 0.4426499981491361,
+          "min": 0.4245000018272549,
+          "n": 10,
+          "p90": 0.44949999573873356,
+          "p95": 0.44949999573873356,
+          "stdev": 0.010703996161372227,
+          "unit": "milliseconds",
+          "warmup_iterations": 2
+        },
+        "G": {
+          "cold_first_call": 29.984000000695232,
+          "max": 15.838900006201584,
+          "mean": 15.06292999983998,
+          "measured_repeats": 10,
+          "median": 15.09259999875212,
+          "min": 14.355200000863988,
+          "n": 10,
+          "p90": 15.335440003400436,
+          "p95": 15.58717000480101,
+          "stdev": 0.38795947503212197,
+          "unit": "milliseconds",
+          "warmup_iterations": 2
+        },
+        "R": {
+          "cold_first_call": 4.96749999729218,
+          "max": 4.94339999568183,
+          "mean": 4.670519998762757,
+          "measured_repeats": 10,
+          "median": 4.62485000025481,
+          "min": 4.570399993099272,
+          "n": 10,
+          "p90": 4.773840001143981,
+          "p95": 4.858619998412905,
+          "stdev": 0.1154657702237395,
+          "unit": "milliseconds",
+          "warmup_iterations": 2
+        },
+        "S": {
+          "cold_first_call": 0.3041000018129125,
+          "max": 0.3349999969941564,
+          "mean": 0.27815999928861856,
+          "measured_repeats": 10,
+          "median": 0.2705999977479223,
+          "min": 0.25270000332966447,
+          "n": 10,
+          "p90": 0.3097999950114172,
+          "p95": 0.32239999600278674,
+          "stdev": 0.025081252569362163,
+          "unit": "milliseconds",
+          "warmup_iterations": 2
+        }
+      },
+      "conditional_refiner_invocation_rate": 1.0,
+      "conditions": {
+        "batch_size": 1,
+        "cuda_synchronized": true,
+        "cuda_version": "12.4",
+        "cudnn_version": 90100,
+        "determinism": {
+          "cudnn_benchmark": false,
+          "cudnn_deterministic": false
+        },
+        "device_name": "NVIDIA GeForce RTX 3060 Ti",
+        "device_total_memory_mib": 8191.375,
+        "device_type": "cuda",
+        "input_resolution": 512,
+        "measured_repeats": 30,
+        "note": "Latency is a property of this host and this build, not of the method. Synthetic weights: no accuracy claim follows from these numbers.",
+        "precision": "fp32",
+        "timing_source": "time.perf_counter around the measured call",
+        "torch_version": "2.6.0+cu124",
+        "warmup_iterations": 5
+      },
+      "cpu_memory_mib": 1896.47265625,
+      "evidence_class": "SYNTHETIC_BENCHMARK",
+      "initialization_ms": {
+        "constructions": 5,
+        "max": 394.79430000210414,
+        "mean": 384.208220000437,
+        "median": 389.17969999602064,
+        "min": 370.5176000003121,
+        "n": 5,
+        "p90": 394.3236600011005,
+        "p95": 394.5589800016023,
+        "scope": "complete G/R/B/S system",
+        "stdev": 11.617978964983042,
+        "unit": "milliseconds"
+      },
+      "macs": {
+        "conv_linear_macs_global_only": 31551740928,
+        "conv_linear_macs_if_always_refine": 34782440912,
+        "method": "Conv2d+Linear hooks; excludes attention tensor matmuls and non-learned ops",
+        "unit": "multiply-accumulate"
+      },
+      "memory": {
+        "memory_unit": "MiB",
+        "peak_allocated_mib": 352.54248046875,
+        "peak_reserved_mib": 426.0
+      },
+      "model_forward_ms": {
+        "cold_first_call": 29.984000000695232,
+        "max": 15.838900006201584,
+        "mean": 15.06292999983998,
+        "measured_repeats": 10,
+        "median": 15.09259999875212,
+        "min": 14.355200000863988,
+        "n": 10,
+        "p90": 15.335440003400436,
+        "p95": 15.58717000480101,
+        "stdev": 0.38795947503212197,
+        "unit": "milliseconds",
+        "warmup_iterations": 2
+      },
+      "model_key": "RA_MEDFILM_BARR_FULL",
+      "notes": [
+        "batch-1 by contract: ROI and safety are per-image",
+        "observed_state is a fixture outcome, not trained-model behaviour"
+      ],
+      "observed_router_score": 0.24420961737632751,
+      "observed_safety_probability": 0.5137649178504944,
+      "observed_state": "EXECUTE_THEN_ACCEPT",
+      "parameters": 4837420,
+      "pipeline_ms": {
+        "cold_first_call": 590.7255999991321,
+        "max": 110.06539999652887,
+        "mean": 89.43335999938427,
+        "measured_repeats": 30,
+        "median": 87.98599999863654,
+        "min": 80.45860000129323,
+        "n": 30,
+        "p90": 97.6585599979444,
+        "p95": 104.34911499651206,
+        "stdev": 6.852389460145348,
+        "unit": "milliseconds",
+        "warmup_iterations": 5
+      },
+      "seed": 42,
+      "throughput_images_per_s": 11.365444502710616
+    },
+    {
+      "adapter_kind": "ROUTED",
+      "batched_forward": false,
+      "component_ms": {
+        "B": {
+          "cold_first_call": 0.537899999471847,
+          "max": 0.41319999581901357,
+          "mean": 0.40457000068272464,
+          "measured_repeats": 10,
+          "median": 0.40300000182469375,
+          "min": 0.39599999581696466,
+          "n": 10,
+          "p90": 0.41176000449922867,
+          "p95": 0.4124800001591211,
+          "stdev": 0.005146315439955506,
+          "unit": "milliseconds",
+          "warmup_iterations": 2
+        },
+        "G": {
+          "cold_first_call": 29.635200000484474,
+          "max": 29.70120000099996,
+          "mean": 18.534169999475125,
+          "measured_repeats": 10,
+          "median": 17.175550001411466,
+          "min": 16.893899999558926,
+          "n": 10,
+          "p90": 19.450019999931097,
+          "p95": 24.575610000465517,
+          "stdev": 3.943687315467642,
+          "unit": "milliseconds",
+          "warmup_iterations": 2
+        },
+        "R": {
+          "cold_first_call": 4.9999000038951635,
+          "max": 5.009000000427477,
+          "mean": 4.605180000362452,
+          "measured_repeats": 10,
+          "median": 4.5523000007960945,
+          "min": 4.396399999677669,
+          "n": 10,
+          "p90": 4.746200003137346,
+          "p95": 4.877600001782412,
+          "stdev": 0.16705067711152738,
+          "unit": "milliseconds",
+          "warmup_iterations": 2
+        },
+        "S": {
+          "cold_first_call": 0.2629000009619631,
+          "max": 0.2521999995224178,
+          "mean": 0.24085999903036281,
+          "measured_repeats": 10,
+          "median": 0.24074999964796007,
+          "min": 0.23380000493489206,
+          "n": 10,
+          "p90": 0.24463999434374273,
+          "p95": 0.24841999693308026,
+          "stdev": 0.005375912520881322,
+          "unit": "milliseconds",
+          "warmup_iterations": 2
+        }
+      },
+      "conditional_refiner_invocation_rate": 1.0,
+      "conditions": {
+        "batch_size": 1,
+        "cuda_synchronized": true,
+        "cuda_version": "12.4",
+        "cudnn_version": 90100,
+        "determinism": {
+          "cudnn_benchmark": false,
+          "cudnn_deterministic": false
+        },
+        "device_name": "NVIDIA GeForce RTX 3060 Ti",
+        "device_total_memory_mib": 8191.375,
+        "device_type": "cuda",
+        "input_resolution": 512,
+        "measured_repeats": 30,
+        "note": "Latency is a property of this host and this build, not of the method. Synthetic weights: no accuracy claim follows from these numbers.",
+        "precision": "fp32",
+        "timing_source": "time.perf_counter around the measured call",
+        "torch_version": "2.6.0+cu124",
+        "warmup_iterations": 5
+      },
+      "cpu_memory_mib": 1917.828125,
+      "evidence_class": "SYNTHETIC_BENCHMARK",
+      "initialization_ms": {
+        "constructions": 5,
+        "max": 388.4313000016846,
+        "mean": 379.0065400011372,
+        "median": 383.30230000428855,
+        "min": 354.18360000039684,
+        "n": 5,
+        "p90": 388.02857999980915,
+        "p95": 388.22994000074686,
+        "scope": "complete G/R/B/S system",
+        "stdev": 14.15562062700518,
+        "unit": "milliseconds"
+      },
+      "macs": {
+        "conv_linear_macs_global_only": 31551740928,
+        "conv_linear_macs_if_always_refine": 34782440912,
+        "method": "Conv2d+Linear hooks; excludes attention tensor matmuls and non-learned ops",
+        "unit": "multiply-accumulate"
+      },
+      "memory": {
+        "memory_unit": "MiB",
+        "peak_allocated_mib": 352.54248046875,
+        "peak_reserved_mib": 426.0
+      },
+      "model_forward_ms": {
+        "cold_first_call": 29.635200000484474,
+        "max": 29.70120000099996,
+        "mean": 18.534169999475125,
+        "measured_repeats": 10,
+        "median": 17.175550001411466,
+        "min": 16.893899999558926,
+        "n": 10,
+        "p90": 19.450019999931097,
+        "p95": 24.575610000465517,
+        "stdev": 3.943687315467642,
+        "unit": "milliseconds",
+        "warmup_iterations": 2
+      },
+      "model_key": "RA_MEDFILM_BARR_FULL",
+      "notes": [
+        "batch-1 by contract: ROI and safety are per-image",
+        "observed_state is a fixture outcome, not trained-model behaviour"
+      ],
+      "observed_router_score": 0.5972026586532593,
+      "observed_safety_probability": 0.5396063923835754,
+      "observed_state": "EXECUTE_THEN_ACCEPT",
+      "parameters": 4837420,
+      "pipeline_ms": {
+        "cold_first_call": 134.1065000015078,
+        "max": 117.8691000022809,
+        "mean": 103.24292333292154,
+        "measured_repeats": 30,
+        "median": 101.04259999934584,
+        "min": 97.21439999702852,
+        "n": 30,
+        "p90": 113.07933999996749,
+        "p95": 113.88157000037609,
+        "stdev": 5.434289093237437,
+        "unit": "milliseconds",
+        "warmup_iterations": 5
+      },
+      "seed": 123,
+      "throughput_images_per_s": 9.896815798549069
+    },
+    {
+      "adapter_kind": "ROUTED",
+      "batched_forward": false,
+      "component_ms": {
+        "B": {
+          "cold_first_call": 0.6417999975383282,
+          "max": 0.46800000563962385,
+          "mean": 0.43718999877455644,
+          "measured_repeats": 10,
+          "median": 0.4311499978939537,
+          "min": 0.4160999960731715,
+          "n": 10,
+          "p90": 0.45873000053688884,
+          "p95": 0.46336500308825634,
+          "stdev": 0.015361024190168687,
+          "unit": "milliseconds",
+          "warmup_iterations": 2
+        },
+        "G": {
+          "cold_first_call": 29.28289999545086,
+          "max": 28.647099999943748,
+          "mean": 18.626930000755237,
+          "measured_repeats": 10,
+          "median": 15.544649999355897,
+          "min": 15.255600003001746,
+          "n": 10,
+          "p90": 28.40706999922986,
+          "p95": 28.527084999586805,
+          "stdev": 5.4954137842739845,
+          "unit": "milliseconds",
+          "warmup_iterations": 2
+        },
+        "R": {
+          "cold_first_call": 5.204400004004128,
+          "max": 5.128099997818936,
+          "mean": 4.853540000476642,
+          "measured_repeats": 10,
+          "median": 4.808100002264837,
+          "min": 4.7114999979385175,
+          "n": 10,
+          "p90": 4.968890003510751,
+          "p95": 5.048495000664843,
+          "stdev": 0.12794697807759023,
+          "unit": "milliseconds",
+          "warmup_iterations": 2
+        },
+        "S": {
+          "cold_first_call": 0.2789999998640269,
+          "max": 0.42810000013560057,
+          "mean": 0.279829998180503,
+          "measured_repeats": 10,
+          "median": 0.2592999953776598,
+          "min": 0.24570000095991418,
+          "n": 10,
+          "p90": 0.30722999654244626,
+          "p95": 0.3676649983390233,
+          "stdev": 0.05392105484275682,
+          "unit": "milliseconds",
+          "warmup_iterations": 2
+        }
+      },
+      "conditional_refiner_invocation_rate": 1.0,
+      "conditions": {
+        "batch_size": 1,
+        "cuda_synchronized": true,
+        "cuda_version": "12.4",
+        "cudnn_version": 90100,
+        "determinism": {
+          "cudnn_benchmark": false,
+          "cudnn_deterministic": false
+        },
+        "device_name": "NVIDIA GeForce RTX 3060 Ti",
+        "device_total_memory_mib": 8191.375,
+        "device_type": "cuda",
+        "input_resolution": 512,
+        "measured_repeats": 30,
+        "note": "Latency is a property of this host and this build, not of the method. Synthetic weights: no accuracy claim follows from these numbers.",
+        "precision": "fp32",
+        "timing_source": "time.perf_counter around the measured call",
+        "torch_version": "2.6.0+cu124",
+        "warmup_iterations": 5
+      },
+      "cpu_memory_mib": 1918.0234375,
+      "evidence_class": "SYNTHETIC_BENCHMARK",
+      "initialization_ms": {
+        "constructions": 5,
+        "max": 402.9556000023149,
+        "mean": 391.3899599996512,
+        "median": 391.62670000223443,
+        "min": 378.9850999964983,
+        "n": 5,
+        "p90": 399.8113200010266,
+        "p95": 401.38346000167076,
+        "scope": "complete G/R/B/S system",
+        "stdev": 8.818339762371235,
+        "unit": "milliseconds"
+      },
+      "macs": {
+        "conv_linear_macs_global_only": 31551740928,
+        "conv_linear_macs_if_always_refine": 34782440912,
+        "method": "Conv2d+Linear hooks; excludes attention tensor matmuls and non-learned ops",
+        "unit": "multiply-accumulate"
+      },
+      "memory": {
+        "memory_unit": "MiB",
+        "peak_allocated_mib": 352.54248046875,
+        "peak_reserved_mib": 426.0
+      },
+      "model_forward_ms": {
+        "cold_first_call": 29.28289999545086,
+        "max": 28.647099999943748,
+        "mean": 18.626930000755237,
+        "measured_repeats": 10,
+        "median": 15.544649999355897,
+        "min": 15.255600003001746,
+        "n": 10,
+        "p90": 28.40706999922986,
+        "p95": 28.527084999586805,
+        "stdev": 5.4954137842739845,
+        "unit": "milliseconds",
+        "warmup_iterations": 2
+      },
+      "model_key": "RA_MEDFILM_BARR_FULL",
+      "notes": [
+        "batch-1 by contract: ROI and safety are per-image",
+        "observed_state is a fixture outcome, not trained-model behaviour"
+      ],
+      "observed_router_score": 0.49755239486694336,
+      "observed_safety_probability": 0.48211631178855896,
+      "observed_state": "EXECUTE_THEN_REJECT",
+      "parameters": 4837420,
+      "pipeline_ms": {
+        "cold_first_call": 144.9376000018674,
+        "max": 112.91249999339925,
+        "mean": 99.91414999991927,
+        "measured_repeats": 30,
+        "median": 99.24680000040098,
+        "min": 94.7673000046052,
+        "n": 30,
+        "p90": 103.5016999958316,
+        "p95": 110.81004500192648,
+        "stdev": 4.5761303085046015,
+        "unit": "milliseconds",
+        "warmup_iterations": 5
+      },
+      "seed": 3407,
+      "throughput_images_per_s": 10.07589161560836
+    },
+    {
+      "adapter_kind": "TASK_CONDITIONED",
+      "batched_forward": true,
+      "conditional_refiner_invocation_rate": null,
+      "conditions": {
+        "batch_size": 1,
+        "cuda_synchronized": true,
+        "cuda_version": "12.4",
+        "cudnn_version": 90100,
+        "determinism": {
+          "cudnn_benchmark": false,
+          "cudnn_deterministic": false
+        },
+        "device_name": "NVIDIA GeForce RTX 3060 Ti",
+        "device_total_memory_mib": 8191.375,
+        "device_type": "cuda",
+        "input_resolution": 512,
+        "measured_repeats": 30,
+        "note": "Latency is a property of this host and this build, not of the method. Synthetic weights: no accuracy claim follows from these numbers.",
+        "precision": "fp32",
+        "timing_source": "time.perf_counter around the measured call",
+        "torch_version": "2.6.0+cu124",
+        "warmup_iterations": 5
+      },
+      "cpu_memory_mib": 1927.26171875,
+      "evidence_class": "SYNTHETIC_BENCHMARK",
+      "initialization_ms": {
+        "constructions": 5,
+        "max": 479.3142999988049,
+        "mean": 392.5884199983557,
+        "median": 364.38649999763584,
+        "min": 361.4342000000761,
+        "n": 5,
+        "p90": 444.9986599996919,
+        "p95": 462.1564799992484,
+        "scope": "single network",
+        "stdev": 50.22312368022666,
+        "unit": "milliseconds"
+      },
+      "macs": {
+        "conv_linear_macs": 31551740928,
+        "method": "Conv2d+Linear hooks; excludes attention tensor matmuls and non-learned ops",
+        "unit": "multiply-accumulate"
+      },
+      "memory": {
+        "memory_unit": "MiB",
+        "peak_allocated_mib": 322.4560546875,
+        "peak_reserved_mib": 368.0
+      },
+      "model_forward_ms": {
+        "cold_first_call": 54.69689999881666,
+        "max": 33.23439999803668,
+        "mean": 16.55109666705054,
+        "measured_repeats": 30,
+        "median": 15.165349999733735,
+        "min": 14.002500000060536,
+        "n": 30,
+        "p90": 17.139540005155162,
+        "p95": 32.12095499839051,
+        "stdev": 5.422895028976149,
+        "unit": "milliseconds",
+        "warmup_iterations": 5
+      },
+      "model_key": "GLOBAL_MEDFILM",
+      "notes": [
+        "batched forward; batch = 1",
+        "task id is a genuine model input"
+      ],
+      "parameters": 3523001,
+      "pipeline_ms": {
+        "cold_first_call": 15.02039999468252,
+        "max": 15.725200006272644,
+        "mean": 15.164789999592662,
+        "measured_repeats": 30,
+        "median": 15.1365999954578,
+        "min": 14.817200004472397,
+        "n": 30,
+        "p90": 15.545830000337446,
+        "p95": 15.605894997133873,
+        "stdev": 0.23180989054120005,
+        "unit": "milliseconds",
+        "warmup_iterations": 5
+      },
+      "seed": 42,
+      "throughput_images_per_s": 65.93979037856413
+    },
+    {
+      "adapter_kind": "TASK_CONDITIONED",
+      "batched_forward": true,
+      "conditional_refiner_invocation_rate": null,
+      "conditions": {
+        "batch_size": 1,
+        "cuda_synchronized": true,
+        "cuda_version": "12.4",
+        "cudnn_version": 90100,
+        "determinism": {
+          "cudnn_benchmark": false,
+          "cudnn_deterministic": false
+        },
+        "device_name": "NVIDIA GeForce RTX 3060 Ti",
+        "device_total_memory_mib": 8191.375,
+        "device_type": "cuda",
+        "input_resolution": 512,
+        "measured_repeats": 30,
+        "note": "Latency is a property of this host and this build, not of the method. Synthetic weights: no accuracy claim follows from these numbers.",
+        "precision": "fp32",
+        "timing_source": "time.perf_counter around the measured call",
+        "torch_version": "2.6.0+cu124",
+        "warmup_iterations": 5
+      },
+      "cpu_memory_mib": 1927.26953125,
+      "evidence_class": "SYNTHETIC_BENCHMARK",
+      "initialization_ms": {
+        "constructions": 5,
+        "max": 381.8863999986206,
+        "mean": 366.0756400000537,
+        "median": 367.8515999999945,
+        "min": 350.367399994866,
+        "n": 5,
+        "p90": 380.12483999918913,
+        "p95": 381.0056199989049,
+        "scope": "single network",
+        "stdev": 14.199469035067663,
+        "unit": "milliseconds"
+      },
+      "macs": {
+        "conv_linear_macs": 31551740928,
+        "method": "Conv2d+Linear hooks; excludes attention tensor matmuls and non-learned ops",
+        "unit": "multiply-accumulate"
+      },
+      "memory": {
+        "memory_unit": "MiB",
+        "peak_allocated_mib": 322.4560546875,
+        "peak_reserved_mib": 368.0
+      },
+      "model_forward_ms": {
+        "cold_first_call": 58.41420000069775,
+        "max": 15.818200001376681,
+        "mean": 15.006373333987236,
+        "measured_repeats": 30,
+        "median": 14.817600000242237,
+        "min": 14.255800000682939,
+        "n": 30,
+        "p90": 15.703380003105849,
+        "p95": 15.726420003193198,
+        "stdev": 0.5402816746685535,
+        "unit": "milliseconds",
+        "warmup_iterations": 5
+      },
+      "model_key": "GLOBAL_MEDFILM",
+      "notes": [
+        "batched forward; batch = 1",
+        "task id is a genuine model input"
+      ],
+      "parameters": 3523001,
+      "pipeline_ms": {
+        "cold_first_call": 15.688799998315517,
+        "max": 16.63649999682093,
+        "mean": 15.649320001345282,
+        "measured_repeats": 30,
+        "median": 15.58859999931883,
+        "min": 15.214200000627898,
+        "n": 30,
+        "p90": 15.953910003008787,
+        "p95": 16.53735000290908,
+        "stdev": 0.3650439023136904,
+        "unit": "milliseconds",
+        "warmup_iterations": 5
+      },
+      "seed": 123,
+      "throughput_images_per_s": 67.48731238416829
+    },
+    {
+      "adapter_kind": "TASK_CONDITIONED",
+      "batched_forward": true,
+      "conditional_refiner_invocation_rate": null,
+      "conditions": {
+        "batch_size": 1,
+        "cuda_synchronized": true,
+        "cuda_version": "12.4",
+        "cudnn_version": 90100,
+        "determinism": {
+          "cudnn_benchmark": false,
+          "cudnn_deterministic": false
+        },
+        "device_name": "NVIDIA GeForce RTX 3060 Ti",
+        "device_total_memory_mib": 8191.375,
+        "device_type": "cuda",
+        "input_resolution": 512,
+        "measured_repeats": 30,
+        "note": "Latency is a property of this host and this build, not of the method. Synthetic weights: no accuracy claim follows from these numbers.",
+        "precision": "fp32",
+        "timing_source": "time.perf_counter around the measured call",
+        "torch_version": "2.6.0+cu124",
+        "warmup_iterations": 5
+      },
+      "cpu_memory_mib": 1927.265625,
+      "evidence_class": "SYNTHETIC_BENCHMARK",
+      "initialization_ms": {
+        "constructions": 5,
+        "max": 378.3384999987902,
+        "mean": 364.40529999963474,
+        "median": 366.9670000017504,
+        "min": 341.64469999814173,
+        "n": 5,
+        "p90": 377.2493399970699,
+        "p95": 377.79391999793006,
+        "scope": "single network",
+        "stdev": 14.73822561086334,
+        "unit": "milliseconds"
+      },
+      "macs": {
+        "conv_linear_macs": 31551740928,
+        "method": "Conv2d+Linear hooks; excludes attention tensor matmuls and non-learned ops",
+        "unit": "multiply-accumulate"
+      },
+      "memory": {
+        "memory_unit": "MiB",
+        "peak_allocated_mib": 322.4560546875,
+        "peak_reserved_mib": 368.0
+      },
+      "model_forward_ms": {
+        "cold_first_call": 48.86009999609087,
+        "max": 35.761200000706594,
+        "mean": 16.666433333254343,
+        "measured_repeats": 30,
+        "median": 15.245549999235664,
+        "min": 14.490999994450249,
+        "n": 30,
+        "p90": 16.386880000209203,
+        "p95": 26.652169999215353,
+        "stdev": 5.114578620265626,
+        "unit": "milliseconds",
+        "warmup_iterations": 5
+      },
+      "model_key": "GLOBAL_MEDFILM",
+      "notes": [
+        "batched forward; batch = 1",
+        "task id is a genuine model input"
+      ],
+      "parameters": 3523001,
+      "pipeline_ms": {
+        "cold_first_call": 15.944899998430628,
+        "max": 16.7548999961582,
+        "mean": 15.675663332513068,
+        "measured_repeats": 30,
+        "median": 15.588250000291737,
+        "min": 15.157299996644724,
+        "n": 30,
+        "p90": 16.234119999717223,
+        "p95": 16.360500000155298,
+        "stdev": 0.3858419834018495,
+        "unit": "milliseconds",
+        "warmup_iterations": 5
+      },
+      "seed": 3407,
+      "throughput_images_per_s": 65.59291072149809
+    },
+    {
+      "adapter_kind": "ROUTED",
+      "batched_forward": false,
+      "component_ms": {
+        "B": {
+          "cold_first_call": 0.5410999947343953,
+          "max": 0.4537999993772246,
+          "mean": 0.4160000004048925,
+          "measured_repeats": 10,
+          "median": 0.41599999894970097,
+          "min": 0.39370000013150275,
+          "n": 10,
+          "p90": 0.4290500008210074,
+          "p95": 0.44142500009911595,
+          "stdev": 0.017210267720654465,
+          "unit": "milliseconds",
+          "warmup_iterations": 2
+        },
+        "G": {
+          "cold_first_call": 22.669000005407725,
+          "max": 14.00120000471361,
+          "mean": 13.504750001447974,
+          "measured_repeats": 10,
+          "median": 13.539350002247375,
+          "min": 13.177900000300724,
+          "n": 10,
+          "p90": 13.878169997769874,
+          "p95": 13.939685001241742,
+          "stdev": 0.2927320477074583,
+          "unit": "milliseconds",
+          "warmup_iterations": 2
+        },
+        "R": {
+          "cold_first_call": 22.102499999164138,
+          "max": 17.358700002660044,
+          "mean": 7.833320000645472,
+          "measured_repeats": 10,
+          "median": 6.704049999825656,
+          "min": 6.520700000692159,
+          "n": 10,
+          "p90": 8.324230000289386,
+          "p95": 12.841465001474706,
+          "stdev": 3.3554442507614493,
+          "unit": "milliseconds",
+          "warmup_iterations": 2
+        },
+        "S": {
+          "cold_first_call": 0.27270000282442197,
+          "max": 0.26020000223070383,
+          "mean": 0.24826000080793165,
+          "measured_repeats": 10,
+          "median": 0.2464499993948266,
+          "min": 0.23969999892869964,
+          "n": 10,
+          "p90": 0.2553399979660753,
+          "p95": 0.2577700000983896,
+          "stdev": 0.006484887720390198,
+          "unit": "milliseconds",
+          "warmup_iterations": 2
+        }
+      },
+      "conditional_refiner_invocation_rate": 0.0,
+      "conditions": {
+        "batch_size": 1,
+        "cuda_synchronized": true,
+        "cuda_version": "12.4",
+        "cudnn_version": 90100,
+        "determinism": {
+          "cudnn_benchmark": false,
+          "cudnn_deterministic": false
+        },
+        "device_name": "NVIDIA GeForce RTX 3060 Ti",
+        "device_total_memory_mib": 8191.375,
+        "device_type": "cuda",
+        "input_resolution": 512,
+        "measured_repeats": 30,
+        "note": "Latency is a property of this host and this build, not of the method. Synthetic weights: no accuracy claim follows from these numbers.",
+        "precision": "fp32",
+        "timing_source": "time.perf_counter around the measured call",
+        "torch_version": "2.6.0+cu124",
+        "warmup_iterations": 5
+      },
+      "cpu_memory_mib": 1991.38671875,
+      "evidence_class": "SYNTHETIC_BENCHMARK",
+      "initialization_ms": {
+        "constructions": 5,
+        "max": 194.10590000188677,
+        "mean": 190.69588000129443,
+        "median": 189.8111999980756,
+        "min": 187.55119999696035,
+        "n": 5,
+        "p90": 193.44526000350015,
+        "p95": 193.77558000269346,
+        "scope": "complete G/R/B/S system",
+        "stdev": 2.583091732592112,
+        "unit": "milliseconds"
+      },
+      "macs": {
+        "conv_linear_macs_global_only": 1619449600,
+        "conv_linear_macs_if_always_refine": 1819687120,
+        "method": "Conv2d+Linear hooks; excludes attention tensor matmuls and non-learned ops",
+        "unit": "multiply-accumulate"
+      },
+      "memory": {
+        "memory_unit": "MiB",
+        "peak_allocated_mib": 227.6162109375,
+        "peak_reserved_mib": 310.0
+      },
+      "model_forward_ms": {
+        "cold_first_call": 22.669000005407725,
+        "max": 14.00120000471361,
+        "mean": 13.504750001447974,
+        "measured_repeats": 10,
+        "median": 13.539350002247375,
+        "min": 13.177900000300724,
+        "n": 10,
+        "p90": 13.878169997769874,
+        "p95": 13.939685001241742,
+        "stdev": 0.2927320477074583,
+        "unit": "milliseconds",
+        "warmup_iterations": 2
+      },
+      "model_key": "RA_MEDFILM_BARR_LITE_DEPTHWISE",
+      "notes": [
+        "batch-1 by contract: ROI and safety are per-image",
+        "observed_state is a fixture outcome, not trained-model behaviour"
+      ],
+      "observed_router_score": -0.11176072061061859,
+      "observed_safety_probability": null,
+      "observed_state": "SKIP_GLOBAL",
+      "parameters": 272601,
+      "pipeline_ms": {
+        "cold_first_call": 98.20100000069942,
+        "max": 55.649000001722015,
+        "mean": 44.58899999954156,
+        "measured_repeats": 30,
+        "median": 42.460600001504645,
+        "min": 39.68150000582682,
+        "n": 30,
+        "p90": 52.54596999948262,
+        "p95": 54.45683499820006,
+        "stdev": 4.947976616049302,
+        "unit": "milliseconds",
+        "warmup_iterations": 5
+      },
+      "seed": 42,
+      "throughput_images_per_s": 23.55124515349674
+    },
+    {
+      "adapter_kind": "ROUTED",
+      "batched_forward": false,
+      "component_ms": {
+        "B": {
+          "cold_first_call": 0.5209000009926967,
+          "max": 0.4856999948970042,
+          "mean": 0.40595999962533824,
+          "measured_repeats": 10,
+          "median": 0.39789999937056564,
+          "min": 0.38950000453041866,
+          "n": 10,
+          "p90": 0.4150500004470814,
+          "p95": 0.4503749976720427,
+          "stdev": 0.028481579067812953,
+          "unit": "milliseconds",
+          "warmup_iterations": 2
+        },
+        "G": {
+          "cold_first_call": 19.637700002931524,
+          "max": 19.31239999976242,
+          "mean": 14.360670001042308,
+          "measured_repeats": 10,
+          "median": 13.02170000053593,
+          "min": 12.895700005174149,
+          "n": 10,
+          "p90": 19.30708999861963,
+          "p95": 19.309744999191025,
+          "stdev": 2.6333269654407414,
+          "unit": "milliseconds",
+          "warmup_iterations": 2
+        },
+        "R": {
+          "cold_first_call": 7.129300000087824,
+          "max": 7.008599997789133,
+          "mean": 6.730609999067383,
+          "measured_repeats": 10,
+          "median": 6.678549998468952,
+          "min": 6.549300000187941,
+          "n": 10,
+          "p90": 6.907710002269596,
+          "p95": 6.958155000029365,
+          "stdev": 0.15664783218273623,
+          "unit": "milliseconds",
+          "warmup_iterations": 2
+        },
+        "S": {
+          "cold_first_call": 0.2630000017234124,
+          "max": 0.24820000544423237,
+          "mean": 0.24012000067159534,
+          "measured_repeats": 10,
+          "median": 0.23739999960525893,
+          "min": 0.2358999990974553,
+          "n": 10,
+          "p90": 0.2460400020936504,
+          "p95": 0.2471200037689414,
+          "stdev": 0.004801574134347129,
+          "unit": "milliseconds",
+          "warmup_iterations": 2
+        }
+      },
+      "conditional_refiner_invocation_rate": 1.0,
+      "conditions": {
+        "batch_size": 1,
+        "cuda_synchronized": true,
+        "cuda_version": "12.4",
+        "cudnn_version": 90100,
+        "determinism": {
+          "cudnn_benchmark": false,
+          "cudnn_deterministic": false
+        },
+        "device_name": "NVIDIA GeForce RTX 3060 Ti",
+        "device_total_memory_mib": 8191.375,
+        "device_type": "cuda",
+        "input_resolution": 512,
+        "measured_repeats": 30,
+        "note": "Latency is a property of this host and this build, not of the method. Synthetic weights: no accuracy claim follows from these numbers.",
+        "precision": "fp32",
+        "timing_source": "time.perf_counter around the measured call",
+        "torch_version": "2.6.0+cu124",
+        "warmup_iterations": 5
+      },
+      "cpu_memory_mib": 1996.703125,
+      "evidence_class": "SYNTHETIC_BENCHMARK",
+      "initialization_ms": {
+        "constructions": 5,
+        "max": 190.66530000418425,
+        "mean": 188.036480001756,
+        "median": 188.11310000455705,
+        "min": 185.01539999851957,
+        "n": 5,
+        "p90": 189.79730000137351,
+        "p95": 190.23130000277888,
+        "scope": "complete G/R/B/S system",
+        "stdev": 2.017083656903272,
+        "unit": "milliseconds"
+      },
+      "macs": {
+        "conv_linear_macs_global_only": 1619449600,
+        "conv_linear_macs_if_always_refine": 1819687120,
+        "method": "Conv2d+Linear hooks; excludes attention tensor matmuls and non-learned ops",
+        "unit": "multiply-accumulate"
+      },
+      "memory": {
+        "memory_unit": "MiB",
+        "peak_allocated_mib": 227.6162109375,
+        "peak_reserved_mib": 316.0
+      },
+      "model_forward_ms": {
+        "cold_first_call": 19.637700002931524,
+        "max": 19.31239999976242,
+        "mean": 14.360670001042308,
+        "measured_repeats": 10,
+        "median": 13.02170000053593,
+        "min": 12.895700005174149,
+        "n": 10,
+        "p90": 19.30708999861963,
+        "p95": 19.309744999191025,
+        "stdev": 2.6333269654407414,
+        "unit": "milliseconds",
+        "warmup_iterations": 2
+      },
+      "model_key": "RA_MEDFILM_BARR_LITE_DEPTHWISE",
+      "notes": [
+        "batch-1 by contract: ROI and safety are per-image",
+        "observed_state is a fixture outcome, not trained-model behaviour"
+      ],
+      "observed_router_score": 0.203959658741951,
+      "observed_safety_probability": 0.505429208278656,
+      "observed_state": "EXECUTE_THEN_ACCEPT",
+      "parameters": 272601,
+      "pipeline_ms": {
+        "cold_first_call": 82.1769000031054,
+        "max": 84.71549999376293,
+        "mean": 75.13114999868169,
+        "measured_repeats": 30,
+        "median": 75.01904999662656,
+        "min": 66.57160000031581,
+        "n": 30,
+        "p90": 77.48853999510175,
+        "p95": 82.0268199990096,
+        "stdev": 3.3106872238464446,
+        "unit": "milliseconds",
+        "warmup_iterations": 5
+      },
+      "seed": 123,
+      "throughput_images_per_s": 13.329947527260979
+    },
+    {
+      "adapter_kind": "ROUTED",
+      "batched_forward": false,
+      "component_ms": {
+        "B": {
+          "cold_first_call": 0.5433999976958148,
+          "max": 0.5490000039571896,
+          "mean": 0.4273899998224806,
+          "measured_repeats": 10,
+          "median": 0.4082000014022924,
+          "min": 0.3924999982700683,
+          "n": 10,
+          "p90": 0.4915799989248626,
+          "p95": 0.520290001441026,
+          "stdev": 0.05022444046022819,
+          "unit": "milliseconds",
+          "warmup_iterations": 2
+        },
+        "G": {
+          "cold_first_call": 12.748799999826588,
+          "max": 12.826499994844198,
+          "mean": 12.674609999521635,
+          "measured_repeats": 10,
+          "median": 12.664249999943422,
+          "min": 12.578000001667533,
+          "n": 10,
+          "p90": 12.747300000773976,
+          "p95": 12.786899997809087,
+          "stdev": 0.07272033697305708,
+          "unit": "milliseconds",
+          "warmup_iterations": 2
+        },
+        "R": {
+          "cold_first_call": 7.028299994999543,
+          "max": 6.959300000744406,
+          "mean": 6.572749998304062,
+          "measured_repeats": 10,
+          "median": 6.519699996715644,
+          "min": 6.381499995768536,
+          "n": 10,
+          "p90": 6.801439997070702,
+          "p95": 6.880369998907554,
+          "stdev": 0.18169217679640942,
+          "unit": "milliseconds",
+          "warmup_iterations": 2
+        },
+        "S": {
+          "cold_first_call": 0.3215000033378601,
+          "max": 0.2592000018921681,
+          "mean": 0.24358000082429498,
+          "measured_repeats": 10,
+          "median": 0.23925000277813524,
+          "min": 0.2330999996047467,
+          "n": 10,
+          "p90": 0.25677000303403474,
+          "p95": 0.2579850024631014,
+          "stdev": 0.009065539128698001,
+          "unit": "milliseconds",
+          "warmup_iterations": 2
+        }
+      },
+      "conditional_refiner_invocation_rate": 0.0,
+      "conditions": {
+        "batch_size": 1,
+        "cuda_synchronized": true,
+        "cuda_version": "12.4",
+        "cudnn_version": 90100,
+        "determinism": {
+          "cudnn_benchmark": false,
+          "cudnn_deterministic": false
+        },
+        "device_name": "NVIDIA GeForce RTX 3060 Ti",
+        "device_total_memory_mib": 8191.375,
+        "device_type": "cuda",
+        "input_resolution": 512,
+        "measured_repeats": 30,
+        "note": "Latency is a property of this host and this build, not of the method. Synthetic weights: no accuracy claim follows from these numbers.",
+        "precision": "fp32",
+        "timing_source": "time.perf_counter around the measured call",
+        "torch_version": "2.6.0+cu124",
+        "warmup_iterations": 5
+      },
+      "cpu_memory_mib": 1996.7734375,
+      "evidence_class": "SYNTHETIC_BENCHMARK",
+      "initialization_ms": {
+        "constructions": 5,
+        "max": 205.53110000037123,
+        "mean": 195.19304000132252,
+        "median": 193.4860999972443,
+        "min": 185.08770000335062,
+        "n": 5,
+        "p90": 203.41174000059254,
+        "p95": 204.47142000048188,
+        "scope": "complete G/R/B/S system",
+        "stdev": 7.905971801066142,
+        "unit": "milliseconds"
+      },
+      "macs": {
+        "conv_linear_macs_global_only": 1619449600,
+        "conv_linear_macs_if_always_refine": 1819687120,
+        "method": "Conv2d+Linear hooks; excludes attention tensor matmuls and non-learned ops",
+        "unit": "multiply-accumulate"
+      },
+      "memory": {
+        "memory_unit": "MiB",
+        "peak_allocated_mib": 227.6162109375,
+        "peak_reserved_mib": 310.0
+      },
+      "model_forward_ms": {
+        "cold_first_call": 12.748799999826588,
+        "max": 12.826499994844198,
+        "mean": 12.674609999521635,
+        "measured_repeats": 10,
+        "median": 12.664249999943422,
+        "min": 12.578000001667533,
+        "n": 10,
+        "p90": 12.747300000773976,
+        "p95": 12.786899997809087,
+        "stdev": 0.07272033697305708,
+        "unit": "milliseconds",
+        "warmup_iterations": 2
+      },
+      "model_key": "RA_MEDFILM_BARR_LITE_DEPTHWISE",
+      "notes": [
+        "batch-1 by contract: ROI and safety are per-image",
+        "observed_state is a fixture outcome, not trained-model behaviour"
+      ],
+      "observed_router_score": 0.00033129751682281494,
+      "observed_safety_probability": null,
+      "observed_state": "SKIP_GLOBAL",
+      "parameters": 272601,
+      "pipeline_ms": {
+        "cold_first_call": 58.18889999500243,
+        "max": 53.14709999947809,
+        "mean": 41.457929999402644,
+        "measured_repeats": 30,
+        "median": 40.880600001401035,
+        "min": 38.30879999441095,
+        "n": 30,
+        "p90": 42.996609996043844,
+        "p95": 44.82139499923505,
+        "stdev": 2.591164799604054,
+        "unit": "milliseconds",
+        "warmup_iterations": 5
+      },
+      "seed": 3407,
+      "throughput_images_per_s": 24.461480505807856
+    },
+    {
+      "adapter_kind": "PLAIN",
+      "batched_forward": true,
+      "conditional_refiner_invocation_rate": null,
+      "conditions": {
+        "batch_size": 1,
+        "cuda_synchronized": true,
+        "cuda_version": "12.4",
+        "cudnn_version": 90100,
+        "determinism": {
+          "cudnn_benchmark": false,
+          "cudnn_deterministic": false
+        },
+        "device_name": "NVIDIA GeForce RTX 3060 Ti",
+        "device_total_memory_mib": 8191.375,
+        "device_type": "cuda",
+        "input_resolution": 512,
+        "measured_repeats": 30,
+        "note": "Latency is a property of this host and this build, not of the method. Synthetic weights: no accuracy claim follows from these numbers.",
+        "precision": "fp32",
+        "timing_source": "time.perf_counter around the measured call",
+        "torch_version": "2.6.0+cu124",
+        "warmup_iterations": 5
+      },
+      "cpu_memory_mib": 2109.8828125,
+      "evidence_class": "SYNTHETIC_BENCHMARK",
+      "initialization_ms": {
+        "constructions": 5,
+        "max": 444.7421000004397,
+        "mean": 437.1621200014488,
+        "median": 440.98400000075344,
+        "min": 420.12390000309097,
+        "n": 5,
+        "p90": 443.9924600024824,
+        "p95": 444.36728000146104,
+        "scope": "single network",
+        "stdev": 9.93636885233673,
+        "unit": "milliseconds"
+      },
+      "macs": {
+        "conv_linear_macs": 46137344000,
+        "method": "Conv2d+Linear hooks; excludes attention tensor matmuls and non-learned ops",
+        "unit": "multiply-accumulate"
+      },
+      "memory": {
+        "memory_unit": "MiB",
+        "peak_allocated_mib": 282.75439453125,
+        "peak_reserved_mib": 408.0
+      },
+      "model_forward_ms": {
+        "cold_first_call": 92.6439000031678,
+        "max": 11.620000004768372,
+        "mean": 11.357216666753326,
+        "measured_repeats": 30,
+        "median": 11.325750001560664,
+        "min": 11.217399995075539,
+        "n": 30,
+        "p90": 11.560150001605507,
+        "p95": 11.590145004083752,
+        "stdev": 0.11098309176154568,
+        "unit": "milliseconds",
+        "warmup_iterations": 5
+      },
+      "model_key": "UNET",
+      "notes": [
+        "batched forward; batch = 1",
+        "PLAIN baseline: no task input by design"
+      ],
+      "parameters": 7763041,
+      "pipeline_ms": {
+        "cold_first_call": 12.737199998809956,
+        "max": 12.816399997973349,
+        "mean": 12.453653333795955,
+        "measured_repeats": 30,
+        "median": 12.412150001182454,
+        "min": 12.177300006442238,
+        "n": 30,
+        "p90": 12.691940000513569,
+        "p95": 12.754350000614068,
+        "stdev": 0.1803446753656162,
+        "unit": "milliseconds",
+        "warmup_iterations": 5
+      },
+      "seed": 42,
+      "throughput_images_per_s": 88.29437342888569
+    },
+    {
+      "adapter_kind": "PLAIN",
+      "batched_forward": true,
+      "conditional_refiner_invocation_rate": null,
+      "conditions": {
+        "batch_size": 1,
+        "cuda_synchronized": true,
+        "cuda_version": "12.4",
+        "cudnn_version": 90100,
+        "determinism": {
+          "cudnn_benchmark": false,
+          "cudnn_deterministic": false
+        },
+        "device_name": "NVIDIA GeForce RTX 3060 Ti",
+        "device_total_memory_mib": 8191.375,
+        "device_type": "cuda",
+        "input_resolution": 512,
+        "measured_repeats": 30,
+        "note": "Latency is a property of this host and this build, not of the method. Synthetic weights: no accuracy claim follows from these numbers.",
+        "precision": "fp32",
+        "timing_source": "time.perf_counter around the measured call",
+        "torch_version": "2.6.0+cu124",
+        "warmup_iterations": 5
+      },
+      "cpu_memory_mib": 2109.48828125,
+      "evidence_class": "SYNTHETIC_BENCHMARK",
+      "initialization_ms": {
+        "constructions": 5,
+        "max": 452.17159999447176,
+        "mean": 438.5803600001964,
+        "median": 439.1516000032425,
+        "min": 421.72279999795137,
+        "n": 5,
+        "p90": 451.19507999770576,
+        "p95": 451.68333999608876,
+        "scope": "single network",
+        "stdev": 12.894100090592364,
+        "unit": "milliseconds"
+      },
+      "macs": {
+        "conv_linear_macs": 46137344000,
+        "method": "Conv2d+Linear hooks; excludes attention tensor matmuls and non-learned ops",
+        "unit": "multiply-accumulate"
+      },
+      "memory": {
+        "memory_unit": "MiB",
+        "peak_allocated_mib": 282.75439453125,
+        "peak_reserved_mib": 408.0
+      },
+      "model_forward_ms": {
+        "cold_first_call": 51.40920000121696,
+        "max": 11.984900003881194,
+        "mean": 11.4508033329912,
+        "measured_repeats": 30,
+        "median": 11.690349994751159,
+        "min": 10.980800005199853,
+        "n": 30,
+        "p90": 11.849070000607753,
+        "p95": 11.9023199982621,
+        "stdev": 0.37378503296815246,
+        "unit": "milliseconds",
+        "warmup_iterations": 5
+      },
+      "model_key": "UNET",
+      "notes": [
+        "batched forward; batch = 1",
+        "PLAIN baseline: no task input by design"
+      ],
+      "parameters": 7763041,
+      "pipeline_ms": {
+        "cold_first_call": 13.064500002656132,
+        "max": 13.10620000003837,
+        "mean": 12.525963333124915,
+        "measured_repeats": 30,
+        "median": 12.537149999843678,
+        "min": 12.192900001537055,
+        "n": 30,
+        "p90": 12.757430004421622,
+        "p95": 12.857574998633936,
+        "stdev": 0.22094966176970451,
+        "unit": "milliseconds",
+        "warmup_iterations": 5
+      },
+      "seed": 123,
+      "throughput_images_per_s": 85.54063825710857
+    },
+    {
+      "adapter_kind": "PLAIN",
+      "batched_forward": true,
+      "conditional_refiner_invocation_rate": null,
+      "conditions": {
+        "batch_size": 1,
+        "cuda_synchronized": true,
+        "cuda_version": "12.4",
+        "cudnn_version": 90100,
+        "determinism": {
+          "cudnn_benchmark": false,
+          "cudnn_deterministic": false
+        },
+        "device_name": "NVIDIA GeForce RTX 3060 Ti",
+        "device_total_memory_mib": 8191.375,
+        "device_type": "cuda",
+        "input_resolution": 512,
+        "measured_repeats": 30,
+        "note": "Latency is a property of this host and this build, not of the method. Synthetic weights: no accuracy claim follows from these numbers.",
+        "precision": "fp32",
+        "timing_source": "time.perf_counter around the measured call",
+        "torch_version": "2.6.0+cu124",
+        "warmup_iterations": 5
+      },
+      "cpu_memory_mib": 2109.48828125,
+      "evidence_class": "SYNTHETIC_BENCHMARK",
+      "initialization_ms": {
+        "constructions": 5,
+        "max": 452.9072999939672,
+        "mean": 441.1318200000096,
+        "median": 445.2796000041417,
+        "min": 421.5232999995351,
+        "n": 5,
+        "p90": 450.1296599963098,
+        "p95": 451.5184799951385,
+        "scope": "single network",
+        "stdev": 11.885031430447427,
+        "unit": "milliseconds"
+      },
+      "macs": {
+        "conv_linear_macs": 46137344000,
+        "method": "Conv2d+Linear hooks; excludes attention tensor matmuls and non-learned ops",
+        "unit": "multiply-accumulate"
+      },
+      "memory": {
+        "memory_unit": "MiB",
+        "peak_allocated_mib": 282.75439453125,
+        "peak_reserved_mib": 408.0
+      },
+      "model_forward_ms": {
+        "cold_first_call": 50.50140000093961,
+        "max": 36.13589999440592,
+        "mean": 12.744716665959762,
+        "measured_repeats": 30,
+        "median": 11.746950000087963,
+        "min": 10.976400000799913,
+        "n": 30,
+        "p90": 12.201180002011826,
+        "p95": 17.27265000081386,
+        "stdev": 4.736960408140691,
+        "unit": "milliseconds",
+        "warmup_iterations": 5
+      },
+      "model_key": "UNET",
+      "notes": [
+        "batched forward; batch = 1",
+        "PLAIN baseline: no task input by design"
+      ],
+      "parameters": 7763041,
+      "pipeline_ms": {
+        "cold_first_call": 12.852899999415968,
+        "max": 12.802299999748357,
+        "mean": 12.424423333626086,
+        "measured_repeats": 30,
+        "median": 12.40574999974342,
+        "min": 12.129399998229928,
+        "n": 30,
+        "p90": 12.578099998791004,
+        "p95": 12.632590001885546,
+        "stdev": 0.14572087805999948,
+        "unit": "milliseconds",
+        "warmup_iterations": 5
+      },
+      "seed": 3407,
+      "throughput_images_per_s": 85.12848015804202
+    },
+    {
+      "adapter_kind": "PLAIN",
+      "batched_forward": true,
+      "conditional_refiner_invocation_rate": null,
+      "conditions": {
+        "batch_size": 1,
+        "cuda_synchronized": true,
+        "cuda_version": "12.4",
+        "cudnn_version": 90100,
+        "determinism": {
+          "cudnn_benchmark": false,
+          "cudnn_deterministic": false
+        },
+        "device_name": "NVIDIA GeForce RTX 3060 Ti",
+        "device_total_memory_mib": 8191.375,
+        "device_type": "cuda",
+        "input_resolution": 512,
+        "measured_repeats": 30,
+        "note": "Latency is a property of this host and this build, not of the method. Synthetic weights: no accuracy claim follows from these numbers.",
+        "precision": "fp32",
+        "timing_source": "time.perf_counter around the measured call",
+        "torch_version": "2.6.0+cu124",
+        "warmup_iterations": 5
+      },
+      "cpu_memory_mib": 2139.234375,
+      "evidence_class": "SYNTHETIC_BENCHMARK",
+      "initialization_ms": {
+        "constructions": 5,
+        "max": 510.69060000008903,
+        "mean": 492.5442599982489,
+        "median": 496.4837999941665,
+        "min": 462.40039999975124,
+        "n": 5,
+        "p90": 508.2375600002706,
+        "p95": 509.4640800001798,
+        "scope": "single network",
+        "stdev": 18.797871638056932,
+        "unit": "milliseconds"
+      },
+      "macs": {
+        "conv_linear_macs": 47218950144,
+        "method": "Conv2d+Linear hooks; excludes attention tensor matmuls and non-learned ops",
+        "unit": "multiply-accumulate"
+      },
+      "memory": {
+        "memory_unit": "MiB",
+        "peak_allocated_mib": 343.10986328125,
+        "peak_reserved_mib": 432.0
+      },
+      "model_forward_ms": {
+        "cold_first_call": 60.33000000024913,
+        "max": 14.464599997154437,
+        "mean": 13.424279999405067,
+        "measured_repeats": 30,
+        "median": 13.353450001886813,
+        "min": 12.833900000259746,
+        "n": 30,
+        "p90": 14.011229995958274,
+        "p95": 14.054095001483802,
+        "stdev": 0.48099934871113725,
+        "unit": "milliseconds",
+        "warmup_iterations": 5
+      },
+      "model_key": "ATTENTION_UNET",
+      "notes": [
+        "batched forward; batch = 1",
+        "PLAIN baseline: no task input by design"
+      ],
+      "parameters": 7851285,
+      "pipeline_ms": {
+        "cold_first_call": 15.2109000046039,
+        "max": 14.706699999806006,
+        "mean": 14.123106666860016,
+        "measured_repeats": 30,
+        "median": 14.056899999559391,
+        "min": 13.83680000435561,
+        "n": 30,
+        "p90": 14.466180001181783,
+        "p95": 14.51441500285,
+        "stdev": 0.21727731514555762,
+        "unit": "milliseconds",
+        "warmup_iterations": 5
+      },
+      "seed": 42,
+      "throughput_images_per_s": 74.88701420671828
+    },
+    {
+      "adapter_kind": "PLAIN",
+      "batched_forward": true,
+      "conditional_refiner_invocation_rate": null,
+      "conditions": {
+        "batch_size": 1,
+        "cuda_synchronized": true,
+        "cuda_version": "12.4",
+        "cudnn_version": 90100,
+        "determinism": {
+          "cudnn_benchmark": false,
+          "cudnn_deterministic": false
+        },
+        "device_name": "NVIDIA GeForce RTX 3060 Ti",
+        "device_total_memory_mib": 8191.375,
+        "device_type": "cuda",
+        "input_resolution": 512,
+        "measured_repeats": 30,
+        "note": "Latency is a property of this host and this build, not of the method. Synthetic weights: no accuracy claim follows from these numbers.",
+        "precision": "fp32",
+        "timing_source": "time.perf_counter around the measured call",
+        "torch_version": "2.6.0+cu124",
+        "warmup_iterations": 5
+      },
+      "cpu_memory_mib": 2139.234375,
+      "evidence_class": "SYNTHETIC_BENCHMARK",
+      "initialization_ms": {
+        "constructions": 5,
+        "max": 495.5392000047141,
+        "mean": 483.0953800032148,
+        "median": 482.317800000601,
+        "min": 467.91760000633076,
+        "n": 5,
+        "p90": 494.10132000484737,
+        "p95": 494.8202600047807,
+        "scope": "single network",
+        "stdev": 11.097465674965509,
+        "unit": "milliseconds"
+      },
+      "macs": {
+        "conv_linear_macs": 47218950144,
+        "method": "Conv2d+Linear hooks; excludes attention tensor matmuls and non-learned ops",
+        "unit": "multiply-accumulate"
+      },
+      "memory": {
+        "memory_unit": "MiB",
+        "peak_allocated_mib": 343.10986328125,
+        "peak_reserved_mib": 432.0
+      },
+      "model_forward_ms": {
+        "cold_first_call": 59.4420000052196,
+        "max": 15.159599999606144,
+        "mean": 13.458356666281665,
+        "measured_repeats": 30,
+        "median": 13.242049997643335,
+        "min": 12.824700002965983,
+        "n": 30,
+        "p90": 14.147110000340035,
+        "p95": 14.166250000926084,
+        "stdev": 0.5648644789482304,
+        "unit": "milliseconds",
+        "warmup_iterations": 5
+      },
+      "model_key": "ATTENTION_UNET",
+      "notes": [
+        "batched forward; batch = 1",
+        "PLAIN baseline: no task input by design"
+      ],
+      "parameters": 7851285,
+      "pipeline_ms": {
+        "cold_first_call": 14.890500002366025,
+        "max": 14.573100001143757,
+        "mean": 14.10876333344883,
+        "measured_repeats": 30,
+        "median": 14.11145000020042,
+        "min": 13.764800001808908,
+        "n": 30,
+        "p90": 14.305619998049224,
+        "p95": 14.426654999624589,
+        "stdev": 0.1871799901393779,
+        "unit": "milliseconds",
+        "warmup_iterations": 5
+      },
+      "seed": 123,
+      "throughput_images_per_s": 75.5170083316381
+    },
+    {
+      "adapter_kind": "PLAIN",
+      "batched_forward": true,
+      "conditional_refiner_invocation_rate": null,
+      "conditions": {
+        "batch_size": 1,
+        "cuda_synchronized": true,
+        "cuda_version": "12.4",
+        "cudnn_version": 90100,
+        "determinism": {
+          "cudnn_benchmark": false,
+          "cudnn_deterministic": false
+        },
+        "device_name": "NVIDIA GeForce RTX 3060 Ti",
+        "device_total_memory_mib": 8191.375,
+        "device_type": "cuda",
+        "input_resolution": 512,
+        "measured_repeats": 30,
+        "note": "Latency is a property of this host and this build, not of the method. Synthetic weights: no accuracy claim follows from these numbers.",
+        "precision": "fp32",
+        "timing_source": "time.perf_counter around the measured call",
+        "torch_version": "2.6.0+cu124",
+        "warmup_iterations": 5
+      },
+      "cpu_memory_mib": 2139.234375,
+      "evidence_class": "SYNTHETIC_BENCHMARK",
+      "initialization_ms": {
+        "constructions": 5,
+        "max": 506.58029999613063,
+        "mean": 479.33823999774177,
+        "median": 488.3957999991253,
+        "min": 436.24179999460466,
+        "n": 5,
+        "p90": 500.18701999651967,
+        "p95": 503.38365999632515,
+        "scope": "single network",
+        "stdev": 26.590149005268728,
+        "unit": "milliseconds"
+      },
+      "macs": {
+        "conv_linear_macs": 47218950144,
+        "method": "Conv2d+Linear hooks; excludes attention tensor matmuls and non-learned ops",
+        "unit": "multiply-accumulate"
+      },
+      "memory": {
+        "memory_unit": "MiB",
+        "peak_allocated_mib": 343.10986328125,
+        "peak_reserved_mib": 432.0
+      },
+      "model_forward_ms": {
+        "cold_first_call": 68.41290000011213,
+        "max": 15.584100001433399,
+        "mean": 13.767476666544098,
+        "measured_repeats": 30,
+        "median": 13.684399997146102,
+        "min": 12.890399993921164,
+        "n": 30,
+        "p90": 14.617200001521269,
+        "p95": 14.635584999996354,
+        "stdev": 0.6470578120901341,
+        "unit": "milliseconds",
+        "warmup_iterations": 5
+      },
+      "model_key": "ATTENTION_UNET",
+      "notes": [
+        "batched forward; batch = 1",
+        "PLAIN baseline: no task input by design"
+      ],
+      "parameters": 7851285,
+      "pipeline_ms": {
+        "cold_first_call": 14.753000003111083,
+        "max": 15.05820000602398,
+        "mean": 14.347426666790852,
+        "measured_repeats": 30,
+        "median": 14.307099998404738,
+        "min": 13.613100003567524,
+        "n": 30,
+        "p90": 14.747390001139138,
+        "p95": 14.793360000840039,
+        "stdev": 0.3313147957290085,
+        "unit": "milliseconds",
+        "warmup_iterations": 5
+      },
+      "seed": 3407,
+      "throughput_images_per_s": 73.07591127185344
+    },
+    {
+      "adapter_kind": "PLAIN",
+      "batched_forward": true,
+      "conditional_refiner_invocation_rate": null,
+      "conditions": {
+        "batch_size": 1,
+        "cuda_synchronized": true,
+        "cuda_version": "12.4",
+        "cudnn_version": 90100,
+        "determinism": {
+          "cudnn_benchmark": false,
+          "cudnn_deterministic": false
+        },
+        "device_name": "NVIDIA GeForce RTX 3060 Ti",
+        "device_total_memory_mib": 8191.375,
+        "device_type": "cuda",
+        "input_resolution": 512,
+        "measured_repeats": 30,
+        "note": "Latency is a property of this host and this build, not of the method. Synthetic weights: no accuracy claim follows from these numbers.",
+        "precision": "fp32",
+        "timing_source": "time.perf_counter around the measured call",
+        "torch_version": "2.6.0+cu124",
+        "warmup_iterations": 5
+      },
+      "cpu_memory_mib": 2520.32421875,
+      "evidence_class": "SYNTHETIC_BENCHMARK",
+      "initialization_ms": {
+        "constructions": 5,
+        "max": 1140.9942999962368,
+        "mean": 1115.7498799992027,
+        "median": 1108.6572999993223,
+        "min": 1107.5903000019025,
+        "n": 5,
+        "p90": 1130.0085799986846,
+        "p95": 1135.5014399974607,
+        "scope": "single network",
+        "stdev": 14.313472114456061,
+        "unit": "milliseconds"
+      },
+      "macs": {
+        "conv_linear_macs": 137942269952,
+        "method": "Conv2d+Linear hooks; excludes attention tensor matmuls and non-learned ops",
+        "unit": "multiply-accumulate"
+      },
+      "memory": {
+        "memory_unit": "MiB",
+        "peak_allocated_mib": 712.21875,
+        "peak_reserved_mib": 1044.0
+      },
+      "model_forward_ms": {
+        "cold_first_call": 220.45329999673413,
+        "max": 35.97060000174679,
+        "mean": 34.89406666631112,
+        "measured_repeats": 30,
+        "median": 34.800300003553275,
+        "min": 34.411200002068654,
+        "n": 30,
+        "p90": 35.558770000352524,
+        "p95": 35.79549500027497,
+        "stdev": 0.43303327032297306,
+        "unit": "milliseconds",
+        "warmup_iterations": 5
+      },
+      "model_key": "UNETPP",
+      "notes": [
+        "batched forward; batch = 1",
+        "PLAIN baseline: no task input by design"
+      ],
+      "parameters": 9159681,
+      "pipeline_ms": {
+        "cold_first_call": 35.671500001626555,
+        "max": 36.77379999862751,
+        "mean": 35.34748999979153,
+        "measured_repeats": 30,
+        "median": 35.048850000748644,
+        "min": 34.47099999903003,
+        "n": 30,
+        "p90": 36.14639000661555,
+        "p95": 36.3719349992607,
+        "stdev": 0.6640880742304033,
+        "unit": "milliseconds",
+        "warmup_iterations": 5
+      },
+      "seed": 42,
+      "throughput_images_per_s": 28.73538446214243
+    },
+    {
+      "adapter_kind": "PLAIN",
+      "batched_forward": true,
+      "conditional_refiner_invocation_rate": null,
+      "conditions": {
+        "batch_size": 1,
+        "cuda_synchronized": true,
+        "cuda_version": "12.4",
+        "cudnn_version": 90100,
+        "determinism": {
+          "cudnn_benchmark": false,
+          "cudnn_deterministic": false
+        },
+        "device_name": "NVIDIA GeForce RTX 3060 Ti",
+        "device_total_memory_mib": 8191.375,
+        "device_type": "cuda",
+        "input_resolution": 512,
+        "measured_repeats": 30,
+        "note": "Latency is a property of this host and this build, not of the method. Synthetic weights: no accuracy claim follows from these numbers.",
+        "precision": "fp32",
+        "timing_source": "time.perf_counter around the measured call",
+        "torch_version": "2.6.0+cu124",
+        "warmup_iterations": 5
+      },
+      "cpu_memory_mib": 2520.32421875,
+      "evidence_class": "SYNTHETIC_BENCHMARK",
+      "initialization_ms": {
+        "constructions": 5,
+        "max": 1172.188800002914,
+        "mean": 1130.558000000019,
+        "median": 1138.1394999989425,
+        "min": 1087.1263000008184,
+        "n": 5,
+        "p90": 1164.376240002457,
+        "p95": 1168.2825200026855,
+        "scope": "single network",
+        "stdev": 35.151789060503084,
+        "unit": "milliseconds"
+      },
+      "macs": {
+        "conv_linear_macs": 137942269952,
+        "method": "Conv2d+Linear hooks; excludes attention tensor matmuls and non-learned ops",
+        "unit": "multiply-accumulate"
+      },
+      "memory": {
+        "memory_unit": "MiB",
+        "peak_allocated_mib": 712.21875,
+        "peak_reserved_mib": 1044.0
+      },
+      "model_forward_ms": {
+        "cold_first_call": 148.9579000044614,
+        "max": 35.0417000008747,
+        "mean": 34.62244999997589,
+        "measured_repeats": 30,
+        "median": 34.61425000205054,
+        "min": 33.767499997338746,
+        "n": 30,
+        "p90": 34.89591999532422,
+        "p95": 34.93448500194063,
+        "stdev": 0.27250113704786905,
+        "unit": "milliseconds",
+        "warmup_iterations": 5
+      },
+      "model_key": "UNETPP",
+      "notes": [
+        "batched forward; batch = 1",
+        "PLAIN baseline: no task input by design"
+      ],
+      "parameters": 9159681,
+      "pipeline_ms": {
+        "cold_first_call": 35.824200000206474,
+        "max": 36.24209999543382,
+        "mean": 35.77567333340994,
+        "measured_repeats": 30,
+        "median": 35.75584999998682,
+        "min": 35.35110000666464,
+        "n": 30,
+        "p90": 36.0568800024339,
+        "p95": 36.086710001472966,
+        "stdev": 0.21856662921723308,
+        "unit": "milliseconds",
+        "warmup_iterations": 5
+      },
+      "seed": 123,
+      "throughput_images_per_s": 28.88983583179645
+    },
+    {
+      "adapter_kind": "PLAIN",
+      "batched_forward": true,
+      "conditional_refiner_invocation_rate": null,
+      "conditions": {
+        "batch_size": 1,
+        "cuda_synchronized": true,
+        "cuda_version": "12.4",
+        "cudnn_version": 90100,
+        "determinism": {
+          "cudnn_benchmark": false,
+          "cudnn_deterministic": false
+        },
+        "device_name": "NVIDIA GeForce RTX 3060 Ti",
+        "device_total_memory_mib": 8191.375,
+        "device_type": "cuda",
+        "input_resolution": 512,
+        "measured_repeats": 30,
+        "note": "Latency is a property of this host and this build, not of the method. Synthetic weights: no accuracy claim follows from these numbers.",
+        "precision": "fp32",
+        "timing_source": "time.perf_counter around the measured call",
+        "torch_version": "2.6.0+cu124",
+        "warmup_iterations": 5
+      },
+      "cpu_memory_mib": 2520.32421875,
+      "evidence_class": "SYNTHETIC_BENCHMARK",
+      "initialization_ms": {
+        "constructions": 5,
+        "max": 1140.7792999962112,
+        "mean": 1111.4601600012975,
+        "median": 1111.5901000011945,
+        "min": 1087.2869000013452,
+        "n": 5,
+        "p90": 1129.9635000003036,
+        "p95": 1135.3713999982574,
+        "scope": "single network",
+        "stdev": 19.405264027029624,
+        "unit": "milliseconds"
+      },
+      "macs": {
+        "conv_linear_macs": 137942269952,
+        "method": "Conv2d+Linear hooks; excludes attention tensor matmuls and non-learned ops",
+        "unit": "multiply-accumulate"
+      },
+      "memory": {
+        "memory_unit": "MiB",
+        "peak_allocated_mib": 712.21875,
+        "peak_reserved_mib": 1044.0
+      },
+      "model_forward_ms": {
+        "cold_first_call": 290.23169999709353,
+        "max": 35.20389999903273,
+        "mean": 34.63650000024548,
+        "measured_repeats": 30,
+        "median": 34.62355000374373,
+        "min": 33.65739999571815,
+        "n": 30,
+        "p90": 34.9066899943864,
+        "p95": 34.927620000962634,
+        "stdev": 0.32048341793309837,
+        "unit": "milliseconds",
+        "warmup_iterations": 5
+      },
+      "model_key": "UNETPP",
+      "notes": [
+        "batched forward; batch = 1",
+        "PLAIN baseline: no task input by design"
+      ],
+      "parameters": 9159681,
+      "pipeline_ms": {
+        "cold_first_call": 36.26829999848269,
+        "max": 36.11100000125589,
+        "mean": 35.575146666087676,
+        "measured_repeats": 30,
+        "median": 35.77824999956647,
+        "min": 34.51110000605695,
+        "n": 30,
+        "p90": 36.066080002638046,
+        "p95": 36.092110000390676,
+        "stdev": 0.5258196137956092,
+        "unit": "milliseconds",
+        "warmup_iterations": 5
+      },
+      "seed": 3407,
+      "throughput_images_per_s": 28.882075924966482
+    },
+    {
+      "adapter_kind": "PLAIN",
+      "batched_forward": true,
+      "conditional_refiner_invocation_rate": null,
+      "conditions": {
+        "batch_size": 1,
+        "cuda_synchronized": true,
+        "cuda_version": "12.4",
+        "cudnn_version": 90100,
+        "determinism": {
+          "cudnn_benchmark": false,
+          "cudnn_deterministic": false
+        },
+        "device_name": "NVIDIA GeForce RTX 3060 Ti",
+        "device_total_memory_mib": 8191.375,
+        "device_type": "cuda",
+        "input_resolution": 512,
+        "measured_repeats": 30,
+        "note": "Latency is a property of this host and this build, not of the method. Synthetic weights: no accuracy claim follows from these numbers.",
+        "precision": "fp32",
+        "timing_source": "time.perf_counter around the measured call",
+        "torch_version": "2.6.0+cu124",
+        "warmup_iterations": 5
+      },
+      "cpu_memory_mib": 2542.07421875,
+      "evidence_class": "SYNTHETIC_BENCHMARK",
+      "initialization_ms": {
+        "constructions": 5,
+        "max": 821.4894999982789,
+        "mean": 791.5121599988197,
+        "median": 806.8120999960229,
+        "min": 759.1315999961807,
+        "n": 5,
+        "p90": 816.7195000016363,
+        "p95": 819.1044999999576,
+        "scope": "single network",
+        "stdev": 29.431959831977515,
+        "unit": "milliseconds"
+      },
+      "macs": {
+        "conv_linear_macs": 69139431424,
+        "method": "Conv2d+Linear hooks; excludes attention tensor matmuls and non-learned ops",
+        "unit": "multiply-accumulate"
+      },
+      "memory": {
+        "memory_unit": "MiB",
+        "peak_allocated_mib": 308.25,
+        "peak_reserved_mib": 362.0
+      },
+      "model_forward_ms": {
+        "cold_first_call": 139.17809999838937,
+        "max": 15.8958000029088,
+        "mean": 14.856786666738723,
+        "measured_repeats": 30,
+        "median": 14.619800000218675,
+        "min": 14.304899996204767,
+        "n": 30,
+        "p90": 15.780930002074456,
+        "p95": 15.832194999893545,
+        "stdev": 0.5842288685197975,
+        "unit": "milliseconds",
+        "warmup_iterations": 5
+      },
+      "model_key": "DEEPLABV3PLUS",
+      "notes": [
+        "batched forward; batch = 1",
+        "PLAIN baseline: no task input by design"
+      ],
+      "parameters": 40347041,
+      "pipeline_ms": {
+        "cold_first_call": 15.297099998861086,
+        "max": 19.41660000011325,
+        "mean": 16.24395666658529,
+        "measured_repeats": 30,
+        "median": 16.080349996627774,
+        "min": 15.551299999060575,
+        "n": 30,
+        "p90": 16.757129999314202,
+        "p95": 17.51070999962394,
+        "stdev": 0.7556679505134752,
+        "unit": "milliseconds",
+        "warmup_iterations": 5
+      },
+      "seed": 42,
+      "throughput_images_per_s": 68.40038851318367
+    },
+    {
+      "adapter_kind": "PLAIN",
+      "batched_forward": true,
+      "conditional_refiner_invocation_rate": null,
+      "conditions": {
+        "batch_size": 1,
+        "cuda_synchronized": true,
+        "cuda_version": "12.4",
+        "cudnn_version": 90100,
+        "determinism": {
+          "cudnn_benchmark": false,
+          "cudnn_deterministic": false
+        },
+        "device_name": "NVIDIA GeForce RTX 3060 Ti",
+        "device_total_memory_mib": 8191.375,
+        "device_type": "cuda",
+        "input_resolution": 512,
+        "measured_repeats": 30,
+        "note": "Latency is a property of this host and this build, not of the method. Synthetic weights: no accuracy claim follows from these numbers.",
+        "precision": "fp32",
+        "timing_source": "time.perf_counter around the measured call",
+        "torch_version": "2.6.0+cu124",
+        "warmup_iterations": 5
+      },
+      "cpu_memory_mib": 2542.07421875,
+      "evidence_class": "SYNTHETIC_BENCHMARK",
+      "initialization_ms": {
+        "constructions": 5,
+        "max": 818.5350999992806,
+        "mean": 790.9642600003281,
+        "median": 798.015000000305,
+        "min": 738.5011000005761,
+        "n": 5,
+        "p90": 817.7020599978277,
+        "p95": 818.1185799985542,
+        "scope": "single network",
+        "stdev": 32.67403057890621,
+        "unit": "milliseconds"
+      },
+      "macs": {
+        "conv_linear_macs": 69139431424,
+        "method": "Conv2d+Linear hooks; excludes attention tensor matmuls and non-learned ops",
+        "unit": "multiply-accumulate"
+      },
+      "memory": {
+        "memory_unit": "MiB",
+        "peak_allocated_mib": 308.25,
+        "peak_reserved_mib": 362.0
+      },
+      "model_forward_ms": {
+        "cold_first_call": 91.33950000250479,
+        "max": 16.43049999984214,
+        "mean": 15.383489999415664,
+        "measured_repeats": 30,
+        "median": 15.15569999901345,
+        "min": 14.56519999919692,
+        "n": 30,
+        "p90": 16.145989999495214,
+        "p95": 16.273814997111913,
+        "stdev": 0.6109451970078568,
+        "unit": "milliseconds",
+        "warmup_iterations": 5
+      },
+      "model_key": "DEEPLABV3PLUS",
+      "notes": [
+        "batched forward; batch = 1",
+        "PLAIN baseline: no task input by design"
+      ],
+      "parameters": 40347041,
+      "pipeline_ms": {
+        "cold_first_call": 15.926100000797305,
+        "max": 19.43570000003092,
+        "mean": 16.529976667273633,
+        "measured_repeats": 30,
+        "median": 16.27205000113463,
+        "min": 15.61990000482183,
+        "n": 30,
+        "p90": 17.35361000028206,
+        "p95": 18.505765001464166,
+        "stdev": 0.8815178518029686,
+        "unit": "milliseconds",
+        "warmup_iterations": 5
+      },
+      "seed": 123,
+      "throughput_images_per_s": 65.98177583780982
+    },
+    {
+      "adapter_kind": "PLAIN",
+      "batched_forward": true,
+      "conditional_refiner_invocation_rate": null,
+      "conditions": {
+        "batch_size": 1,
+        "cuda_synchronized": true,
+        "cuda_version": "12.4",
+        "cudnn_version": 90100,
+        "determinism": {
+          "cudnn_benchmark": false,
+          "cudnn_deterministic": false
+        },
+        "device_name": "NVIDIA GeForce RTX 3060 Ti",
+        "device_total_memory_mib": 8191.375,
+        "device_type": "cuda",
+        "input_resolution": 512,
+        "measured_repeats": 30,
+        "note": "Latency is a property of this host and this build, not of the method. Synthetic weights: no accuracy claim follows from these numbers.",
+        "precision": "fp32",
+        "timing_source": "time.perf_counter around the measured call",
+        "torch_version": "2.6.0+cu124",
+        "warmup_iterations": 5
+      },
+      "cpu_memory_mib": 2542.07421875,
+      "evidence_class": "SYNTHETIC_BENCHMARK",
+      "initialization_ms": {
+        "constructions": 5,
+        "max": 824.8387999992701,
+        "mean": 794.2086199996993,
+        "median": 795.676599998842,
+        "min": 753.3642999987933,
+        "n": 5,
+        "p90": 816.3707199986675,
+        "p95": 820.6047599989688,
+        "scope": "single network",
+        "stdev": 25.974131982468077,
+        "unit": "milliseconds"
+      },
+      "macs": {
+        "conv_linear_macs": 69139431424,
+        "method": "Conv2d+Linear hooks; excludes attention tensor matmuls and non-learned ops",
+        "unit": "multiply-accumulate"
+      },
+      "memory": {
+        "memory_unit": "MiB",
+        "peak_allocated_mib": 308.25,
+        "peak_reserved_mib": 362.0
+      },
+      "model_forward_ms": {
+        "cold_first_call": 89.93829999963054,
+        "max": 16.11859999684384,
+        "mean": 15.147619999819048,
+        "measured_repeats": 30,
+        "median": 14.906849999533733,
+        "min": 14.345499999762978,
+        "n": 30,
+        "p90": 15.89628000074299,
+        "p95": 15.991149996989407,
+        "stdev": 0.6019621544115042,
+        "unit": "milliseconds",
+        "warmup_iterations": 5
+      },
+      "model_key": "DEEPLABV3PLUS",
+      "notes": [
+        "batched forward; batch = 1",
+        "PLAIN baseline: no task input by design"
+      ],
+      "parameters": 40347041,
+      "pipeline_ms": {
+        "cold_first_call": 15.868499998759944,
+        "max": 18.935200001578778,
+        "mean": 15.861153333632197,
+        "measured_repeats": 30,
+        "median": 15.797599997313228,
+        "min": 15.123000004678033,
+        "n": 30,
+        "p90": 16.178809999109944,
+        "p95": 16.306879999683588,
+        "stdev": 0.665651169974655,
+        "unit": "milliseconds",
+        "warmup_iterations": 5
+      },
+      "seed": 3407,
+      "throughput_images_per_s": 67.08325367406788
+    },
+    {
+      "adapter_kind": "PLAIN",
+      "batched_forward": true,
+      "conditional_refiner_invocation_rate": null,
+      "conditions": {
+        "batch_size": 1,
+        "cuda_synchronized": true,
+        "cuda_version": "12.4",
+        "cudnn_version": 90100,
+        "determinism": {
+          "cudnn_benchmark": false,
+          "cudnn_deterministic": false
+        },
+        "device_name": "NVIDIA GeForce RTX 3060 Ti",
+        "device_total_memory_mib": 8191.375,
+        "device_type": "cuda",
+        "input_resolution": 512,
+        "measured_repeats": 30,
+        "note": "Latency is a property of this host and this build, not of the method. Synthetic weights: no accuracy claim follows from these numbers.",
+        "precision": "fp32",
+        "timing_source": "time.perf_counter around the measured call",
+        "torch_version": "2.6.0+cu124",
+        "warmup_iterations": 5
+      },
+      "cpu_memory_mib": 2601.6484375,
+      "evidence_class": "SYNTHETIC_BENCHMARK",
+      "initialization_ms": {
+        "constructions": 5,
+        "max": 428.3039999936591,
+        "mean": 404.0889399999287,
+        "median": 412.38180000073044,
+        "min": 363.30740000266815,
+        "n": 5,
+        "p90": 424.15911999560194,
+        "p95": 426.2315599946305,
+        "scope": "single network",
+        "stdev": 25.205675507278524,
+        "unit": "milliseconds"
+      },
+      "macs": {
+        "conv_linear_macs": 17572560896,
+        "method": "Conv2d+Linear hooks; excludes attention tensor matmuls and non-learned ops",
+        "unit": "multiply-accumulate"
+      },
+      "memory": {
+        "memory_unit": "MiB",
+        "peak_allocated_mib": 208.61279296875,
+        "peak_reserved_mib": 278.0
+      },
+      "model_forward_ms": {
+        "cold_first_call": 81.43520000157878,
+        "max": 13.449599995510653,
+        "mean": 11.58300333263469,
+        "measured_repeats": 30,
+        "median": 11.635150000074646,
+        "min": 10.719300000346266,
+        "n": 30,
+        "p90": 12.21877000425593,
+        "p95": 12.299579997488763,
+        "stdev": 0.6069029497033568,
+        "unit": "milliseconds",
+        "warmup_iterations": 5
+      },
+      "model_key": "TRANSFORMER_MIT_UNET",
+      "notes": [
+        "batched forward; batch = 1",
+        "PLAIN baseline: no task input by design"
+      ],
+      "parameters": 16347777,
+      "pipeline_ms": {
+        "cold_first_call": 15.176799999608193,
+        "max": 12.407100002747029,
+        "mean": 11.906933333860556,
+        "measured_repeats": 30,
+        "median": 11.827599999378435,
+        "min": 11.602500002481975,
+        "n": 30,
+        "p90": 12.19150999604608,
+        "p95": 12.251339999056654,
+        "stdev": 0.20844643719997788,
+        "unit": "milliseconds",
+        "warmup_iterations": 5
+      },
+      "seed": 42,
+      "throughput_images_per_s": 85.94646394705565
+    },
+    {
+      "adapter_kind": "PLAIN",
+      "batched_forward": true,
+      "conditional_refiner_invocation_rate": null,
+      "conditions": {
+        "batch_size": 1,
+        "cuda_synchronized": true,
+        "cuda_version": "12.4",
+        "cudnn_version": 90100,
+        "determinism": {
+          "cudnn_benchmark": false,
+          "cudnn_deterministic": false
+        },
+        "device_name": "NVIDIA GeForce RTX 3060 Ti",
+        "device_total_memory_mib": 8191.375,
+        "device_type": "cuda",
+        "input_resolution": 512,
+        "measured_repeats": 30,
+        "note": "Latency is a property of this host and this build, not of the method. Synthetic weights: no accuracy claim follows from these numbers.",
+        "precision": "fp32",
+        "timing_source": "time.perf_counter around the measured call",
+        "torch_version": "2.6.0+cu124",
+        "warmup_iterations": 5
+      },
+      "cpu_memory_mib": 2601.6484375,
+      "evidence_class": "SYNTHETIC_BENCHMARK",
+      "initialization_ms": {
+        "constructions": 5,
+        "max": 496.16140000580344,
+        "mean": 425.67007999896305,
+        "median": 419.00089999398915,
+        "min": 395.75219999824185,
+        "n": 5,
+        "p90": 465.4922000016086,
+        "p95": 480.826800003706,
+        "scope": "single network",
+        "stdev": 40.97358390282777,
+        "unit": "milliseconds"
+      },
+      "macs": {
+        "conv_linear_macs": 17572560896,
+        "method": "Conv2d+Linear hooks; excludes attention tensor matmuls and non-learned ops",
+        "unit": "multiply-accumulate"
+      },
+      "memory": {
+        "memory_unit": "MiB",
+        "peak_allocated_mib": 208.61279296875,
+        "peak_reserved_mib": 278.0
+      },
+      "model_forward_ms": {
+        "cold_first_call": 37.317199996323325,
+        "max": 28.536999998323154,
+        "mean": 13.973339999938617,
+        "measured_repeats": 30,
+        "median": 11.829299997771159,
+        "min": 10.774399997899309,
+        "n": 30,
+        "p90": 27.910910000355216,
+        "p95": 28.257039998061373,
+        "stdev": 5.700043466746077,
+        "unit": "milliseconds",
+        "warmup_iterations": 5
+      },
+      "model_key": "TRANSFORMER_MIT_UNET",
+      "notes": [
+        "batched forward; batch = 1",
+        "PLAIN baseline: no task input by design"
+      ],
+      "parameters": 16347777,
+      "pipeline_ms": {
+        "cold_first_call": 11.672600005113054,
+        "max": 12.223700003232807,
+        "mean": 11.700173332792474,
+        "measured_repeats": 30,
+        "median": 11.684350003633881,
+        "min": 11.433899999246933,
+        "n": 30,
+        "p90": 11.902999997982988,
+        "p95": 11.970760001713643,
+        "stdev": 0.15728654552574994,
+        "unit": "milliseconds",
+        "warmup_iterations": 5
+      },
+      "seed": 123,
+      "throughput_images_per_s": 84.53585589920088
+    },
+    {
+      "adapter_kind": "PLAIN",
+      "batched_forward": true,
+      "conditional_refiner_invocation_rate": null,
+      "conditions": {
+        "batch_size": 1,
+        "cuda_synchronized": true,
+        "cuda_version": "12.4",
+        "cudnn_version": 90100,
+        "determinism": {
+          "cudnn_benchmark": false,
+          "cudnn_deterministic": false
+        },
+        "device_name": "NVIDIA GeForce RTX 3060 Ti",
+        "device_total_memory_mib": 8191.375,
+        "device_type": "cuda",
+        "input_resolution": 512,
+        "measured_repeats": 30,
+        "note": "Latency is a property of this host and this build, not of the method. Synthetic weights: no accuracy claim follows from these numbers.",
+        "precision": "fp32",
+        "timing_source": "time.perf_counter around the measured call",
+        "torch_version": "2.6.0+cu124",
+        "warmup_iterations": 5
+      },
+      "cpu_memory_mib": 2601.6484375,
+      "evidence_class": "SYNTHETIC_BENCHMARK",
+      "initialization_ms": {
+        "constructions": 5,
+        "max": 422.65970000153175,
+        "mean": 406.58669999829726,
+        "median": 414.5578000025125,
+        "min": 381.8868999951519,
+        "n": 5,
+        "p90": 420.11161999980686,
+        "p95": 421.3856600006693,
+        "scope": "single network",
+        "stdev": 16.64297322343596,
+        "unit": "milliseconds"
+      },
+      "macs": {
+        "conv_linear_macs": 17572560896,
+        "method": "Conv2d+Linear hooks; excludes attention tensor matmuls and non-learned ops",
+        "unit": "multiply-accumulate"
+      },
+      "memory": {
+        "memory_unit": "MiB",
+        "peak_allocated_mib": 208.61279296875,
+        "peak_reserved_mib": 278.0
+      },
+      "model_forward_ms": {
+        "cold_first_call": 39.20810000272468,
+        "max": 30.304300002171658,
+        "mean": 13.318800000464156,
+        "measured_repeats": 30,
+        "median": 11.429349997342797,
+        "min": 10.621800000080839,
+        "n": 30,
+        "p90": 16.732069996214726,
+        "p95": 30.1818749980157,
+        "stdev": 5.785188330191957,
+        "unit": "milliseconds",
+        "warmup_iterations": 5
+      },
+      "model_key": "TRANSFORMER_MIT_UNET",
+      "notes": [
+        "batched forward; batch = 1",
+        "PLAIN baseline: no task input by design"
+      ],
+      "parameters": 16347777,
+      "pipeline_ms": {
+        "cold_first_call": 11.88420000107726,
+        "max": 13.116999994963408,
+        "mean": 11.733646665864702,
+        "measured_repeats": 30,
+        "median": 11.665049998555332,
+        "min": 11.413100000936538,
+        "n": 30,
+        "p90": 11.84314000129234,
+        "p95": 12.017034996461007,
+        "stdev": 0.3009032286181485,
+        "unit": "milliseconds",
+        "warmup_iterations": 5
+      },
+      "seed": 3407,
+      "throughput_images_per_s": 87.49403948890264
+    }
+  ],
+  "routed_batch_policy": {
+    "batch1_only": [
+      "RA_MEDFILM_BARR_FULL",
+      "RA_MEDFILM_BARR_LITE_DEPTHWISE"
+    ],
+    "batched_models": [
+      "GLOBAL_MEDFILM",
+      "UNET",
+      "ATTENTION_UNET",
+      "UNETPP",
+      "DEEPLABV3PLUS",
+      "TRANSFORMER_MIT_UNET"
+    ],
+    "reason": "FULL and Lite run per-image ROI geometry, routing and a safety gate; a batch>1 number for them would describe a pipeline that does not exist"
+  },
+  "schema": "phase_d_benchmark_v1",
+  "seeds": [
+    42,
+    123,
+    3407
+  ]
+}

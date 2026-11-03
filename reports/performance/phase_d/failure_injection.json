@@ -1,0 +1,110 @@
+{
+  "all_detected": true,
+  "environment": {
+    "cuda": "12.4",
+    "cudnn": 90100,
+    "device": "NVIDIA GeForce RTX 3060 Ti",
+    "evidence_class": "SYNTHETIC_BENCHMARK",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "python": "3.11.9",
+    "torch": "2.6.0+cu124"
+  },
+  "evidence_class": "SYNTHETIC_BENCHMARK",
+  "injections": [
+    {
+      "detail": "raised FamilyCompatibilityError",
+      "detected": true,
+      "detected_by": "FamilyCompatibilityError",
+      "guard": "global_stage.verify -> load_checkpoint(component='G')",
+      "injection": "G/best.pt replaced with an R-component envelope",
+      "stage": "global_training"
+    },
+    {
+      "detail": "incomplete -> RuntimeError; mismatched G -> RuntimeError",
+      "detected": true,
+      "detected_by": "RuntimeError",
+      "guard": "cache_stage.verify -> manifest completeness and G digest",
+      "incomplete_raised": "RuntimeError",
+      "injection": "cache manifest marked incomplete, then pinned to a different G digest",
+      "mismatched_g_raised": "RuntimeError",
+      "stage": "cache_creation"
+    },
+    {
+      "detail": "raised FamilyCompatibilityError",
+      "detected": true,
+      "detected_by": "FamilyCompatibilityError",
+      "guard": "refiner_stage.verify -> load_checkpoint(component='R')",
+      "injection": "R/final/final.pt replaced with a G-component envelope",
+      "stage": "refiner_training"
+    },
+    {
+      "detail": "verdict=LABELS_INCONSISTENT residual=3.000e-01",
+      "detected": true,
+      "detected_by": "LABELS_INCONSISTENT",
+      "guard": "label_stage.verify -> delta identity residual",
+      "injection": "delta_dice inconsistent with candidate_refined_dice - global_dice",
+      "residual": 0.30000000000000004,
+      "stage": "benefit_label_generation"
+    },
+    {
+      "detail": "raised RuntimeError",
+      "detected": true,
+      "detected_by": "RuntimeError",
+      "guard": "router_stage.load_family_inputs -> non-finite check",
+      "injection": "router feature matrix carrying a NaN",
+      "stage": "router_training"
+    },
+    {
+      "detail": "raised RuntimeError",
+      "detected": true,
+      "detected_by": "RuntimeError",
+      "guard": "safety_stage.load_family_inputs -> safety feature presence",
+      "injection": "label manifest with no safety_features_sha256",
+      "stage": "safety_training"
+    },
+    {
+      "detail": "short roster -> PublicationError; duplicate -> PublicationError",
+      "detected": true,
+      "detected_by": "PublicationError",
+      "duplicate_raised": "PublicationError",
+      "guard": "provenance.publish_cell -> roster and duplicate checks",
+      "injection": "a roster missing two images, then a duplicated sample_id",
+      "short_roster_raised": "PublicationError",
+      "stage": "evaluation_export"
+    },
+    {
+      "detail": "tampered -> REJECTED (['result document seal mismatch (the document was edited)']); namespace change -> NamespaceError",
+      "detected": true,
+      "detected_by": "REJECTED",
+      "guard": "provenance.verify_cell seal + provenance.publish_cell namespace lock",
+      "injection": "a relabelled sealed document, then a namespace change in an existing cell",
+      "namespace_raised": "NamespaceError",
+      "stage": "result_publication",
+      "tamper_reasons": [
+        "result document seal mismatch (the document was edited)",
+        "evidence namespace mismatch: marker 'synthetic' vs document 'research'",
+        "evidence namespace marker disagrees on evidence class",
+        "synthetic run not labelled SYNTHETIC_TEST_ONLY",
+        "a real-evidence cell is marked synthetic",
+        "a real-evidence cell records no training",
+        "a real-evidence cell carries no genuine SHA-256 weight digest"
+      ],
+      "tamper_status": "REJECTED"
+    }
+  ],
+  "missed": [],
+  "n_detected": 8,
+  "n_injections": 8,
+  "note": "Each injection hands a real guard a genuinely broken artifact or input. No training is run; this establishes refusal at the stage boundary only.",
+  "schema": "phase_d_failure_injection_v1",
+  "stages": [
+    "global_training",
+    "cache_creation",
+    "refiner_training",
+    "benefit_label_generation",
+    "router_training",
+    "safety_training",
+    "evaluation_export",
+    "result_publication"
+  ]
+}

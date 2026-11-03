@@ -1,0 +1,185 @@
+{
+  "all_passed": true,
+  "checks": [
+    {
+      "check": "seeding",
+      "configuration": {
+        "cublas_workspace_config": ":4096:8",
+        "cudnn_benchmark": false,
+        "cudnn_deterministic": true,
+        "deterministic_algorithms": true,
+        "rng_sources": [
+          "python",
+          "numpy",
+          "torch_cpu",
+          "torch_cuda"
+        ]
+      },
+      "detail": "python/numpy/torch draws reproduce exactly after re-seeding",
+      "first": [
+        0.6394267984578837,
+        0.3745401188473625,
+        0.8822692632675171
+      ],
+      "identity_class": "exact",
+      "passed": true,
+      "second": [
+        0.6394267984578837,
+        0.3745401188473625,
+        0.8822692632675171
+      ]
+    },
+    {
+      "check": "rng_capture_restore",
+      "consumed": [
+        0.6394267984578837,
+        0.3745401188473625,
+        2.1801369190216064
+      ],
+      "detail": "all four RNG sources replay exactly from a captured state",
+      "identity_class": "exact",
+      "passed": true,
+      "replayed": [
+        0.6394267984578837,
+        0.3745401188473625,
+        2.1801369190216064
+      ],
+      "sources": [
+        "python",
+        "numpy",
+        "torch_cpu",
+        "torch_cuda"
+      ]
+    },
+    {
+      "check": "empty_rng_state_refused",
+      "detail": "cannot restore an empty RNG state",
+      "identity_class": "exact",
+      "passed": true
+    },
+    {
+      "check": "loader_order",
+      "detail": "the generator advances between epochs and a captured state reproduces the order exactly",
+      "epochs_differ": true,
+      "identity_class": "exact",
+      "passed": true,
+      "reseed_reproduces": true,
+      "state_restore_reproduces": true
+    },
+    {
+      "check": "resume_equivalence",
+      "detail": "resume with the generator state reproduces the uninterrupted trajectory exactly and ends on identical weights; without it the first resumed epoch diverges (0.445927 vs 0.446605)",
+      "fix_necessary": true,
+      "fix_sufficient": true,
+      "identity_class": "exact",
+      "passed": true,
+      "resumed_with_fix": [
+        0.446604512632,
+        0.391637507826
+      ],
+      "resumed_without_fix": [
+        0.445927329361,
+        0.392776537687
+      ],
+      "uninterrupted": [
+        0.527156047523,
+        0.446604512632,
+        0.391637507826
+      ],
+      "weights_sha256_resumed": "21b6ca792fadea7d9b307baf362de050d75aa7d1e069791b82157c5cab213779",
+      "weights_sha256_uninterrupted": "21b6ca792fadea7d9b307baf362de050d75aa7d1e069791b82157c5cab213779"
+    },
+    {
+      "check": "cuda_algorithms",
+      "configuration": {
+        "cublas_workspace_config": ":4096:8",
+        "cudnn_benchmark": false,
+        "cudnn_deterministic": true,
+        "deterministic_algorithms": true,
+        "rng_sources": [
+          "python",
+          "numpy",
+          "torch_cpu",
+          "torch_cuda"
+        ]
+      },
+      "demonstrated_on": "NVIDIA GeForce RTX 3060 Ti",
+      "detail": "deterministic algorithms on, cudnn deterministic, benchmark off, CUBLAS workspace fixed; three repeats bitwise identical",
+      "identity_class": "exact",
+      "passed": true
+    },
+    {
+      "best_epoch": 4,
+      "best_loss": 0.1,
+      "check": "checkpoint_selection",
+      "detail": "selection is identical in batch, streaming and after a CSV round-trip; a tie keeps the earlier epoch (4)",
+      "identity_class": "exact",
+      "passed": true,
+      "tie_epochs": [
+        4,
+        6
+      ]
+    },
+    {
+      "check": "dependency_identities",
+      "dependency": {
+        "PIL": "12.3.0",
+        "cublas_workspace_config": ":4096:8",
+        "cudnn": 90100,
+        "fingerprint_sha256": "4c470ad358b60710cb810f12be1436f32cafb76dfc3c569ca1e3ef2d15f2da8e",
+        "numpy": "2.4.6",
+        "pandas": "3.0.5",
+        "platform": "Windows-10-10.0.26200-SP0",
+        "psutil": "7.2.2",
+        "python": "3.11.9",
+        "python_implementation": "CPython",
+        "skimage": "0.26.0",
+        "torch": "2.6.0+cu124",
+        "torch_cuda": "12.4"
+      },
+      "detail": "the dependency fingerprint is stable across two reads; requirements.txt is UNPINNED, so the environment is recorded rather than guaranteed",
+      "identity_class": "exact",
+      "passed": true,
+      "requirements_pinned": false
+    },
+    {
+      "check": "prediction_export",
+      "detail": "the same records export byte-identically (same per-image hash and seal); per-image values and the aggregate are order-independent",
+      "document_seal": "567832ed84fb31bcd92742635e9046faeb5e1b9fd45f5bc0b660a4ad3f49bec5",
+      "identity_class": "exact",
+      "passed": true,
+      "per_image_sha256": "bde488c31c9ae68718e08455f8f55c95f741fd8e750dd629d7f2c3781a49eb82"
+    },
+    {
+      "check": "per_image_results",
+      "detail": "per-image Dice/IoU/HD95 are identical on repetition; the float64 path differs by 0.000e+00 (tolerance, not identity)",
+      "dice": 0.8571428572704082,
+      "float64_dice_delta": 0.0,
+      "hd95": 2.0,
+      "identity_class": "exact",
+      "iou": 0.7500000003906251,
+      "passed": true
+    }
+  ],
+  "device": "cuda",
+  "environment": {
+    "cuda": "12.4",
+    "cudnn": 90100,
+    "device": "NVIDIA GeForce RTX 3060 Ti",
+    "evidence_class": "SYNTHETIC_BENCHMARK",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "python": "3.11.9",
+    "torch": "2.6.0+cu124"
+  },
+  "evidence_class": "SYNTHETIC_BENCHMARK",
+  "failed": [],
+  "identity_policy": {
+    "exact": "RNG replay, loader permutation for a given generator state, resume equivalence on the same device, checkpoint selection, export bytes, per-image metrics, repeated same-device forward",
+    "tolerance": "CPU versus CUDA only; no cross-device bitwise equality is claimed, and the Phase B CPU/CUDA gate states its own tolerances rather than relaxing them"
+  },
+  "n_checks": 10,
+  "n_passed": 10,
+  "note": "The Phase B data-order generator defect is rechecked by ablation: the fix must be both necessary and sufficient.",
+  "schema": "phase_d_determinism_v1",
+  "seed": 42
+}

@@ -1,0 +1,4845 @@
+{
+  "10_parity": {
+    "all_passed": true,
+    "claim": "no cross-device bitwise equality is claimed; these are agreement criteria on a numerically different implementation",
+    "environment": {
+      "cuda": "12.4",
+      "cudnn": 90100,
+      "device": "NVIDIA GeForce RTX 3060 Ti",
+      "evidence_class": "SYNTHETIC_BENCHMARK",
+      "platform": "Windows-10-10.0.26200-SP0",
+      "python": "3.11.9",
+      "torch": "2.6.0+cu124"
+    },
+    "evidence_class": "SYNTHETIC_BENCHMARK",
+    "failed": [],
+    "n_models": 8,
+    "note": "SYNTHETIC_BENCHMARK. Fixture weights and a synthetic image.",
+    "records": [
+      {
+        "adapter_kind": "ROUTED",
+        "binary_agreement": 1.0,
+        "both_finite": true,
+        "cpu_state": "EXECUTE_THEN_ACCEPT",
+        "cuda_state": "EXECUTE_THEN_ACCEPT",
+        "max_abs_difference": 0.0001450181007385254,
+        "mean_abs_difference": 1.6205163433369307e-05,
+        "model_key": "RA_MEDFILM_BARR_FULL",
+        "passed": true,
+        "shape_match": true,
+        "state_agreement": true,
+        "weights_copied": true
+      },
+      {
+        "adapter_kind": "TASK_CONDITIONED",
+        "binary_agreement": 1.0,
+        "both_finite": true,
+        "cpu_state": "NOT_APPLICABLE",
+        "cuda_state": "NOT_APPLICABLE",
+        "max_abs_difference": 0.00022071599960327148,
+        "mean_abs_difference": 5.109892754262546e-05,
+        "model_key": "GLOBAL_MEDFILM",
+        "passed": true,
+        "shape_match": true,
+        "state_agreement": true,
+        "weights_copied": true
+      },
+      {
+        "adapter_kind": "ROUTED",
+        "binary_agreement": 0.9994430541992188,
+        "both_finite": true,
+        "cpu_state": "SKIP_GLOBAL",
+        "cuda_state": "SKIP_GLOBAL",
+        "max_abs_difference": 0.01230931282043457,
+        "mean_abs_difference": 0.0002025286491971201,
+        "model_key": "RA_MEDFILM_BARR_LITE_DEPTHWISE",
+        "passed": true,
+        "shape_match": true,
+        "state_agreement": true,
+        "weights_copied": true
+      },
+      {
+        "adapter_kind": "PLAIN",
+        "binary_agreement": 0.9999198913574219,
+        "both_finite": true,
+        "cpu_state": "NOT_APPLICABLE",
+        "cuda_state": "NOT_APPLICABLE",
+        "max_abs_difference": 0.00021219253540039062,
+        "mean_abs_difference": 2.9303915994205454e-05,
+        "model_key": "UNET",
+        "passed": true,
+        "shape_match": true,
+        "state_agreement": true,
+        "weights_copied": true
+      },
+      {
+        "adapter_kind": "PLAIN",
+        "binary_agreement": 0.9999809265136719,
+        "both_finite": true,
+        "cpu_state": "NOT_APPLICABLE",
+        "cuda_state": "NOT_APPLICABLE",
+        "max_abs_difference": 0.00027948617935180664,
+        "mean_abs_difference": 3.8803783922958246e-05,
+        "model_key": "ATTENTION_UNET",
+        "passed": true,
+        "shape_match": true,
+        "state_agreement": true,
+        "weights_copied": true
+      },
+      {
+        "adapter_kind": "PLAIN",
+        "binary_agreement": 0.9999809265136719,
+        "both_finite": true,
+        "cpu_state": "NOT_APPLICABLE",
+        "cuda_state": "NOT_APPLICABLE",
+        "max_abs_difference": 0.0004278123378753662,
+        "mean_abs_difference": 9.115480713717261e-05,
+        "model_key": "UNETPP",
+        "passed": true,
+        "shape_match": true,
+        "state_agreement": true,
+        "weights_copied": true
+      },
+      {
+        "adapter_kind": "PLAIN",
+        "binary_agreement": 0.9997482299804688,
+        "both_finite": true,
+        "cpu_state": "NOT_APPLICABLE",
+        "cuda_state": "NOT_APPLICABLE",
+        "max_abs_difference": 0.0424116849899292,
+        "mean_abs_difference": 0.0002797721693567048,
+        "model_key": "DEEPLABV3PLUS",
+        "passed": true,
+        "shape_match": true,
+        "state_agreement": true,
+        "weights_copied": true
+      },
+      {
+        "adapter_kind": "PLAIN",
+        "binary_agreement": 0.9997291564941406,
+        "both_finite": true,
+        "cpu_state": "NOT_APPLICABLE",
+        "cuda_state": "NOT_APPLICABLE",
+        "max_abs_difference": 0.000637054443359375,
+        "mean_abs_difference": 9.822192930641904e-05,
+        "model_key": "TRANSFORMER_MIT_UNET",
+        "passed": true,
+        "shape_match": true,
+        "state_agreement": true,
+        "weights_copied": true
+      }
+    ],
+    "schema": "phase_d_parity_v1",
+    "tolerances": {
+      "binary_agreement_min": 0.99,
+      "mean_abs_difference_max": 0.002,
+      "routing_state": "exact match required for routed models",
+      "source": "inherited unchanged from the Phase B CPU/CUDA gate; not re-tuned in Phase D",
+      "threshold": 0.5
+    }
+  },
+  "11_regression": {
+    "anomalies": {},
+    "basetemp": "D:\\Softfors\\jup\\_tmp\\phase_d_regression_20261103_185021",
+    "broad": null,
+    "by_area": {
+      "Architecture drift": {
+        "error": 0,
+        "failed": 0,
+        "passed": 12,
+        "skipped": 0,
+        "xfailed": 0
+      },
+      "CUDA memory": {
+        "error": 0,
+        "failed": 0,
+        "passed": 49,
+        "skipped": 0,
+        "xfailed": 0
+      },
+      "Checkpoint recovery": {
+        "error": 0,
+        "failed": 0,
+        "passed": 1,
+        "skipped": 0,
+        "xfailed": 0
+      },
+      "Dataset and ROI": {
+        "error": 0,
+        "failed": 0,
+        "passed": 18,
+        "skipped": 0,
+        "xfailed": 0
+      },
+      "Evidence-class separation": {
+        "error": 0,
+        "failed": 0,
+        "passed": 26,
+        "skipped": 0,
+        "xfailed": 0
+      },
+      "FULL pipeline": {
+        "error": 0,
+        "failed": 0,
+        "passed": 24,
+        "skipped": 0,
+        "xfailed": 0
+      },
+      "FiLM conditioning": {
+        "error": 0,
+        "failed": 0,
+        "passed": 18,
+        "skipped": 0,
+        "xfailed": 0
+      },
+      "Lite pipeline": {
+        "error": 0,
+        "failed": 0,
+        "passed": 70,
+        "skipped": 0,
+        "xfailed": 0
+      },
+      "Metrics and statistics": {
+        "error": 0,
+        "failed": 0,
+        "passed": 25,
+        "skipped": 0,
+        "xfailed": 0
+      },
+      "Phase C evaluation": {
+        "error": 0,
+        "failed": 0,
+        "passed": 19,
+        "skipped": 1,
+        "xfailed": 0
+      },
+      "Stage 6": {
+        "error": 0,
+        "failed": 0,
+        "passed": 47,
+        "skipped": 0,
+        "xfailed": 0
+      }
+    },
+    "classification": {},
+    "environmental": [],
+    "errored_tests": [],
+    "evidence_class": "SYNTHETIC_BENCHMARK",
+    "failed": 0,
+    "failed_tests": [],
+    "new_regressions": [],
+    "note": "Failures are classified explicitly; anything not in the known map is reported as a new regression rather than absorbed. An unparseable or interrupted run is recorded in anomalies instead of being counted as a clean pass.",
+    "passed": 309,
+    "pre_existing_defects": [],
+    "schema": "phase_d_regression_v1",
+    "skipped": 1,
+    "targeted": {
+      "anomaly": null,
+      "counts": {
+        "error": 0,
+        "failed": 0,
+        "passed": 309,
+        "skipped": 1,
+        "xfailed": 0
+      },
+      "errored_tests": [],
+      "failed_tests": [],
+      "parsed": true,
+      "returncode": 0,
+      "stderr_tail": "",
+      "tail": ".....................................................s.... [ 18%]\n........................................................................ [ 41%]\n........................................................................ [ 65%]\n.................................................................. [ 86%]\n..........................................                               [100%]\n309 passed, 1 skipped, 20 subtests passed in 381.19s (0:06:21)"
+    },
+    "xfailed": 0
+  },
+  "12_blockers": [],
+  "13_commit": "279ed48cac46d58d42463bf3c159c06e51901c1c",
+  "14_decision": {
+    "definition_of_done": {
+      "all_eight_adapters_profiled": {
+        "detail": "8 distinct model keys profiled",
+        "met": true
+      },
+      "deterministic_resume_demonstrated": {
+        "detail": "ablation shows the data-order fix is necessary and sufficient",
+        "met": true
+      },
+      "film_conditioning_functionally_verified": {
+        "detail": "functional task dependence plus a frozen-conditioning control that stays at the task-blind optimum",
+        "met": true
+      },
+      "gpu_memory_characterised": {
+        "detail": "per-stage training peaks, inference peaks and a capacity search",
+        "met": true
+      },
+      "interruption_and_corruption_recovery": {
+        "detail": "8/8 injections detected",
+        "met": true
+      },
+      "new_engineering_regressions_resolved": {
+        "detail": "new regressions: []",
+        "met": true
+      },
+      "protected_restrictions_intact": {
+        "detail": "Phase D code references no protected-split identifier and no institutional trust-store path (audited by the package scan in test_18), no trust-store file was written, and no real training was launched; this is a scope attestation for Phase D, not a measurement",
+        "met": true
+      },
+      "routing_branches_benchmarked": {
+        "detail": "all four canonical states reached and asserted, plus the global-only / always-refine / conditional comparison",
+        "met": true
+      },
+      "synthetic_cannot_masquerade": {
+        "detail": "7/7 attacks blocked",
+        "met": true
+      }
+    },
+    "status": "PHASE_D_COMPLETE"
+  },
+  "1_git_head": {
+    "branch": "master",
+    "changed_files": [
+      "M .workbuddy-ai/memory/2026-11-03.md",
+      " M .workbuddy-ai/memory/MEMORY.md",
+      " M paper_doc/figures/fig01_method_architecture.pdf",
+      " M paper_doc/figures/fig01_method_architecture.png",
+      " M paper_doc/figures/fig01_method_architecture.svg",
+      " M paper_doc/figures/fig02_dataset_protocol.pdf",
+      " M paper_doc/figures/fig02_dataset_protocol.png",
+      " M paper_doc/figures/fig02_dataset_protocol.svg",
+      " M paper_doc/figures/fig02_dataset_protocol_source.csv",
+      " M paper_doc/figures/fig05_barr_routing_safety.pdf",
+      " M paper_doc/figures/fig05_barr_routing_safety.png",
+      " M paper_doc/figures/fig05_barr_routing_safety.svg",
+      " M paper_doc/figures/fig05_barr_routing_safety_source.csv",
+      " M paper_doc/figures/fig06_internal_performance.pdf",
+      " M paper_doc/figures/fig06_internal_performance.png",
+      " M paper_doc/figures/fig06_internal_performance.svg",
+      " M paper_doc/figures/fig06_internal_performance_source.csv",
+      " M paper_doc/figures/fig07_external_stress_test.pdf",
+      " M paper_doc/figures/fig07_external_stress_test.png",
+      " M paper_doc/figures/fig07_external_stress_test.svg",
+      " M paper_doc/figures/fig07_external_stress_test_source.csv",
+      " M paper_doc/figures/fig08_main_qualitative.pdf",
+      " M paper_doc/figures/fig08_main_qualitative.png",
+      " M paper_doc/figures/fig08_main_qualitative.svg",
+      " M paper_doc/figures/fig08_main_qualitative_source.csv",
+      " M paper_doc/figures/fig08s_qualitative_overview.pdf",
+      " M paper_doc/figures/fig08s_qualitative_overview.png",
+      " M paper_doc/figures/fig08s_qualitative_overview.svg",
+      " M paper_doc/figures/fig08s_qualitative_overview_source.csv",
+      " M paper_doc/figures/fig09_failure_analysis.pdf",
+      " M paper_doc/figures/fig09_failure_analysis.png",
+      " M paper_doc/figures/fig09_failure_analysis.svg",
+      " M paper_doc/figures/fig09_failure_analysis_source.csv",
+      " M paper_doc/figures/fig10_accuracy_vs_cost.pdf",
+      " M paper_doc/figures/fig10_accuracy_vs_cost.png",
+      " M paper_doc/figures/fig10_accuracy_vs_cost.svg",
+      " M paper_doc/figures/fig10_accuracy_vs_cost_source.csv",
+      " M reports/audits/c1_r4_execution/synthetic_chain_test.json",
+      " M scripts/analysis/run_c1_campaign_launch.py",
+      " M src/research/evaluation/adapters.py",
+      " M src/research/evaluation/provenance.py",
+      " M src/research/evaluation/reports.py",
+      "?? _tmp/",
+      "?? paper_doc/RA_MedFiLM_BARR_Scientific_Report.pdf",
+      "?? paper_doc/render/",
+      "?? paper_doc/render_new/",
+      "?? scripts/analysis/phase_d_performance.py",
+      "?? src/research/performance/",
+      "?? tests/test_performance_phase_d.py",
+      "?? tests/test_rc2_missing_store_isolation.py"
+    ],
+    "commit": "279ed48cac46d58d42463bf3c159c06e51901c1c",
+    "evidence_class": "SYNTHETIC_BENCHMARK",
+    "head": "279ed48cac46d58d42463bf3c159c06e51901c1c",
+    "n_changed_files": 50,
+    "note": "HEAD is captured before the Phase D commit; deliverable 13 records the commit hash produced by this phase.",
+    "schema": "phase_d_git_state_v1"
+  },
+  "2_benchmark_methodology": {
+    "batch_policy": {
+      "batch1_only": [
+        "RA_MEDFILM_BARR_FULL",
+        "RA_MEDFILM_BARR_LITE_DEPTHWISE"
+      ],
+      "batched_models": [
+        "GLOBAL_MEDFILM",
+        "UNET",
+        "ATTENTION_UNET",
+        "UNETPP",
+        "DEEPLABV3PLUS",
+        "TRANSFORMER_MIT_UNET"
+      ],
+      "reason": "FULL and Lite run per-image ROI geometry, routing and a safety gate; a batch>1 number for them would describe a pipeline that does not exist"
+    },
+    "cold_vs_warm": "the first call is recorded separately as cold_first_call and never averaged into the warm figure",
+    "conditions": {
+      "batch_size": 1,
+      "cuda_synchronized": true,
+      "cuda_version": "12.4",
+      "cudnn_version": 90100,
+      "determinism": {
+        "cudnn_benchmark": false,
+        "cudnn_deterministic": false
+      },
+      "device_name": "NVIDIA GeForce RTX 3060 Ti",
+      "device_total_memory_mib": 8191.375,
+      "device_type": "cuda",
+      "input_resolution": 512,
+      "measured_repeats": 30,
+      "note": "Latency is a property of this host and this build, not of the method. Synthetic weights: no accuracy claim follows from these numbers.",
+      "precision": "fp32",
+      "timing_source": "time.perf_counter around the measured call",
+      "torch_version": "2.6.0+cu124",
+      "warmup_iterations": 5
+    },
+    "evidence_class": "SYNTHETIC_BENCHMARK",
+    "macs_vs_wall_time": "conv/linear MACs are architectural; latency is this host and this build. They are never substituted",
+    "measured_repeats": 30,
+    "seeds": [
+      42,
+      123,
+      3407
+    ],
+    "statistics": "median, p90, p95, mean, min, max, stdev per call",
+    "timing_source": "time.perf_counter with CUDA synchronisation on both sides",
+    "warmup_iterations": 5
+  },
+  "3_latency": {
+    "batch_scaling": [
+      {
+        "evidence_class": "SYNTHETIC_BENCHMARK",
+        "model_key": "GLOBAL_MEDFILM",
+        "note": "Batching changes throughput, not per-image work. A per-image latency claim must be made at batch 1.",
+        "rows": [
+          {
+            "batch_size": 1,
+            "model_forward_ms": {
+              "cold_first_call": 51.85059999348596,
+              "max": 49.27789999783272,
+              "mean": 23.49402000036207,
+              "measured_repeats": 10,
+              "median": 15.602600000420352,
+              "min": 15.223299997160211,
+              "n": 10,
+              "p90": 49.263230003998615,
+              "p95": 49.27056500091567,
+              "stdev": 14.063918369708839,
+              "unit": "milliseconds",
+              "warmup_iterations": 2
+            },
+            "peak_memory": {
+              "memory_unit": "MiB",
+              "peak_allocated_mib": 322.45556640625,
+              "peak_reserved_mib": 368.0
+            },
+            "per_image_ms": 15.602600000420352,
+            "throughput_images_per_s": 64.09188212048369
+          },
+          {
+            "batch_size": 2,
+            "model_forward_ms": {
+              "cold_first_call": 43.40859999501845,
+              "max": 24.800999999570195,
+              "mean": 24.514300000009825,
+              "measured_repeats": 10,
+              "median": 24.475649996020366,
+              "min": 24.27190000162227,
+              "n": 10,
+              "p90": 24.695159999100724,
+              "p95": 24.74807999933546,
+              "stdev": 0.15606267272157331,
+              "unit": "milliseconds",
+              "warmup_iterations": 2
+            },
+            "peak_memory": {
+              "memory_unit": "MiB",
+              "peak_allocated_mib": 599.45556640625,
+              "peak_reserved_mib": 698.0
+            },
+            "per_image_ms": 12.237824998010183,
+            "throughput_images_per_s": 81.71386665217027
+          },
+          {
+            "batch_size": 4,
+            "model_forward_ms": {
+              "cold_first_call": 52.167800000461284,
+              "max": 44.662799999059644,
+              "mean": 44.13999000098556,
+              "measured_repeats": 10,
+              "median": 44.082849999540485,
+              "min": 43.87040000437992,
+              "n": 10,
+              "p90": 44.33106000069529,
+              "p95": 44.496929999877466,
+              "stdev": 0.23762841774659926,
+              "unit": "milliseconds",
+              "warmup_iterations": 2
+            },
+            "peak_memory": {
+              "memory_unit": "MiB",
+              "peak_allocated_mib": 1153.4560546875,
+              "peak_reserved_mib": 1282.0
+            },
+            "per_image_ms": 11.020712499885121,
+            "throughput_images_per_s": 90.73823493811528
+          },
+          {
+            "batch_size": 8,
+            "model_forward_ms": {
+              "cold_first_call": 104.68469999614172,
+              "max": 83.65719999710564,
+              "mean": 83.14302999933716,
+              "measured_repeats": 10,
+              "median": 83.16590000322321,
+              "min": 82.55449999705888,
+              "n": 10,
+              "p90": 83.35479999950621,
+              "p95": 83.50599999830592,
+              "stdev": 0.2852381040027508,
+              "unit": "milliseconds",
+              "warmup_iterations": 2
+            },
+            "peak_memory": {
+              "memory_unit": "MiB",
+              "peak_allocated_mib": 2261.4580078125,
+              "peak_reserved_mib": 2694.0
+            },
+            "per_image_ms": 10.395737500402902,
+            "throughput_images_per_s": 96.19327151741217
+          }
+        ],
+        "seed": 42
+      },
+      {
+        "evidence_class": "SYNTHETIC_BENCHMARK",
+        "model_key": "UNET",
+        "note": "Batching changes throughput, not per-image work. A per-image latency claim must be made at batch 1.",
+        "rows": [
+          {
+            "batch_size": 1,
+            "model_forward_ms": {
+              "cold_first_call": 14.031099999556318,
+              "max": 11.60130000062054,
+              "mean": 11.37536000169348,
+              "measured_repeats": 10,
+              "median": 11.353850000887178,
+              "min": 11.284500003966969,
+              "n": 10,
+              "p90": 11.477909997483948,
+              "p95": 11.539604999052244,
+              "stdev": 0.09269609983097624,
+              "unit": "milliseconds",
+              "warmup_iterations": 2
+            },
+            "peak_memory": {
+              "memory_unit": "MiB",
+              "peak_allocated_mib": 282.75439453125,
+              "peak_reserved_mib": 394.0
+            },
+            "per_image_ms": 11.353850000887178,
+            "throughput_images_per_s": 88.07585091593258
+          },
+          {
+            "batch_size": 2,
+            "model_forward_ms": {
+              "cold_first_call": 31.967200004146434,
+              "max": 21.650799993949477,
+              "mean": 21.395149999443674,
+              "measured_repeats": 10,
+              "median": 21.365100001276005,
+              "min": 21.185999998124316,
+              "n": 10,
+              "p90": 21.62109999699169,
+              "p95": 21.635949995470583,
+              "stdev": 0.14344305164710172,
+              "unit": "milliseconds",
+              "warmup_iterations": 2
+            },
+            "peak_memory": {
+              "memory_unit": "MiB",
+              "peak_allocated_mib": 503.75439453125,
+              "peak_reserved_mib": 666.0
+            },
+            "per_image_ms": 10.682550000638003,
+            "throughput_images_per_s": 93.61060794850258
+          },
+          {
+            "batch_size": 4,
+            "model_forward_ms": {
+              "cold_first_call": 47.15769999893382,
+              "max": 40.423799997370224,
+              "mean": 40.255659998365445,
+              "measured_repeats": 10,
+              "median": 40.24049999861745,
+              "min": 40.14119999919785,
+              "n": 10,
+              "p90": 40.39058999987901,
+              "p95": 40.40719499862462,
+              "stdev": 0.09977214316633409,
+              "unit": "milliseconds",
+              "warmup_iterations": 2
+            },
+            "peak_memory": {
+              "memory_unit": "MiB",
+              "peak_allocated_mib": 945.75439453125,
+              "peak_reserved_mib": 1188.0
+            },
+            "per_image_ms": 10.060124999654363,
+            "throughput_images_per_s": 99.40234341366107
+          },
+          {
+            "batch_size": 8,
+            "model_forward_ms": {
+              "cold_first_call": 104.3299000011757,
+              "max": 81.02990000043064,
+              "mean": 80.82733999981428,
+              "measured_repeats": 10,
+              "median": 80.82115000070189,
+              "min": 80.68189999903552,
+              "n": 10,
+              "p90": 80.92918999973335,
+              "p95": 80.979545000082,
+              "stdev": 0.11070085982467448,
+              "unit": "milliseconds",
+              "warmup_iterations": 2
+            },
+            "peak_memory": {
+              "memory_unit": "MiB",
+              "peak_allocated_mib": 1829.75439453125,
+              "peak_reserved_mib": 2546.0
+            },
+            "per_image_ms": 10.102643750087736,
+            "throughput_images_per_s": 98.98399119451436
+          }
+        ],
+        "seed": 42
+      },
+      {
+        "evidence_class": "SYNTHETIC_BENCHMARK",
+        "model_key": "ATTENTION_UNET",
+        "note": "Batching changes throughput, not per-image work. A per-image latency claim must be made at batch 1.",
+        "rows": [
+          {
+            "batch_size": 1,
+            "model_forward_ms": {
+              "cold_first_call": 15.19719999487279,
+              "max": 13.093800000206102,
+              "mean": 12.851319999754196,
+              "measured_repeats": 10,
+              "median": 12.886700002127327,
+              "min": 12.654899997869506,
+              "n": 10,
+              "p90": 13.019639998674393,
+              "p95": 13.056719999440247,
+              "stdev": 0.1668248843705873,
+              "unit": "milliseconds",
+              "warmup_iterations": 2
+            },
+            "peak_memory": {
+              "memory_unit": "MiB",
+              "peak_allocated_mib": 343.10986328125,
+              "peak_reserved_mib": 422.0
+            },
+            "per_image_ms": 12.886700002127327,
+            "throughput_images_per_s": 77.59938540005749
+          },
+          {
+            "batch_size": 2,
+            "model_forward_ms": {
+              "cold_first_call": 28.56370000517927,
+              "max": 24.623500001325738,
+              "mean": 24.332129998947494,
+              "measured_repeats": 10,
+              "median": 24.316899998666486,
+              "min": 23.98630000243429,
+              "n": 10,
+              "p90": 24.593260000256123,
+              "p95": 24.60838000079093,
+              "stdev": 0.19964239104188544,
+              "unit": "milliseconds",
+              "warmup_iterations": 2
+            },
+            "peak_memory": {
+              "memory_unit": "MiB",
+              "peak_allocated_mib": 624.35986328125,
+              "peak_reserved_mib": 766.0
+            },
+            "per_image_ms": 12.158449999333243,
+            "throughput_images_per_s": 82.24732593832594
+          },
+          {
+            "batch_size": 4,
+            "model_forward_ms": {
+              "cold_first_call": 54.092900005343836,
+              "max": 46.99590000382159,
+              "mean": 46.85760000065784,
+              "measured_repeats": 10,
+              "median": 46.905200000765035,
+              "min": 46.5535000039381,
+              "n": 10,
+              "p90": 46.99554000108037,
+              "p95": 46.99572000245098,
+              "stdev": 0.15702160461520362,
+              "unit": "milliseconds",
+              "warmup_iterations": 2
+            },
+            "peak_memory": {
+              "memory_unit": "MiB",
+              "peak_allocated_mib": 1186.10986328125,
+              "peak_reserved_mib": 1416.0
+            },
+            "per_image_ms": 11.726300000191259,
+            "throughput_images_per_s": 85.27839130703545
+          },
+          {
+            "batch_size": 8,
+            "model_forward_ms": {
+              "cold_first_call": 106.02610000205459,
+              "max": 91.7260999995051,
+              "mean": 91.3715000016964,
+              "measured_repeats": 10,
+              "median": 91.3151500026288,
+              "min": 91.12199999799486,
+              "n": 10,
+              "p90": 91.6450100041402,
+              "p95": 91.68555500182265,
+              "stdev": 0.20077499789569037,
+              "unit": "milliseconds",
+              "warmup_iterations": 2
+            },
+            "peak_memory": {
+              "memory_unit": "MiB",
+              "peak_allocated_mib": 2310.10986328125,
+              "peak_reserved_mib": 2932.0
+            },
+            "per_image_ms": 11.4143937503286,
+            "throughput_images_per_s": 87.60868267499637
+          }
+        ],
+        "seed": 42
+      },
+      {
+        "evidence_class": "SYNTHETIC_BENCHMARK",
+        "model_key": "UNETPP",
+        "note": "Batching changes throughput, not per-image work. A per-image latency claim must be made at batch 1.",
+        "rows": [
+          {
+            "batch_size": 1,
+            "model_forward_ms": {
+              "cold_first_call": 37.34799999801908,
+              "max": 35.25000000081491,
+              "mean": 34.51167999955942,
+              "measured_repeats": 10,
+              "median": 34.7759500000393,
+              "min": 33.62560000095982,
+              "n": 10,
+              "p90": 35.16008999722544,
+              "p95": 35.205044999020174,
+              "stdev": 0.6503068750687014,
+              "unit": "milliseconds",
+              "warmup_iterations": 2
+            },
+            "peak_memory": {
+              "memory_unit": "MiB",
+              "peak_allocated_mib": 712.21875,
+              "peak_reserved_mib": 1052.0
+            },
+            "per_image_ms": 34.7759500000393,
+            "throughput_images_per_s": 28.755504881933344
+          },
+          {
+            "batch_size": 2,
+            "model_forward_ms": {
+              "cold_first_call": 68.09760000032838,
+              "max": 61.37789999775123,
+              "mean": 61.18606999880285,
+              "measured_repeats": 10,
+              "median": 61.1676999978954,
+              "min": 61.056899998220615,
+              "n": 10,
+              "p90": 61.25927999819396,
+              "p95": 61.318589997972595,
+              "stdev": 0.08777644644491517,
+              "unit": "milliseconds",
+              "warmup_iterations": 2
+            },
+            "peak_memory": {
+              "memory_unit": "MiB",
+              "peak_allocated_mib": 1357.21875,
+              "peak_reserved_mib": 2058.0
+            },
+            "per_image_ms": 30.5838499989477,
+            "throughput_images_per_s": 32.69699531074103
+          },
+          {
+            "batch_size": 4,
+            "model_forward_ms": {
+              "cold_first_call": 150.57119999983115,
+              "max": 136.8854000029387,
+              "mean": 136.23059000092326,
+              "measured_repeats": 10,
+              "median": 136.69605000177398,
+              "min": 132.82020000042394,
+              "n": 10,
+              "p90": 136.86038000232656,
+              "p95": 136.87289000263263,
+              "stdev": 1.2391431604449419,
+              "unit": "milliseconds",
+              "warmup_iterations": 2
+            },
+            "peak_memory": {
+              "memory_unit": "MiB",
+              "peak_allocated_mib": 2775.21875,
+              "peak_reserved_mib": 4166.0
+            },
+            "per_image_ms": 34.174012500443496,
+            "throughput_images_per_s": 29.262001352256263
+          },
+          {
+            "batch_size": 8,
+            "model_forward_ms": {
+              "cold_first_call": 1000.0366999956896,
+              "max": 928.8625999979558,
+              "mean": 912.9367399997136,
+              "measured_repeats": 10,
+              "median": 914.0770500016515,
+              "min": 896.8620000014198,
+              "n": 10,
+              "p90": 917.1436099983111,
+              "p95": 923.0031049981335,
+              "stdev": 8.066156515876914,
+              "unit": "milliseconds",
+              "warmup_iterations": 2
+            },
+            "peak_memory": {
+              "memory_unit": "MiB",
+              "peak_allocated_mib": 5483.21875,
+              "peak_reserved_mib": 8370.0
+            },
+            "per_image_ms": 114.25963125020644,
+            "throughput_images_per_s": 8.751997438274538
+          }
+        ],
+        "seed": 42
+      },
+      {
+        "evidence_class": "SYNTHETIC_BENCHMARK",
+        "model_key": "DEEPLABV3PLUS",
+        "note": "Batching changes throughput, not per-image work. A per-image latency claim must be made at batch 1.",
+        "rows": [
+          {
+            "batch_size": 1,
+            "model_forward_ms": {
+              "cold_first_call": 21.12669999769423,
+              "max": 17.15910000348231,
+              "mean": 15.833030001522275,
+              "measured_repeats": 10,
+              "median": 15.805800001544412,
+              "min": 14.545400001225062,
+              "n": 10,
+              "p90": 16.835730003367644,
+              "p95": 16.997415003424976,
+              "stdev": 0.7624555481139156,
+              "unit": "milliseconds",
+              "warmup_iterations": 2
+            },
+            "peak_memory": {
+              "memory_unit": "MiB",
+              "peak_allocated_mib": 308.921875,
+              "peak_reserved_mib": 334.0
+            },
+            "per_image_ms": 15.805800001544412,
+            "throughput_images_per_s": 63.26791430375484
+          },
+          {
+            "batch_size": 2,
+            "model_forward_ms": {
+              "cold_first_call": 43.81370000191964,
+              "max": 28.974299995752517,
+              "mean": 27.817420000064885,
+              "measured_repeats": 10,
+              "median": 27.734299994335743,
+              "min": 27.382200001738966,
+              "n": 10,
+              "p90": 27.964590001647593,
+              "p95": 28.469444998700055,
+              "stdev": 0.43251573449035496,
+              "unit": "milliseconds",
+              "warmup_iterations": 2
+            },
+            "peak_memory": {
+              "memory_unit": "MiB",
+              "peak_allocated_mib": 393.919921875,
+              "peak_reserved_mib": 426.0
+            },
+            "per_image_ms": 13.867149997167871,
+            "throughput_images_per_s": 72.11287108052
+          },
+          {
+            "batch_size": 4,
+            "model_forward_ms": {
+              "cold_first_call": 57.07779999647755,
+              "max": 52.57260000507813,
+              "mean": 52.29535000180476,
+              "measured_repeats": 10,
+              "median": 52.28250000072876,
+              "min": 52.087700001720805,
+              "n": 10,
+              "p90": 52.49772000461235,
+              "p95": 52.53516000484524,
+              "stdev": 0.15455346064561007,
+              "unit": "milliseconds",
+              "warmup_iterations": 2
+            },
+            "peak_memory": {
+              "memory_unit": "MiB",
+              "peak_allocated_mib": 597.919921875,
+              "peak_reserved_mib": 616.0
+            },
+            "per_image_ms": 13.07062500018219,
+            "throughput_images_per_s": 76.50743556532768
+          },
+          {
+            "batch_size": 8,
+            "model_forward_ms": {
+              "cold_first_call": 103.4393000009004,
+              "max": 98.0483000021195,
+              "mean": 97.3414700012654,
+              "measured_repeats": 10,
+              "median": 97.85399999964284,
+              "min": 95.26490000280319,
+              "n": 10,
+              "p90": 97.96369999967283,
+              "p95": 98.00600000089617,
+              "stdev": 1.0476073214403152,
+              "unit": "milliseconds",
+              "warmup_iterations": 2
+            },
+            "peak_memory": {
+              "memory_unit": "MiB",
+              "peak_allocated_mib": 1005.919921875,
+              "peak_reserved_mib": 1036.0
+            },
+            "per_image_ms": 12.231749999955355,
+            "throughput_images_per_s": 81.75445050819792
+          }
+        ],
+        "seed": 42
+      },
+      {
+        "evidence_class": "SYNTHETIC_BENCHMARK",
+        "model_key": "TRANSFORMER_MIT_UNET",
+        "note": "Batching changes throughput, not per-image work. A per-image latency claim must be made at batch 1.",
+        "rows": [
+          {
+            "batch_size": 1,
+            "model_forward_ms": {
+              "cold_first_call": 19.674000002851244,
+              "max": 14.971800002967939,
+              "mean": 13.460690001375042,
+              "measured_repeats": 10,
+              "median": 13.568149999628076,
+              "min": 11.424800002714619,
+              "n": 10,
+              "p90": 14.494080006261356,
+              "p95": 14.732940004614647,
+              "stdev": 1.0749878744853771,
+              "unit": "milliseconds",
+              "warmup_iterations": 2
+            },
+            "peak_memory": {
+              "memory_unit": "MiB",
+              "peak_allocated_mib": 208.61279296875,
+              "peak_reserved_mib": 272.0
+            },
+            "per_image_ms": 13.568149999628076,
+            "throughput_images_per_s": 73.7020153836309
+          },
+          {
+            "batch_size": 2,
+            "model_forward_ms": {
+              "cold_first_call": 40.01360000256682,
+              "max": 18.75080000172602,
+              "mean": 18.60554000013508,
+              "measured_repeats": 10,
+              "median": 18.61665000251378,
+              "min": 18.392599995422643,
+              "n": 10,
+              "p90": 18.749269996624207,
+              "p95": 18.750034999175114,
+              "stdev": 0.11437779811053768,
+              "unit": "milliseconds",
+              "warmup_iterations": 2
+            },
+            "peak_memory": {
+              "memory_unit": "MiB",
+              "peak_allocated_mib": 322.62109375,
+              "peak_reserved_mib": 460.0
+            },
+            "per_image_ms": 9.30832500125689,
+            "throughput_images_per_s": 107.43071388944536
+          },
+          {
+            "batch_size": 4,
+            "model_forward_ms": {
+              "cold_first_call": 39.32350000104634,
+              "max": 35.388899996178225,
+              "mean": 35.02001000015298,
+              "measured_repeats": 10,
+              "median": 35.037999998166924,
+              "min": 34.65709999727551,
+              "n": 10,
+              "p90": 35.332020001806086,
+              "p95": 35.360459998992155,
+              "stdev": 0.24916889557635272,
+              "unit": "milliseconds",
+              "warmup_iterations": 2
+            },
+            "peak_memory": {
+              "memory_unit": "MiB",
+              "peak_allocated_mib": 551.93359375,
+              "peak_reserved_mib": 770.0
+            },
+            "per_image_ms": 8.759499999541731,
+            "throughput_images_per_s": 114.1617672301292
+          },
+          {
+            "batch_size": 8,
+            "model_forward_ms": {
+              "cold_first_call": 74.24549999996088,
+              "max": 66.97539999731816,
+              "mean": 66.80406000014045,
+              "measured_repeats": 10,
+              "median": 66.80395000512362,
+              "min": 66.61519999761367,
+              "n": 10,
+              "p90": 66.90025000134483,
+              "p95": 66.9378249993315,
+              "stdev": 0.10267125700375182,
+              "unit": "milliseconds",
+              "warmup_iterations": 2
+            },
+            "peak_memory": {
+              "memory_unit": "MiB",
+              "peak_allocated_mib": 1004.93359375,
+              "peak_reserved_mib": 1414.0
+            },
+            "per_image_ms": 8.350493750640453,
+            "throughput_images_per_s": 119.75339780636368
+          }
+        ],
+        "seed": 42
+      }
+    ],
+    "conditions": {
+      "batch_size": 1,
+      "cuda_synchronized": true,
+      "cuda_version": "12.4",
+      "cudnn_version": 90100,
+      "determinism": {
+        "cudnn_benchmark": false,
+        "cudnn_deterministic": false
+      },
+      "device_name": "NVIDIA GeForce RTX 3060 Ti",
+      "device_total_memory_mib": 8191.375,
+      "device_type": "cuda",
+      "input_resolution": 512,
+      "measured_repeats": 30,
+      "note": "Latency is a property of this host and this build, not of the method. Synthetic weights: no accuracy claim follows from these numbers.",
+      "precision": "fp32",
+      "timing_source": "time.perf_counter around the measured call",
+      "torch_version": "2.6.0+cu124",
+      "warmup_iterations": 5
+    },
+    "precision": [
+      {
+        "amp": {
+          "cold_first_call": 89.90320000157226,
+          "max": 101.13369999453425,
+          "mean": 96.37008000087614,
+          "measured_repeats": 15,
+          "median": 97.02839999954449,
+          "min": 93.33180000248831,
+          "n": 15,
+          "p90": 99.56796000187751,
+          "p95": 100.17784999945434,
+          "stdev": 2.508159855551589,
+          "unit": "milliseconds",
+          "warmup_iterations": 5
+        },
+        "batch_size": 1,
+        "compared_field": "final probability field",
+        "evidence_class": "SYNTHETIC_BENCHMARK",
+        "fp32": {
+          "cold_first_call": 111.92840000148863,
+          "max": 95.33319999900414,
+          "mean": 88.20981333313587,
+          "measured_repeats": 15,
+          "median": 86.93379999749595,
+          "min": 84.16910000232747,
+          "n": 15,
+          "p90": 94.05622000194853,
+          "p95": 94.49873000121443,
+          "stdev": 3.6112995402942927,
+          "unit": "milliseconds",
+          "warmup_iterations": 5
+        },
+        "model_key": "RA_MEDFILM_BARR_FULL",
+        "numerical": {
+          "max_abs_difference": 0.0,
+          "note": "autocast changes the arithmetic; the delta is reported so a speed-up is never reported as free",
+          "shape_match": true
+        },
+        "peak_memory": {
+          "amp": {
+            "memory_unit": "MiB",
+            "peak_allocated_mib": 352.5419921875,
+            "peak_reserved_mib": 424.0
+          },
+          "fp32": {
+            "memory_unit": "MiB",
+            "peak_allocated_mib": 352.5419921875,
+            "peak_reserved_mib": 424.0
+          }
+        },
+        "seed": 42,
+        "speedup": 0.8959624192288451
+      },
+      {
+        "amp": {
+          "cold_first_call": 43.60319999977946,
+          "max": 23.823299998184666,
+          "mean": 23.335239999869373,
+          "measured_repeats": 15,
+          "median": 23.257699998794124,
+          "min": 22.875000002386514,
+          "n": 15,
+          "p90": 23.70589999918593,
+          "p95": 23.747980000189273,
+          "stdev": 0.31032955916628263,
+          "unit": "milliseconds",
+          "warmup_iterations": 5
+        },
+        "batch_size": 2,
+        "compared_field": "logits",
+        "evidence_class": "SYNTHETIC_BENCHMARK",
+        "fp32": {
+          "cold_first_call": 47.449500001675915,
+          "max": 25.80360000138171,
+          "mean": 25.019346665552195,
+          "measured_repeats": 15,
+          "median": 25.02929999900516,
+          "min": 23.806699995475356,
+          "n": 15,
+          "p90": 25.62047999672359,
+          "p95": 25.69831999935559,
+          "stdev": 0.577767415430345,
+          "unit": "milliseconds",
+          "warmup_iterations": 5
+        },
+        "model_key": "GLOBAL_MEDFILM",
+        "numerical": {
+          "max_abs_difference": 0.0012554973363876343,
+          "note": "autocast changes the arithmetic; the delta is reported so a speed-up is never reported as free",
+          "shape_match": true
+        },
+        "peak_memory": {
+          "amp": {
+            "memory_unit": "MiB",
+            "peak_allocated_mib": 626.513671875,
+            "peak_reserved_mib": 770.0
+          },
+          "fp32": {
+            "memory_unit": "MiB",
+            "peak_allocated_mib": 602.4560546875,
+            "peak_reserved_mib": 730.0
+          }
+        },
+        "seed": 42,
+        "speedup": 1.0761726224133465
+      },
+      {
+        "amp": {
+          "cold_first_call": 45.21350000140956,
+          "max": 47.72660000162432,
+          "mean": 45.43771333216379,
+          "measured_repeats": 15,
+          "median": 45.642199998837896,
+          "min": 43.624899997666944,
+          "n": 15,
+          "p90": 46.78663999802666,
+          "p95": 47.140279998711776,
+          "stdev": 1.2278045483570288,
+          "unit": "milliseconds",
+          "warmup_iterations": 5
+        },
+        "batch_size": 1,
+        "compared_field": "final probability field",
+        "evidence_class": "SYNTHETIC_BENCHMARK",
+        "fp32": {
+          "cold_first_call": 62.95449999743141,
+          "max": 50.529200001619756,
+          "mean": 47.15633333350221,
+          "measured_repeats": 15,
+          "median": 46.81929999787826,
+          "min": 44.947999995201826,
+          "n": 15,
+          "p90": 50.16567999846302,
+          "p95": 50.397459996747784,
+          "stdev": 1.8198368595803414,
+          "unit": "milliseconds",
+          "warmup_iterations": 5
+        },
+        "model_key": "RA_MEDFILM_BARR_LITE_DEPTHWISE",
+        "numerical": {
+          "max_abs_difference": 0.0,
+          "note": "autocast changes the arithmetic; the delta is reported so a speed-up is never reported as free",
+          "shape_match": true
+        },
+        "peak_memory": {
+          "amp": {
+            "memory_unit": "MiB",
+            "peak_allocated_mib": 227.61572265625,
+            "peak_reserved_mib": 294.0
+          },
+          "fp32": {
+            "memory_unit": "MiB",
+            "peak_allocated_mib": 227.61572265625,
+            "peak_reserved_mib": 294.0
+          }
+        },
+        "seed": 42,
+        "speedup": 1.0257897296596206
+      },
+      {
+        "amp": {
+          "cold_first_call": 37.66439999890281,
+          "max": 14.058000000659376,
+          "mean": 13.784960000096666,
+          "measured_repeats": 15,
+          "median": 13.755499996477738,
+          "min": 13.571600000432227,
+          "n": 15,
+          "p90": 13.998780000838451,
+          "p95": 14.02461000106996,
+          "stdev": 0.16142290006527205,
+          "unit": "milliseconds",
+          "warmup_iterations": 5
+        },
+        "batch_size": 2,
+        "compared_field": "logits",
+        "evidence_class": "SYNTHETIC_BENCHMARK",
+        "fp32": {
+          "cold_first_call": 39.181600004667416,
+          "max": 21.773500004201196,
+          "mean": 21.380533335225966,
+          "measured_repeats": 15,
+          "median": 21.33730000059586,
+          "min": 21.248400000331458,
+          "n": 15,
+          "p90": 21.59532000514446,
+          "p95": 21.72891000591335,
+          "stdev": 0.15446973791994636,
+          "unit": "milliseconds",
+          "warmup_iterations": 5
+        },
+        "model_key": "UNET",
+        "numerical": {
+          "max_abs_difference": 0.002362966537475586,
+          "note": "autocast changes the arithmetic; the delta is reported so a speed-up is never reported as free",
+          "shape_match": true
+        },
+        "peak_memory": {
+          "amp": {
+            "memory_unit": "MiB",
+            "peak_allocated_mib": 354.47705078125,
+            "peak_reserved_mib": 484.0
+          },
+          "fp32": {
+            "memory_unit": "MiB",
+            "peak_allocated_mib": 508.50439453125,
+            "peak_reserved_mib": 658.0
+          }
+        },
+        "seed": 42,
+        "speedup": 1.5511831635389142
+      },
+      {
+        "amp": {
+          "cold_first_call": 16.3068000038038,
+          "max": 16.063900002336595,
+          "mean": 15.571906667901203,
+          "measured_repeats": 15,
+          "median": 15.524599999480415,
+          "min": 15.177799999946728,
+          "n": 15,
+          "p90": 15.868480001518037,
+          "p95": 15.939650003565475,
+          "stdev": 0.2793701675941062,
+          "unit": "milliseconds",
+          "warmup_iterations": 5
+        },
+        "batch_size": 2,
+        "compared_field": "logits",
+        "evidence_class": "SYNTHETIC_BENCHMARK",
+        "fp32": {
+          "cold_first_call": 24.459799999021925,
+          "max": 24.630899999465328,
+          "mean": 24.376253332108416,
+          "measured_repeats": 15,
+          "median": 24.38329999858979,
+          "min": 24.159599997801706,
+          "n": 15,
+          "p90": 24.58778000145685,
+          "p95": 24.60122000265983,
+          "stdev": 0.1746130297507577,
+          "unit": "milliseconds",
+          "warmup_iterations": 5
+        },
+        "model_key": "ATTENTION_UNET",
+        "numerical": {
+          "max_abs_difference": 0.0018121004104614258,
+          "note": "autocast changes the arithmetic; the delta is reported so a speed-up is never reported as free",
+          "shape_match": true
+        },
+        "peak_memory": {
+          "amp": {
+            "memory_unit": "MiB",
+            "peak_allocated_mib": 414.83251953125,
+            "peak_reserved_mib": 452.0
+          },
+          "fp32": {
+            "memory_unit": "MiB",
+            "peak_allocated_mib": 628.85986328125,
+            "peak_reserved_mib": 792.0
+          }
+        },
+        "seed": 42,
+        "speedup": 1.570623397666018
+      },
+      {
+        "amp": {
+          "cold_first_call": 51.37599999579834,
+          "max": 51.77240000193706,
+          "mean": 51.49300666671479,
+          "measured_repeats": 15,
+          "median": 51.468799996655434,
+          "min": 51.32549999689218,
+          "n": 15,
+          "p90": 51.61189999926137,
+          "p95": 51.68119000009028,
+          "stdev": 0.10975864728820416,
+          "unit": "milliseconds",
+          "warmup_iterations": 5
+        },
+        "batch_size": 2,
+        "compared_field": "logits",
+        "evidence_class": "SYNTHETIC_BENCHMARK",
+        "fp32": {
+          "cold_first_call": 65.76969999878202,
+          "max": 62.77609999960987,
+          "mean": 60.39083333307644,
+          "measured_repeats": 15,
+          "median": 59.508199999982025,
+          "min": 59.34040000283858,
+          "n": 15,
+          "p90": 62.63403999764705,
+          "p95": 62.722549999307375,
+          "stdev": 1.3362649322560078,
+          "unit": "milliseconds",
+          "warmup_iterations": 5
+        },
+        "model_key": "UNETPP",
+        "numerical": {
+          "max_abs_difference": 0.0038472414016723633,
+          "note": "autocast changes the arithmetic; the delta is reported so a speed-up is never reported as free",
+          "shape_match": true
+        },
+        "peak_memory": {
+          "amp": {
+            "memory_unit": "MiB",
+            "peak_allocated_mib": 1134.21875,
+            "peak_reserved_mib": 1650.0
+          },
+          "fp32": {
+            "memory_unit": "MiB",
+            "peak_allocated_mib": 1360.21875,
+            "peak_reserved_mib": 2036.0
+          }
+        },
+        "seed": 42,
+        "speedup": 1.1561994840339975
+      },
+      {
+        "amp": {
+          "cold_first_call": 53.355300005932804,
+          "max": 17.30900000256952,
+          "mean": 16.76950666636306,
+          "measured_repeats": 15,
+          "median": 16.681199995218776,
+          "min": 16.37740000296617,
+          "n": 15,
+          "p90": 17.147420001856517,
+          "p95": 17.212190003920114,
+          "stdev": 0.27935296871340426,
+          "unit": "milliseconds",
+          "warmup_iterations": 5
+        },
+        "batch_size": 2,
+        "compared_field": "logits",
+        "evidence_class": "SYNTHETIC_BENCHMARK",
+        "fp32": {
+          "cold_first_call": 28.50840000610333,
+          "max": 28.559900005348027,
+          "mean": 27.9209399993609,
+          "measured_repeats": 15,
+          "median": 27.87920000264421,
+          "min": 27.532499996596016,
+          "n": 15,
+          "p90": 28.44757999991998,
+          "p95": 28.50068000261672,
+          "stdev": 0.3216223056526503,
+          "unit": "milliseconds",
+          "warmup_iterations": 5
+        },
+        "model_key": "DEEPLABV3PLUS",
+        "numerical": {
+          "max_abs_difference": 0.2942953109741211,
+          "note": "autocast changes the arithmetic; the delta is reported so a speed-up is never reported as free",
+          "shape_match": true
+        },
+        "peak_memory": {
+          "amp": {
+            "memory_unit": "MiB",
+            "peak_allocated_mib": 358.833984375,
+            "peak_reserved_mib": 406.0
+          },
+          "fp32": {
+            "memory_unit": "MiB",
+            "peak_allocated_mib": 399.669921875,
+            "peak_reserved_mib": 432.0
+          }
+        },
+        "seed": 42,
+        "speedup": 1.6712946317192434
+      },
+      {
+        "amp": {
+          "cold_first_call": 45.03429999749642,
+          "max": 17.943899998499546,
+          "mean": 16.710126665323816,
+          "measured_repeats": 15,
+          "median": 16.724000000976957,
+          "min": 15.994100001989864,
+          "n": 15,
+          "p90": 17.37793999927817,
+          "p95": 17.629740000120364,
+          "stdev": 0.56829940330975,
+          "unit": "milliseconds",
+          "warmup_iterations": 5
+        },
+        "batch_size": 2,
+        "compared_field": "logits",
+        "evidence_class": "SYNTHETIC_BENCHMARK",
+        "fp32": {
+          "cold_first_call": 18.689799995627254,
+          "max": 19.36839999689255,
+          "mean": 19.07329999861152,
+          "measured_repeats": 15,
+          "median": 19.10430000134511,
+          "min": 18.495199998142198,
+          "n": 15,
+          "p90": 19.219580001663417,
+          "p95": 19.267109999782406,
+          "stdev": 0.20314860492482748,
+          "unit": "milliseconds",
+          "warmup_iterations": 5
+        },
+        "model_key": "TRANSFORMER_MIT_UNET",
+        "numerical": {
+          "max_abs_difference": 0.005125522613525391,
+          "note": "autocast changes the arithmetic; the delta is reported so a speed-up is never reported as free",
+          "shape_match": true
+        },
+        "peak_memory": {
+          "amp": {
+            "memory_unit": "MiB",
+            "peak_allocated_mib": 255.08544921875,
+            "peak_reserved_mib": 296.0
+          },
+          "fp32": {
+            "memory_unit": "MiB",
+            "peak_allocated_mib": 325.43359375,
+            "peak_reserved_mib": 426.0
+          }
+        },
+        "seed": 42,
+        "speedup": 1.142328390350939
+      }
+    ],
+    "preprocessing_ms": 6.797900001402013,
+    "routed_batch_policy": {
+      "batch1_only": [
+        "RA_MEDFILM_BARR_FULL",
+        "RA_MEDFILM_BARR_LITE_DEPTHWISE"
+      ],
+      "batched_models": [
+        "GLOBAL_MEDFILM",
+        "UNET",
+        "ATTENTION_UNET",
+        "UNETPP",
+        "DEEPLABV3PLUS",
+        "TRANSFORMER_MIT_UNET"
+      ],
+      "reason": "FULL and Lite run per-image ROI geometry, routing and a safety gate; a batch>1 number for them would describe a pipeline that does not exist"
+    },
+    "rows": [
+      {
+        "adapter_kind": "ROUTED",
+        "forward_ms_median": 15.09259999875212,
+        "forward_ms_p95": 15.58717000480101,
+        "initialization_ms": 389.17969999602064,
+        "macs": {
+          "conv_linear_macs_global_only": 31551740928,
+          "conv_linear_macs_if_always_refine": 34782440912,
+          "method": "Conv2d+Linear hooks; excludes attention tensor matmuls and non-learned ops",
+          "unit": "multiply-accumulate"
+        },
+        "model_key": "RA_MEDFILM_BARR_FULL",
+        "observed_state": "EXECUTE_THEN_ACCEPT",
+        "parameters": 4837420,
+        "peak_allocated_mib": 352.54248046875,
+        "peak_reserved_mib": 426.0,
+        "pipeline_ms_median": 87.98599999863654,
+        "pipeline_ms_p95": 104.34911499651206,
+        "refiner_invocation_rate": 1.0,
+        "seed": 42,
+        "throughput_images_per_s": 11.365444502710616
+      },
+      {
+        "adapter_kind": "ROUTED",
+        "forward_ms_median": 17.175550001411466,
+        "forward_ms_p95": 24.575610000465517,
+        "initialization_ms": 383.30230000428855,
+        "macs": {
+          "conv_linear_macs_global_only": 31551740928,
+          "conv_linear_macs_if_always_refine": 34782440912,
+          "method": "Conv2d+Linear hooks; excludes attention tensor matmuls and non-learned ops",
+          "unit": "multiply-accumulate"
+        },
+        "model_key": "RA_MEDFILM_BARR_FULL",
+        "observed_state": "EXECUTE_THEN_ACCEPT",
+        "parameters": 4837420,
+        "peak_allocated_mib": 352.54248046875,
+        "peak_reserved_mib": 426.0,
+        "pipeline_ms_median": 101.04259999934584,
+        "pipeline_ms_p95": 113.88157000037609,
+        "refiner_invocation_rate": 1.0,
+        "seed": 123,
+        "throughput_images_per_s": 9.896815798549069
+      },
+      {
+        "adapter_kind": "ROUTED",
+        "forward_ms_median": 15.544649999355897,
+        "forward_ms_p95": 28.527084999586805,
+        "initialization_ms": 391.62670000223443,
+        "macs": {
+          "conv_linear_macs_global_only": 31551740928,
+          "conv_linear_macs_if_always_refine": 34782440912,
+          "method": "Conv2d+Linear hooks; excludes attention tensor matmuls and non-learned ops",
+          "unit": "multiply-accumulate"
+        },
+        "model_key": "RA_MEDFILM_BARR_FULL",
+        "observed_state": "EXECUTE_THEN_REJECT",
+        "parameters": 4837420,
+        "peak_allocated_mib": 352.54248046875,
+        "peak_reserved_mib": 426.0,
+        "pipeline_ms_median": 99.24680000040098,
+        "pipeline_ms_p95": 110.81004500192648,
+        "refiner_invocation_rate": 1.0,
+        "seed": 3407,
+        "throughput_images_per_s": 10.07589161560836
+      },
+      {
+        "adapter_kind": "TASK_CONDITIONED",
+        "forward_ms_median": 15.165349999733735,
+        "forward_ms_p95": 32.12095499839051,
+        "initialization_ms": 364.38649999763584,
+        "macs": {
+          "conv_linear_macs": 31551740928,
+          "method": "Conv2d+Linear hooks; excludes attention tensor matmuls and non-learned ops",
+          "unit": "multiply-accumulate"
+        },
+        "model_key": "GLOBAL_MEDFILM",
+        "observed_state": null,
+        "parameters": 3523001,
+        "peak_allocated_mib": 322.4560546875,
+        "peak_reserved_mib": 368.0,
+        "pipeline_ms_median": 15.1365999954578,
+        "pipeline_ms_p95": 15.605894997133873,
+        "refiner_invocation_rate": null,
+        "seed": 42,
+        "throughput_images_per_s": 65.93979037856413
+      },
+      {
+        "adapter_kind": "TASK_CONDITIONED",
+        "forward_ms_median": 14.817600000242237,
+        "forward_ms_p95": 15.726420003193198,
+        "initialization_ms": 367.8515999999945,
+        "macs": {
+          "conv_linear_macs": 31551740928,
+          "method": "Conv2d+Linear hooks; excludes attention tensor matmuls and non-learned ops",
+          "unit": "multiply-accumulate"
+        },
+        "model_key": "GLOBAL_MEDFILM",
+        "observed_state": null,
+        "parameters": 3523001,
+        "peak_allocated_mib": 322.4560546875,
+        "peak_reserved_mib": 368.0,
+        "pipeline_ms_median": 15.58859999931883,
+        "pipeline_ms_p95": 16.53735000290908,
+        "refiner_invocation_rate": null,
+        "seed": 123,
+        "throughput_images_per_s": 67.48731238416829
+      },
+      {
+        "adapter_kind": "TASK_CONDITIONED",
+        "forward_ms_median": 15.245549999235664,
+        "forward_ms_p95": 26.652169999215353,
+        "initialization_ms": 366.9670000017504,
+        "macs": {
+          "conv_linear_macs": 31551740928,
+          "method": "Conv2d+Linear hooks; excludes attention tensor matmuls and non-learned ops",
+          "unit": "multiply-accumulate"
+        },
+        "model_key": "GLOBAL_MEDFILM",
+        "observed_state": null,
+        "parameters": 3523001,
+        "peak_allocated_mib": 322.4560546875,
+        "peak_reserved_mib": 368.0,
+        "pipeline_ms_median": 15.588250000291737,
+        "pipeline_ms_p95": 16.360500000155298,
+        "refiner_invocation_rate": null,
+        "seed": 3407,
+        "throughput_images_per_s": 65.59291072149809
+      },
+      {
+        "adapter_kind": "ROUTED",
+        "forward_ms_median": 13.539350002247375,
+        "forward_ms_p95": 13.939685001241742,
+        "initialization_ms": 189.8111999980756,
+        "macs": {
+          "conv_linear_macs_global_only": 1619449600,
+          "conv_linear_macs_if_always_refine": 1819687120,
+          "method": "Conv2d+Linear hooks; excludes attention tensor matmuls and non-learned ops",
+          "unit": "multiply-accumulate"
+        },
+        "model_key": "RA_MEDFILM_BARR_LITE_DEPTHWISE",
+        "observed_state": "SKIP_GLOBAL",
+        "parameters": 272601,
+        "peak_allocated_mib": 227.6162109375,
+        "peak_reserved_mib": 310.0,
+        "pipeline_ms_median": 42.460600001504645,
+        "pipeline_ms_p95": 54.45683499820006,
+        "refiner_invocation_rate": 0.0,
+        "seed": 42,
+        "throughput_images_per_s": 23.55124515349674
+      },
+      {
+        "adapter_kind": "ROUTED",
+        "forward_ms_median": 13.02170000053593,
+        "forward_ms_p95": 19.309744999191025,
+        "initialization_ms": 188.11310000455705,
+        "macs": {
+          "conv_linear_macs_global_only": 1619449600,
+          "conv_linear_macs_if_always_refine": 1819687120,
+          "method": "Conv2d+Linear hooks; excludes attention tensor matmuls and non-learned ops",
+          "unit": "multiply-accumulate"
+        },
+        "model_key": "RA_MEDFILM_BARR_LITE_DEPTHWISE",
+        "observed_state": "EXECUTE_THEN_ACCEPT",
+        "parameters": 272601,
+        "peak_allocated_mib": 227.6162109375,
+        "peak_reserved_mib": 316.0,
+        "pipeline_ms_median": 75.01904999662656,
+        "pipeline_ms_p95": 82.0268199990096,
+        "refiner_invocation_rate": 1.0,
+        "seed": 123,
+        "throughput_images_per_s": 13.329947527260979
+      },
+      {
+        "adapter_kind": "ROUTED",
+        "forward_ms_median": 12.664249999943422,
+        "forward_ms_p95": 12.786899997809087,
+        "initialization_ms": 193.4860999972443,
+        "macs": {
+          "conv_linear_macs_global_only": 1619449600,
+          "conv_linear_macs_if_always_refine": 1819687120,
+          "method": "Conv2d+Linear hooks; excludes attention tensor matmuls and non-learned ops",
+          "unit": "multiply-accumulate"
+        },
+        "model_key": "RA_MEDFILM_BARR_LITE_DEPTHWISE",
+        "observed_state": "SKIP_GLOBAL",
+        "parameters": 272601,
+        "peak_allocated_mib": 227.6162109375,
+        "peak_reserved_mib": 310.0,
+        "pipeline_ms_median": 40.880600001401035,
+        "pipeline_ms_p95": 44.82139499923505,
+        "refiner_invocation_rate": 0.0,
+        "seed": 3407,
+        "throughput_images_per_s": 24.461480505807856
+      },
+      {
+        "adapter_kind": "PLAIN",
+        "forward_ms_median": 11.325750001560664,
+        "forward_ms_p95": 11.590145004083752,
+        "initialization_ms": 440.98400000075344,
+        "macs": {
+          "conv_linear_macs": 46137344000,
+          "method": "Conv2d+Linear hooks; excludes attention tensor matmuls and non-learned ops",
+          "unit": "multiply-accumulate"
+        },
+        "model_key": "UNET",
+        "observed_state": null,
+        "parameters": 7763041,
+        "peak_allocated_mib": 282.75439453125,
+        "peak_reserved_mib": 408.0,
+        "pipeline_ms_median": 12.412150001182454,
+        "pipeline_ms_p95": 12.754350000614068,
+        "refiner_invocation_rate": null,
+        "seed": 42,
+        "throughput_images_per_s": 88.29437342888569
+      },
+      {
+        "adapter_kind": "PLAIN",
+        "forward_ms_median": 11.690349994751159,
+        "forward_ms_p95": 11.9023199982621,
+        "initialization_ms": 439.1516000032425,
+        "macs": {
+          "conv_linear_macs": 46137344000,
+          "method": "Conv2d+Linear hooks; excludes attention tensor matmuls and non-learned ops",
+          "unit": "multiply-accumulate"
+        },
+        "model_key": "UNET",
+        "observed_state": null,
+        "parameters": 7763041,
+        "peak_allocated_mib": 282.75439453125,
+        "peak_reserved_mib": 408.0,
+        "pipeline_ms_median": 12.537149999843678,
+        "pipeline_ms_p95": 12.857574998633936,
+        "refiner_invocation_rate": null,
+        "seed": 123,
+        "throughput_images_per_s": 85.54063825710857
+      },
+      {
+        "adapter_kind": "PLAIN",
+        "forward_ms_median": 11.746950000087963,
+        "forward_ms_p95": 17.27265000081386,
+        "initialization_ms": 445.2796000041417,
+        "macs": {
+          "conv_linear_macs": 46137344000,
+          "method": "Conv2d+Linear hooks; excludes attention tensor matmuls and non-learned ops",
+          "unit": "multiply-accumulate"
+        },
+        "model_key": "UNET",
+        "observed_state": null,
+        "parameters": 7763041,
+        "peak_allocated_mib": 282.75439453125,
+        "peak_reserved_mib": 408.0,
+        "pipeline_ms_median": 12.40574999974342,
+        "pipeline_ms_p95": 12.632590001885546,
+        "refiner_invocation_rate": null,
+        "seed": 3407,
+        "throughput_images_per_s": 85.12848015804202
+      },
+      {
+        "adapter_kind": "PLAIN",
+        "forward_ms_median": 13.353450001886813,
+        "forward_ms_p95": 14.054095001483802,
+        "initialization_ms": 496.4837999941665,
+        "macs": {
+          "conv_linear_macs": 47218950144,
+          "method": "Conv2d+Linear hooks; excludes attention tensor matmuls and non-learned ops",
+          "unit": "multiply-accumulate"
+        },
+        "model_key": "ATTENTION_UNET",
+        "observed_state": null,
+        "parameters": 7851285,
+        "peak_allocated_mib": 343.10986328125,
+        "peak_reserved_mib": 432.0,
+        "pipeline_ms_median": 14.056899999559391,
+        "pipeline_ms_p95": 14.51441500285,
+        "refiner_invocation_rate": null,
+        "seed": 42,
+        "throughput_images_per_s": 74.88701420671828
+      },
+      {
+        "adapter_kind": "PLAIN",
+        "forward_ms_median": 13.242049997643335,
+        "forward_ms_p95": 14.166250000926084,
+        "initialization_ms": 482.317800000601,
+        "macs": {
+          "conv_linear_macs": 47218950144,
+          "method": "Conv2d+Linear hooks; excludes attention tensor matmuls and non-learned ops",
+          "unit": "multiply-accumulate"
+        },
+        "model_key": "ATTENTION_UNET",
+        "observed_state": null,
+        "parameters": 7851285,
+        "peak_allocated_mib": 343.10986328125,
+        "peak_reserved_mib": 432.0,
+        "pipeline_ms_median": 14.11145000020042,
+        "pipeline_ms_p95": 14.426654999624589,
+        "refiner_invocation_rate": null,
+        "seed": 123,
+        "throughput_images_per_s": 75.5170083316381
+      },
+      {
+        "adapter_kind": "PLAIN",
+        "forward_ms_median": 13.684399997146102,
+        "forward_ms_p95": 14.635584999996354,
+        "initialization_ms": 488.3957999991253,
+        "macs": {
+          "conv_linear_macs": 47218950144,
+          "method": "Conv2d+Linear hooks; excludes attention tensor matmuls and non-learned ops",
+          "unit": "multiply-accumulate"
+        },
+        "model_key": "ATTENTION_UNET",
+        "observed_state": null,
+        "parameters": 7851285,
+        "peak_allocated_mib": 343.10986328125,
+        "peak_reserved_mib": 432.0,
+        "pipeline_ms_median": 14.307099998404738,
+        "pipeline_ms_p95": 14.793360000840039,
+        "refiner_invocation_rate": null,
+        "seed": 3407,
+        "throughput_images_per_s": 73.07591127185344
+      },
+      {
+        "adapter_kind": "PLAIN",
+        "forward_ms_median": 34.800300003553275,
+        "forward_ms_p95": 35.79549500027497,
+        "initialization_ms": 1108.6572999993223,
+        "macs": {
+          "conv_linear_macs": 137942269952,
+          "method": "Conv2d+Linear hooks; excludes attention tensor matmuls and non-learned ops",
+          "unit": "multiply-accumulate"
+        },
+        "model_key": "UNETPP",
+        "observed_state": null,
+        "parameters": 9159681,
+        "peak_allocated_mib": 712.21875,
+        "peak_reserved_mib": 1044.0,
+        "pipeline_ms_median": 35.048850000748644,
+        "pipeline_ms_p95": 36.3719349992607,
+        "refiner_invocation_rate": null,
+        "seed": 42,
+        "throughput_images_per_s": 28.73538446214243
+      },
+      {
+        "adapter_kind": "PLAIN",
+        "forward_ms_median": 34.61425000205054,
+        "forward_ms_p95": 34.93448500194063,
+        "initialization_ms": 1138.1394999989425,
+        "macs": {
+          "conv_linear_macs": 137942269952,
+          "method": "Conv2d+Linear hooks; excludes attention tensor matmuls and non-learned ops",
+          "unit": "multiply-accumulate"
+        },
+        "model_key": "UNETPP",
+        "observed_state": null,
+        "parameters": 9159681,
+        "peak_allocated_mib": 712.21875,
+        "peak_reserved_mib": 1044.0,
+        "pipeline_ms_median": 35.75584999998682,
+        "pipeline_ms_p95": 36.086710001472966,
+        "refiner_invocation_rate": null,
+        "seed": 123,
+        "throughput_images_per_s": 28.88983583179645
+      },
+      {
+        "adapter_kind": "PLAIN",
+        "forward_ms_median": 34.62355000374373,
+        "forward_ms_p95": 34.927620000962634,
+        "initialization_ms": 1111.5901000011945,
+        "macs": {
+          "conv_linear_macs": 137942269952,
+          "method": "Conv2d+Linear hooks; excludes attention tensor matmuls and non-learned ops",
+          "unit": "multiply-accumulate"
+        },
+        "model_key": "UNETPP",
+        "observed_state": null,
+        "parameters": 9159681,
+        "peak_allocated_mib": 712.21875,
+        "peak_reserved_mib": 1044.0,
+        "pipeline_ms_median": 35.77824999956647,
+        "pipeline_ms_p95": 36.092110000390676,
+        "refiner_invocation_rate": null,
+        "seed": 3407,
+        "throughput_images_per_s": 28.882075924966482
+      },
+      {
+        "adapter_kind": "PLAIN",
+        "forward_ms_median": 14.619800000218675,
+        "forward_ms_p95": 15.832194999893545,
+        "initialization_ms": 806.8120999960229,
+        "macs": {
+          "conv_linear_macs": 69139431424,
+          "method": "Conv2d+Linear hooks; excludes attention tensor matmuls and non-learned ops",
+          "unit": "multiply-accumulate"
+        },
+        "model_key": "DEEPLABV3PLUS",
+        "observed_state": null,
+        "parameters": 40347041,
+        "peak_allocated_mib": 308.25,
+        "peak_reserved_mib": 362.0,
+        "pipeline_ms_median": 16.080349996627774,
+        "pipeline_ms_p95": 17.51070999962394,
+        "refiner_invocation_rate": null,
+        "seed": 42,
+        "throughput_images_per_s": 68.40038851318367
+      },
+      {
+        "adapter_kind": "PLAIN",
+        "forward_ms_median": 15.15569999901345,
+        "forward_ms_p95": 16.273814997111913,
+        "initialization_ms": 798.015000000305,
+        "macs": {
+          "conv_linear_macs": 69139431424,
+          "method": "Conv2d+Linear hooks; excludes attention tensor matmuls and non-learned ops",
+          "unit": "multiply-accumulate"
+        },
+        "model_key": "DEEPLABV3PLUS",
+        "observed_state": null,
+        "parameters": 40347041,
+        "peak_allocated_mib": 308.25,
+        "peak_reserved_mib": 362.0,
+        "pipeline_ms_median": 16.27205000113463,
+        "pipeline_ms_p95": 18.505765001464166,
+        "refiner_invocation_rate": null,
+        "seed": 123,
+        "throughput_images_per_s": 65.98177583780982
+      },
+      {
+        "adapter_kind": "PLAIN",
+        "forward_ms_median": 14.906849999533733,
+        "forward_ms_p95": 15.991149996989407,
+        "initialization_ms": 795.676599998842,
+        "macs": {
+          "conv_linear_macs": 69139431424,
+          "method": "Conv2d+Linear hooks; excludes attention tensor matmuls and non-learned ops",
+          "unit": "multiply-accumulate"
+        },
+        "model_key": "DEEPLABV3PLUS",
+        "observed_state": null,
+        "parameters": 40347041,
+        "peak_allocated_mib": 308.25,
+        "peak_reserved_mib": 362.0,
+        "pipeline_ms_median": 15.797599997313228,
+        "pipeline_ms_p95": 16.306879999683588,
+        "refiner_invocation_rate": null,
+        "seed": 3407,
+        "throughput_images_per_s": 67.08325367406788
+      },
+      {
+        "adapter_kind": "PLAIN",
+        "forward_ms_median": 11.635150000074646,
+        "forward_ms_p95": 12.299579997488763,
+        "initialization_ms": 412.38180000073044,
+        "macs": {
+          "conv_linear_macs": 17572560896,
+          "method": "Conv2d+Linear hooks; excludes attention tensor matmuls and non-learned ops",
+          "unit": "multiply-accumulate"
+        },
+        "model_key": "TRANSFORMER_MIT_UNET",
+        "observed_state": null,
+        "parameters": 16347777,
+        "peak_allocated_mib": 208.61279296875,
+        "peak_reserved_mib": 278.0,
+        "pipeline_ms_median": 11.827599999378435,
+        "pipeline_ms_p95": 12.251339999056654,
+        "refiner_invocation_rate": null,
+        "seed": 42,
+        "throughput_images_per_s": 85.94646394705565
+      },
+      {
+        "adapter_kind": "PLAIN",
+        "forward_ms_median": 11.829299997771159,
+        "forward_ms_p95": 28.257039998061373,
+        "initialization_ms": 419.00089999398915,
+        "macs": {
+          "conv_linear_macs": 17572560896,
+          "method": "Conv2d+Linear hooks; excludes attention tensor matmuls and non-learned ops",
+          "unit": "multiply-accumulate"
+        },
+        "model_key": "TRANSFORMER_MIT_UNET",
+        "observed_state": null,
+        "parameters": 16347777,
+        "peak_allocated_mib": 208.61279296875,
+        "peak_reserved_mib": 278.0,
+        "pipeline_ms_median": 11.684350003633881,
+        "pipeline_ms_p95": 11.970760001713643,
+        "refiner_invocation_rate": null,
+        "seed": 123,
+        "throughput_images_per_s": 84.53585589920088
+      },
+      {
+        "adapter_kind": "PLAIN",
+        "forward_ms_median": 11.429349997342797,
+        "forward_ms_p95": 30.1818749980157,
+        "initialization_ms": 414.5578000025125,
+        "macs": {
+          "conv_linear_macs": 17572560896,
+          "method": "Conv2d+Linear hooks; excludes attention tensor matmuls and non-learned ops",
+          "unit": "multiply-accumulate"
+        },
+        "model_key": "TRANSFORMER_MIT_UNET",
+        "observed_state": null,
+        "parameters": 16347777,
+        "peak_allocated_mib": 208.61279296875,
+        "peak_reserved_mib": 278.0,
+        "pipeline_ms_median": 11.665049998555332,
+        "pipeline_ms_p95": 12.017034996461007,
+        "refiner_invocation_rate": null,
+        "seed": 3407,
+        "throughput_images_per_s": 87.49403948890264
+      }
+    ]
+  },
+  "4_memory": {
+    "accumulation": [
+      {
+        "accumulation": 1,
+        "autocast": false,
+        "batch": 2,
+        "cpu_rss_after_mib": 3039.90625,
+        "cpu_rss_before_mib": 3041.21875,
+        "cpu_rss_delta_mib": -1.3125,
+        "description": "GlobalMedFiLM forward/backward at 512x512",
+        "device": "cuda",
+        "elapsed_seconds": 0.20082829999591922,
+        "evidence_class": "SYNTHETIC_BENCHMARK",
+        "final_loss": 0.6388659477233887,
+        "memory_unit": "MiB",
+        "micro_batch": 2,
+        "note": "Synthetic tensors and synthetic targets. This characterises memory, not convergence.",
+        "optimizer": "adamw",
+        "parameters": 3523001,
+        "peak_allocated_mib": 1762.08154296875,
+        "peak_reserved_mib": 2166.0,
+        "stage": "G_train",
+        "steps": 2
+      },
+      {
+        "accumulation": 2,
+        "autocast": false,
+        "batch": 2,
+        "cpu_rss_after_mib": 3039.90625,
+        "cpu_rss_before_mib": 3039.90625,
+        "cpu_rss_delta_mib": 0.0,
+        "description": "GlobalMedFiLM forward/backward at 512x512",
+        "device": "cuda",
+        "elapsed_seconds": 0.2076563000009628,
+        "evidence_class": "SYNTHETIC_BENCHMARK",
+        "final_loss": 0.31941547989845276,
+        "memory_unit": "MiB",
+        "micro_batch": 1,
+        "note": "Synthetic tensors and synthetic targets. This characterises memory, not convergence.",
+        "optimizer": "adamw",
+        "parameters": 3523001,
+        "peak_allocated_mib": 949.90283203125,
+        "peak_reserved_mib": 1140.0,
+        "stage": "G_train",
+        "steps": 2
+      }
+    ],
+    "autocast": [
+      {
+        "accumulation": 1,
+        "autocast": false,
+        "batch": 2,
+        "cpu_rss_after_mib": 2900.0546875,
+        "cpu_rss_before_mib": 2901.15234375,
+        "cpu_rss_delta_mib": -1.09765625,
+        "description": "GlobalMedFiLM forward/backward at 512x512",
+        "device": "cuda",
+        "elapsed_seconds": 0.19784210000216262,
+        "evidence_class": "SYNTHETIC_BENCHMARK",
+        "final_loss": 0.6388660073280334,
+        "memory_unit": "MiB",
+        "micro_batch": 2,
+        "note": "Synthetic tensors and synthetic targets. This characterises memory, not convergence.",
+        "optimizer": "adamw",
+        "parameters": 3523001,
+        "peak_allocated_mib": 1762.08154296875,
+        "peak_reserved_mib": 2166.0,
+        "stage": "G_train",
+        "steps": 2
+      },
+      {
+        "accumulation": 1,
+        "autocast": true,
+        "batch": 2,
+        "cpu_rss_after_mib": 3029.2578125,
+        "cpu_rss_before_mib": 2900.0546875,
+        "cpu_rss_delta_mib": 129.203125,
+        "description": "GlobalMedFiLM forward/backward at 512x512",
+        "device": "cuda",
+        "elapsed_seconds": 0.2533495000025141,
+        "evidence_class": "SYNTHETIC_BENCHMARK",
+        "final_loss": 0.6748107671737671,
+        "memory_unit": "MiB",
+        "micro_batch": 2,
+        "note": "Synthetic tensors and synthetic targets. This characterises memory, not convergence.",
+        "optimizer": "adamw",
+        "parameters": 3523001,
+        "peak_allocated_mib": 1806.73095703125,
+        "peak_reserved_mib": 2016.0,
+        "stage": "G_train",
+        "steps": 2
+      },
+      {
+        "accumulation": 1,
+        "autocast": false,
+        "batch": 2,
+        "cpu_rss_after_mib": 3029.2578125,
+        "cpu_rss_before_mib": 3029.2578125,
+        "cpu_rss_delta_mib": 0.0,
+        "description": "regional refiner forward/backward at the 256x256 ROI contract",
+        "device": "cuda",
+        "elapsed_seconds": 0.0426898000005167,
+        "evidence_class": "SYNTHETIC_BENCHMARK",
+        "final_loss": 0.6328428983688354,
+        "memory_unit": "MiB",
+        "micro_batch": 2,
+        "note": "Synthetic tensors and synthetic targets. This characterises memory, not convergence.",
+        "optimizer": "adamw",
+        "parameters": 1276401,
+        "peak_allocated_mib": 359.01123046875,
+        "peak_reserved_mib": 446.0,
+        "stage": "R_train",
+        "steps": 2
+      },
+      {
+        "accumulation": 1,
+        "autocast": true,
+        "batch": 2,
+        "cpu_rss_after_mib": 3041.21875,
+        "cpu_rss_before_mib": 3029.2578125,
+        "cpu_rss_delta_mib": 11.9609375,
+        "description": "regional refiner forward/backward at the 256x256 ROI contract",
+        "device": "cuda",
+        "elapsed_seconds": 0.1273667999994359,
+        "evidence_class": "SYNTHETIC_BENCHMARK",
+        "final_loss": 0.6383168697357178,
+        "memory_unit": "MiB",
+        "micro_batch": 2,
+        "note": "Synthetic tensors and synthetic targets. This characterises memory, not convergence.",
+        "optimizer": "adamw",
+        "parameters": 1276401,
+        "peak_allocated_mib": 357.529296875,
+        "peak_reserved_mib": 418.0,
+        "stage": "R_train",
+        "steps": 2
+      }
+    ],
+    "capacity": [
+      {
+        "attempted": [
+          1,
+          2,
+          4,
+          8,
+          16,
+          32
+        ],
+        "autocast": false,
+        "device": "cuda",
+        "failures": [
+          {
+            "batch": 32,
+            "reason": "OutOfMemoryError"
+          }
+        ],
+        "gpu_total_mib": 8191.375,
+        "max_batch": 16,
+        "stage": "G_train"
+      },
+      {
+        "attempted": [
+          1,
+          2,
+          4,
+          8,
+          16,
+          32
+        ],
+        "autocast": false,
+        "device": "cuda",
+        "failures": [],
+        "gpu_total_mib": 8191.375,
+        "max_batch": 32,
+        "stage": "R_train"
+      },
+      {
+        "attempted": [
+          1,
+          2,
+          4,
+          8,
+          16,
+          32
+        ],
+        "autocast": false,
+        "device": "cuda",
+        "failures": [],
+        "gpu_total_mib": 8191.375,
+        "max_batch": 32,
+        "stage": "B_train"
+      },
+      {
+        "attempted": [
+          1,
+          2,
+          4,
+          8,
+          16,
+          32
+        ],
+        "autocast": false,
+        "device": "cuda",
+        "failures": [],
+        "gpu_total_mib": 8191.375,
+        "max_batch": 32,
+        "stage": "S_train"
+      }
+    ],
+    "inference": [
+      {
+        "adapter_kind": "ROUTED",
+        "batch": 1,
+        "cpu_rss_after_mib": 3044.640625,
+        "cpu_rss_before_mib": 3039.90625,
+        "device": "cuda",
+        "evidence_class": "SYNTHETIC_BENCHMARK",
+        "memory_unit": "MiB",
+        "model_key": "RA_MEDFILM_BARR_FULL",
+        "note": "Synthetic weights and a synthetic image.",
+        "parameters": 4837420,
+        "peak_allocated_mib": 384.5419921875,
+        "peak_reserved_mib": 454.0,
+        "seed": 42
+      },
+      {
+        "adapter_kind": "TASK_CONDITIONED",
+        "batch": 1,
+        "cpu_rss_after_mib": 3044.03515625,
+        "cpu_rss_before_mib": 3044.640625,
+        "device": "cuda",
+        "evidence_class": "SYNTHETIC_BENCHMARK",
+        "memory_unit": "MiB",
+        "model_key": "GLOBAL_MEDFILM",
+        "note": "Synthetic weights and a synthetic image.",
+        "parameters": 3523001,
+        "peak_allocated_mib": 354.45556640625,
+        "peak_reserved_mib": 396.0,
+        "seed": 42
+      },
+      {
+        "adapter_kind": "ROUTED",
+        "batch": 1,
+        "cpu_rss_after_mib": 3046.6796875,
+        "cpu_rss_before_mib": 3044.03515625,
+        "device": "cuda",
+        "evidence_class": "SYNTHETIC_BENCHMARK",
+        "memory_unit": "MiB",
+        "model_key": "RA_MEDFILM_BARR_LITE_DEPTHWISE",
+        "note": "Synthetic weights and a synthetic image.",
+        "parameters": 272601,
+        "peak_allocated_mib": 260.61572265625,
+        "peak_reserved_mib": 330.0,
+        "seed": 42
+      },
+      {
+        "adapter_kind": "PLAIN",
+        "batch": 1,
+        "cpu_rss_after_mib": 3043.75,
+        "cpu_rss_before_mib": 3044.6796875,
+        "device": "cuda",
+        "evidence_class": "SYNTHETIC_BENCHMARK",
+        "memory_unit": "MiB",
+        "model_key": "UNET",
+        "note": "Synthetic weights and a synthetic image.",
+        "parameters": 7763041,
+        "peak_allocated_mib": 315.25439453125,
+        "peak_reserved_mib": 422.0,
+        "seed": 42
+      },
+      {
+        "adapter_kind": "PLAIN",
+        "batch": 1,
+        "cpu_rss_after_mib": 3043.81640625,
+        "cpu_rss_before_mib": 3043.75,
+        "device": "cuda",
+        "evidence_class": "SYNTHETIC_BENCHMARK",
+        "memory_unit": "MiB",
+        "model_key": "ATTENTION_UNET",
+        "note": "Synthetic weights and a synthetic image.",
+        "parameters": 7851285,
+        "peak_allocated_mib": 375.60986328125,
+        "peak_reserved_mib": 450.0,
+        "seed": 42
+      },
+      {
+        "adapter_kind": "PLAIN",
+        "batch": 1,
+        "cpu_rss_after_mib": 3046.3203125,
+        "cpu_rss_before_mib": 3043.81640625,
+        "device": "cuda",
+        "evidence_class": "SYNTHETIC_BENCHMARK",
+        "memory_unit": "MiB",
+        "model_key": "UNETPP",
+        "note": "Synthetic weights and a synthetic image.",
+        "parameters": 9159681,
+        "peak_allocated_mib": 744.21875,
+        "peak_reserved_mib": 1076.0,
+        "seed": 42
+      },
+      {
+        "adapter_kind": "PLAIN",
+        "batch": 1,
+        "cpu_rss_after_mib": 3046.12890625,
+        "cpu_rss_before_mib": 3046.3203125,
+        "device": "cuda",
+        "evidence_class": "SYNTHETIC_BENCHMARK",
+        "memory_unit": "MiB",
+        "model_key": "DEEPLABV3PLUS",
+        "note": "Synthetic weights and a synthetic image.",
+        "parameters": 40347041,
+        "peak_allocated_mib": 341.921875,
+        "peak_reserved_mib": 390.0,
+        "seed": 42
+      },
+      {
+        "adapter_kind": "PLAIN",
+        "batch": 1,
+        "cpu_rss_after_mib": 3046.86328125,
+        "cpu_rss_before_mib": 3046.12890625,
+        "device": "cuda",
+        "evidence_class": "SYNTHETIC_BENCHMARK",
+        "memory_unit": "MiB",
+        "model_key": "TRANSFORMER_MIT_UNET",
+        "note": "Synthetic weights and a synthetic image.",
+        "parameters": 16347777,
+        "peak_allocated_mib": 240.61279296875,
+        "peak_reserved_mib": 306.0,
+        "seed": 42
+      }
+    ],
+    "training": [
+      {
+        "accumulation": 1,
+        "autocast": false,
+        "batch": 1,
+        "cpu_rss_after_mib": 2835.44921875,
+        "cpu_rss_before_mib": 2690.2421875,
+        "cpu_rss_delta_mib": 145.20703125,
+        "description": "GlobalMedFiLM forward/backward at 512x512",
+        "device": "cuda",
+        "elapsed_seconds": 0.20407710000290535,
+        "evidence_class": "SYNTHETIC_BENCHMARK",
+        "final_loss": 0.6393216252326965,
+        "memory_unit": "MiB",
+        "micro_batch": 1,
+        "note": "Synthetic tensors and synthetic targets. This characterises memory, not convergence.",
+        "optimizer": "adamw",
+        "parameters": 3523001,
+        "peak_allocated_mib": 934.87255859375,
+        "peak_reserved_mib": 1112.0,
+        "stage": "G_train",
+        "steps": 2
+      },
+      {
+        "accumulation": 1,
+        "autocast": false,
+        "batch": 2,
+        "cpu_rss_after_mib": 2840.93359375,
+        "cpu_rss_before_mib": 2835.453125,
+        "cpu_rss_delta_mib": 5.48046875,
+        "description": "GlobalMedFiLM forward/backward at 512x512",
+        "device": "cuda",
+        "elapsed_seconds": 0.2203382999941823,
+        "evidence_class": "SYNTHETIC_BENCHMARK",
+        "final_loss": 0.6388658881187439,
+        "memory_unit": "MiB",
+        "micro_batch": 2,
+        "note": "Synthetic tensors and synthetic targets. This characterises memory, not convergence.",
+        "optimizer": "adamw",
+        "parameters": 3523001,
+        "peak_allocated_mib": 1762.08154296875,
+        "peak_reserved_mib": 2166.0,
+        "stage": "G_train",
+        "steps": 2
+      },
+      {
+        "accumulation": 1,
+        "autocast": false,
+        "batch": 4,
+        "cpu_rss_after_mib": 2842.48046875,
+        "cpu_rss_before_mib": 2840.93359375,
+        "cpu_rss_delta_mib": 1.546875,
+        "description": "GlobalMedFiLM forward/backward at 512x512",
+        "device": "cuda",
+        "elapsed_seconds": 0.37697969999862835,
+        "evidence_class": "SYNTHETIC_BENCHMARK",
+        "final_loss": 0.6389162540435791,
+        "memory_unit": "MiB",
+        "micro_batch": 4,
+        "note": "Synthetic tensors and synthetic targets. This characterises memory, not convergence.",
+        "optimizer": "adamw",
+        "parameters": 3523001,
+        "peak_allocated_mib": 3412.7861328125,
+        "peak_reserved_mib": 4252.0,
+        "stage": "G_train",
+        "steps": 2
+      },
+      {
+        "accumulation": 1,
+        "autocast": false,
+        "batch": 1,
+        "cpu_rss_after_mib": 2845.375,
+        "cpu_rss_before_mib": 2842.48046875,
+        "cpu_rss_delta_mib": 2.89453125,
+        "description": "regional refiner forward/backward at the 256x256 ROI contract",
+        "device": "cuda",
+        "elapsed_seconds": 0.0639867999998387,
+        "evidence_class": "SYNTHETIC_BENCHMARK",
+        "final_loss": 0.6341809034347534,
+        "memory_unit": "MiB",
+        "micro_batch": 1,
+        "note": "Synthetic tensors and synthetic targets. This characterises memory, not convergence.",
+        "optimizer": "adamw",
+        "parameters": 1276401,
+        "peak_allocated_mib": 218.3515625,
+        "peak_reserved_mib": 244.0,
+        "stage": "R_train",
+        "steps": 2
+      },
+      {
+        "accumulation": 1,
+        "autocast": false,
+        "batch": 2,
+        "cpu_rss_after_mib": 2848.46875,
+        "cpu_rss_before_mib": 2845.375,
+        "cpu_rss_delta_mib": 3.09375,
+        "description": "regional refiner forward/backward at the 256x256 ROI contract",
+        "device": "cuda",
+        "elapsed_seconds": 0.08826840000256198,
+        "evidence_class": "SYNTHETIC_BENCHMARK",
+        "final_loss": 0.6328424215316772,
+        "memory_unit": "MiB",
+        "micro_batch": 2,
+        "note": "Synthetic tensors and synthetic targets. This characterises memory, not convergence.",
+        "optimizer": "adamw",
+        "parameters": 1276401,
+        "peak_allocated_mib": 359.01123046875,
+        "peak_reserved_mib": 446.0,
+        "stage": "R_train",
+        "steps": 2
+      },
+      {
+        "accumulation": 1,
+        "autocast": false,
+        "batch": 4,
+        "cpu_rss_after_mib": 2854.02734375,
+        "cpu_rss_before_mib": 2848.46875,
+        "cpu_rss_delta_mib": 5.55859375,
+        "description": "regional refiner forward/backward at the 256x256 ROI contract",
+        "device": "cuda",
+        "elapsed_seconds": 0.10914050000428688,
+        "evidence_class": "SYNTHETIC_BENCHMARK",
+        "final_loss": 0.6336187124252319,
+        "memory_unit": "MiB",
+        "micro_batch": 4,
+        "note": "Synthetic tensors and synthetic targets. This characterises memory, not convergence.",
+        "optimizer": "adamw",
+        "parameters": 1276401,
+        "peak_allocated_mib": 637.32373046875,
+        "peak_reserved_mib": 806.0,
+        "stage": "R_train",
+        "steps": 2
+      },
+      {
+        "accumulation": 1,
+        "autocast": false,
+        "batch": 1,
+        "cpu_rss_after_mib": 2901.1171875,
+        "cpu_rss_before_mib": 2854.02734375,
+        "cpu_rss_delta_mib": 47.08984375,
+        "description": "benefit router forward/backward on the 202-D feature vector",
+        "device": "cuda",
+        "elapsed_seconds": 0.02774209999915911,
+        "evidence_class": "SYNTHETIC_BENCHMARK",
+        "final_loss": 0.03536509722471237,
+        "memory_unit": "MiB",
+        "micro_batch": 1,
+        "note": "Synthetic tensors and synthetic targets. This characterises memory, not convergence.",
+        "optimizer": "adamw",
+        "parameters": 36801,
+        "peak_allocated_mib": 65.43408203125,
+        "peak_reserved_mib": 82.0,
+        "stage": "B_train",
+        "steps": 2
+      },
+      {
+        "accumulation": 1,
+        "autocast": false,
+        "batch": 2,
+        "cpu_rss_after_mib": 2901.13671875,
+        "cpu_rss_before_mib": 2901.1171875,
+        "cpu_rss_delta_mib": 0.01953125,
+        "description": "benefit router forward/backward on the 202-D feature vector",
+        "device": "cuda",
+        "elapsed_seconds": 0.006769699997676071,
+        "evidence_class": "SYNTHETIC_BENCHMARK",
+        "final_loss": 0.034692395478487015,
+        "memory_unit": "MiB",
+        "micro_batch": 2,
+        "note": "Synthetic tensors and synthetic targets. This characterises memory, not convergence.",
+        "optimizer": "adamw",
+        "parameters": 36801,
+        "peak_allocated_mib": 65.4375,
+        "peak_reserved_mib": 82.0,
+        "stage": "B_train",
+        "steps": 2
+      },
+      {
+        "accumulation": 1,
+        "autocast": false,
+        "batch": 4,
+        "cpu_rss_after_mib": 2901.13671875,
+        "cpu_rss_before_mib": 2901.13671875,
+        "cpu_rss_delta_mib": 0.0,
+        "description": "benefit router forward/backward on the 202-D feature vector",
+        "device": "cuda",
+        "elapsed_seconds": 0.0061088000002200715,
+        "evidence_class": "SYNTHETIC_BENCHMARK",
+        "final_loss": 0.02936902642250061,
+        "memory_unit": "MiB",
+        "micro_batch": 4,
+        "note": "Synthetic tensors and synthetic targets. This characterises memory, not convergence.",
+        "optimizer": "adamw",
+        "parameters": 36801,
+        "peak_allocated_mib": 65.44384765625,
+        "peak_reserved_mib": 82.0,
+        "stage": "B_train",
+        "steps": 2
+      },
+      {
+        "accumulation": 1,
+        "autocast": false,
+        "batch": 1,
+        "cpu_rss_after_mib": 2901.1484375,
+        "cpu_rss_before_mib": 2901.13671875,
+        "cpu_rss_delta_mib": 0.01171875,
+        "description": "safety module forward/backward on the 20-D vector",
+        "device": "cuda",
+        "elapsed_seconds": 0.0051804999966407195,
+        "evidence_class": "SYNTHETIC_BENCHMARK",
+        "final_loss": 0.6711554527282715,
+        "memory_unit": "MiB",
+        "micro_batch": 1,
+        "note": "Synthetic tensors and synthetic targets. This characterises memory, not convergence.",
+        "optimizer": "adamw",
+        "parameters": 1217,
+        "peak_allocated_mib": 65.0224609375,
+        "peak_reserved_mib": 82.0,
+        "stage": "S_train",
+        "steps": 2
+      },
+      {
+        "accumulation": 1,
+        "autocast": false,
+        "batch": 2,
+        "cpu_rss_after_mib": 2901.15234375,
+        "cpu_rss_before_mib": 2901.1484375,
+        "cpu_rss_delta_mib": 0.00390625,
+        "description": "safety module forward/backward on the 20-D vector",
+        "device": "cuda",
+        "elapsed_seconds": 0.004567399999359623,
+        "evidence_class": "SYNTHETIC_BENCHMARK",
+        "final_loss": 0.6791579723358154,
+        "memory_unit": "MiB",
+        "micro_batch": 2,
+        "note": "Synthetic tensors and synthetic targets. This characterises memory, not convergence.",
+        "optimizer": "adamw",
+        "parameters": 1217,
+        "peak_allocated_mib": 65.0224609375,
+        "peak_reserved_mib": 82.0,
+        "stage": "S_train",
+        "steps": 2
+      },
+      {
+        "accumulation": 1,
+        "autocast": false,
+        "batch": 4,
+        "cpu_rss_after_mib": 2901.15234375,
+        "cpu_rss_before_mib": 2901.15234375,
+        "cpu_rss_delta_mib": 0.0,
+        "description": "safety module forward/backward on the 20-D vector",
+        "device": "cuda",
+        "elapsed_seconds": 0.006625299996812828,
+        "evidence_class": "SYNTHETIC_BENCHMARK",
+        "final_loss": 0.6822701096534729,
+        "memory_unit": "MiB",
+        "micro_batch": 4,
+        "note": "Synthetic tensors and synthetic targets. This characterises memory, not convergence.",
+        "optimizer": "adamw",
+        "parameters": 1217,
+        "peak_allocated_mib": 65.0224609375,
+        "peak_reserved_mib": 82.0,
+        "stage": "S_train",
+        "steps": 2
+      }
+    ],
+    "transfer": [
+      {
+        "batch": 4,
+        "batches": 24,
+        "elapsed_seconds": 0.07078679999540327,
+        "images_measured": 92,
+        "images_per_second": 1299.6773410575738,
+        "note": "Transfer cost only; no model runs here. startup_seconds is the cost to reach the first batch (worker spawn and torch import on Windows) and is excluded from images_per_second.",
+        "pin_memory": false,
+        "startup_dominated": false,
+        "startup_seconds": 0.003961900001741014,
+        "warmup_batches_excluded": 1,
+        "workers": 0
+      },
+      {
+        "batch": 4,
+        "batches": 24,
+        "elapsed_seconds": 0.06944719999592053,
+        "images_measured": 92,
+        "images_per_second": 1324.7474340996364,
+        "note": "Transfer cost only; no model runs here. startup_seconds is the cost to reach the first batch (worker spawn and torch import on Windows) and is excluded from images_per_second.",
+        "pin_memory": true,
+        "startup_dominated": false,
+        "startup_seconds": 0.005098599998746067,
+        "warmup_batches_excluded": 1,
+        "workers": 0
+      }
+    ]
+  },
+  "5_conditional_compute": {
+    "comparisons": [
+      {
+        "always_refine_ms": {
+          "cold_first_call": 76.71799999661744,
+          "max": 90.20849999797065,
+          "mean": 78.99611666774338,
+          "measured_repeats": 30,
+          "median": 77.39809999839053,
+          "min": 74.83070000307634,
+          "n": 30,
+          "p90": 84.55580000081682,
+          "p95": 86.84718499825975,
+          "stdev": 4.227758138347444,
+          "unit": "milliseconds",
+          "warmup_iterations": 5
+        },
+        "caveat": "The conditional figure is the fixture's own decision. A lower refiner count is not by itself a lower total cost, so the effective MAC figure is reported beside it.",
+        "conditional_ms": {
+          "cold_first_call": 87.99470000667498,
+          "max": 86.93889999995008,
+          "mean": 80.69074333228248,
+          "measured_repeats": 30,
+          "median": 79.95794999806094,
+          "min": 75.85480000125244,
+          "n": 30,
+          "p90": 84.3993499984208,
+          "p95": 86.42426999649615,
+          "stdev": 2.9362869889136256,
+          "unit": "milliseconds",
+          "warmup_iterations": 5
+        },
+        "conditional_state": "EXECUTE_THEN_ACCEPT",
+        "effective_macs_per_image": 34782440912,
+        "evidence_class": "SYNTHETIC_BENCHMARK",
+        "global_only_ms": {
+          "cold_first_call": 22.322700002405327,
+          "max": 22.877800001879223,
+          "mean": 15.334446667596543,
+          "measured_repeats": 30,
+          "median": 14.135999997961335,
+          "min": 14.058900000236463,
+          "n": 30,
+          "p90": 22.486470003786962,
+          "p95": 22.52902499967604,
+          "stdev": 2.910522047237908,
+          "unit": "milliseconds",
+          "warmup_iterations": 5
+        },
+        "macs_global_only": 31551740928,
+        "macs_if_always_refine": 34782440912,
+        "model_key": "RA_MEDFILM_BARR_FULL",
+        "non_global_overhead_ms": 63.2621000004292,
+        "refiner_invocation_rate_observed": 1.0,
+        "seed": 42
+      },
+      {
+        "always_refine_ms": {
+          "cold_first_call": 85.62469999742461,
+          "max": 117.75779999879887,
+          "mean": 91.45242000086,
+          "measured_repeats": 30,
+          "median": 90.18600000490551,
+          "min": 84.26160000090022,
+          "n": 30,
+          "p90": 95.80627000468667,
+          "p95": 100.21754500194218,
+          "stdev": 6.524351176922577,
+          "unit": "milliseconds",
+          "warmup_iterations": 5
+        },
+        "caveat": "The conditional figure is the fixture's own decision. A lower refiner count is not by itself a lower total cost, so the effective MAC figure is reported beside it.",
+        "conditional_ms": {
+          "cold_first_call": 95.11290000227746,
+          "max": 108.12360000272747,
+          "mean": 97.87624999977804,
+          "measured_repeats": 30,
+          "median": 97.70369999750983,
+          "min": 92.90229999896837,
+          "n": 30,
+          "p90": 100.32534999772906,
+          "p95": 101.08309499992174,
+          "stdev": 2.8322992334818267,
+          "unit": "milliseconds",
+          "warmup_iterations": 5
+        },
+        "conditional_state": "EXECUTE_THEN_ACCEPT",
+        "effective_macs_per_image": 34782440912,
+        "evidence_class": "SYNTHETIC_BENCHMARK",
+        "global_only_ms": {
+          "cold_first_call": 31.371900004160125,
+          "max": 32.19610000087414,
+          "mean": 16.5192733334455,
+          "measured_repeats": 30,
+          "median": 15.006199999334058,
+          "min": 14.523400001053233,
+          "n": 30,
+          "p90": 16.78726000172903,
+          "p95": 30.754169999636357,
+          "stdev": 4.987731799707721,
+          "unit": "milliseconds",
+          "warmup_iterations": 5
+        },
+        "macs_global_only": 31551740928,
+        "macs_if_always_refine": 34782440912,
+        "model_key": "RA_MEDFILM_BARR_FULL",
+        "non_global_overhead_ms": 75.17980000557145,
+        "refiner_invocation_rate_observed": 1.0,
+        "seed": 123
+      },
+      {
+        "always_refine_ms": {
+          "cold_first_call": 75.05560000572586,
+          "max": 100.96080000221264,
+          "mean": 80.54862666661695,
+          "measured_repeats": 30,
+          "median": 78.80164999733097,
+          "min": 74.00330000382382,
+          "n": 30,
+          "p90": 86.96935000116355,
+          "p95": 88.40230999994674,
+          "stdev": 5.469284667192452,
+          "unit": "milliseconds",
+          "warmup_iterations": 5
+        },
+        "caveat": "The conditional figure is the fixture's own decision. A lower refiner count is not by itself a lower total cost, so the effective MAC figure is reported beside it.",
+        "conditional_ms": {
+          "cold_first_call": 85.17170000413898,
+          "max": 86.58999999897787,
+          "mean": 81.31888666587959,
+          "measured_repeats": 30,
+          "median": 80.29734999945504,
+          "min": 76.62259999779053,
+          "n": 30,
+          "p90": 85.38848000098369,
+          "p95": 86.04798000269511,
+          "stdev": 2.8739946027916625,
+          "unit": "milliseconds",
+          "warmup_iterations": 5
+        },
+        "conditional_state": "EXECUTE_THEN_REJECT",
+        "effective_macs_per_image": 34782440912,
+        "evidence_class": "SYNTHETIC_BENCHMARK",
+        "global_only_ms": {
+          "cold_first_call": 17.753200001607183,
+          "max": 16.071999998530373,
+          "mean": 14.797550000124224,
+          "measured_repeats": 30,
+          "median": 14.713699998537777,
+          "min": 14.087199997447897,
+          "n": 30,
+          "p90": 15.218940003978787,
+          "p95": 15.316155002801679,
+          "stdev": 0.4200157703614675,
+          "unit": "milliseconds",
+          "warmup_iterations": 5
+        },
+        "macs_global_only": 31551740928,
+        "macs_if_always_refine": 34782440912,
+        "model_key": "RA_MEDFILM_BARR_FULL",
+        "non_global_overhead_ms": 64.08794999879319,
+        "refiner_invocation_rate_observed": 1.0,
+        "seed": 3407
+      },
+      {
+        "always_refine_ms": {
+          "cold_first_call": 81.35539999784669,
+          "max": 80.35709999967366,
+          "mean": 74.39228666601896,
+          "measured_repeats": 30,
+          "median": 73.96579999840469,
+          "min": 70.99159999779658,
+          "n": 30,
+          "p90": 77.93166000410565,
+          "p95": 78.73322499981441,
+          "stdev": 2.764732874329893,
+          "unit": "milliseconds",
+          "warmup_iterations": 5
+        },
+        "caveat": "The conditional figure is the fixture's own decision. A lower refiner count is not by itself a lower total cost, so the effective MAC figure is reported beside it.",
+        "conditional_ms": {
+          "cold_first_call": 50.440200000593904,
+          "max": 53.839300002437085,
+          "mean": 47.419156667456264,
+          "measured_repeats": 30,
+          "median": 46.74660000091535,
+          "min": 44.74900000059279,
+          "n": 30,
+          "p90": 49.16916000147467,
+          "p95": 51.69683500098472,
+          "stdev": 1.9835094862849556,
+          "unit": "milliseconds",
+          "warmup_iterations": 5
+        },
+        "conditional_state": "SKIP_GLOBAL",
+        "effective_macs_per_image": 1619485760,
+        "evidence_class": "SYNTHETIC_BENCHMARK",
+        "global_only_ms": {
+          "cold_first_call": 15.330599999288097,
+          "max": 15.527800002018921,
+          "mean": 13.785966665939972,
+          "measured_repeats": 30,
+          "median": 13.057599997409852,
+          "min": 12.714700002106838,
+          "n": 30,
+          "p90": 15.188299997680588,
+          "p95": 15.291529997921316,
+          "stdev": 1.1051718739849026,
+          "unit": "milliseconds",
+          "warmup_iterations": 5
+        },
+        "macs_global_only": 1619449600,
+        "macs_if_always_refine": 1819687120,
+        "model_key": "RA_MEDFILM_BARR_LITE_DEPTHWISE",
+        "non_global_overhead_ms": 60.90820000099484,
+        "refiner_invocation_rate_observed": 0.0,
+        "seed": 42
+      },
+      {
+        "always_refine_ms": {
+          "cold_first_call": 71.34319999750005,
+          "max": 76.49169999785954,
+          "mean": 69.79245666637628,
+          "measured_repeats": 30,
+          "median": 69.1993000000366,
+          "min": 64.63139999686973,
+          "n": 30,
+          "p90": 75.31778000120539,
+          "p95": 75.59706999600166,
+          "stdev": 3.9303302294992224,
+          "unit": "milliseconds",
+          "warmup_iterations": 5
+        },
+        "caveat": "The conditional figure is the fixture's own decision. A lower refiner count is not by itself a lower total cost, so the effective MAC figure is reported beside it.",
+        "conditional_ms": {
+          "cold_first_call": 76.17000000027474,
+          "max": 81.35700000275392,
+          "mean": 73.34473000131159,
+          "measured_repeats": 30,
+          "median": 74.33075000153622,
+          "min": 65.43700000474928,
+          "n": 30,
+          "p90": 78.13731000205735,
+          "p95": 80.03095999993093,
+          "stdev": 4.285562142595166,
+          "unit": "milliseconds",
+          "warmup_iterations": 5
+        },
+        "conditional_state": "EXECUTE_THEN_ACCEPT",
+        "effective_macs_per_image": 1819687120,
+        "evidence_class": "SYNTHETIC_BENCHMARK",
+        "global_only_ms": {
+          "cold_first_call": 18.836799994460307,
+          "max": 18.239200006064493,
+          "mean": 13.253809999635754,
+          "measured_repeats": 30,
+          "median": 12.798949999705656,
+          "min": 12.44550000410527,
+          "n": 30,
+          "p90": 14.237559997854989,
+          "p95": 17.1132800001942,
+          "stdev": 1.489819190825972,
+          "unit": "milliseconds",
+          "warmup_iterations": 5
+        },
+        "macs_global_only": 1619449600,
+        "macs_if_always_refine": 1819687120,
+        "model_key": "RA_MEDFILM_BARR_LITE_DEPTHWISE",
+        "non_global_overhead_ms": 56.400350000330945,
+        "refiner_invocation_rate_observed": 1.0,
+        "seed": 123
+      },
+      {
+        "always_refine_ms": {
+          "cold_first_call": 70.6376000016462,
+          "max": 82.91869999811752,
+          "mean": 75.68711333272707,
+          "measured_repeats": 30,
+          "median": 74.35484999587061,
+          "min": 71.36030000401661,
+          "n": 30,
+          "p90": 80.75675999498344,
+          "p95": 81.08818499895278,
+          "stdev": 3.445357564197435,
+          "unit": "milliseconds",
+          "warmup_iterations": 5
+        },
+        "caveat": "The conditional figure is the fixture's own decision. A lower refiner count is not by itself a lower total cost, so the effective MAC figure is reported beside it.",
+        "conditional_ms": {
+          "cold_first_call": 52.092000005359296,
+          "max": 52.995300000475254,
+          "mean": 46.88945999951102,
+          "measured_repeats": 30,
+          "median": 46.524050001607975,
+          "min": 45.24870000022929,
+          "n": 30,
+          "p90": 48.35508999603917,
+          "p95": 49.224915002196205,
+          "stdev": 1.491811503604501,
+          "unit": "milliseconds",
+          "warmup_iterations": 5
+        },
+        "conditional_state": "SKIP_GLOBAL",
+        "effective_macs_per_image": 1619485760,
+        "evidence_class": "SYNTHETIC_BENCHMARK",
+        "global_only_ms": {
+          "cold_first_call": 20.215500000631437,
+          "max": 20.3892999998061,
+          "mean": 13.45234333348344,
+          "measured_repeats": 30,
+          "median": 12.927949999721022,
+          "min": 12.703899999905843,
+          "n": 30,
+          "p90": 13.394999997399283,
+          "p95": 17.490844999338133,
+          "stdev": 1.8687893164831708,
+          "unit": "milliseconds",
+          "warmup_iterations": 5
+        },
+        "macs_global_only": 1619449600,
+        "macs_if_always_refine": 1819687120,
+        "model_key": "RA_MEDFILM_BARR_LITE_DEPTHWISE",
+        "non_global_overhead_ms": 61.42689999614959,
+        "refiner_invocation_rate_observed": 0.0,
+        "seed": 3407
+      }
+    ],
+    "records": [
+      {
+        "branch_latency_ms": {
+          "cold_first_call": 21.544200004427694,
+          "max": 22.76539999729721,
+          "mean": 20.918586666569656,
+          "measured_repeats": 30,
+          "median": 20.65904999835766,
+          "min": 20.162799999525305,
+          "n": 30,
+          "p90": 22.141880002163816,
+          "p95": 22.625719999632565,
+          "stdev": 0.7869524029940194,
+          "unit": "milliseconds",
+          "warmup_iterations": 5
+        },
+        "component_invocations": {
+          "global": 1,
+          "refiner": 0,
+          "router": 0,
+          "safety": 0
+        },
+        "description": "no predicted foreground above the ROI threshold -> no router call",
+        "evidence_class": "SYNTHETIC_BENCHMARK",
+        "expected_state": "FORCED_SKIP",
+        "memory": {
+          "memory_unit": "MiB",
+          "peak_allocated_mib": 352.5419921875,
+          "peak_reserved_mib": 426.0
+        },
+        "model_key": "RA_MEDFILM_BARR_FULL",
+        "observed_state": "FORCED_SKIP",
+        "refiner_executed": false,
+        "scenario": "forced_skip",
+        "seed": 42,
+        "state_matches": true
+      },
+      {
+        "branch_latency_ms": {
+          "cold_first_call": 67.68670000019483,
+          "max": 57.37339999905089,
+          "mean": 52.677026666303085,
+          "measured_repeats": 30,
+          "median": 52.41369999930612,
+          "min": 49.423900003603194,
+          "n": 30,
+          "p90": 54.23534999936238,
+          "p95": 56.71080999782134,
+          "stdev": 1.7720590229526796,
+          "unit": "milliseconds",
+          "warmup_iterations": 5
+        },
+        "component_invocations": {
+          "global": 1,
+          "refiner": 0,
+          "router": 1,
+          "safety": 0
+        },
+        "description": "router utility below tau_c8 -> global map kept",
+        "evidence_class": "SYNTHETIC_BENCHMARK",
+        "expected_state": "SKIP_GLOBAL",
+        "memory": {
+          "memory_unit": "MiB",
+          "peak_allocated_mib": 352.5419921875,
+          "peak_reserved_mib": 426.0
+        },
+        "model_key": "RA_MEDFILM_BARR_FULL",
+        "observed_state": "SKIP_GLOBAL",
+        "refiner_executed": false,
+        "scenario": "router_skip",
+        "seed": 42,
+        "state_matches": true
+      },
+      {
+        "branch_latency_ms": {
+          "cold_first_call": 97.2475000016857,
+          "max": 88.0165999988094,
+          "mean": 83.1558666662507,
+          "measured_repeats": 30,
+          "median": 85.03320000090753,
+          "min": 76.05849999526981,
+          "n": 30,
+          "p90": 86.39469999907305,
+          "p95": 87.09251500331447,
+          "stdev": 3.694600090610202,
+          "unit": "milliseconds",
+          "warmup_iterations": 5
+        },
+        "component_invocations": {
+          "global": 1,
+          "refiner": 1,
+          "router": 1,
+          "safety": 1
+        },
+        "description": "refiner runs, safety accepts the candidate",
+        "evidence_class": "SYNTHETIC_BENCHMARK",
+        "expected_state": "EXECUTE_THEN_ACCEPT",
+        "memory": {
+          "memory_unit": "MiB",
+          "peak_allocated_mib": 352.5419921875,
+          "peak_reserved_mib": 430.0
+        },
+        "model_key": "RA_MEDFILM_BARR_FULL",
+        "observed_state": "EXECUTE_THEN_ACCEPT",
+        "refiner_executed": true,
+        "scenario": "safety_accept",
+        "seed": 42,
+        "state_matches": true
+      },
+      {
+        "branch_latency_ms": {
+          "cold_first_call": 103.12949999934062,
+          "max": 96.41760000522481,
+          "mean": 87.46648999973938,
+          "measured_repeats": 30,
+          "median": 87.53380000052857,
+          "min": 84.49300000211224,
+          "n": 30,
+          "p90": 89.3188200010627,
+          "p95": 90.21143999780179,
+          "stdev": 2.309763679819882,
+          "unit": "milliseconds",
+          "warmup_iterations": 5
+        },
+        "component_invocations": {
+          "global": 1,
+          "refiner": 1,
+          "router": 1,
+          "safety": 1
+        },
+        "description": "refiner runs, safety rejects the candidate",
+        "evidence_class": "SYNTHETIC_BENCHMARK",
+        "expected_state": "EXECUTE_THEN_REJECT",
+        "memory": {
+          "memory_unit": "MiB",
+          "peak_allocated_mib": 352.5419921875,
+          "peak_reserved_mib": 430.0
+        },
+        "model_key": "RA_MEDFILM_BARR_FULL",
+        "observed_state": "EXECUTE_THEN_REJECT",
+        "refiner_executed": true,
+        "scenario": "safety_reject",
+        "seed": 42,
+        "state_matches": true
+      },
+      {
+        "branch_latency_ms": {
+          "cold_first_call": 40.37109999626409,
+          "max": 32.151699997484684,
+          "mean": 31.424623332713963,
+          "measured_repeats": 30,
+          "median": 31.40614999938407,
+          "min": 30.507900002703536,
+          "n": 30,
+          "p90": 31.992960003117332,
+          "p95": 32.09414000084507,
+          "stdev": 0.4135244110556909,
+          "unit": "milliseconds",
+          "warmup_iterations": 5
+        },
+        "component_invocations": {
+          "global": 1,
+          "refiner": 0,
+          "router": 0,
+          "safety": 0
+        },
+        "description": "no predicted foreground above the ROI threshold -> no router call",
+        "evidence_class": "SYNTHETIC_BENCHMARK",
+        "expected_state": "FORCED_SKIP",
+        "memory": {
+          "memory_unit": "MiB",
+          "peak_allocated_mib": 352.5419921875,
+          "peak_reserved_mib": 426.0
+        },
+        "model_key": "RA_MEDFILM_BARR_FULL",
+        "observed_state": "FORCED_SKIP",
+        "refiner_executed": false,
+        "scenario": "forced_skip",
+        "seed": 123,
+        "state_matches": true
+      },
+      {
+        "branch_latency_ms": {
+          "cold_first_call": 73.28270000289194,
+          "max": 69.43959999625804,
+          "mean": 63.248193333129166,
+          "measured_repeats": 30,
+          "median": 62.84064999999828,
+          "min": 60.61339999723714,
+          "n": 30,
+          "p90": 65.48590999955195,
+          "p95": 67.62266999903657,
+          "stdev": 2.129789116369622,
+          "unit": "milliseconds",
+          "warmup_iterations": 5
+        },
+        "component_invocations": {
+          "global": 1,
+          "refiner": 0,
+          "router": 1,
+          "safety": 0
+        },
+        "description": "router utility below tau_c8 -> global map kept",
+        "evidence_class": "SYNTHETIC_BENCHMARK",
+        "expected_state": "SKIP_GLOBAL",
+        "memory": {
+          "memory_unit": "MiB",
+          "peak_allocated_mib": 352.5419921875,
+          "peak_reserved_mib": 426.0
+        },
+        "model_key": "RA_MEDFILM_BARR_FULL",
+        "observed_state": "SKIP_GLOBAL",
+        "refiner_executed": false,
+        "scenario": "router_skip",
+        "seed": 123,
+        "state_matches": true
+      },
+      {
+        "branch_latency_ms": {
+          "cold_first_call": 100.47859999758657,
+          "max": 107.41469999629771,
+          "mean": 99.15587333258979,
+          "measured_repeats": 30,
+          "median": 99.17745000348077,
+          "min": 94.51029999763705,
+          "n": 30,
+          "p90": 101.15416999833542,
+          "p95": 101.6148949995113,
+          "stdev": 2.4499540041631427,
+          "unit": "milliseconds",
+          "warmup_iterations": 5
+        },
+        "component_invocations": {
+          "global": 1,
+          "refiner": 1,
+          "router": 1,
+          "safety": 1
+        },
+        "description": "refiner runs, safety accepts the candidate",
+        "evidence_class": "SYNTHETIC_BENCHMARK",
+        "expected_state": "EXECUTE_THEN_ACCEPT",
+        "memory": {
+          "memory_unit": "MiB",
+          "peak_allocated_mib": 352.5419921875,
+          "peak_reserved_mib": 430.0
+        },
+        "model_key": "RA_MEDFILM_BARR_FULL",
+        "observed_state": "EXECUTE_THEN_ACCEPT",
+        "refiner_executed": true,
+        "scenario": "safety_accept",
+        "seed": 123,
+        "state_matches": true
+      },
+      {
+        "branch_latency_ms": {
+          "cold_first_call": 113.70309999620076,
+          "max": 115.85010000271723,
+          "mean": 102.95601666827376,
+          "measured_repeats": 30,
+          "median": 102.37515000335407,
+          "min": 98.418200002925,
+          "n": 30,
+          "p90": 106.75457000252209,
+          "p95": 109.2595850037469,
+          "stdev": 3.5386612595054,
+          "unit": "milliseconds",
+          "warmup_iterations": 5
+        },
+        "component_invocations": {
+          "global": 1,
+          "refiner": 1,
+          "router": 1,
+          "safety": 1
+        },
+        "description": "refiner runs, safety rejects the candidate",
+        "evidence_class": "SYNTHETIC_BENCHMARK",
+        "expected_state": "EXECUTE_THEN_REJECT",
+        "memory": {
+          "memory_unit": "MiB",
+          "peak_allocated_mib": 352.5419921875,
+          "peak_reserved_mib": 430.0
+        },
+        "model_key": "RA_MEDFILM_BARR_FULL",
+        "observed_state": "EXECUTE_THEN_REJECT",
+        "refiner_executed": true,
+        "scenario": "safety_reject",
+        "seed": 123,
+        "state_matches": true
+      },
+      {
+        "branch_latency_ms": {
+          "cold_first_call": 20.8000999991782,
+          "max": 23.572399994009174,
+          "mean": 20.913923332409468,
+          "measured_repeats": 30,
+          "median": 20.689599998149788,
+          "min": 20.206900000630412,
+          "n": 30,
+          "p90": 21.59587999631185,
+          "p95": 22.373270002208297,
+          "stdev": 0.7410930862828823,
+          "unit": "milliseconds",
+          "warmup_iterations": 5
+        },
+        "component_invocations": {
+          "global": 1,
+          "refiner": 0,
+          "router": 0,
+          "safety": 0
+        },
+        "description": "no predicted foreground above the ROI threshold -> no router call",
+        "evidence_class": "SYNTHETIC_BENCHMARK",
+        "expected_state": "FORCED_SKIP",
+        "memory": {
+          "memory_unit": "MiB",
+          "peak_allocated_mib": 352.5419921875,
+          "peak_reserved_mib": 426.0
+        },
+        "model_key": "RA_MEDFILM_BARR_FULL",
+        "observed_state": "FORCED_SKIP",
+        "refiner_executed": false,
+        "scenario": "forced_skip",
+        "seed": 3407,
+        "state_matches": true
+      },
+      {
+        "branch_latency_ms": {
+          "cold_first_call": 56.7808000050718,
+          "max": 54.72719999670517,
+          "mean": 52.11061999919669,
+          "measured_repeats": 30,
+          "median": 52.0227499982866,
+          "min": 49.77110000618268,
+          "n": 30,
+          "p90": 53.85293000144884,
+          "p95": 54.556644996773684,
+          "stdev": 1.3846422985271307,
+          "unit": "milliseconds",
+          "warmup_iterations": 5
+        },
+        "component_invocations": {
+          "global": 1,
+          "refiner": 0,
+          "router": 1,
+          "safety": 0
+        },
+        "description": "router utility below tau_c8 -> global map kept",
+        "evidence_class": "SYNTHETIC_BENCHMARK",
+        "expected_state": "SKIP_GLOBAL",
+        "memory": {
+          "memory_unit": "MiB",
+          "peak_allocated_mib": 352.5419921875,
+          "peak_reserved_mib": 426.0
+        },
+        "model_key": "RA_MEDFILM_BARR_FULL",
+        "observed_state": "SKIP_GLOBAL",
+        "refiner_executed": false,
+        "scenario": "router_skip",
+        "seed": 3407,
+        "state_matches": true
+      },
+      {
+        "branch_latency_ms": {
+          "cold_first_call": 101.29310000047553,
+          "max": 95.81099999923026,
+          "mean": 81.49388000019826,
+          "measured_repeats": 30,
+          "median": 79.17584999813698,
+          "min": 76.41670000157319,
+          "n": 30,
+          "p90": 86.69060999964131,
+          "p95": 89.4639649966848,
+          "stdev": 4.894069145892298,
+          "unit": "milliseconds",
+          "warmup_iterations": 5
+        },
+        "component_invocations": {
+          "global": 1,
+          "refiner": 1,
+          "router": 1,
+          "safety": 1
+        },
+        "description": "refiner runs, safety accepts the candidate",
+        "evidence_class": "SYNTHETIC_BENCHMARK",
+        "expected_state": "EXECUTE_THEN_ACCEPT",
+        "memory": {
+          "memory_unit": "MiB",
+          "peak_allocated_mib": 352.5419921875,
+          "peak_reserved_mib": 430.0
+        },
+        "model_key": "RA_MEDFILM_BARR_FULL",
+        "observed_state": "EXECUTE_THEN_ACCEPT",
+        "refiner_executed": true,
+        "scenario": "safety_accept",
+        "seed": 3407,
+        "state_matches": true
+      },
+      {
+        "branch_latency_ms": {
+          "cold_first_call": 94.70560000045225,
+          "max": 95.17670000059297,
+          "mean": 86.63896999981564,
+          "measured_repeats": 30,
+          "median": 85.85880000100587,
+          "min": 81.9234000009601,
+          "n": 30,
+          "p90": 88.84368999497383,
+          "p95": 92.49473499912709,
+          "stdev": 2.71830826586075,
+          "unit": "milliseconds",
+          "warmup_iterations": 5
+        },
+        "component_invocations": {
+          "global": 1,
+          "refiner": 1,
+          "router": 1,
+          "safety": 1
+        },
+        "description": "refiner runs, safety rejects the candidate",
+        "evidence_class": "SYNTHETIC_BENCHMARK",
+        "expected_state": "EXECUTE_THEN_REJECT",
+        "memory": {
+          "memory_unit": "MiB",
+          "peak_allocated_mib": 352.5419921875,
+          "peak_reserved_mib": 430.0
+        },
+        "model_key": "RA_MEDFILM_BARR_FULL",
+        "observed_state": "EXECUTE_THEN_REJECT",
+        "refiner_executed": true,
+        "scenario": "safety_reject",
+        "seed": 3407,
+        "state_matches": true
+      },
+      {
+        "branch_latency_ms": {
+          "cold_first_call": 24.420599998848047,
+          "max": 26.26600000075996,
+          "mean": 25.172343333542813,
+          "measured_repeats": 30,
+          "median": 25.135749998298706,
+          "min": 24.067799997283146,
+          "n": 30,
+          "p90": 25.68065000232309,
+          "p95": 25.933274998533307,
+          "stdev": 0.4693333994530074,
+          "unit": "milliseconds",
+          "warmup_iterations": 5
+        },
+        "component_invocations": {
+          "global": 1,
+          "refiner": 0,
+          "router": 0,
+          "safety": 0
+        },
+        "description": "no predicted foreground above the ROI threshold -> no router call",
+        "evidence_class": "SYNTHETIC_BENCHMARK",
+        "expected_state": "FORCED_SKIP",
+        "memory": {
+          "memory_unit": "MiB",
+          "peak_allocated_mib": 227.61572265625,
+          "peak_reserved_mib": 294.0
+        },
+        "model_key": "RA_MEDFILM_BARR_LITE_DEPTHWISE",
+        "observed_state": "FORCED_SKIP",
+        "refiner_executed": false,
+        "scenario": "forced_skip",
+        "seed": 42,
+        "state_matches": true
+      },
+      {
+        "branch_latency_ms": {
+          "cold_first_call": 44.9122999998508,
+          "max": 48.40390000026673,
+          "mean": 45.75370666619468,
+          "measured_repeats": 30,
+          "median": 45.51695000191103,
+          "min": 44.02449999906821,
+          "n": 30,
+          "p90": 47.05550999715342,
+          "p95": 47.551250000833534,
+          "stdev": 1.0429994630982289,
+          "unit": "milliseconds",
+          "warmup_iterations": 5
+        },
+        "component_invocations": {
+          "global": 1,
+          "refiner": 0,
+          "router": 1,
+          "safety": 0
+        },
+        "description": "router utility below tau_c8 -> global map kept",
+        "evidence_class": "SYNTHETIC_BENCHMARK",
+        "expected_state": "SKIP_GLOBAL",
+        "memory": {
+          "memory_unit": "MiB",
+          "peak_allocated_mib": 227.61572265625,
+          "peak_reserved_mib": 294.0
+        },
+        "model_key": "RA_MEDFILM_BARR_LITE_DEPTHWISE",
+        "observed_state": "SKIP_GLOBAL",
+        "refiner_executed": false,
+        "scenario": "router_skip",
+        "seed": 42,
+        "state_matches": true
+      },
+      {
+        "branch_latency_ms": {
+          "cold_first_call": 88.39769999758573,
+          "max": 83.53440000064438,
+          "mean": 78.61483666662632,
+          "measured_repeats": 30,
+          "median": 79.16045000092709,
+          "min": 72.09800000418909,
+          "n": 30,
+          "p90": 81.78423000354087,
+          "p95": 82.79220999975223,
+          "stdev": 2.615111992990743,
+          "unit": "milliseconds",
+          "warmup_iterations": 5
+        },
+        "component_invocations": {
+          "global": 1,
+          "refiner": 1,
+          "router": 1,
+          "safety": 1
+        },
+        "description": "refiner runs, safety accepts the candidate",
+        "evidence_class": "SYNTHETIC_BENCHMARK",
+        "expected_state": "EXECUTE_THEN_ACCEPT",
+        "memory": {
+          "memory_unit": "MiB",
+          "peak_allocated_mib": 227.61572265625,
+          "peak_reserved_mib": 300.0
+        },
+        "model_key": "RA_MEDFILM_BARR_LITE_DEPTHWISE",
+        "observed_state": "EXECUTE_THEN_ACCEPT",
+        "refiner_executed": true,
+        "scenario": "safety_accept",
+        "seed": 42,
+        "state_matches": true
+      },
+      {
+        "branch_latency_ms": {
+          "cold_first_call": 88.82059999450576,
+          "max": 83.67949999956181,
+          "mean": 77.23198000094271,
+          "measured_repeats": 30,
+          "median": 77.87465000001248,
+          "min": 70.37990000389982,
+          "n": 30,
+          "p90": 81.25132000423037,
+          "p95": 81.4102400032425,
+          "stdev": 3.4429474834660847,
+          "unit": "milliseconds",
+          "warmup_iterations": 5
+        },
+        "component_invocations": {
+          "global": 1,
+          "refiner": 1,
+          "router": 1,
+          "safety": 1
+        },
+        "description": "refiner runs, safety rejects the candidate",
+        "evidence_class": "SYNTHETIC_BENCHMARK",
+        "expected_state": "EXECUTE_THEN_REJECT",
+        "memory": {
+          "memory_unit": "MiB",
+          "peak_allocated_mib": 227.61572265625,
+          "peak_reserved_mib": 300.0
+        },
+        "model_key": "RA_MEDFILM_BARR_LITE_DEPTHWISE",
+        "observed_state": "EXECUTE_THEN_REJECT",
+        "refiner_executed": true,
+        "scenario": "safety_reject",
+        "seed": 42,
+        "state_matches": true
+      },
+      {
+        "branch_latency_ms": {
+          "cold_first_call": 22.558399999979883,
+          "max": 21.806000004289672,
+          "mean": 19.952040000013465,
+          "measured_repeats": 30,
+          "median": 19.926950000808574,
+          "min": 19.085599997197278,
+          "n": 30,
+          "p90": 20.975519996864023,
+          "p95": 21.036599998842576,
+          "stdev": 0.6275630590824509,
+          "unit": "milliseconds",
+          "warmup_iterations": 5
+        },
+        "component_invocations": {
+          "global": 1,
+          "refiner": 0,
+          "router": 0,
+          "safety": 0
+        },
+        "description": "no predicted foreground above the ROI threshold -> no router call",
+        "evidence_class": "SYNTHETIC_BENCHMARK",
+        "expected_state": "FORCED_SKIP",
+        "memory": {
+          "memory_unit": "MiB",
+          "peak_allocated_mib": 227.61572265625,
+          "peak_reserved_mib": 294.0
+        },
+        "model_key": "RA_MEDFILM_BARR_LITE_DEPTHWISE",
+        "observed_state": "FORCED_SKIP",
+        "refiner_executed": false,
+        "scenario": "forced_skip",
+        "seed": 123,
+        "state_matches": true
+      },
+      {
+        "branch_latency_ms": {
+          "cold_first_call": 48.5571000026539,
+          "max": 44.650199997704476,
+          "mean": 41.17356999995536,
+          "measured_repeats": 30,
+          "median": 40.918349997809855,
+          "min": 39.80009999941103,
+          "n": 30,
+          "p90": 42.400729998917086,
+          "p95": 43.152764995829784,
+          "stdev": 1.0704864408286843,
+          "unit": "milliseconds",
+          "warmup_iterations": 5
+        },
+        "component_invocations": {
+          "global": 1,
+          "refiner": 0,
+          "router": 1,
+          "safety": 0
+        },
+        "description": "router utility below tau_c8 -> global map kept",
+        "evidence_class": "SYNTHETIC_BENCHMARK",
+        "expected_state": "SKIP_GLOBAL",
+        "memory": {
+          "memory_unit": "MiB",
+          "peak_allocated_mib": 227.61572265625,
+          "peak_reserved_mib": 294.0
+        },
+        "model_key": "RA_MEDFILM_BARR_LITE_DEPTHWISE",
+        "observed_state": "SKIP_GLOBAL",
+        "refiner_executed": false,
+        "scenario": "router_skip",
+        "seed": 123,
+        "state_matches": true
+      },
+      {
+        "branch_latency_ms": {
+          "cold_first_call": 80.47519999672659,
+          "max": 79.90360000258079,
+          "mean": 73.58327999948717,
+          "measured_repeats": 30,
+          "median": 74.6279999948456,
+          "min": 65.88789999659639,
+          "n": 30,
+          "p90": 77.53413000245928,
+          "p95": 78.11256499735464,
+          "stdev": 3.677165463624628,
+          "unit": "milliseconds",
+          "warmup_iterations": 5
+        },
+        "component_invocations": {
+          "global": 1,
+          "refiner": 1,
+          "router": 1,
+          "safety": 1
+        },
+        "description": "refiner runs, safety accepts the candidate",
+        "evidence_class": "SYNTHETIC_BENCHMARK",
+        "expected_state": "EXECUTE_THEN_ACCEPT",
+        "memory": {
+          "memory_unit": "MiB",
+          "peak_allocated_mib": 227.61572265625,
+          "peak_reserved_mib": 300.0
+        },
+        "model_key": "RA_MEDFILM_BARR_LITE_DEPTHWISE",
+        "observed_state": "EXECUTE_THEN_ACCEPT",
+        "refiner_executed": true,
+        "scenario": "safety_accept",
+        "seed": 123,
+        "state_matches": true
+      },
+      {
+        "branch_latency_ms": {
+          "cold_first_call": 78.79339999635704,
+          "max": 89.74820000003092,
+          "mean": 77.25534666678868,
+          "measured_repeats": 30,
+          "median": 77.20780000090599,
+          "min": 73.65720000234433,
+          "n": 30,
+          "p90": 78.983360001439,
+          "p95": 79.29470999988553,
+          "stdev": 2.894222577828586,
+          "unit": "milliseconds",
+          "warmup_iterations": 5
+        },
+        "component_invocations": {
+          "global": 1,
+          "refiner": 1,
+          "router": 1,
+          "safety": 1
+        },
+        "description": "refiner runs, safety rejects the candidate",
+        "evidence_class": "SYNTHETIC_BENCHMARK",
+        "expected_state": "EXECUTE_THEN_REJECT",
+        "memory": {
+          "memory_unit": "MiB",
+          "peak_allocated_mib": 227.61572265625,
+          "peak_reserved_mib": 300.0
+        },
+        "model_key": "RA_MEDFILM_BARR_LITE_DEPTHWISE",
+        "observed_state": "EXECUTE_THEN_REJECT",
+        "refiner_executed": true,
+        "scenario": "safety_reject",
+        "seed": 123,
+        "state_matches": true
+      },
+      {
+        "branch_latency_ms": {
+          "cold_first_call": 27.448200002254453,
+          "max": 25.098000005527865,
+          "mean": 23.865543333279977,
+          "measured_repeats": 30,
+          "median": 23.91795000221464,
+          "min": 22.669700003461912,
+          "n": 30,
+          "p90": 24.6928000015032,
+          "p95": 24.79280999941693,
+          "stdev": 0.6038540962453904,
+          "unit": "milliseconds",
+          "warmup_iterations": 5
+        },
+        "component_invocations": {
+          "global": 1,
+          "refiner": 0,
+          "router": 0,
+          "safety": 0
+        },
+        "description": "no predicted foreground above the ROI threshold -> no router call",
+        "evidence_class": "SYNTHETIC_BENCHMARK",
+        "expected_state": "FORCED_SKIP",
+        "memory": {
+          "memory_unit": "MiB",
+          "peak_allocated_mib": 227.61572265625,
+          "peak_reserved_mib": 294.0
+        },
+        "model_key": "RA_MEDFILM_BARR_LITE_DEPTHWISE",
+        "observed_state": "FORCED_SKIP",
+        "refiner_executed": false,
+        "scenario": "forced_skip",
+        "seed": 3407,
+        "state_matches": true
+      },
+      {
+        "branch_latency_ms": {
+          "cold_first_call": 53.29619999974966,
+          "max": 48.08950000006007,
+          "mean": 45.2515366669104,
+          "measured_repeats": 30,
+          "median": 44.941350002773106,
+          "min": 43.59129999647848,
+          "n": 30,
+          "p90": 46.52242000520346,
+          "p95": 47.31482000206597,
+          "stdev": 0.999960585637939,
+          "unit": "milliseconds",
+          "warmup_iterations": 5
+        },
+        "component_invocations": {
+          "global": 1,
+          "refiner": 0,
+          "router": 1,
+          "safety": 0
+        },
+        "description": "router utility below tau_c8 -> global map kept",
+        "evidence_class": "SYNTHETIC_BENCHMARK",
+        "expected_state": "SKIP_GLOBAL",
+        "memory": {
+          "memory_unit": "MiB",
+          "peak_allocated_mib": 227.61572265625,
+          "peak_reserved_mib": 294.0
+        },
+        "model_key": "RA_MEDFILM_BARR_LITE_DEPTHWISE",
+        "observed_state": "SKIP_GLOBAL",
+        "refiner_executed": false,
+        "scenario": "router_skip",
+        "seed": 3407,
+        "state_matches": true
+      },
+      {
+        "branch_latency_ms": {
+          "cold_first_call": 84.31980000023032,
+          "max": 82.54329999908805,
+          "mean": 78.65637333355455,
+          "measured_repeats": 30,
+          "median": 78.85069999974803,
+          "min": 73.1180000002496,
+          "n": 30,
+          "p90": 80.7067400048254,
+          "p95": 81.91755500047293,
+          "stdev": 2.3946665552581856,
+          "unit": "milliseconds",
+          "warmup_iterations": 5
+        },
+        "component_invocations": {
+          "global": 1,
+          "refiner": 1,
+          "router": 1,
+          "safety": 1
+        },
+        "description": "refiner runs, safety accepts the candidate",
+        "evidence_class": "SYNTHETIC_BENCHMARK",
+        "expected_state": "EXECUTE_THEN_ACCEPT",
+        "memory": {
+          "memory_unit": "MiB",
+          "peak_allocated_mib": 227.61572265625,
+          "peak_reserved_mib": 300.0
+        },
+        "model_key": "RA_MEDFILM_BARR_LITE_DEPTHWISE",
+        "observed_state": "EXECUTE_THEN_ACCEPT",
+        "refiner_executed": true,
+        "scenario": "safety_accept",
+        "seed": 3407,
+        "state_matches": true
+      },
+      {
+        "branch_latency_ms": {
+          "cold_first_call": 95.30450000602286,
+          "max": 87.60040000197478,
+          "mean": 81.68254333310567,
+          "measured_repeats": 30,
+          "median": 81.5291500002786,
+          "min": 79.22979999420932,
+          "n": 30,
+          "p90": 83.49061999761034,
+          "p95": 84.75460499721521,
+          "stdev": 1.8339745817360966,
+          "unit": "milliseconds",
+          "warmup_iterations": 5
+        },
+        "component_invocations": {
+          "global": 1,
+          "refiner": 1,
+          "router": 1,
+          "safety": 1
+        },
+        "description": "refiner runs, safety rejects the candidate",
+        "evidence_class": "SYNTHETIC_BENCHMARK",
+        "expected_state": "EXECUTE_THEN_REJECT",
+        "memory": {
+          "memory_unit": "MiB",
+          "peak_allocated_mib": 227.61572265625,
+          "peak_reserved_mib": 300.0
+        },
+        "model_key": "RA_MEDFILM_BARR_LITE_DEPTHWISE",
+        "observed_state": "EXECUTE_THEN_REJECT",
+        "refiner_executed": true,
+        "scenario": "safety_reject",
+        "seed": 3407,
+        "state_matches": true
+      }
+    ],
+    "roi_edge_cases": [
+      {
+        "case": "empty_map",
+        "roi": null,
+        "state": "FORCED_SKIP"
+      },
+      {
+        "case": "all_below_threshold",
+        "roi": null,
+        "state": "FORCED_SKIP"
+      },
+      {
+        "case": "single_pixel",
+        "roi": {
+          "clip_x1": 256,
+          "clip_x2": 257,
+          "clip_y1": 256,
+          "clip_y2": 257,
+          "crop_side_pixels": 1,
+          "effective_magnification": 512.0,
+          "predicted_foreground_pixels": 1
+        },
+        "state": "ROI_PROPOSED"
+      },
+      {
+        "case": "centred_blob",
+        "roi": {
+          "clip_x1": 174,
+          "clip_x2": 324,
+          "clip_y1": 174,
+          "clip_y2": 324,
+          "crop_side_pixels": 150,
+          "effective_magnification": 3.4133333333333336,
+          "predicted_foreground_pixels": 10000
+        },
+        "state": "ROI_PROPOSED"
+      },
+      {
+        "case": "border_touching",
+        "roi": {
+          "clip_x1": 0,
+          "clip_x2": 80,
+          "clip_y1": 0,
+          "clip_y2": 80,
+          "crop_side_pixels": 96,
+          "effective_magnification": 5.333333333333333,
+          "predicted_foreground_pixels": 4096
+        },
+        "state": "ROI_PROPOSED"
+      },
+      {
+        "case": "full_canvas",
+        "roi": {
+          "clip_x1": 0,
+          "clip_x2": 512,
+          "clip_y1": 0,
+          "clip_y2": 512,
+          "crop_side_pixels": 768,
+          "effective_magnification": 0.6666666666666666,
+          "predicted_foreground_pixels": 262144
+        },
+        "state": "ROI_PROPOSED"
+      }
+    ],
+    "scenarios": [
+      {
+        "description": "no predicted foreground above the ROI threshold -> no router call",
+        "expected_state": "FORCED_SKIP",
+        "low_priming": true,
+        "name": "forced_skip",
+        "router_utility": null,
+        "safety_logit": null
+      },
+      {
+        "description": "router utility below tau_c8 -> global map kept",
+        "expected_state": "SKIP_GLOBAL",
+        "low_priming": false,
+        "name": "router_skip",
+        "router_utility": -1.0243583276236412,
+        "safety_logit": null
+      },
+      {
+        "description": "refiner runs, safety accepts the candidate",
+        "expected_state": "EXECUTE_THEN_ACCEPT",
+        "low_priming": false,
+        "name": "safety_accept",
+        "router_utility": 0.9756416723763588,
+        "safety_logit": 6.0
+      },
+      {
+        "description": "refiner runs, safety rejects the candidate",
+        "expected_state": "EXECUTE_THEN_REJECT",
+        "low_priming": false,
+        "name": "safety_reject",
+        "router_utility": 0.9756416723763588,
+        "safety_logit": -6.0
+      }
+    ]
+  },
+  "6_film": {
+    "all_passed": true,
+    "checks": [
+      {
+        "call_counts": {
+          "bridge": 1,
+          "decoder1": 1,
+          "decoder2": 1,
+          "decoder3": 1,
+          "decoder4": 1
+        },
+        "check": "identity_propagation",
+        "detail": "all 5 declared sites ran once and received the task embedding for the requested ids",
+        "embedding_matches_expected": true,
+        "identity_at_init": {
+          "identity_at_init": true,
+          "max_abs_beta": 0.0,
+          "max_abs_gamma": 0.0,
+          "note": "identity at initialization is permitted and expected; it is not evidence that conditioning works after optimization"
+        },
+        "passed": true,
+        "sites": [
+          "bridge",
+          "decoder4",
+          "decoder3",
+          "decoder2",
+          "decoder1"
+        ]
+      },
+      {
+        "check": "gradients_and_updates",
+        "detail": "at step 0 only the FiLM output projection receives gradient (the zero initialisation blocks the hidden layer and the embedding); from step 1 all three do, and all three parameters move off their initial values",
+        "gradients_after_one_step": {
+          "backbone": {
+            "magnitude": 3668.092954143882,
+            "nonzero_tensors": 65,
+            "tensors": 65
+          },
+          "hidden_layer": {
+            "magnitude": 3.097953073680401,
+            "nonzero_tensors": 10,
+            "tensors": 10
+          },
+          "output_projection": {
+            "magnitude": 30.99540948867798,
+            "nonzero_tensors": 10,
+            "tensors": 10
+          },
+          "task_embedding": {
+            "magnitude": 1.4545409679412842,
+            "nonzero_tensors": 1,
+            "tensors": 1
+          }
+        },
+        "gradients_at_init": {
+          "backbone": {
+            "magnitude": 224.68921227520332,
+            "nonzero_tensors": 65,
+            "tensors": 65
+          },
+          "hidden_layer": {
+            "magnitude": 0.0,
+            "nonzero_tensors": 0,
+            "tensors": 10
+          },
+          "output_projection": {
+            "magnitude": 0.7501783221960068,
+            "nonzero_tensors": 10,
+            "tensors": 10
+          },
+          "task_embedding": {
+            "magnitude": 0.0,
+            "nonzero_tensors": 0,
+            "tensors": 1
+          }
+        },
+        "output_projection_off_zero": true,
+        "parameters_moved": {
+          "embedding": true,
+          "hidden": true,
+          "output": true
+        },
+        "passed": true,
+        "trajectory": {
+          "first": 3.3376479148864746,
+          "last": 0.6925826072692871,
+          "reduction": 2.6450653076171875
+        }
+      },
+      {
+        "at_contract_resolution": {
+          "finite": true,
+          "max_abs_difference": 152.9638214111328,
+          "mean_abs_difference": 64.56471252441406,
+          "same_task_repeat_identical": true
+        },
+        "check": "learned_task_dependence",
+        "detail": "loss fell 0.6994 -> 0.0000, below the task-blind optimum ln 2 = 0.6931; the same image under task 0 and task 1 now differs by max |delta| 156.73 in logit space (was 0.00e+00 at initialization), and a same-task repeat is bitwise identical",
+        "difference_after_optimization": {
+          "finite": true,
+          "max_abs_difference": 156.72637939453125,
+          "mean_abs_difference": 81.46684265136719,
+          "same_task_repeat_identical": true
+        },
+        "difference_before_init": {
+          "finite": true,
+          "max_abs_difference": 0.0,
+          "mean_abs_difference": 0.0,
+          "same_task_repeat_identical": true
+        },
+        "fixture_resolution": 64,
+        "learning_rate": 0.01,
+        "loss": {
+          "first": 0.6993672847747803,
+          "last": 4.3273357732687145e-05,
+          "losses": [
+            0.6993672847747803,
+            1.033297061920166,
+            0.713749349117279,
+            0.6959658861160278,
+            0.7210325598716736,
+            0.7405993938446045,
+            0.9640100002288818,
+            0.7144641876220703,
+            0.7038713693618774,
+            0.6984823942184448,
+            0.6957441568374634,
+            0.7045760154724121,
+            0.7307816743850708,
+            0.6935434341430664,
+            0.7193559408187866,
+            0.6933399438858032,
+            0.7097684741020203,
+            0.6940175294876099,
+            0.6956101059913635,
+            0.6952892541885376,
+            0.7014404535293579,
+            0.69317626953125,
+            0.693597674369812,
+            0.6931924819946289,
+            0.6931992769241333,
+            0.6930382251739502,
+            0.6925160884857178,
+            0.6912180185317993,
+            0.7075008749961853,
+            0.6931164264678955,
+            0.7006158232688904,
+            0.6920990943908691,
+            0.6901044249534607,
+            0.6857377290725708,
+            0.648269772529602,
+            0.6369788646697998,
+            0.6923965215682983,
+            0.7026203870773315,
+            0.6576439738273621,
+            0.6611634492874146,
+            0.6541168093681335,
+            0.7495145797729492,
+            0.9244364500045776,
+            1.2242815494537354,
+            0.8237795829772949,
+            0.6924183368682861,
+            0.7106575965881348,
+            0.6974508762359619,
+            0.6828970313072205,
+            0.69298255443573,
+            0.6565345525741577,
+            0.6222705841064453,
+            1.070497751235962,
+            0.7204059958457947,
+            0.7828272581100464,
+            0.6779730319976807,
+            0.6776116490364075,
+            0.6589697599411011,
+            0.668074369430542,
+            0.6525403261184692,
+            0.6144552230834961,
+            0.6443101167678833,
+            0.5551716685295105,
+            0.5320126414299011,
+            0.4392404556274414,
+            0.4196103811264038,
+            0.344402015209198,
+            0.2379257082939148,
+            0.26702094078063965,
+            0.46527016162872314,
+            0.24012544751167297,
+            0.26994651556015015,
+            0.07465338706970215,
+            0.1036737710237503,
+            0.11053402721881866,
+            0.04107840359210968,
+            0.09151750802993774,
+            0.06034908816218376,
+            0.03472699970006943,
+            0.07181432098150253,
+            0.040313638746738434,
+            0.022581711411476135,
+            0.046937230974435806,
+            0.02661529742181301,
+            0.018829572945833206,
+            0.036810245364904404,
+            0.017851579934358597,
+            0.014643346890807152,
+            0.02624635398387909,
+            0.015851181000471115,
+            0.010541592724621296,
+            0.016324911266565323,
+            0.013252481818199158,
+            0.007008538581430912,
+            0.01112523302435875,
+            0.010125286877155304,
+            0.0041273171082139015,
+            0.005900941789150238,
+            0.007453911937773228,
+            0.0037598595954477787,
+            0.0022609299048781395,
+            0.003944153897464275,
+            0.0029412182047963142,
+            0.0012431805953383446,
+            0.00180287123657763,
+            0.0019336098339408636,
+            0.0007932435255497694,
+            0.0006415282841771841,
+            0.0011040118988603354,
+            0.0012704059481620789,
+            0.0005831762100569904,
+            0.0003742875996977091,
+            0.00038595421938225627,
+            0.0004614380013663322,
+            0.0004951551090925932,
+            0.00040207774145528674,
+            0.0002940731355920434,
+            0.000263814814388752,
+            0.00028017343720421195,
+            0.0002690382534638047,
+            0.0002102040743920952,
+            0.00014911172911524773,
+            0.00011495457147248089,
+            0.00010690266208257526,
+            0.00011444678239058703,
+            0.00012843526201322675,
+            0.00013740750728175044,
+            0.00013193374616093934,
+            0.00011720370821421966,
+            0.00010046287934528664,
+            8.831611921777949e-05,
+            8.143327431753278e-05,
+            7.758861465845257e-05,
+            7.510311843361706e-05,
+            7.232895586639643e-05,
+            6.859739369247109e-05,
+            6.434974784497172e-05,
+            5.970138590782881e-05,
+            5.517432146007195e-05,
+            5.149752541910857e-05,
+            4.869725671596825e-05,
+            4.69408550998196e-05,
+            4.597543738782406e-05,
+            4.566307688946836e-05,
+            4.559419903671369e-05,
+            4.56473499070853e-05,
+            4.548147990135476e-05,
+            4.503975287661888e-05,
+            4.431950947036967e-05,
+            4.3273357732687145e-05
+          ],
+          "reduction": 0.6993240114170476,
+          "trainable_parameters": 3523001
+        },
+        "note": "the fixture resolution is smaller than the 512 contract for speed; the contract-resolution forward is reported separately",
+        "passed": true,
+        "steps": 150,
+        "task_blind_optimum": 0.6931471805599453
+      },
+      {
+        "backbone_moved_in_control": true,
+        "check": "c1_identity_control",
+        "conditioning_frozen_after_training": true,
+        "control_loss": 0.6931471824645996,
+        "control_task_difference": {
+          "finite": true,
+          "max_abs_difference": 0.0,
+          "mean_abs_difference": 0.0,
+          "same_task_repeat_identical": true
+        },
+        "detail": "the arms start bitwise identical with equal total parameter counts; the control's conditioning is frozen and never moves, so its two task outputs are identical (max |delta| = 0) and it stays at the task-blind optimum (loss 0.6931 vs ln 2 = 0.6931), while the treatment conditions (max |delta| 156.73, loss 0.0000)",
+        "initial_state_identical": true,
+        "note": "freezing never reduces the total parameter count: both arms hold 3523001 parameters, and the 90,768 conditioning tensors are identical in value at step 0",
+        "parameter_counts": {
+          "control": {
+            "backbone": 3432233,
+            "conditioning": 90768,
+            "frozen": 90768,
+            "parameter_bytes_fp32": 14092004,
+            "total": 3523001,
+            "trainable": 3432233
+          },
+          "treatment": {
+            "backbone": 3432233,
+            "conditioning": 90768,
+            "frozen": 0,
+            "parameter_bytes_fp32": 14092004,
+            "total": 3523001,
+            "trainable": 3523001
+          }
+        },
+        "passed": true,
+        "totals_equal": true,
+        "treatment_loss": 4.3273357732687145e-05,
+        "treatment_task_difference": {
+          "finite": true,
+          "max_abs_difference": 156.72637939453125,
+          "mean_abs_difference": 81.46684265136719,
+          "same_task_repeat_identical": true
+        }
+      },
+      {
+        "architecture_id_unchanged": true,
+        "check": "unrelated_components_untouched",
+        "detail": "a second model instance, the FiLM site list, the architecture id, the expected parameter counts and the C1 matched-arm construction are all bitwise unchanged after 30 optimization steps, while the treatment itself moved (c037f5764e65 -> 03557acd22fb)",
+        "expected_counts_unchanged": true,
+        "film_sites_unchanged": true,
+        "learning_rate": 0.01,
+        "loss": {
+          "first": 0.701205849647522,
+          "last": 0.6914387941360474,
+          "losses": [
+            0.701205849647522,
+            2.007758855819702,
+            1.403606653213501,
+            0.7884029150009155,
+            1.0464333295822144,
+            0.6935446858406067,
+            0.7010005116462708,
+            0.703299880027771,
+            0.7247238159179688,
+            0.7763819694519043,
+            0.7886216640472412,
+            0.6947875618934631,
+            0.7163114547729492,
+            0.6945472955703735,
+            0.6974295377731323,
+            0.6954658627510071,
+            0.6946502327919006,
+            0.6928725242614746,
+            0.6935440301895142,
+            0.6933586597442627,
+            0.6932663917541504,
+            0.6931948661804199,
+            0.6930820941925049,
+            0.6932648420333862,
+            0.693010151386261,
+            0.6930532455444336,
+            0.6926666498184204,
+            0.6924844980239868,
+            0.6918039917945862,
+            0.6914387941360474
+          ],
+          "reduction": 0.00976705551147461,
+          "trainable_parameters": 3523001
+        },
+        "matched_arms_unchanged": true,
+        "note": "this check is about the experiment's blast radius, not about the model's own backbone: the treatment's non-FiLM weights are expected to change during optimization and are not asserted stable",
+        "passed": true,
+        "steps": 30,
+        "treatment_digest": {
+          "after": "03557acd22fb7fd2a90a2bafda9b1317c83f9f17183b797720965546e36e40eb",
+          "before": "c037f5764e650a3fe28a0229bffe9e487714e548a255d72c62710b90b1b57c2f"
+        },
+        "treatment_moved": true,
+        "unrelated_instance_digest": {
+          "after": "77b74cf12446a28b36eb4813f7ed628e0e9da753bcf0c41b679d67cffc94fe11",
+          "before": "77b74cf12446a28b36eb4813f7ed628e0e9da753bcf0c41b679d67cffc94fe11"
+        }
+      }
+    ],
+    "failed": [],
+    "n_checks": 5,
+    "n_passed": 5,
+    "present": true
+  },
+  "7_resume_reliability": {
+    "all_passed": true,
+    "checks": [
+      {
+        "check": "seeding",
+        "configuration": {
+          "cublas_workspace_config": ":4096:8",
+          "cudnn_benchmark": false,
+          "cudnn_deterministic": true,
+          "deterministic_algorithms": true,
+          "rng_sources": [
+            "python",
+            "numpy",
+            "torch_cpu",
+            "torch_cuda"
+          ]
+        },
+        "detail": "python/numpy/torch draws reproduce exactly after re-seeding",
+        "first": [
+          0.6394267984578837,
+          0.3745401188473625,
+          0.8822692632675171
+        ],
+        "identity_class": "exact",
+        "passed": true,
+        "second": [
+          0.6394267984578837,
+          0.3745401188473625,
+          0.8822692632675171
+        ]
+      },
+      {
+        "check": "rng_capture_restore",
+        "consumed": [
+          0.6394267984578837,
+          0.3745401188473625,
+          2.1801369190216064
+        ],
+        "detail": "all four RNG sources replay exactly from a captured state",
+        "identity_class": "exact",
+        "passed": true,
+        "replayed": [
+          0.6394267984578837,
+          0.3745401188473625,
+          2.1801369190216064
+        ],
+        "sources": [
+          "python",
+          "numpy",
+          "torch_cpu",
+          "torch_cuda"
+        ]
+      },
+      {
+        "check": "empty_rng_state_refused",
+        "detail": "cannot restore an empty RNG state",
+        "identity_class": "exact",
+        "passed": true
+      },
+      {
+        "check": "loader_order",
+        "detail": "the generator advances between epochs and a captured state reproduces the order exactly",
+        "epochs_differ": true,
+        "identity_class": "exact",
+        "passed": true,
+        "reseed_reproduces": true,
+        "state_restore_reproduces": true
+      },
+      {
+        "check": "resume_equivalence",
+        "detail": "resume with the generator state reproduces the uninterrupted trajectory exactly and ends on identical weights; without it the first resumed epoch diverges (0.445927 vs 0.446605)",
+        "fix_necessary": true,
+        "fix_sufficient": true,
+        "identity_class": "exact",
+        "passed": true,
+        "resumed_with_fix": [
+          0.446604512632,
+          0.391637507826
+        ],
+        "resumed_without_fix": [
+          0.445927329361,
+          0.392776537687
+        ],
+        "uninterrupted": [
+          0.527156047523,
+          0.446604512632,
+          0.391637507826
+        ],
+        "weights_sha256_resumed": "21b6ca792fadea7d9b307baf362de050d75aa7d1e069791b82157c5cab213779",
+        "weights_sha256_uninterrupted": "21b6ca792fadea7d9b307baf362de050d75aa7d1e069791b82157c5cab213779"
+      },
+      {
+        "check": "cuda_algorithms",
+        "configuration": {
+          "cublas_workspace_config": ":4096:8",
+          "cudnn_benchmark": false,
+          "cudnn_deterministic": true,
+          "deterministic_algorithms": true,
+          "rng_sources": [
+            "python",
+            "numpy",
+            "torch_cpu",
+            "torch_cuda"
+          ]
+        },
+        "demonstrated_on": "NVIDIA GeForce RTX 3060 Ti",
+        "detail": "deterministic algorithms on, cudnn deterministic, benchmark off, CUBLAS workspace fixed; three repeats bitwise identical",
+        "identity_class": "exact",
+        "passed": true
+      },
+      {
+        "best_epoch": 4,
+        "best_loss": 0.1,
+        "check": "checkpoint_selection",
+        "detail": "selection is identical in batch, streaming and after a CSV round-trip; a tie keeps the earlier epoch (4)",
+        "identity_class": "exact",
+        "passed": true,
+        "tie_epochs": [
+          4,
+          6
+        ]
+      },
+      {
+        "check": "dependency_identities",
+        "dependency": {
+          "PIL": "12.3.0",
+          "cublas_workspace_config": ":4096:8",
+          "cudnn": 90100,
+          "fingerprint_sha256": "4c470ad358b60710cb810f12be1436f32cafb76dfc3c569ca1e3ef2d15f2da8e",
+          "numpy": "2.4.6",
+          "pandas": "3.0.5",
+          "platform": "Windows-10-10.0.26200-SP0",
+          "psutil": "7.2.2",
+          "python": "3.11.9",
+          "python_implementation": "CPython",
+          "skimage": "0.26.0",
+          "torch": "2.6.0+cu124",
+          "torch_cuda": "12.4"
+        },
+        "detail": "the dependency fingerprint is stable across two reads; requirements.txt is UNPINNED, so the environment is recorded rather than guaranteed",
+        "identity_class": "exact",
+        "passed": true,
+        "requirements_pinned": false
+      },
+      {
+        "check": "prediction_export",
+        "detail": "the same records export byte-identically (same per-image hash and seal); per-image values and the aggregate are order-independent",
+        "document_seal": "567832ed84fb31bcd92742635e9046faeb5e1b9fd45f5bc0b660a4ad3f49bec5",
+        "identity_class": "exact",
+        "passed": true,
+        "per_image_sha256": "bde488c31c9ae68718e08455f8f55c95f741fd8e750dd629d7f2c3781a49eb82"
+      },
+      {
+        "check": "per_image_results",
+        "detail": "per-image Dice/IoU/HD95 are identical on repetition; the float64 path differs by 0.000e+00 (tolerance, not identity)",
+        "dice": 0.8571428572704082,
+        "float64_dice_delta": 0.0,
+        "hd95": 2.0,
+        "identity_class": "exact",
+        "iou": 0.7500000003906251,
+        "passed": true
+      }
+    ],
+    "failed": [],
+    "n_checks": 10,
+    "n_passed": 10,
+    "present": true
+  },
+  "8_evidence_isolation": {
+    "all_blocked": true,
+    "attacks": [
+      {
+        "attack": "output_directory_reuse",
+        "blocked": true,
+        "blocked_by": "NamespaceError",
+        "detail": "",
+        "mechanism": "publish_cell refuses a namespace change in one cell directory"
+      },
+      {
+        "attack": "registry_import",
+        "blocked": true,
+        "blocked_by": "research_cells_completed == 0",
+        "detail": "1 validated, 0 research",
+        "mechanism": "verify_matrix counts only cells that pass research_evidence_reasons"
+      },
+      {
+        "attack": "report_aggregation",
+        "blocked": true,
+        "blocked_by": "research_cells_completed == 0",
+        "detail": "NOT_ESTABLISHED_0_OF_24",
+        "mechanism": "collect_results shares the same promotion gate"
+      },
+      {
+        "attack": "resume_promotion",
+        "blocked": true,
+        "blocked_by": "NamespaceError",
+        "detail": "existing result document left untouched",
+        "mechanism": "a resume may not change the namespace of the cell it resumes"
+      },
+      {
+        "attack": "checkpoint_substitution",
+        "blocked": true,
+        "blocked_by": "ProvenanceError",
+        "detail": "the cell carries no genuine SHA-256 weight digest",
+        "mechanism": "research evidence requires a genuine 64-hex weight digest"
+      },
+      {
+        "attack": "artifact_copy",
+        "blocked": true,
+        "blocked_by": "namespace_consistent == False",
+        "detail": "alone=['synthetic'] mixed=['research', 'synthetic'] foreign=['research', 'synthetic'] foreign_problems=1",
+        "mechanism": "a copied cell keeps its namespace; a foreign marker is found anywhere under the root, not only on a registry path"
+      },
+      {
+        "attack": "evidence_class_tamper",
+        "blocked": true,
+        "blocked_by": "REJECTED in all three variants",
+        "detail": "relabelled=['result document seal mismatch (the document was edited)', \"evidence namespace mismatch: marker 'synthetic' vs document 'research'\"] resealed=[\"evidence namespace mismatch: marker 'synthetic' vs document 'research'\", 'evidence namespace marker disagrees on evidence class']",
+        "mechanism": "the document is self-sealed, and the gate re-checks the weight digest"
+      }
+    ],
+    "n_attacks": 7,
+    "n_blocked": 7
+  },
+  "9_failure_injection": {
+    "all_detected": true,
+    "injections": [
+      {
+        "detail": "raised FamilyCompatibilityError",
+        "detected": true,
+        "detected_by": "FamilyCompatibilityError",
+        "guard": "global_stage.verify -> load_checkpoint(component='G')",
+        "injection": "G/best.pt replaced with an R-component envelope",
+        "stage": "global_training"
+      },
+      {
+        "detail": "incomplete -> RuntimeError; mismatched G -> RuntimeError",
+        "detected": true,
+        "detected_by": "RuntimeError",
+        "guard": "cache_stage.verify -> manifest completeness and G digest",
+        "incomplete_raised": "RuntimeError",
+        "injection": "cache manifest marked incomplete, then pinned to a different G digest",
+        "mismatched_g_raised": "RuntimeError",
+        "stage": "cache_creation"
+      },
+      {
+        "detail": "raised FamilyCompatibilityError",
+        "detected": true,
+        "detected_by": "FamilyCompatibilityError",
+        "guard": "refiner_stage.verify -> load_checkpoint(component='R')",
+        "injection": "R/final/final.pt replaced with a G-component envelope",
+        "stage": "refiner_training"
+      },
+      {
+        "detail": "verdict=LABELS_INCONSISTENT residual=3.000e-01",
+        "detected": true,
+        "detected_by": "LABELS_INCONSISTENT",
+        "guard": "label_stage.verify -> delta identity residual",
+        "injection": "delta_dice inconsistent with candidate_refined_dice - global_dice",
+        "residual": 0.30000000000000004,
+        "stage": "benefit_label_generation"
+      },
+      {
+        "detail": "raised RuntimeError",
+        "detected": true,
+        "detected_by": "RuntimeError",
+        "guard": "router_stage.load_family_inputs -> non-finite check",
+        "injection": "router feature matrix carrying a NaN",
+        "stage": "router_training"
+      },
+      {
+        "detail": "raised RuntimeError",
+        "detected": true,
+        "detected_by": "RuntimeError",
+        "guard": "safety_stage.load_family_inputs -> safety feature presence",
+        "injection": "label manifest with no safety_features_sha256",
+        "stage": "safety_training"
+      },
+      {
+        "detail": "short roster -> PublicationError; duplicate -> PublicationError",
+        "detected": true,
+        "detected_by": "PublicationError",
+        "duplicate_raised": "PublicationError",
+        "guard": "provenance.publish_cell -> roster and duplicate checks",
+        "injection": "a roster missing two images, then a duplicated sample_id",
+        "short_roster_raised": "PublicationError",
+        "stage": "evaluation_export"
+      },
+      {
+        "detail": "tampered -> REJECTED (['result document seal mismatch (the document was edited)']); namespace change -> NamespaceError",
+        "detected": true,
+        "detected_by": "REJECTED",
+        "guard": "provenance.verify_cell seal + provenance.publish_cell namespace lock",
+        "injection": "a relabelled sealed document, then a namespace change in an existing cell",
+        "namespace_raised": "NamespaceError",
+        "stage": "result_publication",
+        "tamper_reasons": [
+          "result document seal mismatch (the document was edited)",
+          "evidence namespace mismatch: marker 'synthetic' vs document 'research'",
+          "evidence namespace marker disagrees on evidence class",
+          "synthetic run not labelled SYNTHETIC_TEST_ONLY",
+          "a real-evidence cell is marked synthetic",
+          "a real-evidence cell records no training",
+          "a real-evidence cell carries no genuine SHA-256 weight digest"
+        ],
+        "tamper_status": "REJECTED"
+      }
+    ],
+    "n_detected": 8,
+    "n_injections": 8
+  },
+  "deliverables": [
+    {
+      "index": 1,
+      "name": "Git HEAD and changed files",
+      "present": true,
+      "source": "git.json"
+    },
+    {
+      "index": 2,
+      "name": "Performance benchmark methodology",
+      "present": true,
+      "source": "benchmark.json"
+    },
+    {
+      "index": 3,
+      "name": "Actual measured CPU/GPU latency",
+      "present": true,
+      "source": "benchmark.json"
+    },
+    {
+      "index": 4,
+      "name": "Memory measurements",
+      "present": true,
+      "source": "memory.json"
+    },
+    {
+      "index": 5,
+      "name": "FULL versus Lite conditional compute",
+      "present": true,
+      "source": "conditional.json"
+    },
+    {
+      "index": 6,
+      "name": "FiLM gradient and conditioning verification",
+      "present": true,
+      "source": "film_conditioning.json"
+    },
+    {
+      "index": 7,
+      "name": "Checkpoint/resume reliability",
+      "present": true,
+      "source": "determinism.json"
+    },
+    {
+      "index": 8,
+      "name": "Synthetic evidence-isolation tests",
+      "present": true,
+      "source": "evidence_isolation.json"
+    },
+    {
+      "index": 9,
+      "name": "Failure-injection results",
+      "present": true,
+      "source": "failure_injection.json"
+    },
+    {
+      "index": 10,
+      "name": "CPU/CUDA parity observations",
+      "present": true,
+      "source": "cpu_cuda_parity.json"
+    },
+    {
+      "index": 11,
+      "name": "Complete regression-test results",
+      "present": true,
+      "source": "regression.json"
+    },
+    {
+      "index": 12,
+      "name": "Remaining technical blockers",
+      "present": true,
+      "source": null
+    },
+    {
+      "index": 13,
+      "name": "Git commit hash",
+      "present": true,
+      "source": "git.json"
+    },
+    {
+      "index": 14,
+      "name": "Phase D completion decision",
+      "present": true,
+      "source": null
+    }
+  ],
+  "evidence_class": "SYNTHETIC_BENCHMARK",
+  "schema": "phase_d_summary_v1",
+  "stability": {
+    "all_passed": true,
+    "checks": [
+      {
+        "allocated_growth_mib": 0.0,
+        "allocated_mib": [
+          97.15625,
+          97.15625,
+          97.15625,
+          97.15625,
+          97.15625,
+          97.15625,
+          97.15625,
+          97.15625,
+          97.15625,
+          97.15625,
+          97.15625,
+          97.15625
+        ],
+        "allocated_slope_mib_per_cycle": 5.732070613212185e-15,
+        "cache_plateaued": true,
+        "check": "memory_growth",
+        "cycles": 12,
+        "detail": "live memory changed by +0.00 MiB over 10 cycles (slope +0.0000 MiB/cycle) and the allocator cache plateaued at +0.00 MiB: this is caching, not a leak",
+        "leak_detected": false,
+        "model_key": "UNET",
+        "passed": true,
+        "reserved_growth_mib": 0.0,
+        "reserved_mib": [
+          1626.0,
+          1626.0,
+          1626.0,
+          1626.0,
+          1626.0,
+          1626.0,
+          1626.0,
+          1626.0,
+          1626.0,
+          1626.0,
+          1626.0,
+          1626.0
+        ],
+        "reserved_slope_mib_per_cycle": 8.232079386819731e-14
+      },
+      {
+        "after_grad_mib": 83.00146484375,
+        "after_no_grad_mib": 75.00146484375,
+        "after_release_mib": 75.00146484375,
+        "baseline_mib": 64.0,
+        "check": "retained_graphs",
+        "detail": "a grad-enabled forward added +8.00 MiB of graph and dropping it returned to +0.00 MiB of the no-grad baseline: the graph is released, not retained",
+        "graph_retained_while_live": true,
+        "passed": true
+      },
+      {
+        "allowance_per_window": 1,
+        "check": "handle_leaks",
+        "cold_start_growth": 0,
+        "cycles_per_window": 5,
+        "detail": "OS handles went 463 -> 463 over 15 load/infer/close cycles; per-window deltas [0, 0, 0], so the +0 in the first window is one-time initialisation and the steady state is flat ([0, 0]) \u2014 not a leak",
+        "passed": true,
+        "steady_state_growth": [
+          0,
+          0
+        ],
+        "window_deltas": [
+          0,
+          0,
+          0
+        ],
+        "windows": [
+          463,
+          463,
+          463,
+          463
+        ]
+      },
+      {
+        "cell_files": [
+          "cell_result.json",
+          "evidence_namespace.json",
+          "per_image.csv"
+        ],
+        "check": "unbounded_caches",
+        "cycles": 20,
+        "detail": "20 publish/verify cycles left no temporary files and host memory moved +0.0 MiB; the cell holds 3 files",
+        "passed": true,
+        "rss_growth_mib": 0.0,
+        "temporary_files": []
+      },
+      {
+        "baseline_mib": 64.0,
+        "check": "cleanup",
+        "detail": "loading held +30.2 MiB and close() returned to +0.00 MiB of the baseline: the model's tensors were released",
+        "loaded_mib": 94.15625,
+        "passed": true,
+        "released_mib": 64.0,
+        "residual_mib": 0.0
+      },
+      {
+        "build_ms": {
+          "constructions": 5,
+          "max": 554.5904999962659,
+          "mean": 512.061359998188,
+          "median": 514.8522000017692,
+          "min": 470.66459999768995,
+          "n": 5,
+          "p90": 540.3187399977469,
+          "p95": 547.4546199970064,
+          "stdev": 30.385785660228947,
+          "unit": "milliseconds"
+        },
+        "check": "reload_overhead",
+        "detail": "construction median 514.9 ms versus one inference 13.4 ms (ratio 38.5x): reloading per image would dominate, so a resident model is the correct serving pattern",
+        "inference_ms": {
+          "cold_first_call": 329.02670000476064,
+          "max": 13.6555999997654,
+          "mean": 13.392809998913435,
+          "measured_repeats": 10,
+          "median": 13.375700000324287,
+          "min": 13.22000000072876,
+          "n": 10,
+          "p90": 13.5987199988449,
+          "p95": 13.62715999930515,
+          "stdev": 0.14478881466850504,
+          "unit": "milliseconds",
+          "warmup_iterations": 2
+        },
+        "passed": true,
+        "ratio": 38.49160791504646
+      }
+    ],
+    "failed": [],
+    "n_checks": 6,
+    "n_passed": 6,
+    "present": true
+  },
+  "status": "PHASE_D_COMPLETE"
+}

@@ -1,0 +1,157 @@
+{
+  "all_passed": true,
+  "allocator_policy": {
+    "peak_allocated_mib": "live tensors; a rising slope is retention",
+    "peak_reserved_mib": "allocator cache; a flat high-water mark is the healthy shape and is not a leak",
+    "tolerance_mib": {
+      "allocated": 2.0,
+      "reserved": 64.0
+    }
+  },
+  "checks": [
+    {
+      "allocated_growth_mib": 0.0,
+      "allocated_mib": [
+        97.15625,
+        97.15625,
+        97.15625,
+        97.15625,
+        97.15625,
+        97.15625,
+        97.15625,
+        97.15625,
+        97.15625,
+        97.15625,
+        97.15625,
+        97.15625
+      ],
+      "allocated_slope_mib_per_cycle": 5.732070613212185e-15,
+      "cache_plateaued": true,
+      "check": "memory_growth",
+      "cycles": 12,
+      "detail": "live memory changed by +0.00 MiB over 10 cycles (slope +0.0000 MiB/cycle) and the allocator cache plateaued at +0.00 MiB: this is caching, not a leak",
+      "leak_detected": false,
+      "model_key": "UNET",
+      "passed": true,
+      "reserved_growth_mib": 0.0,
+      "reserved_mib": [
+        1626.0,
+        1626.0,
+        1626.0,
+        1626.0,
+        1626.0,
+        1626.0,
+        1626.0,
+        1626.0,
+        1626.0,
+        1626.0,
+        1626.0,
+        1626.0
+      ],
+      "reserved_slope_mib_per_cycle": 8.232079386819731e-14
+    },
+    {
+      "after_grad_mib": 83.00146484375,
+      "after_no_grad_mib": 75.00146484375,
+      "after_release_mib": 75.00146484375,
+      "baseline_mib": 64.0,
+      "check": "retained_graphs",
+      "detail": "a grad-enabled forward added +8.00 MiB of graph and dropping it returned to +0.00 MiB of the no-grad baseline: the graph is released, not retained",
+      "graph_retained_while_live": true,
+      "passed": true
+    },
+    {
+      "allowance_per_window": 1,
+      "check": "handle_leaks",
+      "cold_start_growth": 0,
+      "cycles_per_window": 5,
+      "detail": "OS handles went 463 -> 463 over 15 load/infer/close cycles; per-window deltas [0, 0, 0], so the +0 in the first window is one-time initialisation and the steady state is flat ([0, 0]) \u2014 not a leak",
+      "passed": true,
+      "steady_state_growth": [
+        0,
+        0
+      ],
+      "window_deltas": [
+        0,
+        0,
+        0
+      ],
+      "windows": [
+        463,
+        463,
+        463,
+        463
+      ]
+    },
+    {
+      "cell_files": [
+        "cell_result.json",
+        "evidence_namespace.json",
+        "per_image.csv"
+      ],
+      "check": "unbounded_caches",
+      "cycles": 20,
+      "detail": "20 publish/verify cycles left no temporary files and host memory moved +0.0 MiB; the cell holds 3 files",
+      "passed": true,
+      "rss_growth_mib": 0.0,
+      "temporary_files": []
+    },
+    {
+      "baseline_mib": 64.0,
+      "check": "cleanup",
+      "detail": "loading held +30.2 MiB and close() returned to +0.00 MiB of the baseline: the model's tensors were released",
+      "loaded_mib": 94.15625,
+      "passed": true,
+      "released_mib": 64.0,
+      "residual_mib": 0.0
+    },
+    {
+      "build_ms": {
+        "constructions": 5,
+        "max": 554.5904999962659,
+        "mean": 512.061359998188,
+        "median": 514.8522000017692,
+        "min": 470.66459999768995,
+        "n": 5,
+        "p90": 540.3187399977469,
+        "p95": 547.4546199970064,
+        "stdev": 30.385785660228947,
+        "unit": "milliseconds"
+      },
+      "check": "reload_overhead",
+      "detail": "construction median 514.9 ms versus one inference 13.4 ms (ratio 38.5x): reloading per image would dominate, so a resident model is the correct serving pattern",
+      "inference_ms": {
+        "cold_first_call": 329.02670000476064,
+        "max": 13.6555999997654,
+        "mean": 13.392809998913435,
+        "measured_repeats": 10,
+        "median": 13.375700000324287,
+        "min": 13.22000000072876,
+        "n": 10,
+        "p90": 13.5987199988449,
+        "p95": 13.62715999930515,
+        "stdev": 0.14478881466850504,
+        "unit": "milliseconds",
+        "warmup_iterations": 2
+      },
+      "passed": true,
+      "ratio": 38.49160791504646
+    }
+  ],
+  "device": "cuda",
+  "environment": {
+    "cuda": "12.4",
+    "cudnn": 90100,
+    "device": "NVIDIA GeForce RTX 3060 Ti",
+    "evidence_class": "SYNTHETIC_BENCHMARK",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "python": "3.11.9",
+    "torch": "2.6.0+cu124"
+  },
+  "evidence_class": "SYNTHETIC_BENCHMARK",
+  "failed": [],
+  "n_checks": 6,
+  "n_passed": 6,
+  "note": "SYNTHETIC_BENCHMARK. Fixture weights; no real-data claim.",
+  "schema": "phase_d_stability_v1"
+}

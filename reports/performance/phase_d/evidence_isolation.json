@@ -1,0 +1,72 @@
+{
+  "all_blocked": true,
+  "attacks": [
+    {
+      "attack": "output_directory_reuse",
+      "blocked": true,
+      "blocked_by": "NamespaceError",
+      "detail": "",
+      "mechanism": "publish_cell refuses a namespace change in one cell directory"
+    },
+    {
+      "attack": "registry_import",
+      "blocked": true,
+      "blocked_by": "research_cells_completed == 0",
+      "detail": "1 validated, 0 research",
+      "mechanism": "verify_matrix counts only cells that pass research_evidence_reasons"
+    },
+    {
+      "attack": "report_aggregation",
+      "blocked": true,
+      "blocked_by": "research_cells_completed == 0",
+      "detail": "NOT_ESTABLISHED_0_OF_24",
+      "mechanism": "collect_results shares the same promotion gate"
+    },
+    {
+      "attack": "resume_promotion",
+      "blocked": true,
+      "blocked_by": "NamespaceError",
+      "detail": "existing result document left untouched",
+      "mechanism": "a resume may not change the namespace of the cell it resumes"
+    },
+    {
+      "attack": "checkpoint_substitution",
+      "blocked": true,
+      "blocked_by": "ProvenanceError",
+      "detail": "the cell carries no genuine SHA-256 weight digest",
+      "mechanism": "research evidence requires a genuine 64-hex weight digest"
+    },
+    {
+      "attack": "artifact_copy",
+      "blocked": true,
+      "blocked_by": "namespace_consistent == False",
+      "detail": "alone=['synthetic'] mixed=['research', 'synthetic'] foreign=['research', 'synthetic'] foreign_problems=1",
+      "mechanism": "a copied cell keeps its namespace; a foreign marker is found anywhere under the root, not only on a registry path"
+    },
+    {
+      "attack": "evidence_class_tamper",
+      "blocked": true,
+      "blocked_by": "REJECTED in all three variants",
+      "detail": "relabelled=['result document seal mismatch (the document was edited)', \"evidence namespace mismatch: marker 'synthetic' vs document 'research'\"] resealed=[\"evidence namespace mismatch: marker 'synthetic' vs document 'research'\", 'evidence namespace marker disagrees on evidence class']",
+      "mechanism": "the document is self-sealed, and the gate re-checks the weight digest"
+    }
+  ],
+  "environment": {
+    "cuda": "12.4",
+    "cudnn": 90100,
+    "device": "NVIDIA GeForce RTX 3060 Ti",
+    "evidence_class": "SYNTHETIC_BENCHMARK",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "python": "3.11.9",
+    "torch": "2.6.0+cu124"
+  },
+  "evidence_class": "SYNTHETIC_BENCHMARK",
+  "n_attacks": 7,
+  "n_blocked": 7,
+  "namespaces": {
+    "REAL_VAL808_DEVELOPMENT": "research",
+    "SYNTHETIC_TEST_ONLY": "synthetic"
+  },
+  "note": "Each attack is an attempt to make a synthetic artifact count as research evidence. None may succeed.",
+  "schema": "phase_d_evidence_isolation_v1"
+}
