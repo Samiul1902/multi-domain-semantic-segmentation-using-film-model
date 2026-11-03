@@ -1,0 +1,29 @@
+{
+  "study_id": "C1_FILM_ATTRIBUTION_V1",
+  "frozen_protocol_path": "reports/planning/c1_film_attribution_v1/protocol.json",
+  "frozen_protocol_sha256": "531e3eb255a66381201d1aaf49bbe55abfdbe529640f5c584ef100d298087a61",
+  "seed": 42,
+  "matched_initial_weights_sha256": "77b74cf12446a28b36eb4813f7ed628e0e9da753bcf0c41b679d67cffc94fe11",
+  "arms": {
+    "C1-T": {
+      "description": "Learned task-conditioned FiLM",
+      "total_parameters": 3523001,
+      "trainable_parameters": 3523001,
+      "conditioning_parameters": 90768
+    },
+    "C1-C": {
+      "description": "Frozen identity-FiLM control",
+      "total_parameters": 3523001,
+      "trainable_parameters": 3432233,
+      "conditioning_parameters": 90768,
+      "frozen_parameters": 90768
+    }
+  },
+  "train_population": "TRAIN5832 (manifests/phase4_v3/train.csv)",
+  "val_population": "VAL808 (manifests/phase4_v3/val.csv)",
+  "protected_test_population": "TEST1683 (LOCKED - ZERO ACCESS)",
+  "rc4_release_identity": "05a330d1aee18487de8582958a0f6fe1ff4597b36d0b4e20efb92db7424eada2",
+  "execution_policy": "DECISION_I",
+  "authorization_status": "PENDING_INSTITUTIONAL_PROVISIONING",
+  "hardware_target": "NVIDIA GeForce RTX 3060 Ti (~8 GB VRAM)"
+}
