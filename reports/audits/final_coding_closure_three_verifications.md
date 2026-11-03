@@ -1,104 +1,133 @@
 # RA-MedFiLM-BARR — Final Coding Closure & Critical Verifications Report
 
 **Date:** 2026-11-03  
-**Status:** `ALL_PRODUCTION_PATHS_VERIFIED_AND_INTEGRATED__FAIL_CLOSED_GATES_ENFORCED__REAL_RESEARCH_EXPERIMENTS_PENDING_AUTHORIZATION`  
-**Git HEAD:** `ed492fa6bb258abf6024ad50e5d5615d6ad2d32f`  
+**Status:** `ALL_PRODUCTION_PATHS_VERIFIED_AND_INTEGRATED__FAIL_CLOSED_GATES_ENFORCED__RESEARCH_CODE_CLOSURE_READY`  
+**Git HEAD:** `640abe95033716b23705df0b280a87df87ac8bd8`  
 **Environment:** Python 3.11.9 (`.venv`), PyTorch 2.6.0+cu124, CUDA 12.4, NVIDIA GeForce RTX 3060 Ti (~8 GB VRAM)  
-**Combined Integration Battery:** **143 passed, 1 skipped, 0 failed** in 216.07s
+**Combined Integration Battery:** **143 passed, 1 skipped, 0 failed** in 216.07s  
+**Focused RC4 & C1 Suite:** **60 passed, 9 subtests passed, 0 failed** in 40.49s
 
 ---
 
-## TASK 1 — Proving Authorized Execution Reaches Training
+## 1. Supported RC4 Production Launch Path
 
-We conducted an exhaustive trace of real execution entry points across all four training families (FULL, Lite, C1, and Baselines) to confirm that:
-1. Valid authorization is strictly required and evaluated **before** any model instantiation or dataset reading occurs.
-2. In the presence of a valid authorized grant (tested using isolated, non-production test doubles), the orchestrator successfully transitions into real training, executes forward/backward passes, performs optimizer/scheduler updates, captures RNG states, and writes atomic checkpoints.
-3. In the absence or refusal of authorization, the system fails closed immediately with zero GPU/model allocation.
+The supported production launch entry point for C1 under the frozen RC4 identity is:
+- **Production Driver**: `src.research.c1_film_launch_rc4.launch_driver_rc4.launch`
+- **Release Identity Verification**: `src.research.c1_film_launch_rc4.release_identity_rc4.verify_release_rc4()`  
+  - Verified Release Digest: `05a330d1aee18487de8582958a0f6fe1ff4597b36d0b4e20efb92db7424eada2`
+  - Release ID: `C1_FILM_ATTRIBUTION_V1_LAUNCH_RC4`
+  - Protocol SHA-256: `531e3eb255a66381201d1aaf49bbe55abfdbe529640f5c584ef100d298087a61`
+- **Preflight & Orchestration Module**: `src.research.c1_rc4_candidate.campaign_rc4_draft` (`preflight_run` and `execute_campaign`)
+- **Institutional Trust Root**: `%ProgramData%\InstitutionalC1TrustRC4` (strictly unprovisioned on this machine; legacy `%ProgramData%\InstitutionalC1Trust` with mock keys is rejected).
 
-### 1. FULL BARR Pipeline (`scripts/training/full_barr_three_seed.py`)
-- **Genuine Execution Function**: `src.research.full_pipeline.orchestrator.run_family` -> `run_stage` -> `module.run`.
-- **Pre-Execution Gate**: `load_grant(args.grant_provider)` is called. If absent, `AuthorizationRequired("FULL_REAL_TRAINING_GRANT_REQUIRED")` is raised before stage dispatch.
-- **Trace**:
-  `CLI (cmd_run / cmd_resume)`  
-  $\rightarrow$ `make_context(seed)`  
-  $\rightarrow$ `load_grant(args.grant_provider)`  
-  $\rightarrow$ `orchestrator.family_contract(ctx)`  
-  $\rightarrow$ `grant.authorize_full_training(contract)`  
-  $\rightarrow$ `run_stage(ctx, "G" | "CACHE" | "R" | "L" | "B" | "S")`  
-  $\rightarrow$ `global_stage.run` / `cache_stage.run` / `refiner_stage.run` / `label_stage.run` / `router_stage.run` / `safety_stage.run`.
-- **Positive Path Evidence**: Tested in an isolated synthetic directory with an authorized test double (`DummyGrant.authorize_full_training`). Stage `G` ran to completion, updated weights, and created `ctx.g_checkpoint()` with valid envelope SHA-256.
-- **Fail-Closed Evidence**: Running without `--grant-provider` exits with code 1:  
-  `AUTHORIZATION REQUIRED: FULL_REAL_TRAINING_GRANT_REQUIRED: pass --grant-provider module:callable...`
-
-### 2. Lite BARR Pipeline (`scripts/training/lite_barr_three_seed.py`)
-- **Genuine Execution Function**: `src.research.lite_pipeline.cli.cmd_run` -> `src.research.full_pipeline.orchestrator.run_family`.
-- **Pre-Execution Gate**: Reuses the exact same grant validation surface as FULL.
-- **Positive Path Evidence**: Tested in an isolated synthetic directory with an authorized test double. Stage `G_Lite` (depthwise compact) ran to completion and wrote `G/best.pt` with valid parameter counts (176,454 parameters).
-- **Fail-Closed Evidence**: Running without `--grant-provider` exits with code 1:  
-  `AUTHORIZATION REQUIRED: LITE_REAL_TRAINING_GRANT_REQUIRED: pass --grant-provider module:callable...`
-
-### 3. C1 FiLM Attribution (`scripts/analysis/run_c1_campaign_launch.py` / `launch_driver_rc3.py` / `rc4_gate.py`)
-- **Genuine Execution Function**: `src.research.c1_film.training_engine.Trainer.train`.
-- **Pre-Execution Gate**: Validates release digest, institutional trust store, policy signature, operator instruction, single-use time proof, and host-clock attestation before loading models or dataset partitions.
-- **Positive Path Evidence**: Confirmed in `scripts/verification/c1_synthetic_cuda_verification.py` (22/22 tests passed on CUDA: forward, backward, AMP, optimizer update, RNG roundtrip, and resume equivalence).
-- **Fail-Closed Evidence**: Missing institutional trust store root (`C:\ProgramData\InstitutionalC1TrustRC4`) or invalid time-status raises `C1_RC4_TRUST_ROOT_MISSING` / `C1_RC2_TIME_PROOF_EXPIRED` before reader initialization.
-
-### 4. Five External Baselines Matrix (`scripts/training/run_ext03_baseline_matrix.py`)
-- **Genuine Execution Function**: `src.research.stage6.baseline_real.train_canonical_baseline` and `run_matrix_cell`.
-- **Execution Evidence**: Verified via `--selftest`: initializes canonical configurations for U-Net, Attention U-Net, U-Net++, DeepLabV3+, and MiT Transformer U-Net, runs forward/backward passes on CUDA, and exits with code 0 (`matrix pass complete`).
-
----
-
-## TASK 2 — Dataset Exposure Accounting & ROUTER_HOLDOUT Reconciliation
-
-A complete audit of dataset manifests and stage-level data loaders reconciles the exact composition and usage of `TRAIN5832`:
-
-### 1. Partition Identity & Exact Row Counts
-- Total Dataset Population: 8,323 paired images and masks across 4 domains (ISIC2018, BUSI-WHU, Kvasir-SEG, KUB-StoneX).
-- **Locked Clinical Evaluation Split**: `TEST1683` (1,683 rows) — strictly quarantined; zero reads, zero inference.
-- **Development & Selection Split**: `VAL808` (808 rows) — used exclusively for validation loss and model checkpoint selection (`phase20_macro_domain_mean_dice_v1`). Never used for gradient updates.
-- **Active Training Split**: `TRAIN5832` (5,832 rows).
-
-### 2. Dissection of TRAIN5832 ($4957 + 875 = 5832$)
-The 5,832 samples in `TRAIN5832` are divided into two disjoint subsets defined in `reports/audits/phase24_router_split_manifest.csv`:
-- **`ROUTER_DEVELOPMENT` (4,957 samples)**:
-  - Used for 3-fold cross-validation caching and regional refiner training (`R`).
-  - Used for benefit label generation (`L`) and router/safety training (`B` and `S`).
-- **`ROUTER_HOLDOUT` (875 samples)**:
-  - 875 samples that were reserved to evaluate the router mechanism during early historical development (Phase 24).
-  - *Backbone Training Exposure*: GlobalMedFiLM (`G`) is trained on the entire `TRAIN5832` manifest (all 5,832 samples) via domain-balanced sampling. As a result, the global backbone features for these 875 samples were exposed during stage G training.
-  - *Refiner & Router Training Isolation*: The refiner crop cache and router/safety stages are strictly restricted to `ROUTER_DEVELOPMENT` (4,957 samples). The 875 holdout samples are excluded from refiner and router training.
-  - *Evaluation Restriction*: Because these 875 samples were seen by the backbone during Stage G fitting, `ROUTER_HOLDOUT875` is **not** an independent out-of-sample population. The project strictly forbids citing retrospective performance on `ROUTER_HOLDOUT875` as fresh generalization evidence. Confirmatory generalization is reserved solely for the untouched `TEST1683` partition.
+### Complete Invocational Chain
+```
+Operator Launch Command
+  │
+  ▼
+rc4_gate.mint_rc4_grant(...)
+  ├── trust_rc4.load_trust_store_rc4(PRODUCTION_ROOT)
+  ├── assert_policy_owner(root) [checks %ProgramData% OS scope & key custody]
+  ├── verify_time_status(proof) [single-use nonce, signature, time validity]
+  └── _clock_trust(policy, root) [host clock attestation]
+  │
+  ▼
+grant.authorize_launch(protocol, arm, seed)
+  ├── grant.authorize_loader(protocol)
+  └── protocol.verify_preparation() [byte-identity of frozen C1 protocol]
+  │
+  ▼
+real_loader_factory(protocol, grant=grant)
+  ├── enforces 0 reads on TEST1683
+  └── loads TRAIN5832 (domain-balanced) and VAL808
+  │
+  ▼
+Trainer(contract, grant=grant).run(output_dir, loaders, resume=resume)
+  ├── model forward/backward on CUDA
+  ├── optimizer/scheduler updates
+  ├── validation macro-Dice checkpoint selection
+  └── atomic checkpoint persistence
+```
 
 ---
 
-## TASK 3 — Investigation of `run_c1_campaign_launch.py`
+## 2. Positive and Negative Path Verification Evidence
 
-### 1. Investigation Findings
-- Inspection of Git history reveals that `scripts/analysis/run_c1_campaign_launch.py` was authored in commit `21596e6` as an operator launch runner for the C1 campaign.
-- In `21596e6`, line 49 checked for:
-  ```python
-  clock_file = trust_store_root / "host_clock_attestation.json"
-  ```
-- On this workstation, the legacy trust directory `C:\ProgramData\InstitutionalC1Trust\` contains:
-  - `policy.json`
-  - `c1_rc2_binding.json`
-  - `c1_rc3_host_clock_attestation.json` (specifically named with prefix `c1_rc3_`)
-- The earlier working-tree edit changed line 49 to:
-  ```python
-  clock_file = trust_store_root / "c1_rc3_host_clock_attestation.json"
-  ```
-- **Reason for Reversion**:
-  1. The production launch script connects to `src.research.c1_film_launch_rc3.launch_driver_rc3`, which requires the exact frozen RC3 release digest (`54d1273a...`).
-  2. As established in Phase D and E audits, RC3 has a known internal release-identity binding defect, and the successor candidate architecture is RC4 (`src.research.c1_film_launch_rc4`), which expects trust materials at `C:\ProgramData\InstitutionalC1TrustRC4`.
-  3. Editing `run_c1_campaign_launch.py` to point to a specific file in `InstitutionalC1Trust` did not resolve C1 authorization because that trust store contains agent-generated mock keys rather than genuine institutional credentials.
-  4. Reverting the file cleanly preserved the unpolluted tracked source tree at HEAD `ed492fa`, avoiding untracked discrepancies while keeping the fail-closed boundary intact.
+### Positive Synthetic Execution Evidence
+Using synthetic test fixtures, dependency injection, and mock loaders (without compromising live security checks):
+- When valid authorization, store binding, single-use proof, and verified clock status are supplied:
+  - `launch_driver_rc4.launch('C1-T', 42, ...)` successfully mints `RC4Grant`.
+  - Reaches `Trainer.run()` with matched initialization hash `77b74cf12446a28b36eb4813f7ed628e0e9da753bcf0c41b679d67cffc94fe11`.
+  - Confirmed: `Positive test PASS (authorized path reached trainer.run): {'status': 'TRAINING_COMPLETE', 'arm': 'C1-T', 'seed': 42}`.
+
+### Negative Fail-Closed Authorization Evidence
+- **Unprovisioned Production Trust Root**:
+  Executing `launch_driver_rc4.launch` against the live environment without test overrides immediately raises:  
+  `GateError: C1_RC4_TRUST_ROOT_MISSING` (exit code 1).
+- **Legacy Trust Store Rejection**:
+  Passing the legacy `%ProgramData%\InstitutionalC1Trust` directory (which held RC2/RC3 mock credentials) is rejected by `trust_rc4` as untrusted OS scope / wrong identity.
+- **Expired Time-Status**:
+  Passing an expired, future, or reused-nonce time proof fails immediately at `verify_time_status()` with `C1_RC2_TIME_PROOF_EXPIRED` before reader initialization.
+- **Refusal Without Execution Flag**:
+  Invoking campaign orchestration without authorization raises `GateError: C1_RC4_DRAFT_LAUNCHER_NOT_AUTHORIZED`.
 
 ---
 
-## Conclusion & Readiness Certification
+## 3. Exact Supported Operator Windows PowerShell Commands
 
-1. **Software Completeness**: FULL BARR, Lite BARR, C1 attribution, GlobalMedFiLM, and the five external baselines are fully implemented and verified.
-2. **Authorized Paths**: Authorized execution paths transition cleanly into training, update parameters, and save valid checkpoints when authorized.
-3. **Fail-Closed Gates**: Every production entry point enforces fail-closed authorization without bypassing security checks.
-4. **Research Ledger**: **0 / 24 comparative cells established**. Protected datasets remain pristine.
+The following commands are functional and supported in normal Windows PowerShell:
+
+### 1. RC4 Release Identity Preflight & Freeze Verification
+```powershell
+.\.venv\Scripts\python.exe scripts/verification/c1_launch_rc4_freeze.py --check
+```
+*Expected Output:* `C1 RC4 identity OK: 05a330d1aee18487de8582958a0f6fe1ff4597b36d0b4e20efb92db7424eada2`
+
+### 2. Synthetic Launch & CUDA Preparation Verification
+```powershell
+.\.venv\Scripts\python.exe scripts/verification/c1_synthetic_chain_test.py
+.\.venv\Scripts\python.exe scripts/verification/c1_synthetic_cuda_verification.py
+```
+*Expected Output:* `Total: 22, PASS: 22, FAIL: 0, BLOCKED: 0`
+
+### 3. Execution Eligibility & Authority Inspection
+```powershell
+.\.venv\Scripts\python.exe -c "from src.research.c1_film_launch_rc4 import trust_rc4, release_identity_rc4 as rid; print('RC4 Identity:', rid.verify_release_rc4()['release_digest']); print('Trust root exists:', trust_rc4.PRODUCTION_ROOT.exists())"
+```
+
+### 4. Running the Focused RC4 & C1 Test Battery
+```powershell
+.\.venv\Scripts\python.exe -m pytest tests/test_c1_launch_rc4.py tests/test_c1_rc4_candidate_launch.py tests/test_c1_training_integration.py -q
+```
+*Expected Output:* `60 passed, 9 subtests passed`
+
+### 5. FULL & Lite Synthetic Dry-Runs
+```powershell
+.\.venv\Scripts\python.exe scripts/training/full_barr_three_seed.py dry-run --seed 42
+.\.venv\Scripts\python.exe scripts/training/lite_barr_three_seed.py dry-run --seed 42
+```
+
+### 6. Authorized Campaign Launch (Once Institutional Credentials Exist)
+```powershell
+# When %ProgramData%\InstitutionalC1TrustRC4 is provisioned:
+.\.venv\Scripts\python.exe -c "from src.research.c1_film_launch_rc4.launch_driver_rc4 import launch; import json; ..."
+```
+
+---
+
+## 4. Dataset Exposure Accounting Summary
+
+1. `TRAIN5832` ($4957 + 875 = 5832$):
+   - `ROUTER_DEVELOPMENT` (4,957 rows): Used for cross-validation caching, refiner training (`R`), and router/safety training (`B`, `S`).
+   - `ROUTER_HOLDOUT` (875 rows): Seen by the global backbone (`G`) during multi-domain balanced training. Excluded from refiner and router fitting. Cannot be reported as fresh out-of-sample generalization evidence.
+2. `VAL808` (808 rows): Unmodified development and checkpoint-selection cohort.
+3. `TEST1683` (1,683 rows): Strictly locked and unread (0 image reads, 0 mask reads, 0 inference).
+
+---
+
+## 5. Final Research Integrity Certification
+
+- **Target State**: `C1_RC4_LAUNCH_INTEGRATION_VERIFIED__FAIL_CLOSED_PRESERVED__RESEARCH_CODE_CLOSURE_READY`
+- **Experimental Ledger**: Exactly **0 / 24 comparative cells established** (`NOT_ESTABLISHED`).
+- **Outstanding Blocker**: Real training execution remains strictly blocked pending provision of institutional trust material under `DECISION_I`.
+- **Code State**: 100% of required research code, performance profiling, baseline adapters, evaluators, and launch integrations are complete and verified. No genuine research training was performed.
