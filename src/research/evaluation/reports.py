@@ -111,11 +111,14 @@ def collect_results(root: Path, *, bootstrap_unit: str = "image") -> Dict[str, A
                                  "display_name": REG.DISPLAY_NAME[model_key],
                                  "role": REG.spec(model_key).role,
                                  "status": outcome["status"],
-                                 "reasons": outcome["reasons"]}
+                                 "reasons": outcome["reasons"],
+                                 "namespace": outcome.get("namespace"),
+                                 "research_eligible": False}
         if outcome["document"] is not None:
             doc = outcome["document"]
             entry.update({
                 "evidence_class": doc["evidence_class"],
+                "evidence_namespace": doc.get("evidence_namespace"),
                 "equal_domain_macro_dice": doc["summary"].get("equal_domain_macro_dice"),
                 "per_domain": doc["summary"].get("per_domain"),
                 "parameters": doc["summary"].get("parameters")
@@ -124,6 +127,8 @@ def collect_results(root: Path, *, bootstrap_unit: str = "image") -> Dict[str, A
                 "harmful_accepted_refinements": doc["summary"].get("harmful_accepted_refinements"),
                 "n_images": doc["n_images"],
                 "synthetic": doc["synthetic"],
+                # the single promotion gate, shared with verify_matrix
+                "research_eligible": not PROV.research_evidence_reasons(doc),
             })
             profile_path = directory / "efficiency.json"
             if profile_path.is_file():
@@ -132,33 +137,41 @@ def collect_results(root: Path, *, bootstrap_unit: str = "image") -> Dict[str, A
 
     comparisons = ST.build_comparisons(records, unit=bootstrap_unit)
     evidence = sorted({c.get("evidence_class") for c in cells if c.get("evidence_class")})
+    # Same root-wide marker scan as verify_matrix: a foreign namespace anywhere
+    # under the root contaminates the aggregate, not just one at a registry path.
+    scan = PROV.scan_namespace_markers(root)
+    namespaces = sorted({c["namespace"] for c in cells if c.get("namespace")}
+                        | set(scan["namespaces"]))
+    namespace_consistent = len(namespaces) <= 1 and not scan["problems"]
+    eligible = sum(1 for c in cells if c["research_eligible"]) if namespace_consistent else 0
     return {"schema": "phase_c_results_v1", "root": str(root),
             "evidence_classes": evidence,
+            "namespaces": namespaces,
+            "namespace_consistent": namespace_consistent,
+            "namespace_problems": scan["problems"],
             "banner": _banner(evidence),
             "cells": cells, "comparisons": comparisons,
-            "research_cells_completed": sum(
-                1 for c in cells
-                if c["status"] == "COMPLETE_VALIDATED"
-                and c.get("evidence_class") in P.RESEARCH_EVIDENCE_CLASSES),
+            "research_cells_completed": eligible,
             "synthetic_cells_executed": sum(
                 1 for c in cells
                 if c["status"] == "COMPLETE_VALIDATED"
                 and c.get("evidence_class") == P.SYNTHETIC_EVIDENCE),
-            "registry_status": _registry_status(cells)}
+            "registry_status": _registry_status(cells, eligible)}
 
 
-def _registry_status(cells: Sequence[Mapping[str, Any]]) -> Dict[str, Any]:
+def _registry_status(cells: Sequence[Mapping[str, Any]],
+                     eligible: Optional[int] = None) -> Dict[str, Any]:
     """The 24-cell registry verdict.  Synthetic success never completes a cell."""
-    completed = [c for c in cells
-                 if c["status"] == "COMPLETE_VALIDATED"
-                 and c.get("evidence_class") in P.RESEARCH_EVIDENCE_CLASSES]
+    completed = (eligible if eligible is not None
+                 else sum(1 for c in cells if c.get("research_eligible")))
     return {"n_cells": len(cells),
-            "research_completed": len(completed),
-            "all_cells_not_established": len(completed) == 0,
+            "research_completed": completed,
+            "all_cells_not_established": completed == 0,
             "status": ("NOT_ESTABLISHED_0_OF_24" if not completed
-                       else f"PARTIAL_{len(completed)}_OF_24"),
-            "note": ("A cell is only established by a real, protocol-compliant evaluation. "
-                     "Synthetic execution does not count.")}
+                       else f"PARTIAL_{completed}_OF_24"),
+            "note": ("A cell is only established by a real, protocol-compliant evaluation "
+                     "with a research namespace and a genuine weight digest. Synthetic "
+                     "execution does not count.")}
 
 
 # --------------------------------------------------------------------------- #

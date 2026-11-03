@@ -152,7 +152,23 @@ class ModelAdapter:
         raise NotImplementedError
 
     def close(self) -> None:
+        """Release the loaded weights, not only the loaded flag.
+
+        ``_loaded = False`` alone leaves every parameter tensor alive, because the
+        adapter still references its module; the memory is never returned.  Phase D
+        measured 29.66 MiB still allocated after ``close()`` on a baseline adapter
+        and no release at all on a routed one.  Dropping the references lets the
+        caching allocator reuse the blocks.
+
+        A closed adapter can be loaded again only when its weights can be rebuilt
+        from a checkpoint path.  A synthetic adapter's fixture weights are produced
+        by ``build_synthetic``, so a closed synthetic routed adapter raises on
+        ``load()`` and must be rebuilt the same way rather than silently resumed.
+        """
         self._loaded = False
+        for attribute in ("_model", "_system"):
+            if getattr(self, attribute, None) is not None:
+                setattr(self, attribute, None)
 
     # -- evaluation surface ---------------------------------------------- #
     def predict(self, image: torch.Tensor, task_id: int) -> Prediction:
