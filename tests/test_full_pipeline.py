@@ -58,6 +58,9 @@ pytestmark = pytest.mark.filterwarnings("ignore::UserWarning")
 SYNTH_ROOT = R.ROOT / "runs" / f"full_synthetic_test_{os.getpid()}"
 TINY = dict(per_domain_dev=6, per_domain_val=3, per_domain_holdout=3)
 
+#: complete FULL graph, from reports/tables/barr_lite_synthetic_profile.json
+R_FULL_TOTAL = 4_837_420
+
 
 # --------------------------------------------------------------------------- #
 @pytest.fixture(scope="module")
@@ -501,3 +504,104 @@ def test_every_checkpoint_is_a_versioned_envelope(family_ctx):
         assert ck["test_reads"] == 0
         assert ck["router_holdout_reads"] == 0
     assert load_checkpoint(family_ctx.g_dir / "best.pt")["upstream"] == {}
+
+
+# --------------------------------------------------------------------------- #
+# 14. the out-of-fold claim is stated exactly, not overstated
+# --------------------------------------------------------------------------- #
+def test_oof_contract_declares_the_backbone_is_in_sample(family_ctx):
+    """The refiner is cross-fitted; the backbone is not.  Both must be recorded.
+
+    G is fitted once on all 5,832 TRAIN samples, which contains every
+    ROUTER_DEVELOPMENT sample, so ``p_global`` is in-sample for G.  The labels are
+    therefore refiner-OOF / backbone-in-sample and must never be described as
+    fully out-of-fold.
+    """
+    manifest = json.loads((family_ctx.l_dir / "manifest.json").read_text(encoding="utf-8"))
+    contract = manifest["oof_contract"]
+
+    assert contract["refiner_out_of_fold"] is True
+    assert contract["router_out_of_fold"] is True
+    assert contract["safety_out_of_fold"] is True
+    assert contract["backbone_out_of_fold"] is False
+    assert contract["backbone_sees_target_sample"] is True
+    assert contract["backbone_training_population"] == "TRAIN"
+    assert contract["refiner_cross_fit_folds"] == len(R.R_OUTER_FOLDS)
+
+    # every label row must carry the refiner checkpoint that produced it
+    labels = pd.read_csv(family_ctx.l_dir / "labels.csv")
+    assert labels["fold_refiner_checkpoint_sha"].astype(str).str.len().eq(64).all()
+    assert labels["outer_fold"].nunique() == len(R.R_OUTER_FOLDS)
+
+
+def test_label_fold_assignment_matches_the_frozen_outer_folds(family_ctx):
+    """A sample may only be labelled by the fold whose outer_target contains it."""
+    labels = pd.read_csv(family_ctx.l_dir / "labels.csv")
+    table = family_ctx.folds("outer3")
+    owner = {}
+    for k, roles in table.folds.items():
+        for sid in roles["outer_target"]:
+            assert sid not in owner, f"{sid} appears in two outer folds"
+            owner[sid] = k
+    for sid, fold in zip(labels["sample_id"].astype(str), labels["outer_fold"]):
+        assert owner[sid] == int(fold), f"{sid} labelled by the wrong refiner fold"
+
+
+# --------------------------------------------------------------------------- #
+# 15. the selected Lite architecture identity is unambiguous
+# --------------------------------------------------------------------------- #
+LITE_PROFILE = R.ROOT / "reports" / "tables" / "barr_lite_synthetic_profile.json"
+
+
+@pytest.mark.skipif(not LITE_PROFILE.exists(), reason="Lite profile artifact absent")
+def test_lite_candidates_match_the_frozen_profile_artifact():
+    """Every candidate's complete-graph parameter count must reproduce on disk."""
+    from src.models.barr.phase25_models import BARRBenefitRouterV1, BARRPostSafetyV1
+    from src.models.lite.ra_medfilm_barr_lite import (CANDIDATE_SPECS,
+                                                      LiteGlobalMedFiLM,
+                                                      LiteRegionalRefiner)
+
+    profile = json.loads(LITE_PROFILE.read_text(encoding="utf-8"))
+    candidates = profile["lite_candidates"]
+    assert set(candidates) == set(CANDIDATE_SPECS)
+
+    b = sum(p.numel() for p in BARRBenefitRouterV1().parameters())
+    s = sum(p.numel() for p in BARRPostSafetyV1().parameters())
+
+    for name, spec in CANDIDATE_SPECS.items():
+        frozen = candidates[name]
+        g = sum(p.numel() for p in LiteGlobalMedFiLM(spec).parameters())
+        r = sum(p.numel() for p in LiteRegionalRefiner(spec).parameters())
+
+        assert g == frozen["parameter_breakdown"]["G"]["parameters"]
+        assert r == frozen["parameter_breakdown"]["R_psi"]["parameters"]
+        assert b == frozen["parameter_breakdown"]["B_phi"]["parameters"]
+        assert s == frozen["parameter_breakdown"]["S_omega"]["parameters"]
+        assert g + r + b + s == frozen["parameters"]["unique_parameters"]
+
+        # the router and safety modules ARE part of the Lite graph
+        assert frozen["parameters"]["unique_parameters"] > g + r
+
+        # nothing in the profile is trainable at inference time
+        assert frozen["assembled_inference_parameter_inventory"]["trainable_parameters"] == 0
+
+
+@pytest.mark.skipif(not LITE_PROFILE.exists(), reason="Lite profile artifact absent")
+def test_selected_lite_candidate_is_depthwise_compact():
+    """H7's parameter-reduction claim is checked against the actual graph size."""
+    from src.models.barr.phase25_models import BARRBenefitRouterV1, BARRPostSafetyV1
+    from src.models.lite.ra_medfilm_barr_lite import (CANDIDATE_SPECS,
+                                                      LiteGlobalMedFiLM,
+                                                      LiteRegionalRefiner)
+
+    spec = CANDIDATE_SPECS["depthwise_compact"]
+    total = (sum(p.numel() for p in LiteGlobalMedFiLM(spec).parameters())
+             + sum(p.numel() for p in LiteRegionalRefiner(spec).parameters())
+             + sum(p.numel() for p in BARRBenefitRouterV1().parameters())
+             + sum(p.numel() for p in BARRPostSafetyV1().parameters()))
+
+    assert total == 272_601, "depthwise_compact complete-graph size changed"
+    assert total < 0.5 * R_FULL_TOTAL, "H7 requires a >=50% parameter reduction"
+    # guard the exact figure an earlier report asserted without provenance
+    assert total != 1_586_817
+

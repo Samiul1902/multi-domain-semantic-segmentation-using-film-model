@@ -23,6 +23,13 @@ Leakage
 The GT mask is read only to *score* the two predictions.  It never reaches a feature
 vector: the router's 202-D vector and the safety module's 16-D vector are built from
 predictions and geometry only.
+
+The out-of-fold guarantee is *partial* and ``oof_contract()`` records exactly where it
+stops.  R_psi is genuinely cross-fitted, but G is fitted once on all 5,832 TRAIN
+samples -- which includes every ROUTER_DEVELOPMENT sample -- so ``p_global`` and the
+feature vectors are in-sample for the backbone.  The labels are therefore
+refiner-OOF / backbone-in-sample, and the absolute harm rate they induce is
+optimistic rather than a held-out estimate.
 """
 from __future__ import annotations
 
@@ -116,6 +123,39 @@ def _refine_fold(ctx: RunContext, fold: int, device, amp: bool) -> Dict[str, dic
         refined = torch.sigmoid(logits.float())[0, 0].cpu().numpy().astype(np.float32)
         out[sid] = {"refined_crop": refined, "meta": metas[sid]}
     return out
+
+
+def oof_contract(ctx: RunContext) -> dict:
+    """Exactly which parts of the label are out-of-fold, and which are not.
+
+    The refiner is genuinely cross-fitted: fold-k's ``best.pt`` labels fold-k's
+    ``outer_target`` and never trained on it.  The **backbone is not**: G is fitted
+    once on the whole TRAIN population (5,832), which contains every
+    ROUTER_DEVELOPMENT sample, so ``p_global`` and both feature vectors are
+    *in-sample* for G.
+
+    That asymmetry is inherited from the frozen Phase-25D/25F producers and is kept
+    deliberately: changing the G training population would break comparability with
+    the historical labels.  It is recorded here, in machine-readable form, so the
+    OOF claim can never be overstated as "fully out-of-fold".
+    """
+    return {
+        "refiner_out_of_fold": True,
+        "backbone_out_of_fold": False,
+        "router_out_of_fold": True,
+        "safety_out_of_fold": True,
+        "backbone_training_population": "TRAIN",
+        "backbone_training_n": int(R.TRAIN_N),
+        "backbone_sees_target_sample": True,
+        "refiner_cross_fit_folds": len(R.R_OUTER_FOLDS),
+        "router_cross_fit_folds": int(R.B_CV_FOLDS),
+        "consequence": (
+            "delta_dice measures what a fold-k refiner does to the output of a G that "
+            "already memorised the sample, so it is refiner-OOF but backbone-in-sample; "
+            "absolute harm rates are therefore optimistic and must not be read as "
+            "held-out generalisation"),
+        "provenance": "inherited from the frozen Phase-25D/25F label construction",
+    }
 
 
 def run(ctx: RunContext, *, resume: bool = False, log=print) -> StageRecord:
@@ -272,6 +312,7 @@ def run(ctx: RunContext, *, resume: bool = False, log=print) -> StageRecord:
         "category_thresholds": {"BENEFICIAL": R.LABEL_BENEFICIAL_DELTA,
                                 "HARMFUL": R.LABEL_HARMFUL_DELTA},
         "cross_fit": "fold-k refiner labels fold-k outer target only",
+        "oof_contract": oof_contract(ctx),
         "labels_sha256": sha256_file(label_path),
         "safety_targets_sha256": sha256_file(safety_path),
         "safety_features_path": relpath_str(sf_path),
