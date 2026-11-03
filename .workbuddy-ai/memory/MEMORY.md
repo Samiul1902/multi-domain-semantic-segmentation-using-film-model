@@ -98,11 +98,16 @@ disk untouched (evidence). Legacy store `C:\ProgramData\InstitutionalC1Trust` un
 ## FULL PIPELINE (Phase A, 2026-11-03) — `src/research/full_pipeline/`
 Single three-seed orchestrator, `STAGE_ORDER=("G","CACHE","R","L","B","S")`. CLI
 `scripts/training/full_barr_three_seed.py {prepare,validate,plan,dry-run,run,resume,export}`.
-Reuses canonical producers (BARRRefinerCropDataset, roi_geometry/extract_roi_triplet,
-build_feature_vector, fuse_full_field, compute_numeric_features, GTFreeBARRInference, TapRecorder).
-`BARRBenefitRouterV1`/`BARRPostSafetyV1` re-declared because canonical producers are non-importable scripts.
-B/S cross-fit consumes the **frozen Phase-25D FIT/EARLY_STOP/OUTER_TARGET table** — never an invented
-permutation. Real training raises `AuthorizationRequired` without a grant. Detail → `2026-11-03.md`.
+Reuses canonical producers; `BARRBenefitRouterV1`/`BARRPostSafetyV1` now come from the single
+shared `src/models/barr/phase25_models.py` (drift-guarded by
+`tests/test_phase25_architecture_drift.py`). B/S cross-fit consumes the **frozen Phase-25D
+FIT/EARLY_STOP/OUTER_TARGET table**. Real training raises `AuthorizationRequired` without a grant.
+**OOF BOUNDARY: refiner/router/safety OOF = TRUE, backbone OOF = FALSE** — G trains on all 5,832
+TRAIN (incl. the 875 holdout), so ΔQ labels are backbone-in-sample and harm rates are optimistic,
+never held-out. Machine-recorded by `label_stage.oof_contract()`; deliberately NOT repaired.
+Components: G 3,523,001 · R **1,276,401** · B **36,801** · S **1,217** = **4,837,420**.
+Lite `depthwise_compact` complete graph = **272,601** (width 1,240,280 · ultralite 82,029);
+**1,586,817 is FABRICATED — never cite.** Detail → `2026-11-03.md`.
 
 ## PHASE36 — `NOT_COMPLETE_PENDING_V1_22_EXECUTION`, Phase37 NOT_STARTED
 **v1.22 ELIGIBLE_NOT_STARTED (never executed)**; v1.20/v1.21 consumed or frozen; D95/D96 repaired.
