@@ -327,9 +327,9 @@ def test_no_leakage(family_ctx):
         assert not (ids & holdout), f"{path} contains ROUTER_HOLDOUT ids"
         assert not (ids & val), f"{path} contains VAL ids"
 
-    # the TEST split is never named by any artifact of this family
-    test_ids = set(pd.read_csv(R.TEST_MANIFEST)["sample_id"].astype(str))
-    assert not (dev & test_ids)
+    # This synthetic fixture must never open a real TEST manifest, even for IDs.
+    train_ids = set(pd.read_csv(family_ctx.population.train_manifest)["sample_id"].astype(str))
+    assert dev <= train_ids
 
 
 def test_gt_free_signatures():
@@ -337,6 +337,53 @@ def test_gt_free_signatures():
 
     audit = audit_gt_free()
     assert audit["gt_free"] is True, audit["gt_like_parameters"]
+
+
+def test_packaged_full_production_parity(family_ctx, tmp_path):
+    import inspect
+    from src.data.transforms import SegmentationTransform
+    from src.research.deployment import artifacts as A
+    from src.research.deployment.runtime import FullPackageRuntime
+    from src.research.deployment.validation import assert_exact
+    paths = {"G": family_ctx.g_dir / "best.pt", "R": family_ctx.r_dir / "final/final.pt",
+             "B": family_ctx.b_dir / "final/final.pt", "S": family_ctx.s_dir / "final/final.pt"}
+    config = dict(family="FULL", seed=family_ctx.seed,
+                  protocol_sha256=A.digest(Path(inspect.getfile(R))),
+                  source_sha256=A.digest(Path(inspect.getfile(FamilyBundle))),
+                  preprocessing=dict(channels=3, resolution=512,
+                      implementation_sha256=A.digest(Path(inspect.getfile(SegmentationTransform))),
+                      contract_id="SegmentationTransform_RGB_512_train_false"),
+                  roi_threshold=.3, segmentation_threshold=.5, safety_threshold=.5,
+                  router_numeric_dim=202, task_embedding_dim=16, router_total_dim=218,
+                  evidence_class="SYNTHETIC_TEST_ONLY")
+    root = tmp_path / "package"
+    sha = A.package(root, paths, {c: A.digest(p) for c, p in paths.items()}, config)
+    runtime = FullPackageRuntime(root, sha)
+    reference = FamilyBundle.load(family_ctx).build_gtfree()
+    image = torch.rand(1, 3, 512, 512, generator=torch.Generator().manual_seed(99))
+    for task in range(4):
+        assert_exact(reference.infer(image, task), runtime.infer(image, task))
+
+
+def test_single_pass_uses_full_inference_and_metrics(family_ctx, tmp_path):
+    from src.research.evaluation.single_pass import run_once, ConsumedAttemptError
+    from src.metrics.evaluation_metrics import binary_confusion_counts, dice
+    bundle = FamilyBundle.load(family_ctx)
+    engine = bundle.build_gtfree()
+    controls = [{"sample_id": f"synthetic-{t}", "task_id": t,
+                 "image": torch.zeros(1, 3, 512, 512)} for t in range(4)]
+    def evaluate(row):
+        result = engine.infer(row["image"], row["task_id"])
+        counts = binary_confusion_counts(result["final_probability"] >= .5,
+                                          np.zeros((512, 512), dtype=bool))
+        return {"sample_id": row["sample_id"], "dice": dice(counts), "state": result["state"]}
+    kwargs = dict(preflight=lambda: {"synthetic_fixture": True, "component_shas": bundle.shas},
+                  load_population=lambda: controls, evaluate=evaluate,
+                  expected_ids=tuple(row["sample_id"] for row in controls), evidence_class="SYNTHETIC_TEST_ONLY")
+    result = run_once(tmp_path / "one-shot", **kwargs)
+    assert result["counts"]["evaluation_attempts"] == 4
+    with pytest.raises(ConsumedAttemptError):
+        run_once(tmp_path / "one-shot", **kwargs)
 
 
 # --------------------------------------------------------------------------- #

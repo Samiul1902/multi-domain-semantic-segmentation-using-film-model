@@ -70,11 +70,14 @@ class FamilyBundle:
     shas: Dict[str, str]
 
     @classmethod
-    def load(cls, ctx: RunContext, *, device: str = "cpu") -> "FamilyBundle":
-        g_path = ctx.g_dir / "best.pt"
-        r_path = ctx.r_dir / "final" / "final.pt"
-        b_path = ctx.b_dir / "final" / "final.pt"
-        s_path = ctx.s_dir / "final" / "final.pt"
+    def load(cls, ctx: RunContext, *, device: str = "cpu",
+             checkpoint_paths: Optional[Mapping[str, Path]] = None) -> "FamilyBundle":
+        if checkpoint_paths is not None and set(checkpoint_paths) != {"G", "R", "B", "S"}:
+            raise FamilyCompatibilityError("exactly G/R/B/S checkpoint paths are required")
+        g_path = Path(checkpoint_paths["G"]) if checkpoint_paths is not None else ctx.g_dir / "best.pt"
+        r_path = Path(checkpoint_paths["R"]) if checkpoint_paths is not None else ctx.r_dir / "final" / "final.pt"
+        b_path = Path(checkpoint_paths["B"]) if checkpoint_paths is not None else ctx.b_dir / "final" / "final.pt"
+        s_path = Path(checkpoint_paths["S"]) if checkpoint_paths is not None else ctx.s_dir / "final" / "final.pt"
         for p in (g_path, r_path, b_path, s_path):
             if not p.exists():
                 raise FileNotFoundError(f"{ctx.tag}: missing component checkpoint {p}")
@@ -82,13 +85,14 @@ class FamilyBundle:
         g_sha = sha256_file(g_path)
         r_sha = sha256_file(r_path)
 
-        g_ck = load_checkpoint(g_path, map_location="cpu", component="G", seed=ctx.seed)
+        g_ck = load_checkpoint(g_path, map_location="cpu", component="G", seed=ctx.seed,
+                               family="FULL")
         r_ck = load_checkpoint(r_path, map_location="cpu", component="R", seed=ctx.seed,
-                               upstream={"G": g_sha})
+                               family="FULL", upstream={"G": g_sha})
         b_ck = load_checkpoint(b_path, map_location="cpu", component="B", seed=ctx.seed,
-                               upstream={"G": g_sha, "R": r_sha})
+                               family="FULL", upstream={"G": g_sha, "R": r_sha})
         s_ck = load_checkpoint(s_path, map_location="cpu", component="S", seed=ctx.seed,
-                               upstream={"G": g_sha, "R": r_sha})
+                               family="FULL", upstream={"G": g_sha, "R": r_sha})
 
         g = _build_g(g_ck["recipe"]["g"]["model"])
         g.load_state_dict(g_ck["model_state"])

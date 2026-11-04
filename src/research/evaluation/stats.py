@@ -4,9 +4,10 @@ Three things this module refuses to do, because the repository's own frozen
 protocol forbids them:
 
 1. **Treat seeds as independent replicates.** The three seeds are not three
-   independent draws of the same quantity for the FULL downstream components:
-   seeds 123 and 3407 reuse the seed-42 G.  Seed variability is reported as a
-   spread, never as a standard error.
+   independent draws of the same quantity for historical FULL downstream
+   components: historical seeds 123 and 3407 reuse the seed-42 G. The new FULL
+   producer trains independent G/R/B/S families, whose identity is verified
+   separately. Seed variability here is a spread, never a standard error.
 2. **Treat images as independent when they are clustered.** Where a
    ``patient_id``/``group_key`` exists, the bootstrap resamples **clusters**, not
    images.  The resampling unit is written into every result.
@@ -130,6 +131,16 @@ def cluster_bootstrap_ci(differences: Sequence[float], clusters: Sequence[str], 
     """
     d = np.asarray(differences, dtype=np.float64)
     c = np.asarray(clusters, dtype=object)
+    if d.ndim != 1 or c.ndim != 1 or not d.size:
+        raise StatisticsError("nonempty one-dimensional differences and cluster labels required")
+    if isinstance(n_boot, bool) or not isinstance(n_boot, (int, np.integer)) or n_boot < 1:
+        raise StatisticsError("n_boot must be a positive integer")
+    if not np.isfinite(alpha) or not 0 < alpha < 1:
+        raise StatisticsError("alpha must be finite and strictly between zero and one")
+    if statistic not in {"mean", "median"}:
+        raise StatisticsError("statistic must be mean or median")
+    if any(not isinstance(label, str) or not label.strip() for label in c):
+        raise StatisticsError("cluster labels must be nonempty strings")
     if d.shape != c.shape:
         raise StatisticsError(f"{len(d)} differences vs {len(c)} cluster labels")
     if not np.isfinite(d).all():

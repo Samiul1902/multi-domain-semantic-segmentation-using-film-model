@@ -1,0 +1,1170 @@
+{
+  "scope": "44 numbered phases; additive software evidence, no phase advancement",
+  "authority_documents": {
+    "PROJECT_MASTER_PLAN.md": "f67b31c7acafd920414ccf6cb6c1c80e28de093b0ed998e41bdc2887fba48d14",
+    "docs/TASKS.md": "35e5bb567818b8cddf14655ed58364c15f7cbf4e69acf4d30d736421972cad70",
+    "docs/PRD.md": "42aa2885f6ca1078fd361d2788de4f198a3f9e82fa951ce654892c29320226f0",
+    "docs/ARCHITECTURE.md": "4d2dee0e951d53559432e72f45262cd0e3fb4d136a5a6ebe3e6807045e7f5f62",
+    "docs/DESIGN.md": "c7af83a1bd7fb9668abb4a00cd6d49294535f956e5a756a2f00f3d963fb4392f",
+    "docs/RULES.md": "373c05b987581a0107706041a9416dd2cdb8794b2bc06a4d97d7127354eaddc1",
+    "docs/MEMORY.md": "301bc70690a74c7d4afb3d689c30a64b59acc50941e81ad28d8dcefd74d30de9"
+  },
+  "rows": [
+    {
+      "phase": "00",
+      "exact_original_title": "Governance & Protocols",
+      "original_historical_status": "COMPLETE",
+      "preserved_title_entries": [
+        "Governance & Protocols (COMPLETE)"
+      ],
+      "original_software_requirements": "Governance, protocol and split-access contracts",
+      "existing_implementation": [
+        "docs/RULES.md"
+      ],
+      "missing_implementation": [],
+      "remaining_verification": "Governance/literature acceptance is not software execution",
+      "relevant_tests": [
+        "tests/test_test_lock.py"
+      ],
+      "coding_status": "NOT_APPLICABLE_BY_DESIGN",
+      "scientific_execution_status": "No new scientific execution in this task",
+      "dependency_constraints": "Genuine experiments and applicable authorization remain separate"
+    },
+    {
+      "phase": "01",
+      "exact_original_title": "Project Initialization & Layout",
+      "original_historical_status": "COMPLETE",
+      "preserved_title_entries": [
+        "Project Initialization & Layout (COMPLETE)"
+      ],
+      "original_software_requirements": "Repository layout and reproducibility entrypoints",
+      "existing_implementation": [
+        "ANTIGRAVITY_WORKFLOW.md"
+      ],
+      "missing_implementation": [],
+      "remaining_verification": "Governance/literature acceptance is not software execution",
+      "relevant_tests": [],
+      "coding_status": "NOT_APPLICABLE_BY_DESIGN",
+      "scientific_execution_status": "No new scientific execution in this task",
+      "dependency_constraints": "Genuine experiments and applicable authorization remain separate"
+    },
+    {
+      "phase": "02",
+      "exact_original_title": "Environment & CUDA Verification",
+      "original_historical_status": "COMPLETE",
+      "preserved_title_entries": [
+        "Environment & CUDA Verification (COMPLETE)"
+      ],
+      "original_software_requirements": "Interpreter/CUDA/environment capture",
+      "existing_implementation": [
+        "src/research/operator.py",
+        "src/utils/device.py"
+      ],
+      "missing_implementation": [],
+      "remaining_verification": "No demonstrated mapped-component defect",
+      "relevant_tests": [
+        "tests/test_performance_phase_d.py"
+      ],
+      "coding_status": "CODE_COMPLETE_VERIFIED",
+      "scientific_execution_status": "No new scientific execution in this task",
+      "dependency_constraints": "Genuine experiments and applicable authorization remain separate"
+    },
+    {
+      "phase": "03",
+      "exact_original_title": "Dataset Discovery & Cataloging",
+      "original_historical_status": "COMPLETE",
+      "preserved_title_entries": [
+        "Dataset Discovery & Cataloging (COMPLETE)"
+      ],
+      "original_software_requirements": "Discovery, image/mask pairing, domain catalog",
+      "existing_implementation": [
+        "src/data/development_validation.py",
+        "notebooks/phasewise/phase_03_dataset_discovery/code/phase03_dataset_discovery_audit.py"
+      ],
+      "missing_implementation": [],
+      "remaining_verification": "No demonstrated mapped-component defect",
+      "relevant_tests": [
+        "tests/test_development_validation.py"
+      ],
+      "coding_status": "CODE_COMPLETE_VERIFIED",
+      "scientific_execution_status": "No new scientific execution in this task",
+      "dependency_constraints": "Genuine experiments and applicable authorization remain separate"
+    },
+    {
+      "phase": "04",
+      "exact_original_title": "Manifest & Data Splits",
+      "original_historical_status": "COMPLETE — v2 historical",
+      "preserved_title_entries": [
+        "Manifest & Data Splits (COMPLETE — v2 historical)"
+      ],
+      "original_software_requirements": "Manifest identity, split/group integrity",
+      "existing_implementation": [
+        "src/utils/manifest_guard.py",
+        "src/data/development_validation.py"
+      ],
+      "missing_implementation": [],
+      "remaining_verification": "No demonstrated mapped-component defect",
+      "relevant_tests": [
+        "tests/test_manifest_guard.py",
+        "tests/test_development_validation.py"
+      ],
+      "coding_status": "CODE_COMPLETE_VERIFIED",
+      "scientific_execution_status": "No new scientific execution in this task",
+      "dependency_constraints": "Genuine experiments and applicable authorization remain separate"
+    },
+    {
+      "phase": "05",
+      "exact_original_title": "Forensic Leakage Audit + v3 Promotion",
+      "original_historical_status": "COMPLETE — scientific gate PASS",
+      "preserved_title_entries": [
+        "Forensic Leakage Audit + v3 Promotion (COMPLETE — scientific gate PASS)"
+      ],
+      "original_software_requirements": "Duplicate/leakage detection; preserve v2 and v3 identities",
+      "existing_implementation": [
+        "src/data/development_validation.py",
+        "scripts/audit/audit_v3.py"
+      ],
+      "missing_implementation": [],
+      "remaining_verification": "No demonstrated mapped-component defect",
+      "relevant_tests": [
+        "tests/test_development_validation.py"
+      ],
+      "coding_status": "CODE_COMPLETE_VERIFIED",
+      "scientific_execution_status": "No new scientific execution in this task",
+      "dependency_constraints": "Genuine experiments and applicable authorization remain separate"
+    },
+    {
+      "phase": "06",
+      "exact_original_title": "Descriptive Dataset Analysis / KUB Characterization",
+      "original_historical_status": "PART 1A-R1 COMPLETE — clean-v3, gate PASS; remaining parts pending",
+      "preserved_title_entries": [
+        "Descriptive Dataset Analysis / KUB Characterization (PART 1A-R1 COMPLETE — clean-v3, gate PASS; remaining parts pending)"
+      ],
+      "original_software_requirements": "KUB morphology and component characterization",
+      "existing_implementation": [
+        "src/analysis/kub_characterization.py",
+        "src/inference/clean_v3_components.py"
+      ],
+      "missing_implementation": [],
+      "remaining_verification": "No demonstrated mapped-component defect",
+      "relevant_tests": [
+        "tests/test_phase07_taxonomy.py"
+      ],
+      "coding_status": "CODE_COMPLETE_VERIFIED",
+      "scientific_execution_status": "No new scientific execution in this task",
+      "dependency_constraints": "Genuine experiments and applicable authorization remain separate"
+    },
+    {
+      "phase": "07",
+      "exact_original_title": "Object Size Taxonomy & Quartiles",
+      "original_historical_status": "COMPLETE — `kub_size_clean_v3_v1` FROZEN; historical `kub_size_v1` immutable; VAL characterized post-freeze",
+      "preserved_title_entries": [
+        "Object Size Taxonomy & Quartiles (COMPLETE — `kub_size_clean_v3_v1` FROZEN; historical `kub_size_v1` immutable; VAL characterized post-freeze)"
+      ],
+      "original_software_requirements": "TRAIN-defined object-size quartiles and size metrics",
+      "existing_implementation": [
+        "src/analysis/kub_object_size.py",
+        "src/metrics/object_metrics.py"
+      ],
+      "missing_implementation": [],
+      "remaining_verification": "No demonstrated mapped-component defect",
+      "relevant_tests": [
+        "tests/test_phase07_taxonomy.py",
+        "tests/test_object_metrics.py"
+      ],
+      "coding_status": "CODE_COMPLETE_VERIFIED",
+      "scientific_execution_status": "No new scientific execution in this task",
+      "dependency_constraints": "Genuine experiments and applicable authorization remain separate"
+    },
+    {
+      "phase": "08",
+      "exact_original_title": "Baseline Infrastructure & Factories",
+      "original_historical_status": "COMPLETE — Part 1A clean-v3 foundation + Part 1B trainer/resume contract & Phase-09 protocol reconstruction; no training",
+      "preserved_title_entries": [
+        "Baseline Infrastructure & Factories (COMPLETE — Part 1A clean-v3 foundation + Part 1B trainer/resume contract & Phase-09 protocol reconstruction; no training)"
+      ],
+      "original_software_requirements": "Model/loss factories, data loaders, resumable trainer",
+      "existing_implementation": [
+        "src/data/loaders.py",
+        "src/models/factory.py",
+        "src/utils/checkpointing.py"
+      ],
+      "missing_implementation": [],
+      "remaining_verification": "No demonstrated mapped-component defect",
+      "relevant_tests": [
+        "tests/test_phase08_infrastructure.py",
+        "tests/test_phase08b_trainer_protocol.py"
+      ],
+      "coding_status": "CODE_COMPLETE_VERIFIED",
+      "scientific_execution_status": "No new scientific execution in this task",
+      "dependency_constraints": "Genuine experiments and applicable authorization remain separate"
+    },
+    {
+      "phase": "09",
+      "exact_original_title": "KUB UNet Baseline Training",
+      "original_historical_status": "historical v2 COMPLETE; clean-v3 candidate config `RECONSTRUCTED_AND_READY`, NOT started",
+      "preserved_title_entries": [
+        "KUB UNet Baseline Training (historical v2 COMPLETE; clean-v3 candidate config `RECONSTRUCTED_AND_READY`, NOT started)",
+        "Global Baseline Training (U-Net) (COMPLETE v2 / CLEAN-V3 REVALIDATION REQUIRED)"
+      ],
+      "original_software_requirements": "KUB U-Net trainer and deterministic checkpoints",
+      "existing_implementation": [
+        "scripts/training/train_kub_baseline.py",
+        "src/models/unet.py"
+      ],
+      "missing_implementation": [],
+      "remaining_verification": "No demonstrated mapped-component defect",
+      "relevant_tests": [
+        "tests/test_unet.py",
+        "tests/test_checkpointing.py"
+      ],
+      "coding_status": "CODE_COMPLETE_VERIFIED",
+      "scientific_execution_status": "No new scientific execution in this task",
+      "dependency_constraints": "Genuine experiments and applicable authorization remain separate"
+    },
+    {
+      "phase": "10",
+      "exact_original_title": "Baseline Comparison (UNet vs UNet++ vs SegNet)",
+      "original_historical_status": "COMPLETE v2 / CLEAN-V3 REVALIDATION REQUIRED",
+      "preserved_title_entries": [
+        "Baseline Comparison (UNet vs UNet++ vs SegNet) (COMPLETE v2 / CLEAN-V3 REVALIDATION REQUIRED)"
+      ],
+      "original_software_requirements": "Conventional baseline training/comparison",
+      "existing_implementation": [
+        "scripts/training/train_phase10_baselines.py",
+        "src/models/factory.py"
+      ],
+      "missing_implementation": [],
+      "remaining_verification": "No demonstrated mapped-component defect",
+      "relevant_tests": [
+        "tests/test_phase10_models.py"
+      ],
+      "coding_status": "CODE_COMPLETE_VERIFIED",
+      "scientific_execution_status": "No new scientific execution in this task",
+      "dependency_constraints": "Genuine experiments and applicable authorization remain separate"
+    },
+    {
+      "phase": "11",
+      "exact_original_title": "Baseline Failure Analysis",
+      "original_historical_status": "COMPLETE v2 / CLEAN-V3 REVALIDATION REQUIRED",
+      "preserved_title_entries": [
+        "Baseline Failure Analysis (COMPLETE v2 / CLEAN-V3 REVALIDATION REQUIRED)"
+      ],
+      "original_software_requirements": "Failure taxonomy, component/size metrics, visual reporting",
+      "existing_implementation": [
+        "scripts/analysis/analyze_phase11_failures.py",
+        "src/metrics/evaluation_metrics.py"
+      ],
+      "missing_implementation": [],
+      "remaining_verification": "No demonstrated mapped-component defect",
+      "relevant_tests": [
+        "tests/test_object_metrics.py",
+        "tests/test_evaluation_metrics.py"
+      ],
+      "coding_status": "CODE_COMPLETE_VERIFIED",
+      "scientific_execution_status": "No new scientific execution in this task",
+      "dependency_constraints": "Genuine experiments and applicable authorization remain separate"
+    },
+    {
+      "phase": "12",
+      "exact_original_title": "Oracle ROI Upper Bound Analysis",
+      "original_historical_status": "COMPLETE v2 / CLEAN-V3 REVALIDATION REQUIRED",
+      "preserved_title_entries": [
+        "Oracle ROI Upper Bound Analysis (COMPLETE v2 / CLEAN-V3 REVALIDATION REQUIRED)"
+      ],
+      "original_software_requirements": "Oracle crop/zoom upper-bound tooling, paired analysis",
+      "existing_implementation": [
+        "src/analysis/oracle_roi.py"
+      ],
+      "missing_implementation": [],
+      "remaining_verification": "No demonstrated mapped-component defect",
+      "relevant_tests": [
+        "tests/test_oracle_roi.py"
+      ],
+      "coding_status": "CODE_COMPLETE_VERIFIED",
+      "scientific_execution_status": "No new scientific execution in this task",
+      "dependency_constraints": "Genuine experiments and applicable authorization remain separate"
+    },
+    {
+      "phase": "13",
+      "exact_original_title": "Predicted ROI Proposal Localization (Stage 4D)",
+      "original_historical_status": "COMPLETE v2 / CLEAN-V3 REVALIDATION REQUIRED",
+      "preserved_title_entries": [
+        "Predicted ROI Proposal Localization (Stage 4D) (COMPLETE v2 / CLEAN-V3 REVALIDATION REQUIRED)"
+      ],
+      "original_software_requirements": "GT-free proposals/localization and provenance",
+      "existing_implementation": [
+        "src/inference/predicted_roi.py",
+        "src/inference/learned_roi_clean_v3.py"
+      ],
+      "missing_implementation": [],
+      "remaining_verification": "No demonstrated mapped-component defect",
+      "relevant_tests": [
+        "tests/test_predicted_roi.py",
+        "tests/test_phase13_manifest_provenance_binding.py"
+      ],
+      "coding_status": "CODE_COMPLETE_VERIFIED",
+      "scientific_execution_status": "No new scientific execution in this task",
+      "dependency_constraints": "Genuine experiments and applicable authorization remain separate"
+    },
+    {
+      "phase": "14",
+      "exact_original_title": "Regional Refiner Diagnostic Evaluation",
+      "original_historical_status": "COMPLETE v2 / FROZEN DIAGNOSTIC / CLEAN-V3 REVALIDATION REQUIRED",
+      "preserved_title_entries": [
+        "Regional Refiner Diagnostic Evaluation (COMPLETE v2 / FROZEN DIAGNOSTIC / CLEAN-V3 REVALIDATION REQUIRED)"
+      ],
+      "original_software_requirements": "Regional refiner diagnostic and conditional gate",
+      "existing_implementation": [
+        "src/data/regional_dataset.py",
+        "scripts/evaluation/evaluate_phase14_clean_v3_diagnostic.py"
+      ],
+      "missing_implementation": [],
+      "remaining_verification": "No demonstrated mapped-component defect",
+      "relevant_tests": [
+        "tests/test_phase14_part1.py"
+      ],
+      "coding_status": "CODE_COMPLETE_VERIFIED",
+      "scientific_execution_status": "No new scientific execution in this task",
+      "dependency_constraints": "Genuine experiments and applicable authorization remain separate"
+    },
+    {
+      "phase": "15",
+      "exact_original_title": "Regional Refiner Segmentation Loss Study",
+      "original_historical_status": "DEFERRED_CONDITIONAL__NOT_EXECUTED — protocol frozen; deferred after H3 insufficiency",
+      "preserved_title_entries": [
+        "Regional Refiner Segmentation Loss Study (DEFERRED_CONDITIONAL__NOT_EXECUTED — protocol frozen; deferred after H3 insufficiency)"
+      ],
+      "original_software_requirements": "Conditional regional loss study; reusable losses only",
+      "existing_implementation": [
+        "src/losses/segmentation.py"
+      ],
+      "missing_implementation": [],
+      "remaining_verification": "No conditional scientific branch activated; reusable losses/fusion retained",
+      "relevant_tests": [
+        "tests/test_segmentation_loss.py"
+      ],
+      "coding_status": "NOT_APPLICABLE_BY_DESIGN",
+      "scientific_execution_status": "No new scientific execution in this task",
+      "dependency_constraints": "DEFERRED_CONDITIONAL__NOT_EXECUTED; H3 gate not satisfied"
+    },
+    {
+      "phase": "16",
+      "exact_original_title": "Regional-Global Mask Fusion",
+      "original_historical_status": "DEFERRED_CONDITIONAL__NOT_EXECUTED",
+      "preserved_title_entries": [
+        "Regional-Global Mask Fusion (DEFERRED_CONDITIONAL__NOT_EXECUTED)"
+      ],
+      "original_software_requirements": "Conditional fusion/routing; reusable replacement fusion",
+      "existing_implementation": [
+        "src/research/stage6/end_to_end.py"
+      ],
+      "missing_implementation": [],
+      "remaining_verification": "No conditional scientific branch activated; reusable losses/fusion retained",
+      "relevant_tests": [
+        "tests/test_stage6_integration.py"
+      ],
+      "coding_status": "NOT_APPLICABLE_BY_DESIGN",
+      "scientific_execution_status": "No new scientific execution in this task",
+      "dependency_constraints": "DEFERRED_CONDITIONAL__NOT_EXECUTED; H3 gate not satisfied"
+    },
+    {
+      "phase": "17",
+      "exact_original_title": "KUB Regional Pipeline Comprehensive Ablation",
+      "original_historical_status": "DEFERRED_CONDITIONAL__NOT_EXECUTED",
+      "preserved_title_entries": [
+        "KUB Regional Pipeline Comprehensive Ablation (DEFERRED_CONDITIONAL__NOT_EXECUTED)"
+      ],
+      "original_software_requirements": "Conditional KUB ablations; no abandoned branch activation",
+      "existing_implementation": [
+        "scripts/analysis/build_phase28_matrix.py"
+      ],
+      "missing_implementation": [],
+      "remaining_verification": "No conditional scientific branch activated; reusable losses/fusion retained",
+      "relevant_tests": [],
+      "coding_status": "NOT_APPLICABLE_BY_DESIGN",
+      "scientific_execution_status": "No new scientific execution in this task",
+      "dependency_constraints": "DEFERRED_CONDITIONAL__NOT_EXECUTED; H3 gate not satisfied"
+    },
+    {
+      "phase": "18",
+      "exact_original_title": "KUB Final Development Validation Benchmark",
+      "original_historical_status": "DEFERRED_CONDITIONAL__NOT_EXECUTED",
+      "preserved_title_entries": [
+        "KUB Final Development Validation Benchmark (DEFERRED_CONDITIONAL__NOT_EXECUTED)"
+      ],
+      "original_software_requirements": "Conditional KUB freeze/validation; do not advance gate",
+      "existing_implementation": [
+        "docs/RULES.md"
+      ],
+      "missing_implementation": [],
+      "remaining_verification": "No conditional scientific branch activated; reusable losses/fusion retained",
+      "relevant_tests": [],
+      "coding_status": "NOT_APPLICABLE_BY_DESIGN",
+      "scientific_execution_status": "No new scientific execution in this task",
+      "dependency_constraints": "DEFERRED_CONDITIONAL__NOT_EXECUTED; H3 gate not satisfied"
+    },
+    {
+      "phase": "19",
+      "exact_original_title": "COMPLETE",
+      "original_historical_status": "dataset harmonization; **not** a training phase",
+      "preserved_title_entries": [
+        "COMPLETE (dataset harmonization; **not** a training phase)",
+        "Multi-Domain Dataset Harmonization (ISIC, BUSI, Kvasir, KUB) (**COMPLETE**)"
+      ],
+      "original_software_requirements": "Four-domain harmonization and task metadata policy",
+      "existing_implementation": [
+        "src/analysis/multidomain_harmonization.py",
+        "src/data/multidomain_dataset.py"
+      ],
+      "missing_implementation": [],
+      "remaining_verification": "No demonstrated mapped-component defect",
+      "relevant_tests": [
+        "tests/test_full_pipeline.py",
+        "tests/test_stage6_baselines.py"
+      ],
+      "coding_status": "CODE_COMPLETE_VERIFIED",
+      "scientific_execution_status": "No new scientific execution in this task",
+      "dependency_constraints": "Genuine experiments and applicable authorization remain separate"
+    },
+    {
+      "phase": "20",
+      "exact_original_title": "Shared Four-Domain Global Baseline — single frozen UNet++",
+      "original_historical_status": "**COMPLETE**; macro-domain VAL Dice 0.792007",
+      "preserved_title_entries": [
+        "Shared Four-Domain Global Baseline — single frozen UNet++ (**COMPLETE**; macro-domain VAL Dice 0.792007)"
+      ],
+      "original_software_requirements": "Shared global baseline and five-model comparison",
+      "existing_implementation": [
+        "scripts/training/train_phase20b_shared_baseline.py",
+        "src/research/stage6/baseline_real.py"
+      ],
+      "missing_implementation": [],
+      "remaining_verification": "No demonstrated mapped-component defect",
+      "relevant_tests": [
+        "tests/test_stage6_baselines.py"
+      ],
+      "coding_status": "CODE_COMPLETE_VERIFIED",
+      "scientific_execution_status": "No new scientific execution in this task",
+      "dependency_constraints": "Genuine experiments and applicable authorization remain separate"
+    },
+    {
+      "phase": "21",
+      "exact_original_title": "`ELIGIBLE_NOT_STARTED`",
+      "original_historical_status": "fresh supervisor authorization required",
+      "preserved_title_entries": [
+        "`ELIGIBLE_NOT_STARTED` (fresh supervisor authorization required)",
+        "Global MedFiLM Reference Architecture (**ELIGIBLE / NOT STARTED** — authorization required)"
+      ],
+      "original_software_requirements": "GlobalMedFiLM and task-conditioned FiLM training",
+      "existing_implementation": [
+        "src/models/film/global_medfilm.py",
+        "src/research/full_pipeline/stages/global_stage.py"
+      ],
+      "missing_implementation": [],
+      "remaining_verification": "No demonstrated mapped-component defect",
+      "relevant_tests": [
+        "tests/test_full_pipeline.py",
+        "tests/test_c1_training_integration.py"
+      ],
+      "coding_status": "CODE_COMPLETE_VERIFIED",
+      "scientific_execution_status": "No new scientific execution in this task",
+      "dependency_constraints": "Genuine experiments and applicable authorization remain separate"
+    },
+    {
+      "phase": "22",
+      "exact_original_title": "Multi-Domain Scale & Transfer Gap Analysis",
+      "original_historical_status": "NOT_STARTED",
+      "preserved_title_entries": [
+        "Multi-Domain Scale & Transfer Gap Analysis (NOT_STARTED)"
+      ],
+      "original_software_requirements": "Scale, transfer, regional benefit and resource diagnostics",
+      "existing_implementation": [
+        "src/analysis/phase22_scale.py",
+        "src/analysis/phase22_regional.py",
+        "src/analysis/phase22_resource.py"
+      ],
+      "missing_implementation": [],
+      "remaining_verification": "Complete phase-specific synthetic coverage; see test/source paths",
+      "relevant_tests": [],
+      "coding_status": "CODE_EXISTS_TESTING_INCOMPLETE",
+      "scientific_execution_status": "No new scientific execution in this task",
+      "dependency_constraints": "Genuine experiments and applicable authorization remain separate"
+    },
+    {
+      "phase": "23",
+      "exact_original_title": "Literature & Methodological Novelty Positioning",
+      "original_historical_status": "NOT_STARTED",
+      "preserved_title_entries": [
+        "Literature & Methodological Novelty Positioning (NOT_STARTED)"
+      ],
+      "original_software_requirements": "Literature and novelty evidence provenance",
+      "existing_implementation": [
+        "scripts/analysis/build_phase23_prior_art_matrix.py"
+      ],
+      "missing_implementation": [],
+      "remaining_verification": "Governance/literature acceptance is not software execution",
+      "relevant_tests": [],
+      "coding_status": "NOT_APPLICABLE_BY_DESIGN",
+      "scientific_execution_status": "No new scientific execution in this task",
+      "dependency_constraints": "Genuine experiments and applicable authorization remain separate"
+    },
+    {
+      "phase": "24",
+      "exact_original_title": "RA-MedFiLM Architectural Specification",
+      "original_historical_status": "NOT_STARTED",
+      "preserved_title_entries": [
+        "RA-MedFiLM Architectural Specification (NOT_STARTED)"
+      ],
+      "original_software_requirements": "Frozen architecture, 202 numeric +16 task features",
+      "existing_implementation": [
+        "src/features/barr_pre_refinement_features.py",
+        "src/models/barr/phase25_models.py"
+      ],
+      "missing_implementation": [],
+      "remaining_verification": "No demonstrated mapped-component defect",
+      "relevant_tests": [
+        "tests/test_phase25_architecture_drift.py"
+      ],
+      "coding_status": "CODE_COMPLETE_VERIFIED",
+      "scientific_execution_status": "No new scientific execution in this task",
+      "dependency_constraints": "Genuine experiments and applicable authorization remain separate"
+    },
+    {
+      "phase": "25",
+      "exact_original_title": "RA-MedFiLM Controlled Module Development",
+      "original_historical_status": "NOT_STARTED",
+      "preserved_title_entries": [
+        "RA-MedFiLM Controlled Module Development (NOT_STARTED)"
+      ],
+      "original_software_requirements": "25A refiner;25B features;25C OOF gains;25D router;25E resource gate;25F safety/fusion;25G integrated controls",
+      "existing_implementation": [
+        "src/research/full_pipeline/stages",
+        "src/research/stage6/end_to_end.py"
+      ],
+      "missing_implementation": [],
+      "remaining_verification": "No demonstrated mapped-component defect",
+      "relevant_tests": [
+        "tests/test_full_pipeline.py",
+        "tests/test_phase25_architecture_drift.py"
+      ],
+      "coding_status": "CODE_COMPLETE_VERIFIED",
+      "scientific_execution_status": "No new scientific execution in this task",
+      "dependency_constraints": "Genuine experiments and applicable authorization remain separate"
+    },
+    {
+      "phase": "26",
+      "exact_original_title": "Full Four-Domain Joint Architecture Training",
+      "original_historical_status": "NOT_STARTED",
+      "preserved_title_entries": [
+        "Full Four-Domain Joint Architecture Training (NOT_STARTED)"
+      ],
+      "original_software_requirements": "Canonical assembly; independent FULL G-CACHE-R-LABELS-B-S families",
+      "existing_implementation": [
+        "src/research/full_pipeline/orchestrator.py",
+        "src/research/full_pipeline/inference.py"
+      ],
+      "missing_implementation": [],
+      "remaining_verification": "No demonstrated mapped-component defect",
+      "relevant_tests": [
+        "tests/test_full_pipeline.py",
+        "tests/test_full_family_loading_contract.py"
+      ],
+      "coding_status": "CODE_COMPLETE_VERIFIED",
+      "scientific_execution_status": "No new scientific execution in this task",
+      "dependency_constraints": "Genuine experiments and applicable authorization remain separate"
+    },
+    {
+      "phase": "27",
+      "exact_original_title": "Multi-Domain Performance Preservation Audit",
+      "original_historical_status": "SPEC_COMPLETE_FROZEN / EXECUTION_ELIGIBLE_NOT_STARTED",
+      "preserved_title_entries": [
+        "Multi-Domain Performance Preservation Audit (SPEC_COMPLETE_FROZEN / EXECUTION_ELIGIBLE_NOT_STARTED)"
+      ],
+      "original_software_requirements": "Per-domain preservation and paired sample comparisons",
+      "existing_implementation": [
+        "src/research/evaluation/stats.py",
+        "scripts/analysis/phase27_exec_common.py"
+      ],
+      "missing_implementation": [],
+      "remaining_verification": "No demonstrated mapped-component defect",
+      "relevant_tests": [
+        "tests/test_evaluation_phase_c.py"
+      ],
+      "coding_status": "CODE_COMPLETE_VERIFIED",
+      "scientific_execution_status": "No new scientific execution in this task",
+      "dependency_constraints": "Genuine experiments and applicable authorization remain separate"
+    },
+    {
+      "phase": "28",
+      "exact_original_title": "Comprehensive System Ablation Matrix",
+      "original_historical_status": "NOT_STARTED",
+      "preserved_title_entries": [
+        "Comprehensive System Ablation Matrix (NOT_STARTED)"
+      ],
+      "original_software_requirements": "Architecture ablation matrix and exports",
+      "existing_implementation": [
+        "scripts/analysis/build_phase28_matrix.py",
+        "src/research/c1_film/training_engine.py"
+      ],
+      "missing_implementation": [],
+      "remaining_verification": "No demonstrated mapped-component defect",
+      "relevant_tests": [
+        "tests/test_c1_training_integration.py",
+        "tests/test_c3_controlled_experiments.py"
+      ],
+      "coding_status": "CODE_COMPLETE_VERIFIED",
+      "scientific_execution_status": "No new scientific execution in this task",
+      "dependency_constraints": "Genuine experiments and applicable authorization remain separate"
+    },
+    {
+      "phase": "29",
+      "exact_original_title": "Three-Seed Deterministic Reproducibility Study",
+      "original_historical_status": "NOT_STARTED",
+      "preserved_title_entries": [
+        "Three-Seed Deterministic Reproducibility Study (NOT_STARTED)"
+      ],
+      "original_software_requirements": "Independent three-seed weights, recovery and deterministic execution",
+      "existing_implementation": [
+        "src/research/full_pipeline/seeds.py",
+        "src/research/lite_pipeline/orchestrator.py"
+      ],
+      "missing_implementation": [],
+      "remaining_verification": "No demonstrated mapped-component defect",
+      "relevant_tests": [
+        "tests/test_full_pipeline.py",
+        "tests/test_lite_pipeline.py",
+        "tests/test_c1_launch_multiprocessing.py"
+      ],
+      "coding_status": "CODE_COMPLETE_VERIFIED",
+      "scientific_execution_status": "No new scientific execution in this task",
+      "dependency_constraints": "Genuine experiments and applicable authorization remain separate"
+    },
+    {
+      "phase": "30",
+      "exact_original_title": "Final Development Validation Benchmark",
+      "original_historical_status": "NOT_STARTED",
+      "preserved_title_entries": [
+        "Final Development Validation Benchmark (NOT_STARTED)"
+      ],
+      "original_software_requirements": "Development-only validation, fair eight-model/24-cell comparisons",
+      "existing_implementation": [
+        "src/research/evaluation/runner.py",
+        "src/research/evaluation/registry.py"
+      ],
+      "missing_implementation": [],
+      "remaining_verification": "No demonstrated mapped-component defect",
+      "relevant_tests": [
+        "tests/test_evaluation_phase_c.py",
+        "tests/test_stage6_integration.py"
+      ],
+      "coding_status": "CODE_COMPLETE_VERIFIED",
+      "scientific_execution_status": "No new scientific execution in this task",
+      "dependency_constraints": "Genuine experiments and applicable authorization remain separate"
+    },
+    {
+      "phase": "31",
+      "exact_original_title": "Statistical Significance & Hypothesis Testing",
+      "original_historical_status": "NOT_STARTED",
+      "preserved_title_entries": [
+        "Statistical Significance & Hypothesis Testing (NOT_STARTED)"
+      ],
+      "original_software_requirements": "Paired differences, cluster CIs, domain aggregation, inference-class separation",
+      "existing_implementation": [
+        "src/research/evaluation/stats.py",
+        "src/research/evaluation_r1/statistics.py"
+      ],
+      "missing_implementation": [],
+      "remaining_verification": "No demonstrated mapped-component defect",
+      "relevant_tests": [
+        "tests/test_evaluation_phase_c.py",
+        "tests/test_statistics_input_contract.py",
+        "tests/test_evaluation_r1_reference.py"
+      ],
+      "coding_status": "CODE_COMPLETE_VERIFIED",
+      "scientific_execution_status": "No new scientific execution in this task",
+      "dependency_constraints": "Genuine experiments and applicable authorization remain separate"
+    },
+    {
+      "phase": "32",
+      "exact_original_title": "External Dataset & Domain Shift Evaluation",
+      "original_historical_status": "NOT_STARTED",
+      "preserved_title_entries": [
+        "External Dataset & Domain Shift Evaluation (NOT_STARTED)"
+      ],
+      "original_software_requirements": "External adapters, domain-shift reporting and false positives",
+      "existing_implementation": [
+        "scripts/analysis/phase32_specification.py",
+        "src/research/evaluation/metrics.py"
+      ],
+      "missing_implementation": [],
+      "remaining_verification": "No demonstrated mapped-component defect",
+      "relevant_tests": [
+        "tests/test_c1_external_stress.py",
+        "tests/test_c1_external_evidence.py"
+      ],
+      "coding_status": "CODE_COMPLETE_VERIFIED",
+      "scientific_execution_status": "No new scientific execution in this task",
+      "dependency_constraints": "Genuine experiments and applicable authorization remain separate"
+    },
+    {
+      "phase": "33",
+      "exact_original_title": "Final System Failure & Boundary Error Analysis",
+      "original_historical_status": "NOT_STARTED",
+      "preserved_title_entries": [
+        "Final System Failure & Boundary Error Analysis (NOT_STARTED)"
+      ],
+      "original_software_requirements": "Failure/boundary taxonomy and domain summaries",
+      "existing_implementation": [
+        "scripts/analysis/phase33_tier0_tier1_execution_v1_2.py",
+        "src/metrics/evaluation_metrics.py"
+      ],
+      "missing_implementation": [],
+      "remaining_verification": "No demonstrated mapped-component defect",
+      "relevant_tests": [
+        "tests/test_evaluation_metrics.py"
+      ],
+      "coding_status": "CODE_COMPLETE_VERIFIED",
+      "scientific_execution_status": "No new scientific execution in this task",
+      "dependency_constraints": "Genuine experiments and applicable authorization remain separate"
+    },
+    {
+      "phase": "34",
+      "exact_original_title": "Computational Efficiency & Runtime Profiling",
+      "original_historical_status": "NOT_STARTED",
+      "preserved_title_entries": [
+        "Computational Efficiency & Runtime Profiling (NOT_STARTED)"
+      ],
+      "original_software_requirements": "Parameters/MACs/latency/memory and conditional invocation cost",
+      "existing_implementation": [
+        "src/research/performance",
+        "src/research/evaluation/efficiency.py"
+      ],
+      "missing_implementation": [],
+      "remaining_verification": "No demonstrated mapped-component defect",
+      "relevant_tests": [
+        "tests/test_performance_phase_d.py",
+        "tests/test_evaluation_phase_c.py"
+      ],
+      "coding_status": "CODE_COMPLETE_VERIFIED",
+      "scientific_execution_status": "No new scientific execution in this task",
+      "dependency_constraints": "Genuine experiments and applicable authorization remain separate"
+    },
+    {
+      "phase": "35",
+      "exact_original_title": "Feature Attribution & Visual Interpretability",
+      "original_historical_status": "NOT_STARTED",
+      "preserved_title_entries": [
+        "Feature Attribution & Visual Interpretability (NOT_STARTED)"
+      ],
+      "original_software_requirements": "FiLM attribution, Grad-CAM, proposals/router/safety visual evidence",
+      "existing_implementation": [
+        "scripts/analysis/phase35_interpretability_execution_v1_0h.py",
+        "src/research/performance/film.py"
+      ],
+      "missing_implementation": [],
+      "remaining_verification": "No demonstrated mapped-component defect",
+      "relevant_tests": [
+        "tests/test_late_phase_synthetic.py",
+        "tests/test_performance_phase_d.py"
+      ],
+      "coding_status": "CODE_COMPLETE_VERIFIED",
+      "scientific_execution_status": "No new scientific execution in this task",
+      "dependency_constraints": "Genuine experiments and applicable authorization remain separate"
+    },
+    {
+      "phase": "36",
+      "exact_original_title": "Robustness & Image Perturbation Analysis",
+      "original_historical_status": "NOT_STARTED",
+      "preserved_title_entries": [
+        "Robustness & Image Perturbation Analysis (NOT_STARTED)"
+      ],
+      "original_software_requirements": "Frozen noise/blur/contrast/brightness/resolution/proposal perturbations",
+      "existing_implementation": [
+        "scripts/analysis/phase36_robustness_common_v1_0.py",
+        "scripts/analysis/phase36_robustness_execution_v1_23.py"
+      ],
+      "missing_implementation": [],
+      "remaining_verification": "No demonstrated mapped-component defect",
+      "relevant_tests": [
+        "tests/test_late_phase_synthetic.py"
+      ],
+      "coding_status": "CODE_COMPLETE_VERIFIED",
+      "scientific_execution_status": "No new scientific execution in this task",
+      "dependency_constraints": "Genuine experiments and applicable authorization remain separate"
+    },
+    {
+      "phase": "37",
+      "exact_original_title": "Comprehensive Visual & Tabular Evidence Consolidation",
+      "original_historical_status": "NOT_STARTED",
+      "preserved_title_entries": [
+        "Comprehensive Visual & Tabular Evidence Consolidation (NOT_STARTED)"
+      ],
+      "original_software_requirements": "Evidence index, provenance-bound tables/figures",
+      "existing_implementation": [
+        "src/research/evaluation/reports.py",
+        "src/research/paper_assets/validation.py"
+      ],
+      "missing_implementation": [],
+      "remaining_verification": "No demonstrated mapped-component defect",
+      "relevant_tests": [
+        "tests/test_evaluation_phase_c.py",
+        "tests/test_paper_assets.py"
+      ],
+      "coding_status": "CODE_COMPLETE_VERIFIED",
+      "scientific_execution_status": "No new scientific execution in this task",
+      "dependency_constraints": "Genuine experiments and applicable authorization remain separate"
+    },
+    {
+      "phase": "38",
+      "exact_original_title": "Manuscript Protocol & Checkpoint Freeze",
+      "original_historical_status": "NOT_STARTED",
+      "preserved_title_entries": [
+        "Manuscript Protocol & Checkpoint Freeze (NOT_STARTED)"
+      ],
+      "original_software_requirements": "Protocol/config/checkpoint/environment/manifest/evidence hashes",
+      "existing_implementation": [
+        "src/research/deployment/artifacts.py",
+        "src/research/full_pipeline/provenance.py"
+      ],
+      "missing_implementation": [],
+      "remaining_verification": "No demonstrated mapped-component defect",
+      "relevant_tests": [
+        "tests/test_deployment_artifacts.py",
+        "tests/test_full_pipeline.py"
+      ],
+      "coding_status": "CODE_COMPLETE_VERIFIED",
+      "scientific_execution_status": "No new scientific execution in this task",
+      "dependency_constraints": "Genuine experiments and applicable authorization remain separate"
+    },
+    {
+      "phase": "39",
+      "exact_original_title": "Final Untouched Test Cohort Evaluation",
+      "original_historical_status": "NOT_STARTED",
+      "preserved_title_entries": [
+        "Final Untouched Test Cohort Evaluation (NOT_STARTED)"
+      ],
+      "original_software_requirements": "Authorized single-pass evaluation, accounting and failure-safe publication",
+      "existing_implementation": [
+        "scripts/analysis/phase39_final_test_execution_v1_2.py",
+        "src/research/evaluation/single_pass.py"
+      ],
+      "missing_implementation": [],
+      "remaining_verification": "New single_pass.run_once is synthetic-verified; not bound into a new authorized Phase39 release",
+      "relevant_tests": [
+        "tests/test_late_phase_synthetic.py",
+        "tests/test_single_pass_transaction.py"
+      ],
+      "coding_status": "CODE_EXISTS_TESTING_INCOMPLETE",
+      "scientific_execution_status": "No new scientific execution in this task",
+      "dependency_constraints": "EXTERNAL_AUTHORIZATION_REQUIRED; never rerun historical TEST subjects"
+    },
+    {
+      "phase": "40",
+      "exact_original_title": "Publication Package & Reproducibility Audit",
+      "original_historical_status": "NOT_STARTED",
+      "preserved_title_entries": [
+        "Publication Package & Reproducibility Audit (NOT_STARTED)"
+      ],
+      "original_software_requirements": "Publication tables, evidence validation, reproducibility manifests",
+      "existing_implementation": [
+        "src/research/paper_assets/validation.py",
+        "src/research/paper_assets/c1_run_export.py",
+        "src/research/evaluation/reports.py"
+      ],
+      "missing_implementation": [],
+      "remaining_verification": "No demonstrated mapped-component defect",
+      "relevant_tests": [
+        "tests/test_paper_assets.py",
+        "tests/test_c1_stats_and_exports.py"
+      ],
+      "coding_status": "CODE_COMPLETE_VERIFIED",
+      "scientific_execution_status": "No new scientific execution in this task",
+      "dependency_constraints": "Genuine experiments and applicable authorization remain separate"
+    },
+    {
+      "phase": "41",
+      "exact_original_title": "Deployment Engineering & Model Packaging",
+      "original_historical_status": "NOT_STARTED (NOT_AUTHORIZED_FOR_EXECUTION)",
+      "preserved_title_entries": [
+        "Deployment Engineering & Model Packaging"
+      ],
+      "original_software_requirements": "Byte-bound G/R/B/S packaging, preprocessing and versioned config",
+      "existing_implementation": [
+        "src/research/deployment/artifacts.py",
+        "src/research/deployment/runtime.py"
+      ],
+      "missing_implementation": [],
+      "remaining_verification": "FULL package parity verified; historical Phase26/single-channel design vs RGB source reconciliation not authorized",
+      "relevant_tests": [
+        "tests/test_deployment_artifacts.py",
+        "tests/test_full_pipeline.py"
+      ],
+      "coding_status": "CODE_EXISTS_TESTING_INCOMPLETE",
+      "scientific_execution_status": "No new scientific execution in this task",
+      "dependency_constraints": "EXTERNAL_AUTHORIZATION_REQUIRED for exact historical subject/control population and release"
+    },
+    {
+      "phase": "42",
+      "exact_original_title": "End-to-End Deployment Validation",
+      "original_historical_status": "NOT_STARTED (NOT_AUTHORIZED_FOR_EXECUTION)",
+      "preserved_title_entries": [
+        "End-to-End Deployment Validation"
+      ],
+      "original_software_requirements": "Exact packaged inference parity and measured deployment cost",
+      "existing_implementation": [
+        "src/research/deployment/validation.py"
+      ],
+      "missing_implementation": [],
+      "remaining_verification": "FULL package parity verified; historical Phase26/single-channel design vs RGB source reconciliation not authorized",
+      "relevant_tests": [
+        "tests/test_deployment_artifacts.py",
+        "tests/test_full_pipeline.py"
+      ],
+      "coding_status": "CODE_EXISTS_TESTING_INCOMPLETE",
+      "scientific_execution_status": "No new scientific execution in this task",
+      "dependency_constraints": "EXTERNAL_AUTHORIZATION_REQUIRED for exact historical subject/control population and release"
+    },
+    {
+      "phase": "43",
+      "exact_original_title": "Research Deployment Release, Monitoring & Maintenance",
+      "original_historical_status": "NOT_STARTED (NOT_AUTHORIZED_FOR_EXECUTION)",
+      "preserved_title_entries": [
+        "Research Deployment Release, Monitoring & Maintenance"
+      ],
+      "original_software_requirements": "Immutable release registry, drift/regression monitoring and rollback",
+      "existing_implementation": [
+        "src/research/deployment/artifacts.py"
+      ],
+      "missing_implementation": [],
+      "remaining_verification": "No demonstrated mapped-component defect",
+      "relevant_tests": [
+        "tests/test_deployment_artifacts.py"
+      ],
+      "coding_status": "CODE_COMPLETE_VERIFIED",
+      "scientific_execution_status": "No new scientific execution in this task",
+      "dependency_constraints": "Genuine experiments and applicable authorization remain separate"
+    }
+  ],
+  "test_module_observations": {
+    "tests/test_deployment_artifacts.py": [
+      "passed"
+    ],
+    "tests/test_full_family_loading_contract.py": [
+      "passed"
+    ],
+    "tests/test_barr_m1_preparation_blockers.py": [
+      "passed"
+    ],
+    "tests/test_barr_m1_rc1.py": [
+      "passed"
+    ],
+    "tests/test_barr_m1_v1_0d_repaired.py": [
+      "passed"
+    ],
+    "tests/test_c1_artifact_pipeline.py": [
+      "passed"
+    ],
+    "tests/test_c1_external_evidence.py": [
+      "passed"
+    ],
+    "tests/test_c1_external_final_corrections.py": [
+      "passed"
+    ],
+    "tests/test_c1_external_stress.py": [
+      "passed"
+    ],
+    "tests/test_c1_film_preparation.py": [
+      "passed"
+    ],
+    "tests/test_c1_launch_multiprocessing.py": [
+      "passed"
+    ],
+    "tests/test_c1_launch_rc2.py": [
+      "failed",
+      "passed"
+    ],
+    "tests/test_c1_launch_rc3.py": [
+      "passed"
+    ],
+    "tests/test_c1_launch_rc4.py": [
+      "passed"
+    ],
+    "tests/test_c1_launch_release.py": [
+      "passed"
+    ],
+    "tests/test_c1_rc4_candidate_launch.py": [
+      "passed"
+    ],
+    "tests/test_c1_rc4_launch_path_review.py": [
+      "passed",
+      "skipped"
+    ],
+    "tests/test_c1_stats_and_exports.py": [
+      "passed"
+    ],
+    "tests/test_c1_training_integration.py": [
+      "passed"
+    ],
+    "tests/test_c2_c3_reporters.py": [
+      "passed"
+    ],
+    "tests/test_c3_controlled_experiments.py": [
+      "passed"
+    ],
+    "tests/test_checkpointing.py": [
+      "passed"
+    ],
+    "tests/test_evaluation_metrics.py": [
+      "passed"
+    ],
+    "tests/test_evaluation_phase_c.py": [
+      "passed",
+      "skipped"
+    ],
+    "tests/test_evaluation_r1_contract.py": [
+      "passed"
+    ],
+    "tests/test_evaluation_r1_metrics.py": [
+      "passed"
+    ],
+    "tests/test_evaluation_r1_reference.py": [
+      "passed"
+    ],
+    "tests/test_evaluation_r2_integrity.py": [
+      "passed"
+    ],
+    "tests/test_evaluation_r3_analysis.py": [
+      "passed"
+    ],
+    "tests/test_experiment_registry.py": [
+      "passed"
+    ],
+    "tests/test_full_pipeline.py": [
+      "passed"
+    ],
+    "tests/test_h3_size_adaptive_sigma.py": [
+      "passed"
+    ],
+    "tests/test_kub_dataset.py": [
+      "passed"
+    ],
+    "tests/test_kub_localizer.py": [
+      "passed"
+    ],
+    "tests/test_late_phase_synthetic.py": [
+      "passed"
+    ],
+    "tests/test_lite_evaluation.py": [
+      "passed"
+    ],
+    "tests/test_lite_pipeline.py": [
+      "passed"
+    ],
+    "tests/test_object_metrics.py": [
+      "passed"
+    ],
+    "tests/test_paper_assets.py": [
+      "passed"
+    ],
+    "tests/test_performance_phase_d.py": [
+      "passed"
+    ],
+    "tests/test_phase07_taxonomy.py": [
+      "passed"
+    ],
+    "tests/test_phase08_infrastructure.py": [
+      "passed"
+    ],
+    "tests/test_phase08b_trainer_protocol.py": [
+      "passed"
+    ],
+    "tests/test_phase10_models.py": [
+      "passed"
+    ],
+    "tests/test_phase13_clean_v3_metric_semantics_r2b.py": [
+      "passed"
+    ],
+    "tests/test_phase13_clean_v3_selection.py": [
+      "passed"
+    ],
+    "tests/test_phase13_fixed_config_evaluator_contract.py": [
+      "passed"
+    ],
+    "tests/test_phase13_manifest_provenance_binding.py": [
+      "passed"
+    ],
+    "tests/test_phase13_part1b_r0r1_gates.py": [
+      "passed"
+    ],
+    "tests/test_phase13_part1d_a_static.py": [
+      "passed"
+    ],
+    "tests/test_phase13_r2c_coverage_semantics.py": [
+      "passed"
+    ],
+    "tests/test_phase14_part1.py": [
+      "passed"
+    ],
+    "tests/test_phase25_architecture_drift.py": [
+      "passed"
+    ],
+    "tests/test_predicted_roi.py": [
+      "passed"
+    ],
+    "tests/test_r3_synthetic.py": [
+      "passed"
+    ],
+    "tests/test_ra_medfilm_barr_lite.py": [
+      "passed"
+    ],
+    "tests/test_rc2_missing_store_isolation.py": [
+      "passed"
+    ],
+    "tests/test_segmentation_loss.py": [
+      "passed"
+    ],
+    "tests/test_segmentation_metrics.py": [
+      "passed"
+    ],
+    "tests/test_stage4d_notebook_validator.py": [
+      "passed"
+    ],
+    "tests/test_stage6_baselines.py": [
+      "passed"
+    ],
+    "tests/test_stage6_integration.py": [
+      "passed"
+    ],
+    "tests/test_statistics_input_contract.py": [
+      "passed"
+    ],
+    "tests/test_test_lock.py": [
+      "passed"
+    ],
+    "tests/test_unet.py": [
+      "passed"
+    ],
+    "tests/test_validation_accumulator.py": [
+      "passed"
+    ],
+    "tests/test_development_validation.py": [
+      "passed"
+    ],
+    "tests/test_evaluation_figures.py": [
+      "passed"
+    ],
+    "tests/test_single_pass_transaction.py": [
+      "passed"
+    ],
+    "tests/test_research_operator.py": [
+      "passed"
+    ],
+    "tests/test_manifest_guard.py": [
+      "passed"
+    ],
+    "tests/test_oracle_roi.py": [
+      "passed"
+    ]
+  }
+}
