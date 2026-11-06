@@ -1,114 +1,75 @@
 # Project MEMORY — D:\Softfors\jup
 
-Hot index only. **Full detail → `NOTES_ARCHIVE.md` + dated logs (append-only).**
+**Hot index only.** Full detail → `NOTES_ARCHIVE.md` + dated logs `YYYY-MM-DD.md` (append-only).
+Never re-derive numbers settled there. Condensed 2026-11-04; nothing deleted, detail archived.
 
-## MODEL IDENTITY — do not misstate (user correction 2026-10-21)
-**RA-MedFiLM-BARR** = a **FiLM** model, **NOT** teacher-student/distillation. G=GlobalMedFiLM
-(`src/models/film/global_medfilm.py`; FiLM at 5 sites, `F_hat=(1+γ(t))*F+β(t)`, γ/β=tanh, zero-init
-out-proj) · R_psi=RegionalRefiner · B_phi=BenefitRouter · S_omega=PostSafety
-(`src/models/barr/ra_medfilm_barr.py`). `D:\Softfors\teacher_student` is a protected **PATH**, not the
-model. EXT-03 = non-FiLM baseline matrix, not student nets.
+## MODEL IDENTITY — do not misstate
+**RA-MedFiLM-BARR** is **FiLM**, NOT teacher-student/distillation. G=GlobalMedFiLM
+(`src/models/film/global_medfilm.py`, 5 FiLM sites, `F_hat=(1+γ)*F+β`, zero-init out-proj) ·
+R_psi=RegionalRefiner · B_phi=BenefitRouter · S_omega=PostSafety (`src/models/barr/ra_medfilm_barr.py`).
+`D:\Softfors\teacher_student` is a protected **PATH**, not the model. EXT-03 = non-FiLM baseline matrix.
 
 ## HARD RULES
-- Interpreter `D:\Softfors\jup\.venv\Scripts\python.exe` (py3.11.9, torch 2.6.0+cu124, RTX 3060 Ti 8 GB).
-- **NEVER touch `D:\Softfors\teacher_student`.** TEST is PHASE39-ONLY; ROUTER_HOLDOUT locked.
-- SHA-256 = `Path(p).read_bytes()`. Write-once = `O_CREAT|O_EXCL|O_WRONLY|O_BINARY` + full-write loop +
+- Interpreter `D:\Softfors\jup\.venv\Scripts\python.exe` (py3.11.9, torch 2.6.0+cu124, 3060 Ti 8 GB).
+- **NEVER touch `D:\Softfors\teacher_student`.** TEST1683 is PHASE39-ONLY; ROUTER_HOLDOUT locked.
+- SHA-256 = `Path(p).read_bytes()`. Write-once = `O_CREAT|O_EXCL|O_WRONLY|O_BINARY` + full-write +
   `os.fsync` + post-write `st_size`. Superseded artifacts **MOVED** to `_superseded_*`, never deleted.
-- **NO `or` FALLBACK when resolving a registry key.** Key is **`checkpoint_sha`**; absent ⇒ ABORT.
-- Scientific delta = DISTINCT repair CLASSES; raw-hunk counts MUST NOT be reported as the delta.
-- Never hard-code a *derived* SHA; read from disk. Never hand-author a timestamp.
-  `attempt_consumed = TRUE FOREVER`.
-- **Never claim a test ran if the interpreter cannot execute.** Report `NOT_RUN` + cause.
+- **NO `or` FALLBACK resolving a registry key.** Key is **`checkpoint_sha`**; absent ⇒ ABORT.
+- Scientific delta = DISTINCT repair CLASSES, never raw-hunk counts.
+- Never hard-code a *derived* SHA (read disk); never hand-author a timestamp. `attempt_consumed=TRUE FOREVER`.
+- **Never claim a test ran if the interpreter cannot execute** ⇒ `NOT_RUN` + cause.
+- Generic synthetic unit tests ≠ a required frozen smoke test / phase gate.
 
 ## HOST
-Clock NOT synchronised (2026-10-26): `Leap Indicator: 3`, `Source: Local CMOS Clock`, no successful sync
-ever. **All absolute timestamps carry unquantified offset**; only within-session ordering is trustworthy.
-O8 (CMOS battery + UPS + NTP) owed. No UPS enumerated.
-64-bit `python -c` segfault (2026-11-02, `0xc0000005`, module `unknown`) — **REPAIRED by 2026-11-03**;
-torch/CUDA verified. Root cause never formally identified.
+Clock NOT synchronised (`Leap Indicator: 3`, Local CMOS, no sync ever) ⇒ absolute timestamps carry
+unquantified offset; only within-session ordering trustworthy. No UPS enumerated. 64-bit `python -c`
+segfault (2026-11-02, `0xc0000005`) **REPAIRED 2026-11-03**; root cause never formally identified.
 
 ## POPULATION + THRESHOLDS (load-bearing, never conflate)
-TRAIN 5832 / VAL 808 / TEST 1683. ROUTER_DEVELOPMENT 4957 + ROUTER_HOLDOUT 875 = 5832 (asserted).
-`ROI_PROPOSAL_THRESHOLD=0.30` (bbox/action only) ≠ `SEGMENTATION_OUTPUT_THRESHOLD=0.50` (final mask/Dice);
-`SOMEGA_ACCEPT_THRESHOLD=0.50`. Refiner runs **before** the S_omega gate ⇒ `refiner_forwards == selected`,
-a rejected candidate already paid.
+TRAIN 5832 / VAL 808 / TEST 1683. ROUTER_DEV 4957 + ROUTER_HOLDOUT 875 = 5832.
+`ROI_PROPOSAL_THRESHOLD=0.30` (bbox/action) ≠ `SEGMENTATION_OUTPUT_THRESHOLD=0.50` (final mask/Dice);
+`SOMEGA_ACCEPT_THRESHOLD=0.50`. Refiner runs **before** S_omega ⇒ `refiner_forwards == selected`.
 
-## EXT-03 — v1.0 ADJUDICATED · v1.1 SUPERSEDED · v1.2 GOVERNANCE VERIFIED
-15/15 COMPLETE, all `best.pt` SHA-verified. VAL808 macro Dice: deeplabv3plus **0.6657** > unetpp .6409 >
-attention_unet .6249 > segformer_b0 .5904 > unet .5421. **All 15 REDUCED PROTOCOL** (Adam 1e-3, BCE-only,
-no aug) — never cite as protocol-faithful. v1.2 manifest `36fe4337…`.
-**C1 FiLM · C2 BARR router+safety · C3 protocol-faithful baselines — ALL NOT_ESTABLISHED.**
-GlobalMedFiLM ckpt has **ZERO router/safety tensors** ⇒ FiLM-off control silent on BARR; no
-safety-*specific* metric, no `S_omega`-absent arm ⇒ C2b not executable. AS-08 UNRESOLVED.
-Params **3,523,001**; FiLM+emb **90,768 (2.58%)**; F1 freeze-at-init ⇒ trainable 3,432,233.
-**Freezing never reduces total params.**
+## SCIENTIFIC STATUS (never overstate; detail → archive/logs)
+- **EXT-03** v1.0 adjudicated (15/15, ALL REDUCED PROTOCOL — never cite as protocol-faithful), v1.1
+  superseded, v1.2 verified. VAL808 Dice deeplabv3plus .6657 > unetpp .6409 > attention_unet .6249 >
+  segformer_b0 .5904 > unet .5421. **C1 FiLM / C2 BARR / C3 faithful baselines ALL NOT_ESTABLISHED**;
+  GlobalMedFiLM ckpt has ZERO router/safety tensors; AS-08 unresolved. Params 3,523,001; FiLM+emb
+  90,768 (2.58%); trainable 3,432,233. **Freezing never reduces total params.**
+- **MATCHED-ARM INVARIANT (not a defect):** `control=deepcopy(treatment)` ⇒ C1-T/C1-C IDENTICAL total
+  params (3,523,001) AND initial weights; trainable delta 90,768. Proof `c1_synthetic_chain_test.py`
+  → `CHAIN_SOUND`. Never assert a total-param difference.
+- **BARR-M1** DESIGN READY, approval NOT APPROVED. POLICY_COMPARISON not causal ablation;
+  32.37%=390/1205 is CONDITIONAL (correct uncond 42.6670%→7.8677%); IN-SAMPLE; ZERO GPU; join keyed
+  on `sample_id`; `n_executed` is a POLICY property. Traps → `NOTES_ARCHIVE.md` § BARR-M1.
+- **EXTERNAL 884** VERDICT CONSISTENT, 0 failures (CVC 612 / BrEaST 252 / Stones 20). IQR exactly
+  [0,0] ⇒ "sits on zero", never "straddles". Stones 0/9 negative-change ⇒ never fabricate a harmful
+  Stones case. BrEaST patient-level independence NOT verifiable.
+- **C1 RELEASES:** RC1/2/3 frozen. RC3 defect = gate refuses its OWN digest (`verify_release_rc3`
+  never called; `release_digest` returns RC2's); 27 tests pass because none presents its own digest —
+  do NOT fix by editing RC3. RC4 verifies its own identity, trust root UNPROVISIONED, no production
+  CLI drives it to training. **`DECISION_R` = unselected OPTION, zero implementation refs**; `DECISION_I`
+  conversational only; approval/signatory/key custody all PENDING. `configs/c1_operator/approval.json`
+  + `time_status.json` are agent-generated falsehoods — MUST_NOT_BE_REUSED, kept on disk as evidence.
+- **SURFACES:** `run_c1_campaign_launch.py [--execute]` preflight passes, gate refuses.
+  `stage6_eight_model.py baseline-run` has NO `--device`/`--execute`; `baseline_real.py` is a library
+  ⇒ `python -m` silent no-op exit 0. Stage6 = 24 cells ALL MISSING = NOT_ESTABLISHED. Lite
+  `lite_chain.py` synthetic-only; real BLOCKED on cross-fitted OOF labels.
 
-## MATCHED-ARM INVARIANT — DO NOT MISREAD AS A DEFECT
-`build_matched_arms`: `control = deepcopy(treatment)` then freeze ⇒ **C1-T and C1-C have IDENTICAL total
-params (3,523,001) and IDENTICAL initial weights**. Trainable delta **90,768** = conditioning count. Never
-assert a total-param difference or differing initial digests (my 2026-11-01 error). Proof:
-`scripts/verification/c1_synthetic_chain_test.py` → `CHAIN_SOUND`.
+## PIPELINE CODE (verified; real training NEVER started)
+- **FULL Phase A** `src/research/full_pipeline/`: `STAGE_ORDER=("G","CACHE","R","L","B","S")`, 3 seeds,
+  CLI `scripts/training/full_barr_three_seed.py`; real training raises `AuthorizationRequired`.
+  **OOF BOUNDARY: refiner/router/safety OOF=TRUE, backbone OOF=FALSE** ⇒ ΔQ backbone-in-sample, harm
+  rates optimistic; recorded by `label_stage.oof_contract()`, deliberately NOT repaired.
+  G 3,523,001 · R 1,276,401 · B 36,801 · S 1,217 = **4,837,420**.
+- **PHASE B Lite** (`496c8d6`) `src/research/lite_pipeline/`: 6-stage DAG, adapters not forks,
+  `oof_contract` v2 `backbone_out_of_fold=False` asserted. Reduction **94.3647 %** vs 4,837,420;
+  **92.2623 % = WRONG denominator**. Lite graph **272,601**; **1,586,817 FABRICATED — never cite**.
+  Full suite **1040 tests / 1 failed / 1 xfail** (RC2 host-specific, deliberately NOT repaired).
+- **PHASE C** unified eval + stats: CODING ONLY; four real defects found and fixed; torn-append
+  semantics verified → `2026-11-03.md`.
 
-## BARR-M1 — DESIGN READY, NOTHING AUTHORISED
-Frozen Phase-28 arms **A0/A1/A8**. **approval block NOT APPROVED.** Traps: **`POLICY_COMPARISON`, NOT
-router causal ablation** (A8 vs A1 differs in 4 fields; only `A7_vs_A8` pre-registered) · **"refine-all net
-harmful" does NOT transfer** (Ph22 VAL808+ORACLE ROI −34.32 vs A1 DEV +8.219) · **harm-rate denominator
-trap**: 32.37%=390/1205 is CONDITIONAL on acceptance ⇒ 42.67%→32.37% INVALID; correct 42.6670%→7.8677%
-(uncond) and 42.6670%→33.2526%→32.3651% (cond) · **IN-SAMPLE** (4957 ⊂ TRAIN) · **ZERO GPU** · join
-KEYED on `sample_id` (order differs) · frozen `mean_true_delta_dice_routed` is **POOLED** · `n_executed`
-is a POLICY property. Internal 1239 = 1205 acc + 34 rej; external 184 = 139 + 45; workload **25.0%**.
-Full detail → `NOTES_ARCHIVE.md` § BARR-M1.
-
-## EXTERNAL 884 — `VERDICT CONSISTENT`, 0 failures
-CVC 612 / BrEaST 252 / Stones 20. Global→BARR 68.66→68.97 · 70.78→70.81 · 8.08→8.21 pp. BrEaST
-`270 = 252 + 4 + 14`; patient-level independence **NOT verifiable**. Stones `n_clusters=20` ⇒
-**image-level descriptive**. **IQR exactly [0,0]** ⇒ "sits on zero", NEVER "straddles". Accepted-with-
-negative-change: CVC 14, BrEaST 20, **Stones 0/9** ⇒ never fabricate a harmful Stones case.
-
-## C1 RELEASES — RC1/RC2/RC3 frozen; RC4 = DECISION_I successor
-RC1 `1aec5e17…f93ff9c1` · RC2 `54794efc…a5e737ed` · RC3 `54d1273a…3549f`.
-**RC3 defect: gate refuses its own digest.** `mint_rc3_grant`→`rc2_mint_grant`→`verify_release_rc2`
-(requires `release_id==RC2`); `verify_release_rc3` never called; `RC3Grant.release_digest` returns the RC2
-digest. All 27 RC3 tests pass, **none presents the release with its OWN digest** ⇒ that is why it shipped.
-Do NOT "fix" by editing RC3.
-**RC4** `05a330d1…4eada2` (`src/research/c1_film_launch_rc4/`, 7 bound) verifies its OWN identity, refuses
-RC1/RC2/RC3 digests, trust root `%ProgramData%\InstitutionalC1TrustRC4` — **UNPROVISIONED**.
-`run_c1_campaign_launch.py` still hard-codes the RC3 digest; RC4 draft launcher raises
-`C1_RC4_DRAFT_LAUNCHER_NOT_AUTHORIZED`. **No production CLI drives RC4 to training** = smallest missing step.
-
-## C1 AUTHORITY — `DECISION_I` recorded conversationally; `DECISION_R` NEVER selected
-`docs/c1_execution_authority_decision_v1_0.md`: form unsigned; **Addendum 2026-11-01 records `DECISION_I`**;
-institutional approval PENDING, signatory NOT IDENTIFIED, key custody NOT ESTABLISHED. **`DECISION_R` is an
-unselected OPTION — zero implementation references.** A Markdown signature is not software authorization.
-`configs/c1_operator/approval.json` claims `Institutional Chief Scientist` — **agent-generated, never
-existed**. `time_status.json` claims `VERIFIED/NTP` — **false**. Both MUST_NOT_BE_REUSED, both still on
-disk untouched (evidence). Legacy store `C:\ProgramData\InstitutionalC1Trust` untouched;
-`BUILTIN\Users`=Write ⇒ admin separation ABSENT.
-
-## EXECUTION SURFACES — verified 2026-11-02
-- C1-T/C1-C: `scripts/analysis/run_c1_campaign_launch.py [--execute]` → `launch_driver_rc3.launch` →
-  `mint_rc3_grant` → `real_loader_factory` → `Trainer.run`. Preflight passes, gate refuses.
-- Baselines: `scripts/analysis/stage6_eight_model.py baseline-run --model <M> --seed <S> [--resume]
-  [--grant-provider MOD:CALLABLE]`. **No `--device`, no `--execute`.** `src/research/stage6/baseline_real.py`
-  is a **library** (0 argparse, 0 `__main__`) ⇒ `python -m ...baseline_real` is a **silent no-op, exit 0**.
-- Stage6 matrix: 8 models × `SEEDS=(42,123,3407)` ⇒ **24 cells**, all `MISSING` = **NOT_ESTABLISHED**.
-- LITE `src/research/stage6/lite_chain.py`: `if not synthetic: raise LiteChainError(REAL_BLOCK)` ⇒
-  synthetic-only; real needs cross-fitted OOF labels (`BLOCKED`).
-
-## FULL PIPELINE (Phase A, 2026-11-03) — `src/research/full_pipeline/`
-Single three-seed orchestrator, `STAGE_ORDER=("G","CACHE","R","L","B","S")`. CLI
-`scripts/training/full_barr_three_seed.py {prepare,validate,plan,dry-run,run,resume,export}`.
-Reuses canonical producers; `BARRBenefitRouterV1`/`BARRPostSafetyV1` now come from the single
-shared `src/models/barr/phase25_models.py` (drift-guarded by
-`tests/test_phase25_architecture_drift.py`). B/S cross-fit consumes the **frozen Phase-25D
-FIT/EARLY_STOP/OUTER_TARGET table**. Real training raises `AuthorizationRequired` without a grant.
-**OOF BOUNDARY: refiner/router/safety OOF = TRUE, backbone OOF = FALSE** — G trains on all 5,832
-TRAIN (incl. the 875 holdout), so ΔQ labels are backbone-in-sample and harm rates are optimistic,
-never held-out. Machine-recorded by `label_stage.oof_contract()`; deliberately NOT repaired.
-Components: G 3,523,001 · R **1,276,401** · B **36,801** · S **1,217** = **4,837,420**.
-Lite `depthwise_compact` complete graph = **272,601** (width 1,240,280 · ultralite 82,029);
-**1,586,817 is FABRICATED — never cite.** Detail → `2026-11-03.md`.
-
-## PHASE36 — `NOT_COMPLETE_PENDING_V1_22_EXECUTION`, Phase37 NOT_STARTED
-**v1.22 ELIGIBLE_NOT_STARTED (never executed)**; v1.20/v1.21 consumed or frozen; D95/D96 repaired.
-Gate: `PHASE36_V1_22_EXECUTE=1` + `PHASE36_V1_22_LAUNCH_AUTHORITY`. **SHAs → NOTES_ARCHIVE.**
+## PHASE36
+`NOT_COMPLETE_PENDING_V1_22_EXECUTION`; Phase37 NOT_STARTED. **v1.22 ELIGIBLE_NOT_STARTED (never
+executed)**; v1.20/21 consumed or frozen; D95/D96 repaired. Gate `PHASE36_V1_22_EXECUTE=1` +
+`PHASE36_V1_22_LAUNCH_AUTHORITY`. SHAs → `NOTES_ARCHIVE.md`.
