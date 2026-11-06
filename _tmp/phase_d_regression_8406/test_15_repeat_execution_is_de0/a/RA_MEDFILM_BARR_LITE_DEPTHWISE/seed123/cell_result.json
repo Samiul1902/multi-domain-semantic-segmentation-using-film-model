@@ -1,0 +1,218 @@
+{
+  "config_sha256": "0d14a00316f96f6c8be29d8214184d345d8dd555ec8a7521abd1ce5ac1aced4f",
+  "document_sha256": "f671a18b8fd7eba8a83d7e3db44dd0a1d119692495c15350e4dc5a3aaa34ef6b",
+  "evidence_class": "SYNTHETIC_TEST_ONLY",
+  "evidence_label": "SYNTHETIC_TEST: a deterministic fixture, not a research result.",
+  "evidence_namespace": "synthetic",
+  "model_key": "RA_MEDFILM_BARR_LITE_DEPTHWISE",
+  "n_images": 4,
+  "per_image_rows": 4,
+  "per_image_sha256": "e47be23ce87845e2ec38f6de3f6d0caadc7b290e2fea5f0e2f38799f7c4f30f1",
+  "provenance": {
+    "adapter_identity": {
+      "adapter_kind": "ROUTED",
+      "architecture_id": "ra_medfilm_barr_lite_depthwise_compact_v1",
+      "component_chain": [
+        "G",
+        "R_psi",
+        "B_phi",
+        "S_omega"
+      ],
+      "component_sha256": {
+        "B": "SYNTHETIC::B::123",
+        "G": "SYNTHETIC::G::123",
+        "R": "SYNTHETIC::R::123",
+        "S": "SYNTHETIC::S::123"
+      },
+      "evidence_class": "SYNTHETIC_TEST_ONLY",
+      "model_key": "RA_MEDFILM_BARR_LITE_DEPTHWISE",
+      "roi_rule": {
+        "expansion": 1.5,
+        "fractional_margin": 0.25
+      },
+      "seed": 123,
+      "synthetic_fixture_priming": {
+        "delta": 0.07450832724571227,
+        "primed": true,
+        "target_logit": 0.3
+      },
+      "thresholds": {
+        "roi_proposal": 0.3,
+        "safety_accept": 0.5,
+        "segmentation_output": 0.5
+      }
+    },
+    "adapter_kind": "ROUTED",
+    "checkpoint_sha256": null,
+    "component_sha256": {
+      "B": "SYNTHETIC::B::123",
+      "G": "SYNTHETIC::G::123",
+      "R": "SYNTHETIC::R::123",
+      "S": "SYNTHETIC::S::123"
+    },
+    "evaluation_configuration": {
+      "batch_size": 1,
+      "bootstrap": {
+        "alpha": 0.05,
+        "n_boot": 2000,
+        "resampling_unit": "image",
+        "seed": 20261103
+      },
+      "channel_policy": "RGB_3CH",
+      "export_maps": false,
+      "hd95_spacing_mm": null,
+      "hd95_unit": "pixel",
+      "metric_implementation_version": "phase_c_metric_engine_v1",
+      "resolution": 512,
+      "roi_proposal_threshold": 0.3,
+      "safety_accept_threshold": 0.5,
+      "threshold": 0.5,
+      "threshold_role": "SEGMENTATION_OUTPUT_THRESHOLD"
+    },
+    "evidence_class": "SYNTHETIC_TEST_ONLY",
+    "evidence_label": "SYNTHETIC_TEST: a deterministic fixture, not a research result.",
+    "hardware": {
+      "cuda": "12.4",
+      "device_count": 1,
+      "device_name": "NVIDIA GeForce RTX 3060 Ti",
+      "platform": "Windows-10-10.0.26200-SP0",
+      "processor": "AMD64 Family 25 Model 33 Stepping 2, AuthenticAMD",
+      "python": "3.11.9",
+      "torch": "2.6.0+cu124"
+    },
+    "metric_implementation_version": "phase_c_metric_engine_v1",
+    "model_display_name": "RA-MedFiLM-BARR-Lite (depthwise_compact)",
+    "model_key": "RA_MEDFILM_BARR_LITE_DEPTHWISE",
+    "n_images": 4,
+    "preprocessing_id": "phase4_v3_resizepad_512_rgb_bilinear_mask_nearest_v1",
+    "preprocessing_sha256": "d2244ea416c3c2e8521e8183563aad82ae37ad87dcb383c088c0f84c4876d3c0",
+    "protected_splits_accessed": false,
+    "schema": "phase_c_evaluation_cell_v1",
+    "seed": 123,
+    "split": "VAL",
+    "split_manifest_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+    "split_semantics": "VAL808 \u2014 development/selection-consumed, NOT independent",
+    "statistics_policy": {
+      "confirmatory_authorized": false,
+      "inference_class": "EXPLORATORY_UNCERTAINTY_ONLY",
+      "p_value": null
+    },
+    "synthetic": true,
+    "test_reads": 0,
+    "training_performed": false,
+    "training_protocol_version": "unknown"
+  },
+  "schema": "phase_c_evaluation_cell_v1",
+  "seed": 123,
+  "split": "VAL",
+  "statistics_policy": {
+    "confirmatory_authorized": false,
+    "inference_class": "EXPLORATORY_UNCERTAINTY_ONLY",
+    "p_value": null
+  },
+  "summary": {
+    "aggregation_levels": [
+      "PER_IMAGE",
+      "PER_DOMAIN",
+      "POOLED"
+    ],
+    "domain_n": {
+      "BUSI": 1,
+      "ISIC": 1,
+      "KUB": 1,
+      "KVASIR": 1
+    },
+    "elapsed_seconds": 0.7987203000011505,
+    "empty_gt_n": 0,
+    "empty_mask_false_positive_rate": null,
+    "equal_domain_macro_dice": 0.16193092310426616,
+    "equal_domain_macro_iou": 0.08829700099026215,
+    "harmful_accepted_refinements": 0,
+    "hd95_defined_n": 4,
+    "hd95_undefined_n": 0,
+    "hd95_unit": "pixel",
+    "image_weighted_dice": 0.16193092310426613,
+    "images_per_second": 5.008010939491883,
+    "metric_implementation_version": "phase_c_metric_engine_v1",
+    "n_from_ledger": 0,
+    "n_images": 4,
+    "n_scored_this_pass": 4,
+    "per_domain": {
+      "BUSI": {
+        "all_foreground_gt_n": 0,
+        "dice": 0.186149474423893,
+        "empty_gt_false_positives": 0,
+        "empty_gt_n": 0,
+        "empty_pred_n": 0,
+        "hd95_defined_n": 1,
+        "hd95_mean": 265.7923036278185,
+        "hd95_unit": "pixel",
+        "iou": 0.10262668935472917,
+        "n": 1,
+        "non_square_n": 0,
+        "precision": 0.1027118657342228,
+        "recall": 0.9919842710224138,
+        "undefined_precision_n": 0,
+        "undefined_recall_n": 0
+      },
+      "ISIC": {
+        "all_foreground_gt_n": 0,
+        "dice": 0.18612157452819975,
+        "empty_gt_false_positives": 0,
+        "empty_gt_n": 0,
+        "empty_pred_n": 0,
+        "hd95_defined_n": 1,
+        "hd95_mean": 307.5964071208132,
+        "hd95_unit": "pixel",
+        "iou": 0.10260972946966093,
+        "n": 1,
+        "non_square_n": 0,
+        "precision": 0.10276544497355852,
+        "recall": 0.9854477611940842,
+        "undefined_precision_n": 0,
+        "undefined_recall_n": 0
+      },
+      "KUB": {
+        "all_foreground_gt_n": 0,
+        "dice": 0.12973275007591928,
+        "empty_gt_false_positives": 0,
+        "empty_gt_n": 0,
+        "empty_pred_n": 0,
+        "hd95_defined_n": 1,
+        "hd95_mean": 289.44118097279534,
+        "hd95_unit": "pixel",
+        "iou": 0.06936588879559415,
+        "n": 1,
+        "non_square_n": 0,
+        "precision": 0.06942811615494263,
+        "recall": 0.9872437092265421,
+        "undefined_precision_n": 0,
+        "undefined_recall_n": 0
+      },
+      "KVASIR": {
+        "all_foreground_gt_n": 0,
+        "dice": 0.14571989338905258,
+        "empty_gt_false_positives": 0,
+        "empty_gt_n": 0,
+        "empty_pred_n": 0,
+        "hd95_defined_n": 1,
+        "hd95_mean": 295.42537108411227,
+        "hd95_unit": "pixel",
+        "iou": 0.0785856963410644,
+        "n": 1,
+        "non_square_n": 0,
+        "precision": 0.07858796200995125,
+        "recall": 0.9996332774518041,
+        "undefined_precision_n": 0,
+        "undefined_recall_n": 0
+      }
+    },
+    "pooled_dice": 0.16287995327192034,
+    "pooled_iou": 0.08866048441531846,
+    "primary_aggregate": "equal_domain_macro_dice",
+    "refiner_invocation_rate": 1.0,
+    "safety_accept_fraction_of_executed": 1.0,
+    "safety_reject_fraction_of_executed": 0.0
+  },
+  "synthetic": true
+}

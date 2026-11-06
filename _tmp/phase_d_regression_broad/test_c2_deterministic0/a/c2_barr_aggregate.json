@@ -1,0 +1,636 @@
+{
+  "ablation_hierarchy": [
+    {
+      "existing_arms": [],
+      "identity": "Identity-FiLM control, without BARR",
+      "reason": "Frozen C1-C runs are pending; no Phase-28 A-arm is an identity-FiLM control.",
+      "stage": "P0",
+      "status": "NOT_ESTABLISHED"
+    },
+    {
+      "existing_arms": [
+        "Phase-21 GlobalMedFiLM",
+        "A0"
+      ],
+      "identity": "Learned-FiLM GlobalMedFiLM, without BARR",
+      "reason": "A0 is a global-only learned-FiLM endpoint, not the C1 identity control.",
+      "stage": "P1",
+      "status": "HISTORICAL_INTERNAL_REFERENCE"
+    },
+    {
+      "existing_arms": [
+        "A1"
+      ],
+      "identity": "P1 plus regional refinement without selective routing",
+      "reason": "A1 is unconditional refinement on ROUTER_DEVELOPMENT; not a controlled C1 effect.",
+      "stage": "P2",
+      "status": "IN_SAMPLE_ENDPOINT_BY_CONSTRUCTION"
+    },
+    {
+      "existing_arms": [
+        "A6",
+        "A7"
+      ],
+      "identity": "P1 plus router and regional refinement without post-safety",
+      "reason": "A1-to-A6/A7 changes routing and budget; it is not a one-factor matched contrast.",
+      "stage": "P3",
+      "status": "DESCRIPTIVE_COMPONENT_PROGRESSION"
+    },
+    {
+      "existing_arms": [
+        "A8"
+      ],
+      "identity": "RA-MedFiLM-BARR (FULL)",
+      "reason": "A7-to-A8 is the prespecified matched S_omega contrast; A1-to-A8 is confounded.",
+      "stage": "P4",
+      "status": "FULL_SYSTEM_DEVELOPMENT_EVIDENCE"
+    }
+  ],
+  "checks": [
+    {
+      "check": "VAL808 seed42 macro delta equals phase29 summary",
+      "ok": true
+    },
+    {
+      "check": "VAL808 seed42 n_routed equals phase29 summary",
+      "ok": true
+    },
+    {
+      "check": "VAL808 seed123 macro delta equals phase29 summary",
+      "ok": true
+    },
+    {
+      "check": "VAL808 seed123 n_routed equals phase29 summary",
+      "ok": true
+    },
+    {
+      "check": "VAL808 seed3407 macro delta equals phase29 summary",
+      "ok": true
+    },
+    {
+      "check": "VAL808 seed3407 n_routed equals phase29 summary",
+      "ok": true
+    },
+    {
+      "check": "ROUTER_HOLDOUT per-domain A8 deltas equal phase30 summary table",
+      "ok": true
+    },
+    {
+      "check": "A8 conditional harm 390/1205 as in manuscript",
+      "ok": true
+    },
+    {
+      "check": "CVC-ClinicDB recomputed Dice equals domain-shift table",
+      "ok": true
+    },
+    {
+      "check": "BrEaST-Lesions-USG recomputed Dice equals domain-shift table",
+      "ok": true
+    },
+    {
+      "check": "Stones_where_are_you recomputed Dice equals domain-shift table",
+      "ok": true
+    },
+    {
+      "check": "stone-free failure preserved: 14/14 receive foreground",
+      "ok": true
+    }
+  ],
+  "compute": {
+    "analytical_gmacs_lower_bound": {
+      "FINAL_A8_C9_EXPECTED_CONDITIONAL": 32.437902022582854,
+      "GATED_EXECUTE_ALL_C9": 34.782440912,
+      "LITERAL_ALWAYS_REFINE_C2": 34.782403584,
+      "LITERAL_GLOBAL_ONLY_C1": 31.551740928,
+      "RATIO_A8C9_vs_C1": 1.0280859651011032e-09,
+      "RATIO_A8C9_vs_gated_C9": 9.325941817784193e-10,
+      "RATIO_A8C9_vs_literal_C2": 9.325951826257452e-10,
+      "SAVING_vs_gated_C9": 2.344538889417145,
+      "SAVING_vs_literal_C2": 2.344501561417145
+    },
+    "analytical_ratio_to_global": {
+      "FINAL_A8_C9_EXPECTED_CONDITIONAL": 1.0280859651011032,
+      "GATED_EXECUTE_ALL_C9": 1.1023937154964714,
+      "LITERAL_ALWAYS_REFINE_C2": 1.1023925324238768,
+      "LITERAL_GLOBAL_ONLY_C1": 1.0,
+      "RATIO_A8C9_vs_C1": 3.258412800254542e-11,
+      "RATIO_A8C9_vs_gated_C9": 2.955761407608434e-11,
+      "RATIO_A8C9_vs_literal_C2": 2.9557645796911673e-11,
+      "SAVING_vs_gated_C9": 0.07430775039536813,
+      "SAVING_vs_literal_C2": 0.07430656732277365
+    },
+    "measured_batch1_latency": {
+      "B_PHI_COMPONENT": {
+        "hardware": "NVIDIA GeForce RTX 3060 Ti",
+        "mean_ms": 0.37281001573055983,
+        "n": 1000,
+        "std_ms": 0.08135652045953644
+      },
+      "EXECUTE_CONTROLLED_PATH": {
+        "hardware": "NVIDIA GeForce RTX 3060 Ti",
+        "mean_ms": 18.894091419219972,
+        "n": 1000,
+        "std_ms": 0.6584723138309989
+      },
+      "GLOBAL_ONLY_C1": {
+        "hardware": "NVIDIA GeForce RTX 3060 Ti",
+        "mean_ms": 15.767750472068787,
+        "n": 1000,
+        "std_ms": 0.6395504640838543
+      },
+      "R_PSI_COMPONENT": {
+        "hardware": "NVIDIA GeForce RTX 3060 Ti",
+        "mean_ms": 4.533609761238099,
+        "n": 1000,
+        "std_ms": 0.7306397681817417
+      },
+      "SKIP_CONTROLLED_PATH": {
+        "hardware": "NVIDIA GeForce RTX 3060 Ti",
+        "mean_ms": 15.71835146522522,
+        "n": 1000,
+        "std_ms": 0.5901199029168571
+      },
+      "S_OMEGA_COMPONENT": {
+        "hardware": "NVIDIA GeForce RTX 3060 Ti",
+        "mean_ms": 0.25486716816946864,
+        "n": 1000,
+        "std_ms": 0.07774529723188978
+      }
+    },
+    "note": "Analytical MACs and measured latency are separate; BARR is not shown to be cheaper than Global (A8 expected conditional is 1.028x Global analytically)."
+  },
+  "denominator_policy": "all-case, routed, adopted, rejected and never-selected are reported separately; conditional means are not all-case averages",
+  "development_arms": [
+    {
+      "arm": "A0",
+      "beneficial_routed": 0,
+      "harm_rate_conditional_on_routed": null,
+      "harm_rate_intent_to_treat_all": 0.0,
+      "harmful_routed": 0,
+      "mean_delta_all_cases": 0.0,
+      "mean_delta_routed": 0.0,
+      "n_all": 4957,
+      "n_routed": 0,
+      "unchanged_routed": 0
+    },
+    {
+      "arm": "A1",
+      "beneficial_routed": 2775,
+      "harm_rate_conditional_on_routed": 0.4266693564656042,
+      "harm_rate_intent_to_treat_all": 0.4266693564656042,
+      "harmful_routed": 2115,
+      "mean_delta_all_cases": 0.0016580797893887432,
+      "mean_delta_routed": 0.001658079789,
+      "n_all": 4957,
+      "n_routed": 4957,
+      "unchanged_routed": 67
+    },
+    {
+      "arm": "A2",
+      "beneficial_routed": 669,
+      "harm_rate_conditional_on_routed": 0.44390637610976597,
+      "harm_rate_intent_to_treat_all": 0.11095420617308856,
+      "harmful_routed": 550,
+      "mean_delta_all_cases": 0.0003532952827920113,
+      "mean_delta_routed": 0.001413466277,
+      "n_all": 4957,
+      "n_routed": 1239,
+      "unchanged_routed": 20
+    },
+    {
+      "arm": "A3",
+      "beneficial_routed": 844,
+      "harm_rate_conditional_on_routed": 0.3188054882970137,
+      "harm_rate_intent_to_treat_all": 0.07968529352430906,
+      "harmful_routed": 395,
+      "mean_delta_all_cases": 0.0017960066763163204,
+      "mean_delta_routed": 0.007185476267,
+      "n_all": 4957,
+      "n_routed": 1239,
+      "unchanged_routed": 0
+    },
+    {
+      "arm": "A4",
+      "beneficial_routed": 843,
+      "harm_rate_conditional_on_routed": 0.3196125907990315,
+      "harm_rate_intent_to_treat_all": 0.07988702844462377,
+      "harmful_routed": 396,
+      "mean_delta_all_cases": 0.0017794921748840026,
+      "mean_delta_routed": 0.007119404932,
+      "n_all": 4957,
+      "n_routed": 1239,
+      "unchanged_routed": 0
+    },
+    {
+      "arm": "A5",
+      "beneficial_routed": 597,
+      "harm_rate_conditional_on_routed": 0.46408393866020986,
+      "harm_rate_intent_to_treat_all": 0.11599757918095623,
+      "harmful_routed": 575,
+      "mean_delta_all_cases": -0.00010832174434133548,
+      "mean_delta_routed": -0.000433374404,
+      "n_all": 4957,
+      "n_routed": 1239,
+      "unchanged_routed": 67
+    },
+    {
+      "arm": "A6",
+      "beneficial_routed": 827,
+      "harm_rate_conditional_on_routed": 0.33252623083131555,
+      "harm_rate_intent_to_treat_all": 0.08311478716965907,
+      "harmful_routed": 412,
+      "mean_delta_all_cases": 0.001811291834658059,
+      "mean_delta_routed": 0.007246629237,
+      "n_all": 4957,
+      "n_routed": 1239,
+      "unchanged_routed": 0
+    },
+    {
+      "arm": "A7",
+      "beneficial_routed": 827,
+      "harm_rate_conditional_on_routed": 0.33252623083131555,
+      "harm_rate_intent_to_treat_all": 0.08311478716965907,
+      "harmful_routed": 412,
+      "mean_delta_all_cases": 0.001811291834658059,
+      "mean_delta_routed": 0.007246629237,
+      "n_all": 4957,
+      "n_routed": 1239,
+      "unchanged_routed": 0
+    },
+    {
+      "arm": "A8",
+      "beneficial_routed": 815,
+      "harm_rate_conditional_on_routed": 0.3236514522821577,
+      "harm_rate_intent_to_treat_all": 0.07867661892273553,
+      "harmful_routed": 390,
+      "mean_delta_all_cases": 0.001827009063828929,
+      "mean_delta_routed": 0.007515754298,
+      "n_all": 4957,
+      "n_routed": 1205,
+      "unchanged_routed": 0
+    },
+    {
+      "arm": "R1",
+      "beneficial_routed": 723,
+      "harm_rate_conditional_on_routed": 0.37368845843422116,
+      "harm_rate_intent_to_treat_all": 0.09340326810570909,
+      "harmful_routed": 463,
+      "mean_delta_all_cases": 0.0008299499642727456,
+      "mean_delta_routed": 0.003320469712,
+      "n_all": 4957,
+      "n_routed": 1239,
+      "unchanged_routed": 53
+    },
+    {
+      "arm": "R2",
+      "beneficial_routed": 678,
+      "harm_rate_conditional_on_routed": 0.4350282485875706,
+      "harm_rate_intent_to_treat_all": 0.10873512204962679,
+      "harmful_routed": 539,
+      "mean_delta_all_cases": 0.0002976025749848699,
+      "mean_delta_routed": 0.001190650496,
+      "n_all": 4957,
+      "n_routed": 1239,
+      "unchanged_routed": 22
+    },
+    {
+      "arm": "R3",
+      "beneficial_routed": 702,
+      "harm_rate_conditional_on_routed": 0.42292171105730425,
+      "harm_rate_intent_to_treat_all": 0.1057090982449062,
+      "harmful_routed": 524,
+      "mean_delta_all_cases": 0.00031267025985475086,
+      "mean_delta_routed": 0.001250933396,
+      "n_all": 4957,
+      "n_routed": 1239,
+      "unchanged_routed": 13
+    },
+    {
+      "arm": "F1",
+      "beneficial_routed": 256,
+      "harm_rate_conditional_on_routed": 0.688458434221146,
+      "harm_rate_intent_to_treat_all": 0.17207988702844462,
+      "harmful_routed": 853,
+      "mean_delta_all_cases": -0.008144691501472665,
+      "mean_delta_routed": -0.032585339607,
+      "n_all": 4957,
+      "n_routed": 1239,
+      "unchanged_routed": 130
+    }
+  ],
+  "external": {
+    "BrEaST-Lesions-USG": {
+      "barr_dice": 0.7080983344158227,
+      "barr_minus_global_pp": 0.02763095770083046,
+      "funnel": {
+        "adopted_beneficial": 27,
+        "adopted_harmful": 20,
+        "adopted_unchanged": 0,
+        "harm_rate_conditional_on_adopted": 0.425531914893617,
+        "harm_rate_intent_to_treat_all": 0.07936507936507936,
+        "mean_delta_adopted_cases": 0.0014814896469377483,
+        "mean_delta_all_cases": 0.00027630957700823083,
+        "mean_delta_rejected_cases": 0.0,
+        "mean_delta_routed_cases": 0.0012433930965370388,
+        "n_adopted": 47,
+        "n_all": 252,
+        "n_never_selected": 196,
+        "n_rejected": 9,
+        "n_routed": 56
+      },
+      "global_dice": 0.7078220248388144
+    },
+    "CVC-ClinicDB": {
+      "barr_dice": 0.689747377901625,
+      "barr_minus_global_pp": 0.31795222541626256,
+      "funnel": {
+        "adopted_beneficial": 67,
+        "adopted_harmful": 14,
+        "adopted_unchanged": 2,
+        "harm_rate_conditional_on_adopted": 0.1686746987951807,
+        "harm_rate_intent_to_treat_all": 0.02287581699346405,
+        "mean_delta_adopted_cases": 0.02344418818731984,
+        "mean_delta_all_cases": 0.003179522254162658,
+        "mean_delta_rejected_cases": 0.0,
+        "mean_delta_routed_cases": 0.016490403555487684,
+        "n_adopted": 83,
+        "n_all": 612,
+        "n_never_selected": 494,
+        "n_rejected": 35,
+        "n_routed": 118
+      },
+      "global_dice": 0.6865678556474624
+    },
+    "Stones_where_are_you": {
+      "barr_dice": 0.08212637637073467,
+      "barr_minus_global_pp": 0.12859162245929395,
+      "funnel": {
+        "adopted_beneficial": 2,
+        "adopted_harmful": 0,
+        "adopted_unchanged": 7,
+        "harm_rate_conditional_on_adopted": 0.0,
+        "harm_rate_intent_to_treat_all": 0.0,
+        "mean_delta_adopted_cases": 0.0028575916102065286,
+        "mean_delta_all_cases": 0.0012859162245929378,
+        "mean_delta_rejected_cases": 0.0,
+        "mean_delta_routed_cases": 0.0025718324491858756,
+        "n_adopted": 9,
+        "n_all": 20,
+        "n_never_selected": 10,
+        "n_rejected": 1,
+        "n_routed": 10
+      },
+      "global_dice": 0.08084046014614173,
+      "stone_free_failure": {
+        "barr_foreground_predicted": 14,
+        "case_level_specificity_global": 0.0,
+        "global_foreground_predicted": 14,
+        "n_stone_free": 14
+      }
+    }
+  },
+  "inference_rerun": false,
+  "internal_reference": "GlobalMedFiLM (internal ablation reference)",
+  "phase29_seed_scope": "R_psi/B_phi/S_omega downstream seeds 42/123/3407 share one fixed seed-42 GlobalMedFiLM backbone; not end-to-end full-model seed replicates",
+  "pooling": "NONE - populations are reported separately",
+  "populations": {
+    "EXTERNAL_RETROSPECTIVE_884": {
+      "evidence_class": "exploratory retrospective stress test; not prospective validation",
+      "n": 884,
+      "unit": "Dice proportion; differences in percentage points"
+    },
+    "ROUTER_DEVELOPMENT": {
+      "evidence_class": "in-sample (subset of TRAIN5832)",
+      "n": 4957,
+      "unit": "Dice proportion"
+    },
+    "ROUTER_HOLDOUT875": {
+      "evidence_class": "historical; disclosed deviation; not to be reused for tuning",
+      "n": 875,
+      "unit": "Dice proportion"
+    },
+    "VAL808": {
+      "evidence_class": "descriptive; selection-consumed",
+      "n": 808,
+      "seeds": "three BARR downstream seeds over one fixed global backbone",
+      "unit": "Dice proportion (0-1)"
+    }
+  },
+  "primary_model": "RA-MedFiLM-BARR (FULL)",
+  "primary_model_outputs": "A8/full BARR and Phase-29 final outputs; never substitute GlobalMedFiLM-only outputs",
+  "protected_data_accessed": false,
+  "router_holdout_historical": {
+    "funnel": {
+      "adopted_beneficial": 155,
+      "adopted_harmful": 81,
+      "adopted_unchanged": 0,
+      "harm_rate_conditional_on_adopted": 0.3432203389830508,
+      "harm_rate_intent_to_treat_all": 0.09257142857142857,
+      "mean_delta_adopted_cases": 0.00911786802979966,
+      "mean_delta_all_cases": 0.002459219262894537,
+      "mean_delta_rejected_cases": 0.0,
+      "mean_delta_routed_cases": 0.008965903562636332,
+      "n_adopted": 236,
+      "n_all": 875,
+      "n_never_selected": 635,
+      "n_rejected": 4,
+      "n_routed": 240
+    },
+    "per_domain": {
+      "BUSI": {
+        "barr": 0.9588608752489246,
+        "delta": 5.152345603276487e-06,
+        "global": 0.9588557229033213,
+        "n": 90
+      },
+      "ISIC": {
+        "barr": 0.9369005443194711,
+        "delta": 0.0009862909655262708,
+        "global": 0.9359142533539448,
+        "n": 383
+      },
+      "KUB": {
+        "barr": 0.8556692517461973,
+        "delta": 0.005944726651047283,
+        "global": 0.8497245250951501,
+        "n": 298
+      },
+      "KVASIR": {
+        "barr": 0.9697180568284727,
+        "delta": 1.9953481923629113e-05,
+        "global": 0.969698103346549,
+        "n": 104
+      },
+      "_macro": {
+        "barr": 0.9302871820357664,
+        "delta": 0.0017390308610251148,
+        "global": 0.9285481511747414
+      }
+    }
+  },
+  "schema": "c2_barr_aggregate_v2",
+  "sources": {
+    "reports/tables/c1_external_stress_domain_shift.csv": "172bae0c7320794451bd71b0de56c29cfaca65398597a12b0d136e5d7a2a9642",
+    "reports/tables/c1_external_stress_paired.csv": "eb18c711d24e75e3452b399bde1a3e4a8f8b2ee4486462705330e46357a43126",
+    "reports/tables/c1_external_stress_per_case.csv": "f040678476d0a2c24a702cf45f02956ae7afedcd12b8b28399a591409d02f2b0",
+    "reports/tables/phase28_table_02_arm_primary_metrics.csv": "171168f973d0a210913b567c4b743f134b1918f3d22be55a6e7046890400e3fc",
+    "reports/tables/phase29_seed123_val808_predictions.csv": "a238d1755095ce628f1ff7b05399c2ace14155ade3f5d8407d12d8c1a4969b26",
+    "reports/tables/phase29_seed3407_val808_predictions.csv": "e232c4756b2ce4fc98a80e2289c2f8d21c46c9d00bbb2863bcb73419226fe639",
+    "reports/tables/phase29_seed42_val808_predictions.csv": "74b524b9a9f3b53e93790fbb3cfb36781b18dc29e0ed9a976bae034b586ae60f",
+    "reports/tables/phase30_router_holdout_scored_results.csv": "dbc9f5f3867f0607cfc0a778736a92b9d6de6e27811fa382ad6d1cb0b2a04568",
+    "reports/tables/phase34_analytical_compute_summary_v1_3.csv": "bbe1d933c24e297454ec7afee0f64d00bc79dbcf815d747df2ec2f742c93f71f",
+    "reports/tables/phase34_batch1_latency_results_v1_4.csv": "da5292d4551209339b3880c0e64d4152007eb42e7c262ad296bc2c2ec586ab26"
+  },
+  "val808_by_seed": [
+    {
+      "funnel": {
+        "adopted_beneficial": 170,
+        "adopted_harmful": 97,
+        "adopted_unchanged": 1,
+        "harm_rate_conditional_on_adopted": 0.3619402985074627,
+        "harm_rate_intent_to_treat_all": 0.12004950495049505,
+        "mean_delta_adopted_cases": 0.009236273036638591,
+        "mean_delta_all_cases": 0.0030635163042316118,
+        "mean_delta_rejected_cases": 0.0,
+        "mean_delta_routed_cases": 0.008872118902577572,
+        "n_adopted": 268,
+        "n_all": 808,
+        "n_never_selected": 529,
+        "n_rejected": 11,
+        "n_routed": 279
+      },
+      "per_domain": {
+        "BUSI": {
+          "barr": 0.8589182037230484,
+          "delta": 9.07133561146578e-05,
+          "global": 0.8588274903669337,
+          "n": 84
+        },
+        "ISIC": {
+          "barr": 0.8981270370754659,
+          "delta": 0.0009614570932504618,
+          "global": 0.8971655799822155,
+          "n": 357
+        },
+        "KUB": {
+          "barr": 0.7717384666810011,
+          "delta": 0.007460890643484874,
+          "global": 0.7642775760375162,
+          "n": 280
+        },
+        "KVASIR": {
+          "barr": 0.8206212388077558,
+          "delta": 0.00040703091309701733,
+          "global": 0.8202142078946588,
+          "n": 87
+        },
+        "_macro": {
+          "barr": 0.8373512365718178,
+          "delta": 0.002230023001486753,
+          "global": 0.8351212135703311
+        }
+      },
+      "seed": 42
+    },
+    {
+      "funnel": {
+        "adopted_beneficial": 171,
+        "adopted_harmful": 60,
+        "adopted_unchanged": 0,
+        "harm_rate_conditional_on_adopted": 0.2597402597402597,
+        "harm_rate_intent_to_treat_all": 0.07425742574257425,
+        "mean_delta_adopted_cases": 0.014977062464734752,
+        "mean_delta_all_cases": 0.004281808699695208,
+        "mean_delta_rejected_cases": 0.0,
+        "mean_delta_routed_cases": 0.013514458708412998,
+        "n_adopted": 231,
+        "n_all": 808,
+        "n_never_selected": 552,
+        "n_rejected": 25,
+        "n_routed": 256
+      },
+      "per_domain": {
+        "BUSI": {
+          "barr": 0.8589526142289576,
+          "delta": 0.00012512386202390147,
+          "global": 0.8588274903669337,
+          "n": 84
+        },
+        "ISIC": {
+          "barr": 0.898494136165959,
+          "delta": 0.0013285561837435012,
+          "global": 0.8971655799822155,
+          "n": 357
+        },
+        "KUB": {
+          "barr": 0.7742345530042881,
+          "delta": 0.009956976966771891,
+          "global": 0.7642775760375162,
+          "n": 280
+        },
+        "KVASIR": {
+          "barr": 0.8223629770515689,
+          "delta": 0.002148769156910091,
+          "global": 0.8202142078946588,
+          "n": 87
+        },
+        "_macro": {
+          "barr": 0.8385110701126934,
+          "delta": 0.003389856542362346,
+          "global": 0.8351212135703311
+        }
+      },
+      "seed": 123
+    },
+    {
+      "funnel": {
+        "adopted_beneficial": 183,
+        "adopted_harmful": 72,
+        "adopted_unchanged": 1,
+        "harm_rate_conditional_on_adopted": 0.28125,
+        "harm_rate_intent_to_treat_all": 0.0891089108910891,
+        "mean_delta_adopted_cases": 0.012907135622389206,
+        "mean_delta_all_cases": 0.004089389504123313,
+        "mean_delta_rejected_cases": 0.0,
+        "mean_delta_routed_cases": 0.012611552363861208,
+        "n_adopted": 256,
+        "n_all": 808,
+        "n_never_selected": 546,
+        "n_rejected": 6,
+        "n_routed": 262
+      },
+      "per_domain": {
+        "BUSI": {
+          "barr": 0.8589936379506627,
+          "delta": 0.00016614758372901495,
+          "global": 0.8588274903669337,
+          "n": 84
+        },
+        "ISIC": {
+          "barr": 0.8979977756981394,
+          "delta": 0.0008321957159239668,
+          "global": 0.8971655799822155,
+          "n": 357
+        },
+        "KUB": {
+          "barr": 0.7750458590374039,
+          "delta": 0.010768282999887635,
+          "global": 0.7642775760375162,
+          "n": 280
+        },
+        "KVASIR": {
+          "barr": 0.819961991937708,
+          "delta": -0.00025221595695079646,
+          "global": 0.8202142078946588,
+          "n": 87
+        },
+        "_macro": {
+          "barr": 0.8379998161559785,
+          "delta": 0.002878602585647455,
+          "global": 0.8351212135703311
+        }
+      },
+      "seed": 3407
+    }
+  ]
+}

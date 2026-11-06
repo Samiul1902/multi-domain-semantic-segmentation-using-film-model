@@ -1,0 +1,1453 @@
+{
+  "s1": {
+    "rows": [
+      {
+        "model": "Global MedFiLM",
+        "key": "global_medfilm",
+        "phase": "21",
+        "params": 3523001,
+        "gmacs": 31.5517,
+        "best_epoch": 66,
+        "stop_reason": "EARLY_STOPPING_PATIENCE",
+        "macro_dice": 0.8350794169575282,
+        "macro_iou": 0.7448366561463977,
+        "dice_ISIC": 0.8971891751747457,
+        "dice_BUSI": 0.8588228931389639,
+        "dice_KVASIR": 0.8202473579060531,
+        "dice_KUB": 0.7640582416103505,
+        "status": "COMPLETE"
+      },
+      {
+        "model": "DeepLabV3+",
+        "key": "deeplabv3plus",
+        "phase": "20B",
+        "params": 40347041,
+        "gmacs": 69.1394,
+        "best_epoch": 57,
+        "stop_reason": "EARLY_STOPPING_PATIENCE",
+        "macro_dice": 0.8276526736178511,
+        "macro_iou": 0.741204783887321,
+        "dice_ISIC": 0.885253,
+        "dice_BUSI": 0.866908,
+        "dice_KVASIR": 0.819683,
+        "dice_KUB": 0.738766,
+        "status": "COMPLETE"
+      },
+      {
+        "model": "Transformer/MiT-style U-Net",
+        "key": "transformer_mit_unet",
+        "phase": "20B",
+        "params": 16347777,
+        "gmacs": 99.0986,
+        "best_epoch": 74,
+        "stop_reason": "EARLY_STOPPING_PATIENCE",
+        "macro_dice": 0.8223808915834625,
+        "macro_iou": 0.7365987380965594,
+        "dice_ISIC": 0.887129,
+        "dice_BUSI": 0.864,
+        "dice_KVASIR": 0.8133,
+        "dice_KUB": 0.7252,
+        "status": "COMPLETE"
+      },
+      {
+        "model": "UNet++",
+        "key": "unetpp",
+        "phase": "20A",
+        "params": 9159681,
+        "gmacs": 137.9423,
+        "best_epoch": 55,
+        "stop_reason": "EARLY_STOPPING_PATIENCE",
+        "macro_dice": 0.792007328746103,
+        "macro_iou": 0.6910262721598444,
+        "dice_ISIC": 0.8600706700810291,
+        "dice_BUSI": 0.8163009576854252,
+        "dice_KVASIR": 0.7709952691976972,
+        "dice_KUB": 0.7206624180202605,
+        "status": "COMPLETE"
+      },
+      {
+        "model": "Attention U-Net",
+        "key": "attention_unet",
+        "phase": "20B",
+        "params": 7851285,
+        "gmacs": 47.219,
+        "best_epoch": 64,
+        "stop_reason": "EARLY_STOPPING_PATIENCE",
+        "macro_dice": 0.7890388550575124,
+        "macro_iou": 0.692749218587638,
+        "dice_ISIC": 0.861694912937533,
+        "dice_BUSI": 0.827679296334774,
+        "dice_KVASIR": 0.7709997009042813,
+        "dice_KUB": 0.6957815100534616,
+        "status": "COMPLETE"
+      },
+      {
+        "model": "U-Net",
+        "key": "unet",
+        "phase": "20B",
+        "params": 7763041,
+        "gmacs": 46.1373,
+        "best_epoch": 74,
+        "stop_reason": "EARLY_STOPPING_PATIENCE",
+        "macro_dice": 0.787832506974712,
+        "macro_iou": 0.6880960516732018,
+        "dice_ISIC": 0.8552744720831389,
+        "dice_BUSI": 0.8197688641298048,
+        "dice_KVASIR": 0.7551979881594655,
+        "dice_KUB": 0.7210887035264385,
+        "status": "COMPLETE"
+      },
+      {
+        "model": "RA-MedFiLM-BARR FULL (seed 42)",
+        "key": "barr_full",
+        "phase": "27",
+        "params": 4837420,
+        "gmacs": 32.437902022582854,
+        "best_epoch": null,
+        "stop_reason": "n/a (diagnostic evaluation; no new training)",
+        "macro_dice": 0.8372891053775793,
+        "macro_iou": null,
+        "dice_ISIC": 0.8980801299180301,
+        "dice_BUSI": 0.8589126018391846,
+        "dice_KVASIR": 0.8206507619743234,
+        "dice_KUB": 0.771512927778779,
+        "status": "COMPLETE"
+      },
+      {
+        "model": "RA-MedFiLM-BARR LITE (depthwise)",
+        "key": "barr_lite",
+        "phase": "B",
+        "params": 272601,
+        "gmacs": 1.61948576,
+        "best_epoch": null,
+        "stop_reason": "n/a",
+        "macro_dice": null,
+        "macro_iou": null,
+        "dice_ISIC": null,
+        "dice_BUSI": null,
+        "dice_KVASIR": null,
+        "dice_KUB": null,
+        "status": "NO_REAL_DATA_EVALUATION"
+      }
+    ]
+  },
+  "s2": {
+    "arms": [
+      {
+        "arm": "A0",
+        "role": "ENDPOINT_REFERENCE",
+        "definition": "global-only (routing absent; no refinement)",
+        "n_routed": 0,
+        "budget": 0.0,
+        "mean_delta": 0.0,
+        "sum_delta": 0.0,
+        "n_beneficial": 0,
+        "n_harmful": 0,
+        "harmful_share": 0.0
+      },
+      {
+        "arm": "A1",
+        "role": "ENDPOINT_REFERENCE",
+        "definition": "always-refine (routing absent, full budget)",
+        "n_routed": 4957,
+        "budget": 1.0,
+        "mean_delta": 0.001658079789,
+        "sum_delta": 8.219101516,
+        "n_beneficial": 2775,
+        "n_harmful": 2115,
+        "harmful_share": 0.426669356466
+      },
+      {
+        "arm": "A2",
+        "role": "ROUTING_SIGNAL_COMPARATOR",
+        "definition": "random routing (seeded, budget-matched null)",
+        "n_routed": 1239,
+        "budget": 0.2499495663,
+        "mean_delta": 0.001413466277,
+        "sum_delta": 1.7512847168,
+        "n_beneficial": 669,
+        "n_harmful": 550,
+        "harmful_share": 0.44390637611
+      },
+      {
+        "arm": "A3",
+        "role": "ROUTING_SIGNAL_COMPARATOR",
+        "definition": "entropy routing (GT-free uncertainty proxy)",
+        "n_routed": 1239,
+        "budget": 0.2499495663,
+        "mean_delta": 0.007185476267,
+        "sum_delta": 8.9028050945,
+        "n_beneficial": 844,
+        "n_harmful": 395,
+        "harmful_share": 0.318805488297
+      },
+      {
+        "arm": "A4",
+        "role": "ROUTING_SIGNAL_COMPARATOR",
+        "definition": "margin routing (GT-free margin proxy)",
+        "n_routed": 1239,
+        "budget": 0.2499495663,
+        "mean_delta": 0.007119404932,
+        "sum_delta": 8.8209427109,
+        "n_beneficial": 843,
+        "n_harmful": 396,
+        "harmful_share": 0.319612590799
+      },
+      {
+        "arm": "A5",
+        "role": "ROUTING_SIGNAL_COMPARATOR",
+        "definition": "predicted-ROI-size routing (GT-free geometry proxy)",
+        "n_routed": 1239,
+        "budget": 0.2499495663,
+        "mean_delta": -0.000433374404,
+        "sum_delta": -0.5369508867,
+        "n_beneficial": 597,
+        "n_harmful": 575,
+        "harmful_share": 0.46408393866
+      },
+      {
+        "arm": "A6",
+        "role": "ADJACENT_INCREMENTAL_CONTRAST",
+        "definition": "learned paired-gain routing (H1 test)",
+        "n_routed": 1239,
+        "budget": 0.2499495663,
+        "mean_delta": 0.007246629237,
+        "sum_delta": 8.9785736244,
+        "n_beneficial": 827,
+        "n_harmful": 412,
+        "harmful_share": 0.332526230831
+      },
+      {
+        "arm": "A7",
+        "role": "ADJACENT_INCREMENTAL_CONTRAST",
+        "definition": "A6 + resource cost U = delta_hat - lambda*C",
+        "n_routed": 1239,
+        "budget": 0.2499495663,
+        "mean_delta": 0.007246629237,
+        "sum_delta": 8.9785736244,
+        "n_beneficial": 827,
+        "n_harmful": 412,
+        "harmful_share": 0.332526230831
+      },
+      {
+        "arm": "A8",
+        "role": "MANDATORY_COMPONENT_ISOLATION",
+        "definition": "A7 + post-safety S_omega (CANONICAL BASELINE)",
+        "n_routed": 1205,
+        "budget": 0.243090579,
+        "mean_delta": 0.007515754298,
+        "sum_delta": 9.0564839294,
+        "n_beneficial": 815,
+        "n_harmful": 390,
+        "harmful_share": 0.323651452282
+      },
+      {
+        "arm": "R1",
+        "role": "PRIMARY_REFERENCE_NOT_PRE_REGISTERED",
+        "definition": "router without deep global features (10 scalars + Embedding(4,16), width 26)",
+        "n_routed": 1239,
+        "budget": 0.2499495663,
+        "mean_delta": 0.003320469712,
+        "sum_delta": 4.1140619729,
+        "n_beneficial": 723,
+        "n_harmful": 463,
+        "harmful_share": 0.373688458434
+      },
+      {
+        "arm": "R2",
+        "role": "PRIMARY_REFERENCE_NOT_PRE_REGISTERED",
+        "definition": "router without task_id (202 numeric features, no embedding, width 202)",
+        "n_routed": 1239,
+        "budget": 0.2499495663,
+        "mean_delta": 0.001190650496,
+        "sum_delta": 1.4752159642,
+        "n_beneficial": 678,
+        "n_harmful": 539,
+        "harmful_share": 0.435028248588
+      },
+      {
+        "arm": "R3",
+        "role": "PRIMARY_REFERENCE_NOT_PRE_REGISTERED",
+        "definition": "router with scalar-only features (10 scalars, width 10) FEATURE-SET CONTROL",
+        "n_routed": 1239,
+        "budget": 0.2499495663,
+        "mean_delta": 0.001250933396,
+        "sum_delta": 1.5499064781,
+        "n_beneficial": 702,
+        "n_harmful": 524,
+        "harmful_share": 0.422921711057
+      },
+      {
+        "arm": "F1",
+        "role": "PRIMARY_REFERENCE_NOT_PRE_REGISTERED",
+        "definition": "refiner without p_global input channel (RGB-only stem, integrated)",
+        "n_routed": 1239,
+        "budget": 0.2499495663,
+        "mean_delta": -0.032585339607,
+        "sum_delta": -40.3732357728,
+        "n_beneficial": 256,
+        "n_harmful": 853,
+        "harmful_share": 0.688458434221
+      }
+    ],
+    "contrasts": [
+      {
+        "contrast": "R1_vs_A6C7",
+        "reference": "A6",
+        "variant": "R1",
+        "n": 4957,
+        "mean_diff": -0.00098134187,
+        "se": 0.000149515565,
+        "lo": -0.001278068178,
+        "hi": -0.000696959854,
+        "excludes_zero": true
+      },
+      {
+        "contrast": "R2_vs_A6C7",
+        "reference": "A6",
+        "variant": "R2",
+        "n": 4957,
+        "mean_diff": -0.00151368926,
+        "se": 0.000145530817,
+        "lo": -0.001805403465,
+        "hi": -0.001231533751,
+        "excludes_zero": true
+      },
+      {
+        "contrast": "R3_vs_A6C7",
+        "reference": "A6",
+        "variant": "R3",
+        "n": 4957,
+        "mean_diff": -0.001498621575,
+        "se": 0.000153437601,
+        "lo": -0.001813469349,
+        "hi": -0.00121275595,
+        "excludes_zero": true
+      },
+      {
+        "contrast": "A8_vs_A7",
+        "reference": "A7",
+        "variant": "A8",
+        "n": 4957,
+        "mean_diff": 1.5717229e-05,
+        "se": 1.6292351e-05,
+        "lo": -1.4313785e-05,
+        "hi": 5.1010811e-05,
+        "excludes_zero": false
+      },
+      {
+        "contrast": "F1_integrated_vs_A8",
+        "reference": "A8",
+        "variant": "F1",
+        "n": 4957,
+        "mean_diff": -0.009971700563,
+        "se": 0.000426732428,
+        "lo": -0.010842225127,
+        "hi": -0.009177825128,
+        "excludes_zero": true
+      }
+    ],
+    "population": "ROUTER_DEVELOPMENT",
+    "n": 4957,
+    "fixed_budget_K": 1239
+  },
+  "s3": {
+    "models": [
+      {
+        "model": "Global MedFiLM",
+        "key": "global_medfilm",
+        "phase": "21",
+        "params": 3523001,
+        "dice": 0.8350794169575282,
+        "iou": 0.7448366561463977,
+        "precision": 0.8494548531858592,
+        "recall": 0.8543448974042818,
+        "hd95": 44.220924037862446,
+        "precision_valid_n": 808,
+        "hd95_valid_n": 808,
+        "dice_ISIC": 0.8971891751747457,
+        "dice_BUSI": 0.8588228931389639,
+        "dice_KVASIR": 0.8202473579060531,
+        "dice_KUB": 0.7640582416103505
+      },
+      {
+        "model": "DeepLabV3+",
+        "key": "deeplabv3plus",
+        "phase": "20B",
+        "params": 40347041,
+        "dice": 0.8276524069994395,
+        "iou": 0.741204783887321,
+        "precision": 0.8612773033956751,
+        "recall": 0.8448896489057446,
+        "hd95": 39.549817995684016,
+        "precision_valid_n": 796,
+        "hd95_valid_n": 796,
+        "dice_ISIC": 0.8853450897003098,
+        "dice_BUSI": 0.8669176360310503,
+        "dice_KVASIR": 0.8196864443899969,
+        "dice_KUB": 0.7386604578764013
+      },
+      {
+        "model": "Transformer/MiT-style U-Net",
+        "key": "transformer_mit_unet",
+        "phase": "20B",
+        "params": 16347777,
+        "dice": 0.8223827696935152,
+        "iou": 0.7365987380965594,
+        "precision": 0.8478425098392266,
+        "recall": 0.8486699791017688,
+        "hd95": 40.91585601681664,
+        "precision_valid_n": 799,
+        "hd95_valid_n": 799,
+        "dice_ISIC": 0.8870904963527378,
+        "dice_BUSI": 0.8639821887335537,
+        "dice_KVASIR": 0.8132768757279857,
+        "dice_KUB": 0.7251815179597835
+      },
+      {
+        "model": "U-Net++",
+        "key": "unetpp",
+        "phase": "20A",
+        "params": 9159681,
+        "dice": 0.79200985543761,
+        "iou": 0.6910262721598444,
+        "precision": 0.8100136538587315,
+        "recall": 0.8402707175740273,
+        "hd95": 63.12273167411528,
+        "precision_valid_n": 796,
+        "hd95_valid_n": 796,
+        "dice_ISIC": 0.8600736116535601,
+        "dice_BUSI": 0.81630258330817,
+        "dice_KVASIR": 0.7710009445354833,
+        "dice_KUB": 0.7206622822532268
+      },
+      {
+        "model": "Attention U-Net",
+        "key": "attention_unet",
+        "phase": "20B",
+        "params": 7851285,
+        "dice": 0.7890365756433061,
+        "iou": 0.692749218587638,
+        "precision": 0.8500713117276312,
+        "recall": 0.7974101355749492,
+        "hd95": 54.965463903953285,
+        "precision_valid_n": 789,
+        "hd95_valid_n": 789,
+        "dice_ISIC": 0.8616938188891261,
+        "dice_BUSI": 0.8276753987325884,
+        "dice_KVASIR": 0.7709990316787128,
+        "dice_KUB": 0.6957780532727972
+      },
+      {
+        "model": "U-Net",
+        "key": "unet",
+        "phase": "20B",
+        "params": 7763041,
+        "dice": 0.7878323103837185,
+        "iou": 0.6880960516732018,
+        "precision": 0.8331163330379315,
+        "recall": 0.8071055854788278,
+        "hd95": 58.92627685492668,
+        "precision_valid_n": 800,
+        "hd95_valid_n": 800,
+        "dice_ISIC": 0.8552735404680322,
+        "dice_BUSI": 0.8197700214728889,
+        "dice_KVASIR": 0.7551962357227685,
+        "dice_KUB": 0.7210894438711845
+      }
+    ],
+    "global_domain": [
+      {
+        "domain": "ISIC",
+        "n": 357,
+        "dice": 0.8971891751747457,
+        "iou": 0.8298191988836973,
+        "precision": 0.9142637540362456,
+        "recall": 0.906878441792752,
+        "hd95": 26.00511598413812,
+        "hd95_valid_n": 357,
+        "dice_ci_low": 0.884028903316221,
+        "dice_ci_high": 0.909008786153625
+      },
+      {
+        "domain": "BUSI",
+        "n": 84,
+        "dice": 0.8588228931389639,
+        "iou": 0.7636461980901246,
+        "precision": 0.8600914653713846,
+        "recall": 0.8806248002301389,
+        "hd95": 31.949904038753957,
+        "hd95_valid_n": 84,
+        "dice_ci_low": 0.8367494255940507,
+        "dice_ci_high": 0.8788181152122085
+      },
+      {
+        "domain": "KVASIR",
+        "n": 87,
+        "dice": 0.8202473579060531,
+        "iou": 0.735522787626195,
+        "precision": 0.8626522819632221,
+        "recall": 0.8261999119472244,
+        "hd95": 67.04784998480895,
+        "hd95_valid_n": 87,
+        "dice_ci_low": 0.7752321380309976,
+        "dice_ci_high": 0.8627456610381854
+      },
+      {
+        "domain": "KUB",
+        "n": 280,
+        "dice": 0.7640582416103505,
+        "iou": 0.6503584399855742,
+        "precision": 0.760811911372585,
+        "recall": 0.8036764356470122,
+        "hd95": 51.880826143748784,
+        "hd95_valid_n": 280,
+        "dice_ci_low": 0.7393438075527314,
+        "dice_ci_high": 0.7878227017994139
+      },
+      {
+        "domain": "MACRO_DOMAIN",
+        "n": 808,
+        "dice": 0.8350794169575282,
+        "iou": 0.7448366561463977,
+        "precision": 0.8494548531858592,
+        "recall": 0.8543448974042819,
+        "hd95": 44.22092403786245,
+        "hd95_valid_n": 808,
+        "dice_ci_low": 0.787749404492504,
+        "dice_ci_high": 0.8780060341568547
+      }
+    ]
+  },
+  "s4": {
+    "metrics": [
+      {
+        "metric": "macro_final_dice",
+        "s42": 0.8372891053775793,
+        "s123": 0.8384669006659462,
+        "s3407": 0.8379477613774475,
+        "mean": 0.837901255806991,
+        "sd": 0.0005902732514585479,
+        "range": 0.001177795288366923,
+        "sign_consistent": true
+      },
+      {
+        "metric": "macro_global_dice",
+        "s42": 0.8350789601074979,
+        "s123": 0.8350789601074979,
+        "s3407": 0.8350789601074979,
+        "mean": 0.835078960107498,
+        "sd": 1.3597399555105182e-16,
+        "range": 0.0,
+        "sign_consistent": true
+      },
+      {
+        "metric": "macro_delta_dice",
+        "s42": 0.0022101452700813433,
+        "s123": 0.003387940558448247,
+        "s3407": 0.002868801269949678,
+        "mean": 0.0028222956994930896,
+        "sd": 0.0005902732514585419,
+        "range": 0.0011777952883669039,
+        "sign_consistent": true
+      },
+      {
+        "metric": "n_selected",
+        "s42": 279.0,
+        "s123": 255.0,
+        "s3407": 262.0,
+        "mean": 265.3333333333333,
+        "sd": 12.34233905438241,
+        "range": 24.0,
+        "sign_consistent": true
+      },
+      {
+        "metric": "selected_fraction",
+        "s42": 0.34529702970297027,
+        "s123": 0.3155940594059406,
+        "s3407": 0.32425742574257427,
+        "mean": 0.32838283828382836,
+        "sd": 0.015275172097007917,
+        "range": 0.029702970297029674,
+        "sign_consistent": true
+      },
+      {
+        "metric": "n_accepted",
+        "s42": 266.0,
+        "s123": 230.0,
+        "s3407": 256.0,
+        "mean": 250.66666666666666,
+        "sd": 18.58314648635514,
+        "range": 36.0,
+        "sign_consistent": true
+      },
+      {
+        "metric": "safety_accept_fraction",
+        "s42": 0.953405017921147,
+        "s123": 0.9019607843137255,
+        "s3407": 0.9770992366412213,
+        "mean": 0.944155012958698,
+        "sd": 0.038413782661914975,
+        "range": 0.07513845232749583,
+        "sign_consistent": true
+      },
+      {
+        "metric": "n_final_refined",
+        "s42": 266.0,
+        "s123": 230.0,
+        "s3407": 256.0,
+        "mean": 250.66666666666666,
+        "sd": 18.58314648635514,
+        "range": 36.0,
+        "sign_consistent": true
+      }
+    ],
+    "gate": "NONE",
+    "all_positive": true
+  },
+  "s5": {
+    "rows": [
+      {
+        "model": "Global MedFiLM",
+        "key": "global_medfilm",
+        "params": 3523001,
+        "gmacs": 31.5517,
+        "macro_dice": 0.8350794169575282,
+        "forward_p50_ms": 15.14,
+        "peak_alloc_mib": 322.5
+      },
+      {
+        "model": "DeepLabV3+",
+        "key": "deeplabv3plus",
+        "params": 40347041,
+        "gmacs": 69.1394,
+        "macro_dice": 0.8276524069994395,
+        "forward_p50_ms": 16.08,
+        "peak_alloc_mib": 308.2
+      },
+      {
+        "model": "Transformer/MiT-style U-Net",
+        "key": "transformer_mit_unet",
+        "params": 16347777,
+        "gmacs": 99.0986,
+        "macro_dice": 0.8223827696935152,
+        "forward_p50_ms": 11.83,
+        "peak_alloc_mib": 208.6
+      },
+      {
+        "model": "U-Net++",
+        "key": "unetpp",
+        "params": 9159681,
+        "gmacs": 137.9423,
+        "macro_dice": 0.79200985543761,
+        "forward_p50_ms": 35.05,
+        "peak_alloc_mib": 712.2
+      },
+      {
+        "model": "Attention U-Net",
+        "key": "attention_unet",
+        "params": 7851285,
+        "gmacs": 47.219,
+        "macro_dice": 0.7890365756433061,
+        "forward_p50_ms": 14.06,
+        "peak_alloc_mib": 343.1
+      },
+      {
+        "model": "U-Net",
+        "key": "unet",
+        "params": 7763041,
+        "gmacs": 46.1373,
+        "macro_dice": 0.7878323103837185,
+        "forward_p50_ms": 12.41,
+        "peak_alloc_mib": 282.8
+      }
+    ]
+  },
+  "s6": {
+    "global_quartiles": [
+      {
+        "domain": "ISIC",
+        "n": 357,
+        "mean": 0.8971891751747457,
+        "sd": 0.11870803584439696,
+        "p05": 0.656250195323903,
+        "q1": 0.8843448142332849,
+        "median": 0.9336523389160404,
+        "q3": 0.963139987991991,
+        "p95": 0.9805206054675273
+      },
+      {
+        "domain": "BUSI",
+        "n": 84,
+        "mean": 0.8588228931389639,
+        "sd": 0.09631561220288594,
+        "p05": 0.6693715176931907,
+        "q1": 0.8145656236855161,
+        "median": 0.8968819943165189,
+        "q3": 0.9241489334332161,
+        "p95": 0.9498468515481681
+      },
+      {
+        "domain": "KVASIR",
+        "n": 87,
+        "mean": 0.8202473579060531,
+        "sd": 0.2132429283265902,
+        "p05": 0.37371874042605413,
+        "q1": 0.805042897718512,
+        "median": 0.8918946267754178,
+        "q3": 0.9396738520956043,
+        "p95": 0.9756755635374588
+      },
+      {
+        "domain": "KUB",
+        "n": 280,
+        "mean": 0.7640582416103505,
+        "sd": 0.20137956523850792,
+        "p05": 0.3159090916726929,
+        "q1": 0.7314727961174029,
+        "median": 0.8328856022504736,
+        "q3": 0.8790041562925146,
+        "p95": 0.9188451112638739
+      }
+    ],
+    "phase27": [
+      {
+        "domain": "BUSI",
+        "n": 84,
+        "groups": 84,
+        "global_dice_point": 0.8588214375680574,
+        "final_dice_point": 0.8589126018391846,
+        "delta_point": 9.116427112706332e-05,
+        "delta_boot_mean": 8.874841794219614e-05,
+        "delta_ci_lower": 0.0,
+        "delta_ci_upper": 0.00027349281338118995,
+        "delta_boot_replicates": 2000,
+        "harm_flag": false
+      },
+      {
+        "domain": "ISIC",
+        "n": 357,
+        "groups": 357,
+        "global_dice_point": 0.8971889499163059,
+        "final_dice_point": 0.8980801299180301,
+        "delta_point": 0.00089118000172409,
+        "delta_boot_mean": 0.0008877611109679448,
+        "delta_ci_lower": -0.00021099947228639843,
+        "delta_ci_upper": 0.0020316048043784243,
+        "delta_boot_replicates": 2000,
+        "harm_flag": false
+      },
+      {
+        "domain": "KUB",
+        "n": 280,
+        "groups": 111,
+        "global_dice_point": 0.7640588414471431,
+        "final_dice_point": 0.771512927778779,
+        "delta_point": 0.0074540863316359274,
+        "delta_boot_mean": 0.0074627491334750195,
+        "delta_ci_lower": 0.004549900820533176,
+        "delta_ci_upper": 0.01011367477329476,
+        "delta_boot_replicates": 2000,
+        "harm_flag": false
+      },
+      {
+        "domain": "KVASIR",
+        "n": 87,
+        "groups": 87,
+        "global_dice_point": 0.8202466114984852,
+        "final_dice_point": 0.8206507619743234,
+        "delta_point": 0.0004041504758382939,
+        "delta_boot_mean": 0.00042973696034213915,
+        "delta_ci_lower": -0.0023620935066573255,
+        "delta_ci_upper": 0.0037437537897846576,
+        "delta_boot_replicates": 2000,
+        "harm_flag": false
+      }
+    ]
+  },
+  "s7": {
+    "figures": [
+      {
+        "id": "phase35_f1_film_gamma_heatmap",
+        "path": "D:\\Softfors\\jup\\reports\\figures\\phase35_interpretability\\phase35_f1_film_gamma_heatmap.png",
+        "exists": true,
+        "phase": 35
+      },
+      {
+        "id": "phase35_f3_task_embedding_geometry",
+        "path": "D:\\Softfors\\jup\\reports\\figures\\phase35_interpretability\\phase35_f3_task_embedding_geometry.png",
+        "exists": true,
+        "phase": 35
+      },
+      {
+        "id": "phase35_f5_saliency_self_consistency",
+        "path": "D:\\Softfors\\jup\\reports\\figures\\phase35_interpretability\\phase35_f5_saliency_self_consistency.png",
+        "exists": true,
+        "phase": 35
+      },
+      {
+        "id": "phase35_f6_router_group_attribution",
+        "path": "D:\\Softfors\\jup\\reports\\figures\\phase35_interpretability\\phase35_f6_router_group_attribution.png",
+        "exists": true,
+        "phase": 35
+      },
+      {
+        "id": "R1",
+        "path": "D:\\Softfors\\jup\\reports\\figures\\phase36_robustness_v1_23\\R1_image_perturbation_mean_paired_delta_dice_heatmap.png",
+        "exists": true,
+        "phase": 36
+      },
+      {
+        "id": "R2",
+        "path": "D:\\Softfors\\jup\\reports\\figures\\phase36_robustness_v1_23\\R2_severity_curves_noise_blur_resolution.png",
+        "exists": true,
+        "phase": 36
+      },
+      {
+        "id": "R5",
+        "path": "D:\\Softfors\\jup\\reports\\figures\\phase36_robustness_v1_23\\R5_worst_case_delta_dice_distribution_by_domain.png",
+        "exists": true,
+        "phase": 36
+      }
+    ],
+    "p36_worst_by_domain": [
+      {
+        "domain": "BUSI",
+        "n_samples": 84,
+        "worst_image_delta_Dice_min": -0.8730574722086946,
+        "worst_image_delta_Dice_mean": -0.14219585374506874
+      },
+      {
+        "domain": "ISIC",
+        "n_samples": 357,
+        "worst_image_delta_Dice_min": -0.8749582833268139,
+        "worst_image_delta_Dice_mean": -0.06371875525521978
+      },
+      {
+        "domain": "KUB",
+        "n_samples": 280,
+        "worst_image_delta_Dice_min": -0.921131447525296,
+        "worst_image_delta_Dice_mean": -0.4136500027919027
+      },
+      {
+        "domain": "KVASIR",
+        "n_samples": 87,
+        "worst_image_delta_Dice_min": -0.48996440015537085,
+        "worst_image_delta_Dice_mean": -0.1027123657696817
+      }
+    ],
+    "p36_counters": {
+      "unique_raw_val_images": 808,
+      "perturbed_g_forwards": 12928,
+      "test_reads": 0,
+      "router_holdout_reads": 0,
+      "training": 0,
+      "optimizer_steps": 0
+    },
+    "p36_clean_equiv": true
+  },
+  "s8": {
+    "external_rows": [
+      {
+        "row_label": "Accepted beneficial refinement",
+        "sample_id": "CVC::160",
+        "cohort": "CVC-ClinicDB",
+        "state": "ACCEPTED",
+        "source_image": "original external retrospective cohort image",
+        "global_dice": 0.806215,
+        "barr_dice": 0.920869,
+        "delta_pp": 11.465,
+        "selection_rule": "beneficial=max accepted delta; harmful=min accepted delta; rejected=min abs(safety_prob-0.5); non-selected=closest to median global Dice among NOT_ATTEMPTED excluding stone-free FP case; stone-free FP=max pred_pixels among gt-empty fp_only stones"
+      },
+      {
+        "row_label": "Accepted harmful refinement",
+        "sample_id": "CVC::135",
+        "cohort": "CVC-ClinicDB",
+        "state": "ACCEPTED",
+        "source_image": "original external retrospective cohort image",
+        "global_dice": 0.182186,
+        "barr_dice": 0.134344,
+        "delta_pp": -4.784,
+        "selection_rule": "beneficial=max accepted delta; harmful=min accepted delta; rejected=min abs(safety_prob-0.5); non-selected=closest to median global Dice among NOT_ATTEMPTED excluding stone-free FP case; stone-free FP=max pred_pixels among gt-empty fp_only stones"
+      },
+      {
+        "row_label": "Safety-rejected refinement",
+        "sample_id": "CVC::358",
+        "cohort": "CVC-ClinicDB",
+        "state": "REJECTED",
+        "source_image": "original external retrospective cohort image",
+        "global_dice": 0.247139,
+        "barr_dice": 0.247139,
+        "delta_pp": 0.0,
+        "selection_rule": "beneficial=max accepted delta; harmful=min accepted delta; rejected=min abs(safety_prob-0.5); non-selected=closest to median global Dice among NOT_ATTEMPTED excluding stone-free FP case; stone-free FP=max pred_pixels among gt-empty fp_only stones"
+      },
+      {
+        "row_label": "Representative non-selected case",
+        "sample_id": "CVC::551",
+        "cohort": "CVC-ClinicDB",
+        "state": "NOT_ATTEMPTED",
+        "source_image": "original external retrospective cohort image",
+        "global_dice": 0.833554,
+        "barr_dice": 0.833554,
+        "delta_pp": 0.0,
+        "selection_rule": "beneficial=max accepted delta; harmful=min accepted delta; rejected=min abs(safety_prob-0.5); non-selected=closest to median global Dice among NOT_ATTEMPTED excluding stone-free FP case; stone-free FP=max pred_pixels among gt-empty fp_only stones"
+      },
+      {
+        "row_label": "Stone-free false-positive failure",
+        "sample_id": "STONES::test::c00025_f025-002-9780702042959_jpg.rf.fb280e4f9417dc43e2e7e543aabd904d.jpg",
+        "cohort": "Stones_where_are_you",
+        "state": "ACCEPTED",
+        "source_image": "original external retrospective cohort image",
+        "global_dice": 0.0,
+        "barr_dice": 0.0,
+        "delta_pp": 0.0,
+        "selection_rule": "beneficial=max accepted delta; harmful=min accepted delta; rejected=min abs(safety_prob-0.5); non-selected=closest to median global Dice among NOT_ATTEMPTED excluding stone-free FP case; stone-free FP=max pred_pixels among gt-empty fp_only stones"
+      }
+    ],
+    "external_population": "EXTERNAL 884 (CVC 612 / BrEaST 252 / Stones 20)",
+    "internal_gallery": "D:\\Softfors\\jup\\reports\\figures\\phase21_global_medfilm\\gallery\\gallery_six_model_KUB.png"
+  },
+  "s9": {
+    "per_domain": [
+      {
+        "domain": "ISIC",
+        "task_id": 0,
+        "n": 735,
+        "dice_mean": 0.8869294005502611,
+        "dice_median": 0.9348934032019605
+      },
+      {
+        "domain": "BUSI",
+        "task_id": 1,
+        "n": 174,
+        "dice_mean": 0.8504187847033107,
+        "dice_median": 0.8898563815993948
+      },
+      {
+        "domain": "KVASIR",
+        "task_id": 2,
+        "n": 216,
+        "dice_mean": 0.8507055649364359,
+        "dice_median": 0.9095714712974567
+      },
+      {
+        "domain": "KUB",
+        "task_id": 3,
+        "n": 558,
+        "dice_mean": 0.7376936041924949,
+        "dice_median": 0.8420985490678784
+      }
+    ],
+    "macro_dice": 0.8314368385956257,
+    "counters": {
+      "clean_g_forwards": 1683,
+      "clean_g_batch_forwards": 211,
+      "g_forwards": 0,
+      "b_phi_forwards": 1681,
+      "metric_evaluations": 1683,
+      "test_image_reads": 1683,
+      "test_gt_reads": 1683,
+      "r_psi_forwards": 501,
+      "s_omega_forwards": 501
+    },
+    "evidence_class": "POST_PROTOCOL_TECHNICAL_RECOVERY_TEST_RESULT_WITH_TWO_DISCLOSED_PREOUTCOME_TECHNICAL_FAILURES",
+    "access": [
+      {
+        "revision": "v1.0",
+        "stage": "MODEL_LOAD",
+        "inference_started": false,
+        "reads": "0 (failed before manifest open)",
+        "result": "NONE"
+      },
+      {
+        "revision": "v1.1",
+        "stage": "SCIENCE_LOOP",
+        "inference_started": true,
+        "reads": "partial (inference started; failed)",
+        "result": "NONE"
+      },
+      {
+        "revision": "v1.2",
+        "stage": "COMPLETE",
+        "inference_started": true,
+        "reads": "1683 images + 1683 GT",
+        "result": "SCIENTIFIC_RESULT"
+      }
+    ],
+    "missing_metrics": [
+      "IoU",
+      "Precision",
+      "Recall",
+      "HD95",
+      "per-sample table"
+    ],
+    "missing_endpoint": "No C1-T/C1-C, C2 ablation or C3 baseline on TEST"
+  },
+  "s10": {
+    "rows": [
+      {
+        "claim": "C1 FiLM attribution (C1-T vs C1-C)",
+        "required": "6 matched runs, seeds 42/123/3407, VAL808 paired endpoint",
+        "available": "0/6 runs; design + synthetic chain only",
+        "blocker": "Institutional authorization pending (RC4 trust root absent); no licence/ethics record",
+        "status": "NOT_ESTABLISHED"
+      },
+      {
+        "claim": "C2 BARR router/safety causal ablation",
+        "required": "pre-registered matched ablation with approval",
+        "available": "BARR-M1 design ready; policy comparison only; no causal ablation",
+        "blocker": "approval NOT APPROVED; in-sample; zero GPU",
+        "status": "NOT_ESTABLISHED"
+      },
+      {
+        "claim": "C3 protocol-faithful baseline comparison",
+        "required": "full-protocol baseline matrix",
+        "available": "EXT-03 15/15 reduced protocol only",
+        "blocker": "no protocol-faithful runs",
+        "status": "NOT_ESTABLISHED"
+      }
+    ]
+  },
+  "meta": {
+    "title": "RA-MedFiLM-BARR \u2014 Research Results Atlas",
+    "subtitle": "Consolidated verified evidence for Phases 21, 27\u201330, 33\u201336 and historical Phase 39",
+    "git_head": "45b85c101864f560d78b1fe563140cbbe3760825",
+    "repository": "D:\\Softfors\\jup",
+    "scope": "Evidence consolidation only; no training, no TEST access, no new experimental results",
+    "evidence_policy": "Every number is traceable to a source artifact; synthetic benchmarks are labelled and never merged with real results",
+    "populations": {
+      "TRAIN": 5832,
+      "VAL": 808,
+      "TEST": 1683,
+      "ROUTER_DEVELOPMENT": 4957,
+      "ROUTER_HOLDOUT": 875,
+      "EXTERNAL": 884
+    }
+  },
+  "tables": [
+    {
+      "id": "T1.1",
+      "type": "table",
+      "section": 1,
+      "title": "Model progression and frozen VAL808 performance",
+      "sources": [
+        "reports/tables/phase21_all_trained_models_comparison.csv",
+        "reports/tables/phase21_six_model_comparison.csv",
+        "reports/audits/phase27_preservation_result.json"
+      ],
+      "population": "VAL808",
+      "n": 808,
+      "status": "REAL",
+      "notes": "Macro Dice = unweighted mean of four per-domain per-image mean Dice"
+    },
+    {
+      "id": "T2.1",
+      "type": "table",
+      "section": 2,
+      "title": "13-arm ablation matrix (arm-level point summaries)",
+      "sources": [
+        "reports/tables/phase28_table_02_arm_primary_metrics.csv",
+        "reports/audits/phase28_comprehensive_ablation_matrix.json"
+      ],
+      "population": "ROUTER_DEVELOPMENT",
+      "n": 4957,
+      "status": "REAL",
+      "notes": "mean delta over routed rows; A0/A1 are endpoints"
+    },
+    {
+      "id": "T2.2",
+      "type": "table",
+      "section": 2,
+      "title": "Pre-registered and descriptive paired contrasts with 95% bootstrap CIs",
+      "sources": [
+        "reports/tables/phase28_table_08_bootstrap_statistics.csv",
+        "reports/tables/phase28_table_07_matched_paired_contrasts.csv"
+      ],
+      "population": "ROUTER_DEVELOPMENT",
+      "n": 4957,
+      "status": "REAL",
+      "notes": "paired bootstrap, common resampled indices; 2000 replicates, seed 42; descriptive, no post-hoc correction"
+    },
+    {
+      "id": "T3.1",
+      "type": "table",
+      "section": 3,
+      "title": "Six-model evaluation matrix (VAL808): Dice, IoU, Precision, Recall, HD95",
+      "sources": [
+        "reports/tables/phase21_six_model_comparison.csv",
+        "reports/tables/phase21_per_image_all_models.csv"
+      ],
+      "population": "VAL808",
+      "n": 808,
+      "status": "REAL",
+      "notes": "Dice/IoU published macro; Precision/Recall/HD95 derived as unweighted mean of domain means from per-image table (reproduces published Dice exactly)"
+    },
+    {
+      "id": "T3.2",
+      "type": "table",
+      "section": 3,
+      "title": "Global MedFiLM per-domain metrics with Dice 95% CI",
+      "sources": [
+        "reports/tables/phase21_global_medfilm_domain_performance.csv"
+      ],
+      "population": "VAL808",
+      "n": 808,
+      "status": "REAL",
+      "notes": ""
+    },
+    {
+      "id": "T4.1",
+      "type": "table",
+      "section": 4,
+      "title": "Three-seed descriptive summary (VAL808)",
+      "sources": [
+        "reports/audits/phase29_phase_d_three_seed_descriptive_summary.json"
+      ],
+      "population": "VAL808",
+      "n": 808,
+      "status": "REAL",
+      "notes": "No numeric reproducibility pass/fail gate; no best-seed selection"
+    },
+    {
+      "id": "T5.1",
+      "type": "table",
+      "section": 5,
+      "title": "Accuracy (real, VAL808) beside architectural cost and synthetic latency",
+      "sources": [
+        "reports/tables/phase21_six_model_compute.csv",
+        "reports/tables/phase21_six_model_comparison.csv",
+        "reports/performance/phase_d/phase_d_completion_report.md"
+      ],
+      "population": "VAL808 accuracy; SYNTHETIC_BENCHMARK latency",
+      "n": 808,
+      "status": "MIXED_LABELLED",
+      "notes": "Latency is SYNTHETIC_BENCHMARK (fixture weights); never a real-data result"
+    },
+    {
+      "id": "T6.1",
+      "type": "table",
+      "section": 6,
+      "title": "Per-domain per-image Dice distribution (Global MedFiLM, VAL808)",
+      "sources": [
+        "reports/tables/phase21_per_image_all_models.csv"
+      ],
+      "population": "VAL808",
+      "n": 808,
+      "status": "REAL",
+      "notes": ""
+    },
+    {
+      "id": "T7.1",
+      "type": "table",
+      "section": 7,
+      "title": "Phase 36 worst-case per-sample \u0394Dice by domain",
+      "sources": [
+        "reports/audits/phase36_robustness_scientific_result_v1_23.json"
+      ],
+      "population": "VAL808",
+      "n": 808,
+      "status": "REAL",
+      "notes": "Development-set synthetic perturbation evidence; test_reads=0"
+    },
+    {
+      "id": "T8.1",
+      "type": "table",
+      "section": 8,
+      "title": "External qualitative case selection (CVC-ClinicDB examples)",
+      "sources": [
+        "paper_doc/figures/fig08_main_qualitative_source.csv"
+      ],
+      "population": "EXTERNAL 884",
+      "n": 884,
+      "status": "REAL",
+      "notes": "External retrospective cohort; not VAL808 and not TEST"
+    },
+    {
+      "id": "T9.1",
+      "type": "table",
+      "section": 9,
+      "title": "Historical Phase 39 TEST1683 descriptive result",
+      "sources": [
+        "reports/audits/phase39_final_test_v1_2_scientific_result.json"
+      ],
+      "population": "TEST1683",
+      "n": 1683,
+      "status": "REAL",
+      "notes": "One-shot consumed; descriptive only; no comparative endpoint"
+    },
+    {
+      "id": "T9.2",
+      "type": "table",
+      "section": 9,
+      "title": "Phase 39 access reconciliation (v1.0 / v1.1 / v1.2)",
+      "sources": [
+        "reports/audits/phase39_final_test_failure.json",
+        "reports/audits/phase39_final_test_v1_1_failure.json",
+        "reports/audits/phase39_final_test_v1_2_scientific_result.json"
+      ],
+      "population": "TEST1683",
+      "n": 1683,
+      "status": "REAL",
+      "notes": "Recent zero-read claims apply to the coding-verification session only"
+    },
+    {
+      "id": "T10.1",
+      "type": "table",
+      "section": 10,
+      "title": "Missing-evidence matrix for C1, C2 and C3",
+      "sources": [
+        "multiple (see report \u00a710)"
+      ],
+      "population": "n/a",
+      "n": 0,
+      "status": "MISSING_EVIDENCE",
+      "notes": ""
+    }
+  ],
+  "figures": [
+    {
+      "id": "F1.1",
+      "type": "figure",
+      "section": 1,
+      "title": "Model progression: macro-domain Dice with parameter counts",
+      "path": "D:\\Softfors\\jup\\_tmp\\atlas_build\\figures\\F01_progression.png",
+      "sources": [
+        "reports/tables/phase21_all_trained_models_comparison.csv"
+      ],
+      "population": "VAL808",
+      "status": "REAL",
+      "notes": "BARR FULL from Phase 27; Lite excluded (no real evaluation)"
+    },
+    {
+      "id": "F2.1",
+      "type": "figure",
+      "section": 2,
+      "title": "13-arm ablation: mean \u0394Dice and harmful activation share",
+      "path": "D:\\Softfors\\jup\\_tmp\\atlas_build\\figures\\F02_ablation.png",
+      "sources": [
+        "reports/tables/phase28_table_02_arm_primary_metrics.csv"
+      ],
+      "population": "ROUTER_DEVELOPMENT",
+      "status": "REAL",
+      "notes": "Point estimates only; CIs in Table T2.2"
+    },
+    {
+      "id": "F2.2",
+      "type": "figure",
+      "section": 2,
+      "title": "Paired contrast forest plot with 95% bootstrap CIs",
+      "path": "D:\\Softfors\\jup\\_tmp\\atlas_build\\figures\\F03_contrasts.png",
+      "sources": [
+        "reports/tables/phase28_table_08_bootstrap_statistics.csv"
+      ],
+      "population": "ROUTER_DEVELOPMENT",
+      "status": "REAL",
+      "notes": "A8_vs_A7 is the only frozen matched contrast"
+    },
+    {
+      "id": "F4.1",
+      "type": "figure",
+      "section": 4,
+      "title": "Three-seed macro \u0394Dice with mean and \u00b11 SD",
+      "path": "D:\\Softfors\\jup\\_tmp\\atlas_build\\figures\\F04_seeds.png",
+      "sources": [
+        "reports/audits/phase29_phase_d_three_seed_descriptive_summary.json"
+      ],
+      "population": "VAL808",
+      "status": "REAL",
+      "notes": "Seeds share the frozen global backbone; not independent"
+    },
+    {
+      "id": "F5.1",
+      "type": "figure",
+      "section": 5,
+      "title": "Accuracy vs compute: real VAL808 accuracy and synthetic latency shown separately",
+      "path": "D:\\Softfors\\jup\\_tmp\\atlas_build\\figures\\F05_accuracy_cost.png",
+      "sources": [
+        "reports/tables/phase21_six_model_compute.csv",
+        "reports/performance/phase_d/phase_d_completion_report.md"
+      ],
+      "population": "MIXED (labelled)",
+      "status": "MIXED_LABELLED",
+      "notes": ""
+    },
+    {
+      "id": "F6.1",
+      "type": "figure",
+      "section": 6,
+      "title": "Per-image Dice distributions and per-domain \u0394Dice with 95% CI",
+      "path": "D:\\Softfors\\jup\\_tmp\\atlas_build\\figures\\F06_distributions.png",
+      "sources": [
+        "reports/tables/phase21_per_image_all_models.csv",
+        "reports/audits/phase27_preservation_result.json"
+      ],
+      "population": "VAL808",
+      "status": "REAL",
+      "notes": "Bootstrap CIs from Phase 27 (2000 replicates)"
+    },
+    {
+      "id": "F7.1",
+      "type": "figure",
+      "section": 7,
+      "title": "Phase 35 \u2014 phase35_f1_film_gamma_heatmap",
+      "path": "D:\\Softfors\\jup\\reports\\figures\\phase35_interpretability\\phase35_f1_film_gamma_heatmap.png",
+      "sources": [
+        "reports/audits/phase35_interpretability_scientific_result_v1_0.json"
+      ],
+      "population": "VAL808",
+      "status": "REAL",
+      "notes": "Published frozen figure, reused unchanged"
+    },
+    {
+      "id": "F7.2",
+      "type": "figure",
+      "section": 7,
+      "title": "Phase 35 \u2014 phase35_f3_task_embedding_geometry",
+      "path": "D:\\Softfors\\jup\\reports\\figures\\phase35_interpretability\\phase35_f3_task_embedding_geometry.png",
+      "sources": [
+        "reports/audits/phase35_interpretability_scientific_result_v1_0.json"
+      ],
+      "population": "VAL808",
+      "status": "REAL",
+      "notes": "Published frozen figure, reused unchanged"
+    },
+    {
+      "id": "F7.3",
+      "type": "figure",
+      "section": 7,
+      "title": "Phase 35 \u2014 phase35_f5_saliency_self_consistency",
+      "path": "D:\\Softfors\\jup\\reports\\figures\\phase35_interpretability\\phase35_f5_saliency_self_consistency.png",
+      "sources": [
+        "reports/audits/phase35_interpretability_scientific_result_v1_0.json"
+      ],
+      "population": "VAL808",
+      "status": "REAL",
+      "notes": "Published frozen figure, reused unchanged"
+    },
+    {
+      "id": "F7.4",
+      "type": "figure",
+      "section": 7,
+      "title": "Phase 35 \u2014 phase35_f6_router_group_attribution",
+      "path": "D:\\Softfors\\jup\\reports\\figures\\phase35_interpretability\\phase35_f6_router_group_attribution.png",
+      "sources": [
+        "reports/audits/phase35_interpretability_scientific_result_v1_0.json"
+      ],
+      "population": "VAL808",
+      "status": "REAL",
+      "notes": "Published frozen figure, reused unchanged"
+    },
+    {
+      "id": "F7.5",
+      "type": "figure",
+      "section": 7,
+      "title": "Phase 36 \u2014 R1",
+      "path": "D:\\Softfors\\jup\\reports\\figures\\phase36_robustness_v1_23\\R1_image_perturbation_mean_paired_delta_dice_heatmap.png",
+      "sources": [
+        "reports/audits/phase36_robustness_scientific_result_v1_23.json"
+      ],
+      "population": "VAL808",
+      "status": "REAL",
+      "notes": "Published frozen figure, reused unchanged"
+    },
+    {
+      "id": "F7.6",
+      "type": "figure",
+      "section": 7,
+      "title": "Phase 36 \u2014 R2",
+      "path": "D:\\Softfors\\jup\\reports\\figures\\phase36_robustness_v1_23\\R2_severity_curves_noise_blur_resolution.png",
+      "sources": [
+        "reports/audits/phase36_robustness_scientific_result_v1_23.json"
+      ],
+      "population": "VAL808",
+      "status": "REAL",
+      "notes": "Published frozen figure, reused unchanged"
+    },
+    {
+      "id": "F7.7",
+      "type": "figure",
+      "section": 7,
+      "title": "Phase 36 \u2014 R5",
+      "path": "D:\\Softfors\\jup\\reports\\figures\\phase36_robustness_v1_23\\R5_worst_case_delta_dice_distribution_by_domain.png",
+      "sources": [
+        "reports/audits/phase36_robustness_scientific_result_v1_23.json"
+      ],
+      "population": "VAL808",
+      "status": "REAL",
+      "notes": "Published frozen figure, reused unchanged"
+    },
+    {
+      "id": "F8.1",
+      "type": "figure",
+      "section": 8,
+      "title": "Six-model qualitative gallery (KUB, VAL808)",
+      "path": "D:\\Softfors\\jup\\reports\\figures\\phase21_global_medfilm\\gallery\\gallery_six_model_KUB.png",
+      "sources": [
+        "reports/figures/phase21_global_medfilm/gallery/gallery_six_model_KUB.png"
+      ],
+      "population": "VAL808",
+      "status": "REAL",
+      "notes": ""
+    },
+    {
+      "id": "F8.2",
+      "type": "figure",
+      "section": 8,
+      "title": "External qualitative refinement examples (CVC-ClinicDB)",
+      "path": "D:\\Softfors\\jup\\paper_doc\\figures\\fig08_main_qualitative.png",
+      "sources": [
+        "paper_doc/figures/fig08_main_qualitative_source.csv"
+      ],
+      "population": "EXTERNAL 884",
+      "status": "REAL",
+      "notes": ""
+    },
+    {
+      "id": "F8.3",
+      "type": "figure",
+      "section": 8,
+      "title": "External failure taxonomy counts",
+      "path": "D:\\Softfors\\jup\\paper_doc\\figures\\fig09_failure_analysis.png",
+      "sources": [
+        "paper_doc/figures/fig09_failure_analysis_source.csv"
+      ],
+      "population": "EXTERNAL 884",
+      "status": "REAL",
+      "notes": ""
+    },
+    {
+      "id": "F9.1",
+      "type": "figure",
+      "section": 9,
+      "title": "TEST1683 per-domain mean Dice (historical one-shot result)",
+      "path": "D:\\Softfors\\jup\\_tmp\\atlas_build\\figures\\F09_test.png",
+      "sources": [
+        "reports/audits/phase39_final_test_v1_2_scientific_result.json"
+      ],
+      "population": "TEST1683",
+      "status": "REAL",
+      "notes": ""
+    },
+    {
+      "id": "F10.1",
+      "type": "figure",
+      "section": 10,
+      "title": "Missing-evidence matrix for C1, C2 and C3",
+      "path": "D:\\Softfors\\jup\\_tmp\\atlas_build\\figures\\F10_missing.png",
+      "sources": [
+        "reports/audits (C1/C2/C3 evidence survey)"
+      ],
+      "population": "n/a",
+      "status": "MISSING_EVIDENCE",
+      "notes": ""
+    }
+  ],
+  "missing_sources": [
+    {
+      "item": "Lite real-data VAL808 macro Dice/IoU",
+      "reason": "Lite pipeline real training was never executed; only synthetic chain tests exist",
+      "source_checked": "src/research/lite_pipeline, reports/audits/phase_b_lite_pipeline_completion_v1_0.md",
+      "status": "UNAVAILABLE"
+    }
+  ]
+}

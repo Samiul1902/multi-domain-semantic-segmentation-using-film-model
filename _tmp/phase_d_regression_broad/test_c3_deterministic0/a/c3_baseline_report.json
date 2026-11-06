@@ -1,0 +1,233 @@
+{
+  "controlled_matrix": {
+    "comparison": "RA-MedFiLM-BARR (FULL) minus each external baseline",
+    "complete_cells": 0,
+    "expected_cells": 18,
+    "source_contract": "src/research/c3_baselines/controlled_results_schema.json",
+    "status": "NOT_ESTABLISHED"
+  },
+  "controlled_superiority_claim": false,
+  "exploratory_historical": [
+    {
+      "analytical_gmacs_lower_bound": 47.219,
+      "analytical_input": "1x3x512x512",
+      "analytical_method": "analytical Conv2d/Linear count (lower bound)",
+      "checkpoint_selection": "best macro-domain validation Dice (phase20 selection rule)",
+      "comparability": "PROTOCOL_INCOMPARABLE",
+      "configuration_source": "frozen historical model definitions (see source artifacts)",
+      "dataset": "four-domain pooled development set (ISIC, BUSI, Kvasir-SEG, KUB), Manifest v2 historical",
+      "dice_by_domain": {
+        "BUSI": 0.8276753987325884,
+        "ISIC": 0.8616938188891261,
+        "KUB": 0.6957780532727972,
+        "KVASIR": 0.7709990316787128
+      },
+      "evidence_class": "descriptive historical development result",
+      "five_model_table_row_present": true,
+      "macro_dice_ci_95_descriptive": [
+        0.7287523896377449,
+        0.8446846088108573
+      ],
+      "macro_domain_dice": 0.7890365756433061,
+      "macro_domain_iou": 0.692749218587638,
+      "measured_latency_ms": null,
+      "measured_latency_note": "none recorded for baselines in the verified artifacts",
+      "model_key": "attention_unet",
+      "name": "Attention U-Net",
+      "params": 7851285,
+      "phase": "20B",
+      "pooled_dice_descriptive": 0.8328756074443346,
+      "role": "HISTORICAL_EXTERNAL_BASELINE",
+      "seed_count": 1,
+      "split": "historical development validation (selection-consumed); no TEST evaluation",
+      "training_recipe": "historical per-model recipe; not identical across architectures"
+    },
+    {
+      "analytical_gmacs_lower_bound": 69.1394,
+      "analytical_input": "1x3x512x512",
+      "analytical_method": "analytical Conv2d/Linear count (lower bound)",
+      "checkpoint_selection": "best macro-domain validation Dice (phase20 selection rule)",
+      "comparability": "PROTOCOL_INCOMPARABLE",
+      "configuration_source": "frozen historical model definitions (see source artifacts)",
+      "dataset": "four-domain pooled development set (ISIC, BUSI, Kvasir-SEG, KUB), Manifest v2 historical",
+      "dice_by_domain": {
+        "BUSI": 0.8669176360310503,
+        "ISIC": 0.8853450897003098,
+        "KUB": 0.7386604578764013,
+        "KVASIR": 0.8196864443899969
+      },
+      "evidence_class": "descriptive historical development result",
+      "five_model_table_row_present": true,
+      "macro_dice_ci_95_descriptive": [
+        0.7707247524150636,
+        0.87613136286568
+      ],
+      "macro_domain_dice": 0.8276524069994395,
+      "macro_domain_iou": 0.741204783887321,
+      "measured_latency_ms": null,
+      "measured_latency_note": "none recorded for baselines in the verified artifacts",
+      "model_key": "deeplabv3plus",
+      "name": "DeepLabV3+",
+      "params": 40347041,
+      "phase": "20B",
+      "pooled_dice_descriptive": 0.8710387515780342,
+      "role": "HISTORICAL_EXTERNAL_BASELINE",
+      "seed_count": 1,
+      "split": "historical development validation (selection-consumed); no TEST evaluation",
+      "training_recipe": "historical per-model recipe; not identical across architectures"
+    },
+    {
+      "analytical_gmacs_lower_bound": 31.5517,
+      "analytical_input": "1x3x512x512",
+      "analytical_method": "analytical Conv2d/Linear count (lower bound)",
+      "checkpoint_selection": "best macro-domain validation Dice (phase20 selection rule)",
+      "comparability": "PROTOCOL_INCOMPARABLE",
+      "configuration_source": "frozen historical model definitions (see source artifacts)",
+      "dataset": "four-domain pooled development set (ISIC, BUSI, Kvasir-SEG, KUB), Manifest v2 historical",
+      "dice_by_domain": {
+        "BUSI": 0.8588228931389639,
+        "ISIC": 0.8971891751747457,
+        "KUB": 0.7640582416103505,
+        "KVASIR": 0.8202473579060531
+      },
+      "evidence_class": "descriptive historical development result",
+      "five_model_table_row_present": false,
+      "macro_dice_ci_95_descriptive": [
+        0.787749404492504,
+        0.8780060341568547
+      ],
+      "macro_domain_dice": 0.8350794169575282,
+      "macro_domain_iou": 0.7448366561463977,
+      "measured_latency_ms": null,
+      "measured_latency_note": "none recorded for baselines in the verified artifacts",
+      "model_key": "global_medfilm",
+      "name": "Global MedFiLM",
+      "params": 3523001,
+      "phase": "21",
+      "pooled_dice_descriptive": 0.8784243406054913,
+      "role": "INTERNAL_ABLATION_REFERENCE",
+      "seed_count": 1,
+      "split": "historical development validation (selection-consumed); no TEST evaluation",
+      "training_recipe": "historical per-model recipe; not identical across architectures"
+    },
+    {
+      "analytical_gmacs_lower_bound": 99.0986,
+      "analytical_input": "1x3x512x512",
+      "analytical_method": "analytical Conv2d/Linear count (lower bound)",
+      "checkpoint_selection": "best macro-domain validation Dice (phase20 selection rule)",
+      "comparability": "PROTOCOL_INCOMPARABLE",
+      "configuration_source": "frozen historical model definitions (see source artifacts)",
+      "dataset": "four-domain pooled development set (ISIC, BUSI, Kvasir-SEG, KUB), Manifest v2 historical",
+      "dice_by_domain": {
+        "BUSI": 0.8639821887335537,
+        "ISIC": 0.8870904963527378,
+        "KUB": 0.7251815179597835,
+        "KVASIR": 0.8132768757279857
+      },
+      "evidence_class": "descriptive historical development result",
+      "five_model_table_row_present": true,
+      "macro_dice_ci_95_descriptive": [
+        0.7598816856532261,
+        0.8755363425431457
+      ],
+      "macro_domain_dice": 0.8223827696935152,
+      "macro_domain_iou": 0.7365987380965594,
+      "measured_latency_ms": null,
+      "measured_latency_note": "none recorded for baselines in the verified artifacts",
+      "model_key": "transformer_mit_unet",
+      "name": "Transformer/MiT",
+      "params": 16347777,
+      "phase": "20B",
+      "pooled_dice_descriptive": 0.8737299208463981,
+      "role": "HISTORICAL_EXTERNAL_BASELINE",
+      "seed_count": 1,
+      "split": "historical development validation (selection-consumed); no TEST evaluation",
+      "training_recipe": "historical per-model recipe; not identical across architectures"
+    },
+    {
+      "analytical_gmacs_lower_bound": 46.1373,
+      "analytical_input": "1x3x512x512",
+      "analytical_method": "analytical Conv2d/Linear count (lower bound)",
+      "checkpoint_selection": "best macro-domain validation Dice (phase20 selection rule)",
+      "comparability": "PROTOCOL_INCOMPARABLE",
+      "configuration_source": "frozen historical model definitions (see source artifacts)",
+      "dataset": "four-domain pooled development set (ISIC, BUSI, Kvasir-SEG, KUB), Manifest v2 historical",
+      "dice_by_domain": {
+        "BUSI": 0.8197700214728889,
+        "ISIC": 0.8552735404680322,
+        "KUB": 0.7210894438711845,
+        "KVASIR": 0.7551962357227685
+      },
+      "evidence_class": "descriptive historical development result",
+      "five_model_table_row_present": true,
+      "macro_dice_ci_95_descriptive": [
+        0.7381428397969765,
+        0.8375217809704605
+      ],
+      "macro_domain_dice": 0.7878323103837185,
+      "macro_domain_iou": 0.6880960516732018,
+      "measured_latency_ms": null,
+      "measured_latency_note": "none recorded for baselines in the verified artifacts",
+      "model_key": "unet",
+      "name": "U-Net",
+      "params": 7763041,
+      "phase": "20B",
+      "pooled_dice_descriptive": 0.8354980550027805,
+      "role": "HISTORICAL_EXTERNAL_BASELINE",
+      "seed_count": 1,
+      "split": "historical development validation (selection-consumed); no TEST evaluation",
+      "training_recipe": "historical per-model recipe; not identical across architectures"
+    },
+    {
+      "analytical_gmacs_lower_bound": 137.9423,
+      "analytical_input": "1x3x512x512",
+      "analytical_method": "analytical Conv2d/Linear count (lower bound)",
+      "checkpoint_selection": "best macro-domain validation Dice (phase20 selection rule)",
+      "comparability": "PROTOCOL_INCOMPARABLE",
+      "configuration_source": "frozen historical model definitions (see source artifacts)",
+      "dataset": "four-domain pooled development set (ISIC, BUSI, Kvasir-SEG, KUB), Manifest v2 historical",
+      "dice_by_domain": {
+        "BUSI": 0.81630258330817,
+        "ISIC": 0.8600736116535601,
+        "KUB": 0.7206622822532268,
+        "KVASIR": 0.7710009445354833
+      },
+      "evidence_class": "descriptive historical development result",
+      "five_model_table_row_present": true,
+      "macro_dice_ci_95_descriptive": [
+        0.7445723575169626,
+        0.8381880974808651
+      ],
+      "macro_domain_dice": 0.79200985543761,
+      "macro_domain_iou": 0.6910262721598444,
+      "measured_latency_ms": null,
+      "measured_latency_note": "none recorded for baselines in the verified artifacts",
+      "model_key": "unetpp",
+      "name": "U-Net++",
+      "params": 9159681,
+      "phase": "20B",
+      "pooled_dice_descriptive": 0.8412168142725415,
+      "role": "HISTORICAL_EXTERNAL_BASELINE",
+      "seed_count": 1,
+      "split": "historical development validation (selection-consumed); no TEST evaluation",
+      "training_recipe": "historical per-model recipe; not identical across architectures"
+    }
+  ],
+  "global_medfilm_role": "INTERNAL_ABLATION_REFERENCE",
+  "leaderboard": null,
+  "missing": [
+    "protocol-matched baseline training under a shared recipe, seeds and split",
+    "multi-seed replicates",
+    "measured baseline latency under a common harness"
+  ],
+  "primary_proposed_method": "RA-MedFiLM-BARR (FULL)",
+  "protocol_matched": [],
+  "protocol_matched_status": "NONE_AVAILABLE - C3 protocol-faithful comparison is NOT_ESTABLISHED",
+  "schema": "c3_baseline_report_v2",
+  "sources": {
+    "reports/tables/phase20b_five_model_comparison_final.csv": "47f5779cb3aeb90370ba081795bc22c61d0cc97b43662631ba3009d40640f694",
+    "reports/tables/phase21_six_model_comparison.csv": "81ee9990f90c4ef7c035ec89195cddb4582f72a533e9dd0e6fe421f7ca4fae45",
+    "reports/tables/phase21_six_model_compute.csv": "5e88da50faaee41aba9efaf2c6ad07d92f5d5e6be058a727f00969d9ed9b8a24"
+  },
+  "training_run": false
+}
