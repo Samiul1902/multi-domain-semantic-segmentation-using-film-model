@@ -1,0 +1,7 @@
+stage_sequence,stage_name,population,input_n,active_components,mean_dice,routed_fraction,accepted_fraction,net_delta_pp,harm_rate,gmacs_lower_bound,notes
+Stage 0 -> Stage 1,GlobalMedFiLM Backbone (G),VAL808,808,G (Task-conditioned FiLM),0.835079,0.0,0.0,0.0,0.0,31.5517,Frozen baseline across all 4 domains
+Stage 1 -> Stage 2,"Candidate Regional Refiner (R_psi, Unrouted)",ROUTER_DEVELOPMENT4957,4957,"G + R_psi (Arm A1, Always Refine)",,1.0,1.0,0.1658,0.426669,34.7824,Unconditional refinement causes 42.7% harm rate
+Stage 2 -> Stage 3,"Benefit Router (B_phi, Learned Benefit Selection)",ROUTER_DEVELOPMENT4957,4957,"G + R_psi + B_phi (Arm A7, Budget 0.25)",,0.24995,0.24995,0.7247,0.332526,32.4379,Learned benefit routing cuts harm rate to 33.3%
+Stage 3 -> Stage 4,"Post-Safety Gate (S_omega, Final BARR)",ROUTER_DEVELOPMENT4957,4957,G + R_psi + B_phi + S_omega (Arm A8),,0.24995,0.243091,0.7516,0.323651,32.4379,"34 unsafe proposals rejected, lifting routed delta to +0.75 pp"
+Stage 4 (Validated),FULL RA-MedFiLM-BARR Final Pipeline,VAL808,808,Full 4-component bundle (G + R + B + S),0.837862,0.2265,0.2042,0.2783,0.1878,32.4379,Canonical frozen validation outcome (+0.28 pp overall gain)
+Scientific Audit Gate,Incremental Dataset Progression,N/A,0,INCREMENTAL_DATASET_PROGRESSION_NOT_EXECUTED,,,,,,,Audit confirms no genuine multi-seed incremental domain training study exists in repository

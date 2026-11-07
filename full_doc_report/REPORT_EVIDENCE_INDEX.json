@@ -1,0 +1,88 @@
+{
+  "report_title": "RA-MedFiLM-BARR V3 Visual Scientific Research Report",
+  "report_version": "V3.0_FINAL",
+  "evaluation_protocol": "VAL808_FROZEN_CANONICAL",
+  "validation_split_n": 808,
+  "domain_breakdown": {
+    "ISIC": 357,
+    "BUSI": 84,
+    "KVASIR": 87,
+    "KUB": 280
+  },
+  "color_coding_standard": {
+    "TP": "Green (#00D700) - True Positive Intersection",
+    "FP": "Red (#E61A1A) - False Positive Over-segmentation",
+    "FN": "Blue (#1A73E8) - False Negative Under-segmentation",
+    "Alpha_Blend": 0.45
+  },
+  "figures": [
+    {
+      "figure_id": "Fig 1",
+      "filename": "figures/fig1_isic_cases.png",
+      "caption": "ISIC 2018 Dermoscopy Semantic Segmentation across typical, high-performing, boundary-challenging, and failure regimes.",
+      "cases_shown": 4,
+      "dataset": "ISIC 2018"
+    },
+    {
+      "figure_id": "Fig 2",
+      "filename": "figures/fig2_busi_subclasses.png",
+      "caption": "BUSI-WHU Breast Ultrasound Segmentation stratified by verified Benign vs. Malignant clinical pathology.",
+      "cases_shown": 4,
+      "dataset": "BUSI-WHU"
+    },
+    {
+      "figure_id": "Fig 3",
+      "filename": "figures/fig3_kvasir_cases.png",
+      "caption": "Kvasir-SEG Endoscopic Polyp Segmentation across morphological scale and specular reflection challenges.",
+      "cases_shown": 4,
+      "dataset": "Kvasir-SEG"
+    },
+    {
+      "figure_id": "Fig 4",
+      "filename": "figures/fig4_kub_subclasses.png",
+      "caption": "KUB-StoneX Abdominal Radiography Segmentation across verified Bladder, Kidney, Ureteric stones and failure modes.",
+      "cases_shown": 4,
+      "dataset": "KUB-StoneX"
+    },
+    {
+      "figure_id": "Fig 5",
+      "filename": "figures/fig5_domain_subgroup_matrix.png",
+      "caption": "Quantitative Domain and Verified Subgroup Performance Profile (N=808) comparing GlobalMedFiLM baseline with FULL BARR.",
+      "cases_shown": "All 808 samples stratified into 8 clinical/morphological subgroups",
+      "dataset": "Multi-Domain"
+    },
+    {
+      "figure_id": "Fig 6",
+      "filename": "figures/fig6_six_model_comparative.png",
+      "caption": "Six-Model Comparative Segmentation Composite (U-Net, Attention U-Net, U-Net++, DeepLabV3+, MiT-Transformer, GlobalMedFiLM).",
+      "cases_shown": 4,
+      "dataset": "Multi-Domain (ISIC, BUSI, KVASIR, KUB)"
+    },
+    {
+      "figure_id": "Fig 7",
+      "filename": "figures/fig7_dice_heatmap_matrix.png",
+      "caption": "Macro and Per-Domain Dice Score Distribution Heatmap for Six Competing Architectures on VAL808.",
+      "dataset": "Multi-Domain"
+    },
+    {
+      "figure_id": "Fig 8",
+      "filename": "figures/fig8_forest_paired_baselines.png",
+      "caption": "Paired Difference Forest Plot across Validation Domains with 95% Confidence Intervals.",
+      "dataset": "Multi-Domain"
+    },
+    {
+      "figure_id": "Fig 9",
+      "filename": "figures/fig9_ablation_13arm_routed.png",
+      "caption": "13-Arm Component Ablation Study (A0\u2013A8) illustrating routed delta Dice and safety harm-reduction dynamics.",
+      "dataset": "Multi-Domain"
+    },
+    {
+      "figure_id": "Fig 10",
+      "filename": "figures/fig10_accuracy_vs_gmacs_pareto.png",
+      "caption": "Computational Efficiency vs. Accuracy Pareto Frontier (Validation Dice vs. GMACs and Parameter Counts).",
+      "dataset": "Multi-Domain"
+    }
+  ],
+  "verification_hash_source": "reports/audits/phase27_val808_predictions_sha256.json",
+  "test_set_isolation": "CONFIRMED: Protected TEST1683 was strictly quarantined and never accessed."
+}
