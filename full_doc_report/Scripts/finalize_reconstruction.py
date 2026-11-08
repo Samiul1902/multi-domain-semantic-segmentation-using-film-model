@@ -123,7 +123,7 @@ def main() -> None:
     print("EXECUTION", ex["total_executed_cells"], "/", ex["total_code_cells"],
           "| notebooks", ex["n_notebooks"], "| ok", ex["all_notebooks_succeeded"])
 
-    master = OUT / "ReMedFiLM_COMPLETE_MASTER.ipynb"
+    master = OUT / "ReMedFiLM_COMPLETE_MASTER_VERIFIED.ipynb"
     print("MASTER_SHA", sha(master))
     print("MASTER_BYTES", master.stat().st_size)
 

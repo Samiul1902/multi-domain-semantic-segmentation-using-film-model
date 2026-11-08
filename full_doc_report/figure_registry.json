@@ -251,11 +251,12 @@
     "path": "full_doc_report/figures/Semantic segmentation/SEG_ISIC_global_vs_full.png",
     "svg_path": "full_doc_report/figures/Semantic segmentation/SEG_ISIC_global_vs_full.svg",
     "evidence_class": "SAVED_PREDICTIONS_VAL808",
-    "caption": "ISIC: original, ground truth, backbone mask, FULL mask and TP/FP/FN overlay for the worst, median and best paired improvement.",
-    "notebook_section": "09",
+    "caption": "ISIC: original, ground truth, backbone mask, FULL mask, TP/FP/FN overlay and per-sample metrics for the worst, median and best paired improvement.",
+    "notebook_section": "08/09",
     "sources": [
       "reports/tables/phase27_val808_predictions.csv",
-      "reports/predictions/phase21_global_medfilm_fourdomain_seed42_clean_v3/"
+      "reports/predictions/phase21_global_medfilm_fourdomain_seed42_clean_v3/",
+      "full_doc_report/tables/REMEDFILM_INTERNAL_PER_SAMPLE.csv"
     ]
   },
   {
@@ -264,11 +265,12 @@
     "path": "full_doc_report/figures/Semantic segmentation/SEG_BUSI_global_vs_full.png",
     "svg_path": "full_doc_report/figures/Semantic segmentation/SEG_BUSI_global_vs_full.svg",
     "evidence_class": "SAVED_PREDICTIONS_VAL808",
-    "caption": "BUSI: original, ground truth, backbone mask, FULL mask and TP/FP/FN overlay for the worst, median and best paired improvement.",
-    "notebook_section": "09",
+    "caption": "BUSI: original, ground truth, backbone mask, FULL mask, TP/FP/FN overlay and per-sample metrics for the worst, median and best paired improvement.",
+    "notebook_section": "08/09",
     "sources": [
       "reports/tables/phase27_val808_predictions.csv",
-      "reports/predictions/phase21_global_medfilm_fourdomain_seed42_clean_v3/"
+      "reports/predictions/phase21_global_medfilm_fourdomain_seed42_clean_v3/",
+      "full_doc_report/tables/REMEDFILM_INTERNAL_PER_SAMPLE.csv"
     ]
   },
   {
@@ -277,11 +279,12 @@
     "path": "full_doc_report/figures/Semantic segmentation/SEG_KVASIR_global_vs_full.png",
     "svg_path": "full_doc_report/figures/Semantic segmentation/SEG_KVASIR_global_vs_full.svg",
     "evidence_class": "SAVED_PREDICTIONS_VAL808",
-    "caption": "KVASIR: original, ground truth, backbone mask, FULL mask and TP/FP/FN overlay for the worst, median and best paired improvement.",
-    "notebook_section": "09",
+    "caption": "KVASIR: original, ground truth, backbone mask, FULL mask, TP/FP/FN overlay and per-sample metrics for the worst, median and best paired improvement.",
+    "notebook_section": "08/09",
     "sources": [
       "reports/tables/phase27_val808_predictions.csv",
-      "reports/predictions/phase21_global_medfilm_fourdomain_seed42_clean_v3/"
+      "reports/predictions/phase21_global_medfilm_fourdomain_seed42_clean_v3/",
+      "full_doc_report/tables/REMEDFILM_INTERNAL_PER_SAMPLE.csv"
     ]
   },
   {
@@ -290,11 +293,68 @@
     "path": "full_doc_report/figures/Semantic segmentation/SEG_KUB_global_vs_full.png",
     "svg_path": "full_doc_report/figures/Semantic segmentation/SEG_KUB_global_vs_full.svg",
     "evidence_class": "SAVED_PREDICTIONS_VAL808",
-    "caption": "KUB: original, ground truth, backbone mask, FULL mask and TP/FP/FN overlay for the worst, median and best paired improvement.",
-    "notebook_section": "09",
+    "caption": "KUB: original, ground truth, backbone mask, FULL mask, TP/FP/FN overlay and per-sample metrics for the worst, median and best paired improvement.",
+    "notebook_section": "08/09",
     "sources": [
       "reports/tables/phase27_val808_predictions.csv",
-      "reports/predictions/phase21_global_medfilm_fourdomain_seed42_clean_v3/"
+      "reports/predictions/phase21_global_medfilm_fourdomain_seed42_clean_v3/",
+      "full_doc_report/tables/REMEDFILM_INTERNAL_PER_SAMPLE.csv"
+    ]
+  },
+  {
+    "figure_id": "SEG_ISIC_refinement_accepted",
+    "subdir": "Semantic segmentation",
+    "path": "full_doc_report/figures/Semantic segmentation/SEG_ISIC_refinement_accepted.png",
+    "svg_path": "full_doc_report/figures/Semantic segmentation/SEG_ISIC_refinement_accepted.svg",
+    "evidence_class": "SAVED_PREDICTIONS_VAL808",
+    "caption": "ISIC: a single accepted refinement showing the FULL mask diverging from the backbone mask. This is the visual proof that ReMedFiLM FULL is not a relabelled GlobalMedFiLM output.",
+    "notebook_section": "08/09",
+    "sources": [
+      "reports/tables/phase27_val808_predictions.csv",
+      "reports/predictions/phase21_global_medfilm_fourdomain_seed42_clean_v3/",
+      "full_doc_report/tables/REMEDFILM_INTERNAL_PER_SAMPLE.csv"
+    ]
+  },
+  {
+    "figure_id": "SEG_BUSI_refinement_accepted",
+    "subdir": "Semantic segmentation",
+    "path": "full_doc_report/figures/Semantic segmentation/SEG_BUSI_refinement_accepted.png",
+    "svg_path": "full_doc_report/figures/Semantic segmentation/SEG_BUSI_refinement_accepted.svg",
+    "evidence_class": "SAVED_PREDICTIONS_VAL808",
+    "caption": "BUSI: a single accepted refinement showing the FULL mask diverging from the backbone mask. This is the visual proof that ReMedFiLM FULL is not a relabelled GlobalMedFiLM output.",
+    "notebook_section": "08/09",
+    "sources": [
+      "reports/tables/phase27_val808_predictions.csv",
+      "reports/predictions/phase21_global_medfilm_fourdomain_seed42_clean_v3/",
+      "full_doc_report/tables/REMEDFILM_INTERNAL_PER_SAMPLE.csv"
+    ]
+  },
+  {
+    "figure_id": "SEG_KVASIR_refinement_accepted",
+    "subdir": "Semantic segmentation",
+    "path": "full_doc_report/figures/Semantic segmentation/SEG_KVASIR_refinement_accepted.png",
+    "svg_path": "full_doc_report/figures/Semantic segmentation/SEG_KVASIR_refinement_accepted.svg",
+    "evidence_class": "SAVED_PREDICTIONS_VAL808",
+    "caption": "KVASIR: a single accepted refinement showing the FULL mask diverging from the backbone mask. This is the visual proof that ReMedFiLM FULL is not a relabelled GlobalMedFiLM output.",
+    "notebook_section": "08/09",
+    "sources": [
+      "reports/tables/phase27_val808_predictions.csv",
+      "reports/predictions/phase21_global_medfilm_fourdomain_seed42_clean_v3/",
+      "full_doc_report/tables/REMEDFILM_INTERNAL_PER_SAMPLE.csv"
+    ]
+  },
+  {
+    "figure_id": "SEG_KUB_refinement_accepted",
+    "subdir": "Semantic segmentation",
+    "path": "full_doc_report/figures/Semantic segmentation/SEG_KUB_refinement_accepted.png",
+    "svg_path": "full_doc_report/figures/Semantic segmentation/SEG_KUB_refinement_accepted.svg",
+    "evidence_class": "SAVED_PREDICTIONS_VAL808",
+    "caption": "KUB: a single accepted refinement showing the FULL mask diverging from the backbone mask. This is the visual proof that ReMedFiLM FULL is not a relabelled GlobalMedFiLM output.",
+    "notebook_section": "08/09",
+    "sources": [
+      "reports/tables/phase27_val808_predictions.csv",
+      "reports/predictions/phase21_global_medfilm_fourdomain_seed42_clean_v3/",
+      "full_doc_report/tables/REMEDFILM_INTERNAL_PER_SAMPLE.csv"
     ]
   },
   {
@@ -303,7 +363,7 @@
     "path": "full_doc_report/figures/Semantic segmentation/SEG_failure_cases.png",
     "svg_path": "full_doc_report/figures/Semantic segmentation/SEG_failure_cases.svg",
     "evidence_class": "SAVED_PREDICTIONS_VAL808",
-    "caption": "The six largest negative \u0394 Dice cases; the safety gate accepted these, so they are genuine residual failures.",
+    "caption": "The six largest negative Delta Dice cases; the safety gate accepted these, so they are genuine residual failures.",
     "notebook_section": "09",
     "sources": [
       "full_doc_report/tables/REMEDFILM_INTERNAL_PER_SAMPLE.csv"

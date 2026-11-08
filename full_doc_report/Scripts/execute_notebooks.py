@@ -25,7 +25,8 @@ KDIR = OUT / "_kernels"
 
 def targets() -> list[Path]:
     """The canonical notebook family, in reading order."""
-    t = [OUT / "ReMedFiLM_COMPLETE_MASTER.ipynb"]
+    t = [OUT / "ReMedFiLM_COMPLETE_MASTER_VERIFIED.ipynb",
+         OUT / "ReMedFiLM_COMPLETE_MASTER.ipynb"]
     t += sorted((OUT / "ReMedFiLM_Research_Notebooks").glob("*.ipynb"))
     t += sorted((OUT / "Reconstructed_Phasewise_Notebooks").rglob("*.ipynb"))
     return [p for p in t if p.exists()]
