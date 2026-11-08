@@ -1,0 +1,7 @@
+stage,stage_name,population,n,active_components,mean_dice,routed_fraction,accepted_fraction,net_delta_pp,harm_rate,gmacs_lower_bound,evidence_class,source
+Stage 0,GlobalMedFiLM backbone (G),VAL808,808,G,0.835080,0.0,0.0,0.0,0.0,31.551740928,FROZEN_BACKBONE_REFERENCE,reports/tables/phase21_six_model_comparison.csv
+Stage 1,Unrouted regional refinement (A1),ROUTER_DEVELOPMENT_4957,4957,G + R_psi,,1.0,1.0,0.16580797889999999,0.426669356466,34.782440912,IN_SAMPLE_ENDPOINT_BY_CONSTRUCTION,reports/tables/phase28_table_02_arm_primary_metrics.csv
+Stage 2,Learned benefit routing (A7),ROUTER_DEVELOPMENT_4957,4957,G + R_psi + B_phi,,0.2499495663,0.2499495663,0.7246629237,0.332526230831,32.437902022582854,DEVELOPMENT_EVIDENCE,reports/tables/phase28_table_02_arm_primary_metrics.csv
+Stage 3,Post-safety gate (A8 FULL),ROUTER_DEVELOPMENT_4957,4957,G + R_psi + B_phi + S_omega,,0.243090579,0.24309057897922132,0.7515754298,0.323651452282,32.437902022582854,DEVELOPMENT_EVIDENCE,reports/tables/phase28_table_02_arm_primary_metrics.csv
+Stage 4,FULL assembly on held-out VAL808,VAL808,808,G + R_psi + B_phi + S_omega,0.837290,0.34529702970297027,0.3292079207920792,0.2209968233471182,0.12004950495049505,32.437902022582854,PAIRED_PRESERVATION_EVIDENCE,reports/tables/phase27_val808_predictions.csv (re-scored)
+Audit gate,Incremental dataset progression,,0,,,,,,,,NOT_EXECUTED,no genuine incremental-domain training study exists

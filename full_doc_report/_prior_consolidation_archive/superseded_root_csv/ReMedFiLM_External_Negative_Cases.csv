@@ -1,0 +1,3 @@
+subgroup,total_cases,image_level_fp_rate,fp_image_count,empty_gt_handling,mean_global_fp_area_px,mean_remedfilm_fp_area_px,router_selection_attempted,safety_accepted_count,safety_rejected_count,clinical_implication
+Stone-Free Normal Controls (Negative Cohort),14,100.0%,14 / 14,Dice strictly 0.000 by definition when pred_pixels > 0 and GT empty,5822.4 px,4311.6 px,8 / 14,7,1,Severe false positive risk on normal radiographs; phantom stone hallucination requires negative-case loss training
+Stone-Positive Patients (Positive Cohort),6,N/A (True Positive Target Present),N/A,"Standard Dice evaluation (TP, FP, FN)",14419.7 px,10522.3 px,2 / 6,2,0,Mean Dice 0.2738 (+0.43 pp gain over GlobalMedFiLM); refines stone contours when detected

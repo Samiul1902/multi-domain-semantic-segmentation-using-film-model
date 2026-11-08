@@ -1,0 +1,188 @@
+{
+  "artifact": "final_qa_checks",
+  "n_checks": 36,
+  "n_passed": 36,
+  "all_passed": true,
+  "checks": [
+    {
+      "check": "run IDs unique",
+      "result": "PASS",
+      "detail": "82 runs"
+    },
+    {
+      "check": "model identities resolved",
+      "result": "PASS",
+      "detail": "unresolved=[]"
+    },
+    {
+      "check": "seed identities recognised",
+      "result": "PASS",
+      "detail": "unexpected=[]"
+    },
+    {
+      "check": "epoch ordering correct",
+      "result": "PASS",
+      "detail": "out-of-order series=0"
+    },
+    {
+      "check": "no duplicated epoch records",
+      "result": "PASS",
+      "detail": "duplicates=0"
+    },
+    {
+      "check": "no invented/gap epochs",
+      "result": "PASS",
+      "detail": "gapped series=0"
+    },
+    {
+      "check": "best epoch matches saved metadata",
+      "result": "PASS",
+      "detail": "mismatches=[]"
+    },
+    {
+      "check": "genuine separated from synthetic",
+      "result": "PASS",
+      "detail": "statuses={'GENUINE_HISTORY_BEST_EPOCH_UNRESOLVED': 14, 'GENUINE_HISTORICAL_TRAINING': 68}"
+    },
+    {
+      "check": "VAL808 sample count is 808",
+      "result": "PASS",
+      "detail": "n=808"
+    },
+    {
+      "check": "per-domain counts sum to 808",
+      "result": "PASS",
+      "detail": "sum=808"
+    },
+    {
+      "check": "Dice/IoU/precision/recall within [0,1]",
+      "result": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "undefined metrics not zero-filled",
+      "result": "PASS",
+      "detail": "zero HD95 domains=[]"
+    },
+    {
+      "check": "per-sample table has 808 rows",
+      "result": "PASS",
+      "detail": "rows=808"
+    },
+    {
+      "check": "paired comparison uses matched samples",
+      "result": "PASS",
+      "detail": "one row per sample_id"
+    },
+    {
+      "check": "macro reproduces from per-sample rows",
+      "result": "PASS",
+      "detail": "0.837289686 vs 0.837289686"
+    },
+    {
+      "check": "no incompatible population pooling",
+      "result": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "ReMedFiLM FULL present as its own identity",
+      "result": "PASS",
+      "detail": "rows=7"
+    },
+    {
+      "check": "no backbone row labelled ReMedFiLM",
+      "result": "PASS",
+      "detail": "[]"
+    },
+    {
+      "check": "component parameters reconcile to 4,837,420",
+      "result": "PASS",
+      "detail": "4837420 vs 4837420"
+    },
+    {
+      "check": "segmentation galleries exist",
+      "result": "PASS",
+      "detail": "missing=[]"
+    },
+    {
+      "check": "gallery sample metrics match source table",
+      "result": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "KUB ROI/full-image distinction recorded",
+      "result": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "all 13 ablation arms present",
+      "result": "PASS",
+      "detail": "missing=[] extra=[]"
+    },
+    {
+      "check": "contrasts carry 95% CIs",
+      "result": "PASS",
+      "detail": "5 contrasts"
+    },
+    {
+      "check": "negative A8-vs-A7 contrast retained",
+      "result": "PASS",
+      "detail": "[-1.4313785e-05, 5.1010811e-05]"
+    },
+    {
+      "check": "all notebooks executed",
+      "result": "PASS",
+      "detail": "225/225 cells"
+    },
+    {
+      "check": "all notebooks are valid JSON with metadata",
+      "result": "PASS",
+      "detail": "[]"
+    },
+    {
+      "check": "no training call executed",
+      "result": "PASS",
+      "detail": "[]"
+    },
+    {
+      "check": "no TEST manifest read in any notebook",
+      "result": "PASS",
+      "detail": "[]"
+    },
+    {
+      "check": "guard negative controls blocked in every notebook",
+      "result": "PASS",
+      "detail": "21/21"
+    },
+    {
+      "check": "all registered figures exist",
+      "result": "PASS",
+      "detail": "45 figures, missing=0"
+    },
+    {
+      "check": "11 required figure directories",
+      "result": "PASS",
+      "detail": "missing=[]"
+    },
+    {
+      "check": "every phase directory inventoried",
+      "result": "PASS",
+      "detail": "57 rows"
+    },
+    {
+      "check": "every missing notebook has a documented resolution",
+      "result": "PASS",
+      "detail": "[]"
+    },
+    {
+      "check": "all phasewise notebooks preserved byte-identical",
+      "result": "PASS",
+      "detail": "108/108"
+    },
+    {
+      "check": "no frozen research source modified",
+      "result": "PASS",
+      "detail": "0 paths"
+    }
+  ]
+}

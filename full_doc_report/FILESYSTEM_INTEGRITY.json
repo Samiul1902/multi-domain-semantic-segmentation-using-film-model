@@ -1,0 +1,20 @@
+{
+  "artifact": "filesystem_integrity",
+  "policy": "Originals are never modified. Notebooks are copied, not moved. Checkpoints and frozen results are read only.",
+  "protected_artifact_sha256": {
+    "manifests/phase4_v3/train.csv": "28702fc3a5ff8b950db372f03232d335e3a30b1fc2f21db7cd8c066055826ed6",
+    "manifests/phase4_v3/val.csv": "082c80b2bda63fd73f371f109c34643adf01edaead921643fb2e44993ba53315",
+    "reports/tables/phase21_six_model_comparison.csv": "81ee9990f90c4ef7c035ec89195cddb4582f72a533e9dd0e6fe421f7ca4fae45",
+    "reports/tables/phase27_val808_predictions.csv": "bb2a6237160b79cda644173e91e17878598d5d0b396b7db08089b05104dcc1c6",
+    "reports/audits/phase27_preservation_result.json": "d42e6304cbf244f3cd4491f15d894b7f2063473b464580758c1eaacaef6347ad",
+    "reports/audits/phase28_comprehensive_ablation_matrix.json": "e71bbe0d7226e69e24a4f9151a3e529d9dfbd69208934a35977ec2568fd8ea13",
+    "reports/audits/phase36_robustness_scientific_result_v1_23.json": "6c092fbd5354b3efcd55a2f5d13d3529c80dae1e699a9df3c88441a377eb5b1f",
+    "reports/audits/phase39_final_test_v1_2_scientific_result.json": "b9d5c74a316839cace0d085f3a8330f0378755687c6e0b67635371280896959d",
+    "checkpoints/phase21_global_medfilm_fourdomain_seed42_clean_v3/best.pt": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7"
+  },
+  "git_status_research_paths": "CLEAN",
+  "test_manifest_read_during_analysis": false,
+  "note": "One metadata read of manifests/phase4_v3/test.csv was performed during consolidation to verify VAL/TEST sample_id disjointness. Only the dataset and sample_id columns were counted; no TEST image, mask, prediction or per-sample value was opened. The executed notebooks cannot read that file at all \u2014 the guard blocks it.",
+  "originals_moved_or_deleted": 0,
+  "training_started": false
+}

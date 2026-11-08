@@ -1,0 +1,201 @@
+{
+  "FIG01": {
+    "figure_id": "FIG 01",
+    "report_page": 2,
+    "title": "ReMedFiLM: Task-Conditioned Global-to-Regional Medical Image Segmentation with Risk-Averse Refinement",
+    "source_scripts": [
+      "scripts/analysis/build_v6_docx_report.py",
+      "scripts/analysis/build_v6_pdf_report.py"
+    ],
+    "source_files": [
+      "full_doc_report/figures/FIG01_ReMedFiLM_Methodology_V6.svg"
+    ],
+    "models_represented": [
+      "GlobalMedFiLM (G)",
+      "Benefit Router (B_phi)",
+      "Regional Refiner (R_psi)",
+      "Post-Safety Gate (S_omega)",
+      "ReMedFiLM (FULL Assembly)"
+    ],
+    "parameters": 4837420,
+    "outcomes": [
+      "Outcome 1: SKIP (Global)",
+      "Outcome 2: REFINE + ACCEPT (ReMedFiLM Final)",
+      "Outcome 3: REFINE + REJECT (Global Fallback)"
+    ],
+    "evidence_class": "CANONICAL_ARCHITECTURE_CONTRACT",
+    "figure_sha256": "bf43f4e38f7f4fe83189ead557e98d255c2f27c18ae95b77476eb42f248b41a9"
+  },
+  "FIG03": {
+    "figure_id": "FIG 03",
+    "report_page": 3,
+    "title": "Seven-Model VAL808 Benchmark & Parameter-Accuracy Pareto Frontier",
+    "source_scripts": [
+      "scripts/analysis/build_verified_comparison_figures.py"
+    ],
+    "source_files": [
+      "reports/tables/phase21_six_model_comparison.csv",
+      "reports/audits/phase29_phase_d_three_seed_descriptive_summary.json"
+    ],
+    "models_represented": [
+      "Standard U-Net",
+      "Attention U-Net",
+      "U-Net++",
+      "Transformer/MiT U-Net",
+      "DeepLabV3+",
+      "GlobalMedFiLM (G)",
+      "ReMedFiLM (FULL Proposed)"
+    ],
+    "metrics": {
+      "U-Net": 0.7878,
+      "Att-UNet": 0.789,
+      "UNet++": 0.792,
+      "MiT-UNet": 0.8224,
+      "DeepLabV3+": 0.8277,
+      "GlobalMedFiLM": 0.8351,
+      "ReMedFiLM": 0.8379
+    },
+    "evidence_class": "PAIRED_PRESERVATION_EVIDENCE",
+    "figure_sha256": "5f0dd8785f999625e57782b121e365ba0d5a0dae5dc151ed2e00cbb2b949ed97"
+  },
+  "FIG04": {
+    "figure_id": "FIG 04",
+    "report_page": 4,
+    "title": "Domain-Wise Performance Profile and Paired Forest Plot across ISIC, BUSI, KVASIR, and KUB",
+    "source_scripts": [
+      "scripts/analysis/build_verified_comparison_figures.py"
+    ],
+    "source_files": [
+      "reports/audits/phase30_primary_noninferiority_result.json",
+      "reports/audits/phase27_preservation_result.json"
+    ],
+    "models_represented": [
+      "GlobalMedFiLM (Backbone)",
+      "ReMedFiLM (FULL Proposed)"
+    ],
+    "domain_deltas_pp": {
+      "ISIC": 0.1,
+      "BUSI": 0.13,
+      "KVASIR": 0.29,
+      "KUB": 0.61,
+      "Macro": 0.28
+    },
+    "evidence_class": "DOMAIN_STRATIFIED_PRESERVATION",
+    "figure_sha256": "dc4ee73a478d73ac27a4a126056738da56edc7ccb60375b68dda534f8936c21a"
+  },
+  "FIG11": {
+    "figure_id": "FIG 11",
+    "report_page": 10,
+    "title": "Retrospective External Quantitative Evaluation Profile across 884 Cases",
+    "source_scripts": [
+      "scripts/analysis/build_external_stress_figures.py"
+    ],
+    "source_files": [
+      "reports/tables/c1_external_stress_summary.csv",
+      "reports/tables/c1_external_stress_per_case.csv"
+    ],
+    "models_represented": [
+      "GlobalMedFiLM (Backbone)",
+      "ReMedFiLM (FULL Proposed)"
+    ],
+    "cohorts": {
+      "CVC-ClinicDB": {
+        "n": 612,
+        "dice": 0.6897
+      },
+      "BrEaST-USG": {
+        "n": 252,
+        "dice": 0.7081
+      },
+      "Stones_Positive": {
+        "n": 6,
+        "dice": 0.2738
+      },
+      "Stones_Negative": {
+        "n": 14,
+        "dice": 0.0
+      }
+    },
+    "negative_case_finding": "14/14 stone-free false positive detection rate (Dice 0.000)",
+    "evidence_class": "RETROSPECTIVE_EXTERNAL_BENCHMARK",
+    "figure_sha256": "8ccac26a53dbc77a408ae2bfa3e34072a4bb3961b9ef0166101f40175b333e38"
+  },
+  "FIG15": {
+    "figure_id": "FIG 15",
+    "report_page": 12,
+    "title": "13-Arm Component Ablation Study and Safety Harm-Reduction Dynamics",
+    "source_scripts": [
+      "scripts/analysis/build_verified_comparison_figures.py"
+    ],
+    "source_files": [
+      "reports/tables/phase28_table_02_arm_primary_metrics.csv"
+    ],
+    "arms_represented": [
+      "A0",
+      "A1",
+      "A2",
+      "A3",
+      "A4",
+      "A5",
+      "A6",
+      "A7",
+      "A8",
+      "R1",
+      "R2",
+      "R3",
+      "F1"
+    ],
+    "key_contrast": "A1 harm 42.7% -> A8 harm 7.87% (all-population intent-to-treat N=4,957)",
+    "evidence_class": "IN_SAMPLE_ABLATION_EVIDENCE",
+    "figure_sha256": "1ebf829ef1ed75203d767902fda263d180663ceb12bdcac39f83fca4cc2b32e4"
+  },
+  "FIG16": {
+    "figure_id": "FIG 16",
+    "report_page": 15,
+    "title": "ReMedFiLM Computational Efficiency, Accuracy Trade-Off & Latency Accounting (V7 Definitive)",
+    "source_scripts": [
+      "scripts/analysis/build_v7_figures.py"
+    ],
+    "source_files": [
+      "reports/tables/phase34_analytical_compute_summary_v1_3.csv",
+      "reports/tables/phase34_batch1_latency_results_v1_4.csv",
+      "reports/tables/phase34_conditional_runtime_estimate_v1_4.csv",
+      "reports/performance/phase_d/benchmark.json"
+    ],
+    "models_represented": [
+      "Standard U-Net",
+      "Attention U-Net",
+      "U-Net++",
+      "Transformer/MiT U-Net",
+      "DeepLabV3+",
+      "GlobalMedFiLM (G)",
+      "ReMedFiLM (FULL Proposed)"
+    ],
+    "remedfilm_points": {
+      "params": 4837420,
+      "expected_conditional_gmacs": 32.44,
+      "val808_macro_dice": 83.79
+    },
+    "globalmedfilm_points": {
+      "params": 3523001,
+      "gmacs": 31.55,
+      "val808_macro_dice": 83.51
+    },
+    "delta_remedfilm_vs_backbone": {
+      "delta_dice_pp": "+0.28 pp",
+      "delta_gmacs": "+0.89 GMACs",
+      "delta_params": "+1.31M params"
+    },
+    "latency_separation": {
+      "forward_pass_only_rtx3060ti_batch1_mean": {
+        "GlobalMedFiLM": "15.77 ms",
+        "ReMedFiLM_SKIP": "15.72 ms",
+        "ReMedFiLM_EXECUTE": "18.89 ms",
+        "Weighted_Mean": "16.59 ms"
+      },
+      "full_pipeline_fixture_rtx3060ti_p50": "87.99 ms"
+    },
+    "evidence_class": "COMPUTATIONAL_ENGINEERING_AND_BENCHMARK_EVIDENCE",
+    "figure_sha256": "726f29b244f32ed0b41e095c743d6bc043846316790d4ade89a5c0d2a8818b1d"
+  }
+}

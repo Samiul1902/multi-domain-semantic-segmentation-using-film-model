@@ -1,0 +1,424 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 920" width="1600" height="920" style="background:#ffffff; font-family:'Segoe UI', Helvetica, Arial, sans-serif;">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="hdrGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1B365D"/>
+      <stop offset="100%" stop-color="#2C5282"/>
+    </linearGradient>
+    <linearGradient id="globalGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#EBF8FF"/>
+      <stop offset="100%" stop-color="#BEE3F8"/>
+    </linearGradient>
+    <linearGradient id="routerGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E6FFFA"/>
+      <stop offset="100%" stop-color="#B2F5EA"/>
+    </linearGradient>
+    <linearGradient id="refinerGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F0FFF4"/>
+      <stop offset="100%" stop-color="#C6F6D5"/>
+    </linearGradient>
+    <linearGradient id="safetyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFAF0"/>
+      <stop offset="100%" stop-color="#FEEBC8"/>
+    </linearGradient>
+    <linearGradient id="taskGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FAF5FF"/>
+      <stop offset="100%" stop-color="#E9D8FD"/>
+    </linearGradient>
+
+    <!-- Drop Shadow Filters -->
+    <filter id="cardShadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.08"/>
+    </filter>
+
+    <!-- Markers for arrows -->
+    <marker id="arrowSolid" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M 0 0 L 8 4 L 0 8 z" fill="#2B6CB0"/>
+    </marker>
+    <marker id="arrowRouter" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M 0 0 L 8 4 L 0 8 z" fill="#319795"/>
+    </marker>
+    <marker id="arrowRefine" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M 0 0 L 8 4 L 0 8 z" fill="#2F855A"/>
+    </marker>
+    <marker id="arrowReject" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M 0 0 L 8 4 L 0 8 z" fill="#DD6B20"/>
+    </marker>
+    <marker id="arrowTrain" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M 0 0 L 8 4 L 0 8 z" fill="#805AD5"/>
+    </marker>
+    <marker id="arrowDark" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M 0 0 L 8 4 L 0 8 z" fill="#2D3748"/>
+    </marker>
+  </defs>
+
+  <!-- ======================================================== -->
+  <!-- TITLE & HEADER BANNER                                    -->
+  <!-- ======================================================== -->
+  <rect x="20" y="15" width="1560" height="58" rx="6" fill="url(#hdrGrad)"/>
+  <text x="40" y="42" fill="#ffffff" font-size="20" font-weight="bold">FIG 01. FULL RA-MedFiLM-BARR Canonical Methodology &amp; Execution Pipeline</text>
+  <text x="40" y="60" fill="#E2E8F0" font-size="12">Risk-Averse Medical Feature-wise Linear Modulation with Boundary-Aware Residual Refinement | Staged Freeze Architecture (4.84M Parameters)</text>
+
+  <!-- ======================================================== -->
+  <!-- PANEL A: MULTI-DOMAIN INPUT & TASK EMBEDDING             -->
+  <!-- ======================================================== -->
+  <rect x="20" y="85" width="280" height="590" rx="8" fill="#F7FAFC" stroke="#CBD5E0" stroke-width="1.5"/>
+  <rect x="20" y="85" width="280" height="34" rx="8" fill="#EDF2F7"/>
+  <text x="32" y="108" fill="#1A365D" font-size="13" font-weight="bold">PANEL A: Multi-Domain Input</text>
+
+  <!-- Four Modality Cards -->
+  <!-- Modality 1: ISIC -->
+  <g transform="translate(35, 130)">
+    <rect width="250" height="68" rx="6" fill="#ffffff" stroke="#E2E8F0" stroke-width="1.2" filter="url(#cardShadow)"/>
+    <circle cx="28" cy="34" r="18" fill="#EBF8FF" stroke="#3182CE" stroke-width="1.5"/>
+    <text x="28" y="38" text-anchor="middle" fill="#2B6CB0" font-size="10" font-weight="bold">RGB</text>
+    <text x="56" y="28" fill="#2D3748" font-size="11" font-weight="bold">ISIC 2018 (Dermoscopy)</text>
+    <text x="56" y="44" fill="#718096" font-size="9.5">Cutaneous Pigmented Lesion</text>
+    <rect x="56" y="49" width="70" height="15" rx="3" fill="#EBF8FF"/>
+    <text x="91" y="60" text-anchor="middle" fill="#2B6CB0" font-size="8.5" font-weight="bold">Task t = 0</text>
+  </g>
+
+  <!-- Modality 2: BUSI -->
+  <g transform="translate(35, 208)">
+    <rect width="250" height="68" rx="6" fill="#ffffff" stroke="#E2E8F0" stroke-width="1.2" filter="url(#cardShadow)"/>
+    <circle cx="28" cy="34" r="18" fill="#FAF5FF" stroke="#805AD5" stroke-width="1.5"/>
+    <text x="28" y="38" text-anchor="middle" fill="#6B46C1" font-size="10" font-weight="bold">US</text>
+    <text x="56" y="28" fill="#2D3748" font-size="11" font-weight="bold">BUSI-WHU (Ultrasound)</text>
+    <text x="56" y="44" fill="#718096" font-size="9.5">Breast Benign &amp; Malignant Mass</text>
+    <rect x="56" y="49" width="70" height="15" rx="3" fill="#FAF5FF"/>
+    <text x="91" y="60" text-anchor="middle" fill="#6B46C1" font-size="8.5" font-weight="bold">Task t = 1</text>
+  </g>
+
+  <!-- Modality 3: KVASIR -->
+  <g transform="translate(35, 286)">
+    <rect width="250" height="68" rx="6" fill="#ffffff" stroke="#E2E8F0" stroke-width="1.2" filter="url(#cardShadow)"/>
+    <circle cx="28" cy="34" r="18" fill="#E6FFFA" stroke="#319795" stroke-width="1.5"/>
+    <text x="28" y="38" text-anchor="middle" fill="#234E52" font-size="10" font-weight="bold">Endo</text>
+    <text x="56" y="28" fill="#2D3748" font-size="11" font-weight="bold">Kvasir-SEG (Colonoscopy)</text>
+    <text x="56" y="44" fill="#718096" font-size="9.5">Gastrointestinal Mucosal Polyp</text>
+    <rect x="56" y="49" width="70" height="15" rx="3" fill="#E6FFFA"/>
+    <text x="91" y="60" text-anchor="middle" fill="#234E52" font-size="8.5" font-weight="bold">Task t = 2</text>
+  </g>
+
+  <!-- Modality 4: KUB -->
+  <g transform="translate(35, 364)">
+    <rect width="250" height="68" rx="6" fill="#ffffff" stroke="#E2E8F0" stroke-width="1.2" filter="url(#cardShadow)"/>
+    <circle cx="28" cy="34" r="18" fill="#FFFAF0" stroke="#DD6B20" stroke-width="1.5"/>
+    <text x="28" y="38" text-anchor="middle" fill="#C05621" font-size="10" font-weight="bold">XR</text>
+    <text x="56" y="28" fill="#2D3748" font-size="11" font-weight="bold">KUB-StoneX (Radiography)</text>
+    <text x="56" y="44" fill="#718096" font-size="9.5">Kidney, Ureteric &amp; Bladder Stones</text>
+    <rect x="56" y="49" width="70" height="15" rx="3" fill="#FFFAF0"/>
+    <text x="91" y="60" text-anchor="middle" fill="#C05621" font-size="8.5" font-weight="bold">Task t = 3</text>
+  </g>
+
+  <!-- Formulation Explanatory Box -->
+  <rect x="35" y="446" width="250" height="116" rx="6" fill="#EDF2F7" stroke="#CBD5E0" stroke-width="1"/>
+  <text x="45" y="465" fill="#2D3748" font-size="10" font-weight="bold">Binary Task-Specific Formulation</text>
+  <text x="45" y="482" fill="#4A5568" font-size="8.5">• Target: 1 foreground class per task</text>
+  <text x="45" y="497" fill="#4A5568" font-size="8.5">• Input: x ∈ ℝ^(1×3×512×512), t ∈ {0,1,2,3}</text>
+  <text x="45" y="512" fill="#4A5568" font-size="8.5">• Learned task embedding: e_t ∈ ℝ^32</text>
+  <text x="45" y="527" fill="#4A5568" font-size="8.5">• G: GlobalMedFiLM (3.52M params)</text>
+  <text x="45" y="542" fill="#4A5568" font-size="8.5">• Total Assembly: 4.84M params</text>
+
+  <!-- Learned Task Embedding Box -->
+  <rect x="35" y="574" width="250" height="86" rx="6" fill="url(#taskGrad)" stroke="#B794F4" stroke-width="1.2"/>
+  <text x="45" y="594" fill="#553C9A" font-size="10.5" font-weight="bold">Task Embedding Generator E(t)</text>
+  <text x="45" y="612" fill="#6B46C1" font-size="9">nn.Embedding(4, 32) → e_t ∈ ℝ^32</text>
+  <text x="45" y="628" fill="#6B46C1" font-size="8.5">Feeds 5 FiLM Modulation Sites in G:</text>
+  <text x="45" y="643" fill="#6B46C1" font-size="8" font-weight="bold">[bridge, dec4, dec3, dec2, dec1]</text>
+
+  <!-- ======================================================== -->
+  <!-- PANEL B: FULL RA-MedFiLM-BARR ARCHITECTURE               -->
+  <!-- ======================================================== -->
+  <rect x="315" y="85" width="920" height="590" rx="8" fill="#ffffff" stroke="#2B6CB0" stroke-width="2"/>
+  <rect x="315" y="85" width="920" height="34" rx="8" fill="#EBF8FF"/>
+  <text x="330" y="108" fill="#1A365D" font-size="14" font-weight="bold">PANEL B: FULL RA-MedFiLM-BARR — Proposed Inference Architecture</text>
+  <rect x="1060" y="92" width="165" height="20" rx="4" fill="#3182CE"/>
+  <text x="1142" y="106" text-anchor="middle" fill="#ffffff" font-size="9" font-weight="bold">STAGED COMPOSITION (0 TRAIN PARAMS)</text>
+
+  <!-- MODULE G: GlobalMedFiLM Backbone -->
+  <g transform="translate(330, 130)">
+    <rect width="265" height="235" rx="6" fill="url(#globalGrad)" stroke="#63B3ED" stroke-width="1.5" filter="url(#cardShadow)"/>
+    <rect x="0" y="0" width="265" height="26" rx="6" fill="#3182CE"/>
+    <text x="10" y="18" fill="#ffffff" font-size="11" font-weight="bold">G — GlobalMedFiLM Backbone (3.52M)</text>
+    
+    <!-- Inner blocks of G -->
+    <rect x="12" y="36" width="240" height="34" rx="4" fill="#ffffff" stroke="#BEE3F8"/>
+    <text x="20" y="50" fill="#2B6CB0" font-size="9.5" font-weight="bold">Encoder: 4 Residual Stages</text>
+    <text x="20" y="63" fill="#718096" font-size="8">Channels: [24, 48, 96, 192] (ConvNormAct + ResSkip)</text>
+
+    <rect x="12" y="76" width="240" height="38" rx="4" fill="#FAF5FF" stroke="#D6BCFA"/>
+    <text x="20" y="90" fill="#6B46C1" font-size="9.5" font-weight="bold">Bridge (256-d) + FiLM Site 1</text>
+    <text x="20" y="105" fill="#553C9A" font-size="8">F̂ = (1 + tanh(γ(e_t))) ⊙ F + tanh(β(e_t))</text>
+
+    <rect x="12" y="120" width="240" height="42" rx="4" fill="#ffffff" stroke="#BEE3F8"/>
+    <text x="20" y="134" fill="#2B6CB0" font-size="9.5" font-weight="bold">Decoder: 4 Stages + FiLM Sites 2–5</text>
+    <text x="20" y="147" fill="#718096" font-size="8">TranspConv Up + Cat Skip + ResBlock + FiLM</text>
+    <text x="20" y="157" fill="#718096" font-size="7.5">dec4 (192), dec3 (96), dec2 (48), dec1 (24)</text>
+
+    <rect x="12" y="168" width="240" height="30" rx="4" fill="#EBF8FF" stroke="#90CDF4"/>
+    <text x="20" y="182" fill="#2B6CB0" font-size="9" font-weight="bold">Output Head (1×1 Conv → Sigmoid)</text>
+    <text x="20" y="193" fill="#4A5568" font-size="8">Produces Global Probability p_global ∈ [0, 1]^(512×512)</text>
+
+    <text x="12" y="222" fill="#2C5282" font-size="8.5" font-weight="bold">Single Shared Output Head | 0 Head Swapping</text>
+  </g>
+
+  <!-- ROI PROPOSAL LOGIC -->
+  <g transform="translate(330, 385)">
+    <rect width="265" height="110" rx="6" fill="#EDF2F7" stroke="#CBD5E0" stroke-width="1.2"/>
+    <text x="12" y="405" fill="#2D3748" font-size="10.5" font-weight="bold">ROI Proposal (Center-Preserving Expansion)</text>
+    <text x="12" y="423" fill="#4A5568" font-size="8.5">• Foreground Threshold: p_global ≥ 0.30</text>
+    <text x="12" y="438" fill="#4A5568" font-size="8.5">• Bounding Box: (y0, y1, x0, x1) of active pixels</text>
+    <text x="12" y="453" fill="#4A5568" font-size="8.5">• Expansion: 1.50× scaling centered at (cy, cx)</text>
+    <text x="12" y="468" fill="#C53030" font-size="8.5" font-weight="bold">• Action Available iff any p_global ≥ 0.30</text>
+    <text x="12" y="483" fill="#718096" font-size="8">If unavailable → FORCED_SKIP (outputs p_global directly)</text>
+  </g>
+
+  <!-- PATH FORCED SKIP ARROW -->
+  <path d="M 330 470 L 305 470 L 305 640 L 460 640" fill="none" stroke="#A0AEC0" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arrowDark)"/>
+  <rect x="290" y="580" width="85" height="22" rx="3" fill="#EDF2F7" stroke="#CBD5E0"/>
+  <text x="332" y="594" text-anchor="middle" fill="#718096" font-size="7.5" font-weight="bold">FORCED_SKIP</text>
+
+  <!-- MODULE B_phi: Benefit Router -->
+  <g transform="translate(625, 130)">
+    <rect width="275" height="205" rx="6" fill="url(#routerGrad)" stroke="#4FD1C5" stroke-width="1.5" filter="url(#cardShadow)"/>
+    <rect x="0" y="0" width="275" height="26" rx="6" fill="#319795"/>
+    <text x="10" y="18" fill="#ffffff" font-size="11" font-weight="bold">B_phi — Benefit Router (36.8K Params)</text>
+    
+    <text x="12" y="42" fill="#234E52" font-size="9.5" font-weight="bold">Input: 202 Numeric Features + 16 Task Emb = 218-D</text>
+    <text x="12" y="56" fill="#4A5568" font-size="8">• Global context, proposal area, border entropy, variance</text>
+    
+    <rect x="12" y="65" width="250" height="42" rx="4" fill="#ffffff" stroke="#B2F5EA"/>
+    <text x="18" y="80" fill="#285E61" font-size="8.5" font-weight="bold">Linear(218→128) → LN → SiLU → Dropout(0.10)</text>
+    <text x="18" y="95" fill="#285E61" font-size="8.5" font-weight="bold">→ Linear(128→64) → LN → SiLU → Linear(64→1)</text>
+
+    <text x="12" y="122" fill="#234E52" font-size="9" font-weight="bold">Predicts: Δ̂_final (Counterfactual Paired Gain)</text>
+    <rect x="12" y="130" width="250" height="34" rx="4" fill="#E6FFFA" stroke="#81E6D9"/>
+    <text x="18" y="145" fill="#234E52" font-size="8.5" font-weight="bold">Utility: U = Δ̂_final - λ·C  (λ = 1/4, C = 1051648/10270749)</text>
+    <text x="18" y="157" fill="#285E61" font-size="8">Decision Rule: EXECUTE iff U ≥ τ_C8_final (~ -0.024358)</text>
+
+    <!-- Branching Labels -->
+    <text x="15" y="184" fill="#DD6B20" font-size="9" font-weight="bold">If U &lt; τ_C8_final → SKIP_GLOBAL (outputs p_global)</text>
+    <text x="15" y="198" fill="#2F855A" font-size="9" font-weight="bold">If U ≥ τ_C8_final → EXECUTE REFINE (proceeds to R_psi)</text>
+  </g>
+
+  <!-- MODULE R_psi: Regional Refiner -->
+  <g transform="translate(625, 360)">
+    <rect width="275" height="155" rx="6" fill="url(#refinerGrad)" stroke="#68D391" stroke-width="1.5" filter="url(#cardShadow)"/>
+    <rect x="0" y="0" width="275" height="26" rx="6" fill="#2F855A"/>
+    <text x="10" y="18" fill="#ffffff" font-size="11" font-weight="bold">R_psi — Regional Refiner (1.28M Params)</text>
+    
+    <text x="12" y="42" fill="#22543D" font-size="9.5" font-weight="bold">Input: B × 4 × 256 × 256 = [RGB, p_global_crop]</text>
+    <text x="12" y="56" fill="#4A5568" font-size="8">Dedicated crop resolution; bilinear resize to 256×256</text>
+
+    <rect x="12" y="64" width="250" height="38" rx="4" fill="#ffffff" stroke="#C6F6D5"/>
+    <text x="18" y="78" fill="#22543D" font-size="8.5" font-weight="bold">Narrowed U-Net: Channels [16, 32, 64, 96, 128]</text>
+    <text x="18" y="92" fill="#4A5568" font-size="8">4 Residual Stages + 1 Bridge | Output: 1 Channel Logit</text>
+
+    <text x="12" y="118" fill="#22543D" font-size="9" font-weight="bold">Residual Formula: p_cand_crop = σ(logit(p_crop) + Δl_roi)</text>
+    <text x="12" y="132" fill="#4A5568" font-size="8">Spatial Fusion: Insert crop into canvas (NO alpha blending)</text>
+    <text x="12" y="145" fill="#2F855A" font-size="7.5" font-weight="bold">Deterministic Recomposition → Candidate Mask p_cand</text>
+  </g>
+
+  <!-- MODULE S_omega: Post-Safety Gate -->
+  <g transform="translate(930, 245)">
+    <rect width="285" height="215" rx="6" fill="url(#safetyGrad)" stroke="#FBD38D" stroke-width="1.5" filter="url(#cardShadow)"/>
+    <rect x="0" y="0" width="285" height="26" rx="6" fill="#DD6B20"/>
+    <text x="10" y="18" fill="#ffffff" font-size="11" font-weight="bold">S_omega — Post-Safety Gate (1.22K Params)</text>
+    
+    <text x="12" y="42" fill="#7B341E" font-size="9.5" font-weight="bold">Input: 16 Numeric Features + 4 Task One-Hot = 20-D</text>
+    <text x="12" y="56" fill="#718096" font-size="8">• Global vs candidate divergence, border shift, area change</text>
+
+    <rect x="12" y="64" width="260" height="38" rx="4" fill="#ffffff" stroke="#FEEBC8"/>
+    <text x="18" y="78" fill="#7B341E" font-size="8.5" font-weight="bold">Linear(20→32) → SiLU → Linear(32→16)</text>
+    <text x="18" y="92" fill="#7B341E" font-size="8.5" font-weight="bold">→ SiLU → Linear(16→1) → Sigmoid Logit</text>
+
+    <text x="12" y="118" fill="#7B341E" font-size="9" font-weight="bold">Evaluates Safety Probability: P(Δ &gt; 0) = σ(logit)</text>
+    <rect x="12" y="126" width="260" height="32" rx="4" fill="#FFFAF0" stroke="#FBD38D"/>
+    <text x="18" y="140" fill="#7B341E" font-size="8.5" font-weight="bold">Acceptance Rule: ACCEPT iff P(safety) ≥ 0.50</text>
+    <text x="18" y="152" fill="#C05621" font-size="8">Threshold: τ_safe = 0.50 (Fail-Closed Governance)</text>
+
+    <text x="12" y="176" fill="#2F855A" font-size="9" font-weight="bold">P(safety) ≥ 0.50 → EXECUTE_THEN_ACCEPT (Output p_cand)</text>
+    <text x="12" y="192" fill="#DD6B20" font-size="9" font-weight="bold">P(safety) &lt; 0.50 → EXECUTE_THEN_REJECT (Fallback p_global)</text>
+    <text x="12" y="206" fill="#718096" font-size="7.5">Rejection discards harmful crop updates, preventing degradation</text>
+  </g>
+
+  <!-- FINAL OUTPUT RECOMPOSITION PANEL -->
+  <g transform="translate(460, 520)">
+    <rect width="755" height="135" rx="6" fill="#F7FAFC" stroke="#CBD5E0" stroke-width="1.5"/>
+    <text x="20" y="542" fill="#1A365D" font-size="12" font-weight="bold">Canonical Three-Path Inference Outcomes</text>
+    
+    <!-- Outcome 1: SKIP_GLOBAL -->
+    <rect x="20" y="555" width="230" height="85" rx="4" fill="#ffffff" stroke="#CBD5E0"/>
+    <rect x="20" y="555" width="230" height="20" rx="4" fill="#4A5568"/>
+    <text x="135" y="569" text-anchor="middle" fill="#ffffff" font-size="9" font-weight="bold">PATH 1: SKIP_GLOBAL / FORCED_SKIP</text>
+    <text x="28" y="590" fill="#2D3748" font-size="8.5">• Condition: U &lt; τ_C8_final or no active ROI</text>
+    <text x="28" y="605" fill="#2D3748" font-size="8.5">• Action: Regional Refiner &amp; Safety Bypassed</text>
+    <text x="28" y="620" fill="#2B6CB0" font-size="9" font-weight="bold">→ Output: p_global ∈ [0, 1]^(512×512)</text>
+    <text x="28" y="632" fill="#718096" font-size="7.5">Minimal compute (31.55 GMACs / 15.7 ms latency)</text>
+
+    <!-- Outcome 2: EXECUTE_THEN_ACCEPT -->
+    <rect x="262" y="555" width="230" height="85" rx="4" fill="#ffffff" stroke="#48BB78"/>
+    <rect x="262" y="555" width="230" height="20" rx="4" fill="#2F855A"/>
+    <text x="377" y="569" text-anchor="middle" fill="#ffffff" font-size="9" font-weight="bold">PATH 2: EXECUTE_THEN_ACCEPT</text>
+    <text x="270" y="590" fill="#22543D" font-size="8.5">• Condition: U ≥ τ_C8_final AND P(safe) ≥ 0.50</text>
+    <text x="270" y="605" fill="#22543D" font-size="8.5">• Action: Residual crop verified and accepted</text>
+    <text x="270" y="620" fill="#276749" font-size="9" font-weight="bold">→ Output: Fused Refined Candidate p_cand</text>
+    <text x="270" y="632" fill="#718096" font-size="7.5">Targeted boundary gain (+1.46 pp bladder stones)</text>
+
+    <!-- Outcome 3: EXECUTE_THEN_REJECT -->
+    <rect x="504" y="555" width="230" height="85" rx="4" fill="#ffffff" stroke="#ED8936"/>
+    <rect x="504" y="555" width="230" height="20" rx="4" fill="#DD6B20"/>
+    <text x="619" y="569" text-anchor="middle" fill="#ffffff" font-size="9" font-weight="bold">PATH 3: EXECUTE_THEN_REJECT</text>
+    <text x="512" y="590" fill="#7B341E" font-size="8.5">• Condition: U ≥ τ_C8_final BUT P(safe) &lt; 0.50</text>
+    <text x="512" y="605" fill="#7B341E" font-size="8.5">• Action: Proposal rejected as unsafe</text>
+    <text x="512" y="620" fill="#C05621" font-size="9" font-weight="bold">→ Output: Fallback to p_global</text>
+    <text x="512" y="632" fill="#718096" font-size="7.5">Rejection discards harmful candidate updates</text>
+  </g>
+
+  <!-- CONNECTING ARROWS IN PANEL B -->
+  <!-- Image -> G -->
+  <line x1="285" y1="210" x2="330" y2="210" stroke="#2B6CB0" stroke-width="2" marker-end="url(#arrowSolid)"/>
+  <text x="307" y="200" text-anchor="middle" fill="#2B6CB0" font-size="8" font-weight="bold">x</text>
+
+  <!-- Task embedding -> G -->
+  <path d="M 285 617 L 310 617 L 310 320 L 330 320" fill="none" stroke="#805AD5" stroke-width="1.8" marker-end="url(#arrowTrain)"/>
+  <text x="312" y="470" fill="#6B46C1" font-size="8" font-weight="bold">e_t</text>
+
+  <!-- G -> ROI Proposal -->
+  <line x1="462" y1="365" x2="462" y2="385" stroke="#2B6CB0" stroke-width="2" marker-end="url(#arrowSolid)"/>
+  <text x="472" y="377" fill="#2B6CB0" font-size="8" font-weight="bold">p_global</text>
+
+  <!-- ROI Proposal -> B_phi -->
+  <path d="M 595 440 L 610 440 L 610 230 L 625 230" fill="none" stroke="#319795" stroke-width="1.8" marker-end="url(#arrowRouter)"/>
+  <text x="612" y="290" fill="#319795" font-size="7.5" font-weight="bold">ROI Features</text>
+
+  <!-- B_phi -> SKIP PATH (Path 1) -->
+  <path d="M 640 335 L 640 350 L 590 350 L 590 530 L 340 530 L 340 555" fill="none" stroke="#A0AEC0" stroke-width="1.5" stroke-dasharray="3 3" marker-end="url(#arrowDark)"/>
+  <rect x="520" y="342" width="65" height="16" rx="3" fill="#ffffff" stroke="#A0AEC0"/>
+  <text x="552" y="354" text-anchor="middle" fill="#718096" font-size="7" font-weight="bold">SKIP (U &lt; τ)</text>
+
+  <!-- B_phi -> R_psi (EXECUTE) -->
+  <line x1="762" y1="335" x2="762" y2="360" stroke="#2F855A" stroke-width="2" marker-end="url(#arrowRefine)"/>
+  <rect x="765" y="340" width="85" height="16" rx="3" fill="#E6FFFA" stroke="#319795"/>
+  <text x="807" y="352" text-anchor="middle" fill="#234E52" font-size="7" font-weight="bold">EXECUTE (U ≥ τ)</text>
+
+  <!-- R_psi -> S_omega -->
+  <path d="M 900 435 L 915 435 L 915 350 L 930 350" fill="none" stroke="#DD6B20" stroke-width="1.8" marker-end="url(#arrowReject)"/>
+  <text x="918" y="390" fill="#DD6B20" font-size="7.5" font-weight="bold">p_cand</text>
+
+  <!-- S_omega -> ACCEPT PATH (Path 2) -->
+  <path d="M 1072 460 L 1072 500 L 377 500 L 377 555" fill="none" stroke="#2F855A" stroke-width="2" marker-end="url(#arrowRefine)"/>
+  <rect x="700" y="492" width="130" height="16" rx="3" fill="#F0FFF4" stroke="#48BB78"/>
+  <text x="765" y="504" text-anchor="middle" fill="#22543D" font-size="7.5" font-weight="bold">ACCEPT (P(safe) ≥ 0.50)</text>
+
+  <!-- S_omega -> REJECT PATH (Path 3) -->
+  <path d="M 1180 460 L 1180 500 L 619 500 L 619 555" fill="none" stroke="#DD6B20" stroke-width="1.8" stroke-dasharray="4 2" marker-end="url(#arrowReject)"/>
+  <rect x="880" y="492" width="130" height="16" rx="3" fill="#FFFAF0" stroke="#ED8936"/>
+  <text x="945" y="504" text-anchor="middle" fill="#7B341E" font-size="7.5" font-weight="bold">REJECT (P(safe) &lt; 0.50)</text>
+
+
+  <!-- ======================================================== -->
+  <!-- PANEL C: STAGED TRAINING STRATEGY & DEPENDENCIES         -->
+  <!-- ======================================================== -->
+  <rect x="1255" y="85" width="325" height="590" rx="8" fill="#F7FAFC" stroke="#CBD5E0" stroke-width="1.5"/>
+  <rect x="1255" y="85" width="325" height="34" rx="8" fill="#EDF2F7"/>
+  <text x="1270" y="108" fill="#1A365D" font-size="13" font-weight="bold">PANEL C: Staged Training Strategy</text>
+
+  <!-- Stage 1 -->
+  <g transform="translate(1270, 130)">
+    <rect width="295" height="100" rx="6" fill="#ffffff" stroke="#BEE3F8" stroke-width="1.2" filter="url(#cardShadow)"/>
+    <rect x="0" y="0" width="295" height="22" rx="6" fill="#3182CE"/>
+    <text x="10" y="15" fill="#ffffff" font-size="9" font-weight="bold">STAGE 1: Global Backbone Training (Phase 21)</text>
+    <text x="12" y="36" fill="#2D3748" font-size="8.5">• Target: GlobalMedFiLM (G) + Task Embedding E(t)</text>
+    <text x="12" y="50" fill="#4A5568" font-size="8">• Dataset: TRAIN5832 (ISIC, BUSI, KVASIR, KUB)</text>
+    <text x="12" y="64" fill="#4A5568" font-size="8">• Loss: ℒ_global = ℒ_BCE + ℒ_Dice on 512×512</text>
+    <text x="12" y="78" fill="#805AD5" font-size="8" font-weight="bold">• FiLM init at zero: initial forward is pure identity</text>
+    <text x="12" y="92" fill="#2B6CB0" font-size="8" font-weight="bold">→ Checkpoint FROZEN before Stage 2</text>
+  </g>
+
+  <!-- Stage 2 -->
+  <g transform="translate(1270, 240)">
+    <rect width="295" height="100" rx="6" fill="#ffffff" stroke="#C6F6D5" stroke-width="1.2" filter="url(#cardShadow)"/>
+    <rect x="0" y="0" width="295" height="22" rx="6" fill="#2F855A"/>
+    <text x="10" y="15" fill="#ffffff" font-size="9" font-weight="bold">STAGE 2: Regional Refiner Training (Phase 25A)</text>
+    <text x="12" y="36" fill="#2D3748" font-size="8.5">• Target: BARRRegionalRefinerV1 (R_psi, 1.28M)</text>
+    <text x="12" y="50" fill="#4A5568" font-size="8">• Input: 4-Channel crops [RGB, p_global_crop] (256×256)</text>
+    <text x="12" y="64" fill="#4A5568" font-size="8">• Loss: ℒ_refine = ℒ_BCE_boundary + ℒ_Dice</text>
+    <text x="12" y="78" fill="#4A5568" font-size="8">• G remains completely FROZEN (no backprop to G)</text>
+    <text x="12" y="92" fill="#22543D" font-size="8" font-weight="bold">→ Checkpoint FROZEN before Stage 3</text>
+  </g>
+
+  <!-- Stage 3 -->
+  <g transform="translate(1270, 350)">
+    <rect width="295" height="100" rx="6" fill="#ffffff" stroke="#B2F5EA" stroke-width="1.2" filter="url(#cardShadow)"/>
+    <rect x="0" y="0" width="295" height="22" rx="6" fill="#319795"/>
+    <text x="10" y="15" fill="#ffffff" font-size="9" font-weight="bold">STAGE 3: Counterfactual Router Fit (Phase 25D)</text>
+    <text x="12" y="36" fill="#2D3748" font-size="8.5">• Target: BARRBenefitRouterV1 (B_phi, 36.8K)</text>
+    <text x="12" y="50" fill="#4A5568" font-size="8">• Ground Truth: Out-of-fold paired Dice gain: Δ_Dice</text>
+    <text x="12" y="64" fill="#4A5568" font-size="8">• Loss: ℒ_router = MSE(Δ̂_pred, Δ_true) + λ_cost·Cost</text>
+    <text x="12" y="78" fill="#4A5568" font-size="8">• 5-Fold Cross-Fit on ROUTER_DEVELOPMENT (n=4,957)</text>
+    <text x="12" y="92" fill="#234E52" font-size="8" font-weight="bold">→ Checkpoint FROZEN before Stage 4</text>
+  </g>
+
+  <!-- Stage 4 -->
+  <g transform="translate(1270, 460)">
+    <rect width="295" height="100" rx="6" fill="#ffffff" stroke="#FEEBC8" stroke-width="1.2" filter="url(#cardShadow)"/>
+    <rect x="0" y="0" width="295" height="22" rx="6" fill="#DD6B20"/>
+    <text x="10" y="15" fill="#ffffff" font-size="9" font-weight="bold">STAGE 4: Post-Safety Classifier Fit (Phase 25F)</text>
+    <text x="12" y="36" fill="#2D3748" font-size="8.5">• Target: BARRPostSafetyV1 (S_omega, 1.22K)</text>
+    <text x="12" y="50" fill="#4A5568" font-size="8">• Label: Binary y_safe = 𝕀(Δ_Dice &gt; 0)</text>
+    <text x="12" y="64" fill="#4A5568" font-size="8">• Loss: ℒ_safety = Binary Cross-Entropy (BCE)</text>
+    <text x="12" y="78" fill="#4A5568" font-size="8">• Trains on comparative divergence features (20-D)</text>
+    <text x="12" y="92" fill="#7B341E" font-size="8" font-weight="bold">→ All 4 modules frozen for Phase 26 Assembly</text>
+  </g>
+
+  <!-- Stage Summary Note -->
+  <rect x="1270" y="570" width="295" height="90" rx="6" fill="#EDF2F7" stroke="#CBD5E0"/>
+  <text x="1280" y="588" fill="#1A365D" font-size="9.5" font-weight="bold">No Joint Training / No End-to-End Backprop</text>
+  <text x="1280" y="603" fill="#4A5568" font-size="8">• Each module trained on frozen upstream outputs</text>
+  <text x="1280" y="617" fill="#4A5568" font-size="8">• Assembly wrapper introduces exactly 0 new params</text>
+  <text x="1280" y="631" fill="#4A5568" font-size="8">• Guarantees perfect determinism &amp; provenance</text>
+  <text x="1280" y="646" fill="#C53030" font-size="8" font-weight="bold">• Avoids catastrophic gradient interference</text>
+
+
+  <!-- ======================================================== -->
+  <!-- INSET 1 & INSET 2 (BOTTOM PANELS)                        -->
+  <!-- ======================================================== -->
+  <!-- INSET 1: FiLM Modulation Mathematics -->
+  <g transform="translate(20, 685)">
+    <rect width="770" height="150" rx="6" fill="#FAF5FF" stroke="#D6BCFA" stroke-width="1.2"/>
+    <rect x="0" y="0" width="770" height="24" rx="6" fill="#805AD5"/>
+    <text x="15" y="16" fill="#ffffff" font-size="10.5" font-weight="bold">INSET 1: Detailed FiLM Feature-Wise Linear Modulation Mechanism in GlobalMedFiLM</text>
+    
+    <text x="15" y="42" fill="#44337A" font-size="9" font-weight="bold">Mathematical Formulation:</text>
+    <text x="15" y="58" fill="#553C9A" font-size="8.5">Given task embedding e_t = E(t) ∈ ℝ^32, affine conditioning generators compute scale γ and shift β:</text>
+    <text x="25" y="75" fill="#6B46C1" font-size="9" font-weight="bold">γ(e_t) = tanh(W_γ · e_t + b_γ) ∈ (-1, 1),    β(e_t) = tanh(W_β · e_t + b_β) ∈ (-1, 1)</text>
+    <text x="15" y="94" fill="#553C9A" font-size="8.5">Applied to feature map F ∈ ℝ^(C × H × W) at 5 key decoder/bridge locations:</text>
+    <text x="25" y="110" fill="#6B46C1" font-size="9.5" font-weight="bold">F̂_(c, h, w) = (1 + γ_c(e_t)) · F_(c, h, w) + β_c(e_t)</text>
+    <text x="15" y="128" fill="#4A5568" font-size="8">• Zero-Initialization: W_γ, W_β initialized to 0 → γ = 0, β = 0 at epoch 0 (exact identity mapping F̂ = F).</text>
+    <text x="15" y="141" fill="#4A5568" font-size="8">• Non-Invasive: task_id is never concatenated as an image channel or separate output head.</text>
+  </g>
+
+  <!-- INSET 2: BARR Residual Correction & Fusion -->
+  <g transform="translate(810, 685)">
+    <rect width="770" height="150" rx="6" fill="#F0FFF4" stroke="#9AE6B4" stroke-width="1.2"/>
+    <rect x="0" y="0" width="770" height="24" rx="6" fill="#2F855A"/>
+    <text x="15" y="16" fill="#ffffff" font-size="10.5" font-weight="bold">INSET 2: Regional Residual Refinement &amp; Spatial Canvas Fusion Logic</text>
+    
+    <text x="15" y="42" fill="#22543D" font-size="9" font-weight="bold">Residual Refinement Formulation:</text>
+    <text x="15" y="58" fill="#276749" font-size="8.5">Cropped patch x_roi concatenated with prior p_roi ∈ ℝ^(4 × 256 × 256) fed into R_psi:</text>
+    <text x="25" y="75" fill="#22543D" font-size="9" font-weight="bold">Δl_roi = R_psi( [x_roi, p_roi] ),    p_cand_crop = σ( logit(p_roi) + Δl_roi )</text>
+    <text x="15" y="94" fill="#276749" font-size="8.5">Deterministic Recomposition (Spatial Insertion without alpha blending):</text>
+    <text x="25" y="110" fill="#22543D" font-size="9" font-weight="bold">p_fused(x, y) = p_cand_crop(x - x0, y - y0) if (x, y) ∈ Window; else p_global(x, y)</text>
+    <text x="15" y="128" fill="#4A5568" font-size="8">• Bounded Correction: The residual refiner only adjusts ambiguous boundary contours, preventing core shifts.</text>
+    <text x="15" y="141" fill="#4A5568" font-size="8">• Fail-Closed Protection: If S_omega detects uncertainty, p_fused is discarded and p_global is restored.</text>
+  </g>
+
+  <!-- ======================================================== -->
+  <!-- CAPTION FOOTER                                           -->
+  <!-- ======================================================== -->
+  <rect x="20" y="845" width="1560" height="65" rx="6" fill="#EDF2F7" stroke="#CBD5E0"/>
+  <text x="32" y="863" fill="#1A365D" font-size="9.5" font-weight="bold">Figure 1 Caption (Official IEEE TMI / MedIA Format):</text>
+  <text x="32" y="879" fill="#4A5568" font-size="8.5">Figure 1. Canonical methodology of FULL RA-MedFiLM-BARR. (A) Heterogeneous multi-domain inputs (dermoscopy, ultrasound, endoscopy, radiography) mapped to discrete task embeddings e_t. (B) Core inference architecture: GlobalMedFiLM (G, 3.52M params) generates initial probability p_global; the Benefit Router (B_phi, 36.8K params) evaluates expected paired gain U = Δ̂ - λ·C, routing candidates or triggering SKIP_GLOBAL; Regional Refiner (R_psi, 1.28M params) predicts residual boundary logit corrections; Post-Safety Gate (S_omega, 1.22K params) evaluates safety probability P(safety), executing ACCEPT or falling back to p_global on REJECT. (C) Staged freeze training strategy: each module is optimized independently without joint gradient backpropagation, ensuring deterministic assembly and zero gradient interference.</text>
+</svg>

@@ -1,0 +1,245 @@
+{
+  "report_title": "ReMedFiLM: Complete Scientific Methodology, Experimental Evaluation and Results (Version 7.0 Definitive)",
+  "report_version": "V7.0_DEFINITIVE_PUBLICATION_GRADE",
+  "methodology_architecture": {
+    "proposed_model": "ReMedFiLM (FULL RA-MedFiLM-BARR Modular System)",
+    "canonical_alias": "ReMedFiLM",
+    "total_parameters": 4837420,
+    "parameter_breakdown": {
+      "GlobalMedFiLM_Backbone_G": 3523001,
+      "Regional_Residual_Refiner_R_psi": 1276401,
+      "Benefit_Router_B_phi": 36801,
+      "Post_Safety_Filter_S_omega": 1217,
+      "Modular_Assembly_Harness": 0
+    },
+    "training_paradigm": "Staged Freeze Modular Composition (no joint end-to-end backpropagation)",
+    "runtime_execution_paths": [
+      "Outcome 1: SKIP (Utility U < tau_C8_final or no valid ROI) -> GlobalMedFiLM prediction (31.55 GMACs)",
+      "Outcome 2: REFINE + ACCEPT (Utility U >= tau_C8_final and Post-Safety P(safe) >= 0.50) -> Spatial Insertion Crop Refinement (34.72 GMACs amortized)",
+      "Outcome 3: REFINE + REJECT (Utility U >= tau_C8_final but Post-Safety P(safe) < 0.50) -> Fail-closed fallback to GlobalMedFiLM (44.61 GMACs)"
+    ],
+    "comparator_role_of_globalmedfilm": "GlobalMedFiLM (3.52M params) serves strictly as the internal task-conditioned global backbone and primary ablation comparator (Arm A0), NOT the standalone proposed system."
+  },
+  "evaluation_protocol": "VAL808_FROZEN_CANONICAL",
+  "validation_split_n": 808,
+  "domain_breakdown": {
+    "ISIC": 357,
+    "BUSI": 84,
+    "KVASIR": 87,
+    "KUB": 280
+  },
+  "retrospective_external_cohort_n": 884,
+  "external_benchmarks": {
+    "CVC-ClinicDB": {
+      "modality": "Colonoscopy Polyp (KVASIR analogue)",
+      "n_total": 612,
+      "globalmedfilm_dice": 0.6866,
+      "remedfilm_dice": 0.6897,
+      "paired_delta_pp": "+0.31 pp",
+      "router_routed": 118,
+      "safety_accepted": 83,
+      "safety_rejected": 35,
+      "harm_rate_of_accepted": "16.87%"
+    },
+    "BrEaST-Lesions-USG": {
+      "modality": "Breast Ultrasound (BUSI analogue)",
+      "n_total": 252,
+      "globalmedfilm_dice": 0.7078,
+      "remedfilm_dice": 0.7081,
+      "paired_delta_pp": "+0.03 pp",
+      "router_routed": 56,
+      "safety_accepted": 47,
+      "safety_rejected": 9,
+      "harm_rate_of_accepted": "42.55%"
+    },
+    "Stones_where_are_you_Positive": {
+      "modality": "Plain Radiography Stone-Positive",
+      "n_total": 6,
+      "globalmedfilm_dice": 0.2695,
+      "remedfilm_dice": 0.2738,
+      "paired_delta_pp": "+0.43 pp",
+      "router_routed": 2,
+      "safety_accepted": 2,
+      "safety_rejected": 0
+    },
+    "Stones_where_are_you_Negative_Control": {
+      "modality": "Plain Radiography Stone-Free Normal Control",
+      "n_total": 14,
+      "globalmedfilm_dice": 0.0,
+      "remedfilm_dice": 0.0,
+      "false_positive_cases": "14 / 14 (100.0% FP detection rate)",
+      "clinical_note": "Critical negative disclosure: Phantom stone hallucination on normal abdominal radiographs requires future negative-case loss training."
+    }
+  },
+  "color_coding_standard": {
+    "TP": "Green (#00E600) - True Positive Intersection",
+    "FP": "Red (#FF2020) - False Positive Over-segmentation",
+    "FN": "Blue (#2060FF) - False Negative Under-segmentation",
+    "Alpha_Blend": 0.45
+  },
+  "figures_inventory": [
+    {
+      "figure_id": "F01",
+      "filename": "figures/FIG01_ReMedFiLM_Methodology_V6.svg",
+      "formats": [
+        "svg",
+        "pdf",
+        "png (300 DPI)"
+      ],
+      "title": "Complete ReMedFiLM Canonical Architecture (Proposed 4.84M Modular Assembly)"
+    },
+    {
+      "figure_id": "F01_SingleCol",
+      "filename": "figures/FIG01_ReMedFiLM_Methodology_SingleColumn_V6.svg",
+      "formats": [
+        "svg",
+        "pdf",
+        "png (300 DPI)"
+      ],
+      "title": "ReMedFiLM Architecture (Single-Column Manuscript Variant)"
+    },
+    {
+      "figure_id": "F03",
+      "filename": "figures/F03_Internal_Model_Comparison_ReMedFiLM.png",
+      "formats": [
+        "png (300 DPI)"
+      ],
+      "title": "Seven-Model VAL808 Benchmark & Parameter-Accuracy Pareto Frontier"
+    },
+    {
+      "figure_id": "F04",
+      "filename": "figures/F04_Domain_Wise_Performance_ReMedFiLM.png",
+      "formats": [
+        "png (300 DPI)"
+      ],
+      "title": "Domain-Wise Performance Profile and Paired Forest Plot (VAL808)"
+    },
+    {
+      "figure_id": "F05",
+      "filename": "figures/fig5_domain_subgroup_matrix.png",
+      "formats": [
+        "png (300 DPI)"
+      ],
+      "title": "Clinical Subclass Segmentation Profile (N=808)"
+    },
+    {
+      "figure_id": "F06",
+      "filename": "figures/fig1_isic_cases.png",
+      "formats": [
+        "png (300 DPI)"
+      ],
+      "title": "ISIC 2018 Dermoscopy Qualitative Segmentation Gallery"
+    },
+    {
+      "figure_id": "F07",
+      "filename": "figures/fig2_busi_subclasses.png",
+      "formats": [
+        "png (300 DPI)"
+      ],
+      "title": "BUSI-WHU Breast Ultrasound Qualitative Segmentation Gallery"
+    },
+    {
+      "figure_id": "F08",
+      "filename": "figures/fig3_kvasir_cases.png",
+      "formats": [
+        "png (300 DPI)"
+      ],
+      "title": "Kvasir-SEG Endoscopic Polyp Qualitative Segmentation Gallery"
+    },
+    {
+      "figure_id": "F09",
+      "filename": "figures/fig4_kub_subclasses.png",
+      "formats": [
+        "png (300 DPI)"
+      ],
+      "title": "KUB-StoneX Plain Radiography Qualitative Segmentation Gallery"
+    },
+    {
+      "figure_id": "F10",
+      "filename": "figures/fig6_six_model_comparative.png",
+      "formats": [
+        "png (300 DPI)"
+      ],
+      "title": "Multi-Model Qualitative Comparison Composite"
+    },
+    {
+      "figure_id": "F11",
+      "filename": "figures/F11_External_Quantitative_Evaluation_ReMedFiLM.png",
+      "formats": [
+        "png (300 DPI)"
+      ],
+      "title": "Retrospective External Quantitative Evaluation (N=884 Cohort)"
+    },
+    {
+      "figure_id": "F12",
+      "filename": "figures/F12_External_Qualitative_Composite_ReMedFiLM.png",
+      "formats": [
+        "png (200 DPI)"
+      ],
+      "title": "External Stress-Test Qualitative Segmentation Composite (CVC, BrEaST, Stones)"
+    },
+    {
+      "figure_id": "F15",
+      "filename": "figures/F15_Complete_13Arm_Ablation_ReMedFiLM.png",
+      "formats": [
+        "png (300 DPI)"
+      ],
+      "title": "13-Arm Component Ablation Study and Safety Harm-Reduction Dynamics"
+    },
+    {
+      "figure_id": "F17",
+      "filename": "figures/F17_Seed_Reproducibility_ReMedFiLM.png",
+      "formats": [
+        "png (300 DPI)"
+      ],
+      "title": "Multi-Seed Reproducibility Analysis (Seeds 42, 123, 3407)"
+    },
+    {
+      "figure_id": "F18",
+      "filename": "figures/F18_Robustness_Perturbation_ReMedFiLM.png",
+      "formats": [
+        "png (300 DPI)"
+      ],
+      "title": "Domain-Dependent Robustness under Environmental Noise and Perturbations"
+    },
+    {
+      "figure_id": "F19",
+      "filename": "figures/F19_Computational_Tradeoff_ReMedFiLM.png",
+      "formats": [
+        "png (300 DPI)"
+      ],
+      "title": "Computational Trade-Off, GMACs Pareto Frontier, and Latency Accounting"
+    },
+    {
+      "figure_id": "FIG16_V7",
+      "filename": "figures/FIG_Accuracy_Compute_ReMedFiLM_V7.png",
+      "formats": [
+        "svg",
+        "pdf",
+        "png (300 DPI)"
+      ],
+      "title": "ReMedFiLM Computational Efficiency, Accuracy Trade-Off & Latency Accounting (V7 Definitive)"
+    }
+  ],
+  "trace_and_verification_files": {
+    "model_identity_spec": "full_doc_report/ReMedFiLM_Model_Identity_and_Methodology.md",
+    "corrections_audit": "full_doc_report/V5_TO_V6_SCIENTIFIC_CORRECTIONS.md",
+    "paper_writing_guide": "full_doc_report/PAPER_WRITING_GUIDE_V6.md",
+    "final_qa_verification": "full_doc_report/FINAL_V6_VERIFICATION.md",
+    "external_eval_matrix_csv": "full_doc_report/ReMedFiLM_External_Evaluation_Matrix.csv",
+    "external_routing_safety_csv": "full_doc_report/ReMedFiLM_External_Routing_Safety_Matrix.csv",
+    "external_negative_cases_csv": "full_doc_report/ReMedFiLM_External_Negative_Cases.csv",
+    "internal_model_comparison_csv": "full_doc_report/ReMedFiLM_Internal_Model_Comparison.csv",
+    "class_subclass_csv": "full_doc_report/ReMedFiLM_Class_Subclass_Performance.csv",
+    "ablation_statistics_csv": "full_doc_report/ReMedFiLM_Ablation_Statistics.csv",
+    "figure_data_contract": "full_doc_report/FIGURE_DATA_CONTRACT.json",
+    "v6_to_v7_correction_register": "full_doc_report/V6_TO_V7_CORRECTION_REGISTER.md",
+    "final_v7_qa": "full_doc_report/FINAL_V7_SCIENTIFIC_AND_VISUAL_QA.md",
+    "paper_writing_guide_v7": "full_doc_report/PAPER_WRITING_GUIDE_V7.md"
+  },
+  "master_reports": {
+    "docx": "full_doc_report/ReMedFiLM_Complete_Scientific_Report_V6.docx",
+    "pdf": "full_doc_report/ReMedFiLM_Complete_Scientific_Report_V6.pdf"
+  },
+  "quarantine_status": "CONFIRMED: Historical protected TEST1683 partition remained strictly unread and quarantined."
+}

@@ -1,0 +1,32 @@
+{
+  "artifact": "scientific_corrections",
+  "policy": "corrections are disclosed, never silently applied",
+  "corrections": [
+    {
+      "field": "ReMedFiLM FULL VAL808 macro Dice (seed 42)",
+      "previously_published": 0.837862,
+      "corrected_value": 0.837289686,
+      "authoritative_sources": [
+        "reports/audits/phase27_preservation_result.json (macro_point delta)",
+        "reports/audits/phase29_phase_d_val808_per_seed_continuity.json (macro_final_dice 0.8372891053775793)",
+        "re-scoring of reports/figures/phase27_preservation/masks/*_final.png"
+      ],
+      "resolution": "0.837862 appears in no frozen artifact; it was carried by an earlier consolidation CSV. The corrected value is used.",
+      "impact": "Net gain over backbone is +0.221 pp, not +0.278 pp."
+    }
+  ],
+  "data_defects": [
+    {
+      "id": "DEFECT-01",
+      "artifact": "reports/tables/phase26_component_inventory.csv",
+      "column": "parameters",
+      "row": "G",
+      "observed_value": 31551740928,
+      "correct_value": 3523001,
+      "diagnosis": "The stored value equals G's total MACs (phase21_analytical_mac_count.json total_macs = 31,551,740,928), not its parameter count. The column mixes units for one row.",
+      "impact": "Any sum of the `parameters` column overstates the system by ~31.5 billion and cannot reconcile to 4,837,420.",
+      "resolution": "The frozen table is NOT modified. A corrected derived table, tables/REMEDFILM_COMPONENT_PARAMETERS.csv, is used by the notebooks, and every notebook validates the arithmetic against phase34_parameter_count_contract.json.",
+      "detected_by": "full_doc_report/Scripts/build_required_tables.py"
+    }
+  ]
+}

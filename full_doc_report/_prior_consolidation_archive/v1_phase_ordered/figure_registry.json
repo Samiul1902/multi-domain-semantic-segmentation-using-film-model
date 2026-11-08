@@ -1,0 +1,556 @@
+[
+  {
+    "figure_id": "A01_component_parameter_budget",
+    "subdir": "Architecture",
+    "path": "full_doc_report/figures/Architecture/A01_component_parameter_budget.png",
+    "svg_path": "full_doc_report/figures/Architecture/A01_component_parameter_budget.svg",
+    "evidence_class": "CANONICAL_ARCHITECTURE_CONTRACT",
+    "caption": "Parameter budget of the four ReMedFiLM components (log scale).",
+    "notebook_section": "03",
+    "sources": [
+      "reports/audits/phase34_parameter_count_contract.json"
+    ]
+  },
+  {
+    "figure_id": "A02_component_presence_matrix",
+    "subdir": "Architecture",
+    "path": "full_doc_report/figures/Architecture/A02_component_presence_matrix.png",
+    "svg_path": "full_doc_report/figures/Architecture/A02_component_presence_matrix.svg",
+    "evidence_class": "CANONICAL_ARCHITECTURE_CONTRACT",
+    "caption": "Which components each model actually instantiates. Only the FULL assembly is ReMedFiLM; GlobalMedFiLM is the backbone.",
+    "notebook_section": "03",
+    "sources": [
+      "src/models/barr/ra_medfilm_barr.py",
+      "reports/audits/phase25f_architecture_contract_v1_0.json"
+    ]
+  },
+  {
+    "figure_id": "A03_remedfilm_inference_path",
+    "subdir": "Architecture",
+    "path": "full_doc_report/figures/Architecture/A03_remedfilm_inference_path.png",
+    "svg_path": "full_doc_report/figures/Architecture/A03_remedfilm_inference_path.svg",
+    "evidence_class": "CANONICAL_ARCHITECTURE_CONTRACT",
+    "caption": "Three outcome branches of the FULL assembly: skip, refine+accept, refine+reject. Only the four-component assembly can take branches 2 and 3.",
+    "notebook_section": "03",
+    "sources": [
+      "src/models/barr/ra_medfilm_barr.py",
+      "reports/tables/phase27_val808_predictions.csv"
+    ]
+  },
+  {
+    "figure_id": "D01_domain_and_split_composition",
+    "subdir": "Statistics",
+    "path": "full_doc_report/figures/Statistics/D01_domain_and_split_composition.png",
+    "svg_path": "full_doc_report/figures/Statistics/D01_domain_and_split_composition.svg",
+    "evidence_class": "FROZEN_MANIFEST",
+    "caption": "Per-domain TRAIN/VAL counts and overall split sizes from the phase4_v3 manifest.",
+    "notebook_section": "02",
+    "sources": [
+      "manifests/phase4_v3/train.csv",
+      "manifests/phase4_v3/val.csv"
+    ]
+  },
+  {
+    "figure_id": "D02_foreground_area_distribution",
+    "subdir": "Statistics",
+    "path": "full_doc_report/figures/Statistics/D02_foreground_area_distribution.png",
+    "svg_path": "full_doc_report/figures/Statistics/D02_foreground_area_distribution.svg",
+    "evidence_class": "DERIVED_FROM_SAVED_PREDICTIONS",
+    "caption": "Distribution of ground-truth lesion area per domain; KUB lesions are the smallest and most variable.",
+    "notebook_section": "02",
+    "sources": [
+      "full_doc_report/tables/REMEDFILM_INTERNAL_PER_SAMPLE.csv"
+    ]
+  },
+  {
+    "figure_id": "D03_kub_unit_of_analysis",
+    "subdir": "Statistics",
+    "path": "full_doc_report/figures/Statistics/D03_kub_unit_of_analysis.png",
+    "svg_path": "full_doc_report/figures/Statistics/D03_kub_unit_of_analysis.svg",
+    "evidence_class": "FROZEN_MANIFEST",
+    "caption": "KUB contributes both full-field images and ROI instance patches; pooling them as one image unit would be incorrect.",
+    "notebook_section": "02",
+    "sources": [
+      "manifests/phase4_v3/train.csv",
+      "manifests/phase4_v3/val.csv"
+    ]
+  },
+  {
+    "figure_id": "T1_train_val_loss",
+    "subdir": "Training curves",
+    "path": "full_doc_report/figures/Training curves/T1_train_val_loss.png",
+    "svg_path": "full_doc_report/figures/Training curves/T1_train_val_loss.svg",
+    "evidence_class": "GENUINE_HISTORICAL_TRAINING",
+    "caption": "Epoch-wise BCE+Dice loss for the frozen GlobalMedFiLM backbone.",
+    "notebook_section": "05",
+    "sources": [
+      "experiments/phase21_global_medfilm_fourdomain_seed42_clean_v3/history.csv"
+    ]
+  },
+  {
+    "figure_id": "T2_val_dice_across_epochs",
+    "subdir": "Training curves",
+    "path": "full_doc_report/figures/Training curves/T2_val_dice_across_epochs.png",
+    "svg_path": "full_doc_report/figures/Training curves/T2_val_dice_across_epochs.svg",
+    "evidence_class": "GENUINE_HISTORICAL_TRAINING",
+    "caption": "Macro-domain validation Dice per epoch with the selected checkpoint marked.",
+    "notebook_section": "05",
+    "sources": [
+      "experiments/phase21_global_medfilm_fourdomain_seed42_clean_v3/history.csv"
+    ]
+  },
+  {
+    "figure_id": "T3_val_iou_across_epochs",
+    "subdir": "Training curves",
+    "path": "full_doc_report/figures/Training curves/T3_val_iou_across_epochs.png",
+    "svg_path": "full_doc_report/figures/Training curves/T3_val_iou_across_epochs.svg",
+    "evidence_class": "GENUINE_HISTORICAL_TRAINING",
+    "caption": "Per-domain and macro validation IoU per epoch (IoU was logged per epoch, so no interpolation is required).",
+    "notebook_section": "05",
+    "sources": [
+      "experiments/phase21_global_medfilm_fourdomain_seed42_clean_v3/history.csv"
+    ]
+  },
+  {
+    "figure_id": "T4_per_domain_learning_curves",
+    "subdir": "Training curves",
+    "path": "full_doc_report/figures/Training curves/T4_per_domain_learning_curves.png",
+    "svg_path": "full_doc_report/figures/Training curves/T4_per_domain_learning_curves.svg",
+    "evidence_class": "GENUINE_HISTORICAL_TRAINING",
+    "caption": "Per-domain validation Dice logged every epoch for the backbone. KUB lags throughout, consistent with its smaller lesions.",
+    "notebook_section": "05",
+    "sources": [
+      "experiments/phase21_global_medfilm_fourdomain_seed42_clean_v3/history.csv"
+    ]
+  },
+  {
+    "figure_id": "T5_learning_rate_schedule",
+    "subdir": "Training curves",
+    "path": "full_doc_report/figures/Training curves/T5_learning_rate_schedule.png",
+    "svg_path": "full_doc_report/figures/Training curves/T5_learning_rate_schedule.svg",
+    "evidence_class": "GENUINE_HISTORICAL_TRAINING",
+    "caption": "Learning rate recorded at every epoch; no reconstruction required.",
+    "notebook_section": "05",
+    "sources": [
+      "experiments/phase21_global_medfilm_fourdomain_seed42_clean_v3/history.csv"
+    ]
+  },
+  {
+    "figure_id": "T6_best_epoch_selection",
+    "subdir": "Training curves",
+    "path": "full_doc_report/figures/Training curves/T6_best_epoch_selection.png",
+    "svg_path": "full_doc_report/figures/Training curves/T6_best_epoch_selection.svg",
+    "evidence_class": "GENUINE_HISTORICAL_TRAINING",
+    "caption": "Checkpoint-selection epochs across recovered runs. Early stopping with patience 15 is visible in the trailing gap.",
+    "notebook_section": "05",
+    "sources": [
+      "full_doc_report/tables/TRAINING_RUN_REGISTRY.csv"
+    ]
+  },
+  {
+    "figure_id": "T7_multiseed_histories",
+    "subdir": "Training curves",
+    "path": "full_doc_report/figures/Training curves/T7_multiseed_histories.png",
+    "svg_path": "full_doc_report/figures/Training curves/T7_multiseed_histories.svg",
+    "evidence_class": "GENUINE_HISTORICAL_TRAINING",
+    "caption": "Downstream component runs per seed, explicitly separated from the single backbone training.",
+    "notebook_section": "05",
+    "sources": [
+      "experiments/phase21_global_medfilm_fourdomain_seed42_clean_v3/history.csv",
+      "experiments/phase29_seed123/",
+      "experiments/phase29_seed3407/"
+    ]
+  },
+  {
+    "figure_id": "T8_training_improvement_summary",
+    "subdir": "Training curves",
+    "path": "full_doc_report/figures/Training curves/T8_training_improvement_summary.png",
+    "svg_path": "full_doc_report/figures/Training curves/T8_training_improvement_summary.svg",
+    "evidence_class": "GENUINE_HISTORICAL_TRAINING",
+    "caption": "Epoch 1, best, and final validation Dice for every four-domain run that logged the metric.",
+    "notebook_section": "05",
+    "sources": [
+      "experiments/*/history.csv"
+    ]
+  },
+  {
+    "figure_id": "I1_domain_metric_comparison",
+    "subdir": "Internal validation",
+    "path": "full_doc_report/figures/Internal validation/I1_domain_metric_comparison.png",
+    "svg_path": "full_doc_report/figures/Internal validation/I1_domain_metric_comparison.svg",
+    "evidence_class": "DERIVED_FROM_SAVED_PREDICTIONS",
+    "caption": "Dice, IoU, precision and recall per domain for the backbone and the FULL system.",
+    "notebook_section": "07",
+    "sources": [
+      "full_doc_report/tables/REMEDFILM_INTERNAL_METRICS.csv"
+    ]
+  },
+  {
+    "figure_id": "I2_paired_delta_forest",
+    "subdir": "Internal validation",
+    "path": "full_doc_report/figures/Internal validation/I2_paired_delta_forest.png",
+    "svg_path": "full_doc_report/figures/Internal validation/I2_paired_delta_forest.svg",
+    "evidence_class": "DERIVED_FROM_SAVED_PREDICTIONS",
+    "caption": "Per-domain and macro paired \u0394 Dice with a 10,000-replicate domain-stratified bootstrap CI.",
+    "notebook_section": "07",
+    "sources": [
+      "full_doc_report/tables/REMEDFILM_PAIRED_DELTA.json"
+    ]
+  },
+  {
+    "figure_id": "I3_paired_delta_distribution",
+    "subdir": "Internal validation",
+    "path": "full_doc_report/figures/Internal validation/I3_paired_delta_distribution.png",
+    "svg_path": "full_doc_report/figures/Internal validation/I3_paired_delta_distribution.svg",
+    "evidence_class": "DERIVED_FROM_SAVED_PREDICTIONS",
+    "caption": "Distribution of per-image \u0394 Dice and the beneficial/unchanged/harmful split.",
+    "notebook_section": "07",
+    "sources": [
+      "full_doc_report/tables/REMEDFILM_INTERNAL_PER_SAMPLE.csv"
+    ]
+  },
+  {
+    "figure_id": "I4_hd95_comparison",
+    "subdir": "Internal validation",
+    "path": "full_doc_report/figures/Internal validation/I4_hd95_comparison.png",
+    "svg_path": "full_doc_report/figures/Internal validation/I4_hd95_comparison.svg",
+    "evidence_class": "DERIVED_FROM_SAVED_PREDICTIONS",
+    "caption": "95th-percentile symmetric surface distance computed from the saved masks.",
+    "notebook_section": "07",
+    "sources": [
+      "full_doc_report/tables/REMEDFILM_INTERNAL_METRICS.csv"
+    ]
+  },
+  {
+    "figure_id": "SG1_kub_stone_subgroups",
+    "subdir": "Internal validation",
+    "path": "full_doc_report/figures/Internal validation/SG1_kub_stone_subgroups.png",
+    "svg_path": "full_doc_report/figures/Internal validation/SG1_kub_stone_subgroups.svg",
+    "evidence_class": "FROZEN_HISTORICAL_EVALUATION",
+    "caption": "Per-subgroup Dice inside the KUB domain.",
+    "notebook_section": "08",
+    "sources": [
+      "reports/tables/phase21_kub_subgroup_analysis.csv"
+    ]
+  },
+  {
+    "figure_id": "SG2_kub_size_stratification",
+    "subdir": "Internal validation",
+    "path": "full_doc_report/figures/Internal validation/SG2_kub_size_stratification.png",
+    "svg_path": "full_doc_report/figures/Internal validation/SG2_kub_size_stratification.svg",
+    "evidence_class": "FROZEN_HISTORICAL_EVALUATION",
+    "caption": "Dice against the frozen KUB size taxonomy.",
+    "notebook_section": "08",
+    "sources": [
+      "reports/tables/phase21_kub_size_stratification.csv"
+    ]
+  },
+  {
+    "figure_id": "SEG_ISIC_global_vs_full",
+    "subdir": "Semantic segmentation",
+    "path": "full_doc_report/figures/Semantic segmentation/SEG_ISIC_global_vs_full.png",
+    "svg_path": "full_doc_report/figures/Semantic segmentation/SEG_ISIC_global_vs_full.svg",
+    "evidence_class": "SAVED_PREDICTIONS_VAL808",
+    "caption": "ISIC: original, ground truth, backbone mask, FULL mask and TP/FP/FN overlay for the worst, median and best paired improvement.",
+    "notebook_section": "09",
+    "sources": [
+      "reports/tables/phase27_val808_predictions.csv",
+      "reports/predictions/phase21_global_medfilm_fourdomain_seed42_clean_v3/"
+    ]
+  },
+  {
+    "figure_id": "SEG_BUSI_global_vs_full",
+    "subdir": "Semantic segmentation",
+    "path": "full_doc_report/figures/Semantic segmentation/SEG_BUSI_global_vs_full.png",
+    "svg_path": "full_doc_report/figures/Semantic segmentation/SEG_BUSI_global_vs_full.svg",
+    "evidence_class": "SAVED_PREDICTIONS_VAL808",
+    "caption": "BUSI: original, ground truth, backbone mask, FULL mask and TP/FP/FN overlay for the worst, median and best paired improvement.",
+    "notebook_section": "09",
+    "sources": [
+      "reports/tables/phase27_val808_predictions.csv",
+      "reports/predictions/phase21_global_medfilm_fourdomain_seed42_clean_v3/"
+    ]
+  },
+  {
+    "figure_id": "SEG_KVASIR_global_vs_full",
+    "subdir": "Semantic segmentation",
+    "path": "full_doc_report/figures/Semantic segmentation/SEG_KVASIR_global_vs_full.png",
+    "svg_path": "full_doc_report/figures/Semantic segmentation/SEG_KVASIR_global_vs_full.svg",
+    "evidence_class": "SAVED_PREDICTIONS_VAL808",
+    "caption": "KVASIR: original, ground truth, backbone mask, FULL mask and TP/FP/FN overlay for the worst, median and best paired improvement.",
+    "notebook_section": "09",
+    "sources": [
+      "reports/tables/phase27_val808_predictions.csv",
+      "reports/predictions/phase21_global_medfilm_fourdomain_seed42_clean_v3/"
+    ]
+  },
+  {
+    "figure_id": "SEG_KUB_global_vs_full",
+    "subdir": "Semantic segmentation",
+    "path": "full_doc_report/figures/Semantic segmentation/SEG_KUB_global_vs_full.png",
+    "svg_path": "full_doc_report/figures/Semantic segmentation/SEG_KUB_global_vs_full.svg",
+    "evidence_class": "SAVED_PREDICTIONS_VAL808",
+    "caption": "KUB: original, ground truth, backbone mask, FULL mask and TP/FP/FN overlay for the worst, median and best paired improvement.",
+    "notebook_section": "09",
+    "sources": [
+      "reports/tables/phase27_val808_predictions.csv",
+      "reports/predictions/phase21_global_medfilm_fourdomain_seed42_clean_v3/"
+    ]
+  },
+  {
+    "figure_id": "SEG_failure_cases",
+    "subdir": "Semantic segmentation",
+    "path": "full_doc_report/figures/Semantic segmentation/SEG_failure_cases.png",
+    "svg_path": "full_doc_report/figures/Semantic segmentation/SEG_failure_cases.svg",
+    "evidence_class": "SAVED_PREDICTIONS_VAL808",
+    "caption": "The six largest negative \u0394 Dice cases; the safety gate accepted these, so they are genuine residual failures.",
+    "notebook_section": "09",
+    "sources": [
+      "full_doc_report/tables/REMEDFILM_INTERNAL_PER_SAMPLE.csv"
+    ]
+  },
+  {
+    "figure_id": "EXT01_external_dice",
+    "subdir": "External evaluation",
+    "path": "full_doc_report/figures/External evaluation/EXT01_external_dice.png",
+    "svg_path": "full_doc_report/figures/External evaluation/EXT01_external_dice.svg",
+    "evidence_class": "EXTERNAL_RETROSPECTIVE_SAVED_PREDICTIONS",
+    "caption": "External Dice per cohort with case-level bootstrap CIs. Cohort sizes differ; no pooling across cohorts.",
+    "notebook_section": "10",
+    "sources": [
+      "reports/tables/c1_external_stress_summary.csv"
+    ]
+  },
+  {
+    "figure_id": "EXT02_external_delta",
+    "subdir": "External evaluation",
+    "path": "full_doc_report/figures/External evaluation/EXT02_external_delta.png",
+    "svg_path": "full_doc_report/figures/External evaluation/EXT02_external_delta.svg",
+    "evidence_class": "EXTERNAL_RETROSPECTIVE_SAVED_PREDICTIONS",
+    "caption": "Paired Dice difference per external cohort.",
+    "notebook_section": "10",
+    "sources": [
+      "reports/tables/c1_external_stress_summary.csv"
+    ]
+  },
+  {
+    "figure_id": "EXT03_stonefree_false_positive",
+    "subdir": "External evaluation",
+    "path": "full_doc_report/figures/External evaluation/EXT03_stonefree_false_positive.png",
+    "svg_path": "full_doc_report/figures/External evaluation/EXT03_stonefree_false_positive.svg",
+    "evidence_class": "EXTERNAL_RETROSPECTIVE_SAVED_PREDICTIONS",
+    "caption": "The stone-free cohort receives foreground on every case \u2014 a preserved negative finding, not a success.",
+    "notebook_section": "10",
+    "sources": [
+      "reports/tables/c1_external_stress_per_case.csv"
+    ]
+  },
+  {
+    "figure_id": "PROG01_stage_compute_and_harm",
+    "subdir": "Progression",
+    "path": "full_doc_report/figures/Progression/PROG01_stage_compute_and_harm.png",
+    "svg_path": "full_doc_report/figures/Progression/PROG01_stage_compute_and_harm.svg",
+    "evidence_class": "DEVELOPMENT_EVIDENCE_MIXED_POPULATION",
+    "caption": "Analytical compute and harmful-activation share across assembly stages. Stages 1\u20133 are measured on ROUTER_DEVELOPMENT; stage 4 on VAL808.",
+    "notebook_section": "11",
+    "sources": [
+      "full_doc_report/tables/REMEDFILM_PROGRESSION_RESULTS.csv"
+    ]
+  },
+  {
+    "figure_id": "PROG02_benefit_harm_tradeoff",
+    "subdir": "Progression",
+    "path": "full_doc_report/figures/Progression/PROG02_benefit_harm_tradeoff.png",
+    "svg_path": "full_doc_report/figures/Progression/PROG02_benefit_harm_tradeoff.svg",
+    "evidence_class": "FROZEN_HISTORICAL_ABLATION",
+    "caption": "Each arm's beneficial and harmful activation shares on ROUTER_DEVELOPMENT.",
+    "notebook_section": "11",
+    "sources": [
+      "full_doc_report/tables/REMEDFILM_ABLATION_RESULTS.csv"
+    ]
+  },
+  {
+    "figure_id": "ABL01_arm_mean_delta",
+    "subdir": "Ablation",
+    "path": "full_doc_report/figures/Ablation/ABL01_arm_mean_delta.png",
+    "svg_path": "full_doc_report/figures/Ablation/ABL01_arm_mean_delta.svg",
+    "evidence_class": "FROZEN_HISTORICAL_ABLATION",
+    "caption": "Routed mean \u0394 Dice per arm. A8 (FULL) is the proposed assembly; F1 collapses under alpha-blend fusion.",
+    "notebook_section": "12",
+    "sources": [
+      "full_doc_report/tables/REMEDFILM_ABLATION_RESULTS.csv"
+    ]
+  },
+  {
+    "figure_id": "ABL02_paired_contrasts_forest",
+    "subdir": "Ablation",
+    "path": "full_doc_report/figures/Ablation/ABL02_paired_contrasts_forest.png",
+    "svg_path": "full_doc_report/figures/Ablation/ABL02_paired_contrasts_forest.svg",
+    "evidence_class": "FROZEN_HISTORICAL_ABLATION",
+    "caption": "Paired contrasts with 95% CIs. The only pre-specified matched contrast (A8 vs A7) includes zero and is reported as such.",
+    "notebook_section": "12",
+    "sources": [
+      "reports/tables/phase28_table_07_matched_paired_contrasts.csv"
+    ]
+  },
+  {
+    "figure_id": "ABL03_ablation_diagnostics",
+    "subdir": "Ablation",
+    "path": "full_doc_report/figures/Ablation/ABL03_ablation_diagnostics.png",
+    "svg_path": "full_doc_report/figures/Ablation/ABL03_ablation_diagnostics.svg",
+    "evidence_class": "FROZEN_HISTORICAL_ABLATION",
+    "caption": "Harmful share, benefit capture and routed volume for all 13 arms.",
+    "notebook_section": "12",
+    "sources": [
+      "full_doc_report/tables/REMEDFILM_ABLATION_RESULTS.csv"
+    ]
+  },
+  {
+    "figure_id": "RT01_routing_outcomes",
+    "subdir": "Routing and safety",
+    "path": "full_doc_report/figures/Routing and safety/RT01_routing_outcomes.png",
+    "svg_path": "full_doc_report/figures/Routing and safety/RT01_routing_outcomes.svg",
+    "evidence_class": "SAVED_PREDICTIONS_VAL808",
+    "caption": "Branch distribution and the \u0394 Dice each branch produces. Rejected refinements fall back to the backbone.",
+    "notebook_section": "13",
+    "sources": [
+      "full_doc_report/tables/REMEDFILM_INTERNAL_PER_SAMPLE.csv"
+    ]
+  },
+  {
+    "figure_id": "RT02_stage_flow",
+    "subdir": "Routing and safety",
+    "path": "full_doc_report/figures/Routing and safety/RT02_stage_flow.png",
+    "svg_path": "full_doc_report/figures/Routing and safety/RT02_stage_flow.svg",
+    "evidence_class": "SAVED_PREDICTIONS_VAL808",
+    "caption": "Counts at every stage of the routing and safety pipeline.",
+    "notebook_section": "13",
+    "sources": [
+      "reports/tables/phase27_val808_predictions.csv"
+    ]
+  },
+  {
+    "figure_id": "ROB01_perturbation_degradation",
+    "subdir": "Robustness",
+    "path": "full_doc_report/figures/Robustness/ROB01_perturbation_degradation.png",
+    "svg_path": "full_doc_report/figures/Robustness/ROB01_perturbation_degradation.svg",
+    "evidence_class": "FROZEN_ROBUSTNESS_EXECUTION",
+    "caption": "Mean paired \u0394 Dice for each perturbation condition. Resolution loss dominates; no condition improves accuracy.",
+    "notebook_section": "14",
+    "sources": [
+      "reports/audits/phase36_robustness_scientific_result_v1_23.json"
+    ]
+  },
+  {
+    "figure_id": "ROB02_domain_degradation",
+    "subdir": "Robustness",
+    "path": "full_doc_report/figures/Robustness/ROB02_domain_degradation.png",
+    "svg_path": "full_doc_report/figures/Robustness/ROB02_domain_degradation.svg",
+    "evidence_class": "FROZEN_ROBUSTNESS_EXECUTION",
+    "caption": "Perturbation families broken down by clinical domain; KUB degrades most.",
+    "notebook_section": "14",
+    "sources": [
+      "reports/audits/phase36_robustness_scientific_result_v1_23.json"
+    ]
+  },
+  {
+    "figure_id": "ROB03_clean_equivalence_gate",
+    "subdir": "Robustness",
+    "path": "full_doc_report/figures/Robustness/ROB03_clean_equivalence_gate.png",
+    "svg_path": "full_doc_report/figures/Robustness/ROB03_clean_equivalence_gate.svg",
+    "evidence_class": "FROZEN_ROBUSTNESS_EXECUTION",
+    "caption": "The robustness execution reproduces the frozen clean predictions exactly, with zero TEST reads and zero training.",
+    "notebook_section": "14",
+    "sources": [
+      "reports/audits/phase36_robustness_scientific_result_v1_23.json"
+    ]
+  },
+  {
+    "figure_id": "EFF01_accuracy_vs_compute",
+    "subdir": "Efficiency",
+    "path": "full_doc_report/figures/Efficiency/EFF01_accuracy_vs_compute.png",
+    "svg_path": "full_doc_report/figures/Efficiency/EFF01_accuracy_vs_compute.svg",
+    "evidence_class": "MIXED_ANALYTICAL_COMPUTE_AND_FROZEN_ACCURACY",
+    "caption": "Accuracy against analytical compute. ReMedFiLM FULL has its own marker; the earlier report version omitted it.",
+    "notebook_section": "15",
+    "sources": [
+      "reports/tables/phase21_six_model_compute.csv",
+      "reports/tables/c2_barr/c2_barr_aggregate.json",
+      "full_doc_report/tables/REMEDFILM_EFFICIENCY.csv"
+    ]
+  },
+  {
+    "figure_id": "EFF02_latency_breakdown",
+    "subdir": "Efficiency",
+    "path": "full_doc_report/figures/Efficiency/EFF02_latency_breakdown.png",
+    "svg_path": "full_doc_report/figures/Efficiency/EFF02_latency_breakdown.svg",
+    "evidence_class": "MEASURED_HARDWARE_PROFILE",
+    "caption": "Measured per-component latency. Skip and execute paths bracket the FULL system's cost.",
+    "notebook_section": "15",
+    "sources": [
+      "reports/audits/phase34_efficiency_result_v1_4.json"
+    ]
+  },
+  {
+    "figure_id": "EFF03_accuracy_vs_parameters",
+    "subdir": "Efficiency",
+    "path": "full_doc_report/figures/Efficiency/EFF03_accuracy_vs_parameters.png",
+    "svg_path": "full_doc_report/figures/Efficiency/EFF03_accuracy_vs_parameters.svg",
+    "evidence_class": "FROZEN_ACCURACY_AND_MEASURED_PARAMETERS",
+    "caption": "Accuracy against parameter count on a log axis; ReMedFiLM achieves its score with far fewer parameters than DeepLabV3+.",
+    "notebook_section": "15",
+    "sources": [
+      "full_doc_report/tables/REMEDFILM_EFFICIENCY.csv"
+    ]
+  },
+  {
+    "figure_id": "STAT01_seedwise_macro_metrics",
+    "subdir": "Statistics",
+    "path": "full_doc_report/figures/Statistics/STAT01_seedwise_macro_metrics.png",
+    "svg_path": "full_doc_report/figures/Statistics/STAT01_seedwise_macro_metrics.svg",
+    "evidence_class": "FROZEN_PHASE29_DESCRIPTIVE",
+    "caption": "Per-seed macro Dice and \u0394 Dice with the across-seed mean and SD band. The backbone is identical across seeds, so this is not end-to-end replication.",
+    "notebook_section": "09",
+    "sources": [
+      "reports/audits/phase29_phase_d_three_seed_descriptive_summary.json"
+    ]
+  },
+  {
+    "figure_id": "STAT02_bootstrap_distribution",
+    "subdir": "Statistics",
+    "path": "full_doc_report/figures/Statistics/STAT02_bootstrap_distribution.png",
+    "svg_path": "full_doc_report/figures/Statistics/STAT02_bootstrap_distribution.svg",
+    "evidence_class": "DERIVED_FROM_SAVED_PREDICTIONS",
+    "caption": "Empirical bootstrap distribution of the paired macro \u0394 Dice on VAL808; the whole distribution lies above zero.",
+    "notebook_section": "09",
+    "sources": [
+      "full_doc_report/tables/REMEDFILM_PAIRED_DELTA.json"
+    ]
+  },
+  {
+    "figure_id": "STAT03_seedwise_per_domain",
+    "subdir": "Statistics",
+    "path": "full_doc_report/figures/Statistics/STAT03_seedwise_per_domain.png",
+    "svg_path": "full_doc_report/figures/Statistics/STAT03_seedwise_per_domain.svg",
+    "evidence_class": "FROZEN_PHASE29_DESCRIPTIVE",
+    "caption": "Per-domain FULL-system Dice for seeds 42/123/3407. Variation is confined to the re-fitted components, not the backbone.",
+    "notebook_section": "09",
+    "sources": [
+      "reports/audits/phase29_val808_seedwise_metrics.json"
+    ]
+  },
+  {
+    "figure_id": "STAT04_population_accounting",
+    "subdir": "Statistics",
+    "path": "full_doc_report/figures/Statistics/STAT04_population_accounting.png",
+    "svg_path": "full_doc_report/figures/Statistics/STAT04_population_accounting.svg",
+    "evidence_class": "FROZEN_MANIFEST",
+    "caption": "Every reported metric is tied to one of these cohorts; they are never pooled.",
+    "notebook_section": "02",
+    "sources": [
+      "manifests/phase4_v3/train.csv",
+      "manifests/phase4_v3/val.csv",
+      "reports/audits/phase25g_holdout_reservation_for_phase30.json"
+    ]
+  }
+]

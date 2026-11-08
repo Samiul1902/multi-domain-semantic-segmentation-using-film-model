@@ -1,0 +1,76 @@
+{
+ "artifact": "phase30_primary_noninferiority_result",
+ "phase": 30,
+ "stage": "STAGE_B",
+ "specification_revision": "ra_medfilm_barr_phase30_final_dev_validation_v1_3",
+ "method": "RA-MedFiLM-BARR",
+ "population": "ROUTER_HOLDOUT",
+ "n": 875,
+ "domains": [
+  "BUSI",
+  "ISIC",
+  "KUB",
+  "KVASIR"
+ ],
+ "estimand": "MACRO_DOMAIN_EQUAL_WEIGHT_MEAN_DICE_DELTA",
+ "primary_reference": "canonical GlobalMedFiLM",
+ "bootstrap": {
+  "type": "DOMAIN_STRATIFIED_GROUP_BOOTSTRAP",
+  "unit": "group_key",
+  "strata": [
+   "BUSI",
+   "ISIC",
+   "KUB",
+   "KVASIR"
+  ],
+  "B": 2000,
+  "seed": 42,
+  "rng": "PCG64(42) plan (frozen, not regenerated)",
+  "plan_sha256": "59c97ccf6fbea823d38a1fba12d5e81b7e5fb103f31bc7fdfe443fd4971faab1",
+  "percentiles": [
+   2.5,
+   97.5
+  ],
+  "paired": true
+ },
+ "global_macro_dice": 0.9285481511747413,
+ "a8_macro_dice": 0.9302871820357663,
+ "macro_delta_dice": 0.0017390308610248934,
+ "macro_ci": [
+  0.00111729355352301,
+  0.0024049809029647283
+ ],
+ "noninferiority_margin": 0.005,
+ "claim_criterion": "lower 95% bootstrap CI > -0.005 (strict)",
+ "strict_inequality": true,
+ "PRESERVATION_ASSERTED": true,
+ "p_values_computed": 0,
+ "zero_difference_test_performed": false,
+ "holm_adjustment_performed": false,
+ "significance_adjudication_performed": false,
+ "per_domain": {
+  "BUSI": {
+   "point": 5.1523456032690856e-06,
+   "ci_low": 0.0,
+   "ci_high": 1.5457036809807255e-05
+  },
+  "ISIC": {
+   "point": 0.0009862909655257636,
+   "ci_low": 0.0003288868124813499,
+   "ci_high": 0.001764381605542865
+  },
+  "KUB": {
+   "point": 0.005944726651047028,
+   "ci_low": 0.0036349992173161667,
+   "ci_high": 0.008455643085141072
+  },
+  "KVASIR": {
+   "point": 1.9953481923512754e-05,
+   "ci_low": 0.0,
+   "ci_high": 5.986044577053826e-05
+  }
+ },
+ "macro_may_not_hide_domain_harm": true,
+ "generated_utc": "2026-10-04T03:18:44+00:00",
+ "all_pass": true
+}

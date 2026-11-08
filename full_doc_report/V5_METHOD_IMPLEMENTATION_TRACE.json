@@ -1,0 +1,128 @@
+{
+  "system_name": "RA-MedFiLM-BARR (also historically designated ReMedFiLM in early development)",
+  "architecture_id": "ra_medfilm_barr_phase26_integration_v1_0",
+  "total_parameters": 4837420,
+  "wrapper_trainable_parameters": 0,
+  "assembly_principle": "ASSEMBLY_ONLY__STAGED_FREEZE_NO_JOINT_TRAINING",
+  "components": {
+    "G": {
+      "symbol": "G",
+      "name": "GlobalMedFiLM",
+      "role": "Task-Conditioned Global Backbone Segmenter",
+      "source_file": "src/models/film/global_medfilm.py",
+      "class": "GlobalMedFiLM",
+      "architecture_id": "global_medfilm_shared_residual_unet_film5_no_se_no_deep_supervision_v1",
+      "checkpoint": "checkpoints/phase21_global_medfilm_fourdomain_seed42_clean_v3/best.pt",
+      "checkpoint_sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+      "parameters": 3523001,
+      "channels": [
+        24,
+        48,
+        96,
+        192,
+        256
+      ],
+      "film_sites": [
+        "bridge",
+        "decoder4",
+        "decoder3",
+        "decoder2",
+        "decoder1"
+      ],
+      "film_formula": "F_hat = (1 + tanh(gamma_raw(t))) * F + tanh(beta_raw(t))",
+      "task_embedding_dim": 32,
+      "film_hidden_dim": 64,
+      "input_spec": "Image x in R^{1x3x512x512}, Task ID t in {0:ISIC, 1:BUSI, 2:KVASIR, 3:KUB}",
+      "output_spec": "p_global in [0,1]^{512x512} (sigmoid foreground probability) + intermediate feature maps",
+      "training_objective": "Combined BCE + Dice Loss on TRAIN5832 (Phase 21)"
+    },
+    "ROI_Proposal": {
+      "symbol": "ROI",
+      "name": "Center-Preserving Connected-Component Expansion",
+      "source_file": "src/models/barr/ra_medfilm_barr.py",
+      "method": "RAMedFiLMBARR._roi_window_from_probability",
+      "parameters": 0,
+      "proposal_threshold": 0.3,
+      "expansion_factor": 1.5,
+      "formula": "binary = p_global >= 0.30 -> (y0, y1, x0, x1) expanded around (cy, cx) by 1.50x",
+      "action_availability": "Available iff any pixel >= 0.30; else FORCED_SKIP -> p_global"
+    },
+    "B_phi": {
+      "symbol": "B_phi",
+      "name": "BARRBenefitRouterV1",
+      "role": "GT-Free Paired-Gain Counterfactual Benefit Regressor",
+      "source_file": "src/models/barr/phase25_models.py",
+      "class": "BARRBenefitRouterV1",
+      "architecture_id": "barr_benefit_router_v1",
+      "checkpoint": "checkpoints/phase25d_barr_benefit_router_v1_2_1_seed42/final/final.pt",
+      "checkpoint_sha256": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+      "parameters": 36801,
+      "input_dimensions": "202 numeric features (global context, shape, entropy) + 16 task embedding = 218-D",
+      "network_structure": "Linear(218->128) -> LayerNorm -> SiLU -> Dropout(0.10) -> Linear(128->64) -> LayerNorm -> SiLU -> Dropout(0.10) -> Linear(64->1)",
+      "decision_metric": "Resource-aware utility U = delta_hat_final - lambda * C, with lambda=1/4, C=1051648/10270749",
+      "execution_threshold": "tau_C8_final = -5003565381643716252018011 / 205414980000000000000000000 (~ -0.024358)",
+      "decision_branches": "EXECUTE if U >= tau_C8_final; SKIP if U < tau_C8_final -> p_global",
+      "training_objective": "MSE loss against counterfactual paired Dice delta on cross-fit OOF validation (Phase 25D)"
+    },
+    "R_psi": {
+      "symbol": "R_psi",
+      "name": "BARRRegionalRefinerV1",
+      "role": "Dedicated Crop-Trained Regional Residual Refiner",
+      "source_file": "src/models/barr/regional_refiner.py",
+      "class": "BARRRegionalRefinerV1",
+      "architecture_id": "barr_regional_refiner_v1_narrowed_channels",
+      "checkpoint": "checkpoints/phase25a_barr_regional_refiner_v1_1_roi030/final/final.pt",
+      "checkpoint_sha256": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109",
+      "parameters": 1276401,
+      "channels": [
+        16,
+        32,
+        64,
+        96,
+        128
+      ],
+      "input_spec": "B x 4 x 256 x 256 = [R, G, B, p_global_crop]",
+      "output_spec": "B x 1 x 256 x 256 raw residual logits delta_l_roi",
+      "residual_formula": "p_cand_crop = sigmoid(logit(p_global_crop) + delta_l_roi)",
+      "fusion_logic": "RAMedFiLMBARR._fuse_global_with_regional (deterministic spatial insertion into global canvas, NO alpha blending)",
+      "training_objective": "Boundary-weighted BCE + Dice loss on 256x256 crops from TRAIN5832 (Phase 25A)"
+    },
+    "S_omega": {
+      "symbol": "S_omega",
+      "name": "BARRPostSafetyV1",
+      "role": "Post-Refinement Safety Classifier Gate",
+      "source_file": "src/models/barr/phase25_models.py",
+      "class": "BARRPostSafetyV1",
+      "architecture_id": "barr_post_safety_v1",
+      "checkpoint": "checkpoints/phase25f_barr_post_safety_v1_0_seed42/final/final.pt",
+      "checkpoint_sha256": "eee9b97b9921e53fc07eac9281dce64ba518c6e1659916b97b0b3bec21ec6d2e",
+      "parameters": 1217,
+      "input_dimensions": "16 numeric comparative features (divergence, area delta, border shift) + 4 task one-hot = 20-D",
+      "network_structure": "Linear(20->32) -> SiLU -> Linear(32->16) -> SiLU -> Linear(16->1)",
+      "acceptance_rule": "P(accept) = sigmoid(logit) >= 0.50 -> ACCEPT (output fused); else REJECT (fallback to p_global)",
+      "training_objective": "BCE loss classifying whether refinement delta > 0 on cross-fit OOF validation (Phase 25F)"
+    }
+  },
+  "runtime_paths": [
+    {
+      "path_id": "FORCED_SKIP",
+      "condition": "Action unavailable (no p_global pixel >= 0.30)",
+      "outcome": "p_global"
+    },
+    {
+      "path_id": "SKIP_GLOBAL",
+      "condition": "U < tau_C8_final (Benefit router predicts low utility)",
+      "outcome": "p_global"
+    },
+    {
+      "path_id": "EXECUTE_THEN_ACCEPT",
+      "condition": "U >= tau_C8_final AND P(safety) >= 0.50",
+      "outcome": "fused refined candidate mask"
+    },
+    {
+      "path_id": "EXECUTE_THEN_REJECT",
+      "condition": "U >= tau_C8_final AND P(safety) < 0.50",
+      "outcome": "p_global (safe fallback)"
+    }
+  ]
+}
