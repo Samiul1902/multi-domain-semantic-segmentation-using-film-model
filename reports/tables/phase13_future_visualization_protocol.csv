@@ -1,0 +1,12 @@
+id,visualization,form,basis
+A,GLOBAL vs ORACLE vs PREDICTED coverage90,grouped bar,clean-v3 FULL_FIELD 103 cases / 152 components
+B,retention fraction R per architecture,bar with the G denominator annotated,per model; no reference model
+C,size-stratified recall90 across the three conditions,grouped bar TINY/SMALL/MEDIUM/LARGE,clean-v3 taxonomy strata
+D,hard-set recovery (re-derived clean-v3),bar recovered/not-recovered,"clean-v3 hard sets, NOT the v2 16/7"
+E,proposal count vs coverage trade-off,scatter with the feasibility region shaded,proposals/image vs recall90
+F,ROI area fraction vs coverage,scatter with the area budget line,union area fraction
+G,heatmap + proposal overlays,"multipage panel (image, heatmap, proposals)",deterministic selection; >= 12 cases
+H,TP/FP/FN error maps for the predicted-region condition,multipage panel,>= 16 deterministic cases
+I,Dice distribution GLOBAL vs ORACLE vs PREDICTED,paired violin/box,paired within case and architecture
+J,proposal precision vs coverage,scatter,prospective FP-cost reporting
+K,Phase-12 vs Phase-13 evidence alignment,side-by-side bar of the delta Dice and the retention fraction,oracle upper bound vs deployable result

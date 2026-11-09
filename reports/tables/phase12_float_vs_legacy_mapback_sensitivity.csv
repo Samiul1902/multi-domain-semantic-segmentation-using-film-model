@@ -1,0 +1,5 @@
+model,model_key,n_cases,mean_abs_dice_diff,max_abs_dice_diff,mean_abs_iou_diff,max_abs_iou_diff,note
+Attention U-Net,attention_unet,103,0.002682902512407876,0.01370040607539419,0.003510387676475399,0.013884566171756818,difference conflates (a) uint8 quantisation and (b) PIL-vs-torch bilinear convention
+DeepLabV3+,deeplabv3plus,103,0.0008631490326204834,0.005204944697123959,0.001219962366561618,0.007726918532314664,difference conflates (a) uint8 quantisation and (b) PIL-vs-torch bilinear convention
+UNet,unet,103,0.0028282143151212927,0.018518609964164323,0.0038844400057541444,0.02721177289230492,difference conflates (a) uint8 quantisation and (b) PIL-vs-torch bilinear convention
+UNet++,unetpp,103,0.0022564807977408993,0.017554388594157408,0.0029359926988561176,0.018292682924040737,difference conflates (a) uint8 quantisation and (b) PIL-vs-torch bilinear convention

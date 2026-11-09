@@ -1,0 +1,10 @@
+component,activity,runs_per_seed,n_seeds,total_if_all_seeds,note
+G,GlobalMedFiLM training run,1,3,3,"single run, fixed TRAIN/VAL membership"
+G,GlobalMedFiLM final refit,0,3,0,no refit step in canonical protocol
+R_psi,regional-refiner fold run,3,3,9,Phase25A cross-fit outer folds
+R_psi,regional-refiner final refit,1,3,3,all-DEV refit
+B_phi,router fold run,5,3,15,Phase25D outer CV folds
+B_phi,router final refit,1,3,3,median-epoch all-DEV refit
+S_omega,safety fold run,5,3,15,Phase25F reused Phase25D folds
+S_omega,safety final refit,1,3,3,median-epoch all-DEV refit
+TOTAL,logical runs (all four in scope),17,3,51,CONDITIONAL: depends on §4 training scope and §5 seed-42 reuse

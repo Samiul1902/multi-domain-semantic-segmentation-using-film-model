@@ -1,0 +1,22 @@
+{
+  "taxonomy_version": "kub_size_v1",
+  "manifest_version": "phase4_v2",
+  "source_population": "KUB TRAIN FULL_FIELD Components",
+  "source_split": "TRAIN",
+  "source_view_type": "FULL_FIELD",
+  "connectivity": 8,
+  "size_measure": "component_ratio (component_pixels / image_area)",
+  "full_field_train_component_count": 1162,
+  "Q25": 0.0001499766777599,
+  "Q50": 0.00033976472454305,
+  "Q75": 0.0008266496069636999,
+  "strata_intervals": {
+    "TINY": "component_ratio <= 0.00014998",
+    "SMALL": "0.00014998 < component_ratio <= 0.00033976",
+    "MEDIUM": "0.00033976 < component_ratio <= 0.00082665",
+    "LARGE": "component_ratio > 0.00082665"
+  },
+  "clinical_interpretation": "NONE (Dataset-relative strata)",
+  "test_used": false,
+  "timestamp": "2026-09-13T14:05:23Z"
+}

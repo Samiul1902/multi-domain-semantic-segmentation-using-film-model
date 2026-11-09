@@ -1,0 +1,5 @@
+dimension_id,dimension_name,measured_quantities,produced_by,success_threshold
+A,LOCALIZER_PROPOSAL_QUALITY,proposal count; pixel-any-hit precision; bbox-any-hit precision; tiny90; overall90; recall50; any-overlap recall; mean coverage; mean union area; score dispersion / saturation; ROC-AUC; PR-AUC,H2C-B1 standalone localizer evaluation,NO_THRESHOLD
+B,DOWNSTREAM_GLOBAL_PRESERVATION,Dice; IoU; precision; recall; FP; FN; cases improved/worse,H2C-B2 (if authorized),NO_THRESHOLD
+C,REGIONAL_UTILITY,component recoveries; component losses; empty recoveries; oracle-benefit retention,H2C-B2 (if authorized),NO_THRESHOLD
+D,CROSS_ARCHITECTURE_GENERALITY,UNet; Attention U-Net; UNet++; DeepLabV3+,H2C-B2 (if authorized),NO_RANKING

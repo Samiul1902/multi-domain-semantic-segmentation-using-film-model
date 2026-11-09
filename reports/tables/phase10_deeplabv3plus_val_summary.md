@@ -1,0 +1,3 @@
+| N_Samples | Macro_Dice | Macro_IoU | Macro_Precision | Macro_Recall | Micro_Dice | Micro_IoU | HD95_Valid_N | HD95_Invalid_N | Empty_Predictions_N | Empty_Prediction_Rate | Median_Valid_HD95 | Mean_Valid_HD95 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 283 | 0.748787275862818 | 0.6434574856147728 | 0.7838113481436314 | 0.7833669255682404 | 0.8670481668939323 | 0.7653001138776202 | 275 | 8 | 8 | 0.028268551236749116 | 34.87692045245149 | 49.93592589917572 |

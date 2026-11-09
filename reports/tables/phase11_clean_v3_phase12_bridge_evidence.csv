@@ -1,0 +1,11 @@
+evidence,value,interpretation,verdict,status
+FULL_FIELD vs ROI mean-Dice gap,0.2276,ROI crops score far higher than FULL_FIELD for every model,MOTIVATES_ORACLE_ROI_TEST,OBSERVED_DIAGNOSTIC_EVIDENCE
+FULL_FIELD mean Dice (per model),"{'Attention U-Net': 0.6317, 'DeepLabV3+': 0.5591, 'UNet': 0.5965, 'UNet++': 0.6455}",global full-field segmentation is the weak regime,MOTIVATES_ORACLE_ROI_TEST,OBSERVED_DIAGNOSTIC_EVIDENCE
+FULL_FIELD TINY components with incomplete/missed detection,"72 native TINY components; components in partially/missed cases per model: {'UNet': 29, 'Attention U-Net': 22, 'UNet++': 20, 'DeepLabV3+': 33}",tiny FULL_FIELD targets frequently partially detected or missed,MOTIVATES_ORACLE_ROI_TEST,OBSERVED_DIAGNOSTIC_EVIDENCE
+FULL_FIELD SMALL components with incomplete/missed detection,"28 native SMALL components; components in partially/missed cases per model: {'UNet': 10, 'Attention U-Net': 8, 'UNet++': 7, 'DeepLabV3+': 10}",small FULL_FIELD targets also affected,MOTIVATES_ORACLE_ROI_TEST,OBSERVED_DIAGNOSTIC_EVIDENCE
+multi-component partial/miss cases (per model),"{'UNet': 19, 'Attention U-Net': 16, 'UNet++': 16, 'DeepLabV3+': 22}",multi-component masks often only partially recovered,MOTIVATES_ORACLE_ROI_TEST,OBSERVED_DIAGNOSTIC_EVIDENCE
+empty predictions (FULL_FIELD vs ROI),FULL_FIELD 3-11 per model; ROI 0-1 per model,empty predictions concentrated in FULL_FIELD,MOTIVATES_ORACLE_ROI_TEST,OBSERVED_DIAGNOSTIC_EVIDENCE
+HD95 valid median (per model),"{'Attention U-Net': 43.67, 'DeepLabV3+': 33.23, 'UNet': 44.93, 'UNet++': 36.51}",boundary error is substantial but secondary to detection/localization,MIXED,OBSERVED_DIAGNOSTIC_EVIDENCE
+FP component burden (mean per case),"{'Attention U-Net': 10.068, 'DeepLabV3+': 0.236, 'UNet': 10.157, 'UNet++': 1.654}",UNet/Attention U-Net carry high FP burden; UNet++/DeepLabV3+ far lower,MIXED,OBSERVED_DIAGNOSTIC_EVIDENCE
+ALL_FOUR_LOW shared-failure cases,12/280,a subset is difficult for ALL four architectures (shared hard cases),MOTIVATES_ORACLE_ROI_TEST,OBSERVED_DIAGNOSTIC_EVIDENCE
+cases where >=3 models lose components,23,"object misses are frequently shared, not architecture-specific",MOTIVATES_ORACLE_ROI_TEST,OBSERVED_DIAGNOSTIC_EVIDENCE

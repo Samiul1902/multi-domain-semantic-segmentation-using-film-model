@@ -1,0 +1,59 @@
+field,historical_v2,clean_v3,same_or_changed,change_reason,scientifically_material
+experiment_id,phase10_kub_deeplabv3plus_seed42_512,phase10_kub_deeplabv3plus_seed42_512_clean_v3,CHANGED,Clean-v3 logical run ID,False
+manifest_version,phase4_v2,phase4_v3,CHANGED,Clean manifest with leakage remediation,False
+taxonomy_id,None,kub_size_clean_v3_v1,CHANGED,Frozen taxonomy binding,False
+model_name,deeplabv3plus,deeplabv3plus,SAME,N/A,False
+architecture,deeplabv3plus_resnet50_os16,deeplabv3plus_resnet50_os16,SAME,N/A,False
+backbone,resnet50,resnet50,SAME,N/A,False
+backbone_pretrained,false,false,SAME,N/A,False
+pretrained_weights,false,false,SAME,N/A,False
+replace_stride_with_dilation,"[false, false, true]","[false, false, true]",SAME,N/A,False
+output_stride,16,16,SAME,N/A,False
+input_channels,1,1,SAME,N/A,False
+output_channels,1,1,SAME,N/A,False
+input_channel_handling,conv1 replaced 1->64,conv1 replaced 1->64,SAME,N/A,False
+aspp_rates,"[6, 12, 18]","[6, 12, 18]",SAME,N/A,False
+aspp_out_channels,256,256,SAME,N/A,False
+aspp_project_dropout,0.1,0.1,SAME,N/A,False
+low_level_projection_channels,48,48,SAME,N/A,False
+decoder_channels,"[304, 256, 256]","[304, 256, 256]",SAME,N/A,False
+auxiliary_head,false,false,SAME,N/A,False
+align_corners,false,false,SAME,N/A,False
+parameter_count,40340769,40340769 (verified by instantiation),SAME,N/A,False
+input_resolution,512,512,SAME,N/A,False
+preprocessing_strategy,aspect_ratio_resize_symmetric_pad,aspect_ratio_resize_symmetric_pad,SAME,N/A,False
+mask_interpolation,nearest,nearest,SAME,N/A,False
+loss_name,bce_dice,bce_dice,SAME,N/A,False
+bce_weight,0.5,0.5,SAME,N/A,False
+dice_weight,0.5,0.5,SAME,N/A,False
+dice_epsilon,1e-6,1e-6,SAME,N/A,False
+optimizer,AdamW,AdamW,SAME,N/A,False
+learning_rate,1e-4,1e-4,SAME,N/A,False
+weight_decay,1e-4,1e-4,SAME,N/A,False
+scheduler,CosineAnnealingLR,CosineAnnealingLR,SAME,N/A,False
+scheduler_T_max,100,100,SAME,N/A,False
+batch_size,4,4,SAME,N/A,False
+gradient_accumulation_steps,1,1,SAME,N/A,False
+effective_batch_size,4,4,SAME,N/A,False
+amp,true,true,SAME,N/A,False
+seed,42,42,SAME,N/A,False
+max_epochs,100,100,SAME,N/A,False
+early_stopping_patience,15,15,SAME,N/A,False
+monitor,val_macro_dice_true_per_image,val_macro_dice,CHANGED,Canonical monitor string (identical macro semantics),False
+improvement_rule,strict >,strict >,SAME,N/A,False
+val_aggregation,macro unweighted per-image,macro unweighted per-image,SAME,N/A,False
+prediction_threshold,0.5,0.5,SAME,N/A,False
+augmentation_hflip,p=0.5,p=0.5,SAME,N/A,False
+augmentation_rotation,±5°,±5°,SAME,N/A,False
+augmentation_brightness,±0.1,±0.1,SAME,N/A,False
+augmentation_contrast,±0.1,±0.1,SAME,N/A,False
+augmentation_vflip,false,false,SAME,N/A,False
+num_workers,0,0,SAME,N/A,False
+pin_memory,true,true,SAME,N/A,False
+gradient_clipping,none,none (null),SAME,N/A,False
+initialization,random_kaiming_no_pretrained,random_kaiming_no_pretrained,SAME,N/A,False
+device_contract,implicit,get_device(require_cuda=True),CHANGED,Fail-loud CUDA contract,False
+target_contract,implicit,binarize_mask (mask > 0),CHANGED,Centralized mask target helper,False
+single_writer_lock,none,src.utils.run_lock,CHANGED,Single-writer protection,False
+nan_inf_guard,none explicit,fail-loud,CHANGED,Explicit NaN/Inf fail-loud detection,False
+allow_test,false,false,SAME,N/A,False

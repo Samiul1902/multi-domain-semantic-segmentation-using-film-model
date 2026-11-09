@@ -1,0 +1,33 @@
+amendment_id,field,historical_v2,proposed_clean_v3,same_or_changed,change_reason,scientifically_material,supervisor_decision_required,authorization,unauthorized_material_difference
+PART_1A_BASE,manifest_version,phase4_v2,phase4_v3,CHANGED,clean governance: canonical active-development manifest,False,False,SUPERVISOR_FROZEN,False
+PART_1A_BASE,taxonomy,kub_size_v1,kub_size_clean_v3_v1,CHANGED,clean governance: frozen clean-v3 taxonomy,False,False,SUPERVISOR_FROZEN,False
+PART_1A_BASE,train_population,FULL_FIELD 771 images / 1162 components,FULL_FIELD 770 images / 1161 components,CHANGED,clean-v3 population,False,False,SUPERVISOR_FROZEN,False
+PART_1A_BASE,val_population,FULL_FIELD 106 images / 156 components,FULL_FIELD 103 images / 152 components,CHANGED,clean-v3 population,False,False,SUPERVISOR_FROZEN,False
+PART_1A_BASE,val_size_strata,Tiny 73 / Small 29 / Medium 36 / Large 18,Tiny 72 / Small 28 / Medium 36 / Large 16,CHANGED,clean-v3 taxonomy recomputation; NOT a relabelling of the v2 strata,True,False,SUPERVISOR_FROZEN,False
+PART_1A_BASE,model_architecture,"KUBLocalizer compact 3-stage U-Net, base_channels 16","KUBLocalizer compact 3-stage U-Net, base_channels 16",SAME,historical architecture is scientifically valid; unchanged,False,False,SUPERVISOR_FROZEN,False
+PART_1A_BASE,input_channels,1,1,SAME,unchanged,False,False,SUPERVISOR_FROZEN,False
+PART_1A_BASE,input_resolution,512,512,SAME,unchanged,False,False,SUPERVISOR_FROZEN,False
+PART_1A_BASE,output_heatmap_resolution,"128 (AvgPool2d(4,4) from the stride-4 block)","128 (AvgPool2d(4,4) from the stride-4 block)",SAME,the Stage-4D bounded redesign is retained; it is the only configuration that passed the pilot gate,False,False,SUPERVISOR_FROZEN,False
+PART_1A_BASE,target_sigma,0.75 in 128-space (== 3.0 in 512-space),0.75 in 128-space (== 3.0 in 512-space),SAME,unchanged,False,False,SUPERVISOR_FROZEN,False
+PART_1A_BASE,heatmap_target_rule,"Gaussian, pixelwise MAX, nearest integer pixel forced to 1.0","Gaussian, pixelwise MAX, nearest integer pixel forced to 1.0",SAME,required for the CenterNet exact-1.0 positive rule,False,False,SUPERVISOR_FROZEN,False
+PART_1A_BASE,initialization,random Kaiming; head bias log(0.1/0.9),random Kaiming; head bias log(0.1/0.9),SAME,unchanged,False,False,SUPERVISOR_FROZEN,False
+PART_1A_BASE,loss,"0.75 CenterNet focal (alpha 0.25, gamma 2.0) + 0.25 soft Dice","0.75 CenterNet focal (alpha 0.25, gamma 2.0) + 0.25 soft Dice",SAME,unchanged,False,False,SUPERVISOR_FROZEN,False
+PART_1A_BASE,optimizer,"AdamW lr 1e-4, wd 1e-4","AdamW lr 1e-4, wd 1e-4",SAME,unchanged,False,False,SUPERVISOR_FROZEN,False
+PART_1A_BASE,scheduler,CosineAnnealingLR T_max 100,CosineAnnealingLR T_max 100,SAME,unchanged,False,False,SUPERVISOR_FROZEN,False
+PART_1A_BASE,amp,true (CUDA required),true (CUDA required),SAME,unchanged,False,False,SUPERVISOR_FROZEN,False
+PART_1A_BASE,effective_batch,"4 (fallback 2+accum2, then 1+accum4)","4 (fallback 2+accum2, then 1+accum4)",SAME,unchanged,False,False,SUPERVISOR_FROZEN,False
+PART_1A_BASE,seed,42,42,SAME,unchanged,False,False,SUPERVISOR_FROZEN,False
+PART_1A_BASE,max_epochs,100,100,SAME,unchanged,False,False,SUPERVISOR_FROZEN,False
+PART_1A_BASE,early_stopping_patience,15,15,SAME,unchanged,False,False,SUPERVISOR_FROZEN,False
+PART_1A_BASE,checkpoint_metric,lexicographic localizer rule (never segmentation Dice),lexicographic localizer rule (never segmentation Dice),SAME,Phase 13 is localization-only; unchanged,False,False,SUPERVISOR_FROZEN,False
+PART_1A_BASE,proposal_search_grid,"5 thresholds x 2 margins x 2 top_k = 20 configs, nms_iou 0.30","5 thresholds x 2 margins x 2 top_k = 20 configs, nms_iou 0.30",SAME,unchanged; VAL-only selection,False,False,SUPERSEDED_BY_AMENDMENT_D,False
+PART_1A_BASE,coverage_primary,0.90,0.90,SAME,unchanged,False,False,SUPERVISOR_FROZEN,False
+PART_1A_BASE,frozen_hard_sets,16 globally missed Tiny + 7 global-empty FULL_FIELD (v2-derived),RE-DERIVE under clean-v3 from the frozen global baselines using the SAME definitional rule; do NOT reuse the v2 16/7 sets,CHANGED,the v2 sets were computed on a different population (106/156); reusing them would silently import v2 membership,True,True,SUPERVISOR_FROZEN,False
+PART_1A_BASE,gt_free_guarantee,proposal API accepts no GT,proposal API accepts no GT; GT only for post-generation evaluation,CHANGED,unchanged,False,False,SUPERVISOR_FROZEN,False
+PART_1A_BASE,architecture_scope,single localizer architecture (KUBLocalizer),single localizer architecture (KUBLocalizer),SAME,Phase 13 localizes; it does not compare segmentation architectures,False,False,SUPERVISOR_FROZEN,False
+PART_1A_BASE,inference_path_defect,learned_roi.predict_localizer omits heatmap_resolution=128,MUST pass heatmap_resolution=128 (or an explicit output-resolution contract) so the inference heatmap geometry matches the trained checkpoint,CHANGED,verified latent defect; the inference path would silently produce a 512-space heatmap,True,True,SUPERVISOR_FROZEN,False
+A,A_manifest_population,phase4_v2 / FULL_FIELD VAL 106 images / 156 components,phase4_v3 / FULL_FIELD VAL 103 images / 152 components,CHANGED,clean governance + clean-v3 population (supervisor R1 §14A),False,False,AUTHORIZED,False
+B,B_hard_set_membership,16 hard-Tiny component IDs + 7 global-empty image IDs (phase4_v2),re-derived on clean-v3 using the SAME historical definition (15 hard-Tiny components / 5 global-empty images),CHANGED,v2 sample/component IDs must not be reused; definition reproduced on clean-v3 before training (supervisor R1 §14B / §1),True,False,AUTHORIZED,False
+C,C_inference_heatmap_resolution_contract,implicit / defective generic path (learned_roi.predict_localizer omits heatmap_resolution=128),explicit 128x128 fail-loud contract on every clean-v3 path,CHANGED,authorized material correction (supervisor R1 §14C / §2),True,False,AUTHORIZED,False
+D,D_proposal_grid_selection,"per-epoch best-of-grid over the 20-config proposal grid, used inside the checkpoint score",fixed historically selected configuration 0.10 / 0.20 / 5 / 0.30; per-epoch grid search DISABLED,CHANGED,authorized material methodological improvement — prevents a new VAL-dependent post-processing optimization (supervisor R1 §14D / §5),True,False,AUTHORIZED,False
+E,E_phase14_crop_distribution_issue,Phase-14 refiner trained on GT-derived/perturbed/negative crops but evaluated on predicted proposals,NOT a Phase-13 localizer change; deferred to post-gate Phase-14 governance,DEFERRED,"Phase 13 trains image -> heatmap/proposals, not a regional refiner (supervisor R1 §14E / §8)",True,False,DEFERRED_TO_PHASE14_GOVERNANCE,False

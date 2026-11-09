@@ -1,0 +1,18 @@
+requested_literal,group,contract_feature,mapping_kind,uses_GT,available_pre_refinement,inference_available,resource_cost_enters_delta_hat,derivation
+bridge_global_pool,tap,global_encoder_pooled_features,DIRECT,false,true,true,false,the bridge tap is the deepest shared bottleneck; it is summarised by the global encoder pooled-feature axis already allowed
+bridge_roi_pool,tap,roi_pooled_global_features,DIRECT,false,true,true,false,"ROI-aware pooling of the same global forward, already allowed"
+decoder2_global_pool,tap,global_decoder_pooled_features,DIRECT,false,true,true,false,the decoder tap is summarised by the allowed global decoder pooled-feature axis
+decoder2_roi_pool,tap,roi_pooled_global_features,SHARED_AXIS,false,true,true,false,the ROI pooling is computed per tap on the SAME forward; the contract exposes a single ROI-pooled axis which is instantiated once per tap (3 ROI axes total)
+decoder1_global_pool,tap,global_decoder_pooled_features,SHARED_AXIS,false,true,true,false,the second decoder tap reuses the allowed global decoder pooled axis (2 decoder taps)
+decoder1_roi_pool,tap,roi_pooled_global_features,SHARED_AXIS,false,true,true,false,third ROI axis; same allowed contract feature
+entropy_proxy_mean,scalar,probability_entropy_summaries,DIRECT_EQUIVALENT,false,true,true,false,the contract's entropy summaries ARE the entropy proxy; the MEAN of that summary is the frozen statistic
+frac_prob_within_0p05_of_boundary,scalar,predicted_boundary_area_statistics,DIRECT_EQUIVALENT,false,true,true,false,boundary-area statistics over the predicted map include the fraction of probability mass near the boundary; the 0.05 band is the frozen statistic of that allowed feature
+frac_prob_within_0p02_of_boundary,scalar,predicted_boundary_area_statistics,DIRECT_EQUIVALENT,false,true,true,false,second deterministic band (0.02) of the same allowed boundary-area statistic
+mean_boundary_margin,scalar,probability_margin_summaries,DIRECT_EQUIVALENT,false,true,true,false,the contract's margin summaries ARE the boundary margin; the MEAN is the frozen statistic
+pred_foreground_fraction,scalar,predicted_foreground_fraction,DIRECT,false,true,true,false,exact authoritative name match
+pred_foreground_pixels,scalar,predicted_foreground_fraction,DERIVED,false,true,true,false,"pixels = predicted_foreground_fraction x (H x W); derived from the allowed fraction, no new information source"
+pred_roi_exists,scalar,predicted_component_count,DERIVED,false,true,true,false,roi_exists = (predicted_component_count > 0); derived from the allowed component count
+pred_empty,scalar,predicted_component_count,DERIVED,false,true,true,false,pred_empty = (predicted_component_count == 0); the exact complement of roi_exists
+predicted_roi_area_fraction,scalar,predicted_roi_fraction,DIRECT,false,true,true,false,exact authoritative match (ROI area / image area)
+predicted_roi_side,scalar,predicted_bbox_width_height,DERIVED,false,true,true,false,"roi_side = max(bbox_width, bbox_height) from the allowed bbox geometry feature"
+task_id_embedding,task,allowed_task_domain_embedding,DIRECT,false,true,true,false,exact authoritative match; 4 tasks -> embedding dim 16

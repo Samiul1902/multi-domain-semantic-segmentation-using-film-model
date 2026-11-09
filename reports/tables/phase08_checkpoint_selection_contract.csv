@@ -1,0 +1,10 @@
+item,value,source,note
+metric,val_macro_dice,"config + trainer.validate()[""dice""]",macro mean of per-image dice at threshold 0.5
+direction,higher_is_better (max),scripts/training/train_kub_baseline.py:183,
+improvement_comparison,strict >,"val_info[""dice""] > best_val_dice",equality is NOT an improvement
+minimum_delta,,no delta configured,exact float comparison
+tie_handling,tie -> not improved; best.pt NOT overwritten,strict > semantics,
+best_checkpoint_semantics,written only on improvement,if improved: save best.pt,best.pt epoch=47
+latest_checkpoint_semantics,written EVERY epoch,save latest.pt (unconditional),latest.pt epoch=62
+selection_split,VAL only,trainer.validate requires VAL,TEST never used
+test_usage,NEVER,verify_test_lock + allow_test=false,

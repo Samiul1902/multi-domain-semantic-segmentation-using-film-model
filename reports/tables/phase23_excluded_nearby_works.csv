@@ -1,0 +1,23 @@
+title,year,reason_screened,reason_excluded
+Adaptive Computation Time for Recurrent Neural Networks (ACT),2016,learned halting / conditional computation; cost penalty,"NOT a segmentation method; retained only as general-CV precedence context, excluded from the segmentation-relevant detail comparison"
+Mixture-of-Depths: Dynamically Allocating Compute in Transformer-Based Language Models,2024,per-token compute routing; resource-aware,"language modelling, not segmentation; no quality-benefit target"
+UHR-Net: Uncertainty-Aware Hypergraph Refinement Network for Medical Lesion Segmentation,2026,uncertainty-guided refinement in medical segmentation,"ONLY CURRENT UNCERTAINTY — refinement is applied unconditionally where uncertainty is high; no prediction of the BENEFIT of the refinement, no execute/skip gate"
+Uncertainty-Guided Incremental Gaussian Processes (Biomedical Signal Processing & Control),2026,uncertainty-guides-refinement family,"ONLY CURRENT UNCERTAINTY; no paired gain target, no action gating, no cost"
+DEviS: Toward Reliable Medical Image Segmentation by Modeling Predictive Uncertainty,2025,predictive-uncertainty modelling for medical segmentation,ONLY UNCERTAINTY/CALIBRATION; supplies an uncertainty signal but no benefit-of-action prediction and no gate
+Real-time Prediction of Segmentation Quality,2018,direct quality prediction for segmentation,"PREDICTS CURRENT QUALITY, not refined-minus-global gain; no action, no cost (retained separately as a low-detail MEDIUM-risk contextual row, excluded from the deep comparison)"
+Uncertainty-Aware Segmentation Quality Prediction (arXiv:2508.01460),2025,GT-free segmentation quality prediction,"PREDICTS CURRENT QUALITY; no future action, no paired gain, no routing"
+Coherence-Based Segmentation Quality Evaluator,2026,GT-free quality evaluation,"PREDICTS CURRENT QUALITY; no action benefit, no gate"
+SegRefiner: Towards Model-Agnostic Segmentation Refinement with Discrete Diffusion Process,2023,model-agnostic refinement primitive,"POST-REFINEMENT-ONLY / no selection at all — it always refines; it is the expensive step our gate would decide on, not a competing gate"
+Balancing Accuracy and Efficiency in Budget-Aware Early-Exit Neural Networks (EENN),2024,budget-aware early exit,NO PAIRED GAIN TARGET — exits on a confidence/difficulty threshold; not trained on Q(refined)-Q(global); classification-oriented
+"Soft Dice Confidence (plug-in variant, deferred appendix ablations)",2024,GT-free confidence with abstention,NO EXECUTE/SKIP MECHANISM for an expensive action; abstention only
+Dynamic resolution networks / spatially adaptive computation (general family),2020,adaptive computation at the input-resolution level,"UNRELATED RESOURCE ROUTING — changes resolution/depth of a single network; no optional external refinement, no paired gain, no fallback"
+MoE with Expert Choice Routing,2022,cost-aware routing in MoE,"UNRELATED ROUTING TARGET — token-to-expert assignment; no quality-gain target, no segmentation refinement"
+On the Role of Computation in Reinforcement Learning (OpenReview 3Hge4SAjEN),,value-of-computation in RL,UNVERIFIED — author/venue could not be confirmed against the primary record this session; excluded from the authoritative matrix
+When Does Learning to Stop Help? A Cost-Aware Study of Early Stopping for Reasoning Models (arXiv:2606.30852),2026,cost-aware learned stopping,UNVERIFIED — only aggregator metadata available; excluded from the authoritative matrix
+HyDRA: Hybrid Dynamic Routing (arXiv:2605.17106),2026,cost-aware dynamic routing,"UNVERIFIED — aggregator metadata only; excluded (also LLM-domain, not CV)"
+ROI-Reasoning (arXiv:2601.03822),2026,pre-computation benefit estimation,UNVERIFIED — aggregator metadata only; excluded from the authoritative matrix
+A cloud-edge adaptive lightweight network with dynamic offloading (Scientific Reports 2026),2026,device/edge-cost-aware medical segmentation,UNVERIFIED — publisher redirect blocked full confirmation; potential relevance to device-cost routing flagged for a future verified pass
+EA-LiteUNet (arXiv:2608.15537),2026,edge-adaptive lightweight segmentation,UNVERIFIED — title from search metadata only; mechanism unconfirmed
+Edge-SegStar (Biomedical Signal Processing & Control),2026,resource-efficient boundary-sensitive segmentation,UNVERIFIED — title from search metadata only; mechanism unconfirmed
+MICCAI 'Dynamic Routing paper' (secondary citation),,dynamic routing in medical segmentation,UNVERIFIED — surfaced only as a secondary reference; could not be resolved to a distinct primary record
+"US 12,685,594 (USPTO Gazette week 29, 2026)",2026,patent scan,UNVERIFIED RELEVANCE — title not captured; no patentability conclusion drawn

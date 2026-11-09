@@ -1,0 +1,8 @@
+module_id,name,symbol,role,novelty_bearing,parameter_target,gt_free_at_inference,executed_in_phase24,notes
+GLOBAL,Frozen Global MedFiLM reference,G,fallback output + reusable features,no,"3523001 (frozen, measured in Phase 21)",yes,no,Phase-21 SHA bound; MUST NOT be modified in initial Phase-25 experiments
+ROI,GT-free region proposal,P_roi,propose refinement region,no,0 (rule-based),yes,no,foreground bbox + fixed context expansion; constants from TRAIN only
+R,Dedicated regional refiner,R_psi,produce optional refinement,no,"0.5M-1.5M recommended, <=2.0M hard ceiling (TARGET, unmeasured)",yes,no,crop-trained lightweight residual U-Net; NOT the frozen global model on crops
+B,Benefit router (paired-gain predictor),B_phi,predict paired refinement gain BEFORE refinement,YES (in integration),"<=250k params; <=2% global MACs (preferred 1%) (TARGET, unmeasured)",yes,no,small MLP / shallow feature fusion; no transformer/encoder
+GATE,Pre-execution resource-aware gate,U_hat > tau,EXECUTE/SKIP decision,YES (with B),0,yes,no,must not require running R_psi (C4)
+S,Post-refinement safety selector,S_omega,preserve quality after refinement,no (closest to JFS),0,yes,no,does NOT save compute; CONTROLLED_CORE_EXTENSION
+FUSE,Fusion rule,F,compose final mask,no,0,yes,no,"outside ROI global, inside ROI refined; no learned fusion in primary"

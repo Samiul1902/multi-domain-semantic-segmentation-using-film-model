@@ -1,0 +1,6 @@
+population,source,n_cases,role,may_train_router,may_select_lambda_or_threshold,is_untouched_holdout,inspected_in_phase24
+TRAIN (original),manifests/phase4_v3/train.csv,5832,source of ROUTER_HOLDOUT + ROUTER_DEVELOPMENT,yes (via ROUTER_DEVELOPMENT only),yes (ROUTER_DEVELOPMENT only),partially (ROUTER_HOLDOUT),counts only
+ROUTER_DEVELOPMENT,85% of original TRAIN,~4957,cross-fitted gain labels + router fitting + threshold calibration,yes,yes,no,counts only
+ROUTER_HOLDOUT,15% of original TRAIN,~875,clean out-of-sample routing evaluation,NO,NO,YES (outcomes never inspected),ids/counts/groups only
+VAL (existing),manifests/phase4_v3/val.csv (Phase-22 frozen),808,SECONDARY / CONTINUITY DEVELOPMENT BENCHMARK,NO,NO,NO,not used
+TEST,manifests/phase4_v3/test.csv,1683,CLOSED,NO,NO,YES,0 reads

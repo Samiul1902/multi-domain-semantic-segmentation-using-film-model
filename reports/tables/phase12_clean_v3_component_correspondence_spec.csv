@@ -1,0 +1,10 @@
+item,specification,kind,notes
+native_component_identity,8-connected label() on binarized native GT (mask > 0),deterministic,kub_size_clean_v3_v1
+native_component_ratio,component_pixels / (native_H * native_W),deterministic,FULL_FIELD scope
+size_stratum,TINY <= Q25 < SMALL <= Q50 < MEDIUM <= Q75 < LARGE (lower-inclusive),deterministic,kub_size_clean_v3_v1 quantiles
+native_bbox,min_y/max_y/min_x/max_x from native component pixels,deterministic,inclusive extents
+crop_geometry,"compute_square_crop(bbox, native_shape, margin) -> clip + pad + side",deterministic,reuse historical geometry
+crop_to_native_map,invert clip/pad then side->native scaling implied by restore step,deterministic,"explicit, not case-complete inference"
+component_detection,>= 1 predicted foreground pixel overlapping the mapped GT component,deterministic,unless historical contract proves otherwise (it does not)
+stratum_recall,detected components / total components within stratum,deterministic,REPLACES the Phase-11 case-attributed approximation
+roi_handling,ROI_NOT_PRIMARY_BINNED (never size-binned),rule,taxonomy scope

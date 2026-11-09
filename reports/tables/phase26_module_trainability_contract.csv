@@ -1,0 +1,6 @@
+module_id,module_name,phase_origin,trained_in_phase,frozen_artifact,param_count,phase26_trainability_defined,phase26_trainability_value,evidence_source,status
+G,GlobalMedFiLM,Phase21,Phase21,Phase21 global checkpoint (frozen baseline),,False,,docs/ARCHITECTURE.md; PROJECT_MASTER_PLAN.md §7,UNDEFINED_IN_PHASE26_SPEC
+R_psi,BARRRegionalRefinerV1,Phase25A (ROI-0.30 canonical),Phase25A,checkpoints/phase25a_barr_regional_refiner_v1_1_roi030,1276401,False,,phase24_exact_implementation_spec.json#refiner; Phase25A,UNDEFINED_IN_PHASE26_SPEC
+B_phi,BARRBenefitRouterV1,Phase25D,Phase25D,Phase25D router final checkpoint (8a412b2f...),36801,False,,phase25d_frozen_training_spec_binding_v1_2_1.json,UNDEFINED_IN_PHASE26_SPEC
+S_omega,BARRPostSafetyV1,Phase25F,Phase25F,checkpoints/phase25f_barr_post_safety_v1_0_seed42/final/final.pt,1217,False,,phase25f_final_freeze.json,UNDEFINED_IN_PHASE26_SPEC
+FUSION,mask fusion rule,Phase24 spec / Phase25A,n/a (no params),fusion rule (outside ROI: p_global; inside ROI: p_refined),0,False,,phase24_exact_implementation_spec.json#fusion,UNDEFINED_IN_PHASE26_SPEC

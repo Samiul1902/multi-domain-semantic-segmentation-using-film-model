@@ -1,0 +1,42 @@
+field,phase13_value,h2a_value,changed,scientific_role
+experiment_id,phase13b_kub_localizer_r512_h128_sigmaeq075_centernetfocal_seed42_clean_v3,post_phase13_h2a_kub_localizer_r512_h128_sigmaeq075_centernetfocal_deploymentbalance_seed42_clean_v3,YES,provenance / non-scientific
+TRAIN population,770 FULL_FIELD / 1161 components,770 FULL_FIELD / 1161 components,NO,data
+VAL population,103 FULL_FIELD / 152 components,103 FULL_FIELD / 152 components,NO,data
+ROI,EXCLUDED,EXCLUDED,NO,data
+manifest,phase4_v3,phase4_v3,NO,data
+taxonomy,kub_size_clean_v3_v1,kub_size_clean_v3_v1,NO,data
+input resolution,512 x 512,512 x 512,NO,architecture
+heatmap resolution,128 x 128,128 x 128,NO,architecture
+sigma,0.75,0.75,NO,target
+architecture,"compact KUB localizer (in=1,out=1,base=16)","compact KUB localizer (in=1,out=1,base=16)",NO,architecture
+training target,CenterNet-style heatmap target,CenterNet-style heatmap target,NO,target
+loss,"CenterNetFocalLoss(alpha=2.0, beta=4.0)","CenterNetFocalLoss(alpha=2.0, beta=4.0)",NO,objective
+optimizer,AdamW,AdamW,NO,optimisation
+learning rate,1e-4,1e-4,NO,optimisation
+weight decay,1e-4,1e-4,NO,optimisation
+scheduler,CosineAnnealingLR(T_max=100),CosineAnnealingLR(T_max=100),NO,optimisation
+batch size,4,4,NO,optimisation
+AMP,accepted Phase13 semantics,accepted Phase13 semantics,NO,optimisation
+seed,42,42,NO,reproducibility
+augmentation,clean-v3 Phase13,clean-v3 Phase13,NO,data
+max epochs,100,100,NO,optimisation
+workers,0,0,NO,execution
+CUDA,required,required,NO,execution
+TEST,forbidden,forbidden,NO,governance
+proposal threshold,0.10,0.10,NO,proposal
+proposal margin,0.20,0.20,NO,proposal
+proposal top_k,5,5,NO,proposal
+proposal NMS IoU,0.30,0.30,NO,proposal
+proposal grid,none,none,NO,proposal
+coverage semantics (primary),HISTORICAL_EXECUTING_BBOX_COVERAGE,HISTORICAL_EXECUTING_BBOX_COVERAGE,NO,evaluation
+new primary proposal quantity,not computed,PROPOSAL_PIXEL_ANY_HIT_PRECISION,YES,"evaluation (new metric, no gradient effect)"
+primary checkpoint utility,none (first term was tiny_recall90),DEPLOYMENT_BALANCE_HMEAN_P_TINY90_OVERALL90,YES,checkpoint selection - PRIMARY SCIENTIFIC CHANGE
+checkpoint selection tuple,tiny_recall90 ; overall_recall90 ; -mean_roi_area_fraction ; -val_loss,DEPLOYMENT_BALANCE_HMEAN_P_TINY90_OVERALL90 ; tiny_recall90 ; overall_recall90 ; PROPOSAL_PIXEL_ANY_HIT_PRECISION ; -mean_roi_area_fraction ; -val_loss,YES,checkpoint selection - PRIMARY SCIENTIFIC CHANGE
+checkpoint tuple length,4,6,YES,checkpoint selection
+checkpoint comparison,strict lexicographic >,strict lexicographic >,NO,checkpoint selection
+checkpoint ties,BAD_EPOCH,BAD_EPOCH,NO,checkpoint selection
+early stopping patience,15,15,NO,checkpoint selection
+latest.pt policy,every completed epoch,every completed epoch,NO,checkpointing
+best.pt policy,strict improvement only,strict improvement only,NO,checkpointing
+downstream segmentation metric in selection,NO,NO,NO,governance
+R1 selective acceptance carried into H2A,n/a,NO,NO,governance

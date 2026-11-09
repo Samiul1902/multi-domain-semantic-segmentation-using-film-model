@@ -1,0 +1,9 @@
+criterion_id,type,name,exact_frozen_wording,phase25g_applicability,observed_evidence,verdict,frozen_before_phase25
+F1,failure,REFINER_FAILURE,dedicated refiner does not create enough positive action opportunity,NOT_APPLICABLE,refiner action-opportunity owned by Phase25A/25C,NOT_APPLICABLE,true
+F2,failure,ROUTER_FAILURE,learned paired gain fails to outperform simple GT-free routing signals out of sample,NOT_APPLICABLE,router-vs-proxy H1 owned by Phase25D/25E,NOT_APPLICABLE,true
+F3,failure,PRESERVATION_FAILURE,routed system materially degrades the global reference,APPLICABLE,A8 macro-domain lower 95% CI min = 0.000000 > -0.005 for every frozen policy; domain_collapse = False,PASS,true
+F4,failure,RESOURCE_FAILURE,router/refiner cost removes the useful compute-performance trade-off,APPLICABLE,analytical MAC ratio vs global ranges 1.000001-1.102394; no frozen numeric rule for 'removes the useful trade-off',DESCRIPTIVE_ONLY_NO_NUMERIC_THRESHOLD,true
+F5,failure,DOMAIN_COLLAPSE,benefit is concentrated in one domain while another is materially harmed,APPLICABLE,no domain with A8 mean <= -0.01 while another > 0 (collapse = False),PASS,true
+S1,success,H1_SUPPORTED,learned pre-execution GT-free predictor beats simple proxies at equal budget,NOT_APPLICABLE,H1 owned by Phase25D/25E,NOT_APPLICABLE,true
+S2,success,PRESERVATION_SATISFIED,lower bound of Delta > -0.005 on macro-domain Dice and no domain collapse,APPLICABLE,lower bound of Delta > -0.005 on macro-domain Dice (A8) and no domain collapse,PASS,true
+S3,success,FRONTIER_MEASURED,a measurable accuracy-compute frontier exists across budget points,PARTIAL,accuracy-compute frontier re-reported across the 5 budget points (Phase25E measured it),PASS,true

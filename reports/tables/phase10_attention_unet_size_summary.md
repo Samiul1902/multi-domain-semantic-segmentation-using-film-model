@@ -1,0 +1,6 @@
+| Stratum | Original_GT_Components | Detected_Components | Object_Recall |
+| --- | --- | --- | --- |
+| LARGE | 18 | 17 | 0.9444444444444444 |
+| MEDIUM | 36 | 29 | 0.8055555555555556 |
+| SMALL | 29 | 25 | 0.8620689655172413 |
+| TINY | 73 | 55 | 0.7534246575342466 |

@@ -1,0 +1,53 @@
+field,h2a_value,h2b_value,changed,scientific_role
+experiment_id,post_phase13_h2a_kub_localizer_r512_h128_sigmaeq075_centernetfocal_deploymentbalance_seed42_clean_v3,post_phase13_h2b_kub_localizer_r512_h128_sigmaeq075_softtargetfocalgamma2_deploymentbalance_seed42_clean_v3,YES,PROVENANCE
+protocol_binding,post_phase13_h2a_protocol_frozen.json,post_phase13_h2b_protocol_frozen.json,YES,PROVENANCE
+loss_implementation_sha,src/losses/localization.py::CenterNetFocalLoss,src/losses/soft_target_focal_bce.py::40d359e36a5579ea...,YES,PROVENANCE
+loss_name,CenterNetFocalLoss,SoftTargetFocalBCE,YES,SCIENTIFIC_AXIS
+loss_mathematical_semantics,"L_pos=-(1-p)^alpha*log(p); L_neg=-(1-y)^beta*p^alpha*log(1-p); alpha=2,beta=4; target==1 is the positive condition","L=mean(|sigmoid(z)-y|^2 * BCEWithLogits(z,y)); complete Gaussian target treated as continuous supervision; gamma=2.0",YES,SCIENTIFIC_AXIS
+architecture,existing compact KUB localizer,existing compact KUB localizer,NO,ARCHITECTURE
+backbone,3-stage compact U-Net,3-stage compact U-Net,NO,ARCHITECTURE
+in_channels,1,1,NO,ARCHITECTURE
+out_channels,1,1,NO,ARCHITECTURE
+base_channels,16,16,NO,ARCHITECTURE
+head_structure,"final 1x1 Conv2d(b,1)","final 1x1 Conv2d(b,1)",NO,ARCHITECTURE
+head_initialization,weight=0.0; bias=log(0.1/0.9),weight=0.0; bias=log(0.1/0.9),NO,ARCHITECTURE
+weight_initialization,kaiming_normal_(relu); bias zeros,kaiming_normal_(relu); bias zeros,NO,ARCHITECTURE
+target_construction,existing CenterNet-style heatmap target unchanged,existing CenterNet-style heatmap target unchanged,NO,TARGET
+target_sigma,0.75,0.75,NO,TARGET
+heatmap_resolution,128 x 128,128 x 128,NO,TARGET
+target_center_value,1.0 at canonical center pixel,1.0 at canonical center pixel,NO,TARGET
+target_range,"[0,1]","[0,1]",NO,TARGET
+dataset,clean-v3 FULL_FIELD,clean-v3 FULL_FIELD,NO,DATA
+split,770 FULL_FIELD cases / 1161 components | 103 FULL_FIELD cases / 152 components | ROI EXCLUDED,770 FULL_FIELD cases / 1161 components | 103 FULL_FIELD cases / 152 components | ROI EXCLUDED,NO,DATA
+manifest,phase4_v3,phase4_v3,NO,DATA
+taxonomy,kub_size_clean_v3_v1,kub_size_clean_v3_v1,NO,DATA
+input_resolution,512 x 512,512 x 512,NO,DATA
+augmentation,UNCHANGED from clean-v3 Phase13,UNCHANGED from clean-v3 Phase13,NO,DATA
+optimizer,AdamW,AdamW,NO,OPTIMIZATION
+learning_rate,0.0001,0.0001,NO,OPTIMIZATION
+weight_decay,0.0001,0.0001,NO,OPTIMIZATION
+scheduler,CosineAnnealingLR(T_max=100),CosineAnnealingLR(T_max=100),NO,OPTIMIZATION
+batch_size,4,4,NO,OPTIMIZATION
+amp_semantics,same accepted Phase13 semantics,same accepted Phase13 semantics,NO,OPTIMIZATION
+seed,42,42,NO,OPTIMIZATION
+max_epochs,100,100,NO,OPTIMIZATION
+workers,0,0,NO,OPTIMIZATION
+cuda,required,required,NO,OPTIMIZATION
+test,forbidden,forbidden,NO,GOVERNANCE
+checkpoint_selection,6-term lexicographic: DEPLOYMENT_BALANCE_HMEAN_P_TINY90_OVERALL90 > tiny_recall90 > overall_recall90 > PROPOSAL_PIXEL_ANY_HIT_PRECISION > -mean_roi_area_fraction > -val_loss,6-term lexicographic: DEPLOYMENT_BALANCE_HMEAN_P_TINY90_OVERALL90 > tiny_recall90 > overall_recall90 > PROPOSAL_PIXEL_ANY_HIT_PRECISION > -mean_roi_area_fraction > -val_loss,NO,CHECKPOINT_SELECTION
+checkpoint_selection_ties,BAD_EPOCH,BAD_EPOCH,NO,CHECKPOINT_SELECTION
+checkpoint_selection_patience,15,15,NO,CHECKPOINT_SELECTION
+best_pt_policy,strict improvement only,strict improvement only,NO,CHECKPOINT_SELECTION
+latest_pt_policy,every completed epoch,every completed epoch,NO,CHECKPOINT_SELECTION
+proposal_threshold,0.1,0.1,NO,PROPOSAL
+proposal_margin,0.2,0.2,NO,PROPOSAL
+proposal_top_k,5,5,NO,PROPOSAL
+proposal_nms_iou,0.3,0.3,NO,PROPOSAL
+proposal_grid,NONE,NONE,NO,PROPOSAL
+threshold_search,NONE,NONE,NO,PROPOSAL
+h1_selective_acceptance,NOT_CARRIED,NOT_CARRIED,NO,PROPOSAL
+fusion,PREDICTED_REGION_FLOAT_GLOBAL_RETAINED,PREDICTED_REGION_FLOAT_GLOBAL_RETAINED,NO,FUSION
+fusion_inside_union,"R(x) (never max(G,R))","R(x) (never max(G,R))",NO,FUSION
+segmentation_checkpoints,unet|attention_unet|unetpp|deeplabv3plus,unet|attention_unet|unetpp|deeplabv3plus,NO,FUSION
+segmentation_threshold,0.5,0.5,NO,FUSION
+crop_restore,square/padding-correct,square/padding-correct,NO,FUSION

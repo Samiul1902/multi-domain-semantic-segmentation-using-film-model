@@ -1,0 +1,4 @@
+| Component_Group | N_Images | Macro_Dice | Original_GT_Components | Detected_Original_Components | Object_Recall | Missed_Object_Rate |
+| --- | --- | --- | --- | --- | --- | --- |
+| MULTI_COMPONENT | 50 | 0.6522158202321526 | 100 | 82 | 0.82 | 0.18000000000000005 |
+| SINGLE_COMPONENT | 56 | 0.653276942634925 | 56 | 49 | 0.875 | 0.125 |

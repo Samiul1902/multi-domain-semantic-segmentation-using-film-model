@@ -1,0 +1,50 @@
+field,category,required,defined,value,blocking,evidence_source
+method_name,identity,True,True,RA-MedFiLM-BARR,False,docs/*.md
+architecture_id,identity,True,True,ra_medfilm_barr_narrowed_v1_1,False,phase24_exact_implementation_spec.json
+module_G_definition,architecture,True,True,Phase21 GlobalMedFiLM,False,docs/ARCHITECTURE.md
+module_Rpsi_definition,architecture,True,True,BARRRegionalRefinerV1 (1276401 params),False,phase24 spec#refiner
+module_Bphi_definition,architecture,True,True,BARRBenefitRouterV1 (36801 params),False,phase24 spec#router
+module_Somega_definition,architecture,True,True,BARRPostSafetyV1 (1217 params),False,phase25f_final_freeze.json
+fusion_rule,architecture,True,True,outside ROI p_global; inside ROI p_refined,False,phase24 spec#fusion
+segmentation_threshold,architecture,True,True,0.5 (INHERITED),False,phase24 spec#fusion
+roi_rule,architecture,True,True,foreground thr 0.30 -> bbox -> 1.5x -> 256,False,phase24 spec#roi
+action_availability,architecture,True,True,predicted ROI exists,False,phase24 spec#action_availability
+seed_policy,governance,True,True,42,False,phase24_benefit_data_protocol_exact.json
+split_manifest_binding,governance,True,True,phase24_router_split_manifest.csv,False,phase24 spec
+policy_grid,governance,True,True,"lambda{0,.25,.5,1} x budget{0,10,25,50,100}%",False,docs/ARCHITECTURE.md
+compute_accounting,governance,True,True,ANALYTICAL MAC LOWER BOUND,False,docs/ARCHITECTURE.md
+holdout_lock,governance,True,True,RESERVED_UNOPENED_FOR_PHASE30,False,phase25g_holdout_reservation_for_phase30.json
+val808_lock,governance,True,True,UNOPENED,False,docs/ARCHITECTURE.md
+test_lock,governance,True,True,LOCKED_UNTIL_PHASE39,False,docs/*.md
+phase30_boundary,governance,True,True,Phase30 owns ROUTER_HOLDOUT,False,phase25g_router_holdout_ownership_supervisor_ruling_v1_0.json
+predecessor_binding,governance,True,True,Phase25G terminal + notebook SHA,False,phase25g_terminal.json
+phase26_operational_definition,operational_definition,True,False,,True,NOT_FOUND_IN_ANY_AUTHORITATIVE_SOURCE
+phase26_training_mode,operational_definition,True,False,,True,NOT_FOUND_IN_ANY_AUTHORITATIVE_SOURCE
+phase26_scientific_question,operational_definition,True,False,,True,NOT_FOUND_IN_ANY_AUTHORITATIVE_SOURCE
+phase26_success_criteria,operational_definition,True,False,,True,NOT_FOUND_IN_ANY_AUTHORITATIVE_SOURCE
+phase26_evidence_class,operational_definition,True,False,,True,NOT_FOUND_IN_ANY_AUTHORITATIVE_SOURCE
+module_G_trainability,module_trainability,True,False,,True,NOT_FOUND_IN_ANY_AUTHORITATIVE_SOURCE
+module_Rpsi_trainability,module_trainability,True,False,,True,NOT_FOUND_IN_ANY_AUTHORITATIVE_SOURCE
+module_Bphi_trainability,module_trainability,True,False,,True,NOT_FOUND_IN_ANY_AUTHORITATIVE_SOURCE
+module_Somega_trainability,module_trainability,True,False,,True,NOT_FOUND_IN_ANY_AUTHORITATIVE_SOURCE
+module_fusion_trainability,module_trainability,True,False,,True,NOT_FOUND_IN_ANY_AUTHORITATIVE_SOURCE
+trainable_parameter_set,module_trainability,True,False,,True,NOT_FOUND_IN_ANY_AUTHORITATIVE_SOURCE
+frozen_parameter_set,module_trainability,True,False,,True,NOT_FOUND_IN_ANY_AUTHORITATIVE_SOURCE
+module_init_source,module_trainability,True,False,,True,NOT_FOUND_IN_ANY_AUTHORITATIVE_SOURCE
+gradient_flow_topology,gradient_graph,True,False,,True,NOT_FOUND_IN_ANY_AUTHORITATIVE_SOURCE
+gradient_stop_points,gradient_graph,True,False,,True,NOT_FOUND_IN_ANY_AUTHORITATIVE_SOURCE
+shared_trunk_gradient_path,gradient_graph,True,False,,True,NOT_FOUND_IN_ANY_AUTHORITATIVE_SOURCE
+training_population,data_population,True,False,,True,NOT_FOUND_IN_ANY_AUTHORITATIVE_SOURCE
+training_population_n,data_population,True,False,,True,NOT_FOUND_IN_ANY_AUTHORITATIVE_SOURCE
+holdout_exclusion_rule,data_population,True,False,,True,NOT_FOUND_IN_ANY_AUTHORITATIVE_SOURCE
+per_domain_sampling_policy,data_population,True,False,,True,NOT_FOUND_IN_ANY_AUTHORITATIVE_SOURCE
+phase26_objective,objective,True,False,,True,NOT_FOUND_IN_ANY_AUTHORITATIVE_SOURCE
+phase26_loss_function,objective,True,False,,True,NOT_FOUND_IN_ANY_AUTHORITATIVE_SOURCE
+loss_weighting_scheme,objective,True,False,,True,NOT_FOUND_IN_ANY_AUTHORITATIVE_SOURCE
+loss_aggregation_rule,objective,True,False,,True,NOT_FOUND_IN_ANY_AUTHORITATIVE_SOURCE
+multi_task_balancing,objective,True,False,,True,NOT_FOUND_IN_ANY_AUTHORITATIVE_SOURCE
+phase26_optimizer_scheduler,optimization,True,False,,True,NOT_FOUND_IN_ANY_AUTHORITATIVE_SOURCE
+phase26_batch_size_epochs,optimization,True,False,,True,NOT_FOUND_IN_ANY_AUTHORITATIVE_SOURCE
+phase26_checkpoint_bundle,checkpoint,True,False,,True,NOT_FOUND_IN_ANY_AUTHORITATIVE_SOURCE
+phase26_final_refit_rule,checkpoint,True,False,,True,NOT_FOUND_IN_ANY_AUTHORITATIVE_SOURCE
+policy_selection_rule,governance,True,False,,True,NOT_FOUND_IN_ANY_AUTHORITATIVE_SOURCE

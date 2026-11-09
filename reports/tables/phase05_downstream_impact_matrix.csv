@@ -1,0 +1,11 @@
+phase,uses_KUB,uses_ISIC,uses_BUSI,uses_Kvasir,affected_duplicate_in_train,affected_duplicate_in_val,saved_case_level_artifacts_available,metric_sensitivity_computable_without_inference,potential_validity_impact,rerun_required_if_split_changes,notes
+Phase 06,True,False,False,False,True,True,True,True,LOW,POTENTIAL,Descriptive characterization of KUB; presence of duplicate image adds 1 duplicate geometry to population statistics.
+Phase 07,True,False,False,False,True,True,True,True,LOW,NONE,Object size threshold derivation (Tiny <= 32px); both masks contain large/medium stones (>160k px).
+Phase 08,True,False,False,False,True,True,True,True,LOW,NONE,Dataset builder and pipeline validation; no trained weights affected.
+Phase 09,True,False,False,False,True,True,True,True,CONFIRMED (Minor Metric Drift: -0.0006 Dice),CONFIRMED,UNet baseline evaluation; affected VAL case scored Dice 0.9238; excluding case shifts mean Dice from 0.7455 to 0.7449 (-0.0006).
+Phase 10,True,False,False,False,True,True,True,True,"CONFIRMED (Minor Metric Drift: -0.0006 Dice across UNet++, DeepLab, AttnUNet)",CONFIRMED,Multi-model benchmark; affected VAL case scored 0.90-0.93 Dice; excluding case shifts mean Dice by ~-0.0006 across all models.
+Phase 11,True,False,False,False,True,True,True,True,LOW,POTENTIAL,Failure analysis focuses on tiny-stone errors and hard-case taxonomy; affected sample is an easy large-stone case.
+Phase 12,True,False,False,False,True,True,True,True,CONFIRMED (Minor Metric Drift: -0.0026 Global Dice),CONFIRMED,Oracle ROI upper bound study; excluding affected case shifts Global Dice from 0.6528 to 0.6502 (-0.0026).
+Phase 13,True,False,False,False,True,False,True,True,LOW,POTENTIAL,Stage 4D learned localizer training; sample-level sensitivity table does not index full-field image directly.
+Phase 14,True,False,False,False,True,True,True,True,"CONFIRMED (Minor Metric Drift: -0.0026 Global Dice, -0.0046 Pred Dice)",CONFIRMED,Regional refiner pipeline evaluation; excluding case shifts Predicted Dice from 0.3861 to 0.3814 (-0.0046).
+Phase 15,True,False,False,False,True,True,True,True,POTENTIAL,POTENTIAL,Loss study comparison; validation set metric sensitivity directly mirrors Phase 09-14 impact.

@@ -1,0 +1,15 @@
+step,historical_v2,proposed_clean_v3,change_reason,scientifically_material,supervisor_decision_required
+1. threshold,"binary = heatmap >= threshold; grid {0.10,0.20,0.30,0.40,0.50}",identical rule and identical grid,unchanged,False,False
+2. connected components,8-connectivity label() on the binarised heatmap,identical rule,unchanged,False,False
+3. component scoring,score = component max probability,identical rule,unchanged,False,False
+4. component ordering,"sort by (-max_probability, bbox)",identical rule,unchanged,False,False
+5. component cap,cap at the top 100 components before NMS,identical rule,unchanged,False,False
+6. NMS,"score-descending inclusive-coordinate box IoU NMS, iou 0.30",identical rule,unchanged,False,False
+7. Top-K,"keep the top K proposals; grid {3,5}",identical rule,unchanged,False,False
+8. heatmap->512 mapping,"factor = 512 // heatmap_resolution; box = (start*factor, (stop-1)*factor + factor-1)",identical rule,unchanged,False,False
+9. 512->native mapping,"invert padding then divide by the aspect-preserving scale; y1/x1 floor, y2/x2 ceil-1; clip to the native frame",identical rule,unchanged,False,False
+10. context margin,"expand by round(margin * box_dim) per axis; force a SQUARE of side = max(expanded_h, expanded_w) centred on the expanded box; y2 = y1 + side",identical rule,unchanged,False,False
+11. boundary handling,clip to the image and record pad amounts; the returned crop_geometry is already expanded,identical rule; consumers must NOT re-expand crop_geometry,the Phase-14 amendment had to state this explicitly,False,False
+12. ROI area accounting,union area fraction = |union of clipped ROIs| / (H*W); also report the max individual ROI area fraction,identical rule,unchanged,False,False
+13. coverage evaluation,"per GT component, coverage = component pixels inside the best proposal clip rectangle / total component pixels; covered90 >= 0.90, covered50 >= 0.50, any_overlap > 0",identical rule; component identity from the clean-v3 taxonomy,unchanged,False,False
+14. zero-proposal handling,if no proposal is generated the image contributes zero coverage; no synthetic fallback,identical rule,unchanged,False,False

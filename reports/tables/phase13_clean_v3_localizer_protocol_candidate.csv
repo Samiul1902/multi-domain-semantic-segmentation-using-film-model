@@ -1,0 +1,28 @@
+field,historical_v2,proposed_clean_v3,change_reason,scientifically_material,supervisor_decision_required
+manifest_version,phase4_v2,phase4_v3,clean governance: canonical active-development manifest,False,False
+taxonomy,kub_size_v1,kub_size_clean_v3_v1,clean governance: frozen clean-v3 taxonomy,False,False
+train_population,FULL_FIELD 771 images / 1162 components,FULL_FIELD 770 images / 1161 components,clean-v3 population,False,False
+val_population,FULL_FIELD 106 images / 156 components,FULL_FIELD 103 images / 152 components,clean-v3 population,False,False
+val_size_strata,Tiny 73 / Small 29 / Medium 36 / Large 18,Tiny 72 / Small 28 / Medium 36 / Large 16,clean-v3 taxonomy recomputation; NOT a relabelling of the v2 strata,True,False
+model_architecture,"KUBLocalizer compact 3-stage U-Net, base_channels 16","KUBLocalizer compact 3-stage U-Net, base_channels 16",historical architecture is scientifically valid; unchanged,False,False
+input_channels,1,1,unchanged,False,False
+input_resolution,512,512,unchanged,False,False
+output_heatmap_resolution,"128 (AvgPool2d(4,4) from the stride-4 block)","128 (AvgPool2d(4,4) from the stride-4 block)",the Stage-4D bounded redesign is retained; it is the only configuration that passed the pilot gate,False,False
+target_sigma,0.75 in 128-space (== 3.0 in 512-space),0.75 in 128-space (== 3.0 in 512-space),unchanged,False,False
+heatmap_target_rule,"Gaussian, pixelwise MAX, nearest integer pixel forced to 1.0","Gaussian, pixelwise MAX, nearest integer pixel forced to 1.0",required for the CenterNet exact-1.0 positive rule,False,False
+initialization,random Kaiming; head bias log(0.1/0.9),random Kaiming; head bias log(0.1/0.9),unchanged,False,False
+loss,"0.75 CenterNet focal (alpha 0.25, gamma 2.0) + 0.25 soft Dice","0.75 CenterNet focal (alpha 0.25, gamma 2.0) + 0.25 soft Dice",unchanged,False,False
+optimizer,"AdamW lr 1e-4, wd 1e-4","AdamW lr 1e-4, wd 1e-4",unchanged,False,False
+scheduler,CosineAnnealingLR T_max 100,CosineAnnealingLR T_max 100,unchanged,False,False
+amp,true (CUDA required),true (CUDA required),unchanged,False,False
+effective_batch,"4 (fallback 2+accum2, then 1+accum4)","4 (fallback 2+accum2, then 1+accum4)",unchanged,False,False
+seed,42,42,unchanged,False,False
+max_epochs,100,100,unchanged,False,False
+early_stopping_patience,15,15,unchanged,False,False
+checkpoint_metric,lexicographic localizer rule (never segmentation Dice),lexicographic localizer rule (never segmentation Dice),Phase 13 is localization-only; unchanged,False,False
+proposal_search_grid,"5 thresholds x 2 margins x 2 top_k = 20 configs, nms_iou 0.30","5 thresholds x 2 margins x 2 top_k = 20 configs, nms_iou 0.30",unchanged; VAL-only selection,False,False
+coverage_primary,0.90,0.90,unchanged,False,False
+frozen_hard_sets,16 globally missed Tiny + 7 global-empty FULL_FIELD (v2-derived),RE-DERIVE under clean-v3 from the frozen global baselines using the SAME definitional rule; do NOT reuse the v2 16/7 sets,the v2 sets were computed on a different population (106/156); reusing them would silently import v2 membership,True,True
+gt_free_guarantee,proposal API accepts no GT,proposal API accepts no GT; GT only for post-generation evaluation,unchanged,False,False
+architecture_scope,single localizer architecture (KUBLocalizer),single localizer architecture (KUBLocalizer),Phase 13 localizes; it does not compare segmentation architectures,False,False
+inference_path_defect,learned_roi.predict_localizer omits heatmap_resolution=128,MUST pass heatmap_resolution=128 (or an explicit output-resolution contract) so the inference heatmap geometry matches the trained checkpoint,verified latent defect; the inference path would silently produce a 512-space heatmap,True,True

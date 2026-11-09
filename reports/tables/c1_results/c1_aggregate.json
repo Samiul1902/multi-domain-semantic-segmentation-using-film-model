@@ -1,0 +1,29 @@
+{
+  "complete": false,
+  "experiment": "C1_FILM_ATTRIBUTION_V1",
+  "method": {
+    "bootstrap_draws": 10000,
+    "ci_method": "domain_stratified_paired_cluster_percentile",
+    "clusters": "KUB by patient_id; ISIC/BUSI/Kvasir by image (no patient IDs)",
+    "confidence": 0.95,
+    "domain_weights": "equal (1/4 each)",
+    "inference": "conditional on three fixed seeds; descriptive; no p-value",
+    "population": "VAL808 (selection-consumed)",
+    "primary": "seed_average_of_paired_equal_domain_macro_Dice_T_minus_C_on_selected_VAL",
+    "rng": "numpy PCG64",
+    "rng_seed": 20261027,
+    "unit": "Dice proportion (0-1); difference in proportion units"
+  },
+  "missing_runs": [
+    "seed42/C1-T",
+    "seed42/C1-C",
+    "seed123/C1-T",
+    "seed123/C1-C",
+    "seed3407/C1-T",
+    "seed3407/C1-C"
+  ],
+  "note": "No C1 estimate, interval or direction is reported.",
+  "runs_completed": 0,
+  "runs_required": 6,
+  "status": "NOT_ESTABLISHED"
+}

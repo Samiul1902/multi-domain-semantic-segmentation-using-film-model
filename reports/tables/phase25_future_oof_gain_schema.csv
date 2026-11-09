@@ -1,0 +1,12 @@
+column,dtype,role,uses_GT,available_pre_refinement,notes
+sample_id,str,key,false,true,stable manifest id
+dataset,str,stratum,false,true,BUSI/ISIC/KUB/KVASIR
+task_id,int,conditioning,false,true,0..3
+oof_fold,int,provenance,false,true,"0,1,2"
+action_available,bool,filter,false,true,"false => ACTION_UNAVAILABLE_GLOBAL_EMPTY, excluded from regression rows"
+dice_global,float,DERIVED_LABEL_COMPONENT,true,false,"Dice(G_i, y_i); label side"
+dice_refined_fused,float,DERIVED_LABEL_COMPONENT,true,false,"Dice(R_i, y_i); requires refinement to have run"
+delta_dice,float,TARGET,true,false,dice_refined_fused - dice_global; the OOF regression target
+refiner_checkpoint_sha256,str,provenance,false,true,frozen checkpoint used for this OOF fold
+refiner_best_epoch,int,provenance,false,true,used for the median-epoch final refit rule
+roi_crop_side_pixels,int,provenance,false,true,frozen 1.50x / 256 geometry

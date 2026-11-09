@@ -1,0 +1,2777 @@
+{
+  "architecture_keys": [
+    "ra_medfilm_barr_full",
+    "unet",
+    "unetpp",
+    "attention_unet",
+    "deeplabv3plus",
+    "transformer_mit_unet"
+  ],
+  "configurations": [
+    {
+      "architecture_specific_difference": {
+        "checkpoint_family": "new per-seed compatible full-system bundle required",
+        "execution": "conditional; final mask is the canonical fused full-system output",
+        "regional_modules": [
+          "R_psi",
+          "B_phi",
+          "S_omega"
+        ],
+        "task_conditioning": "learned task-conditioned FiLM in G; task identity also enters B_phi/S_omega as specified"
+      },
+      "component_dependencies": {
+        "downstream_training_must_bind_exact_global_checkpoint": true,
+        "global_backbone_seed": 42,
+        "normalization_statistics_must_be_component_bound": true,
+        "phase29_fixed_global_seed42_artifacts_are_not_end_to_end_seed_replicates": true,
+        "required": [
+          "G",
+          "R_psi",
+          "B_phi",
+          "S_omega",
+          "routing_fusion"
+        ],
+        "router_must_bind_exact_global_and_refiner_family": true,
+        "safety_must_bind_exact_global_refiner_router_family": true,
+        "same_master_seed": 42,
+        "training_order": [
+          "G",
+          "R_psi",
+          "B_phi",
+          "S_omega",
+          "full_system_validation"
+        ]
+      },
+      "dataset": {
+        "domains": [
+          "ISIC",
+          "BUSI",
+          "KVASIR",
+          "KUB"
+        ],
+        "external_access": false,
+        "manifest_version": "phase4_v3",
+        "task_ids": {
+          "BUSI": 1,
+          "ISIC": 0,
+          "KUB": 3,
+          "KVASIR": 2
+        },
+        "test_access": false,
+        "train_manifest": "manifests/phase4_v3/train.csv",
+        "train_manifest_sha256": "28702fc3a5ff8b950db372f03232d335e3a30b1fc2f21db7cd8c066055826ed6",
+        "train_n": 5832,
+        "val_manifest": "manifests/phase4_v3/val.csv",
+        "val_manifest_sha256": "082c80b2bda63fd73f371f109c34643adf01edaead921643fb2e44993ba53315",
+        "val_n": 808
+      },
+      "existing_phase29_evidence": {
+        "classification": "DOWNSTREAM_REPRODUCIBILITY_CONDITIONED_ON_FIXED_GLOBAL",
+        "counts_as_end_to_end_c3_cell": false,
+        "global_backbone_seed": 42
+      },
+      "model": {
+        "architecture": "GlobalMedFiLM -> B_phi route -> R_psi ROI refinement -> S_omega acceptance -> regional replacement fusion",
+        "component_keys": [
+          "G",
+          "R_psi",
+          "B_phi",
+          "S_omega",
+          "routing_fusion"
+        ],
+        "component_parameter_counts": {
+          "B_phi": 36801,
+          "G": 3523001,
+          "R_psi": 1276401,
+          "S_omega": 1217
+        },
+        "display_name": "RA-MedFiLM-BARR (FULL)",
+        "parameter_count": 4837420
+      },
+      "model_key": "ra_medfilm_barr_full",
+      "protocol": {
+        "path": "reports/planning/c1_film_attribution_v1/protocol.json",
+        "sha256": "531e3eb255a66381201d1aaf49bbe55abfdbe529640f5c584ef100d298087a61"
+      },
+      "role": "PRIMARY_PROPOSED_METHOD",
+      "run_mode": "PREPARED_NOT_EXECUTED",
+      "schema": "controlled_c3_run_config_v2",
+      "seed": 42,
+      "selection": {
+        "population_role": "selection-consumed VAL808",
+        "primary_metric": "equal-domain macro VAL Dice",
+        "same_rule_for_all_models": true,
+        "tie_break": "lower validation loss, then earlier epoch"
+      },
+      "study_id": "C3_FULL_METHOD_VS_EXTERNAL_BASELINES_V1"
+    },
+    {
+      "architecture_specific_difference": {
+        "checkpoint_family": "new per-seed compatible full-system bundle required",
+        "execution": "conditional; final mask is the canonical fused full-system output",
+        "regional_modules": [
+          "R_psi",
+          "B_phi",
+          "S_omega"
+        ],
+        "task_conditioning": "learned task-conditioned FiLM in G; task identity also enters B_phi/S_omega as specified"
+      },
+      "component_dependencies": {
+        "downstream_training_must_bind_exact_global_checkpoint": true,
+        "global_backbone_seed": 123,
+        "normalization_statistics_must_be_component_bound": true,
+        "phase29_fixed_global_seed42_artifacts_are_not_end_to_end_seed_replicates": true,
+        "required": [
+          "G",
+          "R_psi",
+          "B_phi",
+          "S_omega",
+          "routing_fusion"
+        ],
+        "router_must_bind_exact_global_and_refiner_family": true,
+        "safety_must_bind_exact_global_refiner_router_family": true,
+        "same_master_seed": 123,
+        "training_order": [
+          "G",
+          "R_psi",
+          "B_phi",
+          "S_omega",
+          "full_system_validation"
+        ]
+      },
+      "dataset": {
+        "domains": [
+          "ISIC",
+          "BUSI",
+          "KVASIR",
+          "KUB"
+        ],
+        "external_access": false,
+        "manifest_version": "phase4_v3",
+        "task_ids": {
+          "BUSI": 1,
+          "ISIC": 0,
+          "KUB": 3,
+          "KVASIR": 2
+        },
+        "test_access": false,
+        "train_manifest": "manifests/phase4_v3/train.csv",
+        "train_manifest_sha256": "28702fc3a5ff8b950db372f03232d335e3a30b1fc2f21db7cd8c066055826ed6",
+        "train_n": 5832,
+        "val_manifest": "manifests/phase4_v3/val.csv",
+        "val_manifest_sha256": "082c80b2bda63fd73f371f109c34643adf01edaead921643fb2e44993ba53315",
+        "val_n": 808
+      },
+      "existing_phase29_evidence": {
+        "classification": "DOWNSTREAM_REPRODUCIBILITY_CONDITIONED_ON_FIXED_GLOBAL",
+        "counts_as_end_to_end_c3_cell": false,
+        "global_backbone_seed": 42
+      },
+      "model": {
+        "architecture": "GlobalMedFiLM -> B_phi route -> R_psi ROI refinement -> S_omega acceptance -> regional replacement fusion",
+        "component_keys": [
+          "G",
+          "R_psi",
+          "B_phi",
+          "S_omega",
+          "routing_fusion"
+        ],
+        "component_parameter_counts": {
+          "B_phi": 36801,
+          "G": 3523001,
+          "R_psi": 1276401,
+          "S_omega": 1217
+        },
+        "display_name": "RA-MedFiLM-BARR (FULL)",
+        "parameter_count": 4837420
+      },
+      "model_key": "ra_medfilm_barr_full",
+      "protocol": {
+        "path": "reports/planning/c1_film_attribution_v1/protocol.json",
+        "sha256": "531e3eb255a66381201d1aaf49bbe55abfdbe529640f5c584ef100d298087a61"
+      },
+      "role": "PRIMARY_PROPOSED_METHOD",
+      "run_mode": "PREPARED_NOT_EXECUTED",
+      "schema": "controlled_c3_run_config_v2",
+      "seed": 123,
+      "selection": {
+        "population_role": "selection-consumed VAL808",
+        "primary_metric": "equal-domain macro VAL Dice",
+        "same_rule_for_all_models": true,
+        "tie_break": "lower validation loss, then earlier epoch"
+      },
+      "study_id": "C3_FULL_METHOD_VS_EXTERNAL_BASELINES_V1"
+    },
+    {
+      "architecture_specific_difference": {
+        "checkpoint_family": "new per-seed compatible full-system bundle required",
+        "execution": "conditional; final mask is the canonical fused full-system output",
+        "regional_modules": [
+          "R_psi",
+          "B_phi",
+          "S_omega"
+        ],
+        "task_conditioning": "learned task-conditioned FiLM in G; task identity also enters B_phi/S_omega as specified"
+      },
+      "component_dependencies": {
+        "downstream_training_must_bind_exact_global_checkpoint": true,
+        "global_backbone_seed": 3407,
+        "normalization_statistics_must_be_component_bound": true,
+        "phase29_fixed_global_seed42_artifacts_are_not_end_to_end_seed_replicates": true,
+        "required": [
+          "G",
+          "R_psi",
+          "B_phi",
+          "S_omega",
+          "routing_fusion"
+        ],
+        "router_must_bind_exact_global_and_refiner_family": true,
+        "safety_must_bind_exact_global_refiner_router_family": true,
+        "same_master_seed": 3407,
+        "training_order": [
+          "G",
+          "R_psi",
+          "B_phi",
+          "S_omega",
+          "full_system_validation"
+        ]
+      },
+      "dataset": {
+        "domains": [
+          "ISIC",
+          "BUSI",
+          "KVASIR",
+          "KUB"
+        ],
+        "external_access": false,
+        "manifest_version": "phase4_v3",
+        "task_ids": {
+          "BUSI": 1,
+          "ISIC": 0,
+          "KUB": 3,
+          "KVASIR": 2
+        },
+        "test_access": false,
+        "train_manifest": "manifests/phase4_v3/train.csv",
+        "train_manifest_sha256": "28702fc3a5ff8b950db372f03232d335e3a30b1fc2f21db7cd8c066055826ed6",
+        "train_n": 5832,
+        "val_manifest": "manifests/phase4_v3/val.csv",
+        "val_manifest_sha256": "082c80b2bda63fd73f371f109c34643adf01edaead921643fb2e44993ba53315",
+        "val_n": 808
+      },
+      "existing_phase29_evidence": {
+        "classification": "DOWNSTREAM_REPRODUCIBILITY_CONDITIONED_ON_FIXED_GLOBAL",
+        "counts_as_end_to_end_c3_cell": false,
+        "global_backbone_seed": 42
+      },
+      "model": {
+        "architecture": "GlobalMedFiLM -> B_phi route -> R_psi ROI refinement -> S_omega acceptance -> regional replacement fusion",
+        "component_keys": [
+          "G",
+          "R_psi",
+          "B_phi",
+          "S_omega",
+          "routing_fusion"
+        ],
+        "component_parameter_counts": {
+          "B_phi": 36801,
+          "G": 3523001,
+          "R_psi": 1276401,
+          "S_omega": 1217
+        },
+        "display_name": "RA-MedFiLM-BARR (FULL)",
+        "parameter_count": 4837420
+      },
+      "model_key": "ra_medfilm_barr_full",
+      "protocol": {
+        "path": "reports/planning/c1_film_attribution_v1/protocol.json",
+        "sha256": "531e3eb255a66381201d1aaf49bbe55abfdbe529640f5c584ef100d298087a61"
+      },
+      "role": "PRIMARY_PROPOSED_METHOD",
+      "run_mode": "PREPARED_NOT_EXECUTED",
+      "schema": "controlled_c3_run_config_v2",
+      "seed": 3407,
+      "selection": {
+        "population_role": "selection-consumed VAL808",
+        "primary_metric": "equal-domain macro VAL Dice",
+        "same_rule_for_all_models": true,
+        "tie_break": "lower validation loss, then earlier epoch"
+      },
+      "study_id": "C3_FULL_METHOD_VS_EXTERNAL_BASELINES_V1"
+    },
+    {
+      "architecture_specific_difference": {
+        "parameterization": "unet_4_stage_plain_skip_base32",
+        "pretrained_weights": false,
+        "regional_modules": false,
+        "task_conditioning": false
+      },
+      "dataset": {
+        "domains": [
+          "ISIC",
+          "BUSI",
+          "KVASIR",
+          "KUB"
+        ],
+        "external_access": false,
+        "manifest_version": "phase4_v3",
+        "task_ids": {
+          "BUSI": 1,
+          "ISIC": 0,
+          "KUB": 3,
+          "KVASIR": 2
+        },
+        "test_access": false,
+        "train_manifest": "manifests/phase4_v3/train.csv",
+        "train_manifest_sha256": "28702fc3a5ff8b950db372f03232d335e3a30b1fc2f21db7cd8c066055826ed6",
+        "train_n": 5832,
+        "val_manifest": "manifests/phase4_v3/val.csv",
+        "val_manifest_sha256": "082c80b2bda63fd73f371f109c34643adf01edaead921643fb2e44993ba53315",
+        "val_n": 808
+      },
+      "model": {
+        "architecture": "unet_4_stage_plain_skip_base32",
+        "architecture_detail": "four encoder/decoder stages; concatenative plain skips",
+        "base_channels": 32,
+        "class_name": "UNet",
+        "display_name": "U-Net",
+        "in_channels": 3,
+        "out_channels": 1
+      },
+      "model_key": "unet",
+      "primary_comparator": "RA-MedFiLM-BARR (FULL)",
+      "protocol": {
+        "path": "reports/planning/c1_film_attribution_v1/protocol.json",
+        "sha256": "531e3eb255a66381201d1aaf49bbe55abfdbe529640f5c584ef100d298087a61"
+      },
+      "recipe": {
+        "amp": true,
+        "augmentation": "canonical SegmentationTransform(train=True), horizontal flip/rotation/brightness/contrast; mask nearest",
+        "batch_size": 4,
+        "channel_policy": "RGB_3CH",
+        "channels": 3,
+        "early_stopping_patience": 15,
+        "eval_batch_size": 8,
+        "loss": {
+          "bce_weight": 0.5,
+          "dice_weight": 0.5,
+          "epsilon": 1e-06,
+          "name": "BCE+soft Dice"
+        },
+        "max_epochs": 100,
+        "model_inputs": "image only; domain/task id is sampling/bookkeeping, never model input",
+        "optimizer": {
+          "learning_rate": 0.0001,
+          "name": "AdamW",
+          "weight_decay": 0.0001
+        },
+        "resolution": 512,
+        "sampling_policy": "phase20_domain_balanced_uniform_v1",
+        "scheduler": {
+          "T_max": 100,
+          "name": "CosineAnnealingLR",
+          "step_after_epoch": true
+        },
+        "seeds": [
+          42,
+          123,
+          3407
+        ],
+        "selection_rule": "phase20_macro_domain_mean_dice_v1",
+        "selection_tie_break": "lower validation loss, then earlier epoch",
+        "source": "C1 frozen protocol recipe; copied for prospective C3 baseline matching",
+        "threshold": 0.5
+      },
+      "role": "EXTERNAL_ARCHITECTURE_BASELINE",
+      "run_mode": "PREPARED_NOT_EXECUTED",
+      "schema": "controlled_c3_run_config_v2",
+      "seed": 42,
+      "source": {
+        "historical_best_epoch": 74,
+        "historical_checkpoint": "checkpoints/phase20b_shared_unet_fourdomain_seed42_clean_v3/best.pt",
+        "historical_checkpoint_seed": 42,
+        "historical_checkpoint_sha256_recorded": "62fde8f4b0de50803e510c609f4cb943b7d72bd1ab7a5b1ff1534b38a76a5634",
+        "historical_closure": "reports/audits/phase20b_unet_training_closure.json",
+        "historical_closure_sha256": "33d43ff2a13cc7960e779734e54fc62bd490351f9843ad88129cf1e0b7d9cf66",
+        "historical_config": "experiments/phase20b_shared_unet_fourdomain_seed42_clean_v3/config.json",
+        "historical_config_sha256": "68542dca6af2c4974383c346dbaa2b34d2d90580ed004b240694a9040622ad49",
+        "historical_experiment": "phase20b_shared_unet_fourdomain_seed42_clean_v3",
+        "historical_parameter_count_reported": "7,763,041",
+        "historical_recipe": {
+          "architecture": "unet_4_stage_plain_skip_base32",
+          "augmentation_policy": "src.data.transforms.SegmentationTransform(train=True): horizontal mirror p=0.5, rotation +/-5 deg, brightness +/-0.10, contrast +/-0.10; mask NEAREST; VAL disabled",
+          "dataset": "MULTI_DOMAIN_ISIC_BUSI_KVASIR_KUB",
+          "experiment_id": "phase20b_shared_unet_fourdomain_seed42_clean_v3",
+          "governance": {
+            "allow_external": false,
+            "allow_test": false,
+            "film": false,
+            "localizer": false,
+            "regional_module": false,
+            "roi_proposal": false,
+            "task_id_as_model_input": false
+          },
+          "input_channel_policy": "RGB_3CH",
+          "input_resolution": 512,
+          "loss": {
+            "bce_weight": 0.5,
+            "dice_epsilon": 1e-06,
+            "dice_weight": 0.5,
+            "name": "bce_dice"
+          },
+          "manifest_version": "phase4_v3",
+          "model": {
+            "base_channels": 32,
+            "in_channels": 3,
+            "name": "UNet",
+            "out_channels": 1
+          },
+          "optimizer": {
+            "learning_rate": 0.0001,
+            "name": "AdamW",
+            "weight_decay": 0.0001
+          },
+          "parent_phase20a_experiment": "phase20_shared_unetpp_fourdomain_seed42_clean_v3",
+          "phase": 20,
+          "scheduler": {
+            "T_max": 100,
+            "name": "CosineAnnealingLR",
+            "step": "per_epoch_after_train_and_val"
+          },
+          "subphase": "20B",
+          "taxonomy_id": null,
+          "training": {
+            "amp": true,
+            "batch_size": 4,
+            "checkpoint_metric": "phase20_macro_domain_mean_dice_v1",
+            "checkpoint_metric_description": "macro-domain mean VAL Dice (unweighted mean of the four per-domain per-image macro Dice)",
+            "early_stopping_patience": 15,
+            "effective_batch_size": 4,
+            "eval_batch_size": 8,
+            "gradient_accumulation_steps": 1,
+            "max_epochs": 100,
+            "num_workers": 4,
+            "persistent_workers": false,
+            "sampling_policy": "phase20_domain_balanced_uniform_v1",
+            "seed": 42,
+            "threshold": 0.5,
+            "tie_break": "lower validation loss"
+          }
+        },
+        "model_source": "src/models/unet.py",
+        "model_source_sha256": "62edc8fb481eb02c46c2c64f6e7219254a57d7ba935a4c840a5a7965b41bdfc2"
+      },
+      "study_id": "C3_FULL_METHOD_VS_EXTERNAL_BASELINES_V1"
+    },
+    {
+      "architecture_specific_difference": {
+        "parameterization": "unet_4_stage_plain_skip_base32",
+        "pretrained_weights": false,
+        "regional_modules": false,
+        "task_conditioning": false
+      },
+      "dataset": {
+        "domains": [
+          "ISIC",
+          "BUSI",
+          "KVASIR",
+          "KUB"
+        ],
+        "external_access": false,
+        "manifest_version": "phase4_v3",
+        "task_ids": {
+          "BUSI": 1,
+          "ISIC": 0,
+          "KUB": 3,
+          "KVASIR": 2
+        },
+        "test_access": false,
+        "train_manifest": "manifests/phase4_v3/train.csv",
+        "train_manifest_sha256": "28702fc3a5ff8b950db372f03232d335e3a30b1fc2f21db7cd8c066055826ed6",
+        "train_n": 5832,
+        "val_manifest": "manifests/phase4_v3/val.csv",
+        "val_manifest_sha256": "082c80b2bda63fd73f371f109c34643adf01edaead921643fb2e44993ba53315",
+        "val_n": 808
+      },
+      "model": {
+        "architecture": "unet_4_stage_plain_skip_base32",
+        "architecture_detail": "four encoder/decoder stages; concatenative plain skips",
+        "base_channels": 32,
+        "class_name": "UNet",
+        "display_name": "U-Net",
+        "in_channels": 3,
+        "out_channels": 1
+      },
+      "model_key": "unet",
+      "primary_comparator": "RA-MedFiLM-BARR (FULL)",
+      "protocol": {
+        "path": "reports/planning/c1_film_attribution_v1/protocol.json",
+        "sha256": "531e3eb255a66381201d1aaf49bbe55abfdbe529640f5c584ef100d298087a61"
+      },
+      "recipe": {
+        "amp": true,
+        "augmentation": "canonical SegmentationTransform(train=True), horizontal flip/rotation/brightness/contrast; mask nearest",
+        "batch_size": 4,
+        "channel_policy": "RGB_3CH",
+        "channels": 3,
+        "early_stopping_patience": 15,
+        "eval_batch_size": 8,
+        "loss": {
+          "bce_weight": 0.5,
+          "dice_weight": 0.5,
+          "epsilon": 1e-06,
+          "name": "BCE+soft Dice"
+        },
+        "max_epochs": 100,
+        "model_inputs": "image only; domain/task id is sampling/bookkeeping, never model input",
+        "optimizer": {
+          "learning_rate": 0.0001,
+          "name": "AdamW",
+          "weight_decay": 0.0001
+        },
+        "resolution": 512,
+        "sampling_policy": "phase20_domain_balanced_uniform_v1",
+        "scheduler": {
+          "T_max": 100,
+          "name": "CosineAnnealingLR",
+          "step_after_epoch": true
+        },
+        "seeds": [
+          42,
+          123,
+          3407
+        ],
+        "selection_rule": "phase20_macro_domain_mean_dice_v1",
+        "selection_tie_break": "lower validation loss, then earlier epoch",
+        "source": "C1 frozen protocol recipe; copied for prospective C3 baseline matching",
+        "threshold": 0.5
+      },
+      "role": "EXTERNAL_ARCHITECTURE_BASELINE",
+      "run_mode": "PREPARED_NOT_EXECUTED",
+      "schema": "controlled_c3_run_config_v2",
+      "seed": 123,
+      "source": {
+        "historical_best_epoch": 74,
+        "historical_checkpoint": "checkpoints/phase20b_shared_unet_fourdomain_seed42_clean_v3/best.pt",
+        "historical_checkpoint_seed": 42,
+        "historical_checkpoint_sha256_recorded": "62fde8f4b0de50803e510c609f4cb943b7d72bd1ab7a5b1ff1534b38a76a5634",
+        "historical_closure": "reports/audits/phase20b_unet_training_closure.json",
+        "historical_closure_sha256": "33d43ff2a13cc7960e779734e54fc62bd490351f9843ad88129cf1e0b7d9cf66",
+        "historical_config": "experiments/phase20b_shared_unet_fourdomain_seed42_clean_v3/config.json",
+        "historical_config_sha256": "68542dca6af2c4974383c346dbaa2b34d2d90580ed004b240694a9040622ad49",
+        "historical_experiment": "phase20b_shared_unet_fourdomain_seed42_clean_v3",
+        "historical_parameter_count_reported": "7,763,041",
+        "historical_recipe": {
+          "architecture": "unet_4_stage_plain_skip_base32",
+          "augmentation_policy": "src.data.transforms.SegmentationTransform(train=True): horizontal mirror p=0.5, rotation +/-5 deg, brightness +/-0.10, contrast +/-0.10; mask NEAREST; VAL disabled",
+          "dataset": "MULTI_DOMAIN_ISIC_BUSI_KVASIR_KUB",
+          "experiment_id": "phase20b_shared_unet_fourdomain_seed42_clean_v3",
+          "governance": {
+            "allow_external": false,
+            "allow_test": false,
+            "film": false,
+            "localizer": false,
+            "regional_module": false,
+            "roi_proposal": false,
+            "task_id_as_model_input": false
+          },
+          "input_channel_policy": "RGB_3CH",
+          "input_resolution": 512,
+          "loss": {
+            "bce_weight": 0.5,
+            "dice_epsilon": 1e-06,
+            "dice_weight": 0.5,
+            "name": "bce_dice"
+          },
+          "manifest_version": "phase4_v3",
+          "model": {
+            "base_channels": 32,
+            "in_channels": 3,
+            "name": "UNet",
+            "out_channels": 1
+          },
+          "optimizer": {
+            "learning_rate": 0.0001,
+            "name": "AdamW",
+            "weight_decay": 0.0001
+          },
+          "parent_phase20a_experiment": "phase20_shared_unetpp_fourdomain_seed42_clean_v3",
+          "phase": 20,
+          "scheduler": {
+            "T_max": 100,
+            "name": "CosineAnnealingLR",
+            "step": "per_epoch_after_train_and_val"
+          },
+          "subphase": "20B",
+          "taxonomy_id": null,
+          "training": {
+            "amp": true,
+            "batch_size": 4,
+            "checkpoint_metric": "phase20_macro_domain_mean_dice_v1",
+            "checkpoint_metric_description": "macro-domain mean VAL Dice (unweighted mean of the four per-domain per-image macro Dice)",
+            "early_stopping_patience": 15,
+            "effective_batch_size": 4,
+            "eval_batch_size": 8,
+            "gradient_accumulation_steps": 1,
+            "max_epochs": 100,
+            "num_workers": 4,
+            "persistent_workers": false,
+            "sampling_policy": "phase20_domain_balanced_uniform_v1",
+            "seed": 42,
+            "threshold": 0.5,
+            "tie_break": "lower validation loss"
+          }
+        },
+        "model_source": "src/models/unet.py",
+        "model_source_sha256": "62edc8fb481eb02c46c2c64f6e7219254a57d7ba935a4c840a5a7965b41bdfc2"
+      },
+      "study_id": "C3_FULL_METHOD_VS_EXTERNAL_BASELINES_V1"
+    },
+    {
+      "architecture_specific_difference": {
+        "parameterization": "unet_4_stage_plain_skip_base32",
+        "pretrained_weights": false,
+        "regional_modules": false,
+        "task_conditioning": false
+      },
+      "dataset": {
+        "domains": [
+          "ISIC",
+          "BUSI",
+          "KVASIR",
+          "KUB"
+        ],
+        "external_access": false,
+        "manifest_version": "phase4_v3",
+        "task_ids": {
+          "BUSI": 1,
+          "ISIC": 0,
+          "KUB": 3,
+          "KVASIR": 2
+        },
+        "test_access": false,
+        "train_manifest": "manifests/phase4_v3/train.csv",
+        "train_manifest_sha256": "28702fc3a5ff8b950db372f03232d335e3a30b1fc2f21db7cd8c066055826ed6",
+        "train_n": 5832,
+        "val_manifest": "manifests/phase4_v3/val.csv",
+        "val_manifest_sha256": "082c80b2bda63fd73f371f109c34643adf01edaead921643fb2e44993ba53315",
+        "val_n": 808
+      },
+      "model": {
+        "architecture": "unet_4_stage_plain_skip_base32",
+        "architecture_detail": "four encoder/decoder stages; concatenative plain skips",
+        "base_channels": 32,
+        "class_name": "UNet",
+        "display_name": "U-Net",
+        "in_channels": 3,
+        "out_channels": 1
+      },
+      "model_key": "unet",
+      "primary_comparator": "RA-MedFiLM-BARR (FULL)",
+      "protocol": {
+        "path": "reports/planning/c1_film_attribution_v1/protocol.json",
+        "sha256": "531e3eb255a66381201d1aaf49bbe55abfdbe529640f5c584ef100d298087a61"
+      },
+      "recipe": {
+        "amp": true,
+        "augmentation": "canonical SegmentationTransform(train=True), horizontal flip/rotation/brightness/contrast; mask nearest",
+        "batch_size": 4,
+        "channel_policy": "RGB_3CH",
+        "channels": 3,
+        "early_stopping_patience": 15,
+        "eval_batch_size": 8,
+        "loss": {
+          "bce_weight": 0.5,
+          "dice_weight": 0.5,
+          "epsilon": 1e-06,
+          "name": "BCE+soft Dice"
+        },
+        "max_epochs": 100,
+        "model_inputs": "image only; domain/task id is sampling/bookkeeping, never model input",
+        "optimizer": {
+          "learning_rate": 0.0001,
+          "name": "AdamW",
+          "weight_decay": 0.0001
+        },
+        "resolution": 512,
+        "sampling_policy": "phase20_domain_balanced_uniform_v1",
+        "scheduler": {
+          "T_max": 100,
+          "name": "CosineAnnealingLR",
+          "step_after_epoch": true
+        },
+        "seeds": [
+          42,
+          123,
+          3407
+        ],
+        "selection_rule": "phase20_macro_domain_mean_dice_v1",
+        "selection_tie_break": "lower validation loss, then earlier epoch",
+        "source": "C1 frozen protocol recipe; copied for prospective C3 baseline matching",
+        "threshold": 0.5
+      },
+      "role": "EXTERNAL_ARCHITECTURE_BASELINE",
+      "run_mode": "PREPARED_NOT_EXECUTED",
+      "schema": "controlled_c3_run_config_v2",
+      "seed": 3407,
+      "source": {
+        "historical_best_epoch": 74,
+        "historical_checkpoint": "checkpoints/phase20b_shared_unet_fourdomain_seed42_clean_v3/best.pt",
+        "historical_checkpoint_seed": 42,
+        "historical_checkpoint_sha256_recorded": "62fde8f4b0de50803e510c609f4cb943b7d72bd1ab7a5b1ff1534b38a76a5634",
+        "historical_closure": "reports/audits/phase20b_unet_training_closure.json",
+        "historical_closure_sha256": "33d43ff2a13cc7960e779734e54fc62bd490351f9843ad88129cf1e0b7d9cf66",
+        "historical_config": "experiments/phase20b_shared_unet_fourdomain_seed42_clean_v3/config.json",
+        "historical_config_sha256": "68542dca6af2c4974383c346dbaa2b34d2d90580ed004b240694a9040622ad49",
+        "historical_experiment": "phase20b_shared_unet_fourdomain_seed42_clean_v3",
+        "historical_parameter_count_reported": "7,763,041",
+        "historical_recipe": {
+          "architecture": "unet_4_stage_plain_skip_base32",
+          "augmentation_policy": "src.data.transforms.SegmentationTransform(train=True): horizontal mirror p=0.5, rotation +/-5 deg, brightness +/-0.10, contrast +/-0.10; mask NEAREST; VAL disabled",
+          "dataset": "MULTI_DOMAIN_ISIC_BUSI_KVASIR_KUB",
+          "experiment_id": "phase20b_shared_unet_fourdomain_seed42_clean_v3",
+          "governance": {
+            "allow_external": false,
+            "allow_test": false,
+            "film": false,
+            "localizer": false,
+            "regional_module": false,
+            "roi_proposal": false,
+            "task_id_as_model_input": false
+          },
+          "input_channel_policy": "RGB_3CH",
+          "input_resolution": 512,
+          "loss": {
+            "bce_weight": 0.5,
+            "dice_epsilon": 1e-06,
+            "dice_weight": 0.5,
+            "name": "bce_dice"
+          },
+          "manifest_version": "phase4_v3",
+          "model": {
+            "base_channels": 32,
+            "in_channels": 3,
+            "name": "UNet",
+            "out_channels": 1
+          },
+          "optimizer": {
+            "learning_rate": 0.0001,
+            "name": "AdamW",
+            "weight_decay": 0.0001
+          },
+          "parent_phase20a_experiment": "phase20_shared_unetpp_fourdomain_seed42_clean_v3",
+          "phase": 20,
+          "scheduler": {
+            "T_max": 100,
+            "name": "CosineAnnealingLR",
+            "step": "per_epoch_after_train_and_val"
+          },
+          "subphase": "20B",
+          "taxonomy_id": null,
+          "training": {
+            "amp": true,
+            "batch_size": 4,
+            "checkpoint_metric": "phase20_macro_domain_mean_dice_v1",
+            "checkpoint_metric_description": "macro-domain mean VAL Dice (unweighted mean of the four per-domain per-image macro Dice)",
+            "early_stopping_patience": 15,
+            "effective_batch_size": 4,
+            "eval_batch_size": 8,
+            "gradient_accumulation_steps": 1,
+            "max_epochs": 100,
+            "num_workers": 4,
+            "persistent_workers": false,
+            "sampling_policy": "phase20_domain_balanced_uniform_v1",
+            "seed": 42,
+            "threshold": 0.5,
+            "tie_break": "lower validation loss"
+          }
+        },
+        "model_source": "src/models/unet.py",
+        "model_source_sha256": "62edc8fb481eb02c46c2c64f6e7219254a57d7ba935a4c840a5a7965b41bdfc2"
+      },
+      "study_id": "C3_FULL_METHOD_VS_EXTERNAL_BASELINES_V1"
+    },
+    {
+      "architecture_specific_difference": {
+        "parameterization": "unetpp_4_level_nested_dense_skip_base32_single_head",
+        "pretrained_weights": false,
+        "regional_modules": false,
+        "task_conditioning": false
+      },
+      "dataset": {
+        "domains": [
+          "ISIC",
+          "BUSI",
+          "KVASIR",
+          "KUB"
+        ],
+        "external_access": false,
+        "manifest_version": "phase4_v3",
+        "task_ids": {
+          "BUSI": 1,
+          "ISIC": 0,
+          "KUB": 3,
+          "KVASIR": 2
+        },
+        "test_access": false,
+        "train_manifest": "manifests/phase4_v3/train.csv",
+        "train_manifest_sha256": "28702fc3a5ff8b950db372f03232d335e3a30b1fc2f21db7cd8c066055826ed6",
+        "train_n": 5832,
+        "val_manifest": "manifests/phase4_v3/val.csv",
+        "val_manifest_sha256": "082c80b2bda63fd73f371f109c34643adf01edaead921643fb2e44993ba53315",
+        "val_n": 808
+      },
+      "model": {
+        "architecture": "unetpp_4_level_nested_dense_skip_base32_single_head",
+        "architecture_detail": "four-level nested dense skip connections; one segmentation head",
+        "base_channels": 32,
+        "class_name": "UNetPlusPlus",
+        "display_name": "U-Net++",
+        "in_channels": 3,
+        "out_channels": 1
+      },
+      "model_key": "unetpp",
+      "primary_comparator": "RA-MedFiLM-BARR (FULL)",
+      "protocol": {
+        "path": "reports/planning/c1_film_attribution_v1/protocol.json",
+        "sha256": "531e3eb255a66381201d1aaf49bbe55abfdbe529640f5c584ef100d298087a61"
+      },
+      "recipe": {
+        "amp": true,
+        "augmentation": "canonical SegmentationTransform(train=True), horizontal flip/rotation/brightness/contrast; mask nearest",
+        "batch_size": 4,
+        "channel_policy": "RGB_3CH",
+        "channels": 3,
+        "early_stopping_patience": 15,
+        "eval_batch_size": 8,
+        "loss": {
+          "bce_weight": 0.5,
+          "dice_weight": 0.5,
+          "epsilon": 1e-06,
+          "name": "BCE+soft Dice"
+        },
+        "max_epochs": 100,
+        "model_inputs": "image only; domain/task id is sampling/bookkeeping, never model input",
+        "optimizer": {
+          "learning_rate": 0.0001,
+          "name": "AdamW",
+          "weight_decay": 0.0001
+        },
+        "resolution": 512,
+        "sampling_policy": "phase20_domain_balanced_uniform_v1",
+        "scheduler": {
+          "T_max": 100,
+          "name": "CosineAnnealingLR",
+          "step_after_epoch": true
+        },
+        "seeds": [
+          42,
+          123,
+          3407
+        ],
+        "selection_rule": "phase20_macro_domain_mean_dice_v1",
+        "selection_tie_break": "lower validation loss, then earlier epoch",
+        "source": "C1 frozen protocol recipe; copied for prospective C3 baseline matching",
+        "threshold": 0.5
+      },
+      "role": "EXTERNAL_ARCHITECTURE_BASELINE",
+      "run_mode": "PREPARED_NOT_EXECUTED",
+      "schema": "controlled_c3_run_config_v2",
+      "seed": 42,
+      "source": {
+        "historical_best_epoch": 55,
+        "historical_checkpoint": "checkpoints/phase20_shared_unetpp_fourdomain_seed42_clean_v3/best.pt",
+        "historical_checkpoint_seed": 42,
+        "historical_checkpoint_sha256_recorded": "d647ac52bf39704549ce2eea4fee8e17dfcb5ce9ace5e0b24ffb1f7db86a059f",
+        "historical_closure": "reports/audits/phase20_training_closure.json",
+        "historical_closure_sha256": "b7aaff2ba4a81278b597262f08eee96ddfcab112f9d2a75dc41b5ebfbd8a21b6",
+        "historical_config": "experiments/phase20_shared_unetpp_fourdomain_seed42_clean_v3/config.json",
+        "historical_config_sha256": "27c5015da9bbbd61c32d580ca7f08667314d8e4c37eab4afe293df3aae700769",
+        "historical_experiment": "phase20_shared_unetpp_fourdomain_seed42_clean_v3",
+        "historical_parameter_count_reported": "9,159,681",
+        "historical_recipe": {
+          "architecture": "unetpp_nested_4_level_no_deep_supervision_base32",
+          "augmentation_policy": "src.data.transforms.SegmentationTransform(train=True): horizontal mirror p=0.5, rotation +/-5 deg, brightness +/-0.10, contrast +/-0.10; mask NEAREST; VAL disabled",
+          "dataset": "MULTI_DOMAIN_ISIC_BUSI_KVASIR_KUB",
+          "experiment_id": "phase20_shared_unetpp_fourdomain_seed42_clean_v3",
+          "governance": {
+            "allow_external": false,
+            "allow_test": false,
+            "film": false,
+            "localizer": false,
+            "regional_module": false,
+            "roi_proposal": false,
+            "task_id_as_model_input": false
+          },
+          "input_channel_policy": "RGB_3CH",
+          "input_resolution": 512,
+          "loss": {
+            "bce_weight": 0.5,
+            "dice_epsilon": 1e-06,
+            "dice_weight": 0.5,
+            "name": "bce_dice"
+          },
+          "manifest_version": "phase4_v3",
+          "model": {
+            "base_channels": 32,
+            "in_channels": 3,
+            "name": "UNetPlusPlus",
+            "out_channels": 1
+          },
+          "optimizer": {
+            "learning_rate": 0.0001,
+            "name": "AdamW",
+            "weight_decay": 0.0001
+          },
+          "phase": 20,
+          "scheduler": {
+            "T_max": 100,
+            "name": "CosineAnnealingLR",
+            "step": "per_epoch_after_train_and_val"
+          },
+          "taxonomy_id": null,
+          "training": {
+            "amp": true,
+            "batch_size": 4,
+            "checkpoint_metric": "phase20_macro_domain_mean_dice_v1",
+            "checkpoint_metric_description": "macro-domain mean VAL Dice (unweighted mean of the four per-domain per-image macro Dice)",
+            "early_stopping_patience": 15,
+            "effective_batch_size": 4,
+            "eval_batch_size": 8,
+            "gradient_accumulation_steps": 1,
+            "max_epochs": 100,
+            "num_workers": 4,
+            "persistent_workers": false,
+            "sampling_policy": "phase20_domain_balanced_uniform_v1",
+            "seed": 42,
+            "threshold": 0.5,
+            "tie_break": "lower validation loss"
+          }
+        },
+        "model_source": "src/models/unetpp.py",
+        "model_source_sha256": "87adb3f39d72fc4220445eb8a29f4f9a2c1930f98563b012edb7bd7847425db2"
+      },
+      "study_id": "C3_FULL_METHOD_VS_EXTERNAL_BASELINES_V1"
+    },
+    {
+      "architecture_specific_difference": {
+        "parameterization": "unetpp_4_level_nested_dense_skip_base32_single_head",
+        "pretrained_weights": false,
+        "regional_modules": false,
+        "task_conditioning": false
+      },
+      "dataset": {
+        "domains": [
+          "ISIC",
+          "BUSI",
+          "KVASIR",
+          "KUB"
+        ],
+        "external_access": false,
+        "manifest_version": "phase4_v3",
+        "task_ids": {
+          "BUSI": 1,
+          "ISIC": 0,
+          "KUB": 3,
+          "KVASIR": 2
+        },
+        "test_access": false,
+        "train_manifest": "manifests/phase4_v3/train.csv",
+        "train_manifest_sha256": "28702fc3a5ff8b950db372f03232d335e3a30b1fc2f21db7cd8c066055826ed6",
+        "train_n": 5832,
+        "val_manifest": "manifests/phase4_v3/val.csv",
+        "val_manifest_sha256": "082c80b2bda63fd73f371f109c34643adf01edaead921643fb2e44993ba53315",
+        "val_n": 808
+      },
+      "model": {
+        "architecture": "unetpp_4_level_nested_dense_skip_base32_single_head",
+        "architecture_detail": "four-level nested dense skip connections; one segmentation head",
+        "base_channels": 32,
+        "class_name": "UNetPlusPlus",
+        "display_name": "U-Net++",
+        "in_channels": 3,
+        "out_channels": 1
+      },
+      "model_key": "unetpp",
+      "primary_comparator": "RA-MedFiLM-BARR (FULL)",
+      "protocol": {
+        "path": "reports/planning/c1_film_attribution_v1/protocol.json",
+        "sha256": "531e3eb255a66381201d1aaf49bbe55abfdbe529640f5c584ef100d298087a61"
+      },
+      "recipe": {
+        "amp": true,
+        "augmentation": "canonical SegmentationTransform(train=True), horizontal flip/rotation/brightness/contrast; mask nearest",
+        "batch_size": 4,
+        "channel_policy": "RGB_3CH",
+        "channels": 3,
+        "early_stopping_patience": 15,
+        "eval_batch_size": 8,
+        "loss": {
+          "bce_weight": 0.5,
+          "dice_weight": 0.5,
+          "epsilon": 1e-06,
+          "name": "BCE+soft Dice"
+        },
+        "max_epochs": 100,
+        "model_inputs": "image only; domain/task id is sampling/bookkeeping, never model input",
+        "optimizer": {
+          "learning_rate": 0.0001,
+          "name": "AdamW",
+          "weight_decay": 0.0001
+        },
+        "resolution": 512,
+        "sampling_policy": "phase20_domain_balanced_uniform_v1",
+        "scheduler": {
+          "T_max": 100,
+          "name": "CosineAnnealingLR",
+          "step_after_epoch": true
+        },
+        "seeds": [
+          42,
+          123,
+          3407
+        ],
+        "selection_rule": "phase20_macro_domain_mean_dice_v1",
+        "selection_tie_break": "lower validation loss, then earlier epoch",
+        "source": "C1 frozen protocol recipe; copied for prospective C3 baseline matching",
+        "threshold": 0.5
+      },
+      "role": "EXTERNAL_ARCHITECTURE_BASELINE",
+      "run_mode": "PREPARED_NOT_EXECUTED",
+      "schema": "controlled_c3_run_config_v2",
+      "seed": 123,
+      "source": {
+        "historical_best_epoch": 55,
+        "historical_checkpoint": "checkpoints/phase20_shared_unetpp_fourdomain_seed42_clean_v3/best.pt",
+        "historical_checkpoint_seed": 42,
+        "historical_checkpoint_sha256_recorded": "d647ac52bf39704549ce2eea4fee8e17dfcb5ce9ace5e0b24ffb1f7db86a059f",
+        "historical_closure": "reports/audits/phase20_training_closure.json",
+        "historical_closure_sha256": "b7aaff2ba4a81278b597262f08eee96ddfcab112f9d2a75dc41b5ebfbd8a21b6",
+        "historical_config": "experiments/phase20_shared_unetpp_fourdomain_seed42_clean_v3/config.json",
+        "historical_config_sha256": "27c5015da9bbbd61c32d580ca7f08667314d8e4c37eab4afe293df3aae700769",
+        "historical_experiment": "phase20_shared_unetpp_fourdomain_seed42_clean_v3",
+        "historical_parameter_count_reported": "9,159,681",
+        "historical_recipe": {
+          "architecture": "unetpp_nested_4_level_no_deep_supervision_base32",
+          "augmentation_policy": "src.data.transforms.SegmentationTransform(train=True): horizontal mirror p=0.5, rotation +/-5 deg, brightness +/-0.10, contrast +/-0.10; mask NEAREST; VAL disabled",
+          "dataset": "MULTI_DOMAIN_ISIC_BUSI_KVASIR_KUB",
+          "experiment_id": "phase20_shared_unetpp_fourdomain_seed42_clean_v3",
+          "governance": {
+            "allow_external": false,
+            "allow_test": false,
+            "film": false,
+            "localizer": false,
+            "regional_module": false,
+            "roi_proposal": false,
+            "task_id_as_model_input": false
+          },
+          "input_channel_policy": "RGB_3CH",
+          "input_resolution": 512,
+          "loss": {
+            "bce_weight": 0.5,
+            "dice_epsilon": 1e-06,
+            "dice_weight": 0.5,
+            "name": "bce_dice"
+          },
+          "manifest_version": "phase4_v3",
+          "model": {
+            "base_channels": 32,
+            "in_channels": 3,
+            "name": "UNetPlusPlus",
+            "out_channels": 1
+          },
+          "optimizer": {
+            "learning_rate": 0.0001,
+            "name": "AdamW",
+            "weight_decay": 0.0001
+          },
+          "phase": 20,
+          "scheduler": {
+            "T_max": 100,
+            "name": "CosineAnnealingLR",
+            "step": "per_epoch_after_train_and_val"
+          },
+          "taxonomy_id": null,
+          "training": {
+            "amp": true,
+            "batch_size": 4,
+            "checkpoint_metric": "phase20_macro_domain_mean_dice_v1",
+            "checkpoint_metric_description": "macro-domain mean VAL Dice (unweighted mean of the four per-domain per-image macro Dice)",
+            "early_stopping_patience": 15,
+            "effective_batch_size": 4,
+            "eval_batch_size": 8,
+            "gradient_accumulation_steps": 1,
+            "max_epochs": 100,
+            "num_workers": 4,
+            "persistent_workers": false,
+            "sampling_policy": "phase20_domain_balanced_uniform_v1",
+            "seed": 42,
+            "threshold": 0.5,
+            "tie_break": "lower validation loss"
+          }
+        },
+        "model_source": "src/models/unetpp.py",
+        "model_source_sha256": "87adb3f39d72fc4220445eb8a29f4f9a2c1930f98563b012edb7bd7847425db2"
+      },
+      "study_id": "C3_FULL_METHOD_VS_EXTERNAL_BASELINES_V1"
+    },
+    {
+      "architecture_specific_difference": {
+        "parameterization": "unetpp_4_level_nested_dense_skip_base32_single_head",
+        "pretrained_weights": false,
+        "regional_modules": false,
+        "task_conditioning": false
+      },
+      "dataset": {
+        "domains": [
+          "ISIC",
+          "BUSI",
+          "KVASIR",
+          "KUB"
+        ],
+        "external_access": false,
+        "manifest_version": "phase4_v3",
+        "task_ids": {
+          "BUSI": 1,
+          "ISIC": 0,
+          "KUB": 3,
+          "KVASIR": 2
+        },
+        "test_access": false,
+        "train_manifest": "manifests/phase4_v3/train.csv",
+        "train_manifest_sha256": "28702fc3a5ff8b950db372f03232d335e3a30b1fc2f21db7cd8c066055826ed6",
+        "train_n": 5832,
+        "val_manifest": "manifests/phase4_v3/val.csv",
+        "val_manifest_sha256": "082c80b2bda63fd73f371f109c34643adf01edaead921643fb2e44993ba53315",
+        "val_n": 808
+      },
+      "model": {
+        "architecture": "unetpp_4_level_nested_dense_skip_base32_single_head",
+        "architecture_detail": "four-level nested dense skip connections; one segmentation head",
+        "base_channels": 32,
+        "class_name": "UNetPlusPlus",
+        "display_name": "U-Net++",
+        "in_channels": 3,
+        "out_channels": 1
+      },
+      "model_key": "unetpp",
+      "primary_comparator": "RA-MedFiLM-BARR (FULL)",
+      "protocol": {
+        "path": "reports/planning/c1_film_attribution_v1/protocol.json",
+        "sha256": "531e3eb255a66381201d1aaf49bbe55abfdbe529640f5c584ef100d298087a61"
+      },
+      "recipe": {
+        "amp": true,
+        "augmentation": "canonical SegmentationTransform(train=True), horizontal flip/rotation/brightness/contrast; mask nearest",
+        "batch_size": 4,
+        "channel_policy": "RGB_3CH",
+        "channels": 3,
+        "early_stopping_patience": 15,
+        "eval_batch_size": 8,
+        "loss": {
+          "bce_weight": 0.5,
+          "dice_weight": 0.5,
+          "epsilon": 1e-06,
+          "name": "BCE+soft Dice"
+        },
+        "max_epochs": 100,
+        "model_inputs": "image only; domain/task id is sampling/bookkeeping, never model input",
+        "optimizer": {
+          "learning_rate": 0.0001,
+          "name": "AdamW",
+          "weight_decay": 0.0001
+        },
+        "resolution": 512,
+        "sampling_policy": "phase20_domain_balanced_uniform_v1",
+        "scheduler": {
+          "T_max": 100,
+          "name": "CosineAnnealingLR",
+          "step_after_epoch": true
+        },
+        "seeds": [
+          42,
+          123,
+          3407
+        ],
+        "selection_rule": "phase20_macro_domain_mean_dice_v1",
+        "selection_tie_break": "lower validation loss, then earlier epoch",
+        "source": "C1 frozen protocol recipe; copied for prospective C3 baseline matching",
+        "threshold": 0.5
+      },
+      "role": "EXTERNAL_ARCHITECTURE_BASELINE",
+      "run_mode": "PREPARED_NOT_EXECUTED",
+      "schema": "controlled_c3_run_config_v2",
+      "seed": 3407,
+      "source": {
+        "historical_best_epoch": 55,
+        "historical_checkpoint": "checkpoints/phase20_shared_unetpp_fourdomain_seed42_clean_v3/best.pt",
+        "historical_checkpoint_seed": 42,
+        "historical_checkpoint_sha256_recorded": "d647ac52bf39704549ce2eea4fee8e17dfcb5ce9ace5e0b24ffb1f7db86a059f",
+        "historical_closure": "reports/audits/phase20_training_closure.json",
+        "historical_closure_sha256": "b7aaff2ba4a81278b597262f08eee96ddfcab112f9d2a75dc41b5ebfbd8a21b6",
+        "historical_config": "experiments/phase20_shared_unetpp_fourdomain_seed42_clean_v3/config.json",
+        "historical_config_sha256": "27c5015da9bbbd61c32d580ca7f08667314d8e4c37eab4afe293df3aae700769",
+        "historical_experiment": "phase20_shared_unetpp_fourdomain_seed42_clean_v3",
+        "historical_parameter_count_reported": "9,159,681",
+        "historical_recipe": {
+          "architecture": "unetpp_nested_4_level_no_deep_supervision_base32",
+          "augmentation_policy": "src.data.transforms.SegmentationTransform(train=True): horizontal mirror p=0.5, rotation +/-5 deg, brightness +/-0.10, contrast +/-0.10; mask NEAREST; VAL disabled",
+          "dataset": "MULTI_DOMAIN_ISIC_BUSI_KVASIR_KUB",
+          "experiment_id": "phase20_shared_unetpp_fourdomain_seed42_clean_v3",
+          "governance": {
+            "allow_external": false,
+            "allow_test": false,
+            "film": false,
+            "localizer": false,
+            "regional_module": false,
+            "roi_proposal": false,
+            "task_id_as_model_input": false
+          },
+          "input_channel_policy": "RGB_3CH",
+          "input_resolution": 512,
+          "loss": {
+            "bce_weight": 0.5,
+            "dice_epsilon": 1e-06,
+            "dice_weight": 0.5,
+            "name": "bce_dice"
+          },
+          "manifest_version": "phase4_v3",
+          "model": {
+            "base_channels": 32,
+            "in_channels": 3,
+            "name": "UNetPlusPlus",
+            "out_channels": 1
+          },
+          "optimizer": {
+            "learning_rate": 0.0001,
+            "name": "AdamW",
+            "weight_decay": 0.0001
+          },
+          "phase": 20,
+          "scheduler": {
+            "T_max": 100,
+            "name": "CosineAnnealingLR",
+            "step": "per_epoch_after_train_and_val"
+          },
+          "taxonomy_id": null,
+          "training": {
+            "amp": true,
+            "batch_size": 4,
+            "checkpoint_metric": "phase20_macro_domain_mean_dice_v1",
+            "checkpoint_metric_description": "macro-domain mean VAL Dice (unweighted mean of the four per-domain per-image macro Dice)",
+            "early_stopping_patience": 15,
+            "effective_batch_size": 4,
+            "eval_batch_size": 8,
+            "gradient_accumulation_steps": 1,
+            "max_epochs": 100,
+            "num_workers": 4,
+            "persistent_workers": false,
+            "sampling_policy": "phase20_domain_balanced_uniform_v1",
+            "seed": 42,
+            "threshold": 0.5,
+            "tie_break": "lower validation loss"
+          }
+        },
+        "model_source": "src/models/unetpp.py",
+        "model_source_sha256": "87adb3f39d72fc4220445eb8a29f4f9a2c1930f98563b012edb7bd7847425db2"
+      },
+      "study_id": "C3_FULL_METHOD_VS_EXTERNAL_BASELINES_V1"
+    },
+    {
+      "architecture_specific_difference": {
+        "parameterization": "attention_unet_4_stage_additive_skip_gates_base32",
+        "pretrained_weights": false,
+        "regional_modules": false,
+        "task_conditioning": false
+      },
+      "dataset": {
+        "domains": [
+          "ISIC",
+          "BUSI",
+          "KVASIR",
+          "KUB"
+        ],
+        "external_access": false,
+        "manifest_version": "phase4_v3",
+        "task_ids": {
+          "BUSI": 1,
+          "ISIC": 0,
+          "KUB": 3,
+          "KVASIR": 2
+        },
+        "test_access": false,
+        "train_manifest": "manifests/phase4_v3/train.csv",
+        "train_manifest_sha256": "28702fc3a5ff8b950db372f03232d335e3a30b1fc2f21db7cd8c066055826ed6",
+        "train_n": 5832,
+        "val_manifest": "manifests/phase4_v3/val.csv",
+        "val_manifest_sha256": "082c80b2bda63fd73f371f109c34643adf01edaead921643fb2e44993ba53315",
+        "val_n": 808
+      },
+      "model": {
+        "architecture": "attention_unet_4_stage_additive_skip_gates_base32",
+        "architecture_detail": "four additive attention gates on encoder skips",
+        "base_channels": 32,
+        "class_name": "AttentionUNet",
+        "display_name": "Attention U-Net",
+        "in_channels": 3,
+        "out_channels": 1
+      },
+      "model_key": "attention_unet",
+      "primary_comparator": "RA-MedFiLM-BARR (FULL)",
+      "protocol": {
+        "path": "reports/planning/c1_film_attribution_v1/protocol.json",
+        "sha256": "531e3eb255a66381201d1aaf49bbe55abfdbe529640f5c584ef100d298087a61"
+      },
+      "recipe": {
+        "amp": true,
+        "augmentation": "canonical SegmentationTransform(train=True), horizontal flip/rotation/brightness/contrast; mask nearest",
+        "batch_size": 4,
+        "channel_policy": "RGB_3CH",
+        "channels": 3,
+        "early_stopping_patience": 15,
+        "eval_batch_size": 8,
+        "loss": {
+          "bce_weight": 0.5,
+          "dice_weight": 0.5,
+          "epsilon": 1e-06,
+          "name": "BCE+soft Dice"
+        },
+        "max_epochs": 100,
+        "model_inputs": "image only; domain/task id is sampling/bookkeeping, never model input",
+        "optimizer": {
+          "learning_rate": 0.0001,
+          "name": "AdamW",
+          "weight_decay": 0.0001
+        },
+        "resolution": 512,
+        "sampling_policy": "phase20_domain_balanced_uniform_v1",
+        "scheduler": {
+          "T_max": 100,
+          "name": "CosineAnnealingLR",
+          "step_after_epoch": true
+        },
+        "seeds": [
+          42,
+          123,
+          3407
+        ],
+        "selection_rule": "phase20_macro_domain_mean_dice_v1",
+        "selection_tie_break": "lower validation loss, then earlier epoch",
+        "source": "C1 frozen protocol recipe; copied for prospective C3 baseline matching",
+        "threshold": 0.5
+      },
+      "role": "EXTERNAL_ARCHITECTURE_BASELINE",
+      "run_mode": "PREPARED_NOT_EXECUTED",
+      "schema": "controlled_c3_run_config_v2",
+      "seed": 42,
+      "source": {
+        "historical_best_epoch": 64,
+        "historical_checkpoint": "checkpoints/phase20b_shared_attention_unet_fourdomain_seed42_clean_v3/best.pt",
+        "historical_checkpoint_seed": 42,
+        "historical_checkpoint_sha256_recorded": "feb0eb0577841f3a9cfc1efb3a46dd4cdd5f749e3f3b08b85d80e472f7dd2b35",
+        "historical_closure": "reports/audits/phase20b_attention_unet_training_closure.json",
+        "historical_closure_sha256": "0a08d31f4efb6475314c66ed2be4caabb03a1b67bb83a83a5c90c66c3e367ad0",
+        "historical_config": "experiments/phase20b_shared_attention_unet_fourdomain_seed42_clean_v3/config.json",
+        "historical_config_sha256": "187302c560a9de9d4725865a414bdf80d4d0fc52daa5360b2bf5fe38b822e04f",
+        "historical_experiment": "phase20b_shared_attention_unet_fourdomain_seed42_clean_v3",
+        "historical_parameter_count_reported": "7,851,285",
+        "historical_recipe": {
+          "architecture": "attention_unet_4_stage_additive_skip_gates_base32",
+          "augmentation_policy": "src.data.transforms.SegmentationTransform(train=True): horizontal mirror p=0.5, rotation +/-5 deg, brightness +/-0.10, contrast +/-0.10; mask NEAREST; VAL disabled",
+          "dataset": "MULTI_DOMAIN_ISIC_BUSI_KVASIR_KUB",
+          "experiment_id": "phase20b_shared_attention_unet_fourdomain_seed42_clean_v3",
+          "governance": {
+            "allow_external": false,
+            "allow_test": false,
+            "film": false,
+            "localizer": false,
+            "regional_module": false,
+            "roi_proposal": false,
+            "task_id_as_model_input": false
+          },
+          "input_channel_policy": "RGB_3CH",
+          "input_resolution": 512,
+          "loss": {
+            "bce_weight": 0.5,
+            "dice_epsilon": 1e-06,
+            "dice_weight": 0.5,
+            "name": "bce_dice"
+          },
+          "manifest_version": "phase4_v3",
+          "model": {
+            "base_channels": 32,
+            "in_channels": 3,
+            "name": "AttentionUNet",
+            "out_channels": 1
+          },
+          "optimizer": {
+            "learning_rate": 0.0001,
+            "name": "AdamW",
+            "weight_decay": 0.0001
+          },
+          "parent_phase20a_experiment": "phase20_shared_unetpp_fourdomain_seed42_clean_v3",
+          "phase": 20,
+          "scheduler": {
+            "T_max": 100,
+            "name": "CosineAnnealingLR",
+            "step": "per_epoch_after_train_and_val"
+          },
+          "subphase": "20B",
+          "taxonomy_id": null,
+          "training": {
+            "amp": true,
+            "batch_size": 4,
+            "checkpoint_metric": "phase20_macro_domain_mean_dice_v1",
+            "checkpoint_metric_description": "macro-domain mean VAL Dice (unweighted mean of the four per-domain per-image macro Dice)",
+            "early_stopping_patience": 15,
+            "effective_batch_size": 4,
+            "eval_batch_size": 8,
+            "gradient_accumulation_steps": 1,
+            "max_epochs": 100,
+            "num_workers": 4,
+            "persistent_workers": false,
+            "sampling_policy": "phase20_domain_balanced_uniform_v1",
+            "seed": 42,
+            "threshold": 0.5,
+            "tie_break": "lower validation loss"
+          }
+        },
+        "model_source": "src/models/attention_unet.py",
+        "model_source_sha256": "834c02170aafc1093de9edb2afad99f76a200ae1eb5ecae16ad57eb7c2e21690"
+      },
+      "study_id": "C3_FULL_METHOD_VS_EXTERNAL_BASELINES_V1"
+    },
+    {
+      "architecture_specific_difference": {
+        "parameterization": "attention_unet_4_stage_additive_skip_gates_base32",
+        "pretrained_weights": false,
+        "regional_modules": false,
+        "task_conditioning": false
+      },
+      "dataset": {
+        "domains": [
+          "ISIC",
+          "BUSI",
+          "KVASIR",
+          "KUB"
+        ],
+        "external_access": false,
+        "manifest_version": "phase4_v3",
+        "task_ids": {
+          "BUSI": 1,
+          "ISIC": 0,
+          "KUB": 3,
+          "KVASIR": 2
+        },
+        "test_access": false,
+        "train_manifest": "manifests/phase4_v3/train.csv",
+        "train_manifest_sha256": "28702fc3a5ff8b950db372f03232d335e3a30b1fc2f21db7cd8c066055826ed6",
+        "train_n": 5832,
+        "val_manifest": "manifests/phase4_v3/val.csv",
+        "val_manifest_sha256": "082c80b2bda63fd73f371f109c34643adf01edaead921643fb2e44993ba53315",
+        "val_n": 808
+      },
+      "model": {
+        "architecture": "attention_unet_4_stage_additive_skip_gates_base32",
+        "architecture_detail": "four additive attention gates on encoder skips",
+        "base_channels": 32,
+        "class_name": "AttentionUNet",
+        "display_name": "Attention U-Net",
+        "in_channels": 3,
+        "out_channels": 1
+      },
+      "model_key": "attention_unet",
+      "primary_comparator": "RA-MedFiLM-BARR (FULL)",
+      "protocol": {
+        "path": "reports/planning/c1_film_attribution_v1/protocol.json",
+        "sha256": "531e3eb255a66381201d1aaf49bbe55abfdbe529640f5c584ef100d298087a61"
+      },
+      "recipe": {
+        "amp": true,
+        "augmentation": "canonical SegmentationTransform(train=True), horizontal flip/rotation/brightness/contrast; mask nearest",
+        "batch_size": 4,
+        "channel_policy": "RGB_3CH",
+        "channels": 3,
+        "early_stopping_patience": 15,
+        "eval_batch_size": 8,
+        "loss": {
+          "bce_weight": 0.5,
+          "dice_weight": 0.5,
+          "epsilon": 1e-06,
+          "name": "BCE+soft Dice"
+        },
+        "max_epochs": 100,
+        "model_inputs": "image only; domain/task id is sampling/bookkeeping, never model input",
+        "optimizer": {
+          "learning_rate": 0.0001,
+          "name": "AdamW",
+          "weight_decay": 0.0001
+        },
+        "resolution": 512,
+        "sampling_policy": "phase20_domain_balanced_uniform_v1",
+        "scheduler": {
+          "T_max": 100,
+          "name": "CosineAnnealingLR",
+          "step_after_epoch": true
+        },
+        "seeds": [
+          42,
+          123,
+          3407
+        ],
+        "selection_rule": "phase20_macro_domain_mean_dice_v1",
+        "selection_tie_break": "lower validation loss, then earlier epoch",
+        "source": "C1 frozen protocol recipe; copied for prospective C3 baseline matching",
+        "threshold": 0.5
+      },
+      "role": "EXTERNAL_ARCHITECTURE_BASELINE",
+      "run_mode": "PREPARED_NOT_EXECUTED",
+      "schema": "controlled_c3_run_config_v2",
+      "seed": 123,
+      "source": {
+        "historical_best_epoch": 64,
+        "historical_checkpoint": "checkpoints/phase20b_shared_attention_unet_fourdomain_seed42_clean_v3/best.pt",
+        "historical_checkpoint_seed": 42,
+        "historical_checkpoint_sha256_recorded": "feb0eb0577841f3a9cfc1efb3a46dd4cdd5f749e3f3b08b85d80e472f7dd2b35",
+        "historical_closure": "reports/audits/phase20b_attention_unet_training_closure.json",
+        "historical_closure_sha256": "0a08d31f4efb6475314c66ed2be4caabb03a1b67bb83a83a5c90c66c3e367ad0",
+        "historical_config": "experiments/phase20b_shared_attention_unet_fourdomain_seed42_clean_v3/config.json",
+        "historical_config_sha256": "187302c560a9de9d4725865a414bdf80d4d0fc52daa5360b2bf5fe38b822e04f",
+        "historical_experiment": "phase20b_shared_attention_unet_fourdomain_seed42_clean_v3",
+        "historical_parameter_count_reported": "7,851,285",
+        "historical_recipe": {
+          "architecture": "attention_unet_4_stage_additive_skip_gates_base32",
+          "augmentation_policy": "src.data.transforms.SegmentationTransform(train=True): horizontal mirror p=0.5, rotation +/-5 deg, brightness +/-0.10, contrast +/-0.10; mask NEAREST; VAL disabled",
+          "dataset": "MULTI_DOMAIN_ISIC_BUSI_KVASIR_KUB",
+          "experiment_id": "phase20b_shared_attention_unet_fourdomain_seed42_clean_v3",
+          "governance": {
+            "allow_external": false,
+            "allow_test": false,
+            "film": false,
+            "localizer": false,
+            "regional_module": false,
+            "roi_proposal": false,
+            "task_id_as_model_input": false
+          },
+          "input_channel_policy": "RGB_3CH",
+          "input_resolution": 512,
+          "loss": {
+            "bce_weight": 0.5,
+            "dice_epsilon": 1e-06,
+            "dice_weight": 0.5,
+            "name": "bce_dice"
+          },
+          "manifest_version": "phase4_v3",
+          "model": {
+            "base_channels": 32,
+            "in_channels": 3,
+            "name": "AttentionUNet",
+            "out_channels": 1
+          },
+          "optimizer": {
+            "learning_rate": 0.0001,
+            "name": "AdamW",
+            "weight_decay": 0.0001
+          },
+          "parent_phase20a_experiment": "phase20_shared_unetpp_fourdomain_seed42_clean_v3",
+          "phase": 20,
+          "scheduler": {
+            "T_max": 100,
+            "name": "CosineAnnealingLR",
+            "step": "per_epoch_after_train_and_val"
+          },
+          "subphase": "20B",
+          "taxonomy_id": null,
+          "training": {
+            "amp": true,
+            "batch_size": 4,
+            "checkpoint_metric": "phase20_macro_domain_mean_dice_v1",
+            "checkpoint_metric_description": "macro-domain mean VAL Dice (unweighted mean of the four per-domain per-image macro Dice)",
+            "early_stopping_patience": 15,
+            "effective_batch_size": 4,
+            "eval_batch_size": 8,
+            "gradient_accumulation_steps": 1,
+            "max_epochs": 100,
+            "num_workers": 4,
+            "persistent_workers": false,
+            "sampling_policy": "phase20_domain_balanced_uniform_v1",
+            "seed": 42,
+            "threshold": 0.5,
+            "tie_break": "lower validation loss"
+          }
+        },
+        "model_source": "src/models/attention_unet.py",
+        "model_source_sha256": "834c02170aafc1093de9edb2afad99f76a200ae1eb5ecae16ad57eb7c2e21690"
+      },
+      "study_id": "C3_FULL_METHOD_VS_EXTERNAL_BASELINES_V1"
+    },
+    {
+      "architecture_specific_difference": {
+        "parameterization": "attention_unet_4_stage_additive_skip_gates_base32",
+        "pretrained_weights": false,
+        "regional_modules": false,
+        "task_conditioning": false
+      },
+      "dataset": {
+        "domains": [
+          "ISIC",
+          "BUSI",
+          "KVASIR",
+          "KUB"
+        ],
+        "external_access": false,
+        "manifest_version": "phase4_v3",
+        "task_ids": {
+          "BUSI": 1,
+          "ISIC": 0,
+          "KUB": 3,
+          "KVASIR": 2
+        },
+        "test_access": false,
+        "train_manifest": "manifests/phase4_v3/train.csv",
+        "train_manifest_sha256": "28702fc3a5ff8b950db372f03232d335e3a30b1fc2f21db7cd8c066055826ed6",
+        "train_n": 5832,
+        "val_manifest": "manifests/phase4_v3/val.csv",
+        "val_manifest_sha256": "082c80b2bda63fd73f371f109c34643adf01edaead921643fb2e44993ba53315",
+        "val_n": 808
+      },
+      "model": {
+        "architecture": "attention_unet_4_stage_additive_skip_gates_base32",
+        "architecture_detail": "four additive attention gates on encoder skips",
+        "base_channels": 32,
+        "class_name": "AttentionUNet",
+        "display_name": "Attention U-Net",
+        "in_channels": 3,
+        "out_channels": 1
+      },
+      "model_key": "attention_unet",
+      "primary_comparator": "RA-MedFiLM-BARR (FULL)",
+      "protocol": {
+        "path": "reports/planning/c1_film_attribution_v1/protocol.json",
+        "sha256": "531e3eb255a66381201d1aaf49bbe55abfdbe529640f5c584ef100d298087a61"
+      },
+      "recipe": {
+        "amp": true,
+        "augmentation": "canonical SegmentationTransform(train=True), horizontal flip/rotation/brightness/contrast; mask nearest",
+        "batch_size": 4,
+        "channel_policy": "RGB_3CH",
+        "channels": 3,
+        "early_stopping_patience": 15,
+        "eval_batch_size": 8,
+        "loss": {
+          "bce_weight": 0.5,
+          "dice_weight": 0.5,
+          "epsilon": 1e-06,
+          "name": "BCE+soft Dice"
+        },
+        "max_epochs": 100,
+        "model_inputs": "image only; domain/task id is sampling/bookkeeping, never model input",
+        "optimizer": {
+          "learning_rate": 0.0001,
+          "name": "AdamW",
+          "weight_decay": 0.0001
+        },
+        "resolution": 512,
+        "sampling_policy": "phase20_domain_balanced_uniform_v1",
+        "scheduler": {
+          "T_max": 100,
+          "name": "CosineAnnealingLR",
+          "step_after_epoch": true
+        },
+        "seeds": [
+          42,
+          123,
+          3407
+        ],
+        "selection_rule": "phase20_macro_domain_mean_dice_v1",
+        "selection_tie_break": "lower validation loss, then earlier epoch",
+        "source": "C1 frozen protocol recipe; copied for prospective C3 baseline matching",
+        "threshold": 0.5
+      },
+      "role": "EXTERNAL_ARCHITECTURE_BASELINE",
+      "run_mode": "PREPARED_NOT_EXECUTED",
+      "schema": "controlled_c3_run_config_v2",
+      "seed": 3407,
+      "source": {
+        "historical_best_epoch": 64,
+        "historical_checkpoint": "checkpoints/phase20b_shared_attention_unet_fourdomain_seed42_clean_v3/best.pt",
+        "historical_checkpoint_seed": 42,
+        "historical_checkpoint_sha256_recorded": "feb0eb0577841f3a9cfc1efb3a46dd4cdd5f749e3f3b08b85d80e472f7dd2b35",
+        "historical_closure": "reports/audits/phase20b_attention_unet_training_closure.json",
+        "historical_closure_sha256": "0a08d31f4efb6475314c66ed2be4caabb03a1b67bb83a83a5c90c66c3e367ad0",
+        "historical_config": "experiments/phase20b_shared_attention_unet_fourdomain_seed42_clean_v3/config.json",
+        "historical_config_sha256": "187302c560a9de9d4725865a414bdf80d4d0fc52daa5360b2bf5fe38b822e04f",
+        "historical_experiment": "phase20b_shared_attention_unet_fourdomain_seed42_clean_v3",
+        "historical_parameter_count_reported": "7,851,285",
+        "historical_recipe": {
+          "architecture": "attention_unet_4_stage_additive_skip_gates_base32",
+          "augmentation_policy": "src.data.transforms.SegmentationTransform(train=True): horizontal mirror p=0.5, rotation +/-5 deg, brightness +/-0.10, contrast +/-0.10; mask NEAREST; VAL disabled",
+          "dataset": "MULTI_DOMAIN_ISIC_BUSI_KVASIR_KUB",
+          "experiment_id": "phase20b_shared_attention_unet_fourdomain_seed42_clean_v3",
+          "governance": {
+            "allow_external": false,
+            "allow_test": false,
+            "film": false,
+            "localizer": false,
+            "regional_module": false,
+            "roi_proposal": false,
+            "task_id_as_model_input": false
+          },
+          "input_channel_policy": "RGB_3CH",
+          "input_resolution": 512,
+          "loss": {
+            "bce_weight": 0.5,
+            "dice_epsilon": 1e-06,
+            "dice_weight": 0.5,
+            "name": "bce_dice"
+          },
+          "manifest_version": "phase4_v3",
+          "model": {
+            "base_channels": 32,
+            "in_channels": 3,
+            "name": "AttentionUNet",
+            "out_channels": 1
+          },
+          "optimizer": {
+            "learning_rate": 0.0001,
+            "name": "AdamW",
+            "weight_decay": 0.0001
+          },
+          "parent_phase20a_experiment": "phase20_shared_unetpp_fourdomain_seed42_clean_v3",
+          "phase": 20,
+          "scheduler": {
+            "T_max": 100,
+            "name": "CosineAnnealingLR",
+            "step": "per_epoch_after_train_and_val"
+          },
+          "subphase": "20B",
+          "taxonomy_id": null,
+          "training": {
+            "amp": true,
+            "batch_size": 4,
+            "checkpoint_metric": "phase20_macro_domain_mean_dice_v1",
+            "checkpoint_metric_description": "macro-domain mean VAL Dice (unweighted mean of the four per-domain per-image macro Dice)",
+            "early_stopping_patience": 15,
+            "effective_batch_size": 4,
+            "eval_batch_size": 8,
+            "gradient_accumulation_steps": 1,
+            "max_epochs": 100,
+            "num_workers": 4,
+            "persistent_workers": false,
+            "sampling_policy": "phase20_domain_balanced_uniform_v1",
+            "seed": 42,
+            "threshold": 0.5,
+            "tie_break": "lower validation loss"
+          }
+        },
+        "model_source": "src/models/attention_unet.py",
+        "model_source_sha256": "834c02170aafc1093de9edb2afad99f76a200ae1eb5ecae16ad57eb7c2e21690"
+      },
+      "study_id": "C3_FULL_METHOD_VS_EXTERNAL_BASELINES_V1"
+    },
+    {
+      "architecture_specific_difference": {
+        "parameterization": "deeplabv3plus_resnet50_os16_random_init_aspp_6_12_18",
+        "pretrained_weights": false,
+        "regional_modules": false,
+        "task_conditioning": false
+      },
+      "dataset": {
+        "domains": [
+          "ISIC",
+          "BUSI",
+          "KVASIR",
+          "KUB"
+        ],
+        "external_access": false,
+        "manifest_version": "phase4_v3",
+        "task_ids": {
+          "BUSI": 1,
+          "ISIC": 0,
+          "KUB": 3,
+          "KVASIR": 2
+        },
+        "test_access": false,
+        "train_manifest": "manifests/phase4_v3/train.csv",
+        "train_manifest_sha256": "28702fc3a5ff8b950db372f03232d335e3a30b1fc2f21db7cd8c066055826ed6",
+        "train_n": 5832,
+        "val_manifest": "manifests/phase4_v3/val.csv",
+        "val_manifest_sha256": "082c80b2bda63fd73f371f109c34643adf01edaead921643fb2e44993ba53315",
+        "val_n": 808
+      },
+      "model": {
+        "architecture": "deeplabv3plus_resnet50_os16_random_init_aspp_6_12_18",
+        "architecture_detail": "random-init ResNet-50 OS16 encoder, ASPP rates 6/12/18, low-level decoder",
+        "base_channels": 32,
+        "class_name": "DeepLabV3Plus",
+        "display_name": "DeepLabV3+",
+        "in_channels": 3,
+        "out_channels": 1
+      },
+      "model_key": "deeplabv3plus",
+      "primary_comparator": "RA-MedFiLM-BARR (FULL)",
+      "protocol": {
+        "path": "reports/planning/c1_film_attribution_v1/protocol.json",
+        "sha256": "531e3eb255a66381201d1aaf49bbe55abfdbe529640f5c584ef100d298087a61"
+      },
+      "recipe": {
+        "amp": true,
+        "augmentation": "canonical SegmentationTransform(train=True), horizontal flip/rotation/brightness/contrast; mask nearest",
+        "batch_size": 4,
+        "channel_policy": "RGB_3CH",
+        "channels": 3,
+        "early_stopping_patience": 15,
+        "eval_batch_size": 8,
+        "loss": {
+          "bce_weight": 0.5,
+          "dice_weight": 0.5,
+          "epsilon": 1e-06,
+          "name": "BCE+soft Dice"
+        },
+        "max_epochs": 100,
+        "model_inputs": "image only; domain/task id is sampling/bookkeeping, never model input",
+        "optimizer": {
+          "learning_rate": 0.0001,
+          "name": "AdamW",
+          "weight_decay": 0.0001
+        },
+        "resolution": 512,
+        "sampling_policy": "phase20_domain_balanced_uniform_v1",
+        "scheduler": {
+          "T_max": 100,
+          "name": "CosineAnnealingLR",
+          "step_after_epoch": true
+        },
+        "seeds": [
+          42,
+          123,
+          3407
+        ],
+        "selection_rule": "phase20_macro_domain_mean_dice_v1",
+        "selection_tie_break": "lower validation loss, then earlier epoch",
+        "source": "C1 frozen protocol recipe; copied for prospective C3 baseline matching",
+        "threshold": 0.5
+      },
+      "role": "EXTERNAL_ARCHITECTURE_BASELINE",
+      "run_mode": "PREPARED_NOT_EXECUTED",
+      "schema": "controlled_c3_run_config_v2",
+      "seed": 42,
+      "source": {
+        "historical_best_epoch": 57,
+        "historical_checkpoint": "checkpoints/phase20b_shared_deeplabv3plus_fourdomain_seed42_clean_v3/best.pt",
+        "historical_checkpoint_seed": 42,
+        "historical_checkpoint_sha256_recorded": "0bd9548f141174f05f842d2015dceda6db4587921d241590b63e9ae0099d3ff8",
+        "historical_closure": "reports/audits/phase20b_deeplabv3plus_training_closure.json",
+        "historical_closure_sha256": "5fa85c6e08e812881f3c73740a3f5d084daa8ad744a60f5b3881b450a604cfe9",
+        "historical_config": "experiments/phase20b_shared_deeplabv3plus_fourdomain_seed42_clean_v3/config.json",
+        "historical_config_sha256": "e174ee94b0dbe5447513550ffe33ad7f49e2d6dccd44b26768e4b86b5073367d",
+        "historical_experiment": "phase20b_shared_deeplabv3plus_fourdomain_seed42_clean_v3",
+        "historical_parameter_count_reported": "40,347,041",
+        "historical_recipe": {
+          "architecture": "deeplabv3plus_resnet50_os16_random_init_no_pretrained_aspp_rates_6_12_18",
+          "augmentation_policy": "src.data.transforms.SegmentationTransform(train=True): horizontal mirror p=0.5, rotation +/-5 deg, brightness +/-0.10, contrast +/-0.10; mask NEAREST; VAL disabled",
+          "dataset": "MULTI_DOMAIN_ISIC_BUSI_KVASIR_KUB",
+          "experiment_id": "phase20b_shared_deeplabv3plus_fourdomain_seed42_clean_v3",
+          "governance": {
+            "allow_external": false,
+            "allow_test": false,
+            "film": false,
+            "localizer": false,
+            "regional_module": false,
+            "roi_proposal": false,
+            "task_id_as_model_input": false
+          },
+          "input_channel_policy": "RGB_3CH",
+          "input_resolution": 512,
+          "loss": {
+            "bce_weight": 0.5,
+            "dice_epsilon": 1e-06,
+            "dice_weight": 0.5,
+            "name": "bce_dice"
+          },
+          "manifest_version": "phase4_v3",
+          "model": {
+            "base_channels": 32,
+            "in_channels": 3,
+            "name": "DeepLabV3Plus",
+            "out_channels": 1
+          },
+          "optimizer": {
+            "learning_rate": 0.0001,
+            "name": "AdamW",
+            "weight_decay": 0.0001
+          },
+          "parent_phase20a_experiment": "phase20_shared_unetpp_fourdomain_seed42_clean_v3",
+          "phase": 20,
+          "scheduler": {
+            "T_max": 100,
+            "name": "CosineAnnealingLR",
+            "step": "per_epoch_after_train_and_val"
+          },
+          "subphase": "20B",
+          "taxonomy_id": null,
+          "training": {
+            "amp": true,
+            "batch_size": 4,
+            "checkpoint_metric": "phase20_macro_domain_mean_dice_v1",
+            "checkpoint_metric_description": "macro-domain mean VAL Dice (unweighted mean of the four per-domain per-image macro Dice)",
+            "early_stopping_patience": 15,
+            "effective_batch_size": 4,
+            "eval_batch_size": 8,
+            "gradient_accumulation_steps": 1,
+            "max_epochs": 100,
+            "num_workers": 4,
+            "persistent_workers": false,
+            "sampling_policy": "phase20_domain_balanced_uniform_v1",
+            "seed": 42,
+            "threshold": 0.5,
+            "tie_break": "lower validation loss"
+          }
+        },
+        "model_source": "src/models/deeplabv3plus.py",
+        "model_source_sha256": "751a1ead9aca93c7372750924f7483b3de3ad3f5f40edd3a648e9e39bdd77406"
+      },
+      "study_id": "C3_FULL_METHOD_VS_EXTERNAL_BASELINES_V1"
+    },
+    {
+      "architecture_specific_difference": {
+        "parameterization": "deeplabv3plus_resnet50_os16_random_init_aspp_6_12_18",
+        "pretrained_weights": false,
+        "regional_modules": false,
+        "task_conditioning": false
+      },
+      "dataset": {
+        "domains": [
+          "ISIC",
+          "BUSI",
+          "KVASIR",
+          "KUB"
+        ],
+        "external_access": false,
+        "manifest_version": "phase4_v3",
+        "task_ids": {
+          "BUSI": 1,
+          "ISIC": 0,
+          "KUB": 3,
+          "KVASIR": 2
+        },
+        "test_access": false,
+        "train_manifest": "manifests/phase4_v3/train.csv",
+        "train_manifest_sha256": "28702fc3a5ff8b950db372f03232d335e3a30b1fc2f21db7cd8c066055826ed6",
+        "train_n": 5832,
+        "val_manifest": "manifests/phase4_v3/val.csv",
+        "val_manifest_sha256": "082c80b2bda63fd73f371f109c34643adf01edaead921643fb2e44993ba53315",
+        "val_n": 808
+      },
+      "model": {
+        "architecture": "deeplabv3plus_resnet50_os16_random_init_aspp_6_12_18",
+        "architecture_detail": "random-init ResNet-50 OS16 encoder, ASPP rates 6/12/18, low-level decoder",
+        "base_channels": 32,
+        "class_name": "DeepLabV3Plus",
+        "display_name": "DeepLabV3+",
+        "in_channels": 3,
+        "out_channels": 1
+      },
+      "model_key": "deeplabv3plus",
+      "primary_comparator": "RA-MedFiLM-BARR (FULL)",
+      "protocol": {
+        "path": "reports/planning/c1_film_attribution_v1/protocol.json",
+        "sha256": "531e3eb255a66381201d1aaf49bbe55abfdbe529640f5c584ef100d298087a61"
+      },
+      "recipe": {
+        "amp": true,
+        "augmentation": "canonical SegmentationTransform(train=True), horizontal flip/rotation/brightness/contrast; mask nearest",
+        "batch_size": 4,
+        "channel_policy": "RGB_3CH",
+        "channels": 3,
+        "early_stopping_patience": 15,
+        "eval_batch_size": 8,
+        "loss": {
+          "bce_weight": 0.5,
+          "dice_weight": 0.5,
+          "epsilon": 1e-06,
+          "name": "BCE+soft Dice"
+        },
+        "max_epochs": 100,
+        "model_inputs": "image only; domain/task id is sampling/bookkeeping, never model input",
+        "optimizer": {
+          "learning_rate": 0.0001,
+          "name": "AdamW",
+          "weight_decay": 0.0001
+        },
+        "resolution": 512,
+        "sampling_policy": "phase20_domain_balanced_uniform_v1",
+        "scheduler": {
+          "T_max": 100,
+          "name": "CosineAnnealingLR",
+          "step_after_epoch": true
+        },
+        "seeds": [
+          42,
+          123,
+          3407
+        ],
+        "selection_rule": "phase20_macro_domain_mean_dice_v1",
+        "selection_tie_break": "lower validation loss, then earlier epoch",
+        "source": "C1 frozen protocol recipe; copied for prospective C3 baseline matching",
+        "threshold": 0.5
+      },
+      "role": "EXTERNAL_ARCHITECTURE_BASELINE",
+      "run_mode": "PREPARED_NOT_EXECUTED",
+      "schema": "controlled_c3_run_config_v2",
+      "seed": 123,
+      "source": {
+        "historical_best_epoch": 57,
+        "historical_checkpoint": "checkpoints/phase20b_shared_deeplabv3plus_fourdomain_seed42_clean_v3/best.pt",
+        "historical_checkpoint_seed": 42,
+        "historical_checkpoint_sha256_recorded": "0bd9548f141174f05f842d2015dceda6db4587921d241590b63e9ae0099d3ff8",
+        "historical_closure": "reports/audits/phase20b_deeplabv3plus_training_closure.json",
+        "historical_closure_sha256": "5fa85c6e08e812881f3c73740a3f5d084daa8ad744a60f5b3881b450a604cfe9",
+        "historical_config": "experiments/phase20b_shared_deeplabv3plus_fourdomain_seed42_clean_v3/config.json",
+        "historical_config_sha256": "e174ee94b0dbe5447513550ffe33ad7f49e2d6dccd44b26768e4b86b5073367d",
+        "historical_experiment": "phase20b_shared_deeplabv3plus_fourdomain_seed42_clean_v3",
+        "historical_parameter_count_reported": "40,347,041",
+        "historical_recipe": {
+          "architecture": "deeplabv3plus_resnet50_os16_random_init_no_pretrained_aspp_rates_6_12_18",
+          "augmentation_policy": "src.data.transforms.SegmentationTransform(train=True): horizontal mirror p=0.5, rotation +/-5 deg, brightness +/-0.10, contrast +/-0.10; mask NEAREST; VAL disabled",
+          "dataset": "MULTI_DOMAIN_ISIC_BUSI_KVASIR_KUB",
+          "experiment_id": "phase20b_shared_deeplabv3plus_fourdomain_seed42_clean_v3",
+          "governance": {
+            "allow_external": false,
+            "allow_test": false,
+            "film": false,
+            "localizer": false,
+            "regional_module": false,
+            "roi_proposal": false,
+            "task_id_as_model_input": false
+          },
+          "input_channel_policy": "RGB_3CH",
+          "input_resolution": 512,
+          "loss": {
+            "bce_weight": 0.5,
+            "dice_epsilon": 1e-06,
+            "dice_weight": 0.5,
+            "name": "bce_dice"
+          },
+          "manifest_version": "phase4_v3",
+          "model": {
+            "base_channels": 32,
+            "in_channels": 3,
+            "name": "DeepLabV3Plus",
+            "out_channels": 1
+          },
+          "optimizer": {
+            "learning_rate": 0.0001,
+            "name": "AdamW",
+            "weight_decay": 0.0001
+          },
+          "parent_phase20a_experiment": "phase20_shared_unetpp_fourdomain_seed42_clean_v3",
+          "phase": 20,
+          "scheduler": {
+            "T_max": 100,
+            "name": "CosineAnnealingLR",
+            "step": "per_epoch_after_train_and_val"
+          },
+          "subphase": "20B",
+          "taxonomy_id": null,
+          "training": {
+            "amp": true,
+            "batch_size": 4,
+            "checkpoint_metric": "phase20_macro_domain_mean_dice_v1",
+            "checkpoint_metric_description": "macro-domain mean VAL Dice (unweighted mean of the four per-domain per-image macro Dice)",
+            "early_stopping_patience": 15,
+            "effective_batch_size": 4,
+            "eval_batch_size": 8,
+            "gradient_accumulation_steps": 1,
+            "max_epochs": 100,
+            "num_workers": 4,
+            "persistent_workers": false,
+            "sampling_policy": "phase20_domain_balanced_uniform_v1",
+            "seed": 42,
+            "threshold": 0.5,
+            "tie_break": "lower validation loss"
+          }
+        },
+        "model_source": "src/models/deeplabv3plus.py",
+        "model_source_sha256": "751a1ead9aca93c7372750924f7483b3de3ad3f5f40edd3a648e9e39bdd77406"
+      },
+      "study_id": "C3_FULL_METHOD_VS_EXTERNAL_BASELINES_V1"
+    },
+    {
+      "architecture_specific_difference": {
+        "parameterization": "deeplabv3plus_resnet50_os16_random_init_aspp_6_12_18",
+        "pretrained_weights": false,
+        "regional_modules": false,
+        "task_conditioning": false
+      },
+      "dataset": {
+        "domains": [
+          "ISIC",
+          "BUSI",
+          "KVASIR",
+          "KUB"
+        ],
+        "external_access": false,
+        "manifest_version": "phase4_v3",
+        "task_ids": {
+          "BUSI": 1,
+          "ISIC": 0,
+          "KUB": 3,
+          "KVASIR": 2
+        },
+        "test_access": false,
+        "train_manifest": "manifests/phase4_v3/train.csv",
+        "train_manifest_sha256": "28702fc3a5ff8b950db372f03232d335e3a30b1fc2f21db7cd8c066055826ed6",
+        "train_n": 5832,
+        "val_manifest": "manifests/phase4_v3/val.csv",
+        "val_manifest_sha256": "082c80b2bda63fd73f371f109c34643adf01edaead921643fb2e44993ba53315",
+        "val_n": 808
+      },
+      "model": {
+        "architecture": "deeplabv3plus_resnet50_os16_random_init_aspp_6_12_18",
+        "architecture_detail": "random-init ResNet-50 OS16 encoder, ASPP rates 6/12/18, low-level decoder",
+        "base_channels": 32,
+        "class_name": "DeepLabV3Plus",
+        "display_name": "DeepLabV3+",
+        "in_channels": 3,
+        "out_channels": 1
+      },
+      "model_key": "deeplabv3plus",
+      "primary_comparator": "RA-MedFiLM-BARR (FULL)",
+      "protocol": {
+        "path": "reports/planning/c1_film_attribution_v1/protocol.json",
+        "sha256": "531e3eb255a66381201d1aaf49bbe55abfdbe529640f5c584ef100d298087a61"
+      },
+      "recipe": {
+        "amp": true,
+        "augmentation": "canonical SegmentationTransform(train=True), horizontal flip/rotation/brightness/contrast; mask nearest",
+        "batch_size": 4,
+        "channel_policy": "RGB_3CH",
+        "channels": 3,
+        "early_stopping_patience": 15,
+        "eval_batch_size": 8,
+        "loss": {
+          "bce_weight": 0.5,
+          "dice_weight": 0.5,
+          "epsilon": 1e-06,
+          "name": "BCE+soft Dice"
+        },
+        "max_epochs": 100,
+        "model_inputs": "image only; domain/task id is sampling/bookkeeping, never model input",
+        "optimizer": {
+          "learning_rate": 0.0001,
+          "name": "AdamW",
+          "weight_decay": 0.0001
+        },
+        "resolution": 512,
+        "sampling_policy": "phase20_domain_balanced_uniform_v1",
+        "scheduler": {
+          "T_max": 100,
+          "name": "CosineAnnealingLR",
+          "step_after_epoch": true
+        },
+        "seeds": [
+          42,
+          123,
+          3407
+        ],
+        "selection_rule": "phase20_macro_domain_mean_dice_v1",
+        "selection_tie_break": "lower validation loss, then earlier epoch",
+        "source": "C1 frozen protocol recipe; copied for prospective C3 baseline matching",
+        "threshold": 0.5
+      },
+      "role": "EXTERNAL_ARCHITECTURE_BASELINE",
+      "run_mode": "PREPARED_NOT_EXECUTED",
+      "schema": "controlled_c3_run_config_v2",
+      "seed": 3407,
+      "source": {
+        "historical_best_epoch": 57,
+        "historical_checkpoint": "checkpoints/phase20b_shared_deeplabv3plus_fourdomain_seed42_clean_v3/best.pt",
+        "historical_checkpoint_seed": 42,
+        "historical_checkpoint_sha256_recorded": "0bd9548f141174f05f842d2015dceda6db4587921d241590b63e9ae0099d3ff8",
+        "historical_closure": "reports/audits/phase20b_deeplabv3plus_training_closure.json",
+        "historical_closure_sha256": "5fa85c6e08e812881f3c73740a3f5d084daa8ad744a60f5b3881b450a604cfe9",
+        "historical_config": "experiments/phase20b_shared_deeplabv3plus_fourdomain_seed42_clean_v3/config.json",
+        "historical_config_sha256": "e174ee94b0dbe5447513550ffe33ad7f49e2d6dccd44b26768e4b86b5073367d",
+        "historical_experiment": "phase20b_shared_deeplabv3plus_fourdomain_seed42_clean_v3",
+        "historical_parameter_count_reported": "40,347,041",
+        "historical_recipe": {
+          "architecture": "deeplabv3plus_resnet50_os16_random_init_no_pretrained_aspp_rates_6_12_18",
+          "augmentation_policy": "src.data.transforms.SegmentationTransform(train=True): horizontal mirror p=0.5, rotation +/-5 deg, brightness +/-0.10, contrast +/-0.10; mask NEAREST; VAL disabled",
+          "dataset": "MULTI_DOMAIN_ISIC_BUSI_KVASIR_KUB",
+          "experiment_id": "phase20b_shared_deeplabv3plus_fourdomain_seed42_clean_v3",
+          "governance": {
+            "allow_external": false,
+            "allow_test": false,
+            "film": false,
+            "localizer": false,
+            "regional_module": false,
+            "roi_proposal": false,
+            "task_id_as_model_input": false
+          },
+          "input_channel_policy": "RGB_3CH",
+          "input_resolution": 512,
+          "loss": {
+            "bce_weight": 0.5,
+            "dice_epsilon": 1e-06,
+            "dice_weight": 0.5,
+            "name": "bce_dice"
+          },
+          "manifest_version": "phase4_v3",
+          "model": {
+            "base_channels": 32,
+            "in_channels": 3,
+            "name": "DeepLabV3Plus",
+            "out_channels": 1
+          },
+          "optimizer": {
+            "learning_rate": 0.0001,
+            "name": "AdamW",
+            "weight_decay": 0.0001
+          },
+          "parent_phase20a_experiment": "phase20_shared_unetpp_fourdomain_seed42_clean_v3",
+          "phase": 20,
+          "scheduler": {
+            "T_max": 100,
+            "name": "CosineAnnealingLR",
+            "step": "per_epoch_after_train_and_val"
+          },
+          "subphase": "20B",
+          "taxonomy_id": null,
+          "training": {
+            "amp": true,
+            "batch_size": 4,
+            "checkpoint_metric": "phase20_macro_domain_mean_dice_v1",
+            "checkpoint_metric_description": "macro-domain mean VAL Dice (unweighted mean of the four per-domain per-image macro Dice)",
+            "early_stopping_patience": 15,
+            "effective_batch_size": 4,
+            "eval_batch_size": 8,
+            "gradient_accumulation_steps": 1,
+            "max_epochs": 100,
+            "num_workers": 4,
+            "persistent_workers": false,
+            "sampling_policy": "phase20_domain_balanced_uniform_v1",
+            "seed": 42,
+            "threshold": 0.5,
+            "tie_break": "lower validation loss"
+          }
+        },
+        "model_source": "src/models/deeplabv3plus.py",
+        "model_source_sha256": "751a1ead9aca93c7372750924f7483b3de3ad3f5f40edd3a648e9e39bdd77406"
+      },
+      "study_id": "C3_FULL_METHOD_VS_EXTERNAL_BASELINES_V1"
+    },
+    {
+      "architecture_specific_difference": {
+        "parameterization": "mit_style_transformer_encoder_unet_decoder_random_init",
+        "pretrained_weights": false,
+        "regional_modules": false,
+        "task_conditioning": false
+      },
+      "dataset": {
+        "domains": [
+          "ISIC",
+          "BUSI",
+          "KVASIR",
+          "KUB"
+        ],
+        "external_access": false,
+        "manifest_version": "phase4_v3",
+        "task_ids": {
+          "BUSI": 1,
+          "ISIC": 0,
+          "KUB": 3,
+          "KVASIR": 2
+        },
+        "test_access": false,
+        "train_manifest": "manifests/phase4_v3/train.csv",
+        "train_manifest_sha256": "28702fc3a5ff8b950db372f03232d335e3a30b1fc2f21db7cd8c066055826ed6",
+        "train_n": 5832,
+        "val_manifest": "manifests/phase4_v3/val.csv",
+        "val_manifest_sha256": "082c80b2bda63fd73f371f109c34643adf01edaead921643fb2e44993ba53315",
+        "val_n": 808
+      },
+      "model": {
+        "architecture": "mit_style_transformer_encoder_unet_decoder_random_init",
+        "architecture_detail": "random-init MiT-style transformer stages with U-Net decoder",
+        "base_channels": 32,
+        "class_name": "TransformerMiTUNet",
+        "display_name": "Transformer/MiT-style U-Net",
+        "in_channels": 3,
+        "out_channels": 1
+      },
+      "model_key": "transformer_mit_unet",
+      "primary_comparator": "RA-MedFiLM-BARR (FULL)",
+      "protocol": {
+        "path": "reports/planning/c1_film_attribution_v1/protocol.json",
+        "sha256": "531e3eb255a66381201d1aaf49bbe55abfdbe529640f5c584ef100d298087a61"
+      },
+      "recipe": {
+        "amp": true,
+        "augmentation": "canonical SegmentationTransform(train=True), horizontal flip/rotation/brightness/contrast; mask nearest",
+        "batch_size": 4,
+        "channel_policy": "RGB_3CH",
+        "channels": 3,
+        "early_stopping_patience": 15,
+        "eval_batch_size": 8,
+        "loss": {
+          "bce_weight": 0.5,
+          "dice_weight": 0.5,
+          "epsilon": 1e-06,
+          "name": "BCE+soft Dice"
+        },
+        "max_epochs": 100,
+        "model_inputs": "image only; domain/task id is sampling/bookkeeping, never model input",
+        "optimizer": {
+          "learning_rate": 0.0001,
+          "name": "AdamW",
+          "weight_decay": 0.0001
+        },
+        "resolution": 512,
+        "sampling_policy": "phase20_domain_balanced_uniform_v1",
+        "scheduler": {
+          "T_max": 100,
+          "name": "CosineAnnealingLR",
+          "step_after_epoch": true
+        },
+        "seeds": [
+          42,
+          123,
+          3407
+        ],
+        "selection_rule": "phase20_macro_domain_mean_dice_v1",
+        "selection_tie_break": "lower validation loss, then earlier epoch",
+        "source": "C1 frozen protocol recipe; copied for prospective C3 baseline matching",
+        "threshold": 0.5
+      },
+      "role": "EXTERNAL_ARCHITECTURE_BASELINE",
+      "run_mode": "PREPARED_NOT_EXECUTED",
+      "schema": "controlled_c3_run_config_v2",
+      "seed": 42,
+      "source": {
+        "historical_best_epoch": 74,
+        "historical_checkpoint": "checkpoints/phase20b_shared_transformer_mit_unet_fourdomain_seed42_clean_v3/best.pt",
+        "historical_checkpoint_seed": 42,
+        "historical_checkpoint_sha256_recorded": "e2c1fca196348d57e4bc8d8ae0f17d82ff0252142e8d94631f7e0ba7d69149e2",
+        "historical_closure": "reports/audits/phase20b_transformer_mit_unet_training_closure.json",
+        "historical_closure_sha256": "28efc3aad3100dd4b99104b90fe836fb8d1c324036cdfea4d5d6efaa58f59eb7",
+        "historical_config": "experiments/phase20b_shared_transformer_mit_unet_fourdomain_seed42_clean_v3/config.json",
+        "historical_config_sha256": "ea031aa9fb76f1a31e81470882e7dd07b3877d76c579875b50af5ae5864661ff",
+        "historical_experiment": "phase20b_shared_transformer_mit_unet_fourdomain_seed42_clean_v3",
+        "historical_parameter_count_reported": "16,347,777",
+        "historical_recipe": {
+          "architecture": "transformer_mit_style_unet_local_random_init",
+          "augmentation_policy": "src.data.transforms.SegmentationTransform(train=True): horizontal mirror p=0.5, rotation +/-5 deg, brightness +/-0.10, contrast +/-0.10; mask NEAREST; VAL disabled",
+          "dataset": "MULTI_DOMAIN_ISIC_BUSI_KVASIR_KUB",
+          "experiment_id": "phase20b_shared_transformer_mit_unet_fourdomain_seed42_clean_v3",
+          "governance": {
+            "allow_external": false,
+            "allow_test": false,
+            "film": false,
+            "localizer": false,
+            "regional_module": false,
+            "roi_proposal": false,
+            "task_id_as_model_input": false
+          },
+          "input_channel_policy": "RGB_3CH",
+          "input_resolution": 512,
+          "loss": {
+            "bce_weight": 0.5,
+            "dice_epsilon": 1e-06,
+            "dice_weight": 0.5,
+            "name": "bce_dice"
+          },
+          "manifest_version": "phase4_v3",
+          "model": {
+            "base_channels": 32,
+            "in_channels": 3,
+            "name": "TransformerMiTUNet",
+            "out_channels": 1
+          },
+          "optimizer": {
+            "learning_rate": 0.0001,
+            "name": "AdamW",
+            "weight_decay": 0.0001
+          },
+          "parent_phase20a_experiment": "phase20_shared_unetpp_fourdomain_seed42_clean_v3",
+          "phase": 20,
+          "scheduler": {
+            "T_max": 100,
+            "name": "CosineAnnealingLR",
+            "step": "per_epoch_after_train_and_val"
+          },
+          "subphase": "20B",
+          "taxonomy_id": null,
+          "training": {
+            "amp": true,
+            "batch_size": 4,
+            "checkpoint_metric": "phase20_macro_domain_mean_dice_v1",
+            "checkpoint_metric_description": "macro-domain mean VAL Dice (unweighted mean of the four per-domain per-image macro Dice)",
+            "early_stopping_patience": 15,
+            "effective_batch_size": 4,
+            "eval_batch_size": 8,
+            "gradient_accumulation_steps": 1,
+            "max_epochs": 100,
+            "num_workers": 4,
+            "persistent_workers": false,
+            "sampling_policy": "phase20_domain_balanced_uniform_v1",
+            "seed": 42,
+            "threshold": 0.5,
+            "tie_break": "lower validation loss"
+          }
+        },
+        "model_source": "src/models/transformer_mit_unet.py",
+        "model_source_sha256": "46c445adf0aaa190b022a7782af3dd0646f29b1978db0cf297cc38eed3d47641"
+      },
+      "study_id": "C3_FULL_METHOD_VS_EXTERNAL_BASELINES_V1"
+    },
+    {
+      "architecture_specific_difference": {
+        "parameterization": "mit_style_transformer_encoder_unet_decoder_random_init",
+        "pretrained_weights": false,
+        "regional_modules": false,
+        "task_conditioning": false
+      },
+      "dataset": {
+        "domains": [
+          "ISIC",
+          "BUSI",
+          "KVASIR",
+          "KUB"
+        ],
+        "external_access": false,
+        "manifest_version": "phase4_v3",
+        "task_ids": {
+          "BUSI": 1,
+          "ISIC": 0,
+          "KUB": 3,
+          "KVASIR": 2
+        },
+        "test_access": false,
+        "train_manifest": "manifests/phase4_v3/train.csv",
+        "train_manifest_sha256": "28702fc3a5ff8b950db372f03232d335e3a30b1fc2f21db7cd8c066055826ed6",
+        "train_n": 5832,
+        "val_manifest": "manifests/phase4_v3/val.csv",
+        "val_manifest_sha256": "082c80b2bda63fd73f371f109c34643adf01edaead921643fb2e44993ba53315",
+        "val_n": 808
+      },
+      "model": {
+        "architecture": "mit_style_transformer_encoder_unet_decoder_random_init",
+        "architecture_detail": "random-init MiT-style transformer stages with U-Net decoder",
+        "base_channels": 32,
+        "class_name": "TransformerMiTUNet",
+        "display_name": "Transformer/MiT-style U-Net",
+        "in_channels": 3,
+        "out_channels": 1
+      },
+      "model_key": "transformer_mit_unet",
+      "primary_comparator": "RA-MedFiLM-BARR (FULL)",
+      "protocol": {
+        "path": "reports/planning/c1_film_attribution_v1/protocol.json",
+        "sha256": "531e3eb255a66381201d1aaf49bbe55abfdbe529640f5c584ef100d298087a61"
+      },
+      "recipe": {
+        "amp": true,
+        "augmentation": "canonical SegmentationTransform(train=True), horizontal flip/rotation/brightness/contrast; mask nearest",
+        "batch_size": 4,
+        "channel_policy": "RGB_3CH",
+        "channels": 3,
+        "early_stopping_patience": 15,
+        "eval_batch_size": 8,
+        "loss": {
+          "bce_weight": 0.5,
+          "dice_weight": 0.5,
+          "epsilon": 1e-06,
+          "name": "BCE+soft Dice"
+        },
+        "max_epochs": 100,
+        "model_inputs": "image only; domain/task id is sampling/bookkeeping, never model input",
+        "optimizer": {
+          "learning_rate": 0.0001,
+          "name": "AdamW",
+          "weight_decay": 0.0001
+        },
+        "resolution": 512,
+        "sampling_policy": "phase20_domain_balanced_uniform_v1",
+        "scheduler": {
+          "T_max": 100,
+          "name": "CosineAnnealingLR",
+          "step_after_epoch": true
+        },
+        "seeds": [
+          42,
+          123,
+          3407
+        ],
+        "selection_rule": "phase20_macro_domain_mean_dice_v1",
+        "selection_tie_break": "lower validation loss, then earlier epoch",
+        "source": "C1 frozen protocol recipe; copied for prospective C3 baseline matching",
+        "threshold": 0.5
+      },
+      "role": "EXTERNAL_ARCHITECTURE_BASELINE",
+      "run_mode": "PREPARED_NOT_EXECUTED",
+      "schema": "controlled_c3_run_config_v2",
+      "seed": 123,
+      "source": {
+        "historical_best_epoch": 74,
+        "historical_checkpoint": "checkpoints/phase20b_shared_transformer_mit_unet_fourdomain_seed42_clean_v3/best.pt",
+        "historical_checkpoint_seed": 42,
+        "historical_checkpoint_sha256_recorded": "e2c1fca196348d57e4bc8d8ae0f17d82ff0252142e8d94631f7e0ba7d69149e2",
+        "historical_closure": "reports/audits/phase20b_transformer_mit_unet_training_closure.json",
+        "historical_closure_sha256": "28efc3aad3100dd4b99104b90fe836fb8d1c324036cdfea4d5d6efaa58f59eb7",
+        "historical_config": "experiments/phase20b_shared_transformer_mit_unet_fourdomain_seed42_clean_v3/config.json",
+        "historical_config_sha256": "ea031aa9fb76f1a31e81470882e7dd07b3877d76c579875b50af5ae5864661ff",
+        "historical_experiment": "phase20b_shared_transformer_mit_unet_fourdomain_seed42_clean_v3",
+        "historical_parameter_count_reported": "16,347,777",
+        "historical_recipe": {
+          "architecture": "transformer_mit_style_unet_local_random_init",
+          "augmentation_policy": "src.data.transforms.SegmentationTransform(train=True): horizontal mirror p=0.5, rotation +/-5 deg, brightness +/-0.10, contrast +/-0.10; mask NEAREST; VAL disabled",
+          "dataset": "MULTI_DOMAIN_ISIC_BUSI_KVASIR_KUB",
+          "experiment_id": "phase20b_shared_transformer_mit_unet_fourdomain_seed42_clean_v3",
+          "governance": {
+            "allow_external": false,
+            "allow_test": false,
+            "film": false,
+            "localizer": false,
+            "regional_module": false,
+            "roi_proposal": false,
+            "task_id_as_model_input": false
+          },
+          "input_channel_policy": "RGB_3CH",
+          "input_resolution": 512,
+          "loss": {
+            "bce_weight": 0.5,
+            "dice_epsilon": 1e-06,
+            "dice_weight": 0.5,
+            "name": "bce_dice"
+          },
+          "manifest_version": "phase4_v3",
+          "model": {
+            "base_channels": 32,
+            "in_channels": 3,
+            "name": "TransformerMiTUNet",
+            "out_channels": 1
+          },
+          "optimizer": {
+            "learning_rate": 0.0001,
+            "name": "AdamW",
+            "weight_decay": 0.0001
+          },
+          "parent_phase20a_experiment": "phase20_shared_unetpp_fourdomain_seed42_clean_v3",
+          "phase": 20,
+          "scheduler": {
+            "T_max": 100,
+            "name": "CosineAnnealingLR",
+            "step": "per_epoch_after_train_and_val"
+          },
+          "subphase": "20B",
+          "taxonomy_id": null,
+          "training": {
+            "amp": true,
+            "batch_size": 4,
+            "checkpoint_metric": "phase20_macro_domain_mean_dice_v1",
+            "checkpoint_metric_description": "macro-domain mean VAL Dice (unweighted mean of the four per-domain per-image macro Dice)",
+            "early_stopping_patience": 15,
+            "effective_batch_size": 4,
+            "eval_batch_size": 8,
+            "gradient_accumulation_steps": 1,
+            "max_epochs": 100,
+            "num_workers": 4,
+            "persistent_workers": false,
+            "sampling_policy": "phase20_domain_balanced_uniform_v1",
+            "seed": 42,
+            "threshold": 0.5,
+            "tie_break": "lower validation loss"
+          }
+        },
+        "model_source": "src/models/transformer_mit_unet.py",
+        "model_source_sha256": "46c445adf0aaa190b022a7782af3dd0646f29b1978db0cf297cc38eed3d47641"
+      },
+      "study_id": "C3_FULL_METHOD_VS_EXTERNAL_BASELINES_V1"
+    },
+    {
+      "architecture_specific_difference": {
+        "parameterization": "mit_style_transformer_encoder_unet_decoder_random_init",
+        "pretrained_weights": false,
+        "regional_modules": false,
+        "task_conditioning": false
+      },
+      "dataset": {
+        "domains": [
+          "ISIC",
+          "BUSI",
+          "KVASIR",
+          "KUB"
+        ],
+        "external_access": false,
+        "manifest_version": "phase4_v3",
+        "task_ids": {
+          "BUSI": 1,
+          "ISIC": 0,
+          "KUB": 3,
+          "KVASIR": 2
+        },
+        "test_access": false,
+        "train_manifest": "manifests/phase4_v3/train.csv",
+        "train_manifest_sha256": "28702fc3a5ff8b950db372f03232d335e3a30b1fc2f21db7cd8c066055826ed6",
+        "train_n": 5832,
+        "val_manifest": "manifests/phase4_v3/val.csv",
+        "val_manifest_sha256": "082c80b2bda63fd73f371f109c34643adf01edaead921643fb2e44993ba53315",
+        "val_n": 808
+      },
+      "model": {
+        "architecture": "mit_style_transformer_encoder_unet_decoder_random_init",
+        "architecture_detail": "random-init MiT-style transformer stages with U-Net decoder",
+        "base_channels": 32,
+        "class_name": "TransformerMiTUNet",
+        "display_name": "Transformer/MiT-style U-Net",
+        "in_channels": 3,
+        "out_channels": 1
+      },
+      "model_key": "transformer_mit_unet",
+      "primary_comparator": "RA-MedFiLM-BARR (FULL)",
+      "protocol": {
+        "path": "reports/planning/c1_film_attribution_v1/protocol.json",
+        "sha256": "531e3eb255a66381201d1aaf49bbe55abfdbe529640f5c584ef100d298087a61"
+      },
+      "recipe": {
+        "amp": true,
+        "augmentation": "canonical SegmentationTransform(train=True), horizontal flip/rotation/brightness/contrast; mask nearest",
+        "batch_size": 4,
+        "channel_policy": "RGB_3CH",
+        "channels": 3,
+        "early_stopping_patience": 15,
+        "eval_batch_size": 8,
+        "loss": {
+          "bce_weight": 0.5,
+          "dice_weight": 0.5,
+          "epsilon": 1e-06,
+          "name": "BCE+soft Dice"
+        },
+        "max_epochs": 100,
+        "model_inputs": "image only; domain/task id is sampling/bookkeeping, never model input",
+        "optimizer": {
+          "learning_rate": 0.0001,
+          "name": "AdamW",
+          "weight_decay": 0.0001
+        },
+        "resolution": 512,
+        "sampling_policy": "phase20_domain_balanced_uniform_v1",
+        "scheduler": {
+          "T_max": 100,
+          "name": "CosineAnnealingLR",
+          "step_after_epoch": true
+        },
+        "seeds": [
+          42,
+          123,
+          3407
+        ],
+        "selection_rule": "phase20_macro_domain_mean_dice_v1",
+        "selection_tie_break": "lower validation loss, then earlier epoch",
+        "source": "C1 frozen protocol recipe; copied for prospective C3 baseline matching",
+        "threshold": 0.5
+      },
+      "role": "EXTERNAL_ARCHITECTURE_BASELINE",
+      "run_mode": "PREPARED_NOT_EXECUTED",
+      "schema": "controlled_c3_run_config_v2",
+      "seed": 3407,
+      "source": {
+        "historical_best_epoch": 74,
+        "historical_checkpoint": "checkpoints/phase20b_shared_transformer_mit_unet_fourdomain_seed42_clean_v3/best.pt",
+        "historical_checkpoint_seed": 42,
+        "historical_checkpoint_sha256_recorded": "e2c1fca196348d57e4bc8d8ae0f17d82ff0252142e8d94631f7e0ba7d69149e2",
+        "historical_closure": "reports/audits/phase20b_transformer_mit_unet_training_closure.json",
+        "historical_closure_sha256": "28efc3aad3100dd4b99104b90fe836fb8d1c324036cdfea4d5d6efaa58f59eb7",
+        "historical_config": "experiments/phase20b_shared_transformer_mit_unet_fourdomain_seed42_clean_v3/config.json",
+        "historical_config_sha256": "ea031aa9fb76f1a31e81470882e7dd07b3877d76c579875b50af5ae5864661ff",
+        "historical_experiment": "phase20b_shared_transformer_mit_unet_fourdomain_seed42_clean_v3",
+        "historical_parameter_count_reported": "16,347,777",
+        "historical_recipe": {
+          "architecture": "transformer_mit_style_unet_local_random_init",
+          "augmentation_policy": "src.data.transforms.SegmentationTransform(train=True): horizontal mirror p=0.5, rotation +/-5 deg, brightness +/-0.10, contrast +/-0.10; mask NEAREST; VAL disabled",
+          "dataset": "MULTI_DOMAIN_ISIC_BUSI_KVASIR_KUB",
+          "experiment_id": "phase20b_shared_transformer_mit_unet_fourdomain_seed42_clean_v3",
+          "governance": {
+            "allow_external": false,
+            "allow_test": false,
+            "film": false,
+            "localizer": false,
+            "regional_module": false,
+            "roi_proposal": false,
+            "task_id_as_model_input": false
+          },
+          "input_channel_policy": "RGB_3CH",
+          "input_resolution": 512,
+          "loss": {
+            "bce_weight": 0.5,
+            "dice_epsilon": 1e-06,
+            "dice_weight": 0.5,
+            "name": "bce_dice"
+          },
+          "manifest_version": "phase4_v3",
+          "model": {
+            "base_channels": 32,
+            "in_channels": 3,
+            "name": "TransformerMiTUNet",
+            "out_channels": 1
+          },
+          "optimizer": {
+            "learning_rate": 0.0001,
+            "name": "AdamW",
+            "weight_decay": 0.0001
+          },
+          "parent_phase20a_experiment": "phase20_shared_unetpp_fourdomain_seed42_clean_v3",
+          "phase": 20,
+          "scheduler": {
+            "T_max": 100,
+            "name": "CosineAnnealingLR",
+            "step": "per_epoch_after_train_and_val"
+          },
+          "subphase": "20B",
+          "taxonomy_id": null,
+          "training": {
+            "amp": true,
+            "batch_size": 4,
+            "checkpoint_metric": "phase20_macro_domain_mean_dice_v1",
+            "checkpoint_metric_description": "macro-domain mean VAL Dice (unweighted mean of the four per-domain per-image macro Dice)",
+            "early_stopping_patience": 15,
+            "effective_batch_size": 4,
+            "eval_batch_size": 8,
+            "gradient_accumulation_steps": 1,
+            "max_epochs": 100,
+            "num_workers": 4,
+            "persistent_workers": false,
+            "sampling_policy": "phase20_domain_balanced_uniform_v1",
+            "seed": 42,
+            "threshold": 0.5,
+            "tie_break": "lower validation loss"
+          }
+        },
+        "model_source": "src/models/transformer_mit_unet.py",
+        "model_source_sha256": "46c445adf0aaa190b022a7782af3dd0646f29b1978db0cf297cc38eed3d47641"
+      },
+      "study_id": "C3_FULL_METHOD_VS_EXTERNAL_BASELINES_V1"
+    }
+  ],
+  "external_baseline_keys": [
+    "unet",
+    "unetpp",
+    "attention_unet",
+    "deeplabv3plus",
+    "transformer_mit_unet"
+  ],
+  "planned_real_runs": 18,
+  "primary_model": "RA-MedFiLM-BARR (FULL)",
+  "primary_model_key": "ra_medfilm_barr_full",
+  "protocol_sha256": "531e3eb255a66381201d1aaf49bbe55abfdbe529640f5c584ef100d298087a61",
+  "real_execution": "BLOCKED_PENDING_SEPARATE_AUTHORIZATION",
+  "schema": "controlled_c3_experiment_plan_v2",
+  "seeds": [
+    42,
+    123,
+    3407
+  ],
+  "status": "PREPARED_NOT_EXECUTED",
+  "training_priority": "C1 attribution remains separate; full-model C3 requires compatible same-seed G/R/B/S bundles before comparison."
+}

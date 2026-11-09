@@ -1,0 +1,16 @@
+phase,artifact_path,sha256,population,contains_raw_pixels,contains_gt,contains_predictions,contains_deep_features,contains_router_features,contains_route_decisions,historical_role,phase35_reuse_eligibility,exists
+21,reports/audits/phase21_task_conditioning_diagnostic.json,8084d339e02aeb866ca920fd0cf3e452fcee75e2a0ad24966a763c16bbb8a120,VAL808,no,no,no,yes,no,no,task-conditioning diagnostic,reuse,True
+21,reports/tables/phase21_film_parameter_summary.csv,5ce63c95ce38f0a60d80211248ed3b049fb0282c6400ffedb3fe8d8024eeccf3,VAL808,no,no,no,no,no,no,"FiLM per-(task,site,parameter) summary",reuse_summary_only,True
+21,reports/tables/phase21_gallery_selection_64.csv,2bc7c16286999ced374840cc987dcd352c3e546668322a9ccc4d1e8e8a097fd9,VAL808 subset,no,no,no,no,no,no,frozen 64-case gallery selection,reuse_primary_cohort,True
+21,reports/audits/phase21_prediction_manifest.json,bee34b857321aaa8a543adac59ee37f0e156264f8ae4cd78a9bb376b040ab422,VAL808,no,no,yes,no,no,no,frozen VAL prediction manifest,reuse,True
+21,reports/audits/phase21_global_medfilm_architecture_binding.json,21e2c195c8da33da761965817bab99f0eeec5fa84a846d05ae765b9567017e78,n/a,no,no,no,no,no,no,G architecture binding,reuse,True
+24,reports/audits/phase24_roi_feature_mapping_contract_v1_2.json,64af69764507e712b4500c31dc741b977d773e6734810f1f4f28e3af7ca213a4,n/a,no,no,no,no,no,no,ROI/proposal geometry contract,reuse,True
+25B,reports/tables/phase25b_feature_schema.csv,da76aa34f14006146f46ca799f173378274d8c9d0792dc18edb30711a2486dd4,n/a,no,no,no,no,yes,no,202-D router feature schema,reuse,True
+25D,checkpoints/phase25d_barr_benefit_router_v1_2_1_seed42/final/final.pt,8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b,n/a,no,no,no,no,no,no,final B_phi model authority,reuse_model_authority,True
+25F,scripts/analysis/phase25f_execution_common.py,98cf958a377e2de30e0b67e63fd56bafea418b2b061a362ee7284e852012cd2e,n/a,no,no,no,no,no,no,S_omega authority,reuse_if_relevant,True
+27,reports/audits/phase27_reproducibility_contract_v1_1.json,daf9e93b9bd23fb131b9918c3dd3b9c5620440406ca5c6eac2f4e01507b6937c,VAL808,no,no,no,no,no,no,VAL808 frozen global inference semantics,reuse,True
+29,data_cache/phase29_val808_shared_fixed_g_v1_1_canonical/val808_global_prob_f16.npy,cc6c54af986f56b4aba9265405ffeba4f6cac582eeff00fe6b0894429e7d3f13,VAL808,no,no,yes,no,no,no,frozen global probability cache,reuse,True
+29,data_cache/phase29_val808_shared_fixed_g_v1_1_canonical/val808_router_deep_features_f32.npy,a1527411e6ae5dd41dd6db91ca018803e936724afdc297576fb14b18cd6aadc4,VAL808,no,no,no,yes,yes,no,192-D router deep features,reuse,True
+29,data_cache/phase29_val808_shared_fixed_g_v1_1_canonical/val808_router_scalars_f32.npy,3c789c981680ae3ac80bf38c791967d6a130bc7fc20def94b0f8bcdcedd51cdb,VAL808,no,no,no,no,yes,no,10 GT-free router scalars,reuse,True
+29,data_cache/phase29_val808_shared_fixed_g_v1_1_canonical/val808_roi_geometry.json,7cb4bc4a079534aafa138f7798e87e5e8d6d9d67e0f3ce611bba97e738ce81dd,VAL808,no,no,no,no,no,no,ROI-0.30 geometry per sample,reuse,True
+30,reports/tables/phase30_router_holdout_scored_results.csv,dbc9f5f3867f0607cfc0a778736a92b9d6de6e27811fa382ad6d1cb0b2a04568,ROUTER_HOLDOUT,no,no,no,no,no,yes,Phase30 holdout evidence,METADATA_ONLY_PROVENANCE,True

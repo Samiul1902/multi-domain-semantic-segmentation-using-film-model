@@ -1,0 +1,7 @@
+metric,module,function,signature,foreground_semantics,empty_handling,epsilon,threshold,version,notes
+dice,src.metrics.segmentation,binary_metrics,"(logits, targets, threshold=0.5, epsilon=1e-07)",logits > threshold (sigmoid),"epsilon-smoothed, defined for empty masks",1e-07,0.5,v1,not retuned in Part 1A
+iou,src.metrics.segmentation,binary_metrics,"(logits, targets, threshold=0.5, epsilon=1e-07)",logits > threshold (sigmoid),epsilon-smoothed,1e-07,0.5,v1,same call as dice
+precision,src.metrics.segmentation,binary_metrics,"(logits, targets, threshold=0.5, epsilon=1e-07)",logits > threshold (sigmoid),epsilon-smoothed,1e-07,0.5,v1,same call as dice
+recall,src.metrics.segmentation,binary_metrics,"(logits, targets, threshold=0.5, epsilon=1e-07)",logits > threshold (sigmoid),epsilon-smoothed,1e-07,0.5,v1,same call as dice
+hd95,src.metrics.segmentation,hd95,"(prediction, target, empty_prediction_penalty=None)",boolean masks,explicit hd95_valid flag; NaN or supplied penalty; never 0,,,v1,8-connected boundary extraction
+object_recall,src.metrics.object_metrics,object_metrics,"(prediction, target, minimum_overlap_pixels=1)",prediction > 0 and target > 0,NaN recall when no GT components,,,phase14_authoritative,"connectivity=8, overlap-based, minimum_overlap_pixels=1"

@@ -1,0 +1,21 @@
+field,historical_v2,proposed_clean_v3,change_reason,scientifically_material,supervisor_decision_required
+oracle_unit,PER_COMPONENT_BBOX,PER_COMPONENT_BBOX,historical design is scientifically valid,False,False
+connectivity,8,8,unchanged,False,False
+bbox_space,ORIGINAL_NATIVE,ORIGINAL_NATIVE,unchanged,False,False
+crop_margin_rule,round(margin * bbox_dim); primary 0.25,round(margin * bbox_dim); primary 0.25 (predeclared),unchanged; keep predeclared primary margin,False,False
+square_or_aspect_rule,"SQUARE (side = max(exp_h, exp_w))","SQUARE (side = max(exp_h, exp_w))",unchanged,False,False
+min_crop_size,none enforced,none enforced,unchanged,False,False
+boundary_handling,clip to image + zero-pad to side,clip to image + zero-pad to side,unchanged,False,False
+regional_input_resolution,512,512,unchanged,False,False
+image_interpolation,BILINEAR,BILINEAR,unchanged,False,False
+mask_interpolation,N/A (native GT evaluation),N/A (native GT evaluation),unchanged,False,False
+mapping_back_rule,"restore prob to (side,side) bilinear; strip pad; place at clip coords","restore prob to (side,side) bilinear in FLOAT (no uint8 quantisation); strip pad; place at clip coords",removes an undocumented precision loss; improves reproducibility,True,True
+multi_component_rule,one square crop per native GT component,one square crop per native GT component,unchanged,False,False
+multiple_crop_fusion_rule,pixelwise MAX of restored component probabilities,pixelwise MAX of restored component probabilities,unchanged,False,False
+global_outside_crop_rule,zeros outside crop (global prediction NOT retained),"PROPOSE: retain global prediction outside crop (regional-only inside), reported BOTH ways",historical zeros outside crop makes oracle mask crop-only; clean-v3 should separate the regional effect from the global baseline it is compared against,True,True
+prediction_threshold,0.5,0.5,unchanged,False,False
+model_scope,UNet++ only,ALL FOUR clean-v3 baselines,SR-1 requires architecture-general test,True,True
+manifest_version,phase4_v2,phase4_v3,clean governance,False,False
+taxonomy,kub_size_v1,kub_size_clean_v3_v1,clean governance,False,False
+primary_population,FULL_FIELD 106 (v2),FULL_FIELD 103 (clean-v3),clean-v3 population,False,False
+roi_acquisition_cases,excluded,excluded (observational context only),unchanged,False,False

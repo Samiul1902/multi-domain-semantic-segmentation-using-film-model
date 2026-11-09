@@ -1,0 +1,7 @@
+model_key,display_name,params,params_expected,params_match,macs,gmacs,gflops_2x,gmacs_per_mparam,task_ids_passed,input_shape,device,method,params_rank,gmacs_rank,params_vs_medfilm_x,gmacs_vs_medfilm_x
+global_medfilm,Global MedFiLM,3523001,3523001,True,31551740928,31.5517,63.1035,8.9559,True,1x3x512x512,cpu,analytical Conv2d/Linear count (lower bound),1,1,1.0,1.0
+unet,U-Net,7763041,7763041,True,46137344000,46.1373,92.2747,5.9432,False,1x3x512x512,cpu,analytical Conv2d/Linear count (lower bound),2,2,2.204,1.462
+attention_unet,Attention U-Net,7851285,7851285,True,47218950144,47.219,94.4379,6.0142,False,1x3x512x512,cpu,analytical Conv2d/Linear count (lower bound),3,3,2.229,1.497
+deeplabv3plus,DeepLabV3+,40347041,40347041,True,69139431424,69.1394,138.2789,1.7136,False,1x3x512x512,cpu,analytical Conv2d/Linear count (lower bound),6,4,11.452,2.191
+transformer_mit_unet,Transformer/MiT,16347777,16347777,True,99098624000,99.0986,198.1972,6.0619,False,1x3x512x512,cpu,analytical Conv2d/Linear count (lower bound),5,5,4.64,3.141
+unetpp,U-Net++,9159681,9159681,True,137942269952,137.9423,275.8845,15.0597,False,1x3x512x512,cpu,analytical Conv2d/Linear count (lower bound),4,6,2.6,4.372

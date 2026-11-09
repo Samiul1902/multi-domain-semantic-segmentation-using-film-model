@@ -1,0 +1,18 @@
+metric,definition,unit,role,historical_status
+component_coverage,component pixels inside the best proposal ROI / total component pixels,fraction,primary,historical
+covered90,best coverage >= 0.90,bool,PRIMARY localization hit,historical
+covered50,best coverage >= 0.50,bool,secondary,historical
+any_overlap,best coverage > 0,bool,secondary,historical
+overall_recall90,covered90 components / all GT components,fraction,primary aggregate,historical
+size_stratum_recall90,covered90 components within TINY/SMALL/MEDIUM/LARGE / stratum total,fraction,primary stratified,historical
+hard_tiny_recovered90,frozen globally-missed TINY components recovered@90,count,gate criterion A,historical (set must be re-derived clean-v3)
+global_empty_covered90,frozen global-empty images with >= 1 component covered@90,count,gate criterion B,historical (set must be re-derived clean-v3)
+multicomponent_recall90,covered90 components within multi-component images / multi-component total,fraction,secondary,historical
+mean_proposals_per_image,mean proposal count per image,count,efficiency / gate criterion F,historical
+mean_roi_area_fraction,mean union ROI area fraction,fraction,efficiency / gate criterion E,historical
+p90_p95_max_roi_area_fraction,upper-tail union ROI area fractions,fraction,descriptive,historical
+zero_proposal_images,images with no proposal,count,descriptive,historical
+mean_max_heatmap_prob,mean of the per-image maximum heatmap probability,probability,diagnostic (detects prior-collapse),historical
+proposal_precision,proposals overlapping >= 1 GT component / all proposals,fraction,PROPOSED ADDITION for clean-v3 (proposal precision),NEW — not reported historically
+unmatched_proposals_per_image,proposals overlapping no GT component per image,count,PROPOSED ADDITION for clean-v3,NEW — not reported historically
+localizer_dice,NOT DEFINED — Phase 13 is localization-only; segmentation Dice is never a localizer selection or reporting target,n/a,EXCLUDED BY DESIGN,historical (deliberately absent)

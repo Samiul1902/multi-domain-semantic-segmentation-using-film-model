@@ -1,0 +1,12 @@
+field,description,classification,rationale,phase19_disposition
+dataset,Dataset identity,CONDITIONING_ALLOWED,Deployment-available: the serving system knows which scanner/dataset produced the image.,May be used as a FiLM task-conditioning input in Phase 24+.
+task_id,Integer task encoding,CONDITIONING_ALLOWED,Deterministic encoding of `dataset`; no annotation information.,Canonical FiLM conditioning key.
+split,TRAIN/VAL/TEST marker,REPORTING_ONLY,"Governance label, not an image property. Leaks nothing but is not a model input.",Used only to scope loaders and reporting.
+sample_id,Stable sample hash,REPORTING_ONLY,Identifier for joins/traceability.,Never a model input.
+patient_id,Patient grouping key,FORBIDDEN_AS_INPUT,Identifies the subject; using it would leak subject identity and is unavailable at inference.,Used ONLY for leakage-safe grouping where available.
+case_id,Case grouping key,FORBIDDEN_AS_INPUT,Grouping key; not an image property.,Used ONLY for leakage-safe grouping where available.
+category,Anatomical / diagnostic category (KUB only),REPORTING_ONLY,KUB Kidney/Bladder/Ureteric labels are annotation-derived ground truth. They are NOT legitimately available at inference time.,May be reported for stratification. MUST NOT condition the model unless a later supervisor-approved protocol proves availability at inference.
+image_path,Native image path,REPORTING_ONLY,Filesystem locator; also encodes acquisition regime for KUB (ROI vs FULL_FIELD).,Path-derived regime may be used for stratified REPORTING only; not a model input.
+mask_path,Native mask path,FORBIDDEN_AS_INPUT,Locator for the ground-truth mask. Any use at inference is leakage.,Evaluation only.
+width / height,Native geometry,REPORTING_ONLY,"Derived from the image, so legitimately available, but the harmonization contract resizes to a canonical size; native size is retained for audit only.",Not a conditioning input under the frozen size policy.
+fg_fraction,Foreground prevalence,FORBIDDEN_AS_INPUT,Computed from the ground-truth mask. Using it conditions on the label.,Reporting/stratification only.

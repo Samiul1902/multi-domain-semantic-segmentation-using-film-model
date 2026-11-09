@@ -1,0 +1,6 @@
+| stratum | patients |
+| --- | --- |
+| TINY | 128 |
+| SMALL | 141 |
+| MEDIUM | 127 |
+| LARGE | 89 |

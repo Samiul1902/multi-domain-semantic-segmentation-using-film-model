@@ -1,0 +1,24 @@
+﻿requirement_id,requirement,test_file,test_function,assertion_or_evidence,status
+1,FULL_FIELD train count=771,tests/test_phase14_part1.py,test_population_counts,assert len(train_ds.samples) == 771,PASS
+2,FULL_FIELD val count=106,tests/test_phase14_part1.py,test_population_counts,assert len(val_ds.samples) == 106,PASS
+3,train component count=1162,tests/test_phase14_part1.py,test_population_counts,assert train_comps == 1162,PASS
+4,val component count=156,tests/test_phase14_part1.py,test_population_counts,assert val_comps == 156,PASS
+6,base positives=1162,tests/test_phase14_part1.py,test_crop_dataset_composition,assert bases == 1162,PASS
+7,perturbed positives=2324,tests/test_phase14_part1.py,test_crop_dataset_composition,assert perts == 2324,PASS
+8,negatives=1542,tests/test_phase14_part1.py,test_crop_dataset_composition,assert negs == 1542,PASS
+9,epoch examples=5028,tests/test_phase14_part1.py,test_crop_dataset_composition,assert len(train_ds) == 5028,PASS
+10,all negatives have zero GT foreground,tests/test_phase14_part1.py,test_crop_dataset_composition,assert mask_arr[cy1:cy2, cx1:cx2].sum() == 0,PASS
+11,masks remain binary,tests/test_phase14_part1.py,test_invariants,assert all(val in [0.0, 1.0]),PASS
+12,split isolation (no VAL in TRAIN),tests/test_phase14_part1.py,test_explicit_split_isolation,assert len(train_ids.intersection(val_ids)) == 0,PASS
+13,no TEST in TRAIN,tests/test_phase14_part1.py,test_explicit_split_isolation,assert len(train_ids.intersection(test_ids)) == 0,PASS
+15,context margin applied once,tests/test_phase14_part1.py,test_geometry_and_resize,assert geom['margin'] == 0.20,PASS
+17,oracle margin=0.20,tests/test_phase14_part1.py,test_geometry_and_resize,assert val_ds.margin == 0.20,PASS
+20,restoration bilinear,tests/test_phase14_part1.py,test_restoration_and_fusion,assert canvas.shape == original_shape,PASS
+21,zero proposals global unchanged,tests/test_phase14_part1.py,test_restoration_and_fusion,assert np.array_equal(fused_zero, global_prob),PASS
+22,regional overlap uses MAX,tests/test_phase14_part1.py,test_restoration_and_fusion,assert fused[18, 18] == 1.0,PASS
+23,regional replacement suppresses global FP,tests/test_phase14_part1.py,test_restoration_and_fusion,assert fused[5, 5] == 0.9,PASS
+28,model param count=7762465,tests/test_phase14_part1.py,test_model_and_loss,assert params == 7762465,PASS
+29,loss finite on empty target,tests/test_phase14_part1.py,test_model_and_loss,assert torch.isfinite(loss_fn(logits, empty_target)),PASS
+30,loss finite on positive target,tests/test_phase14_part1.py,test_model_and_loss,assert torch.isfinite(loss_fn(logits, pos_target)),PASS
+33,global checkpoint SHA exact,tests/test_phase14_part1.py,test_checkpoint_shas,assert get_sha256(global_pt) == '4bff...',PASS
+34,Stage-4D checkpoint SHA exact,tests/test_phase14_part1.py,test_checkpoint_shas,assert get_sha256(stage4d_pt) == 'ece9...',PASS

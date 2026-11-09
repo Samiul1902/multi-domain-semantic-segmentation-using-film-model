@@ -1,0 +1,9 @@
+field,kind,shape,dtype,range,semantics,governance_class
+image,tensor,"(C, H, W)",float32,"[0,1]","C in {1,3} per channel policy; H=W=canonical size",CONDITIONING_INPUT
+mask,tensor,"(1, H, W)",float32,"{0,1}",canonical foreground = (mask > 0),TARGET
+dataset,str,scalar,-,-,canonical dataset name,CONDITIONING_ALLOWED
+task_id,int64,scalar,-,-,authoritative task registry,CONDITIONING_ALLOWED
+sample_id,str,scalar,-,-,stable hash,REPORTING_ONLY
+split,str,scalar,-,-,TRAIN/VAL only,REPORTING_ONLY
+image_native_size,"tuple[int,int]","(W,H)",-,-,"pre-resize native size, audit only",REPORTING_ONLY
+resize_scale,float,scalar,-,-,"aspect-preserving scale = min(size/w, size/h)",REPORTING_ONLY

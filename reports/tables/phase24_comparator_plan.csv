@@ -1,0 +1,12 @@
+comparator_id,name,compute_order,uses_GT,deployable,role,notes
+C1,GLOBAL_ONLY,1x (global forward only),false,yes,lower compute anchor,defines the preservation reference
+C2,ALWAYS_REFINE,1x + refinement always,false,yes,upper compute anchor,"maximum action, no routing"
+C3,RANDOM_ROUTING,budget-matched,false,yes,null routing baseline,"seeded, budget-matched"
+C4,ENTROPY_ROUTING,budget-matched,false,yes,simple GT-free uncertainty proxy,occupies the 'uncertainty' objection
+C5,MARGIN_ROUTING,budget-matched,false,yes,simple GT-free margin proxy,second simple proxy
+C6,PREDICTED_ROI_SIZE_ROUTING,budget-matched,false,yes,simple GT-free geometry proxy,tests the 'just use ROI size' objection
+C7,LEARNED_PAIRED_GAIN_ROUTING,budget-matched,false,yes,primary proposed method (H1 test),the load-bearing comparator
+C8,LEARNED_GAIN_PLUS_RESOURCE_COST,budget-matched,false,yes,adds explicit lambda*C term (C6),tests H5
+C9,LEARNED_GAIN_PLUS_RESOURCE_COST_PLUS_POST_SAFETY,budget-matched,false,yes,adds S_omega preservation,tests H3
+C10,ORACLE_BENEFIT_ROUTING,budget-matched,true,NO,upper bound only; not deployable,uses true DeltaDice; never a result
+C11,JFS_LIKE_POST_HOC_SELECTOR (optional),full refinement compute ALWAYS PAID,false,yes,post-hoc comparison point,"if included, must record FULL refinement compute because the expensive operation already occurred"

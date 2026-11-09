@@ -1,0 +1,10 @@
+\begin{tabular}{lrrlrrllrrrllrrll}
+\toprule
+model & seed & resolution & optimizer & learning_rate & weight_decay & scheduler & loss & threshold & max_epochs & patience & preprocessing & augmentation & physical_batch & effective_batch & initialization_policy & selection_metric \\
+\midrule
+U-Net & 42 & 512 & AdamW & 0.000100 & 0.000100 & CosineAnnealingLR & 0.5 BCEWithLogitsLoss + 0.5 DiceLoss & 0.500000 & 100 & 15 & aspect-ratio resize + symmetric square padding & HFlip p=.5; rotation ±5°; brightness/contrast ±10% & 4 & 4 & random Kaiming; no pretrained weights & true per-image VAL macro Dice \\
+Attention U-Net & 42 & 512 & AdamW & 0.000100 & 0.000100 & CosineAnnealingLR & 0.5 BCEWithLogitsLoss + 0.5 DiceLoss & 0.500000 & 100 & 15 & aspect-ratio resize + symmetric square padding & HFlip p=.5; rotation ±5°; brightness/contrast ±10% & 4 & 4 & random Kaiming; no pretrained weights & true per-image VAL macro Dice \\
+UNet++ & 42 & 512 & AdamW & 0.000100 & 0.000100 & CosineAnnealingLR & 0.5 BCEWithLogitsLoss + 0.5 DiceLoss & 0.500000 & 100 & 15 & aspect-ratio resize + symmetric square padding & HFlip p=.5; rotation ±5°; brightness/contrast ±10% & 4 & 4 & random Kaiming; no pretrained weights & true per-image VAL macro Dice \\
+DeepLabV3+ & 42 & 512 & AdamW & 0.000100 & 0.000100 & CosineAnnealingLR & 0.5 BCEWithLogitsLoss + 0.5 DiceLoss & 0.500000 & 100 & 15 & aspect-ratio resize + symmetric square padding & HFlip p=.5; rotation ±5°; brightness/contrast ±10% & 4 & 4 & random Kaiming; no pretrained weights & true per-image VAL macro Dice \\
+\bottomrule
+\end{tabular}

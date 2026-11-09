@@ -1,0 +1,27 @@
+metric,value,unit,note
+measured_parameter_count,3523001,parameters,"trainable, measured from the frozen architecture"
+measured_parameter_count_all,3523001,parameters,including any non-trainable parameters
+best_checkpoint_bytes,42369710,bytes,checkpoints/<exp>/best.pt
+last_checkpoint_bytes,42369710,bytes,checkpoints/<exp>/last.pt
+best_checkpoint_sha256,286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7,hex,provenance
+epochs_completed,81,epochs,from history.csv
+mean_epoch_seconds,426.641326674074,s,all completed epochs
+median_epoch_seconds,409.45210790000056,s,all completed epochs
+min_epoch_seconds,379.2196243999988,s,
+max_epoch_seconds,596.3692482000006,s,
+total_training_seconds,34588.64083123207,s,sum of epoch time incl. validation
+macs,31551740928,MACs,analytical Conv2d/Linear count at 1x3x512x512 (LOWER BOUND; excludes norm/activation/pool/interpolation/FiLM elementwise ops)
+gmacs,31.5517,G MACs,"same count, giga-MACs"
+gflops_2x,63.1035,G FLOPs,FLOPs = 2 x MACs convention
+gpu_latency_median_batch1,15.24125000105414,ms,"forward only, warmup=5, repeats=30, 512x512, no AMP"
+gpu_peak_memory_batch1,313084416,bytes,torch.cuda.max_memory_allocated during the timed forward
+gpu_latency_median_batch8,87.45389999967301,ms,"forward only, warmup=5, repeats=30, 512x512, no AMP"
+gpu_peak_memory_batch8,2346275840,bytes,torch.cuda.max_memory_allocated during the timed forward
+gpu_name,NVIDIA GeForce RTX 3060 Ti,text,
+gpu_total_memory_bytes,8589279232,bytes,
+cpu_latency_median_batch1,310.23840000125347,ms,"forward only on SYNTHETIC input (never TEST), warmup=2, repeats=5, threads=8"
+cpu_latency_median_batch4,1291.1260000000766,ms,"forward only on SYNTHETIC input (never TEST), warmup=2, repeats=5, threads=8"
+cpu_name,"AMD64 Family 25 Model 33 Stepping 2, AuthenticAMD",text,
+cpu_logical_cores,16,cores,
+cpu_torch_threads,8,threads,
+benchmark_input_source,synthetic random tensors at 512x512,text,TEST is never read; VAL images are not required for a latency benchmark

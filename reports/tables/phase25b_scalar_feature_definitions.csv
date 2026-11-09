@@ -1,0 +1,11 @@
+feature_index,feature_name,threshold_role,threshold_value,formula,units,input_source,dtype,uses_GT,expected_range,external_padding_excluded,superseded_formula,superseded_status,may_exceed_512
+192,entropy_proxy_mean,THRESHOLD_FREE,,"mean over all N pixels of -[q*ln q + (1-q)*ln(1-q)]/ln 2, q = clip(P, 1e-7, 1-1e-7)","dimensionless in [0,1]",P (global probability map),float32,False,,,,,
+193,frac_prob_within_0p05_of_boundary,SEGMENTATION_OUTPUT_PROBABILITY_BOUNDARY,0.5,(1/N) * sum 1[|P - 0.50| <= 0.05],"fraction in [0,1]",P,float32,False,,,,,
+194,frac_prob_within_0p02_of_boundary,SEGMENTATION_OUTPUT_PROBABILITY_BOUNDARY,0.5,(1/N) * sum 1[|P - 0.50| <= 0.02],"fraction in [0,1]",P,float32,False,,,,,
+195,mean_boundary_margin,SEGMENTATION_OUTPUT_PROBABILITY_BOUNDARY,0.5,mean over all N pixels of |P - 0.50| (NOT negated),"probability distance in [0,0.5]",P,float32,False,,,,,
+197,pred_foreground_pixels,ROI_PROPOSAL,0.3,sum M_roi where M_roi = 1[P >= 0.30],pixels on the 512x512 canvas,P,float32,False,,,,,
+196,pred_foreground_fraction,ROI_PROPOSAL,0.3,pred_foreground_pixels / N,"fraction in [0,1]",P,float32,False,,,,,
+198,pred_roi_exists,ROI_PROPOSAL,0.3,1.0 if pred_foreground_pixels > 0 else 0.0,binary indicator,P,float32,False,,,,,
+199,pred_empty,ROI_PROPOSAL,0.3,1.0 - pred_roi_exists,binary indicator,P,float32,False,,,,,
+200,predicted_roi_area_fraction,ROI_PROPOSAL,0.3,"w_in = max(0, min(512, x1) - max(0, x0)); h_in = max(0, min(512, y1) - max(0, y0)); predicted_roi_area_fraction = w_in * h_in / (512 * 512)",fraction of the native 512x512 canvas (clipped in-canvas ROI),ROI030 crop metadata,float32,False,"[0,1]",True,crop_side_pixels^2 / (512^2),SUPERSEDED_PRE_EXECUTION_SPEC_FORMULA__NOT_USED_FOR_PHASE25B,
+201,predicted_roi_side,ROI_PROPOSAL,0.3,canonical cache field crop_side_pixels (before resize to 256x256),pixels on the 512 canvas (crop support incl. padding; may exceed 512),ROI030 crop metadata,float32,False,,,,,True

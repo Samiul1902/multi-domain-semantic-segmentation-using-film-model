@@ -1,0 +1,14 @@
+ablation_id,execution_class,basis,status
+A0,ARTIFACT_RECONSTRUCTION,global-only from frozen global output,READY_ARTIFACT_RECONSTRUCTION
+A1,ARTIFACT_RECONSTRUCTION,always-refine from frozen refiner outputs,READY_ARTIFACT_RECONSTRUCTION
+A2,ARTIFACT_RECONSTRUCTION,seeded random routing over frozen action set,READY_ARTIFACT_RECONSTRUCTION
+A3,ARTIFACT_RECONSTRUCTION,entropy proxy from frozen scalar features,READY_ARTIFACT_RECONSTRUCTION
+A4,ARTIFACT_RECONSTRUCTION,margin proxy from frozen scalar features,READY_ARTIFACT_RECONSTRUCTION
+A5,ARTIFACT_RECONSTRUCTION,predicted-ROI-size proxy from frozen scalar features,READY_ARTIFACT_RECONSTRUCTION
+A6,PRIOR_EVIDENCE,frozen Phase25D B_phi; H1 evidence from Phase25G,SATISFIED_BY_PRIOR_CANONICAL_EVIDENCE
+A7,PRIOR_EVIDENCE,frozen Phase25G A7 result (=C8),SATISFIED_BY_PRIOR_CANONICAL_EVIDENCE
+A8,PRIOR_EVIDENCE,frozen Phase25G A8 result (=C9); canonical baseline,SATISFIED_BY_PRIOR_CANONICAL_EVIDENCE
+R1,NEW_FROZEN_INFERENCE,router variant without deep global features,READY_FROZEN_INFERENCE
+R2,NEW_FROZEN_INFERENCE,router variant without task_id,READY_FROZEN_INFERENCE
+R3,NEW_FROZEN_INFERENCE,router variant scalar-only,READY_FROZEN_INFERENCE
+F1,NEW_FROZEN_INFERENCE,refiner variant without p_global channel,READY_FROZEN_INFERENCE

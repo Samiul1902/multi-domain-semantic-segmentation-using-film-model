@@ -1,0 +1,9 @@
+item,value,source
+historical_observation,"FULL_FIELD, small-object and multi-component failures persisted for the global baseline",reports/audits/phase11_kub_failure_analysis.json:phase12_motivation
+historical_rationale,Motivates testing whether increased effective local resolution can recover missed targets; explicitly NOT a claim that ROI will solve them,reports/audits/phase11_kub_failure_analysis.json:phase12_motivation
+tiny_recall_evidence,"TINY component recall 57/73 = 0.7808 (kub_size_v1, UNet++)",reports/tables/phase11_kub_size_failure_summary.csv
+multicomponent_evidence,50 multi-component cases: 36 COMPLETE / 10 PARTIAL / 4 COMPLETE_MISS,reports/tables/phase11_kub_multicomponent_failure.csv
+primary_model_historical,UNet++ (phase10_kub_unetpp_seed42_512),reports/audits/phase11_kub_failure_analysis.json:primary_model
+comparator_historical,DeepLabV3+,reports/audits/phase11_kub_failure_analysis.json:secondary_comparator
+clean_v3_reference_model,NOT SELECTED,Part 1A must not choose a reference from single-seed VAL (see spec section 22)
+part_1b_must_test,"Whether the same FULL_FIELD / small-object / multi-component failure pattern holds for ALL FOUR clean-v3 baselines, and whether it is shared or architecture-specific",derived

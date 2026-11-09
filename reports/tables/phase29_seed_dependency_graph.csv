@@ -1,0 +1,9 @@
+artifact,depends_on_global_seed,depends_on_refiner_seed,depends_on_router_seed,depends_on_safety_seed,regenerated_per_seed,reuse_allowed,reason
+Phase25B-like features (202-D),YES,NO,NO,NO,UNRESOLVED,UNRESOLVED,derived from G forward; regeneration rule unresolved
+Phase25C-like gain targets (DeltaDice),NO,YES,NO,NO,UNRESOLVED,UNRESOLVED,pairwise gain from R_psi intervention; seed dependency unresolved
+router normalization,YES,NO,YES,NO,UNRESOLVED,UNRESOLVED,FIT-only ddof=0 statistics depend on features + fold membership
+router OOF scores,YES,YES,YES,NO,UNRESOLVED,UNRESOLVED,router consumes features (G) and target (R_psi)
+router final threshold/calibration,NO,NO,YES,NO,UNRESOLVED,UNRESOLVED,seed-specific score scale; rule unresolved (§19)
+S_omega features,NO,YES,YES,NO,UNRESOLVED,UNRESOLVED,derived from refined candidate + routed decisions
+S_omega labels,NO,YES,YES,NO,UNRESOLVED,UNRESOLVED,accept/fallback benefit label depends on refiner+router state
+final system predictions,YES,YES,YES,YES,UNRESOLVED,UNRESOLVED,A8/C9 composition of all four components

@@ -1,0 +1,14 @@
+\begin{tabular}{llrrrrrr}
+\toprule
+Model & Component_Group & N_Images & Macro_Dice & Original_GT_Components & Detected_Original_Components & Object_Recall & Missed_Object_Rate \\
+\midrule
+U-Net & MULTI_COMPONENT & 50 & 0.620885 & 100 & 79 & 0.790000 & 0.210000 \\
+U-Net & SINGLE_COMPONENT & 56 & 0.605989 & 56 & 46 & 0.821429 & 0.178571 \\
+Attention U-Net & MULTI_COMPONENT & 50 & 0.645733 & 100 & 79 & 0.790000 & 0.210000 \\
+Attention U-Net & SINGLE_COMPONENT & 56 & 0.641080 & 56 & 47 & 0.839286 & 0.160714 \\
+UNet++ & MULTI_COMPONENT & 50 & 0.652216 & 100 & 82 & 0.820000 & 0.180000 \\
+UNet++ & SINGLE_COMPONENT & 56 & 0.653277 & 56 & 49 & 0.875000 & 0.125000 \\
+DeepLabV3+ & MULTI_COMPONENT & 50 & 0.561482 & 100 & 73 & 0.730000 & 0.270000 \\
+DeepLabV3+ & SINGLE_COMPONENT & 56 & 0.561240 & 56 & 45 & 0.803571 & 0.196429 \\
+\bottomrule
+\end{tabular}

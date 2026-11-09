@@ -1,0 +1,3 @@
+| Metric_Type | N_Samples | Macro_Dice | Macro_IoU | Macro_Precision | Macro_Recall | Micro_Dice | Micro_IoU | Global_TP_Pixels | Global_FP_Pixels | Global_FN_Pixels | HD95_Valid_N | HD95_Invalid_N | Empty_Predictions_N | Empty_Prediction_Rate | Median_Valid_HD95 | Mean_Valid_HD95 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Macro_and_Micro | 283 | 0.7455439340960021 | 0.6316429351398896 | 0.7994464457819005 | 0.7654216624244355 | 0.8382042114434533 | 0.7214729298380963 | 9241328 | 1782283 | 1785363 | 275 | 8 | 8 | 0.028268551236749116 | 40.38066904263445 | 53.61131202242719 |

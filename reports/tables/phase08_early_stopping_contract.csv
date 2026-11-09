@@ -1,0 +1,11 @@
+item,value,note
+implementation,src/training/trainer.py::EarlyStopping,"best init -inf, bad_epochs init 0"
+patience,15,from config
+improvement_rule,score > best (strict),"on improvement: best=score, bad_epochs=0"
+no_improvement_rule,bad_epochs += 1,"any non-improvement increments, including ties"
+tie_resets_counter,False,equal score counts as a bad epoch
+stop_condition,bad_epochs >= patience,checked AFTER the epoch checkpoint is saved
+minimum_delta,,none configured
+order_vs_checkpoint,"early_stopping.update() then save latest/best, then stop check",the stopping epoch IS checkpointed
+order_vs_scheduler,scheduler.step() happens before the early-stop check,per-epoch LR advance occurs even on the final epoch
+observed_final_state,"{'best': 0.7455300688743591, 'bad_epochs': 15, 'patience': 15, 'stopped': True}",latest.pt early_stopping_state (bad_epochs == patience -> stopped)

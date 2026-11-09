@@ -1,0 +1,3 @@
+| Total_GT_Components | Total_Predicted_Components | Detected_GT_Components | Missed_GT_Components | Object_Recall | Missed_Object_Rate | False_Positive_Components |
+| --- | --- | --- | --- | --- | --- | --- |
+| 332 | 4842 | 300 | 32 | 0.9036144578313253 | 0.0963855421686747 | 2548 |

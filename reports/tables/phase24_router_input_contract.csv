@@ -1,0 +1,32 @@
+feature,source,available_pre_refinement,uses_GT,inference_available,primary_or_optional,allowed,reason
+global_encoder_pooled_features,F_global (global forward),true,false,true,primary,true,reuses the already-computed global forward; no second pass
+global_decoder_pooled_features,F_global (global forward),true,false,true,primary,true,same reuse argument
+roi_pooled_global_features,F_global pooled over the proposed ROI,true,false,true,primary,true,ROI is GT-free; pooling adds negligible cost
+probability_entropy_summaries,p_global,true,false,true,primary,true,computed from the predicted map only
+probability_margin_summaries,p_global,true,false,true,primary,true,predicted-map statistic
+probability_percentiles,p_global,true,false,true,optional,true,cheap predicted-map summary
+predicted_foreground_fraction,p_global (thresholded),true,false,true,primary,true,"from the PREDICTION, not the label"
+predicted_component_count,p_global (connected components),true,false,true,optional,true,predicted-map topology
+predicted_largest_component_ratio,p_global,true,false,true,optional,true,predicted-map topology
+predicted_bbox_width_height,p_global (ROI bbox),true,false,true,primary,true,geometry of the PREDICTED foreground
+predicted_roi_fraction,p_global (ROI area / image area),true,false,true,optional,true,predicted ROI size proxy
+predicted_boundary_area_statistics,p_global,true,false,true,optional,true,prediction-only boundary statistics
+crop_magnification_factor,ROI rule (deterministic),true,false,true,optional,true,known before refinement by construction
+allowed_task_domain_embedding,task_id t,true,false,true,primary,true,permitted conditioning; shared router
+device_resource_descriptor,deployment configuration,true,false,true,optional,true,explicit resource context for the utility term (C6)
+GT_mask,ground truth,n/a,true,false,n/a,false,direct label leakage
+GT_foreground_fraction,ground truth,n/a,true,false,n/a,false,direct label leakage
+GT_size_label,ground truth,n/a,true,false,n/a,false,direct label leakage
+Dice,ground-truth metric,n/a,true,false,n/a,false,the target itself; unavailable at deployment
+IoU,ground-truth metric,n/a,true,false,n/a,false,GT-derived
+recall,ground-truth metric,n/a,true,false,n/a,false,GT-derived
+precision,ground-truth metric,n/a,true,false,n/a,false,GT-derived
+specificity,ground-truth metric,n/a,true,false,n/a,false,GT-derived
+MCC,ground-truth metric,n/a,true,false,n/a,false,GT-derived
+GT_derived_ECE,ground-truth calibration,n/a,true,false,n/a,false,GT-derived
+GT_derived_Brier,ground-truth calibration,n/a,true,false,n/a,false,GT-derived
+oracle_ROI,ground truth,n/a,true,false,n/a,false,would require the label to locate the region
+true_DeltaDice,ground truth,n/a,true,false,n/a,false,the prediction target; using it as an input is leakage
+refined_prediction,R_psi output,false,false,false,n/a,false,requires the refinement to have run; breaks C1/C4
+refiner_feature_maps,R_psi internals,false,false,false,n/a,false,available only after refinement; breaks pre-execution
+post_refinement_statistics,computed after R_psi,false,false,false,n/a,false,post-hoc quantities cannot drive a pre-execution gate

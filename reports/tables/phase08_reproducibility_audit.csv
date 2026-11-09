@@ -1,0 +1,8 @@
+check,result,detail
+python_numpy_torch_seed,PASS,set_seed reproduces python/numpy/torch draws
+cuda_seed,PASS,cuda.manual_seed_all reproduces CUDA draws
+dataloader_generator,PASS,make_generator(seed) is reproducible
+worker_seed,PASS,seed_worker produces deterministic per-worker streams
+rng_state_roundtrip,PASS,capture/restore reproduces the torch CPU stream
+determinism_policy,DOCUMENTED,"cudnn.deterministic=True, cudnn.benchmark=False; bitwise GPU determinism is NOT claimed"
+torch_deterministic_algorithms,False,not force-enabled: some CUDA ops lack deterministic kernels

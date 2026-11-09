@@ -1,0 +1,19 @@
+artifact,column/key,dtype,scientific meaning,GT-derived yes/no,prediction-derived yes/no,safe for Phase33 descriptive use yes/no,reason
+phase30_router_holdout_scored_results.csv,canonical_order_index,int,row index,no,no,yes,
+phase30_router_holdout_scored_results.csv,sample_id,str,sample identity,no,no,yes,
+phase30_router_holdout_scored_results.csv,dataset,str,domain,no,no,yes,
+phase30_router_holdout_scored_results.csv,global_dice,float,global Dice,yes,no,yes,already-frozen GT-derived metric; read-only
+phase30_router_holdout_scored_results.csv,a8_dice,float,A8 final Dice,yes,no,yes,
+phase30_router_holdout_scored_results.csv,delta_dice_a8,float,A8 - global,yes,no,yes,
+phase30_router_holdout_scored_results.csv,a7_dice,float,A7 companion Dice,yes,no,yes,
+phase30_router_holdout_scored_results.csv,delta_dice_a7,float,A7 - global,yes,no,yes,
+phase30_router_holdout_scored_results.csv,router_decision,str,SKIP/EXECUTE,no,yes,yes,
+phase30_router_holdout_scored_results.csv,somega_accept,bool,S_omega decision,no,yes,yes,
+phase30_router_holdout_predictions.csv,delta_hat,float,B_phi raw logit,no,yes,yes,
+phase30_router_holdout_predictions.csv,utility,float,delta_hat - 0.25C,no,yes,yes,
+phase30_router_holdout_predictions.csv,tau_C8,float,frozen threshold,no,no,yes,
+phase30_router_holdout_predictions.csv,state_machine,str,SKIP / EXECUTE_THEN_ACCEPT / EXECUTE_THEN_REJECT,no,yes,yes,
+phase30_router_holdout_predictions.csv,somega_score,float,S_omega accept prob,no,yes,yes,
+phase30_router_holdout_predictions.csv,roi_available,bool,ROI availability,no,yes,yes,
+phase30_router_holdout_per_domain_results.csv,ci_low,float,bootstrap CI low,yes,no,yes,
+phase24_router_split_manifest.csv,group_key,str,canonical group identity,no,no,yes,metadata-only join source for group/patient clustering

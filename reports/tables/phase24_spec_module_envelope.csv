@@ -1,0 +1,5 @@
+module,name,declared_envelope,active_envelope,closed_form_params,within_hard_ceiling,measured,note
+R_psi,BARRRegionalRefinerV1,"[16,32,64,128,192] one block/stage","[16,32,64,96,128] one block/stage",1276401,true,false,declared channels exceed 2.0M ceiling; deterministic pre-declared reduction applied
+B_phi,BARRBenefitRouterV1,"hidden [128,64]","hidden [128,64]",36353,true,false,well within 250k ceiling; no reduction required
+S_omega,BARRPostSafetyV1,input->32->16->1,input->32->16->1,closed_form_not_frozen_here,true,false,post-refinement extension; no second encoder
+G,Frozen Global MedFiLM (Phase 21),3523001,3523001,3523001,n/a,true,frozen anchor; measured in Phase 21

@@ -1,0 +1,19 @@
+item,value,note
+resume_source,latest.pt,best.pt used for final eval only
+start_epoch,"state[""epoch""] + 1","continues, no repeat"
+experiment_id,reused unchanged,hardcoded exp_id; no _v2/_retry suffixes on resume
+manifest_guard_on_resume,manifest_version AND hashes must match,raises RuntimeError otherwise
+model_state,True,load_state_dict
+optimizer_state,True,
+scheduler_state,True,
+grad_scaler_state,True,AMP scaler
+epoch,True,
+best_metric,True,best_validation_score
+best_epoch,from best.pt epoch,
+early_stop_counter,True,"early_stopping_state {best, bad_epochs, patience, stopped}"
+history_continuity,True,training_history list restored
+global_step,True,
+rng_state,True,random_state capture/restore
+loader_generator_state,True,train/val generator states; legacy replay fallback exists
+taxonomy_id,,ABSENT historically (None) -> additive field for clean-v3
+single_writer,implemented in src/utils/run_lock.py,active lock fails loudly; stale lock requires explicit recovery

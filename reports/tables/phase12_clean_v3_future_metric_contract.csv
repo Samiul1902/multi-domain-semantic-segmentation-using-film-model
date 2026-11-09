@@ -1,0 +1,18 @@
+metric,definition,unit,role
+case_dice,per-case Dice (macro mean over cases),case,primary effect
+case_iou,per-case IoU (macro mean),case,primary effect
+case_precision,per-case precision (macro mean),case,descriptive
+case_recall,per-case recall (macro mean),case,descriptive
+object_recall,detected native GT components / total,component,">=1 px overlap, 8-conn"
+size_stratum_recall,TINY/SMALL/MEDIUM/LARGE component recall,component,explicit component correspondence (not case-complete inference)
+empty_prediction,prediction has zero foreground pixels,case,recovery of Phase-11 empties
+empty_prediction_recovered,global empty AND oracle non-empty,case,derived
+missed_components,native GT components with no overlapping prediction,component,derived
+multicomponent_outcome,COMPLETE_DETECTION / PARTIAL_DETECTION / COMPLETE_MISS,case,native multi-component membership
+hd95,HD95 with explicit hd95_valid flag,case,"invalid flagged, never dropped"
+fp_component_burden,FP predicted components (evaluation space),component,NOTE: oracle-constrained FP is artificially advantaged (historical caveat)
+tp_fp_fn,pixel TP/FP/FN,pixel,descriptive extension
+delta_dice,"oracle_dice - global_dice (paired, same case, same architecture)",case,PRIMARY ORACLE EFFECT
+delta_iou,oracle_iou - global_iou (paired),case,derived
+delta_object_recall,oracle_object_recall - global_object_recall (paired),component,derived
+delta_missed_components,global_missed - oracle_missed (paired),component,derived

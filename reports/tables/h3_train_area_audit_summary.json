@@ -1,0 +1,57 @@
+{
+  "population": "TRAIN FULL_FIELD (kub_train_components_sized.csv joined to kub_train_samples_sized.csv)",
+  "n_components": 1162,
+  "n_images": 771,
+  "area_units": "heatmap-128-space foreground pixels (A128 = component_pixels * scale^2 / 16)",
+  "A128_percentiles": {
+    "p0": 0.44965277777777773,
+    "p1": 0.7208039580954669,
+    "p5": 0.9461728395061728,
+    "p10": 1.1997478416914764,
+    "p25": 2.0099441139354606,
+    "p50": 4.458333333333333,
+    "p75": 11.012032930713298,
+    "p90": 33.030716049382725,
+    "p95": 51.056000000000004,
+    "p99": 134.08390891632433,
+    "p100": 225.71180555555554
+  },
+  "A128_min": 0.44965277777777773,
+  "A128_max": 225.71180555555554,
+  "by_stratum_A128": {
+    "TINY": {
+      "n": 291,
+      "p50": 1.317530864197531
+    },
+    "SMALL": {
+      "n": 290,
+      "p50": 3.053827160493827
+    },
+    "MEDIUM": {
+      "n": 290,
+      "p50": 6.736790123456791
+    },
+    "LARGE": {
+      "n": 291,
+      "p50": 27.041975308641977
+    }
+  },
+  "corrected_formula": "sigma_i = clip(0.35 + 0.40*sqrt(A128_i / A_ref), 0.35, 0.75)",
+  "A_ref_source": "p75 of TRAIN FULL_FIELD A128 (TRAIN-only geometry)",
+  "A_ref_value": 11.012032930713298,
+  "sigma_percentiles": {
+    "p0": 0.43082856730148494,
+    "p5": 0.4672496295397453,
+    "p25": 0.5208906048016023,
+    "p50": 0.6045144442324821,
+    "p75": 0.7498039127580252,
+    "p95": 0.75,
+    "p100": 0.75
+  },
+  "sigma_unique_values": 829,
+  "sigma_at_floor_0.35": 0,
+  "sigma_at_ceil_0.75": 291,
+  "tiny_median_sigma": 0.48835875309548205,
+  "nontiny_median_sigma": 0.6628848840330539,
+  "non_degenerate": true
+}

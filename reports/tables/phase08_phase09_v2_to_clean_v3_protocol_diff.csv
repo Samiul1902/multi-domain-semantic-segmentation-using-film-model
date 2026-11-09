@@ -1,0 +1,49 @@
+field,historical_v2,clean_v3_candidate,same_or_changed,change_reason,scientifically_material
+experiment_id,phase9_kub_unet_baseline_seed42_512,phase9_kub_unet_baseline_seed42_512_clean_v3,changed,new logical run id,False
+architecture,standard_unet_4_stage,standard_unet_4_stage,same,preserved from historical protocol,False
+model_key,unet,unet,same,preserved from historical protocol,False
+input_channels,1,1,same,preserved from historical protocol,False
+output_channels,1,1,same,preserved from historical protocol,False
+base_channels,32,32,same,preserved from historical protocol,False
+resolution,512,512,same,preserved from historical protocol,False
+manifest_version,phase4_v2,phase4_v3,changed,authorized clean-v3 provenance,False
+loss,bce_dice,bce_dice,same,preserved from historical protocol,False
+loss_parameters,"bce_weight=0.5, dice_weight=0.5, dice_epsilon=1e-06","bce_weight=0.5, dice_weight=0.5, dice_epsilon=1e-06",same,preserved from historical protocol,False
+optimizer,AdamW,AdamW,same,preserved from historical protocol,False
+learning_rate,0.0001,0.0001,same,preserved from historical protocol,False
+weight_decay,0.0001,0.0001,same,preserved from historical protocol,False
+scheduler,CosineAnnealingLR,CosineAnnealingLR,same,preserved from historical protocol,False
+scheduler_parameters,T_max=100,T_max=100,same,preserved from historical protocol,False
+scheduler_step_timing,"per epoch, after train AND validation","per epoch, after train AND validation",same,preserved from historical protocol,False
+batch_size,4,4,same,preserved from historical protocol,False
+gradient_accumulation_steps,1,1,same,preserved from historical protocol,False
+effective_batch_size,4,4,same,preserved from historical protocol,False
+amp,True,True,same,preserved from historical protocol,False
+seed,42,42,same,preserved from historical protocol,False
+max_epochs,100,100,same,preserved from historical protocol,False
+augmentation_policy,"horizontal_flip(p=0.5), rotation(+-5.0 deg), brightness(+-0.1), contrast(+-0.1), vertical_flip=OFF","horizontal_flip(p=0.5), rotation(+-5.0 deg), brightness(+-0.1), contrast(+-0.1), vertical_flip=OFF",same,preserved from historical protocol,False
+checkpoint_metric,val_macro_dice,val_macro_dice,same,preserved from historical protocol,False
+checkpoint_mode,max (higher is better),max (higher is better),same,preserved from historical protocol,False
+checkpoint_improvement_rule,strict >,strict >,same,preserved from historical protocol,False
+early_stopping_patience,15,15,same,preserved from historical protocol,False
+early_stopping_min_delta,,,same,preserved from historical protocol,False
+prediction_threshold,0.5,0.5,same,preserved from historical protocol,False
+validation_aggregation,macro (mean of per-image metrics); micro also reported,macro (mean of per-image metrics); micro also reported,same,preserved from historical protocol,False
+val_shuffle,False,False,same,preserved from historical protocol,False
+val_augmentation,False,False,same,preserved from historical protocol,False
+num_workers,0,0,same,preserved from historical protocol,False
+pin_memory,True,True,same,preserved from historical protocol,False
+persistent_workers,False,False,same,preserved from historical protocol,False
+gradient_clipping,,,same,preserved from historical protocol,False
+source_config,configs/kub/unet_baseline.yaml,<clean-v3 provenance>,changed,authorized provenance metadata,False
+source_config_sha,9b8392f833c6f5350ae8780b24dae2afee1221e814f4517196e931ad169bce53,<clean-v3 provenance>,changed,authorized provenance metadata,False
+source_trainer,scripts/training/train_kub_baseline.py,<clean-v3 provenance>,changed,authorized provenance metadata,False
+source_trainer_sha,c1c97d0a19445550f69291539c0090b492f186a535000e5221e94d980be2ec27,<clean-v3 provenance>,changed,authorized provenance metadata,False
+source_trainer_class,src/training/trainer.py,src/training/trainer.py,same,preserved from historical protocol,False
+source_trainer_class_sha,99189ce029aaeb43df7370b02d6f7e6de859d59310ca6b83bde4965ce27a49c3,99189ce029aaeb43df7370b02d6f7e6de859d59310ca6b83bde4965ce27a49c3,same,preserved from historical protocol,False
+checkpoint_best_sha,a32d7fff1e019a179ef011795b6be8ee98ab548831f790a557726f32b38db8ec,<clean-v3 provenance>,changed,authorized provenance metadata,False
+checkpoint_latest_sha,2b535401e7db95469b39a62bd6b6df51e0e298c32d00047465bc39ababd0ad61,<clean-v3 provenance>,changed,authorized provenance metadata,False
+protocol_status,VERIFIED,<clean-v3 provenance>,changed,authorized provenance metadata,False
+historical_role,Phase-09 baseline (training),<clean-v3 provenance>,changed,authorized provenance metadata,False
+epochs_completed,62.0,<clean-v3 provenance>,changed,authorized provenance metadata,False
+best_epoch,47.0,<clean-v3 provenance>,changed,authorized provenance metadata,False

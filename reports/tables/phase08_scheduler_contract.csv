@@ -1,0 +1,8 @@
+item,value,source,note
+type,CosineAnnealingLR,scripts/training/train_kub_baseline.py:112,
+parameters,T_max=100,"CosineAnnealingLR(optimizer, T_max=...)",no eta_min
+step_frequency,per epoch,one scheduler.step() inside the epoch loop,
+step_timing,after train_one_epoch AND after validate,"line 156, after line 154/155",not per batch
+metric_driven,False,no ReduceLROnPlateau,
+resume_state_required,True,scheduler_state saved/restored in checkpoint,
+first_epoch_lr,initial lr (1e-4),step occurs at end of epoch 1,

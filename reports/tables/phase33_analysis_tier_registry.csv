@@ -1,0 +1,12 @@
+analysis_id,description,tier,authorized_now,note
+A01,read frozen Phase30 scored results table,TIER_0_FROZEN_TABLE_READ_ONLY,True,no raw data
+A02,read frozen Phase30 predictions table,TIER_0_FROZEN_TABLE_READ_ONLY,True,no raw data
+A03,read frozen Phase30 router metrics / A7 / H3 JSON,TIER_0_FROZEN_TABLE_READ_ONLY,True,no raw data
+A04,low-Dice decile stratification (method frozen),TIER_1_DERIVED_FROM_FROZEN_NONPIXEL_FIELDS,True,derived categorical from frozen Dice
+A05,benefit-category flags (frozen semantics),TIER_1_DERIVED_FROM_FROZEN_NONPIXEL_FIELDS,True,derived categorical
+A06,group-cluster join via split-manifest group_key,TIER_1_DERIVED_FROM_FROZEN_NONPIXEL_FIELDS,True,metadata only
+A07,predicted-area / entropy from frozen prediction arrays,TIER_2_FROZEN_PREDICTION_PIXEL_ANALYSIS,False,not in authorized Phase30->Phase33 handoff
+A08,boundary distance / HD95,TIER_3_RAW_IMAGE_OR_GT_REREAD,False,requires GT pixels
+A09,connected components / object matching,TIER_3_RAW_IMAGE_OR_GT_REREAD,False,requires GT pixels
+A10,FP/FN burden,TIER_3_RAW_IMAGE_OR_GT_REREAD,False,requires GT pixels
+A11,model re-inference,TIER_4_MODEL_RERUN,False,forbidden for Phase33

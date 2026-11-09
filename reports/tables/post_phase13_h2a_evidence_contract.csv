@@ -1,0 +1,8 @@
+dimension_id,dimension_name,quantity,definition,role,limitation
+A,LOCALIZER_PROPOSAL_QUALITY,proposal_pixel_any_hit_precision,new primary quantity; numerator = proposals whose clipped native support contains >=1 native GT foreground pixel; denominator = all generated proposals over 103 VAL cases,computed every epoch; participates in the primary selection tuple,no threshold tuning
+A,LOCALIZER_PROPOSAL_QUALITY,tiny_recall90,tiny-object coverage at 90% coverage threshold,selection term 2,bbox primary semantics; pixel secondary
+A,LOCALIZER_PROPOSAL_QUALITY,overall_recall90,overall component coverage at 90% coverage threshold,selection term 3,bbox primary semantics; pixel secondary
+A,LOCALIZER_PROPOSAL_QUALITY,score_separability_and_saturation,"ROC-AUC / PR-AUC score->pixel-any-hit, plateau fraction, score IQR",DIAGNOSTIC ONLY; structurally excluded from selection,no calibration threshold search
+B,DOWNSTREAM_GLOBAL_PRESERVATION,Dice / IoU / precision / recall / FP / FN / cases improved-worsened,PREDICTED_REGION_FLOAT_GLOBAL_RETAINED vs GLOBAL_NATIVE on 103 VAL cases x 4 architectures,evaluated after H2A localizer execution; NOT used in checkpoint selection,no numerical success threshold
+C,REGIONAL_UTILITY,component_recoveries / component_losses / empty_recoveries / oracle_benefit_retention,GLOBAL->PREDICTED recovery and loss on 152 components; RETENTION_DICE vs frozen Phase-12 oracle,evaluated after H2A execution; NOT used in selection,negative retention preserved unclipped
+D,CROSS_ARCHITECTURE_GENERALITY,UNet / Attention U-Net / UNet++ / DeepLabV3+,same H2A localizer and same frozen segmentation checkpoints across all four architectures,descriptive cross-architecture comparison,"no ranking, no winner"

@@ -1,0 +1,5 @@
+phase,model,experiment_id,role,in_phase09_clean_rerun_scope,evidence
+9,unet,phase9_kub_unet_baseline_seed42_512,Phase-09 baseline TRAINING,True,scripts/training/train_kub_baseline.py defines exactly one exp_id
+10,attention_unet,phase10_kub_attention_unet_seed42_512,Phase-10 baseline COMPARISON,False,configs/kub/phase10_baselines.yaml models[0]
+10,unetpp,phase10_kub_unetpp_seed42_512,Phase-10 baseline COMPARISON,False,configs/kub/phase10_baselines.yaml models[1]
+10,deeplabv3plus,phase10_kub_deeplabv3plus_seed42_512,Phase-10 baseline COMPARISON,False,configs/kub/phase10_baselines.yaml models[2]

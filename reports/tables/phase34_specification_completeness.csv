@@ -1,0 +1,30 @@
+section,requirement,status,basis
+roadmap identity,phase_id + display title resolved,COMPLETE,phase34_roadmap_identity_reconciliation.json
+historical evidence provenance,resource/compute artifacts inventoried + bound,COMPLETE,phase34_historical_compute_provenance_inventory.csv
+component mapping,canonical component registry,COMPLETE,phase34_canonical_component_registry.csv
+arm registry,predecessor-defined arms adjudicated,COMPLETE,phase34_profiling_arm_registry.csv
+data access,protected-data contract,COMPLETE,phase34_data_access_contract.json
+synthetic input,deterministic synthetic contract,COMPLETE,phase34_synthetic_input_contract.json
+MAC convention,MAC primary metric frozen,COMPLETE,phase34_mac_flop_reporting_contract.json
+FLOP convention,derived 2x convention labelled,COMPLETE,phase34_mac_flop_reporting_contract.json
+parameter counts,static parameter contract,COMPLETE,phase34_parameter_count_contract.json
+precision,execution semantics frozen,COMPLETE,phase34_precision_execution_semantics_contract.json
+hardware,pre-execution environment snapshot,COMPLETE,phase34_environment_snapshot_preexecution.json
+batch sizes,primary 1 / secondary 8 frozen,COMPLETE,phase34_batch_size_contract.json
+warmup,50 warmup iterations frozen,COMPLETE,phase34_latency_measurement_contract.json
+iterations,5 blocks x 200 iterations frozen,COMPLETE,phase34_latency_measurement_contract.json
+timing synchronization,CUDA Events + synchronize,COMPLETE,phase34_latency_measurement_contract.json
+latency statistics,mean/std/median/p90/p95/p99/min/max,COMPLETE,phase34_latency_measurement_contract.json
+throughput,samples / synchronized wall clock,COMPLETE,phase34_throughput_contract.json
+memory,allocated vs reserved separated,COMPLETE,phase34_memory_measurement_contract.json
+process isolation,fresh subprocess per arm; order frozen,COMPLETE,phase34_process_isolation_contract.json
+conditional weighting,frozen-frequency weighting frozen,COMPLETE,phase34_conditional_runtime_reporting_contract.json
+claim language,allowed/forbidden claim language,COMPLETE,phase34_efficiency_claim_language_contract.json
+profiler eligibility,tool inventory adjudicated,COMPLETE,phase34_profiler_tool_eligibility.json
+source freeze,load-bearing sources hashed,COMPLETE,phase34_preexecution_source_freeze.json
+notebook,spec reviewer notebook,COMPLETE,notebooks/phasewise/phase_34_efficiency_profiling/phase34_efficiency_profiling_spec_review.ipynb
+TEST lock,TEST stays locked,COMPLETE,phase33_phase34_handoff.json
+execution eligibility,every family adjudicated independently,COMPLETE,phase34_execution_eligibility_adjudication.json
+new FLOP/MAC profiler,no complete FLOP profiler installed,RESOLVED_INELIGIBLE,phase34_profiler_tool_eligibility.json
+synthetic route replay,no pre-frozen exact route harness,RESOLVED_INELIGIBLE,phase34_conditional_runtime_reporting_contract.json
+cold-start timing,reproducibility not yet established,RESOLVED_INELIGIBLE,phase34_runtime_scope_contract.json

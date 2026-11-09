@@ -1,0 +1,4 @@
+example,per_image_dice,macro_mean_of_per_image,micro_global_pixel,macro_equals_micro,note
+two_images_equal_area_one_perfect_one_empty,"1.0, 0.0",0.5,0.5,True,macro and micro differ; checkpoint selection uses macro
+three_images_large_perfect_small_failure,"1.0, 1.0, 0.0",0.6666666666666666,0.9523809523809523,False,area-weighting makes micro >> macro
+all_perfect,"1.0, 1.0",1.0,1.0,True,agree when every image is perfect

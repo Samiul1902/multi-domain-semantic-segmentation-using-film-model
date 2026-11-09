@@ -1,0 +1,11 @@
+item,rule,status,note
+cohort_size,16,HISTORICAL_VERIFIED,phase11_failure_16_selection.csv contains 16 cases
+strata,4 categories x 4 cases,HISTORICAL_VERIFIED,Global-Empty; Missed GT Component; Severe FP; Low Dice Decile
+stratum_1,empty_prediction == True,HISTORICAL_VERIFIED,take first 4 by sample_id
+stratum_2,missed_eval_components > 0,HISTORICAL_VERIFIED,exclude already-selected; first 4 by sample_id
+stratum_3,fp_eval_components >= 4,HISTORICAL_AMBIGUOUS,"code uses >=4 but inline comment says "">=5""; COMMENT/CODE mismatch recorded"
+stratum_4,low_dice_decile == True,HISTORICAL_AMBIGUOUS,"cohort label says ""Low Dice Decile (<0.30)"" but actual cutoff is 0.5461 (bottom decile); LABEL mismatch recorded"
+tie_break,sort by sample_id (deterministic); low-dice stratum sorts by ascending dice,HISTORICAL_VERIFIED,selection is deterministic and prediction-independent in ordering
+exclusion,each stratum excludes samples selected by earlier strata,HISTORICAL_VERIFIED,prevents duplicate cases across categories
+depends_on_prediction_quality,YES by construction (failure strata),HISTORICAL_VERIFIED,"unlike the Phase-10 gallery, this cohort IS selected by failure status - intentional for failure analysis"
+clean_v3_status,NOT YET APPLIED,FROZEN_PROPOSAL_ONLY,Part 1A freezes the procedure; no clean-v3 cases are selected in Part 1A

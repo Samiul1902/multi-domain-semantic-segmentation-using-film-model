@@ -1,0 +1,57 @@
+field,frozen_value,source,complete,blocking_if_missing
+phase_id,27,work order,True,True
+title,Multi-Domain Performance Preservation Audit,work order,True,True
+classification,PHASE27_PRE_EXECUTION_PRESERVATION_AUDIT_SPECIFICATION,work order,True,True
+operational_meaning,GOVERNANCE_SPECIFICATION_ONLY__NO_INFERENCE,work order,True,True
+specification_revision,ra_medfilm_barr_preservation_v1_0,work order,True,True
+governance_only,true,work order,True,True
+no_execution,true,work order,True,True
+predecessor_terminal,PHASE26_CANONICAL_INTEGRATION_COMPLETE__A8_C9_25PCT_FINAL_ROUTER_RUNTIME_POLICY_AND_BUNDLE_FROZEN__PHASE27_ELIGIBLE_NOT_STARTED,phase26_canonical_integration_terminal.json,True,True
+bundle_manifest_sha256,f7aebb0f646bcc8de49fa91b70a4c4cc1051c9998ab6b055a8d4d187809cb3d9,phase26_final_freeze.json,True,True
+integration_wrapper_sha256,342f2163690c2fa8d5a601ab1d18178b982d701b916935c33e0793b0801c3724,phase26_final_freeze.json,True,True
+phase26_notebook_sha256,57552c16b5a444f1b2404077eeac0004d37fd198355d679a66eb5c24ea15b4e0,phase26_final_freeze.json,True,True
+val808_manifest,manifests/phase4_v3/val.csv,manifests/phase4_v3/val.csv,True,True
+val808_manifest_sha256,082c80b2bda63fd73f371f109c34643adf01edaead921643fb2e44993ba53315,manifest_registry.md,True,True
+val808_n,808,manifests/phase4_v3/val.csv,True,True
+val808_role,SECONDARY / CONTINUITY DEVELOPMENT BENCHMARK,phase24_data_role_contract.csv,True,True
+val808_ownership,PHASE27,work order (supervisor ruling),True,True
+domain_counts,ISIC 357 / KUB 280 / KVASIR 87 / BUSI 84,manifests/phase4_v3/val.csv,True,True
+group_rule,METADATA_ONLY_COMPOSITE_PATIENT_SINGLETON,phase24_router_split_manifest.csv (proven equivalent),True,True
+total_groups,639,derived from metadata-only rule,True,True
+group_ids_sha256,5d7db45c324098a14199f1d453541373078ef5748f255021a132558a62e19dd0,derived,True,True
+estimand,MACRO_DOMAIN_EQUAL_WEIGHT_MEAN_DICE_DELTA,phase25g_preservation_contract_binding.json,True,True
+delta_definition,"Delta_i = Dice(final_A8_i, GT) - Dice(global_i, GT)",phase25g_preservation_contract_binding.json,True,True
+noninferiority_margin,0.005,phase25g_preservation_contract_binding.json,True,True
+noninferiority_criterion,lower 95% CI bound > -0.005 (strict),work order,True,True
+bootstrap_type,DOMAIN_STRATIFIED_GROUP_BOOTSTRAP,phase25g_statistics_contract.json,True,True
+n_boot,2000,phase25g_statistics_contract.json,True,True
+seed,42,phase25g_statistics_contract.json,True,True
+rng,numpy.random.Generator(numpy.random.PCG64(42)),phase25g_statistics_contract.json,True,True
+ci_method,percentile,phase25g_statistics_contract.json,True,True
+ci_percentiles,2.5 / 97.5,phase25g_statistics_contract.json,True,True
+paired,true,phase25g_statistics_contract.json,True,True
+per_domain_reporting,mandatory,phase25g_preservation_contract_binding.json,True,True
+macro_may_not_hide_domain_harm,true,phase25g_preservation_contract_binding.json,True,True
+global_reference,same frozen GlobalMedFiLM in Phase26 bundle,work order,True,True
+system_under_test,A8_C9 (frozen Phase26 bundle),work order,True,True
+runtime_threshold_exact,-5003565381643716252018011/205414980000000000000000000,phase26_final_freeze.json,True,True
+runtime_decision,EXECUTE iff utility >= -5003565381643716252018011/205414980000000000000000000,phase26_final_freeze.json,True,True
+segmentation_output_threshold,0.5,phase26_training_spec.md,True,True
+roi_proposal_threshold,0.3,phase26_training_spec.md,True,True
+somega_accept_threshold,0.5,phase26_training_spec.md,True,True
+gt_inference_separation,two-phase with hash barrier,work order,True,True
+prediction_artifact_contract,frozen,work order,True,True
+reproducibility_contract,seed 42 + chunk-of-8 batch rule,work order,True,True
+holdout_owner,PHASE30,phase25g supervisor ruling,True,True
+holdout_state,RESERVED_UNOPENED_FOR_PHASE30,phase26_canonical_integration_terminal.json,True,True
+holdout_access,FORBIDDEN_IN_PHASE27,work order,True,True
+test_state,LOCKED_UNTIL_PHASE39,phase26_canonical_integration_terminal.json,True,True
+test_access,FORBIDDEN_IN_PHASE27,work order,True,True
+no_training,true,work order,True,True
+no_threshold_change,true,work order,True,True
+no_policy_selection,true,work order,True,True
+no_budget_change,true,work order,True,True
+no_lambda_change,true,work order,True,True
+bootstrap_plan_frozen_before_inference,true,work order s15,True,True
+required_audits,12 named audits,work order s27,True,True
+terminal_success,PHASE27_PRESERVATION_SPEC_COMPLETE__VAL808_CONTINUITY_BENCHMARK_AND_NONINFERIORITY_PROTOCOL_FROZEN__PHASE27_EXECUTION_ELIGIBLE_NOT_STARTED,work order,True,True

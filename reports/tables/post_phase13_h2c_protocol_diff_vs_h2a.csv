@@ -1,0 +1,41 @@
+field,h2a_value,h2c_value,changed,scientific_role
+experiment_id,post_phase13_h2a_kub_localizer_r512_h128_sigmaeq075_centernetfocal_deploymentbalance_seed42_clean_v3,post_phase13_h2c_kub_localizer_spatialhead3x3relu_r512_h128_sigmaeq075_centernetfocal_deploymentbalance_seed42_clean_v3,YES,PROVENANCE
+protocol_binding,post_phase13_h2a_protocol_frozen.json,post_phase13_h2c_protocol_frozen.json,YES,PROVENANCE
+head_architecture,"Conv2d(16->1, kernel_size=1)","Conv2d(16->16, k=3, p=1) + ReLU + Conv2d(16->1, k=1)",YES,SCIENTIFIC_AXIS__CHANGE_H2C_001
+head_initialization,conv weight 0.0; bias logit(0.1),conv3x3 kaiming/0; conv1x1 weight 0.0; conv1x1 bias logit(0.1),YES,SCIENTIFIC_AXIS__CHANGE_H2C_001
+loss,"CenterNetFocalLoss(alpha=2.0, beta=4.0)","CenterNetFocalLoss(alpha=2.0, beta=4.0)",NO,LOSS
+target,CenterNet-style Gaussian heatmap,CenterNet-style Gaussian heatmap,NO,TARGET
+sigma,0.75,0.75,NO,TARGET
+backbone,"3-stage compact U-Net, base 16","3-stage compact U-Net, base 16",NO,BACKBONE
+in_channels,1,1,NO,ARCHITECTURE
+out_channels,1,1,NO,ARCHITECTURE
+base_channels,16,16,NO,ARCHITECTURE
+heatmap_resolution,128,128,NO,ARCHITECTURE
+input_resolution,512 x 512,512 x 512,NO,ARCHITECTURE
+internal_sigmoid,NONE,NONE,NO,ARCHITECTURE
+TRAIN,770 FULL_FIELD / 1161 components,770 FULL_FIELD / 1161 components,NO,DATA
+VAL,103 FULL_FIELD / 152 components,103 FULL_FIELD / 152 components,NO,DATA
+ROI,EXCLUDED,EXCLUDED,NO,DATA
+manifest,phase4_v3,phase4_v3,NO,DATA
+taxonomy,kub_size_clean_v3_v1,kub_size_clean_v3_v1,NO,DATA
+augmentation,UNCHANGED Phase13 semantics,UNCHANGED Phase13 semantics,NO,DATA
+optimizer,AdamW,AdamW,NO,OPTIMIZATION
+learning_rate,0.0001,0.0001,NO,OPTIMIZATION
+weight_decay,0.0001,0.0001,NO,OPTIMIZATION
+scheduler,CosineAnnealingLR(T_max=100),CosineAnnealingLR(T_max=100),NO,OPTIMIZATION
+batch,4,4,NO,OPTIMIZATION
+amp,same accepted semantics,same accepted semantics,NO,OPTIMIZATION
+seed,42,42,NO,OPTIMIZATION
+max_epochs,100,100,NO,OPTIMIZATION
+workers,0,0,NO,OPTIMIZATION
+checkpoint_selection,DEPLOYMENT_BALANCE_HMEAN_P_TINY90_OVERALL90 > tiny_recall90 > overall_recall90 > PROPOSAL_PIXEL_ANY_HIT_PRECISION > -mean_roi_area_fraction > -val_loss,DEPLOYMENT_BALANCE_HMEAN_P_TINY90_OVERALL90 > tiny_recall90 > overall_recall90 > PROPOSAL_PIXEL_ANY_HIT_PRECISION > -mean_roi_area_fraction > -val_loss,NO,CHECKPOINT_SELECTION
+checkpoint_selection_patience,15,15,NO,CHECKPOINT_SELECTION
+checkpoint_selection_ties,BAD_EPOCH,BAD_EPOCH,NO,CHECKPOINT_SELECTION
+proposal_threshold,0.1,0.1,NO,PROPOSAL
+proposal_margin,0.2,0.2,NO,PROPOSAL
+proposal_top_k,5,5,NO,PROPOSAL
+proposal_nms_iou,0.3,0.3,NO,PROPOSAL
+proposal_grid,NONE,NONE,NO,PROPOSAL
+fusion,PREDICTED_REGION_FLOAT_GLOBAL_RETAINED,PREDICTED_REGION_FLOAT_GLOBAL_RETAINED,NO,FUSION
+segmentation_threshold,0.5,0.5,NO,FUSION
+segmentation_checkpoints,unet|attention_unet|unetpp|deeplabv3plus,unet|attention_unet|unetpp|deeplabv3plus,NO,FUSION

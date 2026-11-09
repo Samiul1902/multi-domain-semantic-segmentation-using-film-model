@@ -1,0 +1,6 @@
+module_id,module_name,phase_origin,phase26_trainability,trainable_parameters,requires_grad,checkpoint_path,rationale
+G,GlobalMedFiLM,Phase21,FROZEN_NO_GRAD,0,false,"—(Phase21 global, see identity binding)",already trained + final in Phase21
+R_psi,BARRRegionalRefinerV1 (ROI-0.30 canonical),Phase25A,FROZEN_NO_GRAD,0,false,checkpoints/phase25a_barr_regional_refiner_v1_1_roi030/final/final.pt,canonical final refiner frozen in Phase25A
+B_phi,BARRBenefitRouterV1,Phase25D,FROZEN_NO_GRAD,0,false,checkpoints/phase25d_barr_benefit_router_v1_2_1_seed42/final/final.pt,final all-DEV router frozen in Phase25D
+S_omega,BARRPostSafetyV1,Phase25F,FROZEN_NO_GRAD,0,false,checkpoints/phase25f_barr_post_safety_v1_0_seed42/final/final.pt,final all-DEV post-safety frozen in Phase25F
+FUSION,deterministic ROI/fusion rule,Phase24 spec / Phase25A,NOT_TRAINABLE,0,false,—(rule),deterministic rule; trainable parameters = NONE

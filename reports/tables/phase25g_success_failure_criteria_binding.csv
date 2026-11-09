@@ -1,0 +1,9 @@
+criterion_id,type,name,exact_rule,population,metric,stage_ownership,phase25g_applicability,rationale,frozen_before_phase25
+F1,failure,REFINER_FAILURE,dedicated refiner does not create enough positive action opportunity,ROUTER_DEVELOPMENT,action-opportunity rate,Phase25A/25C,NOT_APPLICABLE,refiner action-opportunity owned by Phase25A/25C,true
+F2,failure,ROUTER_FAILURE,learned paired gain fails to outperform simple GT-free routing signals out of sample,ROUTER_DEVELOPMENT,OOF router AUC/benefit vs simple proxies,Phase25D/25E,NOT_APPLICABLE,router-vs-proxy H1 owned by Phase25D/25E,true
+F3,failure,PRESERVATION_FAILURE,routed system materially degrades the global reference,ROUTER_DEVELOPMENT,Delta = Dice(A8) - Dice(global); lower 95% CI,Phase25G,APPLICABLE,A8 non-inferiority vs global reference,true
+F4,failure,RESOURCE_FAILURE,router/refiner cost removes the useful compute-performance trade-off,ROUTER_DEVELOPMENT,analytical MAC ratio,Phase25G,APPLICABLE,analytical compute accounting (A7/A8),true
+F5,failure,DOMAIN_COLLAPSE,benefit is concentrated in one domain while another is materially harmed,ROUTER_DEVELOPMENT,per-domain Dice delta,Phase25G,APPLICABLE,per-domain integrated harm,true
+S1,success,H1_SUPPORTED,learned pre-execution GT-free predictor beats simple proxies at equal budget,ROUTER_DEVELOPMENT,OOF router vs proxies at equal budget,Phase25D/25E,NOT_APPLICABLE,H1 owned by Phase25D/25E,true
+S2,success,PRESERVATION_SATISFIED,lower bound of Delta > -0.005 on macro-domain Dice and no domain collapse,ROUTER_DEVELOPMENT,Delta lower bound > -0.005 (A8),Phase25G,APPLICABLE,A8 preservation satisfied,true
+S3,success,FRONTIER_MEASURED,a measurable accuracy-compute frontier exists across budget points,ROUTER_DEVELOPMENT,accuracy-compute frontier across budgets,Phase25E (Phase25G re-report),PARTIAL,frontier measured in Phase25E; Phase25G re-reports,true

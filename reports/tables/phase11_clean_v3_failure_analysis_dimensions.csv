@@ -1,0 +1,12 @@
+dimension,definition,unit,status,note
+regime,FULL_FIELD vs ROI acquisition regime,case,VERIFIED_CONTRACT,FULL_FIELD 103 / ROI 177; NEVER pool without showing both
+category,Kidney/Bladder/Ureteric subgroup metadata,case,VERIFIED_CONTRACT,metadata only; not a pixel class; Ureteric n=24 do not overinterpret
+size stratum (FULL_FIELD only),kub_size_clean_v3_v1 TINY/SMALL/MEDIUM/LARGE,component,VERIFIED_CONTRACT,Q25/Q50/Q75 frozen; ROI = ROI_NOT_PRIMARY_BINNED
+object detection,"per-GT-component detected/missed via 8-conn, >=1px overlap",component,VERIFIED_CONTRACT,original space = identity; evaluation 512 space = predictions/FP
+multi-component,COMPLETE / PARTIAL / COMPLETE_MISS detection classes,case,HISTORICAL_VERIFIED_PROPOSED_EXTENSION,historical analysed on original_component_count>1; retain as descriptive subgroup
+boundary,HD95 with validity flag; invalid handled explicitly,case,VERIFIED_CONTRACT,no silent NaN dropping; report valid counts
+empty prediction,zero-foreground prediction,case,HISTORICAL_VERIFIED,carry forward from historical definition
+false-positive burden,fp evaluation components count,case,HISTORICAL_VERIFIED,historical used decile cutoff; clean-v3 cutoff NOT yet frozen
+low-Dice stratum,bottom-decile Dice stratum,case,HISTORICAL_METHOD_NOT_VALUE,method (own-distribution bottom decile) is historical; the numeric value must be recomputed on clean-v3 and is NOT frozen here
+shared failure,cases difficult across all four clean-v3 baselines,case,CANDIDATE_FOR_SUPERVISOR_REVIEW,no formula frozen in Part 1A
+architecture disagreement,cases where the four baselines diverge materially,case,CANDIDATE_FOR_SUPERVISOR_REVIEW,e.g. max-min Dice or SD; no threshold frozen

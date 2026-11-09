@@ -1,0 +1,35 @@
+field,phase09_value,phase10_value,same_or_different,material,source_kind,comment
+input_resolution,512,512,same,False,config,identical
+loss.name,bce_dice,bce_dice,same,False,config,identical
+loss.bce_weight,0.5,0.5,same,False,config,identical
+loss.dice_weight,0.5,0.5,same,False,config,identical
+loss.dice_epsilon,1e-06,1e-06,same,False,config,identical
+optimizer.name,AdamW,AdamW,same,False,config,identical
+optimizer.learning_rate,0.0001,0.0001,same,False,config,identical
+optimizer.weight_decay,0.0001,0.0001,same,False,config,identical
+scheduler.name,CosineAnnealingLR,CosineAnnealingLR,same,False,config,identical
+scheduler.max_epochs,100,100,same,False,config,identical
+training.max_epochs,100,100,same,False,config,identical
+training.early_stopping_patience,15,15,same,False,config,identical
+training.threshold,0.5,0.5,same,False,config,identical
+training.seed,42,42,same,False,config,identical
+training.amp,True,True,same,False,config,identical
+training.num_workers,0,0,same,False,config,identical
+training.pin_memory,True,True,same,False,config,identical
+augmentation.horizontal_flip_probability,0.5,0.5,same,False,config,identical
+augmentation.rotation_degrees,5.0,5.0,same,False,config,identical
+augmentation.brightness,0.1,0.1,same,False,config,identical
+augmentation.contrast,0.1,0.1,same,False,config,identical
+augmentation.vertical_flip,False,False,same,False,config,identical
+preprocessing.strategy,aspect_ratio_resize_symmetric_pad,aspect_ratio_resize_symmetric_pad,same,False,config,identical
+preprocessing.image_interpolation,bilinear,bilinear,same,False,config,identical
+preprocessing.mask_interpolation,nearest,nearest,same,False,config,identical
+model.input_channels,1,1,same,False,config,identical
+model.output_channels,1,1,same,False,config,identical
+model.base_channels,32,32,same,False,config,identical
+training.monitor,val_macro_dice,val_macro_dice_true_per_image,different,False,config (naming),"different monitor STRING for the same metric (""val_macro_dice"" vs ""val_macro_dice_true_per_image""); naming only, no behavioural difference"
+loop.scheduler_step_after_val,True,True,same,False,source,identical
+loop.strict_improvement,True,True,same,False,source,identical
+loop.latest_saved_every_epoch,True,True,same,False,source,identical
+loop.best_saved_on_improvement,True,True,same,False,source,identical
+loop.nan_inf_guard,False,True,different,False,source,"Phase-10 adds an explicit finite-value guard that raises; Phase-09 lacks it. Infrastructure improvement, not a scientific difference."

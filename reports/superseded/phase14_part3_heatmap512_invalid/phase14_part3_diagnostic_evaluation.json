@@ -1,0 +1,180 @@
+{
+  "timestamp": "2026-09-18T16:29:48Z",
+  "phase": 14,
+  "part": "3 \u2014 Frozen Full Validation Diagnostic Evaluation",
+  "population": {
+    "view_type": "FULL_FIELD",
+    "val_samples": 106,
+    "authoritative_components": 156,
+    "size_strata": {
+      "TINY": 73,
+      "MEDIUM": 36,
+      "SMALL": 29,
+      "LARGE": 18
+    },
+    "hard_tiny_denominator": 16,
+    "global_empty_denominator": 7
+  },
+  "checkpoints": {
+    "global_unetpp": {
+      "path": "D:\\Softfors\\jup\\checkpoints\\phase10_kub_unetpp_seed42_512\\best.pt",
+      "sha256": "4bffcf926227fb11029ead6bcd8e7dd8ed246e0f1678e3efb2ce4297439a3f2d"
+    },
+    "regional_unet": {
+      "path": "D:\\Softfors\\jup\\checkpoints\\phase14_diag_regional_unet_oracletrain_a3_seed42_v1\\best.pt",
+      "sha256": "89ada72700385ed56b49b6caf34d9061349c24a566794176911b83fb0c8cd9f0",
+      "epoch": 14
+    },
+    "stage4d_localizer": {
+      "path": "D:\\Softfors\\jup\\checkpoints\\phase13b_kub_localizer_r512_h128_sigmaeq075_centernetfocal_seed42_v1\\best.pt",
+      "sha256": "ece906df6c73f2e93c3f873661490bf3cb1a6b82be2d2d93b58c25bc967cbace",
+      "config": {
+        "threshold": 0.1,
+        "margin": 0.2,
+        "top_k": 5,
+        "nms_iou": 0.3
+      }
+    }
+  },
+  "frozen_references": {
+    "Dg": 0.652776,
+    "Tg": 0.780822
+  },
+  "mode_summaries": [
+    {
+      "mode": "GLOBAL_ONLY",
+      "mean_dice": 0.6424994037638933,
+      "median_dice": 0.7603968368122562,
+      "overall_recall90": 0.8461538461538461,
+      "tiny_recall90": 0.7945205479452054,
+      "small_recall90": 0.8620689655172413,
+      "medium_recall90": 0.8888888888888888,
+      "large_recall90": 0.9444444444444444,
+      "overall_detected_count": 132,
+      "tiny_detected_count": 58,
+      "small_detected_count": 25,
+      "medium_detected_count": 32,
+      "large_detected_count": 17,
+      "hard_tiny_recovered": 1,
+      "hard_tiny_total": 16,
+      "global_empty_recovered": 0,
+      "global_empty_total": 7,
+      "mean_fp_components_per_image": 0.3584905660377358,
+      "zero_foreground_images": 7,
+      "mean_proposals_per_image": 0.0,
+      "median_proposals_per_image": 0.0,
+      "zero_proposal_images": 106,
+      "multi_proposal_images": 0,
+      "mean_roi_area_fraction": 0.0,
+      "median_roi_area_fraction": 0.0,
+      "p90_roi_area_fraction": 0.0,
+      "p95_roi_area_fraction": 0.0,
+      "max_roi_area_fraction": 0.0
+    },
+    {
+      "mode": "ORACLE_REGIONAL",
+      "mean_dice": 0.8131664462589612,
+      "median_dice": 0.8411773696908493,
+      "overall_recall90": 1.0,
+      "tiny_recall90": 1.0,
+      "small_recall90": 1.0,
+      "medium_recall90": 1.0,
+      "large_recall90": 1.0,
+      "overall_detected_count": 156,
+      "tiny_detected_count": 73,
+      "small_detected_count": 29,
+      "medium_detected_count": 36,
+      "large_detected_count": 18,
+      "hard_tiny_recovered": 16,
+      "hard_tiny_total": 16,
+      "global_empty_recovered": 7,
+      "global_empty_total": 7,
+      "mean_fp_components_per_image": 0.5283018867924528,
+      "zero_foreground_images": 0,
+      "mean_proposals_per_image": 1.471698113207547,
+      "median_proposals_per_image": 1.0,
+      "zero_proposal_images": 0,
+      "multi_proposal_images": 50,
+      "mean_roi_area_fraction": 0.00453138808416836,
+      "median_roi_area_fraction": 0.0009204440646701389,
+      "p90_roi_area_fraction": 0.00502394687982253,
+      "p95_roi_area_fraction": 0.01817377584951895,
+      "max_roi_area_fraction": 0.1252760898919753
+    },
+    {
+      "mode": "PREDICTED_REGIONAL",
+      "mean_dice": 0.3495108833366782,
+      "median_dice": 0.316490265943975,
+      "overall_recall90": 0.8974358974358975,
+      "tiny_recall90": 0.8082191780821918,
+      "small_recall90": 0.9655172413793104,
+      "medium_recall90": 1.0,
+      "large_recall90": 0.9444444444444444,
+      "overall_detected_count": 140,
+      "tiny_detected_count": 59,
+      "small_detected_count": 28,
+      "medium_detected_count": 36,
+      "large_detected_count": 17,
+      "hard_tiny_recovered": 2,
+      "hard_tiny_total": 16,
+      "global_empty_recovered": 3,
+      "global_empty_total": 7,
+      "mean_fp_components_per_image": 6.084905660377358,
+      "zero_foreground_images": 0,
+      "mean_proposals_per_image": 4.971698113207547,
+      "median_proposals_per_image": 5.0,
+      "zero_proposal_images": 0,
+      "multi_proposal_images": 106,
+      "mean_roi_area_fraction": 0.006825384200999925,
+      "median_roi_area_fraction": 0.005083486728244265,
+      "p90_roi_area_fraction": 0.01080275641547309,
+      "p95_roi_area_fraction": 0.013854011268207239,
+      "max_roi_area_fraction": 0.08541109061535494
+    }
+  ],
+  "diagnostic_contrasts": {
+    "Tg": 0.780822,
+    "To": 1.0,
+    "Tp": 0.8082191780821918,
+    "Dg": 0.652776,
+    "Do": 0.8131664462589612,
+    "Dp": 0.3495108833366782,
+    "G": 0.21917799999999998,
+    "R": 0.12499967187487694,
+    "R_string": "0.125000"
+  },
+  "gates": {
+    "step_1": {
+      "name": "Refiner Potential",
+      "condition": "G >= 0.05 AND Do >= 0.632776",
+      "pass": true,
+      "G": 0.21917799999999998,
+      "Do": 0.8131664462589612
+    },
+    "step_2": {
+      "name": "Proposal Retention",
+      "condition": "R >= 0.50 (if G > 0)",
+      "status": "FAIL",
+      "pass": false,
+      "R": 0.12499967187487694
+    },
+    "step_3": {
+      "name": "Practical Net Benefit",
+      "condition": "Tp >= 0.780822 AND Dp >= 0.632776 AND Hard-Tiny >= 2/16 AND Global-Empty >= 1/7",
+      "pass": false,
+      "Tp": 0.8082191780821918,
+      "Dp": 0.3495108833366782,
+      "hard_tiny_recovered": 2,
+      "global_empty_recovered": 3
+    }
+  },
+  "final_classification": "DIAGNOSTIC_PROPOSAL_BOTTLENECK",
+  "phase15_status": "NOT_AUTHORIZED",
+  "governance_locks": {
+    "test_split_reads": 0,
+    "test_metrics": "NONE",
+    "external_data_used": false,
+    "experiment_a_modified": false,
+    "training_executed": false
+  }
+}

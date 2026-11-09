@@ -1,0 +1,5 @@
+| category | TINY | SMALL | MEDIUM | LARGE | TOTAL |
+| --- | --- | --- | --- | --- | --- |
+| Kidney_Stone | 48 | 173 | 212 | 276 | 709 |
+| Bladder_Stone | 221 | 85 | 31 | 7 | 344 |
+| Ureteric_Stone | 22 | 32 | 47 | 8 | 109 |

@@ -1,0 +1,9 @@
+id,type,name,definition,consequence_if_triggered,frozen_before_phase25
+F1,failure,REFINER_FAILURE,dedicated refiner does not create enough positive action opportunity,report as a failure; routing has nothing to route,true
+F2,failure,ROUTER_FAILURE,learned paired gain fails to outperform simple GT-free routing signals out of sample,report H1 as unsupported,true
+F3,failure,PRESERVATION_FAILURE,routed system materially degrades the global reference,report; non-inferiority claim NOT permitted,true
+F4,failure,RESOURCE_FAILURE,router/refiner cost removes the useful compute-performance trade-off,report; resource-aware claim NOT permitted,true
+F5,failure,DOMAIN_COLLAPSE,benefit is concentrated in one domain while another is materially harmed,report per-domain harm; macro average may not hide it,true
+S1,success,H1_SUPPORTED,learned pre-execution GT-free predictor beats simple proxies at equal budget,enables scoped Level-2 wording for the integrated residual,true
+S2,success,PRESERVATION_SATISFIED,lower bound of Delta > -0.005 on macro-domain Dice and no domain collapse,allows the phrase 'performance preserving',true
+S3,success,FRONTIER_MEASURED,a measurable accuracy-compute frontier exists across budget points,supports H5,true

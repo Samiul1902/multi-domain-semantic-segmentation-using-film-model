@@ -1,0 +1,11 @@
+item,historical_v2,proposed_clean_v3,change_reason,scientifically_material,supervisor_decision_required
+role of Phase 13,Produce GT-free proposals consumed by the Phase-14 regional refiner (Condition C),"Produce GT-free proposals consumed by a regional refiner, evaluated as a three-way contrast GLOBAL vs ORACLE REGION vs PREDICTED REGION",unchanged,False,False
+refiner input geometry,consume crop_geometry directly without further expansion,identical rule,unchanged,False,False
+fusion rule,"DIRECT_REPLACEMENT_IN_PROPOSAL_UNION; regional pixelwise MAX inside the proposal union, global elsewhere",identical rule,unchanged,False,False
+final threshold,0.50,0.50,unchanged,False,False
+zero-proposal fallback,P_final = P_global everywhere (no synthetic fallback),identical rule,unchanged,False,False
+refiner training crops,Option A3: 1162 GT-derived base crops + 2324 perturbed crops + 1542 background negatives,PROPOSE: draw training crops from Stage-4D predicted proposals (with an explicit negative-sampling policy) so the training crop distribution matches the inference proposal distribution,HISTORICAL_TRAIN_INFERENCE_PROPOSAL_DISTRIBUTION_MISMATCH: the historical refiner was trained on GT-derived/perturbed crops but evaluated on predicted proposals,True,True
+refiner training population,v2 FULL_FIELD (771 train images / 1162 components),clean-v3 FULL_FIELD (770 train images / 1161 components),clean-v3 population,False,False
+oracle budget,TopK=5 largest GT components (because TRAIN max is 11),TopK=5 largest GT components (clean-v3 TRAIN max is still 11),unchanged; ORACLE_UNBOUNDED remains optional,False,False
+FP-burden reporting,reported post hoc (5.43 FP components/image vs 0.37 baseline),"report proposal precision, unmatched proposals/image and the FP burden prospectively",the Phase-14 Step-3 failure was driven by proposal FP clutter,True,False
+cross-phase gate,Phase-14 confirmatory path COMPLETE_CLOSED_NOT_RUN (FROZEN_ENTRY_GATE_NOT_MET),Phases 14-18 remain PENDING_POST_PHASE13_REGIONAL_INTEGRATION_GATE; no automatic progression,unchanged,False,False

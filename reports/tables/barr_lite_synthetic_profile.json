@@ -1,0 +1,1137 @@
+{
+  "accuracy_status": "NOT_MEASURED; all model outputs are synthetic profiles only",
+  "batch_size": 1,
+  "branch_measurement_note": "The trained router and safety final-layer outputs are deterministically overridden inside this isolated profiler only to force branch execution. A constant synthetic ROI is also substituted when the unmodified global checkpoint produces no proposal. These cases measure path cost, not model routing frequency, acceptance, segmentation, or accuracy.",
+  "cuda_available": false,
+  "device": "cpu",
+  "excluded_costs": [
+    "dataset decoding/normalization",
+    "checkpoint loading and model initialization"
+  ],
+  "full_model": {
+    "assembled_inference_parameter_inventory": {
+      "by_component": {
+        "FULL_GRAPH": {
+          "frozen_parameters": 4837420,
+          "trainable_parameters": 0,
+          "unique_parameters": 4837420
+        }
+      },
+      "frozen_parameters": 4837420,
+      "trainable_parameters": 0,
+      "unique_parameters": 4837420
+    },
+    "checkpoint_provenance": {
+      "B_phi": {
+        "bytes": 455682,
+        "path": "checkpoints/phase25d_barr_benefit_router_v1_2_1_seed42/final/final.pt",
+        "seed": 42,
+        "sha256": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b"
+      },
+      "G": {
+        "bytes": 42369710,
+        "path": "checkpoints/phase21_global_medfilm_fourdomain_seed42_clean_v3/best.pt",
+        "seed": 42,
+        "sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7"
+      },
+      "R_psi": {
+        "bytes": 15425424,
+        "path": "checkpoints/phase25a_barr_regional_refiner_v1_1_roi030/final/final.pt",
+        "seed": 42,
+        "sha256": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109"
+      },
+      "S_omega": {
+        "bytes": 7816,
+        "path": "checkpoints/phase25f_barr_post_safety_v1_0_seed42/final/final.pt",
+        "seed": 42,
+        "sha256": "eee9b97b9921e53fc07eac9281dce64ba518c6e1659916b97b0b3bec21ec6d2e"
+      }
+    },
+    "component_checkpoint_total_bytes": 58258632,
+    "identity": "RA-MedFiLM-BARR (FULL)",
+    "parameter_breakdown": {
+      "B_phi": {
+        "parameters": 36801,
+        "top_level_blocks": {
+          "net": 36737,
+          "task_embedding": 64
+        }
+      },
+      "G": {
+        "parameters": 3523001,
+        "top_level_blocks": {
+          "bridge": 1082368,
+          "decoder1": 22560,
+          "decoder2": 90048,
+          "decoder3": 359808,
+          "decoder4": 1192704,
+          "encoder1": 6000,
+          "encoder2": 32448,
+          "encoder3": 129408,
+          "encoder4": 516864,
+          "film_layers": 90640,
+          "head": 25,
+          "pool": 0,
+          "task_embedding": 128
+        }
+      },
+      "R_psi": {
+        "parameters": 1276401,
+        "top_level_blocks": {
+          "bridge": 295424,
+          "decoder1": 10048,
+          "decoder2": 40064,
+          "decoder3": 139520,
+          "decoder4": 298368,
+          "encoder1": 4672,
+          "encoder2": 14464,
+          "encoder3": 57600,
+          "encoder4": 144768,
+          "encoder5": 270848,
+          "head": 17,
+          "pool": 0,
+          "stem": 608
+        }
+      },
+      "S_omega": {
+        "parameters": 1217,
+        "top_level_blocks": {
+          "fc1": 672,
+          "fc2": 528,
+          "fc3": 17
+        }
+      }
+    },
+    "parameters": {
+      "by_component": {
+        "B_phi": {
+          "frozen_parameters": 0,
+          "trainable_parameters": 36801,
+          "unique_parameters": 36801
+        },
+        "G": {
+          "frozen_parameters": 0,
+          "trainable_parameters": 3523001,
+          "unique_parameters": 3523001
+        },
+        "R_psi": {
+          "frozen_parameters": 0,
+          "trainable_parameters": 1276401,
+          "unique_parameters": 1276401
+        },
+        "S_omega": {
+          "frozen_parameters": 0,
+          "trainable_parameters": 1217,
+          "unique_parameters": 1217
+        }
+      },
+      "frozen_parameters": 0,
+      "trainable_parameters": 4837420,
+      "unique_parameters": 4837420
+    },
+    "paths": {
+      "global_only": {
+        "baseline_process_rss_bytes": 681684992,
+        "batch_size": 1,
+        "flops_approx_2_per_mac": 63103481856,
+        "latency_ms_p50": 957.5474000002941,
+        "latency_ms_p95": 963.2833400000891,
+        "latency_samples": 5,
+        "macs": 31551740928,
+        "macs_by_block": {
+          "B_phi": {},
+          "G": {
+            "bridge": 1107296256,
+            "decoder1": 5888802816,
+            "decoder2": 5888802816,
+            "decoder3": 5888802816,
+            "decoder4": 4882169856,
+            "encoder1": 1547698176,
+            "encoder2": 2113929216,
+            "encoder3": 2113929216,
+            "encoder4": 2113929216,
+            "film_layers.bridge": 34816,
+            "film_layers.decoder1": 5120,
+            "film_layers.decoder2": 8192,
+            "film_layers.decoder3": 14336,
+            "film_layers.decoder4": 26624,
+            "head": 6291456
+          },
+          "R_psi": {},
+          "S_omega": {}
+        },
+        "macs_by_component": {
+          "B_phi": 0,
+          "G": 31551740928,
+          "R_psi": 0,
+          "S_omega": 0
+        },
+        "measurement_note": "sampled process RSS; allocator/native transient peaks may be missed",
+        "sampled_peak_delta_bytes": 33050624,
+        "sampled_peak_process_rss_bytes": 714735616,
+        "sampled_peak_process_rss_mib": 681.625,
+        "state": "GLOBAL_ONLY",
+        "synthetic_roi_override_applied": false,
+        "synthetic_roi_override_enabled": false
+      },
+      "regional_refinement_accepted": {
+        "baseline_process_rss_bytes": 719015936,
+        "batch_size": 1,
+        "flops_approx_2_per_mac": 69564881824,
+        "latency_ms_p50": 1093.3779000006325,
+        "latency_ms_p95": 1096.427419999418,
+        "latency_samples": 5,
+        "macs": 34782440912,
+        "macs_by_block": {
+          "B_phi": {
+            "net": 36160
+          },
+          "G": {
+            "bridge": 1107296256,
+            "decoder1": 5888802816,
+            "decoder2": 5888802816,
+            "decoder3": 5888802816,
+            "decoder4": 4882169856,
+            "encoder1": 1547698176,
+            "encoder2": 2113929216,
+            "encoder3": 2113929216,
+            "encoder4": 2113929216,
+            "film_layers.bridge": 34816,
+            "film_layers.decoder1": 5120,
+            "film_layers.decoder2": 8192,
+            "film_layers.decoder3": 14336,
+            "film_layers.decoder4": 26624,
+            "head": 6291456
+          },
+          "R_psi": {
+            "bridge": 18874368,
+            "decoder1": 654311424,
+            "decoder2": 654311424,
+            "decoder3": 570425344,
+            "decoder4": 305135616,
+            "encoder1": 301989888,
+            "encoder2": 234881024,
+            "encoder3": 234881024,
+            "encoder4": 147849216,
+            "encoder5": 69206016,
+            "head": 1048576,
+            "stem": 37748736
+          },
+          "S_omega": {
+            "fc1": 640,
+            "fc2": 512,
+            "fc3": 16
+          }
+        },
+        "macs_by_component": {
+          "B_phi": 36160,
+          "G": 31551740928,
+          "R_psi": 3230662656,
+          "S_omega": 1168
+        },
+        "measurement_note": "sampled process RSS; allocator/native transient peaks may be missed",
+        "sampled_peak_delta_bytes": 40603648,
+        "sampled_peak_process_rss_bytes": 759619584,
+        "sampled_peak_process_rss_mib": 724.4296875,
+        "state": "EXECUTE_THEN_ACCEPT",
+        "synthetic_roi_override_applied": true,
+        "synthetic_roi_override_enabled": true
+      },
+      "router_skip": {
+        "baseline_process_rss_bytes": 662695936,
+        "batch_size": 1,
+        "flops_approx_2_per_mac": 63103554176,
+        "latency_ms_p50": 966.5269000006447,
+        "latency_ms_p95": 968.5354800001733,
+        "latency_samples": 5,
+        "macs": 31551777088,
+        "macs_by_block": {
+          "B_phi": {
+            "net": 36160
+          },
+          "G": {
+            "bridge": 1107296256,
+            "decoder1": 5888802816,
+            "decoder2": 5888802816,
+            "decoder3": 5888802816,
+            "decoder4": 4882169856,
+            "encoder1": 1547698176,
+            "encoder2": 2113929216,
+            "encoder3": 2113929216,
+            "encoder4": 2113929216,
+            "film_layers.bridge": 34816,
+            "film_layers.decoder1": 5120,
+            "film_layers.decoder2": 8192,
+            "film_layers.decoder3": 14336,
+            "film_layers.decoder4": 26624,
+            "head": 6291456
+          },
+          "R_psi": {},
+          "S_omega": {}
+        },
+        "macs_by_component": {
+          "B_phi": 36160,
+          "G": 31551740928,
+          "R_psi": 0,
+          "S_omega": 0
+        },
+        "measurement_note": "sampled process RSS; allocator/native transient peaks may be missed",
+        "sampled_peak_delta_bytes": 62992384,
+        "sampled_peak_process_rss_bytes": 725688320,
+        "sampled_peak_process_rss_mib": 692.0703125,
+        "state": "SKIP_GLOBAL",
+        "synthetic_roi_override_applied": true,
+        "synthetic_roi_override_enabled": true
+      }
+    },
+    "raw_fp32_weight_bytes": 19349680,
+    "research_data_accessed": false,
+    "synthetic_inputs_only": true,
+    "teacher_bundle_sha256": "1e64485e139a447ee5bf2fceacbd1bb9b49c0018ea185fdda200f263850af3e8"
+  },
+  "full_teacher_bundle_available": true,
+  "image_size": 512,
+  "included_router_feature_extraction": "202-D full feature pipeline; Lite uses adaptive channel reduction for its new tap widths",
+  "lite_candidates": {
+    "depthwise_compact": {
+      "assembled_inference_parameter_inventory": {
+        "by_component": {
+          "FULL_GRAPH": {
+            "frozen_parameters": 272601,
+            "trainable_parameters": 0,
+            "unique_parameters": 272601
+          }
+        },
+        "frozen_parameters": 272601,
+        "trainable_parameters": 0,
+        "unique_parameters": 272601
+      },
+      "candidate_spec": {
+        "architecture_sha256": "a27a3c5aebe463d71df8c3e72060a1bf43030f28752a544152bb724de6cb3a21",
+        "block_kind": "depthwise",
+        "embedding_dim": 16,
+        "film_hidden_dim": 32,
+        "global_channels": [
+          12,
+          24,
+          48,
+          96,
+          128
+        ],
+        "refiner_channels": [
+          8,
+          16,
+          32,
+          48,
+          64
+        ],
+        "skip_fusion": "concat",
+        "variant_id": "ra_medfilm_barr_lite_depthwise_compact_v1"
+      },
+      "identity": "RA-MedFiLM-BARR-Lite/depthwise_compact",
+      "parameter_breakdown": {
+        "B_phi": {
+          "parameters": 36801,
+          "top_level_blocks": {
+            "net": 36737,
+            "task_embedding": 64
+          }
+        },
+        "G": {
+          "parameters": 176454,
+          "top_level_blocks": {
+            "bridge": 43936,
+            "decoder1": 1584,
+            "decoder2": 5184,
+            "decoder3": 18432,
+            "decoder4": 56128,
+            "encoder1": 429,
+            "encoder2": 1644,
+            "encoder3": 5592,
+            "encoder4": 20400,
+            "film_layers": 23048,
+            "head": 13,
+            "pool": 0,
+            "task_embedding": 64
+          }
+        },
+        "R_psi": {
+          "parameters": 58129,
+          "top_level_blocks": {
+            "bridge": 9856,
+            "decoder1": 832,
+            "decoder2": 2560,
+            "decoder3": 7504,
+            "decoder4": 15008,
+            "encoder1": 336,
+            "encoder2": 840,
+            "encoder3": 2704,
+            "encoder4": 6448,
+            "encoder5": 11728,
+            "head": 9,
+            "pool": 0,
+            "stem": 304
+          }
+        },
+        "S_omega": {
+          "parameters": 1217,
+          "top_level_blocks": {
+            "fc1": 672,
+            "fc2": 528,
+            "fc3": 17
+          }
+        }
+      },
+      "parameter_reduction_vs_full": 0.9436474401643852,
+      "parameters": {
+        "by_component": {
+          "B_phi": {
+            "frozen_parameters": 0,
+            "trainable_parameters": 36801,
+            "unique_parameters": 36801
+          },
+          "G": {
+            "frozen_parameters": 0,
+            "trainable_parameters": 176454,
+            "unique_parameters": 176454
+          },
+          "R_psi": {
+            "frozen_parameters": 0,
+            "trainable_parameters": 58129,
+            "unique_parameters": 58129
+          },
+          "S_omega": {
+            "frozen_parameters": 0,
+            "trainable_parameters": 1217,
+            "unique_parameters": 1217
+          }
+        },
+        "frozen_parameters": 0,
+        "trainable_parameters": 272601,
+        "unique_parameters": 272601
+      },
+      "paths": {
+        "global_only": {
+          "baseline_process_rss_bytes": 514678784,
+          "batch_size": 1,
+          "flops_approx_2_per_mac": 3238899200,
+          "latency_ms_p50": 322.1765000007508,
+          "latency_ms_p95": 325.3681599999254,
+          "latency_samples": 5,
+          "macs": 1619449600,
+          "macs_by_block": {
+            "B_phi": {},
+            "G": {
+              "bridge": 44007424,
+              "decoder1": 377487360,
+              "decoder2": 320864256,
+              "decoder3": 292552704,
+              "decoder4": 225705984,
+              "encoder1": 92012544,
+              "encoder2": 96731136,
+              "encoder3": 86114304,
+              "encoder4": 80805888,
+              "film_layers.bridge": 8704,
+              "film_layers.decoder1": 1280,
+              "film_layers.decoder2": 2048,
+              "film_layers.decoder3": 3584,
+              "film_layers.decoder4": 6656,
+              "head": 3145728
+            },
+            "R_psi": {},
+            "S_omega": {}
+          },
+          "macs_by_component": {
+            "B_phi": 0,
+            "G": 1619449600,
+            "R_psi": 0,
+            "S_omega": 0
+          },
+          "measurement_note": "sampled process RSS; allocator/native transient peaks may be missed",
+          "sampled_peak_delta_bytes": 34164736,
+          "sampled_peak_process_rss_bytes": 548843520,
+          "sampled_peak_process_rss_mib": 523.41796875,
+          "state": "GLOBAL_ONLY",
+          "synthetic_roi_override_applied": false,
+          "synthetic_roi_override_enabled": false
+        },
+        "regional_refinement_accepted": {
+          "baseline_process_rss_bytes": 517459968,
+          "batch_size": 1,
+          "flops_approx_2_per_mac": 3639374240,
+          "latency_ms_p50": 398.0344999999943,
+          "latency_ms_p95": 400.66686000009213,
+          "latency_samples": 5,
+          "macs": 1819687120,
+          "macs_by_block": {
+            "B_phi": {
+              "net": 36160
+            },
+            "G": {
+              "bridge": 44007424,
+              "decoder1": 377487360,
+              "decoder2": 320864256,
+              "decoder3": 292552704,
+              "decoder4": 225705984,
+              "encoder1": 92012544,
+              "encoder2": 96731136,
+              "encoder3": 86114304,
+              "encoder4": 80805888,
+              "film_layers.bridge": 8704,
+              "film_layers.decoder1": 1280,
+              "film_layers.decoder2": 2048,
+              "film_layers.decoder3": 3584,
+              "film_layers.decoder4": 6656,
+              "head": 3145728
+            },
+            "R_psi": {
+              "bridge": 598016,
+              "decoder1": 48234496,
+              "decoder2": 38797312,
+              "decoder3": 29294592,
+              "decoder4": 14843904,
+              "encoder1": 17825792,
+              "encoder2": 11927552,
+              "encoder3": 10158080,
+              "encoder4": 6242304,
+              "encoder5": 2879488,
+              "head": 524288,
+              "stem": 18874368
+            },
+            "S_omega": {
+              "fc1": 640,
+              "fc2": 512,
+              "fc3": 16
+            }
+          },
+          "macs_by_component": {
+            "B_phi": 36160,
+            "G": 1619449600,
+            "R_psi": 200200192,
+            "S_omega": 1168
+          },
+          "measurement_note": "sampled process RSS; allocator/native transient peaks may be missed",
+          "sampled_peak_delta_bytes": 46489600,
+          "sampled_peak_process_rss_bytes": 563949568,
+          "sampled_peak_process_rss_mib": 537.82421875,
+          "state": "EXECUTE_THEN_ACCEPT",
+          "synthetic_roi_override_applied": false,
+          "synthetic_roi_override_enabled": true
+        },
+        "router_skip": {
+          "baseline_process_rss_bytes": 450121728,
+          "batch_size": 1,
+          "flops_approx_2_per_mac": 3238971520,
+          "latency_ms_p50": 350.6241000004593,
+          "latency_ms_p95": 352.67816000068706,
+          "latency_samples": 5,
+          "macs": 1619485760,
+          "macs_by_block": {
+            "B_phi": {
+              "net": 36160
+            },
+            "G": {
+              "bridge": 44007424,
+              "decoder1": 377487360,
+              "decoder2": 320864256,
+              "decoder3": 292552704,
+              "decoder4": 225705984,
+              "encoder1": 92012544,
+              "encoder2": 96731136,
+              "encoder3": 86114304,
+              "encoder4": 80805888,
+              "film_layers.bridge": 8704,
+              "film_layers.decoder1": 1280,
+              "film_layers.decoder2": 2048,
+              "film_layers.decoder3": 3584,
+              "film_layers.decoder4": 6656,
+              "head": 3145728
+            },
+            "R_psi": {},
+            "S_omega": {}
+          },
+          "macs_by_component": {
+            "B_phi": 36160,
+            "G": 1619449600,
+            "R_psi": 0,
+            "S_omega": 0
+          },
+          "measurement_note": "sampled process RSS; allocator/native transient peaks may be missed",
+          "sampled_peak_delta_bytes": 90988544,
+          "sampled_peak_process_rss_bytes": 541110272,
+          "sampled_peak_process_rss_mib": 516.04296875,
+          "state": "SKIP_GLOBAL",
+          "synthetic_roi_override_applied": false,
+          "synthetic_roi_override_enabled": true
+        }
+      },
+      "raw_fp32_weight_bytes": 1090404,
+      "research_data_accessed": false,
+      "synthetic_inputs_only": true
+    },
+    "ultralite_depthwise_add": {
+      "assembled_inference_parameter_inventory": {
+        "by_component": {
+          "FULL_GRAPH": {
+            "frozen_parameters": 82029,
+            "trainable_parameters": 0,
+            "unique_parameters": 82029
+          }
+        },
+        "frozen_parameters": 82029,
+        "trainable_parameters": 0,
+        "unique_parameters": 82029
+      },
+      "candidate_spec": {
+        "architecture_sha256": "d91d3d822ea69f6cd8bf4f88964fd445032c733a7e998aaaec95d5e001e0fadd",
+        "block_kind": "depthwise",
+        "embedding_dim": 8,
+        "film_hidden_dim": 16,
+        "global_channels": [
+          8,
+          16,
+          24,
+          32,
+          48
+        ],
+        "refiner_channels": [
+          8,
+          8,
+          16,
+          24,
+          32
+        ],
+        "skip_fusion": "add",
+        "variant_id": "ra_medfilm_barr_lite_ultralite_depthwise_add_v1"
+      },
+      "identity": "RA-MedFiLM-BARR-Lite/ultralite_depthwise_add",
+      "parameter_breakdown": {
+        "B_phi": {
+          "parameters": 36801,
+          "top_level_blocks": {
+            "net": 36737,
+            "task_embedding": 64
+          }
+        },
+        "G": {
+          "parameters": 28506,
+          "top_level_blocks": {
+            "bridge": 6448,
+            "decoder1": 528,
+            "decoder2": 1568,
+            "decoder3": 3120,
+            "decoder4": 5440,
+            "encoder1": 265,
+            "encoder2": 840,
+            "encoder3": 1880,
+            "encoder4": 3304,
+            "film_layers": 5072,
+            "head": 9,
+            "pool": 0,
+            "task_embedding": 32
+          }
+        },
+        "R_psi": {
+          "parameters": 15505,
+          "top_level_blocks": {
+            "bridge": 2880,
+            "decoder1": 400,
+            "decoder2": 528,
+            "decoder3": 1568,
+            "decoder4": 3120,
+            "encoder1": 336,
+            "encoder2": 336,
+            "encoder3": 840,
+            "encoder4": 1880,
+            "encoder5": 3304,
+            "head": 9,
+            "pool": 0,
+            "stem": 304
+          }
+        },
+        "S_omega": {
+          "parameters": 1217,
+          "top_level_blocks": {
+            "fc1": 672,
+            "fc2": 528,
+            "fc3": 17
+          }
+        }
+      },
+      "parameter_reduction_vs_full": 0.983042820346383,
+      "parameters": {
+        "by_component": {
+          "B_phi": {
+            "frozen_parameters": 0,
+            "trainable_parameters": 36801,
+            "unique_parameters": 36801
+          },
+          "G": {
+            "frozen_parameters": 0,
+            "trainable_parameters": 28506,
+            "unique_parameters": 28506
+          },
+          "R_psi": {
+            "frozen_parameters": 0,
+            "trainable_parameters": 15505,
+            "unique_parameters": 15505
+          },
+          "S_omega": {
+            "frozen_parameters": 0,
+            "trainable_parameters": 1217,
+            "unique_parameters": 1217
+          }
+        },
+        "frozen_parameters": 0,
+        "trainable_parameters": 82029,
+        "unique_parameters": 82029
+      },
+      "paths": {
+        "global_only": {
+          "baseline_process_rss_bytes": 369889280,
+          "batch_size": 1,
+          "flops_approx_2_per_mac": 874095872,
+          "latency_ms_p50": 152.25479999935487,
+          "latency_ms_p95": 154.797839999992,
+          "latency_samples": 5,
+          "macs": 437047936,
+          "macs_by_block": {
+            "B_phi": {},
+            "G": {
+              "bridge": 6242304,
+              "decoder1": 121634816,
+              "decoder2": 94371840,
+              "decoder3": 47972352,
+              "decoder4": 21233664,
+              "encoder1": 55312384,
+              "encoder2": 47710208,
+              "encoder3": 27918336,
+              "encoder4": 12550144,
+              "film_layers.bridge": 1664,
+              "film_layers.decoder1": 384,
+              "film_layers.decoder2": 640,
+              "film_layers.decoder3": 896,
+              "film_layers.decoder4": 1152,
+              "head": 2097152
+            },
+            "R_psi": {},
+            "S_omega": {}
+          },
+          "macs_by_component": {
+            "B_phi": 0,
+            "G": 437047936,
+            "R_psi": 0,
+            "S_omega": 0
+          },
+          "measurement_note": "sampled process RSS; allocator/native transient peaks may be missed",
+          "sampled_peak_delta_bytes": 9592832,
+          "sampled_peak_process_rss_bytes": 379482112,
+          "sampled_peak_process_rss_mib": 361.90234375,
+          "state": "GLOBAL_ONLY",
+          "synthetic_roi_override_applied": false,
+          "synthetic_roi_override_enabled": false
+        },
+        "regional_refinement_accepted": {
+          "baseline_process_rss_bytes": 356151296,
+          "batch_size": 1,
+          "flops_approx_2_per_mac": 1045928096,
+          "latency_ms_p50": 207.9532999996445,
+          "latency_ms_p95": 208.56383999980608,
+          "latency_samples": 5,
+          "macs": 522964048,
+          "macs_by_block": {
+            "B_phi": {
+              "net": 36160
+            },
+            "G": {
+              "bridge": 6242304,
+              "decoder1": 121634816,
+              "decoder2": 94371840,
+              "decoder3": 47972352,
+              "decoder4": 21233664,
+              "encoder1": 55312384,
+              "encoder2": 47710208,
+              "encoder3": 27918336,
+              "encoder4": 12550144,
+              "film_layers.bridge": 1664,
+              "film_layers.decoder1": 384,
+              "film_layers.decoder2": 640,
+              "film_layers.decoder3": 896,
+              "film_layers.decoder4": 1152,
+              "head": 2097152
+            },
+            "R_psi": {
+              "bridge": 167936,
+              "decoder1": 22020096,
+              "decoder2": 7602176,
+              "decoder3": 5898240,
+              "decoder4": 2998272,
+              "encoder1": 17825792,
+              "encoder2": 4456448,
+              "encoder3": 2981888,
+              "encoder4": 1744896,
+              "encoder5": 784384,
+              "head": 524288,
+              "stem": 18874368
+            },
+            "S_omega": {
+              "fc1": 640,
+              "fc2": 512,
+              "fc3": 16
+            }
+          },
+          "macs_by_component": {
+            "B_phi": 36160,
+            "G": 437047936,
+            "R_psi": 85878784,
+            "S_omega": 1168
+          },
+          "measurement_note": "sampled process RSS; allocator/native transient peaks may be missed",
+          "sampled_peak_delta_bytes": 43024384,
+          "sampled_peak_process_rss_bytes": 399175680,
+          "sampled_peak_process_rss_mib": 380.68359375,
+          "state": "EXECUTE_THEN_ACCEPT",
+          "synthetic_roi_override_applied": false,
+          "synthetic_roi_override_enabled": true
+        },
+        "router_skip": {
+          "baseline_process_rss_bytes": 349519872,
+          "batch_size": 1,
+          "flops_approx_2_per_mac": 874168192,
+          "latency_ms_p50": 168.50950000025477,
+          "latency_ms_p95": 171.43166000005294,
+          "latency_samples": 5,
+          "macs": 437084096,
+          "macs_by_block": {
+            "B_phi": {
+              "net": 36160
+            },
+            "G": {
+              "bridge": 6242304,
+              "decoder1": 121634816,
+              "decoder2": 94371840,
+              "decoder3": 47972352,
+              "decoder4": 21233664,
+              "encoder1": 55312384,
+              "encoder2": 47710208,
+              "encoder3": 27918336,
+              "encoder4": 12550144,
+              "film_layers.bridge": 1664,
+              "film_layers.decoder1": 384,
+              "film_layers.decoder2": 640,
+              "film_layers.decoder3": 896,
+              "film_layers.decoder4": 1152,
+              "head": 2097152
+            },
+            "R_psi": {},
+            "S_omega": {}
+          },
+          "macs_by_component": {
+            "B_phi": 36160,
+            "G": 437047936,
+            "R_psi": 0,
+            "S_omega": 0
+          },
+          "measurement_note": "sampled process RSS; allocator/native transient peaks may be missed",
+          "sampled_peak_delta_bytes": 38363136,
+          "sampled_peak_process_rss_bytes": 387883008,
+          "sampled_peak_process_rss_mib": 369.9140625,
+          "state": "SKIP_GLOBAL",
+          "synthetic_roi_override_applied": false,
+          "synthetic_roi_override_enabled": true
+        }
+      },
+      "raw_fp32_weight_bytes": 328116,
+      "research_data_accessed": false,
+      "synthetic_inputs_only": true
+    },
+    "width_compact": {
+      "assembled_inference_parameter_inventory": {
+        "by_component": {
+          "FULL_GRAPH": {
+            "frozen_parameters": 1240280,
+            "trainable_parameters": 0,
+            "unique_parameters": 1240280
+          }
+        },
+        "frozen_parameters": 1240280,
+        "trainable_parameters": 0,
+        "unique_parameters": 1240280
+      },
+      "candidate_spec": {
+        "architecture_sha256": "91f09ef29f79e17daba3d7b6035e3ea95aef70c4d8288efe493709a2eb787856",
+        "block_kind": "standard",
+        "embedding_dim": 16,
+        "film_hidden_dim": 32,
+        "global_channels": [
+          12,
+          24,
+          48,
+          96,
+          128
+        ],
+        "refiner_channels": [
+          8,
+          16,
+          32,
+          48,
+          64
+        ],
+        "skip_fusion": "concat",
+        "variant_id": "ra_medfilm_barr_lite_width_compact_v1"
+      },
+      "identity": "RA-MedFiLM-BARR-Lite/width_compact",
+      "parameter_breakdown": {
+        "B_phi": {
+          "parameters": 36801,
+          "top_level_blocks": {
+            "net": 36737,
+            "task_embedding": 64
+          }
+        },
+        "G": {
+          "parameters": 882333,
+          "top_level_blocks": {
+            "bridge": 270848,
+            "decoder1": 5664,
+            "decoder2": 22560,
+            "decoder3": 90048,
+            "decoder4": 298368,
+            "encoder1": 1704,
+            "encoder2": 8160,
+            "encoder3": 32448,
+            "encoder4": 129408,
+            "film_layers": 23048,
+            "head": 13,
+            "pool": 0,
+            "task_embedding": 64
+          }
+        },
+        "R_psi": {
+          "parameters": 319929,
+          "top_level_blocks": {
+            "bridge": 73984,
+            "decoder1": 2528,
+            "decoder2": 10048,
+            "decoder3": 34944,
+            "decoder4": 74688,
+            "encoder1": 1184,
+            "encoder2": 3648,
+            "encoder3": 14464,
+            "encoder4": 36288,
+            "encoder5": 67840,
+            "head": 9,
+            "pool": 0,
+            "stem": 304
+          }
+        },
+        "S_omega": {
+          "parameters": 1217,
+          "top_level_blocks": {
+            "fc1": 672,
+            "fc2": 528,
+            "fc3": 17
+          }
+        }
+      },
+      "parameter_reduction_vs_full": 0.7436071294202282,
+      "parameters": {
+        "by_component": {
+          "B_phi": {
+            "frozen_parameters": 0,
+            "trainable_parameters": 36801,
+            "unique_parameters": 36801
+          },
+          "G": {
+            "frozen_parameters": 0,
+            "trainable_parameters": 882333,
+            "unique_parameters": 882333
+          },
+          "R_psi": {
+            "frozen_parameters": 0,
+            "trainable_parameters": 319929,
+            "unique_parameters": 319929
+          },
+          "S_omega": {
+            "frozen_parameters": 0,
+            "trainable_parameters": 1217,
+            "unique_parameters": 1217
+          }
+        },
+        "frozen_parameters": 0,
+        "trainable_parameters": 1240280,
+        "unique_parameters": 1240280
+      },
+      "paths": {
+        "global_only": {
+          "baseline_process_rss_bytes": 499109888,
+          "batch_size": 1,
+          "flops_approx_2_per_mac": 15873388032,
+          "latency_ms_p50": 374.92199999996956,
+          "latency_ms_p95": 378.3567000002222,
+          "latency_samples": 5,
+          "macs": 7936694016,
+          "macs_by_block": {
+            "B_phi": {},
+            "G": {
+              "bridge": 276824064,
+              "decoder1": 1472200704,
+              "decoder2": 1472200704,
+              "decoder3": 1472200704,
+              "decoder4": 1220542464,
+              "encoder1": 434110464,
+              "encoder2": 528482304,
+              "encoder3": 528482304,
+              "encoder4": 528482304,
+              "film_layers.bridge": 8704,
+              "film_layers.decoder1": 1280,
+              "film_layers.decoder2": 2048,
+              "film_layers.decoder3": 3584,
+              "film_layers.decoder4": 6656,
+              "head": 3145728
+            },
+            "R_psi": {},
+            "S_omega": {}
+          },
+          "macs_by_component": {
+            "B_phi": 0,
+            "G": 7936694016,
+            "R_psi": 0,
+            "S_omega": 0
+          },
+          "measurement_note": "sampled process RSS; allocator/native transient peaks may be missed",
+          "sampled_peak_delta_bytes": 29515776,
+          "sampled_peak_process_rss_bytes": 528625664,
+          "sampled_peak_process_rss_mib": 504.13671875,
+          "state": "GLOBAL_ONLY",
+          "synthetic_roi_override_applied": false,
+          "synthetic_roi_override_enabled": false
+        },
+        "regional_refinement_accepted": {
+          "baseline_process_rss_bytes": 517967872,
+          "batch_size": 1,
+          "flops_approx_2_per_mac": 17508192672,
+          "latency_ms_p50": 460.5942000007417,
+          "latency_ms_p95": 476.0948599994663,
+          "latency_samples": 5,
+          "macs": 8754096336,
+          "macs_by_block": {
+            "B_phi": {
+              "net": 36160
+            },
+            "G": {
+              "bridge": 276824064,
+              "decoder1": 1472200704,
+              "decoder2": 1472200704,
+              "decoder3": 1472200704,
+              "decoder4": 1220542464,
+              "encoder1": 434110464,
+              "encoder2": 528482304,
+              "encoder3": 528482304,
+              "encoder4": 528482304,
+              "film_layers.bridge": 8704,
+              "film_layers.decoder1": 1280,
+              "film_layers.decoder2": 2048,
+              "film_layers.decoder3": 3584,
+              "film_layers.decoder4": 6656,
+              "head": 3145728
+            },
+            "R_psi": {
+              "bridge": 4718592,
+              "decoder1": 163577856,
+              "decoder2": 163577856,
+              "decoder3": 142606336,
+              "decoder4": 76283904,
+              "encoder1": 75497472,
+              "encoder2": 58720256,
+              "encoder3": 58720256,
+              "encoder4": 36962304,
+              "encoder5": 17301504,
+              "head": 524288,
+              "stem": 18874368
+            },
+            "S_omega": {
+              "fc1": 640,
+              "fc2": 512,
+              "fc3": 16
+            }
+          },
+          "macs_by_component": {
+            "B_phi": 36160,
+            "G": 7936694016,
+            "R_psi": 817364992,
+            "S_omega": 1168
+          },
+          "measurement_note": "sampled process RSS; allocator/native transient peaks may be missed",
+          "sampled_peak_delta_bytes": 40894464,
+          "sampled_peak_process_rss_bytes": 558862336,
+          "sampled_peak_process_rss_mib": 532.97265625,
+          "state": "EXECUTE_THEN_ACCEPT",
+          "synthetic_roi_override_applied": false,
+          "synthetic_roi_override_enabled": true
+        },
+        "router_skip": {
+          "baseline_process_rss_bytes": 500961280,
+          "batch_size": 1,
+          "flops_approx_2_per_mac": 15873460352,
+          "latency_ms_p50": 397.91280000008555,
+          "latency_ms_p95": 405.97194000019954,
+          "latency_samples": 5,
+          "macs": 7936730176,
+          "macs_by_block": {
+            "B_phi": {
+              "net": 36160
+            },
+            "G": {
+              "bridge": 276824064,
+              "decoder1": 1472200704,
+              "decoder2": 1472200704,
+              "decoder3": 1472200704,
+              "decoder4": 1220542464,
+              "encoder1": 434110464,
+              "encoder2": 528482304,
+              "encoder3": 528482304,
+              "encoder4": 528482304,
+              "film_layers.bridge": 8704,
+              "film_layers.decoder1": 1280,
+              "film_layers.decoder2": 2048,
+              "film_layers.decoder3": 3584,
+              "film_layers.decoder4": 6656,
+              "head": 3145728
+            },
+            "R_psi": {},
+            "S_omega": {}
+          },
+          "macs_by_component": {
+            "B_phi": 36160,
+            "G": 7936694016,
+            "R_psi": 0,
+            "S_omega": 0
+          },
+          "measurement_note": "sampled process RSS; allocator/native transient peaks may be missed",
+          "sampled_peak_delta_bytes": 43589632,
+          "sampled_peak_process_rss_bytes": 544550912,
+          "sampled_peak_process_rss_mib": 519.32421875,
+          "state": "SKIP_GLOBAL",
+          "synthetic_roi_override_applied": false,
+          "synthetic_roi_override_enabled": true
+        }
+      },
+      "raw_fp32_weight_bytes": 4961120,
+      "research_data_accessed": false,
+      "synthetic_inputs_only": true
+    }
+  },
+  "lite_trained_checkpoint_status": "NONE; all Lite weights were fresh initialization",
+  "mac_count_coverage": "Conv2d and Linear multiply-accumulates only; excludes normalization, activations, pooling, interpolation, tensor arithmetic, and NumPy router feature reductions",
+  "mac_definition": "one multiply-accumulate; FLOPs approximation = 2 * MACs",
+  "report_kind": "SYNTHETIC_PROFILE_NOT_RESEARCH_RESULTS",
+  "runtime_configuration": {
+    "platform": "Windows-10-10.0.26200-SP0",
+    "processor": "AMD64 Family 25 Model 33 Stepping 2, AuthenticAMD",
+    "torch_threads": 1
+  },
+  "synthetic_outputs_are_research_evidence": false,
+  "timed_iterations": 5,
+  "warmup_iterations": 1
+}

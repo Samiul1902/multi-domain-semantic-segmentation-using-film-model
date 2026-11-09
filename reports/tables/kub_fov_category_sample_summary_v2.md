@@ -1,0 +1,5 @@
+| category | full_field | roi_crop | unresolved | total_samples |
+| --- | --- | --- | --- | --- |
+| Kidney_Stone | 421 | 712 | 0 | 1133 |
+| Bladder_Stone | 253 | 382 | 0 | 635 |
+| Ureteric_Stone | 97 | 114 | 0 | 211 |

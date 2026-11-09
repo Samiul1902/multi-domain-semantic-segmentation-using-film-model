@@ -1,0 +1,11 @@
+artifact,seed_specific,depends_on,reuse,rule
+G checkpoint,false,canonical Phase21 G,true,REUSE_CANONICAL
+Phase25B features,false,canonical fixed feature matrix,true,REUSE_PHASE25B
+R_psi,true,fixed partitions + seed s,false,TRAIN_PER_SEED
+DeltaDice,true,R_psi_s OOF,false,SEED_SPECIFIC_FROM_R_PSI_OOF
+B_phi,true,fixed features + DeltaDice_s,false,TRAIN_PER_SEED
+B_phi final threshold,true,final B_phi DEV scores,false,PER_SEED_DEV_NOMINAL_25PCT
+S_omega features,true,R_psi_s OOF candidate,false,SEED_SPECIFIC_FROM_R_PSI_OOF
+S_omega target,true,DeltaDice_s,false,SEED_SPECIFIC_FROM_R_PSI_OOF
+S_omega,true,seed-specific features/targets,false,TRAIN_PER_SEED
+integrated system,true,seed-specific downstream stack + fixed G,true,SEED_CONSISTENT

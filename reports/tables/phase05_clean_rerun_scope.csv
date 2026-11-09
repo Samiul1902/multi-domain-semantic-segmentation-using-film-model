@@ -1,0 +1,11 @@
+phase,phase_name,historical_v2_status,clean_v3_status,rerun_type,notes
+06,Descriptive Dataset Analysis,COMPLETE,RERUN_REQUIRED,descriptive_data_dependent_refresh,Population statistics and dataset characterization must be recomputed with v3 splits
+07,Taxonomy and Labeling,COMPLETE,RERUN_REQUIRED,taxonomy_population_refresh,Label distribution and taxonomy tables affected by v3 population changes
+08,Infrastructure Verification,COMPLETE,PARTIAL_RERUN_REQUIRED,infrastructure_verification,Training pipeline verification with v3 splits; full retraining not inherently required
+09,Baseline Model Training,COMPLETE_v2_CONTAMINATED,RERUN_REQUIRED,clean_training_and_val_checkpoint_selection,Full clean training run with v3 TRAIN; checkpoint selection on v3 VAL required
+10,Baseline Comparison,COMPLETE_v2_CONTAMINATED,RERUN_REQUIRED,clean_baseline_training_comparison,All baseline model training and comparison must use v3
+11,Failure Analysis,COMPLETE_v2_CONTAMINATED,RERUN_REQUIRED,clean_failure_analysis,Failure analysis must use v3 predictions from clean-v3 trained checkpoints
+12,Oracle Evaluation,COMPLETE_v2_CONTAMINATED,RERUN_REQUIRED,clean_oracle_evaluation,Oracle evaluation must use v3 VAL population
+13,Localizer Training,COMPLETE_v2_CONTAMINATED,RERUN_REQUIRED,clean_localizer_training_and_evaluation,KUB localizer training/evaluation must use v3
+14,Regional Refiner Training,COMPLETE_v2_CONTAMINATED,RERUN_REQUIRED,clean_regional_refiner_training_checkpoint_evaluation,Historical training used GT-derived positives + perturbed positives + negatives (NOT Stage-4D proposals). VAL checkpoint selection was on v2 contaminated population. Full v3 retraining required. Phase-14 distinction preserved.
+15,Regional Refiner Protocol,COMPLETE_v2_CONTAMINATED,REVALIDATION_REQUIRED,clean_v3_protocol_revalidation,"Current protocol must move to clean v3. L1/L2/L3 NOT yet trained, separately authorized. Predicted-mode evaluation inherited Stage-4D proposal stream."

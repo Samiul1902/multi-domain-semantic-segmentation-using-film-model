@@ -1,0 +1,34 @@
+field,frozen_value,authoritative_source,source_sha,complete,blocking_if_missing,notes
+canonical_title,Three-Seed Deterministic Reproducibility Study,configs/research_protocol.json,df4b137f613f0f30a2efd244f096934e75e0898a9f4f43df08e5c0554b711212,TRUE,TRUE,title bound
+phase29_role,measure sensitivity/stability of frozen DEV result to frozen seeds,notebooks/phasewise/phase_29_3seed_reproducibility/README.md,01878d1f1507e4ef936bd8afe6574818710aafb37b57fafdee10d520ab35b3f6,TRUE,TRUE,role bound
+authoritative_seed_policy,"[42, 123, 3407] from configs/research_protocol.json",configs/research_protocol.json,df4b137f613f0f30a2efd244f096934e75e0898a9f4f43df08e5c0554b711212,TRUE,TRUE,seed set frozen
+seed_1,42,configs/research_protocol.json,df4b137f613f0f30a2efd244f096934e75e0898a9f4f43df08e5c0554b711212,TRUE,TRUE,
+seed_2,123,configs/research_protocol.json,df4b137f613f0f30a2efd244f096934e75e0898a9f4f43df08e5c0554b711212,TRUE,TRUE,
+seed_3,3407,configs/research_protocol.json,df4b137f613f0f30a2efd244f096934e75e0898a9f4f43df08e5c0554b711212,TRUE,TRUE,
+training_scope,UNRESOLVED,NONE_FOUND,,FALSE,TRUE,no authoritative artifact defines which components retrain
+seed42_reuse_rule,UNRESOLVED,NONE_FOUND,,FALSE,TRUE,depends on §4 scope and §8 evaluation rule
+data_split_rule,UNRESOLVED,NONE_FOUND,,FALSE,TRUE,TRAIN/VAL split regeneration behavior not explicit
+crossfit_fold_rule,UNRESOLVED,phase25a_crossfit_protocol.json,,FALSE,TRUE,seed-dependent fold assignment behavior not explicit
+global_training_rule,Phase21 protocol (bound),phase20_shared_global_baseline_protocol.json,,TRUE,TRUE,inheritance frozen; scope unresolved
+refiner_training_rule,Phase25A ROI-0.30 protocol (bound),phase25a_crossfit_protocol.json,,TRUE,TRUE,inheritance frozen; scope unresolved
+router_training_rule,Phase25D v1.2.1 protocol (bound),phase25d_frozen_training_spec_binding_v1_2_1.json,,TRUE,TRUE,inheritance frozen; scope unresolved
+safety_training_rule,Phase25F protocol (bound),phase25f_cv_manifest_reuse_contract_v1_0.json,,TRUE,TRUE,inheritance frozen; scope unresolved
+seed_dependency_model,UNRESOLVED,NONE_FOUND,,FALSE,TRUE,FULL_SEED_CONSISTENT vs MODULEWISE not selected
+feature_regeneration_rule,UNRESOLVED,phase25b_phase25c_handoff_schema.json,,FALSE,TRUE,202-D cache regeneration per seed not decided
+gain_target_regeneration_rule,UNRESOLVED,NONE_FOUND,,FALSE,TRUE,DeltaDice target seed-dependency not decided
+safety_target_regeneration_rule,UNRESOLVED,NONE_FOUND,,FALSE,TRUE,S_omega label regeneration per seed not decided
+final_router_calibration_rule,UNRESOLVED,NONE_FOUND,,FALSE,TRUE,rule A/B/C not bound by existing governance
+canonical_policy_rule,"A8/C9, b=0.25, K=1239, thresholds 0.30/0.50/0.50",reports/audits/phase28_final_freeze.json,ac4b9f72ce663e57d4f7049a979e3bad8cd3ec460cca494c332e9ebc32bb098a,TRUE,TRUE,policy frozen
+evaluation_population,UNRESOLVED,NONE_FOUND,,FALSE,TRUE,boundary audits say DEV; README says TRAIN+VAL — not explicit
+VAL808_role,MULTI_SEED_CONTINUITY_DEVELOPMENT_EVIDENCE,docs/phase27_preservation_spec.md,02d9c1f311ed13f5b3471eb1a996a7f74dacf053a76d60364844bd2179864b7e,TRUE,TRUE,role bound; whether used unresolved
+ROUTER_DEVELOPMENT_role,DEVELOPMENT_EVIDENCE (bound population),reports/audits/phase26_downstream_phase_boundary_audit.json,9703974040e67487deabf067e2492872b9c5e8b9c64de349a1e8497663d1c4fe,TRUE,TRUE,
+ROUTER_HOLDOUT_lock,RESERVED_UNOPENED_FOR_PHASE30,reports/audits/phase26_downstream_phase_boundary_audit.json,9703974040e67487deabf067e2492872b9c5e8b9c64de349a1e8497663d1c4fe,TRUE,TRUE,
+TEST_lock,LOCKED_UNTIL_PHASE39,docs/RULES.md,2c495daecf2066317be18c84a25bc3d0ed1063df59e897eac875dd3d5c7da13a,TRUE,TRUE,
+primary_reproducibility_estimand,does direction/practical magnitude remain stable across 3 seeds,THIS_SPECIFICATION,,TRUE,TRUE,frozen by this audit
+per_domain_reporting,mandatory,docs/phase27_preservation_spec.md,02d9c1f311ed13f5b3471eb1a996a7f74dacf053a76d60364844bd2179864b7e,TRUE,TRUE,
+statistics_scope,seed-wise point estimates + mean/std/range; no significance testing,THIS_SPECIFICATION,,TRUE,TRUE,Phase31 owns formal testing
+numeric_success_gate,DESCRIPTIVE_REPRODUCIBILITY_STUDY__NO_NUMERIC_PASS_FAIL_GATE,THIS_SPECIFICATION,,TRUE,TRUE,no preregistered numeric criterion found
+deterministic_runtime_rule,frozen per-seed RNG control set,THIS_SPECIFICATION,,TRUE,TRUE,
+training_run_count,UNRESOLVED,NONE_FOUND,,FALSE,TRUE,conditional on §4 scope resolution
+Phase30_boundary,holdout untouched; no policy change,THIS_SPECIFICATION,,TRUE,TRUE,
+Phase31_boundary,formal testing owner,THIS_SPECIFICATION,,TRUE,TRUE,

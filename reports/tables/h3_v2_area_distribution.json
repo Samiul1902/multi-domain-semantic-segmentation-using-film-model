@@ -1,0 +1,63 @@
+{
+  "status": "AUTHORITATIVE_TRAIN_ONLY_CALIBRATION__CANONICAL_CLEAN_V3",
+  "axis": "A_PROPOSAL_SUPPLY_RECALL_LIMITATION",
+  "intervention": "A_TARGET_SUPPORT_REDESIGN",
+  "population": {
+    "source_manifest": "manifests/phase4_v3/train.csv",
+    "manifest_sha256": "28702fc3a5ff8b950db372f03232d335e3a30b1fc2f21db7cd8c066055826ed6",
+    "filter": "view_type == FULL_FIELD AND sample_id IN clean-v3 TRAIN manifest",
+    "n_images": 770,
+    "n_components": 1161,
+    "train_sample_id_digest_sha256": "ab33304c4fe6113a7ed086a1f7e57d582119e05372acf43028294529eac5730d",
+    "train_component_id_digest_sha256": "11c404feb7c9ebec74ebccc1cef9c75433af65c366f653b61958d42788c1b61e",
+    "orphan_samples_quarantined": [
+      "ef36ad8332b2f33882dc668a5b6846e5"
+    ],
+    "orphan_count": 1
+  },
+  "mapping": {
+    "method": "per-GT-component: original centroid -> (cx*scale+left)/4,(cy*scale+top)/4 -> 128-space label area (EXACT H3 runtime path; NO relabeling of combined downsampled mask)",
+    "scale": "min(512/w,512/h); aspect-preserving NEAREST resize + centre pad to 512",
+    "note": "Component identity preserved by (sample_id, component_id). 128-space area is the label area at the component's mapped centroid, matching kub_localizer_dataset.py."
+  },
+  "A_ref_definition": "p75 of per-component 128-space areas over canonical clean-v3 TRAIN FULL_FIELD",
+  "A_ref": 13.0,
+  "sigma_formula": "sigma_i = clip(0.35 + 0.40 * sqrt(A128_i / A_ref), 0.35, 0.75)",
+  "area128_percentiles": {
+    "p0": 0.0,
+    "p1": 0.0,
+    "p5": 1.0,
+    "p10": 1.0,
+    "p25": 2.0,
+    "p50": 5.0,
+    "p75": 13.0,
+    "p90": 40.0,
+    "p95": 73.0,
+    "p99": 152.0000000000009,
+    "p100": 278.0
+  },
+  "zero_area_count": 52,
+  "zero_area_handling": "Deterministic frozen rule: area_128 == 0 -> sigma = sigma_min (0.35). The Gaussian is still drawn at the centroid; a zero-area component is treated as the smallest possible object (sharpest peak). No VAL/TEST influence.",
+  "non_degeneracy": {
+    "n_distinct_sigma_levels": 14,
+    "frac_at_ceil_0.75": 0.2549526270456503,
+    "frac_at_floor_0.35": 0.04478897502153316,
+    "median_sigma": 0.598069469178417,
+    "tiny_median_sigma": 0.4609400392450458,
+    "nontiny_median_sigma": 0.6435197542821371,
+    "tiny_lt_nontiny": true,
+    "all_in_bounds": true,
+    "passed": true
+  },
+  "superseded_calibrations": {
+    "h3_aref_code_exact.json": {
+      "p75": 14.0,
+      "method": "relabeled 128-space components (n=1149) -- MERGES components, cardinality wrong -> superseded"
+    },
+    "h3_code_exact_sigma_distribution.json": {
+      "p75": 12.0,
+      "method": "relabeled direct 128-space (n=1078) -- relabeling, cardinality wrong -> superseded"
+    },
+    "reason_for_difference": "Both prior values relabeled the combined downsampled mask, which merges neighbouring components and drops tinies, changing component cardinality and inflating/deflating areas. The authoritative path preserves (sample_id,component_id) and reads the 128-area at each centroid, matching the runtime."
+  }
+}

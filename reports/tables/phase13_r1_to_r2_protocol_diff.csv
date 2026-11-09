@@ -1,0 +1,20 @@
+field,r1_value,r2_value,change,scientifically_material,authorized,material_change_group,reason,unauthorized_material_difference
+checkpoint_selection_tuple,"8-term supervisor extension: (hard_tiny_recovered90, global_empty_images_covered90, tiny_recall90, overall_recall90, multi_component_recall90, -mean_roi_area_fraction, -mean_proposals_per_image, -val_loss)","4-term executing historical tuple: (tiny_recall90, overall_recall90, -mean_roi_area_fraction, -val_loss)",CHANGED,True,True,M1,EXECUTING_CODE_PRECEDENCE_AND_MINIMIZE_PROTOCOL_DRIFT,False
+hard_set_selection_role,checkpoint-selection terms,SECONDARY_DIAGNOSTIC_NOT_SELECTION_TERM (pre-frozen secondary diagnostic cohorts),CHANGED,False,True,M1,CONSEQUENCE_OF_THE_SINGLE_AUTHORIZED_MATERIAL_CHANGE (checkpoint_selection_tuple),False
+proposal_configuration,0.10 / 0.20 / 5 / 0.30,0.10 / 0.20 / 5 / 0.30,SAME,False,False,,UNCHANGED_FROM_R1,False
+primary_grid_search,DISABLED,DISABLED,SAME,False,False,,UNCHANGED_FROM_R1,False
+historical_20_grid,DEFERRED_SECONDARY_SENSITIVITY_ONLY,DEFERRED_SECONDARY_SENSITIVITY_ONLY,SAME,False,False,,UNCHANGED_FROM_R1,False
+heatmap_resolution_contract,"512x512 -> 128x128, heatmap_resolution=128 explicit, fail-loud shape assertions","512x512 -> 128x128, heatmap_resolution=128 explicit, fail-loud shape assertions",SAME,False,False,,UNCHANGED_FROM_R1,False
+architecture,"KUBLocalizer compact 3-stage U-Net, base_channels 16","KUBLocalizer compact 3-stage U-Net, base_channels 16",SAME,False,False,,UNCHANGED_FROM_R1,False
+target_generation,"Gaussian, pixelwise MAX, nearest integer pixel forced to 1.0, sigma 0.75 in 128-space","Gaussian, pixelwise MAX, nearest integer pixel forced to 1.0, sigma 0.75 in 128-space",SAME,False,False,,UNCHANGED_FROM_R1,False
+loss,"0.75 CenterNet focal (alpha 0.25, gamma 2.0) + 0.25 soft Dice","0.75 CenterNet focal (alpha 0.25, gamma 2.0) + 0.25 soft Dice",SAME,False,False,,UNCHANGED_FROM_R1,False
+optimizer,"AdamW lr 1e-4, weight_decay 1e-4","AdamW lr 1e-4, weight_decay 1e-4",SAME,False,False,,UNCHANGED_FROM_R1,False
+scheduler,"CosineAnnealingLR, T_max 100","CosineAnnealingLR, T_max 100",SAME,False,False,,UNCHANGED_FROM_R1,False
+seed,42,42,SAME,False,False,,UNCHANGED_FROM_R1,False
+population,"phase4_v3 FULL_FIELD TRAIN 770/1161, VAL 103/152, ROI excluded","phase4_v3 FULL_FIELD TRAIN 770/1161, VAL 103/152, ROI excluded",SAME,False,False,,UNCHANGED_FROM_R1,False
+epochs_patience_augmentation,"max_epochs 100, patience 15, AMP, TRAIN augmentation unchanged","max_epochs 100, patience 15, AMP, TRAIN augmentation unchanged",SAME,False,False,,UNCHANGED_FROM_R1,False
+downstream_composition,"PREDICTED_REGION_FLOAT_GLOBAL_RETAINED, margin 0.20, 512 crop, FLOAT_BILINEAR, pixelwise MAX, global retained outside, threshold 0.5","PREDICTED_REGION_FLOAT_GLOBAL_RETAINED, margin 0.20, 512 crop, FLOAT_BILINEAR, pixelwise MAX, global retained outside, threshold 0.5",SAME,False,False,,UNCHANGED_FROM_R1,False
+downstream_model_scope,"UNet, Attention U-Net, UNet++, DeepLabV3+; no reference model","UNet, Attention U-Net, UNet++, DeepLabV3+; no reference model",SAME,False,False,,UNCHANGED_FROM_R1,False
+retention_metric,PRACTICAL_GT_FREE_ORACLE_BENEFIT_RETENTION; ratio only where oracle_gain > 0; no sufficiency threshold,PRACTICAL_GT_FREE_ORACLE_BENEFIT_RETENTION; ratio only where oracle_gain > 0; no sufficiency threshold,SAME,False,False,,UNCHANGED_FROM_R1,False
+gate_governance,dimension B candidate; no scalar score; no GO threshold; NOT_DECIDED,dimension B candidate; no scalar score; no GO threshold; NOT_DECIDED,SAME,False,False,,UNCHANGED_FROM_R1,False
+test_lock,TEST locked; content reads 0,TEST locked; content reads 0,SAME,False,False,,UNCHANGED_FROM_R1,False

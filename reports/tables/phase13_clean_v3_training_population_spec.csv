@@ -1,0 +1,17 @@
+scope,item,value,unit,source,notes
+TRAIN / KUB / FULL_FIELD,images,770,images,manifests/phase4_v3/,directory-semantics FOV rule (\Images\ -> FULL_FIELD)
+TRAIN / KUB / FULL_FIELD,components,1161,connected components,reports/tables/kub_view_type_inventory.csv + mask census,"foreground mask > 0, 8-connectivity"
+TRAIN / KUB / FULL_FIELD,max_components_per_image,11,components,reports/tables/kub_view_type_inventory.csv + mask census,budget driver for Top-K
+TRAIN / KUB / FULL_FIELD,images_with_gt_5_components,15,images,reports/tables/kub_view_type_inventory.csv + mask census,motivates a bounded Top-K oracle budget
+TRAIN / KUB / FULL_FIELD,images_with_zero_components,0,images,reports/tables/kub_view_type_inventory.csv + mask census,FULL_FIELD only
+VAL / KUB / FULL_FIELD,images,103,images,manifests/phase4_v3/,directory-semantics FOV rule (\Images\ -> FULL_FIELD)
+VAL / KUB / FULL_FIELD,components,152,connected components,reports/tables/kub_view_type_inventory.csv + mask census,"foreground mask > 0, 8-connectivity"
+VAL / KUB / FULL_FIELD,max_components_per_image,2,components,reports/tables/kub_view_type_inventory.csv + mask census,budget driver for Top-K
+VAL / KUB / FULL_FIELD,images_with_gt_5_components,0,images,reports/tables/kub_view_type_inventory.csv + mask census,motivates a bounded Top-K oracle budget
+VAL / KUB / FULL_FIELD,images_with_zero_components,0,images,reports/tables/kub_view_type_inventory.csv + mask census,FULL_FIELD only
+VAL / KUB / FULL_FIELD / size stratum,TINY,72,components,reports/tables/phase12_clean_v3_oracle_geometry.csv,kub_size_clean_v3_v1; historical v2 value was 73
+VAL / KUB / FULL_FIELD / size stratum,SMALL,28,components,reports/tables/phase12_clean_v3_oracle_geometry.csv,kub_size_clean_v3_v1; historical v2 value was 29
+VAL / KUB / FULL_FIELD / size stratum,MEDIUM,36,components,reports/tables/phase12_clean_v3_oracle_geometry.csv,kub_size_clean_v3_v1; historical v2 value was 36
+VAL / KUB / FULL_FIELD / size stratum,LARGE,16,components,reports/tables/phase12_clean_v3_oracle_geometry.csv,kub_size_clean_v3_v1; historical v2 value was 18
+VAL / KUB / FULL_FIELD / size stratum,TOTAL,152,components,reports/tables/phase12_clean_v3_oracle_geometry.csv,equals the component census
+TRAIN+VAL / KUB / ROI,components_included,0,components,taxonomy scope rule,ROI acquisitions are excluded from the localizer (ROI_NOT_PRIMARY_BINNED)

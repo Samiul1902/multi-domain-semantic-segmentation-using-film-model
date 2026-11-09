@@ -1,0 +1,21 @@
+feature_index,name,formula,source,dtype,units,normalization_role,GT_free,group
+0,global_prob_mean,mean(P_g),P_g (canonical global probability crop),float32,"dimensionless probability in [0,1]",STANDARDIZED_FIT_ONLY_DDOF0,True,numeric
+1,refined_prob_mean,mean(P_r),P_r (canonical OOF refined probability crop),float32,"dimensionless probability in [0,1]",STANDARDIZED_FIT_ONLY_DDOF0,True,numeric
+2,mean_abs_prob_change,mean(abs(P_r - P_g)),"P_g, P_r",float32,"dimensionless probability in [0,1]",STANDARDIZED_FIT_ONLY_DDOF0,True,numeric
+3,max_abs_prob_change,max(abs(P_r - P_g)),"P_g, P_r",float32,"dimensionless probability in [0,1]",STANDARDIZED_FIT_ONLY_DDOF0,True,numeric
+4,frac_abs_prob_change_ge_0p10,mean(abs(P_r - P_g) >= 0.10),"P_g, P_r",float32,"fraction in [0,1]",STANDARDIZED_FIT_ONLY_DDOF0,True,numeric
+5,global_entropy_mean,"mean(H(P_g)); H(p) = -[p_c*log2(p_c) + (1-p_c)*log2(1-p_c)], p_c = clip(p, 1e-7, 1-1e-7)",P_g,float32,"bits in [0,1]",STANDARDIZED_FIT_ONLY_DDOF0,True,numeric
+6,refined_entropy_mean,"mean(H(P_r)); H(p) = -[p_c*log2(p_c) + (1-p_c)*log2(1-p_c)], p_c = clip(p, 1e-7, 1-1e-7)",P_r,float32,"bits in [0,1]",STANDARDIZED_FIT_ONLY_DDOF0,True,numeric
+7,global_foreground_fraction,mean(B_g); B_g(x) = 1[P_g(x) >= 0.50],P_g,float32,"fraction in [0,1]",STANDARDIZED_FIT_ONLY_DDOF0,True,numeric
+8,refined_foreground_fraction,mean(B_r); B_r(x) = 1[P_r(x) >= 0.50],P_r,float32,"fraction in [0,1]",STANDARDIZED_FIT_ONLY_DDOF0,True,numeric
+9,binary_xor_fraction,mean(B_g XOR B_r),"P_g, P_r",float32,"fraction in [0,1]",STANDARDIZED_FIT_ONLY_DDOF0,True,numeric
+10,global_component_count,number of 8-connected components in B_g (3x3 all-ones structuring element),P_g,float32,count (cast to float32),STANDARDIZED_FIT_ONLY_DDOF0,True,numeric
+11,refined_component_count,number of 8-connected components in B_r (3x3 all-ones structuring element),P_r,float32,count (cast to float32),STANDARDIZED_FIT_ONLY_DDOF0,True,numeric
+12,global_boundary_fraction,"boundary_fraction(B_g); E = binary_erosion(B, 3x3 ones, border_value=0); boundary = B AND NOT E; boundary_fraction = sum(boundary)/(256*256)",P_g,float32,"fraction in [0,1]",STANDARDIZED_FIT_ONLY_DDOF0,True,numeric
+13,refined_boundary_fraction,"boundary_fraction(B_r); E = binary_erosion(B, 3x3 ones, border_value=0); boundary = B AND NOT E; boundary_fraction = sum(boundary)/(256*256)",P_r,float32,"fraction in [0,1]",STANDARDIZED_FIT_ONLY_DDOF0,True,numeric
+14,predicted_roi_area_fraction,"frozen Phase25B corrected in-canvas ROI area / 512^2, area = max(0,min(512,x2)-max(0,x1)) * max(0,min(512,y2)-max(0,y1))",data_cache/phase25b_barr_pre_refinement_features_v1_2 (scalar index 200),float32,"fraction in [0,1]",STANDARDIZED_FIT_ONLY_DDOF0,True,numeric
+15,predicted_roi_side_normalized,predicted_roi_side / 512.0,data_cache/phase25b_barr_pre_refinement_features_v1_2 (scalar index 201),float32,"dimensionless in [0,1.5]",STANDARDIZED_FIT_ONLY_DDOF0,True,numeric
+16,task_0_ISIC,1 if task_id == 0 (ISIC) else 0,"frozen Phase25C label table task_id (ISIC=0, BUSI=1, KVASIR=2, KUB=3)",float32,"one-hot indicator in {0,1}",NONE,True,task_onehot
+17,task_1_BUSI,1 if task_id == 1 (BUSI) else 0,"frozen Phase25C label table task_id (ISIC=0, BUSI=1, KVASIR=2, KUB=3)",float32,"one-hot indicator in {0,1}",NONE,True,task_onehot
+18,task_2_KVASIR,1 if task_id == 2 (KVASIR) else 0,"frozen Phase25C label table task_id (ISIC=0, BUSI=1, KVASIR=2, KUB=3)",float32,"one-hot indicator in {0,1}",NONE,True,task_onehot
+19,task_3_KUB,1 if task_id == 3 (KUB) else 0,"frozen Phase25C label table task_id (ISIC=0, BUSI=1, KVASIR=2, KUB=3)",float32,"one-hot indicator in {0,1}",NONE,True,task_onehot

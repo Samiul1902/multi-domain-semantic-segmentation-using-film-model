@@ -1,0 +1,9 @@
+arm_id,predecessor_authority,scientific_meaning,components_executed,branch_state,parameter_count_eligibility,analytical_mac_eligibility,measured_latency_eligibility,memory_profile_eligibility,synthetic_input_compatibility,requires_protected_data,final_eligibility
+GLOBAL_ONLY,Phase21 global-only baseline / Phase22 ALWAYS_GLOBAL envelope,"global segmentation model alone, no routing action",G,SKIP_GLOBAL,ELIGIBLE,ELIGIBLE,ELIGIBLE,ELIGIBLE,ELIGIBLE (1x3x512x512),no,ELIGIBLE
+FINAL_ROUTED_A8_C9,Phase26 canonical bundle A8/C9 (ra_medfilm_barr_bundle_v1_0),"full routed system: G always, B_phi pre-gate, R_psi+S_omega on EXECUTE","G,B_phi,R_psi,S_omega",EXECUTE_THEN_ACCEPT / EXECUTE_THEN_REJECT,ELIGIBLE,ELIGIBLE,ELIGIBLE,ELIGIBLE,ELIGIBLE (composed canonical interfaces),no,ELIGIBLE
+A7_C8_IF_PREDECESSOR_DEFINED,"Phase25G A7 = C8 selected * d_i, always accept",refiner applied without S_omega post-safety,"G,B_phi,R_psi",EXECUTE (no safety gate),ELIGIBLE,ELIGIBLE,INELIGIBLE,INELIGIBLE,PARTIAL (S_omega omitted changes canonical graph),no,INELIGIBLE_FOR_RUNTIME_PHASE34
+ALWAYS_EXECUTE_OR_ALWAYS_REFINE_REFERENCE_IF_PREDECESSOR_DEFINED,Phase22 ALWAYS_REGIONAL_ORACLE / Phase25E C3_budget1.00 always-refine reference,analytical always-refine upper reference,"G,B_phi,R_psi,S_omega",always EXECUTE,ELIGIBLE,ELIGIBLE,INELIGIBLE,INELIGIBLE,ELIGIBLE (same canonical interfaces),no,ELIGIBLE_ANALYTICAL_ONLY
+COMPONENT_LEVEL_G,Phase26 component inventory,component-only G,G,n/a,ELIGIBLE,ELIGIBLE,ELIGIBLE,ELIGIBLE,ELIGIBLE (1x3x512x512),no,ELIGIBLE
+COMPONENT_LEVEL_R_psi,Phase25A resource accounting,component-only R_psi,R_psi,n/a,ELIGIBLE,ELIGIBLE,ELIGIBLE,ELIGIBLE,ELIGIBLE (1x4x256x256),no,ELIGIBLE
+COMPONENT_LEVEL_B_phi,Phase25D router,component-only B_phi,B_phi,n/a,ELIGIBLE,ELIGIBLE,ELIGIBLE,ELIGIBLE,ELIGIBLE (1x218),no,ELIGIBLE
+COMPONENT_LEVEL_S_omega,Phase25F post-safety,component-only S_omega,S_omega,n/a,ELIGIBLE,ELIGIBLE,ELIGIBLE,ELIGIBLE,ELIGIBLE (1x20),no,ELIGIBLE

@@ -1,0 +1,13 @@
+criterion_id,criterion,requirement,current_status,met
+E1,All four domains mapped,"ISIC, BUSI, KVASIR, KUB each present with TRAIN and VAL",4 domains mapped,True
+E2,No unresolved label-semantic conflict,Single canonical foreground rule across domains,foreground = (mask > 0) for all four domains,True
+E3,Task IDs frozen,task_id registry frozen and manifest-agreeing,registry frozen; manifest agrees = True,True
+E4,Preprocessing frozen,phase19_preprocessing_contract_v1 FROZEN_FOR_PHASE_19,frozen,True
+E5,Mask semantics frozen,"binary foreground, NEAREST interpolation, no value threshold",frozen,True
+E6,Metadata policy frozen,every field classified exactly once,frozen,True
+E7,TRAIN/VAL loaders smoke-tested,per-domain dataset + loader materialise batches,all_checks_passed = True,True
+E8,No TEST reads,"TEST image/mask reads, inference and visualization all zero",0,True
+E9,Harmonized batch schema validated,"image (B,C,S,S), mask (B,1,S,S), task_id present",validated in smoke test,True
+E10,No duplicate/leakage blocker,phase4_v3 remediation holds; no new blocker found,no blocker; cross-domain near-duplicate check flagged as residual,True
+E11,Notebook executed successfully,"monotonic execution counts, zero tracebacks",see notebook execution record,True
+E12,Artifacts SHA-bound,every Phase-19 artifact carries a recorded SHA-256,bound in phase19_multidomain_harmonization_protocol.json,True
