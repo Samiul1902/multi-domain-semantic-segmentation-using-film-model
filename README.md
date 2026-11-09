@@ -4,17 +4,13 @@
 
 ### Risk-Averse Task-Conditioned Medical Image Segmentation with Selective Regional Refinement
 
-**FULL RA-MedFiLM-BARR** — a task-conditioned global backbone (G) coupled to a learned
-benefit router (B<sub>φ</sub>), a regional residual refiner (R<sub>ψ</sub>) and a post-safety gate (S<sub>ω</sub>).
+**ReMedFiLM FULL — RA-MedFiLM-BARR.** One task-conditioned backbone segments four medical
+domains; a learned router decides where extra computation is worth spending, a regional
+refiner re-segments only those regions, and a post-safety gate may veto the result.
 
 [![Python](https://img.shields.io/badge/python-3.11-3776AB?logo=python&logoColor=white)](docs/REPRODUCIBILITY_GUIDE.md)
 [![PyTorch](https://img.shields.io/badge/pytorch-2.6.0%2Bcu124-EE4C2C?logo=pytorch&logoColor=white)](docs/REPRODUCIBILITY_GUIDE.md)
-[![Task](https://img.shields.io/badge/task-medical%20image%20segmentation-0B5394)](docs/REPOSITORY_MAP.md)
-[![Status](https://img.shields.io/badge/status-research%20code-B26A00)](docs/REPOSITORY_MAP.md)
-[![Reproducibility](https://img.shields.io/badge/reproducibility-analysis--only%20verified-2E7D32)](docs/REPRODUCIBILITY_GUIDE.md)
-[![Tests](https://img.shields.io/badge/QA%20checks-38%2F38%20passing-2E7D32)](full_doc_report/REMEDFILM_FINAL_QA_CHECKS.json)
-
-**Research code. Not clinically validated. No publication acceptance is claimed.**
+[![Status](https://img.shields.io/badge/status-research%20code%20·%20not%20clinically%20validated-B26A00)](docs/RESEARCH_VISUAL_GALLERY.md)
 
 </div>
 
@@ -22,70 +18,71 @@ benefit router (B<sub>φ</sub>), a regional residual refiner (R<sub>ψ</sub>) an
 
 ## Overview
 
-Medical image segmentation models are usually trained per anatomy. One shared model
-must instead cope with lesions that differ by orders of magnitude — a dermoscopy lesion
-may fill most of the frame, while a kidney stone is a few hundred pixels inside a
-512 × 512 radiograph.
+Most segmentation models are trained per anatomy. A single shared model must instead cope
+with foregrounds that differ by orders of magnitude — a dermoscopy lesion may fill the
+frame, while a kidney stone is a few hundred pixels inside a 512 × 512 radiograph.
 
-ReMedFiLM addresses this with **selective** extra computation:
+ReMedFiLM treats extra computation as a **decision** rather than a default:
 
-1. **One task-conditioned global network** segments all four domains cheaply. The task
-   identity enters only through a learned embedding and FiLM modulation, so the
-   backbone and the single foreground head are shared.
-2. A **learned router** scores each candidate region and predicts whether refining it
-   will actually help. Most regions are skipped.
-3. A **regional refiner** re-segments only the selected regions.
-4. A **post-safety gate** can veto a refinement that looks harmful, falling back to the
-   global prediction.
+1. **G — one task-conditioned global network** segments all four domains cheaply. Task
+   identity enters only through a learned embedding and FiLM modulation, so the backbone
+   and the single foreground head are shared.
+2. **B<sub>φ</sub> — a learned benefit router** scores each candidate region and predicts
+   whether refining it will actually help. Most regions are skipped.
+3. **R<sub>ψ</sub> — a regional refiner** re-segments only the selected regions.
+4. **S<sub>ω</sub> — a post-safety gate** can veto a refinement that looks harmful and fall
+   back to the global mask.
 
-The design premise is that *unconditional* refinement is unsafe: in the historical
-ablation, refining every candidate harmed **42.7 %** of them. Routing and a safety gate
-are the response to that measurement.
+The premise is measured, not assumed: in the historical ablation, refining **every**
+candidate harmed **42.7 %** of them. Routing and a safety gate are the response.
 
 > **GlobalMedFiLM is the backbone of ReMedFiLM, not ReMedFiLM.** A GlobalMedFiLM
 > checkpoint, prediction or score is never presented here as a FULL-system result.
 
 ---
 
-## Full ReMedFiLM Methodology
+## Methodology
 
 <div align="center">
 
 <a href="assets/figures/remedfilm_inference_infographic.png">
   <img src="assets/figures/remedfilm_inference_infographic.png"
-       alt="ReMedFiLM full inference methodology infographic. Panel A: four multi-domain inputs (ISIC 2018 dermoscopy, BUSI-WHU breast ultrasound, Kvasir-SEG endoscopy, KUB-StoneX radiography) feed a task-identity node and a task embedding E(t). Panel B: the FULL proposed inference system — the task-conditioned GlobalMedFiLM backbone G produces a global probability map Pg and global features Fg; a GT-free ROI proposal extracts a candidate region; the benefit router B_phi decides Refine?; the regional residual refiner R_psi yields a corrected local mask delta-P; the post-safety gate S_omega decides Accept?, giving three legitimate inference outcomes — skip to the global output, refine plus accept, or refine plus reject with global fallback. Panel C: the staged training strategy, six separate stages in progressive dependency order G, then predictions and ROIs, then R_psi, then gain labels, then B_phi, then S_omega, with inference using the frozen trained modules."
+       alt="ReMedFiLM FULL inference methodology. Panel A: four multi-domain inputs (ISIC 2018 dermoscopy, BUSI-WHU breast ultrasound, Kvasir-SEG endoscopy, KUB-StoneX radiography) feed a task-identity node and a task embedding E(t). Panel B: the FULL proposed inference system — the task-conditioned GlobalMedFiLM backbone G produces a global probability map and global features; a ground-truth-free ROI proposal extracts a candidate region; the benefit router B_phi decides Refine?; the regional residual refiner R_psi yields a corrected local mask delta-P; the post-safety gate S_omega decides Accept?, giving three outcomes — skip to the global output, refine plus accept, or refine plus reject with global fallback. Panel C: the staged training strategy, six stages in progressive dependency order G, then predictions and ROIs, then R_psi, then gain labels, then B_phi, then S_omega, with inference using the frozen trained modules."
        width="100%">
 </a>
 
-*ReMedFiLM methodology — the authoritative figure. Click for the full-resolution
-raster ([PNG](assets/figures/remedfilm_inference_infographic.png)) or open the
-editable vector source
-([SVG](assets/figures/remedfilm_full_methodology.svg) ·
-[PDF](assets/figures/remedfilm_full_methodology.pdf)) ·
-[high-resolution PNG](assets/figures/remedfilm_full_methodology.png) ·
-[single-column version](assets/figures/remedfilm_methodology_compact.svg)*
+**Figure 1 — ReMedFiLM FULL inference and staged training.** Panel A: four modalities and
+the task-identity path. Panel B: the deployed inference graph, G → ROI → B<sub>φ</sub> →
+R<sub>ψ</sub> → S<sub>ω</sub>, with its three legitimate outcomes. Panel C: six
+independently fitted training stages; inference runs the frozen modules. Click for full
+resolution.
 
 </div>
 
-> **What the figure does and does not show.** Panel C depicts *separate training
-> with progressive dependency* — six stages, each fitted against a frozen
-> upstream. **No joint end-to-end backpropagation is drawn, because none is
-> implemented.** No ground-truth mask appears on any inference path: the ROI
-> proposal is GT-free, and every sample tile shown comes from the frozen Phase 27
-> / Phase 29 validation caches.
+The raster above is the authoritative figure and is **not** an editable vector file. A
+separately generated vector rendition of the same architecture is available as
+[SVG](assets/figures/remedfilm_full_methodology.svg) ·
+[PDF](assets/figures/remedfilm_full_methodology.pdf) — it is produced by
+[`assets/figures/generate_methodology.py`](assets/figures/generate_methodology.py) and is
+not the source of the PNG.
+
+> **What the figure does and does not show.** Panel C depicts *separate training with
+> progressive dependency* — six stages, each fitted against a frozen upstream. **No joint
+> end-to-end backpropagation is drawn, because none is implemented.** No ground-truth mask
+> appears on any inference path: the ROI proposal is GT-free.
 
 ### The four trained components
 
 | | Component | Role | Parameters |
 |---|---|---|---|
 | **G** | Task-conditioned GlobalMedFiLM backbone | FiLM modulation at `bridge, decoder4…1`; one shared foreground head | 3,523,001 |
-| **B<sub>φ</sub>** | Learned benefit router | scores GT-free candidate features, decides `REFINE` or `SKIP` | 36,801 |
-| **R<sub>ψ</sub>** | Regional residual refiner | refines the selected ROI crops (4-channel input) | 1,276,401 |
+| **B<sub>φ</sub>** | Learned benefit router | scores GT-free candidate features; decides `REFINE` or `SKIP` | 36,801 |
+| **R<sub>ψ</sub>** | Regional residual refiner | refines selected ROI crops (4-channel input) | 1,276,401 |
 | **S<sub>ω</sub>** | Post-safety gate | accepts or vetoes each refinement | 1,217 |
 | | **ReMedFiLM FULL** | assembled inference system | **4,837,420** |
 
-Parameter counts were **re-derived by loading each checkpoint and summing its state
-dict** — see [`REMEDFILM_FULL_COMPONENT_REGISTRY.json`](full_doc_report/REMEDFILM_FULL_COMPONENT_REGISTRY.json).
+Counts were re-derived by loading each checkpoint and summing its state dict — see
+[`REMEDFILM_FULL_COMPONENT_REGISTRY.json`](full_doc_report/REMEDFILM_FULL_COMPONENT_REGISTRY.json).
 
 ### Three legitimate outcomes
 
@@ -95,34 +92,256 @@ dict** — see [`REMEDFILM_FULL_COMPONENT_REGISTRY.json`](full_doc_report/REMEDF
 | **(b) REFINE + ACCEPT** | router selects, safety accepts | refined ROI composed into the global mask |
 | **(c) REFINE + REJECT** | router selects, safety vetoes | global fallback |
 
-On the 808-image validation set: **529 skip · 266 accept · 13 reject**.
+On the 808-image validation set: **529 skip · 266 accept · 13 reject.**
 
 A node-by-node trace from this diagram to the implementing class, function and
 configuration is in [`docs/METHODOLOGY_IMPLEMENTATION_MAP.md`](docs/METHODOLOGY_IMPLEMENTATION_MAP.md).
-Figure construction, defect log and format checks:
-[`docs/METHODOLOGY_FIGURE_QA.md`](docs/METHODOLOGY_FIGURE_QA.md).
 
 ---
 
 ## Key Contributions
 
 1. **A task-conditioned shared backbone for four heterogeneous modalities.** FiLM
-   modulation with a zero-initialised output projection means every modulation site
-   starts as the identity, so the network begins as a plain U-Net-shaped segmenter and
-   learns its conditioning.
-2. **Selective rather than unconditional refinement.** A learned router spends compute
-   only where a benefit is predicted; unconditional refinement was measured at a 42.7 %
-   harm rate, which motivates the selection step.
+   modulation with a zero-initialised output projection means every modulation site starts
+   as the identity, so the network begins as a plain U-Net-shaped segmenter and learns its
+   conditioning.
+2. **Selective rather than unconditional refinement.** A learned router spends compute only
+   where benefit is predicted; unconditional refinement was measured at a 42.7 % harm rate,
+   which is what motivates the selection step.
 3. **A post-safety veto with an explicit fallback.** The system can decline its own
-   refinement and return the backbone mask, which is what makes "refine and reject" a
-   first-class outcome rather than a failure.
-4. **An honest evidence base.** Every reported number traces to a frozen artifact;
-   negative results (14/14 stone-free false positives, an inconclusive safety
-   contrast, severe external domain shift) are reported rather than smoothed.
+   refinement and return the backbone mask, making "refine and reject" a first-class
+   outcome rather than a failure.
+4. **An honest evidence base.** Every reported number traces to a frozen artifact, and
+   negative results — 14/14 stone-free false positives, an inconclusive safety contrast,
+   severe external domain shift — are reported rather than smoothed.
 
 **Not claimed:** causal FiLM attribution (C1, 0/6 runs), causal component attribution
-(C2, not established), an independent multi-seed benchmark (C3, 0/24 cells), or any
-safety guarantee.
+(C2, not established), an independent multi-seed benchmark (C3, 0/24 cells), or any safety
+guarantee.
+
+---
+
+## Visual Results — real predictions, four domains
+
+Every panel below is built from **saved masks already on disk**, not from new inference.
+All five columns of a row share one `sample_id`, and the ground-truth foreground pixel count
+is asserted to equal the count recorded in the metrics table before the panel is drawn.
+
+<div align="center">
+
+<a href="assets/figures/readme/remedfilm_four_domain_predictions.png">
+  <img src="assets/figures/readme/remedfilm_four_domain_predictions.png"
+       alt="Four-domain prediction gallery. Four rows (ISIC 2018 dermoscopy, BUSI-WHU breast ultrasound, Kvasir-SEG endoscopy, KUB-StoneX radiography), five columns: input image, ground truth, GlobalMedFiLM backbone mask, ReMedFiLM FULL mask, and an error overlay where green is true positive, red is false positive and blue is false negative. Each row is a single verified sample with per-case Dice and routing status."
+       width="100%">
+</a>
+
+**Figure 2 — ReMedFiLM FULL, one verified case per domain** (VAL808, frozen saved masks).
+Green = true positive, red = false positive, blue = false negative. Each row is the accepted
+refinement closest to that domain's median FULL Dice — deliberately typical, not the best
+case.
+
+</div>
+
+| Domain | Modality | n (VAL808) | Accepted | Vetoed | Harmful accepts |
+|---|---|---|---|---|---|
+| ISIC 2018 | dermoscopy | 357 | 84 | 7 | 37 |
+| BUSI-WHU | breast ultrasound | 84 | 1 | 1 | 0 |
+| Kvasir-SEG | endoscopy | 87 | 20 | 3 | 9 |
+| KUB-StoneX | radiography (KUB) | 280 | 161 | 2 | 51 |
+
+Per-domain panels, each covering strong / typical / beneficial / harmful / vetoed /
+small-object cases where that case exists:
+
+| Domain | Panel | Note |
+|---|---|---|
+| ISIC 2018 | [prediction_isic.png](assets/figures/readme/prediction_isic.png) | six cases |
+| BUSI-WHU | [prediction_busi.png](assets/figures/readme/prediction_busi.png) | five cases — **no harmful refinement occurred** in this domain |
+| Kvasir-SEG | [prediction_kvasir.png](assets/figures/readme/prediction_kvasir.png) | six cases |
+| KUB-StoneX | [prediction_kub.png](assets/figures/readme/prediction_kub.png) | six cases; ROI patches and full-field radiographs are labelled separately |
+
+<div align="center">
+
+<a href="assets/figures/readme/prediction_isic.png">
+  <img src="assets/figures/readme/prediction_isic.png" alt="ISIC 2018 dermoscopy: six verified cases spanning strong, typical, beneficial, harmful, safety-vetoed and small-object segmentation, with Dice, IoU, HD95 and routing status." width="100%">
+</a>
+
+**Figure 3 — ISIC 2018.** The harmful row is a genuine accepted refinement
+(Δ −0.0448): the safety gate did not catch it.
+
+</div>
+
+<div align="center">
+
+<a href="assets/figures/readme/prediction_busi.png">
+  <img src="assets/figures/readme/prediction_busi.png" alt="BUSI-WHU breast ultrasound: five verified cases. The router accepted only one of 84 cases; no harmful refinement occurred." width="100%">
+</a>
+
+**Figure 4 — BUSI-WHU.** The router accepted **one** of 84 cases and the gate vetoed one.
+This domain is effectively backbone-only, and the figure says so.
+
+</div>
+
+<div align="center">
+
+<a href="assets/figures/readme/prediction_kvasir.png">
+  <img src="assets/figures/readme/prediction_kvasir.png" alt="Kvasir-SEG endoscopy: six verified cases including a small-polyp failure where Dice is 0.122." width="100%">
+</a>
+
+**Figure 5 — Kvasir-SEG.** The small-object row is a failure, not a showcase: Dice 0.122 →
+0.131. Endoscopic polyps at this scale remain unsolved.
+
+</div>
+
+<div align="center">
+
+<a href="assets/figures/readme/prediction_kub.png">
+  <img src="assets/figures/readme/prediction_kub.png" alt="KUB-StoneX radiography: six verified cases, ROI patches and full-field radiographs labelled separately, including two small-stone failures." width="100%">
+</a>
+
+**Figure 6 — KUB-StoneX.** ROI instance patches and full-field radiographs are different
+image units and are labelled as such on every row.
+
+</div>
+
+> **Provenance and limits.** Masks come from `reports/figures/phase27_preservation/masks/`;
+> routing state from `reports/tables/phase27_val808_predictions.csv`; per-sample Dice from
+> [`REMEDFILM_INTERNAL_PER_SAMPLE.csv`](full_doc_report/tables/REMEDFILM_INTERNAL_PER_SAMPLE.csv).
+> **No new inference was run.** No full-field KUB radiograph was ever accepted by the
+> router, so the KUB example in Figure 2 is an ROI patch — the caption states this.
+> Full provenance per panel: [`docs/README_VISUAL_ASSET_MANIFEST.md`](docs/README_VISUAL_ASSET_MANIFEST.md).
+
+---
+
+## Performance
+
+<div align="center">
+
+<a href="assets/figures/readme/internal_domain_performance.png">
+  <img src="assets/figures/readme/internal_domain_performance.png" alt="Grouped bar chart of Dice per domain for GlobalMedFiLM and ReMedFiLM FULL on the 808-image validation set: ISIC 0.8972/0.8981, BUSI 0.8588/0.8589, Kvasir 0.8202/0.8207, KUB 0.7641/0.7715, macro 0.8351/0.8373." width="100%">
+</a>
+
+**Figure 7 — Internal validation, matched VAL808 population.** Single historical seed (42).
+
+</div>
+
+Historical single-seed (42) development results on the identical 808-image validation set,
+re-scored from saved masks:
+
+| Model | Parameters | VAL808 macro Dice | Notes |
+|---|---|---|---|
+| U-Net | 7,763,041 | 0.7878 | conventional baseline |
+| Attention U-Net | 7,851,285 | 0.7890 | conventional baseline |
+| U-Net++ | 9,159,681 | 0.7920 | conventional baseline |
+| Transformer / MiT-style U-Net | 16,347,777 | 0.8224 | conventional baseline |
+| DeepLabV3+ | 40,347,041 | 0.8277 | conventional baseline |
+| **GlobalMedFiLM (G)** | 3,523,001 | 0.8351 | **backbone, not the full model** |
+| **ReMedFiLM FULL** | **4,837,420** | **0.8373** | **proposed system** |
+
+**Paired improvement, FULL − backbone:** `+0.002210`, 95 % CI `[+0.001147, +0.003292]`
+(10,000-replicate domain-stratified bootstrap; the interval excludes zero).
+
+| Domain | n | GlobalMedFiLM | ReMedFiLM FULL | Δ |
+|---|---|---|---|---|
+| ISIC | 357 | 0.8972 | 0.8981 | +0.0009 |
+| BUSI | 84 | 0.8588 | 0.8589 | +0.0001 |
+| Kvasir | 87 | 0.8202 | 0.8207 | +0.0004 |
+| KUB | 280 | 0.7641 | 0.7715 | **+0.0075** |
+
+<div align="center">
+
+<a href="assets/figures/readme/historical_model_comparison.png">
+  <img src="assets/figures/readme/historical_model_comparison.png" alt="Horizontal bar chart comparing macro domain Dice for seven models: U-Net 0.7878, Attention U-Net 0.7890, U-Net++ 0.7920, Transformer MiT-style U-Net 0.8224, DeepLabV3+ 0.8277, GlobalMedFiLM 0.8351, ReMedFiLM FULL 0.8373, with parameter counts." width="100%">
+</a>
+
+**Figure 8 — Seven-model comparison.** This is the **historical single-seed benchmark, not a
+completed independent C3 experiment** (0/24 cells executed). Baseline arms were trained
+under the reduced protocol, so the comparison is descriptive.
+
+</div>
+
+### On the two circulating FULL values
+
+An earlier report quoted `0.837862` and `34.72 GMACs`. Neither is the deployed figure:
+
+- **`0.837290`** is reproducible from the saved masks and matches Phase 27 and Phase 29 to
+  `1.8 × 10⁻⁷`. It is the value plotted here.
+- **`0.837862`** appears in no frozen artifact. It is the mean of three hardcoded numbers in
+  the report generator, printed both as the seed-42 row and as the three-seed mean. No
+  routing policy expressible from the saved masks reproduces it.
+- **`34.72 GMACs`** is the *always-refine* cost. The deployed policy routes 24.31 % of
+  cases, so its expected conditional cost is **32.4379 GMACs**.
+
+Full analysis: [`REMEDFILM_FULL_RESULT_RECONCILIATION.md`](full_doc_report/REMEDFILM_FULL_RESULT_RECONCILIATION.md).
+
+---
+
+## External Generalization
+
+<div align="center">
+
+<a href="assets/figures/readme/external_evaluation.png">
+  <img src="assets/figures/readme/external_evaluation.png" alt="External retrospective evaluation. Left: Dice with 95 percent confidence intervals for CVC-ClinicDB (612 cases) and BrEaST-Lesions-USG (252 cases) for both models. Right: the Stones-Where-Are-You cohort split into six stone-positive cases and fourteen stone-free cases, where Dice is undefined and 14 of 14 receive a foreground prediction." width="100%">
+</a>
+
+**Figure 9 — External retrospective evaluation** (884 cases, separate cohorts).
+
+</div>
+
+| Cohort | n | GlobalMedFiLM | ReMedFiLM FULL | HD95 (px) |
+|---|---|---|---|---|
+| CVC-ClinicDB | 612 | 0.6866 | 0.6897 | 109.6 → 108.5 |
+| BrEaST-Lesions-USG | 252 | 0.7078 | 0.7081 | 74.0 → 73.3 |
+| Stones — stone-positive | 6 | 0.2695 | 0.2738 | 166.9 → 169.9 |
+| Stones — stone-free | 14 | undefined (empty GT) | undefined | — |
+
+**Preserved negative results.** Under domain shift the Stones cohort collapses: even among
+the six stone-positive cases Dice is 0.27, and **14 / 14 stone-free images receive a
+foreground prediction** in both arms — case-level specificity 0.0. The safety gate scores
+refinement benefit, not lesion presence, so it cannot repair a negative study.
+
+> **Why the summary table says 0.0808.** The cohort-level Stones Dice zero-fills the 14
+> empty-GT cases. Figure 9 reports those cases as false positives instead of as Dice = 0,
+> because an undefined metric is not a zero. Neither number should be read as evidence of
+> clinical utility.
+
+---
+
+## Model Analysis
+
+| Analysis | Figure | What it shows |
+|---|---|---|
+| **13-arm ablation** | [complete_ablation.png](assets/figures/readme/complete_ablation.png) | A0–A8, R1–R3, F1: measured Δ Dice per routed case, routing budget, harmful share |
+| **Training histories** | [training_history.png](assets/figures/readme/training_history.png) | G, R<sub>ψ</sub>, B<sub>φ</sub>, S<sub>ω</sub> as four independent stages |
+| **Routing and safety** | [Routing and safety/](full_doc_report/figures/Routing%20and%20safety/) | outcome flow, stage activation |
+| **Component progression** | [Progression/](full_doc_report/figures/Progression/) | what each component adds |
+| **Robustness** | [Robustness/](full_doc_report/figures/Robustness/) | 12 perturbations, 12,928 instances |
+| **Error propagation** | [Semantic segmentation/](full_doc_report/figures/Semantic%20segmentation/) | worst-case refinements |
+| **Accuracy vs compute** | embedded below | seven models vs parameters; G and FULL vs verified GMACs |
+
+**The ablation's one decisive number.** Routing is what matters: refining unconditionally
+(A1) harms 42.67 % of routed cases for a mean Δ of only +0.0017, while the learned router
+(A8) cuts harmful share to 32.37 % and lifts mean Δ Dice to +0.0075. But the only
+pre-specified matched contrast, **A8 vs A7**, is `+1.57 × 10⁻⁵` with 95 % CI
+`[−1.43 × 10⁻⁵, +5.11 × 10⁻⁵]` — **the interval includes zero**, so the safety gate's own
+contribution is inconclusive. Component contributions are measured, not proven causal.
+
+<div align="center">
+
+<a href="assets/figures/readme/remedfilm_accuracy_compute.png">
+  <img src="assets/figures/readme/remedfilm_accuracy_compute.png" alt="Two panels. Left: macro Dice against parameter count on a log scale for seven models, with ReMedFiLM FULL and GlobalMedFiLM highlighted. Right: macro Dice against verified GMACs for GlobalMedFiLM at 31.55 analytical GMACs, ReMedFiLM FULL at 32.44 expected conditional GMACs, and the always-refine cost at 34.78 GMACs." width="100%">
+</a>
+
+**Figure 10 — Accuracy vs compute.** *Analytical* GMACs (G) count every multiply-add once.
+*Expected conditional* GMACs (FULL) weight the refiner by the measured 24.31 % routing rate,
+so FULL is not simply "backbone plus refiner". Only these two configurations have a verified
+compute measurement, and their protocols are not matched — **this is not a confirmed Pareto
+frontier.**
+
+</div>
+
+The complete verified collection — including subgroup performance, robustness,
+interpretability and statistics — is in
+**[`docs/RESEARCH_VISUAL_GALLERY.md`](docs/RESEARCH_VISUAL_GALLERY.md)**.
 
 ---
 
@@ -141,77 +360,36 @@ channels of one network.
 Split sizes: **TRAIN 5,832 · VAL 808 · TEST 1,683**. Training data further divides into
 ROUTER_DEVELOPMENT 4,957 and ROUTER_HOLDOUT 875.
 
-**No medical images, patient spreadsheets or dataset copies are stored in this
-repository.** Only derived masks and metrics are referenced. Any reuse must satisfy the
-terms above independently.
+**No dataset is redistributed here.** The prediction panels above embed a small number of
+individual example images solely to illustrate the reported results; each remains subject to
+its source licence (see [Licence and Research Use](#licence-and-research-use)).
 
-> **KUB grouping caveat.** The KUB manifest contains 873 full-field radiographs **and**
-> 1,385 ROI instance patches. They are not interchangeable image units, and analyses
-> distinguish them.
+> **Split provenance — read this before quoting a number.** TRAIN/VAL/TEST are the project's
+> own partitions of the pooled four-domain pool, **not the official challenge splits**. For
+> ISIC 2018 the 357 validation images comprise 231 from the official training partition, 14
+> from the official validation partition and 112 from the official test partition. The three
+> project partitions are strictly disjoint — 0 shared image paths and 0 shared sample IDs
+> across TRAIN, VAL and TEST. "ISIC validation" in this repository therefore means *the
+> project's* validation partition.
 
----
-
-## Research Results
-
-Historical, single-seed (42) development results on the identical 808-image validation
-set, re-scored from saved masks:
-
-| Model | Parameters | VAL808 macro Dice | Notes |
-|---|---|---|---|
-| U-Net | 7,763,041 | 0.7878 | conventional baseline |
-| Attention U-Net | 7,851,285 | 0.7890 | conventional baseline |
-| U-Net++ | 9,159,681 | 0.7920 | conventional baseline |
-| Transformer / MiT-style U-Net | 16,347,777 | 0.8224 | conventional baseline |
-| DeepLabV3+ | 40,347,041 | 0.8277 | conventional baseline |
-| **GlobalMedFiLM (G)** | 3,523,001 | 0.8351 | **backbone, not the full model** |
-| **ReMedFiLM FULL** | **4,837,420** | **0.8373** | **proposed system** |
-
-**Paired improvement, FULL − backbone:** `+0.002210`, 95 % CI `[+0.001147, +0.003292]`
-(10,000-replicate domain-stratified bootstrap, CI excludes zero).
-
-| Domain | n | GlobalMedFiLM | ReMedFiLM FULL | Δ |
-|---|---|---|---|---|
-| ISIC | 357 | 0.8972 | 0.8981 | +0.0009 |
-| BUSI | 84 | 0.8588 | 0.8589 | +0.0001 |
-| Kvasir | 87 | 0.8202 | 0.8207 | +0.0004 |
-| KUB | 280 | 0.7641 | 0.7715 | **+0.0075** |
-
-### Retrospective external evaluation (884 cases, separate cohorts)
-
-| Cohort | n | GlobalMedFiLM | ReMedFiLM FULL | HD95 (px) |
-|---|---|---|---|---|
-| CVC-ClinicDB | 612 | 0.6866 | 0.6897 | 109.6 → 108.5 |
-| BrEaST-Lesions-USG | 252 | 0.7078 | 0.7081 | 74.0 → 73.3 |
-| Stones-Where-Are-You | 20 | 0.0808 | 0.0821 | 166.9 → 169.9 *(n = 6)* |
-
-**Preserved negative results.** The Stones cohort collapses under domain shift
-(Dice ≈ 0.08), and **14 / 14 stone-free images receive a foreground prediction** in both
-arms — the safety gate scores refinement benefit, not lesion presence, so it cannot fix
-negative studies. These are reported as failures, not outliers.
-
-### On the two circulating FULL values
-
-An earlier report quoted `0.837862` and `34.72 GMACs`. Both are wrong:
-
-- **`0.837290`** is reproducible from the saved masks and matches Phase 27 and Phase 29
-  to `1.8 × 10⁻⁷`.
-- **`0.837862`** appears in no frozen artifact. It is the mean of three hardcoded numbers
-  in the report generator, printed both as the seed-42 row and as the three-seed mean.
-  No routing policy expressible from the saved masks reproduces it.
-- **`34.72 GMACs`** is the *always-refine* cost. The deployed system routes 24.3 % of
-  cases, so its expected conditional cost is **32.4379 GMACs**.
-
-Full analysis: [`REMEDFILM_FULL_RESULT_RECONCILIATION.md`](full_doc_report/REMEDFILM_FULL_RESULT_RECONCILIATION.md).
+> **KUB unit-of-analysis caveat.** The KUB domain contributes **1,146 full-field radiographs
+> and 1,670 ROI instance patches** (2,816 entries). They are not interchangeable image units
+> and are never pooled in a single metric. VAL808 contains 103 full-field and 177 ROI cases,
+> and every KUB figure here states which one a row is. Note that **no full-field KUB case was
+> ever accepted by the router**, so accepted-refinement KUB examples are necessarily ROI
+> patches.
 
 ---
 
-## Repository Structure
+## Repository Navigation
 
 ```text
 jup/
 ├── README.md                     ← you are here
-├── assets/figures/               methodology diagrams (SVG / PDF / PNG) + generator
-├── docs/                         repository map, method→code trace, reproducibility
+├── assets/figures/
+│   ├── remedfilm_inference_infographic.png    authoritative methodology figure
+│   └── readme/                                README visual set + generator
+├── docs/                         repository map, method→code trace, visual gallery
 ├── src/
 │   ├── models/film/              GlobalMedFiLM backbone (G)
 │   ├── models/barr/              router, refiner, safety gate, FULL wrapper
@@ -224,40 +402,23 @@ jup/
 │   └── analysis/                 evaluation and report builders
 ├── notebooks/phasewise/          57 phase directories of research history
 ├── manifests/phase4_v3/          TRAIN / VAL / TEST splits
-├── experiments/                  82 per-epoch history.csv records
+├── experiments/                  per-epoch history.csv records
 ├── checkpoints/                  weights (git-ignored, not distributed)
-├── reports/                      audits and tables
+├── reports/                      saved masks, predictions, audits
 ├── full_doc_report/              verified consolidation: notebooks, tables, figures
 └── tests/                        automated tests
 ```
 
-Full navigation: **[`docs/REPOSITORY_MAP.md`](docs/REPOSITORY_MAP.md)** — six maps
-covering all 57 phase directories, model locations, training evidence, results and
-reproduction tooling.
-
----
-
-## Quick Navigation
-
 | I want to… | Go to |
 |---|---|
+| See every verified figure | [`docs/RESEARCH_VISUAL_GALLERY.md`](docs/RESEARCH_VISUAL_GALLERY.md) |
+| Navigate all 57 phase directories | [`docs/REPOSITORY_MAP.md`](docs/REPOSITORY_MAP.md) |
 | Understand the architecture | [`docs/METHODOLOGY_IMPLEMENTATION_MAP.md`](docs/METHODOLOGY_IMPLEMENTATION_MAP.md) |
-| Read the full research record | [`full_doc_report/ReMedFiLM_COMPLETE_MASTER_VERIFIED.ipynb`](full_doc_report/ReMedFiLM_COMPLETE_MASTER_VERIFIED.ipynb) |
-| See the full model code | [`src/models/barr/ra_medfilm_barr.py`](src/models/barr/ra_medfilm_barr.py) |
-| See the backbone code | [`src/models/film/global_medfilm.py`](src/models/film/global_medfilm.py) |
-| Understand staged assembly | master §06 · [`registry`](full_doc_report/REMEDFILM_FULL_COMPONENT_REGISTRY.json) |
+| Read the full research record | [`ReMedFiLM_COMPLETE_MASTER_VERIFIED.ipynb`](full_doc_report/ReMedFiLM_COMPLETE_MASTER_VERIFIED.ipynb) |
+| Read the FULL model code | [`src/models/barr/ra_medfilm_barr.py`](src/models/barr/ra_medfilm_barr.py) |
+| Read the backbone code | [`src/models/film/global_medfilm.py`](src/models/film/global_medfilm.py) |
 | Inspect trained checkpoints | [`REMEDFILM_FULL_COMPONENT_REGISTRY.json`](full_doc_report/REMEDFILM_FULL_COMPONENT_REGISTRY.json) |
-| Analyse epoch-wise training | master §05 · [`REMEDFILM_COMPONENT_TRAINING_HISTORY.csv`](full_doc_report/REMEDFILM_COMPONENT_TRAINING_HISTORY.csv) |
-| View internal validation | master §07 · [`figures/Internal validation/`](full_doc_report/figures/Internal%20validation/) |
-| View segmentation predictions | master §08 · [`figures/Semantic segmentation/`](full_doc_report/figures/Semantic%20segmentation/) |
-| View external evaluation | master §10 · [`figures/External evaluation/`](full_doc_report/figures/External%20evaluation/) |
-| Inspect the 13-arm ablation | master §12 · [`figures/Ablation/`](full_doc_report/figures/Ablation/) |
-| View component progression | master §11 · [`figures/Progression/`](full_doc_report/figures/Progression/) |
-| Study routing and safety | master §13 · [`figures/Routing and safety/`](full_doc_report/figures/Routing%20and%20safety/) |
-| Study robustness | master §15 · [`figures/Robustness/`](full_doc_report/figures/Robustness/) |
-| Study efficiency | master §16 · [`figures/Efficiency/`](full_doc_report/figures/Efficiency/) |
-| Review historical TEST results | master §17 |
-| Run the safe analyses | [`docs/REPRODUCIBILITY_GUIDE.md`](docs/REPRODUCIBILITY_GUIDE.md) |
+| Trace a number to its source | [`docs/README_SCIENTIFIC_EVIDENCE_INDEX.md`](docs/README_SCIENTIFIC_EVIDENCE_INDEX.md) |
 | See what is still missing | [`PENDING_CONTROLLED_EXPERIMENTS.md`](full_doc_report/PENDING_CONTROLLED_EXPERIMENTS.md) |
 
 ---
@@ -279,32 +440,31 @@ Verified stack: **Python 3.11.9 · PyTorch 2.6.0+cu124 · CUDA 12.4**.
 .\.venv\Scripts\python.exe -c "import torch; print(torch.__version__, torch.cuda.is_available())"
 ```
 
-> `requirements.txt` currently omits **`scipy`** (used for HD95) — if
-> `build_metrics.py` raises `ModuleNotFoundError: scipy`, install it explicitly.
-> Details in the [reproducibility guide](docs/REPRODUCIBILITY_GUIDE.md).
+> `requirements.txt` currently omits **`scipy`** (used for HD95) — if `build_metrics.py`
+> raises `ModuleNotFoundError: scipy`, install it explicitly. Details in the
+> [reproducibility guide](docs/REPRODUCIBILITY_GUIDE.md).
 
 ---
 
 ## Reproducibility
 
-**Analysis-only reproduction is fully supported and verified. Training is not.**
+**Analysis-only reproduction is supported and verified. Training is not.**
 
 ```powershell
 # 1. execute the whole verified notebook family (analysis-only, guard-enforced)
 .\.venv\Scripts\python.exe full_doc_report\Scripts\execute_notebooks.py
-#    -> TOTAL 22 notebooks | 292/292 cells | OK
 
 # 2. rebuild the research figures
 .\.venv\Scripts\python.exe full_doc_report\Scripts\build_figures.py
 
-# 3. rebuild the methodology diagrams
-.\.venv\Scripts\python.exe assets\figures\generate_methodology.py
+# 3. rebuild the README visual set (all 11 figures)
+.\.venv\Scripts\python.exe assets\figures\readme\build_readme_figures.py
 
 # 4. re-score the saved masks and rebuild every table
 .\.venv\Scripts\python.exe full_doc_report\Scripts\build_metrics.py
 
 # 5. verify
-.\.venv\Scripts\python.exe full_doc_report\Scripts\verify_verified.py   # 38/38
+.\.venv\Scripts\python.exe full_doc_report\Scripts\verify_verified.py
 ```
 
 `ANALYSIS_ONLY` is enforced by an installed `sys.addaudithook`: process launches, writes
@@ -312,10 +472,12 @@ outside the report directory and reads of the protected TEST manifest are blocke
 `torch.optim.*` / `Module.train(True)` are replaced by raising callables. Four negative
 controls must print `blocked` or the notebook aborts.
 
-The strongest available check is `build_metrics.py`, which reproduces the frozen
-Phase 27 paired macro Δ Dice to **1.8 × 10⁻⁷** from masks alone.
+The strongest available check is `build_metrics.py`, which reproduces the frozen Phase 27
+paired macro Δ Dice to **1.8 × 10⁻⁷** from masks alone.
 
-No command above launches an unapproved experiment.
+Step 3 needs the saved mask cache under `reports/figures/phase27_preservation/masks/`. That
+cache is not distributed with the repository, so the script aborts with a clear message
+rather than drawing an empty panel. No command above launches an unapproved experiment.
 
 ---
 
@@ -335,49 +497,15 @@ No command above launches an unapproved experiment.
 | **C3** independent 8-model × 3-seed benchmark | **pending — 0 / 24 cells** |
 | New untouched prospective external cohort | **pending** |
 
-Synthetic unit tests are never presented as evidence that an experiment ran.
-Details: [`PENDING_CONTROLLED_EXPERIMENTS.md`](full_doc_report/PENDING_CONTROLLED_EXPERIMENTS.md).
-
----
-
-## Figures and Reports
-
-| Figure | Link |
-|---|---|
-| **Methodology infographic** (authoritative) | [PNG](assets/figures/remedfilm_inference_infographic.png) |
-| Full methodology, editable vector | [SVG](assets/figures/remedfilm_full_methodology.svg) · [PDF](assets/figures/remedfilm_full_methodology.pdf) · [PNG](assets/figures/remedfilm_full_methodology.png) |
-| Methodology, single column | [SVG](assets/figures/remedfilm_methodology_compact.svg) |
-| Methodology generator (source of truth) | [`assets/figures/generate_methodology.py`](assets/figures/generate_methodology.py) |
-| Per-domain metrics | [Internal validation](full_doc_report/figures/Internal%20validation/) |
-| Segmentation galleries | [Semantic segmentation](full_doc_report/figures/Semantic%20segmentation/) |
-| External evaluation | [External evaluation](full_doc_report/figures/External%20evaluation/) |
-| 13-arm ablation | [Ablation](full_doc_report/figures/Ablation/) |
-| Component progression | [Progression](full_doc_report/figures/Progression/) |
-| Routing and safety | [Routing and safety](full_doc_report/figures/Routing%20and%20safety/) |
-| Training curves | [Training curves](full_doc_report/figures/Training%20curves/) |
-| Robustness | [Robustness](full_doc_report/figures/Robustness/) |
-| Accuracy vs compute | [Efficiency](full_doc_report/figures/Efficiency/) |
-| Reproducibility statistics | [Statistics](full_doc_report/figures/Statistics/) |
-
-All methodology figures are regenerated by one command:
-
-```powershell
-.\.venv\Scripts\python.exe assets\figures\generate_methodology.py
-```
-
-Reviewed report: [`REMEDFILM_FINAL_SCIENTIFIC_QA.md`](full_doc_report/REMEDFILM_FINAL_SCIENTIFIC_QA.md)
-
-Documentation audits:
-[link verification](docs/README_LINK_VERIFICATION.md) ·
-[publication safety check](docs/GITHUB_PUBLICATION_SAFETY_CHECK.md) ·
-[methodology figure QA](docs/METHODOLOGY_FIGURE_QA.md).
+Synthetic unit tests are never presented as evidence that an experiment ran. Details:
+[`PENDING_CONTROLLED_EXPERIMENTS.md`](full_doc_report/PENDING_CONTROLLED_EXPERIMENTS.md).
 
 ---
 
 ## Citation
 
 No paper has been published and no DOI exists for this work. **Do not cite it as a
-publication.** If you need to reference the code, use:
+publication.** If you need to reference the code:
 
 ```bibtex
 @misc{remedfilm2026,
@@ -390,24 +518,25 @@ publication.** If you need to reference the code, use:
 }
 ```
 
-Author identities are intentionally left generic — no verified author list or
-affiliation is recorded in the repository. Update this block only when a real
-publication record exists.
+Author identities are intentionally generic — no verified author list or affiliation is
+recorded in the repository.
 
 ---
 
 ## Licence and Research Use
 
-- **Source code: no licence file is present in this repository.** Absent an explicit
-  licence, the default is all rights reserved. Add a `LICENSE` file before distributing
-  or reusing the code.
-- **Dataset licences are separate and are not inherited by the code.** ISIC 2018 Task 1
-  is CC0; BUSI-WHU and KUB-StoneX are CC BY 4.0 (attribution required); **Kvasir-SEG
-  permits research/educational use and requires written permission for commercial use.**
-- **No dataset is redistributed here.** Any reuse must independently satisfy the terms
-  of each provider.
-- The repository contains no patient-identifiable material. A patient-information
-  workbook shipped with BUSI-WHU is deliberately excluded and must never be published.
+- **Source code: no licence file is present.** Absent an explicit licence the default is all
+  rights reserved. Add a `LICENSE` file before distributing or reusing the code.
+- **Dataset licences are separate and are not inherited by the code.** ISIC 2018 Task 1 is
+  CC0; BUSI-WHU and KUB-StoneX are CC BY 4.0 (attribution required); **Kvasir-SEG permits
+  research/educational use and requires written permission for commercial use.**
+- **Illustrative images.** The prediction panels embed a handful of individual example
+  images from these public datasets for research illustration only. They are not a
+  redistribution of any dataset, and reuse of those images remains governed by the terms
+  above — in particular the Kvasir-SEG examples are included under research use and must not
+  be reused commercially without written permission.
+- The repository contains no patient-identifiable material. A patient-information workbook
+  shipped with BUSI-WHU is deliberately excluded and must never be published.
 
 ---
 
@@ -416,20 +545,22 @@ publication record exists.
 - **Research only.** No clinical validation, no regulatory clearance, no deployment.
 - **Backbone ≠ full model.** GlobalMedFiLM results are labelled as backbone results
   throughout; only the four-component assembly is ReMedFiLM.
-- **Domain shift is severe.** External Stones Dice is ≈ 0.08, and every stone-free case
-  is a false positive.
+- **The gain is small.** Macro Dice improves by +0.0022, concentrated in KUB (+0.0075). Three
+  of four domains move by less than 0.001.
+- **Domain shift is severe.** External Stones Dice collapses to ≈ 0.08 at cohort level and
+  0.27 among stone-positive cases, and every stone-free image is a false positive.
 - **The safety gate's own contribution is inconclusive.** The only pre-specified matched
-  contrast (A8 vs A7) has a 95 % CI that includes zero: `+1.57 × 10⁻⁵ [−1.43 × 10⁻⁵, +5.11 × 10⁻⁵]`.
-- **"Three seeds" are not three independent runs.** Seeds 42/123/3407 re-fit the
-  downstream components on one **shared frozen backbone**; the identical backbone score
-  across seeds (SD ≈ 1.4 × 10⁻¹⁶) proves it.
+  contrast (A8 vs A7) has a 95 % CI that includes zero.
+- **"Three seeds" are not three independent runs.** Seeds 42/123/3407 re-fit the downstream
+  components on one **shared frozen backbone**; the identical backbone score across seeds
+  (SD ≈ 1.4 × 10⁻¹⁶) proves it.
 - **C1/C2/C3 remain unexecuted.** The central causal claims about FiLM modulation and
   component contribution are untested.
-- **Historical TEST access is consumed.** The single permitted evaluation has been used;
-  no comparative endpoint exists on TEST.
+- **Historical TEST access is consumed.** The single permitted evaluation has been used; no
+  comparative endpoint exists on TEST.
 
 ---
 
 <div align="center">
-<sub>Documentation verified against source artifacts · 38/38 QA checks · no training performed</sub>
+<sub>Documentation verified against source artifacts · no training performed · no new inference run</sub>
 </div>

@@ -1,0 +1,335 @@
+{
+  "figure_id": "ReMedFiLM_Methodology_V8",
+  "generated_from": "full_doc_report/v8_build/v8_figure_methodology.py",
+  "visual_reference": "assets/figures/remedfilm_inference_infographic.png",
+  "canonical_model_identity": "ReMedFiLM FULL = G + R_psi + B_phi + S_omega",
+  "backbone_role": "GlobalMedFiLM is the backbone and ablation baseline ONLY",
+  "runtime_constants": {
+    "tau_C8_final": -0.024358327623641256,
+    "roi_proposal_threshold": 0.3,
+    "roi_expansion": 1.5,
+    "somega_accept_threshold": 0.5,
+    "segmentation_output_threshold": 0.5,
+    "router_input_dim": 218,
+    "safety_input_dim": 20,
+    "states": [
+      "FORCED_SKIP",
+      "SKIP_GLOBAL",
+      "EXECUTE_THEN_ACCEPT",
+      "EXECUTE_THEN_REJECT"
+    ]
+  },
+  "verified_arrows": [
+    {
+      "from": "x, t",
+      "to": "G",
+      "claim": "single global forward",
+      "source_path": "src/models/barr/ra_medfilm_barr.py",
+      "source_line": 260,
+      "evidence": "G(x, task_ids) -> p_global"
+    },
+    {
+      "from": "E(t) R^32",
+      "to": "G FiLM gamma/beta",
+      "claim": "32-D task embedding conditions 5 FiLM sites",
+      "source_path": "src/models/film/global_medfilm.py",
+      "source_line": 47,
+      "evidence": "GLOBAL_MEDFILM_TASK_EMBEDDING_DIM = 32"
+    },
+    {
+      "from": "G",
+      "to": "p_global",
+      "claim": "exactly one forward; probability map",
+      "source_path": "src/models/barr/ra_medfilm_barr.py",
+      "source_line": 262,
+      "evidence": "_to_prob_map(g_out)"
+    },
+    {
+      "from": "p_global",
+      "to": "ROI window",
+      "claim": "threshold 0.30, bbox, x1.50 expansion",
+      "source_path": "src/models/barr/ra_medfilm_barr.py",
+      "source_line": 161,
+      "evidence": "_roi_window_from_probability"
+    },
+    {
+      "from": "ROI window",
+      "to": "action available?",
+      "claim": "None window -> FORCED_SKIP",
+      "source_path": "src/models/barr/ra_medfilm_barr.py",
+      "source_line": 268,
+      "evidence": "avail = (window is not None)"
+    },
+    {
+      "from": "action unavailable",
+      "to": "FORCED_SKIP -> p_global",
+      "claim": "state 1 of 4",
+      "source_path": "src/models/barr/ra_medfilm_barr.py",
+      "source_line": 272,
+      "evidence": "return _result('FORCED_SKIP', p_global, ...)"
+    },
+    {
+      "from": "202-D frozen cache",
+      "to": "B_phi",
+      "claim": "GT-free Phase25B numeric features, normalised",
+      "source_path": "src/models/barr/ra_medfilm_barr.py",
+      "source_line": 277,
+      "evidence": "rf.shape[0] == ROUTER_NUMERIC_DIM"
+    },
+    {
+      "from": "task id t",
+      "to": "B_phi 16-D embedding",
+      "claim": "B_phi's own nn.Embedding(4,16)",
+      "source_path": "src/models/barr/phase25_models.py",
+      "source_line": 76,
+      "evidence": "emb = self.task_embedding(task_ids); cat -> 218"
+    },
+    {
+      "from": "B_phi",
+      "to": "delta_hat_final",
+      "claim": "scalar predicted paired gain",
+      "source_path": "src/models/barr/ra_medfilm_barr.py",
+      "source_line": 284,
+      "evidence": "float(self.benefit_router(x_num, t_ids))"
+    },
+    {
+      "from": "delta_hat_final",
+      "to": "U",
+      "claim": "U = delta_hat_final - lambda*C",
+      "source_path": "src/models/barr/ra_medfilm_barr.py",
+      "source_line": 286,
+      "evidence": "canonical_utility(delta_hat_final)"
+    },
+    {
+      "from": "U < tau_C8",
+      "to": "SKIP_GLOBAL -> p_global",
+      "claim": "state 2 of 4",
+      "source_path": "src/models/barr/ra_medfilm_barr.py",
+      "source_line": 290,
+      "evidence": "return _result('SKIP_GLOBAL', p_global, ...)"
+    },
+    {
+      "from": "U >= tau_C8",
+      "to": "EXECUTE branch",
+      "claim": "requires oof_refined_crop_prob",
+      "source_path": "src/models/barr/ra_medfilm_barr.py",
+      "source_line": 295,
+      "evidence": "raise if oof_refined_crop_prob is None"
+    },
+    {
+      "from": "R_psi (offline)",
+      "to": "p_refine OOF cache",
+      "claim": "frozen OOF refined crop probability",
+      "source_path": "src/models/barr/ra_medfilm_barr.py",
+      "source_line": 246,
+      "evidence": "oof_refined_crop_prob: 256x256 refined probability crop"
+    },
+    {
+      "from": "p_global + p_refine + window",
+      "to": "deterministic ROI fusion",
+      "claim": "replacement, no alpha blending",
+      "source_path": "src/models/barr/ra_medfilm_barr.py",
+      "source_line": 197,
+      "evidence": "out[y0:y1, x0:x1] = crop"
+    },
+    {
+      "from": "P_cand",
+      "to": "16-D post features + one-hot(t)",
+      "claim": "Phase25F frozen cache, 16+4=20",
+      "source_path": "src/models/barr/ra_medfilm_barr.py",
+      "source_line": 311,
+      "evidence": "np.concatenate([sf_norm, self._onehot_task(task_id)])"
+    },
+    {
+      "from": "20-D features",
+      "to": "S_omega",
+      "claim": "logit -> sigmoid",
+      "source_path": "src/models/barr/ra_medfilm_barr.py",
+      "source_line": 313,
+      "evidence": "float(self.post_safety(...))"
+    },
+    {
+      "from": "a >= 0.50",
+      "to": "EXECUTE_THEN_ACCEPT -> P_cand",
+      "claim": "state 3 of 4",
+      "source_path": "src/models/barr/ra_medfilm_barr.py",
+      "source_line": 319,
+      "evidence": "return _result('EXECUTE_THEN_ACCEPT', fused, ...)"
+    },
+    {
+      "from": "a < 0.50",
+      "to": "EXECUTE_THEN_REJECT -> p_global",
+      "claim": "state 4 of 4",
+      "source_path": "src/models/barr/ra_medfilm_barr.py",
+      "source_line": 321,
+      "evidence": "return _result('EXECUTE_THEN_REJECT', p_global, ...)"
+    },
+    {
+      "from": "P_out",
+      "to": "final binary mask",
+      "claim": "threshold 0.50",
+      "source_path": "src/models/barr/ra_medfilm_barr.py",
+      "source_line": 331,
+      "evidence": "prob >= self.segmentation_output_threshold"
+    },
+    {
+      "from": "state counts",
+      "to": "VAL808",
+      "claim": "0 / 529 / 266 / 13 = 808",
+      "source_path": "reports/tables/phase27_val808_predictions.csv",
+      "source_line": 1,
+      "evidence": "state_machine_branch value_counts"
+    }
+  ],
+  "removed_or_corrected_arrows": [
+    {
+      "v7_arrow": "Global features Fg -> B_phi",
+      "verdict": "UNSUPPORTED",
+      "reason": "G exposes no separate Fg tensor to the router; B_phi consumes a 202-D frozen cache",
+      "source_path": "src/models/barr/ra_medfilm_barr.py",
+      "source_line": 277
+    },
+    {
+      "v7_arrow": "Cropped ROI xroi -> B_phi",
+      "verdict": "UNSUPPORTED",
+      "reason": "B_phi is pre-refinement and never sees the ROI crop",
+      "source_path": "src/models/barr/ra_medfilm_barr.py",
+      "source_line": 274
+    },
+    {
+      "v7_arrow": "R_psi invoked at online inference",
+      "verdict": "UNSUPPORTED",
+      "reason": "forward_inference registers R_psi but never calls it; p_refine is a supplied OOF cache",
+      "source_path": "src/models/barr/ra_medfilm_barr.py",
+      "source_line": 295
+    },
+    {
+      "v7_arrow": "R_psi = 'Regional Residual Refiner' with FiLM bars",
+      "verdict": "MISNAMED",
+      "reason": "class is BARRRegionalRefinerV1, a plain 4-channel CNN with no FiLM, attention or residual head",
+      "source_path": "src/models/barr/regional_refiner.py",
+      "source_line": 1
+    },
+    {
+      "v7_arrow": "R_psi -> 'delta P' corrected local mask",
+      "verdict": "UNSUPPORTED",
+      "reason": "refiner emits a refined crop probability, not an additive correction",
+      "source_path": "src/models/barr/ra_medfilm_barr.py",
+      "source_line": 300
+    },
+    {
+      "v7_arrow": "'ROI composition' with '+' / alpha blending",
+      "verdict": "UNSUPPORTED",
+      "reason": "fusion is deterministic replacement inside the ROI",
+      "source_path": "src/models/barr/ra_medfilm_barr.py",
+      "source_line": 197
+    },
+    {
+      "v7_arrow": "S_omega before candidate composition",
+      "verdict": "WRONG ORDER",
+      "reason": "S_omega consumes post-candidate features and runs after fusion",
+      "source_path": "src/models/barr/ra_medfilm_barr.py",
+      "source_line": 303
+    },
+    {
+      "v7_arrow": "Single SKIP state ('no useful ROI')",
+      "verdict": "INCOMPLETE",
+      "reason": "four states; two distinct skips: FORCED_SKIP and SKIP_GLOBAL",
+      "source_path": "src/models/barr/ra_medfilm_barr.py",
+      "source_line": 68
+    },
+    {
+      "v7_arrow": "Single shared E(t) for all modules",
+      "verdict": "UNSUPPORTED",
+      "reason": "three distinct task representations: G 32-D, B_phi 16-D, S_omega 4-D one-hot",
+      "source_path": "src/models/barr/phase25_models.py",
+      "source_line": 76
+    },
+    {
+      "v7_arrow": "S_omega 'consistency / reliability supervision'",
+      "verdict": "UNSUPPORTED",
+      "reason": "target is binary sign(delta_dice); loss is BCEWithLogitsLoss",
+      "source_path": "scripts/analysis/phase25f_execution_common.py",
+      "source_line": 342
+    },
+    {
+      "v7_arrow": "R_psi trained on 'residual correction'",
+      "verdict": "MISNAMED",
+      "reason": "loss is 0.5*BCEWithLogits + 0.5*soft Dice on 4-channel ROI crops",
+      "source_path": "scripts/training/train_phase25a_refiner.py",
+      "source_line": 488
+    },
+    {
+      "v7_arrow": "Joint end-to-end training / unified objective",
+      "verdict": "UNSUPPORTED",
+      "reason": "wrapper defines 0 trainable parameters and no loss; stages trained sequentially",
+      "source_path": "src/models/barr/ra_medfilm_barr.py",
+      "source_line": 6
+    },
+    {
+      "v7_arrow": "Three legitimate inference outcomes (as 3 states)",
+      "verdict": "INCOMPLETE",
+      "reason": "four canonical states; two skip states and two execute states",
+      "source_path": "src/models/barr/ra_medfilm_barr.py",
+      "source_line": 68
+    }
+  ],
+  "verified_arrow_count": 20,
+  "removed_or_corrected_count": 13,
+  "execution": {
+    "model_retrained": false,
+    "new_inference_run": false,
+    "TEST1683_opened": false,
+    "checkpoints_modified": false
+  },
+  "output_manifest": {
+    "outputs": {
+      "main": {
+        "svg": {
+          "path": "figures/ReMedFiLM_Methodology_V8.svg",
+          "bytes": 762739,
+          "sha256": "eae90fde7af1a342c85a76a712acd1be6d8bf3e96cf00f7f6b7afad664ed640e"
+        },
+        "pdf": {
+          "path": "figures/ReMedFiLM_Methodology_V8.pdf",
+          "bytes": 309084,
+          "sha256": "a42a3c02b0d870cb5061684d4bae79454897f52adf297771ccfb70e9644ecf6d"
+        },
+        "png": {
+          "path": "figures/ReMedFiLM_Methodology_V8.png",
+          "bytes": 1403138,
+          "sha256": "1225290b52fd389a883b31afbcdde15072173be1da93f22b1f5e485e58295a96"
+        }
+      },
+      "github_16x9": {
+        "png": {
+          "path": "figures/ReMedFiLM_Methodology_GitHub_16x9.png",
+          "bytes": 652690,
+          "sha256": "ff8381981b199c953992b4deb432ba00ddc32ff879189e1810e8b3b2bec8c5b2"
+        },
+        "svg": {
+          "path": "figures/ReMedFiLM_Methodology_GitHub_16x9.svg",
+          "bytes": 367842,
+          "sha256": "4fd332be1ab148595dd18d95d62e0e4a9ce5dea62e6d5d37259482f771a21a00"
+        }
+      },
+      "manuscript": {
+        "svg": {
+          "path": "figures/ReMedFiLM_Methodology_Manuscript.svg",
+          "bytes": 470427,
+          "sha256": "dd0f47cb54ecd85fba8fd3c01dbcce654b8f3d2d508d1422223dc08d7b1f9cf6"
+        },
+        "pdf": {
+          "path": "figures/ReMedFiLM_Methodology_Manuscript.pdf",
+          "bytes": 95844,
+          "sha256": "5122d35d86e04933fcbeb0f4ae3094f06b23e26bccb1348b75f879a25234b4b2"
+        },
+        "png": {
+          "path": "figures/ReMedFiLM_Methodology_Manuscript.png",
+          "bytes": 826200,
+          "sha256": "b9e346aee5b3dee046d939601c04d21a8e316f09d4876ab0a6f44f9a7e528c2d"
+        }
+      }
+    }
+  }
+}

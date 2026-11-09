@@ -1,0 +1,726 @@
+{
+  "artifact": "REMEDFILM_V8_FIGURE_EVIDENCE_MAP",
+  "version": "V8",
+  "purpose": "One-to-one mapping from every figure used in the V8 report to its evidence class, source artifact, verification status and report section.",
+  "canonical_model_identity": "ReMedFiLM FULL (RA-MedFiLM-BARR)",
+  "canonical_model_components": [
+    "G = GlobalMedFiLM",
+    "R_psi = BARRRegionalRefinerV1",
+    "B_phi = BARRBenefitRouterV1",
+    "S_omega = BARRPostSafetyV1"
+  ],
+  "canonical_model_assembly": "Components are trained sequentially, each against a frozen upstream, and assembled for inference. This is NOT a jointly trained network.",
+  "backbone_role": "GlobalMedFiLM is the G backbone and a legitimate ablation baseline only; it is not the proposed ReMedFiLM FULL system.",
+  "single_numeric_source": "full_doc_report/REMEDFILM_V8_RESULTS_REGISTRY.json",
+  "counts": {
+    "figures_used_in_v8": 33,
+    "v8_new_or_rebuilt": 9,
+    "reused_verified": 24,
+    "excluded_from_v8": 8,
+    "underlying_library_size": 49
+  },
+  "methodology_figure_verification": {
+    "verified_arrows": 20,
+    "removed_or_corrected_arrows": 13,
+    "arrow_registry": "full_doc_report/REMEDFILM_V8_METHODOLOGY_ARROWS.json"
+  },
+  "figures": [
+    {
+      "v8_figure_number": 1,
+      "figure_id": "ReMedFiLM_Methodology_V8",
+      "section": "01 / 02",
+      "role": "primary three-panel methodology figure",
+      "verdict": "V8_NEW",
+      "files": {
+        "svg": {
+          "path": "figures/ReMedFiLM_Methodology_V8.svg",
+          "bytes": 733995,
+          "sha256": "d7469983c38d52694c20dde4f99e00d5ce967c1bee4f3456bb5ea0cd5da5964d"
+        },
+        "pdf": {
+          "path": "figures/ReMedFiLM_Methodology_V8.pdf",
+          "bytes": 288615,
+          "sha256": "b1d8d6807458d72c02d3d190c9ab73f31e41f062c7e9ab0596026d5472fc7155"
+        },
+        "png": {
+          "path": "figures/ReMedFiLM_Methodology_V8.png",
+          "bytes": 1386104,
+          "sha256": "0dc96570abfe139c95837ab19081ba27c1118487ce460d9bf93607cb5c1d05dc"
+        }
+      },
+      "primary_path": "figures/ReMedFiLM_Methodology_V8.svg",
+      "evidence_class": "V8_REBUILT_FROM_SOURCE_LINKED_REGISTRY",
+      "sources": [
+        "full_doc_report/REMEDFILM_V8_RESULTS_REGISTRY.json"
+      ],
+      "verification": "GENERATED_AND_VISUALLY_INSPECTED"
+    },
+    {
+      "v8_figure_number": 2,
+      "figure_id": "ReMedFiLM_Methodology_Manuscript",
+      "section": "02",
+      "role": "manuscript print variant",
+      "verdict": "V8_NEW",
+      "files": {
+        "svg": {
+          "path": "figures/ReMedFiLM_Methodology_Manuscript.svg",
+          "bytes": 468752,
+          "sha256": "69290c1beca026f8089e7eee37967cfa7b2235a9b0c8ceea3d8d3e125d108059"
+        },
+        "pdf": {
+          "path": "figures/ReMedFiLM_Methodology_Manuscript.pdf",
+          "bytes": 95652,
+          "sha256": "415a6b0bb8b0782e39ee14dcbc105c725a2dba79c88c2d4600f4c75ad62ed128"
+        },
+        "png": {
+          "path": "figures/ReMedFiLM_Methodology_Manuscript.png",
+          "bytes": 822424,
+          "sha256": "c0e38145bf6d423a597b9cb9623d2b2ef1982bc7aee4d1acb2832b2b3012c066"
+        }
+      },
+      "primary_path": "figures/ReMedFiLM_Methodology_Manuscript.svg",
+      "evidence_class": "V8_REBUILT_FROM_SOURCE_LINKED_REGISTRY",
+      "sources": [
+        "full_doc_report/REMEDFILM_V8_RESULTS_REGISTRY.json"
+      ],
+      "verification": "GENERATED_AND_VISUALLY_INSPECTED"
+    },
+    {
+      "v8_figure_number": 3,
+      "figure_id": "V8_F01_accuracy_cost",
+      "section": "12",
+      "role": "accuracy vs cost with canonical FULL point",
+      "verdict": "V8_NEW",
+      "files": {
+        "png": {
+          "path": "figures/V8_F01_accuracy_cost.png",
+          "bytes": 114741,
+          "sha256": "104f58b6cee5d7a22d42a315b2a7a06ebd1f9f27e301776153e811d91f9e7698"
+        },
+        "svg": {
+          "path": "figures/V8_F01_accuracy_cost.svg",
+          "bytes": 104331,
+          "sha256": "e1d40382dced4da1b3696749b282f8a84aa92397a0b4e148c5bcc56d8e3717e8"
+        }
+      },
+      "primary_path": "figures/V8_F01_accuracy_cost.png",
+      "evidence_class": "V8_REBUILT_FROM_SOURCE_LINKED_REGISTRY",
+      "sources": [
+        "full_doc_report/REMEDFILM_V8_RESULTS_REGISTRY.json"
+      ],
+      "verification": "GENERATED_AND_VISUALLY_INSPECTED"
+    },
+    {
+      "v8_figure_number": 4,
+      "figure_id": "V8_F02_four_state_flow",
+      "section": "10",
+      "role": "four canonical VAL808 states",
+      "verdict": "V8_NEW",
+      "files": {
+        "png": {
+          "path": "figures/V8_F02_four_state_flow.png",
+          "bytes": 120417,
+          "sha256": "bac1d7ffb9b6371bdefba6cb7b980e596d04b954895aee75062c3ac309ddf5e0"
+        },
+        "svg": {
+          "path": "figures/V8_F02_four_state_flow.svg",
+          "bytes": 130527,
+          "sha256": "19fc7dc9e4d8c99be29fc34a5e404864d969b21e2968aa3bb76f5f57fcbd9807"
+        }
+      },
+      "primary_path": "figures/V8_F02_four_state_flow.png",
+      "evidence_class": "V8_REBUILT_FROM_SOURCE_LINKED_REGISTRY",
+      "sources": [
+        "full_doc_report/REMEDFILM_V8_RESULTS_REGISTRY.json"
+      ],
+      "verification": "GENERATED_AND_VISUALLY_INSPECTED"
+    },
+    {
+      "v8_figure_number": 5,
+      "figure_id": "V8_F03_result_reconciliation",
+      "section": "01 / 11",
+      "role": "0.835079 / 0.837290 / 0.837862 adjudication",
+      "verdict": "V8_NEW",
+      "files": {
+        "png": {
+          "path": "figures/V8_F03_result_reconciliation.png",
+          "bytes": 200734,
+          "sha256": "ad0667d8d8134797b9339edef688439b2c6b7fe9c5021146f2cac724e04c86e6"
+        },
+        "svg": {
+          "path": "figures/V8_F03_result_reconciliation.svg",
+          "bytes": 139914,
+          "sha256": "f3a2007501470397e480d00ea3a9c95b97d7d921824e8a57b5aa6aba237a0103"
+        }
+      },
+      "primary_path": "figures/V8_F03_result_reconciliation.png",
+      "evidence_class": "V8_REBUILT_FROM_SOURCE_LINKED_REGISTRY",
+      "sources": [
+        "full_doc_report/REMEDFILM_V8_RESULTS_REGISTRY.json"
+      ],
+      "verification": "GENERATED_AND_VISUALLY_INSPECTED"
+    },
+    {
+      "v8_figure_number": 6,
+      "figure_id": "V8_F04_training_dashboard",
+      "section": "05",
+      "role": "four independent objective histories",
+      "verdict": "V8_NEW",
+      "files": {
+        "png": {
+          "path": "figures/V8_F04_training_dashboard.png",
+          "bytes": 270512,
+          "sha256": "8db459ee61a35063f947633427acfb64036b3adbf1adde8d6a7ed969e0f2c460"
+        },
+        "svg": {
+          "path": "figures/V8_F04_training_dashboard.svg",
+          "bytes": 199420,
+          "sha256": "a36404c1e93df876b89085dcdbf449313ebe085bd5b39555941ccded55ce8308"
+        }
+      },
+      "primary_path": "figures/V8_F04_training_dashboard.png",
+      "evidence_class": "V8_REBUILT_FROM_SOURCE_LINKED_REGISTRY",
+      "sources": [
+        "full_doc_report/REMEDFILM_V8_RESULTS_REGISTRY.json"
+      ],
+      "verification": "GENERATED_AND_VISUALLY_INSPECTED"
+    },
+    {
+      "v8_figure_number": 7,
+      "figure_id": "V8_F05_external_metric_coverage",
+      "section": "08",
+      "role": "which external metrics are defined",
+      "verdict": "V8_NEW",
+      "files": {
+        "png": {
+          "path": "figures/V8_F05_external_metric_coverage.png",
+          "bytes": 122226,
+          "sha256": "9fa4b01a5da9118862b3659c41d4e375f7e40aea2483ef0ea9dfd7c17af37dbd"
+        },
+        "svg": {
+          "path": "figures/V8_F05_external_metric_coverage.svg",
+          "bytes": 110097,
+          "sha256": "7b6ccaa76f9f0491259e18bbab4acc3f990ddfee7ca1b40a12e03a236e076cdf"
+        }
+      },
+      "primary_path": "figures/V8_F05_external_metric_coverage.png",
+      "evidence_class": "V8_REBUILT_FROM_SOURCE_LINKED_REGISTRY",
+      "sources": [
+        "full_doc_report/REMEDFILM_V8_RESULTS_REGISTRY.json"
+      ],
+      "verification": "GENERATED_AND_VISUALLY_INSPECTED"
+    },
+    {
+      "v8_figure_number": 8,
+      "figure_id": "V8_F06_seedwise_deltas",
+      "section": "11",
+      "role": "three-seed Dice and paired delta, clean axis",
+      "verdict": "V8_NEW",
+      "files": {
+        "png": {
+          "path": "figures/V8_F06_seedwise_deltas.png",
+          "bytes": 131009,
+          "sha256": "2bcb8d0b3568d00cbecb2382ce7c186ae674d9fcf4d5cb7f68f25d1c1f5fb1a6"
+        },
+        "svg": {
+          "path": "figures/V8_F06_seedwise_deltas.svg",
+          "bytes": 106766,
+          "sha256": "609df6a1bb41ae6f5497b8ba6bef7ce5cb43b1692da1c6c0c423d0b27db6f18a"
+        }
+      },
+      "primary_path": "figures/V8_F06_seedwise_deltas.png",
+      "evidence_class": "V8_REBUILT_FROM_SOURCE_LINKED_REGISTRY",
+      "sources": [
+        "full_doc_report/REMEDFILM_V8_RESULTS_REGISTRY.json"
+      ],
+      "verification": "GENERATED_AND_VISUALLY_INSPECTED"
+    },
+    {
+      "v8_figure_number": 9,
+      "figure_id": "V8_F07_ablation_arms",
+      "section": "09",
+      "role": "13-arm ablation with legible value labels",
+      "verdict": "V8_NEW",
+      "files": {
+        "png": {
+          "path": "figures/V8_F07_ablation_arms.png",
+          "bytes": 105084,
+          "sha256": "27c29458381905b1cf8ec0901aafc3185cc5c938897b4e3a9997f57d1c529d63"
+        },
+        "svg": {
+          "path": "figures/V8_F07_ablation_arms.svg",
+          "bytes": 98427,
+          "sha256": "fe10b88e52f67a75793629273f35b53c19550c64882624989451952fa7bb12e2"
+        }
+      },
+      "primary_path": "figures/V8_F07_ablation_arms.png",
+      "evidence_class": "V8_REBUILT_FROM_SOURCE_LINKED_REGISTRY",
+      "sources": [
+        "full_doc_report/REMEDFILM_V8_RESULTS_REGISTRY.json"
+      ],
+      "verification": "GENERATED_AND_VISUALLY_INSPECTED"
+    },
+    {
+      "v8_figure_number": 10,
+      "figure_id": "A02_component_presence_matrix",
+      "section": "02",
+      "role": "which model instantiates which component",
+      "verdict": "REUSED_VERIFIED",
+      "png_path": "full_doc_report/figures/Architecture/A02_component_presence_matrix.png",
+      "svg_path": "full_doc_report/figures/Architecture/A02_component_presence_matrix.svg",
+      "evidence_class": "CANONICAL_ARCHITECTURE_CONTRACT",
+      "caption": "Which components each model actually instantiates. Only the FULL assembly is ReMedFiLM; GlobalMedFiLM is the backbone.",
+      "sources": [
+        "src/models/barr/ra_medfilm_barr.py",
+        "reports/audits/phase25f_architecture_contract_v1_0.json"
+      ],
+      "verification": "PREVIOUSLY_VERIFIED_49_FIGURE_REGISTRY",
+      "png_path_sha256": "065d800d7220222c73d77a970f1f46bbf8c35d277dfba3e51bf7068d80623e55",
+      "svg_path_sha256": "c03a658bf3d53362d8500403e5160180e83a830c7606a606d23d4a1df64aef7f"
+    },
+    {
+      "v8_figure_number": 11,
+      "figure_id": "D01_domain_and_split_composition",
+      "section": "03",
+      "role": "domain and split composition",
+      "verdict": "REUSED_VERIFIED",
+      "png_path": "full_doc_report/figures/Statistics/D01_domain_and_split_composition.png",
+      "svg_path": "full_doc_report/figures/Statistics/D01_domain_and_split_composition.svg",
+      "evidence_class": "FROZEN_MANIFEST",
+      "caption": "Per-domain TRAIN/VAL counts and overall split sizes from the phase4_v3 manifest.",
+      "sources": [
+        "manifests/phase4_v3/train.csv",
+        "manifests/phase4_v3/val.csv"
+      ],
+      "verification": "PREVIOUSLY_VERIFIED_49_FIGURE_REGISTRY",
+      "png_path_sha256": "ddc3f86faec9dece166d8549ccf96048b26eba57f7c371faa29efd109e92cc0f",
+      "svg_path_sha256": "0365576c9920f7398c0ce3ff5ddafa4a3026e1f995215efa829143cabe12d524"
+    },
+    {
+      "v8_figure_number": 12,
+      "figure_id": "D03_kub_unit_of_analysis",
+      "section": "03",
+      "role": "KUB full-field vs ROI patch distinction",
+      "verdict": "REUSED_VERIFIED",
+      "png_path": "full_doc_report/figures/Statistics/D03_kub_unit_of_analysis.png",
+      "svg_path": "full_doc_report/figures/Statistics/D03_kub_unit_of_analysis.svg",
+      "evidence_class": "FROZEN_MANIFEST",
+      "caption": "KUB contributes both full-field images and ROI instance patches; pooling them as one image unit would be incorrect.",
+      "sources": [
+        "manifests/phase4_v3/train.csv",
+        "manifests/phase4_v3/val.csv"
+      ],
+      "verification": "PREVIOUSLY_VERIFIED_49_FIGURE_REGISTRY",
+      "png_path_sha256": "2f6f480c35e006b7700f954ba2c308e16cb8213c1e7e5de1c266331428a3d593",
+      "svg_path_sha256": "efcc34d709c23024c651e6c68b7b711af1e43166e05d611a19b7e64174caa590"
+    },
+    {
+      "v8_figure_number": 13,
+      "figure_id": "STAT04_population_accounting",
+      "section": "03",
+      "role": "TRAIN/VAL/TEST and router-dev accounting",
+      "verdict": "REUSED_VERIFIED",
+      "png_path": "full_doc_report/figures/Statistics/STAT04_population_accounting.png",
+      "svg_path": "full_doc_report/figures/Statistics/STAT04_population_accounting.svg",
+      "evidence_class": "FROZEN_MANIFEST",
+      "caption": "Every reported metric is tied to one of these cohorts; they are never pooled.",
+      "sources": [
+        "manifests/phase4_v3/train.csv",
+        "manifests/phase4_v3/val.csv",
+        "reports/audits/phase25g_holdout_reservation_for_phase30.json"
+      ],
+      "verification": "PREVIOUSLY_VERIFIED_49_FIGURE_REGISTRY",
+      "png_path_sha256": "dcb65a6258220351714398eb490ff38d9127c54048f79ae4f5e59188b4b9b396",
+      "svg_path_sha256": "0f566c43ac9726e38dccc9bc20aa891b13ef86c6ea56c8d471cf633487c6cfef"
+    },
+    {
+      "v8_figure_number": 14,
+      "figure_id": "I1_domain_metric_comparison",
+      "section": "04",
+      "role": "per-domain Dice/IoU/precision/recall",
+      "verdict": "REUSED_VERIFIED",
+      "png_path": "full_doc_report/figures/Internal validation/I1_domain_metric_comparison.png",
+      "svg_path": "full_doc_report/figures/Internal validation/I1_domain_metric_comparison.svg",
+      "evidence_class": "DERIVED_FROM_SAVED_PREDICTIONS",
+      "caption": "Dice, IoU, precision and recall per domain for the backbone and the FULL system.",
+      "sources": [
+        "full_doc_report/tables/REMEDFILM_INTERNAL_METRICS.csv"
+      ],
+      "verification": "PREVIOUSLY_VERIFIED_49_FIGURE_REGISTRY",
+      "png_path_sha256": "e5cbfa81977f27f65c69d7934ce5c1f038e209423ac460650d922af84304dee2",
+      "svg_path_sha256": "5b4044e790d291fe35e4d3cad1bddf87776f5dd0b62f4dc9219f048ce4cfcb80"
+    },
+    {
+      "v8_figure_number": 15,
+      "figure_id": "I2_paired_delta_forest",
+      "section": "04",
+      "role": "paired delta with bootstrap CI",
+      "verdict": "REUSED_VERIFIED",
+      "png_path": "full_doc_report/figures/Internal validation/I2_paired_delta_forest.png",
+      "svg_path": "full_doc_report/figures/Internal validation/I2_paired_delta_forest.svg",
+      "evidence_class": "DERIVED_FROM_SAVED_PREDICTIONS",
+      "caption": "Per-domain and macro paired Δ Dice with a 10,000-replicate domain-stratified bootstrap CI.",
+      "sources": [
+        "full_doc_report/tables/REMEDFILM_PAIRED_DELTA.json"
+      ],
+      "verification": "PREVIOUSLY_VERIFIED_49_FIGURE_REGISTRY",
+      "png_path_sha256": "467a8276b6287e09493eb22a1069c79b80e6336984bbc34deec686366c1b049b",
+      "svg_path_sha256": "cee0a7af9565a3af6016db0a534bd6858efc12f879af4d7a37c77d60f6bfac5e"
+    },
+    {
+      "v8_figure_number": 16,
+      "figure_id": "STAT02_bootstrap_distribution",
+      "section": "04",
+      "role": "domain-stratified bootstrap distribution",
+      "verdict": "REUSED_VERIFIED",
+      "png_path": "full_doc_report/figures/Statistics/STAT02_bootstrap_distribution.png",
+      "svg_path": "full_doc_report/figures/Statistics/STAT02_bootstrap_distribution.svg",
+      "evidence_class": "DERIVED_FROM_SAVED_PREDICTIONS",
+      "caption": "Empirical bootstrap distribution of the paired macro Δ Dice on VAL808; the whole distribution lies above zero.",
+      "sources": [
+        "full_doc_report/tables/REMEDFILM_PAIRED_DELTA.json"
+      ],
+      "verification": "PREVIOUSLY_VERIFIED_49_FIGURE_REGISTRY",
+      "png_path_sha256": "9b294bbb34349744094aa767a0b7f79aec711f09c8e7fed9da2cb57982994e90",
+      "svg_path_sha256": "814c4e4ae757f15febcb29f91b779af7f2ca55151d78ce61e91cb8bd6ce7b56e"
+    },
+    {
+      "v8_figure_number": 17,
+      "figure_id": "T2_val_dice_across_epochs",
+      "section": "05",
+      "role": "backbone validation Dice history",
+      "verdict": "REUSED_VERIFIED",
+      "png_path": "full_doc_report/figures/Training curves/T2_val_dice_across_epochs.png",
+      "svg_path": "full_doc_report/figures/Training curves/T2_val_dice_across_epochs.svg",
+      "evidence_class": "GENUINE_HISTORICAL_TRAINING",
+      "caption": "Macro-domain validation Dice per epoch with the selected checkpoint marked.",
+      "sources": [
+        "experiments/phase21_global_medfilm_fourdomain_seed42_clean_v3/history.csv"
+      ],
+      "verification": "PREVIOUSLY_VERIFIED_49_FIGURE_REGISTRY",
+      "png_path_sha256": "b4421aa849d04dbe8556d011bf8a889c07da09cfcf32f2029bccd2085a4dd88a",
+      "svg_path_sha256": "2e215177bbf4cce837d81f300c704e5f8c2154e2d2da6643e9e591da98108f73"
+    },
+    {
+      "v8_figure_number": 18,
+      "figure_id": "T4_per_domain_learning_curves",
+      "section": "05",
+      "role": "four-domain learning curves",
+      "verdict": "REUSED_VERIFIED",
+      "png_path": "full_doc_report/figures/Training curves/T4_per_domain_learning_curves.png",
+      "svg_path": "full_doc_report/figures/Training curves/T4_per_domain_learning_curves.svg",
+      "evidence_class": "GENUINE_HISTORICAL_TRAINING",
+      "caption": "Per-domain validation Dice logged every epoch for the backbone. KUB lags throughout, consistent with its smaller lesions.",
+      "sources": [
+        "experiments/phase21_global_medfilm_fourdomain_seed42_clean_v3/history.csv"
+      ],
+      "verification": "PREVIOUSLY_VERIFIED_49_FIGURE_REGISTRY",
+      "png_path_sha256": "fd6c23908b78e75a9527f4755bcfbda9370acb4e0c53ce2ba5e2ea99f652abae",
+      "svg_path_sha256": "43fce0b497ff9ee4bcb9be768d62dd8c60dc3b0c7a3cb4aafd0a3391f349fd8f"
+    },
+    {
+      "v8_figure_number": 19,
+      "figure_id": "SEG_ISIC_global_vs_full",
+      "section": "06",
+      "role": "ISIC qualitative gallery",
+      "verdict": "REUSED_VERIFIED",
+      "png_path": "full_doc_report/figures/Semantic segmentation/SEG_ISIC_global_vs_full.png",
+      "svg_path": "full_doc_report/figures/Semantic segmentation/SEG_ISIC_global_vs_full.svg",
+      "evidence_class": "SAVED_PREDICTIONS_VAL808",
+      "caption": "ISIC: original, ground truth, backbone mask, FULL mask, TP/FP/FN overlay and per-sample metrics for the worst, median and best paired improvement.",
+      "sources": [
+        "reports/tables/phase27_val808_predictions.csv",
+        "reports/predictions/phase21_global_medfilm_fourdomain_seed42_clean_v3/",
+        "full_doc_report/tables/REMEDFILM_INTERNAL_PER_SAMPLE.csv"
+      ],
+      "verification": "PREVIOUSLY_VERIFIED_49_FIGURE_REGISTRY",
+      "png_path_sha256": "74d7209e5e21591276c96d2879726337153d8a13861f1dddf5b69c59cb43011e",
+      "svg_path_sha256": "6e9f6e9d9d55bfe36d136e84c2272b70de79d4535e19637d03973406cb28a732"
+    },
+    {
+      "v8_figure_number": 20,
+      "figure_id": "SEG_BUSI_global_vs_full",
+      "section": "06",
+      "role": "BUSI qualitative gallery",
+      "verdict": "REUSED_VERIFIED",
+      "png_path": "full_doc_report/figures/Semantic segmentation/SEG_BUSI_global_vs_full.png",
+      "svg_path": "full_doc_report/figures/Semantic segmentation/SEG_BUSI_global_vs_full.svg",
+      "evidence_class": "SAVED_PREDICTIONS_VAL808",
+      "caption": "BUSI: original, ground truth, backbone mask, FULL mask, TP/FP/FN overlay and per-sample metrics for the worst, median and best paired improvement.",
+      "sources": [
+        "reports/tables/phase27_val808_predictions.csv",
+        "reports/predictions/phase21_global_medfilm_fourdomain_seed42_clean_v3/",
+        "full_doc_report/tables/REMEDFILM_INTERNAL_PER_SAMPLE.csv"
+      ],
+      "verification": "PREVIOUSLY_VERIFIED_49_FIGURE_REGISTRY",
+      "png_path_sha256": "0690a847b1479319740d5203f3467fe3847fac45c2df8a7bc5dda41e579c0686",
+      "svg_path_sha256": "7745d1351282108fbca4bb355323b1ad87d45c0af6123355788500d0b6a92e36"
+    },
+    {
+      "v8_figure_number": 21,
+      "figure_id": "SEG_KVASIR_global_vs_full",
+      "section": "06",
+      "role": "Kvasir qualitative gallery",
+      "verdict": "REUSED_VERIFIED",
+      "png_path": "full_doc_report/figures/Semantic segmentation/SEG_KVASIR_global_vs_full.png",
+      "svg_path": "full_doc_report/figures/Semantic segmentation/SEG_KVASIR_global_vs_full.svg",
+      "evidence_class": "SAVED_PREDICTIONS_VAL808",
+      "caption": "KVASIR: original, ground truth, backbone mask, FULL mask, TP/FP/FN overlay and per-sample metrics for the worst, median and best paired improvement.",
+      "sources": [
+        "reports/tables/phase27_val808_predictions.csv",
+        "reports/predictions/phase21_global_medfilm_fourdomain_seed42_clean_v3/",
+        "full_doc_report/tables/REMEDFILM_INTERNAL_PER_SAMPLE.csv"
+      ],
+      "verification": "PREVIOUSLY_VERIFIED_49_FIGURE_REGISTRY",
+      "png_path_sha256": "a34e48477a3f68cbfae39aba6a2c19e353302704a80a08162fced5f72e1f8e47",
+      "svg_path_sha256": "05fc4df934418b98f6eb4cfee8a2f023d808768edcea0f96c0561dd4974f6074"
+    },
+    {
+      "v8_figure_number": 22,
+      "figure_id": "SEG_KUB_global_vs_full",
+      "section": "06",
+      "role": "KUB qualitative gallery",
+      "verdict": "REUSED_VERIFIED",
+      "png_path": "full_doc_report/figures/Semantic segmentation/SEG_KUB_global_vs_full.png",
+      "svg_path": "full_doc_report/figures/Semantic segmentation/SEG_KUB_global_vs_full.svg",
+      "evidence_class": "SAVED_PREDICTIONS_VAL808",
+      "caption": "KUB: original, ground truth, backbone mask, FULL mask, TP/FP/FN overlay and per-sample metrics for the worst, median and best paired improvement.",
+      "sources": [
+        "reports/tables/phase27_val808_predictions.csv",
+        "reports/predictions/phase21_global_medfilm_fourdomain_seed42_clean_v3/",
+        "full_doc_report/tables/REMEDFILM_INTERNAL_PER_SAMPLE.csv"
+      ],
+      "verification": "PREVIOUSLY_VERIFIED_49_FIGURE_REGISTRY",
+      "png_path_sha256": "3596b66751eb82eef8bab24a1b5ebe9d580ed9b578505f2dda2de8b810d5f1b0",
+      "svg_path_sha256": "552dd34f368b30c7ad9d28e77af526f5c3867d5b18ac976705583f75734d6f00"
+    },
+    {
+      "v8_figure_number": 23,
+      "figure_id": "SEG_failure_cases",
+      "section": "06",
+      "role": "documented failure cases",
+      "verdict": "REUSED_VERIFIED",
+      "png_path": "full_doc_report/figures/Semantic segmentation/SEG_failure_cases.png",
+      "svg_path": "full_doc_report/figures/Semantic segmentation/SEG_failure_cases.svg",
+      "evidence_class": "SAVED_PREDICTIONS_VAL808",
+      "caption": "The six largest negative Delta Dice cases; the safety gate accepted these, so they are genuine residual failures.",
+      "sources": [
+        "full_doc_report/tables/REMEDFILM_INTERNAL_PER_SAMPLE.csv"
+      ],
+      "verification": "PREVIOUSLY_VERIFIED_49_FIGURE_REGISTRY",
+      "png_path_sha256": "28637ecf8353bba8bc18b3b70e72d5d73cf1e11734b29fcb0d3cc377c983b164",
+      "svg_path_sha256": "a1ac095bdacf7ab2bc62e20ce3e780456b641695af737c45928b52554eed6025"
+    },
+    {
+      "v8_figure_number": 24,
+      "figure_id": "SG1_kub_stone_subgroups",
+      "section": "07",
+      "role": "KUB stone subgroup performance",
+      "verdict": "REUSED_VERIFIED",
+      "png_path": "full_doc_report/figures/Internal validation/SG1_kub_stone_subgroups.png",
+      "svg_path": "full_doc_report/figures/Internal validation/SG1_kub_stone_subgroups.svg",
+      "evidence_class": "FROZEN_HISTORICAL_EVALUATION",
+      "caption": "Per-subgroup Dice inside the KUB domain.",
+      "sources": [
+        "reports/tables/phase21_kub_subgroup_analysis.csv"
+      ],
+      "verification": "PREVIOUSLY_VERIFIED_49_FIGURE_REGISTRY",
+      "png_path_sha256": "7c02a0be766ac4268c454874f8caaf77a6f650c5a57f2a6785312e2c0dcce560",
+      "svg_path_sha256": "72320c438e6782b13fe658f58757d578531bb43a49880f23570ad4f9e85c10a2"
+    },
+    {
+      "v8_figure_number": 25,
+      "figure_id": "SG2_kub_size_stratification",
+      "section": "07",
+      "role": "KUB size stratification",
+      "verdict": "REUSED_VERIFIED",
+      "png_path": "full_doc_report/figures/Internal validation/SG2_kub_size_stratification.png",
+      "svg_path": "full_doc_report/figures/Internal validation/SG2_kub_size_stratification.svg",
+      "evidence_class": "FROZEN_HISTORICAL_EVALUATION",
+      "caption": "Dice against the frozen KUB size taxonomy.",
+      "sources": [
+        "reports/tables/phase21_kub_size_stratification.csv"
+      ],
+      "verification": "PREVIOUSLY_VERIFIED_49_FIGURE_REGISTRY",
+      "png_path_sha256": "b864baf96dbdea43e5957c3cb540433eb7346864fc128f46f3b74c972f7c7b80",
+      "svg_path_sha256": "9d862ec0d35cdb272f6cd0af58925d5ffedeb2f172c07ed91ff69b465482d7a6"
+    },
+    {
+      "v8_figure_number": 26,
+      "figure_id": "EXT01_external_dice",
+      "section": "08",
+      "role": "three-cohort external Dice",
+      "verdict": "REUSED_VERIFIED",
+      "png_path": "full_doc_report/figures/External evaluation/EXT01_external_dice.png",
+      "svg_path": "full_doc_report/figures/External evaluation/EXT01_external_dice.svg",
+      "evidence_class": "EXTERNAL_RETROSPECTIVE_SAVED_PREDICTIONS",
+      "caption": "External Dice per cohort with case-level bootstrap CIs. Cohort sizes differ; no pooling across cohorts.",
+      "sources": [
+        "reports/tables/c1_external_stress_summary.csv"
+      ],
+      "verification": "PREVIOUSLY_VERIFIED_49_FIGURE_REGISTRY",
+      "png_path_sha256": "da43d4bda0324627d9d3e99f7f8c20c69ebb05bbcf5fbed89c99c856989ae17f",
+      "svg_path_sha256": "89b9c2d1cdde01cd897af8c0e6eb80f02abb664e7028395a60af5642bc7ad26f"
+    },
+    {
+      "v8_figure_number": 27,
+      "figure_id": "EXT02_external_delta",
+      "section": "08",
+      "role": "external paired delta",
+      "verdict": "REUSED_VERIFIED",
+      "png_path": "full_doc_report/figures/External evaluation/EXT02_external_delta.png",
+      "svg_path": "full_doc_report/figures/External evaluation/EXT02_external_delta.svg",
+      "evidence_class": "EXTERNAL_RETROSPECTIVE_SAVED_PREDICTIONS",
+      "caption": "Paired Dice difference per external cohort.",
+      "sources": [
+        "reports/tables/c1_external_stress_summary.csv"
+      ],
+      "verification": "PREVIOUSLY_VERIFIED_49_FIGURE_REGISTRY",
+      "png_path_sha256": "bbd4589efd2d0e149dee93708a66e3fbfae8fff518594ec36954f2cd7b064dd5",
+      "svg_path_sha256": "9efb9ac1245bab83a17f101247add6663d8177ffc788a7f87a3b6ba41ecdc835"
+    },
+    {
+      "v8_figure_number": 28,
+      "figure_id": "EXT03_stonefree_false_positive",
+      "section": "08",
+      "role": "preserved negative finding",
+      "verdict": "REUSED_VERIFIED",
+      "png_path": "full_doc_report/figures/External evaluation/EXT03_stonefree_false_positive.png",
+      "svg_path": "full_doc_report/figures/External evaluation/EXT03_stonefree_false_positive.svg",
+      "evidence_class": "EXTERNAL_RETROSPECTIVE_SAVED_PREDICTIONS",
+      "caption": "The stone-free cohort receives foreground on every case — a preserved negative finding, not a success.",
+      "sources": [
+        "reports/tables/c1_external_stress_per_case.csv"
+      ],
+      "verification": "PREVIOUSLY_VERIFIED_49_FIGURE_REGISTRY",
+      "png_path_sha256": "cd3de3d3db60ce1c4a2635b8fb5b8e56401caa4ddd27da7fe625697f5df08dd4",
+      "svg_path_sha256": "3500fdf3f86bbc7049beee77224411d9d18f12174254785a877db507fe996fbd"
+    },
+    {
+      "v8_figure_number": 29,
+      "figure_id": "PROG01_stage_compute_and_harm",
+      "section": "09",
+      "role": "stage-wise compute and harm",
+      "verdict": "REUSED_VERIFIED",
+      "png_path": "full_doc_report/figures/Progression/PROG01_stage_compute_and_harm.png",
+      "svg_path": "full_doc_report/figures/Progression/PROG01_stage_compute_and_harm.svg",
+      "evidence_class": "DEVELOPMENT_EVIDENCE_MIXED_POPULATION",
+      "caption": "Analytical compute and harmful-activation share across assembly stages. Stages 1–3 are measured on ROUTER_DEVELOPMENT; stage 4 on VAL808.",
+      "sources": [
+        "full_doc_report/tables/REMEDFILM_PROGRESSION_RESULTS.csv"
+      ],
+      "verification": "PREVIOUSLY_VERIFIED_49_FIGURE_REGISTRY",
+      "png_path_sha256": "1513704d757fcfd4f0937473bad45e7523ada27462ad7ba0cd821a251e47bfdb",
+      "svg_path_sha256": "8275886479ce0136d8c9118e65475dd13a9aa26e64f917c810d6d5bed3417797"
+    },
+    {
+      "v8_figure_number": 30,
+      "figure_id": "ABL02_paired_contrasts_forest",
+      "section": "09",
+      "role": "A8-vs-A7 CI includes zero",
+      "verdict": "REUSED_VERIFIED",
+      "png_path": "full_doc_report/figures/Ablation/ABL02_paired_contrasts_forest.png",
+      "svg_path": "full_doc_report/figures/Ablation/ABL02_paired_contrasts_forest.svg",
+      "evidence_class": "FROZEN_HISTORICAL_ABLATION",
+      "caption": "Paired contrasts with 95% CIs. The only pre-specified matched contrast (A8 vs A7) includes zero and is reported as such.",
+      "sources": [
+        "reports/tables/phase28_table_07_matched_paired_contrasts.csv"
+      ],
+      "verification": "PREVIOUSLY_VERIFIED_49_FIGURE_REGISTRY",
+      "png_path_sha256": "c6641b2672f0e76500d3e0506a24eb68d31db2f2dd61ec779df9c717fb8cedad",
+      "svg_path_sha256": "aa4b15fe733d9499fdf5604ee692f866671e0ef57930e708962414e926c83aad"
+    },
+    {
+      "v8_figure_number": 31,
+      "figure_id": "ROB01_perturbation_degradation",
+      "section": "11",
+      "role": "12,928 perturbation instances",
+      "verdict": "REUSED_VERIFIED",
+      "png_path": "full_doc_report/figures/Robustness/ROB01_perturbation_degradation.png",
+      "svg_path": "full_doc_report/figures/Robustness/ROB01_perturbation_degradation.svg",
+      "evidence_class": "FROZEN_ROBUSTNESS_EXECUTION",
+      "caption": "Mean paired Δ Dice for each perturbation condition. Resolution loss dominates; no condition improves accuracy.",
+      "sources": [
+        "reports/audits/phase36_robustness_scientific_result_v1_23.json"
+      ],
+      "verification": "PREVIOUSLY_VERIFIED_49_FIGURE_REGISTRY",
+      "png_path_sha256": "ba9d98a7222fd5a49116fb10fd622ca20ee75152f102d43514eb502ceeb8aeb3",
+      "svg_path_sha256": "abcf3e9ad6ef355cd2c159bb67733f5ebd2c8891b59ad3a1f4aa9ccc1b880bce"
+    },
+    {
+      "v8_figure_number": 32,
+      "figure_id": "EFF02_latency_breakdown",
+      "section": "12",
+      "role": "batch-1 measured latency profile",
+      "verdict": "REUSED_VERIFIED",
+      "png_path": "full_doc_report/figures/Efficiency/EFF02_latency_breakdown.png",
+      "svg_path": "full_doc_report/figures/Efficiency/EFF02_latency_breakdown.svg",
+      "evidence_class": "MEASURED_HARDWARE_PROFILE",
+      "caption": "Measured per-component latency. Skip and execute paths bracket the FULL system's cost.",
+      "sources": [
+        "reports/audits/phase34_efficiency_result_v1_4.json"
+      ],
+      "verification": "PREVIOUSLY_VERIFIED_49_FIGURE_REGISTRY",
+      "png_path_sha256": "6277e7017b24efdcd97610bae60423b054e0b88b4286d3204aa71b5322cc899a",
+      "svg_path_sha256": "83e511ac70be7cbb9f76aed3227d50e5ed471be6a452b536de3cc194652d1234"
+    },
+    {
+      "v8_figure_number": 33,
+      "figure_id": "EFF03_accuracy_vs_parameters",
+      "section": "12",
+      "role": "accuracy vs parameter count",
+      "verdict": "REUSED_VERIFIED",
+      "png_path": "full_doc_report/figures/Efficiency/EFF03_accuracy_vs_parameters.png",
+      "svg_path": "full_doc_report/figures/Efficiency/EFF03_accuracy_vs_parameters.svg",
+      "evidence_class": "FROZEN_ACCURACY_AND_MEASURED_PARAMETERS",
+      "caption": "Accuracy against parameter count on a log axis; ReMedFiLM achieves its score with far fewer parameters than DeepLabV3+.",
+      "sources": [
+        "full_doc_report/tables/REMEDFILM_EFFICIENCY.csv"
+      ],
+      "verification": "PREVIOUSLY_VERIFIED_49_FIGURE_REGISTRY",
+      "png_path_sha256": "f55bbd7c20cc56fc50e3a54db3e0df16dbaab1b8cd2071ad93144c23566512a9",
+      "svg_path_sha256": "a425f16b709d2b3a921a223e7fbfb5cfed5085f5b0c1af10fb41af6aca8bda41"
+    }
+  ],
+  "excluded": [
+    {
+      "figure_id": "A03_remedfilm_inference_path",
+      "reason": "Shows only three outcome branches and a linear G -> B_phi -> R_psi -> S_omega chain; superseded by the V8 code-verified four-state methodology figure."
+    },
+    {
+      "figure_id": "RT02_stage_flow",
+      "reason": "Stage flow omits FORCED_SKIP and presents three states; replaced by V8_F02_four_state_flow. Kept on disk but not used in V8."
+    },
+    {
+      "figure_id": "EFF01_accuracy_vs_compute",
+      "reason": "Rebuilt as V8_F01 to fix mixed GMAC semantics (lower-bound baselines vs expected-conditional FULL) and to state explicitly that the plot is not a Pareto frontier."
+    },
+    {
+      "figure_id": "STAT03_seedwise_per_domain",
+      "reason": "Descriptive Phase-29 per-domain panel duplicates V8_F03 and V8_F06; omitted to avoid duplicate architecture/statistics explanations."
+    },
+    {
+      "figure_id": "A01_component_parameter_budget",
+      "reason": "Parameter budget is stated once in the methodology figure and in a compact table; the stand-alone log-scale bar chart was dropped as a tiny redundant figure."
+    },
+    {
+      "figure_id": "ABL01_arm_mean_delta",
+      "reason": "Thirteen rotated value labels were drawn above the axes and collided with the chart title. Rebuilt as V8_F07_ablation_arms with horizontal labels inside the axes, headroom, and the A8-vs-A7 CI stated in the footnote."
+    },
+    {
+      "figure_id": "STAT01_seedwise_macro_metrics",
+      "reason": "Light-grey mean/SD text was printed on top of the first bar in both panels and was effectively illegible. Rebuilt as V8_F06_seedwise_deltas with an explicitly disclosed truncated axis and figure-level statistics."
+    },
+    {
+      "figure_id": "RT01_routing_outcomes",
+      "reason": "Pie-chart legend text overlapped the adjacent histogram's y-axis tick labels, making both unreadable. Branch counts (529/266/13) are already given unambiguously in V8_F02_four_state_flow; the redundant figure is omitted."
+    }
+  ],
+  "declaration": {
+    "model_retrained": false,
+    "new_inference_run": false,
+    "TEST1683_opened": false,
+    "screenshots_of_old_versions_used": false,
+    "unverified_p_values_added": false
+  }
+}

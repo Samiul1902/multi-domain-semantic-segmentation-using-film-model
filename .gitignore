@@ -1,63 +1,127 @@
-# Python environment
+# =========================================
+# Python Environment & Virtualenv
+# =========================================
 .venv/
+venv/
+ENV/
+env/
 __pycache__/
 *.py[cod]
+*$py.class
+*.so
 
-# Data and Cache
+# =========================================
+# Testing, Typing & Tooling Caches
+# =========================================
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+
+# =========================================
+# Jupyter Notebook Checkpoints
+# =========================================
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/*
+
+# =========================================
+# Data, Large Datasets & Model Checkpoints
+# =========================================
 data_raw/
 data_cache/
-checkpoints/
-experiments/results/
-logs/
-
-# Reports
-reports/
-
-# IDE/System
-.vscode/
-.idea/
-.DS_Store
-
-# Python environment/cache
-.venv/
-__pycache__/
-*.pyc
-.ipynb_checkpoints/
-
-# Large/raw datasets
-data_raw/
 datasets/
 external_test_ds/
+checkpoints/
+*.pt
+*.pth
+*.ckpt
+*.h5
 
-# Runtime/temp files
-*.tmp
-*.log
+# Experiments, Runs & Training Logs
+experiments/results/
+runs/
 logs/
 wandb/
 
-# OS/editor
-.DS_Store
-Thumbs.db
-.vscode/
+# =========================================
+# Local AI Coding Agents & IDE Assistants
+# =========================================
+.antigravity/
+.agent/
+.agents/
+.cursor/
+.cline/
+.clinerules/
+.clineignore
+.roo/
+.roo-code/
+.continue/
+.aider*
+.codex/
+.claude/
+.gemini/
+.windsurf/
+.trae/
+.augment/
+.workbuddy-ai/
+.commandcode/
 
-checkpoints/
-*.pth
-*.pt
-*.ckpt
-# Temporary test/auth files
-tmp_*.json
-_tmp_*.json
-*.log
+# Agent Instruction, Workflow & Prompt Logs
+AGENTS.md
+CLAUDE.md
+GEMINI.md
+ANTIGRAVITY_WORKFLOW.md
+*prompt*.txt
+last_prompt.txt
+scratch_user_prompt.txt
+interpretation.txt
+smoke_v1_0h_stderr.txt
+test_out.txt
 
+# Local MCP Configurations
+.mcp.json
+.mcp.local.json
+mcp_config.json
+.vscode/mcp.json
+
+# Local Scratch, Patch & Temporary Scripts
+_tmp/
+_tmp*/
+patch*.py
+patch_*.py
+make_nb.py
+update_nb_script.ps1
+update_script.py
+
+# =========================================
+# C1 Operator & Security Authorization
+# =========================================
 # C1 operator authorization material — must never enter version control.
 # configs/c1_operator/ holds signed approvals, launch instructions and time
 # status records; scripts/analysis/provision_trust_store.py generates
 # institutional signing keys. Neither may be committed.
 configs/c1_operator/
 scripts/analysis/provision_trust_store.py
+tmp_*.json
+_tmp_*.json
 
-# FULL three-seed pipeline execution artifacts.  These are produced by running
-# scripts/training/full_barr_three_seed.py; they are large (multi-GB per real
-# family), regenerable, and must never enter version control.  Only the source
-# under src/research/full_pipeline/ and its tests are tracked.
-runs/
+# =========================================
+# Environment Variables & Credentials
+# =========================================
+.env
+.env.*
+!.env.example
+
+# =========================================
+# OS & IDE System Files
+# =========================================
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.tmp
+*.bak
+*.log

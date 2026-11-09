@@ -1,0 +1,514 @@
+{
+  "artifact": "V8_REPORT_CONTENT_MANIFEST",
+  "docx": "full_doc_report/ReMedFiLM_Complete_Scientific_Report_V8.docx",
+  "sections": [
+    {
+      "number": 1,
+      "title": "Overview and contributions"
+    },
+    {
+      "number": 2,
+      "title": "Methodology: the proposed ReMedFiLM FULL system"
+    },
+    {
+      "number": 3,
+      "title": "Datasets, splits and evaluation protocol"
+    },
+    {
+      "number": 4,
+      "title": "Internal quantitative results"
+    },
+    {
+      "number": 5,
+      "title": "Training history and staged objectives"
+    },
+    {
+      "number": 6,
+      "title": "Real segmentation results"
+    },
+    {
+      "number": 7,
+      "title": "Class and subclass performance"
+    },
+    {
+      "number": 8,
+      "title": "External retrospective evaluation"
+    },
+    {
+      "number": 9,
+      "title": "Component progression and ablation"
+    },
+    {
+      "number": 10,
+      "title": "Routing, safety and error propagation"
+    },
+    {
+      "number": 11,
+      "title": "Reproducibility, interpretability and robustness"
+    },
+    {
+      "number": 12,
+      "title": "Computational complexity and accuracy-cost"
+    },
+    {
+      "number": 13,
+      "title": "Conclusions, limitations and next experiments"
+    },
+    {
+      "number": "A",
+      "title": "Deliverables and regeneration"
+    }
+  ],
+  "numbered_section_count": 13,
+  "figure_count": 33,
+  "table_count": 14,
+  "figures": [
+    {
+      "number": 1,
+      "figure_id": "V8_F03_result_reconciliation",
+      "path": "full_doc_report/figures/V8_F03_result_reconciliation.png",
+      "sha256": "ad0667d8d8134797b9339edef688439b2c6b7fe9c5021146f2cac724e04c86e6",
+      "width_mm": 158.0,
+      "caption": "V8 adjudication of the three VAL808 macro-Dice values. Left: the canonical FULL result (teal), its GlobalMedFiLM comparator (blue), and the legacy 0.837862 (rejected). Right: the genuine three-seed values re-aggregated from the frozen per-sample NPZ archive, with seed 42 matching the saved-mask re-score to approximately 6×10⁻⁷. The legacy value is the mean of three numbers hard-coded into the V5/V6/V7 generators, not a measurement."
+    },
+    {
+      "number": 2,
+      "figure_id": "ReMedFiLM_Methodology_V8",
+      "path": "full_doc_report/figures/ReMedFiLM_Methodology_V8.png",
+      "sha256": "0dc96570abfe139c95837ab19081ba27c1118487ce460d9bf93607cb5c1d05dc",
+      "width_mm": 168.0,
+      "caption": "Code-verified three-panel methodology. Panel A: four multi-domain inputs and three distinct task representations. Panel B: the full inference state machine of `RAMedFiLMBARR.forward_inference`, showing G → action/ROI → B_phi → utility test → offline OOF refined crop → deterministic fusion → S_omega → accept/reject, with both skip states. Panel C: the six-step sequential training dependency, explicitly not joint end-to-end training. Blue denotes GlobalMedFiLM, teal denotes the proposed ReMedFiLM FULL system."
+    },
+    {
+      "number": 3,
+      "figure_id": "V8_F02_four_state_flow",
+      "path": "full_doc_report/figures/V8_F02_four_state_flow.png",
+      "sha256": "bac1d7ffb9b6371bdefba6cb7b980e596d04b954895aee75062c3ac309ddf5e0",
+      "width_mm": 158.0,
+      "caption": "The four canonical VAL808 states of `RAMedFiLMBARR.forward_inference`. FORCED_SKIP occurs when no action is available; SKIP_GLOBAL occurs when the router utility falls below tau_C8. Executed cases split into accept and reject according to S_omega. Counts are from the frozen Phase 27 prediction table."
+    },
+    {
+      "number": 4,
+      "figure_id": "A02_component_presence_matrix",
+      "path": "full_doc_report/figures/Architecture/A02_component_presence_matrix.png",
+      "sha256": "065d800d7220222c73d77a970f1f46bbf8c35d277dfba3e51bf7068d80623e55",
+      "width_mm": 146.0,
+      "caption": "Component-presence matrix. Only the FULL assembly instantiates all four components; GlobalMedFiLM alone instantiates G only. This is the identity check that prevents the backbone from being reported as the proposed model."
+    },
+    {
+      "number": 5,
+      "figure_id": "ReMedFiLM_Methodology_Manuscript",
+      "path": "full_doc_report/figures/ReMedFiLM_Methodology_Manuscript.png",
+      "sha256": "c0e38145bf6d423a597b9cb9623d2b2ef1982bc7aee4d1acb2832b2b3012c066",
+      "width_mm": 104.0,
+      "caption": "Portrait print variant of the **same** verified state machine shown in Figure 2, reformatted for single-column manuscript reproduction. It is not a second architecture and introduces no additional pathways or objectives."
+    },
+    {
+      "number": 6,
+      "figure_id": "D01_domain_and_split_composition",
+      "path": "full_doc_report/figures/Statistics/D01_domain_and_split_composition.png",
+      "sha256": "ddc3f86faec9dece166d8549ccf96048b26eba57f7c371faa29efd109e92cc0f",
+      "width_mm": 158.0,
+      "caption": "Domain and split composition of the internal four-domain cohort."
+    },
+    {
+      "number": 7,
+      "figure_id": "D03_kub_unit_of_analysis",
+      "path": "full_doc_report/figures/Statistics/D03_kub_unit_of_analysis.png",
+      "sha256": "2f6f480c35e006b7700f954ba2c308e16cb8213c1e7e5de1c266331428a3d593",
+      "width_mm": 138.0,
+      "caption": "KUB unit-of-analysis: full-field radiographs versus ROI instance patches."
+    },
+    {
+      "number": 8,
+      "figure_id": "STAT04_population_accounting",
+      "path": "full_doc_report/figures/Statistics/STAT04_population_accounting.png",
+      "sha256": "dcb65a6258220351714398eb490ff38d9127c54048f79ae4f5e59188b4b9b396",
+      "width_mm": 150.0,
+      "caption": "Population accounting across TRAIN, VAL808, router development/holdout and the protected TEST1683 cohort."
+    },
+    {
+      "number": 9,
+      "figure_id": "I1_domain_metric_comparison",
+      "path": "full_doc_report/figures/Internal validation/I1_domain_metric_comparison.png",
+      "sha256": "e5cbfa81977f27f65c69d7934ce5c1f038e209423ac460650d922af84304dee2",
+      "width_mm": 158.0,
+      "caption": "Per-domain comparison of GlobalMedFiLM and ReMedFiLM FULL across Dice, IoU, precision and recall on VAL808."
+    },
+    {
+      "number": 10,
+      "figure_id": "I2_paired_delta_forest",
+      "path": "full_doc_report/figures/Internal validation/I2_paired_delta_forest.png",
+      "sha256": "467a8276b6287e09493eb22a1069c79b80e6336984bbc34deec686366c1b049b",
+      "width_mm": 150.0,
+      "caption": "Paired per-image Δ Dice by domain with the macro estimate and its domain-stratified bootstrap interval."
+    },
+    {
+      "number": 11,
+      "figure_id": "STAT02_bootstrap_distribution",
+      "path": "full_doc_report/figures/Statistics/STAT02_bootstrap_distribution.png",
+      "sha256": "9b294bbb34349744094aa767a0b7f79aec711f09c8e7fed9da2cb57982994e90",
+      "width_mm": 146.0,
+      "caption": "Bootstrap distribution of the paired macro Δ Dice (10,000 stratified resamples, seed 20261027). The percentile interval excludes zero."
+    },
+    {
+      "number": 12,
+      "figure_id": "V8_F04_training_dashboard",
+      "path": "full_doc_report/figures/V8_F04_training_dashboard.png",
+      "sha256": "8db459ee61a35063f947633427acfb64036b3adbf1adde8d6a7ed969e0f2c460",
+      "width_mm": 158.0,
+      "caption": "Four independent objective histories — G, R_psi, B_phi and S_omega. Each panel uses a single genuine run ID for both train and validation curves. The B_phi Huber loss shows a large epoch-1 transient; panels are individually scaled. These are four separate training procedures, not one joint run."
+    },
+    {
+      "number": 13,
+      "figure_id": "T2_val_dice_across_epochs",
+      "path": "full_doc_report/figures/Training curves/T2_val_dice_across_epochs.png",
+      "sha256": "b4421aa849d04dbe8556d011bf8a889c07da09cfcf32f2029bccd2085a4dd88a",
+      "width_mm": 142.0,
+      "caption": "GlobalMedFiLM validation macro Dice across the recorded training epochs."
+    },
+    {
+      "number": 14,
+      "figure_id": "T4_per_domain_learning_curves",
+      "path": "full_doc_report/figures/Training curves/T4_per_domain_learning_curves.png",
+      "sha256": "fd6c23908b78e75a9527f4755bcfbda9370acb4e0c53ce2ba5e2ea99f652abae",
+      "width_mm": 142.0,
+      "caption": "Per-domain learning curves for the shared backbone, showing the unequal convergence of the four domains."
+    },
+    {
+      "number": 15,
+      "figure_id": "SEG_ISIC_global_vs_full",
+      "path": "full_doc_report/figures/Semantic segmentation/SEG_ISIC_global_vs_full.png",
+      "sha256": "74d7209e5e21591276c96d2879726337153d8a13861f1dddf5b69c59cb43011e",
+      "width_mm": 168.0,
+      "caption": "Real segmentation examples — ISIC 2018 dermoscopy. Each row shows the input, ground truth, the GlobalMedFiLM backbone output and the ReMedFiLM FULL output with the ROI and the routing/safety decision annotated. Differences are typically local boundary adjustments rather than whole-mask changes, consistent with the small paired Δ Dice."
+    },
+    {
+      "number": 16,
+      "figure_id": "SEG_BUSI_global_vs_full",
+      "path": "full_doc_report/figures/Semantic segmentation/SEG_BUSI_global_vs_full.png",
+      "sha256": "0690a847b1479319740d5203f3467fe3847fac45c2df8a7bc5dda41e579c0686",
+      "width_mm": 168.0,
+      "caption": "Real segmentation examples — BUSI-WHU breast ultrasound. Each row shows the input, ground truth, the GlobalMedFiLM backbone output and the ReMedFiLM FULL output with the ROI and the routing/safety decision annotated. Differences are typically local boundary adjustments rather than whole-mask changes, consistent with the small paired Δ Dice."
+    },
+    {
+      "number": 17,
+      "figure_id": "SEG_KVASIR_global_vs_full",
+      "path": "full_doc_report/figures/Semantic segmentation/SEG_KVASIR_global_vs_full.png",
+      "sha256": "a34e48477a3f68cbfae39aba6a2c19e353302704a80a08162fced5f72e1f8e47",
+      "width_mm": 168.0,
+      "caption": "Real segmentation examples — Kvasir-SEG endoscopy. Each row shows the input, ground truth, the GlobalMedFiLM backbone output and the ReMedFiLM FULL output with the ROI and the routing/safety decision annotated. Differences are typically local boundary adjustments rather than whole-mask changes, consistent with the small paired Δ Dice."
+    },
+    {
+      "number": 18,
+      "figure_id": "SEG_KUB_global_vs_full",
+      "path": "full_doc_report/figures/Semantic segmentation/SEG_KUB_global_vs_full.png",
+      "sha256": "3596b66751eb82eef8bab24a1b5ebe9d580ed9b578505f2dda2de8b810d5f1b0",
+      "width_mm": 168.0,
+      "caption": "Real segmentation examples — KUB radiography. Each row shows the input, ground truth, the GlobalMedFiLM backbone output and the ReMedFiLM FULL output with the ROI and the routing/safety decision annotated. Differences are typically local boundary adjustments rather than whole-mask changes, consistent with the small paired Δ Dice."
+    },
+    {
+      "number": 19,
+      "figure_id": "SEG_failure_cases",
+      "path": "full_doc_report/figures/Semantic segmentation/SEG_failure_cases.png",
+      "sha256": "28637ecf8353bba8bc18b3b70e72d5d73cf1e11734b29fcb0d3cc377c983b164",
+      "width_mm": 168.0,
+      "caption": "Representative failure cases retained as negative evidence. These include harmful refinements and false-positive foreground on stone-free radiographs; they are shown because the aggregate Dice gain does not imply uniform per-image benefit."
+    },
+    {
+      "number": 20,
+      "figure_id": "SG1_kub_stone_subgroups",
+      "path": "full_doc_report/figures/Internal validation/SG1_kub_stone_subgroups.png",
+      "sha256": "7c02a0be766ac4268c454874f8caaf77a6f650c5a57f2a6785312e2c0dcce560",
+      "width_mm": 142.0,
+      "caption": "KUB stone morphological subclasses. Performance varies across subclasses; the strata are descriptive and the subgroup sample sizes are small."
+    },
+    {
+      "number": 21,
+      "figure_id": "SG2_kub_size_stratification",
+      "path": "full_doc_report/figures/Internal validation/SG2_kub_size_stratification.png",
+      "sha256": "b864baf96dbdea43e5957c3cb540433eb7346864fc128f46f3b74c972f7c7b80",
+      "width_mm": 142.0,
+      "caption": "KUB stone size stratification. Small objects remain the dominant failure mode, consistent with the poor external Stones-Where-Are-You result in Section 8."
+    },
+    {
+      "number": 22,
+      "figure_id": "V8_F05_external_metric_coverage",
+      "path": "full_doc_report/figures/V8_F05_external_metric_coverage.png",
+      "sha256": "9fa4b01a5da9118862b3659c41d4e375f7e40aea2483ef0ea9dfd7c17af37dbd",
+      "width_mm": 158.0,
+      "caption": "External metric coverage. Six metrics × two systems × three cohorts, with cells annotated by the true denominator. Partial-coverage cells (n = 6/20 for Stones HD95, ASSD and recall) are visually distinguished rather than presented as full-cohort estimates."
+    },
+    {
+      "number": 23,
+      "figure_id": "EXT01_external_dice",
+      "path": "full_doc_report/figures/External evaluation/EXT01_external_dice.png",
+      "sha256": "da43d4bda0324627d9d3e99f7f8c20c69ebb05bbcf5fbed89c99c856989ae17f",
+      "width_mm": 152.0,
+      "caption": "External Dice by cohort and system, with the stone-free subgroup shown separately."
+    },
+    {
+      "number": 24,
+      "figure_id": "EXT02_external_delta",
+      "path": "full_doc_report/figures/External evaluation/EXT02_external_delta.png",
+      "sha256": "bbd4589efd2d0e149dee93708a66e3fbfae8fff518594ec36954f2cd7b064dd5",
+      "width_mm": 138.0,
+      "caption": "Paired external Δ Dice distribution by cohort. The IQR sits exactly on zero for the stone-free subgroup, so most external images are unchanged."
+    },
+    {
+      "number": 25,
+      "figure_id": "EXT03_stonefree_false_positive",
+      "path": "full_doc_report/figures/External evaluation/EXT03_stonefree_false_positive.png",
+      "sha256": "cd3de3d3db60ce1c4a2635b8fb5b8e56401caa4ddd27da7fe625697f5df08dd4",
+      "width_mm": 138.0,
+      "caption": "Negative result: all 14 stone-free external images receive false-positive foreground predictions from both systems. S_omega scores refinement benefit (sign of Δ Dice), not lesion presence, and therefore cannot suppress a false positive that is already present in the backbone output."
+    },
+    {
+      "number": 26,
+      "figure_id": "PROG01_stage_compute_and_harm",
+      "path": "full_doc_report/figures/Progression/PROG01_stage_compute_and_harm.png",
+      "sha256": "1513704d757fcfd4f0937473bad45e7523ada27462ad7ba0cd821a251e47bfdb",
+      "width_mm": 152.0,
+      "caption": "Component progression: conditional compute and harm share across stages. Routing removes most of the harm introduced by unconditional refinement."
+    },
+    {
+      "number": 27,
+      "figure_id": "V8_F07_ablation_arms",
+      "path": "full_doc_report/figures/V8_F07_ablation_arms.png",
+      "sha256": "5ac93d7780303a337b8aa64842848605199b5bfad0f4339c1eea1580c65f02d7",
+      "width_mm": 158.0,
+      "caption": "All 13 arms with mean true Δ Dice on routed cases. Blue = A7 (learned routing), teal = A8 (A7 + post-safety), amber = A1 (always refine), red = F1 (deliberate failure). The A8 − A7 paired contrast CI [-0.00, 0.00] includes zero: **the incremental safety contribution is not established**."
+    },
+    {
+      "number": 28,
+      "figure_id": "ABL02_paired_contrasts_forest",
+      "path": "full_doc_report/figures/Ablation/ABL02_paired_contrasts_forest.png",
+      "sha256": "c6641b2672f0e76500d3e0506a24eb68d31db2f2dd61ec779df9c717fb8cedad",
+      "width_mm": 152.0,
+      "caption": "Paired contrasts between selected arms with intervals. Only contrasts whose interval excludes zero are described as established."
+    },
+    {
+      "number": 29,
+      "figure_id": "V8_F06_seedwise_deltas",
+      "path": "full_doc_report/figures/V8_F06_seedwise_deltas.png",
+      "sha256": "2bcb8d0b3568d00cbecb2382ce7c186ae674d9fcf4d5cb7f68f25d1c1f5fb1a6",
+      "width_mm": 158.0,
+      "caption": "Three downstream seeds on the shared frozen backbone: macro-domain VAL808 Dice and paired Δ Dice versus the frozen G backbone. Descriptive only; no seed was retrained for V8 and the backbone is common to all three."
+    },
+    {
+      "number": 30,
+      "figure_id": "ROB01_perturbation_degradation",
+      "path": "full_doc_report/figures/Robustness/ROB01_perturbation_degradation.png",
+      "sha256": "ba9d98a7222fd5a49116fb10fd622ca20ee75152f102d43514eb502ceeb8aeb3",
+      "width_mm": 152.0,
+      "caption": "Perturbation robustness: degradation of segmentation quality under the recorded input perturbations. This is a descriptive stress test, not a certification of clinical robustness."
+    },
+    {
+      "number": 31,
+      "figure_id": "V8_F01_accuracy_cost",
+      "path": "full_doc_report/figures/V8_F01_accuracy_cost.png",
+      "sha256": "104f58b6cee5d7a22d42a315b2a7a06ebd1f9f27e301776153e811d91f9e7698",
+      "width_mm": 158.0,
+      "caption": "Accuracy versus architectural cost with the canonical ReMedFiLM FULL point at Dice 0.8373 and 32.4379 expected conditional GMACs. **Historical descriptive comparison**, not a confirmed Pareto frontier: the baseline protocols are not matched controlled experiments, and V7's point was wrong on both axes (0.837862 paired with the always-refine 34.72 GMACs)."
+    },
+    {
+      "number": 32,
+      "figure_id": "EFF02_latency_breakdown",
+      "path": "full_doc_report/figures/Efficiency/EFF02_latency_breakdown.png",
+      "sha256": "6277e7017b24efdcd97610bae60423b054e0b88b4286d3204aa71b5322cc899a",
+      "width_mm": 146.0,
+      "caption": "Recorded latency breakdown by pipeline stage for the frozen runtime."
+    },
+    {
+      "number": 33,
+      "figure_id": "EFF03_accuracy_vs_parameters",
+      "path": "full_doc_report/figures/Efficiency/EFF03_accuracy_vs_parameters.png",
+      "sha256": "f55bbd7c20cc56fc50e3a54db3e0df16dbaab1b8cd2071ad93144c23566512a9",
+      "width_mm": 146.0,
+      "caption": "Accuracy against parameter count on a log axis, placing the compact FULL system in the context of the historical six-model comparison."
+    }
+  ],
+  "tables": [
+    {
+      "number": 1,
+      "caption": "Canonical component chain of the proposed model (verified by read-only checkpoint state-dict loading).",
+      "header": [
+        "Component",
+        "Implementation class",
+        "Parameters"
+      ],
+      "n_rows": 5
+    },
+    {
+      "number": 2,
+      "caption": "Verified per-stage objectives. Each stage is supervised independently; no gradient passes between stages.",
+      "header": [
+        "Stage",
+        "Module",
+        "Objective",
+        "Target"
+      ],
+      "n_rows": 4
+    },
+    {
+      "number": 3,
+      "caption": "Source datasets. Dataset licences are separate from the repository code, which currently has no licence file.",
+      "header": [
+        "Dataset",
+        "Modality / target",
+        "Licence / use condition",
+        "Role"
+      ],
+      "n_rows": 4
+    },
+    {
+      "number": 4,
+      "caption": "Population accounting used in V8. Values are counts of images unless stated.",
+      "header": [
+        "Population",
+        "n",
+        "Status in V8"
+      ],
+      "n_rows": 5
+    },
+    {
+      "number": 5,
+      "caption": "VAL808 internal results. ReMedFiLM FULL versus its GlobalMedFiLM backbone, seed 42, identical images and identical output threshold.",
+      "header": [
+        "Domain",
+        "n",
+        "G Dice",
+        "FULL Dice",
+        "Paired Δ"
+      ],
+      "n_rows": 5
+    },
+    {
+      "number": 6,
+      "caption": "VAL808 context of the frozen six-model comparison. These are historical descriptive results, **not** a matched controlled experiment.",
+      "header": [
+        "Model",
+        "Macro Dice"
+      ],
+      "n_rows": 7
+    },
+    {
+      "number": 7,
+      "caption": "External retrospective results: Dice and HD95 for the GlobalMedFiLM backbone and the proposed ReMedFiLM FULL system. Direction is consistent across cohorts; margins are small.",
+      "header": [
+        "Cohort",
+        "n",
+        "G Dice",
+        "FULL Dice",
+        "G HD95 px",
+        "FULL HD95 px"
+      ],
+      "n_rows": 3
+    },
+    {
+      "number": 8,
+      "caption": "Frozen component progression. Stage 0 is the backbone; Stage 4 is the canonical VAL808 state machine.",
+      "header": [
+        "Stage",
+        "Population",
+        "Routed",
+        "Accepted",
+        "Mean Δ",
+        "Harmful",
+        "GMACs"
+      ],
+      "n_rows": 5
+    },
+    {
+      "number": 9,
+      "caption": "Selected ablation arms on ROUTER_DEVELOPMENT (n = 4,957). Full 13-arm provenance is in REMEDFILM_V8_ABLATION_RESULTS.csv.",
+      "header": [
+        "Arm",
+        "Routed cases",
+        "Mean Δ Dice",
+        "Harmful share",
+        "Benefit capture"
+      ],
+      "n_rows": 8
+    },
+    {
+      "number": 10,
+      "caption": "VAL808 state-machine outcomes and their downstream masks.",
+      "header": [
+        "State",
+        "n",
+        "Share",
+        "Output mask"
+      ],
+      "n_rows": 4
+    },
+    {
+      "number": 11,
+      "caption": "Three-seed reconciliation. Genuine values re-aggregated from the frozen per-sample NPZ archive with the same equal-domain-weight rule.",
+      "header": [
+        "Seed",
+        "Frozen NPZ macro Dice",
+        "V5–V7 printed",
+        "Difference"
+      ],
+      "n_rows": 5
+    },
+    {
+      "number": 12,
+      "caption": "Verified computational cost. Latency is the recorded p50 for the frozen runtime; GMACs are analytical for a 3 × 512 × 512 input.",
+      "header": [
+        "System",
+        "Parameters",
+        "GMACs",
+        "Latency p50 (ms)"
+      ],
+      "n_rows": 3
+    },
+    {
+      "number": 13,
+      "caption": "Claims supported by frozen artifacts, and the evidence class that supports each.",
+      "header": [
+        "Claim",
+        "Evidence class",
+        "Status"
+      ],
+      "n_rows": 8
+    },
+    {
+      "number": 14,
+      "caption": "V8 deliverables referenced by this report (paths relative to the repository root).",
+      "header": [
+        "Artifact",
+        "Purpose"
+      ],
+      "n_rows": 13
+    }
+  ],
+  "numeric_claims": [
+    {
+      "metric_id": "INT_MACRO_DOMAIN_EQUAL_WEIGHT_FULL_DICE",
+      "value": "0.8372896860016156",
+      "printed": "0.837290"
+    },
+    {
+      "metric_id": "INT_MACRO_DOMAIN_EQUAL_WEIGHT_G_DICE",
+      "value": "0.8350797177681444",
+      "printed": "0.835080"
+    },
+    {
+      "metric_id": "INT_MACRO_DELTA_POINT",
+      "value": 0.002209968233471182,
+      "printed": "0.002210"
+    }
+  ],
+  "single_numeric_source": "full_doc_report/REMEDFILM_V8_RESULTS_REGISTRY.json",
+  "single_numeric_source_sha256": "2e96d61c969ea7d9c2b158d4633237a6a228b1a2a6a4863c5d32bd9058d680af",
+  "figure_evidence_map_sha256": "b74431010d20a0b3a5da11eeee461acee42eb3aec41a63b3c6e3b83932288027",
+  "declaration": {
+    "model_retrained": false,
+    "new_inference_run": false,
+    "TEST1683_opened": false,
+    "checkpoint_modified": false,
+    "absolute_timestamp_hand_authored": false
+  }
+}

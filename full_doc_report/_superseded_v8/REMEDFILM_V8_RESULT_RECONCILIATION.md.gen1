@@ -1,0 +1,113 @@
+# ReMedFiLM V8 — Result Reconciliation
+
+**Question.** Three macro-Dice values circulate for VAL808: approximately `0.837290` (ReMedFiLM FULL), `0.837862` (also labelled ReMedFiLM FULL in V5–V7), and `0.835080`. Which is the evaluation of the proposed four-component model, and what are the others?
+
+**Verdict.** The proposed model's canonical VAL808 macro Dice is **`0.837290`**. `0.835080` is the **GlobalMedFiLM backbone** — the legitimate comparator, not a competing FULL value. `0.837862` is **not a measurement**: it is the arithmetic mean of three numbers hardcoded into the V5/V6/V7 report generators, and it is contradicted by the frozen three-seed archive it claims to cite. V8 rejects it. **This is a resolved reporting inconsistency, not a second experimental configuration.**
+
+---
+
+## 1. Canonical identity chain
+
+| Field | Verified value |
+|---|---|
+| Proposed system | ReMedFiLM FULL = RA-MedFiLM-BARR = `G` + `R_psi` + `B_phi` + `S_omega` |
+| Verified parameters | 4,837,420 |
+| Population | VAL808 (held-out validation), n = 808 |
+| Seed | 42 |
+| Router threshold | `tau_C8 = -0.024358327623641256` |
+| ROI / safety / output thresholds | 0.3 / 0.5 / 0.5 |
+| Router decisions | SKIP 529 · EXECUTE 279 |
+| Branches | EXECUTE_THEN_ACCEPT 266 · EXECUTE_THEN_REJECT 13 · SKIP_GLOBAL 529 |
+| FULL macro Dice | **0.837289686002** |
+| GlobalMedFiLM macro Dice | 0.835079717768 |
+| Paired Δ | **+0.002209968233** (95% CI +0.001147693 to +0.003292050) |
+| Aggregation | equal-weight mean of four per-domain per-image Dice means |
+
+Independent cross-checks, all reproducible without any new inference:
+
+* Re-scoring the 808 saved Phase 27 masks (`*_global.png`, `*_final.png`) gives `0.837289686`.
+* The frozen per-sample three-seed archive gives seed-42 macro `0.837289105` (difference `5.81e-07`).
+* The same archive gives backbone macro `0.835078960` (difference `7.58e-07`).
+* All 808 cases are accounted for; for all 529 SKIP cases the saved FULL mask is byte-identical to the backbone mask.
+
+## 2. `0.835079` is the comparator, not a discrepancy
+
+`0.835080` is the frozen Phase 21 `GlobalMedFiLM` backbone evaluated on the same 808 images. GlobalMedFiLM is the first component of the proposed system and a legitimate ablation baseline. It is **not** the complete proposed model and must never be labelled ReMedFiLM FULL. The scientific result of the assembly is the *paired* difference `+0.002210` (`+0.2210` percentage points), not either absolute number in isolation.
+
+## 3. Where `0.837862` actually comes from
+
+V5, V6 and V7 report the same three-seed reproducibility triplet and then print its mean as the headline seed-42 result:
+
+| Quantity | V5/V6/V7 printed value |
+|---|---|
+| seed 42 macro Dice | 0.837862 |
+| seed 123 macro Dice | 0.837910 |
+| seed 3407 macro Dice | 0.837815 |
+| mean | 0.837862 |
+| SD | 0.00004750 |
+
+The arithmetic mean of those three values is `0.837862333` — i.e. the value printed as **both** the seed-42 row and the three-seed mean is the *mean*. That is internally inconsistent: the seed-42 cell was overwritten with the mean. `build_v7_pdf_report.py` additionally prints routing counts 183 selected / 165 accepted / 31 rejected, which cannot be reconciled with the frozen state machine (279 / 266 / 13).
+
+The V7 QA document claims the triplet was traced to the frozen archive `data_cache/phase29_phase_d_canonical/phase29_phase_d_three_seed_val808_delta_dice.npz`. That archive exists and was re-read for V8. Re-aggregating it with the same equal-domain-weight rule gives:
+
+| Seed | Genuine macro Dice from frozen NPZ | V7 printed | Difference |
+|---|---|---|---|
+| 42 | 0.837289105 | 0.837862 | -0.000572895 |
+| 123 | 0.838466901 | 0.837910 | +0.000556901 |
+| 3407 | 0.837947761 | 0.837815 | +0.000132761 |
+| **mean** | **0.837901256** | 0.837862 | +0.000038922 |
+| SD (ddof=1) | 0.000590273 | 0.000047501 | — |
+
+None of the three V7 numbers appears in the archive. The genuine across-seed SD is `0.000590273`, roughly **12× larger** than V7's `0.000047501`: V7 understated seed-to-seed variability by more than an order of magnitude. This matters because all three seeds share one pre-trained backbone, so the triplet is descriptive component-initialisation stability, **not** three independent end-to-end training replicates.
+
+A separate frozen record, `reports/audits/phase29_val808_seedwise_metrics.json`, gives a second genuine descriptive triplet (0.837351, 0.838511, 0.838000; mean 0.837954, SD 0.000581270). Its seed-42 entry reports `0.8373512` with 268 accepted cases rather than the 266 encoded in the saved masks. Those two extra safety decisions were never persisted as separate refined outputs, so this variant is **genuinely recorded but not re-derivable**; it is disclosed, not selected.
+
+## 4. Policy sweep
+
+`full_doc_report/REMEDFILM_FULL_RESULT_RECONCILIATION.json` tested every routing policy expressible from the saved masks (8 policies), including top-181/183/185/200/250/279 by utility and the threshold rule without the safety gate. Verdict recorded there: `REPORTING_INCONSISTENCY`; `any_policy_reproduces_0837862 = False`. No policy reproduces `0.837862`.
+
+## 5. Additional V8-discovered conflicts (excluded from V8 tables)
+
+| Legacy artifact | Conflict | V8 action |
+|---|---|---|
+| `tables/REMEDFILM_MODEL_COMPARISON.csv` | The four `dice_*` cells of the ReMedFiLM FULL row are **single-sample** Dice values, not domain means (each matches exactly one row of the per-sample table). The row's macro value is correct but its per-domain values are not. | Excluded; baselines taken from `reports/tables/phase21_six_model_comparison.csv`, FULL from the canonical re-score. |
+| `PROGRESSION_AND_PROPAGATION_EVIDENCE.csv` | Stage 4 records `0.837862` with routed 0.2265, accepted 0.2042, +0.2783 pp and harm 0.1878; the frozen state machine gives routed 0.3453, accepted 0.3292, +0.2210 pp and harm 0.1200. | Excluded; superseded by `REMEDFILM_ABLATION_AND_PROGRESSION.csv`. |
+| `tables/ReMedFiLM_External_Routing_Safety_V7.csv` | External routing counts (e.g. CVC 118 / 35 / 83) conflict with the frozen `c1_external_stress_*` artifacts. | Excluded; V8 uses the frozen external tables. |
+| `tables/subgroup_performance_summary.csv` | V3-era table with macro 0.8379 / +0.28 pp. | Excluded. |
+
+## 6. What V8 reports
+
+| Context | Value | Status |
+|---|---|---|
+| Headline VAL808 ReMedFiLM FULL macro Dice, seed 42 | **0.837290** | canonical, reproducible |
+| GlobalMedFiLM backbone on the same split | 0.835080 | comparator |
+| Net paired gain | **+0.2210 pp** | 95% CI excludes zero |
+| Three-seed descriptive mean (frozen NPZ) | 0.837901 ± 0.000590 | descriptive only; shared backbone |
+| Phase 29 seedwise recorded mean | 0.837954 ± 0.000581 | recorded variant, not re-derivable |
+| `0.837862` and +0.28 pp | — | **superseded; not used anywhere in V8** |
+
+## 7. Consequence for the accuracy–cost figure
+
+V7 paired `0.837862` with 34.72 GMACs (the always-refine cost), so its ReMedFiLM point was wrong on both axes. V8 plots the FULL system as its own marker at `0.837290` and **32.437902022582854** expected conditional GMACs. Because the baseline protocols are historical descriptive comparisons rather than matched controlled experiments, the chart is captioned as a **historical descriptive comparison**, not a confirmed Pareto frontier.
+
+## 8. Unresolved (not silently repaired)
+
+* The two-case difference between the Phase 29 seedwise record (268 accepted) and the saved-mask state (266 accepted) cannot be reconstructed from persisted artifacts.
+* `0.837862` has no artifact, no policy and no consistent sample accounting behind it; it is rejected rather than re-labelled as a legitimate alternative configuration.
+* C1 (learned vs identity FiLM), C2 (causal safety-gate attribution; A8 vs A7 CI includes zero), and C3 (matched multi-seed baseline matrix) remain `NOT_ESTABLISHED`. No controlled study is implied here.
+
+## 9. Source integrity
+
+SHA-256 values are read from the bytes on disk at build time.
+
+| Role | Path | SHA-256 |
+|---|---|---|
+| Canonical re-scored VAL808 mask table | `full_doc_report/REMEDFILM_FULL_VAL808_METRICS.csv` | `61582320e29e0a212768722dd952647debda8dd8e34869ddeb0e918ff1501426` |
+| Frozen three-seed per-sample Dice archive | `data_cache/phase29_phase_d_canonical/phase29_phase_d_three_seed_val808_delta_dice.npz` | `1bcc4b65165fcc233ca3eec81610ce4c99cd6bbb6b3953cc41b544c028776542` |
+| Phase 29 recorded seedwise metrics | `reports/audits/phase29_val808_seedwise_metrics.json` | `67b559de1d02e5da1f7df4c0918047d79fad3dbf2d7cc1310be5b419f9d60dff` |
+| Frozen VAL808 state-machine predictions | `reports/tables/phase27_val808_predictions.csv` | `bb2a6237160b79cda644173e91e17878598d5d0b396b7db08089b05104dcc1c6` |
+| Prior policy-sweep reconciliation | `full_doc_report/REMEDFILM_FULL_RESULT_RECONCILIATION.json` | `049c8910717d4881b33fa110d541f842db2c289726c780b6ec587f9b45a3560b` |
+| Legacy progression evidence (superseded) | `full_doc_report/PROGRESSION_AND_PROPAGATION_EVIDENCE.csv` | `247f8034e432cc911a0950c5a043c209ca762e6cd9a39cbb40e81bd8912ac16c` |
+| V7 report generator (superseded) | `scripts/analysis/build_v7_pdf_report.py` | `23cbd16ec0fa3f9f25f3eb658a6016976ad79ea8c3b7bf37258df0f5ccea1950` |
+
+**Declaration.** This reconciliation is analysis-only. No model was retrained, no new inference was run, no checkpoint or frozen table was modified, and the protected TEST1683 inputs were not opened.
