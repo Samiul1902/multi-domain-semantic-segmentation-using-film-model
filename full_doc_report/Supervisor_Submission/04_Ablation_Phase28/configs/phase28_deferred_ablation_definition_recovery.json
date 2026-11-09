@@ -1,0 +1,82 @@
+{
+ "artifact": "phase28_deferred_ablation_definition_recovery",
+ "phase": 28,
+ "classification": "PHASE28_R1_R2_R3_F1_EXACT_DEFINITION_RECOVERY",
+ "governance_only": true,
+ "execution": "NONE",
+ "recovery_rule": "Definitions recovered VERBATIM from the frozen Phase24 ablation-plan table. No label-based inference was used.",
+ "source_table": "reports/tables/phase24_ablation_plan.csv",
+ "source_table_sha256": "422967fa3484b19d90bfc3b2146278aa69c6bd7a34e42ae3dbcb43a9ccca9087",
+ "definitions": {
+  "R1": {
+   "name": "router without deep global features",
+   "family": "router",
+   "purpose": "does depth matter?",
+   "verbatim_row": [
+    "R1",
+    "router without deep global features",
+    "router",
+    "does depth matter?",
+    "no"
+   ],
+   "interpretation_scope": "removes the deep (learned feature-map) router taps so only shallow/scalar descriptors remain; freezes 'does F_global depth matter for the routing decision?'",
+   "controlled_single_factor": "ROUTER_FEATURE_DEPTH"
+  },
+  "R2": {
+   "name": "router without task_id",
+   "family": "router",
+   "purpose": "does conditioning matter?",
+   "verbatim_row": [
+    "R2",
+    "router without task_id",
+    "router",
+    "does conditioning matter?",
+    "no"
+   ],
+   "interpretation_scope": "removes the 16-d task/domain embedding from the router input; freezes 'does task conditioning matter?'",
+   "controlled_single_factor": "ROUTER_TASK_CONDITIONING",
+   "binding_to_spec": "phase24_exact_implementation_spec.json -> router.task_conditioning {n_tasks 4, embedding_dim 16, task_id_mapping ISIC/BUSI/KVASIR/KUB}"
+  },
+  "R3": {
+   "name": "router with scalar-only features",
+   "family": "router",
+   "purpose": "minimal-feature control",
+   "verbatim_row": [
+    "R3",
+    "router with scalar-only features",
+    "router",
+    "minimal-feature control",
+    "no"
+   ],
+   "interpretation_scope": "restricts the router to the 10 frozen scalar descriptors only (no global/ROI pooled feature taps); the minimal-feature lower control",
+   "controlled_single_factor": "ROUTER_FEATURE_SET__SCALAR_ONLY",
+   "binding_to_spec": "phase24_exact_implementation_spec.json -> router.scalar_descriptors (10) and input_dim_breakdown {tap_axes 6, tap_axes_x_width 192, scalars 10, task_embedding 16}"
+  },
+  "F1": {
+   "name": "refiner without p_global channel",
+   "family": "refiner",
+   "purpose": "is the global map useful?",
+   "verbatim_row": [
+    "F1",
+    "refiner without p_global channel",
+    "refiner",
+    "is the global map useful?",
+    "no"
+   ],
+   "interpretation_scope": "removes the 4th input channel (p_global_crop) from the regional refiner, leaving RGB only; freezes 'is the global probability map useful to refinement?'",
+   "controlled_single_factor": "REFINER_INPUT_P_GLOBAL_CHANNEL",
+   "binding_to_spec": "phase24_exact_implementation_spec.json -> refiner.input_channel_names [R,G,B,p_global_crop]"
+  }
+ },
+ "all_definitions_recovered": true,
+ "no_guessing_used": true,
+ "would_make_prior_plausible_guess_correct": {
+  "R1_as_rescue": "NO",
+  "R2_as_rescue": "NO",
+  "R3_as_rescue": "NO",
+  "note": "The prompt warned not to assume R/R1/R2/R3 mean rescue/router/regional. Verified: R1/R2/R3 are RCU-family router ablations (deep features / task_id / scalar-only), NOT 'rescue'. The rescue-style behaviour (empty-prediction deterministic cheap rescue) is a REFERENCE_PROPOSAL option recorded in phase24_architecture_spec.region_proposal.empty_global_prediction_justification as Option B, and is NOT any of R1/R2/R3."
+ },
+ "blocked_terminal_would_be": "PHASE28_BLOCKED__FROZEN_ABLATION_DEFINITION_INCOMPLETE",
+ "generated_utc": "2026-10-02T18:36:00Z",
+ "all_pass": true
+}

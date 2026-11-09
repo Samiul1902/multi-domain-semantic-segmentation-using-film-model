@@ -1,0 +1,36 @@
+{
+ "phase": 28,
+ "method": "RA-MedFiLM-BARR",
+ "governance_only": true,
+ "execution": "NONE",
+ "generated_utc": "2026-10-02T12:40:00Z",
+ "artifact": "phase28_f1_oof_contract_v1_2",
+ "classification": "F1_LEAKAGE_SAFE_OOF_OUTPUT_CONTRACT",
+ "applies_to": [
+  "F1"
+ ],
+ "oof_required": true,
+ "rule": "for every ROUTER_DEVELOPMENT sample the F1 candidate must come from the F1 fold model whose OUTER_TARGET contains that sample",
+ "sample_must_not_participate_in": [
+  "FIT",
+  "EARLY_STOP",
+  "checkpoint selection"
+ ],
+ "n_exactly_once_oof_candidates": 4957,
+ "final_F1_refiner_required": false,
+ "deployment_candidate": false,
+ "primary_comparison": {
+  "question": "Does supplying p_global as a refiner input channel improve refinement?",
+  "left": "canonical OOF regional candidate (Phase25C)",
+  "right": "F1 OOF regional candidate",
+  "held_constant": [
+   "sample",
+   "ROI geometry",
+   "global prediction",
+   "fusion geometry",
+   "GT scorer"
+  ],
+  "statistic": "paired candidate DeltaDice difference",
+  "note": "cleanest direct F1 isolation"
+ }
+}

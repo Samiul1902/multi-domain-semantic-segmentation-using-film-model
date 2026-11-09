@@ -1,0 +1,46 @@
+{
+ "artifact": "phase28_one_factor_control_contract_v1_1",
+ "phase": 28,
+ "version": "v1.1",
+ "classification": "PHASE28_ONE_FACTOR_AT_A_TIME_CONTROL_CONTRACT_REPAIR",
+ "supersedes": "reports/audits/phase28_one_factor_control_contract.json",
+ "supersedes_sha256": "6ab2e9108e24ee452499b351f73bef22f65e5c9381252e665ba730ca4b50c1ec",
+ "v1_0_preserved_unchanged": true,
+ "reason_for_repair": "The v1.0 claim 'every ablation arm differs from A8/C9 in exactly one controlled factor' is NOT physically true for all rows: A0/A1 are endpoint references, A2-A5 are routing-signal comparators on the same membership machinery, and A6/A7 are cumulative incremental rows. Only A7-vs-A8 is a formally frozen matched one-factor isolation.",
+ "v1_0_claim_physically_true_for_every_row": false,
+ "corrected_principle": "Every INFERENTIAL pairwise contrast used to isolate a component or mechanism MUST differ in exactly one prospectively specified factor. The complete A0-A8 matrix may contain cumulative or comparator rows that are not all direct one-factor contrasts against A8.",
+ "inferential_one_factor_contrasts": {
+  "A7_vs_A8": {
+   "factor": "POST_SAFETY_S_OMEGA",
+   "status": "FROZEN_PHYSICALLY_MATCHED"
+  },
+  "A6_vs_A0": {
+   "factor": "ROUTING_SIGNAL_INFORMED",
+   "status": "CUMULATIVE_INCREMENTAL_NOT_STRICT_SINGLE_FACTOR"
+  },
+  "A7_vs_A6": {
+   "factor": "UTILITY_RESOURCE_TERM",
+   "status": "CUMULATIVE_INCREMENTAL_NOT_STRICT_SINGLE_FACTOR"
+  },
+  "A2_to_A5_vs_A6": {
+   "factor": "ROUTING_SIGNAL",
+   "status": "BUDGET_MATCHED_COMPARATOR"
+  },
+  "A0_vs_A1": {
+   "factor": "REFINEMENT_ENABLED",
+   "status": "ENDPOINT_BRACKET_NOT_SINGLE_FACTOR"
+  }
+ },
+ "non_inferential_rows": [
+  "A0",
+  "A1",
+  "A2",
+  "A3",
+  "A4",
+  "A5"
+ ],
+ "multiple_factor_change_forbidden_in_inferential_contrasts": true,
+ "post_hoc_factor_addition_forbidden": true,
+ "generated_utc": "2026-10-02T18:42:00Z",
+ "all_pass": true
+}

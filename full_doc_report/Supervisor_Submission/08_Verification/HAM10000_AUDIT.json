@@ -1,0 +1,146 @@
+{
+ "artifact": "SUPERVISOR_SUBMISSION_HAM10000_AUDIT",
+ "dataset": "HAM10000 / ISIC-2018 Task 3 training input",
+ "official_doi": "https://doi.org/10.7910/DVN/DBW86T",
+ "local_root_read_only": "D:\\Softfors\\final\\external_test_ds\\HAM10000",
+ "local_inventory": {
+  "jpg_images": 10015,
+  "png_masks": 10015,
+  "metadata_rows": 10015,
+  "metadata_columns": [
+   "image",
+   "MEL",
+   "NV",
+   "BCC",
+   "AKIEC",
+   "BKL",
+   "DF",
+   "VASC"
+  ],
+  "sidecar_text_files": [
+   "ATTRIBUTION.txt",
+   "LICENSE.txt"
+  ],
+  "images_dir_total_entries": 10017,
+  "masks_dir_total_entries": 10015
+ },
+ "matched_mask_coverage": {
+  "image_stems": 10015,
+  "mask_stems": 10015,
+  "metadata_ids": 10015,
+  "three_way_matched_stems": 10015,
+  "coverage_pct": 100.0,
+  "unmatched_images": [],
+  "unmatched_masks": []
+ },
+ "mask_provenance": {
+  "binary_masks_present": true,
+  "provenance_record_exists": false,
+  "official_release_ships_segmentation_masks": false,
+  "controlling_verdict": "HAM10000_EXCLUDED__MASK_PROVENANCE_UNVERIFIED",
+  "controlling_source": "reports/audits/c1_external_stress_v1_0/cohort_construction.json",
+  "morphology_diagnostics": {
+   "n_masks_inspected": 512,
+   "sampling": "deterministic evenly-spaced stems, no random seed",
+   "foreground_fraction": {
+    "min": 0.009148148148148148,
+    "q1": 0.12197407407407407,
+    "median": 0.22712222222222223,
+    "q3": 0.3527138888888889,
+    "max": 0.9191481481481482
+   },
+   "n_connected_components": {
+    "mean": 1.017578125,
+    "median": 1.0,
+    "max": 3,
+    "pct_single_component": 98.6328125
+   },
+   "centroid_offset_from_image_centre_normalised": {
+    "median": 0.052694424869318066,
+    "q3": 0.08678520166585345
+   },
+   "pct_masks_touching_image_edge": 15.8203125,
+   "pct_masks_almost_entirely_foreground_ge_0_95": 0.0,
+   "unique_pixel_value_signatures": {
+    "[0, 255]": 512
+   },
+   "interpretation": "Binary masks are present and stem-matched, but a single centred coarse blob dominating each mask is consistent with an algorithmic proxy segmentation, NOT with documented expert lesion-boundary annotation. No provenance record for their creation exists in the repository."
+  }
+ },
+ "duplicates": {
+  "image_duplicate_hash_groups": [
+   [
+    "ISIC_0024366.jpg",
+    "ISIC_0029861.jpg"
+   ],
+   [
+    "ISIC_0024777.jpg",
+    "ISIC_0029938.jpg"
+   ]
+  ],
+  "mask_duplicate_hash_groups": [
+   [
+    "ISIC_0026042.png",
+    "ISIC_0029819.png"
+   ]
+  ],
+  "n_image_duplicate_groups": 2,
+  "n_mask_duplicate_groups": 1
+ },
+ "overlap": {
+  "id_overlap": {
+   "train_isic_ids": 2556,
+   "val_isic_ids": 357,
+   "all_paired_isic_ids": 3694,
+   "ham10000_ids": 10015,
+   "exact_overlap_train": 0,
+   "exact_overlap_val": 0,
+   "exact_overlap_all_paired_including_test_ids": 0,
+   "ham_id_min": "ISIC_0024306",
+   "ham_id_max": "ISIC_0034320",
+   "all_paired_isic_id_min": "ISIC_0000000",
+   "all_paired_isic_id_max": "ISIC_0036347",
+   "note": "all_paired.csv carries split assignment metadata for all 8,441 rows including TEST; only its ID column was read. test.csv was never opened. No TEST pixel was opened at any point."
+  },
+  "image_hash_overlap": {
+   "n_ham_images": 10015,
+   "n_unique_ham_image_sha256": 10013,
+   "n_isic_train_val_rows_checked": 2913,
+   "n_byte_size_candidates": 28,
+   "n_byte_identical_sha256_matches": 0,
+   "matched_names": [],
+   "note": "Only TRAIN+VAL ISIC image bytes were opened. TEST1683 image bytes were never opened. Size equality is a screening heuristic, not evidence of a match."
+  }
+ },
+ "prediction_evidence": {
+  "n_saved_per_case_full_prediction_artifacts_for_ham10000": 0,
+  "filename_scan_hits": [
+   "full_doc_report/Supervisor_Submission/05_Datasets/ext02_ham10000_manifest.csv",
+   "full_doc_report/V9/ReMedFiLM_V9_HAM10000_Audit.md",
+   "reports/external_extension/manifests/ext02_ham10000_manifest.csv"
+  ],
+  "note": "Filename-level metadata scan only; no pixel or mask opened. Hits are manifests, inventories, or audit prose, never saved ReMedFiLM FULL predictions. The single historical F5 HAM10000 ISIC_0024306 metric is GlobalMedFiLM-only, single-case, from checkpoint 286689fd...5ba1b7 (3,523,001 params) per c1_claim_provenance.json."
+ },
+ "evaluation_status": {
+  "classification_oriented": true,
+  "completed_quantitative_segmentation_benchmark": false,
+  "part_of_external884": false,
+  "rows_analysed_in_c1_external_stress": 0,
+  "status": "EXTERNAL_SKIN_DATASET_AVAILABLE__SEGMENTATION_EVALUATION_NOT_ESTABLISHED",
+  "reason": "Official HAM10000 / ISIC-2018 Task 3 is a classification release with no expert segmentation masks. The 10,015 local binary masks have no provenance. No dataset-level ReMedFiLM FULL evaluation and no saved eligible FULL predictions exist. Producing Dice/IoU/HD95 against these masks would be scientifically unsupported."
+ },
+ "licence": {
+  "local_licence_file": "images/LICENSE.txt (CC BY-NC 4.0 legal code)",
+  "local_attribution": "ViDIR Group, Department of Dermatology, Medical University of Vienna; ISIC-2018 Task 3 training input",
+  "licence": "CC BY-NC 4.0 (Attribution-NonCommercial 4.0 International)",
+  "redistribution": "Attribution required; NON-COMMERCIAL only. Raw HAM10000 images and masks are therefore NOT redistributed in the supervisor ZIP. Only metadata-level manifests, counts, and audit prose are included."
+ },
+ "boundaries": {
+  "training_performed": false,
+  "inference_performed": false,
+  "mask_or_prediction_written": false,
+  "test_csv_opened": false,
+  "protected_test1683_pixels_opened": false,
+  "frozen_evidence_modified": false
+ }
+}

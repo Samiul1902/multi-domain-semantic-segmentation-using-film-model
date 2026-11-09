@@ -1,0 +1,247 @@
+{
+ "artifact": "phase28_authoritative_source_binding",
+ "phase": 28,
+ "method": "RA-MedFiLM-BARR",
+ "classification": "PHASE28_ABLATION_MATRIX_AUTHORITATIVE_SOURCE_BINDING",
+ "governance_only": true,
+ "execution": "NONE",
+ "binding_rule": "No ablation meaning may be inferred from an ablation label alone. Every ablation definition MUST be resolved from the physical frozen Phase24 ablation-plan table (reports/tables/phase24_ablation_plan.csv) or another SHA-bound Phase24/25G artifact listed here.",
+ "label_inference_forbidden": true,
+ "sources": [
+  {
+   "path": "reports/tables/phase24_ablation_plan.csv",
+   "role": "FROZEN_ABLATION_MATRIX_DEFINITION",
+   "priority": "PRIMARY",
+   "note": "Authoritative enumeration of A0-A8/R1-R3/F1 with exact family+purpose",
+   "sha256": "422967fa3484b19d90bfc3b2146278aa69c6bd7a34e42ae3dbcb43a9ccca9087",
+   "exists": true
+  },
+  {
+   "path": "reports/tables/phase24_comparator_plan.csv",
+   "role": "FROZEN_COMPARATOR_DEFINITION",
+   "priority": "PRIMARY",
+   "note": "C1-C11 comparators",
+   "sha256": "6ac9808056db2d8745e4059f77debc0ccdd897263a99dd00910192517280222a",
+   "exists": true
+  },
+  {
+   "path": "reports/tables/phase24_success_failure_criteria.csv",
+   "role": "FROZEN_SUCCESS_FAILURE_CRITERIA",
+   "priority": "PRIMARY",
+   "note": "F1-F5 failures, S1-S3 successes",
+   "sha256": "d78033ed9131a4689fbc301a68d5229fea2536b7d4eb60f69da3b9cae9ba6219",
+   "exists": true
+  },
+  {
+   "path": "reports/audits/phase24_architecture_spec.json",
+   "role": "ARCHITECTURE_SPECIFICATION",
+   "priority": "PRIMARY",
+   "note": "ra_medfilm_barr_narrowed_v1 architecture, hypotheses, metrics, statistics",
+   "sha256": "bd5522678571f9b40e3ae887c7fd6c2d7862b3e73152eab1ae7db13cab6c6071",
+   "exists": true
+  },
+  {
+   "path": "reports/audits/phase24_exact_implementation_spec.json",
+   "role": "EXACT_IMPLEMENTATION_SPECIFICATION",
+   "priority": "PRIMARY",
+   "note": "ra_medfilm_barr_narrowed_v1_1; refiner/router/post-safety/ROI/fusion exact numbers",
+   "sha256": "6b1a71d5e88ce06baa8f200523be32773428417ffd233ff218d7e50b6af271dd",
+   "exists": true
+  },
+  {
+   "path": "reports/audits/phase24_phase25_module_plan.json",
+   "role": "MODULE_PLAN",
+   "priority": "PRIMARY",
+   "note": "25A-25G module decomposition",
+   "sha256": "ef9426a9cff94f2727b84c5c97488e20bf6355764a0c5d1df69851bd728883b8",
+   "exists": true
+  },
+  {
+   "path": "reports/audits/phase24_preservation_contract.json",
+   "role": "PRESERVATION_CONTRACT",
+   "priority": "PRIMARY",
+   "note": "non-destructive replacement; margin 0.005; per-domain mandatory",
+   "sha256": "a4e829b07350611438aabf629315438e8bf0f995194d0fba5974c9a843b1b20c",
+   "exists": true
+  },
+  {
+   "path": "reports/audits/phase24_final_freeze.json",
+   "role": "PHASE24_FREEZE",
+   "priority": "PRIMARY",
+   "note": "Phase24 terminal",
+   "sha256": "41191c20d2a1815a05439f3abd02860376f69950b2170fa65ad03a70a33c2f70",
+   "exists": true
+  },
+  {
+   "path": "reports/audits/phase24_entry_gate.json",
+   "role": "PHASE24_ENTRY_GATE",
+   "priority": "SUPPORTING",
+   "note": "",
+   "sha256": "20f12ab9a7a64bde5ad091fdf09dda03b82052d9530717d678fa9e879e10b251",
+   "exists": true
+  },
+  {
+   "path": "reports/audits/phase25g_final_freeze.json",
+   "role": "PHASE25G_FREEZE",
+   "priority": "PRIMARY",
+   "note": "A7/A8 frozen canonical results; population ROUTER_DEVELOPMENT n=4957",
+   "sha256": "48fb05f88fdc88fa33f25342be64bf1f8cc1e62ba7a36eb0e6484c9208c6d276",
+   "exists": true
+  },
+  {
+   "path": "reports/audits/phase25g_ablation_scope_audit.json",
+   "role": "ABLATION_SCOPE_AUDIT",
+   "priority": "PRIMARY",
+   "note": "R1/R2/R3/F1 explicitly DEFERRED to Phase28",
+   "sha256": "3481ba1fd81f824755c8e13fcd96760fe8ac9c3bb91d1e9aca103ee73d48dcc1",
+   "exists": true
+  },
+  {
+   "path": "reports/audits/phase25g_a7_a8_controlled_comparison_contract.json",
+   "role": "A7_A8_CONTRACT",
+   "priority": "PRIMARY",
+   "note": "A7/A8 definitions",
+   "sha256": "ef3c25da49a530e99cc33adaced031be4988432370181c7e8a994803ede1c503",
+   "exists": true
+  },
+  {
+   "path": "reports/audits/phase25g_a7_a8_identity_control_audit.json",
+   "role": "A7_A8_IDENTITY_CONTROL",
+   "priority": "PRIMARY",
+   "note": "identity control for A7/A8",
+   "sha256": "49246e3b32b669b04e5b339b177e82783089266d5ab8cf825d89c89443a5e1c3",
+   "exists": true
+  },
+  {
+   "path": "reports/audits/phase25g_compute_contract.json",
+   "role": "COMPUTE_CONTRACT",
+   "priority": "PRIMARY",
+   "note": "compute accounting rules",
+   "sha256": "8e495855910aca05838ad9f95aced34f869fc617de94d2153562613c59bcd874",
+   "exists": true
+  },
+  {
+   "path": "reports/audits/phase25g_compute_accounting_audit.json",
+   "role": "COMPUTE_ACCOUNTING_AUDIT",
+   "priority": "PRIMARY",
+   "note": "",
+   "sha256": "b5079c8521d09d9d80a71c9457a07f6df7ba8321473cac799290824237b1f440",
+   "exists": true
+  },
+  {
+   "path": "reports/audits/phase25g_preservation_contract_binding.json",
+   "role": "PRESERVATION_BINDING",
+   "priority": "SUPPORTING",
+   "note": "",
+   "sha256": "ae7da98fa914fbb518de2b8ecaf6a0eaead087395ae3e50158ed38b99e6a7b88",
+   "exists": true
+  },
+  {
+   "path": "reports/audits/phase25g_preservation_adjudication.json",
+   "role": "PRESERVATION_ADJUDICATION",
+   "priority": "PRIMARY",
+   "note": "",
+   "sha256": "57ded4aa2c759b3b934d7bd552335a27d8dda71afab42c9267e705d8b53a4541",
+   "exists": true
+  },
+  {
+   "path": "reports/audits/phase25g_authoritative_source_binding.json",
+   "role": "SOURCE_BINDING_PRECEDENT",
+   "priority": "SUPPORTING",
+   "note": "precedent for binding style",
+   "sha256": "ea01f00a0556ebf981cc455e3e9d97c6a984347f405ba612dbf3347565363e60",
+   "exists": true
+  },
+  {
+   "path": "reports/audits/phase26_final_freeze.json",
+   "role": "PHASE26_FREEZE",
+   "priority": "PRIMARY",
+   "note": "canonical A8/C9 bundle; baseline arm authority",
+   "sha256": "e709f5301894dc0377420500a9b6d6e95bd54858fde4cb472cad73d630b8adb4",
+   "exists": true
+  },
+  {
+   "path": "reports/audits/phase27_final_freeze.json",
+   "role": "PHASE27_FREEZE",
+   "priority": "PRIMARY",
+   "note": "VAL808 continuity result",
+   "sha256": "42e51a6734c8c620bd056a829a770f23d4d354e3ba82f2272150636d96062187",
+   "exists": true
+  },
+  {
+   "path": "reports/audits/phase27_final_freeze_visual_repair_governance_addendum.json",
+   "role": "PHASE27_VISUAL_ADDENDUM",
+   "priority": "SUPPORTING",
+   "note": "",
+   "sha256": "53578478b815714b233b8c43a2ac5a2d953ae54eb22037a136e41d2935ed39e1",
+   "exists": true
+  },
+  {
+   "path": "reports/audits/phase27_visual_repair_governance_reconciliation_final_check.json",
+   "role": "PHASE27_FINAL_CHECK",
+   "priority": "PRIMARY",
+   "note": "Phase27 terminal confirmation",
+   "sha256": "2606f3cd88080a023f6c7da1610a065966ef49213723eb265a43112341ec63d2",
+   "exists": true
+  },
+  {
+   "path": "artifacts/phase26_ra_medfilm_barr_bundle_v1_0/canonical_bundle_manifest.json",
+   "role": "CANONICAL_BUNDLE_MANIFEST",
+   "priority": "PRIMARY",
+   "note": "frozen A8/C9 bundle components + SHAs",
+   "sha256": "f7aebb0f646bcc8de49fa91b70a4c4cc1051c9998ab6b055a8d4d187809cb3d9",
+   "exists": true
+  },
+  {
+   "path": "notebooks/phasewise/PHASE_INDEX.md",
+   "role": "PHASE_INDEX",
+   "priority": "PRIMARY",
+   "note": "phase state index",
+   "sha256": "d4fd382b64f7b9087e031100b4d374e6e477e23988d0a8ed7f5a157aba007c3b",
+   "exists": true
+  },
+  {
+   "path": "docs/ARCHITECTURE.md",
+   "role": "DOC_ARCHITECTURE",
+   "priority": "SUPPORTING",
+   "note": "",
+   "sha256": "6cfefbb885ce6b20ded16d08efe47bd258e696a52385927502e372622d3f21f6",
+   "exists": true
+  },
+  {
+   "path": "docs/DESIGN.md",
+   "role": "DOC_DESIGN",
+   "priority": "SUPPORTING",
+   "note": "",
+   "sha256": "971c9e66d4a8b6f5d889153d4e412cad16ed2c91121835f5133d9bfab1c2b5d2",
+   "exists": true
+  },
+  {
+   "path": "docs/RULES.md",
+   "role": "DOC_RULES",
+   "priority": "SUPPORTING",
+   "note": "",
+   "sha256": "2c495daecf2066317be18c84a25bc3d0ed1063df59e897eac875dd3d5c7da13a",
+   "exists": true
+  },
+  {
+   "path": "docs/TASKS.md",
+   "role": "DOC_TASKS",
+   "priority": "SUPPORTING",
+   "note": "",
+   "sha256": "663c8f29fb6353b2fbf5b5326d8bdc75b2d6230901601cf992d3cad58c47d42f",
+   "exists": true
+  },
+  {
+   "path": "docs/MEMORY.md",
+   "role": "DOC_MEMORY",
+   "priority": "SUPPORTING",
+   "note": "",
+   "sha256": "9b9ece6a7d7bc8c9851b2e8cdcc8d3bb9e05e7172e8ac41049c7a9578a71c51d",
+   "exists": true
+  }
+ ],
+ "all_sources_present": true,
+ "generated_utc": "2026-10-02T18:31:00Z",
+ "all_pass": true
+}

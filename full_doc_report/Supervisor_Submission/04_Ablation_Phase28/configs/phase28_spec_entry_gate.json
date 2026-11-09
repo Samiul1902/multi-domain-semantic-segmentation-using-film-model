@@ -1,0 +1,55 @@
+{
+ "artifact": "phase28_spec_entry_gate",
+ "phase": 28,
+ "method": "RA-MedFiLM-BARR",
+ "classification": "PHASE28_PRE_EXECUTION_SPECIFICATION_AUDIT_ENTRY_GATE",
+ "governance_only": true,
+ "execution": "NONE",
+ "predecessor_requirements": {
+  "phase27_scientific_terminal": {
+   "value": "PHASE27_MULTIDOMAIN_PRESERVATION_AUDIT_COMPLETE__VAL808_CONTINUITY_RESULT_FROZEN__PHASE28_ELIGIBLE_NOT_STARTED",
+   "source": "reports/audits/phase27_final_freeze.json",
+   "source_sha256": "42e51a6734c8c620bd056a829a770f23d4d354e3ba82f2272150636d96062187",
+   "matched": true
+  },
+  "phase27_visual_repair_terminal": {
+   "value": "PHASE27_VISUAL_REPAIR_GOVERNANCE_RECONCILED__CANONICAL_QUALITATIVE_FIGURE_REBUILT_FROM_FROZEN_ARTIFACTS__SCIENTIFIC_FREEZE_UNCHANGED__PHASE28_ELIGIBLE_NOT_STARTED",
+   "source": "reports/audits/phase27_visual_repair_governance_reconciliation_final_check.json",
+   "source_sha256": "2606f3cd88080a023f6c7da1610a065966ef49213723eb265a43112341ec63d2",
+   "matched": true
+  },
+  "phase27_state": {
+   "required": "COMPLETE_CANONICAL",
+   "observed": "COMPLETE_CANONICAL",
+   "matched": true
+  }
+ },
+ "predecessor_state_lock": {
+  "ROUTER_HOLDOUT_state": {
+   "required": "RESERVED_UNOPENED_FOR_PHASE30",
+   "observed": "RESERVED_UNOPENED_FOR_PHASE30",
+   "matched": true
+  },
+  "TEST_state": {
+   "required": "LOCKED_UNTIL_PHASE39",
+   "observed": "LOCKED_UNTIL_PHASE39",
+   "matched": true
+  },
+  "phase27_scientific_freeze_sha_unchanged": {
+   "value": "42e51a6734c8c620bd056a829a770f23d4d354e3ba82f2272150636d96062187",
+   "observed": "42e51a6734c8c620bd056a829a770f23d4d354e3ba82f2272150636d96062187",
+   "matched": true
+  },
+  "phase26_bundle_manifest_sha_unchanged": {
+   "value": "f7aebb0f646bcc8de49fa91b70a4c4cc1051c9998ab6b055a8d4d187809cb3d9",
+   "observed": "f7aebb0f646bcc8de49fa91b70a4c4cc1051c9998ab6b055a8d4d187809cb3d9",
+   "matched": true
+  }
+ },
+ "predecessor_drift": 0,
+ "entry_gate_pass": true,
+ "blocked_terminal_would_be": "PHASE28_BLOCKED__PREDECESSOR_ARTIFACT_DRIFT",
+ "terminal": "PHASE28_ENTRY_GATE_PASS__PHASE27_TERMINALS_CONFIRMED__ABLATION_SPEC_AUDIT_AUTHORIZED",
+ "generated_utc": "2026-10-02T18:30:00Z",
+ "all_pass": true
+}

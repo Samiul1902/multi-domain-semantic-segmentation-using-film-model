@@ -1,0 +1,21 @@
+{
+ "artifact": "phase28_f1_pipeline_validation",
+ "phase": 28,
+ "classification": "F1_EVALUATION_PIPELINE_FAITHFULNESS_VALIDATION",
+ "purpose": "Before accepting the large negative F1 refiner-level effect, prove the Phase-28 evaluation pipeline reproduces the FROZEN canonical candidate Dice exactly.",
+ "method": "Recompute global Dice and candidate-refined Dice from the frozen prob512 + frozen canonical Phase25C refined crops using the canonical roi_geometry + phase25c_common.fuse_full_field + frozen 0.50 segmentation threshold, and compare to the frozen delta/gain label table columns global_dice and candidate_refined_dice.",
+ "validation_probe": {
+  "n_samples_probed": 60,
+  "n_exact_match": 60,
+  "n_mismatch": 0,
+  "max_abs_error": 1.11e-16,
+  "tolerance": 1e-06
+ },
+ "f1_table_global_recomputation": {
+  "n_rows": 1239,
+  "n_rows_matching_frozen_global_dice": 1239,
+  "all_match": true
+ },
+ "conclusion": "The Phase-28 pipeline is bit-faithful to the frozen canonical Phase25C candidate construction. The large negative F1 refiner-level effect is a GENUINE scientific result, not an evaluation artifact.",
+ "all_pass": true
+}

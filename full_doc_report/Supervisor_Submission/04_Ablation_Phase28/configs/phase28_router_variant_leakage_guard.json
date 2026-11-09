@@ -1,0 +1,46 @@
+{
+ "artifact": "phase28_router_leakage_guard",
+ "phase": 28,
+ "classification": "PRE_TRAINING_ROUTER_LEAKAGE_GUARD",
+ "applies_to": [
+  "R1",
+  "R2",
+  "R3"
+ ],
+ "trainer": {
+  "path": "scripts/analysis/train_phase28_router_variant.py",
+  "sha256": "21ef15b4ef03ab1930040738a5b8fc61a3561c200d59f4be78bcd7afcef90797"
+ },
+ "leakage_rules": {
+  "target_read_scope": "delta_dice AND gain_category are read ONLY from the joined table for (a) FIT rows (training target) and (b) EARLY_STOP rows (checkpoint selection metric). They are NEVER read for OUTER_TARGET rows.",
+  "oof_output_columns": [
+   "sample_id",
+   "domain",
+   "task_id",
+   "router_cv_fold",
+   "delta_hat"
+  ],
+  "forbidden_fields_in_outer_target_output": [
+   "delta_dice",
+   "gain_category",
+   "global_dice",
+   "candidate_refined_dice"
+  ],
+  "forbidden_fields_absent_from_oof_csv": true,
+  "membership_uses_outcome": false,
+  "outcome_access_barrier": "Membership (K=1239) is derived from delta_hat ONLY, frozen and hashed BEFORE any outcome join. Enforced in a separate post-barrier step (phase28_router_membership_barrier.json).",
+  "fold_ownership": "each OUTER_TARGET sample is predicted ONLY by the fold model whose outer_target contains it; never final.pt; no final refit",
+  "fit_es_ot_disjoint": true,
+  "normalization_fit_only": "mu/sigma computed on FIT_k only; applied to ES_k and OT_k",
+  "seed_policy_inherited": "42000 + outer_fold_index (no new seeds)"
+ },
+ "static_check": {
+  "trainer_reads_delta_dice": true,
+  "trainer_reads_gain_category": true,
+  "note": "Both are read for the joined table construction. The OOF prediction section writes ONLY delta_hat; the target arrays (y_all) are consumed exclusively via fit_idx and es_idx slices.",
+  "target_slices_are_fit_and_es_only": true,
+  "outer_target_targets_read": false
+ },
+ "blocked_terminal_if_violated": "PHASE28_BLOCKED__ROUTER_LEAKAGE_GUARD_FAILURE",
+ "all_pass": true
+}

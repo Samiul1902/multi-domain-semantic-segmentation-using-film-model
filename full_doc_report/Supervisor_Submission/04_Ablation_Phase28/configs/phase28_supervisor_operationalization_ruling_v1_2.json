@@ -1,0 +1,47 @@
+{
+ "artifact": "phase28_supervisor_operationalization_ruling_v1_2",
+ "phase": 28,
+ "classification": "SUPERVISOR_PROSPECTIVE_OPERATIONALIZATION_RULING",
+ "method": "RA-MedFiLM-BARR",
+ "governance_only": true,
+ "execution": "NONE",
+ "ruling_scope": [
+  "R1",
+  "R2",
+  "R3",
+  "F1"
+ ],
+ "frozen_classification": "SEPARATELY_TRAINED_CONTROLLED_ABLATION_VARIANT",
+ "per_ablation_classification": {
+  "R1": "SEPARATELY_TRAINED_CONTROLLED_ABLATION_VARIANT",
+  "R2": "SEPARATELY_TRAINED_CONTROLLED_ABLATION_VARIANT",
+  "R3": "SEPARATELY_TRAINED_CONTROLLED_ABLATION_VARIANT",
+  "F1": "SEPARATELY_TRAINED_CONTROLLED_ABLATION_VARIANT"
+ },
+ "explicitly_not": [
+  "inference_time_feature_zeroing",
+  "input_occlusion",
+  "post_hoc_masking_of_canonical_trained_model"
+ ],
+ "rationale": "Frozen wording uses 'router without ...' and 'refiner without ...'. The scientifically faithful implementation removes the relevant input during fitting and evaluation.",
+ "prospective": true,
+ "pre_phase28_outcome": true,
+ "limited_to_phase28": true,
+ "prior_scientific_results_changed": false,
+ "canonical_Phase26_bundle_changed": false,
+ "Phase28_execution_spec_changed": true,
+ "training_authorization": {
+  "supersedes_prior": "NO_TRAINING",
+  "new": "ABLATION_ONLY_TRAINING_AUTHORIZED_FOR_R1_R2_R3_F1",
+  "forbidden_training_targets": [
+   "A0-A8",
+   "GlobalMedFiLM",
+   "canonical_Phase25D_B_phi",
+   "canonical_Phase25A_refiner",
+   "canonical_Phase25F_S_omega"
+  ],
+  "canonical_checkpoints_must_not_be_overwritten": true,
+  "ablation_checkpoints_new_paths_only": true
+ },
+ "generated_utc": "2026-10-02T12:30:00Z"
+}

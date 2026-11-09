@@ -1,0 +1,191 @@
+{
+ "artifact": "phase29_phase_d_val808_per_seed_continuity",
+ "phase": 29,
+ "phase_label": "PHASE_D",
+ "section": "§13",
+ "population": "VAL808",
+ "population_n": 808,
+ "domains": [
+  "BUSI",
+  "ISIC",
+  "KUB",
+  "KVASIR"
+ ],
+ "macro_domain_equal_weight": true,
+ "segmentation_output_threshold": 0.5,
+ "dice_scorer": "src.metrics.evaluation_metrics.dice",
+ "gt_rule": "full_field_gt NEAREST 512 + centre pad, (arr>0)",
+ "bootstrap": {
+  "type": "DOMAIN_STRATIFIED_GROUP_BOOTSTRAP",
+  "B": 2000,
+  "seed": 42,
+  "rng": "PCG64(42)",
+  "percentiles": [
+   2.5,
+   97.5
+  ]
+ },
+ "metrics_by_seed": {
+  "42": {
+   "macro_final_dice": 0.8372891053775793,
+   "macro_global_dice": 0.8350789601074979,
+   "macro_delta_dice": 0.0022101452700813433,
+   "bootstrap": {
+    "point": 0.0022101452700813433,
+    "ci_low": 0.001133428168276068,
+    "ci_high": 0.003298131445733337,
+    "n_boot": 2000,
+    "seed": 42,
+    "method": "DOMAIN_STRATIFIED_GROUP_BOOTSTRAP",
+    "rng": "numpy.random.Generator(numpy.random.PCG64(42))",
+    "percentiles": [
+     2.5,
+     97.5
+    ]
+   },
+   "noninferiority_margin": 0.005,
+   "noninferiority_ci_low_gt_minus_margin": true,
+   "n_selected": 279,
+   "selected_fraction": 0.34529702970297027,
+   "n_accepted": 266,
+   "safety_accept_fraction": 0.953405017921147,
+   "n_final_refined": 266,
+   "per_domain": {
+    "BUSI": {
+     "n": 84,
+     "global_dice": 0.8588214375680574,
+     "final_dice": 0.8589126018391846,
+     "delta_dice": 9.116427112706332e-05
+    },
+    "ISIC": {
+     "n": 357,
+     "global_dice": 0.8971889499163059,
+     "final_dice": 0.8980801299180301,
+     "delta_dice": 0.00089118000172409
+    },
+    "KUB": {
+     "n": 280,
+     "global_dice": 0.7640588414471431,
+     "final_dice": 0.771512927778779,
+     "delta_dice": 0.0074540863316359274
+    },
+    "KVASIR": {
+     "n": 87,
+     "global_dice": 0.8202466114984852,
+     "final_dice": 0.8206507619743234,
+     "delta_dice": 0.0004041504758382939
+    }
+   }
+  },
+  "123": {
+   "macro_final_dice": 0.8384669006659462,
+   "macro_global_dice": 0.8350789601074979,
+   "macro_delta_dice": 0.003387940558448247,
+   "bootstrap": {
+    "point": 0.003387940558448247,
+    "ci_low": 0.0024507510859814842,
+    "ci_high": 0.004394181852655706,
+    "n_boot": 2000,
+    "seed": 42,
+    "method": "DOMAIN_STRATIFIED_GROUP_BOOTSTRAP",
+    "rng": "numpy.random.Generator(numpy.random.PCG64(42))",
+    "percentiles": [
+     2.5,
+     97.5
+    ]
+   },
+   "noninferiority_margin": 0.005,
+   "noninferiority_ci_low_gt_minus_margin": true,
+   "n_selected": 255,
+   "selected_fraction": 0.3155940594059406,
+   "n_accepted": 230,
+   "safety_accept_fraction": 0.9019607843137255,
+   "n_final_refined": 230,
+   "per_domain": {
+    "BUSI": {
+     "n": 84,
+     "global_dice": 0.8588214375680574,
+     "final_dice": 0.8589452875239157,
+     "delta_dice": 0.00012384995585823776
+    },
+    "ISIC": {
+     "n": 357,
+     "global_dice": 0.8971889499163059,
+     "final_dice": 0.8985104339508915,
+     "delta_dice": 0.0013214840345853907
+    },
+    "KUB": {
+     "n": 280,
+     "global_dice": 0.7640588414471431,
+     "final_dice": 0.774018975654302,
+     "delta_dice": 0.009960134207158902
+    },
+    "KVASIR": {
+     "n": 87,
+     "global_dice": 0.8202466114984852,
+     "final_dice": 0.8223929055346757,
+     "delta_dice": 0.0021462940361904586
+    }
+   }
+  },
+  "3407": {
+   "macro_final_dice": 0.8379477613774475,
+   "macro_global_dice": 0.8350789601074979,
+   "macro_delta_dice": 0.002868801269949678,
+   "bootstrap": {
+    "point": 0.002868801269949678,
+    "ci_low": 0.0018452752176293002,
+    "ci_high": 0.00387291964389607,
+    "n_boot": 2000,
+    "seed": 42,
+    "method": "DOMAIN_STRATIFIED_GROUP_BOOTSTRAP",
+    "rng": "numpy.random.Generator(numpy.random.PCG64(42))",
+    "percentiles": [
+     2.5,
+     97.5
+    ]
+   },
+   "noninferiority_margin": 0.005,
+   "noninferiority_ci_low_gt_minus_margin": true,
+   "n_selected": 262,
+   "selected_fraction": 0.32425742574257427,
+   "n_accepted": 256,
+   "safety_accept_fraction": 0.9770992366412213,
+   "n_final_refined": 256,
+   "per_domain": {
+    "BUSI": {
+     "n": 84,
+     "global_dice": 0.8588214375680574,
+     "final_dice": 0.8589864936739456,
+     "delta_dice": 0.0001650561058880649
+    },
+    "ISIC": {
+     "n": 357,
+     "global_dice": 0.8971889499163059,
+     "final_dice": 0.8980236516519491,
+     "delta_dice": 0.0008347017356431333
+    },
+    "KUB": {
+     "n": 280,
+     "global_dice": 0.7640588414471431,
+     "final_dice": 0.7747979474075282,
+     "delta_dice": 0.010739105960384987
+    },
+    "KVASIR": {
+     "n": 87,
+     "global_dice": 0.8202466114984852,
+     "final_dice": 0.8199829527763677,
+     "delta_dice": -0.0002636587221174742
+    }
+   }
+  }
+ },
+ "numeric_reproducibility_pass_fail_gate": "NONE",
+ "NO_NUMERIC_REPRODUCIBILITY_PASS_FAIL_GATE": true,
+ "gt_used_for_final_metrics_only": true,
+ "gt_derived_information_persisted": false,
+ "best_seed_selected": false,
+ "ranking_performed": false,
+ "generated_utc": "2026-10-03T15:53:47+00:00",
+ "all_pass": true
+}

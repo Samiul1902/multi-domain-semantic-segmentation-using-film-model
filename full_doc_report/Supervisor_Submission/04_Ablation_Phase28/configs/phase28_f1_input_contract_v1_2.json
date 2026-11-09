@@ -1,0 +1,45 @@
+{
+ "phase": 28,
+ "method": "RA-MedFiLM-BARR",
+ "governance_only": true,
+ "execution": "NONE",
+ "generated_utc": "2026-10-02T12:40:00Z",
+ "artifact": "phase28_f1_input_contract_v1_2",
+ "classification": "F1_REFINER_INPUT_CHANNEL_FREEZE",
+ "canonical_refiner_input": {
+  "channels": 4,
+  "layout": "[R,G,B,p_global_crop]",
+  "shape": [
+   null,
+   4,
+   256,
+   256
+  ]
+ },
+ "F1_input": {
+  "channels": 3,
+  "layout": "[R,G,B]",
+  "shape": [
+   null,
+   3,
+   256,
+   256
+  ]
+ },
+ "p_global_channel_physically_absent": true,
+ "forbidden": [
+  "feed zeros as fourth channel",
+  "mask the fourth channel",
+  "reuse the 4-channel weights"
+ ],
+ "requires_new_checkpoint_family": true,
+ "new_checkpoint_root": "checkpoints/phase28_refiner_F1_no_pglobal/",
+ "roi_geometry_remains_canonical": true,
+ "roi_proposal_threshold": 0.3,
+ "roi_expansion": 1.5,
+ "crop_resolution": 256,
+ "p_global_still_used_for_ROI_proposal": true,
+ "controlled_factor": "REFINER_INPUT_P_GLOBAL_CHANNEL",
+ "not_the_controlled_factor": "ROI proposal mechanism",
+ "dataset_change_localized": "barr_refiner_dataset.py L170 inputs = concatenate([rgb, prob], axis=0) -> [rgb] only"
+}

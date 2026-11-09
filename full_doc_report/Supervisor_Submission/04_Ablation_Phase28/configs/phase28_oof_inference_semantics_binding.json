@@ -1,0 +1,69 @@
+{
+ "artifact": "phase28_oof_inference_semantics_binding",
+ "phase": 28,
+ "classification": "PRE_EXECUTION_OOF_INFERENCE_SEMANTICS_RECOVERY_BINDING",
+ "recovery_method": "physical_source_inspection__not_memory",
+ "purpose": "Recover the EXACT OOF inference semantics of the canonical Phase25D router and Phase25A/25C refiner so that Phase28 R1/R2/R3/F1 OOF replay is scientifically identical where it must be, and differs ONLY in the frozen ablated factor.",
+ "router_oof_inference_semantics": {
+  "source_script": {
+   "path": "scripts/analysis/train_phase25d_router.py",
+   "sha256": "fc7c1bdf263ae4551dcb8f170d3203adb8540fbc189846265b74f6eca1541e91"
+  },
+  "device": "torch.device('cuda' if torch.cuda.is_available() else 'cpu')  # trainer L209",
+  "model_mode": "model.eval()  # L357",
+  "gradient_mode": "torch.no_grad()  # L359",
+  "autocast": "NOT USED for router OOF prediction (no torch.autocast in the OOF block)",
+  "input_dtype": "torch.from_numpy(ot_x_norm) -> float32 (features .astype(np.float32) L69)",
+  "task_id_dtype": "torch.from_numpy(ot_t) -> int64 (joined_task_ids int)",
+  "batch_size": 128,
+  "shuffle": false,
+  "ordering": "outer_target rows in joined_sample_ids order",
+  "output_dtype": "np.array(ot_preds, dtype=np.float32)  # L366",
+  "output_form": "raw scalar regression output (no activation)",
+  "deterministic": "no randomness at inference; seeds set per fold (42000+k) but not required for eval",
+  "normalization": "apply_normalize with FIT_k mu/sigma ddof=0, constant<1e-12 -> 0.0 applied to SCALAR_NORMALIZE_IDX",
+  "fold_ownership": "each OT sample predicted ONLY by its own fold model; never final.pt",
+  "non_reuse_note": "Do NOT reuse the training AMP setting — router training used no autocast either; OOF inference is plain FP32."
+ },
+ "refiner_oof_inference_semantics": {
+  "source_script": {
+   "path": "scripts/analysis/run_phase25c_oof_inference.py",
+   "sha256": "261cc73f5755775d48cb162b2c82333ec691962ed487ccf50802110f8ab04fae"
+  },
+  "common_module": {
+   "path": "notebooks/phasewise/phase_25c_paired_gain_labels/code/phase25c_common.py",
+   "sha256": "3959ca9c247ba3b545ea1f2fc8557cfa5f047aaa65ebc78fc5f8c82a385a116b"
+  },
+  "device": "model loaded on CPU (map_location='cpu'), model.eval(); input tensors stay on CPU",
+  "model_mode": "m.eval()  # L81",
+  "gradient_mode": "torch.inference_mode()  # L116",
+  "autocast": "NOT USED — explicit comment 'FP32, no autocast' L117",
+  "input_dtype": "np.ascontiguousarray(inp, dtype=np.float32) -> float32 (4,256,256)",
+  "input_construction": "build_refiner_input: rgb uint8/255.0 (float32); prob float16->float32; concatenate [rgb, prob] axis=0",
+  "batch_size": "C.INFERENCE_BATCH = 8",
+  "shuffle": "not applicable (direct index chunks)",
+  "ordering": "per domain, per outer fold k in (0,1,2), indices ascending, chunked by 8",
+  "output": "torch.sigmoid(logits.float())[:, 0].cpu().numpy() -> 256x256 refined crop probability",
+  "output_dtype": "float32 (sigmoid of float32 logits)",
+  "deterministic": "deterministic; no sampling",
+  "fold_ownership": "fold-specific canonical ROI-0.30 refiner whose OUTER_TARGET fold contains the sample; never final.pt",
+  "global_forward_passes": 0,
+  "fusion": "fuse_full_field: replace inside valid canonical ROI, leave p_global unchanged outside",
+  "segmentation_threshold": 0.5,
+  "roi_proposal_threshold": 0.3,
+  "canvas_resolution": 512,
+  "trainer_side_amp_note": "The Phase25A TRAINER used torch.amp.autocast(enabled=amp) for its ES loss (L519); the canonical OOF inference does NOT — 'Do NOT simply reuse the training AMP setting.'"
+ },
+ "phase25f_safety_oof_inference_semantics": {
+  "note": "Integrated-only. Reuses Phase25D CV5 fold ownership (F7 ruling); recompute deterministic 20-D S_omega feature vector from the (F1) candidate, then run the frozen cv_fold{k} S_omega model for that OUTER_TARGET sample.",
+  "no_retrain": true,
+  "fold_checkpoints_root": "checkpoints/phase25f_barr_post_safety_v1_0_seed42/cv_fold0..4",
+  "fold_checkpoints_physically_present": true,
+  "reuse_contract": {
+   "path": "reports/audits/phase25f_cv_manifest_reuse_contract_v1_0.json",
+   "sha256": "731376fd19d2fc922f5209fdf891a12f9db5ed0ddafc04f697fe5364e1d02533"
+  }
+ },
+ "binding_verdict": "PHASE28_OOF_INFERENCE_SEMANTICS_RECOVERED_AND_BOUND",
+ "all_pass": true
+}

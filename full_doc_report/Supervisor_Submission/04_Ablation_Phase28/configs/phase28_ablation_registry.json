@@ -1,0 +1,164 @@
+{
+ "artifact": "phase28_ablation_registry",
+ "phase": 28,
+ "classification": "PHASE28_FROZEN_ABLATION_REGISTRY",
+ "governance_only": true,
+ "execution": "NONE",
+ "source_table": "reports/tables/phase24_ablation_plan.csv",
+ "source_table_sha256": "422967fa3484b19d90bfc3b2146278aa69c6bd7a34e42ae3dbcb43a9ccca9087",
+ "n_ablation_ids": 13,
+ "core_ids": [
+  "A0",
+  "A1",
+  "A2",
+  "A3",
+  "A4",
+  "A5",
+  "A6",
+  "A7",
+  "A8"
+ ],
+ "router_ids": [
+  "R1",
+  "R2",
+  "R3"
+ ],
+ "refiner_ids": [
+  "F1"
+ ],
+ "label_inference_used": false,
+ "registry": [
+  {
+   "ablation_id": "A0",
+   "name": "global-only",
+   "family": "core",
+   "purpose": "compute floor / preservation reference",
+   "executed_in_phase24": "no",
+   "definition_source": "reports/tables/phase24_ablation_plan.csv",
+   "definition_source_sha256": "422967fa3484b19d90bfc3b2146278aa69c6bd7a34e42ae3dbcb43a9ccca9087",
+   "definition_text": "global-only | family=core | purpose=compute floor / preservation reference"
+  },
+  {
+   "ablation_id": "A1",
+   "name": "always-refine",
+   "family": "core",
+   "purpose": "compute ceiling / no-routing reference",
+   "executed_in_phase24": "no",
+   "definition_source": "reports/tables/phase24_ablation_plan.csv",
+   "definition_source_sha256": "422967fa3484b19d90bfc3b2146278aa69c6bd7a34e42ae3dbcb43a9ccca9087",
+   "definition_text": "always-refine | family=core | purpose=compute ceiling / no-routing reference"
+  },
+  {
+   "ablation_id": "A2",
+   "name": "random routing",
+   "family": "core",
+   "purpose": "null routing baseline",
+   "executed_in_phase24": "no",
+   "definition_source": "reports/tables/phase24_ablation_plan.csv",
+   "definition_source_sha256": "422967fa3484b19d90bfc3b2146278aa69c6bd7a34e42ae3dbcb43a9ccca9087",
+   "definition_text": "random routing | family=core | purpose=null routing baseline"
+  },
+  {
+   "ablation_id": "A3",
+   "name": "entropy routing",
+   "family": "core",
+   "purpose": "simple GT-free uncertainty proxy",
+   "executed_in_phase24": "no",
+   "definition_source": "reports/tables/phase24_ablation_plan.csv",
+   "definition_source_sha256": "422967fa3484b19d90bfc3b2146278aa69c6bd7a34e42ae3dbcb43a9ccca9087",
+   "definition_text": "entropy routing | family=core | purpose=simple GT-free uncertainty proxy"
+  },
+  {
+   "ablation_id": "A4",
+   "name": "margin routing",
+   "family": "core",
+   "purpose": "simple GT-free margin proxy",
+   "executed_in_phase24": "no",
+   "definition_source": "reports/tables/phase24_ablation_plan.csv",
+   "definition_source_sha256": "422967fa3484b19d90bfc3b2146278aa69c6bd7a34e42ae3dbcb43a9ccca9087",
+   "definition_text": "margin routing | family=core | purpose=simple GT-free margin proxy"
+  },
+  {
+   "ablation_id": "A5",
+   "name": "predicted-ROI-size routing",
+   "family": "core",
+   "purpose": "simple GT-free geometry proxy",
+   "executed_in_phase24": "no",
+   "definition_source": "reports/tables/phase24_ablation_plan.csv",
+   "definition_source_sha256": "422967fa3484b19d90bfc3b2146278aa69c6bd7a34e42ae3dbcb43a9ccca9087",
+   "definition_text": "predicted-ROI-size routing | family=core | purpose=simple GT-free geometry proxy"
+  },
+  {
+   "ablation_id": "A6",
+   "name": "learned paired-gain router",
+   "family": "core",
+   "purpose": "H1 test",
+   "executed_in_phase24": "no",
+   "definition_source": "reports/tables/phase24_ablation_plan.csv",
+   "definition_source_sha256": "422967fa3484b19d90bfc3b2146278aa69c6bd7a34e42ae3dbcb43a9ccca9087",
+   "definition_text": "learned paired-gain router | family=core | purpose=H1 test"
+  },
+  {
+   "ablation_id": "A7",
+   "name": "A6 + resource cost",
+   "family": "core",
+   "purpose": "H5 test",
+   "executed_in_phase24": "no",
+   "definition_source": "reports/tables/phase24_ablation_plan.csv",
+   "definition_source_sha256": "422967fa3484b19d90bfc3b2146278aa69c6bd7a34e42ae3dbcb43a9ccca9087",
+   "definition_text": "A6 + resource cost | family=core | purpose=H5 test"
+  },
+  {
+   "ablation_id": "A8",
+   "name": "A7 + post-safety",
+   "family": "core",
+   "purpose": "H3 test; isolates S_omega",
+   "executed_in_phase24": "no",
+   "definition_source": "reports/tables/phase24_ablation_plan.csv",
+   "definition_source_sha256": "422967fa3484b19d90bfc3b2146278aa69c6bd7a34e42ae3dbcb43a9ccca9087",
+   "definition_text": "A7 + post-safety | family=core | purpose=H3 test; isolates S_omega"
+  },
+  {
+   "ablation_id": "R1",
+   "name": "router without deep global features",
+   "family": "router",
+   "purpose": "does depth matter?",
+   "executed_in_phase24": "no",
+   "definition_source": "reports/tables/phase24_ablation_plan.csv",
+   "definition_source_sha256": "422967fa3484b19d90bfc3b2146278aa69c6bd7a34e42ae3dbcb43a9ccca9087",
+   "definition_text": "router without deep global features | family=router | purpose=does depth matter?"
+  },
+  {
+   "ablation_id": "R2",
+   "name": "router without task_id",
+   "family": "router",
+   "purpose": "does conditioning matter?",
+   "executed_in_phase24": "no",
+   "definition_source": "reports/tables/phase24_ablation_plan.csv",
+   "definition_source_sha256": "422967fa3484b19d90bfc3b2146278aa69c6bd7a34e42ae3dbcb43a9ccca9087",
+   "definition_text": "router without task_id | family=router | purpose=does conditioning matter?"
+  },
+  {
+   "ablation_id": "R3",
+   "name": "router with scalar-only features",
+   "family": "router",
+   "purpose": "minimal-feature control",
+   "executed_in_phase24": "no",
+   "definition_source": "reports/tables/phase24_ablation_plan.csv",
+   "definition_source_sha256": "422967fa3484b19d90bfc3b2146278aa69c6bd7a34e42ae3dbcb43a9ccca9087",
+   "definition_text": "router with scalar-only features | family=router | purpose=minimal-feature control"
+  },
+  {
+   "ablation_id": "F1",
+   "name": "refiner without p_global channel",
+   "family": "refiner",
+   "purpose": "is the global map useful?",
+   "executed_in_phase24": "no",
+   "definition_source": "reports/tables/phase24_ablation_plan.csv",
+   "definition_source_sha256": "422967fa3484b19d90bfc3b2146278aa69c6bd7a34e42ae3dbcb43a9ccca9087",
+   "definition_text": "refiner without p_global channel | family=refiner | purpose=is the global map useful?"
+  }
+ ],
+ "generated_utc": "2026-10-02T18:34:00Z",
+ "all_pass": true
+}

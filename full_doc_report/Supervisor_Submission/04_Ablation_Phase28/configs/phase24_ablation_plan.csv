@@ -1,0 +1,14 @@
+ablation_id,name,family,purpose,executed_in_phase24
+A0,global-only,core,compute floor / preservation reference,no
+A1,always-refine,core,compute ceiling / no-routing reference,no
+A2,random routing,core,null routing baseline,no
+A3,entropy routing,core,simple GT-free uncertainty proxy,no
+A4,margin routing,core,simple GT-free margin proxy,no
+A5,predicted-ROI-size routing,core,simple GT-free geometry proxy,no
+A6,learned paired-gain router,core,H1 test,no
+A7,A6 + resource cost,core,H5 test,no
+A8,A7 + post-safety,core,H3 test; isolates S_omega,no
+R1,router without deep global features,router,does depth matter?,no
+R2,router without task_id,router,does conditioning matter?,no
+R3,router with scalar-only features,router,minimal-feature control,no
+F1,refiner without p_global channel,refiner,is the global map useful?,no

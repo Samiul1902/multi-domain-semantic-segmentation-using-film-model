@@ -1,0 +1,16 @@
+{
+ "artifact": "phase28_f1_membership_semantics",
+ "phase": 28,
+ "classification": "BLOCKED_OPERATIONAL_SEMANTICS_REQUIRED",
+ "governance_only": true,
+ "execution": "NONE",
+ "question": "Does F1 keep the EXACT canonical A8 routing membership and change only the regional-refiner input?",
+ "clean_one_factor_interpretation": "YES_IF_PHYSICALLY_SUPPORTED — keeping identical router scores/membership and changing only the refiner input is the cleanest one-factor interpretation.",
+ "physical_support_in_frozen_plan": "ABSENT — the frozen Phase24 ablation plan defines F1 as 'refiner without p_global channel' but does NOT state whether the routing membership is held identical to the canonical A8 membership or recomputed.",
+ "does_f1_keep_exact_canonical_membership": "NOT_ESTABLISHED_BY_AUTHORITATIVE_SOURCE",
+ "would_rerouting_be_required": "If router runtime uses delta_hat_final from B_phi (unchanged), membership is machine-identical; but the frozen plan does not state that F1 is evaluated on the same activation set. This must be explicitly established.",
+ "execution_status": "BLOCKED_OPERATIONAL_SEMANTICS_REQUIRED",
+ "blocked_terminal": "PHASE28_BLOCKED__R1_R2_R3_F1_EXECUTION_SEMANTICS_INCOMPLETE",
+ "generated_utc": "2026-10-02T18:45:00Z",
+ "all_pass": true
+}

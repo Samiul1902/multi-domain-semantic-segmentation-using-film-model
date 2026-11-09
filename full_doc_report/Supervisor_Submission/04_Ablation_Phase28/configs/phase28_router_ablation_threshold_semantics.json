@@ -1,0 +1,53 @@
+{
+ "artifact": "phase28_router_ablation_threshold_semantics",
+ "phase": 28,
+ "classification": "BLOCKED_THRESHOLD_CALIBRATION_RULE_MISSING",
+ "governance_only": true,
+ "execution": "NONE",
+ "frozen_canonical_budget_rule": {
+  "rule": "K_b = N_eligible if b == 1 else floor(b * N_eligible)",
+  "N_eligible": 4957,
+  "budget_grid": [
+   "0.00",
+   "0.10",
+   "0.25",
+   "0.50",
+   "1.00"
+  ],
+  "K_b": {
+   "0.00": 0,
+   "0.10": 495,
+   "0.25": 1239,
+   "0.50": 2478,
+   "1.00": 4957
+  },
+  "source": "reports/audits/phase25e_fixed_budget_contract_v1_0.json",
+  "source_sha256": "c8ade16f835617c23aa6c363e2f27ac4a7d175d9e2dd6dc8544d962976050ff8",
+  "scope_limit": "This rule defines K_b CARDINALITY on the eligible set. It is coupled to the CANONICAL final-router score distribution when realized as a scalar threshold tau."
+ },
+ "frozen_canonical_scalar_thresholds": {
+  "source": "reports/tables/phase25e_final_router_dev_thresholds.csv",
+  "source_sha256": "980e44aba6bb57bc86b2fa03060eaa181207297367fe7f7b1bbbde9c9b3bcfd1",
+  "example_budget_0p25_tau": "24796109646558761/20000000000000000000",
+  "threshold_policy": "SCALAR_TAU_EQUIVALENT",
+  "note": "These scalar tau values are quantiles of the CANONICAL B_phi score distribution. They are NOT transferable to a variant router with a different score distribution."
+ },
+ "question": "For R1/R2/R3, does the ablation use the canonical A8 final-router threshold, or an equal-activation 25% recalibration, or another frozen rule?",
+ "finding": "NO FROZEN RULE EXISTS for R1/R2/R3 variant activation.",
+ "analysis": {
+  "reuse_canonical_threshold_blindly": "REJECTED — the variant changes the score distribution; a canonical tau would produce a non-comparable activation fraction.",
+  "rank_and_force_top_25pct": "REJECTED — selecting a top-K by ranking the variant's ROUTER_DEVELOPMENT scores is an outcome-adjacent calibration NOT authorized before inference.",
+  "equal_activation_recalibration": "PLAUSIBLE_AND_PRINCIPLED BUT NOT PRE-REGISTERED — no authoritative source freezes it.",
+  "requires_constant_from_development_only": "must be TRAIN/ROUTER_DEVELOPMENT-derived and frozen before inference (consistent with phase24 exact spec forbidden_tuning_sources)"
+ },
+ "equivalence_of_threshold_rules": false,
+ "execution_status": "BLOCKED_THRESHOLD_CALIBRATION_RULE_MISSING",
+ "per_ablation": {
+  "R1": "BLOCKED_THRESHOLD_CALIBRATION_RULE_MISSING",
+  "R2": "BLOCKED_THRESHOLD_CALIBRATION_RULE_MISSING",
+  "R3": "BLOCKED_THRESHOLD_CALIBRATION_RULE_MISSING"
+ },
+ "blocked_terminal": "PHASE28_BLOCKED__ROUTER_ABLATION_CALIBRATION_RULE_INCOMPLETE",
+ "generated_utc": "2026-10-02T18:45:00Z",
+ "all_pass": true
+}

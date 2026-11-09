@@ -1,0 +1,112 @@
+{
+  "artifact": "REMEDFILM_FULL_RESULT_RECONCILIATION_EVIDENCE",
+  "population": "VAL808",
+  "n": 808,
+  "tau_C8": -0.024358327623641256,
+  "tau_C8_selects": 279,
+  "skip_fallback_exact": "529/529",
+  "canonical_macro_dice": 0.8372896859536088,
+  "canonical_per_domain": {
+    "BUSI": 0.8589140215645157,
+    "ISIC": 0.8980814207769493,
+    "KUB": 0.7715118722836004,
+    "KVASIR": 0.8206514291893696
+  },
+  "policies_tested": [
+    {
+      "policy": "canonical Phase 27 (tau_C8, safety-gated)",
+      "n_selected": 279,
+      "n_accepted": 266,
+      "macro_dice": 0.8372896859536088,
+      "reproduces_0837862": false
+    },
+    {
+      "policy": "top-181 by router utility, safety-gated",
+      "n_selected": 181,
+      "n_accepted": 177,
+      "macro_dice": 0.8370219793572996,
+      "reproduces_0837862": false
+    },
+    {
+      "policy": "top-183 by router utility, safety-gated",
+      "n_selected": 183,
+      "n_accepted": 179,
+      "macro_dice": 0.8370256910913147,
+      "reproduces_0837862": false
+    },
+    {
+      "policy": "top-185 by router utility, safety-gated",
+      "n_selected": 185,
+      "n_accepted": 180,
+      "macro_dice": 0.8370290283993275,
+      "reproduces_0837862": false
+    },
+    {
+      "policy": "top-200 by router utility, safety-gated",
+      "n_selected": 200,
+      "n_accepted": 195,
+      "macro_dice": 0.8372140955892856,
+      "reproduces_0837862": false
+    },
+    {
+      "policy": "top-250 by router utility, safety-gated",
+      "n_selected": 250,
+      "n_accepted": 241,
+      "macro_dice": 0.8373442710282739,
+      "reproduces_0837862": false
+    },
+    {
+      "policy": "top-279 by router utility, safety-gated",
+      "n_selected": 279,
+      "n_accepted": 266,
+      "macro_dice": 0.8372896859536088,
+      "reproduces_0837862": false
+    },
+    {
+      "policy": "tau_C8 without safety gate (A7-equivalent)",
+      "n_selected": 279,
+      "n_accepted": 279,
+      "macro_dice": 0.8372896859536088,
+      "reproduces_0837862": false
+    }
+  ],
+  "any_policy_reproduces_0837862": false,
+  "reported_values": {
+    "0.837290": {
+      "value": 0.83729,
+      "sources": [
+        "reports/audits/phase27_preservation_result.json (macro_point 0.0022101453)",
+        "reports/audits/phase29_phase_d_val808_per_seed_continuity.json (0.8372891053775793)",
+        "independent re-scoring of the 808 saved masks (this notebook)"
+      ],
+      "n_accepted": 266,
+      "n_routed": 279,
+      "n_skipped": 529,
+      "reproducible": true
+    },
+    "0.837862": {
+      "value": 0.837862,
+      "sources": [
+        "scripts/analysis/build_v5_pdf_report.py (hardcoded)",
+        "scripts/analysis/build_v6_pdf_report.py (hardcoded)",
+        "scripts/analysis/build_v7_pdf_report.py (hardcoded, both as seed-42 row and as the three-seed mean)",
+        "full_doc_report/PROGRESSION_AND_PROPAGATION_EVIDENCE.csv (derived from the above)"
+      ],
+      "frozen_artifact": null,
+      "n_accepted_implied": "165 (V7 table)",
+      "n_routed_implied": "183 (V7 table)",
+      "reproducible": false
+    },
+    "0.8373512": {
+      "value": 0.8373512,
+      "sources": [
+        "reports/audits/phase29_val808_seedwise_metrics.json (seed 42)"
+      ],
+      "n_accepted": 268,
+      "n_routed": 279,
+      "reproducible": false,
+      "note": "A second safety state exists (268 accepted vs 266). The saved masks encode the 266-accepted state, so the 268 variant cannot be re-derived without its own mask set."
+    }
+  },
+  "verdict": "REPORTING_INCONSISTENCY"
+}

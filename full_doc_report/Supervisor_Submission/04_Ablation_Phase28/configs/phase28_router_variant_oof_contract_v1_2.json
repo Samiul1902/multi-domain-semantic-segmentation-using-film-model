@@ -1,0 +1,50 @@
+{
+ "phase": 28,
+ "method": "RA-MedFiLM-BARR",
+ "governance_only": true,
+ "execution": "NONE",
+ "generated_utc": "2026-10-02T12:35:00Z",
+ "artifact": "phase28_router_variant_oof_contract_v1_2",
+ "classification": "ROUTER_ABLATION_OOF_AND_SEED_CONTRACT",
+ "applies_to": [
+  "R1",
+  "R2",
+  "R3"
+ ],
+ "oof_required": true,
+ "per_fold_rule": {
+  "train_on": "that fold's inherited FIT rows",
+  "model_selection_on": "inherited EARLY_STOP rows",
+  "predict_on": "inherited OUTER_TARGET rows"
+ },
+ "every_row_exactly_one_oof_score": true,
+ "n_rows": 4957,
+ "leakage_requirement": "no sample contributes to fitting or checkpoint selection for the model that predicts that sample",
+ "final_all_dev_refit_required": false,
+ "deployment_candidates": false,
+ "seed_policy": "reuse exact Phase25D fold seed 42000 + outer_fold_index",
+ "different_seeds_for_ablations": false,
+ "seed_recovery_ambiguous": false,
+ "primary_reference": "FULL_FEATURE_BENEFIT_ROUTER (A6/C7 learned paired-gain router)",
+ "integrated_reference": "A8/C9 canonical full system",
+ "comparison_held_constant": "all downstream components",
+ "primary_metrics": [
+  "precision@budget",
+  "benefit_capture",
+  "mean_true_DeltaDice_routed",
+  "harmful_activation_share",
+  "beneficial_coverage",
+  "missed_benefit",
+  "oracle_regret"
+ ],
+ "metric_equations": "already frozen",
+ "comparison_budget_K": 1239,
+ "winner_selected_for_deployment": false,
+ "integrated_secondary_analysis": {
+  "regional_candidates": "SAME canonical Phase25C artifacts",
+  "post_safety_decisions": "SAME canonical OOF Phase25F decisions where scientifically valid",
+  "rationale": "neither refiner nor S_omega is changed by R1/R2/R3",
+  "construction": "exactly as A8 except routing membership",
+  "downstream_checkpoint_altered": false
+ }
+}

@@ -1,0 +1,52 @@
+{
+ "artifact": "phase28_a6_a8_prior_evidence_binding",
+ "phase": 28,
+ "classification": "PHASE28_A6_A7_A8_PRIOR_CANONICAL_EVIDENCE_BINDING",
+ "governance_only": true,
+ "execution": "NONE",
+ "critical_requirement": "A6 must have an EXACT corresponding frozen prior RESULT, not merely a trained router checkpoint.",
+ "A6_learned_paired_gain_routing": {
+  "checkpoint": {
+   "path": "checkpoints/phase25d_barr_benefit_router_v1_2_1_seed42/final/final.pt",
+   "sha256": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b"
+  },
+  "frozen_result_evidence": {
+   "policy_id": "C7_final_dev_budget{0.00,0.10,0.25,0.50,1.00}",
+   "membership_dir": "reports/tables/phase25e_policy_memberships_v1_0",
+   "membership_manifest_sha256": "f4ff4b235c664339d237fd7ec51f948dbc233431a6fd45522bde2166327e679a",
+   "metric_table": "reports/tables/phase25e_policy_evaluation_metrics.csv",
+   "source": "reports/audits/phase25g_final_freeze.json",
+   "source_sha256": "48fb05f88fdc88fa33f25342be64bf1f8cc1e62ba7a36eb0e6484c9208c6d276"
+  },
+  "exact_prior_result_exists": true,
+  "population": "ROUTER_DEVELOPMENT (4957)",
+  "score_space": "delta_hat_final (canonical B_phi)",
+  "bootstrap_provenance": {
+   "bootstrap_plan_sha": "241ed5232b35709494adbf230151cec21259f86f88e1f06e5b2881a6d88f9b63",
+   "n_boot": 2000,
+   "seed": 42
+  },
+  "status": "SATISFIED_BY_PRIOR_CANONICAL_EVIDENCE"
+ },
+ "A7_A6_plus_resource_cost": {
+  "policy_id": "C8 (LEARNED_GAIN_PLUS_RESOURCE_COST)",
+  "definition": "Phase25E C8 routing + always accept executed regional candidate",
+  "frozen_result_source": "reports/audits/phase25g_final_freeze.json",
+  "source_sha256": "48fb05f88fdc88fa33f25342be64bf1f8cc1e62ba7a36eb0e6484c9208c6d276",
+  "membership_dir": "reports/tables/phase25e_policy_memberships_v1_0",
+  "population": "ROUTER_DEVELOPMENT (4957)",
+  "status": "SATISFIED_BY_PRIOR_CANONICAL_EVIDENCE"
+ },
+ "A8_A7_plus_post_safety": {
+  "policy_id": "C9 (LEARNED_GAIN_PLUS_RESOURCE_COST_PLUS_POST_SAFETY)",
+  "definition": "same membership + Phase25F S_omega decision (CANONICAL BASELINE)",
+  "frozen_result_source": "reports/audits/phase25g_final_freeze.json",
+  "source_sha256": "48fb05f88fdc88fa33f25342be64bf1f8cc1e62ba7a36eb0e6484c9208c6d276",
+  "c9_manifest_sha": "cde91c474bf19bb36368357ce4b38dd1cc7dad1b37d900fcec7cde6b9e72dbd1",
+  "population": "ROUTER_DEVELOPMENT (4957)",
+  "status": "SATISFIED_BY_PRIOR_CANONICAL_EVIDENCE"
+ },
+ "all_satisfied": true,
+ "generated_utc": "2026-10-02T18:48:00Z",
+ "all_pass": true
+}

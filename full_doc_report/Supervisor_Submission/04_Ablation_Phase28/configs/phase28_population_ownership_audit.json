@@ -1,0 +1,82 @@
+{
+ "artifact": "phase28_population_ownership_audit",
+ "phase": 28,
+ "classification": "PHASE28_ABLATION_POPULATION_OWNERSHIP_AUDIT",
+ "governance_only": true,
+ "execution": "NONE",
+ "blocker_class": "HARD_BLOCKER",
+ "question": "Which population is Phase28 authorized to evaluate ablations on?",
+ "determination": "Phase28_ABLATION_POPULATION = ROUTER_DEVELOPMENT (DEV)",
+ "determination_basis": [
+  {
+   "source": "reports/audits/phase26_downstream_phase_boundary_audit.json",
+   "sha256": "9703974040e67487deabf067e2492872b9c5e8b9c64de349a1e8497663d1c4fe",
+   "statement": "phase28.population = 'ROUTER_DEVELOPMENT (DEV)'"
+  },
+  {
+   "source": "reports/tables/phase24_data_role_contract.csv",
+   "sha256": "d8ff7674b7a5c8e056628dd0e1921982cfa0825d77a9d5b0f0d5e4e1335890d7",
+   "statement": "ROUTER_DEVELOPMENT role = cross-fitted gain labels + router fitting + threshold calibration; may_select_lambda_or_threshold=yes"
+  },
+  {
+   "source": "reports/audits/phase27_phase_boundaries_contract_v1_1.json",
+   "sha256": "e92f590dc8084a20b42025ae5cd03b4b7b67fd49f8df3f76c21ec523b680e856",
+   "statement": "phase30 is exclusive owner of ROUTER_HOLDOUT"
+  }
+ ],
+ "population_table": {
+  "ROUTER_DEVELOPMENT": {
+   "n": 4957,
+   "share": "85% of original TRAIN",
+   "role": "PRIMARY Phase28 ablation population",
+   "may_train_router": true,
+   "may_select_lambda_or_threshold": true,
+   "is_untouched_holdout": false,
+   "phase28_usage": "AUTHORIZED"
+  },
+  "ROUTER_HOLDOUT": {
+   "n": 875,
+   "share": "15% of original TRAIN",
+   "role": "clean out-of-sample routing evaluation (Phase30 only)",
+   "may_train_router": false,
+   "may_select_lambda_or_threshold": false,
+   "is_untouched_holdout": true,
+   "owner": "PHASE30",
+   "state": "RESERVED_UNOPENED_FOR_PHASE30",
+   "phase28_usage": "FORBIDDEN"
+  },
+  "VAL808": {
+   "n": 808,
+   "source": "manifests/phase4_v3/val.csv (Phase-22 frozen)",
+   "role": "SECONDARY / CONTINUITY DEVELOPMENT BENCHMARK",
+   "may_train_router": false,
+   "may_select_lambda_or_threshold": false,
+   "is_untouched_holdout": false,
+   "phase28_usage": "NOT_PRIMARY__CONTINUITY_ONLY_IF_EXPLICITLY_AUTHORIZED"
+  },
+  "TEST": {
+   "n": 1683,
+   "source": "manifests/phase4_v3/test.csv",
+   "role": "CLOSED",
+   "may_train_router": false,
+   "may_select_lambda_or_threshold": false,
+   "is_untouched_holdout": true,
+   "owner": "PHASE39",
+   "state": "LOCKED_UNTIL_PHASE39",
+   "phase28_usage": "FORBIDDEN"
+  }
+ },
+ "split_manifest_verification": {
+  "path": "reports/audits/phase24_router_split_manifest.csv",
+  "sha256": "b5da52d6220ef9b59b4ba70d0b403b38bf5234b897615b6ad55d718114db6555",
+  "n_rows": 5832,
+  "ROUTER_DEVELOPMENT_count": 4957,
+  "ROUTER_HOLDOUT_count": 875,
+  "sum_equals_5832": true,
+  "zero_overlap_asserted": true
+ },
+ "ownership_resolved": true,
+ "blocked_terminal_would_be": "PHASE28_BLOCKED__ABLATION_POPULATION_OWNERSHIP_UNRESOLVED",
+ "generated_utc": "2026-10-02T18:40:00Z",
+ "all_pass": true
+}

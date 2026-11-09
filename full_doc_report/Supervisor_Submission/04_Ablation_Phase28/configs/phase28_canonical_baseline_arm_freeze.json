@@ -1,0 +1,55 @@
+{
+ "artifact": "phase28_canonical_baseline_arm_freeze",
+ "phase": 28,
+ "classification": "PHASE28_CANONICAL_BASELINE_ARM_FREEZE",
+ "governance_only": true,
+ "execution": "NONE",
+ "baseline_system": "FROZEN_PHASE26_A8_C9_CANONICAL_BUNDLE",
+ "variant": "A8_C9",
+ "nominal_budget": 0.25,
+ "lambda_representative": 0.25,
+ "lambda_performance_selected": false,
+ "runtime_score": "delta_hat_final - 0.25*C",
+ "runtime_threshold_exact": "-5003565381643716252018011/205414980000000000000000000",
+ "runtime_authority": true,
+ "budget": 0.25,
+ "lambda": "1/4",
+ "s_omega_accept_threshold": 0.5,
+ "roi_proposal_threshold": 0.3,
+ "segmentation_output_threshold": 0.5,
+ "component_checkpoints": {
+  "global_medfilm": {
+   "path": "checkpoints/phase21_global_medfilm_fourdomain_seed42_clean_v3/best.pt",
+   "sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7"
+  },
+  "regional_refiner": {
+   "path": "checkpoints/phase25a_barr_regional_refiner_v1_1_roi030/final/final.pt",
+   "sha256": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109"
+  },
+  "benefit_router": {
+   "path": "checkpoints/phase25d_barr_benefit_router_v1_2_1_seed42/final/final.pt",
+   "sha256": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b"
+  },
+  "post_safety": {
+   "path": "checkpoints/phase25f_barr_post_safety_v1_0_seed42/final/final.pt",
+   "sha256": "eee9b97b9921e53fc07eac9281dce64ba518c6e1659916b97b0b3bec21ec6d2e"
+  }
+ },
+ "bundle_manifest": {
+  "path": "artifacts/phase26_ra_medfilm_barr_bundle_v1_0/canonical_bundle_manifest.json",
+  "sha256": "f7aebb0f646bcc8de49fa91b70a4c4cc1051c9998ab6b055a8d4d187809cb3d9"
+ },
+ "integration_wrapper": {
+  "path": "src/models/barr/ra_medfilm_barr.py",
+  "sha256": "342f2163690c2fa8d5a601ab1d18178b982d701b916935c33e0793b0801c3724",
+  "trainable_parameters": 0
+ },
+ "source_freeze": {
+  "path": "reports/audits/phase26_final_freeze.json",
+  "sha256": "e709f5301894dc0377420500a9b6d6e95bd54858fde4cb472cad73d630b8adb4"
+ },
+ "baseline_is_frozen_and_immutable": true,
+ "ablation_change_policy": "Every non-baseline arm must differ from this baseline in EXACTLY ONE controlled factor; the baseline itself may NOT be altered.",
+ "generated_utc": "2026-10-02T18:36:00Z",
+ "all_pass": true
+}

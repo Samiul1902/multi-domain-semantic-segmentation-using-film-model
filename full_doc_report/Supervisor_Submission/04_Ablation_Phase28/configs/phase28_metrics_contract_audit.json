@@ -1,0 +1,52 @@
+{
+ "phase": 28,
+ "governance_only": true,
+ "execution": "NONE",
+ "method": "RA-MedFiLM-BARR",
+ "population": "ROUTER_DEVELOPMENT (n=4957)",
+ "artifact": "phase28_metrics_contract_audit",
+ "classification": "PHASE28_METRICS_CONTRACT_AUDIT",
+ "metrics_source": "reports/audits/phase24_architecture_spec.json",
+ "metrics_source_sha256": "bd5522678571f9b40e3ae887c7fd6c2d7862b3e73152eab1ae7db13cab6c6071",
+ "metric_families": {
+  "benefit_prediction": [
+   "MAE",
+   "RMSE",
+   "Spearman",
+   "Pearson",
+   "ROC-AUC for useful-benefit detection",
+   "PR-AUC"
+  ],
+  "routing": [
+   "precision@budget",
+   "benefit capture@budget",
+   "mean true DeltaDice among routed cases",
+   "harmful activation rate",
+   "missed-benefit rate",
+   "routing regret vs oracle"
+  ],
+  "segmentation": [
+   "macro-domain Dice",
+   "per-domain Dice",
+   "IoU",
+   "existing standardized boundary metrics"
+  ],
+  "compute": [
+   "activation fraction",
+   "incremental MACs",
+   "average total MACs",
+   "ratio vs global-only",
+   "ratio vs always-refine"
+  ],
+  "preservation": [
+   "harmful replacement rate",
+   "fallback rate",
+   "per-domain degradation"
+  ]
+ },
+ "primary_endpoint": "macro-domain Dice delta vs frozen global reference (per Phase24 preservation contract)",
+ "per_domain_reporting_mandatory": true,
+ "macro_may_not_hide_domain_harm": true,
+ "no_new_metric_may_be_added_post_hoc": true,
+ "all_pass": true
+}

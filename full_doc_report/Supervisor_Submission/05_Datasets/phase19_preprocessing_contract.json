@@ -1,0 +1,84 @@
+{
+  "contract_id": "phase19_preprocessing_contract_v1",
+  "status": "FROZEN_FOR_PHASE_19",
+  "scope": "TRAIN and VAL only",
+  "image": {
+    "storage_dtype": "uint8",
+    "model_dtype": "float32",
+    "intensity_range_native": "[0,255]",
+    "intensity_normalization": "divide by 255.0 -> [0,1]",
+    "channel_policy_default": "RGB_3CH",
+    "channel_policy_alternatives": [
+      "GRAYSCALE_1CH",
+      "RGB_3CH"
+    ],
+    "color_handling": {
+      "RGB_3CH": "PIL convert('RGB'); native-L domains are replicated to 3 identical channels (lossless)",
+      "GRAYSCALE_1CH": "PIL convert('L') (ITU-R 601-2 luma); matches the legacy KUB-only pipeline"
+    },
+    "observed_native_modes_per_domain": {
+      "ISIC": [
+        "RGB"
+      ],
+      "BUSI": [
+        "L"
+      ],
+      "KVASIR": [
+        "RGB"
+      ],
+      "KUB": [
+        "L",
+        "RGB"
+      ]
+    },
+    "channel_decision_owner": "Phase 24 (architecture specification); Phase 19 freezes BOTH converters"
+  },
+  "mask": {
+    "storage_dtype": "uint8",
+    "model_dtype": "float32",
+    "foreground_rule": "mask > 0  (src.utils.targets.binarize_mask)",
+    "background_rule": "mask == 0",
+    "channel_reduction": "3-D masks reduced to first channel",
+    "binarization_threshold": "strictly greater than zero; no value threshold applied",
+    "interpolation": "NEAREST",
+    "never_test_mask_eq_1": true
+  },
+  "spatial": {
+    "policy": "aspect-preserving resize + centre pad",
+    "scale_formula": "scale = min(size / w, size / h)",
+    "supported_sizes": [
+      256,
+      512,
+      768,
+      1024
+    ],
+    "default_size": 512,
+    "image_resample": "BILINEAR",
+    "mask_resample": "NEAREST",
+    "pad_fill": 0,
+    "implementation": "src.data.transforms.SegmentationTransform"
+  },
+  "augmentation_boundary": {
+    "train_only": true,
+    "paired": true,
+    "operations": [
+      "horizontal mirror (p=0.5)",
+      "rotation +/-5 deg",
+      "brightness +/-0.10",
+      "contrast +/-0.10"
+    ],
+    "mask_resample_during_augmentation": "NEAREST",
+    "val_augmentation": "disabled",
+    "implementation": "src.data.transforms.SegmentationTransform(train=True)"
+  },
+  "test_policy": {
+    "test_image_reads": 0,
+    "test_mask_reads": 0,
+    "test_inference": 0,
+    "test_visualization": 0,
+    "enforced_by": [
+      "src.data.loaders.create_loader",
+      "src.data.multidomain_dataset.MultiDomainDataset"
+    ]
+  }
+}

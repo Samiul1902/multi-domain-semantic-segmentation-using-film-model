@@ -1,0 +1,64 @@
+{
+ "phase": 28,
+ "governance_only": true,
+ "execution": "NONE",
+ "method": "RA-MedFiLM-BARR",
+ "canonical_baseline": "A8_C9 (budget 0.25, lambda 0.25)",
+ "one_factor_contract_ref": "reports/audits/phase28_one_factor_control_contract.json",
+ "population": "ROUTER_DEVELOPMENT (n=4957)",
+ "artifact": "phase28_ablation_family_regional_refiner",
+ "classification": "PHASE28_ABLATION_FAMILY__REGIONAL_REFINER",
+ "family_scope": "Dedicated crop-trained regional refiner R_psi contribution",
+ "recovered_spec": {
+  "name": "BARRRegionalRefinerV1",
+  "spec_version": "ra_medfilm_barr_narrowed_v1_1",
+  "input_channels": 4,
+  "input_channel_names": [
+   "R",
+   "G",
+   "B",
+   "p_global_crop"
+  ],
+  "input_resolution": 256,
+  "output": "1 channel logits",
+  "encoder_bridge_channels_active": [
+   16,
+   32,
+   64,
+   96,
+   128
+  ],
+  "expected_parameter_count_closed_form": 1276401,
+  "hard_ceiling": 2000000,
+  "task_conditioning_film": false,
+  "loss": "0.5*BCEWithLogits + 0.5*soft Dice",
+  "checkpoint": "checkpoints/phase25a_barr_regional_refiner_v1_1_roi030/final/final.pt",
+  "checkpoint_sha256": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109",
+  "refit_rule": "ONE final R_psi trained on ALL executable-action ROUTER_DEVELOPMENT samples at the median best epoch of the 3 OOF runs",
+  "must_not_be": "the frozen Global MedFiLM reused on resampled crops (Phase22 showed reuse HARMFUL)"
+ },
+ "related_ablation_ids": [
+  "F1",
+  "A1"
+ ],
+ "F1_definition": "refiner without p_global channel (is the global map useful?) — single controlled factor REFINER_INPUT_P_GLOBAL_CHANNEL",
+ "F1_reconstruction_class": "NEW_FROZEN_MODEL_INFERENCE_REQUIRED",
+ "A1_definition": "always-refine upper compute anchor",
+ "retraining_required": false,
+ "source_refs": [
+  {
+   "path": "reports/audits/phase24_architecture_spec.json",
+   "sha256": "bd5522678571f9b40e3ae887c7fd6c2d7862b3e73152eab1ae7db13cab6c6071"
+  },
+  {
+   "path": "reports/audits/phase24_exact_implementation_spec.json",
+   "sha256": "6b1a71d5e88ce06baa8f200523be32773428417ffd233ff218d7e50b6af271dd"
+  },
+  {
+   "path": "reports/tables/phase24_ablation_plan.csv",
+   "sha256": "422967fa3484b19d90bfc3b2146278aa69c6bd7a34e42ae3dbcb43a9ccca9087"
+  }
+ ],
+ "generated_utc": "2026-10-02T18:44:00Z",
+ "all_pass": true
+}

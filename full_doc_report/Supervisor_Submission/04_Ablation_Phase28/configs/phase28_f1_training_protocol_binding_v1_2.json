@@ -1,0 +1,134 @@
+{
+ "phase": 28,
+ "method": "RA-MedFiLM-BARR",
+ "governance_only": true,
+ "execution": "NONE",
+ "generated_utc": "2026-10-02T12:40:00Z",
+ "artifact": "phase28_f1_training_protocol_binding_v1_2",
+ "classification": "F1_REFINER_ABLATION_TRAINING_PROTOCOL_INHERITANCE_BINDING",
+ "applies_to": [
+  "F1"
+ ],
+ "inherits": "Phase25A/Phase25C leakage-safe regional-refiner protocol",
+ "physically_recovered": true,
+ "recovery_method": "physical_artifact_inspection__not_memory",
+ "authoritative_sources": {
+  "phase25a_crossfit_protocol.json": {
+   "path": "reports/audits/phase25a_crossfit_protocol.json",
+   "exists": true,
+   "sha256": "6868b5562fe02929e13d63905ca74a759e20dec3c01b14eef331e4cb948f55ce"
+  },
+  "phase25a_refiner_architecture_binding.json": {
+   "path": "reports/audits/phase25a_refiner_architecture_binding.json",
+   "exists": true,
+   "sha256": "2f0d23878c855db60347e3d7225bd06703646e76263ae2ff82d485923474ad9b"
+  },
+  "phase25a_augmentation_binding.json": {
+   "path": "reports/audits/phase25a_augmentation_binding.json",
+   "exists": true,
+   "sha256": "b8b0f817e765dd5db267df6f5e5c5b33da4f81ff58b177f8a410e5d985e97f59"
+  },
+  "phase25a_roi030_final_refit_epoch_rule.json": {
+   "path": "reports/audits/phase25a_roi030_final_refit_epoch_rule.json",
+   "exists": true,
+   "sha256": "abca1d7242f8ed221d21236a82fbdaf135b153d3a1a92a9d26e8b2a4b898949b"
+  },
+  "train_phase25a_refiner.py": {
+   "path": "scripts/training/train_phase25a_refiner.py",
+   "exists": true,
+   "sha256": "487efd3a934c97bf3b4db13717ac29b567a535346a2510a946943e2506345835"
+  },
+  "barr_refiner_dataset.py": {
+   "path": "src/data/barr_refiner_dataset.py",
+   "exists": true,
+   "sha256": "6bbf0eb51f9a4f646fe9222f2d3035761577f8d41cc5c229109139bfc937e095"
+  },
+  "regional_refiner.py": {
+   "path": "src/models/barr/regional_refiner.py",
+   "exists": true,
+   "sha256": "4fe0abde3ec3a183d930f676c4400b4d9ba778793ea64abf1755c5b8dabf947a"
+  },
+  "barr_roi.py": {
+   "path": "src/data/barr_roi.py",
+   "exists": true,
+   "sha256": "4b1015275e4e31f9cc2b662a290c18f988eaea65cec64082cea217fad9aba9d6"
+  },
+  "roi030_fold0_fit": {
+   "path": "data_cache/phase25a_barr_roi030_cache/folds/fold0_fit.csv",
+   "exists": true,
+   "sha256": "58d0c00171e8bebfbf334c31df8badd40bb10b44de938f2a4be1bc3a28da9a3c"
+  },
+  "roi030_fold0_es": {
+   "path": "data_cache/phase25a_barr_roi030_cache/folds/fold0_early_stop.csv",
+   "exists": true,
+   "sha256": "674adbd5d5919bb4a2298ce3ea01cb0bbaab484cfb9c970f76fb90432c26f8cd"
+  },
+  "roi030_fold0_ot": {
+   "path": "data_cache/phase25a_barr_roi030_cache/folds/fold0_outer_target.csv",
+   "exists": true,
+   "sha256": "e16d763debd6310ae6a5f787e1d8dfb84469deeb60cc8ea25dfd4fd1c743ac2a"
+  },
+  "phase25f_cv_manifest_reuse": {
+   "path": "reports/audits/phase25f_cv_manifest_reuse_contract_v1_0.json",
+   "exists": true,
+   "sha256": "731376fd19d2fc922f5209fdf891a12f9db5ed0ddafc04f697fe5364e1d02533"
+  },
+  "phase25f_feature_equation": {
+   "path": "reports/audits/phase25f_feature_equation_contract_v1_0.json",
+   "exists": true,
+   "sha256": "a8ac5c04d5d4f91d6bf16a89115846b30c4399705f1380b95757cc0bb1e4271e"
+  },
+  "phase25f_fold0_best": {
+   "path": "checkpoints/phase25f_barr_post_safety_v1_0_seed42/cv_fold0/best.pt",
+   "exists": true,
+   "sha256": "930a73207aaed2a5745a990d803df13925f4697689debb6e5bdb60270ac99871"
+  },
+  "phase25e_memberships_dir": {
+   "path": "reports/tables/phase25e_policy_memberships_v1_0",
+   "exists": true,
+   "n_files": 45
+  }
+ },
+ "bound_fields": {
+  "oof_folds": 3,
+  "crossfit_population": "ROUTER_DEVELOPMENT",
+  "assignment": "deterministic group-safe domain-stratified; sha256('42::<salt>::<group_key>') bucket-fill; seed 42",
+  "inner_fit_fraction": 0.9,
+  "inner_early_stop_fraction": 0.1,
+  "inner_split_rules": [
+   "group-safe",
+   "domain-stratified",
+   "seed 42"
+  ],
+  "fold_manifests_root": "data_cache/phase25a_barr_roi030_cache/folds/",
+  "fit_manifest_pattern": "fold{k}_fit.csv",
+  "early_stop_manifest_pattern": "fold{k}_early_stop.csv",
+  "outer_target_manifest_pattern": "fold{k}_outer_target.csv",
+  "loss": "0.5 * BCEWithLogitsLoss + 0.5 * DiceLoss(eps=1e-6)",
+  "optimizer": "AdamW(lr=1e-4, weight_decay=1e-4)",
+  "learning_rate": 0.0001,
+  "weight_decay": 0.0001,
+  "batch_size": 8,
+  "epoch_cap": 100,
+  "early_stopping": "patience 15 on EARLY_STOP total loss",
+  "scheduler": "CosineAnnealingLR(T_max=100)",
+  "checkpoint_rule": "minimum EARLY_STOP total loss",
+  "tie_rule": "strict improvement required; ties count as non-improvement",
+  "seed_policy": "42 for every fold",
+  "input_preprocessing": "RGB/255.0; prob channel as stored; concatenate [rgb, prob] -> (4,256,256)",
+  "augmentation": "SegmentationTransform: H-flip p=0.5; rotation uniform(-5,+5); brightness 0.9-1.1; contrast 0.9-1.1 (RGB only); applied after frozen 256x256 ROI crop",
+  "crop_geometry": "256x256 ROI crop from ROI-0.30 cache",
+  "target_mask_construction": "256x256 GT crop, nearest-neighbour resize",
+  "output_fusion_semantics": "logits (no internal sigmoid); head Conv2d(16,1,kernel=1); fusion geometry canonical",
+  "amp": "enabled on CUDA",
+  "deterministic": "cudnn.deterministic=True; cudnn.benchmark=False",
+  "parameter_count": 1276401,
+  "architecture_id": "barr_regional_refiner_v1_narrowed_channels"
+ },
+ "only_allowed_model_change": "first input stage accepts RGB channels without p_global (stem Conv3x3(4->16) -> Conv3x3(3->16))",
+ "all_other_choices_frozen": true,
+ "material_values_unrecoverable": [],
+ "blocking_fields": [],
+ "protocol_recoverable": true,
+ "verdict": "PHASE28_F1_TRAINING_PROTOCOL_BOUND"
+}

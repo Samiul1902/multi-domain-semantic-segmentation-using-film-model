@@ -1,0 +1,266 @@
+{
+ "artifact": "phase28_training_input_provenance_gate",
+ "phase": 28,
+ "classification": "PRE_TRAINING_INPUT_PROVENANCE_GATE",
+ "recovery_method": "physical_artifact_inspection__not_memory",
+ "phase25b_input_features": {
+  "files": {
+   "cache_manifest.json": "5849365adfd62e0aef8e9bf219794e34e2812ddb25782ec82949a6dda500068e",
+   "extraction_provenance.json": "ca360baf357113fdddfce862b75f973429130dfa71be05d4aa1dc39288b54849",
+   "feature_group_offsets.json": "879f330a1d7bac082ee94b0fd9a7843d032ab1215d3f4ea468881a8635a4dfa6",
+   "feature_schema.csv": "da76aa34f14006146f46ca799f173378274d8c9d0792dc18edb30711a2486dd4",
+   "features.npy": "9c241963b54f23de1c9671ff6670dde7d6f7e2510869ef5ebc1baf3f7c833e0a",
+   "metadata.csv": "ee8c304350d28d907c053a355da1f878ff7f9dd137761034283459aeed071093"
+  },
+  "n_features": 202,
+  "feature_group_counts": {
+   "bridge_global": 32,
+   "bridge_roi": 32,
+   "decoder2_global": 32,
+   "decoder2_roi": 32,
+   "decoder1_global": 32,
+   "decoder1_roi": 32,
+   "scalars": 10
+  },
+  "scalar_feature_names": [
+   "entropy_proxy_mean",
+   "frac_prob_within_0p05_of_boundary",
+   "frac_prob_within_0p02_of_boundary",
+   "mean_boundary_margin",
+   "pred_foreground_fraction",
+   "pred_foreground_pixels",
+   "pred_roi_exists",
+   "pred_empty",
+   "predicted_roi_area_fraction",
+   "predicted_roi_side"
+  ],
+  "deep_global_feature_count": 96
+ },
+ "phase25b_scalar_feature_names": [
+  "entropy_proxy_mean",
+  "frac_prob_within_0p05_of_boundary",
+  "frac_prob_within_0p02_of_boundary",
+  "mean_boundary_margin",
+  "pred_foreground_fraction",
+  "pred_foreground_pixels",
+  "pred_roi_exists",
+  "pred_empty",
+  "predicted_roi_area_fraction",
+  "predicted_roi_side"
+ ],
+ "phase25c_target_table": {
+  "role": "router training target: OOF paired gain DeltaDice",
+  "target_definition": "DeltaDice = Dice(refined_candidate, GT) - Dice(global, GT)",
+  "path": "data_cache/phase25c_barr_oof_paired_gain_labels_v1_2/phase25c_oof_paired_gain_labels.csv",
+  "sha256": "fd6ca32c33a3bddb75f986b1350d54ec35b11d3bf5cb0fdc029962a5aa94865f",
+  "rows": 4957,
+  "columns": [
+   "sample_id",
+   "feature_row_index",
+   "task_id",
+   "domain",
+   "outer_fold",
+   "action_available",
+   "fold_refiner_checkpoint_sha",
+   "global_dice",
+   "candidate_refined_dice",
+   "delta_dice",
+   "gain_category",
+   "roi_proposal_threshold",
+   "segmentation_output_threshold",
+   "crop_side_pixels",
+   "predicted_roi_area_fraction",
+   "candidate_mask_sha256"
+  ],
+  "action_available_true": 4957,
+  "no_new_target_created": true,
+  "no_target_scaling": true
+ },
+ "phase25d_cv_and_role_manifests": {
+  "role": "router outer/inner CV fold identity (inherited verbatim)",
+  "cv_manifest": {
+   "path": "reports/tables/phase25d_cv5_manifest.csv",
+   "sha256": "008b92963664f38e84f33c771cea1db90caae02a366f02b6a83635a535639707",
+   "rows": 4957
+  },
+  "outer_fold_counts": {
+   "0": 992,
+   "1": 992,
+   "2": 991,
+   "3": 991,
+   "4": 991
+  },
+  "per_fold_role_manifests": {
+   "reports/tables/phase25d_cv_fold0_fit_ids.csv": "e78552ad7dac4108d976472903ba8d57386f26639e84f9aed0f8c09ac8eb73a3",
+   "reports/tables/phase25d_cv_fold0_early_stop_ids.csv": "a602cbe2530356da934a628764d8dfc95e2e8145a0320615be5228db0b90ec42",
+   "reports/tables/phase25d_cv_fold0_outer_target_ids.csv": "f7209b141d0b33dfe6570114d4fba4cd1503dcd07f9edc5f9bc8d808a315e7cd",
+   "reports/tables/phase25d_cv_fold1_fit_ids.csv": "d6f67df55fe67af41e637e18ae66d0e46df654771d39eae9694bffd824627a4b",
+   "reports/tables/phase25d_cv_fold1_early_stop_ids.csv": "146fe774cad99de2960a3cdc3cbdc344d75770dde6447ee8d8fc84608f168300",
+   "reports/tables/phase25d_cv_fold1_outer_target_ids.csv": "cac7971ca8b5fcd056bf2f0472426926779ff0cc198b303692afbcbabab24b03",
+   "reports/tables/phase25d_cv_fold2_fit_ids.csv": "45a3af35f7079d9edc837423719bb77b910e691b1a4d3a2a7a68a0c91dc86fc7",
+   "reports/tables/phase25d_cv_fold2_early_stop_ids.csv": "d0fc38e7efb3dcc43f2f1ec8626a9e8c3aec60d49c6438476b4d22b2133741bf",
+   "reports/tables/phase25d_cv_fold2_outer_target_ids.csv": "8205316a0db4d837518c432400e0b637b38ad4accb08d70e2d9468cd2e7acabf",
+   "reports/tables/phase25d_cv_fold3_fit_ids.csv": "409922e3959d69d1abd1d9e025169c60f336b140438d02cfbc1e98e06bf5d209",
+   "reports/tables/phase25d_cv_fold3_early_stop_ids.csv": "d22f07701e3340e3c676795561ea15a2f028443d7395f041aad0907617dd6fef",
+   "reports/tables/phase25d_cv_fold3_outer_target_ids.csv": "391897f9533075844a43483666d92f248d918804e7602e249f1db504cf5e2e52",
+   "reports/tables/phase25d_cv_fold4_fit_ids.csv": "69d5cb255b8a896c1c4528bbb00eef18d3602a7b598170e23c44d2a96a7d8546",
+   "reports/tables/phase25d_cv_fold4_early_stop_ids.csv": "acf1b139a16da6b85a082e76955c825330b71d9bef224cf784f1b7749354c37c",
+   "reports/tables/phase25d_cv_fold4_outer_target_ids.csv": "3749af0c37c17cce2f2e2828eeff5fae268d488b8ccf069f777ae4ae6932ef78"
+  },
+  "reuse_rule": "exact reuse — no fold regeneration"
+ },
+ "phase25d_protocol_contracts": {
+  "phase25d_cv_protocol_v1_2_1.json": {
+   "path": "reports/audits/phase25d_cv_protocol_v1_2_1.json",
+   "sha256": "276e45f42fa00d74a5338dbef15ed990f548d1a992223e2afb2623c7fe08471e"
+  },
+  "phase25d_nested_cv_split_contract_v1_2_1.json": {
+   "path": "reports/audits/phase25d_nested_cv_split_contract_v1_2_1.json",
+   "sha256": "15eaa4d177d965bdc6b79588a428e24a0f7778ef42a1830c78774ae01e4db793"
+  },
+  "phase25d_checkpoint_selection_contract_v1_2_1.json": {
+   "path": "reports/audits/phase25d_checkpoint_selection_contract_v1_2_1.json",
+   "sha256": "77858eaea2e7a5d9bb31a2e4db85eda9d3095c3437e55bd2d2aa9cf5d3258a97"
+  },
+  "phase25d_feature_normalization_contract_v1_2_1.json": {
+   "path": "reports/audits/phase25d_feature_normalization_contract_v1_2_1.json",
+   "sha256": "63071f65a94df462cdd0880430b7b7ec3e49dc7b397407d61050208d378555a7"
+  },
+  "phase25d_frozen_training_spec_binding_v1_2_1.json": {
+   "path": "reports/audits/phase25d_frozen_training_spec_binding_v1_2_1.json",
+   "sha256": "f590b7170dad0a149d5b9c69a00dd88e76504466318599d2bbd8b3daf86ca6c6"
+  },
+  "phase25d_target_contract_v1_2_1.json": {
+   "path": "reports/audits/phase25d_target_contract_v1_2_1.json",
+   "sha256": "3c0a0284cc6f76a136aa6d8f01dece3afe249d4bb67f5f2ab0af15ae52d8a861"
+  },
+  "phase25d_router_architecture_binding.json": {
+   "path": "reports/audits/phase25d_router_architecture_binding.json",
+   "sha256": "fd2b4385df0eb468921f11bfdcda7cd70e54159e2b9e9eb7616afbf37fa1838d"
+  },
+  "phase25d_oof_prediction_contract_v1_2_1.json": {
+   "path": "reports/audits/phase25d_oof_prediction_contract_v1_2_1.json",
+   "sha256": "4cd8fd8d2c5764b52c90db340e075840e82519efef2ee926f31ea4ef5848a711"
+  }
+ },
+ "phase25d_oof_inference_implementation": {
+  "trainer": {
+   "path": "scripts/analysis/train_phase25d_router.py",
+   "sha256": "fc7c1bdf263ae4551dcb8f170d3203adb8540fbc189846265b74f6eca1541e91"
+  },
+  "oof_predictions": {
+   "path": "data_cache/phase25d_barr_benefit_router_v1_2_1/phase25d_oof_router_predictions.csv",
+   "sha256": "837be08e569053676b71d1ab216ff604184b2b61df567cca45e6f8a5546d4441"
+  }
+ },
+ "phase25a_roi030_and_protocol": {
+  "role": "F1 refiner training data (ROI-0.30 cache) + cross-fit fold identity + protocol",
+  "roi030_cache_root": "data_cache/phase25a_barr_roi030_cache",
+  "roi030_cache_manifest": {
+   "path": "data_cache/phase25a_barr_roi030_cache/cache_manifest.json",
+   "sha256": "cad302059231d70cbd1c9dd8058c9f0e6b121a3f87ac9c4d120707ed0244b0d8"
+  },
+  "fold_manifests": {
+   "final_all_development.csv": "8d86d7ca76f5ae35b978fb4b40afce28dba2a21e3f0de62761a38e0831278159",
+   "fold0_early_stop.csv": "674adbd5d5919bb4a2298ce3ea01cb0bbaab484cfb9c970f76fb90432c26f8cd",
+   "fold0_fit.csv": "58d0c00171e8bebfbf334c31df8badd40bb10b44de938f2a4be1bc3a28da9a3c",
+   "fold0_outer_target.csv": "e16d763debd6310ae6a5f787e1d8dfb84469deeb60cc8ea25dfd4fd1c743ac2a",
+   "fold1_early_stop.csv": "30f76b50ef135f6700f2091a805aa3879941726f87595fa3d15328dc55d5fe01",
+   "fold1_fit.csv": "a67f698687db67c80bfdde286fbf56694de579e1f212ddda669984d8208dc2b6",
+   "fold1_outer_target.csv": "f7dde49aa87f1f9ed8b4038f45cbe88c50a227ddffd8e50de5942bb91e049a51",
+   "fold2_early_stop.csv": "3096c117604915ea40d09f8005efca61b543012509decd36f2283ea08ecdeb30",
+   "fold2_fit.csv": "44f610e69e71196e40329ada32e489158b662910ba3ef70402b752d3ac6bbb17",
+   "fold2_outer_target.csv": "e8b4eeda3420aa9d4fd88815971fd805399c2c198d093458c506ad8fa7c0956c"
+  },
+  "contracts": {
+   "phase25a_crossfit_protocol.json": "6868b5562fe02929e13d63905ca74a759e20dec3c01b14eef331e4cb948f55ce",
+   "phase25a_augmentation_binding.json": "b8b0f817e765dd5db267df6f5e5c5b33da4f81ff58b177f8a410e5d985e97f59",
+   "phase25a_refiner_architecture_binding.json": "2f0d23878c855db60347e3d7225bd06703646e76263ae2ff82d485923474ad9b",
+   "phase25a_data_split_binding.json": "2111a40e0b341dc223eb7b6550e9b16e632685df48711a71084fe2afc3f246e7",
+   "phase25a_roi030_cache_provenance.json": "1454dc18f8f6adc3113314c3c55cd707a743a8cb7f67cf19d0a62f879a69277b"
+  },
+  "implementation": {
+   "trainer": {
+    "path": "scripts/training/train_phase25a_refiner.py",
+    "sha256": "487efd3a934c97bf3b4db13717ac29b567a535346a2510a946943e2506345835"
+   },
+   "model": {
+    "path": "src/models/barr/regional_refiner.py",
+    "sha256": "4fe0abde3ec3a183d930f676c4400b4d9ba778793ea64abf1755c5b8dabf947a"
+   },
+   "dataset": {
+    "path": "src/data/barr_refiner_dataset.py",
+    "sha256": "6bbf0eb51f9a4f646fe9222f2d3035761577f8d41cc5c229109139bfc937e095"
+   },
+   "roi_geometry": {
+    "path": "src/data/barr_roi.py",
+    "sha256": "4b1015275e4e31f9cc2b662a290c18f988eaea65cec64082cea217fad9aba9d6"
+   }
+  }
+ },
+ "phase25c_oof_inference_implementation": {
+  "oof_prediction_contract": null,
+  "execution_binding": "9b9018ed38501febbd80c132639dcac825d9e5e4e7e75d7167794bcfccd7b57b",
+  "fold_checkpoint_binding": "d62e39b60df85d09eca4013ca206d6d568166a82e00bf8baf881daa9889b62ba",
+  "note": "Phase25C OOF inference semantics = Phase25A trainer + canonical OOF refiner candidate generation"
+ },
+ "phase25f_post_safety_reuse": {
+  "role": "integrated post-safety S_omega (reuse only for F1 integrated secondary)",
+  "feature_schema": {
+   "path": "data_cache/phase25f_barr_post_safety_v1_0/feature_schema.csv",
+   "sha256": "3e70e20c541b93de752980c34cdfb6fe5af17ebe4c18cbb64397c0bbae465ee5"
+  },
+  "feature_cache": {
+   "feature_schema.csv": "3e70e20c541b93de752980c34cdfb6fe5af17ebe4c18cbb64397c0bbae465ee5",
+   "features.npy": "8b3a9c99aeb3935118e6f409b7451b23cc593bed9ea5053c4d6242100d6fe966",
+   "metadata.csv": "0fda2ec5001dc2eee7c3a4d1c155b4c1e74ffde9f40c090daf6dda5ce3979c67",
+   "oof_global_crop_prob.npy": "214c83b5754ccaed9f7b504313c93d3297bdb53ca66d7f033b502d54aa6eec64",
+   "oof_refined_crop_prob.npy": "4c574e3baff158111eb3d609a445e8c43aa359c96cc89aa3ef154cc4af273b87",
+   "oof_refined_crop_prob_metadata.csv": "4180d651bc460294db316ef06825efc08a4c172e76574cec971d78bbae5d8218",
+   "oof_refined_crop_prob_source_manifest.json": "fc4b0912c270539b16017c9a4ffe4db59c8f20a3ff5e515485382d4cd1625b75",
+   "phase25f_oof_safety_predictions.csv": "a9f63edd6d58a9a1d78a052a3e4539c6e0dd4d68bfb1c09c4c36789c441ebdee",
+   "targets.csv": "a4656b34b9726a32530a9d3d91c91b587e9d878d969f3e0a7cf831e524247382"
+  },
+  "fold_checkpoints": {
+   "cv_fold0": {
+    "best.pt": "930a73207aaed2a5745a990d803df13925f4697689debb6e5bdb60270ac99871",
+    "state.pt": "bb720ed685e04537300455346150866ea3416960a86bad1632c4533e2d542314"
+   },
+   "cv_fold1": {
+    "best.pt": "249f55897a5fa5258bfc5babd050c4448d501a94632c78d0ee6a31a52ef3819c",
+    "state.pt": "617c5aa4c3dc841d5b87bf81ad9afb7b951e1156dd1b9f5ad64732293c519a3d"
+   },
+   "cv_fold2": {
+    "best.pt": "b78dbd6969e92fb1caf859b3290a042face1933208f7dc3b881036c3b630ff15",
+    "state.pt": "0231355424b36d19066c3e5a6daed5ba3a408e9c1ebc41ea5eeb21a092e94bb5"
+   },
+   "cv_fold3": {
+    "best.pt": "0d7bec864bcf7bbf2fcfc967351100be758fa9e770c3070407e2ec96e0620004",
+    "state.pt": "fc130000c0e8e3d90edd405822c4e8af0482c2e3f447b81df7ff8db4d3309d94"
+   },
+   "cv_fold4": {
+    "best.pt": "75e15712381275e2f31052bd729344eb7e01b6d03c43f7e3f595407420b4fb22",
+    "state.pt": "31e9d33d21fe87ecdb57670324474a51f25e8123c4ac8eb467e73b52e0d807db"
+   }
+  },
+  "contracts": {
+   "phase25f_feature_equation_contract_v1_0.json": "a8ac5c04d5d4f91d6bf16a89115846b30c4399705f1380b95757cc0bb1e4271e",
+   "phase25f_feature_cache_contract_v1_0.json": "d64da8ef96db3e3db20f41ce79c25f643c1ab4451449ab58800b43fa0a8aad9c",
+   "phase25f_normalization_contract_v1_0.json": "2fb3e75b9c4d7378b697a4664f30683a9e161fdb2c0444685a52ef07f1e594de",
+   "phase25f_cv_manifest_reuse_contract_v1_0.json": "731376fd19d2fc922f5209fdf891a12f9db5ed0ddafc04f697fe5364e1d02533",
+   "phase25f_architecture_contract_v1_0.json": "b90464eea2d527774a5734112a35b5be8035d840fd8ae7862729df0c1c4265df",
+   "phase25f_training_contract_v1_0.json": "70d0202d38bb7ddc527ba07e8a8774180953eeccdd5472f548902ee1de9d4704",
+   "phase25f_checkpoint_selection_contract_v1_0.json": "e4714cb69f23ade1c6fb194768240c2b910ad10c55aaeffb2ebb41eee66cfa95"
+  },
+  "per_fold_normalization": "257c3d130dd43b9e06da7dbfcfd0d1d9cff1f01654e63751d6031f289b05099b"
+ },
+ "population": {
+  "name": "ROUTER_DEVELOPMENT",
+  "n": 4957,
+  "expected_n": 4957
+ },
+ "all_material_inputs_present": true,
+ "blocked_terminal": "PHASE28_BLOCKED__TRAINING_INPUT_PROVENANCE_FAILURE",
+ "all_pass": true,
+ "missing_inputs": []
+}

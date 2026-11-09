@@ -1,0 +1,16 @@
+{
+ "artifact": "phase28_rf_post_safety_semantics",
+ "phase": 28,
+ "classification": "BLOCKED_OPERATIONAL_SEMANTICS_REQUIRED",
+ "governance_only": true,
+ "execution": "NONE",
+ "question": "Do R1/R2/R3/F1 include S_omega?",
+ "baseline_reference": "A8 = A7 + S_omega; the canonical full-system baseline includes S_omega.",
+ "finding": "NOT_SPECIFIED_IN_ANY_AUTHORITATIVE_SOURCE. No Phase24/25 artifact states whether the router-family (R1/R2/R3) and refiner-family (F1) ablations are evaluated WITH or WITHOUT S_omega.",
+ "if_evaluated_as_full_system_ablations": "S_omega SHOULD remain frozen (unchanged) unless the ablation definition changes it — but this binding is not frozen anywhere.",
+ "F1_downstream_note": "For F1, changing the refiner input can change candidate predictions, and therefore S_omega's post-refinement features and accept/reject decision could change as a downstream consequence. That downstream effect is permissible ONLY if F1's intervention is the SOLE manipulated factor and the membership is held identical (see §11). Because F1 membership is unresolved (§11), this cannot be asserted.",
+ "execution_status": "BLOCKED_OPERATIONAL_SEMANTICS_REQUIRED",
+ "blocked_terminal": "PHASE28_BLOCKED__R1_R2_R3_F1_EXECUTION_SEMANTICS_INCOMPLETE",
+ "generated_utc": "2026-10-02T18:45:00Z",
+ "all_pass": true
+}
