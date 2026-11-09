@@ -1,0 +1,227 @@
+{
+ "artifact": "phase25a_threshold_semantics_audit",
+ "phase": "25A",
+ "classification": "CANONICAL_PHASE25A",
+ "purpose": "fail-closed verification that the ROI proposal threshold (0.30) and the segmentation output threshold (0.50) are separated and correctly bound",
+ "roi_proposal_foreground_threshold": 0.3,
+ "segmentation_fusion_mask_threshold": 0.5,
+ "canonical_roi_derivation_uses_0p50": false,
+ "canonical_segmentation_threshold_changed_to_0p30": false,
+ "ambiguous_bare_threshold_fields_remaining": 0,
+ "checks": [
+  {
+   "check": "roi_proposal_threshold_is_0p30",
+   "ok": true,
+   "detail": 0.3
+  },
+  {
+   "check": "segmentation_output_threshold_is_0p50",
+   "ok": true,
+   "detail": 0.5
+  },
+  {
+   "check": "backward_alias_points_at_roi_proposal",
+   "ok": true,
+   "detail": 0.3
+  },
+  {
+   "check": "semantic_roles_declared",
+   "ok": true,
+   "detail": [
+    "roi_proposal_threshold",
+    "segmentation_output_threshold"
+   ]
+  },
+  {
+   "check": "roles_not_swapped",
+   "ok": true,
+   "detail": {
+    "roi_proposal_threshold": 0.3,
+    "segmentation_output_threshold": 0.5
+   }
+  },
+  {
+   "check": "adjudication_present",
+   "ok": true,
+   "detail": "reports\\audits\\phase24_phase25_roi_threshold_adjudication.json"
+  },
+  {
+   "check": "adjudication_classification",
+   "ok": true,
+   "detail": "FROZEN_SPEC_CLARIFICATION__NOT_SCIENCE_CHANGE"
+  },
+  {
+   "check": "adjudication_roi_0p30",
+   "ok": true,
+   "detail": 0.3
+  },
+  {
+   "check": "adjudication_seg_0p50",
+   "ok": true,
+   "detail": 0.5
+  },
+  {
+   "check": "adjudication_phase24_science_unchanged",
+   "ok": true,
+   "detail": [
+    false,
+    false
+   ]
+  },
+  {
+   "check": "supersession_present",
+   "ok": true,
+   "detail": "reports\\audits\\phase25a_roi050_supersession.json"
+  },
+  {
+   "check": "supersession_classification",
+   "ok": true,
+   "detail": "NONCANONICAL_PROTOCOL_DEVIATION__ROI_THRESHOLD_0P50"
+  },
+  {
+   "check": "supersession_scientific_use_forbidden",
+   "ok": true,
+   "detail": [
+    false,
+    false
+   ]
+  },
+  {
+   "check": "supersession_not_deleted",
+   "ok": true,
+   "detail": [
+    true,
+    false
+   ]
+  },
+  {
+   "check": "canonical_cache_present",
+   "ok": true,
+   "detail": "data_cache\\phase25a_barr_roi030_cache\\cache_manifest.json"
+  },
+  {
+   "check": "canonical_cache_roi_0p30",
+   "ok": true,
+   "detail": 0.3
+  },
+  {
+   "check": "canonical_cache_seg_0p50_declared",
+   "ok": true,
+   "detail": 0.5
+  },
+  {
+   "check": "canonical_cache_seg_threshold_unused_for_roi",
+   "ok": true,
+   "detail": false
+  },
+  {
+   "check": "canonical_cache_decision_precision_float32",
+   "ok": true,
+   "detail": "float32"
+  },
+  {
+   "check": "canonical_cache_supersedes_roi050",
+   "ok": true,
+   "detail": "data_cache/phase25a_global_cache (ROI-0.50, noncanonical)"
+  },
+  {
+   "check": "builder_uses_roi_proposal_threshold_constant",
+   "ok": true,
+   "detail": "build_phase25a_roi030_cache.py"
+  },
+  {
+   "check": "builder_guards_0p30",
+   "ok": true,
+   "detail": true
+  },
+  {
+   "check": "builder_guards_0p50_for_segmentation",
+   "ok": true,
+   "detail": true
+  },
+  {
+   "check": "builder_does_not_pass_0p5_to_roi_geometry",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "check": "roi_source_roi_literal_0p30",
+   "ok": true,
+   "detail": true
+  },
+  {
+   "check": "roi_source_seg_literal_0p50",
+   "ok": true,
+   "detail": true
+  },
+  {
+   "check": "roi_source_alias_is_roi_not_seg",
+   "ok": true,
+   "detail": true
+  },
+  {
+   "check": "roi_source_has_no_bare_0p5_constant",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "check": "dataset_default_cache_root_is_canonical",
+   "ok": true,
+   "detail": true
+  },
+  {
+   "check": "dataset_noncanonical_root_labelled",
+   "ok": true,
+   "detail": true
+  },
+  {
+   "check": "canonical_runs_bind_roi_0p30",
+   "ok": true,
+   "detail": {
+    "checked": 4,
+    "bad": []
+   }
+  },
+  {
+   "check": "canonical_ckpt_root_is_roi030",
+   "ok": true,
+   "detail": "checkpoints\\phase25a_barr_regional_refiner_v1_1_roi030"
+  },
+  {
+   "check": "noncanonical_ckpt_root_preserved",
+   "ok": true,
+   "detail": "ROI-0.50 run preserved"
+  },
+  {
+   "check": "no_ambiguous_bare_threshold_column",
+   "ok": true,
+   "detail": []
+  },
+  {
+   "check": "notebook_states_roi_proposal_0p30",
+   "ok": true,
+   "detail": true
+  },
+  {
+   "check": "notebook_states_segmentation_0p50",
+   "ok": true,
+   "detail": true
+  },
+  {
+   "check": "notebook_preserves_superseded_sha",
+   "ok": true,
+   "detail": true
+  }
+ ],
+ "n_checks": 37,
+ "n_passed": 37,
+ "n_failed": 0,
+ "input_shas": {
+  "barr_roi.py": "4b1015275e4e31f9cc2b662a290c18f988eaea65cec64082cea217fad9aba9d6",
+  "barr_refiner_dataset.py": "6bbf0eb51f9a4f646fe9222f2d3035761577f8d41cc5c229109139bfc937e095",
+  "build_phase25a_roi030_cache.py": "dbd27c0a95957d61f652865ca0dad570a8ecdd060970733190cb8e905603c37a",
+  "train_phase25a_refiner.py": "487efd3a934c97bf3b4db13717ac29b567a535346a2510a946943e2506345835"
+ },
+ "verdict": "PHASE25A_THRESHOLD_SEMANTICS_AUDIT_PASS",
+ "failed_checks": []
+}

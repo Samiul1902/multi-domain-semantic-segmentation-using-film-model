@@ -1,0 +1,139 @@
+{
+ "artifact": "phase34_measured_runtime_scope_v1_1",
+ "phase": 34,
+ "section": "\u00a7K",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase34_efficiency_profiling_v1_1",
+ "per_arm_timing_scope": {
+  "GLOBAL_ONLY_C1": {
+   "included": [
+    "model forward",
+    "sigmoid"
+   ],
+   "excluded": [
+    "feature normalization",
+    "router feature construction",
+    "ROI geometry",
+    "crop/resizing",
+    "interpolation",
+    "fusion",
+    "decision logic",
+    "host-to-device transfer",
+    "device-to-host transfer",
+    "checkpoint loading",
+    "synthetic tensor generation"
+   ],
+   "classification": "MODEL_COMPUTE_PATH_RUNTIME"
+  },
+  "FINAL_ROUTED_A8_C9": {
+   "included": [
+    "model forward (per component)",
+    "sigmoid"
+   ],
+   "excluded": [
+    "feature normalization",
+    "router feature construction",
+    "ROI geometry",
+    "crop/resizing",
+    "interpolation",
+    "fusion",
+    "decision logic",
+    "host-to-device transfer",
+    "device-to-host transfer",
+    "checkpoint loading",
+    "synthetic tensor generation"
+   ],
+   "classification": "MODEL_COMPUTE_PATH_RUNTIME",
+   "note": "fusion/ROI geometry/decision logic are NOT inside the timed region in the frozen harness; weighted runtime is a WEIGHTED_HARDWARE_SPECIFIC_RUNTIME_ESTIMATE"
+  },
+  "G_COMPONENT": {
+   "included": [
+    "model forward",
+    "sigmoid"
+   ],
+   "excluded": [
+    "feature normalization",
+    "router feature construction",
+    "ROI geometry",
+    "crop/resizing",
+    "interpolation",
+    "fusion",
+    "decision logic",
+    "host-to-device transfer",
+    "device-to-host transfer",
+    "checkpoint loading",
+    "synthetic tensor generation"
+   ],
+   "classification": "SYNTHETIC_COMPONENT_RUNTIME"
+  },
+  "R_PSI_COMPONENT": {
+   "included": [
+    "model forward",
+    "sigmoid"
+   ],
+   "excluded": [
+    "feature normalization",
+    "router feature construction",
+    "ROI geometry",
+    "crop/resizing",
+    "interpolation",
+    "fusion",
+    "decision logic",
+    "host-to-device transfer",
+    "device-to-host transfer",
+    "checkpoint loading",
+    "synthetic tensor generation"
+   ],
+   "classification": "SYNTHETIC_COMPONENT_RUNTIME"
+  },
+  "B_PHI_COMPONENT": {
+   "included": [
+    "model forward"
+   ],
+   "excluded": [
+    "sigmoid",
+    "feature normalization",
+    "router feature construction",
+    "ROI geometry",
+    "crop/resizing",
+    "interpolation",
+    "fusion",
+    "decision logic",
+    "host-to-device transfer",
+    "device-to-host transfer",
+    "checkpoint loading",
+    "synthetic tensor generation"
+   ],
+   "classification": "SYNTHETIC_COMPONENT_RUNTIME"
+  },
+  "S_OMEGA_COMPONENT": {
+   "included": [
+    "model forward",
+    "sigmoid"
+   ],
+   "excluded": [
+    "feature normalization",
+    "router feature construction",
+    "ROI geometry",
+    "crop/resizing",
+    "interpolation",
+    "fusion",
+    "decision logic",
+    "host-to-device transfer",
+    "device-to-host transfer",
+    "checkpoint loading",
+    "synthetic tensor generation"
+   ],
+   "classification": "SYNTHETIC_COMPONENT_RUNTIME"
+  }
+ },
+ "allowed_labels": [
+  "MODEL_COMPUTE_PATH_RUNTIME",
+  "SYNTHETIC_COMPONENT_RUNTIME",
+  "END_TO_END_PIPELINE_RUNTIME"
+ ],
+ "end_to_end_pipeline_runtime_used": false,
+ "end_to_end_pipeline_runtime_condition": "only if the exact full canonical pipeline operations are inside the timed region",
+ "generated_utc": "2026-10-04T10:35:59+00:00",
+ "all_pass": true
+}

@@ -1,0 +1,40 @@
+{
+  "artifact": "phase20b_prediction_manifest",
+  "phase": 20,
+  "subphase": "20B",
+  "model_key": "attention_unet",
+  "experiment_id": "phase20b_shared_attention_unet_fourdomain_seed42_clean_v3",
+  "scope": "VAL only; TEST never read",
+  "n_predictions": 808,
+  "per_domain_counts": {
+    "BUSI": 84,
+    "ISIC": 357,
+    "KUB": 280,
+    "KVASIR": 87
+  },
+  "storage": {
+    "format": "npz (compressed)",
+    "prob_dtype": "float16",
+    "pred_dtype": "uint8",
+    "prob_semantics": "sigmoid probability of foreground, [0,1]",
+    "pred_semantics": "binary at threshold 0.5"
+  },
+  "binding": {
+    "checkpoint_path": "checkpoints/phase20b_shared_attention_unet_fourdomain_seed42_clean_v3/best.pt",
+    "checkpoint_sha256": "feb0eb0577841f3a9cfc1efb3a46dd4cdd5f749e3f3b08b85d80e472f7dd2b35",
+    "checkpoint_epoch": 64,
+    "threshold": 0.5,
+    "input_channel_policy": "RGB_3CH",
+    "input_resolution": 512,
+    "preprocessing_contract": "phase19_preprocessing_contract_v1",
+    "evaluation_contract": "phase19_evaluation_contract_v1",
+    "manifest_version": "phase4_v3"
+  },
+  "gt_reference_scheme": "native mask path + sha256 of the native mask file bytes",
+  "manifest_csv": "reports/tables/phase20b_attention_unet_prediction_manifest.csv",
+  "manifest_csv_sha256": "7a9bcf5203e5c9bb9a2808b82462a90aabcb58b0c64aa8e32b55536ed73ebca8",
+  "per_image_table": "reports/tables/phase20b_attention_unet_per_image_val_metrics.csv",
+  "per_image_table_sha256": "04ae52233e69f70e162fff97bc32c3738f81676819c77e4325861b5d961d3483",
+  "prediction_root": "reports/predictions/phase20b_shared_attention_unet_fourdomain_seed42_clean_v3/val",
+  "allows_future_phases_to_avoid_replay": true
+}

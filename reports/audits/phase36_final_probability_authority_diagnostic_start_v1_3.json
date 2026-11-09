@@ -1,0 +1,232 @@
+{
+ "artifact_kind": "PHASE36_FINAL_PROBABILITY_AUTHORITY_DIAGNOSTIC_START",
+ "revision": "ra_medfilm_barr_phase36_final_probability_authority_diagnostic_v1_3",
+ "attempted": true,
+ "authorized_attempt": true,
+ "authorization_derivation": "derived: one_shot_gate AND launch_authority_token AND foreign_v1_14_token_absent AND no_prior_attempt AND prior_failure_provenance_bound AND static_audit_verdict==STATIC_ROOT_CAUSE_NOT_ESTABLISHED AND consumed_evidence_bound AND v1_1_consumed_state_bound AND v1_2_consumed_state_bound",
+ "one_shot_gate_env": "PHASE36_FINAL_PROB_AUTHORITY_EXECUTE",
+ "launch_authority_token_env": "PHASE36_FINAL_PROB_AUTHORITY_V1_3_LAUNCH_AUTHORITY",
+ "foreign_v1_14_launch_token_env": "PHASE36_V1_14_LAUNCH_AUTHORITY",
+ "foreign_v1_14_launch_token_present": false,
+ "d50_foreign_gate_call_omitted": true,
+ "d50_reason": "FROZEN_V1_14_GATE_CONTAINS_FOREIGN_LAUNCH_AUTHORITY_SEMANTICS",
+ "d61_repair_classification": "D61_CANONICAL_ACCEPT_FUSION_REPAIR",
+ "d61_canonical_accept_call": "fuse_full_field(p_global, refined, geom)",
+ "d61_old_accept_call_replaced": "system._fuse_global_with_regional(p_global, refined, window)",
+ "exact_diagnostic_source_sha256": "b32a9db41a53b5007c6b9989bdbee22a0b7ea14587d222a3399980142dd9621e",
+ "frozen_v1_14_exec_source_sha256": "ac09ff8ded3610244920e66612145b246b33127140d344a9730d454bab27cff5",
+ "frozen_v1_14_manifest_sha256": "b4c358dfcb5e7b59beb6ae1ba2cffc64677d10049e12568b4c8eea8e79bb911e",
+ "phase27_final_prob_authority": {
+  "path": "data_cache/phase27_barr_preservation_v1_0/phase27_val808_final_prob_f16.npy",
+  "sha256": "506ab6c4e715a9106889e186c146b73903493c80a63258007954cf5deb3ea9cf",
+  "shape": [
+   808,
+   512,
+   512
+  ],
+  "dtype": "float16",
+  "sample_order": "frozen VAL808 population order (dataset asc, sample_id asc)",
+  "role": "Phase27 frozen FINAL probability cache (authoritative reproduction target)"
+ },
+ "prior_failure_provenance": {
+  "all_match": true,
+  "items": {
+   "v1_14_science_start": {
+    "path": "reports/audits/phase36_robustness_science_start_v1_14.json",
+    "present": true,
+    "expected": "e2c42b05f4fd0450022d7bcde091c0bea13638788b4f83a123016ab894630e0a",
+    "observed": "e2c42b05f4fd0450022d7bcde091c0bea13638788b4f83a123016ab894630e0a",
+    "match": true
+   },
+   "v1_14_science_failure": {
+    "path": "reports/audits/phase36_robustness_science_failure_v1_14.json",
+    "present": true,
+    "expected": "0fcc3c211d7bcd53b4f8e53d7b09f518fd83a929e8a979c7174762958fff754b",
+    "observed": "0fcc3c211d7bcd53b4f8e53d7b09f518fd83a929e8a979c7174762958fff754b",
+    "match": true
+   },
+   "v1_14_forensic_adjudication": {
+    "path": "reports/audits/phase36_v1_14_science_failure_forensic_adjudication.json",
+    "present": true,
+    "expected": "f1d4712ae7b3f0b333a22c852f99d6b3812218ffb258f8f58ddba62c7193c17e",
+    "observed": "f1d4712ae7b3f0b333a22c852f99d6b3812218ffb258f8f58ddba62c7193c17e",
+    "match": true
+   },
+   "forensic_reconciliation_v2": {
+    "path": "reports/audits/phase36_v1_14_science_failure_forensic_reconciliation_v2.json",
+    "present": true,
+    "expected": "cc9a3b502f59e3855c395b9d6afa2f5616f513d60af4756e4477a9370889cc3c",
+    "observed": "cc9a3b502f59e3855c395b9d6afa2f5616f513d60af4756e4477a9370889cc3c",
+    "match": true
+   },
+   "targeted_static_audit": {
+    "path": "reports/audits/phase36_clean_equivalence_targeted_static_audit_v1_0.json",
+    "present": true,
+    "expected": "8def086c44a7e80461c729f41ab61c0be347ef1589c94d6884a082adbde64ed4",
+    "observed": "8def086c44a7e80461c729f41ab61c0be347ef1589c94d6884a082adbde64ed4",
+    "match": true
+   }
+  },
+  "static_audit_verdict": "STATIC_ROOT_CAUSE_NOT_ESTABLISHED"
+ },
+ "consumed_evidence_provenance": {
+  "all_match": true,
+  "items": {
+   "v1_2_start_marker": {
+    "path": "reports/audits/phase36_clean_equivalence_diagnostic_start_v1_2.json",
+    "present": true,
+    "expected": "be93d494b1aa2aad3c900f442c16efe55bcbf0bd508a72df8f8b83e72cd7d2d3",
+    "observed": "be93d494b1aa2aad3c900f442c16efe55bcbf0bd508a72df8f8b83e72cd7d2d3",
+    "match": true
+   },
+   "v1_2_result": {
+    "path": "reports/audits/phase36_clean_equivalence_diagnostic_result_v1_2.json",
+    "present": true,
+    "expected": "b64f7e6282f9abb864a5d5bc438a22e1096aaf56e0a4e94fe53ba7c9bab6fa4a",
+    "observed": "b64f7e6282f9abb864a5d5bc438a22e1096aaf56e0a4e94fe53ba7c9bab6fa4a",
+    "match": true
+   },
+   "d51_adjudication_v1_0": {
+    "path": "reports/audits/phase36_clean_equivalence_d51_numerical_authority_adjudication_v1_0.json",
+    "present": true,
+    "expected": "27ac7ada4ee39190d8823b8b1ff7e6e2beb304e2e7fc5778542883ac7eacc53a",
+    "observed": "27ac7ada4ee39190d8823b8b1ff7e6e2beb304e2e7fc5778542883ac7eacc53a",
+    "match": true
+   },
+   "d51_reconciliation_v1_1": {
+    "path": "reports/audits/phase36_clean_equivalence_d51_reconciliation_v1_1.json",
+    "present": true,
+    "expected": "d8e3e83e6c31004e610faef9d93c221c026eb8974c033f47fbff91106836758b",
+    "observed": "d8e3e83e6c31004e610faef9d93c221c026eb8974c033f47fbff91106836758b",
+    "match": true
+   }
+  }
+ },
+ "v1_1_consumed_state": {
+  "all_match": true,
+  "items": {
+   "v1_1_start": {
+    "path": "reports/audits/phase36_final_probability_authority_diagnostic_start_v1_1.json",
+    "present": true,
+    "expected": "0bfb452ef81e6e0c8880d9b333abcb6514dff7dbb3a37476da3242beeab73aec",
+    "observed": "0bfb452ef81e6e0c8880d9b333abcb6514dff7dbb3a37476da3242beeab73aec",
+    "match": true
+   },
+   "v1_1_failure": {
+    "path": "reports/audits/phase36_final_probability_authority_diagnostic_failure_v1_1.json",
+    "present": true,
+    "expected": "9f1b38431228ec584150da37501199ea580b26339be6d8e20a2fcba72b5cd960",
+    "observed": "9f1b38431228ec584150da37501199ea580b26339be6d8e20a2fcba72b5cd960",
+    "match": true
+   },
+   "d56_failure_adjudication": {
+    "path": "reports/audits/phase36_final_probability_authority_diagnostic_v1_1_failure_adjudication_v1_0.json",
+    "present": true,
+    "expected": "b796cc8d49df32513d2c6a4c5700a253d66a49e171def1772e1617ff4855fc80",
+    "observed": "b796cc8d49df32513d2c6a4c5700a253d66a49e171def1772e1617ff4855fc80",
+    "match": true
+   }
+  },
+  "predicates": {
+   "termination_kind": "EXCEPTION",
+   "exception_type": "TypeError",
+   "exception_message": "'module' object is not subscriptable",
+   "failing_stage": "run_diagnostic",
+   "marker_consumed": true,
+   "VAL_GT_READ": 0,
+   "final_authority_computed": false,
+   "result_write_attempted": false
+  },
+  "result_absent": true,
+  "predicates_match": {
+   "termination_kind": true,
+   "exception_type": true,
+   "exception_message": true,
+   "failing_stage": true,
+   "marker_consumed": true,
+   "VAL_GT_READ": true,
+   "final_authority_computed": true,
+   "result_write_attempted": true
+  }
+ },
+ "v1_2_consumed_state": {
+  "all_match": true,
+  "items": {
+   "v1_2_start": {
+    "path": "reports/audits/phase36_final_probability_authority_diagnostic_start_v1_2.json",
+    "present": true,
+    "expected": "88723028df230a8b1e2c98c8c248d2de44e73bcb95669efd9bd8d44cff4a69be",
+    "observed": "88723028df230a8b1e2c98c8c248d2de44e73bcb95669efd9bd8d44cff4a69be",
+    "match": true
+   },
+   "v1_2_result": {
+    "path": "reports/audits/phase36_final_probability_authority_diagnostic_result_v1_2.json",
+    "present": true,
+    "expected": "4a3753867e72f7cfbc357511475623bd0ecfff2dc0e3aca0f16ecbe1effa98d5",
+    "observed": "4a3753867e72f7cfbc357511475623bd0ecfff2dc0e3aca0f16ecbe1effa98d5",
+    "match": true
+   },
+   "v1_2_result_adjudication_v1_0": {
+    "path": "reports/audits/phase36_final_probability_authority_diagnostic_v1_2_result_adjudication_v1_0.json",
+    "present": true,
+    "expected": "562e238c5a1ce0581ed1eb1f763f0172826af0653753cfef6346528c1206ec1b",
+    "observed": "562e238c5a1ce0581ed1eb1f763f0172826af0653753cfef6346528c1206ec1b",
+    "match": true
+   },
+   "v1_2_result_adjudication_reconciliation_v1_1": {
+    "path": "reports/audits/phase36_final_probability_authority_diagnostic_v1_2_result_adjudication_reconciliation_v1_1.json",
+    "present": true,
+    "expected": "a85aaf4a0668effaecb148c3ada7a8f25c1bcd0216740e0c009df2115a3833bb",
+    "observed": "a85aaf4a0668effaecb148c3ada7a8f25c1bcd0216740e0c009df2115a3833bb",
+    "match": true
+   }
+  },
+  "predicates": {
+   "classification": "D51_END_TO_END_FINAL_AUTHORITY_NOT_REPRODUCED",
+   "final_f16_bit_identical_all": false,
+   "n_samples_with_any_f16_difference": 266,
+   "total_f16_element_mismatch_count": 28950719,
+   "max_abs_f16_difference": 0.9999996423721313,
+   "VAL_GT_READ": 0
+  },
+  "failure_absent": true,
+  "predicates_match": {
+   "classification": true,
+   "final_f16_bit_identical_all": true,
+   "n_samples_with_any_f16_difference": true,
+   "total_f16_element_mismatch_count": true,
+   "max_abs_f16_difference": true,
+   "VAL_GT_READ": true
+  },
+  "d60_reconciled": "FINAL_AUTHORITY_MISMATCH_EXACTLY_LOCALIZED_TO_PHASE27_ACCEPT_FINAL_SOURCE",
+  "d61_status": "ESTABLISHED",
+  "d61_classification": "ACCEPT_FINAL_FUSION_SEMANTICS_DIVERGE_FROM_PHASE27"
+ },
+ "v1_14_science_marker_presence_at_start": {
+  "phase36_robustness_science_start_v1_14.json": true,
+  "phase36_robustness_scientific_result_v1_14.json": false,
+  "phase36_robustness_science_failure_v1_14.json": true
+ },
+ "gt_content_invariant": {
+  "no_mask_file_opened": true,
+  "no_Image_open_on_mask_path": true,
+  "_load_val_gt_never_executes": true,
+  "full_field_gt_never_executes": true,
+  "_dice_never_executes": true,
+  "_iou_never_executes": true,
+  "_hd95_never_executes": true,
+  "VAL_GT_READ_remains_zero": true,
+  "mask_path_metadata_validation_permitted": true
+ },
+ "gt_prohibition": {
+  "static": "no GT-content callable referenced",
+  "runtime": "raising proxies installed",
+  "VAL_GT_READ_must_be": 0,
+  "mask_path_metadata_validation_permitted": true
+ },
+ "automatic_retry": false,
+ "overwrite_permitted": false,
+ "scientific_output": false,
+ "generated_utc": "2026-10-08T09:30:52Z",
+ "write_semantics": "O_CREAT|O_EXCL + full-write + fsync (exclusive-create, write-once)"
+}

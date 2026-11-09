@@ -1,0 +1,34 @@
+{
+ "artifact": "phase27_gt_inference_separation_contract.json",
+ "phase": "27",
+ "classification": "PHASE27_PRE_EXECUTION_PRESERVATION_AUDIT_SPECIFICATION",
+ "method": "RA-MedFiLM-BARR",
+ "governance_only": true,
+ "no_execution": true,
+ "stage": "GT_INFERENCE_SEPARATION",
+ "protocol": [
+  "PHASE_A_INFERENCE: read VAL808 images only; produce per-sample predictions (binary mask + probability map) for both the global reference and the final A8 system; write prediction artifact and hash it. GT masks are NOT read.",
+  "HASH_BARRIER: hash and freeze the prediction artifact BEFORE any GT access.",
+  "PHASE_B_SCORING: read VAL808 GT masks; compute Dice(global) and Dice(final_A8) per sample; compute deltas and the macro-domain estimand."
+ ],
+ "inference_inputs": [
+  "image",
+  "task_id"
+ ],
+ "inference_forbidden_inputs": [
+  "ground_truth_mask",
+  "mask_path contents"
+ ],
+ "gt_used_during_routing": false,
+ "gt_used_during_fusion": false,
+ "gt_used_during_safety": false,
+ "gt_read_timing": "POST_HASH_BARRIER_ONLY",
+ "checks": {
+  "gt_not_read_at_inference": true,
+  "gt_read_only_at_scoring": true,
+  "two_phase_protocol": true,
+  "prediction_hash_before_gt": true,
+  "no_gt_leak_into_routing": true
+ },
+ "all_pass": true
+}

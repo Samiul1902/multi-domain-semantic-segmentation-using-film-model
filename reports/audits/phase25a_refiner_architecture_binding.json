@@ -1,0 +1,325 @@
+{
+ "artifact": "phase25a_refiner_architecture_binding",
+ "phase": "25A",
+ "purpose": "architecture identity gate: prove the realised refiner is exactly the frozen BARRRegionalRefinerV1 before any scientific training",
+ "model_class": "BARRRegionalRefinerV1",
+ "symbol": "R_psi",
+ "source_file": "src/models/barr/regional_refiner.py",
+ "source_sha256": "4fe0abde3ec3a183d930f676c4400b4d9ba778793ea64abf1755c5b8dabf947a",
+ "architecture_id": "barr_regional_refiner_v1_narrowed_channels",
+ "channels_declared_rejected": [
+  16,
+  32,
+  64,
+  128,
+  192
+ ],
+ "channels_active": [
+  16,
+  32,
+  64,
+  96,
+  128
+ ],
+ "normalization": "GroupNorm (largest divisor <= 8; 8 for every active width)",
+ "activation": "SiLU",
+ "downsample": "MaxPool2d(2)",
+ "upsample": "bilinear x2 (align_corners=False)",
+ "decoder_skip": "concatenate corresponding encoder skip",
+ "head": "Conv2d(16, 1, kernel_size=1, bias=True)",
+ "conv_bias_policy": "bias=False for every convolution followed by GroupNorm",
+ "projection_shortcut": "1x1 Conv2d(bias=False) when in != out, else Identity",
+ "input_channels": 4,
+ "input_channel_names": [
+  "R",
+  "G",
+  "B",
+  "p_global_crop"
+ ],
+ "output_channels": 1,
+ "output_kind": "logits (no internal sigmoid)",
+ "input_resolution": 256,
+ "input_shape_verified": [
+  1,
+  4,
+  256,
+  256
+ ],
+ "output_shape_verified": [
+  1,
+  1,
+  256,
+  256
+ ],
+ "parameter_count": 1276401,
+ "expected_parameter_count": 1276401,
+ "parameter_count_match": true,
+ "closed_form_parameter_count": 1276401,
+ "hard_ceiling": 2000000,
+ "within_ceiling": true,
+ "phase24_exact_spec_sha256": "6b1a71d5e88ce06baa8f200523be32773428417ffd233ff218d7e50b6af271dd",
+ "predicted_foreground_threshold": 0.3,
+ "prose_reconciliation": {
+  "note": "the Phase-25A instruction prose sketches the network more loosely than the frozen closed form; the realised structure is the one the frozen number 1,276,401 encodes",
+  "mapping": {
+   "prose Stage 1 ResidualBlock(4->16)": "stem Conv3x3(4->16)+GroupNorm(16) then ResidualBlock(16->16)",
+   "prose Stage 2 ResidualBlock(16->32)": "ResidualBlock(16->32)",
+   "prose Stage 3 ResidualBlock(32->64)": "ResidualBlock(32->64)",
+   "prose Stage 4 ResidualBlock(64->96)": "ResidualBlock(64->96)",
+   "prose Bridge ResidualBlock(96->128)": "encoder ResidualBlock(96->128) + bridge ResidualBlock(128->128)"
+  },
+  "parameter_count_forced_by": "frozen expected_parameter_count_closed_form = 1,276,401",
+  "architecture_was_not_altered_to_match": true
+ },
+ "tests": [
+  {
+   "check": "input_shape_1x4x256x256",
+   "pass": true,
+   "detail": [
+    1,
+    4,
+    256,
+    256
+   ]
+  },
+  {
+   "check": "output_shape_1x1x256x256",
+   "pass": true,
+   "detail": [
+    1,
+    1,
+    256,
+    256
+   ]
+  },
+  {
+   "check": "parameter_count_exact_1276401",
+   "pass": true,
+   "detail": "actual=1,276,401"
+  },
+  {
+   "check": "closed_form_matches_realised",
+   "pass": true,
+   "detail": "1,276,401 vs 1,276,401"
+  },
+  {
+   "check": "within_hard_ceiling_2M",
+   "pass": true,
+   "detail": "1,276,401 <= 2,000,000"
+  },
+  {
+   "check": "output_is_raw_logits",
+   "pass": true,
+   "detail": "range=(-0.193,0.221)"
+  },
+  {
+   "check": "channels_frozen",
+   "pass": true,
+   "detail": [
+    16,
+    32,
+    64,
+    96,
+    128
+   ]
+  },
+  {
+   "check": "architecture_id",
+   "pass": true
+  },
+  {
+   "check": "batch_size_generic",
+   "pass": true,
+   "detail": [
+    3,
+    1,
+    256,
+    256
+   ]
+  },
+  {
+   "check": "projection_identity_when_channels_equal",
+   "pass": true
+  },
+  {
+   "check": "projection_conv1x1_when_channels_differ",
+   "pass": true
+  },
+  {
+   "check": "projection_conv_has_no_bias",
+   "pass": true
+  },
+  {
+   "check": "residual_skip_path_present",
+   "pass": true
+  },
+  {
+   "check": "groupnorm_largest_divisor_le_8",
+   "pass": true,
+   "detail": {
+    "16": 8,
+    "32": 8,
+    "64": 8,
+    "96": 8,
+    "128": 8
+   }
+  },
+  {
+   "check": "groupnorm_rule_general",
+   "pass": true,
+   "detail": {
+    "12": 6,
+    "7": 7,
+    "9": 3,
+    "5": 5
+   }
+  },
+  {
+   "check": "groupnorm_used_not_batchnorm",
+   "pass": true,
+   "detail": "21 GroupNorm"
+  },
+  {
+   "check": "seed42_init_deterministic",
+   "pass": true
+  },
+  {
+   "check": "different_seed_gives_different_init",
+   "pass": true
+  },
+  {
+   "check": "no_pretrained_weights_loaded",
+   "pass": true
+  },
+  {
+   "check": "state_dict_keys_all_local",
+   "pass": true
+  },
+  {
+   "check": "no_forbidden_modules",
+   "pass": true
+  },
+  {
+   "check": "no_task_conditioning_argument",
+   "pass": true,
+   "detail": [
+    "self",
+    "inputs"
+   ]
+  },
+  {
+   "check": "no_task_embedding_module",
+   "pass": true
+  },
+  {
+   "check": "no_dropout",
+   "pass": true
+  },
+  {
+   "check": "no_attention_or_transformer",
+   "pass": true
+  },
+  {
+   "check": "roi_expansion_factor_1p50",
+   "pass": true,
+   "detail": "side=166 expected=166"
+  },
+  {
+   "check": "roi_margin_is_0p25",
+   "pass": true,
+   "detail": 0.25
+  },
+  {
+   "check": "roi_clipping_to_valid_region",
+   "pass": true,
+   "detail": -10
+  },
+  {
+   "check": "roi_square_padding",
+   "pass": true,
+   "detail": 60
+  },
+  {
+   "check": "rgb_bilinear_interpolation",
+   "pass": true
+  },
+  {
+   "check": "gt_nearest_interpolation_binary",
+   "pass": true,
+   "detail": [
+    0.0,
+    1.0
+   ]
+  },
+  {
+   "check": "prob_bilinear_interpolation_float",
+   "pass": true,
+   "detail": "float32"
+  },
+  {
+   "check": "prob_nearest_preserves_exact_values",
+   "pass": true,
+   "detail": [
+    0.0,
+    0.8999999761581421
+   ]
+  },
+  {
+   "check": "global_empty_forced_skip",
+   "pass": true
+  },
+  {
+   "check": "empty_bbox_is_none",
+   "pass": true
+  },
+  {
+   "check": "no_gt_rescue_path",
+   "pass": true
+  },
+  {
+   "check": "gt_cannot_alter_roi",
+   "pass": true,
+   "detail": {
+    "geometry_identical": true,
+    "rgb_crop_identical": true,
+    "prob_crop_identical": true,
+    "gt_crop_differs": true,
+    "gt_crop_differs_is_permitted": true,
+    "passed": true
+   }
+  },
+  {
+   "check": "split_membership_dev_4957",
+   "pass": true,
+   "detail": 4957
+  },
+  {
+   "check": "split_membership_holdout_875",
+   "pass": true,
+   "detail": 875
+  },
+  {
+   "check": "zero_group_overlap",
+   "pass": true,
+   "detail": 0
+  },
+  {
+   "check": "zero_val_overlap",
+   "pass": true,
+   "detail": "split manifest contains no VAL sample ids by construction"
+  },
+  {
+   "check": "zero_test_overlap",
+   "pass": true,
+   "detail": "split manifest contains no TEST sample ids by construction"
+  }
+ ],
+ "n_tests": 42,
+ "n_passed": 42,
+ "n_failed": 0,
+ "verdict": "PHASE25A_REFINER_ARCHITECTURE_FROZEN",
+ "training_may_start": true,
+ "training_performed": false,
+ "generated_utc": "2026-09-30T13:39:53.325199+00:00",
+ "test_reads": 0
+}

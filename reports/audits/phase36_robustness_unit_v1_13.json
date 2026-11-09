@@ -1,0 +1,267 @@
+{
+ "artifact": "phase36_robustness_unit_v1_13",
+ "phase": 36,
+ "section": "\u00a7J",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase36_robustness_v1_13",
+ "type": "UNIT_CHECK_REPORT",
+ "model_free": true,
+ "torch_imported": false,
+ "cuda_initialized": false,
+ "protected_population_read": false,
+ "subject_execution_source": "scripts/analysis/phase36_robustness_execution_v1_13.py",
+ "subject_execution_sha256": "57f78447e77f2bcee07265825232cf0a8f96d1a31974d5d52c4cc82229e5d39c",
+ "subject_launcher": "scripts/analysis/launch_phase36_v1_13.py",
+ "subject_launcher_sha256": "5f7fc91f9f0b8689adf42fc50527e216227ce7c4b853ba82ae1bce92a4805cab",
+ "subject_manifest": "reports/audits/phase36_v1_13_runtime_source_integrity_manifest.json",
+ "subject_manifest_sha256": "1f261eb95ab246619cf68a2340e8fc52e2887fe2d019fe9bc77ae8a9d5f5f1fe",
+ "repairs": {
+  "D37_EXACT_INTERPRETER_PRE_DISPATCH_GATE": "NEW_ENFORCED",
+  "D38_CUDA_READINESS_PRE_DISPATCH_GATE": "NEW_ENFORCED",
+  "D39_PRE_CONSUMPTION_ORDER_PROOF": "NEW_ENFORCED",
+  "D34_NO_MANIFEST_LAUNCHER_SHA256": "PRESERVED_ENFORCED",
+  "D35_IMMUTABLE_NON_ENV_OVERRIDABLE_HASHES": "PRESERVED_ENFORCED",
+  "D36_THREE_FILE_CROSS_BINDING": "PRESERVED_ENFORCED"
+ },
+ "new_scientific_choice": false,
+ "checks_total": 46,
+ "checks_passed": 46,
+ "checks_failed": 0,
+ "all_pass": true,
+ "failed_checks": [],
+ "checks": [
+  {
+   "check": "EX_01_revision_identifier_is_v1_13",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "EX_02_no_residual_v1_12_token_in_code",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "EX_03_smoke_artifact_paths_v1_13",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "EX_04_science_artifact_paths_v1_13",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "EX_05_launch_authority_token_v1_13",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "EX_06_runtime_manifest_path_v1_13",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "EX_07_execution_source_is_new_artifact",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "SCI_01_untransform_equals_frozen_v1_12_bytes",
+   "passed": true,
+   "detail": {
+    "untransformed_sha": "cdd90385ff6ed2404e2d0f8e26bf30105a725769cf209e1277a557f54cba28eb",
+    "frozen_v1_12_sha": "8ed75a9b8f4ea8c204875bf1810e17df3f9c342a434f25399154f355ee888ea4"
+   }
+  },
+  {
+   "check": "SCI_02_no_scientific_choice_changed",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D22_write_once_smoke_marker_exclusive_create",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D23_transitive_integrity_14src_4ckpt",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D30_science_integrity_pre_model_gate",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D31_unique_science_paths",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D34_no_manifest_launcher_requirement",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D35_pre_token_launcher_reads_no_environment",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D37_01_canonical_interpreter_derived_from_root",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D37_02_identity_uses_realpath_and_normcase",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D37_03_compares_against_sys_executable",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D37_04_wrong_interpreter_terminal_verb",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D37_05_wrong_interpreter_terminal_literal_in_source",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D37_06_no_auto_relaunch_of_another_interpreter",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D38_01_probe_imports_torch_only_for_device_introspection",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D38_02_probe_reads_required_device_fields",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D38_03_probe_forbids_model_and_data_io",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D38_04_conditions_required_exact_set",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D38_05_no_silent_cpu_fallback",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D38_06_cuda_unavailable_terminal_literal",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D35_01_frozen_exec_sha_is_literal_constant",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D35_02_frozen_manifest_sha_is_literal_constant",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D35_03_resolver_functions_read_no_environment",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D35_04_no_expected_hash_env_read_anywhere",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D35_05_old_override_env_names_inert",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D39_01_order_parse_before_anchor",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D39_02_order_anchor_before_interpreter",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D39_03_order_interpreter_before_cuda",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D39_04_verify_only_stop_is_after_cuda_before_token",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D39_05_token_set_only_after_all_gates",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D39_06_dispatch_after_token",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D39_07_no_marker_creation_in_launcher",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D39_08_wrong_interpreter_cannot_consume_revision",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D39_09_cuda_failure_cannot_consume_revision",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D39_10_anchor_failure_cannot_consume_revision",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D34_01_manifest_has_no_launcher_sha256",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D34_02_manifest_declares_exec_sha_equal_to_actual",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D36_01_three_file_cross_binding_satisfiable",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D36_02_smoke_check_ids_unchanged_53",
+   "passed": true,
+   "detail": null
+  }
+ ]
+}

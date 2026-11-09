@@ -1,0 +1,26 @@
+{
+ "artifact": "phase27_failure_behavior_contract_v1_1",
+ "phase": "27",
+ "classification": "GOVERNANCE_AND_REVIEWER_EVIDENCE_REPAIR_ONLY",
+ "governance_only": true,
+ "no_execution": true,
+ "stage": "FAILURE_BEHAVIOR",
+ "on_criterion_not_satisfied": "record failure / non-inferiority not established",
+ "forbidden_responses": [
+  "change budget",
+  "change lambda",
+  "change router threshold",
+  "change S_omega threshold",
+  "change ROI threshold",
+  "change segmentation threshold",
+  "retrain",
+  "fine-tune"
+ ],
+ "frozen_before_outcomes": true,
+ "checks": {
+  "failure_recorded_not_tuned": true,
+  "frozen_before_outcomes": true,
+  "all_forbidden_responses_listed": true
+ },
+ "all_pass": true
+}

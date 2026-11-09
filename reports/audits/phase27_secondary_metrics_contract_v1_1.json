@@ -1,0 +1,24 @@
+{
+ "artifact": "phase27_secondary_metrics_contract_v1_1",
+ "phase": "27",
+ "classification": "GOVERNANCE_AND_REVIEWER_EVIDENCE_REPAIR_ONLY",
+ "governance_only": true,
+ "no_execution": true,
+ "stage": "SECONDARY_METRICS",
+ "primary_metric": "Dice",
+ "secondary_metrics": {
+  "IoU": "SECONDARY if canonical scorer supports it",
+  "precision": "SECONDARY if canonical scorer supports it",
+  "recall_sensitivity": "SECONDARY if canonical scorer supports it"
+ },
+ "secondary_metric_resolution_rule": "Report IoU / precision / recall as SECONDARY only if the canonical scorer semantics are already frozen. If ambiguous, secondary metric = NOT_REPORTED__SEMANTICS_NOT_FROZEN.",
+ "default_if_ambiguous": "NOT_REPORTED__SEMANTICS_NOT_FROZEN",
+ "does_not_block_primary": true,
+ "no_new_metric_definition": true,
+ "checks": {
+  "dice_primary": true,
+  "no_new_definition": true,
+  "primary_not_blocked": true
+ },
+ "all_pass": true
+}

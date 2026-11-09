@@ -1,0 +1,180 @@
+{
+  "artifact_kind": "PHASE36_V1_18_CONSUMED_PRESTART_FAILURE_ADJUDICATION",
+  "revision": "ra_medfilm_barr_phase36_robustness_adjudication_v1_0",
+  "work_order": "WO#19",
+  "section": "\u00a72 ADJUDICATE v1.18 + \u00a73 D92 SCIENTIFIC CLASSIFICATION",
+  "mode": "POST_FAILURE_ADJUDICATION__STATIC_EVIDENCE_ONLY__NON_CONSUMING",
+  "created_utc": "2026-10-10T16:24:20Z",
+  "classification": "CONSUMED_PRE_START_RUNTIME_FAILURE",
+  "attempt_state": "CONSUMED",
+  "attempt_id": "v1_18sup_35616_2026-10-10T16:06:20Z",
+  "retry_permitted": false,
+  "relaunch_permitted": false,
+  "v1_18_attempt_consumed": true,
+  "evidence_bindings": {
+    "v1_18_execution_source": {
+      "path": "scripts/analysis/phase36_robustness_execution_v1_18.py",
+      "sha256": "2259ce22e75ba9a3a8943769dc1e0ed5724f94902f5e8955976cd6ebeb8ce63e",
+      "size_bytes": 236210,
+      "present": true,
+      "modified_by_this_artifact": false
+    },
+    "v1_18_launcher": {
+      "path": "scripts/analysis/launch_phase36_v1_18.py",
+      "sha256": "727a3bdd47f626826575de286a2a382dd63eb899c244af9da6e1d9d078944f3e",
+      "size_bytes": 28845,
+      "present": true,
+      "modified_by_this_artifact": false
+    },
+    "v1_18_supervisor": {
+      "path": "scripts/analysis/supervise_phase36_v1_18.py",
+      "sha256": "2528e0601fd3fd1231bc11e8258a9fb0ae9f1df8303fe2237d32385701cbc5d4",
+      "size_bytes": 24437,
+      "present": true,
+      "modified_by_this_artifact": false
+    },
+    "science_process_exit": {
+      "path": "reports/audits/phase36_robustness_science_process_exit_v1_18.json",
+      "sha256": "c1676285dc0bb5919f45f1ccc704b9c26da32a316b706432ad0623ea4a39eeaa",
+      "size_bytes": 2202,
+      "present": true,
+      "modified_by_this_artifact": false
+    },
+    "science_stdout": {
+      "path": "reports/audits/phase36_robustness_science_stdout_v1_18.txt",
+      "sha256": "d87bd1e9d230ef8dd8670883c17804910c505774d2200f18c711fb20cb72043b",
+      "size_bytes": 39,
+      "present": true,
+      "modified_by_this_artifact": false
+    },
+    "science_stderr": {
+      "path": "reports/audits/phase36_robustness_science_stderr_v1_18.txt",
+      "sha256": "ceae105b9a91199091c53e8fa9301bf736903fc28c09a412461b91fdd1a24b30",
+      "size_bytes": 889,
+      "present": true,
+      "modified_by_this_artifact": false
+    },
+    "supervisor_console_wo18": {
+      "path": "reports/audits/phase36_v1_18_supervisor_console_wo18.txt",
+      "sha256": "8f4baaaa817ea6d0b52c7b7d4a22507eb981de56448be62560186ea0f521b4a4",
+      "size_bytes": 108,
+      "present": true,
+      "modified_by_this_artifact": false
+    }
+  },
+  "frozen_evidence_sha_match": true,
+  "d92": {
+    "defect_id": "D92",
+    "defect_code": "V1_18_REAL_EXECUTION_OUTPUT_ABSENCE_GATE_REFERENCES_UNDEFINED_JOURNAL_SYMBOL",
+    "root_cause": "ESTABLISHED",
+    "root_cause_statement": "On the REAL dispatch path, verify_v1_18_output_absence() enumerates the frozen reachable write targets by calling v1_18_reachable_write_targets(). That function appends ROOT / SCIENCE_V1_18_JOURNAL_DIR, but the name SCIENCE_V1_18_JOURNAL_DIR is NEVER defined at module scope (referenced once, defined zero times). The canonical defined journal-path authority is V1_18_JOURNAL_DIR. Python raises NameError at the moment the function executes the append, aborting main() BEFORE the START marker is created and before any model load or scientific computation.",
+    "erroneously_referenced_symbol": "SCIENCE_V1_18_JOURNAL_DIR",
+    "erroneously_referenced_symbol_definition_count": 0,
+    "erroneously_referenced_symbol_reference_count": 1,
+    "erroneously_referenced_symbol_reference_lines": [
+      4531
+    ],
+    "erroneously_referenced_symbol_defined_at_module_scope": false,
+    "canonical_defined_symbol": "V1_18_JOURNAL_DIR",
+    "canonical_defined_symbol_definition_lines": [
+      516
+    ],
+    "canonical_defined_symbol_defined_at_module_scope": true,
+    "canonical_defined_symbol_kind": "absolute pathlib.Path (ROOT / 'reports' / 'audits' / 'phase36_robustness_science_v1_18_journal')",
+    "canonical_defined_symbol_actual_usage": "V1_18_JOURNAL_DIR is the real journal authority: it is .mkdir()'d and used to construct per-stage journal record paths in _journal_record() \u2014 it IS the journal directory that the absence gate intended to enumerate.",
+    "failing_function": "v1_18_reachable_write_targets",
+    "failing_function_lineno": 4515,
+    "failing_function_end_lineno": 4538,
+    "failing_source_line": 4531,
+    "failing_expression": "targets.append(ROOT / SCIENCE_V1_18_JOURNAL_DIR)",
+    "caller_function": "verify_v1_18_output_absence",
+    "caller_function_lineno": 4541,
+    "caller_call_site_lines": [
+      4515,
+      4548,
+      4554
+    ],
+    "science_main_call_site_lines": [
+      4367,
+      4541
+    ],
+    "exception_type": "NameError",
+    "execution_stage_at_failure": "PRE_START_OUTPUT_ABSENCE_GATE",
+    "reached_before_start_marker": true,
+    "reached_before_model_load": true,
+    "reached_before_any_science_computation": true,
+    "observed_traceback_head": "#!/usr/bin/env python3",
+    "no_guessing": true
+  },
+  "scientific_effect": {
+    "scientific_computation_effect": "NONE",
+    "model_load_effect": "NONE",
+    "scientific_semantics_effect": "NONE",
+    "scientific_semantics_effect_reason": "The crash occurs in the pre-START output-absence gate, before any model is loaded, before any tensor is produced, and before any probability, mask, metric, threshold, seed, or fusion path is touched. It changes nothing about HOW science would be computed \u2014 only WHEN (it aborts before it can start).",
+    "runtime_effect": "FATAL_PRE_START",
+    "execution_effect": "ABORTED_BEFORE_START",
+    "launcher_effect": "NONE",
+    "supervisor_effect": "NONE",
+    "governance_effect": "NONE",
+    "output_production_effect": "NONE"
+  },
+  "output_absence_at_terminal": {
+    "tables_dir": {
+      "present": false,
+      "count_if_dir": null
+    },
+    "figures_dir": {
+      "present": false,
+      "count_if_dir": null
+    },
+    "journal_dir": {
+      "present": false,
+      "count_if_dir": null
+    },
+    "start_marker": {
+      "present": false,
+      "count_if_dir": null
+    },
+    "result_artifact": {
+      "present": false,
+      "count_if_dir": null
+    },
+    "failure_artifact": {
+      "present": false,
+      "count_if_dir": null
+    }
+  },
+  "process_exit_summary": {
+    "child_exit_code": 1,
+    "start_present": false,
+    "result_present": false,
+    "failure_present": false,
+    "supervisor_created_scientific_marker": false,
+    "supervisor_relaunched": false,
+    "automatic_retry": false,
+    "launcher_sha_pin_enforced": true,
+    "launcher_sha_pin_literal": true,
+    "launcher_sha_env_overridable": false,
+    "stdout_exclusive_create": true,
+    "stderr_exclusive_create": true,
+    "o_trunc_used": false
+  },
+  "effects_none_assertion": {
+    "science": "model never loaded; no tensor produced",
+    "runtime": "aborted at the pre-START absence gate",
+    "execution": "main() raised before writing START",
+    "launcher": "launcher behaved correctly; it authorized and invoked the source",
+    "supervisor": "supervisor behaved correctly; single dispatch, rc=1 recorded",
+    "governance": "no governance artifact altered"
+  },
+  "write_semantics": "O_CREAT|O_EXCL|O_WRONLY + O_BINARY (Windows) + full-write loop + os.fsync + post-write st_size check. Write-once; never overwritten.",
+  "provenance": {
+    "derived_from": "frozen v1.18 evidence on disk + frozen execution source AST",
+    "val_gt_read": false,
+    "val_image_read": false,
+    "checkpoint_deserialization": false,
+    "test_reads": 0,
+    "router_holdout_reads": 0,
+    "new_scientific_output": false
+  }
+}

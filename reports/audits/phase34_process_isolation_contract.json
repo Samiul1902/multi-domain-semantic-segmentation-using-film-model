@@ -1,0 +1,29 @@
+{
+ "artifact": "phase34_process_isolation_contract",
+ "phase": 34,
+ "section": "\u00a7T",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase34_efficiency_profiling_v1_0",
+ "fresh_subprocess_per_measured_arm": true,
+ "arm_order": [
+  "GLOBAL_ONLY_batch1_latency",
+  "GLOBAL_ONLY_batch8_throughput",
+  "FINAL_ROUTED_A8_C9_batch1_latency",
+  "FINAL_ROUTED_A8_C9_batch8_throughput",
+  "COMPONENT_LEVEL_G",
+  "COMPONENT_LEVEL_R_psi",
+  "COMPONENT_LEVEL_B_phi",
+  "COMPONENT_LEVEL_S_omega"
+ ],
+ "arm_order_randomized": false,
+ "arm_order_selected_after_timing": false,
+ "environment_inheritance": "inherited from parent process; PHASE34_EXECUTE=1",
+ "model_load_timing": "EXCLUDED from steady-state latency; recorded separately if cold-start arm is enabled",
+ "warmup_placement": "inside each fresh subprocess, before the timed blocks",
+ "garbage_collection": "gc.collect() before reset_peak_memory_stats",
+ "cuda_cache_handling": "torch.cuda.empty_cache() before baseline memory read",
+ "peak_memory_reset_point": "after load + warmup, before timed inference",
+ "random_seed_reset": "torch.Generator(device='cuda').manual_seed(42) per worker",
+ "generated_utc": "2026-10-04T09:50:07+00:00",
+ "all_pass": true
+}

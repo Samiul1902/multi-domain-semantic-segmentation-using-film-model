@@ -1,0 +1,110 @@
+{
+  "artifact": "phase21_analysis",
+  "phase": 21,
+  "experiment_id": "phase21_global_medfilm_fourdomain_seed42_clean_v3",
+  "val_population": 808,
+  "samples_evaluated": 808,
+  "selection_rule_id": "phase20_macro_domain_mean_dice_v1",
+  "bootstrap": {
+    "n_boot": 2000,
+    "seed": 42,
+    "alpha": 0.05,
+    "unit": "image"
+  },
+  "global_medfilm": {
+    "macro_domain_dice": 0.8350794169575282,
+    "macro_domain_dice_ci_low": 0.787749404492504,
+    "macro_domain_dice_ci_high": 0.8780060341568547,
+    "macro_domain_iou": 0.7448366561463977,
+    "pooled_dice_descriptive": 0.8784243406054913,
+    "per_domain_dice": {
+      "ISIC": 0.8971891751747457,
+      "BUSI": 0.8588228931389639,
+      "KVASIR": 0.8202473579060531,
+      "KUB": 0.7640582416103505
+    },
+    "per_domain_iou": {
+      "ISIC": 0.8298191988836973,
+      "BUSI": 0.7636461980901246,
+      "KVASIR": 0.735522787626195,
+      "KUB": 0.6503584399855742
+    },
+    "per_domain_extra": {
+      "ISIC": {
+        "roc_auc": 0.991544817720604,
+        "pr_auc_average_precision": 0.9674908019135804,
+        "brier": 0.02693255497526657,
+        "ece": 0.019945425553596977,
+        "mce": 0.21818451006185735
+      },
+      "BUSI": {
+        "roc_auc": 0.9819675115222886,
+        "pr_auc_average_precision": 0.922583931821467,
+        "brier": 0.010592866374221717,
+        "ece": 0.009552320531188993,
+        "mce": 0.32401996356225293
+      },
+      "KVASIR": {
+        "roc_auc": 0.9561335977421732,
+        "pr_auc_average_precision": 0.8705654419416674,
+        "brier": 0.04157783046939034,
+        "ece": 0.03759042214933916,
+        "mce": 0.26462594297066955
+      },
+      "KUB": {
+        "roc_auc": 0.987864602168808,
+        "pr_auc_average_precision": 0.9347717745524698,
+        "brier": 0.032934732279694186,
+        "ece": 0.01773981256331223,
+        "mce": 0.19247466176034345
+      }
+    },
+    "params": 3523001,
+    "rank_among_six": 1
+  },
+  "benchmark_top_model": {
+    "model_key": "global_medfilm",
+    "display_name": "Global MedFiLM",
+    "macro_domain_dice": 0.8350794169575282
+  },
+  "six_model_ranking": [
+    "global_medfilm",
+    "deeplabv3plus",
+    "transformer_mit_unet",
+    "unetpp",
+    "attention_unet",
+    "unet"
+  ],
+  "paired_bootstrap": {
+    "comparisons": 5,
+    "significant_vs_baselines": [
+      "unet",
+      "attention_unet",
+      "unetpp",
+      "transformer_mit_unet"
+    ],
+    "non_significant_vs_baselines": [
+      "deeplabv3plus"
+    ],
+    "method": "paired domain-stratified percentile bootstrap, n_boot=2000, seed=42"
+  },
+  "kub_subgroup_rows": 4,
+  "kub_size_rows": 5,
+  "kub_size_n": {
+    "TINY": 44,
+    "SMALL": 19,
+    "MEDIUM": 27,
+    "LARGE": 13,
+    "ROI_NOT_PRIMARY_BINNED": 177
+  },
+  "tiny_stratum_preserved_for_phase22": true,
+  "gallery_cases": 64,
+  "gallery_ids_match_frozen_phase20_selection": true,
+  "interpretation_guard": "Phase 21 has NO architecture-matched control (no identical plain model trained under the same Phase-21 run). Therefore the ONLY permitted phrasing is 'Global MedFiLM achieved X compared with baseline Y'. It is FORBIDDEN to claim 'FiLM caused +X'. Where a CI overlaps zero the models are NOT distinguishable.",
+  "test_reads": {
+    "test_image_reads": 0,
+    "test_mask_reads": 0,
+    "test_inference": 0,
+    "test_visualization": 0
+  }
+}

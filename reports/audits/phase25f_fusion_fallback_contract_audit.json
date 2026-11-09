@@ -1,0 +1,39 @@
+{
+  "classification": "PHASE25F_POST_SAFETY_SPEC_COMPLETENESS_AUDIT",
+  "stage": "FUSION_FALLBACK_CONTRACT_AUDIT",
+  "method": "RA-MedFiLM-BARR",
+  "frozen_fusion_rule": "outside frozen ROI: p_final_candidate = p_global; inside frozen ROI: p_final_candidate = resized p_refined",
+  "frozen_fusion_rule_architecture_spec": "outside ROI retain p_global; inside ROI replace with p_refined",
+  "alpha_blending": false,
+  "learned_fusion": false,
+  "segmentation_output_threshold": 0.5,
+  "segmentation_threshold_source": "INHERITED",
+  "threshold_tuning": false,
+  "preservation_outcomes": {
+    "SKIP": "final = global",
+    "EXECUTE_THEN_REJECT": "final = global",
+    "EXECUTE_THEN_ACCEPT": "final = regional-fused"
+  },
+  "destructive_replacement_before_final_decision": false,
+  "structural_enforcement": "The global probability map is retained in memory for the whole sample lifetime; the regional candidate is stored separately and only composed at the final selection step.",
+  "resolution": {
+    "post_safety_ACCEPTS": "final = regional-fused (EXECUTE_THEN_ACCEPT) [FROZEN via preservation contract]",
+    "post_safety_REJECTS": "final = global (EXECUTE_THEN_REJECT) [FROZEN via preservation contract]",
+    "phase25e_SKIP": "final = global (SKIP) [FROZEN]",
+    "outside_ROI": "p_final_candidate = p_global [FROZEN]",
+    "inside_ROI": "p_final_candidate = resized p_refined [FROZEN]",
+    "segmentation_output_threshold_role": "0.50, INHERITED, final mask/Dice/IoU [FROZEN]",
+    "roi_proposal_threshold_role": "0.30, bbox -> ACTION_AVAILABLE/FORCED_SKIP [FROZEN]",
+    "action_unavailable_behavior": "FORCED_SKIP pre-gate; final = global [FROZEN]",
+    "interaction_with_phase25e_SKIP": "final = global; no refinement executed [FROZEN]"
+  },
+  "explicit_somega_to_outcome_mapping_frozen": false,
+  "explicit_somega_to_outcome_mapping_note": "The preservation contract freezes the three OUTCOMES (SKIP / EXECUTE_THEN_REJECT / EXECUTE_THEN_ACCEPT) and their final outputs, and the frozen role of S_omega is \"quality preservation AFTER refinement\". The mapping S_omega-ACCEPT -> EXECUTE_THEN_ACCEPT and S_omega-REJECT -> EXECUTE_THEN_REJECT is strongly implied but is NOT stated as an explicit frozen mapping.",
+  "learned_blending_introduced": false,
+  "verdict": "FUSION_RULE_FROZEN__EXPLICIT_SOMEGA_OUTCOME_MAPPING_IMPLIED_NOT_STATED",
+  "sources": {
+    "reports/audits/phase24_exact_implementation_spec.json": "6b1a71d5e88ce06baa8f200523be32773428417ffd233ff218d7e50b6af271dd",
+    "reports/audits/phase24_preservation_contract.json": "a4e829b07350611438aabf629315438e8bf0f995194d0fba5974c9a843b1b20c"
+  },
+  "all_pass": true
+}

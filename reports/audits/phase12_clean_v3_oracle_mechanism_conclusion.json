@@ -1,0 +1,145 @@
+{
+  "audit": "phase12_clean_v3_oracle_mechanism_conclusion",
+  "created_utc": "2026-09-21T01:27:43.558400+00:00",
+  "status": "PHASE12_COMPLETE_PASS",
+  "accepted_artifact_shas": {
+    "part1a_notebook": "c226ea0f28b93b9cafdc08e9720aec320f6080f8302369e51e201e1515867b05",
+    "part1b_notebook": "5848728526885a7186c5c32ab4e5b7cc9d4b7eaedc1a26994799afe81d27fef0",
+    "part1c_notebook": "7ebad54f1a7d45681138db298efff9e1af1567fac4051b27d325794be9e777a8"
+  },
+  "primary_population": "KUB FULL_FIELD VAL 103 cases / 152 native components",
+  "model_scope": [
+    "UNet",
+    "Attention U-Net",
+    "UNet++",
+    "DeepLabV3+"
+  ],
+  "primary_variant": "ORACLE_FLOAT_GLOBAL_RETAINED",
+  "comparator_variant": "GLOBAL_NATIVE",
+  "secondary_variant": "ORACLE_FLOAT_CROP_ONLY (SECONDARY_HISTORICAL_GEOMETRY_COMPARATOR)",
+  "legacy_label": "COMBINED_LEGACY_RESTORE_SENSITIVITY",
+  "global_reproduction_label": "DICE_IOU_GLOBAL_REPRODUCTION_GATE_PASS",
+  "oracle_mechanism_conclusion": {
+    "ORACLE_MECHANISM_VALUE": "SUPPORTED_DESCRIPTIVE_EVIDENCE",
+    "PHASE13_PROGRESSION": "SCIENTIFICALLY_JUSTIFIED"
+  },
+  "conclusion_interpretation": "Clean-v3 KUB FULL_FIELD evidence demonstrates exploitable regional-resolution headroom. The GT-derived oracle regional intervention provides sufficiently strong descriptive evidence to justify testing whether a deployable GT-free localization mechanism can retain useful regional benefit.",
+  "conclusion_does_not_mean": [
+    "regional integration gate = GO",
+    "regional mechanism promoted",
+    "RA-MedFiLM regional path approved",
+    "predicted localization will work",
+    "statistical superiority established",
+    "one baseline architecture selected"
+  ],
+  "supporting_evidence": {
+    "primary_macro_dice": {
+      "UNet": {
+        "global": 0.59418,
+        "primary": 0.724722,
+        "delta": 0.130542
+      },
+      "Attention U-Net": {
+        "global": 0.629805,
+        "primary": 0.699595,
+        "delta": 0.06979
+      },
+      "UNet++": {
+        "global": 0.640516,
+        "primary": 0.726679,
+        "delta": 0.086164
+      },
+      "DeepLabV3+": {
+        "global": 0.560251,
+        "primary": 0.750372,
+        "delta": 0.190121
+      }
+    },
+    "native_object_recall": {
+      "UNet": [
+        0.7864,
+        0.9951
+      ],
+      "Attention U-Net": [
+        0.8544,
+        0.9951
+      ],
+      "UNet++": [
+        0.8398,
+        0.9951
+      ],
+      "DeepLabV3+": [
+        0.7621,
+        1.0
+      ]
+    },
+    "empty_recoveries_by_model": {
+      "UNet": 8,
+      "Attention U-Net": 3,
+      "UNet++": 5,
+      "DeepLabV3+": 11
+    },
+    "total_case_model_empty_recoveries": 27,
+    "new_empty_predictions": 0,
+    "component_model_recovery_events": 120,
+    "recovery_units_note": "120 is pooled over 152 components x 4 models = 608 component-model rows; it is NOT 120 unique components (only 152 unique native GT components exist)",
+    "lost_component_detection_events": 0,
+    "size_stratified_recovery_events": {
+      "TINY": 74,
+      "SMALL": 20,
+      "MEDIUM": 19,
+      "LARGE": 7,
+      "total": 120
+    },
+    "all_four_low_cohort": {
+      "n_cases": 12,
+      "response": "strong positive observed oracle response"
+    },
+    "phase11_hard_case_full_field_members": {
+      "response": "strong positive observed oracle response"
+    },
+    "cross_architecture": {
+      "cases_all_four_positive_delta_dice": 46,
+      "of": 103,
+      "cases_all_four_object_recall_nonworse": 103
+    }
+  },
+  "counter_evidence_cost": {
+    "case_model_rows": 412,
+    "dice_worsened_rows": 150,
+    "max_dice_worsening": -0.5866,
+    "mean_precision_change": {
+      "UNet": -0.0236,
+      "Attention U-Net": -0.0117,
+      "UNet++": -0.05,
+      "DeepLabV3+": -0.0004
+    },
+    "mean_fp_pixel_burden": "increases for all four models",
+    "mean_fn_pixel_burden": "decreases strongly for all four models",
+    "statement": "TARGET RECOVERY BENEFIT IS ACCOMPANIED BY A REAL FP / PRECISION COST. Phase 12 is not universally beneficial case-by-case."
+  },
+  "oracle_limitations": [
+    "Phase 12 uses GT-derived target location: it is an ORACLE UPPER-BOUND / MECHANISM experiment",
+    "It is NOT deployable",
+    "It does NOT prove Phase 13 predicted localization can reproduce the gain",
+    "The crop-only comparator is additionally advantaged by oracle background suppression because predictions outside GT-defined crop support are zeroed",
+    "The primary SR-1 result remains ORACLE_FLOAT_GLOBAL_RETAINED, not ORACLE_FLOAT_CROP_ONLY"
+  ],
+  "gate_state_table_sha": "316e8d2743a51abdaedd64782c19e6d815004c817586aa831f08d43fee16780e",
+  "final_regional_integration_gate": "NOT_DECIDED",
+  "regional_mechanism_promoted": false,
+  "phase13": {
+    "eligible": true,
+    "authorized": false,
+    "started": false
+  },
+  "phase13_scientific_question": "Can a GT-free region proposal/localization mechanism retain enough of the Phase-12 oracle regional-resolution benefit while controlling FP burden and preserving global segmentation quality? (compare GLOBAL vs ORACLE REGION vs PREDICTED REGION)",
+  "ra_medfilm_implemented": false,
+  "test_reads": 0,
+  "training": 0,
+  "optimizer_steps": 0,
+  "statistical_testing": false,
+  "winner": "none",
+  "reference_model": "none",
+  "next_action": "WAIT_FOR_SUPERVISOR_PHASE13_AUTHORIZATION"
+}

@@ -1,0 +1,27 @@
+{
+ "artifact": "phase27_reporting_contract.json",
+ "phase": "27",
+ "classification": "PHASE27_PRE_EXECUTION_PRESERVATION_AUDIT_SPECIFICATION",
+ "method": "RA-MedFiLM-BARR",
+ "governance_only": true,
+ "no_execution": true,
+ "stage": "REPORTING_CONTRACT",
+ "must_report": [
+  "macro-domain point estimate and 95% CI",
+  "per-domain point estimate, 95% CI, n, group count",
+  "realized activation fraction (nominal 25% budget vs realized)",
+  "state-machine branch counts (FORCED_SKIP / SKIP_GLOBAL / EXECUTE_THEN_ACCEPT / EXECUTE_THEN_REJECT)",
+  "global-reference and final-A8 Dice distributions per domain",
+  "qualitative panels: >= 12 deterministic cases, >= 16 with TP/FP/FN maps"
+ ],
+ "must_not_force_25pct_on_val808": true,
+ "future_cohort_rule_inherited": "apply the fixed DEV-calibrated threshold independently per sample; do NOT force exactly 25% to EXECUTE; report both nominal budget and realized fraction",
+ "checks": {
+  "per_domain_mandatory": true,
+  "macro_reported": true,
+  "activation_fraction_reported": true,
+  "branch_counts_reported": true,
+  "no_forcing_25pct": true
+ },
+ "all_pass": true
+}

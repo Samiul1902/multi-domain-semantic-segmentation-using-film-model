@@ -1,0 +1,172 @@
+{
+  "artifact": "phase36_robustness_negative_controls_v1_6",
+  "revision": "ra_medfilm_barr_phase36_robustness_v1_6",
+  "model_free": true,
+  "torch_imported": false,
+  "protected_population_read": false,
+  "mutants_are_in_memory_strings_only": true,
+  "controls": [
+    {
+      "control": "NC31_TEST_RUNTIME_READ_REACHABILITY",
+      "kind": "REPAIR_CONTROL",
+      "mutant_fails_control": true,
+      "v1_6_passes_control": true,
+      "pass": true,
+      "note": "A source in which run_science can reach a TEST-manifest open/read/exists operation is detected and FAILS.  v1.6 has zero reachable TEST references.",
+      "evidence": {
+        "mutant_direct_open_sites": [
+          {
+            "function": "_load_protected",
+            "line": 9,
+            "kind": "protected_symbol",
+            "detail": "TEST_MANIFEST"
+          }
+        ],
+        "mutant_path_literal_sites": [
+          {
+            "function": "_probe",
+            "line": 5,
+            "kind": "protected_path_literal",
+            "detail": "manifests/phase4_v3/test.csv"
+          }
+        ],
+        "v1_5_historical_sites": 8,
+        "v1_6_sites": []
+      }
+    },
+    {
+      "control": "NC32_ROUTER_HOLDOUT_RUNTIME_READ_REACHABILITY",
+      "kind": "REPAIR_CONTROL",
+      "mutant_fails_control": true,
+      "v1_6_passes_control": true,
+      "pass": true,
+      "note": "A source in which run_science can reach a ROUTER_HOLDOUT / Phase24 holdout identity-authority open/read operation is detected and FAILS.  v1.6 has zero reachable ROUTER_HOLDOUT references.",
+      "evidence": {
+        "mutant_direct_sites": [
+          {
+            "function": "load_identity_authorities",
+            "line": 10,
+            "kind": "protected_symbol",
+            "detail": "ROUTER_HOLDOUT_MANIFEST"
+          },
+          {
+            "function": "load_identity_authorities",
+            "line": 10,
+            "kind": "protected_symbol",
+            "detail": "ROUTER_HOLDOUT_IDENTITY_AUTHORITY"
+          }
+        ],
+        "v1_5_historical_sites": [
+          {
+            "function": "load_identity_authorities",
+            "line": 442,
+            "kind": "protected_symbol",
+            "detail": "ROUTER_HOLDOUT_MANIFEST"
+          },
+          {
+            "function": "load_identity_authorities",
+            "line": 443,
+            "kind": "protected_symbol",
+            "detail": "ROUTER_HOLDOUT_IDENTITY_AUTHORITY"
+          },
+          {
+            "function": "load_identity_authorities",
+            "line": 448,
+            "kind": "protected_symbol",
+            "detail": "ROUTER_HOLDOUT_MANIFEST"
+          },
+          {
+            "function": "load_identity_authorities",
+            "line": 451,
+            "kind": "protected_symbol",
+            "detail": "ROUTER_HOLDOUT_IDENTITY_AUTHORITY"
+          },
+          {
+            "function": "load_identity_authorities",
+            "line": 449,
+            "kind": "protected_symbol",
+            "detail": "ROUTER_HOLDOUT_MANIFEST"
+          }
+        ],
+        "v1_6_sites": []
+      }
+    },
+    {
+      "control": "NC33_PROTECTED_COUNTER_POSTHOC_FORCE_ZERO",
+      "kind": "REPAIR_CONTROL",
+      "mutant_fails_control": true,
+      "v1_6_passes_control": true,
+      "pass": true,
+      "note": "A source containing a post-execution counters['test_reads'] = 0 or counters['router_holdout_reads'] = 0 assignment is detected and FAILS.  v1.6 has zero such assignments; protected counters are only initialized to zero at run start.",
+      "evidence": {
+        "mutant_sites": [
+          {
+            "line": 4,
+            "statement": "counters['test_reads'] = 0"
+          },
+          {
+            "line": 5,
+            "statement": "counters['router_holdout_reads'] = 0"
+          }
+        ],
+        "v1_5_historical_sites": [
+          {
+            "line": 2520,
+            "statement": "counters['router_holdout_reads'] = 0"
+          },
+          {
+            "line": 2521,
+            "statement": "counters['test_reads'] = 0"
+          }
+        ],
+        "v1_6_sites": []
+      }
+    },
+    {
+      "control": "NC34_VAL808_ONLY_RUNTIME_AUTHORITY",
+      "kind": "PRESERVATION_CONTROL",
+      "mutant_fails_control": false,
+      "v1_6_passes_control": true,
+      "pass": true,
+      "note": "v1.6 runtime population authority is exactly the frozen VAL808 manifest (SHA guard, n=808, unique sample_id, split==VAL, manifest-row paths, no vendor substring rule, no protected deny-set IO).",
+      "evidence": {
+        "val_manifest_sha_guard": true,
+        "expected_n_808": true,
+        "unique_sample_id_guard": true,
+        "split_val_guard": true,
+        "manifest_row_paths": true,
+        "no_vendor_substring_rule": true,
+        "no_protected_deny_set_io": true,
+        "only_population_authority": true
+      }
+    },
+    {
+      "control": "NC35_V1_5_NUMERICAL_DEVICE_CONTEXT_PRESERVATION",
+      "kind": "PRESERVATION_CONTROL",
+      "mutant_fails_control": false,
+      "v1_6_passes_control": true,
+      "pass": true,
+      "note": "All canonical v1.5 repairs (probability operator, CUDA fail-closed, four-component device binding, per-component inference contexts, conditional execution, proposal paths, branch controls) are unchanged.",
+      "evidence": {
+        "canonical_torch_sigmoid": true,
+        "single_probability_authority": true,
+        "no_manual_numpy_sigmoid": true,
+        "cuda_fail_closed": true,
+        "four_component_binding": true,
+        "G_context": true,
+        "B_phi_context": true,
+        "R_psi_context": true,
+        "S_omega_context": true,
+        "conditional_execution": true,
+        "proposal_paths": true,
+        "branch_controls": true
+      }
+    }
+  ],
+  "repair_controls_passed": 3,
+  "repair_controls_total": 3,
+  "passed": 5,
+  "total": 5,
+  "all_pass": true,
+  "nc_range": "NC31-NC35"
+}

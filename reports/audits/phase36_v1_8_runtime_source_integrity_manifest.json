@@ -1,0 +1,36 @@
+{
+  "artifact": "phase36_v1_8_runtime_source_integrity_manifest",
+  "phase": 36,
+  "method": "RA-MedFiLM-BARR",
+  "revision": "ra_medfilm_barr_phase36_robustness_v1_8",
+  "type": "RUNTIME_SOURCE_INTEGRITY_MANIFEST",
+  "execution_source": "scripts/analysis/phase36_robustness_execution_v1_8.py",
+  "execution_source_sha256": "c95ff9884ec05a859b39ce7976376bf40e4543b1a8d8a19830e5893120039f4d",
+  "execution_source_sha256_previous_in_progress": "6782b56967d791460f078fd4e50d917f9710322cd52323ad426c6502fad238ec",
+  "self_hash_pattern": "EXTERNAL_MANIFEST_RESOLVED_AT_RUNTIME__NO_CIRCULAR_SELF_HASH",
+  "history_preserved_sha256": {
+    "v1_7_execution": "87062d2b38232c73b8ce620d7bfafb389658c4b877d9196a26b8b01d09daf192",
+    "v1_7_direct_byte_audit": "3a7a11d13b683b223c967ee86ddb1e5df6e5f90469d4a1e112cee1b774bca43e",
+    "v1_7_source_freeze": "e4e86cd9a3e297d8b4f0a52591be6b88d27cef9897b933d427aa9c15f15fa62f"
+  },
+  "verified_by": "_verify_transitive_source_integrity() called BEFORE model construction",
+  "gate_position": "PRE_MODEL_CONSTRUCTION__FAIL_CLOSED_ON_MISMATCH",
+  "dependencies": {
+    "scripts/analysis/phase36_robustness_common_v1_1.py": "edcdd33d22ae996b2f7ef60e8242a89f3cebab8c6992406508fec23cb068710c",
+    "src/models/film/global_medfilm.py": "a04ff3e61b4d900ff47c2f390da4a999e73bd6047b28a19e41b05115e431d11f",
+    "src/models/barr/regional_refiner.py": "4fe0abde3ec3a183d930f676c4400b4d9ba778793ea64abf1755c5b8dabf947a",
+    "src/models/barr/ra_medfilm_barr.py": "342f2163690c2fa8d5a601ab1d18178b982d701b916935c33e0793b0801c3724",
+    "src/utils/device.py": "9adabfbd145a5952275aa25b0ec99aab8a5114bb41aa443ecde52ce19a8448b6",
+    "src/metrics/evaluation_metrics.py": "6c515f6f1a495315c79238292c385a082ae8347489130ad5bff34d74c4f181f6",
+    "experiments/phase21_global_medfilm_fourdomain_seed42_clean_v3/config.json": "66ec701aeac503cbeceff75aa070e30b46146c9069e46594cbd484f6816260f5",
+    "reports/tables/phase25d_final_normalization_stats.csv": "ba37742e96610ec5e46fb47c093bf71ae1afd85b2a0db9696b612c873a4ba1fb",
+    "reports/tables/phase25f_final_normalization_stats.csv": "e112e18b134c6edcdcd0c254c362d0a954a75faffe634cc37a2a17e4fe6f4e7b"
+  },
+  "checkpoints": {
+    "checkpoints/phase21_global_medfilm_fourdomain_seed42_clean_v3/best.pt": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+    "checkpoints/phase25d_barr_benefit_router_v1_2_1_seed42/final/final.pt": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+    "checkpoints/phase25a_barr_regional_refiner_v1_1_roi030/final/final.pt": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109",
+    "checkpoints/phase25f_barr_post_safety_v1_0_seed42/final/final.pt": "eee9b97b9921e53fc07eac9281dce64ba518c6e1659916b97b0b3bec21ec6d2e"
+  },
+  "generated_utc": "2026-10-06T10:48:58Z"
+}

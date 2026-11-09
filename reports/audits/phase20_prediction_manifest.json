@@ -1,0 +1,38 @@
+{
+  "artifact": "phase20_prediction_manifest",
+  "phase": 20,
+  "experiment_id": "phase20_shared_unetpp_fourdomain_seed42_clean_v3",
+  "scope": "VAL only; TEST never read",
+  "n_predictions": 808,
+  "per_domain_counts": {
+    "BUSI": 84,
+    "ISIC": 357,
+    "KUB": 280,
+    "KVASIR": 87
+  },
+  "storage": {
+    "format": "npz (compressed)",
+    "prob_dtype": "float16",
+    "pred_dtype": "uint8",
+    "prob_semantics": "sigmoid probability of foreground, [0,1]",
+    "pred_semantics": "binary at threshold 0.5"
+  },
+  "binding": {
+    "checkpoint_path": "checkpoints/phase20_shared_unetpp_fourdomain_seed42_clean_v3/best.pt",
+    "checkpoint_sha256": "d647ac52bf39704549ce2eea4fee8e17dfcb5ce9ace5e0b24ffb1f7db86a059f",
+    "checkpoint_epoch": 55,
+    "threshold": 0.5,
+    "input_channel_policy": "RGB_3CH",
+    "input_resolution": 512,
+    "preprocessing_contract": "phase19_preprocessing_contract_v1",
+    "evaluation_contract": "phase19_evaluation_contract_v1",
+    "manifest_version": "phase4_v3"
+  },
+  "gt_reference_scheme": "native mask path + sha256 of the native mask file bytes (GT identity, not a duplicated copy)",
+  "manifest_csv": "reports/tables/phase20_prediction_manifest.csv",
+  "manifest_csv_sha256": "313e0d36401392965cefae688bf030d9e252c1a020ce1b4c262ab004e174855f",
+  "per_image_table": "reports/tables/phase20_per_image_val_metrics.csv",
+  "per_image_table_sha256": "0c96a07d85d9951e1b21f1f9b417fe6db9dbd99d75d512dbe46ff8ceb08b77e1",
+  "prediction_root": "reports/predictions/phase20_shared_unetpp_fourdomain_seed42_clean_v3/val",
+  "allows_future_phases_to_avoid_replay": true
+}

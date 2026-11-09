@@ -1,0 +1,151 @@
+{
+  "artifact": "phase20_entry_gate",
+  "phase": "20",
+  "source_criteria": "reports/tables/phase19_phase20_entry_criteria.csv",
+  "source_criteria_sha256": "5d37811ce4d9392b37d516368e5a289c46b46e4afa0ce93e34f348926db7d0e7",
+  "criteria": [
+    {
+      "criterion_id": "E1",
+      "criterion": "All four domains mapped",
+      "requirement": "ISIC, BUSI, KVASIR, KUB each present with TRAIN and VAL",
+      "expected_state": "4 domains mapped",
+      "observed_state": "['BUSI', 'ISIC', 'KUB', 'KVASIR'] present in TRAIN and VAL",
+      "phase19_declared_met": true,
+      "verdict": "PASS",
+      "blocking": true,
+      "evidence": "reports/tables/phase19_phase20_entry_criteria.csv; reports/audits/phase19_loader_smoke_test.json"
+    },
+    {
+      "criterion_id": "E2",
+      "criterion": "No unresolved label-semantic conflict",
+      "requirement": "Single canonical foreground rule across domains",
+      "expected_state": "foreground = (mask > 0) for all four domains",
+      "observed_state": "foreground = (mask > 0) via src.utils.targets.binarize_mask",
+      "phase19_declared_met": true,
+      "verdict": "PASS",
+      "blocking": true,
+      "evidence": "reports/tables/phase19_phase20_entry_criteria.csv; reports/audits/phase19_loader_smoke_test.json"
+    },
+    {
+      "criterion_id": "E3",
+      "criterion": "Task IDs frozen",
+      "requirement": "task_id registry frozen and manifest-agreeing",
+      "expected_state": "registry frozen; manifest agrees = True",
+      "observed_state": "registry == {'ISIC': 0, 'BUSI': 1, 'KVASIR': 2, 'KUB': 3}; manifest agrees = True",
+      "phase19_declared_met": true,
+      "verdict": "PASS",
+      "blocking": true,
+      "evidence": "reports/tables/phase19_phase20_entry_criteria.csv; reports/audits/phase19_loader_smoke_test.json"
+    },
+    {
+      "criterion_id": "E4",
+      "criterion": "Preprocessing frozen",
+      "requirement": "phase19_preprocessing_contract_v1 FROZEN_FOR_PHASE_19",
+      "expected_state": "frozen",
+      "observed_state": "phase19_preprocessing_contract_v1 FROZEN_FOR_PHASE_19",
+      "phase19_declared_met": true,
+      "verdict": "PASS",
+      "blocking": true,
+      "evidence": "reports/tables/phase19_phase20_entry_criteria.csv; reports/audits/phase19_loader_smoke_test.json"
+    },
+    {
+      "criterion_id": "E5",
+      "criterion": "Mask semantics frozen",
+      "requirement": "binary foreground, NEAREST interpolation, no value threshold",
+      "expected_state": "frozen",
+      "observed_state": "binary foreground, NEAREST mask interpolation, no value threshold",
+      "phase19_declared_met": true,
+      "verdict": "PASS",
+      "blocking": true,
+      "evidence": "reports/tables/phase19_phase20_entry_criteria.csv; reports/audits/phase19_loader_smoke_test.json"
+    },
+    {
+      "criterion_id": "E6",
+      "criterion": "Metadata policy frozen",
+      "requirement": "every field classified exactly once",
+      "expected_state": "frozen",
+      "observed_state": "every metadata field classified exactly once (CONDITIONING_ALLOWED / REPORTING_ONLY / FORBIDDEN_AS_INPUT)",
+      "phase19_declared_met": true,
+      "verdict": "PASS",
+      "blocking": true,
+      "evidence": "reports/tables/phase19_phase20_entry_criteria.csv; reports/audits/phase19_loader_smoke_test.json"
+    },
+    {
+      "criterion_id": "E7",
+      "criterion": "TRAIN/VAL loaders smoke-tested",
+      "requirement": "per-domain dataset + loader materialise batches",
+      "expected_state": "all_checks_passed = True",
+      "observed_state": "all_checks_passed = True; test_rejected_by_dataset = True; test_rejected_by_loader = True",
+      "phase19_declared_met": true,
+      "verdict": "PASS",
+      "blocking": true,
+      "evidence": "reports/tables/phase19_phase20_entry_criteria.csv; reports/audits/phase19_loader_smoke_test.json"
+    },
+    {
+      "criterion_id": "E8",
+      "criterion": "No TEST reads",
+      "requirement": "TEST image/mask reads, inference and visualization all zero",
+      "expected_state": "0",
+      "observed_state": "test_image_reads = 0, test_mask_reads = 0, test_inference = 0, test_visualization = 0",
+      "phase19_declared_met": true,
+      "verdict": "PASS",
+      "blocking": true,
+      "evidence": "reports/tables/phase19_phase20_entry_criteria.csv; reports/audits/phase19_loader_smoke_test.json"
+    },
+    {
+      "criterion_id": "E9",
+      "criterion": "Harmonized batch schema validated",
+      "requirement": "image (B,C,S,S), mask (B,1,S,S), task_id present",
+      "expected_state": "validated in smoke test",
+      "observed_state": "image (B,C,S,S), mask (B,1,S,S), task_id present (loader smoke test)",
+      "phase19_declared_met": true,
+      "verdict": "PASS",
+      "blocking": true,
+      "evidence": "reports/tables/phase19_phase20_entry_criteria.csv; reports/audits/phase19_loader_smoke_test.json"
+    },
+    {
+      "criterion_id": "E10",
+      "criterion": "No duplicate/leakage blocker",
+      "requirement": "phase4_v3 remediation holds; no new blocker found",
+      "expected_state": "no blocker; cross-domain near-duplicate check flagged as residual",
+      "observed_state": "phase4_v3 remediation holds (quarantined 118, sample_id_overlap_train_val 0); residual = Cross-domain near-duplicate detection across the newly combi...",
+      "phase19_declared_met": true,
+      "verdict": "PASS_PHASE19__RESOLVED_BY_PHASE20_AUDIT",
+      "blocking": true,
+      "evidence": "reports/tables/phase19_phase20_entry_criteria.csv; reports/audits/phase19_loader_smoke_test.json"
+    },
+    {
+      "criterion_id": "E11",
+      "criterion": "Notebook executed successfully",
+      "requirement": "monotonic execution counts, zero tracebacks",
+      "expected_state": "see notebook execution record",
+      "observed_state": "phase19 notebook executed: 60 cells / 30 code, 0 tracebacks, monotonic",
+      "phase19_declared_met": true,
+      "verdict": "PASS",
+      "blocking": true,
+      "evidence": "reports/tables/phase19_phase20_entry_criteria.csv; reports/audits/phase19_loader_smoke_test.json"
+    },
+    {
+      "criterion_id": "E12",
+      "criterion": "Artifacts SHA-bound",
+      "requirement": "every Phase-19 artifact carries a recorded SHA-256",
+      "expected_state": "bound in phase19_multidomain_harmonization_protocol.json",
+      "observed_state": "11 Phase-19 artifacts SHA-bound",
+      "phase19_declared_met": true,
+      "verdict": "PASS",
+      "blocking": true,
+      "evidence": "reports/tables/phase19_phase20_entry_criteria.csv; reports/audits/phase19_loader_smoke_test.json"
+    }
+  ],
+  "n_criteria": 12,
+  "n_blocking": 12,
+  "n_hard_fail": 0,
+  "hard_fail_ids": [],
+  "residual_criteria_resolved_by_phase20": [
+    "E10"
+  ],
+  "phase20_entry_gate_verdict": "PASS",
+  "training_may_start_conditionally_on": "reports/audits/phase20_cross_domain_duplicate_audit.json must report no TRAIN<->VAL duplicate leakage",
+  "training_authorized": false,
+  "fail_closed": true
+}

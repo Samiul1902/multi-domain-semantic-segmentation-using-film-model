@@ -1,0 +1,81 @@
+{
+ "artifact": "phase23_phase24_design_constraints",
+ "phase": 23,
+ "status": "PHASE24_ELIGIBLE_NOT_STARTED",
+ "scope": "HIGH-LEVEL CONSTRAINTS ONLY. No architecture, widths, losses, thresholds or predictor choice are specified here.",
+ "high_level_constraints": [
+  {
+   "id": "C1",
+   "constraint": "The benefit predictor MUST be pre-refinement: every input must be available BEFORE the expensive refinement is executed.",
+   "rationale": "the compute-saving property is the primary mechanical difference from post-hoc verifiers (JFS)"
+  },
+  {
+   "id": "C2",
+   "constraint": "The predictor inputs MUST be GT-free at inference time.",
+   "rationale": "Phase 22 showed GT-derived quantities are not deployable; the label may use GT, the input may not"
+  },
+  {
+   "id": "C3",
+   "constraint": "The training target MUST derive from the PAIRED refinement gain (refined quality minus global quality) under a frozen, pre-declared decision rule.",
+   "rationale": "anchors the contribution to the audited target formulation; the rule must be frozen before training"
+  },
+  {
+   "id": "C4",
+   "constraint": "The expensive refinement MUST NOT be required in order to compute the gate signal.",
+   "rationale": "otherwise no compute is saved and the pre-execution claim collapses"
+  },
+  {
+   "id": "C5",
+   "constraint": "A fallback MUST preserve the global output whenever the refinement is skipped or rejected.",
+   "rationale": "'performance-preserving' is the load-bearing adjective; it must be enforced structurally"
+  },
+  {
+   "id": "C6",
+   "constraint": "If resource/device cost is retained, it MUST appear as an EXPLICIT term in the decision utility (e.g. gain minus lambda*cost), not as an implicit assumption.",
+   "rationale": "otherwise the resource component is engineering, not a defensible contribution"
+  },
+  {
+   "id": "C7",
+   "constraint": "Development labels MUST be constructed from TRAIN only.",
+   "rationale": "the predictor must not see the evaluation population during training"
+  },
+  {
+   "id": "C8",
+   "constraint": "The frozen Phase-22 VAL population (808 cases) MUST NOT be reused as benefit-predictor training data.",
+   "rationale": "Phase 22's policies were all evaluated on the population they were inspected on; reusing it as training data would destroy any out-of-sample claim"
+  },
+  {
+   "id": "C9",
+   "constraint": "A held-out, never-inspected evaluation population MUST be designated BEFORE any routing policy is fitted.",
+   "rationale": "the Phase-22 routing regrets are post-hoc and optimistically biased; out-of-sample evidence requires a held-out protocol"
+  },
+  {
+   "id": "C10",
+   "constraint": "The method name MUST NOT contain 'certified' or 'counterfactual' unless the corresponding evidence is produced (see terminology audits).",
+   "rationale": "terminological overclaim is the easiest reviewer objection"
+  },
+  {
+   "id": "C11",
+   "constraint": "TEST MUST remain closed: 0 image reads, 0 mask reads, 0 inference, 0 visualizations.",
+   "rationale": "project-wide governance"
+  },
+  {
+   "id": "C12",
+   "constraint": "Closest prior art (JFS, metareasoning, cascades, CATE, Med-DANet V2, M4oE) MUST be cited and explicitly differentiated in the Phase-24/25 write-up.",
+   "rationale": "the contribution survives only if its margin to each is stated plainly"
+  }
+ ],
+ "explicitly_not_decided_here": [
+  "predictor architecture and capacity",
+  "input feature set",
+  "loss function (regression vs classification vs distributional)",
+  "threshold or epsilon",
+  "router mechanics",
+  "which domains / how many",
+  "refinement ROI rule changes",
+  "evaluation metric suite"
+ ],
+ "phase24_task_statement_proposed": "Specify a narrowed, pre-registered architecture and protocol for a pre-execution, GT-free, benefit-aware gate over an optional refinement within shared multi-domain medical segmentation, including an explicit resource-cost utility term and a preservation-fallback, with a held-out evaluation population designated in advance. No implementation, training or TEST access.",
+ "test_reads": 0,
+ "generated_utc": "2026-09-29T13:54:24.932810+00:00"
+}

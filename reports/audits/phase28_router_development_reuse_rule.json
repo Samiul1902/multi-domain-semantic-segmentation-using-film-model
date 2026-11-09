@@ -1,0 +1,73 @@
+{
+ "artifact": "phase28_router_development_reuse_rule",
+ "phase": 28,
+ "classification": "PHASE28_ROUTER_DEVELOPMENT_REUSE_AND_RECONSTRUCTION_CLASSIFICATION",
+ "governance_only": true,
+ "execution": "NONE",
+ "population": "ROUTER_DEVELOPMENT",
+ "n": 4957,
+ "population_role": "cross-fitted gain labels + router fitting + threshold calibration",
+ "reuse_permitted": true,
+ "reuse_scope": "ROUTER_DEVELOPMENT is the PRIMARY Phase28 ablation population. Ablations that only re-select from already-frozen outputs are ARTIFACT_RECONSTRUCTABLE (no new forward). Ablations that require a modified component forward or re-fit are NEW_FROZEN_MODEL_INFERENCE_REQUIRED and require separate authorization (see §10).",
+ "per_ablation_classification": {
+  "A0": {
+   "rd_reuse": "ARTIFACT_RECONSTRUCTABLE",
+   "note": "global-only = frozen Phase21 global output already available; no new forward required"
+  },
+  "A1": {
+   "rd_reuse": "ARTIFACT_RECONSTRUCTABLE",
+   "note": "always-refine = frozen Phase25A final refiner outputs already available; select all action-available"
+  },
+  "A2": {
+   "rd_reuse": "ARTIFACT_RECONSTRUCTABLE",
+   "note": "random routing = seeded budget-matched selection over frozen action-available set; no training"
+  },
+  "A3": {
+   "rd_reuse": "ARTIFACT_RECONSTRUCTABLE",
+   "note": "entropy routing = GT-free scalar proxy already in frozen router feature schema"
+  },
+  "A4": {
+   "rd_reuse": "ARTIFACT_RECONSTRUCTABLE",
+   "note": "margin routing = GT-free scalar proxy already in frozen feature schema"
+  },
+  "A5": {
+   "rd_reuse": "ARTIFACT_RECONSTRUCTABLE",
+   "note": "predicted-ROI-size routing = GT-free geometry proxy already in frozen feature schema"
+  },
+  "A6": {
+   "rd_reuse": "SATISFIED_BY_PRIOR_CANONICAL_EVIDENCE",
+   "note": "learned paired-gain router = frozen Phase25D B_phi; H1 evidence produced in Phase25G"
+  },
+  "A7": {
+   "rd_reuse": "SATISFIED_BY_PRIOR_CANONICAL_EVIDENCE",
+   "note": "A6 + resource cost = frozen Phase25G A7 result (= C8)"
+  },
+  "A8": {
+   "rd_reuse": "SATISFIED_BY_PRIOR_CANONICAL_EVIDENCE",
+   "note": "A7 + post-safety = frozen Phase25G A8 result (= C9); canonical baseline"
+  },
+  "R1": {
+   "rd_reuse": "NEW_FROZEN_MODEL_INFERENCE_REQUIRED",
+   "note": "router-without-deep-global-features requires a re-fit/re-inference of an ablation router variant under the frozen protocol (single controlled factor: feature depth)"
+  },
+  "R2": {
+   "rd_reuse": "NEW_FROZEN_MODEL_INFERENCE_REQUIRED",
+   "note": "router-without-task_id requires retraining-free variant inference under frozen protocol (single controlled factor: task conditioning)"
+  },
+  "R3": {
+   "rd_reuse": "NEW_FROZEN_MODEL_INFERENCE_REQUIRED",
+   "note": "scalar-only router = minimal-feature control; requires variant fitting/inference under frozen protocol"
+  },
+  "F1": {
+   "rd_reuse": "NEW_FROZEN_MODEL_INFERENCE_REQUIRED",
+   "note": "refiner-without-p_global-channel requires a refiner variant forward; this is a REFINER-side ablation, not a router variant"
+  }
+ },
+ "n_artifact_reconstructable": 6,
+ "n_satisfied_prior": 3,
+ "n_new_frozen_inference": 4,
+ "n_training_required": 0,
+ "n_not_executable": 0,
+ "generated_utc": "2026-10-02T18:40:00Z",
+ "all_pass": true
+}

@@ -1,0 +1,66 @@
+{
+  "classification": "EXT03_PRETRAINING_ACCEPTANCE",
+  "generated_utc": "2026-10-11T17:00:00Z",
+  "gates": [
+    {
+      "gate": "all 5 models instantiate",
+      "status": "FAIL",
+      "detail": "failing: ['segformer_b0']"
+    },
+    {
+      "gate": "output expected shape",
+      "status": "PARTIAL"
+    },
+    {
+      "gate": "parameter counts recorded",
+      "status": "PASS"
+    },
+    {
+      "gate": "initialization policy frozen",
+      "status": "PASS"
+    },
+    {
+      "gate": "training recipe resolved",
+      "status": "PARTIAL"
+    },
+    {
+      "gate": "same metric functions bound",
+      "status": "PASS"
+    },
+    {
+      "gate": "same evaluation preprocessing bound",
+      "status": "PASS"
+    },
+    {
+      "gate": "smoke forward/backward succeeds",
+      "status": "PARTIAL"
+    },
+    {
+      "gate": "effective batch policy resolved",
+      "status": "PENDING"
+    },
+    {
+      "gate": "all seeds fixed",
+      "status": "PASS"
+    },
+    {
+      "gate": "no external data read",
+      "status": "PASS"
+    },
+    {
+      "gate": "no TEST read",
+      "status": "PASS"
+    },
+    {
+      "gate": "no ROUTER_HOLDOUT read for training/selection",
+      "status": "PASS"
+    }
+  ],
+  "all_pass": false,
+  "blockers": [
+    "SegFormer-B0 cannot be constructed: timm/transformers/segmentation_models_pytorch not installed and no in-repo SegFormer implementation.",
+    "Full 15-run scientific training (5 architectures x 3 seeds, 5832 images, 512x512) is not executable within a single session on the single RTX 3060 Ti; COMPUTE_SCALE_BLOCKER."
+  ],
+  "decision": "EXT-03 CANNOT COMPLETE; STOP BEFORE FULL SCIENTIFIC TRAINING per the frozen rule.",
+  "smoke_test_artifacts": "TECHNICAL_ONLY / NOT_SCIENTIFIC (non-scientific forward/backward on random tensors)"
+}

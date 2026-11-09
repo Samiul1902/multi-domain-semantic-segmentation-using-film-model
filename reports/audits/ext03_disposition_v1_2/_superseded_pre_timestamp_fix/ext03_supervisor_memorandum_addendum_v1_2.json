@@ -1,0 +1,261 @@
+{
+  "artifact": "ext03_supervisor_memorandum_addendum",
+  "version": "1.2",
+  "classification": "EXT03_SUPERVISOR_MEMORANDUM_ADDENDUM",
+  "generated_local": "2026-10-26T22:28:01+06:00",
+  "mode": "READ_ONLY",
+  "training_performed": false,
+  "inference_performed": false,
+  "frozen_artifacts_modified": false,
+  "control_authorized": false,
+  "as08_status": "UNRESOLVED",
+  "as08_marked_complete": false,
+  "companion_markdown": {
+    "path": "reports/audits/ext03_disposition_v1_2/ext03_supervisor_memorandum_addendum_v1_2.md",
+    "sha256": "6a15a854fccc6e029ef1598f527807a61cd97a6fcb5c1aca898bb2b3e8bbd7ba",
+    "bytes": 11710
+  },
+  "additive_to": "reports/audits/ext03_disposition_v1_1/ext03_supervisor_decision_memorandum_v1_1.md",
+  "supersedes": "the framing of Option C in v1.1; supersedes no bytes and no measurement",
+  "three_distinct_claims": [
+    {
+      "id": "C1",
+      "claim": "Task-conditioned FiLM improves multi-domain segmentation over an identical unconditioned backbone",
+      "model_under_test": "GlobalMedFiLM",
+      "required_control": "FiLM-off control, same protocol/seed/data",
+      "status": "NOT_ESTABLISHED",
+      "reason": "control never run",
+      "settled_by_option_C": true
+    },
+    {
+      "id": "C2",
+      "claim": "BARR benefit router and post-safety modules improve on the GlobalMedFiLM backbone",
+      "model_under_test": "RA-MedFiLM-BARR",
+      "required_control": "router-off and safety-off arms against the same backbone",
+      "status": "NOT_ESTABLISHED",
+      "reason": "no ablation arm exists; integrated vs backbone = +0.0028 (0.8379 vs 0.8351), single seed, within noise; no safety metric exists",
+      "settled_by_option_C": false
+    },
+    {
+      "id": "C3",
+      "claim": "The proposed model outperforms standard baselines under a common frozen protocol",
+      "model_under_test": "RA-MedFiLM-BARR vs 5 baselines",
+      "required_control": "protocol-faithful baseline matrix (EXT-03B provisional)",
+      "status": "NOT_ESTABLISHED",
+      "reason": "EXT-03 divergent in five parameters; AS-08 UNRESOLVED",
+      "settled_by_option_C": false
+    }
+  ],
+  "decisive_finding_that_option_C_is_silent_on_BARR": {
+    "statement": "The GlobalMedFiLM checkpoint contains no router and no safety tensors, so a FiLM-off control cannot produce evidence about modules absent from the model being controlled.",
+    "evidence_artifact": "checkpoints/phase21_global_medfilm_fourdomain_seed42_clean_v3/best.pt",
+    "evidence_artifact_sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+    "n_tensors": 86,
+    "parameter_groups": [
+      "bridge",
+      "decoder1",
+      "decoder2",
+      "decoder3",
+      "decoder4",
+      "encoder1",
+      "encoder2",
+      "encoder3",
+      "encoder4",
+      "film_layers",
+      "head",
+      "task_embedding"
+    ],
+    "router_safety_benefit_tensor_names_found": [],
+    "n_hits": 0,
+    "evidence_class": "MEASURED_NOW_FROM_FROZEN_CHECKPOINT_METADATA",
+    "inference_note": "Reading tensor shapes from a state dict is metadata inspection, not model inference."
+  },
+  "fiLM_off_can_establish": [
+    "for one fixed protocol/seed/dataset/eval rule: whether removing task conditioning changes the selected VAL808 equal-domain macro Dice, and by how much"
+  ],
+  "fiLM_off_cannot_establish": [
+    "BARR superiority (router and safety modules absent from the controlled model)",
+    "safety, robustness or failure-mode behaviour (no safety metric exists; Dice carries no safety semantics)",
+    "router benefit (B_phi not in the checkpoint)",
+    "protocol-faithful baseline comparability (that is C3)",
+    "generalisation (VAL808 is the selection set; selection-contaminated)",
+    "that FiLM is the only difference (architecture, protocol and seed treatment differ from every baseline)"
+  ],
+  "safety_statement": "No safety claim of any kind is supported by any experiment currently in this repository.",
+  "parameter_count_definitions": {
+    "total_parameters": "sum(p.numel() for p in model.parameters()) - every parameter tensor in the module tree, whether or not it receives gradients",
+    "trainable_parameters": "sum(p.numel() for p in model.parameters() if p.requires_grad) - the subset the optimiser updates",
+    "key_principle": "Freezing does not reduce total parameters. requires_grad=False changes what the optimiser updates; it does not remove the tensor from the model, the graph, or the state dict."
+  },
+  "control_designs": {
+    "F1_freeze_at_init": {
+      "description": "film_layers and task_embedding present and frozen at zero-initialised values",
+      "total_parameters": 3523001,
+      "trainable_parameters": 3432233,
+      "frozen_parameters": 90768,
+      "identity_property": "gamma == 0 and beta == 0 for every task, so F_hat = (1+gamma)*F + beta = F exactly",
+      "architecture_identical_to_global_medfilm": true,
+      "equal_capacity_comparison": true,
+      "recommended": true
+    },
+    "F2_remove_modules": {
+      "description": "film_layers and task_embedding deleted from the model",
+      "total_parameters": 3432233,
+      "trainable_parameters": 3432233,
+      "frozen_parameters": 0,
+      "identity_property": "holds trivially (no FiLM to apply)",
+      "architecture_identical_to_global_medfilm": false,
+      "equal_capacity_comparison": false,
+      "recommended": false
+    }
+  },
+  "measured_parameter_budget_global_medfilm": {
+    "total_parameters": 3523001,
+    "n_tensors": 86,
+    "by_group": {
+      "decoder4": {
+        "parameters": 1192704,
+        "share_percent": 33.8548
+      },
+      "bridge": {
+        "parameters": 1082368,
+        "share_percent": 30.7229
+      },
+      "encoder4": {
+        "parameters": 516864,
+        "share_percent": 14.6711
+      },
+      "decoder3": {
+        "parameters": 359808,
+        "share_percent": 10.2131
+      },
+      "encoder3": {
+        "parameters": 129408,
+        "share_percent": 3.6732
+      },
+      "film_layers": {
+        "parameters": 90640,
+        "share_percent": 2.5728
+      },
+      "decoder2": {
+        "parameters": 90048,
+        "share_percent": 2.556
+      },
+      "encoder2": {
+        "parameters": 32448,
+        "share_percent": 0.921
+      },
+      "decoder1": {
+        "parameters": 22560,
+        "share_percent": 0.6404
+      },
+      "encoder1": {
+        "parameters": 6000,
+        "share_percent": 0.1703
+      },
+      "task_embedding": {
+        "parameters": 128,
+        "share_percent": 0.0036
+      },
+      "head": {
+        "parameters": 25,
+        "share_percent": 0.0007
+      }
+    },
+    "film_layers_parameters": 90640,
+    "film_layers_share_percent": 2.5728,
+    "task_embedding_parameters": 128,
+    "task_embedding_share_percent": 0.0036,
+    "conditioning_total_parameters": 90768,
+    "conditioning_total_share_percent": 2.5764,
+    "film_by_site": {
+      "bridge": 35392,
+      "decoder4": 27072,
+      "decoder3": 14592,
+      "decoder2": 8352,
+      "decoder1": 5232
+    }
+  },
+  "arithmetic_table": {
+    "columns": [
+      "F1_freeze_at_init",
+      "F2_remove"
+    ],
+    "rows": {
+      "total_parameters": [
+        3523001,
+        3432233
+      ],
+      "trainable_parameters": [
+        3432233,
+        3432233
+      ],
+      "frozen_parameters": [
+        90768,
+        0
+      ],
+      "delta_total_vs_global_medfilm": [
+        0,
+        -90768
+      ],
+      "delta_trainable_vs_global_medfilm": [
+        -90768,
+        -90768
+      ],
+      "architecture_identical": [
+        true,
+        false
+      ]
+    }
+  },
+  "claims_that_must_not_be_made": [
+    {
+      "claim": "The frozen control has 2.58% fewer parameters",
+      "why_false": "False for F1. Total is unchanged; only trainable falls by 2.58%."
+    },
+    {
+      "claim": "The frozen control is a smaller model",
+      "why_false": "False for F1. Same model, smaller optimised subset."
+    },
+    {
+      "claim": "F1 and F2 are equivalent controls",
+      "why_false": "They differ in total capacity and model class; only F1 supports an equal-capacity claim."
+    }
+  ],
+  "identity_property_scope": {
+    "holds_for": "a freshly initialised model whose FiLM output projection is zero-initialised and whose FiLM parameters are then frozen",
+    "does_not_hold_for": "the trained GlobalMedFiLM checkpoint - after training gamma and beta are non-zero, which is the point of training them",
+    "measured_evidence_on_trained_ckpt": "decoder1 gamma positive at every domain (+0.235/+0.434/+0.455/+0.311); bridge gamma separates domains into two clusters; beta mean_abs 0.036-0.187 across sites",
+    "consequence": "The control is not 'GlobalMedFiLM with FiLM zeroed'. It is a from-scratch retrain with conditioning held at identity, and any comparison is from-scratch."
+  },
+  "naming": {
+    "protocol_faithful_baseline_study": "EXT-03B (provisional, subject to supervisor authorization)",
+    "film_off_control_is_an_EXT_study": false,
+    "film_off_control_recommended_container": "phase28_one_factor_control_contract.json",
+    "fallback_EXT_label_if_required": "EXT-03C",
+    "see": "reports/audits/ext03_disposition_v1_2/ext03_study_identifier_namespace_reconciliation_v1_2.md"
+  },
+  "requirements_for_any_future_authorization": [
+    "Design (F1 or F2) stated explicitly before launch; F1 recommended",
+    "Both parameter counts reported: total and trainable, for control and for GlobalMedFiLM",
+    "Seed count: >=3 seeds, or an explicit single-seed limitation statement",
+    "Protocol frozen before launch and identical between control and treatment",
+    "Pre-registered claim boundary: the result speaks to C1 only, and to C2, C3 and safety not at all",
+    "Selection caveat recorded: VAL808 is the selection set; result is a selection-contaminated decomposition, not held-out performance",
+    "Host remediation: clock currently unsynchronised (Source: Local CMOS Clock, no successful sync); RTC previously 5.19 days behind"
+  ],
+  "status_table": {
+    "C1_film_attribution": "NOT_ESTABLISHED",
+    "C2_barr_router_and_safety": "NOT_ESTABLISHED",
+    "C3_protocol_faithful_benchmarking": "NOT_ESTABLISHED",
+    "film_off_control": "NOT_AUTHORIZED_NOT_EXECUTED",
+    "safety_claim": "NO_SUPPORTING_EXPERIMENT_EXISTS",
+    "AS-08": "UNRESOLVED_NOT_MARKED_COMPLETE"
+  },
+  "uncertainty_labels": [
+    "PARAMETER_COUNTS_MEASURED_FROM_FROZEN_CHECKPOINT_STATE_DICT_METADATA",
+    "NO_SAFETY_METRIC_EXISTS_IN_THE_EVALUATION_PIPELINE",
+    "C2_EVIDENCE_IS_SINGLE_SEED_AND_WITHIN_NOISE",
+    "THIS_ADDENDUM_AUTHORIZES_NOTHING"
+  ]
+}

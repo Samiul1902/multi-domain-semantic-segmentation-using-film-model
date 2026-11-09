@@ -1,0 +1,71 @@
+{
+  "artifact": "phase36_robustness_negative_controls_v1_3",
+  "revision": "ra_medfilm_barr_phase36_robustness_v1_3",
+  "model_free": true,
+  "torch_imported": false,
+  "controls": [
+    {
+      "control": "NC7_v1_2_anonymous_image_condition_rows",
+      "bad_pattern_present_in_v1_2": true,
+      "bad_pattern_absent_in_v1_3": true,
+      "pass": true,
+      "note": "v1.2 built sample-less image rows; v1.3 emits fully-populated sample rows."
+    },
+    {
+      "control": "NC8_v1_2_anonymous_proposal_condition_rows",
+      "bad_pattern_present_in_v1_2": true,
+      "bad_pattern_absent_in_v1_3": true,
+      "pass": true,
+      "note": "v1.2 built sample-less proposal rows; v1.3 emits fully-populated sample rows."
+    },
+    {
+      "control": "NC9_silent_missing_sample_continue",
+      "bad_pattern_present_in_v1_2": true,
+      "bad_pattern_absent_in_v1_3": true,
+      "pass": true,
+      "note": "v1.2 recovered identity via row.get('sample_id') then continued silently; v1.3 has no such pattern and raises SCIENCE_ROW_SCHEMA_LOSS instead."
+    },
+    {
+      "control": "NC10_zero_reachable_perturbation_evaluators",
+      "bad_pattern_present_in_v1_2": true,
+      "bad_pattern_absent_in_v1_3": true,
+      "pass": true,
+      "note": "v1.3 reaches both real evaluators from run_science via sample-first drivers."
+    },
+    {
+      "control": "NC11_missing_domain_task_id_in_schema",
+      "bad_pattern_present_in_v1_2": true,
+      "bad_pattern_absent_in_v1_3": true,
+      "pass": true,
+      "note": "v1.3 fails closed (raises) when sample_id/domain/task_id missing."
+    },
+    {
+      "control": "NC12_missing_fixed_summary_or_worstcase_reachability",
+      "bad_pattern_present_in_v1_2": true,
+      "bad_pattern_absent_in_v1_3": true,
+      "pass": true,
+      "note": "all frozen summaries + worst-case callables present and reachable from run_science."
+    },
+    {
+      "control": "NC13_test_substring_split_guard_against_manifest",
+      "bad_pattern_present_in_v1_2": true,
+      "bad_pattern_absent_in_v1_3": true,
+      "wrongly_rejected_authorized_rows": 112,
+      "pass": true,
+      "note": "The substring guard would wrongly reject 112 authorized ISIC VAL rows; v1.3 has no such guard."
+    },
+    {
+      "control": "NC14_identity_authority_accepts_all_authorized",
+      "holdout_deny_set_size": 0,
+      "test_deny_set_size": 1683,
+      "accepted_authorized_rows": 808,
+      "authorized_population": 808,
+      "pass": true,
+      "note": "Manifest membership + exact row-path equality + explicit ID deny sets accepts 808/808."
+    }
+  ],
+  "passed": 8,
+  "total": 8,
+  "all_pass": true,
+  "nc_range": "NC7-NC14"
+}

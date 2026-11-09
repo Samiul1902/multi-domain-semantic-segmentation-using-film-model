@@ -1,0 +1,19 @@
+{
+ "artifact": "phase25f_initialization_binding",
+ "phase": "25F",
+ "stage": "SUPERVISOR_RULING_F5_INITIALIZATION",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_post_safety_v1_0",
+ "weight_init": "kaiming_uniform_(a=sqrt(5))",
+ "bias_init": "Uniform(-1/sqrt(fan_in), +1/sqrt(fan_in))",
+ "equivalent_to_standard_pytorch_linear": true,
+ "custom_output_head_zero_init": false,
+ "controlled_by_authorized_execution_seed": true,
+ "checks": {
+  "bias_within_uniform_bound": true,
+  "matches_standard_torch_linear_init": true,
+  "same_seed_identical_init": true,
+  "different_seed_differs": true
+ },
+ "all_pass": true
+}

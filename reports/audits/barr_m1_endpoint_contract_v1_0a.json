@@ -1,0 +1,63 @@
+{
+  "artifact": "barr_m1_endpoint_contract_v1_0a",
+  "revision": "RA_MEDFILM_BARR_BARR_M1_V1_0A__SCIENTIFIC_DESIGN_RECONCILIATION",
+  "generated_utc": "2026-10-27T01:38:09Z",
+  "scope": "PLANNING_CORRECTION_ONLY",
+  "paired_contrasts": {
+    "contrasts": [
+      "A8_minus_A0",
+      "A8_minus_A1",
+      "A1_minus_A0"
+    ],
+    "same_eligible_cases_required": true,
+    "n_cases": 4957,
+    "skip_contributes_zero": true,
+    "denominator": "all 4957 cases (intent-to-treat); a SKIP or safety-REJECT case contributes a Dice delta of exactly 0.0 because final = global",
+    "note": "This matches the frozen Phase-28 convention: A7 mean 0.001811291835 = 8.9785736244 / 4957 and A8 mean 0.001827009064 = 9.0564839294 / 4957, both divided by the FULL population, not by n_routed."
+  },
+  "dice_metric": {
+    "per_case_metric": "binary Dice at segmentation output threshold 0.50",
+    "epsilon": 1e-07,
+    "macro_domain_dice_definition": "macro = (1/4) * sum_over_domains( mean_over_cases_in_domain( dice ) ) — EQUAL domain weighting across ISIC, BUSI, KVASIR, KUB",
+    "macro_domain_delta_definition": "macro_delta = (1/4) * sum_over_domains( mean_over_cases_in_domain( dice_arm - dice_A0 ) )",
+    "pooled_mean_permitted_as_primary": false,
+    "cumulative_dice_difference_must_not_be_reported_as_macro": true,
+    "single_metric_definition_across_arms": true
+  },
+  "harm_definition": {
+    "frozen_definition": "a case is HARMED when applying the regional arm reduces Dice",
+    "frozen_source": "reports/audits/phase22_harm_analysis.json",
+    "operational_rule": "harm_i = 1 if (dice_arm_i - dice_A0_i) < -HARM_TOL else 0",
+    "numerical_tolerance": 1e-09,
+    "tolerance_justification": "Dice is computed in float64 from frozen probability maps; 1e-9 is far above accumulated floating-point noise and far below any scientifically meaningful effect.",
+    "reference_arm_for_harm": "A0 (global-only)",
+    "report_strict_zero_tolerance_count_too": true
+  },
+  "separated_quantities": {
+    "harm_rate": "n_harmed / n_eligible (per arm, vs A0)",
+    "harm_magnitude": "mean, median, worst, p05 and total of negative deltas only",
+    "net_dice_gain": "sum of per-case deltas over all 4957 (cumulative, NOT macro)",
+    "macro_domain_gain": "equal-domain macro delta defined above",
+    "refiner_execution_rate": "n_executed / 4957 per arm",
+    "accepted_refinement_rate": "n_accepted / n_executed",
+    "safety_rejection_rate": "1 - accepted_refinement_rate (A8 only)",
+    "must_not_be_conflated": true
+  },
+  "bootstrap": {
+    "procedure": "paired bootstrap with COMMON resampled indices per contrast",
+    "n_resamples": 2000,
+    "seed": 42,
+    "grouping_unit": "domain-stratified; within KUB, patient-clustered (267 patients); ISIC/BUSI/KVASIR per-case (no patient identifier available)",
+    "stratification": "4 domains, equal weight in the macro statistic",
+    "missingness_rule": "any missing case, NaN or duplicate sample_id ⇒ ABORT; no imputation, no silent drop",
+    "ci": "95% percentile interval",
+    "multiplicity": "DESCRIPTIVE_NO_POST_HOC_CORRECTION (inherits the frozen Phase-28 rule)",
+    "confirmatory_inference_permitted": false
+  },
+  "historical_numbers_usage": {
+    "phase22_harm_numbers_role": "HISTORICAL_MOTIVATION_ONLY",
+    "phase29_three_seed_numbers_role": "HISTORICAL_MOTIVATION_ONLY",
+    "direct_comparison_to_new_A0_A1_A8_permitted": false,
+    "reason": "Phase-22 harm is computed on VAL808 with an ORACLE (GT-defined) ROI; BARR-M1 uses ROUTER_DEVELOPMENT with a GT-FREE predicted ROI. Different population, different ROI source, and opposite sign (Phase-22 net gain -34.32; frozen A1 on DEV net +8.219). They are not comparable quantities."
+  }
+}

@@ -1,0 +1,113 @@
+{
+ "artifact": "phase36_v1_18_adjudication_d85_d86_d87_d88",
+ "phase": 36,
+ "revision": "ra_medfilm_barr_phase36_robustness_v1_18",
+ "type": "DEFECT_ADJUDICATION",
+ "mode": "STATIC_NON_CONSUMING_GOVERNANCE_ONLY",
+ "generated_utc": "2026-10-10T14:50:45Z",
+ "frozen_v1_17": {
+  "execution_source_sha256": "81d78460b2f20f176bc697cba662c43bc7c7443ea555ba95a30609faf0ccbe31",
+  "launcher_sha256": "11d88feec5b47802165ee9b873c6042e8b60a49f4e183034ef66eec769d2148b",
+  "supervisor_sha256": "88852d3341feffba3ce687169f0dcf1df89366a16a7412c12140a48c8f457eb5",
+  "runtime_manifest_sha256": "729f3676c86ba687bf808f9d79bac38916252563fc4b5814dd75d3d3f6b2bfc9",
+  "independent_handoff_sha256": "ab38a084f59a66de76c17b5193f930fa998f62f6440ff19771ab9b675e53c0ac",
+  "d84_disclosure_sha256": "e3e753547b816a428c86a78cc812507c0aa8851e25434d9732bc091439343888",
+  "release_binding_reconciliation_sha256": "2c0e6ba7b76648d4a91560a226227b1d68ba0b82d28e29f09d767e659a47a623"
+ },
+ "defects": {
+  "D85": {
+   "id": "V1_17_SUPERVISOR_LAUNCHER_SHA_PIN_MUTABLE_OR_ENV_OVERRIDABLE",
+   "title": "V1_17_SUPERVISOR_LAUNCHER_SHA_PIN_MUTABLE_OR_ENV_OVERRIDABLE",
+   "established": true,
+   "status": "RECONCILED",
+   "evidence": {
+    "env_override_path": "supervise_phase36_v1_17.py L56: _FROZEN_LAUNCHER_SHA_CONSTANT = os.environ.get(\"PHASE36_V1_17_LAUNCHER_SHA\")",
+    "authority_file_path": "supervise_phase36_v1_17.py L120-135: _read_frozen_launcher_sha() reads reports/audits/phase36_v1_17_launch_authority_sha.json [launcher_sha256] WITHOUT independently pinning the raw bytes of the authority file itself",
+    "consequence": "The expected launcher SHA is NOT a literal immutable constant: an env var can override it, and the JSON authority file is trusted as a mutable field rather than raw-byte pinned."
+   },
+   "scientific_semantics_effect": "NONE",
+   "governance_effect": "YES",
+   "repaired_in": "v1.18",
+   "repair": "V1_18_SUPERVISOR_IMMUTABLE_LITERAL_LAUNCHER_SHA_PIN"
+  },
+  "D86": {
+   "id": "V1_17_SUPERVISOR_STDOUT_STDERR_NOT_EXCLUSIVE_CREATE",
+   "title": "V1_17_SUPERVISOR_STDOUT_STDERR_NOT_EXCLUSIVE_CREATE",
+   "established": true,
+   "status": "RECONCILED",
+   "evidence": {
+    "writer": "supervise_phase36_v1_17.py L100-117: _write_text_durable(..., exclusive=False) uses O_TRUNC",
+    "call_sites": "supervise_phase36_v1_17.py L266-267,269-270: real stdout/stderr writes omit exclusive=True",
+    "consequence": "The declared overwrite_permitted=false is NOT mechanically enforced for stdout/stderr: a pre-existing file would be truncated."
+   },
+   "scientific_semantics_effect": "NONE",
+   "evidence_provenance_effect": "YES",
+   "repaired_in": "v1.18",
+   "repair": "V1_18_SUPERVISOR_EXCLUSIVE_CREATE_STDOUT_STDERR_NO_O_TRUNC"
+  },
+  "D87": {
+   "id": "V1_17_PREINVOCATION_AUTHORITY_DOES_NOT_BIND_FINAL_GOVERNANCE_CHAIN",
+   "title": "V1_17_PREINVOCATION_AUTHORITY_DOES_NOT_BIND_FINAL_GOVERNANCE_CHAIN",
+   "established": true,
+   "status": "RECONCILED",
+   "evidence": {
+    "direct_gate_authority": "launch_phase36_v1_17.py L62-65: D81_D83_ADJUDICATION binds phase36_v1_16_operational_adjudication_d81_d83_v1_1.json as the direct gate authority",
+    "unbound_final_chain": [
+     "D84 disclosure",
+     "release-attestation binding reconciliation",
+     "final readiness",
+     "science eligibility",
+     "source freeze",
+     "output namespace map",
+     "reachable-write-target inventory",
+     "final semantic-diff reconciliation"
+    ],
+    "consequence": "The launcher gate does not bind the complete FINAL v1.18 chain; it still uses an EARLIER D81-D83 authority as its direct gate."
+   },
+   "scientific_semantics_effect": "NONE",
+   "repaired_in": "v1.18",
+   "repair": "V1_18_NON_CIRCULAR_PRELAUNCH_AUTHORITY_BUNDLE_BIND"
+  },
+  "D88": {
+   "id": "V1_17_REAL_LAUNCH_DOES_NOT_RECHECK_COMPLETE_OUTPUT_ABSENCE__FIGURE_WRITES_NOT_FAIL_CLOSED",
+   "title": "V1_17_REAL_LAUNCH_DOES_NOT_RECHECK_COMPLETE_OUTPUT_ABSENCE__FIGURE_WRITES_NOT_FAIL_CLOSED",
+   "established": true,
+   "status": "RECONCILED",
+   "evidence": {
+    "no_realtime_gate": "The v1.17 real dispatch path never re-verified scientific output absence immediately before dispatch; the static preparation-time absence snapshot was the sole guard.",
+    "figure_writes": "v1.17 figure_R1..R5 used plain ``fig.savefig(path, dpi=160)`` (overwrite semantics), unlike the fail-closed CSV writer.",
+    "count_semantics": {
+     "table_figure_target_count": 16,
+     "total_reachable_write_target_count": 23,
+     "unclassified_write_target_count": 0
+    }
+   },
+   "scientific_semantics_effect": "NONE",
+   "repaired_in": "v1.18",
+   "repair": "V1_18_REAL_TIME_OUTPUT_ABSENCE_GATE__FAIL_CLOSED_FIGURE_WRITER"
+  }
+ },
+ "all_defects_reconciled": true,
+ "scientific_semantics_effect_total": "NONE",
+ "D85": {
+  "id": "V1_17_SUPERVISOR_LAUNCHER_SHA_PIN_MUTABLE_OR_ENV_OVERRIDABLE",
+  "status": "RECONCILED",
+  "delegate": "defects.D85"
+ },
+ "D86": {
+  "id": "V1_17_SUPERVISOR_STDOUT_STDERR_NOT_EXCLUSIVE_CREATE",
+  "status": "RECONCILED",
+  "delegate": "defects.D86"
+ },
+ "D87": {
+  "id": "V1_17_PREINVOCATION_AUTHORITY_DOES_NOT_BIND_FINAL_GOVERNANCE_CHAIN",
+  "status": "RECONCILED",
+  "delegate": "defects.D87"
+ },
+ "D88": {
+  "id": "V1_17_REAL_LAUNCH_DOES_NOT_RECHECK_COMPLETE_OUTPUT_ABSENCE__FIGURE_WRITES_NOT_FAIL_CLOSED",
+  "status": "RECONCILED",
+  "delegate": "defects.D88"
+ },
+ "terminal": "PHASE36_V1_18_D85_D86_D87_D88_ADJUDICATED"
+}

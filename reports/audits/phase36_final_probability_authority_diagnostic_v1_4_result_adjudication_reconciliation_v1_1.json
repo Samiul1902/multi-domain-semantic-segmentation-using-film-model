@@ -1,0 +1,392 @@
+{
+  "artifact_kind": "PHASE36_FINAL_PROBABILITY_AUTHORITY_DIAGNOSTIC_V1_4_RESULT_ADJUDICATION_RECONCILIATION",
+  "revision": "v1.1",
+  "decision_ids": [
+    "D76",
+    "D77",
+    "D78"
+  ],
+  "purpose": "Additive reconciliation of three governance/provenance defects in the frozen v1.4 result-adjudication v1.0 family: D76 journal field-semantics inversion, D77 non-fail-closed builder, D78 un-bound D75 scoring-source provenance. STATIC / existing-evidence only. Preserves all established scientific conclusions.",
+  "execution_scope": "STATIC_NON_CONSUMING_EXISTING_EVIDENCE_ONLY",
+  "supersedes": null,
+  "amends": "reports/audits/phase36_final_probability_authority_diagnostic_v1_4_result_adjudication_v1_0.json",
+  "frozen_family": {
+    "adjudication": {
+      "path": "reports/audits/phase36_final_probability_authority_diagnostic_v1_4_result_adjudication_v1_0.json",
+      "sha256_expected": "912cb24e4b27dcc7d66310b36db2154180411ec52d79d19c767aa708220b9b36",
+      "sha256_actual": "912cb24e4b27dcc7d66310b36db2154180411ec52d79d19c767aa708220b9b36",
+      "match": true
+    },
+    "builder": {
+      "path": "scripts/analysis/build_phase36_final_probability_authority_diagnostic_v1_4_result_adjudication_v1_0.py",
+      "sha256_expected": "8c95a6f6c3d9f3735169256d9c6f06bd538ed5ebbba8afb8a96ed72b2e81baf7",
+      "sha256_actual": "8c95a6f6c3d9f3735169256d9c6f06bd538ed5ebbba8afb8a96ed72b2e81baf7",
+      "match": true
+    },
+    "overwritten": false,
+    "edited": false
+  },
+  "D61": "PRESERVED",
+  "D75": "PRESERVED",
+  "preserved_scientific_conclusions": {
+    "attempt_state": "CONSUMED_RESULT",
+    "retry_permitted": false,
+    "D61_CANONICAL_FUSION_REPAIR_PROOF": "ESTABLISHED",
+    "PHASE27_FINAL_AUTHORITY_REPRODUCED_BIT_IDENTICALLY_VAL808": true,
+    "final_f16_bit_identical_all": true,
+    "total_f16_element_mismatch_count": 0,
+    "n_samples_with_any_f16_difference": 0,
+    "D75_live_vs_self_f16_threshold_flips": 954,
+    "self_f16_vs_phase27_f16_threshold_mismatches": 0,
+    "G_persisted_f16_authority": "BIT_IDENTICAL",
+    "v1_4_retry": "FORBIDDEN",
+    "Phase36": "NOT_COMPLETE_PENDING_V1_15",
+    "Phase37": "NOT_STARTED"
+  },
+  "D76": "JOURNAL_SNAPSHOT_FINAL_COUNT_FIELDS_SEMANTICALLY_INVERTED",
+  "D76_status": "RECONCILED",
+  "d76_reconciled": true,
+  "d76_old_fields": {
+    "journal_snapshot_records": 31,
+    "journal_final_records": 29
+  },
+  "d76_corrected_semantics": {
+    "journal_result_snapshot_records": 29,
+    "journal_final_on_disk_records": 31
+  },
+  "journal_result_snapshot_records": 29,
+  "journal_final_on_disk_records": 31,
+  "n_post_snapshot_records": 2,
+  "post_snapshot_records": [
+    "029_101_result_write__BEGIN.json",
+    "030_101_result_write__COMPLETE.json"
+  ],
+  "post_snapshot_records_present": [
+    true,
+    true
+  ],
+  "post_snapshot_record_sha256": {
+    "029_101_result_write__BEGIN.json": "b34c730dd83ee2838b7f4a0ce916527eabf7b1be27882557b90b9080fe2a06e7",
+    "030_101_result_write__COMPLETE.json": "0f72629d563ac084e60e7e4daf1eb59fc08308690036c08819576dd0e0625f6d"
+  },
+  "journal_29_to_31_classification": "EXPECTED_POST_RESULT_SNAPSHOT_COMPLETION",
+  "journal_classification_preserved": "EXPECTED_POST_RESULT_SNAPSHOT_COMPLETION",
+  "journal_single_attempt_chain": true,
+  "journal_attempt_chains": [
+    "v1_4_29980_2026-10-10T09:56:09Z"
+  ],
+  "journal_n_records": 31,
+  "d76_chronology": "RESULT-internal snapshot: records_written=29 (stage 098_gt_and_comparison_gate). Post-snapshot stage 101_result_write (BEGIN 029 + COMPLETE 030) adds 2 records, giving 31 final on-disk.  The v1.0 field NAMES were semantically inverted: it labelled 31 as the 'snapshot' and 29 as the 'final'.",
+  "D77": "RESULT_ADJUDICATION_BUILDER_VALIDATION_NOT_FAIL_CLOSED",
+  "D77_status": "RECONCILED",
+  "d77_established": true,
+  "original_builder_fail_closed": false,
+  "new_reconciliation_builder_fail_closed": true,
+  "D77_scientific_semantics_effect": "NONE_FOR_EXISTING_FROZEN_ARTIFACT",
+  "D77_governance_effect": "YES",
+  "D77_reason": "The frozen v1.0 builder computes all_pins_match / attempt_ok / prior_ok / target_ok / failure_absent (L218-224) but writes the artifact (L502-503 write_once) with NO gate on those booleans.  The actual frozen v1.0 artifact records all-match=true evidence, so the defect does not reverse the existing result; but the builder would not have failed closed under an input mismatch.",
+  "D77_frozen_builder_evidence": {
+    "computes_booleans_lines": "L218-L224",
+    "ungated_write_lines": "L502-L503",
+    "gate_between_present": false
+  },
+  "D78": "D75_SCORING_SOURCE_PROVENANCE_BOUND",
+  "D78_status": "RECONCILED",
+  "Phase27_PhaseA_source_path": "scripts/analysis/run_phase27_exec_phaseA.py",
+  "Phase27_PhaseA_source_sha256": "ac0ffbdadbfe60349061a926f5a664716a3a3690ac3a90c21a35802263975841",
+  "Phase27_PhaseA_relevant_lines": "L19, L109, L245-246, L298, L349, L382, L385",
+  "Phase27_PhaseA_relevant_function": "full_field_binary_from_prob",
+  "Phase27_PhaseB_source_path": "scripts/analysis/run_phase27_exec_phaseB.py",
+  "Phase27_PhaseB_source_sha256": "35800e39d9220e638adbb640bd25e18bc14da5298d9bed4a603f2f0dec64cf37",
+  "Phase27_PhaseB_relevant_lines": "L66, L110-117, L129-133, L142-147",
+  "Phase27_PhaseB_relevant_function": "phase B scored loop / g_bin,f_bin",
+  "v1_14_source_path": "scripts/analysis/phase36_robustness_execution_v1_14.py",
+  "v1_14_source_sha256": "ac09ff8ded3610244920e66612145b246b33127140d344a9730d454bab27cff5",
+  "v1_14_relevant_lines": "L372, L2391, L2413-2414, L2418-2420",
+  "v1_14_relevant_function": "_evaluate_clean_sample",
+  "scoring_source_bindings": {
+    "phaseA": {
+      "path": "scripts/analysis/run_phase27_exec_phaseA.py",
+      "sha256": "ac0ffbdadbfe60349061a926f5a664716a3a3690ac3a90c21a35802263975841",
+      "sha256_expected": "ac0ffbdadbfe60349061a926f5a664716a3a3690ac3a90c21a35802263975841",
+      "relevant_function": "full_field_binary_from_prob",
+      "relevant_line_span": "L19, L109, L245-246, L298, L349, L382, L385",
+      "match": true
+    },
+    "phaseB": {
+      "path": "scripts/analysis/run_phase27_exec_phaseB.py",
+      "sha256": "35800e39d9220e638adbb640bd25e18bc14da5298d9bed4a603f2f0dec64cf37",
+      "sha256_expected": "35800e39d9220e638adbb640bd25e18bc14da5298d9bed4a603f2f0dec64cf37",
+      "relevant_function": "phase B scored loop / g_bin,f_bin",
+      "relevant_line_span": "L66, L110-117, L129-133, L142-147",
+      "match": true
+    },
+    "v1_14": {
+      "path": "scripts/analysis/phase36_robustness_execution_v1_14.py",
+      "sha256": "ac09ff8ded3610244920e66612145b246b33127140d344a9730d454bab27cff5",
+      "sha256_expected": "ac09ff8ded3610244920e66612145b246b33127140d344a9730d454bab27cff5",
+      "relevant_function": "_evaluate_clean_sample",
+      "relevant_line_span": "L372, L2391, L2413-2414, L2418-2420",
+      "match": true
+    }
+  },
+  "phase27_historical_scored_representation": "PERSISTED_F16__RECAST_F32__THRESHOLD_0_50",
+  "phase27_phase_a_live_binary_representation": "LIVE_F32__THRESHOLD_0_50",
+  "v1_14_clean_scored_representation": "LIVE_F32__THRESHOLD_0_50",
+  "phaseA_binary_pngs_are_not_authoritative_scoring_representation": true,
+  "D78_mechanical_derivation": {
+    "phaseB_step1_persisted_caches_loaded": "run_phase27_exec_phaseB.py L129-130: gp = np.load(CACHE27/phase27_val808_global_prob_f16.npy); fp = np.load(CACHE27/phase27_val808_final_prob_f16.npy)",
+    "phaseB_step2_stored_dtype_authority_float16": "the loaded arrays carry the persisted float16 dtype (filenames ..._f16.npy; Phase-A wrote them via np.lib.format.open_memmap(..., dtype=np.float16) L245-246 / final_prob_f16[gi] = ...astype(np.float16) L385)",
+    "phaseB_step3_elementwise_recast_to_float32": "L142-143: np.asarray(gp[i], dtype=np.float32) / np.asarray(fp[i], dtype=np.float32)",
+    "phaseB_step4_binary_via_ge_0_50": "L142-143: (... >= SEG).astype(np.uint8), where SEG = 0.50 (L66)",
+    "phaseB_step5_binary_used_for_gt_metric_scoring": "L145-147: g_dice = canon_dice(g_bin, gt_bin); f_dice = canon_dice(f_bin, gt_bin) — the Phase-B binary IS the GT-scored representation (hash barrier L110-117)",
+    "phaseA_separate_behavior": "run_phase27_exec_phaseA.py L19 (header): 'Binary decisions are taken in float32 BEFORE any float16 storage cast.'  L382: fbin = full_field_binary_from_prob(np.asarray(p_final, dtype=np.float32)); L385 persists final_prob_f16.  Phase-A _final.png masks use live-f32 and are NOT the authoritative Phase-B scoring representation.",
+    "v1_14_behavior": "phase36_robustness_execution_v1_14.py L2413-2414: final_prob = np.asarray(out['final_probability'], dtype=np.float32); final_binary = (final_prob >= SEGMENTATION_OUTPUT_THRESHOLD) — live-f32 threshold at 0.50 (L372)."
+  },
+  "v1_15_repair_policy": "POLICY_B",
+  "policy_B_is_historically_faithful": true,
+  "policy_A_definition": "retain live-f32 thresholding (v1.14 clean scoring)",
+  "policy_B_definition": "p_final_scored = p_final_live.astype(np.float16).astype(np.float32); then threshold p_final_scored >= 0.50, applied uniformly to clean and perturbed Phase36 conditions.",
+  "policy_B_representation_only": true,
+  "policy_B_does_not_alter": [
+    "live p_final construction",
+    "G",
+    "router",
+    "ROI",
+    "B_phi",
+    "R_psi",
+    "S_omega",
+    "routing state",
+    "safety state",
+    "fusion math",
+    "proposal geometry",
+    "perturbation generation",
+    "model checkpoints",
+    "network inference",
+    "sample order"
+  ],
+  "policy_B_implementation_defined_not_executed": {
+    "p_scored_f16": "np.asarray(p_final_live, dtype=np.float32).astype(np.float16)",
+    "p_scored": "p_scored_f16.astype(np.float32)",
+    "binary": "p_scored >= np.float32(0.50)"
+  },
+  "scientific_semantics_effect": "NONE",
+  "governance_provenance_effect": "YES",
+  "v1_4_retry_permitted": false,
+  "v1_15_created": false,
+  "v1_15_executed": false,
+  "Phase36_complete": false,
+  "Phase36": "NOT_COMPLETE_PENDING_V1_15",
+  "Phase37": "NOT_STARTED",
+  "TEST_accessed": false,
+  "ROUTER_HOLDOUT_accessed": false,
+  "fail_closed_gate": {
+    "all_required_checks": {
+      "frozen_adjudication_exact": true,
+      "frozen_builder_exact": true,
+      "v1_4_family_14_14_pins_exact": true,
+      "START_exact": true,
+      "RESULT_exact": true,
+      "PROCESS_EXIT_exact": true,
+      "STDOUT_exact": true,
+      "STDERR_exact": true,
+      "FAILURE_absent": true,
+      "D72_exact": true,
+      "D73_D74_reconciliation_exact": true,
+      "phase27_final_prob_exact": true,
+      "phase27_global_prob_exact": true,
+      "phase27_score_csv_exact": true,
+      "historical_wrong_score_sha_not_introduced": true,
+      "journal_count_exactly_31": true,
+      "single_attempt_chain": true,
+      "029_result_write_BEGIN_exact": true,
+      "030_result_write_COMPLETE_exact": true,
+      "scoring_source_phaseA_exact": true,
+      "scoring_source_phaseB_exact": true,
+      "scoring_source_v1_14_exact": true
+    },
+    "all_required_checks_pass": true,
+    "n_checks": 22,
+    "n_checks_pass": 22,
+    "write_precondition": "ALL_REQUIRED_CHECKS_PASS",
+    "aborts_before_write_on_failure": true
+  },
+  "ancestor_binding": {
+    "n_family_pins": 14,
+    "n_family_pins_ok": 14,
+    "source_pins": {
+      "diagnostic": {
+        "path": "scripts/analysis/phase36_final_probability_authority_diagnostic_v1_4.py",
+        "sha256_expected": "778af67fe41e44cec0717365b2c3427bcfd43442145af09a7aca2abe1f4a3eab",
+        "sha256_actual": "778af67fe41e44cec0717365b2c3427bcfd43442145af09a7aca2abe1f4a3eab",
+        "match": true
+      },
+      "launcher": {
+        "path": "scripts/analysis/launch_phase36_final_probability_authority_diagnostic_v1_4.py",
+        "sha256_expected": "221a15a1f2dd341c59a65d9f8c0f57f4e339ff5a66f8bece6c7b2a5d8ad10a0a",
+        "sha256_actual": "221a15a1f2dd341c59a65d9f8c0f57f4e339ff5a66f8bece6c7b2a5d8ad10a0a",
+        "match": true
+      },
+      "supervisor": {
+        "path": "scripts/analysis/supervise_phase36_final_probability_authority_diagnostic_v1_4.py",
+        "sha256_expected": "792302085ccde4f09bfc7d3ca6534f411a9b776b54cbca5b83e8a7ad02277c2b",
+        "sha256_actual": "792302085ccde4f09bfc7d3ca6534f411a9b776b54cbca5b83e8a7ad02277c2b",
+        "match": true
+      },
+      "unit": {
+        "path": "scripts/analysis/phase36_final_probability_authority_diagnostic_unit_v1_4.py",
+        "sha256_expected": "a4f1ddb854847435388e1dd9984812bc0b295c42443f63c76ac5d55c01b34738",
+        "sha256_actual": "a4f1ddb854847435388e1dd9984812bc0b295c42443f63c76ac5d55c01b34738",
+        "match": true
+      },
+      "preflight": {
+        "path": "scripts/analysis/phase36_final_probability_authority_diagnostic_preflight_v1_4.py",
+        "sha256_expected": "bb14fca6f9344459f9c812d61de6c1abf90fd5fe7d8a966d46a6ca10fbadc1ec",
+        "sha256_actual": "bb14fca6f9344459f9c812d61de6c1abf90fd5fe7d8a966d46a6ca10fbadc1ec",
+        "match": true
+      },
+      "negative_controls": {
+        "path": "scripts/analysis/phase36_final_probability_authority_diagnostic_negative_controls_v1_4.py",
+        "sha256_expected": "492c03fd231969dc80347713c3106c7970854d060d2d5780e285ffbac8372256",
+        "sha256_actual": "492c03fd231969dc80347713c3106c7970854d060d2d5780e285ffbac8372256",
+        "match": true
+      },
+      "builder": {
+        "path": "scripts/analysis/build_phase36_final_probability_authority_diagnostic_v1_4.py",
+        "sha256_expected": "ec5432ac875580b331a9e2e5910499d15c41f30de843c01e589005d9ea8fb29b",
+        "sha256_actual": "ec5432ac875580b331a9e2e5910499d15c41f30de843c01e589005d9ea8fb29b",
+        "match": true
+      }
+    },
+    "governance_pins": {
+      "contract": {
+        "path": "reports/audits/phase36_final_probability_authority_diagnostic_contract_v1_4.json",
+        "sha256_expected": "1052946e87b9060bec5e06488569ab06b1cb85cf52d2969e2876a4a7355d5a57",
+        "sha256_actual": "1052946e87b9060bec5e06488569ab06b1cb85cf52d2969e2876a4a7355d5a57",
+        "match": true
+      },
+      "source_freeze": {
+        "path": "reports/audits/phase36_final_probability_authority_diagnostic_source_freeze_v1_4.json",
+        "sha256_expected": "ff1d23e11da61645cc117bbc0e7674b680056c83164cad9266beb24d6c5e0ba0",
+        "sha256_actual": "ff1d23e11da61645cc117bbc0e7674b680056c83164cad9266beb24d6c5e0ba0",
+        "match": true
+      },
+      "preflight": {
+        "path": "reports/audits/phase36_final_probability_authority_diagnostic_preflight_v1_4.json",
+        "sha256_expected": "224cf6d1f108119caf3ce365bfa4cfe36945d0fd4a7d334e472f2b3e7cd32006",
+        "sha256_actual": "224cf6d1f108119caf3ce365bfa4cfe36945d0fd4a7d334e472f2b3e7cd32006",
+        "match": true
+      },
+      "negative_controls": {
+        "path": "reports/audits/phase36_final_probability_authority_diagnostic_negative_controls_v1_4.json",
+        "sha256_expected": "fe35ac673bca59e6bcb20900f4c541f283ba3bc6aaf3bf8b4e82ba537a08bcb2",
+        "sha256_actual": "fe35ac673bca59e6bcb20900f4c541f283ba3bc6aaf3bf8b4e82ba537a08bcb2",
+        "match": true
+      },
+      "eligibility": {
+        "path": "reports/audits/phase36_final_probability_authority_diagnostic_eligibility_v1_4.json",
+        "sha256_expected": "9ba0c2fd94c6d5d7d29b50430b2c78d13e48e7003725c80cac2012b6ddb1ad11",
+        "sha256_actual": "9ba0c2fd94c6d5d7d29b50430b2c78d13e48e7003725c80cac2012b6ddb1ad11",
+        "match": true
+      },
+      "no_execution_audit": {
+        "path": "reports/audits/phase36_final_probability_authority_diagnostic_no_execution_audit_v1_4.json",
+        "sha256_expected": "09feb4bfc9e7c9ffa157a3afb93a0d9085e462d4b6c2bc3676295d03f3c80a37",
+        "sha256_actual": "09feb4bfc9e7c9ffa157a3afb93a0d9085e462d4b6c2bc3676295d03f3c80a37",
+        "match": true
+      },
+      "v1_3_to_v1_4_diff": {
+        "path": "reports/audits/phase36_final_probability_authority_diagnostic_v1_3_to_v1_4_diff.json",
+        "sha256_expected": "ccffd91d4dff41a6ea4d9a6be3c66237e5c17a4cc6bb92103e122eb9dbae8ee2",
+        "sha256_actual": "ccffd91d4dff41a6ea4d9a6be3c66237e5c17a4cc6bb92103e122eb9dbae8ee2",
+        "match": true
+      }
+    },
+    "attempt_artifacts": {
+      "START": {
+        "path": "reports/audits/phase36_final_probability_authority_diagnostic_start_v1_4.json",
+        "sha256_expected": "298f56414eaa39281e8dfaf33faa5e1260d6e7708ae5bfe5f850bcf04520caca",
+        "sha256_actual": "298f56414eaa39281e8dfaf33faa5e1260d6e7708ae5bfe5f850bcf04520caca",
+        "match": true
+      },
+      "RESULT": {
+        "path": "reports/audits/phase36_final_probability_authority_diagnostic_result_v1_4.json",
+        "sha256_expected": "046a1e3c3053fb00b97895d8d1834d0011f8b190209daa01795e6915b7fd5284",
+        "sha256_actual": "046a1e3c3053fb00b97895d8d1834d0011f8b190209daa01795e6915b7fd5284",
+        "match": true
+      },
+      "PROCESS_EXIT": {
+        "path": "reports/audits/phase36_final_probability_authority_diagnostic_process_exit_v1_4.json",
+        "sha256_expected": "7475ce8c8a6abfc7f8697a1682ec3a93f22178503bb342ef52569175ca8061e2",
+        "sha256_actual": "7475ce8c8a6abfc7f8697a1682ec3a93f22178503bb342ef52569175ca8061e2",
+        "match": true
+      },
+      "STDOUT": {
+        "path": "reports/audits/phase36_final_probability_authority_diagnostic_stdout_v1_4.txt",
+        "sha256_expected": "822adf6b61ff8b4cdec307d5d755cb83b3cc583dcf2de4dd94f3fb9be548b393",
+        "sha256_actual": "822adf6b61ff8b4cdec307d5d755cb83b3cc583dcf2de4dd94f3fb9be548b393",
+        "match": true
+      },
+      "STDERR": {
+        "path": "reports/audits/phase36_final_probability_authority_diagnostic_stderr_v1_4.txt",
+        "sha256_expected": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "sha256_actual": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "match": true
+      }
+    },
+    "prior_artifacts": {
+      "D72_attestation": {
+        "path": "reports/audits/phase36_final_probability_authority_diagnostic_v1_4_final_readiness_attestation_v1_0.json",
+        "sha256_expected": "4cffd388f6fbdacf15abc2d5984c8cad9e6f186c7a3d8137c796a53b6b96db27",
+        "sha256_actual": "4cffd388f6fbdacf15abc2d5984c8cad9e6f186c7a3d8137c796a53b6b96db27",
+        "match": true
+      },
+      "D73_D74_reconciliation": {
+        "path": "reports/audits/phase36_final_probability_authority_diagnostic_v1_4_final_readiness_attestation_reconciliation_v1_1.json",
+        "sha256_expected": "0448876bec3b18da87a77e8b64a6c4ba5fe36c9f62b0cf4687a4d7d3012b3279",
+        "sha256_actual": "0448876bec3b18da87a77e8b64a6c4ba5fe36c9f62b0cf4687a4d7d3012b3279",
+        "match": true
+      }
+    },
+    "scientific_targets": {
+      "phase27_final_prob": {
+        "path": "data_cache/phase27_barr_preservation_v1_0/phase27_val808_final_prob_f16.npy",
+        "sha256_expected": "506ab6c4e715a9106889e186c146b73903493c80a63258007954cf5deb3ea9cf",
+        "sha256_actual": "506ab6c4e715a9106889e186c146b73903493c80a63258007954cf5deb3ea9cf",
+        "match": true
+      },
+      "phase27_global_prob": {
+        "path": "data_cache/phase27_barr_preservation_v1_0/phase27_val808_global_prob_f16.npy",
+        "sha256_expected": "cc6c54af986f56b4aba9265405ffeba4f6cac582eeff00fe6b0894429e7d3f13",
+        "sha256_actual": "cc6c54af986f56b4aba9265405ffeba4f6cac582eeff00fe6b0894429e7d3f13",
+        "match": true
+      },
+      "phase27_score_csv": {
+        "path": "reports/tables/phase27_val808_per_sample_scores.csv",
+        "sha256_expected": "702133930ce14ac9513c992833396e3e250d08417b17d1032cbd260a405cfb12",
+        "sha256_actual": "702133930ce14ac9513c992833396e3e250d08417b17d1032cbd260a405cfb12",
+        "match": true
+      }
+    },
+    "all_frozen_ancestors_unchanged": true
+  },
+  "prohibitions_observed": {
+    "no_v1_4_retry": true,
+    "no_model_execution": true,
+    "no_checkpoint_deserialization": true,
+    "no_val_image_read": true,
+    "no_val_gt_read": true,
+    "no_test": true,
+    "no_router_holdout": true,
+    "no_perturbations": true,
+    "no_metric_execution": true,
+    "no_v1_15_implementation": true,
+    "no_v1_15_execution": true,
+    "no_phase37": true,
+    "no_overwrite_of_v1_0_adjudication": true,
+    "no_overwrite_of_v1_0_builder": true,
+    "historical_wrong_phase27_score_sha_not_introduced": true
+  },
+  "builder_source_sha256": "4788f7eb758f4927582a7fb5f6f3b623ba4192b8f5e3515b3025d70505c59ee7",
+  "write_semantics": "WRITE_ONCE_O_CREAT_O_EXCL_FSYNC_FAIL_CLOSED"
+}

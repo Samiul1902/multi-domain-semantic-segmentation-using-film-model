@@ -1,0 +1,92 @@
+{
+  "version": "1.0",
+  "mode": "READ_ONLY_DECISION_SUPPORT",
+  "training_performed": false,
+  "inference_performed": false,
+  "frozen_artifacts_modified": false,
+  "test_accessed": false,
+  "router_holdout_accessed": false,
+  "authorization_granted": false,
+  "generated_local": "2026-10-26T22:47:47+06:00",
+  "generated_utc": "2026-10-26T16:47:47+00:00",
+  "timestamp_provenance": "COMPUTED_AT_WRITE_BY_SCRIPT",
+  "clock_uncertainty": "HOST_CLOCK_NOT_SYNCHRONIZED__ABSOLUTE_UTC_CORRESPONDENCE_UNVERIFIED",
+  "artifact": "prelaunch_requirement_contract",
+  "classification": "RA_MEDFILM_BARR_PRELAUNCH_REQUIREMENT_CONTRACT",
+  "companion_markdown": {
+    "path": "reports/planning/reauthorization_gate_v1_0/task_c_prelaunch_requirements_v1_0.md",
+    "sha256": "3b991c0ab0942cb840a7b130cb7c652c7b35ec7609f6c7850aed1d59757e4d10",
+    "bytes": 13769
+  },
+  "requirements": [
+    {
+      "id": "R1",
+      "demand": "Signed or explicitly documented scientific authorization",
+      "fail_closed_code": "E_AUTHORIZATION_ABSENT",
+      "failure_mode_prevented": "EXT-03 began 5 days after an explicit STOP decision; no authorization names the divergent recipe"
+    },
+    {
+      "id": "R2",
+      "demand": "Frozen executable protocol and frozen data population",
+      "fail_closed_code": "E_PROTOCOL_NOT_LOADED_FROM_FROZEN",
+      "failure_mode_prevented": "resolved protocol was written but was never what the harness read (L50/L137/L190/L84-98)"
+    },
+    {
+      "id": "R3",
+      "demand": "Direct source-to-authority field comparisons",
+      "fail_closed_code": "E_NO_AUTHORITY_EDGE",
+      "failure_mode_prevented": "Stage B compared harness->derived artifact, never derived->authority; S1->S3, S2->S1 closed loop"
+    },
+    {
+      "id": "R4",
+      "demand": "Exact training-harness SHA binding",
+      "fail_closed_code": "E_HARNESS_SHA_ABSENT",
+      "failure_mode_prevented": "freeze recorded 7c7287d7 but bcdbada2 executed; no harness_sha in prelaunch at all"
+    },
+    {
+      "id": "R5",
+      "demand": "Total and trainable parameter-count checks",
+      "fail_closed_code": "E_PARAM_TOTAL_MISMATCH",
+      "failure_mode_prevented": "ext03r_param_verification recorded 1-channel counts with all_match=true while 3-channel models ran"
+    },
+    {
+      "id": "R6",
+      "demand": "Prespecified seed policy",
+      "fail_closed_code": "E_SEED_POLICY_ABSENT",
+      "failure_mode_prevented": "3 seeds give 2 df; no CI or confirmatory test anywhere in EXT-03"
+    },
+    {
+      "id": "R7",
+      "demand": "Checkpoint and complete epoch-log persistence",
+      "fail_closed_code": "E_SELECTION_METADATA_LAG",
+      "failure_mode_prevented": "D97 lag; 6/15 runs have no epoch log; log_path dangling 15/15"
+    },
+    {
+      "id": "R8",
+      "demand": "Positive and negative gate controls",
+      "fail_closed_code": "E_NEGATIVE_CONTROL_NOT_FAILING",
+      "failure_mode_prevented": "v1.1 Section C: 15/15 null digest with match=true; fail-open on absent reference"
+    },
+    {
+      "id": "R9",
+      "demand": "Separated development-validation and independent-evidence claim boundary",
+      "fail_closed_code": "E_DEV_METRIC_LABELLED_HELD_OUT",
+      "failure_mode_prevented": "VAL808 is the selection set; per-domain metrics would be a decomposition, not held-out performance"
+    },
+    {
+      "id": "R10",
+      "demand": "No protected TEST access or unapproved external inference",
+      "fail_closed_code": "E_TEST_ACCESS",
+      "failure_mode_prevented": "EXT-03 correctly never read TEST; must remain true as harness is rebuilt"
+    }
+  ],
+  "n_requirements": 10,
+  "release_checklist_all_boxes_empty": true,
+  "structural_constraint": {
+    "statement": "no experiment may be added retrospectively to a frozen study",
+    "phase28": "post_hoc_factor_addition_forbidden true => C1 cannot be an A0-A8/R1-R3/F1 arm; C2b cannot be added (and no S_omega-absent arm exists)",
+    "EXT03": "COMPLETE and frozen => C3 requires its own identifier EXT-03B",
+    "EXT04": "reserved for AS-01/02/03/04/05/07 progression and scaling",
+    "AS08": "UNRESOLVED until a protocol-faithful baseline study completes and is separately adjudicated"
+  }
+}

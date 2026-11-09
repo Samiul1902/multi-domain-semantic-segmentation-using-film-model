@@ -1,0 +1,224 @@
+{
+ "artifact": "phase33_failure_taxonomy_contract",
+ "phase": 33,
+ "section": "\u00a7I",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase33_failure_boundary_v1_0",
+ "families": [
+  {
+   "family": "LOW_OVERLAP",
+   "definition": "per-sample Dice below a prospectively frozen stratum rule",
+   "required_fields": [
+    "global_dice",
+    "a8_dice"
+   ],
+   "required_population": "ROUTER_HOLDOUT frozen table",
+   "unit": "sample",
+   "existing_evidence_sufficient": "existing evidence sufficient",
+   "new_derivation_needed": "no",
+   "derivation_authorized": "n/a",
+   "scientific_role": "descriptive",
+   "claim_status": "DESCRIPTIVE_ONLY"
+  },
+  {
+   "family": "EMPTY_PREDICTION",
+   "definition": "predicted positive area == 0 (or Dice == 0 with non-empty GT)",
+   "required_fields": [
+    "global_dice",
+    "a8_dice"
+   ],
+   "required_population": "ROUTER_HOLDOUT frozen table",
+   "unit": "sample",
+   "existing_evidence_sufficient": "partially sufficient (Dice==0 proxy only)",
+   "new_derivation_needed": "yes (predicted-area from frozen probability array)",
+   "derivation_authorized": "NO (TIER_2 not authorized)",
+   "scientific_role": "descriptive",
+   "claim_status": "DESCRIPTIVE_ONLY"
+  },
+  {
+   "family": "FALSE_POSITIVE_BURDEN",
+   "definition": "excess predicted positives",
+   "required_fields": [
+    "(none)"
+   ],
+   "required_population": "ROUTER_HOLDOUT",
+   "unit": "sample",
+   "existing_evidence_sufficient": "NOT sufficient",
+   "new_derivation_needed": "yes",
+   "derivation_authorized": "NO (TIER_3 GT pixels)",
+   "scientific_role": "descriptive",
+   "claim_status": "INELIGIBLE"
+  },
+  {
+   "family": "FALSE_NEGATIVE_BURDEN",
+   "definition": "missed GT positives",
+   "required_fields": [
+    "(none)"
+   ],
+   "required_population": "ROUTER_HOLDOUT",
+   "unit": "sample",
+   "existing_evidence_sufficient": "NOT sufficient",
+   "new_derivation_needed": "yes",
+   "derivation_authorized": "NO (TIER_3 GT pixels)",
+   "scientific_role": "descriptive",
+   "claim_status": "INELIGIBLE"
+  },
+  {
+   "family": "OBJECT_MISS",
+   "definition": "GT object absent from prediction",
+   "required_fields": [
+    "(none)"
+   ],
+   "required_population": "ROUTER_HOLDOUT",
+   "unit": "object",
+   "existing_evidence_sufficient": "NOT sufficient",
+   "new_derivation_needed": "yes",
+   "derivation_authorized": "NO (TIER_3)",
+   "scientific_role": "descriptive",
+   "claim_status": "INELIGIBLE"
+  },
+  {
+   "family": "MULTI_COMPONENT_PARTIAL_DETECTION",
+   "definition": "some but not all GT objects detected",
+   "required_fields": [
+    "(none)"
+   ],
+   "required_population": "ROUTER_HOLDOUT",
+   "unit": "object",
+   "existing_evidence_sufficient": "NOT sufficient",
+   "new_derivation_needed": "yes",
+   "derivation_authorized": "NO (TIER_3)",
+   "scientific_role": "descriptive",
+   "claim_status": "INELIGIBLE"
+  },
+  {
+   "family": "MULTI_COMPONENT_COMPLETE_MISS",
+   "definition": "no GT object detected",
+   "required_fields": [
+    "(none)"
+   ],
+   "required_population": "ROUTER_HOLDOUT",
+   "unit": "object",
+   "existing_evidence_sufficient": "NOT sufficient",
+   "new_derivation_needed": "yes",
+   "derivation_authorized": "NO (TIER_3)",
+   "scientific_role": "descriptive",
+   "claim_status": "INELIGIBLE"
+  },
+  {
+   "family": "BOUNDARY_ERROR",
+   "definition": "boundary distance error",
+   "required_fields": [
+    "(none)"
+   ],
+   "required_population": "ROUTER_HOLDOUT",
+   "unit": "sample",
+   "existing_evidence_sufficient": "NOT sufficient",
+   "new_derivation_needed": "yes",
+   "derivation_authorized": "NO (TIER_3)",
+   "scientific_role": "descriptive",
+   "claim_status": "INELIGIBLE"
+  },
+  {
+   "family": "ROUTER_HARMFUL_ACTIVATION",
+   "definition": "EXECUTE with delta_dice <= -0.01",
+   "required_fields": [
+    "delta_dice_a8",
+    "router_decision"
+   ],
+   "required_population": "ROUTER_HOLDOUT frozen table",
+   "unit": "sample",
+   "existing_evidence_sufficient": "sufficient",
+   "new_derivation_needed": "no",
+   "derivation_authorized": "n/a",
+   "scientific_role": "descriptive",
+   "claim_status": "DESCRIPTIVE_ONLY"
+  },
+  {
+   "family": "ROUTER_MISSED_BENEFIT",
+   "definition": "SKIP with delta_dice >= +0.02",
+   "required_fields": [
+    "delta_dice_a8",
+    "router_decision"
+   ],
+   "required_population": "ROUTER_HOLDOUT frozen table",
+   "unit": "sample",
+   "existing_evidence_sufficient": "sufficient",
+   "new_derivation_needed": "no",
+   "derivation_authorized": "n/a",
+   "scientific_role": "descriptive",
+   "claim_status": "DESCRIPTIVE_ONLY"
+  },
+  {
+   "family": "EXECUTE_THEN_REJECT",
+   "definition": "state_machine == EXECUTE_THEN_REJECT",
+   "required_fields": [
+    "state_machine",
+    "delta_dice_a8"
+   ],
+   "required_population": "ROUTER_HOLDOUT frozen table",
+   "unit": "sample",
+   "existing_evidence_sufficient": "sufficient",
+   "new_derivation_needed": "no",
+   "derivation_authorized": "n/a",
+   "scientific_role": "descriptive",
+   "claim_status": "DESCRIPTIVE_ONLY"
+  },
+  {
+   "family": "DOMAIN_SPECIFIC_FAILURE",
+   "definition": "failure concentration differs by dataset",
+   "required_fields": [
+    "dataset",
+    "delta_dice_a8"
+   ],
+   "required_population": "ROUTER_HOLDOUT frozen table",
+   "unit": "domain",
+   "existing_evidence_sufficient": "sufficient",
+   "new_derivation_needed": "no",
+   "derivation_authorized": "n/a",
+   "scientific_role": "descriptive",
+   "claim_status": "DESCRIPTIVE_ONLY"
+  },
+  {
+   "family": "GROUP_OR_PATIENT_CLUSTERED_FAILURE",
+   "definition": "failure concentration across groups",
+   "required_fields": [
+    "sample_id",
+    "delta_dice_a8"
+   ],
+   "required_population": "ROUTER_HOLDOUT frozen table + split manifest group_key",
+   "unit": "group",
+   "existing_evidence_sufficient": "sufficient via metadata join",
+   "new_derivation_needed": "yes (join only)",
+   "derivation_authorized": "AUTHORIZED (metadata only)",
+   "scientific_role": "descriptive",
+   "claim_status": "DESCRIPTIVE_ONLY"
+  }
+ ],
+ "every_category_required": false,
+ "eligible_families": [
+  "LOW_OVERLAP",
+  "EMPTY_PREDICTION",
+  "FALSE_POSITIVE_BURDEN",
+  "FALSE_NEGATIVE_BURDEN",
+  "OBJECT_MISS",
+  "MULTI_COMPONENT_PARTIAL_DETECTION",
+  "MULTI_COMPONENT_COMPLETE_MISS",
+  "BOUNDARY_ERROR",
+  "ROUTER_HARMFUL_ACTIVATION",
+  "ROUTER_MISSED_BENEFIT",
+  "EXECUTE_THEN_REJECT",
+  "DOMAIN_SPECIFIC_FAILURE",
+  "GROUP_OR_PATIENT_CLUSTERED_FAILURE"
+ ],
+ "ineligible_families": [
+  "FALSE_POSITIVE_BURDEN",
+  "FALSE_NEGATIVE_BURDEN",
+  "OBJECT_MISS",
+  "MULTI_COMPONENT_PARTIAL_DETECTION",
+  "MULTI_COMPONENT_COMPLETE_MISS",
+  "BOUNDARY_ERROR"
+ ],
+ "generated_utc": "2026-10-04T08:10:49+00:00",
+ "all_pass": true
+}

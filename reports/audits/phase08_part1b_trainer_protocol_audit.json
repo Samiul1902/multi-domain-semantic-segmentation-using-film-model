@@ -1,0 +1,1478 @@
+{
+  "audit": "phase08_part1b_trainer_protocol_audit",
+  "phase": "08 \u2014 Baseline Infrastructure (Part 1B)",
+  "model": "Gemini 3.1 Pro High",
+  "generated_at": "2026-09-20T06:27:14.769260+00:00",
+  "manifest_version": "phase4_v3",
+  "taxonomy_id": "kub_size_clean_v3_v1",
+  "historical_phase09": {
+    "experiment_id": "phase9_kub_unet_baseline_seed42_512",
+    "checkpoint_dir": "checkpoints/phase9_kub_unet_baseline_seed42_512",
+    "primary_config_source": "configs/kub/unet_baseline.yaml",
+    "primary_config_sha": "9b8392f833c6f5350ae8780b24dae2afee1221e814f4517196e931ad169bce53",
+    "checkpoint_embedded_config_equals_yaml": true,
+    "best_checkpoint": "checkpoints/phase9_kub_unet_baseline_seed42_512/best.pt",
+    "best_checkpoint_sha": "a32d7fff1e019a179ef011795b6be8ee98ab548831f790a557726f32b38db8ec",
+    "latest_checkpoint": "checkpoints/phase9_kub_unet_baseline_seed42_512/latest.pt",
+    "latest_checkpoint_sha": "2b535401e7db95469b39a62bd6b6df51e0e298c32d00047465bc39ababd0ad61",
+    "best_epoch": 47,
+    "latest_epoch": 62,
+    "best_val_macro_dice": 0.7455300688743591,
+    "early_stopped": true
+  },
+  "protocol": [
+    {
+      "experiment_id": "phase9_kub_unet_baseline_seed42_512",
+      "architecture": "standard_unet_4_stage",
+      "model_key": "unet",
+      "input_channels": 1,
+      "output_channels": 1,
+      "base_channels": 32,
+      "resolution": 512,
+      "manifest_version": "phase4_v2",
+      "loss": "bce_dice",
+      "loss_parameters": "bce_weight=0.5, dice_weight=0.5, dice_epsilon=1e-06",
+      "optimizer": "AdamW",
+      "learning_rate": 0.0001,
+      "weight_decay": 0.0001,
+      "scheduler": "CosineAnnealingLR",
+      "scheduler_parameters": "T_max=100",
+      "scheduler_step_timing": "per epoch, after train AND validation",
+      "batch_size": 4,
+      "gradient_accumulation_steps": 1,
+      "effective_batch_size": 4,
+      "amp": true,
+      "seed": 42,
+      "max_epochs": 100,
+      "augmentation_policy": "horizontal_flip(p=0.5), rotation(+-5.0 deg), brightness(+-0.1), contrast(+-0.1), vertical_flip=OFF",
+      "checkpoint_metric": "val_macro_dice",
+      "checkpoint_mode": "max (higher is better)",
+      "checkpoint_improvement_rule": "strict >",
+      "early_stopping_patience": 15,
+      "early_stopping_min_delta": null,
+      "prediction_threshold": 0.5,
+      "validation_aggregation": "macro (mean of per-image metrics); micro also reported",
+      "val_shuffle": false,
+      "val_augmentation": false,
+      "num_workers": 0,
+      "pin_memory": true,
+      "persistent_workers": false,
+      "gradient_clipping": null,
+      "source_config": "configs/kub/unet_baseline.yaml",
+      "source_config_sha": "9b8392f833c6f5350ae8780b24dae2afee1221e814f4517196e931ad169bce53",
+      "source_trainer": "scripts/training/train_kub_baseline.py",
+      "source_trainer_sha": "c1c97d0a19445550f69291539c0090b492f186a535000e5221e94d980be2ec27",
+      "source_trainer_class": "src/training/trainer.py",
+      "source_trainer_class_sha": "99189ce029aaeb43df7370b02d6f7e6de859d59310ca6b83bde4965ce27a49c3",
+      "checkpoint_best_sha": "a32d7fff1e019a179ef011795b6be8ee98ab548831f790a557726f32b38db8ec",
+      "checkpoint_latest_sha": "2b535401e7db95469b39a62bd6b6df51e0e298c32d00047465bc39ababd0ad61",
+      "protocol_status": "VERIFIED",
+      "historical_role": "Phase-09 baseline (training)",
+      "epochs_completed": 62.0,
+      "best_epoch": 47.0
+    },
+    {
+      "experiment_id": "phase10_kub_attention_unet_seed42_512",
+      "architecture": "attention_unet_4_stage_additive_gates",
+      "model_key": "attention_unet",
+      "input_channels": 1,
+      "output_channels": 1,
+      "base_channels": 32,
+      "resolution": 512,
+      "manifest_version": "phase4_v2",
+      "loss": "bce_dice",
+      "loss_parameters": "bce_weight=0.5, dice_weight=0.5, dice_epsilon=1e-06",
+      "optimizer": "AdamW",
+      "learning_rate": 0.0001,
+      "weight_decay": 0.0001,
+      "scheduler": "CosineAnnealingLR",
+      "scheduler_parameters": "T_max=100",
+      "scheduler_step_timing": "per epoch, after train AND validation",
+      "batch_size": 4,
+      "gradient_accumulation_steps": 1,
+      "effective_batch_size": 4,
+      "amp": true,
+      "seed": 42,
+      "max_epochs": 100,
+      "augmentation_policy": "horizontal_flip(p=0.5), rotation(+-5.0 deg), brightness(+-0.1), contrast(+-0.1), vertical_flip=OFF",
+      "checkpoint_metric": "val_macro_dice_true_per_image",
+      "checkpoint_mode": "max (higher is better)",
+      "checkpoint_improvement_rule": "strict >",
+      "early_stopping_patience": 15,
+      "early_stopping_min_delta": null,
+      "prediction_threshold": 0.5,
+      "validation_aggregation": "macro (mean of per-image metrics); micro also reported",
+      "val_shuffle": false,
+      "val_augmentation": false,
+      "num_workers": 0,
+      "pin_memory": true,
+      "persistent_workers": false,
+      "gradient_clipping": null,
+      "source_config": "configs/kub/phase10_baselines.yaml",
+      "source_config_sha": "8501646965be04c84f674abecc905922119d5b249810b83a2c13f125fd695aae",
+      "source_trainer": "scripts/training/train_phase10_baselines.py",
+      "source_trainer_sha": "d0b2d6e8bc626f359de143948fcda24631e5c06ba81815cd0dea4c8d6cdee9dd",
+      "source_trainer_class": "src/training/trainer.py",
+      "source_trainer_class_sha": "99189ce029aaeb43df7370b02d6f7e6de859d59310ca6b83bde4965ce27a49c3",
+      "checkpoint_best_sha": "a32d7fff1e019a179ef011795b6be8ee98ab548831f790a557726f32b38db8ec",
+      "checkpoint_latest_sha": "2b535401e7db95469b39a62bd6b6df51e0e298c32d00047465bc39ababd0ad61",
+      "protocol_status": "VERIFIED",
+      "historical_role": "Phase-10 baseline comparison",
+      "epochs_completed": NaN,
+      "best_epoch": NaN
+    },
+    {
+      "experiment_id": "phase10_kub_unetpp_seed42_512",
+      "architecture": "unetpp_nested_4_level_no_deep_supervision",
+      "model_key": "unetpp",
+      "input_channels": 1,
+      "output_channels": 1,
+      "base_channels": 32,
+      "resolution": 512,
+      "manifest_version": "phase4_v2",
+      "loss": "bce_dice",
+      "loss_parameters": "bce_weight=0.5, dice_weight=0.5, dice_epsilon=1e-06",
+      "optimizer": "AdamW",
+      "learning_rate": 0.0001,
+      "weight_decay": 0.0001,
+      "scheduler": "CosineAnnealingLR",
+      "scheduler_parameters": "T_max=100",
+      "scheduler_step_timing": "per epoch, after train AND validation",
+      "batch_size": 4,
+      "gradient_accumulation_steps": 1,
+      "effective_batch_size": 4,
+      "amp": true,
+      "seed": 42,
+      "max_epochs": 100,
+      "augmentation_policy": "horizontal_flip(p=0.5), rotation(+-5.0 deg), brightness(+-0.1), contrast(+-0.1), vertical_flip=OFF",
+      "checkpoint_metric": "val_macro_dice_true_per_image",
+      "checkpoint_mode": "max (higher is better)",
+      "checkpoint_improvement_rule": "strict >",
+      "early_stopping_patience": 15,
+      "early_stopping_min_delta": null,
+      "prediction_threshold": 0.5,
+      "validation_aggregation": "macro (mean of per-image metrics); micro also reported",
+      "val_shuffle": false,
+      "val_augmentation": false,
+      "num_workers": 0,
+      "pin_memory": true,
+      "persistent_workers": false,
+      "gradient_clipping": null,
+      "source_config": "configs/kub/phase10_baselines.yaml",
+      "source_config_sha": "8501646965be04c84f674abecc905922119d5b249810b83a2c13f125fd695aae",
+      "source_trainer": "scripts/training/train_phase10_baselines.py",
+      "source_trainer_sha": "d0b2d6e8bc626f359de143948fcda24631e5c06ba81815cd0dea4c8d6cdee9dd",
+      "source_trainer_class": "src/training/trainer.py",
+      "source_trainer_class_sha": "99189ce029aaeb43df7370b02d6f7e6de859d59310ca6b83bde4965ce27a49c3",
+      "checkpoint_best_sha": "a32d7fff1e019a179ef011795b6be8ee98ab548831f790a557726f32b38db8ec",
+      "checkpoint_latest_sha": "2b535401e7db95469b39a62bd6b6df51e0e298c32d00047465bc39ababd0ad61",
+      "protocol_status": "VERIFIED",
+      "historical_role": "Phase-10 baseline comparison",
+      "epochs_completed": NaN,
+      "best_epoch": NaN
+    },
+    {
+      "experiment_id": "phase10_kub_deeplabv3plus_seed42_512",
+      "architecture": "deeplabv3plus_resnet50_os16",
+      "model_key": "deeplabv3plus",
+      "input_channels": 1,
+      "output_channels": 1,
+      "base_channels": 32,
+      "resolution": 512,
+      "manifest_version": "phase4_v2",
+      "loss": "bce_dice",
+      "loss_parameters": "bce_weight=0.5, dice_weight=0.5, dice_epsilon=1e-06",
+      "optimizer": "AdamW",
+      "learning_rate": 0.0001,
+      "weight_decay": 0.0001,
+      "scheduler": "CosineAnnealingLR",
+      "scheduler_parameters": "T_max=100",
+      "scheduler_step_timing": "per epoch, after train AND validation",
+      "batch_size": 4,
+      "gradient_accumulation_steps": 1,
+      "effective_batch_size": 4,
+      "amp": true,
+      "seed": 42,
+      "max_epochs": 100,
+      "augmentation_policy": "horizontal_flip(p=0.5), rotation(+-5.0 deg), brightness(+-0.1), contrast(+-0.1), vertical_flip=OFF",
+      "checkpoint_metric": "val_macro_dice_true_per_image",
+      "checkpoint_mode": "max (higher is better)",
+      "checkpoint_improvement_rule": "strict >",
+      "early_stopping_patience": 15,
+      "early_stopping_min_delta": null,
+      "prediction_threshold": 0.5,
+      "validation_aggregation": "macro (mean of per-image metrics); micro also reported",
+      "val_shuffle": false,
+      "val_augmentation": false,
+      "num_workers": 0,
+      "pin_memory": true,
+      "persistent_workers": false,
+      "gradient_clipping": null,
+      "source_config": "configs/kub/phase10_baselines.yaml",
+      "source_config_sha": "8501646965be04c84f674abecc905922119d5b249810b83a2c13f125fd695aae",
+      "source_trainer": "scripts/training/train_phase10_baselines.py",
+      "source_trainer_sha": "d0b2d6e8bc626f359de143948fcda24631e5c06ba81815cd0dea4c8d6cdee9dd",
+      "source_trainer_class": "src/training/trainer.py",
+      "source_trainer_class_sha": "99189ce029aaeb43df7370b02d6f7e6de859d59310ca6b83bde4965ce27a49c3",
+      "checkpoint_best_sha": "a32d7fff1e019a179ef011795b6be8ee98ab548831f790a557726f32b38db8ec",
+      "checkpoint_latest_sha": "2b535401e7db95469b39a62bd6b6df51e0e298c32d00047465bc39ababd0ad61",
+      "protocol_status": "VERIFIED",
+      "historical_role": "Phase-10 baseline comparison",
+      "epochs_completed": NaN,
+      "best_epoch": NaN
+    }
+  ],
+  "phase_model_mapping": [
+    {
+      "phase": 9,
+      "model": "unet",
+      "experiment_id": "phase9_kub_unet_baseline_seed42_512",
+      "role": "Phase-09 baseline TRAINING",
+      "in_phase09_clean_rerun_scope": true,
+      "evidence": "scripts/training/train_kub_baseline.py defines exactly one exp_id"
+    },
+    {
+      "phase": 10,
+      "model": "attention_unet",
+      "experiment_id": "phase10_kub_attention_unet_seed42_512",
+      "role": "Phase-10 baseline COMPARISON",
+      "in_phase09_clean_rerun_scope": false,
+      "evidence": "configs/kub/phase10_baselines.yaml models[0]"
+    },
+    {
+      "phase": 10,
+      "model": "unetpp",
+      "experiment_id": "phase10_kub_unetpp_seed42_512",
+      "role": "Phase-10 baseline COMPARISON",
+      "in_phase09_clean_rerun_scope": false,
+      "evidence": "configs/kub/phase10_baselines.yaml models[1]"
+    },
+    {
+      "phase": 10,
+      "model": "deeplabv3plus",
+      "experiment_id": "phase10_kub_deeplabv3plus_seed42_512",
+      "role": "Phase-10 baseline COMPARISON",
+      "in_phase09_clean_rerun_scope": false,
+      "evidence": "configs/kub/phase10_baselines.yaml models[2]"
+    }
+  ],
+  "phase10_crosscheck": [
+    {
+      "field": "input_resolution",
+      "phase09_value": 512,
+      "phase10_value": 512,
+      "same_or_different": "same",
+      "material": false,
+      "source_kind": "config",
+      "comment": "identical"
+    },
+    {
+      "field": "loss.name",
+      "phase09_value": "bce_dice",
+      "phase10_value": "bce_dice",
+      "same_or_different": "same",
+      "material": false,
+      "source_kind": "config",
+      "comment": "identical"
+    },
+    {
+      "field": "loss.bce_weight",
+      "phase09_value": 0.5,
+      "phase10_value": 0.5,
+      "same_or_different": "same",
+      "material": false,
+      "source_kind": "config",
+      "comment": "identical"
+    },
+    {
+      "field": "loss.dice_weight",
+      "phase09_value": 0.5,
+      "phase10_value": 0.5,
+      "same_or_different": "same",
+      "material": false,
+      "source_kind": "config",
+      "comment": "identical"
+    },
+    {
+      "field": "loss.dice_epsilon",
+      "phase09_value": 1e-06,
+      "phase10_value": 1e-06,
+      "same_or_different": "same",
+      "material": false,
+      "source_kind": "config",
+      "comment": "identical"
+    },
+    {
+      "field": "optimizer.name",
+      "phase09_value": "AdamW",
+      "phase10_value": "AdamW",
+      "same_or_different": "same",
+      "material": false,
+      "source_kind": "config",
+      "comment": "identical"
+    },
+    {
+      "field": "optimizer.learning_rate",
+      "phase09_value": 0.0001,
+      "phase10_value": 0.0001,
+      "same_or_different": "same",
+      "material": false,
+      "source_kind": "config",
+      "comment": "identical"
+    },
+    {
+      "field": "optimizer.weight_decay",
+      "phase09_value": 0.0001,
+      "phase10_value": 0.0001,
+      "same_or_different": "same",
+      "material": false,
+      "source_kind": "config",
+      "comment": "identical"
+    },
+    {
+      "field": "scheduler.name",
+      "phase09_value": "CosineAnnealingLR",
+      "phase10_value": "CosineAnnealingLR",
+      "same_or_different": "same",
+      "material": false,
+      "source_kind": "config",
+      "comment": "identical"
+    },
+    {
+      "field": "scheduler.max_epochs",
+      "phase09_value": 100,
+      "phase10_value": 100,
+      "same_or_different": "same",
+      "material": false,
+      "source_kind": "config",
+      "comment": "identical"
+    },
+    {
+      "field": "training.max_epochs",
+      "phase09_value": 100,
+      "phase10_value": 100,
+      "same_or_different": "same",
+      "material": false,
+      "source_kind": "config",
+      "comment": "identical"
+    },
+    {
+      "field": "training.early_stopping_patience",
+      "phase09_value": 15,
+      "phase10_value": 15,
+      "same_or_different": "same",
+      "material": false,
+      "source_kind": "config",
+      "comment": "identical"
+    },
+    {
+      "field": "training.threshold",
+      "phase09_value": 0.5,
+      "phase10_value": 0.5,
+      "same_or_different": "same",
+      "material": false,
+      "source_kind": "config",
+      "comment": "identical"
+    },
+    {
+      "field": "training.seed",
+      "phase09_value": 42,
+      "phase10_value": 42,
+      "same_or_different": "same",
+      "material": false,
+      "source_kind": "config",
+      "comment": "identical"
+    },
+    {
+      "field": "training.amp",
+      "phase09_value": true,
+      "phase10_value": true,
+      "same_or_different": "same",
+      "material": false,
+      "source_kind": "config",
+      "comment": "identical"
+    },
+    {
+      "field": "training.num_workers",
+      "phase09_value": 0,
+      "phase10_value": 0,
+      "same_or_different": "same",
+      "material": false,
+      "source_kind": "config",
+      "comment": "identical"
+    },
+    {
+      "field": "training.pin_memory",
+      "phase09_value": true,
+      "phase10_value": true,
+      "same_or_different": "same",
+      "material": false,
+      "source_kind": "config",
+      "comment": "identical"
+    },
+    {
+      "field": "augmentation.horizontal_flip_probability",
+      "phase09_value": 0.5,
+      "phase10_value": 0.5,
+      "same_or_different": "same",
+      "material": false,
+      "source_kind": "config",
+      "comment": "identical"
+    },
+    {
+      "field": "augmentation.rotation_degrees",
+      "phase09_value": 5.0,
+      "phase10_value": 5.0,
+      "same_or_different": "same",
+      "material": false,
+      "source_kind": "config",
+      "comment": "identical"
+    },
+    {
+      "field": "augmentation.brightness",
+      "phase09_value": 0.1,
+      "phase10_value": 0.1,
+      "same_or_different": "same",
+      "material": false,
+      "source_kind": "config",
+      "comment": "identical"
+    },
+    {
+      "field": "augmentation.contrast",
+      "phase09_value": 0.1,
+      "phase10_value": 0.1,
+      "same_or_different": "same",
+      "material": false,
+      "source_kind": "config",
+      "comment": "identical"
+    },
+    {
+      "field": "augmentation.vertical_flip",
+      "phase09_value": false,
+      "phase10_value": false,
+      "same_or_different": "same",
+      "material": false,
+      "source_kind": "config",
+      "comment": "identical"
+    },
+    {
+      "field": "preprocessing.strategy",
+      "phase09_value": "aspect_ratio_resize_symmetric_pad",
+      "phase10_value": "aspect_ratio_resize_symmetric_pad",
+      "same_or_different": "same",
+      "material": false,
+      "source_kind": "config",
+      "comment": "identical"
+    },
+    {
+      "field": "preprocessing.image_interpolation",
+      "phase09_value": "bilinear",
+      "phase10_value": "bilinear",
+      "same_or_different": "same",
+      "material": false,
+      "source_kind": "config",
+      "comment": "identical"
+    },
+    {
+      "field": "preprocessing.mask_interpolation",
+      "phase09_value": "nearest",
+      "phase10_value": "nearest",
+      "same_or_different": "same",
+      "material": false,
+      "source_kind": "config",
+      "comment": "identical"
+    },
+    {
+      "field": "model.input_channels",
+      "phase09_value": 1,
+      "phase10_value": 1,
+      "same_or_different": "same",
+      "material": false,
+      "source_kind": "config",
+      "comment": "identical"
+    },
+    {
+      "field": "model.output_channels",
+      "phase09_value": 1,
+      "phase10_value": 1,
+      "same_or_different": "same",
+      "material": false,
+      "source_kind": "config",
+      "comment": "identical"
+    },
+    {
+      "field": "model.base_channels",
+      "phase09_value": 32,
+      "phase10_value": 32,
+      "same_or_different": "same",
+      "material": false,
+      "source_kind": "config",
+      "comment": "identical"
+    },
+    {
+      "field": "training.monitor",
+      "phase09_value": "val_macro_dice",
+      "phase10_value": "val_macro_dice_true_per_image",
+      "same_or_different": "different",
+      "material": false,
+      "source_kind": "config (naming)",
+      "comment": "different monitor STRING for the same metric (\"val_macro_dice\" vs \"val_macro_dice_true_per_image\"); naming only, no behavioural difference"
+    },
+    {
+      "field": "loop.scheduler_step_after_val",
+      "phase09_value": true,
+      "phase10_value": true,
+      "same_or_different": "same",
+      "material": false,
+      "source_kind": "source",
+      "comment": "identical"
+    },
+    {
+      "field": "loop.strict_improvement",
+      "phase09_value": true,
+      "phase10_value": true,
+      "same_or_different": "same",
+      "material": false,
+      "source_kind": "source",
+      "comment": "identical"
+    },
+    {
+      "field": "loop.latest_saved_every_epoch",
+      "phase09_value": true,
+      "phase10_value": true,
+      "same_or_different": "same",
+      "material": false,
+      "source_kind": "source",
+      "comment": "identical"
+    },
+    {
+      "field": "loop.best_saved_on_improvement",
+      "phase09_value": true,
+      "phase10_value": true,
+      "same_or_different": "same",
+      "material": false,
+      "source_kind": "source",
+      "comment": "identical"
+    },
+    {
+      "field": "loop.nan_inf_guard",
+      "phase09_value": false,
+      "phase10_value": true,
+      "same_or_different": "different",
+      "material": false,
+      "source_kind": "source",
+      "comment": "Phase-10 adds an explicit finite-value guard that raises; Phase-09 lacks it. Infrastructure improvement, not a scientific difference."
+    }
+  ],
+  "contracts": {
+    "validation_aggregation": [
+      {
+        "example": "two_images_equal_area_one_perfect_one_empty",
+        "per_image_dice": "1.0, 0.0",
+        "macro_mean_of_per_image": 0.5,
+        "micro_global_pixel": 0.5,
+        "macro_equals_micro": true,
+        "note": "macro and micro differ; checkpoint selection uses macro"
+      },
+      {
+        "example": "three_images_large_perfect_small_failure",
+        "per_image_dice": "1.0, 1.0, 0.0",
+        "macro_mean_of_per_image": 0.6666666666666666,
+        "micro_global_pixel": 0.9523809523809523,
+        "macro_equals_micro": false,
+        "note": "area-weighting makes micro >> macro"
+      },
+      {
+        "example": "all_perfect",
+        "per_image_dice": "1.0, 1.0",
+        "macro_mean_of_per_image": 1.0,
+        "micro_global_pixel": 1.0,
+        "macro_equals_micro": true,
+        "note": "agree when every image is perfect"
+      }
+    ],
+    "checkpoint_selection": [
+      {
+        "item": "metric",
+        "value": "val_macro_dice",
+        "source": "config + trainer.validate()[\"dice\"]",
+        "note": "macro mean of per-image dice at threshold 0.5"
+      },
+      {
+        "item": "direction",
+        "value": "higher_is_better (max)",
+        "source": "scripts/training/train_kub_baseline.py:183",
+        "note": ""
+      },
+      {
+        "item": "improvement_comparison",
+        "value": "strict >",
+        "source": "val_info[\"dice\"] > best_val_dice",
+        "note": "equality is NOT an improvement"
+      },
+      {
+        "item": "minimum_delta",
+        "value": NaN,
+        "source": "no delta configured",
+        "note": "exact float comparison"
+      },
+      {
+        "item": "tie_handling",
+        "value": "tie -> not improved; best.pt NOT overwritten",
+        "source": "strict > semantics",
+        "note": ""
+      },
+      {
+        "item": "best_checkpoint_semantics",
+        "value": "written only on improvement",
+        "source": "if improved: save best.pt",
+        "note": "best.pt epoch=47"
+      },
+      {
+        "item": "latest_checkpoint_semantics",
+        "value": "written EVERY epoch",
+        "source": "save latest.pt (unconditional)",
+        "note": "latest.pt epoch=62"
+      },
+      {
+        "item": "selection_split",
+        "value": "VAL only",
+        "source": "trainer.validate requires VAL",
+        "note": "TEST never used"
+      },
+      {
+        "item": "test_usage",
+        "value": "NEVER",
+        "source": "verify_test_lock + allow_test=false",
+        "note": ""
+      }
+    ],
+    "early_stopping": [
+      {
+        "item": "implementation",
+        "value": "src/training/trainer.py::EarlyStopping",
+        "note": "best init -inf, bad_epochs init 0"
+      },
+      {
+        "item": "patience",
+        "value": 15,
+        "note": "from config"
+      },
+      {
+        "item": "improvement_rule",
+        "value": "score > best (strict)",
+        "note": "on improvement: best=score, bad_epochs=0"
+      },
+      {
+        "item": "no_improvement_rule",
+        "value": "bad_epochs += 1",
+        "note": "any non-improvement increments, including ties"
+      },
+      {
+        "item": "tie_resets_counter",
+        "value": false,
+        "note": "equal score counts as a bad epoch"
+      },
+      {
+        "item": "stop_condition",
+        "value": "bad_epochs >= patience",
+        "note": "checked AFTER the epoch checkpoint is saved"
+      },
+      {
+        "item": "minimum_delta",
+        "value": null,
+        "note": "none configured"
+      },
+      {
+        "item": "order_vs_checkpoint",
+        "value": "early_stopping.update() then save latest/best, then stop check",
+        "note": "the stopping epoch IS checkpointed"
+      },
+      {
+        "item": "order_vs_scheduler",
+        "value": "scheduler.step() happens before the early-stop check",
+        "note": "per-epoch LR advance occurs even on the final epoch"
+      },
+      {
+        "item": "observed_final_state",
+        "value": "{'best': 0.7455300688743591, 'bad_epochs': 15, 'patience': 15, 'stopped': True}",
+        "note": "latest.pt early_stopping_state (bad_epochs == patience -> stopped)"
+      }
+    ],
+    "scheduler": [
+      {
+        "item": "type",
+        "value": "CosineAnnealingLR",
+        "source": "scripts/training/train_kub_baseline.py:112",
+        "note": ""
+      },
+      {
+        "item": "parameters",
+        "value": "T_max=100",
+        "source": "CosineAnnealingLR(optimizer, T_max=...)",
+        "note": "no eta_min"
+      },
+      {
+        "item": "step_frequency",
+        "value": "per epoch",
+        "source": "one scheduler.step() inside the epoch loop",
+        "note": ""
+      },
+      {
+        "item": "step_timing",
+        "value": "after train_one_epoch AND after validate",
+        "source": "line 156, after line 154/155",
+        "note": "not per batch"
+      },
+      {
+        "item": "metric_driven",
+        "value": false,
+        "source": "no ReduceLROnPlateau",
+        "note": ""
+      },
+      {
+        "item": "resume_state_required",
+        "value": true,
+        "source": "scheduler_state saved/restored in checkpoint",
+        "note": ""
+      },
+      {
+        "item": "first_epoch_lr",
+        "value": "initial lr (1e-4)",
+        "source": "step occurs at end of epoch 1",
+        "note": ""
+      }
+    ],
+    "resume": [
+      {
+        "item": "resume_source",
+        "value": "latest.pt",
+        "note": "best.pt used for final eval only"
+      },
+      {
+        "item": "start_epoch",
+        "value": "state[\"epoch\"] + 1",
+        "note": "continues, no repeat"
+      },
+      {
+        "item": "experiment_id",
+        "value": "reused unchanged",
+        "note": "hardcoded exp_id; no _v2/_retry suffixes on resume"
+      },
+      {
+        "item": "manifest_guard_on_resume",
+        "value": "manifest_version AND hashes must match",
+        "note": "raises RuntimeError otherwise"
+      },
+      {
+        "item": "model_state",
+        "value": true,
+        "note": "load_state_dict"
+      },
+      {
+        "item": "optimizer_state",
+        "value": true,
+        "note": ""
+      },
+      {
+        "item": "scheduler_state",
+        "value": true,
+        "note": ""
+      },
+      {
+        "item": "grad_scaler_state",
+        "value": true,
+        "note": "AMP scaler"
+      },
+      {
+        "item": "epoch",
+        "value": true,
+        "note": ""
+      },
+      {
+        "item": "best_metric",
+        "value": true,
+        "note": "best_validation_score"
+      },
+      {
+        "item": "best_epoch",
+        "value": "from best.pt epoch",
+        "note": ""
+      },
+      {
+        "item": "early_stop_counter",
+        "value": true,
+        "note": "early_stopping_state {best, bad_epochs, patience, stopped}"
+      },
+      {
+        "item": "history_continuity",
+        "value": true,
+        "note": "training_history list restored"
+      },
+      {
+        "item": "global_step",
+        "value": true,
+        "note": ""
+      },
+      {
+        "item": "rng_state",
+        "value": true,
+        "note": "random_state capture/restore"
+      },
+      {
+        "item": "loader_generator_state",
+        "value": true,
+        "note": "train/val generator states; legacy replay fallback exists"
+      },
+      {
+        "item": "taxonomy_id",
+        "value": null,
+        "note": "ABSENT historically (None) -> additive field for clean-v3"
+      },
+      {
+        "item": "single_writer",
+        "value": "implemented in src/utils/run_lock.py",
+        "note": "active lock fails loudly; stale lock requires explicit recovery"
+      }
+    ]
+  },
+  "resume_probe": {
+    "label": "INFRASTRUCTURE_TEST_ONLY",
+    "device": "cpu",
+    "steps": 6,
+    "split_at": 3,
+    "losses_continuous": [
+      0.7221509218215942,
+      0.7208960652351379,
+      0.7188464403152466,
+      0.7163599133491516,
+      0.713761031627655,
+      0.711206316947937
+    ],
+    "losses_resumed": [
+      0.7221509218215942,
+      0.7208960652351379,
+      0.7188464403152466,
+      0.7163599133491516,
+      0.713761031627655,
+      0.711206316947937
+    ],
+    "losses_identical": true,
+    "max_loss_abs_diff": 0.0,
+    "lr_schedule_identical": true,
+    "parameters_identical": true,
+    "max_param_abs_diff": 0.0,
+    "restored_experiment_id": "phase08_resume_probe",
+    "restored_manifest_version": "phase4_v3",
+    "restored_taxonomy_id": "kub_size_clean_v3_v1",
+    "restored_epoch": 3,
+    "scientific_claim": "NONE"
+  },
+  "protocol_diff": [
+    {
+      "field": "experiment_id",
+      "historical_v2": "phase9_kub_unet_baseline_seed42_512",
+      "clean_v3_candidate": "phase9_kub_unet_baseline_seed42_512_clean_v3",
+      "same_or_changed": "changed",
+      "change_reason": "new logical run id",
+      "scientifically_material": false
+    },
+    {
+      "field": "architecture",
+      "historical_v2": "standard_unet_4_stage",
+      "clean_v3_candidate": "standard_unet_4_stage",
+      "same_or_changed": "same",
+      "change_reason": "preserved from historical protocol",
+      "scientifically_material": false
+    },
+    {
+      "field": "model_key",
+      "historical_v2": "unet",
+      "clean_v3_candidate": "unet",
+      "same_or_changed": "same",
+      "change_reason": "preserved from historical protocol",
+      "scientifically_material": false
+    },
+    {
+      "field": "input_channels",
+      "historical_v2": 1,
+      "clean_v3_candidate": 1,
+      "same_or_changed": "same",
+      "change_reason": "preserved from historical protocol",
+      "scientifically_material": false
+    },
+    {
+      "field": "output_channels",
+      "historical_v2": 1,
+      "clean_v3_candidate": 1,
+      "same_or_changed": "same",
+      "change_reason": "preserved from historical protocol",
+      "scientifically_material": false
+    },
+    {
+      "field": "base_channels",
+      "historical_v2": 32,
+      "clean_v3_candidate": 32,
+      "same_or_changed": "same",
+      "change_reason": "preserved from historical protocol",
+      "scientifically_material": false
+    },
+    {
+      "field": "resolution",
+      "historical_v2": 512,
+      "clean_v3_candidate": 512,
+      "same_or_changed": "same",
+      "change_reason": "preserved from historical protocol",
+      "scientifically_material": false
+    },
+    {
+      "field": "manifest_version",
+      "historical_v2": "phase4_v2",
+      "clean_v3_candidate": "phase4_v3",
+      "same_or_changed": "changed",
+      "change_reason": "authorized clean-v3 provenance",
+      "scientifically_material": false
+    },
+    {
+      "field": "loss",
+      "historical_v2": "bce_dice",
+      "clean_v3_candidate": "bce_dice",
+      "same_or_changed": "same",
+      "change_reason": "preserved from historical protocol",
+      "scientifically_material": false
+    },
+    {
+      "field": "loss_parameters",
+      "historical_v2": "bce_weight=0.5, dice_weight=0.5, dice_epsilon=1e-06",
+      "clean_v3_candidate": "bce_weight=0.5, dice_weight=0.5, dice_epsilon=1e-06",
+      "same_or_changed": "same",
+      "change_reason": "preserved from historical protocol",
+      "scientifically_material": false
+    },
+    {
+      "field": "optimizer",
+      "historical_v2": "AdamW",
+      "clean_v3_candidate": "AdamW",
+      "same_or_changed": "same",
+      "change_reason": "preserved from historical protocol",
+      "scientifically_material": false
+    },
+    {
+      "field": "learning_rate",
+      "historical_v2": 0.0001,
+      "clean_v3_candidate": 0.0001,
+      "same_or_changed": "same",
+      "change_reason": "preserved from historical protocol",
+      "scientifically_material": false
+    },
+    {
+      "field": "weight_decay",
+      "historical_v2": 0.0001,
+      "clean_v3_candidate": 0.0001,
+      "same_or_changed": "same",
+      "change_reason": "preserved from historical protocol",
+      "scientifically_material": false
+    },
+    {
+      "field": "scheduler",
+      "historical_v2": "CosineAnnealingLR",
+      "clean_v3_candidate": "CosineAnnealingLR",
+      "same_or_changed": "same",
+      "change_reason": "preserved from historical protocol",
+      "scientifically_material": false
+    },
+    {
+      "field": "scheduler_parameters",
+      "historical_v2": "T_max=100",
+      "clean_v3_candidate": "T_max=100",
+      "same_or_changed": "same",
+      "change_reason": "preserved from historical protocol",
+      "scientifically_material": false
+    },
+    {
+      "field": "scheduler_step_timing",
+      "historical_v2": "per epoch, after train AND validation",
+      "clean_v3_candidate": "per epoch, after train AND validation",
+      "same_or_changed": "same",
+      "change_reason": "preserved from historical protocol",
+      "scientifically_material": false
+    },
+    {
+      "field": "batch_size",
+      "historical_v2": 4,
+      "clean_v3_candidate": 4,
+      "same_or_changed": "same",
+      "change_reason": "preserved from historical protocol",
+      "scientifically_material": false
+    },
+    {
+      "field": "gradient_accumulation_steps",
+      "historical_v2": 1,
+      "clean_v3_candidate": 1,
+      "same_or_changed": "same",
+      "change_reason": "preserved from historical protocol",
+      "scientifically_material": false
+    },
+    {
+      "field": "effective_batch_size",
+      "historical_v2": 4,
+      "clean_v3_candidate": 4,
+      "same_or_changed": "same",
+      "change_reason": "preserved from historical protocol",
+      "scientifically_material": false
+    },
+    {
+      "field": "amp",
+      "historical_v2": true,
+      "clean_v3_candidate": true,
+      "same_or_changed": "same",
+      "change_reason": "preserved from historical protocol",
+      "scientifically_material": false
+    },
+    {
+      "field": "seed",
+      "historical_v2": 42,
+      "clean_v3_candidate": 42,
+      "same_or_changed": "same",
+      "change_reason": "preserved from historical protocol",
+      "scientifically_material": false
+    },
+    {
+      "field": "max_epochs",
+      "historical_v2": 100,
+      "clean_v3_candidate": 100,
+      "same_or_changed": "same",
+      "change_reason": "preserved from historical protocol",
+      "scientifically_material": false
+    },
+    {
+      "field": "augmentation_policy",
+      "historical_v2": "horizontal_flip(p=0.5), rotation(+-5.0 deg), brightness(+-0.1), contrast(+-0.1), vertical_flip=OFF",
+      "clean_v3_candidate": "horizontal_flip(p=0.5), rotation(+-5.0 deg), brightness(+-0.1), contrast(+-0.1), vertical_flip=OFF",
+      "same_or_changed": "same",
+      "change_reason": "preserved from historical protocol",
+      "scientifically_material": false
+    },
+    {
+      "field": "checkpoint_metric",
+      "historical_v2": "val_macro_dice",
+      "clean_v3_candidate": "val_macro_dice",
+      "same_or_changed": "same",
+      "change_reason": "preserved from historical protocol",
+      "scientifically_material": false
+    },
+    {
+      "field": "checkpoint_mode",
+      "historical_v2": "max (higher is better)",
+      "clean_v3_candidate": "max (higher is better)",
+      "same_or_changed": "same",
+      "change_reason": "preserved from historical protocol",
+      "scientifically_material": false
+    },
+    {
+      "field": "checkpoint_improvement_rule",
+      "historical_v2": "strict >",
+      "clean_v3_candidate": "strict >",
+      "same_or_changed": "same",
+      "change_reason": "preserved from historical protocol",
+      "scientifically_material": false
+    },
+    {
+      "field": "early_stopping_patience",
+      "historical_v2": 15,
+      "clean_v3_candidate": 15,
+      "same_or_changed": "same",
+      "change_reason": "preserved from historical protocol",
+      "scientifically_material": false
+    },
+    {
+      "field": "early_stopping_min_delta",
+      "historical_v2": null,
+      "clean_v3_candidate": null,
+      "same_or_changed": "same",
+      "change_reason": "preserved from historical protocol",
+      "scientifically_material": false
+    },
+    {
+      "field": "prediction_threshold",
+      "historical_v2": 0.5,
+      "clean_v3_candidate": 0.5,
+      "same_or_changed": "same",
+      "change_reason": "preserved from historical protocol",
+      "scientifically_material": false
+    },
+    {
+      "field": "validation_aggregation",
+      "historical_v2": "macro (mean of per-image metrics); micro also reported",
+      "clean_v3_candidate": "macro (mean of per-image metrics); micro also reported",
+      "same_or_changed": "same",
+      "change_reason": "preserved from historical protocol",
+      "scientifically_material": false
+    },
+    {
+      "field": "val_shuffle",
+      "historical_v2": false,
+      "clean_v3_candidate": false,
+      "same_or_changed": "same",
+      "change_reason": "preserved from historical protocol",
+      "scientifically_material": false
+    },
+    {
+      "field": "val_augmentation",
+      "historical_v2": false,
+      "clean_v3_candidate": false,
+      "same_or_changed": "same",
+      "change_reason": "preserved from historical protocol",
+      "scientifically_material": false
+    },
+    {
+      "field": "num_workers",
+      "historical_v2": 0,
+      "clean_v3_candidate": 0,
+      "same_or_changed": "same",
+      "change_reason": "preserved from historical protocol",
+      "scientifically_material": false
+    },
+    {
+      "field": "pin_memory",
+      "historical_v2": true,
+      "clean_v3_candidate": true,
+      "same_or_changed": "same",
+      "change_reason": "preserved from historical protocol",
+      "scientifically_material": false
+    },
+    {
+      "field": "persistent_workers",
+      "historical_v2": false,
+      "clean_v3_candidate": false,
+      "same_or_changed": "same",
+      "change_reason": "preserved from historical protocol",
+      "scientifically_material": false
+    },
+    {
+      "field": "gradient_clipping",
+      "historical_v2": null,
+      "clean_v3_candidate": null,
+      "same_or_changed": "same",
+      "change_reason": "preserved from historical protocol",
+      "scientifically_material": false
+    },
+    {
+      "field": "source_config",
+      "historical_v2": "configs/kub/unet_baseline.yaml",
+      "clean_v3_candidate": "<clean-v3 provenance>",
+      "same_or_changed": "changed",
+      "change_reason": "authorized provenance metadata",
+      "scientifically_material": false
+    },
+    {
+      "field": "source_config_sha",
+      "historical_v2": "9b8392f833c6f5350ae8780b24dae2afee1221e814f4517196e931ad169bce53",
+      "clean_v3_candidate": "<clean-v3 provenance>",
+      "same_or_changed": "changed",
+      "change_reason": "authorized provenance metadata",
+      "scientifically_material": false
+    },
+    {
+      "field": "source_trainer",
+      "historical_v2": "scripts/training/train_kub_baseline.py",
+      "clean_v3_candidate": "<clean-v3 provenance>",
+      "same_or_changed": "changed",
+      "change_reason": "authorized provenance metadata",
+      "scientifically_material": false
+    },
+    {
+      "field": "source_trainer_sha",
+      "historical_v2": "c1c97d0a19445550f69291539c0090b492f186a535000e5221e94d980be2ec27",
+      "clean_v3_candidate": "<clean-v3 provenance>",
+      "same_or_changed": "changed",
+      "change_reason": "authorized provenance metadata",
+      "scientifically_material": false
+    },
+    {
+      "field": "source_trainer_class",
+      "historical_v2": "src/training/trainer.py",
+      "clean_v3_candidate": "src/training/trainer.py",
+      "same_or_changed": "same",
+      "change_reason": "preserved from historical protocol",
+      "scientifically_material": false
+    },
+    {
+      "field": "source_trainer_class_sha",
+      "historical_v2": "99189ce029aaeb43df7370b02d6f7e6de859d59310ca6b83bde4965ce27a49c3",
+      "clean_v3_candidate": "99189ce029aaeb43df7370b02d6f7e6de859d59310ca6b83bde4965ce27a49c3",
+      "same_or_changed": "same",
+      "change_reason": "preserved from historical protocol",
+      "scientifically_material": false
+    },
+    {
+      "field": "checkpoint_best_sha",
+      "historical_v2": "a32d7fff1e019a179ef011795b6be8ee98ab548831f790a557726f32b38db8ec",
+      "clean_v3_candidate": "<clean-v3 provenance>",
+      "same_or_changed": "changed",
+      "change_reason": "authorized provenance metadata",
+      "scientifically_material": false
+    },
+    {
+      "field": "checkpoint_latest_sha",
+      "historical_v2": "2b535401e7db95469b39a62bd6b6df51e0e298c32d00047465bc39ababd0ad61",
+      "clean_v3_candidate": "<clean-v3 provenance>",
+      "same_or_changed": "changed",
+      "change_reason": "authorized provenance metadata",
+      "scientifically_material": false
+    },
+    {
+      "field": "protocol_status",
+      "historical_v2": "VERIFIED",
+      "clean_v3_candidate": "<clean-v3 provenance>",
+      "same_or_changed": "changed",
+      "change_reason": "authorized provenance metadata",
+      "scientifically_material": false
+    },
+    {
+      "field": "historical_role",
+      "historical_v2": "Phase-09 baseline (training)",
+      "clean_v3_candidate": "<clean-v3 provenance>",
+      "same_or_changed": "changed",
+      "change_reason": "authorized provenance metadata",
+      "scientifically_material": false
+    },
+    {
+      "field": "epochs_completed",
+      "historical_v2": 62.0,
+      "clean_v3_candidate": "<clean-v3 provenance>",
+      "same_or_changed": "changed",
+      "change_reason": "authorized provenance metadata",
+      "scientifically_material": false
+    },
+    {
+      "field": "best_epoch",
+      "historical_v2": 47.0,
+      "clean_v3_candidate": "<clean-v3 provenance>",
+      "same_or_changed": "changed",
+      "change_reason": "authorized provenance metadata",
+      "scientifically_material": false
+    }
+  ],
+  "candidate_configs": [
+    {
+      "experiment_id": "phase9_kub_unet_baseline_seed42_512_clean_v3",
+      "phase": 9,
+      "dataset": "KUB",
+      "manifest_version": "phase4_v3",
+      "taxonomy_id": "kub_size_clean_v3_v1",
+      "model_name": "unet",
+      "input_channels": 1,
+      "output_channels": 1,
+      "base_channels": 32,
+      "input_resolution": 512,
+      "loss": "bce_dice",
+      "bce_weight": 0.5,
+      "dice_weight": 0.5,
+      "dice_epsilon": 1e-06,
+      "optimizer": "AdamW",
+      "learning_rate": 0.0001,
+      "weight_decay": 0.0001,
+      "scheduler": "CosineAnnealingLR",
+      "scheduler_max_epochs": 100,
+      "batch_size": 4,
+      "gradient_accumulation_steps": 1,
+      "effective_batch_size": 4,
+      "amp": true,
+      "seed": 42,
+      "max_epochs": 100,
+      "early_stopping_patience": 15,
+      "checkpoint_metric": "val_macro_dice",
+      "threshold": 0.5,
+      "num_workers": 0,
+      "pin_memory": true,
+      "device_contract": "get_device(require_cuda=True)",
+      "target_contract": "src.utils.targets.binarize_mask (mask > 0)",
+      "candidate_status": "RECONSTRUCTED_AND_READY",
+      "executed": false
+    }
+  ],
+  "candidate_config_files": [
+    "configs/phase09_clean_v3/phase09_unet_baseline_clean_v3.yaml"
+  ],
+  "test_debt": [
+    {
+      "test_file": "tests/test_phase14_part1.py",
+      "observed": "HANGS (never completes)",
+      "affected_phase": "Phase 14",
+      "module": "Phase-14 regional/refiner work",
+      "required_by_phase09": false,
+      "disposition": "DEFER_TO_AFFECTED_CLEAN_RERUN_PHASE",
+      "module_git_modified": null
+    },
+    {
+      "test_file": "tests/test_predicted_roi.py",
+      "observed": "3 failures",
+      "affected_phase": "Phase 13",
+      "module": "src/inference/predicted_roi.py",
+      "required_by_phase09": false,
+      "disposition": "DEFER_TO_AFFECTED_CLEAN_RERUN_PHASE",
+      "module_git_modified": false
+    },
+    {
+      "test_file": "tests/test_kub_localizer.py",
+      "observed": "1 failure",
+      "affected_phase": "Phase 13",
+      "module": "src/models/kub_localizer.py",
+      "required_by_phase09": false,
+      "disposition": "DEFER_TO_AFFECTED_CLEAN_RERUN_PHASE",
+      "module_git_modified": false
+    }
+  ],
+  "test_content_reads": 0,
+  "full_scientific_training_performed": false,
+  "phase09_started": false,
+  "table_hashes": {
+    "phase08_phase09_checkpoint_artifact_provenance.csv": "7527e6123962eb3994778da1fc70078049230cc6db43779de9bec9b110b233b5",
+    "phase08_phase09_historical_protocol_matrix.csv": "3ffab9d43fcbd72d04f63cc8325f34a4eb2397948544c9e80cb53d52cc9ed141",
+    "phase08_phase09_phase_model_mapping.csv": "7a0d9333bd917c9994dc6d9de6edb1df3fbee1118ff241ba115ef9f48959d29c",
+    "phase08_phase09_phase10_crosscheck.csv": "fde37c6f347365005d168122f3372412f333662a4a84742a2acb694c40e859cd",
+    "phase08_validation_aggregation_contract.csv": "2096b299fa2c1f314c1b771d670885587b3d7ecb7e6a15e22e1f53bfc5c5dec2",
+    "phase08_checkpoint_selection_contract.csv": "8b8a92af17383d2ac9707ea9aaba73c77c7070843f7dc308ca25083a4228e062",
+    "phase08_early_stopping_contract.csv": "3a63e2f0759465ef45e2ddd58b84b45ea19a2fc60a02d94b4770840b50f2d5ae",
+    "phase08_scheduler_contract.csv": "3fa2376766b9004828e6b705fec988c37b9d6490e5c3ab0dcda7bef26a7138f3",
+    "phase08_resume_contract.csv": "2235a0d342876869f0fa933f31ce456b09437356d344855240000055cce3cb1e",
+    "phase08_phase09_v2_to_clean_v3_protocol_diff.csv": "7a5efadcb06a0be83b0b8f95b234f57289563c2641c6d44aee8ae6d7e050603c",
+    "phase08_phase09_clean_v3_candidate_configs.csv": "9d5304abc7858408c540b5424984b2eb7459c97cbbac9350a37bba2eb53123fc"
+  },
+  "figures": [
+    "phase08b_checkpoint_state_machine.png",
+    "phase08b_resume_equivalence_trace.png",
+    "phase08b_trainer_lifecycle.png",
+    "phase08b_validation_aggregation_handcheck.png"
+  ],
+  "scientific_gate": {
+    "gates": {
+      "historical_protocol_reconstructed": true,
+      "no_material_source_disagreements": true,
+      "checkpoint_embedded_config_matches_yaml": true,
+      "phase09_baseline_set_identified": true,
+      "phase10_crosscheck_no_material_diff": true,
+      "validation_aggregation_explicit": true,
+      "checkpoint_selection_explicit": true,
+      "early_stopping_explicit": true,
+      "scheduler_timing_explicit": true,
+      "resume_restores_all_state": true,
+      "resume_same_experiment_id": true,
+      "resume_equivalence_probe_passed": true,
+      "single_writer_lock_implemented": true,
+      "config_placeholder_rejection": true,
+      "protocol_diff_no_material_change": true,
+      "candidate_config_ready": true,
+      "no_test_content_access": true,
+      "no_full_scientific_training": true,
+      "test_debt_documented": true,
+      "part1a_direct_tests_pass": true,
+      "part1b_tests_pass": true,
+      "other_scoped_tests_pass": true,
+      "notebook_run_all_clean": true,
+      "embedded_png_ge_3": true,
+      "previous_phases_and_historical_unchanged": true
+    },
+    "status": "PASS"
+  },
+  "status": "PASS",
+  "notebook": {
+    "path": "notebooks/phasewise/phase_08_baseline_infrastructure/phase08_part1b_trainer_and_phase09_protocol_audit.ipynb",
+    "sha256": "0e9d5ca578d4220f6e65f3bcc8932c15dc2573ec799897119d980f432260416b",
+    "sha_stable_3x": true,
+    "total_cells": 54,
+    "code_cells": 28,
+    "executed_cells": 28,
+    "unexecuted_cells": 0,
+    "errors": 0,
+    "embedded_png": 4
+  },
+  "generated_at_final": "2026-09-20T06:30:00.578391+00:00",
+  "test_suites": {
+    "part1a_direct": {
+      "file": "tests/test_phase08_infrastructure.py",
+      "result": "PASS",
+      "summary": "49 passed in 5.57s"
+    },
+    "part1b": {
+      "file": "tests/test_phase08b_trainer_protocol.py",
+      "result": "PASS",
+      "summary": "45 passed in 5.74s"
+    },
+    "other_scoped": {
+      "files": "tests/test_phase07_taxonomy.py tests/test_manifest_guard.py",
+      "result": "PASS",
+      "summary": "36 passed in 0.98s"
+    }
+  },
+  "immutability": {
+    "phase06_notebook": {
+      "path": "notebooks/phasewise/phase_06_kub_characterization/phase06_kub_dataset_characterization_clean_v3.ipynb",
+      "expected": "c2164345d80843c6116093cc5c58bebfa3792b8becce0d887e6c379ab8069888",
+      "actual": "c2164345d80843c6116093cc5c58bebfa3792b8becce0d887e6c379ab8069888",
+      "unchanged": true
+    },
+    "phase07_part1a_notebook": {
+      "path": "notebooks/phasewise/phase_07_tiny_object_definition/phase07_tiny_object_definition_train_only_design.ipynb",
+      "expected": "f2ff7969d4c446c5c7fa737c7cbf36925123c97db1ca86593dbddea842a31eb9",
+      "actual": "f2ff7969d4c446c5c7fa737c7cbf36925123c97db1ca86593dbddea842a31eb9",
+      "unchanged": true
+    },
+    "phase07_part1b_notebook": {
+      "path": "notebooks/phasewise/phase_07_tiny_object_definition/phase07_tiny_object_taxonomy_freeze_clean_v3.ipynb",
+      "expected": "9d9ebf3684523a7b85df4b6fc52c4f0e970857e80f05d366445a50b6a7dfde85",
+      "actual": "9d9ebf3684523a7b85df4b6fc52c4f0e970857e80f05d366445a50b6a7dfde85",
+      "unchanged": true
+    },
+    "phase08_part1a_notebook": {
+      "path": "notebooks/phasewise/phase_08_baseline_infrastructure/phase08_clean_v3_training_infrastructure_validation.ipynb",
+      "expected": "abeb9df9776468a657929eef344b639e030de5db2924e8124078e3b52badb4e4",
+      "actual": "abeb9df9776468a657929eef344b639e030de5db2924e8124078e3b52badb4e4",
+      "unchanged": true
+    },
+    "frozen_taxonomy_artifact": {
+      "path": "reports/audits/kub_size_clean_v3_v1_thresholds.json",
+      "expected": "89031c51a35c24f6f939fd6206fde6002a019d4bda24ce8cb21988f04db0f0d6",
+      "actual": "89031c51a35c24f6f939fd6206fde6002a019d4bda24ce8cb21988f04db0f0d6",
+      "unchanged": true
+    },
+    "phase4_v3_train": {
+      "path": "manifests/phase4_v3/train.csv",
+      "expected": "28702fc3a5ff8b950db372f03232d335e3a30b1fc2f21db7cd8c066055826ed6",
+      "actual": "28702fc3a5ff8b950db372f03232d335e3a30b1fc2f21db7cd8c066055826ed6",
+      "unchanged": true
+    },
+    "phase4_v3_val": {
+      "path": "manifests/phase4_v3/val.csv",
+      "expected": "082c80b2bda63fd73f371f109c34643adf01edaead921643fb2e44993ba53315",
+      "actual": "082c80b2bda63fd73f371f109c34643adf01edaead921643fb2e44993ba53315",
+      "unchanged": true
+    },
+    "phase4_v3_test": {
+      "path": "manifests/phase4_v3/test.csv",
+      "expected": "9361eba61c91c034a9aa4988a4df229bba591a5cbd553c98689ac7915da29727",
+      "actual": "9361eba61c91c034a9aa4988a4df229bba591a5cbd553c98689ac7915da29727",
+      "unchanged": true
+    },
+    "historical_phase09_best_ckpt": {
+      "path": "checkpoints/phase9_kub_unet_baseline_seed42_512/best.pt",
+      "expected": "a32d7fff1e019a179ef011795b6be8ee98ab548831f790a557726f32b38db8ec",
+      "actual": "a32d7fff1e019a179ef011795b6be8ee98ab548831f790a557726f32b38db8ec",
+      "unchanged": true
+    },
+    "historical_phase09_latest_ckpt": {
+      "path": "checkpoints/phase9_kub_unet_baseline_seed42_512/latest.pt",
+      "expected": "2b535401e7db95469b39a62bd6b6df51e0e298c32d00047465bc39ababd0ad61",
+      "actual": "2b535401e7db95469b39a62bd6b6df51e0e298c32d00047465bc39ababd0ad61",
+      "unchanged": true
+    },
+    "historical_phase09_config": {
+      "path": "configs/kub/unet_baseline.yaml",
+      "expected": "9b8392f833c6f5350ae8780b24dae2afee1221e814f4517196e931ad169bce53",
+      "actual": "9b8392f833c6f5350ae8780b24dae2afee1221e814f4517196e931ad169bce53",
+      "unchanged": true
+    }
+  },
+  "phase08_complete": true
+}

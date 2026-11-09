@@ -1,0 +1,142 @@
+{
+  "artifact": "phase22_kub_tiny_analysis",
+  "phase": 22,
+  "taxonomy_id": "kub_size_clean_v3_v1",
+  "stratum_definition": "TINY = component_ratio <= Q25 = 0.0001497998649691358 (frozen, lower-inclusive)",
+  "tiny_optimised_on": false,
+  "table": "reports/tables/phase22_kub_tiny_analysis.csv",
+  "test_reads": 0,
+  "strata": [
+    {
+      "stratum": "LARGE",
+      "n": 13,
+      "mean_dice": 0.7082255602086426,
+      "median_dice": 0.8321633695065627,
+      "p05_dice": 0.03401360556800534,
+      "min_dice": 2.824858756264164e-10,
+      "mean_recall": NaN,
+      "mean_precision": NaN,
+      "n_dice_below_0p5": 2
+    },
+    {
+      "stratum": "MEDIUM",
+      "n": 27,
+      "mean_dice": 0.6998212263920491,
+      "median_dice": 0.7659574469330014,
+      "p05_dice": 0.42922238395154527,
+      "min_dice": 0.2727272732782369,
+      "mean_recall": NaN,
+      "mean_precision": NaN,
+      "n_dice_below_0p5": 4
+    },
+    {
+      "stratum": "ROI_NOT_PRIMARY_BINNED",
+      "n": 177,
+      "mean_dice": 0.8474201505625399,
+      "median_dice": 0.8627131483785268,
+      "p05_dice": 0.7188437302119165,
+      "min_dice": 0.5594405594411146,
+      "mean_recall": NaN,
+      "mean_precision": NaN,
+      "n_dice_below_0p5": 0
+    },
+    {
+      "stratum": "SMALL",
+      "n": 19,
+      "mean_dice": 0.6541763235563437,
+      "median_dice": 0.6666666671296297,
+      "p05_dice": 0.37285714331497427,
+      "min_dice": 8.130081294203186e-10,
+      "mean_recall": NaN,
+      "mean_precision": NaN,
+      "n_dice_below_0p5": 2
+    },
+    {
+      "stratum": "TINY",
+      "n": 44,
+      "mean_dice": 0.5320792149650089,
+      "median_dice": 0.6526175693096923,
+      "p05_dice": 2.1656534907424946e-09,
+      "min_dice": 1.2499999984375e-09,
+      "mean_recall": NaN,
+      "mean_precision": NaN,
+      "n_dice_below_0p5": 14
+    }
+  ],
+  "tiny_stratum_regional_gain": {
+    "n": 44,
+    "mean_global_dice": 0.5320792149650089,
+    "mean_oracle_delta_dice": 0.013196596116120203,
+    "mean_oracle_delta_dice_executed_only": 0.013196596116120203,
+    "mean_predicted_delta_dice": -0.11102799910654496,
+    "n_oracle_improved": 32,
+    "n_oracle_harmed": 12,
+    "mean_roi_area_fraction": 0.009227962272727272,
+    "n_no_predicted_roi": 0,
+    "bootstrap_vs_global": {
+      "delta": 0.01319659611612023,
+      "ci_low": -0.0840619700020022,
+      "ci_high": 0.1051333292147158,
+      "p_value": 0.763,
+      "ci_excludes_zero": false,
+      "n_boot": 2000,
+      "seed": 42,
+      "alpha": 0.05,
+      "unit": "image",
+      "paired": true,
+      "domain_stratified": true,
+      "n_strata": 1
+    }
+  },
+  "kub_subgroup_rows": [
+    {
+      "scope": "KUB_ALL",
+      "subgroup": "KUB_ALL",
+      "n": 280,
+      "dice": 0.7640582416103505,
+      "iou": 0.6503584399855742,
+      "precision": 0.760811911372585,
+      "recall": 0.8036764356470122,
+      "hd95": 51.880826143748784,
+      "empty_prediction_rate": 0.0,
+      "role": "REPORTING_ONLY"
+    },
+    {
+      "scope": "KUB_SUBGROUP",
+      "subgroup": "Bladder_Stone",
+      "n": 144,
+      "dice": 0.7339447174486884,
+      "iou": 0.6163129651416379,
+      "precision": 0.7127062972296841,
+      "recall": 0.7938323689910095,
+      "hd95": 51.86426241555907,
+      "empty_prediction_rate": 0.0,
+      "role": "REPORTING_ONLY"
+    },
+    {
+      "scope": "KUB_SUBGROUP",
+      "subgroup": "Kidney_Stone",
+      "n": 112,
+      "dice": 0.7963779569880687,
+      "iou": 0.6863681501582974,
+      "precision": 0.8238521083473351,
+      "recall": 0.8050369405270767,
+      "hd95": 51.859788210264455,
+      "empty_prediction_rate": 0.0,
+      "role": "REPORTING_ONLY"
+    },
+    {
+      "scope": "KUB_SUBGROUP",
+      "subgroup": "Ureteric_Stone",
+      "n": 24,
+      "dice": 0.7939140481509721,
+      "iou": 0.686585974909816,
+      "precision": 0.7552580103478229,
+      "recall": 0.8563918128093926,
+      "hd95": 52.07838553581397,
+      "empty_prediction_rate": 0.0,
+      "role": "REPORTING_ONLY"
+    }
+  ],
+  "kub_subgroup_role": "REPORTING_ONLY"
+}

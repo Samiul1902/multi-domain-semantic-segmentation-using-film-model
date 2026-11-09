@@ -1,0 +1,60 @@
+{
+  "artifact": "phase36_preexecution_source_freeze_v1_8",
+  "phase": 36,
+  "method": "RA-MedFiLM-BARR",
+  "revision": "ra_medfilm_barr_phase36_robustness_v1_8",
+  "type": "PREEXECUTION_SOURCE_FREEZE",
+  "section": "§R",
+  "generated_utc": "2026-10-06T11:36:00Z",
+  "frozen_sources": {
+    "scripts/analysis/phase36_robustness_execution_v1_8.py": "c95ff9884ec05a859b39ce7976376bf40e4543b1a8d8a19830e5893120039f4d",
+    "scripts/analysis/phase36_robustness_unit_v1_8.py": "f36b1d52f843d4c15fae65e6260f814121c5f0bf93afd9b4ea2b32cdacfc668d",
+    "scripts/analysis/phase36_robustness_preflight_v1_8.py": "202c550b6a04caf29ed7e3a453742603b243d23c0a514814c4afd0055991fb77",
+    "scripts/analysis/phase36_robustness_negative_controls_v1_8.py": "db31419199e6391859710df50e7ac6bfaa1ed34d0b6b0e206244370034c5db56"
+  },
+  "frozen_audits_and_reports": {
+    "reports/audits/phase36_v1_7_pre_smoke_contract_defects_v1_8.json": "0d26c3888a18d6e28093b53f0c3c7804b3cd04d59a2f30ca3b79ffda30489a33",
+    "reports/audits/phase36_v1_8_runtime_source_integrity_manifest.json": "37287f42d293465abd78657c280b3fcfab2f1989e29c3a24fc72be49f4bb6ee8",
+    "reports/audits/phase36_robustness_unit_v1_8.json": "20964e0e67cd457e42889c7f87c24bee20e0a92add1aacf8fac90469824bbea0",
+    "reports/audits/phase36_robustness_preflight_v1_8.json": "3fdad5ef7a57c52e810d86fd55b71f7fc19a6224348332b0f43c4a411f7d8b5e",
+    "reports/audits/phase36_v1_8_negative_controls.json": "27fd01172afb220edf043d3c7aaa5ddd96ed3a74b8c841416022f8b6e69113a4",
+    "reports/audits/phase36_v1_7_to_v1_8_execution_semantic_diff.json": "94ced38da70708deeb574b33b8fc06af62936a5d8e431f03e8f0de668fa104a6",
+    "reports/audits/phase36_v1_8_direct_source_byte_audit.json": "97687c2e2d77db0b94518e873378d29cf8d9de1413449c85684f68d42dfe1491",
+    "reports/audits/phase36_v1_8_source_repair_no_execution_audit.json": "9b559efb94866e3299e272f9462632c45ee22299b6ba864364d2dde56210a599"
+  },
+  "supporting_generators": {
+    "scripts/analysis/build_phase36_v1_8_semantic_diff.py": "a5e8b3836395b46b7f6818baf98b1c3879965b67223fd9a24c75bc19068f6944",
+    "scripts/analysis/audit_phase36_v1_8_direct_source_bytes.py": "b6d4a1f90f59d9298381c3a3eedbb5b082e1faf0ccb7725883fcad2365c19599",
+    "scripts/analysis/audit_phase36_v1_8_no_execution.py": "856576718a58a9dd79c0f8e47799bb7e77f231687133a50b865feb09c6e334e1"
+  },
+  "v1_7_history_preserved": {
+    "scripts/analysis/phase36_robustness_execution_v1_7.py": "87062d2b38232c73b8ce620d7bfafb389658c4b877d9196a26b8b01d09daf192",
+    "reports/audits/phase36_v1_7_direct_source_byte_audit.json": "3a7a11d13b683b223c967ee86ddb1e5df6e5f90469d4a1e112cee1b774bca43e",
+    "reports/audits/phase36_preexecution_source_freeze_v1_7.json": "e4e86cd9a3e297d8b4f0a52591be6b88d27cef9897b933d427aa9c15f15fa62f",
+    "byte_preserved": true
+  },
+  "canonical_component_sources": {
+    "src/models/film/global_medfilm.py": "a04ff3e61b4d900ff47c2f390da4a999e73bd6047b28a19e41b05115e431d11f",
+    "scripts/analysis/train_phase25d_router.py": "fc7c1bdf263ae4551dcb8f170d3203adb8540fbc189846265b74f6eca1541e91",
+    "src/models/barr/regional_refiner.py": "4fe0abde3ec3a183d930f676c4400b4d9ba778793ea64abf1755c5b8dabf947a",
+    "scripts/analysis/phase25f_execution_common.py": "98cf958a377e2de30e0b67e63fd56bafea418b2b061a362ee7284e852012cd2e"
+  },
+  "gate_results": {
+    "unit": {"passed": 35, "total": 35, "all_pass": true},
+    "preflight": {"passed": 73, "total": 73, "all_pass": true},
+    "negative_controls_NC41_NC49": {"passed": 9, "total": 9, "all_pass": true},
+    "direct_source_byte_audit": {"passed": 32, "total": 32, "verdict": "PASS"},
+    "semantic_diff_new_scientific_choice": false,
+    "zero_execution_audit_all_counters_zero": true
+  },
+  "gate_artifacts_byte_deterministic_across_reruns": true,
+  "future_phase36_smoke_must_use_exact_v1_8_bytes": true,
+  "future_phase36_science_must_use_exact_v1_8_bytes": true,
+  "source_freeze_complete": true,
+  "smoke_started": false,
+  "science_started": false,
+  "protected_population_read": false,
+  "test_read": false,
+  "router_holdout_read": false,
+  "terminal": "PHASE36_V1_8_SOURCE_FREEZE_COMPLETE__SMOKE_AND_SCIENCE_NOT_STARTED"
+}

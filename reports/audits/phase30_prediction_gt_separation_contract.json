@@ -1,0 +1,53 @@
+{
+ "artifact": "phase30_prediction_gt_separation_contract",
+ "phase": 30,
+ "section": "\u00a710",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_phase30_final_dev_validation_v1_0",
+ "stage_a": {
+  "name": "IMAGE_ONLY_INFERENCE",
+  "authorization": "FUTURE_SEPARATE_EXECUTION_AUTHORIZATION_REQUIRED",
+  "read_holdout_images": true,
+  "read_gt": false,
+  "produce": [
+   "global prob",
+   "routing decision",
+   "refinement candidate",
+   "safety decision",
+   "final prediction"
+  ],
+  "persist": [
+   "decision table",
+   "exact sample order",
+   "final probability"
+  ],
+  "hash_all_inference_outputs": true,
+  "write_prediction_hash_barrier": true
+ },
+ "stage_b": {
+  "name": "GT_SCORING",
+  "precondition": "PREDICTION_HASH_BARRIER_DURABLY_FROZEN",
+  "read_gt": true,
+  "purpose": "scoring only"
+ },
+ "gt_must_never_affect": [
+  "G",
+  "B_phi features",
+  "router score",
+  "router threshold",
+  "router execute decision",
+  "ROI",
+  "R_psi",
+  "S_omega features",
+  "S_omega decision",
+  "fusion",
+  "policy selection",
+  "thresholds"
+ ],
+ "this_specification_phase_reads": {
+  "images": 0,
+  "gt": 0
+ },
+ "generated_utc": "2026-10-04T02:46:58+00:00",
+ "all_pass": true
+}

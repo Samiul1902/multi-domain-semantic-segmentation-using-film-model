@@ -1,0 +1,68 @@
+{
+  "artifact": "PHASE14_INVALID_PREDECESSOR_CHECKPOINT_PRESERVATION",
+  "status": "PRESERVED_AUDIT_SAFE",
+  "created_utc": "2026-09-24T08:20:00Z",
+  "phase": "PHASE_14_CLEAN_V3",
+  "purpose": "Audit-safe preservation of the epoch-1 checkpoints produced by the invalid predecessor implementation, before the authorized epoch-0 restart. The invalid attempt must be isolated and provably unmodified, never deleted and never resumed.",
+  "association": {
+    "classification": "INVALID_PRE_FREEZE_IMPLEMENTATION_BINDING",
+    "incident_report": "reports/audits/phase14_clean_v3_invalid_pre_freeze_implementation_binding.json",
+    "incident_report_sha256": "3d80fcc790d798985e4c4a7f626aec2b7859067631bf2015730ea29d2302695c",
+    "reason_invalid": "Training began 71 s after the freeze manifest was written, while the manifest bound no trainer SHA and the trainer imported 10 unbound files.",
+    "resume_status": "FORBIDDEN"
+  },
+  "preserved_artifacts": {
+    "original_directory": "checkpoints/phase14_kub_refiner_unet_a3_256_seed42_clean_v3/",
+    "quarantine_directory": "checkpoints/_INVALID_PRE_FREEZE_IMPL_BINDING/phase14_kub_refiner_unet_a3_256_seed42_clean_v3/",
+    "best_pt": {
+      "sha256": "824a43a3d8744cef53d84284dd8d0fa412d9ded3c6fcabeccf677aea175903f0",
+      "bytes": 93251672,
+      "epoch": 1,
+      "best_val_crop_dice": 0.8206131113202948,
+      "role": "best_val_crop_dice checkpoint from the INVALID run",
+      "copy_sha_matches_original": true
+    },
+    "latest_pt": {
+      "sha256": "82d80ad4bde7f7a5533434bd9f6f58afa8ed69093d7eb33ff6a4ba1ed9957993",
+      "bytes": 93261516,
+      "epoch": 1,
+      "best_val_crop_dice": 0.8206131113202948,
+      "role": "latest checkpoint from the INVALID run",
+      "copy_sha_matches_original": true
+    }
+  },
+  "epoch1_metadata": {
+    "epoch": 1,
+    "best_val_crop_dice": 0.8206131113202948,
+    "implementation_margin_used": 0.20,
+    "margin_role_note": "The invalid run constructed both TRAIN and VAL crops at margin 0.20. Under the resolved role binding the refiner crop margin must be 0.25, so the predecessor's crop framing does not match the authorized implementation.",
+    "history_written": false,
+    "experiments_dir_empty": true,
+    "why_no_history": "The predecessor trainer wrote history.csv only after the training loop completed, so an external termination left no training history on disk."
+  },
+  "post_move_verification": {
+    "method": "sha256sum on the preserved copies, compared against the SHAs recorded in the incident report before any move",
+    "best_pt_verified": true,
+    "latest_pt_verified": true,
+    "originals_unmodified_before_preservation": true,
+    "preservation_used_copy_not_move": true,
+    "rationale_for_copy": "A copy preserves provenance and leaves the original path free for the authorized restart, while keeping verifiable SHAs on both sides."
+  },
+  "active_directory_state": {
+    "path": "checkpoints/phase14_kub_refiner_unet_a3_256_seed42_clean_v3/",
+    "cleared_for_restart": true,
+    "contained_prospectively": "the authorized valid run, from epoch 0, resume FORBIDDEN",
+    "clear_note": "The invalid epoch-1 artifacts were removed from the ACTIVE directory so no consumer can silently pick up a checkpoint from the invalid attempt. The audited copies live in quarantine."
+  },
+  "counters": {
+    "checkpoints_deleted": 0,
+    "checkpoints_preserved": 2,
+    "model_forwards": 0,
+    "backward_passes": 0,
+    "optimizer_steps": 0,
+    "training_runs_started": 0,
+    "cuda_requests": 0,
+    "test_reads": 0,
+    "external_test_reads": 0
+  }
+}

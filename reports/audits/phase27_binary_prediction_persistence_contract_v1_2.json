@@ -1,0 +1,35 @@
+{
+ "artifact": "phase27_binary_prediction_persistence_contract_v1_2",
+ "phase": "27",
+ "classification": "PHASE27_CANONICAL_MULTIDOMAIN_PRESERVATION_EXECUTION",
+ "method": "RA-MedFiLM-BARR",
+ "execution_phase": true,
+ "resolution": "RESOLVED_PRE_INFERENCE",
+ "decision_input_dtype": "float32",
+ "decision_rule": "binary = (prob_fp32 >= 0.50)  [lower-inclusive, float32]",
+ "persistence_order": [
+  "1. compute prob_fp32 = sigmoid(logits.float())   (float32)",
+  "2. compute pred_binary_u8 = (prob_fp32 >= 0.50).astype(uint8)  BEFORE any cast",
+  "3. persist pred_binary_u8 and (optionally) prob as float16",
+  "4. NEVER re-derive the binary from the stored float16 copy"
+ ],
+ "persisted_fields": {
+  "global_binary": "reports/figures/phase27_preservation/masks/<sid>_global.png (uint8)",
+  "final_binary": "reports/figures/phase27_preservation/masks/<sid>_final.png (uint8)",
+  "global_prob_storage_dtype": "float16",
+  "final_prob_storage_dtype": "float16"
+ },
+ "threshold_semantics": {
+  "segmentation_output_threshold": 0.5,
+  "note": "0.50 SEGMENTATION_OUTPUT is distinct from 0.30 ROI_PROPOSAL and from 0.50 S_omega ACCEPT"
+ },
+ "cross_reference": "src/data/barr_roi.py:threshold_probability (float32 lower-inclusive)",
+ "checks": {
+  "decision_in_float32": true,
+  "binary_persisted_before_fp16_cast": true,
+  "never_re_derive_from_fp16": true,
+  "threshold_role_distinct": true
+ },
+ "resolved": true,
+ "all_pass": true
+}

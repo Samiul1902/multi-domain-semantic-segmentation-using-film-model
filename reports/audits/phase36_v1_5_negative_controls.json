@@ -1,0 +1,210 @@
+{
+  "artifact": "phase36_robustness_negative_controls_v1_5",
+  "revision": "ra_medfilm_barr_phase36_robustness_v1_5",
+  "model_free": true,
+  "torch_imported": false,
+  "subject_v1_4_sha256": "96ebc36256e5d812949e1f1859d4f41f332f81607e562dbff7cfb2bce6483fbe",
+  "controls": [
+    {
+      "control": "NC25_NUMPY_OR_MANUAL_SIGMOID",
+      "kind": "REPAIR_CONTROL",
+      "v1_4_fails_control": true,
+      "v1_5_passes_control": true,
+      "pass": true,
+      "note": "v1.4 reconstructed the canonical G probability with a NumPy float64 logistic at 3 sites; v1.5 has zero manual/NumPy sigmoid sites and uses only the frozen torch.sigmoid(logits.float()) operator.",
+      "evidence": {
+        "v1_4_manual_sites": [
+          [
+            1026,
+            "manual_logistic"
+          ],
+          [
+            1026,
+            "np.exp"
+          ],
+          [
+            1345,
+            "manual_logistic"
+          ],
+          [
+            1345,
+            "np.exp"
+          ],
+          [
+            2521,
+            "manual_logistic"
+          ],
+          [
+            2521,
+            "np.exp"
+          ]
+        ],
+        "v1_5_manual_sites": []
+      }
+    },
+    {
+      "control": "NC26_DUPLICATE_G_PROBABILITY_OPERATOR",
+      "kind": "REPAIR_CONTROL",
+      "v1_4_fails_control": true,
+      "v1_5_passes_control": true,
+      "pass": true,
+      "note": "v1.4 contains 6 independent executable conversions of canonical G logits to probability (all divergent manual logits); v1.5 contains exactly ONE (the central torch.sigmoid authority).",
+      "evidence": {
+        "v1_4_implementation_count": 6,
+        "v1_5_implementation_count": 1,
+        "v1_4_manual": 6,
+        "v1_4_canonical": 0,
+        "v1_5_manual": 0,
+        "v1_5_canonical": 1
+      }
+    },
+    {
+      "control": "NC27_CUDA_NOT_FAIL_CLOSED",
+      "kind": "REPAIR_CONTROL",
+      "v1_4_fails_control": true,
+      "v1_5_passes_control": true,
+      "pass": true,
+      "note": "v1.4 resolved the device with a plain get_device() and carried an executable torch.device('cpu') fallback; v1.5 uses the literal get_device(require_cuda=True), asserts device.type == 'cuda', and has no CPU fallback.",
+      "evidence": {
+        "v1_4_get_device_calls": [
+          {
+            "line": 593,
+            "kwargs": {}
+          }
+        ],
+        "v1_5_get_device_calls": [
+          {
+            "line": 703,
+            "kwargs": {
+              "require_cuda": "True"
+            }
+          }
+        ],
+        "v1_4_cpu_device_calls": [
+          [
+            593,
+            "torch.device('cpu')"
+          ]
+        ],
+        "v1_5_cpu_device_calls": []
+      }
+    },
+    {
+      "control": "NC28_COMPONENT_DEVICE_BINDING",
+      "kind": "REPAIR_CONTROL",
+      "v1_4_fails_control": true,
+      "v1_5_passes_control": true,
+      "pass": true,
+      "note": "v1.4 relied on system.to(device) only (which cannot move G through the plain-Python _WrapG adapter) and never explicitly bound the four components; v1.5 moves and VERIFIES G / B_phi / R_psi / S_omega on the canonical CUDA device.",
+      "evidence": {
+        "v1_4_explicit_binding": {
+          "g": false,
+          "b_phi": false,
+          "r_psi": false,
+          "s_omega": false
+        },
+        "v1_5_explicit_binding": {
+          "g": true,
+          "b_phi": true,
+          "r_psi": true,
+          "s_omega": true
+        }
+      }
+    },
+    {
+      "control": "NC29_COMPONENT_INFERENCE_CONTEXTS",
+      "kind": "REPAIR_CONTROL",
+      "v1_4_fails_control": true,
+      "v1_5_passes_control": true,
+      "pass": true,
+      "note": "v1.4 ran B_phi / R_psi / S_omega under torch.no_grad(); v1.5 runs them under torch.inference_mode() with autocast explicitly disabled, while G keeps no_grad + fp16 autocast + inference_mode FALSE.",
+      "evidence": {
+        "v1_4_contexts": {
+          "B_phi": {
+            "forward_line": 1068,
+            "context_line": 1065,
+            "context": "with torch.no_grad():"
+          },
+          "R_psi": {
+            "forward_line": 1088,
+            "context_line": 1086,
+            "context": "with torch.no_grad():"
+          },
+          "S_omega": {
+            "forward_line": 1106,
+            "context_line": 1105,
+            "context": "with torch.no_grad():"
+          }
+        },
+        "v1_5_contexts": {
+          "B_phi": {
+            "forward_line": 1294,
+            "context_line": 1291,
+            "context": "with component_inference_context(\"B_phi\"), component_autocast_disabled(\"B_phi\"):"
+          },
+          "R_psi": {
+            "forward_line": 1315,
+            "context_line": 1313,
+            "context": "with component_inference_context(\"R_psi\"), component_autocast_disabled(\"R_psi\"):"
+          },
+          "S_omega": {
+            "forward_line": 1334,
+            "context_line": 1333,
+            "context": "with component_inference_context(\"S_omega\"), component_autocast_disabled(\"S_omega\"):"
+          }
+        }
+      }
+    },
+    {
+      "control": "NC30_V1_4_VALID_REPAIRS_PRESERVED",
+      "kind": "PRESERVATION_CONTROL",
+      "v1_4_fails_control": false,
+      "v1_5_passes_control": true,
+      "pass": true,
+      "note": "Preservation control (not a v1.4-fails control): every v1.4 conditional-execution / smoke / KUB / figure repair is present in v1.5.",
+      "evidence": {
+        "repairs_present_in_v1_5": {
+          "conditional_execution_order": true,
+          "router_decision_separate": true,
+          "exact_branch_comparator": true,
+          "real_proposal_smoke": true,
+          "real_empty_proposal_smoke": true,
+          "three_branch_controls": true,
+          "sample_level_image_loop": true,
+          "sample_level_proposal_loop": true,
+          "case_b_manifest_authority": true,
+          "holdout_875_deny": true,
+          "test_1683_deny": true,
+          "kub_subgroup_reporting": true,
+          "r1_r5_figure_path": true,
+          "canonical_batch_partition": true,
+          "clean_g_reproduction_gate": true
+        },
+        "repairs_present_in_v1_4": {
+          "conditional_execution_order": true,
+          "router_decision_separate": true,
+          "exact_branch_comparator": true,
+          "real_proposal_smoke": true,
+          "real_empty_proposal_smoke": true,
+          "three_branch_controls": true,
+          "sample_level_image_loop": true,
+          "sample_level_proposal_loop": true,
+          "case_b_manifest_authority": true,
+          "holdout_875_deny": true,
+          "test_1683_deny": true,
+          "kub_subgroup_reporting": true,
+          "r1_r5_figure_path": true,
+          "canonical_batch_partition": true,
+          "clean_g_reproduction_gate": true
+        }
+      }
+    }
+  ],
+  "repair_controls_passed": 5,
+  "repair_controls_total": 5,
+  "passed": 6,
+  "total": 6,
+  "all_pass": true,
+  "nc_range": "NC25-NC30",
+  "each_repair_control_requires": "v1_4_fails_control AND v1_5_passes_control"
+}

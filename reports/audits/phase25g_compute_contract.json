@@ -1,0 +1,35 @@
+{
+ "artifact": "phase25g_compute_contract",
+ "phase": "25G",
+ "classification": "PHASE25G_PRE_EXECUTION_INTEGRATED_EVALUATION_SPECIFICATION_AUDIT",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_integrated_evaluation_v1_0",
+ "governance_only": true,
+ "no_execution": true,
+ "stage": "COMPUTE_ACCOUNTING",
+ "A7_average_cost": "GLOBAL + ROUTER + activation_fraction * REFINER",
+ "A8_average_cost": "GLOBAL + ROUTER + activation_fraction * (REFINER + S_omega)",
+ "global_macs": 31551740928,
+ "router_macs": 36160,
+ "refiner_macs": 3230662656,
+ "somega_analytical_macs": 1168,
+ "somega_cost_per_executed_refined_sample": 1168,
+ "somega_saves_compute": false,
+ "somega_adds_small_post_refinement_cost": true,
+ "accounting_label": "ANALYTICAL MAC LOWER BOUND",
+ "forbidden_labels": [
+  "latency",
+  "runtime",
+  "energy",
+  "memory",
+  "mobile performance"
+ ],
+ "router_excluded_from_C_i": true,
+ "checks": {
+  "somega_macs_1168": true,
+  "somega_saves_no_compute": true,
+  "label_is_analytical_mac_lower_bound": true,
+  "no_wall_clock_claim": true
+ },
+ "all_pass": true
+}

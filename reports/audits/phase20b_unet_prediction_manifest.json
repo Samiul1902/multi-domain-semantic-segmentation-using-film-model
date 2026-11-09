@@ -1,0 +1,40 @@
+{
+  "artifact": "phase20b_prediction_manifest",
+  "phase": 20,
+  "subphase": "20B",
+  "model_key": "unet",
+  "experiment_id": "phase20b_shared_unet_fourdomain_seed42_clean_v3",
+  "scope": "VAL only; TEST never read",
+  "n_predictions": 808,
+  "per_domain_counts": {
+    "BUSI": 84,
+    "ISIC": 357,
+    "KUB": 280,
+    "KVASIR": 87
+  },
+  "storage": {
+    "format": "npz (compressed)",
+    "prob_dtype": "float16",
+    "pred_dtype": "uint8",
+    "prob_semantics": "sigmoid probability of foreground, [0,1]",
+    "pred_semantics": "binary at threshold 0.5"
+  },
+  "binding": {
+    "checkpoint_path": "checkpoints/phase20b_shared_unet_fourdomain_seed42_clean_v3/best.pt",
+    "checkpoint_sha256": "62fde8f4b0de50803e510c609f4cb943b7d72bd1ab7a5b1ff1534b38a76a5634",
+    "checkpoint_epoch": 74,
+    "threshold": 0.5,
+    "input_channel_policy": "RGB_3CH",
+    "input_resolution": 512,
+    "preprocessing_contract": "phase19_preprocessing_contract_v1",
+    "evaluation_contract": "phase19_evaluation_contract_v1",
+    "manifest_version": "phase4_v3"
+  },
+  "gt_reference_scheme": "native mask path + sha256 of the native mask file bytes",
+  "manifest_csv": "reports/tables/phase20b_unet_prediction_manifest.csv",
+  "manifest_csv_sha256": "51d196c168a04bf1baabf8c6a539b680d7898ac4b7db03ef7a0961e8fbb5a057",
+  "per_image_table": "reports/tables/phase20b_unet_per_image_val_metrics.csv",
+  "per_image_table_sha256": "f1766a434c2f1d2bd74402d97213cb85f7fbd95c037092f4593fa060bca89ae3",
+  "prediction_root": "reports/predictions/phase20b_shared_unet_fourdomain_seed42_clean_v3/val",
+  "allows_future_phases_to_avoid_replay": true
+}

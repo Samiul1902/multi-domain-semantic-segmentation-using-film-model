@@ -1,0 +1,150 @@
+{
+ "artifact": "phase35_synthetic_smoke_provenance_v1_0d",
+ "phase": 35,
+ "section": "\u00a7V",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase35_interpretability_v1_0d",
+ "authority_shas": {
+  "phase35_gradcam_rank_repair_terminal_v1_0d.json": "8af9bcaff95b4cf5ac91f482810e7267816b9c649e321d917188f3dbe204f799",
+  "phase35_gradcam_rank_repair_final_check_v1_0d.json": "0f4cd1a77bb4204f5fdc9429edc53c20bac9e187d14e7772dea94d5a717e62d6",
+  "phase35_preexecution_source_freeze_v1_0d.json": "d349dccfa949ab9e31ff24e49377e6fb237b6f787846c3820c8dff1c211b5b53",
+  "phase35_execution_eligibility_adjudication_v1_0d.json": "0bed46a1c1e3c7f87759d5bb67ef0c02af42f32ad11f55bbda66a114babe3f70",
+  "phase35_execution_source_static_preflight_v1_0d.json": "6d1438e139436cef7c08c9eca52d5a4f068f1412c4e45f22c60cdb4d90783cb3",
+  "phase35_gradcam_target_rank_unit_v1_0d.json": "66a16c411b30852e32701f424384b925b42ab074bf2c199521f422f5b5e58933"
+ },
+ "source_shas": {
+  "scripts/analysis/phase35_interpretability_execution_v1_0d.py": "cccc109ade27eb5ad7883912004c1e911e9e253a659146f3d64820af92244056",
+  "scripts/analysis/phase35_execution_preflight_v1_0d.py": "07cdab4b4eeb2051c2007ff5bdfaf3dba8b91c6e510b4a11979c0def53bbf356",
+  "scripts/analysis/phase35_gradcam_target_rank_unit_v1_0d.py": "6c3896b01e60c5e8361d0af9d98ebd29c5b592a906257c487c6c9140242ec19f",
+  "scripts/analysis/phase35_interpretability_common_v1_0b.py": "9963215e1431e968e11bacbcd917d96a8a985a7181000258b90f458ff0a778ac",
+  "src/models/film/global_medfilm.py": "a04ff3e61b4d900ff47c2f390da4a999e73bd6047b28a19e41b05115e431d11f",
+  "scripts/analysis/train_phase25d_router.py": "fc7c1bdf263ae4551dcb8f170d3203adb8540fbc189846265b74f6eca1541e91",
+  "src/analysis/multidomain_harmonization.py": "3f009d994ed24d9c2edf8e48646e93700ab4e54dea786fb4bd03180c825cbf92"
+ },
+ "environment": {
+  "gpu": "NVIDIA GeForce RTX 3060 Ti",
+  "compute_capability": "8.6",
+  "vram_bytes": 8589279232,
+  "python": "3.11.9",
+  "torch": "2.6.0+cu124",
+  "cuda_runtime": "12.4",
+  "cudnn": 90100,
+  "driver_version": "596.36"
+ },
+ "checkpoint_shas": {
+  "G": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+  "B_phi": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b"
+ },
+ "seed_and_input_definitions": {
+  "smoke_seed": 42,
+  "image_shape": [
+   1,
+   3,
+   512,
+   512
+  ],
+  "image_dtype": "float32",
+  "image_device": "cuda",
+  "task_id": [
+   0
+  ],
+  "task_id_dtype": "int64",
+  "generator": "torch.Generator(device='cuda').manual_seed(42)",
+  "router_raw_shape": [
+   4,
+   202
+  ],
+  "router_raw_dtype": "float32",
+  "router_task_ids": [
+   0,
+   1,
+   2,
+   3
+  ],
+  "router_task_id_dtype": "int64"
+ },
+ "rank2_target_mask_definition": {
+  "rank": 2,
+  "shape": [
+   512,
+   512
+  ],
+  "dtype": "bool",
+  "geometry": "rows 192:320, columns 192:320 True; all other positions False",
+  "name": "SMOKE_SYNTHETIC_TARGET_MASK_RANK2"
+ },
+ "target_helper_identity": "gradcam_target_scalar_rank_safe (phase35_interpretability_execution_v1_0d)",
+ "gradcam_contexts": {
+  "model_eval": true,
+  "input_dtype": "float32",
+  "torch_enable_grad": true,
+  "inference_mode_disabled": true,
+  "cuda_autocast_enabled": true,
+  "autocast_dtype": "float16",
+  "no_grad_around_forward": false,
+  "layers": [
+   "bridge",
+   "decoder1"
+  ]
+ },
+ "router_normalization_authority": {
+  "schema": "reports/tables/phase25b_feature_schema.csv",
+  "schema_sha256": "da76aa34f14006146f46ca799f173378274d8c9d0792dc18edb30711a2486dd4",
+  "normalization": "reports/tables/phase25d_final_normalization_stats.csv",
+  "normalization_sha256": "ba37742e96610ec5e46fb47c093bf71ae1afd85b2a0db9696b612c873a4ba1fb"
+ },
+ "forward_autograd_counters": {
+  "G_model_constructions": 1,
+  "B_phi_model_constructions": 1,
+  "checkpoint_deserializations": 2,
+  "strict_loads": 2,
+  "G_synthetic_forwards": 1,
+  "B_phi_synthetic_forwards": 1,
+  "total_model_forwards": 2,
+  "G_gradcam_autograd_calls": 1,
+  "router_numeric_input_autograd_calls": 1,
+  "total_autograd_calls": 2,
+  "synthetic_CAM_maps": 2,
+  "synthetic_router_attribution_rows": 4,
+  "synthetic_smoke_target_masks": 1,
+  "R_psi_model_constructions": 0,
+  "R_psi_checkpoint_loads": 0,
+  "R_psi_forwards": 0,
+  "S_omega_model_constructions": 0,
+  "S_omega_checkpoint_loads": 0,
+  "S_omega_forwards": 0,
+  "optimizer_constructions": 0,
+  "optimizer_step_calls": 0,
+  "training_backward_calls": 0,
+  "parameter_mutations": 0
+ },
+ "R_psi_zero_counters": {
+  "construction": 0,
+  "checkpoint_loads": 0,
+  "forwards": 0
+ },
+ "S_omega_zero_counters": {
+  "construction": 0,
+  "checkpoint_loads": 0,
+  "forwards": 0
+ },
+ "protected_data_counters": {
+  "raw_VAL_image_reads": 0,
+  "real_persisted_VAL_probability_reads": 0,
+  "VAL_GT_reads": 0,
+  "router_feature_cache_rows_read": 0,
+  "ROUTER_HOLDOUT_reads": 0,
+  "TEST_reads": 0,
+  "TRAIN_raw_reads": 0,
+  "scientific_outputs": 0
+ },
+ "parameter_immutability_result": {
+  "MODEL_PARAMETERS_UNCHANGED": true,
+  "parameter_mutations": 0,
+  "optimizer_constructions": 0,
+  "optimizer_step_calls": 0,
+  "training_backward_calls": 0
+ },
+ "generated_utc": "2026-10-04T16:15:29+00:00",
+ "all_pass": true
+}

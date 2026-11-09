@@ -1,0 +1,180 @@
+{
+  "timestamp": "2026-09-25T00:10:56Z",
+  "phase": 14,
+  "part": "3 \u2014 Frozen Full Validation Diagnostic Evaluation (clean-v3)",
+  "population": {
+    "view_type": "FULL_FIELD",
+    "val_samples": 103,
+    "authoritative_components": 152,
+    "size_strata": {
+      "TINY": 72,
+      "MEDIUM": 36,
+      "SMALL": 28,
+      "LARGE": 16
+    },
+    "hard_tiny_denominator": 15,
+    "global_empty_denominator": 5
+  },
+  "checkpoints": {
+    "global_unetpp": {
+      "path": "D:\\Softfors\\jup\\checkpoints\\phase10_kub_unetpp_seed42_512_clean_v3\\best.pt",
+      "sha256": "ec7eb13f32e43af27eab7fc617bd1a2a8fcce1d6651a1b4a3653f3e4d1283269"
+    },
+    "regional_unet": {
+      "path": "D:\\Softfors\\jup\\checkpoints\\phase14_kub_refiner_unet_a3_256_seed42_clean_v3\\best.pt",
+      "sha256": "2e09e3a9c39c731687db1a9fef0c80881ed6235e4cda070bb4b8b382caa45daa",
+      "epoch": 56
+    },
+    "stage4d_localizer": {
+      "path": "D:\\Softfors\\jup\\checkpoints\\phase13b_kub_localizer_r512_h128_sigmaeq075_centernetfocal_seed42_clean_v3\\best.pt",
+      "sha256": "7673c34a2f2c86eca2e45c1bc6abe77842d17cd09f122f2da0f2d414ca492273",
+      "config": {
+        "threshold": 0.1,
+        "margin": 0.2,
+        "top_k": 5,
+        "nms_iou": 0.3
+      }
+    }
+  },
+  "frozen_references": {
+    "Dg": 0.6359172411726776,
+    "Tg": 0.7916666666666666
+  },
+  "mode_summaries": [
+    {
+      "mode": "GLOBAL_ONLY",
+      "mean_dice": 0.6359172411726776,
+      "median_dice": 0.7456556082282435,
+      "overall_recall90": 0.8223684210526315,
+      "tiny_recall90": 0.7916666666666666,
+      "small_recall90": 0.8214285714285714,
+      "medium_recall90": 0.8611111111111112,
+      "large_recall90": 0.875,
+      "overall_detected_count": 125,
+      "tiny_detected_count": 57,
+      "small_detected_count": 23,
+      "medium_detected_count": 31,
+      "large_detected_count": 14,
+      "hard_tiny_recovered": 0,
+      "hard_tiny_total": 15,
+      "global_empty_recovered": 0,
+      "global_empty_total": 5,
+      "mean_fp_components_per_image": 0.4854368932038835,
+      "zero_foreground_images": 5,
+      "mean_proposals_per_image": 0.0,
+      "median_proposals_per_image": 0.0,
+      "zero_proposal_images": 103,
+      "multi_proposal_images": 0,
+      "mean_roi_area_fraction": 0.0,
+      "median_roi_area_fraction": 0.0,
+      "p90_roi_area_fraction": 0.0,
+      "p95_roi_area_fraction": 0.0,
+      "max_roi_area_fraction": 0.0
+    },
+    {
+      "mode": "ORACLE_REGIONAL",
+      "mean_dice": 0.8024158112932394,
+      "median_dice": 0.8343285329606096,
+      "overall_recall90": 1.0,
+      "tiny_recall90": 1.0,
+      "small_recall90": 1.0,
+      "medium_recall90": 1.0,
+      "large_recall90": 1.0,
+      "overall_detected_count": 152,
+      "tiny_detected_count": 72,
+      "small_detected_count": 28,
+      "medium_detected_count": 36,
+      "large_detected_count": 16,
+      "hard_tiny_recovered": 15,
+      "hard_tiny_total": 15,
+      "global_empty_recovered": 5,
+      "global_empty_total": 5,
+      "mean_fp_components_per_image": 0.6310679611650486,
+      "zero_foreground_images": 0,
+      "mean_proposals_per_image": 1.4757281553398058,
+      "median_proposals_per_image": 1.0,
+      "zero_proposal_images": 0,
+      "multi_proposal_images": 49,
+      "mean_roi_area_fraction": 0.003432653361730738,
+      "median_roi_area_fraction": 0.0009240044487847222,
+      "p90_roi_area_fraction": 0.004690348436646654,
+      "p95_roi_area_fraction": 0.012287964080996352,
+      "max_roi_area_fraction": 0.08260166497878087
+    },
+    {
+      "mode": "PREDICTED_REGIONAL",
+      "mean_dice": 0.41853090628184875,
+      "median_dice": 0.3706720977703552,
+      "overall_recall90": 0.875,
+      "tiny_recall90": 0.7916666666666666,
+      "small_recall90": 0.8928571428571429,
+      "medium_recall90": 1.0,
+      "large_recall90": 0.9375,
+      "overall_detected_count": 133,
+      "tiny_detected_count": 57,
+      "small_detected_count": 25,
+      "medium_detected_count": 36,
+      "large_detected_count": 15,
+      "hard_tiny_recovered": 0,
+      "hard_tiny_total": 15,
+      "global_empty_recovered": 1,
+      "global_empty_total": 5,
+      "mean_fp_components_per_image": 7.776699029126213,
+      "zero_foreground_images": 0,
+      "mean_proposals_per_image": 4.990291262135922,
+      "median_proposals_per_image": 5.0,
+      "zero_proposal_images": 0,
+      "multi_proposal_images": 103,
+      "mean_roi_area_fraction": 0.004936816448172459,
+      "median_roi_area_fraction": 0.0036375257703993055,
+      "p90_roi_area_fraction": 0.009344660032907697,
+      "p95_roi_area_fraction": 0.011603883342978395,
+      "max_roi_area_fraction": 0.021221396363811727
+    }
+  ],
+  "diagnostic_contrasts": {
+    "Tg": 0.7916666666666666,
+    "To": 1.0,
+    "Tp": 0.7916666666666666,
+    "Dg": 0.6359172411726776,
+    "Do": 0.8024158112932394,
+    "Dp": 0.41853090628184875,
+    "G": 0.20833333333333337,
+    "R": 0.0,
+    "R_string": "0.000000"
+  },
+  "gates": {
+    "step_1": {
+      "name": "Refiner Potential",
+      "condition": "G >= 0.05 AND Do >= 0.632776",
+      "pass": true,
+      "G": 0.20833333333333337,
+      "Do": 0.8024158112932394
+    },
+    "step_2": {
+      "name": "Proposal Retention",
+      "condition": "R >= 0.50 (if G > 0)",
+      "status": "FAIL",
+      "pass": false,
+      "R": 0.0
+    },
+    "step_3": {
+      "name": "Practical Net Benefit",
+      "condition": "Tp >= 0.780822 AND Dp >= 0.632776 AND Hard-Tiny >= 2/15 AND Global-Empty >= 1/5",
+      "pass": false,
+      "Tp": 0.7916666666666666,
+      "Dp": 0.41853090628184875,
+      "hard_tiny_recovered": 0,
+      "global_empty_recovered": 1
+    }
+  },
+  "final_classification": "DIAGNOSTIC_PROPOSAL_BOTTLENECK",
+  "phase15_status": "NOT_AUTHORIZED",
+  "governance_locks": {
+    "test_split_reads": 0,
+    "test_metrics": "NONE",
+    "external_data_used": false,
+    "experiment_a_modified": false,
+    "training_executed": false
+  }
+}

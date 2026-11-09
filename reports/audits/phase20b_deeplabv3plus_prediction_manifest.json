@@ -1,0 +1,40 @@
+{
+  "artifact": "phase20b_prediction_manifest",
+  "phase": 20,
+  "subphase": "20B",
+  "model_key": "deeplabv3plus",
+  "experiment_id": "phase20b_shared_deeplabv3plus_fourdomain_seed42_clean_v3",
+  "scope": "VAL only; TEST never read",
+  "n_predictions": 808,
+  "per_domain_counts": {
+    "BUSI": 84,
+    "ISIC": 357,
+    "KUB": 280,
+    "KVASIR": 87
+  },
+  "storage": {
+    "format": "npz (compressed)",
+    "prob_dtype": "float16",
+    "pred_dtype": "uint8",
+    "prob_semantics": "sigmoid probability of foreground, [0,1]",
+    "pred_semantics": "binary at threshold 0.5"
+  },
+  "binding": {
+    "checkpoint_path": "checkpoints/phase20b_shared_deeplabv3plus_fourdomain_seed42_clean_v3/best.pt",
+    "checkpoint_sha256": "0bd9548f141174f05f842d2015dceda6db4587921d241590b63e9ae0099d3ff8",
+    "checkpoint_epoch": 57,
+    "threshold": 0.5,
+    "input_channel_policy": "RGB_3CH",
+    "input_resolution": 512,
+    "preprocessing_contract": "phase19_preprocessing_contract_v1",
+    "evaluation_contract": "phase19_evaluation_contract_v1",
+    "manifest_version": "phase4_v3"
+  },
+  "gt_reference_scheme": "native mask path + sha256 of the native mask file bytes",
+  "manifest_csv": "reports/tables/phase20b_deeplabv3plus_prediction_manifest.csv",
+  "manifest_csv_sha256": "545627567a23c62e5a8d4d4c1622a5ff0b58567d865057935b612b9614be9879",
+  "per_image_table": "reports/tables/phase20b_deeplabv3plus_per_image_val_metrics.csv",
+  "per_image_table_sha256": "c2e7a7d841a15dd05071b05ae63fe61f33ab31d2709b049be591d5b5450b3ca8",
+  "prediction_root": "reports/predictions/phase20b_shared_deeplabv3plus_fourdomain_seed42_clean_v3/val",
+  "allows_future_phases_to_avoid_replay": true
+}

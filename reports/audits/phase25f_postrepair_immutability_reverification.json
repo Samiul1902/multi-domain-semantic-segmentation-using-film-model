@@ -1,0 +1,65 @@
+{
+ "artifact": "phase25f_postrepair_immutability_reverification",
+ "phase": "25F",
+ "classification": "NOTEBOOK_AND_EVIDENCE_PRESENTATION_REPAIR_ONLY",
+ "headline": {
+  "notebook_new": {
+   "path": "notebooks/phasewise/phase_25f_post_safety/phase25f_post_safety_execution.ipynb",
+   "expected": "1ba9c08bee97e95926994b11268017e8d6b45150929ebe6edfca4dfe95715c90",
+   "actual": "1ba9c08bee97e95926994b11268017e8d6b45150929ebe6edfca4dfe95715c90",
+   "match": true
+  },
+  "notebook_archive_old": {
+   "path": "reports/audits/phase25f_post_safety_execution_pre_compliance_repair.ipynb",
+   "expected": "d40120ab35956335e884f2b71398a4a6727e3ca3b50be788fd1d86f33e948908",
+   "actual": "d40120ab35956335e884f2b71398a4a6727e3ca3b50be788fd1d86f33e948908",
+   "match": true
+  },
+  "final_checkpoint": {
+   "path": "checkpoints/phase25f_barr_post_safety_v1_0_seed42/final/final.pt",
+   "expected": "eee9b97b9921e53fc07eac9281dce64ba518c6e1659916b97b0b3bec21ec6d2e",
+   "actual": "eee9b97b9921e53fc07eac9281dce64ba518c6e1659916b97b0b3bec21ec6d2e",
+   "match": true
+  },
+  "oof_predictions": {
+   "path": "data_cache/phase25f_barr_post_safety_v1_0/phase25f_oof_safety_predictions.csv",
+   "expected": "a9f63edd6d58a9a1d78a052a3e4539c6e0dd4d68bfb1c09c4c36789c441ebdee",
+   "actual": "a9f63edd6d58a9a1d78a052a3e4539c6e0dd4d68bfb1c09c4c36789c441ebdee",
+   "match": true
+  },
+  "c9_manifest": {
+   "path": "reports/tables/phase25f_c9_decision_manifest.csv",
+   "expected": "cde91c474bf19bb36368357ce4b38dd1cc7dad1b37d900fcec7cde6b9e72dbd1",
+   "actual": "cde91c474bf19bb36368357ce4b38dd1cc7dad1b37d900fcec7cde6b9e72dbd1",
+   "match": true
+  },
+  "final_freeze": {
+   "path": "reports/audits/phase25f_final_freeze.json",
+   "expected": "383280b9bbd015b8f85b962a453d7a14b40dea424b55b2fe3189d6bac127bb1c",
+   "actual": "383280b9bbd015b8f85b962a453d7a14b40dea424b55b2fe3189d6bac127bb1c",
+   "match": true
+  }
+ },
+ "bound_artifact_count": 136,
+ "missing_artifacts": [],
+ "drift": [],
+ "checks": {
+  "headline_all_match": true,
+  "zero_bound_artifact_drift": true,
+  "no_missing_artifacts": true,
+  "final_freeze_sha_unchanged": true,
+  "addendum_base_freeze_sha_matches": true,
+  "addendum_new_nb_sha_matches": true,
+  "addendum_science_changed_false": true,
+  "compliance_all_pass": true,
+  "terminal_exact": true,
+  "final_freeze_terminal_unchanged": true,
+  "phase25f_status_complete_canonical": true,
+  "phase25g_status_eligible_not_started": true,
+  "phase25g_not_started": true,
+  "router_holdout_reads_zero": true,
+  "val808_reads_zero": true,
+  "test_reads_zero": true
+ },
+ "all_pass": true
+}

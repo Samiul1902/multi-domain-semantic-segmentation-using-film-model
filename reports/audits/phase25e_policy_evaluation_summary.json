@@ -1,0 +1,85 @@
+{
+  "classification": "PHASE25E_RESOURCE_GATE_POLICY_EVALUATION",
+  "specification_revision": "ra_medfilm_barr_resource_gate_v1_0",
+  "stage": "POLICY_EVALUATION",
+  "n_dev": 4957,
+  "n_eligible": 4957,
+  "policy_count": 45,
+  "bootstrap_replicates": 2000,
+  "c7_metrics_by_budget": {
+    "0.00": {
+      "K": 0,
+      "precision_at_budget": null,
+      "mean_true_delta_dice_among_routed": null,
+      "benefit_capture_at_budget": 0.0,
+      "harmful_activation_rate": null,
+      "routing_regret_vs_oracle": 0.0
+    },
+    "0.10": {
+      "K": 495,
+      "precision_at_budget": 0.34949494949494947,
+      "mean_true_delta_dice_among_routed": 0.013245026673574476,
+      "benefit_capture_at_budget": 0.38988277838234725,
+      "harmful_activation_rate": 0.12525252525252525,
+      "routing_regret_vs_oracle": 6.504894377431821
+    },
+    "0.25": {
+      "K": 1239,
+      "precision_at_budget": 0.1807909604519774,
+      "mean_true_delta_dice_among_routed": 0.007246629236765162,
+      "benefit_capture_at_budget": 0.6021987299959678,
+      "harmful_activation_rate": 0.10815173527037934,
+      "routing_regret_vs_oracle": 9.791927802531516
+    },
+    "0.50": {
+      "K": 2478,
+      "precision_at_budget": 0.09564164648910412,
+      "mean_true_delta_dice_among_routed": 0.00396115598746714,
+      "benefit_capture_at_budget": 0.7518656430435158,
+      "harmful_activation_rate": 0.07586763518966909,
+      "routing_regret_vs_oracle": 11.261164191999708
+    },
+    "1.00": {
+      "K": 4957,
+      "precision_at_budget": 0.056889247528747224,
+      "mean_true_delta_dice_among_routed": 0.0016580797893947926,
+      "benefit_capture_at_budget": 1.0,
+      "harmful_activation_rate": 0.06758119830542667,
+      "routing_regret_vs_oracle": -1.4210854715202004e-14
+    }
+  },
+  "oracle_metrics_by_budget": {
+    "0.00": {
+      "K": 0,
+      "precision_at_budget": null,
+      "mean_true_delta_dice_among_routed": null
+    },
+    "0.10": {
+      "K": 495,
+      "precision_at_budget": 0.5696969696969697,
+      "mean_true_delta_dice_among_routed": 0.026386227436062996
+    },
+    "0.25": {
+      "K": 1239,
+      "precision_at_budget": 0.22760290556900725,
+      "mean_true_delta_dice_among_routed": 0.015149718665765553
+    },
+    "0.50": {
+      "K": 2478,
+      "precision_at_budget": 0.11380145278450363,
+      "mean_true_delta_dice_among_routed": 0.008505612884964993
+    },
+    "1.00": {
+      "K": 4957,
+      "precision_at_budget": 0.056889247528747224,
+      "mean_true_delta_dice_among_routed": 0.0016580797893947926
+    }
+  },
+  "c7_c8_redundant": true,
+  "outcome_join_performed": true,
+  "router_holdout_reads": 0,
+  "VAL808_reads": 0,
+  "TEST_reads": 0,
+  "failures": [],
+  "all_pass": true
+}

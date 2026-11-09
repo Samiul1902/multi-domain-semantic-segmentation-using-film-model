@@ -1,0 +1,21 @@
+{
+  "artifact": "phase14_clean_v3_reference_procedure_freeze",
+  "status": "FROZEN_PROSPECTIVE_PROCEDURE",
+  "derive": {
+    "Tg_clean_v3": "GLOBAL_ONLY mode Tiny Recall@90 on the 103-image FULL_FIELD clean_v3 VAL population",
+    "Dg_clean_v3": "GLOBAL_ONLY mode mean Dice on the same 103-image FULL_FIELD clean_v3 VAL population"
+  },
+  "procedure": {
+    "checkpoint": "checkpoints/phase10_kub_unetpp_seed42_512_clean_v3/best.pt (sha ec7eb13f32e4...)",
+    "population": "103 FULL_FIELD KUB VAL images (phase4_v3); exact table reports/tables/kub_val_samples_sized_clean_v3.csv",
+    "preprocessing": "identical to v2-era: resize to 512, sigmoid, threshold 0.50, restore to native coordinates",
+    "metric_definitions": "dice_binary + object_metrics recall@90 (>=90% component-pixel coverage; >=1px overlap for detection); identical to v2",
+    "component_matching": "8-connected GT components via extract_gt_components; identical to v2",
+    "size_strata": "TINY/SMALL/MEDIUM/LARGE from reports/tables/kub_val_components_sized_clean_v3.csv",
+    "aggregation": "mean over population (Tiny Recall@90 = mean of per-TINY-component recall90_success)",
+    "NOT_used": "val_macro_dice = 0.7641601653354622 (all-view-types macro; NOT the FULL_FIELD mean-dice reference)"
+  },
+  "forbidden_before_freeze": "Inspecting Oracle/Predicted diagnostic results prior to deriving and freezing Tg/Dg",
+  "generation_rule": "Generate ONCE; write reports/audits/phase14_clean_v3_global_reference_freeze.json; thereafter FROZEN with no favorability-driven reruns.",
+  "governance_note": "Procedure frozen prospectively. The numeric Tg/Dg are written by the reference-generation run (\u00a76), NOT hardcoded here. The full-precision values and forward count are recorded then."
+}

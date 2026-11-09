@@ -1,0 +1,109 @@
+{
+ "artifact": "phase35_synthetic_smoke_provenance_v1_0h",
+ "section": "§Q",
+ "phase": 35,
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase35_interpretability_v1_0h",
+ "classification": "PRE_SCIENTIFIC_SYNTHETIC_NUMERICAL_INTERFACE_AND_FULL_COUNTER_CONTRACT_VALIDATION",
+ "not": "NOT_PHASE35_SCIENTIFIC_INTERPRETABILITY_RESULT",
+ "provenance": {
+  "execution_source_path": "scripts/analysis/phase35_interpretability_execution_v1_0h.py",
+  "execution_source_sha256": "48193f09672b047757e0eba9fa674df12c5b00a41629ba9671e48b50fe81ee81",
+  "execution_source_sha_expected": "48193f09672b047757e0eba9fa674df12c5b00a41629ba9671e48b50fe81ee81",
+  "execution_source_sha_match": true,
+  "mode": "smoke",
+  "gate_env": "PHASE35_SMOKE_EXECUTE=1",
+  "invocation_count": 1,
+  "retry_performed": false,
+  "exit_code": 0,
+  "stderr_bytes": 0,
+  "reconciled_freeze_authority_path": "reports/audits/phase35_preexecution_source_freeze_v1_0h1.json",
+  "reconciled_freeze_authority_sha256": "79a7ce549e7704ef3e8903265facc3d928c76c1c983fe722c88d50f6b6c119d2",
+  "reconciled_freeze_authority_expected": "79a7ce549e7704ef3e8903265facc3d928c76c1c983fe722c88d50f6b6c119d2",
+  "freeze_consistency_sha256": "310064b9e130d1f76e8c2e19b6e69f5381a82486b844598120ab15576b8db8dc",
+  "eligibility_sha256": "748c060b58954dcf24bf9dde17d6d3bbe3d2d5ec10ff64ccf09d262ff5cf2bf5",
+  "superseded_freeze_not_used_for_expected_table": true
+ },
+ "environment": {
+  "os": "Windows-10-10.0.26200-SP0",
+  "python": "3.11.9",
+  "torch": "2.6.0+cu124",
+  "cuda_runtime": "12.4",
+  "cuda_driver_version": "596.36",
+  "cudnn": 90100,
+  "cuda_available": true,
+  "gpu": "NVIDIA GeForce RTX 3060 Ti",
+  "cc": "8.6",
+  "vram_bytes": 8589279232,
+  "compatible": true
+ },
+ "checkpoint_identity": {
+  "G": {
+   "path": "checkpoints/phase21_global_medfilm_fourdomain_seed42_clean_v3/best.pt",
+   "expected_sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+   "observed_sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+   "match": true,
+   "deserialized_yet": false
+  },
+  "B_phi": {
+   "path": "checkpoints/phase25d_barr_benefit_router_v1_2_1_seed42/final/final.pt",
+   "expected_sha256": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+   "observed_sha256": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+   "match": true,
+   "deserialized_yet": false
+  },
+  "R_psi": {
+   "touched": false,
+   "constructions": 0,
+   "checkpoint_loads": 0,
+   "forwards": 0
+  },
+  "S_omega": {
+   "touched": false,
+   "constructions": 0,
+   "checkpoint_loads": 0,
+   "forwards": 0
+  }
+ },
+ "G_identity": {
+  "parameter_count": 3523001,
+  "strict_load_missing": [],
+  "strict_load_unexpected": []
+ },
+ "B_phi_identity": {
+  "parameter_count": 36801,
+  "task_embedding_shape": [
+   4,
+   16
+  ],
+  "strict_load_missing": [],
+  "strict_load_unexpected": []
+ },
+ "counter_ownership": {
+  "legacy_counter_owner_module": "phase35_interpretability_execution_v1_0c",
+  "legacy_store_is_v0c_store": true,
+  "router_writer_store_is_legacy_store": true,
+  "router_writer_store_identity_verified": true,
+  "router_reader_store_identity_verified": true,
+  "router_counter_writer_reader_same_object_or_explicit_delta_bridge": true,
+  "extension_owned_keys": [
+   "primary_synthetic_target_masks",
+   "actual_logits_empty_mask_helper_checks",
+   "additional_G_forwards_for_empty_mask",
+   "additional_autograd_calls_for_empty_mask"
+  ],
+  "legacy_key_count": 31,
+  "extension_key_count": 4,
+  "merged_key_count": 35,
+  "ownership_disjoint": true
+ },
+ "superseded_histories_preserved": {
+  "v1_0f_blocked_smoke": true,
+  "v1_0g_blocked_smoke": true,
+  "v1_0f_retry_performed": false,
+  "v1_0g_retry_performed": false,
+  "v1_0h_stale_freeze_preserved_not_overwritten": true
+ },
+ "generated_utc": "2026-10-05T13:16:09Z",
+ "all_pass": true
+}

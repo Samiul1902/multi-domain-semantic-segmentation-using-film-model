@@ -1,0 +1,40 @@
+{
+ "artifact": "phase25g_holdout_reservation_for_phase30",
+ "phase": "25G",
+ "classification": "PHASE25G_PRE_EXECUTION_INTEGRATED_EVALUATION_SPECIFICATION_AUDIT",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_integrated_evaluation_v1_0",
+ "governance_only": true,
+ "no_execution": true,
+ "stage": "HOLDOUT_LOCK",
+ "ROUTER_HOLDOUT_status": "RESERVED_UNOPENED_FOR_PHASE30",
+ "before_phase30": {
+  "image_reads": 0,
+  "mask_reads": 0,
+  "feature_extraction": 0,
+  "global_inference": 0,
+  "router_inference": 0,
+  "refiner_inference": 0,
+  "somega_inference": 0,
+  "outcome_reads": 0,
+  "metric_calculations": 0,
+  "visualization": 0
+ },
+ "phase_gates": {
+  "Phase25G": "MUST NOT OPEN ROUTER_HOLDOUT",
+  "Phase26": "MUST NOT OPEN ROUTER_HOLDOUT",
+  "Phase27": "MUST NOT OPEN ROUTER_HOLDOUT",
+  "Phase28": "MUST NOT OPEN ROUTER_HOLDOUT",
+  "Phase29": "MUST NOT OPEN ROUTER_HOLDOUT",
+  "Phase30": "first eligible owner; subject to a separate pre-execution one-shot protocol freeze"
+ },
+ "one_shot": true,
+ "holdout_opened": false,
+ "checks": {
+  "status_reserved_unopened": true,
+  "all_pre_phase30_counters_zero": true,
+  "phase30_first_eligible": true,
+  "phase25g_must_not_open": true
+ },
+ "all_pass": true
+}

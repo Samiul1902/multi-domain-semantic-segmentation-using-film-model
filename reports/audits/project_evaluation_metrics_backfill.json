@@ -1,0 +1,142 @@
+{
+  "artifact": "project_evaluation_metrics_backfill",
+  "status": "PROJECT_EVALUATION_METRICS_BACKFILL_COMPLETE__DESCRIPTIVE_ONLY",
+  "generated_utc": "2026-09-25T15:07:15Z",
+  "purpose": "Generate missing DESCRIPTIVE pixel/boundary/calibration metrics that were never persisted.",
+  "safe_replay_rule": {
+    "1_checkpoints_frozen_and_sha_verified": true,
+    "2_evaluator_preprocessing_frozen": true,
+    "2_note": "Reuses the frozen modules verbatim: _preprocess_image, _restore_original_coordinates, generate_predicted_rois, crop_and_preprocess, restore_regional_probability, aggregate_and_fuse.",
+    "3_no_test_access": true,
+    "4_no_threshold_search": true,
+    "5_strictly_descriptive_missing_metrics": true,
+    "6_existing_primary_metrics_reproduced_first": true,
+    "7_does_not_change_frozen_decisions": true,
+    "8_explicitly_logged": true,
+    "verdict": "REPLAY_PERFORMED_LAWFULLY"
+  },
+  "checkpoint_shas": {
+    "global": "ec7eb13f32e43af27eab7fc617bd1a2a8fcce1d6651a1b4a3653f3e4d1283269",
+    "p13b": "7673c34a2f2c86eca2e45c1bc6abe77842d17cd09f122f2da0f2d414ca492273",
+    "refiner": "2e09e3a9c39c731687db1a9fef0c80881ed6235e4cda070bb4b8b382caa45daa",
+    "h3": "d875cac7d09bbc3d32232191f0af2c138e5a74682fc63e4d6e01f30345eca75e"
+  },
+  "population": {
+    "view_type": "FULL_FIELD",
+    "images": 103,
+    "components": 152,
+    "size_strata": {
+      "TINY": 72,
+      "SMALL": 28,
+      "MEDIUM": 36,
+      "LARGE": 16
+    }
+  },
+  "frozen_proposal_policy": {
+    "threshold": 0.1,
+    "margin": 0.2,
+    "top_k": 5,
+    "nms_iou": 0.3
+  },
+  "fusion_threshold": 0.5,
+  "global_threshold": 0.5,
+  "boundary_units": "pixel",
+  "pixel_spacing_available": false,
+  "pixel_spacing_note": "No spacing/calibration metadata exists in the repository; all boundary distances are in PIXELS, never mm.",
+  "surface_tolerance_px": 2.0,
+  "boundary_crop_margin_px": 256,
+  "calibration_bins": 256,
+  "calibration_quantization_note": "The frozen restore path quantizes probabilities to 1/255 levels; calibration metrics are computed on those quantized maps.",
+  "reproduction_gate": {
+    "GLOBAL": {
+      "replayed_mean_dice": 0.6359172411726776,
+      "frozen_reference": 0.6359172411726776,
+      "match": true,
+      "replayed_tiny_detection": 0.7916666666666666,
+      "frozen_tiny_detection": 0.7916666666666666,
+      "tiny_match": true
+    },
+    "ORACLE_REGIONAL": {
+      "replayed_mean_dice": 0.8024158112932394,
+      "frozen_reference": 0.8024158112932394,
+      "match": true,
+      "replayed_tiny_detection": 1.0,
+      "frozen_tiny_detection": 1.0,
+      "tiny_match": true
+    },
+    "PREDICTED_REGIONAL": {
+      "replayed_mean_dice": 0.41853090628184875,
+      "frozen_reference": 0.4185309062818487,
+      "match": true,
+      "replayed_tiny_detection": 0.7916666666666666,
+      "frozen_tiny_detection": 0.7916666666666666,
+      "tiny_match": true
+    },
+    "H3_DOWNSTREAM": {
+      "replayed_mean_dice": 0.38862753520437243,
+      "frozen_reference": 0.38862753520437243,
+      "match": true,
+      "replayed_tiny_detection": 0.8194444444444444,
+      "frozen_tiny_detection": 0.8194444444444444,
+      "tiny_match": true
+    }
+  },
+  "metric_labels": {
+    "all_new_metrics": "DESCRIPTIVE_SUPPORTING_METRIC__NOT_PROSPECTIVE_GATE",
+    "h3_specific": "DESCRIPTIVE_SUPPORTING_METRIC__NOT_H3_GATE",
+    "paired_statistics": "DESCRIPTIVE_POST_HOC_STATISTICAL_SUPPORT"
+  },
+  "bootstrap": {
+    "n_boot": 2000,
+    "seed": 42,
+    "ci_method": "percentile",
+    "resampling_unit": "image (per-image metric); component tables use component rows"
+  },
+  "artifacts": {
+    "per_image_metrics": {
+      "path": "reports/tables/project_evaluation_per_image_metrics.csv",
+      "rows": 412,
+      "sha256": "4823df7e08fb87d068d2984b3170ca7cab6a6f12d04b24a70d2ceabce628c334"
+    },
+    "per_component_metrics": {
+      "path": "reports/tables/project_evaluation_per_component_metrics.csv",
+      "rows": 608,
+      "sha256": "b5eee45e5d17b0322cbd846413ad638b4029e202963e5ab564b08beede765343"
+    },
+    "segmentation_summary": {
+      "path": "reports/tables/project_evaluation_segmentation_summary.csv",
+      "rows": 4,
+      "sha256": "d7cda533740600f4c2f1fd013f6f8c045317adbe140032effb2284f64a1ebece"
+    },
+    "component_recall_by_size": {
+      "path": "reports/tables/project_evaluation_component_recall_by_size.csv",
+      "rows": 16,
+      "sha256": "a09045c1b6c06597f06bda269dc083003b09c52ba8e8fd9ae3974084905f3a45"
+    },
+    "coverage_sensitivity": {
+      "path": "reports/tables/project_evaluation_coverage_sensitivity.csv",
+      "rows": 4,
+      "sha256": "9f7cc73d038614fe7c48be91cdf32bf83eb360a056f96c85bffb9e4ec932f120"
+    },
+    "paired_comparisons": {
+      "path": "reports/tables/project_evaluation_paired_comparisons.csv",
+      "rows": 4,
+      "sha256": "d21254793973b1ed18fb1b15245697a7970e02af4228de87e41793ce2ae4fc8b"
+    },
+    "confusion_matrices": {
+      "path": "reports/tables/project_evaluation_confusion_matrices.json",
+      "sha256": "64c32e8e858eac8dd7f3688880f0dc2fd1a200287a43ec285054804c6e900626"
+    }
+  },
+  "governance": {
+    "test_reads": 0,
+    "external_test_reads": 0,
+    "training_executed": false,
+    "thresholds_changed": false,
+    "checkpoints_changed": false,
+    "frozen_gates_changed": false,
+    "phase15_status": "NOT_STARTED_AND_NOT_AUTHORIZED"
+  },
+  "runtime_seconds": 518.9934055805206,
+  "device": "cuda"
+}

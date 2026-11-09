@@ -1,0 +1,96 @@
+{
+  "artifact": "phase22_global_failure_atlas",
+  "phase": 22,
+  "source": "reports/tables/phase21_per_image_val_metrics.csv (808 VAL rows)",
+  "new_inference_performed": false,
+  "training_jobs_started": 0,
+  "n_samples": 808,
+  "taxonomy": {
+    "order_of_assignment": [
+      "EMPTY_CASE_BOTH",
+      "EMPTY_CASE_FALSE_POS",
+      "EMPTY_CASE_MISSED",
+      "OVER_SEGMENTATION",
+      "UNDER_SEGMENTATION",
+      "MIXED_BOUNDARY",
+      "GOOD"
+    ],
+    "declared_thresholds": {
+      "good_precision": 0.6,
+      "good_recall": 0.6,
+      "imbalance_precision": 0.8,
+      "imbalance_recall": 0.8
+    },
+    "declared_prospectively": true,
+    "used_for_model_selection": false,
+    "note": "policy definitions for describing failure shape; they are not scientific constants and were not tuned on any outcome"
+  },
+  "overall": {
+    "mean_dice": 0.8387815425121063,
+    "median_dice": 0.8900949538512055,
+    "p05_dice": 0.5149409807368478,
+    "min_dice": 2.272520679933023e-12,
+    "n_dice_below_0p5": 38,
+    "n_dice_below_0p7": 102,
+    "mean_iou": 0.7505972529213987,
+    "mean_precision": 0.8498984245015596,
+    "mean_recall": 0.8596991104701931,
+    "n_empty_case": 0,
+    "n_gt_empty": 0,
+    "n_pred_empty": 0,
+    "total_foreground_pixel_error": 5144149
+  },
+  "taxonomy_counts": {
+    "EMPTY_CASE_BOTH": 0,
+    "EMPTY_CASE_FALSE_POS": 0,
+    "EMPTY_CASE_MISSED": 0,
+    "OVER_SEGMENTATION": 43,
+    "UNDER_SEGMENTATION": 32,
+    "MIXED_BOUNDARY": 25,
+    "GOOD": 708
+  },
+  "taxonomy_pct": {
+    "EMPTY_CASE_BOTH": 0.0,
+    "EMPTY_CASE_FALSE_POS": 0.0,
+    "EMPTY_CASE_MISSED": 0.0,
+    "OVER_SEGMENTATION": 5.3218,
+    "UNDER_SEGMENTATION": 3.9604,
+    "MIXED_BOUNDARY": 3.0941,
+    "GOOD": 87.6238
+  },
+  "boundary_metrics": {
+    "subset_size": 571,
+    "selection": "per domain: 10 worst-Dice cases + a deterministic random_state=42 sample of half the remaining budget",
+    "per_domain": {
+      "ISIC": {
+        "n_valid": 200,
+        "mean_hd95": 36.254750708904155,
+        "median_hd95": 20.951045235696107
+      },
+      "BUSI": {
+        "n_valid": 84,
+        "mean_hd95": 31.94990403875395,
+        "median_hd95": 17.567006853083164
+      },
+      "KVASIR": {
+        "n_valid": 87,
+        "mean_hd95": 67.04784998480893,
+        "median_hd95": 37.09444455156675
+      },
+      "KUB": {
+        "n_valid": 200,
+        "mean_hd95": 59.35902913367539,
+        "median_hd95": 39.51428960993526
+      }
+    },
+    "note": "HD95 is descriptive on this subset; it is not a full-population mean."
+  },
+  "tables": {
+    "per_image": "reports/tables/phase22_global_failure_atlas.csv",
+    "by_domain": "reports/tables/phase22_failure_by_domain.csv",
+    "taxonomy": "reports/tables/phase22_failure_taxonomy.csv",
+    "worst_cases": "reports/tables/phase22_worst_cases_per_domain.csv",
+    "boundary_subset": "reports/tables/phase22_boundary_metrics_subset.csv"
+  },
+  "test_reads": 0
+}

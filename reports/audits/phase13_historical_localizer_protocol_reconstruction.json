@@ -1,0 +1,153 @@
+{
+  "phase": "13",
+  "part": "1A",
+  "document_type": "HISTORICAL_LOCALIZER_PROTOCOL_RECONSTRUCTION",
+  "status": "COMPLETE",
+  "date": "2026-09-21",
+  "historical_manifest_version": "phase4_v2",
+  "historical_taxonomy": "kub_size_v1",
+  "historical_population": {
+    "TRAIN_FULL_FIELD": {
+      "images": 771,
+      "components": 1162
+    },
+    "VAL_FULL_FIELD": {
+      "images": 106,
+      "components": 156,
+      "strata": {
+        "TINY": 73,
+        "SMALL": 29,
+        "MEDIUM": 36,
+        "LARGE": 18
+      }
+    },
+    "source": "reports/tables/kub_val_components_sized.csv"
+  },
+  "reconstruction_method": "source-precedence ladder (executing source > persisted audit/table > executed notebook > frozen protocol/README > prose)",
+  "source_inventory_rows": 43,
+  "stage_inventory_rows": 8,
+  "protocol_matrix_rows": 37,
+  "authoritative_stage": {
+    "experiment_id": "phase13b_kub_localizer_r512_h128_sigmaeq075_centernetfocal_seed42_v1",
+    "best_epoch": 73,
+    "total_epochs": 88,
+    "checkpoint_sha256": "ece906df6c73f2e93c3f873661490bf3cb1a6b82be2d2d93b58c25bc967cbace",
+    "selected_configuration": {
+      "threshold": 0.1,
+      "margin": 0.2,
+      "top_k": 5,
+      "nms_iou": 0.3
+    },
+    "tiny_recall90": 0.726027397260274,
+    "overall_recall90": 0.6410256410256411,
+    "hard_tiny_recovered90": 7,
+    "global_empty_images_covered90": 3,
+    "mean_roi_area_fraction": 0.005898906179948982,
+    "mean_proposals_per_image": 4.660377358490566
+  },
+  "handoff_claims": [
+    {
+      "claim": "Stage-4D best.pt SHA-256",
+      "expected": "ece906df6c73f2e93c3f873661490bf3cb1a6b82be2d2d93b58c25bc967cbace",
+      "verdict": "VERIFIED"
+    },
+    {
+      "claim": "Stage-4D best_epoch",
+      "expected": "73",
+      "verdict": "VERIFIED"
+    },
+    {
+      "claim": "Stage-4D total_epochs",
+      "expected": "88",
+      "verdict": "VERIFIED"
+    },
+    {
+      "claim": "selected threshold",
+      "expected": "0.1",
+      "verdict": "VERIFIED"
+    },
+    {
+      "claim": "selected margin",
+      "expected": "0.2",
+      "verdict": "VERIFIED"
+    },
+    {
+      "claim": "selected top_k",
+      "expected": "5",
+      "verdict": "VERIFIED"
+    },
+    {
+      "claim": "selected nms_iou",
+      "expected": "0.3",
+      "verdict": "VERIFIED"
+    },
+    {
+      "claim": "Tiny recall90 numerator/denominator",
+      "expected": "53/73",
+      "verdict": "VERIFIED"
+    },
+    {
+      "claim": "Overall recall90 numerator/denominator",
+      "expected": "100/156",
+      "verdict": "VERIFIED"
+    }
+  ],
+  "findings": {
+    "HISTORICAL_TRAIN_INFERENCE_PROPOSAL_DISTRIBUTION_MISMATCH": {
+      "status": "VERIFIED",
+      "evidence": [
+        "reports/audits/phase14_diagnostic_protocol_amendment.md §6 (A3 policy): 1162 GT-derived base crops + 2324 perturbed crops + 1542 background negatives = 5028 crops/epoch",
+        "reports/audits/phase14_part1_implementation_preflight.md: dataset composition 5028 (1162 / 2324 / 1542)",
+        "reports/audits/phase14_diagnostic_protocol_amendment.md §3 Condition C: the same refiner is evaluated on frozen Stage-4D PREDICTED proposals"
+      ],
+      "statement": "The historical Phase-14 regional refiner was TRAINED on GT-derived base crops, GT-perturbed crops and random background negatives, but EVALUATED on Stage-4D predicted proposals. The training and inference proposal distributions therefore did not match.",
+      "consequence": "The Phase-14 Step-3 failure (D_p 0.383905 vs D_g 0.652776, driven by 5.43 FP components/image vs 0.37 baseline) is at least partly attributable to this distribution gap and is NOT a clean measurement of predicted-proposal regional refinement.",
+      "clean_v3_action": "Any clean-v3 regional integration must draw training crops from predicted proposals (with an explicit negative-sampling policy) or explicitly declare and measure the gap."
+    },
+    "LATENT_INFERENCE_HEATMAP_RESOLUTION_OMISSION": {
+      "status": "VERIFIED_DEFECT",
+      "evidence": "src/inference/learned_roi.py predict_localizer calls create_model(\"kub_localizer\", in_channels=1, out_channels=1, base_channels=16) with no heatmap_resolution argument",
+      "statement": "The Stage-4D checkpoint was trained with a 128x128 output heatmap (AvgPool2d(4,4)). The inference helper would construct the 512-output variant. Because the logit downsample is parameter-free and the head is a 1x1 convolution, the state dict still loads, so the mismatch is silent and the helper would return a 512-space heatmap.",
+      "impact": "Proposal geometry (factor = 512 // heatmap_resolution) would be wrong for the Stage-4D checkpoint. The Phase-13B notebooks used the dataset/evaluator path, so the historical frozen numbers are not affected.",
+      "clean_v3_action": "Pass heatmap_resolution explicitly (or freeze an output-resolution contract) and add a regression test."
+    },
+    "STAGE4D_DESIGN_AUDIT_LABEL_AMBIGUITY": {
+      "status": "AMBIGUOUS",
+      "evidence": "reports/audits/phase13b_stage4d_design_audit.json keys the Stage-4C numbers under \"clean_v3_results\" while the localizer VAL denominator was 156 (v2)",
+      "statement": "The label most plausibly refers to the clean-v3 ARCHITECTURE (KUBLocalizer), not the clean-v3 MANIFEST.",
+      "clean_v3_action": "Supervisor confirmation before any reuse of the Stage-4C numbers."
+    },
+    "MISSING_VAL_SEARCH_EPOCH_079": {
+      "status": "VERIFIED",
+      "evidence": "experiments/phase13b_kub_localizer_r512_h128_sigmaeq075_centernetfocal_seed42_v1/ contains 87 val_search files; val_search_epoch079.csv is absent while history.csv has 88 contiguous epochs",
+      "statement": "Only the per-epoch proposal-grid dump for epoch 079 is missing; the epoch history itself is complete.",
+      "clean_v3_action": "None required for Phase 13; noted for provenance."
+    }
+  },
+  "phase14_gate_arithmetic_reference": {
+    "T_g": 0.780822,
+    "T_o": 1.0,
+    "T_p": 0.890411,
+    "G": 0.219178,
+    "R": 0.5,
+    "D_g": 0.652776,
+    "D_o": 0.815175,
+    "D_p": 0.383905
+  },
+  "phase14_classification": "DIAGNOSTIC_PRACTICAL_SIGNAL_INSUFFICIENT",
+  "governance": {
+    "test_reads": 0,
+    "test_metrics": "NONE",
+    "training_performed": false,
+    "inference_performed": false,
+    "proposals_generated": false,
+    "checkpoints_modified": false,
+    "history_modified": false,
+    "configs_modified": false,
+    "manifests_modified": false,
+    "experiment_a_modified": false,
+    "phase14_executed": false,
+    "external_data_used": false
+  },
+  "conclusion": "Historical Phase-13/13B localizer protocol reconstructed and frozen. The historical population is phase4_v2 (106/156). Four findings recorded, including a VERIFIED train/inference proposal-distribution mismatch in the historical Phase-14 refiner."
+}

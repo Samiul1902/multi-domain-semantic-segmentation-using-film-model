@@ -1,0 +1,42 @@
+{
+  "artifact": "PHASE13_PART1B_PRE_REPAIR_PRIMARY_SELECTION_VALIDATION",
+  "created_utc": "2026-09-21T14:25:30.574004Z",
+  "experiment_id": "phase13b_kub_localizer_r512_h128_sigmaeq075_centernetfocal_seed42_clean_v3",
+  "conclusion": "EPOCHS_1_28_PRIMARY_CHECKPOINT_SELECTION_VALID",
+  "reason": "all 28 completed epochs emitted zero proposals, therefore frozen primary coverage terms were invariant to the component-mask implementation bug",
+  "secondary_diagnostic_history": "NOT_CANONICAL_PRE_R2B",
+  "history_rows_disposition": "PRESERVED_UNMODIFIED",
+  "history_rows": 28,
+  "epochs_contiguous": true,
+  "best_epoch_through_28": 27,
+  "bad_epochs_after_28": 1,
+  "pre_stop_evidence_unchanged": true,
+  "gate": {
+    "history_rows": 28,
+    "epochs_contiguous_1_to_N": true,
+    "epochs_with_any_nonzero_primary": [],
+    "nonzero_primary_offenders": [],
+    "all_epochs_zero_proposals": true,
+    "latest_pt_epoch": 28,
+    "best_pt_epoch": 27,
+    "persisted_global_step": 5404,
+    "epoch28_bad_epochs": 1,
+    "epoch28_best_epoch_so_far": 27,
+    "replayed_best_epoch": 27,
+    "replayed_final_bad_epochs": 1,
+    "replayed_best_score": [
+      0.0,
+      0.0,
+      -0.0,
+      -2.188045249535487
+    ],
+    "replay_mismatches": [],
+    "PRE_REPAIR_PRIMARY_SELECTION_VALIDATED": true,
+    "primary_validity_reason": "ZERO_PROPOSALS_MAKES_COVERAGE_INVARIANT"
+  },
+  "disclaimer": "This does NOT claim the pre-repair evaluator was correct. It claims only that its defect could not alter the primary tuple while there were zero proposals.",
+  "no_training": true,
+  "no_model": true,
+  "no_cuda": true,
+  "test_reads": 0
+}

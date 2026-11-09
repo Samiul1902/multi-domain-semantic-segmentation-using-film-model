@@ -1,0 +1,51 @@
+{
+ "artifact": "phase25g_required_audits_checklist",
+ "phase": "25G",
+ "classification": "PHASE25G_PRE_EXECUTION_INTEGRATED_EVALUATION_SPECIFICATION_AUDIT",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_integrated_evaluation_v1_0",
+ "governance_only": true,
+ "no_execution": true,
+ "stage": "REQUIRED_AUDITS",
+ "required": [
+  "phase25g_spec_entry_gate",
+  "phase25g_authoritative_source_binding",
+  "phase25g_role_contract",
+  "phase25g_router_holdout_ownership_audit",
+  "phase25g_a7_a8_controlled_comparison_contract",
+  "phase25g_dev_reconstruction_contract",
+  "phase25g_h3_adjudication_contract",
+  "phase25g_preservation_contract_binding",
+  "phase25g_statistics_contract",
+  "phase25g_compute_contract",
+  "phase25g_val808_ownership_audit",
+  "phase25g_scope_guard",
+  "phase25g_test_lock_audit",
+  "phase25g_specification_final_check"
+ ],
+ "present": {
+  "phase25g_spec_entry_gate": true,
+  "phase25g_authoritative_source_binding": true,
+  "phase25g_role_contract": true,
+  "phase25g_router_holdout_ownership_audit": true,
+  "phase25g_a7_a8_controlled_comparison_contract": true,
+  "phase25g_dev_reconstruction_contract": true,
+  "phase25g_h3_adjudication_contract": true,
+  "phase25g_preservation_contract_binding": true,
+  "phase25g_statistics_contract": true,
+  "phase25g_compute_contract": true,
+  "phase25g_val808_ownership_audit": true,
+  "phase25g_scope_guard": true,
+  "phase25g_test_lock_audit": true,
+  "phase25g_specification_final_check": true
+ },
+ "missing": [],
+ "holdout_execution_contract_required": false,
+ "holdout_execution_contract_created": false,
+ "holdout_execution_contract_rule": "created only if ownership resolves to Phase25G",
+ "checks": {
+  "all_required_present": true,
+  "holdout_contract_rule_respected": true
+ },
+ "all_pass": true
+}

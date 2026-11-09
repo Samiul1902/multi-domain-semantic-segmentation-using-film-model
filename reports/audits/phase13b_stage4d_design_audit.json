@@ -1,0 +1,44 @@
+{
+  "phase": "13B",
+  "subphase": "Stage-4D Design Audit",
+  "clean_v3_results": {
+    "best_epoch": 97,
+    "tiny_recall90": 0.465753,
+    "overall_recall90": 0.282051,
+    "hard_tiny": "1/16",
+    "global_empty": "1/7",
+    "roi_area": 0.000863,
+    "proposals_per_image": 3.179245,
+    "mean_max_heatmap": 0.100299
+  },
+  "failure_diagnosis": {
+    "cause": "Dense background dominance (262,144 pixels) suppressed positive probability peaks. The mean max probability remained clustered near initialization (0.10). Useful detections were highly dependent on thresholding minute noise around the prior.",
+    "spatial_mapping_error": false,
+    "proposal_degeneracy": false
+  },
+  "geometry_audit": {
+    "512": { "pixels": 262144, "pixels_per_positive": 173935, "collisions": 0 },
+    "256": { "pixels": 65536, "pixels_per_positive": 43483, "collisions": 0, "equivalent_sigma": 1.5, "quantization_512": 1 },
+    "128": { "pixels": 16384, "pixels_per_positive": 10870, "collisions": 0, "equivalent_sigma": 0.75, "quantization_512": 2 },
+    "64": { "pixels": 4096, "pixels_per_positive": 2717, "collisions": 4, "equivalent_sigma": 0.375, "quantization_512": 4 }
+  },
+  "recommended_design": {
+    "decision": "FINAL_BOUNDED_REDESIGN_JUSTIFIED",
+    "output_resolution": 128,
+    "architecture_change": "Decoder Tapping (Output from stride-4 d3 block)",
+    "target_sigma": 0.75,
+    "frozen_variables": ["CenterNet focal loss", "p=0.10 initialization", "AdamW 1e-4 optimizer", "Cosine scheduling", "AMP", "Max epochs 100", "Seed 42", "Proposal selection grid", "Authoritative 512-space component targets"],
+    "single_scientific_variable": "Output resolution reduction (Stride 4 / 128x128)",
+    "pre_registered_id": "phase13b_kub_localizer_r512_s3_centernetfocal_stride4_seed42_v1",
+    "estimated_runtime": "< 1 hour",
+    "continuation_gate": {
+      "Tiny_recall90": ">= 0.50",
+      "Overall_recall90": ">= 0.50",
+      "Hard_Tiny_recovered90": ">= 2/16",
+      "ROI_area": "<= 0.10",
+      "Proposals_per_image": "<= 5"
+    },
+    "stopping_policy": "If this final bounded redesign fails the pilot gate, CLOSE_LEARNED_LOCALIZER_BRANCH."
+  }
+}
+

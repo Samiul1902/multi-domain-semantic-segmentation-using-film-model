@@ -1,0 +1,197 @@
+{
+  "artifact": "POST_PHASE13_H2C_B1_IMPLEMENTATION_DIFF",
+  "status": "PASS",
+  "created_utc": "2026-09-23T16:42:00Z",
+  "purpose": "Prove the H2C executable runner/config differ from the accepted H2A lineage ONLY by the frozen localizer head (architecture + its initialization) and non-scientific provenance/reporting.",
+  "runner": {
+    "h2a": "scripts/training/post_phase13_h2a_localizer_replay.py",
+    "h2a_sha": "fead851788c69a4220de4cbcb0b3761651d60e5c568176206879198667cd60c1",
+    "h2c": "scripts/training/post_phase13_h2c_localizer_train.py",
+    "h2c_sha": "666aabcb58572f6c0892302cb6ff1617b3b19f642dc37a688c84943cc1c66e70"
+  },
+  "config": {
+    "h2a": "configs/phase13_clean_v3/post_phase13_h2a_kub_localizer_r512_h128_sigmaeq075_centernetfocal_deploymentbalance_seed42_clean_v3.yaml",
+    "h2a_sha": "b4813b42e49b8cbe1e9265fd5b2b6ac9213a609d3216e21cd966d385c1927ae4",
+    "h2c": "configs/phase13_clean_v3/post_phase13_h2c_kub_localizer_spatialhead3x3relu_r512_h128_sigmaeq075_centernetfocal_deploymentbalance_seed42_clean_v3.yaml",
+    "h2c_sha": "b96223eecade2938a9ca9733ddcfba1bbd2f7cd34155ab4d48a1fba51f09bc33"
+  },
+  "runner_changed_lines": 128,
+  "config_changed_lines": 30,
+  "the_only_scientific_change": {
+    "change_id": "CHANGE_H2C_001",
+    "axis": "LOCALIZER_PREDICTION_HEAD_ARCHITECTURE",
+    "h2a_head": "Conv2d(16 -> 1, kernel_size=1)",
+    "h2c_head": "Conv2d(16 -> 16, kernel_size=3, padding=1) + ReLU(inplace=False) + Conv2d(16 -> 1, kernel_size=1)",
+    "head_initialization_changed_vs_h2a": "YES_PART_OF_SAME_FROZEN_HEAD_AXIS",
+    "post_freeze_initialization_change": "NO",
+    "h2c_head_parameter_contract": {
+      "old_head_params": 17,
+      "new_head_params": 2337,
+      "asserted_in_runner": true
+    }
+  },
+  "allowed_non_scientific_differences": [
+    "experiment id",
+    "protocol binding (H2A -> H2C frozen protocol)",
+    "H2C provenance constants",
+    "audit basenames (experiment-specific)",
+    "head diagnostic logging",
+    "reviewer metadata"
+  ],
+  "unchanged_machinery_mechanical_probe": {
+    "loss_construction": {
+      "h2a_count": 3,
+      "h2c_count": 3,
+      "unchanged": true
+    },
+    "loss_alpha_2": {
+      "h2a_count": 1,
+      "h2c_count": 1,
+      "unchanged": true
+    },
+    "optimizer": {
+      "h2a_count": 1,
+      "h2c_count": 1,
+      "unchanged": true
+    },
+    "scheduler": {
+      "h2a_count": 1,
+      "h2c_count": 1,
+      "unchanged": true
+    },
+    "amp_autocast": {
+      "h2a_count": 2,
+      "h2c_count": 2,
+      "unchanged": true
+    },
+    "grad_scaler": {
+      "h2a_count": 1,
+      "h2c_count": 1,
+      "unchanged": true
+    },
+    "zero_grad": {
+      "h2a_count": 2,
+      "h2c_count": 2,
+      "unchanged": true
+    },
+    "backward": {
+      "h2a_count": 1,
+      "h2c_count": 1,
+      "unchanged": true
+    },
+    "optimizer_step": {
+      "h2a_count": 1,
+      "h2c_count": 1,
+      "unchanged": true
+    },
+    "scheduler_step": {
+      "h2a_count": 1,
+      "h2c_count": 1,
+      "unchanged": true
+    },
+    "dataloader_shuffle_true": {
+      "h2a_count": 1,
+      "h2c_count": 1,
+      "unchanged": true
+    },
+    "dataloader_shuffle_false": {
+      "h2a_count": 1,
+      "h2c_count": 1,
+      "unchanged": true
+    },
+    "train_generator": {
+      "h2a_count": 1,
+      "h2c_count": 1,
+      "unchanged": true
+    },
+    "val_generator": {
+      "h2a_count": 1,
+      "h2c_count": 1,
+      "unchanged": true
+    },
+    "worker_init_fn": {
+      "h2a_count": 2,
+      "h2c_count": 2,
+      "unchanged": true
+    },
+    "batch_size_from_config": {
+      "h2a_count": 0,
+      "h2c_count": 0,
+      "unchanged": true
+    },
+    "selection_call": {
+      "h2a_count": 1,
+      "h2c_count": 1,
+      "unchanged": true
+    },
+    "proposal_threshold": {
+      "h2a_count": 1,
+      "h2c_count": 1,
+      "unchanged": true
+    },
+    "proposal_margin": {
+      "h2a_count": 1,
+      "h2c_count": 1,
+      "unchanged": true
+    },
+    "proposal_top_k": {
+      "h2a_count": 1,
+      "h2c_count": 1,
+      "unchanged": true
+    },
+    "proposal_nms": {
+      "h2a_count": 1,
+      "h2c_count": 1,
+      "unchanged": true
+    },
+    "patience": {
+      "h2a_count": 1,
+      "h2c_count": 1,
+      "unchanged": true
+    }
+  },
+  "all_probes_unchanged": true,
+  "gradient_and_optimisation_unchanged": {
+    "loss": "UNCHANGED (H2A CenterNetFocalLoss retained; H2B soft-target NOT used)",
+    "target_construction": "UNCHANGED",
+    "optimizer": "UNCHANGED",
+    "learning_rate": "UNCHANGED",
+    "weight_decay": "UNCHANGED",
+    "scheduler": "UNCHANGED",
+    "amp": "UNCHANGED",
+    "batch": "UNCHANGED",
+    "backward": "UNCHANGED",
+    "zero_grad": "UNCHANGED",
+    "scaler": "UNCHANGED",
+    "optimizer_step": "UNCHANGED",
+    "scheduler_step": "UNCHANGED",
+    "dataset_creation": "UNCHANGED",
+    "population": "UNCHANGED",
+    "preprocessing": "UNCHANGED",
+    "augmentation": "UNCHANGED",
+    "dataloader": "UNCHANGED",
+    "shuffle_generator": "UNCHANGED",
+    "workers": "UNCHANGED",
+    "seed": "UNCHANGED",
+    "checkpoint_selection": "UNCHANGED",
+    "early_stopping": "UNCHANGED",
+    "proposal_extraction": "UNCHANGED",
+    "proposal_threshold": "UNCHANGED",
+    "margin": "UNCHANGED",
+    "top_k": "UNCHANGED",
+    "nms": "UNCHANGED",
+    "backbone": "UNCHANGED (src/models/kub_localizer.py not modified)"
+  },
+  "backbone_module_untouched": {
+    "path": "src/models/kub_localizer.py",
+    "sha256": "b94e6068b60ba3f6f833745c19c2b58cb119312ad0fa642abbad85b92420af0c",
+    "modified_by_h2c": "NO"
+  },
+  "unexpected_material_difference": "NONE",
+  "check_required": "NO",
+  "counters": {
+    "cuda_requests": 0,
+    "training": 0,
+    "optimizer_steps": 0
+  }
+}

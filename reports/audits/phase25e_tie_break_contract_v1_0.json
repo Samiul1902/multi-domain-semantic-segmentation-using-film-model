@@ -1,0 +1,25 @@
+{
+  "classification": "PHASE25E_PRE_EXECUTION_RESOURCE_GATE_SPECIFICATION_FREEZE",
+  "specification_revision": "ra_medfilm_barr_resource_gate_v1_0",
+  "rank_rule": "routing_score DESCENDING, sample_id ASCENDING (case-sensitive ASCII identifiers)",
+  "selection": "first K_b eligible rows",
+  "outcome_tiebreak_forbidden": true,
+  "forbidden_tiebreaks": [
+    "delta_dice",
+    "gain_category",
+    "global_dice",
+    "candidate_dice",
+    "mask property",
+    "domain performance"
+  ],
+  "score_precision": "Exact rational arithmetic from persisted decimal score strings and exact integer MAC ratio; routing_score decimal is a display approximation. routing_score_exact is authoritative.",
+  "conceptual_rule": "U_hat_i > tau => EXECUTE else SKIP",
+  "exact_budget_membership_authority": "deterministic ranked top-K",
+  "tau_low": "score at rank K+1",
+  "tau_high": "score at rank K",
+  "untied_tau": "exact rational midpoint (tau_low + tau_high)/2, strictly between boundary scores",
+  "tied_boundary": "EXACT_BUDGET_REQUIRES_DETERMINISTIC_TIE_BREAK; tau null; scalar alone insufficient",
+  "budget_zero_sentinel": "EXECUTE_NONE",
+  "budget_one_sentinel": "EXECUTE_ALL_ELIGIBLE",
+  "tie_break_applied": "true for eligible rows in a score group of size >1; boundary_tied separately identifies a split tie group"
+}

@@ -1,0 +1,50 @@
+{
+  "artifact": "h3_downstream_metric_domain_correction",
+  "status": "H3_DOWNSTREAM_METRIC_DOMAIN_CORRECTED__FORMAL_ADJUDICATION_PENDING",
+  "task": "H3 METRIC-DOMAIN RECONCILIATION + FROZEN DOWNSTREAM EVALUATION + NOTEBOOK 06",
+  "nature": "ADDITIVE_METRIC_LAYER_CORRECTION__NO_NEW_INFERENCE__NO_PIPELINE_CHANGE",
+  "asrun_artifact": {
+    "path": "reports/audits/h3_downstream_evaluation_v1_asrun.json",
+    "sha256": "6acf4880c6b3aa180108083c1fd1efbecf7b414e1fe0105277970c50747a284d"
+  },
+  "authoritative_artifact": {
+    "path": "reports/audits/h3_downstream_evaluation.json",
+    "sha256": "9bfbf32f4ddaee7b3c34fadad22a6c09b1ce299349d5deaec74a75f0590cccb7"
+  },
+  "defect": {
+    "asrun_metric": ">=90% component-pixel coverage (strict)",
+    "frozen_metric": "component overlap >= 1 px (detection)",
+    "frozen_authority": "reports/audits/phase14_clean_v3_global_reference_freeze.json",
+    "consequence_in_asrun": "R_H3_asrun = -1.3999999999999995 (wrong domain)"
+  },
+  "corrected_formal": {
+    "TinyRecall_H3": 0.8194444444444444,
+    "Tg": 0.7916666666666666,
+    "G": 0.20833333333333337,
+    "R_H3": 0.13333333333333336,
+    "interpretation_band": "insufficient"
+  },
+  "descriptive_strict_sensitivity": {
+    "TinyRecall_H3_cov90": 0.5,
+    "R_H3_cov90": -1.3999999999999995,
+    "interpretation_band_cov90": "insufficient"
+  },
+  "supply_agreement": {
+    "recomputed_zero_proposal_gt": 26,
+    "recomputed_zero_proposal_tiny": 21,
+    "expected_zero_proposal_gt": 27,
+    "expected_zero_proposal_tiny": 22,
+    "deterministic_agreement": false,
+    "note": "Off-by-one TINY (GT bbox provenance); supply gates invalid for formal use and preserved unchanged."
+  },
+  "governance": {
+    "test_reads": 0,
+    "external_test_reads": 0,
+    "training_executed": false,
+    "inference_executed_by_correction": false,
+    "checkpoint_selection_changed": false,
+    "pipeline_changed": false,
+    "thresholds_changed": false,
+    "phase15_status": "NOT_STARTED_AND_NOT_AUTHORIZED"
+  }
+}

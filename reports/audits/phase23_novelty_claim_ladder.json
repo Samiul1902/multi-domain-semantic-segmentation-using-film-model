@@ -1,0 +1,45 @@
+{
+ "artifact": "phase23_novelty_claim_ladder",
+ "phase": 23,
+ "purpose": "determine the MAXIMUM DEFENSIBLE claim level for the candidate contribution, conservatively",
+ "levels": [
+  {
+   "level": 0,
+   "template": "We investigate ...",
+   "defensible_for_our_candidate": "YES",
+   "justification": "unconditionally safe; the audit itself is an investigation"
+  },
+  {
+   "level": 1,
+   "template": "We propose ...",
+   "defensible_for_our_candidate": "YES",
+   "justification": "safe for the SYSTEM as a proposal; proposing a combination of known components is a proposal, not a novelty claim"
+  },
+  {
+   "level": 2,
+   "template": "We introduce a novel ...",
+   "defensible_for_our_candidate": "QUALIFIED_YES",
+   "justification": "defensible ONLY if scoped to the specific unoccupied combination (a learned GT-free predictor of the PAIRED refinement gain used as a PRE-EXECUTION gate within shared multi-domain medical segmentation with preservation-fallback). The word 'novel' must not attach to the gate concept, the paired-gain target, multi-domain modelling, or resource awareness individually \u2014 each is occupied (see phase23_prior_art_matrix.csv)."
+  },
+  {
+   "level": 3,
+   "template": "To the best of our knowledge, we are the first to ...",
+   "defensible_for_our_candidate": "NO__NOT_SUPPORTED",
+   "justification": "NOT supported: (i) the mechanism is precedented in metareasoning (1991), cascades (2001/2021) and treatment-effect meta-learners (2019); (ii) the problem framing exists in segmentation (moon2024jfs, ICIP 2025); (iii) no legal/systematic search has been performed. 'First' cannot be asserted on a single-session index search."
+  }
+ ],
+ "recommended_maximum_level": 2,
+ "recommended_maximum_scope": "a novel UNIFIED SYSTEM: a pre-execution, GT-free, benefit-aware gate for an optional refinement in shared multi-domain medical segmentation, supervised by the paired refinement gain, with preservation-fallback",
+ "recommended_conservative_default": "Level 1 with a Level-2 sentence scoped strictly to the unoccupied combination",
+ "forbidden_phrasings": [
+  "first in the world",
+  "never done before",
+  "absolutely unique",
+  "first to predict refinement benefit in segmentation",
+  "novel value-of-computation framework",
+  "novel counterfactual benefit prediction"
+ ],
+ "reason_for_conservatism": "Falsification-first search surfaced a same-framing segmentation paper (JFS), a 1991 formalisation of value-of-computation, a 2021 cascade gating method with cost, and a 2019 paired-gain meta-learner framework. Any of these alone collapses a Level-3 claim.",
+ "test_reads": 0,
+ "generated_utc": "2026-09-29T13:54:24.931810+00:00"
+}

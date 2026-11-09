@@ -1,0 +1,162 @@
+{
+  "classification": "EXT03_SCIENTIFIC_ACCEPTANCE_AND_PROTOCOL_ADJUDICATION",
+  "schema_version": "v1.0",
+  "generated_local": "2026-10-26T21:20:00+06:00",
+  "mode": "STRICT_READ_ONLY",
+  "training_performed": false,
+  "inference_performed": false,
+  "source_modified": false,
+  "test_accessed": false,
+  "router_holdout_accessed": false,
+  "terminal_state": "EXT03_COMPLETE__PROTOCOL_DIVERGENT__AS08_PRIMARY_EVIDENCE_NOT_ESTABLISHED",
+
+  "authority_chain": {
+    "rank_A": {
+      "path": "reports/external_extension/ext02_1_baseline_training_protocol_freeze.json",
+      "sha256": "dcda271985127124a8eff8225befb28311c4a789a6fed48866f13e6ee208fb89",
+      "sha_verified_on_disk": true,
+      "binding": "recipe fields 'as frozen internal baseline authority'; ext03_may_not_tune=true"
+    },
+    "rank_B_configs": {
+      "configs/phase09_clean_v3/phase09_unet_baseline_clean_v3.yaml": "8a45458c7c5e34062214a741550a84ff9ab56e4ad9ceef81cbcf263052b5172a",
+      "configs/phase10_clean_v3/phase10_attention_unet_clean_v3.yaml": "70e08ad5b89461db0bb9cbb8e75da8bbc9ef357af36e5d70a3c4653818260c02",
+      "configs/phase10_clean_v3/phase10_unetpp_clean_v3.yaml": "e2788e504b09cd8544e45fb7aef4001b8363452963d7d793f693647b4df24f53",
+      "configs/phase10_clean_v3/phase10_deeplabv3plus_clean_v3.yaml": "a5220e3135618513a71e0094197b2cffe0aef9334f7d53e39642c7a00ddd5b57"
+    },
+    "rank_B_executed_historical_authority": {
+      "path": "scripts/training/train_phase10_baselines.py",
+      "evidence": {
+        "L46": "criterion = BCEDiceLoss(); optimizer = torch.optim.AdamW(model.parameters(), lr=1e-4, weight_decay=1e-4)",
+        "L89": "optimizer = torch.optim.AdamW(model.parameters(), lr=1e-4, weight_decay=1e-4)",
+        "augmentation": "src/data/transforms.py SegmentationTransform(train=True): mirror 0.5, rotate +-5deg, brightness +-0.1, contrast +-0.1"
+      }
+    },
+    "rank_D_resolved_protocol": {
+      "path": "reports/baselines/ext03_training_protocol_resolved.json",
+      "sha256": "1d456f9f8f3b666ba8d0b128e4a5336be6e59b7ef3a8c6855383102867eaf2e2",
+      "equals_stageb_training_protocol_sha": true,
+      "internally_contradictory": true,
+      "contradiction": {
+        "recipe.optimizer": "Adam (phase09/10 authority)  <-- FALSE",
+        "resolved_from_config.optimizer.name": "AdamW  <-- TRUE",
+        "recipe.loss": "as frozen phase09/10 authority  <-- FALSE (BCE != bce_dice)",
+        "resolved_from_config.loss.name": "bce_dice  <-- TRUE"
+      }
+    }
+  },
+
+  "harness_version_chain": [
+    {"sha256": "7c7287d73cfa30de3b81d64169d085a474b511132879e9e193f0986386d9c5e5", "role": "EXT-03R frozen harness", "recorded_in": "ext03r_run_harness_freeze.json", "ts": "2026-10-11T18:30Z"},
+    {"sha256": "bcdbada2becd23f915af7422a9e569942994951fb27c79d0212ad05818e67965", "role": "harness that actually executed the first runs", "recorded_in": "ext03_recovery_audit_v1.json + D97 runner_sha_before", "ts": "observed 2026-10-20T16:47"},
+    {"sha256": "46d5841dc58b102a6b336265e75b9bd65dab0701c4dae5a249435f2f302a3fd0", "role": "post-D97 persistence reorder", "recorded_in": "ext03_d97_resume_state_repair_v1.json", "ts": "2026-10-20/21"},
+    {"sha256": "91fc17338a76e997cf22f4860209b2a90aab66d139599ea6cd9ae1119abb67ae", "role": "post-D99 LR override + non-finite guard (current, 12437 B)", "recorded_in": "on disk", "ts": "2026-10-25"}
+  ],
+  "harness_findings": [
+    "F1.1 frozen harness 7c7287d7 never ran; transition 7c7287d7 -> bcdbada2 is undocumented",
+    "F1.2 Stage B prelaunch acceptance records no harness_sha; the executing harness is unbound at launch"
+  ],
+
+  "pretraining_gate": {
+    "path": "reports/baselines/ext03_pretraining_acceptance.json",
+    "all_pass": false,
+    "training_recipe_resolved": "PARTIAL",
+    "effective_batch_policy_resolved": "PENDING",
+    "decision": "EXT-03 CANNOT COMPLETE; STOP BEFORE FULL SCIENTIFIC TRAINING",
+    "overridden_by": "reports/baselines/ext03_stageb_prelaunch_acceptance.json (all_pass true, gate 'training protocol unchanged' PASS)"
+  },
+
+  "divergence_register": [
+    {"id": "D1", "field": "optimizer_class", "frozen": "AdamW", "executed": "Adam", "source": "scripts/training/run_ext03_baseline_matrix.py:L137", "authorized_pre_observation": false, "scientific_consequence": "weight decay applied inside adaptive denominator rather than decoupled", "affects_comparability": true, "as08_primary_eligible": false},
+    {"id": "D2", "field": "learning_rate", "frozen": "1e-4", "executed": "1e-3 (unet, attention_unet, unetpp, deeplabv3plus); 1e-4 (segformer_b0)", "source": "L50 LR=1e-3; L54 LR_OVERRIDE; L136-137", "authorized_pre_observation": false, "scientific_consequence": "10x step size under AMP; direct cause of D99 NaN divergence and plausible cause of unet_seed123 collapse", "affects_comparability": true, "as08_primary_eligible": false},
+    {"id": "D3", "field": "loss", "frozen": "bce_dice 0.5/0.5 eps 1e-6", "executed": "binary_cross_entropy_with_logits only", "source": "L190", "authorized_pre_observation": false, "scientific_consequence": "no explicit overlap pressure; enables background-collapse solutions", "affects_comparability": true, "as08_primary_eligible": false},
+    {"id": "D4", "field": "augmentation", "frozen": "mirror 0.5, rot +-5, brightness +-0.1, contrast +-0.1", "executed": "none", "source": "L84-98 load_pair()", "authorized_pre_observation": false, "scientific_consequence": "reduced regularization; inflated seed variance", "affects_comparability": true, "as08_primary_eligible": false},
+    {"id": "D5", "field": "input_channels", "frozen": "1", "executed": "3", "source": "L43-45 KW in_channels=3", "authorized_pre_observation": "PARTIAL (documented as '1->3' in resolved protocol, but contradicts configs and absent from param verification)", "scientific_consequence": "+576 params (UNets), +6272 (DeepLabV3+)", "affects_comparability": "moderate - fair internally, differs from phase09/10", "as08_primary_eligible": false},
+    {"id": "D6", "field": "segformer_b0_learning_rate", "frozen": "1e-4", "executed": "1e-4", "source": "L54, L136-141", "authorized_pre_observation": false, "authorization_class": "POST_HOC_AFTER_OUTCOME_OBSERVATION (NaN at ep5, 2026-10-25)", "scientific_consequence": "corrective toward authority; restores one frozen value while D1-D4 remain", "affects_comparability": "improves vs authority; incomparable with other 4 families on LR", "as08_primary_eligible": false}
+  ],
+  "gate_vacuity_finding": "ext03_stageb_prelaunch_acceptance gate 'training protocol unchanged = PASS' compared the harness to ext03_training_protocol_resolved.json (training_protocol_sha 1d456f9f verified equal to that file's SHA-256) and never compared the resolved protocol to the phase09/10 authority. The gate is self-referential.",
+
+  "run_verification": {
+    "n_runs": 15,
+    "checkpoint_sha_match": 15,
+    "checkpoint_internal_epoch_matches_registry": 15,
+    "checkpoint_internal_macro_matches_registry": 15,
+    "stopping_identity_stop_eq_min_100_best_plus_15": "15/15 EXACT",
+    "independent_best_recomputation_from_logs": {"available": 9, "matched": 9, "unavailable_runs": ["unet_seed42", "unet_seed123", "unet_seed3407", "attention_unet_seed42", "attention_unet_seed123", "attention_unet_seed3407"]},
+    "resume_counts": {"unetpp_seed42": 4, "unet_seed3407": 2, "attention_unet_seed42": 1, "unetpp_seed123": 1, "deeplabv3plus_seed3407": 1},
+    "d97_exposed_runs": ["unet_seed3407", "attention_unet_seed42", "unetpp_seed42"],
+    "d97_error_direction": "CONSERVATIVE_UNDERSTATES_ONLY_NEVER_INFLATES",
+    "retried_for_better_score": 0,
+    "unet_seed123_classification": "LEGITIMATE_EARLY_STOP_NOT_A_DEFECT (best 0.3606 @ep16, patience stop ep31, resume_count 0)",
+    "d99_final_tally": "153 epochs across 3 seeds, zero non-finite losses after repair"
+  },
+
+  "evidence_completeness": {
+    "15_complete_runs": "PASS",
+    "15_matching_checkpoints": "PASS",
+    "three_seeds_per_architecture": "PASS",
+    "batch_size_4": "PARTIAL - implemented L49, not recorded per run, harness changed 3x",
+    "source_config_provenance": "MISSING - training_config_sha and model_source_sha null for all 15; no Stage B harness SHA; log_path dangling 15/15",
+    "train5832_val808_population_identity": "PASS - manifests 28702fc3 / 082c80b2 match frozen",
+    "no_test_router_holdout_leakage": "PASS_STATIC_ONLY - source reads only train.csv/val.csv; claimed counters are hard-coded literals",
+    "per_seed_metrics": "PASS",
+    "per_domain_metrics": "MISSING - eval_val computes dom (L122) and returns it (L125); run_one binds at L205 and never persists it",
+    "dice": "PASS",
+    "iou_precision_recall_hd95": "MISSING",
+    "training_curves": "MISSING_6_OF_15 (unet x3, attention_unet x3 have no epoch log); PARTIAL_9_OF_15 (console text only, no machine-readable artifact); unetpp_seed42 missing ep1-29",
+    "selected_checkpoint_histories": "MISSING",
+    "parameter_counts": "PARTIAL - runtime guard PARAMS correct and matches actual; ext03r_param_verification.json records the 1-channel configuration and its all_match=true is vacuous",
+    "runtime_compute_records": "PARTIAL - start/completion only; no per-epoch seconds; no GPU memory despite harness-freeze promise"
+  },
+
+  "parameter_count_reconciliation": {
+    "note": "model sources are byte-identical to frozen identities; discrepancy is entirely D5 (1->3 channels)",
+    "unet": {"actual": 7763041, "runtime_guard": 7763041, "frozen_verify": 7762465, "delta": 576},
+    "attention_unet": {"actual": 7851285, "runtime_guard": 7851285, "frozen_verify": 7850709, "delta": 576},
+    "unetpp": {"actual": 9159681, "runtime_guard": 9159681, "frozen_verify": 9159105, "delta": 576},
+    "deeplabv3plus": {"actual": 40347041, "runtime_guard": 40347041, "frozen_verify": 40340769, "delta": 6272},
+    "segformer_b0": {"actual": 3714401, "runtime_guard": 3714401, "frozen_verify": 3714401, "delta": 0}
+  },
+
+  "provenance_defects": [
+    "P1 last_resume_time written every epoch (L220-223) and therefore equals completion_time for all 15 runs; actual resume instants unrecoverable",
+    "P2 lr_used / lr_source present only for the 3 segformer runs (added by the D99 repair 2026-10-25); 12/15 CNN runs have no recorded LR",
+    "P3 no post-run leak counters; test_reads=0 claims rest on static source inspection only"
+  ],
+
+  "generator_audit": {
+    "json_artifact": {"path": "reports/baselines/ext03_matrix_completion_summary_v1_0.json", "sha256": "8e35499a1ba6ff94c22bee0cfeff275bfd635fce721858f2937d32b96c7f46a1", "bytes": 11433},
+    "csv_artifact": {"path": "reports/tables/ext03_matrix_final_family_summary_v1_0.csv", "sha256": "6d1a49104b1950fb1b1f1b753a5e34d92363e06808387724f04b83d7e20e33f1", "bytes": 479},
+    "aggregation_arithmetic": "PASS_EXACT (recomputed independently at 1e-12 tolerance, 5 families x 5 statistics, ranking and gap correct)",
+    "checks": {
+      "sd_convention_declared": "DEFECT - statistics.stdev is sample (n-1), undeclared; UNet 0.157195 sample vs 0.128349 population",
+      "sha_guard_when_digest_absent": "DEFECT_FAILS_OPEN - 'if recorded and actual != recorded' short-circuits when checkpoint_sha is absent",
+      "csv_write_once": "DEFECT_NOT_ENFORCED - L163 write_text overwrites",
+      "json_write_once": "PASS_VERIFIED - re-run raises FileExistsError at L143; CSV untouched, SHA re-confirmed",
+      "failure_mode_quality": "DEFECT_MINOR - uncaught traceback instead of clean fail-closed diagnostic",
+      "hard_coded_utc": "DEFECT_CONFIRMED - L109 literal '2026-10-26T20:52:00Z'",
+      "access_safeguard_evidence": "DEFECT_UNSUPPORTED - L113-114 test_accessed/router_holdout_accessed are hard-coded literals with no counter",
+      "self_binding_to_inputs": "DEFECT - no registry_sha, no generator_sha",
+      "selection_integrity_checked": "DEFECT - generator never checks best_epoch<=current_epoch, the stopping identity, or seed-set completeness"
+    },
+    "recommended_repair": "v1.1 with fail-closed digest guard, clock-derived UTC, write-once CSV, declared sd convention, input/generator SHA binding, execution-derived access evidence, enforced stopping identity; v1.0 MOVED to reports/audits/_v1_00_*superseded*, never deleted"
+  },
+
+  "consequences": [
+    "EXT-03 is a valid common-protocol architecture ranking (all 5 families shared the reduced recipe)",
+    "EXT-03 is NOT AS-08 primary evidence for protocol-faithful baselines; the sentence 'baselines trained under the same protocol as the proposed model' is false",
+    "The 0.1694 gap to GlobalMedFiLM 0.83508 is uninterpretable as a FiLM effect; it bundles 5 protocol divergences + architecture + task conditioning",
+    "unet_seed123 collapse is the natural experiment bce_dice was designed to prevent and is evidence FOR the frozen loss",
+    "No re-run is permitted to fix a low score (RETRY_FOR_BETTER_SCORE is a forbidden state)"
+  ],
+
+  "open_items": [
+    "O1 prospective protocol-faithful baseline study (requires explicit authorization; not an EXT-03 retry)",
+    "O2 FiLM-off control (architecture-identical, zero-init frozen film_layers)",
+    "O3 recover or declare-lost epoch logs for unet x3 and attention_unet x3",
+    "O4 correct the false 'Adam (phase09/10 authority)' field in ext03_training_protocol_resolved.json (supersede, do not edit in place)",
+    "O5 correct ext03r_param_verification.json (all_match=true refers to a 1-channel configuration that never executed)",
+    "O6 record a Stage B harness SHA retroactively and document 7c7287d7 -> bcdbada2",
+    "O7 repair the completion-summary generator to v1.1",
+    "O8 hardware: CMOS battery + UPS (three host terminations in four days, RTC 5.19 days behind)"
+  ]
+}

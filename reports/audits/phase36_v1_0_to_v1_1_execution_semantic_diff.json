@@ -1,0 +1,48 @@
+{
+ "artifact": "phase36_v1_0_to_v1_1_execution_semantic_diff",
+ "section": "§T",
+ "phase": 36,
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase36_robustness_v1_1",
+ "v1_0_execution_source_sha256": "9032ae17ce17c2dddb0a2280520d10f4ff5cf673c526ef14cae5a34d84a7fc02",
+ "v1_1_execution_source_sha256": "e7ccb6fb716d99f1d4c66b393b7cfd73dc4f6fb0676528c964209c639b1393d6",
+ "scientific_protocol_amendment": "PRE_EXECUTION_CLARIFICATION_OF_PREVIOUSLY_UNDERSPECIFIED_EXECUTION_SEMANTICS",
+ "scientific_results_existed_before_amendment": false,
+ "protected_data_opened_before_amendment": false,
+ "unchanged": {
+  "perturbation_registry": true,
+  "severities": true,
+  "noise_base_seeds": true,
+  "VAL808_population": true,
+  "model_checkpoints": true,
+  "A8_C9": true,
+  "thresholds": true,
+  "primary_paired_delta_dice_estimand": true,
+  "figures_tables": true,
+  "claim_boundary": true
+ },
+ "added_or_clarified_prospectively": {
+  "executable_pipeline": "v1.0 skeleton -> reachable v1.1 implementations (documented)",
+  "clean_mask_generation": "persisted clean final binary mask authority (STAGE 1)",
+  "clean_equivalence_gate": "808-case CLEAN gate (isclose atol=1e-7 rtol=0) before perturbations",
+  "proposal_causal_insertion_recomputation_semantics": "perturbed roi_row -> canonical build_feature_vector (98 dims) + perturbed roi_window for R_psi crop/fusion; G reused",
+  "explicit_seed_conversion": "v1.0 int.from_bytes(digest[:8],'big') -> v1.1 int(hexdigest[:8],16)",
+  "executable_metric_interface": "_confusion bound to binary_confusion_counts",
+  "hd95_nan_summary_semantics": "n_total/n_finite/n_nan; mean/median over finite only; never substitute NaN"
+ },
+ "disclosed_prospective_change": {
+  "seed_conversion": {
+   "v1_0": "int.from_bytes(sha256(msg).digest()[:8], 'big')   # first 8 BYTES (64-bit)",
+   "v1_1": "int(sha256(msg).hexdigest()[:8], 16)            # first 8 HEX CHARS (32-bit)",
+   "rules_differ": true,
+   "scientific_effect": "NONE__NO_SCIENTIFIC_RESULT_EXISTED"
+  }
+ },
+ "load_bearing_discovery": {
+  "issue": "v1.1 work order asserted 'R_psi crop uses perturbed geometry' AND 'B_phi recomputed'; canonical executable takes router_features_202 and roi_window INDEPENDENTLY and uses roi_window only for crop+fusion",
+  "resolution": "V1_1_FREEZES_CANONICAL_EXECUTABLE_TRUTH: perturbed geometry feeds both build_feature_vector(roi_row) and roi_window; no prose override"
+ },
+ "not_claimed": {"scientific_protocol_changed": false},
+ "generated_utc": "2026-10-05T15:20:00Z",
+ "all_pass": true
+}

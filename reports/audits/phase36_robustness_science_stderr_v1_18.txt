@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "D:\Softfors\jup\scripts\analysis\phase36_robustness_execution_v1_18.py", line 4668, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "D:\Softfors\jup\scripts\analysis\phase36_robustness_execution_v1_18.py", line 4367, in main
+    _absence = verify_v1_18_output_absence()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Softfors\jup\scripts\analysis\phase36_robustness_execution_v1_18.py", line 4548, in verify_v1_18_output_absence
+    for p in v1_18_reachable_write_targets():
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Softfors\jup\scripts\analysis\phase36_robustness_execution_v1_18.py", line 4531, in v1_18_reachable_write_targets
+    targets.append(ROOT / SCIENCE_V1_18_JOURNAL_DIR)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^
+NameError: name 'SCIENCE_V1_18_JOURNAL_DIR' is not defined

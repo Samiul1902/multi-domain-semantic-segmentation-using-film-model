@@ -1,0 +1,30 @@
+{
+ "artifact": "phase26_final_router_dev_membership_replay_v1_2",
+ "phase": "26",
+ "classification": "ROUTER_CALIBRATION_ROLE_RECONCILIATION",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase26_deployment_semantics_v1_2",
+ "governance_only": true,
+ "no_model_forward": true,
+ "replay_source": "data_cache/phase25e_barr_resource_gate_v1_0/phase25e_final_router_dev_scores.csv",
+ "runtime_utility_formula": "delta_hat_final_dev - 0.25*C",
+ "tau_C8_final_exact": "-5003565381643716252018011/205414980000000000000000000",
+ "selected_count": 1239,
+ "selected_count_C7": 1239,
+ "selected_count_C8": 1239,
+ "matches_own_original_phase25e_calibration": true,
+ "cutoff_rank_K": "e0301756008d8e0a184c2c9296f969ab",
+ "cutoff_rank_K1": "c3145e7864db95b7aeda72129a67cf44",
+ "final_router_selected_ids_sha256": "10de16dec21e6750c8e9451af96bed0ca3f2686bbf0d6084a6300cf0d4adbbe5",
+ "checks": {
+  "dev_rows_4957": true,
+  "final_selected_count_1239": true,
+  "c8_replay_count_1239": true,
+  "c8_replay_equals_c7_replay": true,
+  "cutoff_rank_K_original": true,
+  "cutoff_rank_K1_original": true,
+  "matches_own_phase25e_calibration": true
+ },
+ "all_pass": true,
+ "terminal_on_failure": "PHASE26_V1_2_BLOCKED__FINAL_ROUTER_CALIBRATION_REPLAY_FAILURE"
+}

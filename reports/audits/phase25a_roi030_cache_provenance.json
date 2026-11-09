@@ -1,0 +1,70 @@
+{
+ "artifact": "phase25a_roi030_cache_provenance",
+ "phase": "25A",
+ "classification": "CANONICAL_PHASE25A",
+ "purpose": "prove the canonical ROI-0.30 global cache is TRAIN-only, GT-routing-metric-free and TEST-free",
+ "population": "ROUTER_DEVELOPMENT only",
+ "population_n": 4957,
+ "probability_source": {
+  "source": "frozen Phase-21 Global MedFiLM forward pass replay (eval, no_grad)",
+  "global_checkpoint_path": "checkpoints\\phase21_global_medfilm_fourdomain_seed42_clean_v3\\best.pt",
+  "global_checkpoint_sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+  "global_forward_passes": 4957,
+  "persisted_dtype": "float32",
+  "threshold_derivation_precision": "float32",
+  "reused_float16_prob512": false,
+  "reuse_rationale": "the pre-existing prob512.npy is float16 and its own manifest states the float16 copy is never used to re-derive the decision; a 0.30 decision cannot be recovered losslessly from it"
+ },
+ "roi_proposal_threshold": 0.3,
+ "roi_proposal_threshold_role": "ROI_PROPOSAL",
+ "segmentation_output_threshold": 0.5,
+ "segmentation_output_threshold_role": "SEGMENTATION_OUTPUT (inherited; not used for ROI)",
+ "roi_derivation_uses_segmentation_threshold": false,
+ "threshold_from_a_different_value": 0.3,
+ "prior_noncanonical_threshold": 0.5,
+ "prior_noncanonical_classification": "NONCANONICAL_PROTOCOL_DEVIATION__ROI_THRESHOLD_0P50",
+ "action_availability": {
+  "BUSI": {
+   "total": 512,
+   "action_available": 512,
+   "action_unavailable_global_empty": 0
+  },
+  "ISIC": {
+   "total": 2173,
+   "action_available": 2173,
+   "action_unavailable_global_empty": 0
+  },
+  "KUB": {
+   "total": 1680,
+   "action_available": 1680,
+   "action_unavailable_global_empty": 0
+  },
+  "KVASIR": {
+   "total": 592,
+   "action_available": 592,
+   "action_unavailable_global_empty": 0
+  }
+ },
+ "action_available_n": 4957,
+ "action_unavailable_global_empty_n": 0,
+ "assuming_zero_forced_skip_rejected": true,
+ "crop_geometry_statistics_ref": "reports/tables/phase25a_roi030_crop_geometry_summary.csv",
+ "cache_manifest_sha256": "cad302059231d70cbd1c9dd8058c9f0e6b121a3f87ac9c4d120707ed0244b0d8",
+ "cache_root": "data_cache\\phase25a_barr_roi030_cache",
+ "fold_membership_copied_threshold_independent": true,
+ "environment": {
+  "python": "3.11.9",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "torch": "2.6.0+cu124",
+  "cuda": "12.4"
+ },
+ "router_holdout_outcomes_read": 0,
+ "router_holdout_images_used_for_outcome_evaluation": 0,
+ "val_outcome_reads": 0,
+ "test_reads": 0,
+ "gt_derived_routing_metric_created": false,
+ "dice_computed": 0,
+ "deltadice_computed": 0,
+ "verdict": "PHASE25A_ROI030_CACHE_PROVENANCE_PASS",
+ "generated_utc": "2026-09-30T12:09:17.789714+00:00"
+}

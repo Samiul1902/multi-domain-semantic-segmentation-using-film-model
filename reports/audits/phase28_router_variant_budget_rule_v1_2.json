@@ -1,0 +1,50 @@
+{
+ "phase": 28,
+ "method": "RA-MedFiLM-BARR",
+ "governance_only": true,
+ "execution": "NONE",
+ "generated_utc": "2026-10-02T12:35:00Z",
+ "artifact": "phase28_router_variant_budget_rule_v1_2",
+ "classification": "ROUTER_ABLATION_FIXED_EQUAL_ACTIVATION_BUDGET_RULING",
+ "supersedes": "missing scalar-threshold requirement for R1/R2/R3",
+ "applies_to": [
+  "R1",
+  "R2",
+  "R3"
+ ],
+ "evaluation_regime": "FIXED_EQUAL_ACTIVATION_BUDGET",
+ "primary_budget": 0.25,
+ "eligible_n": 4957,
+ "K_floor_expression": "floor(0.25 * 4957)",
+ "K": 1239,
+ "selection_rule": "rank OOF delta_hat DESCENDING; tie-break by sample_id ASCENDING; select exactly first 1239",
+ "frozen_before_any_variant_score": true,
+ "gt_outcome_may_affect_membership": false,
+ "scalar_tau": "NOT_APPLICABLE__DEVELOPMENT_FIXED_BUDGET_ABLATION",
+ "deployment_threshold_derived": false,
+ "canonical_final_router_tau_reused": false,
+ "final_router_runtime_calibration_created": false,
+ "resource_term": {
+  "regional_action_cost_C": "constant",
+  "at_fixed_K": "delta_hat and delta_hat - lambda*C have identical ranking",
+  "lambda_creates_independent_membership": false,
+  "lambda_representative_for_A8_serialization_only": 0.25,
+  "claim_resource_cost_improves_ranking": false
+ },
+ "outcome_access_barrier": {
+  "freeze_order": [
+   "score files",
+   "rank order",
+   "K=1239 memberships",
+   "hashes"
+  ],
+  "then_evaluate_against": "Phase25C DeltaDice outcomes",
+  "forbidden_for_membership": [
+   "DeltaDice",
+   "gain_category",
+   "global_dice",
+   "candidate_refined_dice"
+  ],
+  "exception": "allowed only as training target inside leakage-safe FIT portions"
+ }
+}

@@ -1,0 +1,47 @@
+{
+ "artifact": "phase36_v1_17_science_release_attestation",
+ "phase": 36,
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase36_robustness_v1_17",
+ "type": "SCIENCE_RELEASE_ATTESTATION",
+ "generated_utc": "2026-10-10T13:36:13Z",
+ "execution_source_sha256": "81d78460b2f20f176bc697cba662c43bc7c7443ea555ba95a30609faf0ccbe31",
+ "smoke_artifact_sha256": "53543729fb0c48695c2af202c5f3d2f5ebdfc29d87c7a7f100bcde9f94882441",
+ "smoke_all_pass": true,
+ "scientific_output": false,
+ "release_gate": "POST_SMOKE_RELEASE_ADJUDICATION",
+ "smoke_artifact": "reports/audits/phase36_robustness_smoke_v1_14.json",
+ "launcher_sha256": null,
+ "supervisor_sha256": null,
+ "runtime_manifest_sha256": null,
+ "d81_d83_adjudication_sha256": null,
+ "v1_16_release_attestation_sha256": "8d9c725d1888480f465e34912ca95bb10fb1afe435241b347967d72bb53c4a54",
+ "historical_runtime_evidence": {
+  "v1_14_smoke": "reports/audits/phase36_robustness_smoke_v1_14.json",
+  "v1_14_smoke_sha256": "53543729fb0c48695c2af202c5f3d2f5ebdfc29d87c7a7f100bcde9f94882441",
+  "role": "HISTORICAL_RUNTIME_SMOKE_EVIDENCE_ONLY",
+  "v1_14_smoke_tested_d61": false,
+  "v1_14_smoke_tested_d75": false,
+  "note": "The v1.14 smoke is retained as historical evidence that the v1.14 runtime environment functioned.  It is NOT a claim about v1.17 (or v1.16 / v1.15) scientific correctness."
+ },
+ "requires_v1_17_smoke": false,
+ "d61_proof": {
+  "repair": "D61_CANONICAL_PHASE27_ACCEPT_FUSION",
+  "status": "PASS"
+ },
+ "d75_provenance": {
+  "repair": "D75_POLICY_B_AUTHORITATIVE_SEGMENTATION_REPRESENTATION",
+  "status": "PASS"
+ },
+ "d81_repair": "V1_17_OUTPUT_NAMESPACE_REBASE__FAIL_CLOSED_CSV",
+ "d82_repair": "V1_17_RELEASE_CONTRACT__HISTORICAL_V1_14_SMOKE_BIND",
+ "d83_repair": "V1_17_PURE_RELEASE_GATE_TEST__RUNTIME_RELEASE_STATE_ENFORCED",
+ "scientific_semantics_effect_vs_v1_16": "NONE",
+ "new_scientific_choice": false,
+ "protected_populations": {
+  "TEST": "PHASE39_ONLY_LOCKED",
+  "ROUTER_HOLDOUT": "LOCKED"
+ },
+ "write_semantics": "O_CREAT|O_EXCL + full-write + fsync",
+ "terminal": "PHASE36_V1_17_RELEASE_ATTESTATION_WRITTEN"
+}

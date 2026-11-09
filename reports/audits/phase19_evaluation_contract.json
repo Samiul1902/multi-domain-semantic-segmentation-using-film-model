@@ -1,0 +1,39 @@
+{
+  "contract_id": "phase19_evaluation_contract_v1",
+  "status": "FROZEN_FOR_PHASE_19",
+  "scope": "TRAIN and VAL only; TEST excluded",
+  "metric_domain": {
+    "frozen_domain": "DETECTION (component overlap >= 1 pixel)",
+    "note": "Phase 19 freezes the domain only; no metric is computed on TEST."
+  },
+  "metrics": {
+    "pixel": [
+      "dice",
+      "iou",
+      "precision",
+      "recall",
+      "f1"
+    ],
+    "boundary": [
+      "hd95"
+    ],
+    "threshold": 0.5,
+    "epsilon": 1e-07,
+    "implementation": "src.metrics.segmentation.binary_metrics"
+  },
+  "aggregation": {
+    "per_dataset": "macro (unweighted mean of per-image metrics) within each domain",
+    "macro_domain": "unweighted mean of the four per-domain macro values",
+    "micro": "reported separately; never used for selection"
+  },
+  "per_dataset_metrics_required": [
+    "ISIC",
+    "BUSI",
+    "KVASIR",
+    "KUB"
+  ],
+  "test_evaluation": "FORBIDDEN_IN_PHASE_19",
+  "governance_labels": {
+    "descriptive_metrics": "DESCRIPTIVE_SUPPORTING_METRIC__NOT_PROSPECTIVE_GATE"
+  }
+}

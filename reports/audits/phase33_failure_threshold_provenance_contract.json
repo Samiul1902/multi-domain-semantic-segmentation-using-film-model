@@ -1,0 +1,36 @@
+{
+ "artifact": "phase33_failure_threshold_provenance_contract",
+ "phase": 33,
+ "section": "\u00a7J",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase33_failure_boundary_v1_0",
+ "strata": [
+  {
+   "stratum": "low_dice (bottom decile)",
+   "classification": "DESCRIPTIVE_QUANTILE_METHOD_PROSPECTIVELY_FROZEN",
+   "method": "np.quantile(values, 0.10, method='linear') on float64, computed on the frozen ROUTER_HOLDOUT per-sample Dice of the SAME system; ties included",
+   "realized_numeric_quantile_frozen_now": false,
+   "note": "the METHOD is frozen now; the realized numeric quantile is computed at execution from frozen tables (deterministic, not outcome-selected)"
+  },
+  {
+   "stratum": "benefit categories",
+   "classification": "EXACT_PREDECESSOR_THRESHOLD_TRANSFERABLE",
+   "method": "BENEFICIAL DeltaDice >= +0.02; HARMFUL <= -0.01; NEUTRAL otherwise",
+   "note": "frozen Phase24/25E/30 category semantics; distinct from S_omega training target DeltaDice > 0"
+  },
+  {
+   "stratum": "routing state",
+   "classification": "EXACT_PREDECESSOR_THRESHOLD_TRANSFERABLE",
+   "method": "frozen state_machine categories"
+  },
+  {
+   "stratum": "HD95 / FP-component deciles",
+   "classification": "FORBIDDEN",
+   "method": "not available in frozen final-system evidence; would require TIER_3 rereads"
+  }
+ ],
+ "outcome_optimized_threshold_selected": false,
+ "post_hoc_quantile_presented_as_prospective": false,
+ "generated_utc": "2026-10-04T08:10:49+00:00",
+ "all_pass": true
+}

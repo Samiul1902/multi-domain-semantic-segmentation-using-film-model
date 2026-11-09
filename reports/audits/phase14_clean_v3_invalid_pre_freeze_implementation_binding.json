@@ -1,0 +1,231 @@
+{
+  "artifact": "PHASE14_CLEAN_V3_INVALID_PRE_FREEZE_IMPLEMENTATION_BINDING",
+  "status": "INVALID_PRE_FREEZE_IMPLEMENTATION_BINDING",
+  "created_utc": "2026-09-24T00:06:35.379374+00:00",
+  "created_local_bst": "2026-09-24T06:06:35.379374+06:00",
+  "additive": true,
+  "supersedes_nothing": true,
+  "classification_definition": "the persisted pre-training freeze manifest did NOT prospectively bind the exact trainer/implementation that was executed; the trainer file was created AFTER the manifest was written and no trainer-SHA key exists in the manifest",
+  "triggering_question": "Could the frozen Phase-14 clean-v3 manifest have contained the exact trainer SHA before training began, given the sequence freeze-manifest-locked -> trainer-built -> training-launched?",
+  "chronology": {
+    "src/data/regional_dataset.py": "2026-09-24T05:27:46.182679",
+    "reports/audits/phase14_clean_v3_freeze_manifest.json": "2026-09-24T05:31:16.102614",
+    "scripts/training/train_phase14_refiner.py": "2026-09-24T05:32:27.050826",
+    "logs/phase14_train.log": "2026-09-24T05:34:32.229666",
+    "checkpoints/.../latest.pt": "2026-09-24T05:46:56.668741",
+    "checkpoints/.../best.pt": "2026-09-24T05:46:56.780891",
+    "ordering_verdict": "manifest (05:31:16) PRECEDES trainer (05:32:27) by 71 seconds -> the manifest could NOT have hashed the trainer"
+  },
+  "determination": "CASE_B__NOT_PROSPECTIVELY_BOUND",
+  "pre_execution_implementation_binding": "FAIL",
+  "evidence": {
+    "manifest_contains_trainer_sha_key": false,
+    "manifest_protocol_bindings_keys": [
+      "phase14_protocol_path",
+      "phase14_protocol_sha",
+      "phase14_protocol_md_sha",
+      "authorization_source",
+      "parent_chain_closure_sha",
+      "parent_h2c_adjudication_sha",
+      "h2c_protocol_sha",
+      "phase13b_clean_v3_best_pt_sha",
+      "phase13b_clean_v3_latest_pt_sha",
+      "global_baseline_unetpp_clean_v3_sha",
+      "train_manifest_sha",
+      "val_manifest_sha",
+      "view_type_inventory_sha",
+      "regional_dataset_py_sha",
+      "regional_evaluator_py_sha",
+      "unet_model_py_sha",
+      "segmentation_loss_py_sha"
+    ],
+    "trainer_file_created_after_manifest": true,
+    "trainer_mtime_minus_manifest_mtime_seconds": 71,
+    "manifest_status_at_inspection": "FROZEN_AWAITING_EXECUTION",
+    "manifest_counters_before_execution": "ALL_ZERO"
+  },
+  "unbound_implementation_closure": {
+    "note": "files the executed trainer imports (directly or transitively) but which the freeze manifest did NOT bind",
+    "directly_imported_and_unbound": {
+      "scripts/training/train_phase14_refiner.py": "d768422f77abae415be8bd712ff67bef4e16605f053287db04e1840c9f7f0aa8",
+      "src/utils/device.py": "9adabfbd145a5952275aa25b0ec99aab8a5114bb41aa443ecde52ce19a8448b6",
+      "src/utils/config.py": "577deb1db96c8c4ed12e4c41a959f0c6fee8e41af3836dc998a18c928c7f28dd"
+    },
+    "transitively_imported_and_unbound": {
+      "src/inference/predicted_roi.py": "bd9f8be84595f49ff1e25e6052b548488fb6ae6a48aa7adbc78b880fb8f2d4e7",
+      "src/data/kub_dataset.py": "937e04ed7af3b0399fa5e34cd529f04ebc95a7b072f95a9527e1b32dfd36cbb6",
+      "src/data/transforms.py": "8a8b636b58843d36810ebf5f3527a8ca1287b93483b962d5cf8e323a92566223",
+      "src/models/factory.py": "3377bbe021d7bd13c07350ff5c4927705c2d67f93fa99c388caf2cc79ef4086d",
+      "src/utils/checkpointing.py": "08366f72f3141e5d18f008981465f5e9138c0b51336fd65cae7c619456ee1eca",
+      "src/utils/manifest_guard.py": "64c5f4d11bbb443c7b47aff7ab84b41e2d2496af981d7b1c6877758cf3461bea",
+      "src/utils/test_lock.py": "7cff4732b1f643738c410d672372684486d79e475eae18da5fee7ae10d2d22f3"
+    },
+    "bound_and_verified_match": {
+      "src/data/regional_dataset.py": "4e495350c213be0d821938c1c6fe9a1a68286d08d24cf5d3cb88042b473dc70a",
+      "src/models/unet.py": "62edc8fb481eb02c46c2c64f6e7219254a57d7ba935a4c840a5a7965b41bdfc2",
+      "src/losses/segmentation.py": "2af539bd47a07c966d4a2784f4df7d81bce0620af8ef8e8ddc8b34a3e6de0e8f",
+      "manifests/phase4_v3/train.csv": "28702fc3a5ff8b950db372f03232d335e3a30b1fc2f21db7cd8c066055826ed6",
+      "manifests/phase4_v3/val.csv": "082c80b2bda63fd73f371f109c34643adf01edaead921643fb2e44993ba53315",
+      "reports/tables/kub_view_type_inventory.csv": "e9fa31fd84b366239e981e803283beccf3812c4941bafc9bb3c21d1e4bafac61"
+    },
+    "bound_but_PRESENT_UNDER_DIFFERENT_PATH": {
+      "declared_manifest_value": {
+        "key": "regional_evaluator_py_sha",
+        "value": "ea09b9efc12b832ad1a7f6a3746fc30756193555ae4c5bfe2929a54b395773f2",
+        "implied_path_in_manifest": "scripts/evaluation/phase14_regional_evaluator.py"
+      },
+      "actual_path_on_disk": "src/inference/regional_evaluator.py",
+      "actual_sha": "ea09b9efc12b832ad1a7f6a3746fc30756193555ae4c5bfe2929a54b395773f2",
+      "sha_match": true,
+      "path_match": false,
+      "classification": "PATH_RESOLUTION_AMBIGUITY__SHA_MATCHES"
+    }
+  },
+  "execution_reality_check": {
+    "note": "independent verification of whether a Phase-14 clean-v3 training process was actually alive at audit time",
+    "python_processes_at_audit": {
+      "count": 3,
+      "pids_mem_kb": {
+        "30440": 4576,
+        "10596": 15712,
+        "31196": 21980
+      },
+      "assessment": "no process with a CUDA-training-sized resident set; none matches a U-Net/256/AMP job"
+    },
+    "gpu_free_gb": 7.49,
+    "gpu_total_gb": 8.59,
+    "gpu_used_gb": 1.1,
+    "gpu_verdict": "1.10 GB used is inconsistent with an active training job holding optimizer + activations; consistent with desktop compositor / idle driver state",
+    "nvidia_smi_status": "FAILED_TO_INITIALIZE_NVML (host driver query unavailable; torch.cuda remains functional)",
+    "log_evidence": {
+      "path": "logs/phase14_train.log",
+      "line_count": 4,
+      "content_class": "TWO_FUTUREWARNINGS_ONLY (torch.cuda.amp.GradScaler line 122, torch.cuda.amp.autocast line 61)",
+      "epoch_lines_present": false,
+      "device_line_present": false,
+      "train_items_line_present": false,
+      "verdict": "the redirected stdout/stderr contains no evidence of a completed epoch"
+    },
+    "process_premise_confirmed": false,
+    "premise_statement": "The premise that a Phase-14 clean-v3 training process was ACTIVELY RUNNING could NOT be confirmed. A process DID execute the Phase-14 clean-v3 trainer and completed at least epoch 1 (see checkpoint_evidence), but it was no longer running at audit time."
+  },
+  "checkpoint_evidence": {
+    "note": "the checkpoints are the positive proof that training logic ran",
+    "latest_pt": {
+      "path": "checkpoints/phase14_kub_refiner_unet_a3_256_seed42_clean_v3/latest.pt",
+      "sha256": "82d80ad4bde7f7a5533434bd9f6f58afa8ed69093d7eb33ff6a4ba1ed9957993",
+      "mtime": "2026-09-24T05:46:56.668741",
+      "epoch": 1,
+      "best_val_crop_dice": 0.8206131113202948,
+      "scheduler_last_epoch": 1,
+      "grad_scaler_growth_tracker": 628,
+      "config_embedded_matches_frozen_protocol": true
+    },
+    "best_pt": {
+      "path": "checkpoints/phase14_kub_refiner_unet_a3_256_seed42_clean_v3/best.pt",
+      "sha256": "824a43a3d8744cef53d84284dd8d0fa412d9ded3c6fcabeccf677aea175903f0",
+      "mtime": "2026-09-24T05:46:56.780891",
+      "epoch": 1,
+      "best_val_crop_dice": 0.8206131113202948
+    },
+    "completed_epochs": 1,
+    "history_csv_present": false,
+    "closure_json_present": false,
+    "interpretation": "epoch 1 completed and both checkpoints were written at 05:46:56; the process then terminated before writing epoch 2 output or any history.csv/closure.json"
+  },
+  "scientific_parameter_binding_check": {
+    "note": "the FROZEN scientific protocol vs what the executed trainer actually used - recorded so the supervisor can see that no scientific axis was altered",
+    "model": {
+      "frozen": "UNet(in_channels=1, out_channels=1, base_channels=32)",
+      "executed": "UNet(1,1,32)",
+      "match": true
+    },
+    "loss": {
+      "frozen": "BCEDiceLoss(bce_weight=0.5, dice_weight=0.5, epsilon=1e-6)",
+      "executed": "BCEDiceLoss(0.5,0.5,1e-6)",
+      "match": true
+    },
+    "optimizer": {
+      "frozen": "AdamW(lr=1e-4, weight_decay=1e-4)",
+      "executed": "AdamW(lr=1e-4, wd=1e-4)",
+      "match": true
+    },
+    "scheduler": {
+      "frozen": "CosineAnnealingLR(T_max=100)",
+      "executed": "CosineAnnealingLR(T_max=100)",
+      "match": true
+    },
+    "batch_size": {
+      "frozen": 8,
+      "executed": 8,
+      "match": true
+    },
+    "seed": {
+      "frozen": 42,
+      "executed": 42,
+      "match": true
+    },
+    "max_epochs": {
+      "frozen": 100,
+      "executed": 100,
+      "match": true
+    },
+    "early_stopping_patience": {
+      "frozen": 15,
+      "executed": 15,
+      "match": true
+    },
+    "crop_resolution": {
+      "frozen": [
+        256,
+        256
+      ],
+      "executed": 256,
+      "match": true
+    },
+    "roi_margin": {
+      "frozen": 0.25,
+      "executed": 0.2,
+      "match": "MANIFEST_FROZEN_AXES_DECLARE_0.25_BUT_training_config_roi_margin_rule_0.25_AND_executed_0.20",
+      "note": "The manifest's frozen_axes list states 'ROI margin (0.25 for oracle, 0.20 for predicted)'; the executed trainer uses margin=0.20 for BOTH TRAIN and VAL. Classified as a DOCUMENTED_DUAL_VALUE with an ambiguity in the manifest's own text; recorded, NOT repaired, because repairing it would require a protocol decision by the supervisor."
+    },
+    "amp": {
+      "frozen": true,
+      "executed": true,
+      "match": true
+    },
+    "verdict": "NO_UNDISCLOSED_SCIENTIFIC_PARAMETER_CHANGE; one documented textual ambiguity (roi_margin dual-value)"
+  },
+  "runtime_metrics": {
+    "reference_source": "checkpoints/phase14_diag_regional_unet_oracletrain_a3_seed42_v1/history.csv (same UNet/base=32/256 family)",
+    "reference_median_epoch_seconds": 683.389516700001,
+    "median_complete_epoch_seconds_for_this_run": null,
+    "median_complete_epoch_seconds_reason": "only one epoch completed and no per-epoch timing was persisted; the log contains no epoch line",
+    "note": "median_COMPLETE_epoch_time for the audited run is NOT_MEASURABLE from persisted evidence"
+  },
+  "actions_taken": {
+    "training_process_stopped_by_this_audit": false,
+    "training_process_stop_reason": "no active Phase-14 training process existed to stop (already terminated before audit)",
+    "logs_preserved": true,
+    "logs_preserved_as": "logs/phase14_train.log (left in place, unmodified, 4 lines / 517 bytes)",
+    "checkpoint_resume_attempted": false,
+    "invalid_checkpoints_disposition": "PRESERVED_IN_PLACE_FOR_AUDIT (not deleted, not resumed, not used as a resume source)",
+    "scientific_parameters_changed": false,
+    "new_freeze_manifest_created": true,
+    "new_freeze_manifest_path": "reports/audits/phase14_clean_v3_freeze_manifest.json",
+    "restart_required": true,
+    "restart_requirement": "RESTART_FROM_EPOCH_0 after the bound manifest is reviewed"
+  },
+  "counters": {
+    "training_performed_by_this_audit": 0,
+    "cuda_requests_by_this_audit": 1,
+    "cuda_request_purpose": "torch.cuda.mem_get_info / get_device_name for GPU-state verification only",
+    "model_constructed_by_this_audit": 0,
+    "forwards_by_this_audit": 0,
+    "backwards_by_this_audit": 0,
+    "test_reads": 0,
+    "external_test_reads": 0,
+    "proposal_generation": 0
+  },
+  "next_action": "SUPERVISOR_REVIEW_OF_BOUND_MANIFEST_THEN_RESTART_PHASE14_CLEAN_V3_FROM_EPOCH_0"
+}

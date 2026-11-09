@@ -1,0 +1,226 @@
+{
+ "artifact": "phase36_robustness_unit_v1_1",
+ "section": "§R",
+ "phase": 36,
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase36_robustness_v1_1",
+ "classification": "MODEL_FREE_UNIT_TESTS__V1_1_PERTURBATION_CONTRACT_AND_INSERTION_SEMANTICS",
+ "model_free": true,
+ "torch_used": false,
+ "checks": [
+  {
+   "id": "01",
+   "desc": "v1.0 brightness algebra unchanged",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "02",
+   "desc": "v1.0 contrast/gamma unchanged",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "03",
+   "desc": "v1.1 seed = int(sha256.hexdigest()[:8], 16)",
+   "pass": true,
+   "detail": "426663635"
+  },
+  {
+   "id": "04",
+   "desc": "seed rule is first 8 HEX CHARS (not bytes)",
+   "pass": true,
+   "detail": "{'seed_text': 'phase36|gaussian_noise|42|SYNTH_PHASE36_TASK0', 'v1_1_hex_prefix': '196e5ed3', 'v1_1_seed': 426663635, 'v1_0_seed_8_bytes_big': 1832506359868494990, 'rules_differ': True, 'v1_1_in_uint32_range': True}"
+  },
+  {
+   "id": "05",
+   "desc": "seed_uint32 in [0, 0xFFFFFFFF]",
+   "pass": true,
+   "detail": "205203647"
+  },
+  {
+   "id": "06",
+   "desc": "noise deterministic + diverges across seed/sample",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "07",
+   "desc": "proposal geometry rule unchanged",
+   "pass": true,
+   "detail": "200"
+  },
+  {
+   "id": "08",
+   "desc": "clean mask authority is binary, from CLEAN path",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "09",
+   "desc": "clean equivalence comparator atol=1e-7 rtol=0",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "10",
+   "desc": "prediction_consistency_Dice finite/valid",
+   "pass": true,
+   "detail": "0.8100000000237499"
+  },
+  {
+   "id": "11",
+   "desc": "Dice empty: both-empty == 1.0; one-empty ~ 0 under canonical eps",
+   "pass": true,
+   "detail": "(1.0, 2.4999999993749995e-10, 2.4999999993749995e-10)"
+  },
+  {
+   "id": "12",
+   "desc": "IoU empty: both-empty == 1.0; one-empty ~ 0 under canonical eps",
+   "pass": true,
+   "detail": "(1.0, 2.4999999993749995e-10)"
+  },
+  {
+   "id": "13",
+   "desc": "HD95 empty -> NaN (not zero/inf)",
+   "pass": true,
+   "detail": "nan"
+  },
+  {
+   "id": "14",
+   "desc": "HD95 finite-only mean/median + n_nan",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "15",
+   "desc": "empty proposal -> NOT_APPLICABLE, no replacement",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "16",
+   "desc": "manifest identity is sample_id (content hash), not stem",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "17",
+   "desc": "TEST/HOLDOUT/TRAIN path rejection",
+   "pass": true,
+   "detail": "[True, True, True]"
+  },
+  {
+   "id": "18",
+   "desc": "proposal contract: router input changes = TRUE flag",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "19",
+   "desc": "G NOT recomputed for proposal perturbation",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "20",
+   "desc": "B_phi decision recomputed under proposal perturbation",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "21",
+   "desc": "R_psi crop uses perturbed geometry",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "22",
+   "desc": "S_omega recomputed when EXECUTE",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "23",
+   "desc": "98 geometry-dependent dims + 104 global-only dims",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "24",
+   "desc": "registries unchanged (13 image / 7 proposal)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "25",
+   "desc": "thresholds 0.30 / 0.50 unchanged",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "26",
+   "desc": "no reachable NotImplementedError in v1.1 source",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "id": "27",
+   "desc": "no unconditional stub RuntimeError in v1.1 source",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "28",
+   "desc": "CLEAN generation precedes equivalence gate; gate precedes perturbations",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "29",
+   "desc": "canonical 202-D extractor bound via build_feature_vector",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "30",
+   "desc": "canonical Phase26 state machine bound",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "31",
+   "desc": "no training/optimizer in v1.1 source",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "32",
+   "desc": "metric bound to evaluation_metrics",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "33",
+   "desc": "prediction-consistency path executable in v1.1 source",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "34",
+   "desc": "identical masks -> prediction_consistency_Dice == 1.0",
+   "pass": true,
+   "detail": "1.0"
+  },
+  {
+   "id": "35",
+   "desc": "clean mask authority binary + scalar reconstruction prohibited",
+   "pass": true,
+   "detail": ""
+  }
+ ],
+ "total_checks": 35,
+ "passed": 35,
+ "failed": 0,
+ "all_pass": true
+}

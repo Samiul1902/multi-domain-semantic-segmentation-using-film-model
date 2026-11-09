@@ -1,0 +1,42 @@
+{
+ "artifact": "phase29_phase_d_preexecution_final_check",
+ "phase": 29,
+ "stage": "PHASE_D_PREEXECUTION_FINAL_CHECK",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_phase29_repro_v1_1",
+ "generated_utc": "2026-10-03T15:25:42+00:00",
+ "checks": {
+  "causal_order_defect_confirmed": true,
+  "causal_order_repaired": true,
+  "router_before_refiner": true,
+  "refiner_before_safety": true,
+  "safety_after_candidate": true,
+  "Rpsi_exec_condition=ROUTER_EXECUTE": true,
+  "Somega_exec_condition=ROUTER_EXECUTE_AFTER_RPSI": true,
+  "S_omega_saves_compute=false": true,
+  "rejected_refinement_still_incurs_refiner_compute=true": true,
+  "component_numeric_semantics_unchanged=true": true,
+  "existing_cache_provenance_resolved=true": true,
+  "noncanonical_cache_cannot_be_reused=true": true,
+  "global_reproduction_gate_frozen=true": true,
+  "new_VAL808_reads=0": true,
+  "ROUTER_HOLDOUT_reads=0": true,
+  "TEST_reads=0": true
+ },
+ "n_checks": 16,
+ "n_failed": 0,
+ "failed": [],
+ "required_outputs": {
+  "phase29_phase_d_causal_order_defect.json": true,
+  "phase29_phase_d_post_safety_causal_dependency_proof.json": true,
+  "phase29_phase_d_component_inference_semantics_contract_v1_1.json": true,
+  "phase29_phase_d_existing_val808_cache_inventory.json": true,
+  "phase29_phase_d_existing_val808_cache_provenance.json": true,
+  "phase29_phase_d_cache_root_cleanliness_gate.json": true,
+  "phase29_pre_val808_freeze_gate_v1_2.json": true,
+  "phase29_phase_d_preexecution_final_check.json": true,
+  "phase29_phase_d_preexecution_terminal.json": true
+ },
+ "all_required_outputs_present": true,
+ "all_pass": true
+}

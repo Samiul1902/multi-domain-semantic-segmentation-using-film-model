@@ -1,0 +1,118 @@
+{
+ "artifact": "phase34_final_closure",
+ "phase": 34,
+ "section": "\u00a7O",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase34_efficiency_profiling_v1_4",
+ "phase34_status": "COMPLETE_CANONICAL",
+ "closure_class": "COMPUTATIONAL_EFFICIENCY_AND_RUNTIME_PROFILING_COMPLETE_CANONICAL__V1_4_PER_FORWARD_LATENCY_REPAIR_CANONICAL__VALID_V1_3_NONLATENCY_EVIDENCE_REUSED__V1_3_LATENCY_DEFECT_PRESERVED_AS_SUPERSEDED_PROVENANCE",
+ "terminal": "PHASE34_COMPUTATIONAL_EFFICIENCY_RUNTIME_PROFILING_COMPLETE_CANONICAL__V1_4_PER_FORWARD_LATENCY_DISTRIBUTION_ACCEPTED_AFTER_DISCLOSED_V1_3_GRANULARITY_REPAIR__V1_3_THROUGHPUT_MEMORY_STATIC_AND_ANALYTICAL_EVIDENCE_PRESERVED_VALID__WEIGHTED_HARDWARE_SPECIFIC_RUNTIME_ESTIMATE_ACCEPTED_WITH_PHASE30_QUALIFIER__NO_END_TO_END_REALTIME_MOBILE_ENERGY_OR_HARDWARE_INDEPENDENT_CLAIMS__NO_PROTECTED_RAW_OR_TEST_ACCESS__PHASE35_ELIGIBLE_NOT_STARTED",
+ "statements": {
+  "v1_4_latency_canonical": true,
+  "v1_3_latency_canonical": false,
+  "v1_3_throughput_canonical_for_phase34": true,
+  "v1_3_memory_canonical_for_phase34": true,
+  "v1_3_static_resources_canonical_for_phase34": true,
+  "v1_3_analytical_MAC_canonical_for_phase34": true,
+  "conditional_weighted_runtime_canonical_for_phase34": true,
+  "hardware_specific": true,
+  "synthetic_inputs": true,
+  "end_to_end_pipeline_runtime": false,
+  "protected_raw_data_used": false,
+  "TEST_used": false,
+  "Phase30_qualifier_carried": true,
+  "Phase30_upgraded": false,
+  "Phase35_started": false
+ },
+ "canonical_latency_revision": "ra_medfilm_barr_phase34_efficiency_profiling_v1_4",
+ "v1_3_latency_disposition": {
+  "status": "SUPERSEDED_NONCANONICAL_DUE_200_ITERATION_BLOCK_GRANULARITY_IMPLEMENTATION_DEFECT",
+  "block_duration_evidence_preserved": true,
+  "per_forward_latency_claim_valid": false,
+  "weighted_3307ms_runtime_valid": false,
+  "alias_duplicate_measurements": "PRESERVED_EXTRANEOUS_NOT_CANONICAL_INDEPENDENT_EVIDENCE"
+ },
+ "canonical_latency": {
+  "GLOBAL_ONLY_C1": {
+   "mean_ms": 15.767750472068787,
+   "std_ms": 0.6395504640838543,
+   "p50_ms": 15.721471786499023,
+   "p90_ms": 16.69969940185547,
+   "p95_ms": 16.830668258666993,
+   "p99_ms": 17.085439682006836,
+   "min_ms": 14.539775848388672,
+   "max_ms": 18.61939239501953
+  },
+  "R_PSI_COMPONENT": {
+   "mean_ms": 4.533609761238099,
+   "std_ms": 0.7306397681817417,
+   "p50_ms": 4.374016046524048,
+   "p90_ms": 5.271756887435913,
+   "p95_ms": 5.702348589897154,
+   "p99_ms": 7.662858080863951,
+   "min_ms": 3.1047680377960205,
+   "max_ms": 9.80787181854248
+  },
+  "B_PHI_COMPONENT": {
+   "mean_ms": 0.37281001573055983,
+   "std_ms": 0.08135652045953644,
+   "p50_ms": 0.3614720106124878,
+   "p90_ms": 0.4293184041976929,
+   "p95_ms": 0.5018112063407898,
+   "p99_ms": 0.6882099145650863,
+   "min_ms": 0.03788800165057182,
+   "max_ms": 1.1182080507278442
+  },
+  "S_OMEGA_COMPONENT": {
+   "mean_ms": 0.25486716816946864,
+   "std_ms": 0.07774529723188978,
+   "p50_ms": 0.24371199309825897,
+   "p90_ms": 0.31334400177001953,
+   "p95_ms": 0.37703680843114834,
+   "p99_ms": 0.5162393558025359,
+   "min_ms": 0.01945599913597107,
+   "max_ms": 1.0516480207443237
+  },
+  "SKIP_CONTROLLED_PATH": {
+   "mean_ms": 15.71835146522522,
+   "std_ms": 0.5901199029168571,
+   "p50_ms": 15.684608459472656,
+   "p90_ms": 16.61143054962158,
+   "p95_ms": 16.768204498291016,
+   "p99_ms": 16.916530323028564,
+   "min_ms": 14.544896125793457,
+   "max_ms": 17.23187255859375
+  },
+  "EXECUTE_CONTROLLED_PATH": {
+   "mean_ms": 18.894091419219972,
+   "std_ms": 0.6584723138309989,
+   "p50_ms": 18.88663959503174,
+   "p90_ms": 19.62188720703125,
+   "p95_ms": 19.833861351013184,
+   "p99_ms": 20.46585823059082,
+   "min_ms": 17.303552627563477,
+   "max_ms": 23.586816787719727
+  }
+ },
+ "conditional_weighted_runtime": {
+  "L_SKIP_mean_ms": 15.71835146522522,
+  "L_EXECUTE_mean_ms": 18.894091419219972,
+  "p_SKIP": 0.7257142857142858,
+  "p_EXECUTE": 0.2742857142857143,
+  "L_weighted_ms": 16.589411566892352,
+  "formula": "L_weighted = (635/875)*15.71835146522522 + (240/875)*18.894091419219972",
+  "classification": "WEIGHTED_HARDWARE_SPECIFIC_RUNTIME_ESTIMATE",
+  "NOT_DIRECT_HOLDOUT_RUNTIME": true,
+  "NOT_END_TO_END_PIPELINE_LATENCY": true,
+  "weighted_percentiles_exist": false,
+  "phase30_qualifier": "ONE_SHOT_ROUTER_HOLDOUT_RESULT_WITH_DISCLOSED_POST_FIRST_OPEN_SCIENTIFIC_SOURCE_FREEZE_DEVIATION"
+ },
+ "phase30": {
+  "qualifier": "ONE_SHOT_ROUTER_HOLDOUT_RESULT_WITH_DISCLOSED_POST_FIRST_OPEN_SCIENTIFIC_SOURCE_FREEZE_DEVIATION",
+  "status": "COMPLETE_WITH_PROTOCOL_DEVIATION__NOT_COMPLETE_CANONICAL",
+  "status_upgraded": false
+ },
+ "total_resident_parameters": 4837420,
+ "generated_utc": "2026-10-04T14:20:03+00:00",
+ "all_pass": true
+}

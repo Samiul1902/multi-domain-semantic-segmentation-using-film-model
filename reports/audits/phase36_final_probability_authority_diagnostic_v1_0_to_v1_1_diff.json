@@ -1,0 +1,65 @@
+{
+ "artifact_kind": "PHASE36_FINAL_PROBABILITY_AUTHORITY_DIAGNOSTIC_V1_0_TO_V1_1_DIFF",
+ "revision": "ra_medfilm_barr_phase36_final_probability_authority_diagnostic_v1_1",
+ "from_revision": "ra_medfilm_barr_phase36_final_probability_authority_diagnostic_v1_0",
+ "to_revision": "ra_medfilm_barr_phase36_final_probability_authority_diagnostic_v1_1",
+ "additive": true,
+ "v1_0_state": "FROZEN_NEVER_CONSUMED_NOT_AUTHORIZED",
+ "v1_0_modified": false,
+ "scientific_path_changed": false,
+ "scientific_path_identical_steps": true,
+ "changes": {
+  "D52": {
+   "v1_0": "launcher had no final-authority pre-consumption gate",
+   "v1_1": "launcher.check_final_authority_preconsumption() verifies exists + raw-byte SHA + .npy header shape + .npy header dtype + GT-free sample-order binding, ordered after transitive integrity and before the verify-only STOP/token set; adds launcher fields final_authority_preconsumption_pass / _sha256 / _shape / _dtype / _sample_order_pass"
+  },
+  "D53": {
+   "v1_0": "GT proxies incremented a guard dict not shared with the failure writer",
+   "v1_1": "_install_gt_guards(mod, runtime_state) mutates a SHARED runtime-evidence state; _write_failure records ACTUAL VAL_GT_READ + blocked_gt_calls"
+  },
+  "D54": {
+   "v1_0": "result-write failure lost the computed comparison",
+   "v1_1": "guarded RESULT write preserves final_authority_computed / final_authority_comparison / classification / VAL_GT_READ / runtime_state / result_write_attempted / result_write_completed + partial-result provenance; terminal TERMINAL_EVIDENCE_ANOMALY__RESULT_WRITE_FAILED_AFTER_COMPUTATION"
+  },
+  "FINITE": {
+   "v1_0": "no finite gate before f32->f16",
+   "v1_1": "np.isfinite(final_probability).all() gate; non-finite => FAIL CLOSED (TERMINAL_NONFINITE_FINAL_PROBABILITY__FAIL_CLOSED) preserving sample ids + element counts"
+  },
+  "GT_WORDING": {
+   "v1_0": "implied mask_path metadata was never inspected",
+   "v1_1": "invariant is content-only: mask_path metadata access PERMITTED; no mask FILE opened/dereferenced; no GT callable executes; VAL_GT_READ remains 0"
+  },
+  "AUTHORITY_TOKEN": {
+   "v1_0": "PHASE36_FINAL_PROB_AUTHORITY_V1_0_LAUNCH_AUTHORITY",
+   "v1_1": "PHASE36_FINAL_PROB_AUTHORITY_V1_1_LAUNCH_AUTHORITY"
+  },
+  "MARKERS": {
+   "v1_0": [
+    "..._start_v1_0.json",
+    "..._result_v1_0.json",
+    "..._failure_v1_0.json"
+   ],
+   "v1_1": [
+    "..._start_v1_1.json",
+    "..._result_v1_1.json",
+    "..._failure_v1_1.json"
+   ]
+  }
+ },
+ "preserved_unchanged": [
+  "frozen v1.14 exec + manifest",
+  "consumed evidence (v1.2 start/result + D51 adjudication/reconciliation)",
+  "prior-failure provenance",
+  "one-shot env gate PHASE36_FINAL_PROB_AUTHORITY_EXECUTE",
+  "forbidden foreign token PHASE36_V1_14_LAUNCH_AUTHORITY",
+  "the 13-step clean scientific path"
+ ],
+ "source_sha256": {
+  "v1_0_diagnostic": "89673c6fe6a86d1abe04a5987c0675bc5c5246e24c98979bc7649431b87b319f",
+  "v1_1_diagnostic": "b9f6a449445d8ac5edd1dafe30e2f0b5005d487be314011bd2ff9162db770672",
+  "v1_0_launcher": "f77b9fd4226cc2eb7a71d84b07e06d28719d7f56fc7ef10f842005f7656ccdc6",
+  "v1_1_launcher": "4c9737362fcf01f0ef8ef629f489cdff07c72e63b46f34e4ea508b7ba0df83ae"
+ },
+ "scientific_output": false,
+ "generated_utc": "2026-10-07T17:23:29Z"
+}

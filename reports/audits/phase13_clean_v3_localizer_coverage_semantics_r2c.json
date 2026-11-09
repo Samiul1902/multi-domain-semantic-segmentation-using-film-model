@@ -1,0 +1,106 @@
+{
+  "artifact": "PHASE13_CLEAN_V3_LOCALIZER_COVERAGE_SEMANTICS_R2C",
+  "document_type": "COVERAGE_SEMANTICS_ARBITRATION_AMENDMENT",
+  "created_utc": "2026-09-21T15:30:00Z",
+  "project_root": "D:\\Softfors\\jup",
+  "experiment_id": "phase13b_kub_localizer_r512_h128_sigmaeq075_centernetfocal_seed42_clean_v3",
+
+  "amendment": "R2C_HISTORICAL_EXECUTING_COVERAGE_ARBITRATION",
+  "base": "R2 + R2A_LOSS_BINDING + NON_SCIENTIFIC_PROVENANCE_BINDING",
+  "supersedes_for_primary_selection": "R2B_PIXEL_MASK_COMPONENT_COVERAGE",
+  "primary_coverage_semantics": "HISTORICAL_EXECUTING_BBOX_COVERAGE",
+  "pixel_coverage_role": "SECONDARY_COVERAGE_SENSITIVITY_ONLY",
+
+  "selection_tuple_unchanged": "YES",
+  "proposal_config_unchanged": "YES",
+  "loss_unchanged": "YES",
+  "architecture_unchanged": "YES",
+  "target_unchanged": "YES",
+  "optimizer_unchanged": "YES",
+  "scheduler_unchanged": "YES",
+  "history_rewritten": "NO",
+  "test_reads": 0,
+
+  "scientific_materiality": "MATERIAL_PROTOCOL_ARBITRATION_RESTORING_HISTORICAL_EXECUTING_SEMANTICS",
+
+  "arbitration_reason": "Historical executing Phase-13 coverage was effectively bbox-intersection because gt_components(...) never attached native component masks and evaluate_roi_coverage(...) therefore took its bbox fallback branch. R2/R2A governance gives precedence to HISTORICAL EXECUTING CODE for the primary checkpoint-selection protocol when documentation disagrees with execution. That executing behaviour produced the historical Phase-13 lineage.",
+
+  "r2b_disposition": {
+    "preserved_as_provenance": true,
+    "deleted": false,
+    "rewritten": false,
+    "r2b_sha": "5574cd60a0bb69f392e818b96915fc522f4b706e9958d2d39a22911fe8424497",
+    "scientific_value_retained": "Native-mask component reconstruction and pixel-mask coverage are retained and reported as a secondary sensitivity metric."
+  },
+
+  "primary_selection_terms_after_r2c": {
+    "tiny_recall90": "bbox_tiny_recall90",
+    "overall_recall90": "bbox_overall_recall90",
+    "mean_roi_area_fraction": "unchanged (coverage-semantics independent)",
+    "val_loss": "unchanged",
+    "tuple": ["bbox_tiny_recall90", "bbox_overall_recall90", "-mean_roi_area_fraction", "-val_loss"],
+    "pixel_metrics_excluded_from": ["select_epoch", "best_score", "bad_epochs", "early_stopping"]
+  },
+
+  "explicit_bbox_implementation": {
+    "module": "src/inference/clean_v3_coverage.py",
+    "primary_helper": "evaluate_historical_bbox_coverage",
+    "secondary_helper": "evaluate_pixel_mask_coverage",
+    "authoritative_source": "src/inference/predicted_roi.py::evaluate_roi_coverage else-branch (executing fallback, verbatim)",
+    "silent_fallback_removed": true,
+    "note": "The bbox branch is now explicit rather than relying on a silent fallback. Component masks are deliberately ignored by the primary helper so the primary semantics cannot drift."
+  },
+
+  "epoch31_canonical_reevaluation": {
+    "artifact": "reports/audits/phase13_part1b_epoch31_canonical_bbox_evaluation.json",
+    "bbox_tiny_recall90": 0.3888888888888889,
+    "bbox_overall_recall90": 0.3881578947368421,
+    "mean_roi_area_fraction": 0.003918121982149612,
+    "val_loss": 2.178007864035093,
+    "pixel_tiny_recall90": 0.4027777777777778,
+    "pixel_overall_recall90": 0.4276315789473684,
+    "mean_proposals_per_image": 4.145631067961165,
+    "pixel_reproduced_history_exactly": true,
+    "epoch31_still_canonical_best": true,
+    "prior_canonical_best_epoch_through_30": 29,
+    "canonical_best_epoch_through_31": 31,
+    "canonical_bad_epochs_after_31": 0
+  },
+
+  "canonical_selection_history": {
+    "path": "reports/tables/phase13_part1b_canonical_selection_history.csv",
+    "rows": 31,
+    "authoritative_for": "checkpoint-selection replay for the entire experiment",
+    "row31_source_metric_semantics": "R2C_HISTORICAL_BBOX_REEVALUATION",
+    "rows_1_30_source_metric_semantics": "ZERO_PROPOSAL_INVARIANT"
+  },
+
+  "history_governance": {
+    "rows_1_28": "PRESERVED_UNMODIFIED",
+    "rows_29_30": "PRESERVED_UNMODIFIED (zero-proposal, primary invariant)",
+    "row_31": "PRESERVED_UNMODIFIED (legacy primary fields are pixel-based; canonical bbox values live in the sidecar)",
+    "rows_ge_32": "WILL INCLUDE coverage_semantics_primary=HISTORICAL_EXECUTING_BBOX_COVERAGE plus pixel sensitivity fields",
+    "history_csv_rewritten": false
+  },
+
+  "runner_sha_transition": {
+    "pre_repair_runner_sha": "15a0c2f0cf02916f96f60b7cf3d148fac4d931df11d5e119eb9c76f22a0c889b",
+    "post_repair_runner_sha": "00ff82447f1f83935c042ea4fa19ad4f05956c48a80c474eaa98fc643bf79913",
+    "authorized_transitions": 1,
+    "transition_gate": "R2C controlled epoch-31 checkpoint metadata rebind -> first resumed epoch 32",
+    "generic_runner_sha_bypass": "NONE",
+    "note": "The runner verifies post_repair_runner_sha equals its own executing SHA, so a runner edited after R2C was frozen cannot inherit the transition."
+  },
+
+  "pre_repair_runner_sha": "15a0c2f0cf02916f96f60b7cf3d148fac4d931df11d5e119eb9c76f22a0c889b",
+  "post_repair_runner_sha": "00ff82447f1f83935c042ea4fa19ad4f05956c48a80c474eaa98fc643bf79913",
+
+  "checkpoint_archive": {
+    "dir": "checkpoints/phase13b_kub_localizer_r512_h128_sigmaeq075_centernetfocal_seed42_clean_v3/provenance",
+    "label": "PROVISIONAL_R2B_PIXEL_SELECTION_CHECKPOINT",
+    "downstream_use": "NOT_FOR_DOWNSTREAM_USE",
+    "latest_pt_sha": "806ce086dc0fa0163029e0fb335ad6ae9605ea6b550b12371a2cb0d5340eb575",
+    "best_pt_sha": "1a4863c96484871fda2a70b02678ac602245ceea4bc8c093160a407009ba8ecc",
+    "byte_identical_copies_verified": true
+  }
+}

@@ -1,0 +1,40 @@
+{
+ "artifact": "phase26_threshold_equivalence_test",
+ "phase": "26",
+ "classification": "CANONICAL_FULL_SYSTEM_INTEGRATION_AND_CONFIGURATION_FREEZE",
+ "method": "RA-MedFiLM-BARR",
+ "tau_final_raw_exact": "24796109646558761/20000000000000000000",
+ "tau_c8_final_exact": "-5003565381643716252018011/205414980000000000000000000",
+ "comparator": ">=",
+ "relaxed_eps": 1e-09,
+ "cases": [
+  {
+   "case": "below",
+   "delta_hat_final": 0.0012388054823279382,
+   "utility": -0.024359327623641257,
+   "decision": "SKIP",
+   "expected": "SKIP",
+   "pass": true
+  },
+  {
+   "case": "equal",
+   "delta_hat_final": 0.001239805482327938,
+   "utility": -0.024358327623641256,
+   "decision": "EXECUTE",
+   "expected": "EXECUTE",
+   "pass": true
+  },
+  {
+   "case": "above",
+   "delta_hat_final": 0.001240805482327938,
+   "utility": -0.024357327623641255,
+   "decision": "EXECUTE",
+   "expected": "EXECUTE",
+   "pass": true
+  }
+ ],
+ "exact_vs_utility_abs_diff": 0.0,
+ "project_data_used": false,
+ "all_pass": true,
+ "terminal_on_failure": "PHASE26_BLOCKED__FINAL_ROUTER_RUNTIME_THRESHOLD_FAILURE"
+}

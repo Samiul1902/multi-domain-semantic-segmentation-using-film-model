@@ -1,0 +1,151 @@
+{
+ "artifact": "phase24_router_parameter_count_adjudication",
+ "phase": "24",
+ "revision": "ra_medfilm_barr_narrowed_v1_2",
+ "defect_id": "D2",
+ "field": "router.expected_parameter_count_closed_form",
+ "classification": "SPECIFICATION_COMPLETENESS_AND_GOVERNANCE_SYNC",
+ "architecture_changed": false,
+ "hidden_widths_changed": false,
+ "input_dim_changed": false,
+ "task_embedding_retained": true,
+ "layernorm_retained": true,
+ "layernorm_affine": true,
+ "optional_harm_head_in_primary": false,
+ "frozen_architecture": {
+  "task_embedding": "Embedding(4, 16)",
+  "input_dim": 218,
+  "layers": [
+   "Linear(218,128)",
+   "LayerNorm(128) [elementwise_affine=true]",
+   "SiLU",
+   "Dropout(0.10)",
+   "Linear(128,64)",
+   "LayerNorm(64) [elementwise_affine=true]",
+   "SiLU",
+   "Dropout(0.10)",
+   "Linear(64,1)"
+  ]
+ },
+ "parameter_recomputation": {
+  "task_embedding_4x16": 64,
+  "Linear_218_128": {
+   "weight": 27904,
+   "bias": 128,
+   "total": 28032
+  },
+  "LayerNorm_128": {
+   "gamma": 128,
+   "beta": 128,
+   "total": 256
+  },
+  "Linear_128_64": {
+   "weight": 8192,
+   "bias": 64,
+   "total": 8256
+  },
+  "LayerNorm_64": {
+   "gamma": 64,
+   "beta": 64,
+   "total": 128
+  },
+  "Linear_64_1": {
+   "weight": 64,
+   "bias": 1,
+   "total": 65
+  },
+  "linear_core_subtotal": 36353,
+  "layernorm_affine_subtotal": 384
+ },
+ "canonical_total_trainable_params": 36801,
+ "historical_linear_core_count": 36353,
+ "historical_36353_interpretation": "36,353 is exactly the LINEAR-LAYER MLP parameter count (Linear(218,128) + Linear(128,64) + Linear(64,1)); it is NOT the total trainable router parameter count",
+ "historical_label_corrected_from": "total trainable router parameters",
+ "historical_label_corrected_to": "historical_mlp_linear_core_parameter_count",
+ "difference": 448,
+ "difference_breakdown": {
+  "task_embedding": 64,
+  "layernorm_affine": 384
+ },
+ "bookkeeping_correction_only": true,
+ "model_trained_so_no_science_invalidated": true,
+ "science_changed": false,
+ "method_changed": false,
+ "checks": [
+  {
+   "check": "total_trainable_params_is_36801",
+   "passed": true,
+   "detail": 36801
+  },
+  {
+   "check": "linear_core_is_36353",
+   "passed": true,
+   "detail": 36353
+  },
+  {
+   "check": "linear_core_matches_historical",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "difference_is_448",
+   "passed": true,
+   "detail": 448
+  },
+  {
+   "check": "difference_breakdown_64_plus_384",
+   "passed": true,
+   "detail": {
+    "task_embedding": 64,
+    "layernorm_affine": 384
+   }
+  },
+  {
+   "check": "task_embedding_retained",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "layernorm_retained",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "layernorm_affine_true",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "hidden_widths_unchanged",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "input_dim_unchanged_218",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "36353_is_exactly_linear_core_only",
+   "passed": true,
+   "detail": {
+    "linear_core": 36353,
+    "36801-64-384": 36353
+   }
+  },
+  {
+   "check": "no_optional_harm_head_in_primary",
+   "passed": true,
+   "detail": null
+  }
+ ],
+ "n_checks": 12,
+ "n_failed": 0,
+ "verdict": "D2_RESOLVED",
+ "model_instantiations": 0,
+ "forward_passes": 0,
+ "training_runs": 0,
+ "optimizer_constructed": false,
+ "backward_calls": 0,
+ "test_reads": 0
+}

@@ -1,0 +1,60 @@
+{
+  "artifact": "PHASE14_CLEAN_V3_CHECKPOINT_SELECTION_REPLAY",
+  "kind": "DISK_ONLY_REPLAY",
+  "method_note": "No forward pass, no backward pass, no inference, no TEST read.",
+  "frozen_rule": {
+    "checkpoint_metric": "val_crop_dice",
+    "mode": "max",
+    "checkpoint_rule": "best_val_crop_dice",
+    "early_stopping": {
+      "patience": 15,
+      "metric": "val_crop_dice",
+      "mode": "max"
+    }
+  },
+  "history": {
+    "epochs_recorded": 71,
+    "rows": 71,
+    "argmax_epoch": 56,
+    "argmax_val_crop_dice": 0.8471670276240298
+  },
+  "artifacts": {
+    "best_pt_epoch": 56,
+    "best_pt_best_val_crop_dice": 0.8471670276240298,
+    "best_pt_best_epoch_field": 56,
+    "best_pt_bad_epochs": 0,
+    "latest_pt_epoch": 71,
+    "latest_pt_best_val_crop_dice": 0.8471670276240298,
+    "latest_pt_best_epoch_field": 56,
+    "latest_pt_bad_epochs": 15
+  },
+  "closure": {
+    "best_epoch": 56,
+    "best_val_crop_dice": 0.8471670276240298,
+    "total_epochs": 71,
+    "stop_reason": "EARLY_STOPPING_PATIENCE_15",
+    "crop_margin": 0.25,
+    "crop_margin_role": "ORACLE_DERIVED_REFINER_TRAIN_VAL_CROP_CONSTRUCTION",
+    "predicted_proposal_margin": 0.2,
+    "best_checkpoint_sha256": "2e09e3a9c39c731687db1a9fef0c80881ed6235e4cda070bb4b8b382caa45daa",
+    "latest_checkpoint_sha256": "fcd71dec9fea397ba7e98e22047d5d405ff60fbcf96acd2090ab0ae3749ff17a",
+    "history_sha256": "8de46a4ae001a377756c7303a6bceeb1f731be911527cb845f2ee90e6de5f996"
+  },
+  "checks": {
+    "best_pt_epoch_equals_history_argmax": true,
+    "best_pt_dice_equals_history_argmax": true,
+    "closure_best_epoch_equals_argmax": true,
+    "closure_best_dice_equals_argmax": true,
+    "latest_pt_epoch_is_final_epoch": true,
+    "closure_total_epochs_is_final_epoch": true,
+    "latest_pt_carries_best_dice": true,
+    "best_epoch_field_consistent": true,
+    "stop_reason_is_early_stopping": true,
+    "early_stopping_arithmetic": true,
+    "crop_margin_is_role_resolved_025": true,
+    "predicted_proposal_margin_is_020": true,
+    "history_rows_equal_epochs": true
+  },
+  "verdict": "REPLAY_PASS__FROZEN_RULE_HONOURED",
+  "failed_checks": []
+}

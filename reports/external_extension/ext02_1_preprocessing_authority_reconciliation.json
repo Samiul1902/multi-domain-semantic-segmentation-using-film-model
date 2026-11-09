@@ -1,0 +1,31 @@
+{
+  "classification": "EXT02_1_PREPROCESSING_AUTHORITY_RECONCILIATION",
+  "generated_utc": "2026-10-11T15:00:00Z",
+  "canonical_authority": {
+    "primary_source": "scripts/analysis/phase36_robustness_execution_v1_23.py",
+    "sha256": "2287cc78ba60d715ff371ba58f0ea90f772219b510e198bea6053a7043159396",
+    "functions": [
+      "_load_clean_image_tensor",
+      "_load_val_gt"
+    ],
+    "phase39_recovery_source": "scripts/analysis/phase39_final_test_execution_v1_2.py",
+    "phase39_sha256": "e3544634095d86853ce0e7b2fa55bac4a0ecf84cef65ea6fab163a1466606d3c",
+    "phase39_role": "delegates to the frozen Phase36 canonical functions (no independent preprocessing)"
+  },
+  "verified_semantics": {
+    "resize": "aspect-preserving (scale = min(512/w, 512/h)); extent = max(1, round(extent*scale))",
+    "padding": "symmetric pad to 512x512",
+    "image_interpolation": "BILINEAR (PIL/Image.Resampling)",
+    "mask_interpolation": "NEAREST",
+    "channels": "image RGB (replicate if L); mask binarized (mask>0)",
+    "normalization": "as implemented by canonical loader (recorded; no new normalization)"
+  },
+  "ext02_prose_match": "MATCH",
+  "binding_status": "VERIFIED_MATCH",
+  "supersede_flag": "NOT_TRIGGERED",
+  "breast_rgba_rule": {
+    "operation": "RGBA -> RGB by dropping alpha (deterministic)",
+    "adaptive_processing": false,
+    "library": "PIL .convert('RGB')"
+  }
+}

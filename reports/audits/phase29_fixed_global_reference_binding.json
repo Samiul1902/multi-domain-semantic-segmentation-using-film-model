@@ -1,0 +1,42 @@
+{
+ "artifact": "phase29_fixed_global_reference_binding",
+ "phase": 29,
+ "classification": "CANONICAL_PHASE29_THREE_SEED_DOWNSTREAM_BARR_REPRODUCIBILITY",
+ "method": "RA-MedFiLM-BARR",
+ "governance_only": false,
+ "execution_stage": "PHASE_A_FIXED_G_REFERENCE",
+ "generated_utc": "2026-10-02T15:23:19+00:00",
+ "G_checkpoint": {
+  "path": "checkpoints/phase21_global_medfilm_fourdomain_seed42_clean_v3/best.pt",
+  "sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7"
+ },
+ "G_architecture_binding": {
+  "path": "reports/audits/phase21_global_medfilm_architecture_binding.json",
+  "sha256": "21e2c195c8da33da761965817bab99f0eeec5fa84a846d05ae765b9567017e78"
+ },
+ "phase25b_features": {
+  "path": "data_cache/phase25b_barr_pre_refinement_features_v1_2/features.npy",
+  "sha256": "9c241963b54f23de1c9671ff6670dde7d6f7e2510869ef5ebc1baf3f7c833e0a",
+  "shape": [
+   4957,
+   202
+  ]
+ },
+ "global_checkpoint_identical_across_seeds": true,
+ "phase25b_dev_features_identical_across_seeds": true,
+ "phase25b_dev_features_regenerated": false,
+ "G_trained": false,
+ "checks": {
+  "G_checkpoint_present": true,
+  "G_checkpoint_sha_matches_canonical": true,
+  "G_architecture_binding_present": true,
+  "phase25b_features_present": true,
+  "phase25b_features_sha_matches_canonical": true,
+  "phase25b_schema_present": true,
+  "global_checkpoint_identical_across_seeds": true,
+  "phase25b_dev_features_regenerated": false,
+  "G_trained": false
+ },
+ "prohibitions_satisfied": true,
+ "all_pass": true
+}

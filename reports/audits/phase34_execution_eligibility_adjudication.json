@@ -1,0 +1,75 @@
+{
+ "artifact": "phase34_execution_eligibility_adjudication",
+ "phase": 34,
+ "section": "\u00a7Z",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase34_efficiency_profiling_v1_0",
+ "families": {
+  "historical_analytical_MAC_reuse_eligible": {
+   "value": true,
+   "basis": "phase34_historical_compute_semantics_contract.json"
+  },
+  "new_parameter_count_execution_eligible": {
+   "value": true,
+   "basis": "phase34_parameter_count_contract.json"
+  },
+  "new_analytical_MAC_profiler_execution_eligible": {
+   "value": false,
+   "basis": "no third-party FLOP/MAC profiler installed; no install permitted (phase34_profiler_tool_eligibility.json)"
+  },
+  "GPU_batch1_latency_execution_eligible": {
+   "value": true,
+   "basis": "phase34_latency_measurement_contract.json"
+  },
+  "GPU_batch8_throughput_execution_eligible": {
+   "value": true,
+   "basis": "phase34_batch_size_contract.json"
+  },
+  "GPU_memory_execution_eligible": {
+   "value": true,
+   "basis": "phase34_memory_measurement_contract.json"
+  },
+  "component_level_runtime_execution_eligible": {
+   "value": true,
+   "basis": "phase34_profiling_arm_registry.csv"
+  },
+  "path_level_runtime_execution_eligible": {
+   "value": true,
+   "basis": "phase34_profiling_arm_registry.csv (FINAL_ROUTED_A8_C9 composed canonical interfaces)"
+  },
+  "conditional_weighted_runtime_estimate_eligible": {
+   "value": true,
+   "basis": "phase34_conditional_runtime_reporting_contract.json"
+  },
+  "synthetic_route_replay_eligible": {
+   "value": false,
+   "basis": "no pre-frozen exact route-sequence harness in v1.0"
+  },
+  "cold_start_timing_eligible": {
+   "value": false,
+   "basis": "phase34_runtime_scope_contract.json"
+  },
+  "raw_ROUTER_HOLDOUT_execution_eligible": {
+   "value": false,
+   "basis": "data access"
+  },
+  "raw_GT_execution_eligible": {
+   "value": false,
+   "basis": "data access"
+  },
+  "TEST_execution_eligible": {
+   "value": false,
+   "basis": "TEST LOCKED_UNTIL_PHASE39"
+  },
+  "training_eligible": {
+   "value": false,
+   "basis": "Phase34 is a profiling phase"
+  },
+  "Phase35_started": {
+   "value": false,
+   "basis": "out of scope"
+  }
+ },
+ "generated_utc": "2026-10-04T09:50:07+00:00",
+ "all_pass": true
+}

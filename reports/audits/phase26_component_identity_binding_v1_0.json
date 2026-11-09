@@ -1,0 +1,168 @@
+{
+ "artifact": "phase26_component_identity_binding_v1_0",
+ "phase": "26",
+ "classification": "SUPERVISOR_SPECIFICATION_REPAIR__PHASE26_OPERATIONAL_REDEFINITION",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase26_integration_v1_0",
+ "governance_only": true,
+ "components": {
+  "GLOBAL": {
+   "owner_phase": "Phase21",
+   "model": "GlobalMedFiLM (global_medfilm_shared_residual_unet_film5_no_se_no_deep_supervision_v1)",
+   "experiment_id": "phase21_global_medfilm_fourdomain_seed42_clean_v3",
+   "checkpoint": {
+    "path": "checkpoints/phase21_global_medfilm_fourdomain_seed42_clean_v3/best.pt",
+    "exists": true,
+    "sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7"
+   },
+   "checkpoint_sha256_from_freeze": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+   "best_epoch": 66,
+   "best_macro_domain_dice": 0.8350791259413984,
+   "selection_replay": "PHASE21_CHECKPOINT_SELECTION_REPLAY_PASS",
+   "final_freeze": {
+    "path": "reports/audits/phase21_final_freeze.json",
+    "exists": true,
+    "sha256": "aad7baab700710dcf51f0b549b52ddd340bd06d1ec50c39a86f48b00745e98af"
+   },
+   "architecture_binding": {
+    "path": "reports/audits/phase21_global_medfilm_architecture_binding.json",
+    "exists": true,
+    "sha256": "21e2c195c8da33da761965817bab99f0eeec5fa84a846d05ae765b9567017e78"
+   },
+   "training_closure": {
+    "path": "experiments/phase21_global_medfilm_fourdomain_seed42_clean_v3/phase21_training_closure.json",
+    "exists": true,
+    "sha256": "5d58c9233160e77fad6a03f1cb53907345b14cf9a0c8418f3a5d56d1fb0391ac"
+   }
+  },
+  "REGIONAL": {
+   "owner_phase": "Phase25A",
+   "model": "BARRRegionalRefinerV1 (ROI-0.30 canonical)",
+   "checkpoint": {
+    "path": "checkpoints/phase25a_barr_regional_refiner_v1_1_roi030/final/final.pt",
+    "exists": true,
+    "sha256": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109"
+   },
+   "checkpoint_sha256_from_freeze": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109",
+   "params": 1276401,
+   "macs": 3230662656,
+   "final_freeze": {
+    "path": "reports/audits/phase25a_canonical_final_freeze.json",
+    "exists": true,
+    "sha256": "ec1929fffaafa6e87034cee0c4f58bd90153666788efd0a42aedfc8b81e530b7"
+   }
+  },
+  "BENEFIT_ROUTER": {
+   "owner_phase": "Phase25D",
+   "model": "BARRBenefitRouterV1",
+   "checkpoint": {
+    "path": "checkpoints/phase25d_barr_benefit_router_v1_2_1_seed42/final/final.pt",
+    "exists": true,
+    "sha256": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b"
+   },
+   "checkpoint_sha256_from_freeze": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+   "params": 36801,
+   "macs": 36160,
+   "final_epochs": 80,
+   "final_freeze": {
+    "path": "reports/audits/phase25d_final_freeze.json",
+    "exists": true,
+    "sha256": "813a0c37b073c3b65a79340500b14a295b718b1e08ba91959176f5b62746afe5"
+   }
+  },
+  "POST_SAFETY": {
+   "owner_phase": "Phase25F",
+   "model": "BARRPostSafetyV1",
+   "checkpoint": {
+    "path": "checkpoints/phase25f_barr_post_safety_v1_0_seed42/final/final.pt",
+    "exists": true,
+    "sha256": "eee9b97b9921e53fc07eac9281dce64ba518c6e1659916b97b0b3bec21ec6d2e"
+   },
+   "checkpoint_sha256_from_freeze": "eee9b97b9921e53fc07eac9281dce64ba518c6e1659916b97b0b3bec21ec6d2e",
+   "params": 1217,
+   "final_safety_epochs": 23,
+   "final_freeze": {
+    "path": "reports/audits/phase25f_final_freeze.json",
+    "exists": true,
+    "sha256": "383280b9bbd015b8f85b962a453d7a14b40dea424b55b2fe3189d6bac127bb1c"
+   }
+  }
+ },
+ "component_count": 4,
+ "auxiliary_bindings": {
+  "phase25d_final_normalization": {
+   "path": "reports/tables/phase25d_final_normalization_stats.csv",
+   "exists": true,
+   "sha256": "ba37742e96610ec5e46fb47c093bf71ae1afd85b2a0db9696b612c873a4ba1fb"
+  },
+  "phase25f_final_normalization": {
+   "path": "reports/tables/phase25f_final_normalization_stats.csv",
+   "exists": true,
+   "sha256": "e112e18b134c6edcdcd0c254c362d0a954a75faffe634cc37a2a17e4fe6f4e7b"
+  },
+  "router_feature_schema": {
+   "path": "data_cache/phase25b_barr_pre_refinement_features_v1_2/feature_schema.csv",
+   "exists": true,
+   "sha256": "da76aa34f14006146f46ca799f173378274d8c9d0792dc18edb30711a2486dd4"
+  },
+  "post_safety_feature_schema": {
+   "path": "data_cache/phase25f_barr_post_safety_v1_0/feature_schema.csv",
+   "exists": true,
+   "sha256": "3e70e20c541b93de752980c34cdfb6fe5af17ebe4c18cbb64397c0bbae465ee5"
+  },
+  "phase25e_final_router_dev_thresholds": {
+   "path": "reports/tables/phase25e_final_router_dev_thresholds.csv",
+   "exists": true,
+   "sha256": "980e44aba6bb57bc86b2fa03060eaa181207297367fe7f7b1bbbde9c9b3bcfd1"
+  },
+  "phase25d_final_normalization_sha256": "ba37742e96610ec5e46fb47c093bf71ae1afd85b2a0db9696b612c873a4ba1fb",
+  "phase25f_final_normalization_sha256": "e112e18b134c6edcdcd0c254c362d0a954a75faffe634cc37a2a17e4fe6f4e7b"
+ },
+ "contracts": {
+  "task_id_mapping": {
+   "ISIC": 0,
+   "BUSI": 1,
+   "KVASIR": 2,
+   "KUB": 3
+  },
+  "roi_geometry_contract": {
+   "predicted_foreground_threshold": 0.3,
+   "expansion_factor": 1.5,
+   "input_resolution": 256,
+   "rule": "predicted foreground -> tight bbox -> center-preserving 1.50x expansion -> clip -> square pad -> resize to 256x256",
+   "empty_prediction_behavior": "FORCED_SKIP"
+  },
+  "fusion_contract": {
+   "rule": "outside frozen ROI: p_final_candidate = p_global; inside frozen ROI: p_final_candidate = resized p_refined",
+   "alpha_blending": false,
+   "learned_fusion": false,
+   "segmentation_threshold": 0.5
+  }
+ },
+ "checkpoint_sha_checks": {
+  "GLOBAL": {
+   "actual": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+   "expected": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+   "match": true
+  },
+  "REGIONAL": {
+   "actual": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109",
+   "expected": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109",
+   "match": true
+  },
+  "BENEFIT_ROUTER": {
+   "actual": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+   "expected": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+   "match": true
+  },
+  "POST_SAFETY": {
+   "actual": "eee9b97b9921e53fc07eac9281dce64ba518c6e1659916b97b0b3bec21ec6d2e",
+   "expected": "eee9b97b9921e53fc07eac9281dce64ba518c6e1659916b97b0b3bec21ec6d2e",
+   "match": true
+  }
+ },
+ "all_checkpoint_shas_match_freeze": true,
+ "abbreviated_hashes_used": false,
+ "recovered_from": "frozen final freezes (not documentation prose)",
+ "all_pass": true
+}

@@ -1,0 +1,26 @@
+{
+  "classification": "PHASE25E_PRE_EXECUTION_RESOURCE_GATE_SPECIFICATION_FREEZE",
+  "specification_revision": "ra_medfilm_barr_resource_gate_v1_0",
+  "utility": "U_hat_i = Delta_hat_i - lambda * C_i",
+  "fixed_budgets": [
+    "0.00",
+    "0.10",
+    "0.25",
+    "0.50",
+    "1.00"
+  ],
+  "lambda_grid": [
+    "0.00",
+    "0.25",
+    "0.50",
+    "1.00"
+  ],
+  "lambda_source": "phase24_exact_implementation_spec.json:routing.lambda_grid; phase24_spec_repair_freeze.json:bindings.router_lambda_grid",
+  "calibration_population": "ROUTER_DEVELOPMENT",
+  "single_universal_lambda_forbidden": true,
+  "comparator_source": "reports/tables/phase24_comparator_plan.csv",
+  "roi_direction_previously_frozen": false,
+  "orientation_review": "Phase24 comparator CSV, architecture spec, exact implementation spec and resource contract specify geometry comparator but no sign/orientation. E4 comparator ruling freezes negative ROI area prospectively.",
+  "frozen_contract_conflicts": [],
+  "all_pass": true
+}

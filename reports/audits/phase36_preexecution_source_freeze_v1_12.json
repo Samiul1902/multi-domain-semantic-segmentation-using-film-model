@@ -1,0 +1,142 @@
+{
+  "artifact": "phase36_preexecution_source_freeze_v1_12",
+  "phase": 36,
+  "method": "RA-MedFiLM-BARR",
+  "revision": "ra_medfilm_barr_phase36_robustness_v1_12",
+  "type": "PREEXECUTION_SOURCE_FREEZE",
+  "section": "§R",
+  "execution_subject": "scripts/analysis/phase36_robustness_execution_v1_12.py",
+  "execution_subject_sha256": "8ed75a9b8f4ea8c204875bf1810e17df3f9c342a434f25399154f355ee888ea4",
+  "pre_invocation_launcher": "scripts/analysis/launch_phase36_v1_12.py",
+  "pre_invocation_launcher_sha256": "b3ffe88c44f084f9f03700419cd717afb0be8b103afad43d458ece3a42b4ad9d",
+  "runtime_integrity_manifest": "reports/audits/phase36_v1_12_runtime_source_integrity_manifest.json",
+  "runtime_integrity_manifest_sha256": "f75b719e125ac85f901950034c7364bb77614831ce425660d41d2a9f432b1b35",
+  "non_circular_release_chain": {
+    "supervisor_pins": [
+      "scripts/analysis/launch_phase36_v1_12.py",
+      "reports/audits/phase36_preexecution_source_freeze_v1_12.json"
+    ],
+    "launcher_verifies": [
+      "scripts/analysis/phase36_robustness_execution_v1_12.py",
+      "reports/audits/phase36_v1_12_runtime_source_integrity_manifest.json"
+    ],
+    "manifest_declares": [
+      "scripts/analysis/phase36_robustness_execution_v1_12.py"
+    ],
+    "source_requires": "PHASE36_V1_12_LAUNCH_AUTHORITY token ONLY (no manifest-declared launcher hash)",
+    "launcher_expected_hashes_immutable": true,
+    "launcher_env_override_mechanism": "NONE (D35)",
+    "no_cycle": true,
+    "launcher_sha_declared_in_manifest": false,
+    "source_fails_closed_on_manifest_launcher_sha": true
+  },
+  "frozen_sources": {
+    "scripts/analysis/phase36_robustness_execution_v1_12.py": "8ed75a9b8f4ea8c204875bf1810e17df3f9c342a434f25399154f355ee888ea4",
+    "scripts/analysis/phase36_robustness_unit_v1_12.py": "ae5042b1016fcc4094f3241ba640d2b4b0f407327e446b03387f632def429b58",
+    "scripts/analysis/phase36_robustness_negative_controls_v1_12.py": "d2693a2726c445272d92f53967c253321b6063360810c31522726741f9d27676",
+    "scripts/analysis/phase36_robustness_preflight_v1_12.py": "bd7bc4ad63de64518b41f70d87b553b727713819253d643c919ba7f0ee4657a6",
+    "scripts/analysis/launch_phase36_v1_12.py": "b3ffe88c44f084f9f03700419cd717afb0be8b103afad43d458ece3a42b4ad9d"
+  },
+  "frozen_audits_and_reports": {
+    "reports/audits/phase36_robustness_unit_v1_12.json": "df445f6bcca211486111d7aaffd81878a658d6677d18e0a905798368222138a5",
+    "reports/audits/phase36_robustness_preflight_v1_12.json": "82e6867507b76202053f9ba9f9b5b53de6c5f2af33a29aeebd35f76d64dafa76",
+    "reports/audits/phase36_v1_12_negative_controls.json": "7a47bcce324fc5d14b7cdbe09aff005768dc04679163925e32451c23d6260851",
+    "reports/audits/phase36_v1_11_to_v1_12_semantic_diff.json": "af0a32f108556ff5b8b7f91ba16dc2316b757c63c5976cb828820f56966b889b",
+    "reports/audits/phase36_v1_12_direct_source_byte_audit.json": "f4d3266d7f215e8d3e28356bc6591cf5a8f0054c2fd4c4565aff3eeaaa0e7221",
+    "reports/audits/phase36_v1_12_source_repair_no_execution_audit.json": "a1457df87da363f9b6ce0bd7b39f24ccb42844615ff206541ecfa76257b917fd",
+    "reports/audits/phase36_v1_12_runtime_source_integrity_manifest.json": "f75b719e125ac85f901950034c7364bb77614831ce425660d41d2a9f432b1b35",
+    "reports/audits/phase36_v1_12_launcher_co_edit_negative_control.json": "c28b67052dd8c93424dffe2550eb7baee6569f9e9c0c443ee3928a4e452fa2ae",
+    "reports/audits/phase36_robustness_unit_v1_11.json": "1c127bb0b3cb7d179e807c729b578cbd09c86666d9000d7e06612909b2eee9a9",
+    "reports/audits/phase36_robustness_preflight_v1_11.json": "d0175a86b5479bb35425e1cce6eac4dea741bf01e95b11f52e0f11272c146493",
+    "reports/audits/phase36_v1_11_negative_controls.json": "c04841e2de2542b3e900f3a469b8c329d36aad64f2810aab5e509a01c4a134eb",
+    "reports/audits/phase36_v1_9_to_v1_11_semantic_diff.json": "1a181ffbfd67ac41ac18864ea02ddb4685d705ad8a7904856a1cd56140be2ca7",
+    "reports/audits/phase36_v1_11_direct_source_byte_audit.json": "947fb1baf8a22fb45fb78e8ea1ec9ab947fea6d2d6ffbe2b2d12717cf7aad700",
+    "reports/audits/phase36_v1_11_source_repair_no_execution_audit.json": "3064d1a64ed479326e395c507acc84de993f4dc34e7a85a7d2991f100f6493c3",
+    "reports/audits/phase36_v1_11_launcher_co_edit_negative_control.json": "ac8fe88bba79487ca2f53655256265213068ffa7decdbda04600fe6d0e48522e",
+    "reports/audits/phase36_preexecution_source_freeze_v1_11.json": "f8eb0dd4d6ca50582b14c1c39709a87581b3dd781424aefbf4c52af1b51e6a02",
+    "reports/audits/phase36_synthetic_smoke_eligibility_v1_11.json": "805a530dfcaac680ec3605af2b3eeca24288b4f555e4118636f31959a5e9d2ca",
+    "reports/audits/phase36_robustness_unit_v1_9.json": "75a15d3126d3b982b744e7f8e206b5e393ac8efee0941230f0c0c2c4f987c03d",
+    "reports/audits/phase36_robustness_preflight_v1_9.json": "af22f75e9d509f1181e83e581b18001f02c23b0ab30fe64190814ca937366b81",
+    "reports/audits/phase36_v1_9_negative_controls.json": "64b524bffacfa2e30f8e1a79802fde7ec288c4b60f5543250159f78794716759",
+    "reports/audits/phase36_v1_9_direct_source_byte_audit.json": "2b512059008d2935099187dda40ce249927bc331f49ef10df424db1af55942bf",
+    "reports/audits/phase36_v1_9_source_repair_no_execution_audit.json": "134cdb9b0e613355772108ac485193fccb835c67cde66704dfda9bc630b278d6",
+    "reports/audits/phase36_robustness_unit_v1_10.json": "9695695afac6e9af0e01d86a0d0b089b271e5600627354e0d78a3b997bc3aa25",
+    "reports/audits/phase36_robustness_preflight_v1_10.json": "479c82985f33d01b2c45c39881f92b5d0d9d7930c835fa408b3b20021e77c733",
+    "reports/audits/phase36_v1_10_negative_controls.json": "2bd65eb8b6be20285c2c76ac9ad9478ce103c9d4869551919976d1134c618df5",
+    "reports/audits/phase36_v1_9_to_v1_10_semantic_diff.json": "b76a568e36d10d7e7c5bd4eba4d98cb26ca29e352c7c10dc2fc03166bfb3fc31",
+    "reports/audits/phase36_v1_10_direct_source_byte_audit.json": "0f874139bd660b3c5b2bfce6dc08c568a05ef4057bcf5cafdc45ae30c724ac5c",
+    "reports/audits/phase36_v1_10_source_repair_no_execution_audit.json": "17d397a4e00b8d4e19f7de8501bb06f0f528edfd5c5145d22b956c9c5068b40c",
+    "reports/audits/phase36_v1_10_frozen_validator_availability_provenance.json": "aefa1d245126d80405329e62e4a4372ef6956e94cb813e05742c6faa131c2cf0"
+  },
+  "supporting_generators": {
+    "scripts/analysis/build_phase36_v1_12_semantic_diff.py": "6d3d9dd53d069ed92f88668d2a2f9f7e244ca609ea6b4cc9d75217b64e6446ef",
+    "scripts/analysis/audit_phase36_v1_12_direct_source_bytes.py": "d61968ae5fa754476cf65f17fb52d5e9c1aa5f0d51751b60e4f80f45d9f9dcc8",
+    "scripts/analysis/audit_phase36_v1_12_no_execution.py": "8d6ed6370d59fa590ed1f32e20498094fe79c8b65a8608ab71f9dd062990d479",
+    "scripts/analysis/build_phase36_v1_12_runtime_integrity_manifest.py": "d9e39066c751e0c947ea2abd4effcec9481e3ed2409bd7656f43414e8982deb0",
+    "scripts/analysis/build_phase36_v1_12_launcher_co_edit_control.py": "17a1905caa74cfee527befa6fc246cee4516d695eb987c52c92601b21082e3d1",
+    "scripts/analysis/build_phase36_v1_12_freeze_and_eligibility.py": "119ee1344dffcf0c8b1961995d0f2b9e73f16ba281825025b8a2040d1dd51fd6"
+  },
+  "history_preserved": {
+    "scripts/analysis/phase36_robustness_execution_v1_11.py": "dc4928417444304ad637907c53089e512577254b368e438d0098ade6202083f0",
+    "scripts/analysis/launch_phase36_v1_11.py": "56612332d220f93611fc627b1f495aca3013bb3578ab801ee10b4ee0386b25b0",
+    "scripts/analysis/phase36_robustness_unit_v1_11.py": "189b9957704beccff1ba9c198e7f2f9ed29fa351e9cfc6f46d03441adeaeac41",
+    "reports/audits/phase36_v1_11_runtime_source_integrity_manifest.json": "d795d41152accde6cf59717d2d17ab429b0cdf8fc1ff98bca11dcb13a591bda7",
+    "scripts/analysis/phase36_robustness_execution_v1_9.py": "433bad87b4ef77fd6997c77f688eb295e526bfa3e88dece4ec5d3d550255cbd0",
+    "scripts/analysis/phase36_robustness_unit_v1_9.py": "c39edd7764a0e9733cc5905e5e54935b1bcd9cc62c345189f618b0c6f4ea690e",
+    "scripts/analysis/phase36_robustness_unit_v1_10.py": "9b880c92469e7daca8f6563e64bf2e2e712d4eb8ac304298fbb52f89ab87c329",
+    "scripts/analysis/phase36_robustness_execution_v1_8.py": "c95ff9884ec05a859b39ce7976376bf40e4543b1a8d8a19830e5893120039f4d",
+    "scripts/analysis/phase36_robustness_execution_v1_7.py": "87062d2b38232c73b8ce620d7bfafb389658c4b877d9196a26b8b01d09daf192",
+    "byte_preserved": true
+  },
+  "canonical_component_sources": {
+    "src/models/film/global_medfilm.py": "a04ff3e61b4d900ff47c2f390da4a999e73bd6047b28a19e41b05115e431d11f",
+    "scripts/analysis/train_phase25d_router.py": "fc7c1bdf263ae4551dcb8f170d3203adb8540fbc189846265b74f6eca1541e91",
+    "src/models/barr/regional_refiner.py": "4fe0abde3ec3a183d930f676c4400b4d9ba778793ea64abf1755c5b8dabf947a",
+    "scripts/analysis/phase25f_execution_common.py": "98cf958a377e2de30e0b67e63fd56bafea418b2b061a362ee7284e852012cd2e"
+  },
+  "n_transitive_dependencies": 14,
+  "n_transitive_checkpoints": 4,
+  "all_dependencies_match": true,
+  "all_checkpoints_match": true,
+  "gate_results": {
+    "unit": {
+      "passed": 96,
+      "total": 96,
+      "all_pass": true
+    },
+    "preflight": {
+      "passed": 87,
+      "total": 87,
+      "all_pass": true
+    },
+    "negative_controls_NC86_NC99": {
+      "passed": 14,
+      "total": 14,
+      "all_pass": true
+    },
+    "direct_source_byte_audit": {
+      "passed": 61,
+      "total": 61,
+      "verdict": "PASS"
+    },
+    "semantic_diff_new_scientific_choice": false,
+    "semantic_diff_all_semantic_groups_unchanged": true,
+    "semantic_diff_no_prohibited_changes": true,
+    "semantic_diff_smoke_ids_is_superset": true,
+    "semantic_diff_smoke_ids_is_strict_superset": false,
+    "zero_execution_audit_all_counters_zero": true,
+    "zero_execution_audit_all_generators_clean": true,
+    "launcher_co_edit_negative_control_all_mutants_rejected": true
+  },
+  "gate_artifacts_byte_deterministic_across_reruns": true,
+  "future_phase36_smoke_must_use_exact_v1_12_bytes": true,
+  "future_phase36_science_must_use_exact_v1_12_bytes": true,
+  "future_phase36_dispatch_must_go_through_launcher": true,
+  "source_freeze_complete": true,
+  "smoke_started": false,
+  "science_started": false,
+  "protected_population_read": false,
+  "test_read": false,
+  "router_holdout_read": false,
+  "terminal": "PHASE36_V1_12_SOURCE_FREEZE_COMPLETE__SMOKE_AND_SCIENCE_NOT_STARTED"
+}

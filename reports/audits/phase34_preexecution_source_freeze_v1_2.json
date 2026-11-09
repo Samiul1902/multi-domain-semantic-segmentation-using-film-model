@@ -1,0 +1,88 @@
+{
+ "artifact": "phase34_preexecution_source_freeze_v1_2",
+ "phase": 34,
+ "section": "\u00a7X",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase34_efficiency_profiling_v1_2",
+ "frozen_sources": {
+  "common": {
+   "path": "scripts/analysis/phase34_v1_2_common.py",
+   "sha256": "ca74fe88a8314b6099b2455f3450ea6f075dcd3cf69208cdd8a784ad24e9a0f9"
+  },
+  "worker": {
+   "path": "scripts/analysis/phase34_efficiency_profiling_worker_v1_2.py",
+   "sha256": "302decd1c72f970bb59c72192a361ba77ea3f9e711c799e10412b5594600fc05"
+  },
+  "harness": {
+   "path": "scripts/analysis/phase34_efficiency_profiling_execution_v1_2.py",
+   "sha256": "73d4d25f91097e8163394dbccff2c5591749e4e45c627e070dce6c442685926c"
+  },
+  "preflight": {
+   "path": "scripts/analysis/phase34_execution_preflight_v1_2.py",
+   "sha256": "23f75f73624c582da615718727666e96a84f597920ba7d1394da556a1031fadd"
+  },
+  "notebook_builder": {
+   "path": "scripts/analysis/build_phase34_spec_v1_2_reviewer_notebook.py",
+   "sha256": "c103c0d323c3809a1dfc81ab07480a10ad487628bf7e4988a92ec78302c1c109"
+  },
+  "model_G": {
+   "path": "src/models/film/global_medfilm.py",
+   "sha256": "a04ff3e61b4d900ff47c2f390da4a999e73bd6047b28a19e41b05115e431d11f"
+  },
+  "model_R_psi": {
+   "path": "src/models/barr/regional_refiner.py",
+   "sha256": "4fe0abde3ec3a183d930f676c4400b4d9ba778793ea64abf1755c5b8dabf947a"
+  },
+  "model_B_phi": {
+   "path": "scripts/analysis/train_phase25d_router.py",
+   "sha256": "fc7c1bdf263ae4551dcb8f170d3203adb8540fbc189846265b74f6eca1541e91"
+  },
+  "model_S_omega": {
+   "path": "scripts/analysis/phase25f_execution_common.py",
+   "sha256": "98cf958a377e2de30e0b67e63fd56bafea418b2b061a362ee7284e852012cd2e"
+  }
+ },
+ "authority_sources": {
+  "domain_task_registry": {
+   "path": "src/analysis/multidomain_harmonization.py",
+   "sha256": "3f009d994ed24d9c2edf8e48646e93700ab4e54dea786fb4bd03180c825cbf92"
+  },
+  "phase30_system_under_test_contract": {
+   "path": "reports/audits/phase30_system_under_test_contract.json",
+   "sha256": "f40cc08d44d53e486c8f26360f7f7709453b28c984c370038c1737b78d26c9fe"
+  },
+  "somega_feature_schema": {
+   "path": "reports/tables/phase25f_feature_schema_v1_0.csv",
+   "sha256": "3e70e20c541b93de752980c34cdfb6fe5af17ebe4c18cbb64397c0bbae465ee5"
+  },
+  "bphi_feature_schema": {
+   "path": "reports/tables/phase25b_feature_schema.csv",
+   "sha256": "da76aa34f14006146f46ca799f173378274d8c9d0792dc18edb30711a2486dd4"
+  },
+  "g_experiment_config": {
+   "path": "experiments/phase21_global_medfilm_fourdomain_seed42_clean_v3/config.json",
+   "sha256": "66ec701aeac503cbeceff75aa070e30b46146c9069e46594cbd484f6816260f5"
+  },
+  "phase29_component_inference_semantics_v1_1": {
+   "path": "reports/audits/phase29_phase_d_component_inference_semantics_contract_v1_1.json",
+   "sha256": "dc721c1143bdd03b542da95e1cfb22c638362535aea6bbcefaf28a99323c7526"
+  },
+  "phase30_component_inference_semantics": {
+   "path": "reports/audits/phase30_component_inference_semantics_contract.json",
+   "sha256": "aad71f24be3644b8726374c5fd5ada4948ea35f74f35da207511b5990c3b43af"
+  }
+ },
+ "v1_1_source_freeze": {
+  "path": "reports/audits/phase34_preexecution_source_freeze_v1_1.json",
+  "sha256": "27402c5a65004660fcbd944e422073447f10afcedddb2f8625dbd9a57ba8d689"
+ },
+ "v1_1_source_freeze_preserved": true,
+ "v1_1_blocked_attempt_preserved": true,
+ "v1_2_supersedes_v1_1_for_future_execution": true,
+ "future_measurement_must_use_exact_v1_2_bytes": true,
+ "v1_2_measurements_already_performed": false,
+ "static_preflight_pass": true,
+ "static_preflight_sha256": "e371f362282bf1a945042d836dc99a4dd2c54fd479f0817bc069ea35fb5c7825",
+ "generated_utc": "2026-10-04T11:08:33+00:00",
+ "all_pass": true
+}

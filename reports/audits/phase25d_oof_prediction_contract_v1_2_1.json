@@ -1,0 +1,21 @@
+{
+ "phase": "25D",
+ "classification": "PRE_EXECUTION_SPECIFICATION_COMPLETENESS_REPAIR",
+ "router_training_spec_revision": "ra_medfilm_barr_router_training_v1_2_1",
+ "method": "RA-MedFiLM-BARR",
+ "architecture_revision": "ra_medfilm_barr_narrowed_v1_2",
+ "generated_utc": "2026-10-01T02:01:22+00:00",
+ "artifact": "phase25d_oof_prediction_contract_v1_2_1",
+ "timing": "After a CV fold's checkpoint is frozen from EARLY_STOP loss",
+ "procedure": "load best checkpoint; model.eval(); torch.inference_mode(); predict ONCE on OUTER_TARGET_k",
+ "output": "delta_hat_oof",
+ "must_not_modify": [
+  "scheduler",
+  "checkpoint",
+  "epoch_choice",
+  "normalization_stats",
+  "model_parameters"
+ ],
+ "concatenation": "five OUTER_TARGET predictions concatenated = 4957 OOF Delta_hat values",
+ "execution_note": "This rule is frozen now but NOT executed during this repair"
+}

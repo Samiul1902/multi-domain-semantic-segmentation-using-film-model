@@ -1,0 +1,42 @@
+{
+ "artifact": "phase29_specification_completeness_v1_1",
+ "phase": 29,
+ "revision": "ra_medfilm_barr_phase29_repro_v1_1",
+ "classification": "SUPERVISOR_PROSPECTIVE_REPRODUCIBILITY_SPECIFICATION_REPAIR",
+ "governance_only": true,
+ "execution": "NONE",
+ "generated_utc": "2026-10-02T15:05:09+00:00",
+ "resolved_fields": {
+  "training_scope": "R_psi+B_phi+S_omega, G fixed",
+  "seed42_reuse_rule": "REUSE_CANONICAL",
+  "data_split_rule": "FIXED",
+  "crossfit_fold_rule": "FIXED",
+  "seed_dependency_model": "DOWNSTREAM_SEED_CONSISTENT_WITH_FIXED_G",
+  "feature_regeneration_rule": "REUSE_PHASE25B",
+  "gain_target_regeneration_rule": "SEED_SPECIFIC",
+  "safety_target_regeneration_rule": "SEED_SPECIFIC",
+  "final_router_calibration_rule": "PER_SEED_DEV_25PCT",
+  "evaluation_population": "DEV_PRIMARY_PLUS_VAL808_SECONDARY",
+  "training_run_count": "48 represented / 16 reused / 32 new"
+ },
+ "n_total_fields": 22,
+ "n_complete": 22,
+ "n_blocking_incomplete": 0,
+ "blocking_fields": [],
+ "prior_v1_0_blocking_incomplete": [
+  "training_scope",
+  "seed42_reuse_rule",
+  "data_split_rule",
+  "crossfit_fold_rule",
+  "seed_dependency_model",
+  "feature_regeneration_rule",
+  "gain_target_regeneration_rule",
+  "safety_target_regeneration_rule",
+  "final_router_calibration_rule",
+  "evaluation_population",
+  "training_run_count"
+ ],
+ "all_prior_blockers_resolved": true,
+ "specification_complete": true,
+ "all_pass": true
+}

@@ -1,0 +1,73 @@
+{
+ "artifact": "phase24_benefit_data_protocol_exact",
+ "phase": 24,
+ "repair": "POST_PHASE24_SPECIFICATION_COMPLETENESS_REPAIR",
+ "purpose": "freeze the split seed and materialize the exact TRAIN-only router split so Phase 25 cannot choose a split based on observed performance",
+ "split_seed": 42,
+ "split_seed_rationale": "MASTER_DEVELOPMENT_SEED = 42 is frozen NOW, before Phase 25. It is used for the ROUTER_DEVELOPMENT / ROUTER_HOLDOUT split, the 3-fold refiner cross-fitting, the router-internal deterministic data ordering and the pre-registered bootstrap. It matches the project-wide seed policy (configs/research_protocol.json seed_policy=42) and the Phase-21 seed42 clean_v3 run.",
+ "pre_existing_materialized_split_found": false,
+ "pre_existing_split_note": "No repository split with a different seed existed. The default 42 therefore applies and no superseding seed is recorded.",
+ "split_algorithm": "Per domain: group rows by the composite group key; sort groups by sha256('42::<group_key>'); greedily assign whole groups to ROUTER_HOLDOUT until the domain holdout target round(0.15 * n_domain) is reached or exceeded by one group; assign the remainder to ROUTER_DEVELOPMENT. Groups are never split.",
+ "group_key": "Composite: PATIENT::<patient_id> when patient_id is a real id (KUB, 318 patients); else ASSET::<duplicate_asset_group_id> or RISK::<duplicate_risk_group_id> when the leakage-safe duplicate ledger assigns one; else SINGLETON::<dataset>::<sample_id>. patient_id is 'NOT_AVAILABLE' for BUSI/ISIC/KVASIR, so it cannot serve as a group key there; the composite key is the only defensible leakage-safe grouping.",
+ "stratification_key": "dataset (domain); 4 strata = BUSI, ISIC, KUB, KVASIR",
+ "development_manifest": "reports/audits/phase24_router_split_manifest.csv (filter split_role=ROUTER_DEVELOPMENT)",
+ "holdout_manifest": "reports/audits/phase24_router_split_manifest.csv (filter split_role=ROUTER_HOLDOUT)",
+ "development_n": 4957,
+ "holdout_n": 875,
+ "total_n": 5832,
+ "holdout_fraction_realized": 0.150034,
+ "domain_counts": {
+  "BUSI": {
+   "development": 512,
+   "holdout": 90,
+   "total": 602
+  },
+  "ISIC": {
+   "development": 2173,
+   "holdout": 383,
+   "total": 2556
+  },
+  "KUB": {
+   "development": 1680,
+   "holdout": 298,
+   "total": 1978
+  },
+  "KVASIR": {
+   "development": 592,
+   "holdout": 104,
+   "total": 696
+  }
+ },
+ "manifest_sha256": "b5da52d6220ef9b59b4ba70d0b403b38bf5234b897615b6ad55d718114db6555",
+ "source_train_manifest": "manifests/phase4_v3/train.csv",
+ "source_train_manifest_sha256": "28702fc3a5ff8b950db372f03232d335e3a30b1fc2f21db7cd8c066055826ed6",
+ "source_val_manifest_sha256": "082c80b2bda63fd73f371f109c34643adf01edaead921643fb2e44993ba53315",
+ "source_test_manifest_sha256": "9361eba61c91c034a9aa4988a4df229bba591a5cbd553c98689ac7915da29727",
+ "zero_overlap": true,
+ "zero_overlap_group_level": true,
+ "phase22_val_overlap_zero": true,
+ "test_overlap_zero": true,
+ "group_integrity": {
+  "n_groups_total": 4172,
+  "n_groups_development": 3544,
+  "n_groups_holdout": 628,
+  "groups_straddling_splits": 0,
+  "kub_patients_total": 318,
+  "non_kub_group_basis": "singleton + leakage-safe duplicate ledger"
+ },
+ "deterministic_recheck": true,
+ "stratification_realized": {
+  "BUSI": 0.1495,
+  "ISIC": 0.1498,
+  "KUB": 0.1507,
+  "KVASIR": 0.1494
+ },
+ "holdout_outcomes_read": 0,
+ "mask_reads": 0,
+ "dice_computed": 0,
+ "model_inference_calls": 0,
+ "training_runs": 0,
+ "test_reads": 0,
+ "phase25_started": false,
+ "generated_utc": "2026-09-29T15:07:53.726735+00:00"
+}

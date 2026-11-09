@@ -1,0 +1,85 @@
+{
+ "artifact": "phase35_smoke_amendment_final_check_v1_0c",
+ "phase": 35,
+ "section": "\u00a7AB",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase35_interpretability_v1_0c",
+ "checks": {
+  "01_v1_0_chain_preserved": true,
+  "02_v1_0b_execution_source_unmodified": true,
+  "03_v1_0b_common_unmodified": true,
+  "04_v1_0b_blocked_smoke_artifacts_preserved": true,
+  "05_v1_0c_execution_source_present_and_frozen": true,
+  "06_smoke_entry_point_no_longer_stub": true,
+  "07_smoke_gate_distinct": true,
+  "08_scientific_modes_bound_from_frozen_v1_0b": true,
+  "09_scientific_helpers_not_redefined": true,
+  "10_scientific_semantics_unchanged": true,
+  "11_static_preflight_all_pass": true,
+  "12_static_preflight_n_checks": 94,
+  "13_no_model_constructed": true,
+  "14_no_checkpoint_deserialized": true,
+  "15_no_forward_executed": true,
+  "16_no_autograd": true,
+  "17_no_gradcam_executed": true,
+  "18_no_router_attribution_executed": true,
+  "19_no_gate_env_set": true,
+  "20_no_mode_invoked": true,
+  "21_no_raw_val_reads": true,
+  "22_no_gt_reads": true,
+  "23_no_router_holdout_reads": true,
+  "24_no_test_reads": true,
+  "25_no_training": true,
+  "26_no_scientific_output": true,
+  "27_defect_A_repair_disclosed": true,
+  "28_defect_B_disclosed": true,
+  "29_defect_B_not_silently_repaired": true,
+  "30_smoke_reexecution_eligible": true,
+  "31_smoke_not_executed_in_v1_0c": true,
+  "32_source_freeze_complete": true,
+  "33_amendment_doc_present": true,
+  "34_no_execution_audit_present": true,
+  "35_phase35_scientific_execution_not_started": true,
+  "36_phase36_not_started": true,
+  "37_TEST_locked": true,
+  "38_ROUTER_HOLDOUT_opened_and_frozen": true,
+  "39_no_frozen_artifact_overwritten": true,
+  "40_terminal_matches_contract": true
+ },
+ "n_checks": 40,
+ "n_failed": 0,
+ "failed": [],
+ "artifacts": [
+  {
+   "path": "reports/audits/phase35_v1_0b_smoke_stub_defect_record_v1_0c.json",
+   "sha256": "192b0bdc8f844e68f5270a04e15f423f9e0dbc6f3f008b45cfd4fc074e89fa27"
+  },
+  {
+   "path": "reports/audits/phase35_v1_0b_to_v1_0c_scientific_semantics_diff.json",
+   "sha256": "1ec634bcac1c690c3c82d43b328074e2ac9af7fd59587405b62199154c5ceccf"
+  },
+  {
+   "path": "reports/audits/phase35_preexecution_source_freeze_v1_0c.json",
+   "sha256": "16961263fb2f974f61525b70ea70582e2382b86431c7f343f20ebe0948136340"
+  },
+  {
+   "path": "reports/audits/phase35_synthetic_smoke_eligibility_v1_0c.json",
+   "sha256": "993ccd824d0b98c438afed05c14d2269b33ac1380bd96b10f485e855cbaf01f4"
+  },
+  {
+   "path": "docs/phase35_interpretability_smoke_amendment_v1_0c.md",
+   "sha256": "079303c442edd057c4f5f9d3850df191f0fc3e7daf3aa038c76bbae341ccb716"
+  },
+  {
+   "path": "reports/audits/phase35_v1_0c_no_execution_audit.json",
+   "sha256": "ed0d14cd98c469f73d6669c9dc8bac27ef98cf3d97a2e58263f9b68fc61be400"
+  }
+ ],
+ "defect_A": "PHASE35_V1_0B_SMOKE_ENTRYPOINT_STUB",
+ "defect_A_status": "REPAIRED_IN_V1_0C",
+ "defect_B": "PHASE35_V1_0B_GRADCAM_TARGET_MASK_RANK_INCOMPATIBILITY",
+ "defect_B_status": "DISCLOSED_NOT_REPAIRED__SCIENTIFIC_GRADCAM_BLOCKED_PENDING_V1_0D",
+ "terminal": "PHASE35_PREEXECUTION_SMOKE_AMENDMENT_V1_0C_COMPLETE__V1_0B_BLOCKED_SMOKE_PRESERVED__REAL_SYNTHETIC_SMOKE_ENTRYPOINT_IMPLEMENTED_FOR_CANONICAL_G_AND_B_PHI__FILM_TASK_EMBEDDING_BRIDGE_DECODER1_GRADCAM_AND_ROUTER_GRADIENT_X_INPUT_SMOKE_PATHS_BOUND__SYNTHETIC_ONLY_DATA_ISOLATION_AND_PARAMETER_IMMUTABILITY_CHECKS_FROZEN__SCIENTIFIC_MODES_UNCHANGED__V1_0C_SOURCE_FREEZE_COMPLETE__SYNTHETIC_SMOKE_REEXECUTION_ELIGIBLE_NOT_STARTED",
+ "generated_utc": "2026-10-04T15:46:25+00:00",
+ "all_pass": true
+}

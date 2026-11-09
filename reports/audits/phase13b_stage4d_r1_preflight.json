@@ -1,0 +1,43 @@
+{
+  "phase": "13B",
+  "subphase": "Stage-4D-R1",
+  "design": "Decoder unmodified. 512 logits downsampled to 128 logits via AvgPool2d(4,4).",
+  "parameters": {
+    "clean_v3": 482449,
+    "stage_4d": 482449,
+    "difference": 0
+  },
+  "geometry": {
+    "heatmap_resolution": 128,
+    "sigma_equivalent": 0.75,
+    "train_expected": 1162,
+    "train_mapped": 1162,
+    "train_unique": 1162,
+    "train_collisions": 0,
+    "train_zero_center_samples": 0,
+    "val_expected": 156,
+    "val_mapped": 156,
+    "val_unique": 156,
+    "val_collisions": 0,
+    "val_zero_center_samples": 0
+  },
+  "round_trip_error": {
+    "mean_px": 1.06,
+    "P95_px": 1.85,
+    "max_px": 2.12
+  },
+  "initialization": {
+    "mean_p": 0.1,
+    "max_p": 0.1
+  },
+  "loss_diagnostic": {
+    "batch_diagnostic": {
+      "512": { "total": 139.84, "pos": 1.87, "neg": 137.98, "grad": 657.02, "head_grad": 537.93 },
+      "128": { "total": 10.49, "pos": 1.87, "neg": 8.62, "grad": 38.43, "head_grad": 31.12 }
+    },
+    "single_sample_diagnostic": {
+      "512": { "total": 278.06, "pos": 1.87, "neg": 276.19, "head_grad": 1199.79 },
+      "128": { "total": 19.13, "pos": 1.87, "neg": 17.26, "head_grad": 73.70 }
+    }
+  }
+}

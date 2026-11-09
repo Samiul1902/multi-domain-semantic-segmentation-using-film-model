@@ -1,0 +1,358 @@
+{
+  "classification": "PHASE25F_POST_SAFETY_SPEC_COMPLETENESS_AUDIT",
+  "stage": "TRAINING_DATA_SOURCE_AUDIT",
+  "method": "RA-MedFiLM-BARR",
+  "frozen_target_source": "OOF refinement predictions from ROUTER_DEVELOPMENT only",
+  "phase25c_provides": {
+    "fields": [
+      "sample_id",
+      "outer_fold",
+      "delta_dice (continuous target)",
+      "gain_category",
+      "global_dice",
+      "candidate_refined_dice",
+      "fold_refiner_checkpoint_sha"
+    ],
+    "label_csv": "data_cache/phase25c_barr_oof_paired_gain_labels_v1_2/phase25c_oof_paired_gain_labels.csv",
+    "label_csv_sha256": "fd6ca32c33a3bddb75f986b1350d54ec35b11d3bf5cb0fdc029962a5aa94865f",
+    "primary_target": "delta_dice",
+    "secondary_target": "gain_category",
+    "join_key": "sample_id"
+  },
+  "phase25b_provides": {
+    "features": "202-D GT-free pre-refinement features",
+    "numeric_dimensions": 202,
+    "fields": [
+      "sample_id",
+      "feature_row_index",
+      "task_id",
+      "domain",
+      "outer_fold",
+      "action_available"
+    ]
+  },
+  "label_manifest": {
+    "artifact": "phase25c_label_manifest",
+    "phase": "25C",
+    "method": "RA-MedFiLM-BARR",
+    "label_csv": "data_cache/phase25c_barr_oof_paired_gain_labels_v1_2/phase25c_oof_paired_gain_labels.csv",
+    "label_csv_sha256": "fd6ca32c33a3bddb75f986b1350d54ec35b11d3bf5cb0fdc029962a5aa94865f",
+    "rows": 4957,
+    "columns": [
+      "sample_id",
+      "feature_row_index",
+      "task_id",
+      "domain",
+      "outer_fold",
+      "action_available",
+      "fold_refiner_checkpoint_sha",
+      "global_dice",
+      "candidate_refined_dice",
+      "delta_dice",
+      "gain_category",
+      "roi_proposal_threshold",
+      "segmentation_output_threshold",
+      "crop_side_pixels",
+      "predicted_roi_area_fraction",
+      "candidate_mask_sha256"
+    ],
+    "category_thresholds": {
+      "BENEFICIAL": 0.02,
+      "HARMFUL": -0.01
+    },
+    "contains_202_phase25b_features": false,
+    "test_reads": 0,
+    "generated_utc": "2026-09-30T17:10:00+00:00"
+  },
+  "phase25b_feature_groups": {
+    "groups": [
+      {
+        "name": "bridge_global",
+        "tap": "bridge",
+        "scope": "GLOBAL",
+        "start": 0,
+        "stop": 32,
+        "dim": 32
+      },
+      {
+        "name": "bridge_roi",
+        "tap": "bridge",
+        "scope": "ROI",
+        "start": 32,
+        "stop": 64,
+        "dim": 32
+      },
+      {
+        "name": "decoder2_global",
+        "tap": "decoder2",
+        "scope": "GLOBAL",
+        "start": 64,
+        "stop": 96,
+        "dim": 32
+      },
+      {
+        "name": "decoder2_roi",
+        "tap": "decoder2",
+        "scope": "ROI",
+        "start": 96,
+        "stop": 128,
+        "dim": 32
+      },
+      {
+        "name": "decoder1_global",
+        "tap": "decoder1",
+        "scope": "GLOBAL",
+        "start": 128,
+        "stop": 160,
+        "dim": 32
+      },
+      {
+        "name": "decoder1_roi",
+        "tap": "decoder1",
+        "scope": "ROI",
+        "start": 160,
+        "stop": 192,
+        "dim": 32
+      }
+    ],
+    "deep_dim": 192,
+    "scalar_start": 192,
+    "numeric_dim": 202,
+    "scalar_order": [
+      "entropy_proxy_mean",
+      "frac_prob_within_0p05_of_boundary",
+      "frac_prob_within_0p02_of_boundary",
+      "mean_boundary_margin",
+      "pred_foreground_fraction",
+      "pred_foreground_pixels",
+      "pred_roi_exists",
+      "pred_empty",
+      "predicted_roi_area_fraction",
+      "predicted_roi_side"
+    ]
+  },
+  "p_global_cache_binding": {
+    "artifact": "phase25c_global_cache_binding",
+    "phase": "25C",
+    "method": "RA-MedFiLM-BARR",
+    "purpose": "bind the canonical ROI-0.30 global prediction cache as the p_global source",
+    "global_model_forward_passes": 0,
+    "global_probability_source": "frozen Phase25A ROI-0.30 prob512.npy (float32)",
+    "global_checkpoint_sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+    "global_checkpoint_sha_matches": true,
+    "cache_root": "data_cache/phase25a_barr_roi030_cache",
+    "cache_manifest_sha256": "cad302059231d70cbd1c9dd8058c9f0e6b121a3f87ac9c4d120707ed0244b0d8",
+    "population": "ROUTER_DEVELOPMENT only",
+    "population_n": 4957,
+    "action_available_n": 4957,
+    "prob512_dtype": "float32",
+    "prob512_resolution": 512,
+    "roi_proposal_threshold": 0.3,
+    "segmentation_output_threshold": 0.5,
+    "preprocessing_binding": "src.data.transforms.SegmentationTransform(size=512, train=False, image_mode='RGB') \u2014 aspect-preserving resize + centre pad to the 512 canvas",
+    "router_holdout_used": false,
+    "val_used": false,
+    "test_reads": 0,
+    "verdict": "PHASE25C_GLOBAL_CACHE_BOUND",
+    "generated_utc": "2026-09-30T16:57:00+00:00"
+  },
+  "refiner_inference_binding": {
+    "artifact": "phase25c_refiner_inference_execution_binding",
+    "phase": "25C",
+    "method": "RA-MedFiLM-BARR",
+    "classification": "PRE_EXECUTION_OPERATIONAL_BINDING",
+    "preexisting_frozen_inference_contract_found": false,
+    "preexisting_contract_artifacts": [],
+    "rationale": "No authoritative Phase24/Phase25A inference precision/batch contract is explicitly frozen (Phase25A trained with AMP but never froze an OOF/eval precision). A contract is therefore frozen prospectively here, BEFORE any DeltaDice is inspected, to avoid any outcome-driven choice.",
+    "selected_before_oof_outcomes": true,
+    "result_driven": false,
+    "binding": {
+      "inference_precision": "float32",
+      "autocast_enabled": false,
+      "amp_enabled": false,
+      "amp_rationale": "AMP kernel selection depends on batch MEMBERSHIP; FP32 removes that non-determinism so OOF inference is a pure function of the sample.",
+      "model_mode": "eval",
+      "inference_context": "torch.inference_mode()",
+      "grad_enabled": false,
+      "tta": false,
+      "stochastic_augmentation": false,
+      "dropout_behavior": "inactive (model.eval(); architecture has no dropout)",
+      "checkpoint_ensemble": false,
+      "checkpoint_averaging": false,
+      "best_of_multiple_predictions": false,
+      "sample_order": "deterministic: sort by dataset/domain then sample_id",
+      "batch_size": 8,
+      "drop_last": false,
+      "refiner_input_channels": 4,
+      "refiner_input_resolution": 256,
+      "refiner_input_construction": "[R,G,B] = rgb_crop(uint8)/255.0 float32 ; [p_global_crop] = prob_crop float16 -> float32  (exact BARRRefinerCropDataset train=False path)",
+      "logit_to_probability": "sigmoid(logits.float())",
+      "one_primary_forward_per_sample": true,
+      "repeat_or_best_of_forbidden": true
+    },
+    "folds_use": {
+      "fold0": "fold-specific best.pt only",
+      "fold1": "fold-specific best.pt only",
+      "fold2": "fold-specific best.pt only"
+    },
+    "phase25a_final_refiner_used_for_oof": false,
+    "verdict": "PHASE25C_REFINER_INFERENCE_BINDING_FROZEN",
+    "test_reads": 0,
+    "generated_utc": "2026-09-30T16:58:00+00:00"
+  },
+  "fullfield_reconstruction": {
+    "artifact": "phase25c_fullfield_reconstruction_audit",
+    "phase": "25C",
+    "method": "RA-MedFiLM-BARR",
+    "fusion_rule": "p_candidate_full = copy(p_global); inside the valid canonical ROI replace with the inverse-transformed refined probability; outside leave p_global unchanged. No alpha blending, no learned fusion, no morphology, no post-safety, no GT-based correction.",
+    "inverse_transform": "affine resize of the 256x256 refined crop to crop_side_pixels^2 (bilinear, PIL mode F), remove external zero padding, place at (clip_y1, clip_x1) on the 512 canvas",
+    "geometry_identity_checks": {
+      "y1_plus_pad_equals_clip_y1": true,
+      "x1_plus_pad_equals_clip_x1": true
+    },
+    "synthetic_cases": [
+      {
+        "case": "rect",
+        "crop_side_pixels": 300,
+        "pad_top": 0,
+        "pad_left": 0,
+        "valid_pixels": 90000,
+        "outside_unchanged": true,
+        "inside_replaced_exactly": true,
+        "y1_plus_pad_equals_clip_y1": true,
+        "x1_plus_pad_equals_clip_x1": true
+      },
+      {
+        "case": "off_canvas",
+        "crop_side_pixels": 300,
+        "pad_top": 50,
+        "pad_left": 0,
+        "valid_pixels": 51500,
+        "outside_unchanged": true,
+        "inside_replaced_exactly": true,
+        "y1_plus_pad_equals_clip_y1": true,
+        "x1_plus_pad_equals_clip_x1": true
+      },
+      {
+        "case": "small_blob",
+        "crop_side_pixels": 18,
+        "pad_top": 0,
+        "pad_left": 0,
+        "valid_pixels": 324,
+        "outside_unchanged": true,
+        "inside_replaced_exactly": true,
+        "y1_plus_pad_equals_clip_y1": true,
+        "x1_plus_pad_equals_clip_x1": true
+      }
+    ],
+    "real_cases": [
+      {
+        "domain": "BUSI",
+        "sample_id": "0075dcb0e337263eff441a6979397143",
+        "crop_side_pixels": 434,
+        "valid_pixels": 178374,
+        "outside_unchanged": true,
+        "inside_replaced_exactly": true,
+        "p_global_is_prob512_cache": true
+      },
+      {
+        "domain": "ISIC",
+        "sample_id": "00478db77fb15b4e7d7d1e1f288abef6",
+        "crop_side_pixels": 122,
+        "valid_pixels": 14884,
+        "outside_unchanged": true,
+        "inside_replaced_exactly": true,
+        "p_global_is_prob512_cache": true
+      },
+      {
+        "domain": "KUB",
+        "sample_id": "00493050556465a8114f4141b84a8534",
+        "crop_side_pixels": 468,
+        "valid_pixels": 219024,
+        "outside_unchanged": true,
+        "inside_replaced_exactly": true,
+        "p_global_is_prob512_cache": true
+      },
+      {
+        "domain": "KVASIR",
+        "sample_id": "002780d484a38cea0a12e8f76d5b0e37",
+        "crop_side_pixels": 526,
+        "valid_pixels": 213840,
+        "outside_unchanged": true,
+        "inside_replaced_exactly": true,
+        "p_global_is_prob512_cache": true
+      }
+    ],
+    "all_outside_unchanged": true,
+    "all_inside_replaced": true,
+    "verdict": "PHASE25C_RECONSTRUCTION_VERIFIED",
+    "test_reads": 0,
+    "generated_utc": "2026-09-30T17:07:00+00:00"
+  },
+  "crossfit_leakage_audit": {
+    "artifact": "phase25c_crossfit_leakage_audit",
+    "phase": "25C",
+    "method": "RA-MedFiLM-BARR",
+    "requirement": "OUTER_TARGET_k \u2229 FIT_k = \u2205 and \u2229 EARLY_STOP_k = \u2205 for all k",
+    "folds": [
+      {
+        "fold": 0,
+        "outer_target_n": 1657,
+        "fit_n": 2964,
+        "early_stop_n": 336,
+        "outer_minus_fit": 0,
+        "outer_minus_early_stop": 0,
+        "fit_minus_early_stop": 0,
+        "outer_minus_train_portion": 0
+      },
+      {
+        "fold": 1,
+        "outer_target_n": 1652,
+        "fit_n": 2975,
+        "early_stop_n": 330,
+        "outer_minus_fit": 0,
+        "outer_minus_early_stop": 0,
+        "fit_minus_early_stop": 0,
+        "outer_minus_train_portion": 0
+      },
+      {
+        "fold": 2,
+        "outer_target_n": 1648,
+        "fit_n": 2977,
+        "early_stop_n": 332,
+        "outer_minus_fit": 0,
+        "outer_minus_early_stop": 0,
+        "fit_minus_early_stop": 0,
+        "outer_minus_train_portion": 0
+      }
+    ],
+    "all_development_n": 4957,
+    "samples_in_exactly_one_outer_target": 4957,
+    "samples_in_zero_outer_targets": 0,
+    "samples_in_multiple_outer_targets": 0,
+    "samples_in_own_fit_population": 0,
+    "samples_in_own_early_stop_population": 0,
+    "crossfit_leakage_violations": 0,
+    "all_clean": true,
+    "verdict": "PHASE25C_CROSSFIT_LEAKAGE_CLEAN",
+    "test_reads": 0,
+    "generated_utc": "2026-09-30T16:56:00+00:00"
+  },
+  "post_refinement_gt_free_feature_table_exists": false,
+  "post_refinement_scalar_table_search": "reports/tables/ contains no post-refinement / refined-feature table",
+  "on_disk_post_refinement_arrays": {
+    "path_pattern": "data_cache/phase25c_barr_oof_paired_gain_labels_v1_2/_tmp_refined_crop_prob_<DOMAIN>.npy",
+    "referenced_by_any_audit_or_contract": false,
+    "bound_by_sha": false,
+    "naming": "temporary (_tmp_ prefix)"
+  },
+  "delta_dice_csv_alone_sufficient": false,
+  "delta_dice_csv_alone_sufficient_reason": "A DeltaDice CSV is not sufficient: S_omega requires post-refinement GT-free INPUT features that were never persisted as a frozen feature table. The label CSV additionally contains GT-derived columns (global_dice, candidate_refined_dice) that are FORBIDDEN as inputs.",
+  "sources": {
+    "reports/audits/phase24_exact_implementation_spec.json": "6b1a71d5e88ce06baa8f200523be32773428417ffd233ff218d7e50b6af271dd",
+    "reports/audits/phase25c_phase25d_handoff_schema.json": "abaf7e4ce7d056d89a6b923772276de0f27765f8be3db66c4c56c64a204c84f4",
+    "data_cache/phase25c_barr_oof_paired_gain_labels_v1_2/label_manifest.json": "cd82ff31f185c4d470317227c78a4490b60e24d346caeee48b546c517989c1c9",
+    "reports/audits/phase25c_global_cache_binding.json": "2da62b9d7bfd0ecae9f91e86f2fd73cdcd168da17636838e9ee2ec4a80e46a6f"
+  },
+  "all_pass": true
+}

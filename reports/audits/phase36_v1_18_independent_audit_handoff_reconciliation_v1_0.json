@@ -1,0 +1,206 @@
+{
+ "artifact": "phase36_v1_18_independent_audit_handoff_reconciliation_v1_0",
+ "phase": 36,
+ "revision": "ra_medfilm_barr_phase36_robustness_v1_18",
+ "type": "INDEPENDENT_AUDIT_HANDOFF_RECONCILIATION",
+ "reconciles": "reports/audits/phase36_v1_18_independent_audit_handoff_v1_0.json",
+ "original_handoff_sha256": "15a59f4ef5a0955ab350de0683aceac3b233e74fc98fc4dac003c73190aacc60",
+ "original_handoff_modified": false,
+ "delete_or_recreate_performed": false,
+ "supersedes": null,
+ "D89": "V1_18_CANONICAL_GOVERNANCE_PATH_WRITE_ONCE_HISTORY_VIOLATED_BY_SUPERSEDE_AND_REEMIT",
+ "D90": "V1_18_INDEPENDENT_AUDIT_HANDOFF_VALIDATOR_TOTALS_UNPOPULATED",
+ "d89_disclosure_sha256": "a0a7d272c83ee11e3510bc13968a7f6ec74eb7e38d6ea372a7af9954fd51e2fb",
+ "reason": "The frozen v1.18 independent-audit handoff carries a validator_totals block whose five non-gate validators have null passed/failed/total fields (only pure_release_gate was populated).  The frozen handoff also binds pre-rerun report SHAs for three reports that were re-written during WO#17E AFTER the handoff was generated.  Per §4/§6 the frozen handoff is NOT overwritten; this additive reconciliation supplies the validator totals recovered from the already-existing final report bytes and discloses the report-SHA drift.",
+ "frozen_handoff_null_validator_totals": {
+  "science_repair": {
+   "passed": null,
+   "failed": null,
+   "terminal": null
+  },
+  "unit": {
+   "passed": null,
+   "total": null,
+   "terminal": null
+  },
+  "preflight": {
+   "passed": null,
+   "total": null,
+   "terminal": null
+  },
+  "negative_controls": {
+   "passed": null,
+   "total": null,
+   "terminal": null
+  },
+  "operational_cross_contract": {
+   "passed": null,
+   "total": null,
+   "terminal": null
+  },
+  "pure_release_gate": {
+   "base_gate_state": "RELEASED",
+   "mutation_count": 7,
+   "all_pass": true,
+   "terminal": "PHASE36_V1_18_PURE_RELEASE_GATE_TEST_PASS"
+  }
+ },
+ "completed_validator_totals": {
+  "science_repair": {
+   "passed": 38,
+   "failed": 0,
+   "total": 38,
+   "all_pass": true,
+   "total_key_present_in_report": false
+  },
+  "unit": {
+   "passed": 99,
+   "failed": 0,
+   "total": 99,
+   "all_pass": true,
+   "total_key_present_in_report": true
+  },
+  "preflight": {
+   "passed": 93,
+   "failed": 0,
+   "total": 93,
+   "all_pass": true,
+   "total_key_present_in_report": true
+  },
+  "negative_controls": {
+   "passed": 47,
+   "failed": 0,
+   "total": 47,
+   "all_pass": true,
+   "total_key_present_in_report": true
+  },
+  "operational_cross_contract": {
+   "passed": 67,
+   "failed": 0,
+   "total": 67,
+   "all_pass": true,
+   "total_key_present_in_report": true
+  },
+  "pure_release_gate": {
+   "base_gate_state": "RELEASED",
+   "mutation_count": 7,
+   "all_mutations_not_released": true,
+   "all_pass": true,
+   "terminal": "PHASE36_V1_18_PURE_RELEASE_GATE_TEST_PASS"
+  }
+ },
+ "completed_validator_report_sha256": {
+  "science_repair": "03c58ecc41eca7075edc5487a73e21c9ec4863b234e7d1abb1435239e188e19b",
+  "unit": "43752a90dbd568a02e1b72ef43d5ede358f0aa33ad2e5084a3d907d08f621680",
+  "preflight": "54585d19d2465d25050459866f5ddb889d6c3a7955306d4658f75709f1cb3f74",
+  "negative_controls": "1eb849821613f6e6367012e0c27046cb0d6b2422edb3e7ff873a0008699a320d",
+  "operational_cross_contract": "6f691b96662f00d050bc0ac3f18550935c0169ac6ba6c0196c096389f0d17975",
+  "pure_release_gate": "b903cd8b3ca30950c0c0c3c098ee652f8f31ba725e78c5f052c3f6b9a3feb3a6"
+ },
+ "validator_totals_recovered_from_existing_bytes_only": true,
+ "validator_rerun_performed": false,
+ "report_sha_drift_disclosure": {
+  "note": "Three report SHAs bound inside the frozen handoff differ from the current final report bytes.  The three reports were re-written AFTER the handoff was generated (handoff 14:55:26Z; reports 14:56:28-14:56:30Z), so the handoff captured pre-rerun bytes.  No other frozen governance artifact binds these report SHAs; they bind boolean pass/fail states instead, which are unchanged.  The frozen handoff is NOT altered; this reconciliation records the current authoritative SHAs.",
+  "drifted": [
+   {
+    "validator": "preflight",
+    "path": "reports/audits/phase36_robustness_preflight_v1_18.json",
+    "handoff_bound_sha256": "4e02be55cec5bd8d5ec090790facbff504c700cc20f27159284bfd91102e9cab",
+    "current_final_sha256": "54585d19d2465d25050459866f5ddb889d6c3a7955306d4658f75709f1cb3f74"
+   },
+   {
+    "validator": "negative_controls",
+    "path": "reports/audits/phase36_v1_18_negative_controls.json",
+    "handoff_bound_sha256": "596c06399b1dd4855e8a448272b05ba36ff633af1057dfd15e87213e22cb9074",
+    "current_final_sha256": "1eb849821613f6e6367012e0c27046cb0d6b2422edb3e7ff873a0008699a320d"
+   },
+   {
+    "validator": "operational_cross_contract",
+    "path": "reports/audits/phase36_v1_18_operational_cross_contract.json",
+    "handoff_bound_sha256": "d5254c27f098d911c4f15d6281f4aa867e576509376d733cdd1720dee14aa088",
+    "current_final_sha256": "6f691b96662f00d050bc0ac3f18550935c0169ac6ba6c0196c096389f0d17975"
+   }
+  ],
+  "handoff_bound_sha256_equal_current_for_invariant_reports": true
+ },
+ "preserved_defect_statuses": {
+  "D61": "PASS",
+  "D75": "PASS",
+  "D80": "RECONCILED",
+  "D81": "RECONCILED",
+  "D82": "RECONCILED",
+  "D83": "RECONCILED",
+  "D84": "DISCLOSED_AND_RECONCILED",
+  "D85": "RECONCILED",
+  "D86": "RECONCILED",
+  "D87": "RECONCILED",
+  "D88": "RECONCILED",
+  "D89": "DISCLOSED_AND_RECONCILED",
+  "D90": "RECONCILED"
+ },
+ "runtime_release_state": "RELEASED",
+ "runtime_release_state_source": "verify_phase36_v1_18_pure_release_gate_readonly",
+ "v1_14_to_v1_18_scientific_delta_count": 2,
+ "v1_14_to_v1_18_scientific_deltas": [
+  "D61",
+  "D75"
+ ],
+ "v1_17_to_v1_18_scientific_delta_count": 0,
+ "unclassified_delta_count": 0,
+ "reachable_write_target_count": 23,
+ "reachable_csv_table_target_count": 11,
+ "reachable_figure_target_count": 5,
+ "table_figure_target_count": 16,
+ "unclassified_write_target_count": 0,
+ "namespace_overlap_count": 0,
+ "authority_coherence": {
+  "frozen_authorities_match_work_order": true,
+  "bundle_binds_launcher_sha": true,
+  "supervisor_excluded_from_bundle": true,
+  "handoff_binds_supervisor_sha": true,
+  "bundle_supervisor_sha256_present": false,
+  "all_current_governance_hash_bindings_match": true
+ },
+ "attempt_absence": {
+  "v1_18": {
+   "START": "ABSENT",
+   "RESULT": "ABSENT",
+   "FAILURE": "ABSENT",
+   "PROCESS_EXIT": "ABSENT",
+   "stdout": "ABSENT",
+   "stderr": "ABSENT"
+  },
+  "v1_17": {
+   "START": "ABSENT",
+   "RESULT": "ABSENT",
+   "FAILURE": "ABSENT",
+   "PROCESS_EXIT": "ABSENT",
+   "stdout": "ABSENT",
+   "stderr": "ABSENT"
+  },
+  "v1_18_journal_records": 0,
+  "v1_18_attempt_evidence_absent": true,
+  "v1_17_attempt_evidence_absent": true,
+  "v1_17_unconsumed": true
+ },
+ "protected_populations": {
+  "TEST": "NOT_ACCESSED",
+  "ROUTER_HOLDOUT": "NOT_ACCESSED"
+ },
+ "test_reads": 0,
+ "router_holdout_reads": 0,
+ "val_image_read": false,
+ "val_gt_read": false,
+ "checkpoint_deserialization": false,
+ "model_constructed": false,
+ "torch_imported": false,
+ "scientific_semantics_effect": "NONE",
+ "runtime_semantics_effect": "NONE",
+ "governance_provenance_effect": "YES",
+ "phase36_state": "NOT_COMPLETE_PENDING_V1_18_EXECUTION",
+ "phase37_state": "NOT_STARTED",
+ "state": "ELIGIBLE_NOT_STARTED",
+ "model_free": true,
+ "generated_utc": "2026-10-10T15:22:29Z",
+ "generated_by": "build_phase36_v1_18_write_history_disclosure_and_reconciliation.py"
+}

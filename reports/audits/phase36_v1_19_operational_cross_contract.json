@@ -1,0 +1,367 @@
+{
+ "artifact": "phase36_v1_19_operational_cross_contract",
+ "phase": 36,
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase36_robustness_v1_19",
+ "type": "OPERATIONAL_CROSS_CONTRACT_REPORT",
+ "defects_repaired": [
+  "D85",
+  "D86",
+  "D87",
+  "D88"
+ ],
+ "model_free": true,
+ "torch_imported": false,
+ "protected_population_read": false,
+ "subject_execution_sha256": "3ec5ea920af2b6d66864b3bbc7e5362f0756777512c29be70d3e5453e18693cd",
+ "subject_manifest_sha256": "06f7d0368b1f1f7e02ca950fe54c375d8d2d7e0f97800c8318d4451f408a1301",
+ "subject_attestation_sha256": "c3f5068f51693c8441965255d55821c35e583c6d60d9ab5cbbbe5c43ed476b0e",
+ "subject_pure_gate_test_sha256": "70c0675d1de6021481dc0f2528c50d8eb0d0aee74aaff6c7584f76ef3bb21d1d",
+ "subject_inventory_sha256": "6ee08c8eb49d6460dbc676605d146c7ada9172ad64024cd1677ba0ce9b69d9eb",
+ "subject_bundle_sha256": "9d14991f0a7fa979484246e70868ed23ac41663c1ba2a27ee08c075a7f2bacd3",
+ "subject_launch_authority_sha256": "d44a91a683233972439ccce4f40e70cf10a28f354cbee1d6876af31b3027b2e9",
+ "checks_total": 67,
+ "checks_passed": 67,
+ "checks_failed": 0,
+ "all_pass": true,
+ "failed_checks": [],
+ "checks": [
+  {
+   "check": "S01_exec_source_sha_v1_19",
+   "passed": true,
+   "detail": {
+    "sha256": "3ec5ea920af2b6d66864b3bbc7e5362f0756777512c29be70d3e5453e18693cd"
+   }
+  },
+  {
+   "check": "S02_manifest_present",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "S03_attestation_present",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "S04_pure_gate_test_present",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "S05_inventory_present",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "S06_launcher_present",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "S07_supervisor_present",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "S08_bundle_present",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "S09_launch_authority_present",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "S10_adjudication_present",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "XC_A_mode_science",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "XC_B_namespace_v1_19",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "XC_C_authority_token",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "XC_D_operator_gates",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "XC_E_runtime_manifest",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "XC_F_release_revision",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "XC_G_stage_journal",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "XC_H_launcher_pin",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "XC_I_no_prev_operational_residue",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "XC_J_d81_namespace_and_failclosed",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "XC_K_d82_release_contract",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "XC_L_d83_pure_release_state",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "XC_M_d85_immutable_root",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "XC_N_d86_exclusive_stdout_stderr",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "XC_O_d87_non_circular_dag",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "XC_P_d88_realtime_gate_and_figures",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "NC_A_mode_science_omitted_detected",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "NC_B_namespace_reverted_detected",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "NC_B2_supervisor_namespace_reverted_detected",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "NC_C_authority_token_reverted_detected",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "NC_D_gate_reverted_detected",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "NC_E_manifest_path_reverted_detected",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "NC_E2_manifest_binding_broken_detected",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "NC_F_release_revision_reverted_detected",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "NC_G_stage_journal_removed_detected",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "NC_H_launcher_pin_removed_detected",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "NC_H2_supervisor_pin_removed_detected",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "NC_I_prev_operational_residue_detected",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "NC_I2_prev_manifest_residue_detected",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "NC_I3_prev_start_marker_residue_detected",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "NC_B3_launcher_marker_absence_block_removed_detected",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "NC_J1_omitted_table_target_detected",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "NC_J2_unversioned_table_target_detected",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "NC_J2b_unversioned_figure_target_detected",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "NC_J3_unclassified_count_detected",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "NC_J4_csv_open_w_overwrite_detected",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "NC_K1_gate_requires_v1_19_smoke_detected",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "NC_K2_attestation_missing_field_detected",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "NC_K3_attestation_wrong_smoke_sha_detected",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "NC_K4_attestation_requires_smoke_detected",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "NC_L1_validator_revision_only_detected",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "NC_L2_gate_not_released_detected",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "NC_L3_gate_test_failed_detected",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "NC_M1_supervisor_literal_launcher_sha_removed_detected",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "NC_M2_env_override_introduced_detected",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "NC_M3_launch_authority_wrong_launcher_sha_detected",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "NC_N1_stdout_stderr_o_trunc_detected",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "NC_N2_stdout_stderr_exclusive_false_detected",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "NC_N3_predispatch_absence_removed_detected",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "NC_O1_bundle_not_checked_detected",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "NC_O2_wrong_bundle_sha_detected",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "NC_O3_bundle_embeds_supervisor_sha_detected",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "NC_O4_launch_authority_bundle_sha_mismatch_detected",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "NC_P1_underreported_total_detected",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "NC_P2_plain_savefig_restored_detected",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "NC_P3_absence_gate_removed_detected",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "NC_P4_bundle_count_mismatch_detected",
+   "passed": true,
+   "detail": null
+  }
+ ]
+}

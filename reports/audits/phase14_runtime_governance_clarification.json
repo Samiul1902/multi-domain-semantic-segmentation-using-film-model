@@ -1,0 +1,218 @@
+{
+  "artifact": "PHASE14_RUNTIME_GOVERNANCE_CLARIFICATION",
+  "status": "ADDITIVE_CLARIFICATION__DOES_NOT_REWRITE_FROZEN_MANIFEST",
+  "kind": "ADDITIVE_RUNTIME_GOVERNANCE_CLARIFICATION",
+  "created_utc": "2026-09-24T07:45:00Z",
+  "created_local_bst": "2026-09-24T13:45:00+06:00",
+  "phase": "PHASE_14_CLEAN_V3",
+  "rewrites_frozen_manifest": false,
+  "changes_scientific_parameter": false,
+  "supersedes_nothing": true,
+  "purpose": "Clarify the scope of the resume prohibition, record which trainer revision is active, flag a stale implementation-closure artifact, and correct the clean-v3 crop cardinality representation. This artifact is additive; the already-executing frozen manifest is deliberately left untouched.",
+
+  "clarifications": {
+    "INVALID_PREDECESSOR_RESUME": "FORBIDDEN",
+    "VALID_BOUND_RUN_OPERATIONAL_RESUME": "AUTHORIZED",
+
+    "resume_forbidden_scope": {
+      "original_field": "restart_requirement.resume_forbidden",
+      "original_value": true,
+      "applies_only_to": "the INVALID pre-freeze predecessor attempt",
+      "classification_in_scope": "INVALID_PRE_FREEZE_IMPLEMENTATION_BINDING",
+      "does_not_apply_to": "a valid, prospectively bound run that is interrupted by an external operational fault",
+      "reasoning": "The stated rationale for the original prohibition was that the predecessor's checkpoints could not carry provenance for a bound run, because training began 71 s after the freeze manifest was written while the manifest bound no trainer SHA and the trainer imported 10 unbound files. That rationale is fully satisfied for the current run, whose checkpoints were produced under a prospectively bound implementation SHA and whose checkpoints embed the bound configuration, the resolved role margins and a pointer to the margin-resolution artifact.",
+      "scope_is_explicit": "The prohibition is therefore scoped to the invalid predecessor only. It is not a blanket ban on operational recovery of a valid run."
+    },
+
+    "active_bound_trainer": {
+      "revision": 4,
+      "sha256": "99a4335ec63a026225871cf59a8c6f813dc533ec957940712b0f670dd9912e89",
+      "path": "scripts/training/train_phase14_refiner.py",
+      "manifest_binding_revision": 4,
+      "supersedes": [
+        {"sha256": "6b940fa30b1cea949ce599d87542af0af35a0724e1fcf7024aee3eb9c400573a", "reason": "RNG device-coercion defect on resume"},
+        {"sha256": "cfd0f7ac22731362579b27c654045ac2ac7df4dd6f139ef712dbedfbc9985133", "reason": "lacked RNG persistence"},
+        {"sha256": "d768422f77abae415be8bd712ff67bef4e16605f053287db04e1840c9f7f0aa8", "reason": "pre-margin-patch"}
+      ],
+      "is_active_executing_trainer": true
+    },
+
+    "stale_implementation_closure_artifact": {
+      "path": "reports/audits/phase14_clean_v3_final_implementation_closure.json",
+      "stale_trainer_sha": "cfd0f7ac22731362579b27c654045ac2ac7df4dd6f139ef712dbedfbc9985133",
+      "stale_because": "the trainer SHA advanced twice after that closure was computed (cfd0f7ac -> 6b940fa3 -> 99a4335e)",
+      "action_required": "ADDITIVE_REVISION",
+      "action_taken": "an additive revision block was appended to that artifact; its original revision-1 content is preserved rather than overwritten",
+      "must_not_be_used_to_bind": true
+    },
+
+    "crop_cardinality_representation": {
+      "rule": "Historical v2 crop cardinalities 1162 / 5028 MUST NOT be represented as clean-v3 cardinalities.",
+      "historical_v2_values": {
+        "base_positive_crops_per_epoch": 1162,
+        "total_crops_per_epoch": 5028,
+        "provenance": "an earlier protocol revision and the Phase-12-era conventions",
+        "status": "NOT_APPLICABLE_TO_CLEAN_V3"
+      },
+      "clean_v3_observed_values": {
+        "total_train_crops_per_epoch": 5023,
+        "breakdown": {
+          "base_positive": 1161,
+          "perturbed_positive": 2322,
+          "background_negative": 1540
+        },
+        "val_crops": 152,
+        "observed_at": "dataset construction with margin=0.25, seed=42, OPTION_A3 policy",
+        "construction_rule": "1 base positive + 2 perturbed positive + 2 background negative per GT component"
+      },
+      "retry_exhaustion_explanation": {
+        "mechanism": "Background negatives are drawn by rejection sampling: up to 10 attempts are made to find a square window whose overlap with the GT mask sums to zero. If all 10 attempts fail, the sample is silently skipped (src/data/regional_dataset.py, the `for _retry in range(10)` loop, with `if not valid: pass`).",
+        "arithmetic": "1161 components x 2 = 2322 perturbed positives; 1161 base positives; 2322 + 1161 = 3483. Expected background negatives = 1161 x 2 = 2322, but only 1540 were produced, a shortfall of 782. 3483 + 1540 = 5023.",
+        "shortfall_attribution": "The 5023 total and the 5-crop gap versus the historical 5028 figure arise from the UNCHANGED frozen sampling algorithm and bounded retry exhaustion. They are NOT caused by the ROI-margin patch and NOT caused by any change made in this task.",
+        "why_not_1162": "The historical 1162 base-positive count corresponds to a v2-era component count. The clean-v3 TRAIN population yields 1161 GT components, so the clean-v3 base-positive count is 1161.",
+        "implementation_preserved": "The background-negative sampler was deliberately NOT modified to force the historical 5028 total. The frozen sampling algorithm is preserved exactly.",
+        "must_be_reported_transparently": true
+      }
+    }
+  },
+
+  "resume_equivalence_evidence": {
+    "artifact": "reports/audits/phase14_resume_equivalence_verification.json",
+    "verification_method": "DISK_ONLY: no forward pass, no backward pass, no inference, no TEST read",
+    "classification": "BIT_EXACT_CONFIRMED",
+    "first_mismatch": null,
+    "metric_comparison": {
+      "common_epochs": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      "all_common_epochs_equal": true,
+      "epoch_11": {
+        "train_loss": 0.3180631280514844,
+        "val_loss": 0.2810403320350145,
+        "val_crop_dice": 0.7409575659977762,
+        "learning_rate": 9.70440384477113e-05,
+        "best_epoch_so_far": 9,
+        "bad_epochs": 2,
+        "match": true
+      },
+      "epoch_12": {
+        "train_loss": 0.3153826250771808,
+        "val_loss": 0.2104921035076442,
+        "val_crop_dice": 0.8253539141855741,
+        "learning_rate": 9.64888242944126e-05,
+        "best_epoch_so_far": 9,
+        "bad_epochs": 3,
+        "match": true
+      }
+    },
+    "state_comparison": {
+      "shared_epoch": 9,
+      "preserved_attempt": "uninterrupted valid attempt, best.pt epoch 9",
+      "current_attempt": "resumed run, best.pt epoch 9",
+      "model_state": "IDENTICAL",
+      "optimizer_state": "IDENTICAL",
+      "scheduler_state": "IDENTICAL",
+      "grad_scaler_state": "IDENTICAL",
+      "schema_note": "Whole-checkpoint SHA equality is deliberately NOT required, because the current checkpoints additionally carry rng_state, best_epoch and bad_epochs. Comparison is performed on the scientific state tensors themselves.",
+      "whole_checkpoint_sha_preserved": "95c4b1dd6f8899ec928922f93f4936e1e34306b9fbce43dca7b9ed2e77f5fbf5",
+      "whole_checkpoint_sha_current": "5bbd12f00cde72831f1ea24339bc2738b85ae6fe5445f0b777a4a94ada6cf3cb",
+      "sha_difference_explained": "different schema/metadata after RNG persistence was added; scientific tensors are identical"
+    },
+    "interpretation": "The resumed trajectory is scientifically identical to the uninterrupted trajectory. The operational resume is therefore validated and requires no scientific caveat."
+  },
+
+  "checkpoint_lineage_note": {
+    "instruction": "If the final selected best remains epoch 9, record that the best scientific checkpoint originated before the RNG-device-coercion code-only fix, and record BOTH the checkpoint-producing trainer SHA and the continuation/final trainer SHA.",
+    "conditional_does_not_apply": true,
+    "conditional_does_not_apply_reason": "The final selected best did NOT remain at epoch 9. Epoch 21 superseded it with a higher val_crop_dice, so the epoch-9 lineage caveat is no longer the operative one. The corrected lineage is recorded below.",
+
+    "superseded_best": {
+      "epoch": 9,
+      "val_crop_dice": 0.8380951787296095,
+      "checkpoint_producing_trainer_sha": "6b940fa30b1cea949ce599d87542af0af35a0724e1fcf7024aee3eb9c400573a",
+      "status": "NO_LONGER_THE_SELECTED_BEST",
+      "note": "That SHA carried the RNG-device-coercion defect, but the defect affects only the RESUME path, which was never exercised while producing this checkpoint. It is therefore code-only with respect to it and cannot have influenced any training computation.",
+      "preserved_best_pt_sha": "5bbd12f00cde72831f1ea24339bc2738b85ae6fe5445f0b777a4a94ada6cf3cb",
+      "retained_in_quarantine": true
+    },
+
+    "current_selected_best": {
+      "epoch": 56,
+      "val_crop_dice": 0.847167028,
+      "best_pt_sha256": "2e09e3a9c39c731687db1a9fef0c80881ed6235e4cda070bb4b8b382caa45daa",
+      "checkpoint_producing_trainer_sha": "99a4335ec63a026225871cf59a8c6f813dc533ec957940712b0f670dd9912e89",
+      "checkpoint_producing_trainer_revision": 4,
+      "produced_after_the_rng_device_coercion_fix": true,
+      "lineage_caveat_required": false,
+      "lineage_note": "This best checkpoint was produced by the FINAL bound trainer revision. Unlike the epoch-9 case, it postdates the RNG-device-coercion fix, so no code-only caveat applies to it at all.",
+      "observed_at_local": "2026-09-24T22:09:59+06:00",
+      "superseded_epoch_9": true,
+      "superseded_epoch_21": true,
+      "superseded_epoch_43": true
+    },
+
+    "best_progression": [
+      {"epoch": 9,  "val_crop_dice": 0.8380951787296095, "producing_trainer_sha": "6b940fa30b1cea949ce599d87542af0af35a0724e1fcf7024aee3eb9c400573a", "caveat": "produced before the RNG-device-coercion fix; defect is code-only w.r.t. this checkpoint"},
+      {"epoch": 21, "val_crop_dice": 0.83969793821636,  "producing_trainer_sha": "99a4335ec63a026225871cf59a8c6f813dc533ec957940712b0f670dd9912e89", "caveat": "none"},
+      {"epoch": 25, "val_crop_dice": 0.842247,          "producing_trainer_sha": "99a4335ec63a026225871cf59a8c6f813dc533ec957940712b0f670dd9912e89", "caveat": "none"},
+      {"epoch": 32, "val_crop_dice": 0.842954,          "producing_trainer_sha": "99a4335ec63a026225871cf59a8c6f813dc533ec957940712b0f670dd9912e89", "caveat": "none"},
+      {"epoch": 43, "val_crop_dice": 0.844241989,       "producing_trainer_sha": "99a4335ec63a026225871cf59a8c6f813dc533ec957940712b0f670dd9912e89", "caveat": "none"},
+      {"epoch": 56, "val_crop_dice": 0.847167028,       "producing_trainer_sha": "99a4335ec63a026225871cf59a8c6f813dc533ec957940712b0f670dd9912e89", "caveat": "none", "status": "CURRENT"}
+    ],
+    "total_gain_over_first_best": 0.009071849,
+    "lineage_interpretation": "The final selected best (epoch 56) was produced entirely by the final bound trainer revision 4, after every code fix. The only checkpoint requiring a code-only caveat is the historical epoch-9 best, which is superseded and retained only for the record.",
+
+    "continuation_trainer_sha": "99a4335ec63a026225871cf59a8c6f813dc533ec957940712b0f670dd9912e89",
+    "must_not_claim_single_sha": true,
+    "single_sha_claim_would_be_false_because": "the trajectory spans trainer revisions 2 through 4; epochs 1-10 were produced under cfd0f7ac and 6b940fa3, and epochs 11 onward under 99a4335e",
+    "final_status": "PENDING_FINAL_TERMINATION",
+    "early_stopping_projection": "with best_epoch=21 and bad_epochs=1 at epoch 22, the frozen patience-15 rule stops the run at epoch 36 unless a new best appears"
+  },
+
+  "counters": {
+    "model_forwards": 0,
+    "backward_passes": 0,
+    "inference_passes": 0,
+    "test_reads": 0,
+    "external_test_reads": 0,
+    "scientific_parameters_changed": 0,
+    "frozen_manifest_rewrites": 0
+  },
+
+  "operational_observations": {
+    "host_clock_skew": {
+      "observed": true,
+      "description": "The host wall clock moved BACKWARD by roughly 2 h 38 m between two consecutive inspections: the run log recorded EPOCH 022 at 2026-09-24T14:29:10 while a subsequent `date` returned 11:51. File mtimes also began rendering with a bare year instead of a time.",
+      "impact_on_science": "NONE. The trainer's per-epoch metrics, checkpoint contents and RNG state are unaffected by wall-clock value. Only human-readable log timestamps are affected.",
+      "impact_on_records": "Log timestamps after the jump are not comparable to timestamps before it. Elapsed-time fields (the `+X.Xs` column and `cumulative_elapsed_seconds`) are derived from time.time() deltas within a single process and remain internally consistent within each attempt.",
+      "mitigation": "All scientific comparisons in this phase rely on epoch indices and metric values, never on wall-clock ordering. Resume correctness was independently proven by the bit-exact equivalence verification.",
+      "recorded_for_transparency": true
+    },
+    "fifth_operational_interruption": {
+      "attempt": 5,
+      "last_epoch_completed": 22,
+      "best_epoch_at_interruption": 21,
+      "resumable": true,
+      "disposition": "RESUMED_FROM_EPOCH_22",
+      "resume_log_line": "RESUME loaded=...latest.pt from_epoch=22 next_epoch=23 best_val_crop_dice=0.839698 best_epoch=21 bad_epochs=1 rng_state_restored=True history_rows=22"
+    },
+    "sixth_operational_interruption": {
+      "attempt": 6,
+      "last_epoch_completed": 62,
+      "best_epoch_at_interruption": 56,
+      "best_val_crop_dice_at_interruption": 0.847167028,
+      "bad_epochs_at_interruption": 6,
+      "resumable": true,
+      "disposition": "RESUMED_FROM_EPOCH_62",
+      "resume_log_line": "RESUME loaded=...latest.pt from_epoch=62 next_epoch=63 best_val_crop_dice=0.847167 best_epoch=56 bad_epochs=6 rng_state_restored=True history_rows=62",
+      "projected_stop_epoch": 71,
+      "projected_stop_basis": "best_epoch=56 plus patience 15"
+    },
+    "resume_reliability_summary": {
+      "successful_resumes": 3,
+      "failed_resumes": 1,
+      "failed_resume_cause": "RNG device-coercion defect, fixed at trainer revision 4; the failure executed zero epochs",
+      "interruptions_with_data_loss": 0,
+      "epochs_ever_recomputed": 0,
+      "note": "Every interruption was recovered by resuming from the last completed epoch. No epoch was ever recomputed, because resume restored full optimizer/scheduler/scaler and RNG state."
+    }
+  }
+}

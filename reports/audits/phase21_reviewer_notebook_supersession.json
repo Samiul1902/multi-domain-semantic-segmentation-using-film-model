@@ -1,0 +1,42 @@
+{
+  "artifact": "phase21_reviewer_notebook_supersession",
+  "phase": 21,
+  "classification": "REVIEWER_PACKAGE_VISUAL_INTEGRITY_REPAIR",
+  "reason": "the previous Phase-21 reviewer notebook shipped 3 corrupt and 6 absent figures while reporting zero tracebacks; the embedded-image payloads were repaired so every frozen inventory figure is decodable and PIL-valid",
+  "notebook_path": "notebooks/phasewise/phase_21_global_medfilm/phase21_global_medfilm_reference.ipynb",
+  "superseded": {
+    "sha256": "bb916f54296719b0c38643c0a9302e713cacd33a418850dc9b316d8d9a26a4ed",
+    "status": "SUPERSEDED_HISTORICAL",
+    "preserved_at": ".workbuddy-ai/phase21_notebook_ORIGINAL_backup.ipynb",
+    "defects": {
+      "inventory_figures": 43,
+      "image_png_outputs": 37,
+      "valid_png_outputs": 34,
+      "corrupt_png_outputs": 3,
+      "missing_inventory_figures": 9
+    }
+  },
+  "current": {
+    "sha256": "e7fadc7c9040d52ab6894f0f9487c29b1c3289f7d2bf68d2b71976609d644d94",
+    "status": "CURRENT",
+    "inventory_figures": 43,
+    "valid_png_outputs": 43,
+    "corrupt_png_outputs": 0,
+    "deterministic_builds_byte_identical": true
+  },
+  "attestations": {
+    "scientific_results_changed": false,
+    "checkpoint_changed": false,
+    "canonical_val_rerun": false,
+    "training_rerun": false,
+    "inference_rerun": false,
+    "figures_regenerated": 0,
+    "test_image_reads": 0,
+    "test_mask_reads": 0,
+    "test_inference": 0,
+    "test_visualization": 0
+  },
+  "frozen_science_preserved": true,
+  "original_freeze_artifact_untouched": "reports/audits/phase21_final_freeze.json",
+  "generated_utc": "2026-09-29T04:04:53.022086+00:00"
+}

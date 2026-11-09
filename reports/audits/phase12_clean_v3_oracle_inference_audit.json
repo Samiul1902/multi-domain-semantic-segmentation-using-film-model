@@ -1,0 +1,49 @@
+{
+  "audit": "phase12_clean_v3_oracle_inference_audit",
+  "created_utc": "2026-09-21T01:01:21.006917+00:00",
+  "protocol_frozen_artifact_sha": "f5227bdd67ec780ccd4c520a9bf1576601164939d2ff4132680885bc35124a48",
+  "readme_restored_sha": "5f8db1300364a45cf37997fcb3c3094ba875782f539b32a361bfc987780d0990",
+  "readme_errata_sha": "f2604e9b842a7a99524ec494839b2d4dd4beeeacb67e8a4122d47fbbfec78d1f",
+  "full_field_case_count": 103,
+  "native_component_count": 152,
+  "model_count": 4,
+  "crop_inference_count_by_model": {
+    "UNet": 152,
+    "Attention U-Net": 152,
+    "UNet++": 152,
+    "DeepLabV3+": 152
+  },
+  "global_reproduction_gate": {
+    "tolerance_max_abs_dice": 0.0001,
+    "pass": true,
+    "per_model_max_abs_dice_diff": {
+      "UNet": 1.1102230246251563e-16,
+      "Attention U-Net": 1.1102230246251563e-16,
+      "UNet++": 1.1102230246251563e-16,
+      "DeepLabV3+": 1.1102230246251563e-16
+    }
+  },
+  "mapback_semantics": {
+    "primary": "FLOAT_BILINEAR",
+    "secondary": "FLOAT_BILINEAR",
+    "legacy_sensitivity": "LEGACY_UINT8 (exact historical PIL+uint8)"
+  },
+  "variant_definitions": {
+    "GLOBAL_NATIVE": "native-space inversion of EVALUATION_512 global prediction",
+    "ORACLE_FLOAT_GLOBAL_RETAINED": "P(x)=R(x) if U(x) else G(x) \u2014 PRIMARY",
+    "ORACLE_FLOAT_CROP_ONLY": "P(x)=R(x) if U(x) else 0 \u2014 SECONDARY historical comparator",
+    "ORACLE_LEGACY_UINT8_CROP_ONLY": "historical uint8 map-back, crop-only \u2014 SENSITIVITY"
+  },
+  "primary_margin": 0.25,
+  "oracle_unit": "PER_COMPONENT_BBOX",
+  "reference_model_selected": false,
+  "unauthorized_variants_created": 0,
+  "float_vs_legacy_max_abs_dice_diff": 0.0185186099641643,
+  "test_reads": 0,
+  "training_epochs": 0,
+  "optimizer_steps": 0,
+  "scientific_parameter_changes": 0,
+  "phase13_started": false,
+  "statistical_testing_performed": false,
+  "status": "PASS"
+}

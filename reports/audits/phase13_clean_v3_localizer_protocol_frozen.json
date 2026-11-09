@@ -1,0 +1,336 @@
+{
+  "phase": "13",
+  "part": "1A-R1",
+  "document_type": "CLEAN_V3_LOCALIZER_PROTOCOL_FROZEN",
+  "status": "SUPERVISOR_FROZEN_READY_FOR_PART1B_TRAINING",
+  "date": "2026-09-21",
+  "model": "Gemini 3.8 Flash Medium",
+  "task": "SUPERVISOR_PROTOCOL_FREEZE_AMENDMENT",
+  "manifest_version": "phase4_v3",
+  "taxonomy": "kub_size_clean_v3_v1",
+  "authorization": {
+    "part1a_archaeology": "ACCEPTED",
+    "part1a_protocol_frozen_for_execution": false,
+    "part1a_r1": "AUTHORIZED (this task)",
+    "part1b": "ELIGIBLE_FOR_SUPERVISOR_AUTHORIZATION",
+    "part1b_authorized": false
+  },
+  "sources": {
+    "candidate_protocol": {
+      "path": "reports/audits/phase13_clean_v3_localizer_protocol_candidate.json",
+      "sha256": "bf4c2db8be89d0ca03a13e82b60e830c786745dfa85befaf09eee25fb52c5403"
+    },
+    "part1a_notebook": {
+      "path": "notebooks/phasewise/phase_13_predicted_roi_localization/phase13_clean_v3_localizer_protocol_freeze.ipynb",
+      "sha256": "68f787e1f70fcf706442b342e62cc615eeb347653e753149987becf793ac2bd0",
+      "expected_sha256": "68f787e1f70fcf706442b342e62cc615eeb347653e753149987becf793ac2bd0",
+      "unchanged": true
+    },
+    "part1a_support_module": {
+      "path": "notebooks/phasewise/phase_13_predicted_roi_localization/code/phase13_localizer_protocol.py",
+      "sha256": "dbbe98d482632897d203abf660d031afa66b054023ed74d2fb35dc9a842a153c"
+    }
+  },
+  "population": {
+    "TRAIN_FULL_FIELD": {
+      "images": 770,
+      "components": 1161,
+      "max_components_per_image": 11,
+      "images_gt_5_components": 15,
+      "images_zero_components": 0
+    },
+    "VAL_FULL_FIELD": {
+      "images": 103,
+      "components": 152,
+      "max_components_per_image": 2,
+      "images_gt_5_components": 0,
+      "images_zero_components": 0
+    },
+    "VAL_strata": {
+      "TINY": 72,
+      "SMALL": 28,
+      "MEDIUM": 36,
+      "LARGE": 16
+    },
+    "roi_acquisitions": "EXCLUDED (ROI_NOT_PRIMARY_BINNED)",
+    "foreground_rule": "mask > 0",
+    "connectivity": 8
+  },
+  "hard_sets": {
+    "hard_tiny": {
+      "path": "reports/tables/phase13_clean_v3_hard_tiny_replication_set.csv",
+      "sha256": "2f9828d77c008e7c90cd69e82d0af3568902ca9d508fdfcb9d8ccf8abd569538",
+      "count": 15,
+      "definition": "hard_tiny = TINY native components (kub_size_clean_v3_v1) AND global_detected == false; global_detected = at least 1 native-space pixel of the 8-connected GT component has GLOBAL_NATIVE probability >= 0.5 (executing definition, phase12_oracle_inference.py component_detection / driver line 459)"
+    },
+    "global_empty": {
+      "path": "reports/tables/phase13_clean_v3_global_empty_replication_set.csv",
+      "sha256": "a0b332cad6bca4466ccc528cbe18cc527ef6503603ab69c55b9d699d7979f0ea",
+      "count": 5,
+      "definition": "global_empty_image = FULL_FIELD image whose clean-v3 UNet++ GLOBAL_NATIVE segmentation prediction is empty (prediction_empty == true)"
+    },
+    "historical_v2_counts": {
+      "hard_tiny": 16,
+      "global_empty": 7
+    },
+    "counts_need_not_equal_historical": true,
+    "derived_before_training": true,
+    "anchor_model": "UNet++",
+    "anchor_role": "HISTORICAL_PHASE13_HARDSET_REPLICATION_ANCHOR_ONLY",
+    "anchor_is_not": [
+      "winner",
+      "best model",
+      "Phase-13 downstream reference model",
+      "final architecture choice"
+    ],
+    "cross_validated_against": "reports/tables/phase11_clean_v3_per_model_case_failure_metrics.csv",
+    "may_participate_in": "the historical-style checkpoint metric",
+    "must_not_replace_gate_cohorts": [
+      "Phase-11 ALL_FOUR_LOW",
+      "Phase-11 hard cohort",
+      "Phase-11 disagreement cohort",
+      "Phase-12 FULL_FIELD 103"
+    ]
+  },
+  "heatmap_contract": {
+    "input": "512x512",
+    "output_heatmap": "128x128",
+    "heatmap_resolution": 128,
+    "explicit_argument_required": true,
+    "fail_loud_assertions": [
+      "model output spatial shape == (128, 128)",
+      "target heatmap spatial shape == (128, 128)",
+      "prediction and target shapes identical"
+    ],
+    "applies_to": [
+      "training",
+      "validation",
+      "checkpoint reproduction",
+      "proposal inference"
+    ],
+    "never_rely_on_constructor_default": true,
+    "historical_helper_defect": "src/inference/learned_roi.predict_localizer omits heatmap_resolution=128",
+    "preferred_remediation": "B",
+    "remediation_options": {
+      "A": "repair the reusable helper prospectively with explicit heatmap_resolution=128",
+      "B": "create a clean-v3-safe inference wrapper (PREFERRED — avoids any risk of altering historical reproduction)"
+    },
+    "must_be_declared_and_tested": true,
+    "historical_frozen_outputs_must_not_be_modified": true
+  },
+  "proposal_configuration": {
+    "threshold": 0.1,
+    "margin": 0.2,
+    "top_k": 5,
+    "nms_iou": 0.3,
+    "provenance": "VERIFIED_HISTORICAL_SELECTION + PROSPECTIVELY_FROZEN_FOR_CLEAN_V3_PRIMARY",
+    "clean_v3_primary_grid_search": "DISABLED",
+    "historical_20_grid": "DEFERRED_SECONDARY_SENSITIVITY_ONLY",
+    "historical_20_grid_authorization_required": true,
+    "historical_20_grid_prerequisite": "primary checkpoint, primary proposal config and primary result must be frozen first"
+  },
+  "checkpoint_selection": {
+    "evaluated_at": "ONE FIXED PROPOSAL CONFIGURATION ONLY",
+    "fixed_config": {
+      "threshold": 0.1,
+      "margin": 0.2,
+      "top_k": 5,
+      "nms_iou": 0.3
+    },
+    "tuple_ordering": [
+      "hard_tiny_recovered90",
+      "global_empty_images_covered90",
+      "tiny_recall90",
+      "overall_recall90",
+      "multi_component_recall90",
+      "-mean_roi_area_fraction",
+      "-mean_proposals_per_image",
+      "-val_loss"
+    ],
+    "tuple_length": 8,
+    "improvement_rule": "new_score > best_score (strict tuple comparison)",
+    "ties": "bad epoch",
+    "patience": 15,
+    "hard_tiny_and_global_empty_terms_use": "CLEAN-v3 RE-DERIVED REPLICATION COHORTS",
+    "zero_denominator_rule": "STOP / CHECK_REQUIRED BEFORE TRAINING",
+    "per_epoch_proposal_grid_search": "DISABLED",
+    "provenance_disclosure": "SUPERVISOR_SPECIFIED_CLEAN_V3_CONTRACT. The executing historical code used a 4-tuple (see HISTORICAL_EXECUTING_SELECTION); the supervisor R1 contract specifies an 8-term tuple that extends it with the hard-set, multi-component and proposals/image terms. The executing-code 4-tuple is recorded here so the deviation is never silently mis-stated as historical reproduction."
+  },
+  "checkpoint_selection_provenance": {
+    "executing_code": {
+      "source": "scripts/training/train_phase13b_localizer.py",
+      "source_line": 164,
+      "score_tuple": "(tiny_recall90, overall_recall90, -mean_roi_area_fraction, -val_loss)",
+      "tuple_length": 4,
+      "improvement_rule": "score > best_score (strict)",
+      "ties": "bad epoch",
+      "patience": 15,
+      "proposal_config_used": "BEST OF THE 20-CONFIG GRID PER EPOCH (VAL-dependent)",
+      "checkpoint_key": "best_validation_score",
+      "manifest_recorded_in_checkpoint": "phase4_v2",
+      "note": "The executing code used a 4-tuple that did NOT include hard_tiny_recovered90, global_empty_images_covered90 or multi_component_recall90, even though those were computed and logged into history.csv."
+    },
+    "frozen_protocol_document": {
+      "source": "PHASE13B.md",
+      "score_tuple": "(recovered frozen 16 Tiny misses@90, recovered frozen 7 global-empty@90, overall Tiny recall90, overall component recall90, multi-component recall90, min ROI area fraction, min proposals/image, prefer 512)",
+      "tuple_length": 8,
+      "note": "Frozen-protocol document (authority rank 2), not the executing code."
+    },
+    "stage3_correction_document": {
+      "source": "reports/audits/phase13b_stage3_validation_correction.md",
+      "score_tuple": "(VAL Tiny recall90, overall component recall90, lower VAL localization loss)",
+      "tuple_length": 3,
+      "note": "Stage-3 correction document (authority rank 2)."
+    }
+  },
+  "coverage_contract": {
+    "primary": "covered90 = component coverage fraction >= 0.90",
+    "descriptive_preserved": [
+      "covered50",
+      "any_overlap",
+      "coverage_fraction"
+    ],
+    "new_threshold_after_training": "FORBIDDEN"
+  },
+  "phase14_distribution_requirement": {
+    "historical_verified_problem": "Phase-14 refiner trained on GT-derived + perturbed + background-negative crops but evaluated on predicted Stage-4D proposals",
+    "is_a_phase13_localizer_training_change": false,
+    "phase13_trains": "image -> localization heatmap / proposals (NOT a regional segmentation refiner)",
+    "canonical_disposition": "DEFERRED_REQUIREMENT_FOR_PHASE14_IF_GATE_ALLOWS",
+    "requirement": "If the post-Phase-13 gate permits Phase 14, its regional-refiner training distribution MUST be prospectively designed to match, or explicitly model, the frozen predicted-proposal distribution.",
+    "phase14_crop_training_recipe_frozen_here": false,
+    "phase14_started": false,
+    "phase13_predicted_proposal_training_crops": false
+  },
+  "downstream_geometry": {
+    "proposal_generation": "frozen GT-free Stage-4D semantics",
+    "config": {
+      "threshold": 0.1,
+      "margin": 0.2,
+      "top_k": 5,
+      "nms_iou": 0.3
+    },
+    "must_not_change_margin_to_phase12_oracle_margin": 0.25,
+    "reason": "Phase 13 measures the practical GT-free proposal pipeline; the Phase-12 oracle is an upper bound and used margin 0.25",
+    "retention_includes": [
+      "localization imperfection",
+      "practical proposal geometry difference"
+    ],
+    "not_a_pure_localization_error_isolation_study": true,
+    "label": "PRACTICAL_GT_FREE_ORACLE_BENEFIT_RETENTION"
+  },
+  "downstream_composition": {
+    "regional_crop_resolution": "512x512",
+    "regional_probability_restoration": "FLOAT_BILINEAR",
+    "multiple_predicted_regional_crops": "pixelwise MAX among REGIONAL probabilities",
+    "global_outside_predicted_proposal_union": "RETAIN GLOBAL probability",
+    "inside_predicted_proposal_support": "REPLACE with REGIONAL probability",
+    "forbidden": [
+      "max(global, regional) inside proposal support",
+      "averaging global/regional",
+      "learned fusion"
+    ],
+    "final_threshold_full_native_probability": 0.5,
+    "primary_name": "PREDICTED_REGION_FLOAT_GLOBAL_RETAINED",
+    "status": "PROSPECTIVELY_FROZEN_FOR_PHASE13_PRACTICAL_EVALUATION",
+    "predicted_region_inference_authorized_in_r1": false
+  },
+  "downstream_model_scope": [
+    "UNet",
+    "Attention U-Net",
+    "UNet++",
+    "DeepLabV3+"
+  ],
+  "downstream_reference_model": null,
+  "retention_contract": {
+    "aggregate_model_level": {
+      "oracle_gain_dice": "ORACLE - GLOBAL",
+      "predicted_gain_dice": "PREDICTED - GLOBAL",
+      "oracle_gap_retention_dice": "predicted_gain_dice / oracle_gain_dice (only where oracle_gain_dice > 0)",
+      "object_recall": "same construction"
+    },
+    "numerical_sufficient_retention_threshold": null,
+    "case_level": "report raw deltas; do NOT force ratios where oracle delta <= 0"
+  },
+  "gate_governance": {
+    "dimension_b": "PRACTICAL_LOCALIZATION_RETENTION",
+    "dimension_b_status": "CANDIDATE_FOR_SUPERVISOR_FREEZE (final evidence contract recorded by this R1)",
+    "scalar_gate_score": null,
+    "numerical_go_threshold": null,
+    "final_regional_gate": "NOT_DECIDED",
+    "outcomes_issued_in_this_task": []
+  },
+  "label_defects": {
+    "STAGE4D_DESIGN_AUDIT_LABEL_PROVENANCE_DEFECT": {
+      "artifact": "reports/audits/phase13b_stage4d_design_audit.json",
+      "label": "clean_v3_results",
+      "status": "NOT_ACCEPTED_AS_CLEAN_V3_EVIDENCE",
+      "evidence": "the denominator 156 components matches historical phase4_v2",
+      "disposition": "HISTORICAL_v2_PROVENANCE_ONLY",
+      "do_not_reuse_as_clean_v3_metrics": true,
+      "historical_artifact_modified": false
+    },
+    "NON_BLOCKING_HISTORICAL_ARTIFACT_GAP": {
+      "artifact": "experiments/phase13b_kub_localizer_r512_h128_sigmaeq075_centernetfocal_seed42_v1/val_search_epoch079.csv",
+      "status": "MISSING",
+      "existing_search_dumps": 87,
+      "total_epochs_in_history": 88,
+      "history_contiguous": true,
+      "disposition": "NON_BLOCKING_HISTORICAL_ARTIFACT_GAP",
+      "recreated": false,
+      "fabricated": false,
+      "history_modified": false,
+      "authoritative_epoch_provenance": "history.csv"
+    }
+  },
+  "epoch_provenance": {
+    "authoritative": "history.csv (88/88 contiguous epochs)",
+    "part1a_complete_epoch_tables": "reports/tables/phase10_final_epoch_results_*.csv (59/69/85/67) referenced by the Part-1A notebook",
+    "part1a_notebook_contains_them": true,
+    "duplicated_in_amendment_notebook": false,
+    "missing_val_search_epoch079": "NON_BLOCKING_HISTORICAL_ARTIFACT_GAP (not fabricated)"
+  },
+  "governance": {
+    "training": 0,
+    "optimizer_steps": 0,
+    "model_forward_passes": 0,
+    "localizer_inference": 0,
+    "predicted_region_inference": 0,
+    "proposals_generated": 0,
+    "clean_v3_grid_search_run": false,
+    "test_content_reads": 0,
+    "test_metrics": "NONE",
+    "phase14_started": false,
+    "external_data_used": false,
+    "experiment_a_modified": false,
+    "winner_declared": false,
+    "reference_model_selected": false,
+    "regional_mechanism_promoted": false,
+    "historical_artifacts_modified": false
+  },
+  "pass_gate": {
+    "hard_sets_rederived_and_frozen_before_training": true,
+    "historical_definitions_preserved": true,
+    "unetpp_role_replication_anchor_only": true,
+    "heatmap_output_contract_128": true,
+    "shape_assertions_specified": true,
+    "stage4d_label_ambiguity_resolved_as_provenance_defect": true,
+    "missing_epoch079_unfabricated": true,
+    "primary_proposal_config_fixed": true,
+    "historical_20_grid_not_used_for_primary_selection": true,
+    "fixed_config_lexicographic_checkpoint_metric_frozen": true,
+    "predicted_proposal_training_crops_removed_from_phase13": true,
+    "phase14_distribution_mismatch_retained_as_deferred_requirement": true,
+    "future_predicted_region_practical_geometry_frozen": true,
+    "future_downstream_global_retained_composition_frozen": true,
+    "all_four_models_remain_future_downstream_scope": true,
+    "no_winner_no_reference_model": true,
+    "no_numerical_go_threshold": true,
+    "no_training": true,
+    "no_inference": true,
+    "no_proposals": true,
+    "test_reads_zero": true,
+    "unauthorized_material_differences": 0
+  },
+  "next_action": "WAIT_FOR_SUPERVISOR_PHASE13_PART1B_TRAINING_AUTHORIZATION"
+}

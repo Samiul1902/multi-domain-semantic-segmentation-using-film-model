@@ -1,0 +1,145 @@
+{
+  "artifact": "phase36_v1_11_negative_controls",
+  "phase": 36,
+  "section": "§K",
+  "method": "RA-MedFiLM-BARR",
+  "revision": "ra_medfilm_barr_phase36_robustness_v1_11",
+  "type": "NEGATIVE_CONTROL_AUDIT",
+  "model_free": true,
+  "torch_imported": false,
+  "protected_population_read": false,
+  "mutants_are_in_memory_strings_only": true,
+  "canonical_source_sha256_before": "dc4928417444304ad637907c53089e512577254b368e438d0098ade6202083f0",
+  "canonical_source_sha256_after": "dc4928417444304ad637907c53089e512577254b368e438d0098ade6202083f0",
+  "canonical_source_unmodified": true,
+  "launcher_sha256": "56612332d220f93611fc627b1f495aca3013bb3578ab801ee10b4ee0386b25b0",
+  "nc_range": "NC71-NC85",
+  "targets": "D30/D31/D32/D33_plus_carried_D26/D27/D28",
+  "carried_over_v1_9": "NC50-NC57_remain_valid_in_phase36_v1_9_negative_controls.json",
+  "carried_over_v1_10": "NC63-NC70_remain_valid_in_phase36_v1_10_negative_controls.json",
+  "passed": 15,
+  "total": 15,
+  "all_pass": true,
+  "controls": [
+    {
+      "nc": "NC71_D30_science_gate_moved_after_load_models",
+      "mutation_changed_bytes": true,
+      "detector_on_canonical": true,
+      "detector_on_mutant": false,
+      "mutant_bite": true,
+      "pass": true
+    },
+    {
+      "nc": "NC72_D30_science_gate_bypass_no_prefix_verify",
+      "mutation_changed_bytes": true,
+      "detector_on_canonical": true,
+      "detector_on_mutant": false,
+      "mutant_bite": true,
+      "pass": true
+    },
+    {
+      "nc": "NC73_D31_science_write_bound_to_v1_8_path",
+      "mutation_changed_bytes": true,
+      "detector_on_canonical": true,
+      "detector_on_mutant": false,
+      "mutant_bite": true,
+      "pass": true
+    },
+    {
+      "nc": "NC74_D31_science_write_bound_to_v1_9_path",
+      "mutation_changed_bytes": true,
+      "detector_on_canonical": true,
+      "detector_on_mutant": false,
+      "mutant_bite": true,
+      "pass": true
+    },
+    {
+      "nc": "NC75_D32_science_exception_not_persisted",
+      "mutation_changed_bytes": true,
+      "detector_on_canonical": true,
+      "detector_on_mutant": false,
+      "mutant_bite": true,
+      "pass": true
+    },
+    {
+      "nc": "NC76_D32_science_systemexit_not_persisted",
+      "mutation_changed_bytes": true,
+      "detector_on_canonical": true,
+      "detector_on_mutant": false,
+      "mutant_bite": true,
+      "pass": true
+    },
+    {
+      "nc": "NC77_D32_science_retry_permitted",
+      "mutation_changed_bytes": true,
+      "detector_on_canonical": true,
+      "detector_on_mutant": false,
+      "mutant_bite": true,
+      "pass": true
+    },
+    {
+      "nc": "NC78_D32_first_attempt_write_once_weakened",
+      "mutation_changed_bytes": true,
+      "detector_on_canonical": true,
+      "detector_on_mutant": false,
+      "mutant_bite": true,
+      "pass": true
+    },
+    {
+      "nc": "NC79_D26_provenance_hardcoded_literal_true",
+      "mutation_changed_bytes": true,
+      "detector_on_canonical": true,
+      "detector_on_mutant": false,
+      "mutant_bite": true,
+      "pass": true
+    },
+    {
+      "nc": "NC80_D26_provenance_or_true_tautology",
+      "mutation_changed_bytes": true,
+      "detector_on_canonical": true,
+      "detector_on_mutant": false,
+      "mutant_bite": true,
+      "pass": true
+    },
+    {
+      "nc": "NC81_D27_transitive_dep_path_dropped_or_replaced",
+      "mutation_changed_bytes": true,
+      "detector_on_canonical": true,
+      "detector_on_mutant": false,
+      "mutant_bite": true,
+      "pass": true
+    },
+    {
+      "nc": "NC82_D27_transitive_dep_path_replaced",
+      "mutation_changed_bytes": true,
+      "detector_on_canonical": true,
+      "detector_on_mutant": false,
+      "mutant_bite": true,
+      "pass": true
+    },
+    {
+      "nc": "NC83_D28_hd95_call_site_dropped",
+      "mutation_changed_bytes": true,
+      "detector_on_canonical": true,
+      "detector_on_mutant": false,
+      "mutant_bite": true,
+      "pass": true
+    },
+    {
+      "nc": "NC84_D28_hd95_call_reason_weakened",
+      "mutation_changed_bytes": true,
+      "detector_on_canonical": true,
+      "detector_on_mutant": false,
+      "mutant_bite": true,
+      "pass": true
+    },
+    {
+      "nc": "NC85_D33_source_manifest_co_edit_bypasses_launcher",
+      "mutation_changed_bytes": true,
+      "detector_on_canonical": true,
+      "detector_on_mutant": false,
+      "mutant_bite": true,
+      "pass": true
+    }
+  ]
+}

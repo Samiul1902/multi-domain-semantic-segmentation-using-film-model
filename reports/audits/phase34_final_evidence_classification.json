@@ -1,0 +1,51 @@
+{
+ "artifact": "phase34_final_evidence_classification",
+ "phase": 34,
+ "section": "\u00a7K",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase34_efficiency_profiling_v1_4",
+ "classes": {
+  "HISTORICAL_ANALYTICAL_COMPUTE": {
+   "canonical_artifact": "reports/tables/phase34_analytical_compute_summary_v1_3.csv",
+   "sha256": "bbe1d933c24e297454ec7afee0f64d00bc79dbcf815d747df2ec2f742c93f71f",
+   "measurement_or_computation_type": "ANALYTICAL_MAC_LOWER_BOUND",
+   "hardware_dependence": "NONE (analytical Conv/Linear closed-form count)",
+   "scientific_interpretation": "Conv2d/Linear MAC lower bound at the frozen canonical interfaces",
+   "claim_limitations": "not measured runtime, not energy, not memory footprint, not mobile cost"
+  },
+  "STATIC_MODEL_RESOURCE_PROFILE": {
+   "canonical_artifact": "reports/tables/phase34_static_resource_profile_v1_3.csv",
+   "sha256": "f4c36efd4fedb07778cf8b752a1e54ec91b19b78d9d1c6f4ef300cb5bdb73343",
+   "measurement_or_computation_type": "STATIC_PARAMETER_AND_FILE_ACCOUNTING",
+   "hardware_dependence": "NONE",
+   "scientific_interpretation": "canonical component parameter counts and checkpoint file sizes",
+   "claim_limitations": "conditional execution does NOT reduce total resident parameter count"
+  },
+  "MEASURED_HARDWARE_SPECIFIC_RUNTIME_PROFILE": {
+   "canonical_artifacts": [
+    "reports/tables/phase34_batch1_latency_results_v1_4.csv",
+    "reports/tables/phase34_batch8_throughput_results_v1_3.csv",
+    "reports/tables/phase34_gpu_memory_results_v1_3.csv"
+   ],
+   "sha256": {
+    "batch1_latency_v1_4": "da5292d4551209339b3880c0e64d4152007eb42e7c262ad296bc2c2ec586ab26",
+    "batch8_throughput_v1_3": "ac2b21aa89086870af59cd341ac51122568a871981fc9df9a4f323ae58c84c6c",
+    "gpu_memory_v1_3": "6df4e0941dcd33ab90196f7572528afbc7848d9329c6bcb6940978813dd02979"
+   },
+   "measurement_or_computation_type": "MEASURED_SYNTHETIC_TENSOR_RUNTIME_AND_MEMORY",
+   "hardware_dependence": "HARDWARE_SPECIFIC (NVIDIA GeForce RTX 3060 Ti, PyTorch 2.6.0+cu124)",
+   "scientific_interpretation": "batch-1 per-forward model-compute-path latency; batch-8 synthetic throughput; GPU allocated/reserved memory at the frozen protocol",
+   "claim_limitations": "synthetic inputs; MODEL_COMPUTE_PATH_RUNTIME / SYNTHETIC_COMPONENT_RUNTIME scope only; not end-to-end application latency; not universal device FPS"
+  },
+  "CONDITIONAL_COMPUTATION_PROFILE": {
+   "canonical_artifact": "reports/tables/phase34_conditional_runtime_estimate_v1_4.csv",
+   "sha256": "05ec0c5a82ba9b0c93f53c455de34b991aab591864fb30017e1ef86eaa5d8111",
+   "measurement_or_computation_type": "WEIGHTED_HARDWARE_SPECIFIC_RUNTIME_ESTIMATE",
+   "hardware_dependence": "HARDWARE_SPECIFIC (derived from measured path latencies)",
+   "scientific_interpretation": "mean-only weighted estimate using frozen Phase30 route-state frequencies",
+   "claim_limitations": "NOT_DIRECT_HOLDOUT_RUNTIME; NOT_END_TO_END_PIPELINE_LATENCY; no weighted percentiles; Phase30 qualifier mandatory"
+  }
+ },
+ "generated_utc": "2026-10-04T14:20:03+00:00",
+ "all_pass": true
+}

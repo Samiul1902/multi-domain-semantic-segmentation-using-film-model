@@ -1,0 +1,76 @@
+{
+  "phase": "9-R2 - Checkpoint-Selection Metric Aggregation Audit",
+  "status": "PASS",
+  "audit_only": true,
+  "experiment_id": "phase9_kub_unet_baseline_seed42_512",
+  "validation": {
+    "n_images": 283,
+    "batch_size": 4,
+    "n_batches": 71,
+    "final_batch_size": 3,
+    "shuffle": false,
+    "threshold": 0.5
+  },
+  "implementation_trace": {
+    "per_image_metric": "src/metrics/segmentation.py:7-15 returns one Dice value per image as a tensor of shape [batch_size]",
+    "epoch_aggregation": "src/metrics/segmentation.py:18-20 concatenates all per-image tensors with torch.cat and takes one mean over the resulting 283-element tensor",
+    "validation_return": "src/training/evaluator.py:12 appends each per-image metric vector; line 17 returns aggregate_binary_metrics(metric_batches)",
+    "trainer_source": "src/training/trainer.py:36-41 returns the evaluator result without another aggregation",
+    "method": "sum of individual-image Dice divided by 283 (torch.cat(...).mean())",
+    "sample_weighted": true,
+    "true_macro_equivalent": true,
+    "unweighted_mean_of_batch_means": false,
+    "mathematical_expression": "(1/N) * sum_{i=1}^{N} Dice_i, N=283"
+  },
+  "metric_consumers": {
+    "history_csv_val_dice": "scripts/training/train_kub_baseline.py:163-176 stores val_info['dice']",
+    "best_checkpoint_selection": "scripts/training/train_kub_baseline.py:183-199 compares val_info['dice'] to best_val_dice and writes best.pt on improvement",
+    "early_stopping_improvement": "scripts/training/train_kub_baseline.py:188 passes val_info['dice'] to EarlyStopping.update",
+    "patience_counter": "src/training/trainer.py:7-11 resets/increments from that same scalar",
+    "all_four_use_same_metric": true
+  },
+  "final_best_checkpoint_per_image_csv": {
+    "path": "reports/tables/phase9_unet_val_per_image.csv",
+    "row_count": 283,
+    "true_per_image_macro_dice_float64": 0.7455439340960021,
+    "torch_float32_mean_of_csv_values": 0.745543897151947,
+    "checkpoint_selection_dice": 0.7455300688743591,
+    "absolute_difference_float64_csv_vs_checkpoint": 0.000013865221642928027
+  },
+  "csv_order_batch_reconstruction": {
+    "basis": "Existing per-image CSV order, batch size 4, shuffle=false; no image or mask content read",
+    "true_image_macro": 0.7455439340960021,
+    "unweighted_mean_of_71_batch_means": 0.7458270253168174,
+    "sample_weighted_mean_of_batch_means": 0.7455439340960021,
+    "final_batch_mean": 0.8259418408075968,
+    "checkpoint_value_matches_unweighted_batch_means": false,
+    "interpretation": "The reconstruction proves the checkpoint value was not an equal-weight mean of batch means. It cannot reproduce the original batched-inference logits because the CSV was produced later by single-image inference. The small checkpoint-versus-CSV difference is attributable to numerically different batched versus single-image AMP/CUDA inference paths plus floating-point reduction, not aggregation weighting."
+  },
+  "epoch_artifact_audit": {
+    "epochs_recorded": 62,
+    "history_contains_true_per_image_macro_scalar_each_epoch": true,
+    "history_contains_per_image_values_each_epoch": false,
+    "per_epoch_predictions_retained": false,
+    "all_epoch_checkpoints_retained": false,
+    "valid_retained_checkpoints": ["best.pt (epoch 47)", "latest.pt (epoch 62)"],
+    "note": "An interrupted corrupt latest artifact is not a valid epoch checkpoint and provides no recoverable scientific evidence."
+  },
+  "scientific_decision": {
+    "protocol_satisfied": true,
+    "reported_best_epoch": 47,
+    "best_epoch_provably_correct_under_true_macro_dice": true,
+    "reported_stop_epoch": 62,
+    "stop_epoch_provably_correct_under_true_macro_dice": true,
+    "evidence": "history.csv contains the protocol-correct sample-level macro scalar for every epoch. Epoch 47 is its maximum. Epochs 48-62 are exactly 15 consecutive non-improvements under the same scalar.",
+    "corrective_retraining_required": false
+  },
+  "governance": {
+    "test_content_reads": 0,
+    "test_metrics": "NONE",
+    "external_data_accessed": false,
+    "experiment_a_modified": false,
+    "phase_10_executed": false,
+    "manifest_guard": "PASS",
+    "test_lock": "PASS"
+  }
+}

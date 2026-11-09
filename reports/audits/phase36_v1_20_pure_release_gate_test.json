@@ -1,0 +1,55 @@
+{
+ "artifact": "phase36_v1_20_pure_release_gate_test",
+ "phase": 36,
+ "revision": "ra_medfilm_barr_phase36_robustness_v1_20",
+ "type": "PURE_RELEASE_GATE_TEST",
+ "mode": "NON_CONSUMING__NO_MODEL__NO_CHECKPOINT__NO_VAL",
+ "generated_utc": "2026-10-10T19:57:07Z",
+ "v1_20_source_sha256": "b9d128240596c5c6b7c040480823f4cc653d26a4bc665fc69b396d00e4fe0ad8",
+ "gate_function": "_gate_science_release_state",
+ "gate_function_source_faithful": true,
+ "torch_imported": false,
+ "model_constructed": false,
+ "val_accessed": false,
+ "marker_created": false,
+ "base_gate_state": "RELEASED",
+ "base_gate_reason": "SUCCESSFUL_SMOKE_BOUND",
+ "base_gate_released": true,
+ "mutations": {
+  "MUT_REVISION_MISMATCH": [
+   "NOT_RELEASED",
+   "REVISION_MISMATCH"
+  ],
+  "MUT_SOURCE_SHA_MISMATCH": [
+   "NOT_RELEASED",
+   "SOURCE_SHA_MISMATCH"
+  ],
+  "MUT_SMOKE_ARTIFACT_SHA_MISMATCH": [
+   "NOT_RELEASED",
+   "SMOKE_ARTIFACT_SHA_MISMATCH"
+  ],
+  "MUT_SMOKE_NOT_SUCCESSFUL": [
+   "NOT_RELEASED",
+   "SMOKE_NOT_SUCCESSFUL"
+  ],
+  "MUT_SCIENTIFIC_OUTPUT_NOT_FALSE": [
+   "NOT_RELEASED",
+   "SCIENTIFIC_OUTPUT_NOT_FALSE"
+  ],
+  "MUT_RELEASE_GATE_MISMATCH": [
+   "NOT_RELEASED",
+   "RELEASE_GATE_MISMATCH"
+  ],
+  "MUT_NO_ATTESTATION": [
+   "NOT_RELEASED",
+   "NO_ATTESTATION"
+  ]
+ },
+ "mutation_count": 7,
+ "all_mutations_not_released": true,
+ "d82_compatibility_evidence": {
+  "v18_gate_requires_v1_20_smoke_artifact": false
+ },
+ "all_pass": true,
+ "terminal": "PHASE36_V1_20_PURE_RELEASE_GATE_TEST_PASS"
+}

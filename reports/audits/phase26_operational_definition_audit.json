@@ -1,0 +1,64 @@
+{
+ "artifact": "phase26_operational_definition_audit",
+ "phase": "26",
+ "classification": "PHASE26_PRE_EXECUTION_TRAINING_SPECIFICATION_AUDIT",
+ "method": "RA-MedFiLM-BARR",
+ "governance_only": true,
+ "question": "What does the roadmap phrase 'Full four-domain RA-MedFiLM-BARR training' actually mean operationally?",
+ "rule": "Do NOT infer. Only an authoritative existing source or an explicit later supervisor ruling may choose among the interpretations.",
+ "readme_core_question_verbatim": "Phase 26 executes joint multi-task training across all 4 domains on TRAIN.",
+ "readme_declared_provenance_source": "docs/phase26_training_spec.md",
+ "readme_declared_provenance_source_exists": false,
+ "readme_declared_provenance_note": "The README's own Core Question sentence is an unratified stub, not an authoritative frozen specification; and its declared canonical provenance source docs/phase26_training_spec.md does not exist.",
+ "interpretations": [
+  {
+   "id": "A",
+   "label": "JOINT_OPTIMIZATION",
+   "definition": "End-to-end joint optimization of all four domains in one training run (a single objective back-propagating through G, R_psi, B_phi and possibly S_omega).",
+   "authoritative_source_found": false,
+   "evidence": "No repository source states Phase26 jointly optimizes the modules. PROJECT_MASTER_PLAN.md lists only the title 'Full Four-Domain Joint Architecture Training' with status NOT_STARTED; no objective, gradient graph or optimizer is named.",
+   "resolved": false
+  },
+  {
+   "id": "B",
+   "label": "STAGED_FINE_TUNING",
+   "definition": "Sequential / staged fine-tuning of the assembled pipeline (e.g. freeze G, fine-tune R_psi, then B_phi).",
+   "authoritative_source_found": false,
+   "evidence": "No source defines a staged fine-tuning schedule for Phase26.",
+   "resolved": false
+  },
+  {
+   "id": "C",
+   "label": "FINAL_REFITTING",
+   "definition": "Final refitting of already-specified components on the full development population, using the frozen Phase24 refit rules.",
+   "authoritative_source_found": false,
+   "evidence": "phase24_exact_implementation_spec.json#final_refiner names R_psi_final.sole_regional_refiner_for = ['ROUTER_HOLDOUT integrated evaluation','later continuity VAL evaluation','future Phase 26+ development unless explicitly superseded'] - this permits reuse but does NOT state that Phase26 IS final refitting, and defines no Phase26 objective.",
+   "resolved": false,
+   "partial_hint": true
+  },
+  {
+   "id": "D",
+   "label": "ASSEMBLY_OF_TRAINED_COMPONENTS",
+   "definition": "Assembly / integration of the already-trained and frozen components (G, R_psi, B_phi, S_omega) with no new training.",
+   "authoritative_source_found": false,
+   "evidence": "All four components exist and are frozen (Phase21/25A/25D/25F), and the Phase25G integrated evaluation already assembled them at the artifact level. No source states Phase26 is assembly-only or that assembly is complete.",
+   "resolved": false,
+   "partial_hint": true
+  },
+  {
+   "id": "E",
+   "label": "OTHER",
+   "definition": "Any other operational meaning not covered by A-D.",
+   "authoritative_source_found": false,
+   "evidence": "No other authoritative definition exists.",
+   "resolved": false
+  }
+ ],
+ "n_interpretations": 5,
+ "n_resolved": 0,
+ "operational_definition_explicit": false,
+ "operational_definition_verdict": "OPERATIONAL_DEFINITION_NOT_EXPLICIT",
+ "blocking": true,
+ "supervisor_ruling_present": false,
+ "all_pass": false
+}

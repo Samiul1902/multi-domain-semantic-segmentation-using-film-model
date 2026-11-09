@@ -1,0 +1,98 @@
+{
+ "artifact": "phase35_v1_0c_to_v1_0d_semantic_diff",
+ "phase": 35,
+ "section": "\u00a7O",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase35_interpretability_v1_0d",
+ "baseline_source": {
+  "path": "scripts/analysis/phase35_interpretability_execution_v1_0c.py",
+  "sha256": "4058fc5544e6e1af15339df20a88da4880549ea8d4dd434395df04e0fa261baa"
+ },
+ "amended_source": {
+  "path": "scripts/analysis/phase35_interpretability_execution_v1_0d.py",
+  "sha256": "cccc109ade27eb5ad7883912004c1e911e9e253a659146f3d64820af92244056"
+ },
+ "common_module": {
+  "path": "scripts/analysis/phase35_interpretability_common_v1_0b.py",
+  "sha256": "9963215e1431e968e11bacbcd917d96a8a985a7181000258b90f458ff0a778ac",
+  "changed_by_v1_0d": false
+ },
+ "frozen_v1_0b_source": {
+  "path": "scripts/analysis/phase35_interpretability_execution_v1_0b.py",
+  "sha256": "581926840d7717e19ed15ad77c7c5339b709efc881b938924d6eec0a2ceb1872",
+  "changed_by_v1_0d": false
+ },
+ "scientific_specification_changed": false,
+ "gradcam_scalar_scientific_intent_changed": false,
+ "target_population_changed": false,
+ "target_mask_source_changed": false,
+ "target_threshold_changed": false,
+ "empty_mask_fallback_changed": false,
+ "gradcam_layers_changed": false,
+ "gradcam_algorithm_changed": false,
+ "cam_normalization_changed": false,
+ "precision_context_changed": false,
+ "router_science_changed": false,
+ "film_science_changed": false,
+ "only_implementation_change": "TARGET_MASK_RANK_SAFE_INDEXING",
+ "scientific_semantic_change_class": "IMPLEMENTATION_SHAPE_SAFETY_FIX_ONLY",
+ "functions_added_in_v1_0d": [
+  "_hook",
+  "_validate_target_logits",
+  "_validate_target_mask",
+  "gradcam_gradient_enabled_rank_safe",
+  "gradcam_path_contract",
+  "gradcam_target_scalar_rank_safe",
+  "mode_gradcam",
+  "mode_science",
+  "smoke_synthetic_target_mask_rank2"
+ ],
+ "functions_wrapped_in_v1_0d": [
+  "gradcam_gradient_enabled_rank_safe (new per-sample path bound to the repaired target scalar)"
+ ],
+ "functions_bound_verbatim_from_v1_0b": {
+  "mode_film": true,
+  "mode_router": true,
+  "load_g_component": true,
+  "load_bphi_component": true,
+  "load_gallery_allowlist": true,
+  "resolve_display_subset": true,
+  "guard_raw_path": true,
+  "load_persisted_p_global": true,
+  "build_target_mask": true,
+  "build_roi_mask": true,
+  "extract_film_parameters": true,
+  "extract_task_embeddings": true,
+  "router_population_verify": true,
+  "router_normalized_features": true,
+  "router_gradient_x_input": true,
+  "router_group_attribution": true,
+  "cam_normalize": true,
+  "saliency_self_consistency": true,
+  "assert_claim_language": true
+ },
+ "functions_reused_verbatim_from_v1_0c": [
+  "smoke_environment_check",
+  "smoke_checkpoint_identity",
+  "smoke_synthetic_image",
+  "state_dict_identity",
+  "smoke_film_validate",
+  "smoke_embedding_validate",
+  "smoke_router",
+  "smoke_zero_denominator",
+  "smoke_parameter_immutability",
+  "SMOKE_COUNTERS",
+  "SMOKE_EXPECTED_COUNTERS"
+ ],
+ "thresholds": {
+  "T_SEGMENTATION_OUTPUT": 0.5,
+  "T_ROI_PROPOSAL": 0.3,
+  "changed_by_v1_0d": false
+ },
+ "defect_repaired": "PHASE35_V1_0B_GRADCAM_TARGET_MASK_RANK_INCOMPATIBILITY",
+ "model_constructed": false,
+ "checkpoint_deserialized": false,
+ "forward_executed": false,
+ "generated_utc": "2026-10-04T16:06:06+00:00",
+ "all_pass": true
+}

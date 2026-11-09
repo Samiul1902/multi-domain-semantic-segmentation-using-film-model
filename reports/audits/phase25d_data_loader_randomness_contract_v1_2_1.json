@@ -1,0 +1,33 @@
+{
+ "phase": "25D",
+ "classification": "PRE_EXECUTION_SPECIFICATION_COMPLETENESS_REPAIR",
+ "router_training_spec_revision": "ra_medfilm_barr_router_training_v1_2_1",
+ "method": "RA-MedFiLM-BARR",
+ "architecture_revision": "ra_medfilm_barr_narrowed_v1_2",
+ "generated_utc": "2026-10-01T02:01:22+00:00",
+ "artifact": "phase25d_data_loader_randomness_contract_v1_2_1",
+ "base_seed": 42,
+ "fold_seed_derivation": "42000 + router_cv_fold",
+ "fold_seed_uses": [
+  "model initialization",
+  "task embedding initialization",
+  "training-shuffle generator"
+ ],
+ "per_fold_fresh": [
+  "model",
+  "optimizer",
+  "scheduler",
+  "loader RNG"
+ ],
+ "final_refit_seed": 42,
+ "checkpoint_persistence_required": [
+  "Python RNG state",
+  "NumPy RNG state",
+  "Torch CPU RNG state",
+  "Torch CUDA RNG state",
+  "DataLoader generator state"
+ ],
+ "resume_restores_all": true,
+ "no_retry_seed": true,
+ "no_v2_seed": true
+}

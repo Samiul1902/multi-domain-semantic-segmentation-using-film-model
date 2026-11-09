@@ -1,0 +1,30 @@
+{
+ "phase": "25D",
+ "classification": "PRE_EXECUTION_SPECIFICATION_COMPLETENESS_REPAIR",
+ "router_training_spec_revision": "ra_medfilm_barr_router_training_v1_2_1",
+ "method": "RA-MedFiLM-BARR",
+ "architecture_revision": "ra_medfilm_barr_narrowed_v1_2",
+ "generated_utc": "2026-10-01T02:01:22+00:00",
+ "artifact": "phase25d_feature_normalization_contract_v1_2_1",
+ "deep_features": "192 features remain exactly as stored; NO normalization",
+ "task_embedding": "16-D learned embedding remains raw; NO normalization",
+ "standardized_scalars": [
+  "entropy_proxy_mean",
+  "frac_prob_within_0p05_of_boundary",
+  "frac_prob_within_0p02_of_boundary",
+  "mean_boundary_margin",
+  "pred_foreground_fraction",
+  "pred_foreground_pixels",
+  "predicted_roi_area_fraction",
+  "predicted_roi_side"
+ ],
+ "non_standardized_scalars": [
+  "pred_roi_exists",
+  "pred_empty"
+ ],
+ "normalization_statistic": "population standard deviation (ddof=0)",
+ "constant_column_behavior": "if sigma_j < 1e-12, record as CONSTANT_IN_FIT and set transformed value to 0.0 for all splits",
+ "cv_normalization": "fit statistics ONLY on FIT_k; apply same mu/sigma to FIT_k, EARLY_STOP_k, OUTER_TARGET_k",
+ "final_refit_normalization": "fit eight scalar means/stds on ALL 4957 ROUTER_DEVELOPMENT rows; persist in final checkpoint and standalone artifact",
+ "holdout_statistics_forbidden": true
+}

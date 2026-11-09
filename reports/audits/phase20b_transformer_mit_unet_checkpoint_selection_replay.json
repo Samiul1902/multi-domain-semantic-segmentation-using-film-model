@@ -1,0 +1,33 @@
+{
+  "artifact": "phase20b_checkpoint_selection_replay",
+  "phase": 20,
+  "subphase": "20B",
+  "model_key": "transformer_mit_unet",
+  "experiment_id": "phase20b_shared_transformer_mit_unet_fourdomain_seed42_clean_v3",
+  "method": "disk-only replay of the frozen selection rule over saved history; no inference",
+  "selection_rule_id": "phase20_macro_domain_mean_dice_v1",
+  "selection_metric": "macro_domain_mean_validation_dice",
+  "tie_break": "lower validation loss",
+  "history_selected_epoch": 74,
+  "history_selected_macro_domain_dice": 0.8223808915834625,
+  "stored_best_epoch": 74,
+  "best_pt_epoch": 74,
+  "best_pt_macro_domain_dice": 0.8223808915834625,
+  "n_epochs_evaluated": 89,
+  "n_improvements": 34,
+  "checks": {
+    "selection_rule_id_matches": true,
+    "history_selected_epoch_equals_stored_best_epoch": true,
+    "stored_best_epoch_equals_best_pt_epoch": true,
+    "replayed_macro_matches_best_pt_macro": true,
+    "replayed_macro_matches_closure": true,
+    "history_integrity_ok": true,
+    "no_independent_duplicate_run": true,
+    "best_pt_sha_matches_closure": true,
+    "latest_pt_sha_matches_closure": true,
+    "test_reads_zero": true
+  },
+  "all_checks_passed": true,
+  "verdict": "PHASE20B_CHECKPOINT_SELECTION_REPLAY_PASS",
+  "fail_closed": true
+}

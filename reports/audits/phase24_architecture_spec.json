@@ -1,0 +1,306 @@
+{
+ "artifact": "phase24_architecture_spec",
+ "phase": 24,
+ "status": "DESIGN_ONLY_NOT_IMPLEMENTED",
+ "architecture_id": "ra_medfilm_barr_narrowed_v1",
+ "method_name": "RA-MedFiLM-BARR",
+ "method_name_expansion": "Resource-Aware MedFiLM with Benefit-Aware Refinement Routing",
+ "scientific_scope": "A pre-registered design for a learned GT-free predictor of PAIRED REFINEMENT GAIN, evaluated BEFORE an optional expensive regional refinement, used for execute/skip routing inside a shared multi-domain medical-segmentation system, with a structural preservation fallback and an explicit resource-cost term in the decision utility.",
+ "contribution_type": "SYSTEM / INTEGRATION contribution. Phase 23 established that each individual primitive (gate mechanism, paired-gain target, multi-domain sharing, resource awareness) is OCCUPIED. No novelty is claimed for any primitive.",
+ "novelty_boundary_ref": "phase24_novelty_boundary.json",
+ "global_reference": {
+  "role": "frozen anchor; produces the fallback output and the reusable features",
+  "phase21_checkpoint": "checkpoints/phase21_global_medfilm_fourdomain_seed42_clean_v3/best.pt",
+  "sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+  "architecture": "global_medfilm_shared_residual_unet_film5_no_se_no_deep_supervision_v1",
+  "parameters": 3523001,
+  "signature": "G(x, t) -> (p_global, F_global)",
+  "x": "input image",
+  "t": "allowed task/domain ID",
+  "p_global": "global probability map",
+  "F_global": "reusable intermediate features already produced by the global forward",
+  "modification_policy": "MUST NOT be modified during the initial controlled Phase-25 experiments. Any fine-tuning of the global model is a separate, later, explicitly authorised change.",
+  "feature_reuse_requirement": "The router MUST reuse F_global. A SECOND full Global MedFiLM forward purely to make the routing decision is FORBIDDEN: it would destroy the compute-saving claim (C4)."
+ },
+ "region_proposal": {
+  "gt_free": true,
+  "frozen_rule": "p_global predicted foreground -> tight bounding box -> fixed context expansion -> clip to image -> square pad -> resize to regional-refiner resolution",
+  "constants_source": "TRAIN only (context expansion factor, refiner resolution)",
+  "tuning_on_val_forbidden": true,
+  "empty_global_prediction_primary_behavior": "A_SKIP_REFINEMENT",
+  "empty_global_prediction_justification": "Option A (skip) is chosen as the PRIMARY prospective behaviour because it is the minimal, GT-free, zero-extra-cost rule: if the global model predicts no foreground, there is no region to refine and the global output is preserved by the fallback. Option B (deterministic cheap uncertainty-based rescue) is retained ONLY as a pre-registered controlled ablation, and any constant it uses must be derived from TRAIN only, frozen before Phase 25.",
+  "gt_rescue_forbidden": true
+ },
+ "regional_refiner": {
+  "symbol": "R_psi",
+  "role": "produces the optional refinement R(x_crop)",
+  "must_not_be": "the frozen Global MedFiLM checkpoint reused on resampled crops. Phase 22 showed that reuse was HARMFUL in aggregate.",
+  "class": "dedicated crop-trained lightweight residual U-Net / encoder-decoder",
+  "input_contract": {
+   "channels": [
+    "R",
+    "G",
+    "B",
+    "p_global_crop"
+   ],
+   "conceptual": "[R, G, B, p_global]",
+   "task_conditioning": "allowed (task/domain embedding, e.g. FiLM-style)",
+   "forbidden_inputs": [
+    "GT mask",
+    "GT geometry",
+    "GT size category",
+    "any GT-derived score"
+   ]
+  },
+  "target_parameter_envelope": {
+   "recommended_min": 500000,
+   "recommended_max": 1500000,
+   "hard_ceiling": 2000000,
+   "measured": false,
+   "note": "DESIGN TARGETS ONLY. Not implemented, not counted, not achieved."
+  },
+  "avoid": [
+   "large transformer",
+   "foundation-model decoder",
+   "oversized pretrained backbone"
+  ],
+  "conditioning": "task/domain embedding permitted; shared across domains",
+  "fusion_role": "its output is a CANDIDATE, never a replacement, until the final selection",
+  "novelty_claimed": false
+ },
+ "benefit_router": {
+  "symbol": "B_phi",
+  "job": "estimate the expected PAIRED REFINEMENT GAIN before R_psi executes. It is NOT an uncertainty predictor.",
+  "pre_refinement": true,
+  "gt_free": true,
+  "allowed_inputs_ref": "reports/tables/phase24_router_input_contract.csv",
+  "forbidden_inputs": [
+   "GT mask",
+   "GT foreground fraction",
+   "GT size label",
+   "Dice",
+   "IoU",
+   "recall",
+   "precision",
+   "specificity",
+   "MCC",
+   "GT-derived ECE",
+   "GT-derived Brier",
+   "oracle ROI",
+   "true DeltaDice",
+   "refined prediction",
+   "refiner feature maps",
+   "post-refinement statistics"
+  ],
+  "output": {
+   "primary": "Delta_hat_Dice (predicted paired Dice gain)",
+   "optional_auxiliary": "p_harm (probability the refinement is harmful)"
+  },
+  "architecture_family": "small MLP / shallow feature-fusion network",
+  "forbidden_architecture": [
+   "transformer router",
+   "foundation model",
+   "second image encoder"
+  ],
+  "target_parameter_envelope": {
+   "max_parameters": 250000,
+   "measured": false,
+   "note": "DESIGN TARGET ONLY."
+  },
+  "compute_envelope": {
+   "max_analytical_macs_fraction_of_one_global_forward": 0.02,
+   "preferred_fraction": 0.01,
+   "measured": false,
+   "note": "DESIGN TARGET ONLY; measured in Phase 25."
+  }
+ },
+ "paired_gain_target_ref": "phase24_paired_refinement_gain_contract.json",
+ "resource_utility_ref": "phase24_resource_utility_contract.json",
+ "pre_execution_gate": {
+  "rule": "if U_hat_i > tau then EXECUTE else SKIP",
+  "U_hat_i": "Delta_hat_i - lambda * C_i",
+  "evaluated_before": "R_psi execution",
+  "single_universal_lambda_forbidden": true,
+  "fixed_budget_points": [
+   "0%",
+   "10%",
+   "25%",
+   "50%",
+   "100%"
+  ],
+  "threshold_calibration": "TRAIN development only"
+ },
+ "post_safety": {
+  "symbol": "S_omega",
+  "role": "quality preservation AFTER refinement",
+  "saves_compute": false,
+  "importance": "This is the component closest to JFS. S_omega must NEVER be presented as the compute-saving mechanism, because JFS already occupies the post-hoc decision.",
+  "deployment_inputs_gt_free": true,
+  "classification": "CONTROLLED_CORE_EXTENSION",
+  "mandatory_ablation": "A7 (router, no post-safety) vs A8 (router + post-safety)",
+  "novelty_claimed": false
+ },
+ "fusion_rule": {
+  "primary": "outside ROI retain p_global; inside ROI replace with p_refined",
+  "learned_fusion_in_primary": false,
+  "reason": "avoid confounding the benefit-routing hypothesis",
+  "learned_fusion": "future controlled ablation only"
+ },
+ "fallback_rule_ref": "phase24_preservation_contract.json",
+ "task_conditioning": {
+  "primary_design": "ONE shared router with task/domain conditioning allowed",
+  "separate_per_domain_routers": "forbidden in the primary design",
+  "reason": "preserve the shared multi-domain system contribution",
+  "domain_specific_routers": "later controlled ablations only"
+ },
+ "training_stage_contract": {
+  "stages_executed_in_phase24": 0,
+  "plan": "Phase 25 modules 25A-25G (see phase24_phase25_module_plan.json)",
+  "stage_ordering_constraint": "The benefit router may only be fitted AFTER out-of-fold gain labels exist (25C precedes 25D). The refiner must be cross-fitted, never fit and evaluated on the same samples."
+ },
+ "data_role_contract_ref": "reports/tables/phase24_data_role_contract.csv",
+ "crossfit_contract": {
+  "folds": 3,
+  "within": "ROUTER_DEVELOPMENT subset of original TRAIN",
+  "procedure": "For fold k: train R_psi on folds != k, infer R_psi on fold k, compute DeltaDice_i = Dice(R_i, GT) - Dice(G_i, GT) for fold-k samples.",
+  "output": "concatenated out-of-fold (OOF) paired-gain labels",
+  "executed_in_phase24": false
+ },
+ "router_holdout_contract": {
+  "fraction_of_original_train": 0.15,
+  "approx_cases": 875,
+  "designated_before": [
+   "refiner performance inspection",
+   "benefit-router fitting",
+   "feature selection based on performance",
+   "lambda selection",
+   "threshold fitting"
+  ],
+  "inspected_in_phase24": [
+   "sample_ids",
+   "domain_counts",
+   "group_integrity",
+   "manifest_sha",
+   "split_seed"
+  ],
+  "must_not_inspect_in_phase24": [
+   "DeltaDice distribution",
+   "Dice",
+   "router AUC",
+   "benefit distribution",
+   "routing policy performance"
+  ],
+  "outcomes_read_in_phase24": 0
+ },
+ "VAL_role": {
+  "population": "existing frozen Phase-22 808-case VAL",
+  "role": "SECONDARY / CONTINUITY DEVELOPMENT BENCHMARK",
+  "is_router_training_data": false,
+  "is_untouched_routing_holdout": false,
+  "explicit_in_all_protocol_artifacts": true
+ },
+ "TEST_lock": {
+  "image_reads": 0,
+  "mask_reads": 0,
+  "inference": 0,
+  "visualization": 0,
+  "status": "CLOSED"
+ },
+ "hypotheses": {
+  "H1": "A learned pre-execution GT-free predictor of paired refinement gain can allocate optional regional refinement more effectively than simple GT-free uncertainty/geometry proxies at equal refinement-activation budgets.",
+  "load_bearing": "H1",
+  "H2": "benefit-aware routing captures more positive gain per unit compute than random/entropy/margin/ROI-size routing.",
+  "H3": "post-refinement fallback reduces harmful replacement relative to always accepting an executed refinement.",
+  "H4": "a dedicated crop-trained regional refiner yields a more useful action distribution than the Phase-22 diagnostic reuse of the full-field model.",
+  "H5": "benefit-aware routing produces a measurable accuracy-compute frontier.",
+  "H6": "learned paired refinement gain contains information beyond ordinary global uncertainty.",
+  "status": "HYPOTHESES_NOT_RESULTS"
+ },
+ "comparators_ref": "reports/tables/phase24_comparator_plan.csv",
+ "metrics": {
+  "benefit_prediction": [
+   "MAE",
+   "RMSE",
+   "Spearman",
+   "Pearson",
+   "ROC-AUC for useful-benefit detection",
+   "PR-AUC"
+  ],
+  "routing": [
+   "precision@budget",
+   "benefit capture@budget",
+   "mean true DeltaDice among routed cases",
+   "harmful activation rate",
+   "missed-benefit rate",
+   "routing regret vs oracle"
+  ],
+  "segmentation": [
+   "macro-domain Dice",
+   "per-domain Dice",
+   "IoU",
+   "existing standardized boundary metrics"
+  ],
+  "compute": [
+   "activation fraction",
+   "incremental MACs",
+   "average total MACs",
+   "ratio vs global-only",
+   "ratio vs always-refine"
+  ],
+  "preservation": [
+   "harmful replacement rate",
+   "fallback rate",
+   "per-domain degradation"
+  ]
+ },
+ "statistics": {
+  "method": "paired bootstrap",
+  "n_boot": 2000,
+  "seed": 42,
+  "domain_stratified_for": "macro-domain metrics",
+  "report": [
+   "point estimate",
+   "95% CI",
+   "paired p-value where appropriate"
+  ],
+  "test_used": false
+ },
+ "preservation_margin": {
+  "metric": "Delta = Dice(final routed system) - Dice(global reference)",
+  "absolute_macro_domain_dice_margin": 0.005,
+  "non_inferiority_lower_bound_must_exceed": -0.005,
+  "frozen_before_phase25": true,
+  "per_domain_reporting_mandatory": true,
+  "warning": "macro preservation must not hide severe domain-specific harm"
+ },
+ "success_criteria_ref": "reports/tables/phase24_success_failure_criteria.csv",
+ "failure_criteria_ref": "reports/tables/phase24_success_failure_criteria.csv",
+ "ablation_plan_ref": "reports/tables/phase24_ablation_plan.csv",
+ "phase25_module_plan_ref": "phase24_phase25_module_plan.json",
+ "forbidden_claims": [
+  "first-ever",
+  "first in the world",
+  "never done before",
+  "counterfactual causal effect",
+  "certified",
+  "guaranteed",
+  "novel value-of-computation",
+  "novel gating mechanism",
+  "novel CATE target",
+  "novel multi-domain segmentation",
+  "novel tiny-lesion segmentation",
+  "mobile ready",
+  "real-time",
+  "resource optimal",
+  "best method",
+  "performance preserving (until the frozen non-inferiority criterion is actually met)"
+ ],
+ "current_allowed_wording": "We specify a benefit-aware refinement-routing system...",
+ "level_2_wording_condition": "Future Level-2 wording may be used only after empirical support and only for the exact integrated contribution identified by Phase 23.",
+ "no_training": true,
+ "no_inference": true,
+ "no_implementation": true,
+ "phase25_started": false,
+ "generated_utc": "2026-09-29T14:45:29.300871+00:00",
+ "test_reads": 0
+}

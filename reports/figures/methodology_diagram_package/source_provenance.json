@@ -1,0 +1,175 @@
+{
+  "artifact": "phase36_methodology_diagram_evidence_package__source_provenance",
+  "method": "RA-MedFiLM-BARR",
+  "governance_note": "Every methodological statement in this package maps to an authoritative source. Confidence: AUTHORITATIVE = executable/config authority; DERIVED = computed from authority; VISUAL_ONLY = descriptive/schematic.",
+  "claims": [
+    {
+      "claim": "task_id mapping is ISIC=0, BUSI=1, KVASIR=2, KUB=3",
+      "source_path": "src/data/multidomain_dataset.py",
+      "source_sha256": "461062e5d6bf564872645c51c4175e69cb6169b729f1e5f311f2783f3f0b70b3",
+      "symbol_or_key": "TASK_ID / TASK_ID_TO_NAME / DATASET_ORDER",
+      "phase_or_revision": "Phase 19",
+      "confidence": "AUTHORITATIVE"
+    },
+    {
+      "claim": "Every domain is binary foreground/background; foreground = binarized mask (mask > 0); task id is NOT a segmentation class",
+      "source_path": "src/data/multidomain_dataset.py",
+      "source_sha256": "461062e5d6bf564872645c51c4175e69cb6169b729f1e5f311f2783f3f0b70b3",
+      "symbol_or_key": "module docstring + src.utils.targets.binarize_mask",
+      "phase_or_revision": "Phase 19",
+      "confidence": "AUTHORITATIVE"
+    },
+    {
+      "claim": "KUB Kidney_Stone/Bladder_Stone/Ureteric_Stone are REPORTING METADATA only, never a segmentation class or task id",
+      "source_path": "scripts/analysis/phase36_robustness_common_v1_0.py",
+      "source_sha256": "6ab108fe1aee7e89c66cdf90e0ce6f339dd203c0f40e61c805e3fff2713b527d",
+      "symbol_or_key": "KUB_REPORTING_ONLY / KUB_SUBGROUPS / KUB_CATEGORY_COUNTS_EXPECTED",
+      "phase_or_revision": "Phase 36 v1.0",
+      "confidence": "AUTHORITATIVE"
+    },
+    {
+      "claim": "No other domain has project-authoritative subclass/category labels (busI/isic/kvasir category = NOT_AVAILABLE)",
+      "source_path": "manifests/phase4_v3/all_paired.csv",
+      "source_sha256": "eb3062fa0e84f9952f994df79ed4d767417a912e18dce86560f6e2edcdd02ded",
+      "symbol_or_key": "category column",
+      "phase_or_revision": "phase4_v3 manifests",
+      "confidence": "AUTHORITATIVE"
+    },
+    {
+      "claim": "GlobalMedFiLM architecture: channels (24,48,96,192,256), 5 FiLM sites, embedding 32, FiLM hidden 64, single shared 1x1 head",
+      "source_path": "src/models/film/global_medfilm.py",
+      "source_sha256": "a04ff3e61b4d900ff47c2f390da4a999e73bd6047b28a19e41b05115e431d11f",
+      "symbol_or_key": "GLOBAL_MEDFILM_CHANNELS / GLOBAL_MEDFILM_FILM_SITES / GLOBAL_MEDFILM_TASK_EMBEDDING_DIM / GLOBAL_MEDFILM_FILM_HIDDEN_DIM",
+      "phase_or_revision": "Phase 19-21",
+      "confidence": "AUTHORITATIVE"
+    },
+    {
+      "claim": "GlobalMedFiLM parameter count = 3,523,001",
+      "source_path": "reports/tables/phase21_all_trained_models_comparison.csv",
+      "source_sha256": "see reports/tables",
+      "symbol_or_key": "row global_medfilm, params=3523001 (also phase21_six_model_compute.csv params_match=True)",
+      "phase_or_revision": "Phase 21",
+      "confidence": "AUTHORITATIVE"
+    },
+    {
+      "claim": "B_phi input = 218 (202 numeric + 16 task embedding); output scalar; params 36,801",
+      "source_path": "scripts/analysis/train_phase25d_router.py",
+      "source_sha256": "fc7c1bdf263ae4551dcb8f170d3203adb8540fbc189846265b74f6eca1541e91",
+      "symbol_or_key": "BARRBenefitRouterV1 / nn.Linear(218,128) / assert params == 36801",
+      "phase_or_revision": "Phase 25D",
+      "confidence": "AUTHORITATIVE"
+    },
+    {
+      "claim": "R_psi input [B,4,256,256], output [B,1,256,256], channels (16,32,64,96,128), params 1,276,401",
+      "source_path": "src/models/barr/regional_refiner.py",
+      "source_sha256": "4fe0abde3ec3a183d930f676c4400b4d9ba778793ea64abf1755c5b8dabf947a",
+      "symbol_or_key": "BARR_REFINER_INPUT_CHANNELS / BARR_REFINER_OUTPUT_CHANNELS / BARR_REFINER_INPUT_RESOLUTION / BARR_REFINER_EXPECTED_PARAMETERS",
+      "phase_or_revision": "Phase 25A",
+      "confidence": "AUTHORITATIVE"
+    },
+    {
+      "claim": "S_omega input 20-D (16 numeric + 4 one-hot), MLP 20-32-16-1, params 1,217, ACCEPT iff sigmoid>=0.50",
+      "source_path": "scripts/analysis/phase25f_execution_common.py",
+      "source_sha256": "98cf958a377e2de30e0b67e63fd56bafea418b2b061a362ee7284e852012cd2e",
+      "symbol_or_key": "BARRPostSafetyV1 / SOMEGA_NUMERIC_DIM / SOMEGA_TOTAL_DIM",
+      "phase_or_revision": "Phase 25F",
+      "confidence": "AUTHORITATIVE"
+    },
+    {
+      "claim": "Thresholds: segmentation 0.50, ROI proposal 0.30, ROI margin 0.25 (expansion 1.5), S_omega accept 0.50, comparator >=",
+      "source_path": "artifacts/phase26_ra_medfilm_barr_bundle_v1_0/threshold_contract.json",
+      "source_sha256": "139135dfd8e3e76db2196955861f2f833ca6d0e4c02ebb92da09978bdd658ceb",
+      "symbol_or_key": "segmentation_output_threshold / roi_proposal_threshold / s_omega_accept_threshold / comparator",
+      "phase_or_revision": "Phase 26 bundle v1.0",
+      "confidence": "AUTHORITATIVE"
+    },
+    {
+      "claim": "Router runtime threshold tau_C8_final = -5003565381643716252018011/205414980000000000000000000 over U = delta_hat_final - 0.25*C; OOF threshold is a SEPARATE, non-runtime space",
+      "source_path": "artifacts/phase26_ra_medfilm_barr_bundle_v1_0/threshold_contract.json",
+      "source_sha256": "139135dfd8e3e76db2196955861f2f833ca6d0e4c02ebb92da09978bdd658ceb",
+      "symbol_or_key": "operational_threshold / runtime_score / oof_scientific_threshold / oof_runtime_authority=false",
+      "phase_or_revision": "Phase 26 v1.2",
+      "confidence": "AUTHORITATIVE"
+    },
+    {
+      "claim": "202-D pre-refinement vector = 192 deep (6 groups x 32) + 10 scalars",
+      "source_path": "data_cache/phase25b_barr_pre_refinement_features_v1_2/feature_group_offsets.json",
+      "source_sha256": "879f330a1d7bac082ee94b0fd9a7843d032ab1215d3f4ea468881a8635a4dfa6",
+      "symbol_or_key": "groups / deep_dim=192 / scalar_start=192 / numeric_dim=202",
+      "phase_or_revision": "Phase 25B v1.2",
+      "confidence": "AUTHORITATIVE"
+    },
+    {
+      "claim": "16-D post-safety numeric feature composition + 4-D task one-hot (indices 16-19)",
+      "source_path": "reports/tables/phase25f_feature_schema_v1_0.csv",
+      "source_sha256": "3e70e20c541b93de752980c34cdfb6fe5af17ebe4c18cbb64397c0bbae465ee5",
+      "symbol_or_key": "rows 0-15 (numeric) / rows 16-19 (task_onehot)",
+      "phase_or_revision": "Phase 25F v1.0",
+      "confidence": "AUTHORITATIVE"
+    },
+    {
+      "claim": "Final S_omega input dim = 20 (SOMEGA_FINAL_INPUT_DIM); regional canvas 512; R_psi input resolution 256; ROI margin 0.25",
+      "source_path": "scripts/analysis/phase36_robustness_execution_v1_12.py",
+      "source_sha256": "8ed75a9b8f4ea8c204875bf1810e17df3f9c342a434f25399154f355ee888ea4",
+      "symbol_or_key": "SOMEGA_FINAL_INPUT_DIM / REGIONAL_CANVAS_RESOLUTION / REGIONAL_INPUT_RESOLUTION / ROI_FRACTIONAL_MARGIN",
+      "phase_or_revision": "Phase 36 v1.12",
+      "confidence": "AUTHORITATIVE"
+    },
+    {
+      "claim": "Four-state vocabulary FORCED_SKIP/SKIP_GLOBAL/EXECUTE_THEN_ACCEPT/EXECUTE_THEN_REJECT; router_decision in {SKIP,EXECUTE}",
+      "source_path": "src/models/barr/ra_medfilm_barr.py",
+      "source_sha256": "342f2163690c2fa8d5a601ab1d18178b982d701b916935c33e0793b0801c3724",
+      "symbol_or_key": "STATES / router_decision()",
+      "phase_or_revision": "Phase 26",
+      "confidence": "AUTHORITATIVE"
+    },
+    {
+      "claim": "Phase36 population = VAL808 only; per-domain counts ISIC 357 / BUSI 84 / KVASIR 87 / KUB 280; ROUTER_HOLDOUT_ROWS=0, TEST_ROWS=0",
+      "source_path": "scripts/analysis/phase36_robustness_common_v1_0.py",
+      "source_sha256": "6ab108fe1aee7e89c66cdf90e0ce6f339dd203c0f40e61c805e3fff2713b527d",
+      "symbol_or_key": "POPULATION_N / DOMAIN_COUNTS / ROUTER_HOLDOUT_ROWS / TEST_ROWS",
+      "phase_or_revision": "Phase 36 v1.0",
+      "confidence": "AUTHORITATIVE"
+    },
+    {
+      "claim": "Phase36 image conditions (13) and proposal conditions (7) with exact parameters; seeds 42/123/3407",
+      "source_path": "scripts/analysis/phase36_robustness_common_v1_0.py",
+      "source_sha256": "6ab108fe1aee7e89c66cdf90e0ce6f339dd203c0f40e61c805e3fff2713b527d",
+      "symbol_or_key": "IMAGE_CONDITIONS / PROPOSAL_CONDITIONS / NOISE_BASE_SEEDS",
+      "phase_or_revision": "Phase 36 v1.0/v1.1",
+      "confidence": "AUTHORITATIVE"
+    },
+    {
+      "claim": "Frozen component checkpoints and their SHAs (G 286689fd, R_psi 6d28608a, B_phi 8a412b2f, S_omega eee9b97b)",
+      "source_path": "artifacts/phase26_ra_medfilm_barr_bundle_v1_0/component_inventory.json",
+      "source_sha256": "6b5f792d9b8890d9b1e830fb72f2a86e8d13de160ee046b96cb3981dd004a5c7",
+      "symbol_or_key": "components[].checkpoint_sha256",
+      "phase_or_revision": "Phase 26 bundle v1.0",
+      "confidence": "AUTHORITATIVE"
+    },
+    {
+      "claim": "Representative panels 04/07 reuse EXISTING frozen p_global / final probability caches (no new inference)",
+      "source_path": "data_cache/phase29_val808_shared_fixed_g_v1_1_canonical/val808_global_prob_f16.npy ; data_cache/phase27_barr_preservation_v1_0/phase27_val808_final_prob_f16.npy",
+      "source_sha256": "see data_cache (frozen caches)",
+      "symbol_or_key": "val808_global_prob_f16.npy (808,512,512) ; phase27_val808_final_prob_f16.npy (808,512,512)",
+      "phase_or_revision": "Phase 29 / Phase 27",
+      "confidence": "DERIVED"
+    },
+    {
+      "claim": "Representative panel 05 reuses EXISTING frozen GT-free ROI geometry (threshold 0.30, margin 0.25, GT_FREE)",
+      "source_path": "data_cache/phase29_val808_shared_fixed_g_v1_1_canonical/val808_roi_geometry.json",
+      "source_sha256": "see data_cache (frozen cache)",
+      "symbol_or_key": "geometry / roi_proposal_threshold=0.3 / roi_expansion=1.5 / geometry_source=CANONICAL_GLOBAL_PROB_AT_0.30__GT_FREE",
+      "phase_or_revision": "Phase 29 Phase D canonical",
+      "confidence": "AUTHORITATIVE"
+    },
+    {
+      "claim": "Existing architecture / state-machine figures are schematics/references",
+      "source_path": "reports/figures/phase24_architecture_spec/p24_full_system_architecture.png ; reports/figures/phase26_integration/p26_canonical_inference_state_machine.png",
+      "source_sha256": "see existing_visual_references (copied verbatim)",
+      "symbol_or_key": "phase24_figure_manifest.json contains_experimental_results=false",
+      "phase_or_revision": "Phase 24 / Phase 26",
+      "confidence": "VISUAL_ONLY"
+    }
+  ]
+}

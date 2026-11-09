@@ -1,0 +1,359 @@
+{
+  "artifact": "POST_PHASE13_H2B_PROTOCOL_FROZEN",
+  "status": "SUPERVISOR_FROZEN_H2B_OBJECTIVE_ONLY_READY_FOR_B1_AUTHORIZATION",
+  "created_utc": "2026-09-23T08:28:00Z",
+  "task": "POST-PHASE13 REGIONAL REVISION H2-B-A OBJECTIVE-ONLY LOCALIZER REDESIGN PROTOCOL",
+  "model_attribution": "Gemini 3.1 Pro High",
+  "experiment_id": "post_phase13_h2b_kub_localizer_r512_h128_sigmaeq075_softtargetfocalgamma2_deploymentbalance_seed42_clean_v3",
+  "experiment_id_collision": "NONE (checkpoints/ and experiments/ paths absent)",
+  "h2_axis": "H2B_SOFT_TARGET_FOCAL_BCE_OBJECTIVE_ONLY",
+  "scientific_question": "Can a SOFT-TARGET objective that directly treats the complete frozen Gaussian target as a continuous supervision signal improve heatmap discrimination and proposal precision while preserving object coverage, holding architecture, target, checkpoint selection, proposal policy and downstream fusion fixed?",
+  "hypothesis": "YES_IS_A_HYPOTHESIS_NOT_A_CLAIM",
+  "h2a_authoritative_binding": {
+    "artifact": "reports/audits/post_phase13_h2a_outcome_adjudication.json",
+    "sha256": "02af0558696880f5842abaefbc8f30e5b44b20a700350bd70f963e0b844aada6",
+    "status": "PASS",
+    "h2a_outcome": "H2A_SELECTION_REDESIGN_PARTIAL",
+    "h2a": "CLOSED",
+    "h2b_protocol_design": "ELIGIBLE",
+    "h2b_training": "NOT_AUTHORIZED",
+    "material_mismatch": "NONE",
+    "preserved_interpretation": {
+      "checkpoint_selection_contributed": "YES",
+      "checkpoint_selection_alone_sufficient": "NO",
+      "fusion_failure_proven": "NO",
+      "localizer_representation_failure_proven": "NO"
+    }
+  },
+  "single_scientific_axis": {
+    "axis": "LOSS / OBJECTIVE SEMANTICS",
+    "label": "H2B_SOFT_TARGET_FOCAL_BCE_OBJECTIVE_ONLY",
+    "changed_fields_count": 1,
+    "correct_statement": "Compared with the immediate H2A branch baseline, H2B changes exactly one new scientific axis: LOSS / OBJECTIVE."
+  },
+  "frozen_loss": {
+    "name": "SoftTargetFocalBCE",
+    "gamma": 2.0,
+    "gamma_fixed_prospectively": true,
+    "gamma_tuned_on_h2b_val": false,
+    "gamma_optimal_claimed": false,
+    "formula": "L = mean( |sigmoid(z) - y|^gamma * BCEWithLogits(z, y) ), gamma = 2.0",
+    "definition_steps": [
+      "p = sigmoid(z)",
+      "bce = binary_cross_entropy_with_logits(z, y, reduction='none')",
+      "modulation = abs(p - y) ** gamma",
+      "loss_map = modulation * bce",
+      "loss = mean(loss_map)"
+    ],
+    "modulation_detached": "NO",
+    "gradient_flows_through_bce_term": true,
+    "gradient_flows_through_modulation_term": true,
+    "target_silently_clamped": "NO",
+    "target_asserted_finite": true,
+    "target_asserted_in_unit_interval": true,
+    "extra_regularizer": "NONE",
+    "dice_term": "NONE",
+    "sparsity_penalty": "NONE",
+    "class_weight": "NONE",
+    "additional_coefficient": "NONE",
+    "auxiliary_loss": "NONE",
+    "implementation": {
+      "path": "src/losses/soft_target_focal_bce.py",
+      "sha256": "40d359e36a5579ea7544a1f0079aa999e024b8b144956493c184388766c27b75",
+      "class": "SoftTargetFocalBCE"
+    },
+    "grid": "NONE",
+    "alpha_sweep": "NONE",
+    "beta_sweep": "NONE",
+    "coefficient_search": "NONE"
+  },
+  "target_unchanged": {
+    "generator": "existing H2A / Phase13 target generator (src/inference/heatmap_targets.py)",
+    "heatmap": "128 x 128",
+    "sigma": 0.75,
+    "center_value": 1.0,
+    "range": "[0,1]",
+    "center_definition": "UNCHANGED",
+    "component_semantics": "UNCHANGED",
+    "binary_conversion": "NONE",
+    "target_threshold": "NONE",
+    "new_disk_radius": "NONE",
+    "target_sharpening": "NONE",
+    "target_smoothing": "NONE",
+    "sigma_search": "NONE",
+    "TARGET_CHANGED": "NO",
+    "OBJECTIVE_INTERPRETATION_OF_TARGET_CHANGED": "YES"
+  },
+  "architecture_unchanged": {
+    "module": "src/models/kub_localizer.py (KUBLocalizer)",
+    "in_channels": 1,
+    "out_channels": 1,
+    "base_channels": 16,
+    "backbone": "same 3-stage compact U-Net",
+    "decoder": "same",
+    "head": "same final 1x1 Conv2d",
+    "head_bias_init": "log(0.1/0.9)",
+    "head_weight_init": 0.0,
+    "weight_init": "kaiming_normal_(relu)",
+    "extra_convolution": "NONE",
+    "attention": "NONE",
+    "film": "NONE",
+    "normalization_change": "NONE",
+    "activation_change": "NONE",
+    "head_capacity_change": "NONE",
+    "ARCHITECTURE_CHANGED": "NO",
+    "HEAD_CHANGED": "NO"
+  },
+  "checkpoint_selection_unchanged": {
+    "rule": "H2A six-term lexicographic (inherited, NOT an H2B change)",
+    "tuple": [
+      "DEPLOYMENT_BALANCE_HMEAN_P_TINY90_OVERALL90",
+      "tiny_recall90",
+      "overall_recall90",
+      "PROPOSAL_PIXEL_ANY_HIT_PRECISION",
+      "-mean_roi_area_fraction",
+      "-val_loss"
+    ],
+    "comparison": "STRICT_LEXICOGRAPHIC_GREATER_THAN",
+    "ties": "BAD_EPOCH",
+    "patience": 15,
+    "best_pt": "strict improvement only",
+    "latest_pt": "every completed epoch",
+    "CHECKPOINT_SELECTION_CHANGED": "NO"
+  },
+  "training_contract": {
+    "TRAIN": "770 FULL_FIELD cases / 1161 components",
+    "VAL": "103 FULL_FIELD cases / 152 components",
+    "ROI": "EXCLUDED",
+    "manifest": "phase4_v3",
+    "taxonomy": "kub_size_clean_v3_v1",
+    "input": "512 x 512",
+    "heatmap": "128 x 128",
+    "sigma": 0.75,
+    "optimizer": "AdamW",
+    "lr": 0.0001,
+    "weight_decay": 0.0001,
+    "scheduler": "CosineAnnealingLR(T_max=100)",
+    "batch": 4,
+    "amp": "same accepted H2A semantics",
+    "seed": 42,
+    "augmentation": "same Phase13/H2A semantics",
+    "workers": 0,
+    "max_epochs": 100,
+    "cuda": "required during future execution",
+    "test": "forbidden"
+  },
+  "proposal_contract": {
+    "threshold": 0.1,
+    "margin": 0.2,
+    "top_k": 5,
+    "nms_iou": 0.3,
+    "threshold_search": "NONE",
+    "score_floor_filtering": "NONE",
+    "h1_selective_acceptance": "NONE",
+    "grid": "NONE",
+    "top_k_change": "NONE",
+    "nms_change": "NONE"
+  },
+  "synthetic_loss_gradient_audit": {
+    "status": "PASS",
+    "execution": "CPU_ONLY_SYNTHETIC",
+    "artifact": "reports/audits/post_phase13_h2b_soft_target_focal_loss_unit_audit.json",
+    "sha256": "cb870cade9b7daadccab05b9d923cd0ec686b91126e3f08c9d7cb33f1451f94d",
+    "table": "reports/tables/post_phase13_h2b_soft_target_focal_gradient_sanity.csv",
+    "table_sha256": "cec71e9ef274111d87bc20944d5c58c718bb760140272fcefdb481787c4d231f",
+    "rows": 35,
+    "checks": {
+      "all_losses_and_gradients_finite": true,
+      "no_nan_no_inf": true,
+      "y0_loss_increases_with_p": true,
+      "y1_loss_increases_as_p_to_0": true,
+      "soft_target_minimised_near_p_equals_y": true,
+      "symmetry_L_y0_q_equals_L_y1_1mq": true,
+      "modulation_not_detached": true,
+      "all_rows_expected_direction_pass": true,
+      "target_out_of_range_rejected": true,
+      "target_nonfinite_rejected": true
+    },
+    "modulation_not_detached": true,
+    "project_images_or_masks_used": 0,
+    "model_constructions": 0,
+    "cuda_requests": 0
+  },
+  "one_axis_diff_audit": {
+    "table": "reports/tables/post_phase13_h2b_protocol_diff_vs_h2a.csv",
+    "sha256": "daff93747847cbce62dc2d3dd85f63c5d91b0754b9f3be1c4aa59da95bb105f4",
+    "total_fields": 52,
+    "changed_fields": 5,
+    "scientific_axis_changes": [
+      "loss_name",
+      "loss_mathematical_semantics"
+    ],
+    "provenance_changes": [
+      "experiment_id",
+      "protocol_binding",
+      "loss_implementation_sha"
+    ],
+    "other_scientific_changes": "NONE"
+  },
+  "future_execution_structure": {
+    "H2B_B1": "single localizer training run + per-epoch frozen proposal evaluation + best-checkpoint standalone localizer evaluation; STOP for supervisor review",
+    "H2B_B2": "after B1 supervisor authorization only: same four frozen downstream architectures, same global cache, same regional crop/restore, same replacement fusion, same proposal config, same segmentation threshold, no H1 filtering",
+    "authorized_now": "NONE"
+  },
+  "h2b_b1_notebook_contract": {
+    "epoch_table": "one completed epoch per row, untruncated",
+    "columns_min": [
+      "epoch",
+      "train_loss",
+      "val_loss",
+      "P",
+      "T",
+      "O",
+      "deployment_balance_hmean",
+      "proposal_count",
+      "mean_roi_area",
+      "checkpoint_tuple",
+      "is_new_best",
+      "bad_epochs"
+    ],
+    "diagnostics": [
+      "proposal-score distribution",
+      "score saturation fraction",
+      "ROC-AUC",
+      "PR-AUC",
+      "head weight statistics",
+      "head bias"
+    ],
+    "head_statistics_role": "DIAGNOSTIC_ONLY__NOT_USED_FOR_CHECKPOINT_SELECTION"
+  },
+  "h2b_standalone_localizer_evidence": {
+    "population": "103 VAL cases / 152 native components",
+    "metrics": [
+      "proposal count",
+      "proposal pixel-any-hit precision",
+      "proposal bbox-any-hit precision",
+      "tiny recall90",
+      "overall recall90",
+      "overall recall50",
+      "any-overlap recall",
+      "mean coverage",
+      "mean union area",
+      "hard-Tiny",
+      "global-empty",
+      "multi-component",
+      "score mean/median/Q25/Q75/max/IQR/fraction at max",
+      "ROC-AUC score->pixel-any-hit",
+      "PR-AUC score->pixel-any-hit",
+      "size-stratified coverage"
+    ],
+    "grid": "NONE",
+    "threshold_tuning": "NONE"
+  },
+  "prospective_downstream_contract": {
+    "segmentation_checkpoints": [
+      "unet",
+      "attention_unet",
+      "unetpp",
+      "deeplabv3plus"
+    ],
+    "global_cache": "same",
+    "crop_restore": "square/padding-correct",
+    "variant": "PREDICTED_REGION_FLOAT_GLOBAL_RETAINED",
+    "margin": 0.2,
+    "nms_iou": 0.3,
+    "segmentation_threshold": 0.5,
+    "h1_selective_acceptance": "NONE",
+    "fusion_redesign": "NONE",
+    "primary_comparators": [
+      "GLOBAL",
+      "Phase13 predicted path",
+      "H2A predicted path",
+      "Phase12 oracle",
+      "H2B predicted path"
+    ],
+    "architecture_ranking": "NONE"
+  },
+  "prospective_evidence_dimensions": {
+    "A": "LOCALIZER_PROPOSAL_QUALITY",
+    "B": "DOWNSTREAM_GLOBAL_PRESERVATION",
+    "C": "REGIONAL_UTILITY",
+    "D": "CROSS_ARCHITECTURE_GENERALITY",
+    "numerical_success_threshold": "NONE",
+    "weighted_downstream_score": "NONE",
+    "winner": "NONE"
+  },
+  "h2b_outcome_space": [
+    "H2B_OBJECTIVE_REDESIGN_SUFFICIENT",
+    "H2B_OBJECTIVE_REDESIGN_PARTIAL",
+    "H2B_OBJECTIVE_REDESIGN_INSUFFICIENT",
+    "CHECK_REQUIRED"
+  ],
+  "h2b_outcome_adjudicated_now": "NO",
+  "if_h2b_insufficient": {
+    "representation_head_redesign": "MAY_BECOME_ELIGIBLE_NOT_AUTHORIZED",
+    "h3_fusion_redesign": "FUTURE_AXIS_NOT_AUTHORIZED"
+  },
+  "comparator_discipline": {
+    "immediate_baseline": "H2A (checkpoint-selection semantics retained unchanged)",
+    "primary_isolation_question": "H2B objective versus H2A objective under the same architecture, target, selection, proposal configuration, data, seed, optimizer, fusion",
+    "phase13_role": "HISTORICAL_CONTEXT",
+    "incorrect_claim_avoided": "H2B differs from Phase13 in only one field"
+  },
+  "adaptive_development_disclosure": {
+    "nature": "adaptive VAL development informed by Phase13 REVISE_LOCALIZER, H1 insufficiency, H2A partial outcome",
+    "objective_frozen_before_h2b_training": "YES",
+    "val_remains_development_data": "YES",
+    "test_locked_until": "Phase39",
+    "h2b_result_replaces_final_test": "NO"
+  },
+  "scientific_change_register": [
+    {
+      "id": "CHANGE_H2B_001",
+      "field": "training objective / loss semantics",
+      "h2a": "CenterNetFocalLoss(alpha=2.0,beta=4.0)",
+      "h2b": "SoftTargetFocalBCE(gamma=2.0)",
+      "formula": "mean( |sigmoid(logit)-target|^2 * BCEWithLogits(logit,target) )",
+      "target": "UNCHANGED",
+      "architecture": "UNCHANGED",
+      "checkpoint_selection": "UNCHANGED",
+      "motivation": "H2A produced reproducible but only partial improvement and left substantial off-target proposal burden. H2B tests whether direct soft-target supervision improves heatmap discrimination without changing representation, target, proposal policy, or downstream fusion.",
+      "causal_claim": "NONE"
+    }
+  ],
+  "claim_limits": {
+    "h2b_will_succeed_asserted": "NO",
+    "gamma_optimal_asserted": "NO",
+    "numerical_success_threshold": "NONE",
+    "hidden_grid": "NONE",
+    "test_or_external_access": "NONE",
+    "winner": "NONE"
+  },
+  "counters": {
+    "training": 0,
+    "optimizer_construction": 0,
+    "localizer_model_construction": 0,
+    "cuda_requests": 0,
+    "localizer_forwards": 0,
+    "proposal_generation": 0,
+    "segmentation_model_construction": 0,
+    "segmentation_forwards": 0,
+    "test_reads": 0,
+    "external_test_reads": 0,
+    "cpu_synthetic_loss_unit_tests": "AUTHORIZED_AND_PERFORMED"
+  },
+  "continuity": {
+    "phase13": "COMPLETE_FROZEN",
+    "original_gate": "REVISE_LOCALIZER_FROZEN",
+    "h1": "CLOSED",
+    "h2a": "CLOSED__SELECTION_REDESIGN_PARTIAL",
+    "h2b_protocol": "COMPLETE_PASS_FROZEN",
+    "h2b_b1_execution": "ELIGIBLE_FOR_SUPERVISOR_AUTHORIZATION",
+    "h2b_b1_authorized": false,
+    "h2b_b2": "NOT_STARTED",
+    "h3": "FUTURE_AXIS_NOT_AUTHORIZED",
+    "phase14": "NOT_STARTED",
+    "test": "UNTOUCHED"
+  },
+  "next_action": "WAIT_FOR_SUPERVISOR_H2B_B1_EXECUTION_AUTHORIZATION"
+}

@@ -1,0 +1,309 @@
+{
+ "artifact": "phase29_seed3407_rpsi_chain",
+ "phase": 29,
+ "stage": "RPSI_CHAIN_COMPLETE",
+ "method": "RA-MedFiLM-BARR",
+ "generated_utc": "2026-10-02T20:11:40+00:00",
+ "master_seed": 3407,
+ "runs": [
+  {
+   "role": "fold0",
+   "skipped": false,
+   "run": {
+    "run": "fold0",
+    "outer_fold": 0,
+    "classification": "CANONICAL_PHASE25A",
+    "cache_root": "data_cache\\phase25a_barr_roi030_cache",
+    "roi_proposal_threshold": 0.3,
+    "segmentation_output_threshold": 0.5,
+    "n_fit_action_available": 2964,
+    "n_early_stop_action_available": 336,
+    "epochs_completed": 51,
+    "epochs_target": 100,
+    "best_epoch": 35,
+    "best_early_stop_loss": 0.0946569149160669,
+    "final_train_loss": 0.07753048742670118,
+    "stop_reason": "early_stopping_patience_15",
+    "resume_count": 0,
+    "checkpoint_events": 12,
+    "checkpoint_sha256": {
+     "best.pt": "5d610f64bb47f982854b8c0b89810f3264771b47102b50253ef300d996fda7b3",
+     "latest.pt": "2d1d7f0c02fbfdbbe1e83118d2f247db22ae8198e97a4b5aa075a974fe6e589f"
+    },
+    "history_sha256": "ca0dbfffe0eb2e00333da4d7d915ea0ebc433c3892819d666b961750a41d9984",
+    "parameter_count": 1276401,
+    "bindings": {
+     "phase24_exact_spec": {
+      "path": "reports\\audits\\phase24_exact_implementation_spec.json",
+      "sha256": "6b1a71d5e88ce06baa8f200523be32773428417ffd233ff218d7e50b6af271dd"
+     },
+     "roi_threshold_adjudication": {
+      "path": "reports\\audits\\phase24_phase25_roi_threshold_adjudication.json",
+      "sha256": "c30ffb1fc6b507166ae9ca4d36d2be8d51a0f2221fae6d8de3d3efaed643cc9d"
+     },
+     "roi050_supersession": {
+      "path": "reports\\audits\\phase25a_roi050_supersession.json",
+      "sha256": "84f736a834fa1d5155bbcf45b9421b3a8f92619befa2fbfd4b3a3d0f4cee88e1"
+     },
+     "global_checkpoint": {
+      "path": "checkpoints\\phase21_global_medfilm_fourdomain_seed42_clean_v3\\best.pt",
+      "sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7"
+     },
+     "augmentation_binding": {
+      "path": "reports\\audits\\phase25a_augmentation_binding.json",
+      "sha256": "b8b0f817e765dd5db267df6f5e5c5b33da4f81ff58b177f8a410e5d985e97f59"
+     },
+     "roi_transform_audit": {
+      "path": "reports\\audits\\phase25a_roi_transform_audit.json",
+      "sha256": "1c756de5623de96b0a790ecbe0650f5dba2cf3116cb6e33ca7264c000ec323dc"
+     },
+     "crossfit_protocol": {
+      "path": "reports\\audits\\phase25a_crossfit_protocol.json",
+      "sha256": "6868b5562fe02929e13d63905ca74a759e20dec3c01b14eef331e4cb948f55ce"
+     },
+     "model_source": {
+      "path": "src\\models\\barr\\regional_refiner.py",
+      "sha256": "4fe0abde3ec3a183d930f676c4400b4d9ba778793ea64abf1755c5b8dabf947a"
+     },
+     "dataset_source": {
+      "path": "src\\data\\barr_refiner_dataset.py",
+      "sha256": "6bbf0eb51f9a4f646fe9222f2d3035761577f8d41cc5c229109139bfc937e095"
+     },
+     "roi_source": {
+      "path": "src\\data\\barr_roi.py",
+      "sha256": "4b1015275e4e31f9cc2b662a290c18f988eaea65cec64082cea217fad9aba9d6"
+     }
+    },
+    "seed": 3407,
+    "test_reads": 0
+   }
+  },
+  {
+   "role": "fold1",
+   "skipped": false,
+   "run": {
+    "run": "fold1",
+    "outer_fold": 1,
+    "classification": "CANONICAL_PHASE25A",
+    "cache_root": "data_cache\\phase25a_barr_roi030_cache",
+    "roi_proposal_threshold": 0.3,
+    "segmentation_output_threshold": 0.5,
+    "n_fit_action_available": 2975,
+    "n_early_stop_action_available": 330,
+    "epochs_completed": 41,
+    "epochs_target": 100,
+    "best_epoch": 25,
+    "best_early_stop_loss": 0.08888326215021539,
+    "final_train_loss": 0.08939663902551186,
+    "stop_reason": "early_stopping_patience_15",
+    "resume_count": 0,
+    "checkpoint_events": 8,
+    "checkpoint_sha256": {
+     "best.pt": "000f00b54286f46b36117fbf79e5479a370c0314ef2227cf70f93e5b1e2b3c4e",
+     "latest.pt": "890a9aa7e03f456d4288583ae94c64c7983032f0d881341d72c4acb1ebf466ba"
+    },
+    "history_sha256": "7a915f40332cd5749c1883223e658f6ac08421e4ac4ae36e3cb3af5440d22106",
+    "parameter_count": 1276401,
+    "bindings": {
+     "phase24_exact_spec": {
+      "path": "reports\\audits\\phase24_exact_implementation_spec.json",
+      "sha256": "6b1a71d5e88ce06baa8f200523be32773428417ffd233ff218d7e50b6af271dd"
+     },
+     "roi_threshold_adjudication": {
+      "path": "reports\\audits\\phase24_phase25_roi_threshold_adjudication.json",
+      "sha256": "c30ffb1fc6b507166ae9ca4d36d2be8d51a0f2221fae6d8de3d3efaed643cc9d"
+     },
+     "roi050_supersession": {
+      "path": "reports\\audits\\phase25a_roi050_supersession.json",
+      "sha256": "84f736a834fa1d5155bbcf45b9421b3a8f92619befa2fbfd4b3a3d0f4cee88e1"
+     },
+     "global_checkpoint": {
+      "path": "checkpoints\\phase21_global_medfilm_fourdomain_seed42_clean_v3\\best.pt",
+      "sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7"
+     },
+     "augmentation_binding": {
+      "path": "reports\\audits\\phase25a_augmentation_binding.json",
+      "sha256": "b8b0f817e765dd5db267df6f5e5c5b33da4f81ff58b177f8a410e5d985e97f59"
+     },
+     "roi_transform_audit": {
+      "path": "reports\\audits\\phase25a_roi_transform_audit.json",
+      "sha256": "1c756de5623de96b0a790ecbe0650f5dba2cf3116cb6e33ca7264c000ec323dc"
+     },
+     "crossfit_protocol": {
+      "path": "reports\\audits\\phase25a_crossfit_protocol.json",
+      "sha256": "6868b5562fe02929e13d63905ca74a759e20dec3c01b14eef331e4cb948f55ce"
+     },
+     "model_source": {
+      "path": "src\\models\\barr\\regional_refiner.py",
+      "sha256": "4fe0abde3ec3a183d930f676c4400b4d9ba778793ea64abf1755c5b8dabf947a"
+     },
+     "dataset_source": {
+      "path": "src\\data\\barr_refiner_dataset.py",
+      "sha256": "6bbf0eb51f9a4f646fe9222f2d3035761577f8d41cc5c229109139bfc937e095"
+     },
+     "roi_source": {
+      "path": "src\\data\\barr_roi.py",
+      "sha256": "4b1015275e4e31f9cc2b662a290c18f988eaea65cec64082cea217fad9aba9d6"
+     }
+    },
+    "seed": 3407,
+    "test_reads": 0
+   }
+  },
+  {
+   "role": "fold2",
+   "skipped": false,
+   "run": {
+    "run": "fold2",
+    "outer_fold": 2,
+    "classification": "CANONICAL_PHASE25A",
+    "cache_root": "data_cache\\phase25a_barr_roi030_cache",
+    "roi_proposal_threshold": 0.3,
+    "segmentation_output_threshold": 0.5,
+    "n_fit_action_available": 2977,
+    "n_early_stop_action_available": 332,
+    "epochs_completed": 42,
+    "epochs_target": 100,
+    "best_epoch": 26,
+    "best_early_stop_loss": 0.09706102446260223,
+    "final_train_loss": 0.08873082683188606,
+    "stop_reason": "early_stopping_patience_15",
+    "resume_count": 0,
+    "checkpoint_events": 10,
+    "checkpoint_sha256": {
+     "best.pt": "40d1a89298552397fa0a97d50ba253bd467cc7b9c786a8a3e9d19180373e22f5",
+     "latest.pt": "e1ae37880de16fbf4a58b3fbed9098e43842a328ff89dea769b51a10411f4fb1"
+    },
+    "history_sha256": "f3a3ff82d1a50231b24ba883666f148ccdd1350628986ee7228630741728ffaf",
+    "parameter_count": 1276401,
+    "bindings": {
+     "phase24_exact_spec": {
+      "path": "reports\\audits\\phase24_exact_implementation_spec.json",
+      "sha256": "6b1a71d5e88ce06baa8f200523be32773428417ffd233ff218d7e50b6af271dd"
+     },
+     "roi_threshold_adjudication": {
+      "path": "reports\\audits\\phase24_phase25_roi_threshold_adjudication.json",
+      "sha256": "c30ffb1fc6b507166ae9ca4d36d2be8d51a0f2221fae6d8de3d3efaed643cc9d"
+     },
+     "roi050_supersession": {
+      "path": "reports\\audits\\phase25a_roi050_supersession.json",
+      "sha256": "84f736a834fa1d5155bbcf45b9421b3a8f92619befa2fbfd4b3a3d0f4cee88e1"
+     },
+     "global_checkpoint": {
+      "path": "checkpoints\\phase21_global_medfilm_fourdomain_seed42_clean_v3\\best.pt",
+      "sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7"
+     },
+     "augmentation_binding": {
+      "path": "reports\\audits\\phase25a_augmentation_binding.json",
+      "sha256": "b8b0f817e765dd5db267df6f5e5c5b33da4f81ff58b177f8a410e5d985e97f59"
+     },
+     "roi_transform_audit": {
+      "path": "reports\\audits\\phase25a_roi_transform_audit.json",
+      "sha256": "1c756de5623de96b0a790ecbe0650f5dba2cf3116cb6e33ca7264c000ec323dc"
+     },
+     "crossfit_protocol": {
+      "path": "reports\\audits\\phase25a_crossfit_protocol.json",
+      "sha256": "6868b5562fe02929e13d63905ca74a759e20dec3c01b14eef331e4cb948f55ce"
+     },
+     "model_source": {
+      "path": "src\\models\\barr\\regional_refiner.py",
+      "sha256": "4fe0abde3ec3a183d930f676c4400b4d9ba778793ea64abf1755c5b8dabf947a"
+     },
+     "dataset_source": {
+      "path": "src\\data\\barr_refiner_dataset.py",
+      "sha256": "6bbf0eb51f9a4f646fe9222f2d3035761577f8d41cc5c229109139bfc937e095"
+     },
+     "roi_source": {
+      "path": "src\\data\\barr_roi.py",
+      "sha256": "4b1015275e4e31f9cc2b662a290c18f988eaea65cec64082cea217fad9aba9d6"
+     }
+    },
+    "seed": 3407,
+    "test_reads": 0
+   }
+  },
+  {
+   "role": "final",
+   "skipped": false,
+   "run": {
+    "run": "final",
+    "outer_fold": null,
+    "classification": "CANONICAL_PHASE25A",
+    "cache_root": "data_cache\\phase25a_barr_roi030_cache",
+    "roi_proposal_threshold": 0.3,
+    "segmentation_output_threshold": 0.5,
+    "n_fit_action_available": 4957,
+    "n_early_stop_action_available": 0,
+    "epochs_completed": 25,
+    "epochs_target": 25,
+    "best_epoch": -1,
+    "best_early_stop_loss": null,
+    "final_train_loss": 0.09277650841679187,
+    "stop_reason": "max_epochs_reached",
+    "resume_count": 0,
+    "checkpoint_events": 0,
+    "checkpoint_sha256": {
+     "final.pt": "c569f0aa725dddf5c2800dfe643e9646c8386c0f6b8669a799d5cf7cc44c8889",
+     "latest.pt": "3855927a2a79d0cad6ab59e379ea38b23ff833e48466ec9358c72e1c8966a8f5"
+    },
+    "history_sha256": "e157d0f205893f91d16ee2c9b601268da38588e6eda0056baba4368168e5712c",
+    "parameter_count": 1276401,
+    "bindings": {
+     "phase24_exact_spec": {
+      "path": "reports\\audits\\phase24_exact_implementation_spec.json",
+      "sha256": "6b1a71d5e88ce06baa8f200523be32773428417ffd233ff218d7e50b6af271dd"
+     },
+     "roi_threshold_adjudication": {
+      "path": "reports\\audits\\phase24_phase25_roi_threshold_adjudication.json",
+      "sha256": "c30ffb1fc6b507166ae9ca4d36d2be8d51a0f2221fae6d8de3d3efaed643cc9d"
+     },
+     "roi050_supersession": {
+      "path": "reports\\audits\\phase25a_roi050_supersession.json",
+      "sha256": "84f736a834fa1d5155bbcf45b9421b3a8f92619befa2fbfd4b3a3d0f4cee88e1"
+     },
+     "global_checkpoint": {
+      "path": "checkpoints\\phase21_global_medfilm_fourdomain_seed42_clean_v3\\best.pt",
+      "sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7"
+     },
+     "augmentation_binding": {
+      "path": "reports\\audits\\phase25a_augmentation_binding.json",
+      "sha256": "b8b0f817e765dd5db267df6f5e5c5b33da4f81ff58b177f8a410e5d985e97f59"
+     },
+     "roi_transform_audit": {
+      "path": "reports\\audits\\phase25a_roi_transform_audit.json",
+      "sha256": "1c756de5623de96b0a790ecbe0650f5dba2cf3116cb6e33ca7264c000ec323dc"
+     },
+     "crossfit_protocol": {
+      "path": "reports\\audits\\phase25a_crossfit_protocol.json",
+      "sha256": "6868b5562fe02929e13d63905ca74a759e20dec3c01b14eef331e4cb948f55ce"
+     },
+     "model_source": {
+      "path": "src\\models\\barr\\regional_refiner.py",
+      "sha256": "4fe0abde3ec3a183d930f676c4400b4d9ba778793ea64abf1755c5b8dabf947a"
+     },
+     "dataset_source": {
+      "path": "src\\data\\barr_refiner_dataset.py",
+      "sha256": "6bbf0eb51f9a4f646fe9222f2d3035761577f8d41cc5c229109139bfc937e095"
+     },
+     "roi_source": {
+      "path": "src\\data\\barr_roi.py",
+      "sha256": "4b1015275e4e31f9cc2b662a290c18f988eaea65cec64082cea217fad9aba9d6"
+     }
+    },
+    "seed": 3407,
+    "test_reads": 0
+   }
+  }
+ ],
+ "checks": {
+  "fold0_best_exists": true,
+  "fold0_seed_is_3407": true,
+  "fold1_best_exists": true,
+  "fold1_seed_is_3407": true,
+  "fold2_best_exists": true,
+  "fold2_seed_is_3407": true,
+  "final_exists": true,
+  "final_seed_is_3407": true
+ },
+ "all_pass": true
+}

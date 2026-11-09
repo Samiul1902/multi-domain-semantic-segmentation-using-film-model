@@ -1,0 +1,68 @@
+{
+ "artifact": "phase25g_policy_grid_contract",
+ "phase": "25G",
+ "classification": "PHASE25G_PRE_EXECUTION_INTEGRATED_EVALUATION_SPECIFICATION_AUDIT",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_integrated_evaluation_v1_0",
+ "governance_only": true,
+ "no_execution": true,
+ "stage": "POLICY_GRID",
+ "lambda_grid": [
+  "0.00",
+  "0.25",
+  "0.50",
+  "1.00"
+ ],
+ "budget_grid": [
+  "0.00",
+  "0.10",
+  "0.25",
+  "0.50",
+  "1.00"
+ ],
+ "budget_cardinalities": {
+  "0.00": 0,
+  "0.10": 495,
+  "0.25": 1239,
+  "0.50": 2478,
+  "1.00": 4957
+ },
+ "n_policies": 20,
+ "single_lambda_or_budget_selected": false,
+ "matched_A7_A8_pairs_only": true,
+ "cost_is_constant": true,
+ "cost_exact_ratio": "1051648/10270749",
+ "cost_decimal": 0.10239253242387678,
+ "membership_equivalence_across_lambda": {
+  "0.00": {
+   "n_distinct_signatures": 1,
+   "n_lambda_replicas": 4
+  },
+  "0.10": {
+   "n_distinct_signatures": 1,
+   "n_lambda_replicas": 4
+  },
+  "0.25": {
+   "n_distinct_signatures": 1,
+   "n_lambda_replicas": 4
+  },
+  "0.50": {
+   "n_distinct_signatures": 1,
+   "n_lambda_replicas": 4
+  },
+  "1.00": {
+   "n_distinct_signatures": 1,
+   "n_lambda_replicas": 4
+  }
+ },
+ "duplicate_membership_tagged": true,
+ "duplicate_membership_statement": "Because action cost C_i is constant across the eligible population, C8 routing membership is structurally identical across lambda for a given budget. The four lambda replicas are DUPLICATE MEMBERSHIP and are NOT four independent scientific confirmations.",
+ "checks": {
+  "lambda_grid_exact": true,
+  "budget_grid_exact": true,
+  "20_policies": true,
+  "membership_identical_across_lambda": true,
+  "no_single_lambda_or_budget_selected": true
+ },
+ "all_pass": true
+}

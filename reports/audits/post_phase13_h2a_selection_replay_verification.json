@@ -1,0 +1,56 @@
+{
+  "artifact": "POST_PHASE13_H2A_SELECTION_REPLAY_VERIFICATION",
+  "status": "PASS",
+  "created_utc": "2026-09-22T08:00:00Z",
+  "h2a_experiment_id": "post_phase13_h2a_kub_localizer_r512_h128_sigmaeq075_centernetfocal_deploymentbalance_seed42_clean_v3",
+  "history_sha": "ed96c4b617a8940c30df30d9a9b8f562819e31d1370b31ee60776142fd077b99",
+  "replay_rule": "strict lexicographic > on the frozen 6-term tuple; ties = BAD_EPOCH; patience 15",
+  "selection_term_names": [
+    "DEPLOYMENT_BALANCE_HMEAN_P_TINY90_OVERALL90",
+    "tiny_recall90",
+    "overall_recall90",
+    "PROPOSAL_PIXEL_ANY_HIT_PRECISION",
+    "negative_mean_roi_area_fraction",
+    "negative_val_loss"
+  ],
+  "replayed": {
+    "best_epoch": 83,
+    "best_score": [
+      0.4522162369629855,
+      0.6944444444444444,
+      0.6381578947368421,
+      0.2757111597374179,
+      -0.0047946270615735,
+      -1.842576136955848
+    ],
+    "final_bad_epochs": 15,
+    "early_stop_epoch": 98
+  },
+  "stored": {
+    "best_epoch": 83,
+    "best_score": [
+      0.4522162369629855,
+      0.6944444444444444,
+      0.6381578947368421,
+      0.27571115973741794,
+      -0.0047946270615735415,
+      -1.8425761369558482
+    ],
+    "early_stopping_state": {
+      "best_epoch": 83,
+      "bad_epochs": 0,
+      "patience": 15
+    }
+  },
+  "mismatches": [],
+  "mismatch_count": 0,
+  "max_abs_term_diff": 2.220446049250313e-16,
+  "comparison_tolerance": 1e-12,
+  "comparison_tolerance_note": "replayed tuple is rebuilt from history.csv; floats round-trip through text, so exact equality is too strict at the 1e-17 level",
+  "counters": {
+    "training": 0,
+    "model_constructions": 0,
+    "cuda_requests": 0,
+    "test_reads": 0
+  }
+}

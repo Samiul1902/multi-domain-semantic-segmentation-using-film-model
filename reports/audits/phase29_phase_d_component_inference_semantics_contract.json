@@ -1,0 +1,139 @@
+{
+ "artifact": "phase29_phase_d_component_inference_semantics_contract",
+ "phase": 29,
+ "stage": "PHASE_D_COMPONENT_INFERENCE_SEMANTICS_CONTRACT",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_phase29_repro_v1_1",
+ "generated_utc": "2026-10-03T15:10:46+00:00",
+ "classification": "COMPONENT_SPECIFIC_INFERENCE_SEMANTICS_BINDING",
+ "inspection_only": true,
+ "execution": "NONE",
+ "source_inspection_only": true,
+ "no_model_forward": true,
+ "components": {
+  "G": {
+   "name": "GlobalMedFiLM (fixed global segmenter)",
+   "checkpoint_sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+   "canonical_inference_source": "scripts/analysis/build_phase25a_global_cache.py",
+   "source_sha256": "58b5586b1ef0a447f81ada61a45cbf9f467dae1a9941ce239e8b8981d3fe870e",
+   "device": "cuda",
+   "model_eval": true,
+   "input_dtype": "float32",
+   "autocast_enabled": true,
+   "autocast_dtype": "float16",
+   "autocast_call": "torch.amp.autocast(device_type=device.type, enabled=True)",
+   "no_grad": true,
+   "inference_mode": false,
+   "batch_size": 8,
+   "batch_partition": "contiguous chunks of 8 inside a single domain, sorted by (dataset, sample_id)",
+   "probability_computation": "torch.sigmoid(logits.float()).cpu().numpy()",
+   "probability_storage_dtype": "float16",
+   "segmentation_threshold": 0.5,
+   "roi_proposal_threshold": 0.3,
+   "resolved": true,
+   "source_evidence": [
+    "scripts/analysis/build_phase25a_global_cache.py L170: with torch.no_grad(), torch.amp.autocast(device_type=device.type, enabled=True)",
+    "L172: prob = torch.sigmoid(logits.float()).cpu().numpy()[:, 0]",
+    "L178-179: p512 = prob[i].astype(np.float32); prob512[gi] = p512.astype(np.float16)",
+    "L112: model.eval().to(device)"
+   ]
+  },
+  "R_psi": {
+   "name": "BARRRegionalRefinerV1 (seed-specific ROI refiner)",
+   "parameter_count": 1276401,
+   "canonical_inference_source": "scripts/analysis/phase29_phase_c_rpsi_oof.py (Phase25C canonical OOF refiner inference)",
+   "source_sha256": "f0f062ba7788af65228f6cb67fcae520cc27dbfe379abdc36598171b59df8f9c",
+   "canonical_batch_constant_source": "notebooks/phasewise/phase_25c_paired_gain_labels/code/phase25c_common.py",
+   "canonical_batch_constant_value": 8,
+   "device": "cuda",
+   "model_eval": true,
+   "input_dtype": "float32",
+   "autocast_enabled": false,
+   "autocast_note": "canonical refiner OOF inference runs without autocast; explicit .float() cast after model(x)",
+   "no_grad": false,
+   "inference_mode": true,
+   "batch_size": 8,
+   "trigger": "executed only for routed (selected AND safety-accepted) samples",
+   "probability_computation": "torch.sigmoid(model(x).float())[:, 0]",
+   "fusion": "fuse_full_field(p512, refined, geom) — refined blended into the ROI window on the global canvas",
+   "segmentation_threshold": 0.5,
+   "resolved": true,
+   "source_evidence": [
+    "scripts/analysis/phase29_phase_c_rpsi_oof.py L136: x = torch.from_numpy(np.ascontiguousarray(inp, dtype=np.float32))",
+    "L137: with torch.inference_mode():",
+    "L138: probs = torch.sigmoid(model(x).float())[:, 0].cpu().numpy()",
+    "L132: for start in range(0, len(idxs), P.INFERENCE_BATCH)  (INFERENCE_BATCH=8)"
+   ]
+  },
+  "B_phi": {
+   "name": "BARRBenefitRouterV1 (seed-specific benefit router)",
+   "parameter_count": 36801,
+   "canonical_inference_source": "scripts/analysis/phase29_phase_c_bphi.py (Phase29 canonical final-router calibration; Phase25D/25E predecessor parity)",
+   "source_sha256": "99ec9653d7a6e23729966a145f1535024236a98655df8899e8c3c7eea9c79199",
+   "device": "cuda (score cache) / scored over the frozen pre-refinement feature matrix",
+   "model_eval": true,
+   "input_dtype": "float32",
+   "autocast_enabled": false,
+   "no_grad": false,
+   "inference_mode": true,
+   "batch_size": "FULL_MATRIX_SINGLE_FORWARD (no mini-batching in the calibration path)",
+   "feature_construction": "202-D vector: 192 deep features + 10 GT-free scalars, with frozen normalizer (mu/sigma/constant mask) applied to scalar indices",
+   "score": "raw logit delta_hat (no sigmoid; module returns a RAW logit)",
+   "runtime_decision": "EXECUTE iff delta_hat >= tau_C7 (equivalently delta_hat - 0.25*C >= tau_C8)",
+   "resolved": true,
+   "source_evidence": [
+    "scripts/analysis/phase29_phase_c_bphi.py L187: model.eval()",
+    "L189: with torch.inference_mode():",
+    "scripts/analysis/phase25f_execution_common.py L149: Returns one RAW logit (no sigmoid inside the module).",
+    "L199-203: out = features.astype(np.float32).copy(); out[:, NUMERIC_IDX] = norm.astype(np.float32)"
+   ]
+  },
+  "S_omega": {
+   "name": "BARRPostSafetyV1 (seed-specific post-safety gate)",
+   "parameter_count": 1217,
+   "canonical_inference_source": "scripts/analysis/phase29_train_somega.py + scripts/analysis/phase25f_execution_common.py (OOF safety prediction)",
+   "source_sha256": "311317bf63cc199f8a8dc77aa3029e570618fba1c7dc0e670ecd371ced9c130c",
+   "device": "cuda",
+   "model_eval": true,
+   "input_dtype": "float32",
+   "no_grad": false,
+   "inference_mode": true,
+   "batch_size": 128,
+   "batch_constant_source": "scripts/analysis/phase25f_execution_common.py L70: BATCH_SIZE = 128",
+   "features": "20-D post-safety feature vector",
+   "accept_threshold": 0.5,
+   "decision": "ACCEPT_REFINEMENT iff p_accept >= 0.50",
+   "resolved": true,
+   "source_evidence": [
+    "scripts/analysis/phase25f_execution_common.py L362: model.eval()",
+    "L365: with torch.inference_mode():",
+    "L462: with torch.inference_mode():",
+    "scripts/analysis/phase29_train_somega.py L59: DECISION_THRESHOLD = 0.50",
+    "L70: BATCH_SIZE = 128"
+   ]
+  }
+ },
+ "distinctness": {
+  "G_autocast_fp16": true,
+  "R_psi_no_autocast_inference_mode": true,
+  "B_phi_no_autocast_inference_mode": true,
+  "S_omega_no_autocast_inference_mode": true,
+  "note": "G is the ONLY component whose canonical global extraction runs under autocast(fp16). R_psi, B_phi, S_omega canonical inference run WITHOUT autocast under torch.inference_mode(). Component semantics are NOT interchangeable."
+ },
+ "thresholds": {
+  "ROI_proposal": 0.3,
+  "segmentation_output": 0.5,
+  "S_omega_accept": 0.5
+ },
+ "phase_d_blocked_if_ambiguous": true,
+ "checks": {
+  "G_resolved": true,
+  "R_psi_resolved": true,
+  "B_phi_resolved": true,
+  "S_omega_resolved": true,
+  "G_autocast_semantics_bound": true,
+  "all_components_source_sourced": true,
+  "no_ambiguity": true
+ },
+ "all_pass": true
+}

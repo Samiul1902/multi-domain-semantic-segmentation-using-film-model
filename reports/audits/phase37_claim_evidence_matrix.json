@@ -1,0 +1,396 @@
+{
+  "classification": "PHASE37_CLAIM_EVIDENCE_MATRIX",
+  "generated_utc": "2026-10-11T05:35:00Z",
+  "purpose": "machine-readable + human-readable matrix mapping proposed paper claims (families A-L) to exact frozen evidence",
+  "n_claim_families": 12,
+  "claim_families": [
+    "A multi-domain preservation",
+    "B module contribution",
+    "C three-seed reproducibility",
+    "D final development validation",
+    "E statistical evidence",
+    "F external/domain-shift",
+    "G failure modes",
+    "H efficiency",
+    "I interpretability",
+    "J image robustness",
+    "K proposal robustness",
+    "L KUB reporting-only"
+  ],
+  "global_constraints": {
+    "no_superiority_language": "No claim may use superiority/optimal/SOTA wording; evidence is preservation/non-inferiority/ablative/descriptive only.",
+    "no_confirmatory_claims": "Phase31: no confirmatory significance procedure eligible; only descriptive CIs exist.",
+    "no_external_validation_claims": "Phase32: no eligible external cohort; external validation not performed.",
+    "test_confirmed_false_all": "No claim is TEST-confirmed (TEST locked until Phase39).",
+    "phase30_deviation_prominent": "Any Phase30-based claim must carry the protocol-deviation qualifier prominently."
+  },
+  "claims": [
+    {
+      "claim_family": "A",
+      "claim_statement": "The frozen A8/C9 policy preserves macro-domain Dice relative to the canonical GlobalMedFiLM global reference on the development population.",
+      "supporting_evidence_records": [
+        "P27-E01",
+        "P27-E02",
+        "P30-E01",
+        "P30-E02"
+      ],
+      "supporting_artifacts": [
+        "reports/audits/phase27_final_freeze.json",
+        "reports/audits/phase30_primary_noninferiority_result.json"
+      ],
+      "evidence_population": "VAL808 (n=808) and one-shot ROUTER_HOLDOUT (n=875)",
+      "metrics": {
+        "phase27_val808_macro_delta_dice": 0.0022101452700813433,
+        "phase27_val808_macro_ci": [
+          0.001133428168276068,
+          0.003298131445733337
+        ],
+        "phase30_holdout_macro_delta_dice": 0.0017390308610248934,
+        "phase30_holdout_macro_ci": [
+          0.00111729355352301,
+          0.0024049809029647283
+        ]
+      },
+      "allowed_strength_of_wording": "PRESERVATION / NON-INFERIORITY ONLY. Permitted: 'preserved', 'non-inferior within the prespecified margin'. FORBIDDEN: 'improved', 'superior', 'enhanced', 'outperforms'.",
+      "required_limitation_qualifier": "Phase27 is CONTINUITY_DEVELOPMENT_EVIDENCE (development population). Phase30 is a ONE-SHOT ROUTER_HOLDOUT result that MUST carry the disclosed protocol-deviation qualifier: ONE_SHOT_ROUTER_HOLDOUT_RESULT_WITH_DISCLOSED_POST_FIRST_OPEN_SCIENTIFIC_SOURCE_FREEZE_DEVIATION",
+      "eligible_for": [
+        "main_text",
+        "supplement"
+      ],
+      "test_confirmed": false,
+      "supersession_state": "CANONICAL_CURRENT"
+    },
+    {
+      "claim_family": "B",
+      "claim_statement": "Within the 13-arm ablation on ROUTER_DEVELOPMENT, the learned router and post-safety stage contribute positively to routed benefit capture, while the F1 integrated refiner did NOT improve the canonical pipeline (negative result).",
+      "supporting_evidence_records": [
+        "P28-E01",
+        "P28-E02",
+        "P28-E03",
+        "P28-E04"
+      ],
+      "supporting_artifacts": [
+        "reports/audits/phase28_final_freeze.json",
+        "reports/tables/phase28_table_02_arm_primary_metrics.csv",
+        "reports/tables/phase28_table_06_f1_integrated_secondary.csv"
+      ],
+      "evidence_population": "ROUTER_DEVELOPMENT (n=4957), budget K=1239",
+      "metrics": {
+        "n_arms": 13,
+        "A8_mean_true_delta_dice_routed": 0.007515754298,
+        "A8_benefit_capture": 0.597046373564,
+        "A8_harmful_activation_share": 0.323651452282,
+        "A1_always_refine_mean": 0.001658079789,
+        "f1_refiner_negative_result": true
+      },
+      "allowed_strength_of_wording": "CONTRIBUTION / ABLATION. Permitted: 'contributes', 'increases benefit capture', 'did not improve (negative result)'. FORBIDDEN: 'optimal', 'best', 'state-of-the-art'.",
+      "required_limitation_qualifier": "Ablation confined to ROUTER_DEVELOPMENT; ROUTER_HOLDOUT/TEST/VAL808 reads = 0; no deployment winner selected; canonical bundle unchanged; F1 refiner result is a reported NEGATIVE result.",
+      "eligible_for": [
+        "main_text",
+        "supplement"
+      ],
+      "test_confirmed": false,
+      "supersession_state": "CANONICAL_CURRENT"
+    },
+    {
+      "claim_family": "C",
+      "claim_statement": "The canonical policy reproduces across three seeds (42/123/3407) on both ROUTER_DEVELOPMENT and VAL808, with sign-consistent positive macro DeltaDice and no best-seed selection.",
+      "supporting_evidence_records": [
+        "P29-E01",
+        "P29-E02",
+        "P29-E03"
+      ],
+      "supporting_artifacts": [
+        "reports/tables/phase29_three_seed_dev_summary.csv",
+        "reports/audits/phase29_phase_d_three_seed_descriptive_summary.json"
+      ],
+      "evidence_population": "ROUTER_DEVELOPMENT (n=4957) and VAL808 (n=808)",
+      "metrics": {
+        "seeds": [
+          42,
+          123,
+          3407
+        ],
+        "dev_macro_delta_dice_mean": 0.0012148299969405082,
+        "dev_macro_delta_dice_range": 0.0001436177200383529,
+        "val808_macro_delta_dice_mean": 0.0028222956994930896,
+        "val808_macro_delta_dice_range": 0.0011777952883669039,
+        "val808_global_dice_range": 0.0,
+        "sign_consistent": true,
+        "best_seed_selected": false
+      },
+      "allowed_strength_of_wording": "DESCRIPTIVE REPRODUCIBILITY ONLY. Permitted: 'reproduced across three seeds (descriptive)', 'sign-consistent'. FORBIDDEN: 'statistically confirmed', 'significant', 'passes a reproducibility gate'.",
+      "required_limitation_qualifier": "NO_NUMERIC_REPRODUCIBILITY_PASS_FAIL_GATE; descriptive only; no seed ranking; no best-seed selection; global Dice is seed-invariant (range=0).",
+      "eligible_for": [
+        "main_text",
+        "supplement"
+      ],
+      "test_confirmed": false,
+      "supersession_state": "CANONICAL_CURRENT"
+    },
+    {
+      "claim_family": "D",
+      "claim_statement": "The one-shot ROUTER_HOLDOUT evaluation (n=875) is the final development validation: macro DeltaDice +0.001739 with 95% CI [0.001117, 0.002405], satisfying the prespecified non-inferiority margin.",
+      "supporting_evidence_records": [
+        "P30-E01",
+        "P30-E02"
+      ],
+      "supporting_artifacts": [
+        "reports/audits/phase30_primary_noninferiority_result.json",
+        "reports/audits/phase30_final_freeze.json"
+      ],
+      "evidence_population": "ROUTER_HOLDOUT (n=875)",
+      "metrics": {
+        "macro_delta_dice": 0.0017390308610248934,
+        "macro_ci": [
+          0.00111729355352301,
+          0.0024049809029647283
+        ],
+        "a8_macro_dice": 0.9302871820357663,
+        "global_macro_dice": 0.9285481511747413,
+        "n": 875,
+        "noninferiority_margin": 0.005
+      },
+      "allowed_strength_of_wording": "ONE-SHOT NON-INFERIORITY WITH DISCLOSED PROTOCOL DEVIATION. Permitted: the exact allowed wording. FORBIDDEN: 'confirmatory', 'validated on an independent holdout without caveat', 'no protocol deviations'.",
+      "required_limitation_qualifier": "MANDATORY PROMINENT QUALIFIER: ONE_SHOT_ROUTER_HOLDOUT_RESULT_WITH_DISCLOSED_POST_FIRST_OPEN_SCIENTIFIC_SOURCE_FREEZE_DEVIATION. Allowed wording: On the one-shot ROUTER_HOLDOUT evaluation, the frozen A8/C9 policy produced a macro-domain Dice difference of +0.001739 with 95% CI [0.001117, 0.002405], satisfying the prespecified numerical non-inferiority margin. A protocol deviation occurred because the Stage-B scientific scoring source was not included in the pre-open source freeze; predictions and decision rules were frozen before GT access, GT was read once, and no scientific rerun or recomputation occurred.",
+      "eligible_for": [
+        "main_text"
+      ],
+      "test_confirmed": false,
+      "supersession_state": "CANONICAL_CURRENT_WITH_DISCLOSED_DEVIATION"
+    },
+    {
+      "claim_family": "E",
+      "claim_statement": "No new confirmatory significance procedure is eligible; the statistical evidence consists solely of descriptive bootstrap CIs from Phases 27 and 30. Zero new p-values, effect sizes, or bootstrap computations were authorized.",
+      "supporting_evidence_records": [
+        "P31-E01",
+        "P31-E02"
+      ],
+      "supporting_artifacts": [
+        "reports/audits/phase31_final_closure.json",
+        "reports/tables/phase31_statistical_test_registry.csv"
+      ],
+      "evidence_population": "multi-population (governance only)",
+      "metrics": {
+        "new_p_values": 0,
+        "new_effect_sizes": 0,
+        "new_bootstrap_computations": 0,
+        "new_confirmatory_tests_executed": 0,
+        "statistical_test_registry_n_tests": 4,
+        "n_confirmatory": 0,
+        "n_exploratory": 2,
+        "confirmatory_preoutcome_exact_method_frozen": 0
+      },
+      "allowed_strength_of_wording": "GOVERNANCE ONLY. Permitted: 'no confirmatory significance procedure eligible', 'descriptive CIs only'. FORBIDDEN: any confirmatory significance, p-value, or hypothesis-test claim.",
+      "required_limitation_qualifier": "NO_NEW_CONFIRMATORY_SIGNIFICANCE_PROCEDURE_IS_ELIGIBLE; Phase30 outcomes were known before any Phase31 specification; no new confirmatory procedure may be created merely because it is conventional.",
+      "eligible_for": [
+        "supplement"
+      ],
+      "test_confirmed": false,
+      "supersession_state": "CANONICAL_CURRENT"
+    },
+    {
+      "claim_family": "F",
+      "claim_statement": "No prospective clean external cohort is eligible for external validation; of 19 discovered external candidates, 0 are primary- or secondary-eligible, 8 are historically outcome-exposed, and 11 are ineligible.",
+      "supporting_evidence_records": [
+        "P32-E01",
+        "P32-E02"
+      ],
+      "supporting_artifacts": [
+        "reports/audits/phase32_final_closure.json",
+        "reports/tables/phase32_external_dataset_discovery.csv"
+      ],
+      "evidence_population": "EXTERNAL (19 candidates, metadata-only census)",
+      "metrics": {
+        "n_candidates": 19,
+        "eligible_primary": 0,
+        "eligible_secondary": 0,
+        "historically_exposed": 8,
+        "ineligible": 11,
+        "n_unseen_unexposed": 0,
+        "image_pixels_read": 0,
+        "mask_pixels_read": 0
+      },
+      "allowed_strength_of_wording": "NEGATIVE RESULT. Permitted: 'no eligible external cohort available', 'external validation not performed'. FORBIDDEN: 'generalizes to external domains', 'external validation confirms', 'unseen external test set'.",
+      "required_limitation_qualifier": "NO_PROSPECTIVE_CLEAN_EXTERNAL_COHORT_ELIGIBLE; no cohort may be called an untouched external validation set; discovery was metadata/directory-listing only (0 pixels read).",
+      "eligible_for": [
+        "main_text_limitation",
+        "supplement"
+      ],
+      "test_confirmed": false,
+      "supersession_state": "CANONICAL_CURRENT"
+    },
+    {
+      "claim_family": "G",
+      "claim_statement": "Descriptive final-system failure analysis on the frozen ROUTER_HOLDOUT tables: LOW_OVERLAP affects 10.1% of 875 rows; harmful router activation affects 12.9% of the 240 EXECUTE rows; missed-benefit and empty-prediction are 0; execute-then-reject affects 1.7% of EXECUTE rows.",
+      "supporting_evidence_records": [
+        "P33-E01",
+        "P33-E02"
+      ],
+      "supporting_artifacts": [
+        "reports/audits/phase33_final_closure.json",
+        "reports/tables/phase33_failure_prevalence_overall_v1_2.csv",
+        "reports/tables/phase33_failure_prevalence_by_domain_v1_2.csv"
+      ],
+      "evidence_population": "ROUTER_HOLDOUT (n=875)",
+      "metrics": {
+        "LOW_OVERLAP_rate": 0.10057142857142858,
+        "LOW_OVERLAP_n": 88,
+        "ROUTER_HARMFUL_ACTIVATION_rate": 0.12916666666666668,
+        "ROUTER_HARMFUL_ACTIVATION_n": 31,
+        "ROUTER_MISSED_BENEFIT_rate": 0.0,
+        "EMPTY_PREDICTION_rate": 0.0,
+        "EXECUTE_THEN_REJECT_rate": 0.016666666666666666
+      },
+      "allowed_strength_of_wording": "DESCRIPTIVE FAILURE CHARACTERIZATION. Permitted: descriptive prevalence of failure families. FORBIDDEN: 'rare failure', 'negligible', 'clinically safe'.",
+      "required_limitation_qualifier": "ONE_SHOT_ROUTER_HOLDOUT_RESULT_WITH_DISCLOSED_POST_FIRST_OPEN_SCIENTIFIC_SOURCE_FREEZE_DEVIATION qualifier preserved; tier0/tier1 frozen-table evidence only; KUB carries the highest low-overlap (0.2450) and harmful-activation (0.0872) domain rates.",
+      "eligible_for": [
+        "main_text_limitation",
+        "supplement"
+      ],
+      "test_confirmed": false,
+      "supersession_state": "CANONICAL_CURRENT"
+    },
+    {
+      "claim_family": "H",
+      "claim_statement": "Conditional computation: the A8/C9 expected analytical MAC lower bound is 3.244e10 (ratio 1.028 vs global-only; saving 2.345e9 MACs vs always-refine). Measured hardware-specific latency: SKIP 15.72 ms, EXECUTE 18.89 ms, weighted 16.59 ms (RTX 3060 Ti).",
+      "supporting_evidence_records": [
+        "P34-E01",
+        "P34-E02",
+        "P34-E03",
+        "P34-E04"
+      ],
+      "supporting_artifacts": [
+        "reports/tables/phase34_analytical_compute_summary_v1_3.csv",
+        "reports/tables/phase34_batch1_latency_results_v1_4.csv",
+        "reports/audits/phase34_final_claim_boundary.json"
+      ],
+      "evidence_population": "analytical + measured synthetic batch path (RTX 3060 Ti)",
+      "metrics": {
+        "A8C9_expected_MACS": 32437902022.582855,
+        "ratio_vs_global_only": 1.0280859651011032,
+        "saving_vs_always_refine_MACS": 2344501561.417145,
+        "L_SKIP_ms": 15.71835146522522,
+        "L_EXECUTE_ms": 18.894091419219972,
+        "L_weighted_ms": 16.589411566892352,
+        "p_EXECUTE": 0.2742857142857143,
+        "total_parameters": 4837420
+      },
+      "allowed_strength_of_wording": "HARDWARE-SPECIFIC DESCRIPTIVE EFFICIENCY. Permitted: 'analytical MAC lower bound', 'measured latency on RTX 3060 Ti'. FORBIDDEN: 'end-to-end pipeline latency', 'real-time', 'mobile', 'energy-efficient', 'hardware-independent'.",
+      "required_limitation_qualifier": "WEIGHTED_HARDWARE_SPECIFIC_RUNTIME_ESTIMATE; NOT_DIRECT_HOLDOUT_RUNTIME; NOT_END_TO_END_PIPELINE_LATENCY; hardware=NVIDIA GeForce RTX 3060 Ti; v1.3 latency superseded by v1.4 (measurement granularity defect repaired); no end-to-end/energy/mobile/real-time/hardware-independent claim is made.",
+      "eligible_for": [
+        "main_text",
+        "supplement"
+      ],
+      "test_confirmed": false,
+      "supersession_state": "CANONICAL_CURRENT"
+    },
+    {
+      "claim_family": "I",
+      "claim_statement": "Descriptive model-mechanism evidence: FiLM gamma/beta parameters are task-modulated (largest at decoder1/bridge), router attribution concentrates on decoder1 global/ROI feature groups, and saliency self-consistency is quantified per layer/domain.",
+      "supporting_evidence_records": [
+        "P35-E01",
+        "P35-E02"
+      ],
+      "supporting_artifacts": [
+        "reports/audits/phase35_interpretability_scientific_result_v1_0.json",
+        "reports/tables/phase35_film_parameter_summary_v1_0.csv",
+        "reports/tables/phase35_router_group_attribution_v1_0.csv"
+      ],
+      "evidence_population": "model-mechanism (no data population)",
+      "metrics": {
+        "n_film_task_sites": 20,
+        "n_router_scalar_features": 10,
+        "n_router_groups": 6,
+        "decoder1_global_share": 0.3240027339515185,
+        "decoder1_roi_share": 0.30745090810031406
+      },
+      "allowed_strength_of_wording": "DESCRIPTIVE MODEL MECHANISM. Permitted: 'task-modulated', 'attribution concentrates on', 'self-consistency quantified'. FORBIDDEN: 'causes', 'proves', 'explains why', any causal wording.",
+      "required_limitation_qualifier": "DESCRIPTIVE_MODEL_MECHANISM_EVIDENCE; causal_experiment_authorized_by_phase35=false; evidence families never merged; forbidden causal wording applies; interpretability is not a causal claim.",
+      "eligible_for": [
+        "supplement"
+      ],
+      "test_confirmed": false,
+      "supersession_state": "CANONICAL_CURRENT"
+    },
+    {
+      "claim_family": "J",
+      "claim_statement": "Synthetic image-perturbation robustness on VAL808: 12,928 paired rows across 16 conditions (brightness/contrast/gamma/blur/noise/resolution) x 4 domains; clean G reproduction is bit-identical and clean equivalence all_pass.",
+      "supporting_evidence_records": [
+        "P36-E01",
+        "P36-E03"
+      ],
+      "supporting_artifacts": [
+        "reports/audits/phase36_robustness_scientific_result_v1_23.json",
+        "reports/tables/phase36_robustness_v1_23/phase36_image_robustness_by_domain_condition.csv"
+      ],
+      "evidence_population": "VAL808 (n=808); 12,928 image-perturbation rows",
+      "metrics": {
+        "image_rows": 12928,
+        "n_conditions_image": 16,
+        "clean_g_reproduction_bit_identical": true,
+        "clean_equivalence_all_pass": true,
+        "prediction_consistency_evaluations": 12928
+      },
+      "allowed_strength_of_wording": "DEVELOPMENT-SET SYNTHETIC PERTURBATION ROBUSTNESS. Permitted: 'robust to synthetic image perturbations on the development set'. FORBIDDEN: 'robust to real-world acquisition shift', 'robust to scanner variation', 'clinically robust'.",
+      "required_limitation_qualifier": "DEVELOPMENT_SET_SYNTHETIC_PERTURBATION_ROBUSTNESS_EVIDENCE; synthetic perturbations only (not real acquisition shift); test_reads=0; router_holdout_reads=0; worst-case is a per-sample min over realized perturbations, not a tail-risk guarantee.",
+      "eligible_for": [
+        "main_text",
+        "supplement"
+      ],
+      "test_confirmed": false,
+      "supersession_state": "CANONICAL_CURRENT"
+    },
+    {
+      "claim_family": "K",
+      "claim_statement": "Synthetic proposal-perturbation robustness on VAL808: 4,848 paired rows across 6 proposal conditions; proposal perturbations produce near-zero paired DeltaDice with high prediction-consistency.",
+      "supporting_evidence_records": [
+        "P36-E02"
+      ],
+      "supporting_artifacts": [
+        "reports/audits/phase36_robustness_scientific_result_v1_23.json",
+        "reports/tables/phase36_robustness_v1_23/phase36_proposal_robustness_by_domain_condition.csv"
+      ],
+      "evidence_population": "VAL808 (n=808); 4,848 proposal-perturbation rows",
+      "metrics": {
+        "proposal_rows": 4848,
+        "n_proposal_conditions": 6,
+        "proposal_perturbation_instances": 4848
+      },
+      "allowed_strength_of_wording": "DEVELOPMENT-SET SYNTHETIC PROPOSAL PERTURBATION ROBUSTNESS. Permitted: 'robust to synthetic proposal perturbations'. FORBIDDEN: 'robust to proposal-algorithm variation', 'proposal-independent'.",
+      "required_limitation_qualifier": "DEVELOPMENT_SET_SYNTHETIC_PERTURBATION_ROBUSTNESS_EVIDENCE; synthetic proposal perturbations only; not a re-run of proposal generation; not real proposal-algorithm variation.",
+      "eligible_for": [
+        "main_text",
+        "supplement"
+      ],
+      "test_confirmed": false,
+      "supersession_state": "CANONICAL_CURRENT"
+    },
+    {
+      "claim_family": "L",
+      "claim_statement": "KUB subgroup observations (Kidney_Stone / Bladder_Stone / Ureteric_Stone) are REPORTING-ONLY metadata: subgroup robustness is reported by condition but KUB subgroups are never segmentation classes, task IDs, model inputs, or routing/conditioning variables.",
+      "supporting_evidence_records": [
+        "P36-E04"
+      ],
+      "supporting_artifacts": [
+        "reports/tables/phase36_robustness_v1_23/phase36_kub_subgroup_robustness_by_subgroup.csv"
+      ],
+      "evidence_population": "VAL808 KUB subset (n=280); 4,480 KUB rows",
+      "metrics": {
+        "n_kub_rows": 4480,
+        "n_subgroups": 3,
+        "reporting_only": true,
+        "never_classes": true,
+        "never_task_ids": true,
+        "never_model_inputs": true
+      },
+      "allowed_strength_of_wording": "REPORTING-ONLY. Permitted: 'reported as metadata only'. FORBIDDEN: any use as segmentation class, task ID, model input, routing input, or conditioning variable.",
+      "required_limitation_qualifier": "KUB subgroups are REPORTING-ONLY metadata sourced from manifests/phase4_v3/val.csv::category; they must never become segmentation classes, task IDs, model inputs, routing inputs, or conditioning variables.",
+      "eligible_for": [
+        "supplement_reporting_only"
+      ],
+      "test_confirmed": false,
+      "supersession_state": "CANONICAL_CURRENT"
+    }
+  ]
+}

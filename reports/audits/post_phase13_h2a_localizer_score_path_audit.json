@@ -1,0 +1,202 @@
+{
+  "artifact": "POST_PHASE13_H2A_LOCALIZER_SCORE_PATH_AUDIT",
+  "status": "COMPLETE",
+  "created_utc": "2026-09-22T07:28:00Z",
+  "method": "STATIC code inspection + static checkpoint tensor inspection. No model construction, no forward pass, no CUDA request.",
+  "observed_phenomenon": {
+    "plateau_score": 0.1250653713941574,
+    "count_at_plateau": 337,
+    "proposals_total": 494,
+    "fraction_at_plateau": 0.6821862348178138,
+    "equivalent_logit": -1.9453126016481144
+  },
+  "score_path": [
+    {
+      "stage": "1. model logits",
+      "location": "src/models/kub_localizer.py:forward -> self.head(...) -> logit_downsample",
+      "detail": "KUBLocalizer emits (1,1,128,128) logits; final layer `head` is a 1x1 conv (1,16,1,1) with bias."
+    },
+    {
+      "stage": "2. probability transform",
+      "location": "src/inference/learned_roi_clean_v3.py:171",
+      "detail": "heatmap = torch.sigmoid(logits)[0, 0].float().cpu().numpy() -> (128,128) float32 in [0,1]."
+    },
+    {
+      "stage": "3. component proposal extraction",
+      "location": "src/inference/predicted_roi.py:extract_predicted_components",
+      "detail": "binary = probability_map >= threshold; scipy.ndimage.label with 3x3 (8-connectivity); per-component bbox + pixel count."
+    },
+    {
+      "stage": "4. score assignment",
+      "location": "src/inference/predicted_roi.py:142-143",
+      "detail": "max_probs = scipy.ndimage.maximum(probability_map, labels=labeled, index=indices); max_probability = float(max_probs[cid-1]) -> per-component MAXIMUM sigmoid probability."
+    },
+    {
+      "stage": "5. NMS",
+      "location": "src/inference/predicted_roi.py:47-53,145,154",
+      "detail": "components sorted by (-max_probability, bbox); deterministic score-descending box NMS at nms_iou."
+    },
+    {
+      "stage": "6. top-k + serialization",
+      "location": "src/inference/predicted_roi.py:154-162",
+      "detail": "components[:top_k]; proposal dict {'rank','score': max_probability, ...}. Score written as raw Python float."
+    }
+  ],
+  "defect_matrix": {
+    "hard_clamp": {
+      "present": false,
+      "evidence": "no torch.clamp / np.clip / min / max on the probability or score anywhere in the score path"
+    },
+    "normalization_to_fixed_ceiling": {
+      "present": false,
+      "evidence": "no division or rescaling of the heatmap or score"
+    },
+    "rounding_of_score": {
+      "present": false,
+      "evidence": "score stored as raw float; no round()/np.round on the score"
+    },
+    "quantization": {
+      "present": false,
+      "evidence": "probability stays float32 from sigmoid to serialization; no uint8 cast"
+    },
+    "incorrect_sigmoid_application": {
+      "present": false,
+      "evidence": "torch.sigmoid applied on logits in learned_roi_clean_v3.py:171"
+    },
+    "double_sigmoid": {
+      "present": false,
+      "evidence": "model forward returns logits only (no internal sigmoid in kub_localizer.py); sigmoid applied exactly once"
+    },
+    "post_processing_rescale": {
+      "present": false,
+      "evidence": "no post-hoc rescale between sigmoid and score assignment"
+    },
+    "wrong_heatmap_channel": {
+      "present": false,
+      "evidence": "indexing [0, 0] = batch 0, channel 0; out_channels == 1"
+    },
+    "wrong_local_max_extraction": {
+      "present": false,
+      "evidence": "scipy.ndimage.maximum per label is the correct per-component maximum"
+    },
+    "serialization_truncation": {
+      "present": false,
+      "evidence": "float written at full precision; 0.1250653713941574 round-trips exactly in the frozen CSV"
+    },
+    "top_k_score_replacement": {
+      "present": false,
+      "evidence": "top_k only truncates the sorted list; scores are never overwritten"
+    },
+    "threshold_substitution": {
+      "present": false,
+      "evidence": "threshold is used only for binarization (>= threshold); it never becomes the score"
+    }
+  },
+  "sigmoid_application": "EXACTLY_ONCE",
+  "score_clipped": "NO",
+  "score_normalized": "NO",
+  "score_rounded": "NO",
+  "serialization_truncation": "NO",
+  "plateau_maximum_imposed_by_code": "NO",
+  "root_cause_of_plateau": {
+    "classification": "TRAINED_MODEL_OUTPUT_PROPERTY__NOT_A_SCORE_PATH_DEFECT",
+    "evidence": "The plateau equals sigmoid(head output). The trained head is degenerate: all 16 channel weights are NEGATIVE and nearly identical in magnitude (range -0.20109390 to -0.20757976, std 0.00180099, abs-max/abs-mean = 1.019491, 0/16 positive), so the head is effectively -0.203611 * sum(features) + bias. The bias is -1.9453773498535156, whose sigmoid is 0.12505828655695442 - essentially the observed plateau (0.1250653713941574, which corresponds to logit -1.9453126016481144). The head therefore produces a NEAR-CONSTANT output field, and the plateau is the sigmoid of that near-constant logit.",
+    "implication": "The score path is implemented correctly. The near-ceiling saturation is a property of the trained network, not of the code that extracts the score. This does NOT trigger CHECK_REQUIRED for the score path, but it is a MATERIAL SCIENTIFIC OBSERVATION that must inform H2A expectations."
+  },
+  "verdict": "SCORE_PATH_IMPLEMENTATION_VALID",
+  "material_scientific_observation": {
+    "id": "DEGENERATE_LOCALIZER_HEAD__NEAR_CONSTANT_OUTPUT",
+    "severity": "MATERIAL",
+    "is_score_path_defect": "NO",
+    "blocks_h2a_freeze": "NO",
+    "disclosure": "Recorded, not hidden. Because the heatmap is near-constant, no checkpoint-selection rule can substantially improve proposal precision on its own. H2A is therefore a genuine and necessary test of the selection axis, but this finding pre-registers a plausible reason H2A may prove insufficient - in which case representation/objective redesign (not selection) becomes the indicated direction.",
+    "head_initialization": "phase13b_centernet_head_init_p01_v1 (weight=0, bias=logit(0.1))"
+  },
+  "head_tensor_evidence": {
+    "weight_shape": [
+      1,
+      16,
+      1,
+      1
+    ],
+    "weight_values": [
+      -0.20413191616535187,
+      -0.20261821150779724,
+      -0.20332100987434387,
+      -0.2019345611333847,
+      -0.20207151770591736,
+      -0.2028145045042038,
+      -0.20219552516937256,
+      -0.20757976174354553,
+      -0.20320764183998108,
+      -0.20342370867729187,
+      -0.2027474045753479,
+      -0.20699024200439453,
+      -0.2054707556962967,
+      -0.20556704699993134,
+      -0.2010938972234726,
+      -0.2026096135377884
+    ],
+    "weight_max": -0.2010938972234726,
+    "weight_min": -0.20757976174354553,
+    "weight_mean": -0.2036110907793045,
+    "weight_std": 0.0018600504845380783,
+    "weight_abs_max": 0.20757976174354553,
+    "weight_abs_mean": 0.2036110907793045,
+    "weight_abs_max_over_abs_mean": 1.01949143409729,
+    "weight_positive_count": 0,
+    "weight_negative_count": 16,
+    "bias": -1.9453773498535156,
+    "sigmoid_of_bias": 0.12505828655695442,
+    "head_init_marker": "phase13b_centernet_head_init_p01_v1 (weight=0, bias=logit(0.1))"
+  },
+  "bindings": {
+    "h1_adjudication": {
+      "path": "reports/audits/post_phase13_regional_revision_r1_h1_adjudication.json",
+      "sha": "3ad8be7f31a31f987a0c3e24cfe591ec9a87e1b5421a9839d288bb92737f9009",
+      "h1_outcome": "H1_PARTIAL_MITIGATION_INSUFFICIENT_AS_STANDALONE_REVISION"
+    },
+    "r0_clarification": {
+      "path": "reports/audits/post_phase13_r0_interpretation_clarification.json",
+      "sha": "6ff0495978c808e30bf3f72bf99cc72c06fea73cdcaf77a483d4def17190f3e6",
+      "classification": "CAUSAL_LANGUAGE_SCOPE_CLARIFICATION_ONLY"
+    },
+    "localizer_best_pt": {
+      "path": "checkpoints/phase13b_kub_localizer_r512_h128_sigmaeq075_centernetfocal_seed42_clean_v3/best.pt",
+      "sha": "7673c34a2f2c86eca2e45c1bc6abe77842d17cd09f122f2da0f2d414ca492273",
+      "epoch": 53
+    },
+    "history_csv": {
+      "path": "experiments/phase13b_kub_localizer_r512_h128_sigmaeq075_centernetfocal_seed42_clean_v3/history.csv",
+      "sha": "344cfc016fd88e7e697c6afa0ffbf839b3d3b3c16b54024dc3537586528d4c5b",
+      "rows": 68
+    },
+    "score_path_sources": {
+      "learned_roi_clean_v3": {
+        "path": "src/inference/learned_roi_clean_v3.py",
+        "sha": "613e03d6e4dccccce2b743974dfaccd8a29a2c0932048f0af3d37a6d2a0241bf"
+      },
+      "predicted_roi": {
+        "path": "src/inference/predicted_roi.py",
+        "sha": "bd9f8be84595f49ff1e25e6052b548488fb6ae6a48aa7adbc78b880fb8f2d4e7"
+      },
+      "kub_localizer": {
+        "path": "src/models/kub_localizer.py",
+        "sha": "b94e6068b60ba3f6f833745c19c2b58cb119312ad0fa642abbad85b92420af0c"
+      }
+    }
+  },
+  "counters": {
+    "training": 0,
+    "optimizer": 0,
+    "model_constructions": 0,
+    "cuda_requests": 0,
+    "localizer_forwards": 0,
+    "segmentation_forwards": 0,
+    "regional_forwards": 0,
+    "proposal_generation": 0,
+    "checkpoint_writes": 0,
+    "test_reads": 0,
+    "external_test_reads": 0
+  }
+}

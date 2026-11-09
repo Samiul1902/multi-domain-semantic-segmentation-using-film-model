@@ -1,0 +1,212 @@
+{
+  "artifact": "PHASE13_PART1D_B_INFERENCE_START",
+  "status": "PART1D_B_INFERENCE_START_AUDIT",
+  "created_utc": "2026-09-22T04:27:00Z",
+  "run_id": "phase13_part1d_b_predicted_region_clean_v3",
+  "phase": "PHASE_13_PART_1D_B",
+  "authorization": "SUPERVISOR_AUTHORIZED_PART1D_B_FOUR_MODEL_PREDICTED_REGION_INFERENCE",
+  "not_authorized": [
+    "training",
+    "optimizer creation",
+    "localizer inference",
+    "proposal regeneration",
+    "proposal tuning",
+    "20-config grid",
+    "oracle rerun",
+    "gate verdict",
+    "GO",
+    "REVISE_LOCALIZER",
+    "NO_GO",
+    "Phase14",
+    "TEST content access"
+  ],
+  "bindings": {
+    "r1_protocol": {
+      "path": "reports/audits/phase13_part1d_predicted_region_protocol_frozen_r1.json",
+      "sha": "9089b948ef7563252963bf68d0e0b57a9e891c5e913f54a315bce94c98207eb8",
+      "status_verified": "SUPERVISOR_FROZEN_PART1D_R1_READY_FOR_INFERENCE"
+    },
+    "gate_criteria": {
+      "path": "reports/audits/phase13_regional_integration_gate_criteria_frozen.json",
+      "sha": "342a8bcac2c87bf0b85f7bbd963179e74f029825c0434cf527fbd939d2d13c21",
+      "part1d_b_results_inspected": "NO",
+      "numerical_thresholds_introduced": 0,
+      "gate_state": "NOT_DECIDED",
+      "edited": "NO"
+    },
+    "part1d_helper": {
+      "path": "scripts/inference/phase13_part1d_predicted_region_inference.py",
+      "sha": "8cd7e39814a049a025f706c57ccea0b535a230908a177690d6289318234c6284"
+    },
+    "checkpoints": {
+      "unet": {
+        "path": "checkpoints/phase9_kub_unet_baseline_seed42_512_clean_v3/best.pt",
+        "sha": "7b955ba86464a2fec2d569ecb6124de1fa9a4e66d0b5d58b267be9a280b4c2c0",
+        "historical_best_epoch": 44
+      },
+      "attention_unet": {
+        "path": "checkpoints/phase10_kub_attention_unet_seed42_512_clean_v3/best.pt",
+        "sha": "a49b19d66e43b57ed082ea6efc0ac10bccf444277abd3540dc68612bf30b88b3",
+        "historical_best_epoch": 54
+      },
+      "unetpp": {
+        "path": "checkpoints/phase10_kub_unetpp_seed42_512_clean_v3/best.pt",
+        "sha": "ec7eb13f32e43af27eab7fc617bd1a2a8fcce1d6651a1b4a3653f3e4d1283269",
+        "historical_best_epoch": 70
+      },
+      "deeplabv3plus": {
+        "path": "checkpoints/phase10_kub_deeplabv3plus_seed42_512_clean_v3/best.pt",
+        "sha": "f519027ba1a3a4d6212d83fecd4379f61f71bc05b0751924b9660da08d597dad",
+        "historical_best_epoch": 52
+      }
+    },
+    "phase12_comparator": {
+      "case_metrics": {
+        "path": "reports/tables/phase12_clean_v3_oracle_case_metrics.csv",
+        "sha": "080f158fb8b3e3552ac7854c6d9a116e11564bcefa9efdcdbb3511dba090b436",
+        "rows": 1648
+      },
+      "component_metrics": {
+        "path": "reports/tables/phase12_clean_v3_oracle_component_metrics.csv",
+        "sha": "d66933a3c2821d3ab9375eadb5c0540fea145edcf49b648064fe9aa4c460c753",
+        "rows": 608
+      },
+      "geometry": {
+        "path": "reports/tables/phase12_clean_v3_oracle_geometry.csv",
+        "sha": "29326d5b9a3bf71add74d8743750511f146d8c4dfbd1dc5b04a5e1b647c37cc0",
+        "rows": 152
+      }
+    },
+    "part1c_proposals": {
+      "case_table": {
+        "path": "reports/tables/phase13_part1c_best_checkpoint_case_proposals.csv",
+        "sha": "d25c44ec1361365e261d36458e86e707ad3bcb58cf000763a732605db0f856ed"
+      },
+      "proposals": {
+        "path": "reports/tables/phase13_part1c_best_checkpoint_proposals.csv",
+        "sha": "8c3151a3f1f9a56f0692c6ff2d2171472a777a56e99fa2e474aff8a3478a564a"
+      },
+      "component_coverage": {
+        "path": "reports/tables/phase13_part1c_best_checkpoint_component_coverage.csv",
+        "sha": "2a3623fecbc1fc5dd5a2c2a12fbd6d5e78fe2e123a9c45431ba53ca14e4e4b87"
+      },
+      "size_stratified": {
+        "path": "reports/tables/phase13_part1c_size_stratified_coverage.csv",
+        "sha": "147d3947d53fce5102ad290d8caa5f19ccb3eebcc61f75634fcb261780c792f9"
+      },
+      "gallery_selection": {
+        "path": "reports/tables/phase13_part1c_gallery_selection.csv",
+        "sha": "1fcbc0ae93e1b63ef3b7c3f045af740e9c353cb7635fd5c98e61d31e177d49d3"
+      }
+    }
+  },
+  "manifest": "phase4_v3",
+  "taxonomy": "kub_size_clean_v3_v1",
+  "population": {
+    "val_full_field_cases": 103,
+    "native_components": 152,
+    "strata": {
+      "TINY": 72,
+      "SMALL": 28,
+      "MEDIUM": 36,
+      "LARGE": 16
+    },
+    "roi": "EXCLUDED",
+    "test": "LOCKED"
+  },
+  "frozen_proposals": {
+    "cases": 103,
+    "total_proposals": 494,
+    "interior_proposals": 492,
+    "padded_proposals": 2,
+    "margin": 0.2,
+    "margin_already_applied": "YES",
+    "second_margin": "NO",
+    "crop_side_min": 33,
+    "crop_side_max": 341,
+    "localizer_rerun": "FORBIDDEN",
+    "proposal_geometry_mutation": "FORBIDDEN"
+  },
+  "device": {
+    "torch_version": "2.6.0+cu124",
+    "cuda_available": true,
+    "cuda_version": "12.4",
+    "device_count": 1,
+    "device_name": "NVIDIA GeForce RTX 3060 Ti",
+    "device_capability": [
+      8,
+      6
+    ],
+    "cpu_fallback": "FORBIDDEN",
+    "require_cuda": true
+  },
+  "global_reproduction_tolerance_max_abs_case_dice": 0.0001,
+  "fusion_rule": {
+    "formula": "P(x) = R(x) if U_pred(x) else G(x)",
+    "inside_support": "REGIONAL_REPLACEMENT",
+    "outside_support": "GLOBAL_RETAINED",
+    "overlap": "MAX among regional crops only",
+    "max_G_R_inside_support": "FORBIDDEN",
+    "threshold": 0.5,
+    "threshold_timing": "AFTER_COMPLETE_NATIVE_FUSION",
+    "zero_proposal_image": "P = G exactly"
+  },
+  "retention_definitions": {
+    "D_G": "GLOBAL mean Dice",
+    "D_O": "ORACLE mean Dice",
+    "D_P": "PREDICTED mean Dice",
+    "DELTA_ORACLE_DICE": "D_O - D_G",
+    "DELTA_PRED_DICE": "D_P - D_G",
+    "RETENTION_DICE": "(D_P - D_G) / (D_O - D_G) only when denominator > 0",
+    "clipped": "NO",
+    "negative_zero_to_one_above_one_preserved": "YES",
+    "ORACLE_GAP_DICE": "D_P - D_O",
+    "iou_gain_retention": "(IoU_P - IoU_G) / (IoU_O - IoU_G) if denominator > 0 else N/A",
+    "object_recall_gain_retention": "(Obj_P - Obj_G) / (Obj_O - Obj_G) if denominator > 0 else N/A",
+    "fn_reduction_retention": "(FN_G - FN_P) / (FN_G - FN_O) if denominator > 0 else N/A",
+    "invalid_denominator": "N/A never fabricated zero",
+    "label": "PRACTICAL_GT_FREE_ORACLE_BENEFIT_RETENTION"
+  },
+  "case_improvement_tolerance": {
+    "improved": "PREDICTED Dice > GLOBAL Dice + 1e-12",
+    "unchanged": "abs(PREDICTED - GLOBAL) <= 1e-12",
+    "worsened": "PREDICTED Dice < GLOBAL Dice - 1e-12",
+    "is_gate_threshold": "NO",
+    "purpose": "NUMERICAL_EQUALITY_HANDLING_ONLY"
+  },
+  "expected_phase12_full_field_macro_dice_descriptive": {
+    "unet": 0.59418,
+    "attention_unet": 0.629805,
+    "unetpp": 0.640516,
+    "deeplabv3plus": 0.560251,
+    "authority": "PHYSICAL_PHASE12_TABLE_NOT_THESE_ROUNDED_VALUES"
+  },
+  "cache_plan": {
+    "authorized": "YES",
+    "path": "data_cache/phase13_part1d_b_predicted_region_clean_v3/global_512/<model>/<sample_id>.npy",
+    "content": "FLOAT32 512-space global probability maps",
+    "uint8_probability_storage": "FORBIDDEN",
+    "manifest": "data_cache/phase13_part1d_b_predicted_region_clean_v3/global_512_manifest.csv",
+    "manifest_bindings": [
+      "model",
+      "sample_id",
+      "checkpoint_sha",
+      "shape",
+      "dtype",
+      "file_sha"
+    ],
+    "classification": "DERIVED_PART1D_B_INFERENCE_ARTIFACT_NOT_A_NEW_SCIENTIFIC_INPUT",
+    "historical_v2_cache_reuse": "FORBIDDEN"
+  },
+  "counters": {
+    "training": 0,
+    "optimizer_creations": 0,
+    "localizer_forwards": 0,
+    "proposal_generation": 0,
+    "grid_configs": 0,
+    "oracle_reruns": 0,
+    "test_reads": 0,
+    "gate_verdict": "NOT_DECIDED"
+  },
+  "next_action": "RUN_STAGE_G_GLOBAL_NATIVE_REPRODUCTION_ALL_FOUR_MODELS"
+}

@@ -1,0 +1,24 @@
+{
+  "classification": "EXT03_INITIALIZATION_POLICY",
+  "generated_utc": "2026-10-11T17:00:00Z",
+  "models": {
+    "U-Net": {
+      "init": "scratch (no pretrained weights)",
+      "reason": "frozen protocol: no medical pretrained weights"
+    },
+    "Attention U-Net": {
+      "init": "scratch"
+    },
+    "UNet++": {
+      "init": "scratch"
+    },
+    "DeepLabV3+": {
+      "init": "scratch (frozen config: no pretrained weights; ResNet-50 backbone from scratch)"
+    },
+    "SegFormer-B0": {
+      "init": "UNRESOLVED - no constructor/library available (timm/transformers MISSING)",
+      "imagenet_pretrained": "would be architecture-specific initialization difference -> CONTEXTUAL_ONLY if used"
+    }
+  },
+  "no_medical_pretrained": true
+}

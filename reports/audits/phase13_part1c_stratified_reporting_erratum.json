@@ -1,0 +1,65 @@
+{
+  "artifact": "PHASE13_PART1C_STRATIFIED_REPORTING_ERRATUM",
+  "document_type": "REPORTING_ERRATUM",
+  "classification": "PART1C_FINAL_NOTE_STRATIFICATION_REPORTING_ERROR_ONLY",
+  "defect": "FINAL_NOTE_STRATIFICATION_REPORTING_ERROR",
+  "defect_detail": "The Part-1C chat final note reported SMALL 23/28, MEDIUM 17/36 and LARGE 2/16. Those counts do not appear in the physical stratified table and are incorrect. The physical table and the reviewer notebook were both already correct; only the narrative final note was wrong.",
+  "incorrect_reported_bbox_counts": {
+    "TINY": "49 / 72",
+    "SMALL": "23 / 28",
+    "MEDIUM": "17 / 36",
+    "LARGE": "2 / 16"
+  },
+  "canonical_physical_bbox_counts": {
+    "TINY": "49 / 72",
+    "SMALL": "16 / 28",
+    "MEDIUM": "19 / 36",
+    "LARGE": "7 / 16"
+  },
+  "canonical_physical_pixel_counts": {
+    "TINY": "50 / 72",
+    "SMALL": "20 / 28",
+    "MEDIUM": "22 / 36",
+    "LARGE": "9 / 16"
+  },
+  "canonical_bbox_rates": {
+    "TINY": 0.6805555555555556,
+    "SMALL": 0.5714285714285714,
+    "MEDIUM": 0.5277777777777778,
+    "LARGE": 0.4375,
+    "ALL": 0.5986842105263158
+  },
+  "canonical_pixel_rates": {
+    "TINY": 0.6944444444444444,
+    "SMALL": 0.7142857142857143,
+    "MEDIUM": 0.6111111111111112,
+    "LARGE": 0.5625,
+    "ALL": 0.6644736842105263
+  },
+  "aggregate_overall_bbox": "91 / 152 (unchanged)",
+  "aggregate_overall_pixel": "101 / 152 (unchanged)",
+  "wrong_value_occurrences_in_persisted_artifacts": 0,
+  "wrong_values_found_in": [
+    "Part-1C chat final note only"
+  ],
+  "notebook_already_correct": true,
+  "notebook_modified": false,
+  "canonical_tables_modified": false,
+  "scientific_inference_changed": "NO",
+  "checkpoint_changed": "NO",
+  "proposal_outputs_changed": "NO",
+  "tables_changed": "NO",
+  "interpretation_label": "DESCRIPTIVE_STRATIFIED_LOCALIZATION_RESULT",
+  "corrected_interpretation": "Under historical bbox coverage at the frozen 90% criterion, TINY was 49/72 (68.1%), SMALL 16/28 (57.1%), MEDIUM 19/36 (52.8%), and LARGE 7/16 (43.8%). LARGE had the lowest covered90 rate among the four strata, but the result does not support the previously reported 2/16 (12.5%) figure.",
+  "claims_explicitly_withdrawn": [
+    "SMALL = 82%",
+    "LARGE = 12.5%"
+  ],
+  "significance_testing_performed": false,
+  "causal_hardness_claim_made": false,
+  "test_reads": 0,
+  "model_inference": 0,
+  "proposal_generation": 0,
+  "grid_configs": 0,
+  "status": "PASS"
+}

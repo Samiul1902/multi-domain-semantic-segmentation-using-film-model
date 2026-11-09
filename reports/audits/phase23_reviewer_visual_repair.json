@@ -1,0 +1,131 @@
+{
+ "artifact": "phase23_reviewer_visual_repair",
+ "phase": 23,
+ "classification": "REVIEWER_PRESENTATION_REPAIR",
+ "purpose": "Add reviewer-quality deterministic visualizations to the Phase-23 evidence/review notebook, derived only from existing frozen Phase-23 tables/audits.",
+ "scientific_results_changed": false,
+ "search_rerun": false,
+ "prior_art_matrix_changed": false,
+ "novelty_verdict_changed": false,
+ "literature_classification_changed": false,
+ "retained_papers_added_or_removed": false,
+ "training": false,
+ "inference": false,
+ "test_reads": 0,
+ "phase24_started": false,
+ "notebook": {
+  "path": "notebooks/phasewise/phase_23_literature_novelty/phase23_literature_methodological_novelty_audit.ipynb",
+  "old_sha256": "cc86153c5011cc83ff787dcda797ecf5a20ef50c15f76eceeba5c9d911934f2e",
+  "new_sha256": "e9f78ccefd96abad742fa5570a44110cd67c62f5510b99300448e44b961107b0",
+  "supersedes": "cc86153c5011cc83ff787dcda797ecf5a20ef50c15f76eceeba5c9d911934f2e"
+ },
+ "figures": {
+  "required": [
+   "p23_concept_taxonomy.png",
+   "p23_novelty_axes_matrix.png",
+   "p23_prior_art_mechanism_matrix.png",
+   "p23_search_coverage.png"
+  ],
+  "optional": [
+   "p23_closest_prior_work_matrix.png"
+  ],
+  "n_required": 4,
+  "n_optional": 1,
+  "builder": "scripts/analysis/build_phase23_visuals.py",
+  "source": "frozen Phase-23 tables/audits only"
+ },
+ "science_untouched_verification": {
+  "n_verified": 10,
+  "n_changed": 0,
+  "changed": [],
+  "detail": {
+   "phase23_novelty_verdict.json": {
+    "sha256": "96e778c7b90272601e12719e35c899a0e4d40eb391d0161f0992966249f7fd73",
+    "freeze_sha256": "96e778c7b90272601e12719e35c899a0e4d40eb391d0161f0992966249f7fd73",
+    "unchanged": true
+   },
+   "phase23_novelty_claim_ladder.json": {
+    "sha256": "ad4d902c5fe5d93f782d4748bd05a1e7543ff482a88be072c469834e28c15338",
+    "freeze_sha256": "ad4d902c5fe5d93f782d4748bd05a1e7543ff482a88be072c469834e28c15338",
+    "unchanged": true
+   },
+   "phase23_novelty_axes.csv": {
+    "sha256": "3a4006a026c2932bdd598c8a7511fe6551d396203878d70e30839b9872b2f19f",
+    "freeze_sha256": "3a4006a026c2932bdd598c8a7511fe6551d396203878d70e30839b9872b2f19f",
+    "unchanged": true
+   },
+   "phase23_prior_art_matrix.csv": {
+    "sha256": "cf9da54160bc4a534519b818fa642a4ea6516467a21a40ec4329e78c0a25f594",
+    "freeze_sha256": "cf9da54160bc4a534519b818fa642a4ea6516467a21a40ec4329e78c0a25f594",
+    "unchanged": true
+   },
+   "phase23_closest_prior_work.csv": {
+    "sha256": "25ea3e6e7b6f47fbad15a662d24f4beae407c0f0331fdc0870c861150024067b",
+    "freeze_sha256": "25ea3e6e7b6f47fbad15a662d24f4beae407c0f0331fdc0870c861150024067b",
+    "unchanged": true
+   },
+   "phase23_excluded_nearby_works.csv": {
+    "sha256": "cf1fa3c9b4b8189f50a6d98c7f18763e1eb1310b6f8504108d8bb365c0ca588c",
+    "freeze_sha256": "cf1fa3c9b4b8189f50a6d98c7f18763e1eb1310b6f8504108d8bb365c0ca588c",
+    "unchanged": true
+   },
+   "phase23_search_query_summary.csv": {
+    "sha256": "b8b93196fdd8d6eab635fa42c08c7435b477236808141ef537f6cc936fd1461e",
+    "freeze_sha256": "b8b93196fdd8d6eab635fa42c08c7435b477236808141ef537f6cc936fd1461e",
+    "unchanged": true
+   },
+   "phase23_counterfactual_terminology_audit.json": {
+    "sha256": "b6895109fb4288bc6f63676dba7547cf0db454c521e6865342d874336e216877",
+    "freeze_sha256": "b6895109fb4288bc6f63676dba7547cf0db454c521e6865342d874336e216877",
+    "unchanged": true
+   },
+   "phase23_certification_terminology_audit.json": {
+    "sha256": "f7322445c24637981486cf2646b4d3c650f58ed2f6079b80631890e392857622",
+    "freeze_sha256": "f7322445c24637981486cf2646b4d3c650f58ed2f6079b80631890e392857622",
+    "unchanged": true
+   },
+   "phase23_phase24_design_constraints.json": {
+    "sha256": "c27fe43320bf17431748427f88cc562a79915a3a67180dbae70d1b935902d632",
+    "freeze_sha256": "c27fe43320bf17431748427f88cc562a79915a3a67180dbae70d1b935902d632",
+    "unchanged": true
+   }
+  }
+ },
+ "data_defect_found_and_fixed": {
+  "field": "phase23_search_log.json::totals.queries_logged",
+  "previous_value": 55,
+  "corrected_value": 63,
+  "per_family_ledger_sum": 63,
+  "search_query_summary_sum": 63,
+  "identity_holds_now": true,
+  "nature": "FACTUAL_LEDGER_ARITHMETIC_CORRECTION",
+  "classification_or_verdict_impact": "NONE",
+  "papers_retained_changed": false,
+  "papers_excluded_changed": false,
+  "results_screened_changed": false,
+  "rows_affected_in_summary_csv": 0
+ },
+ "frozen_science_untouched": [
+  "phase20_shared_global_baseline_protocol.json",
+  "phase21_final_freeze.json",
+  "phase22_diagnostic_protocol.json",
+  "phase22_final_freeze.json",
+  "phase22_phase21_reference_binding.json"
+ ],
+ "predecessor_science_sha256": {
+  "phase22_final_freeze.json": "9a0aa2f8c1a2850770fb09f2838e95f0fe08b3b40e55ab1d10c3564841107bca",
+  "phase22_diagnostic_protocol.json": "9d620d6c85276e1a9a086ec60172cdef3b94dc58fe8288222378d196dd4609b7",
+  "phase21_best.pt": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+  "phase22_canonical_notebook": "cca76123336f0895426f76024138b90565631d44ba51dced405e0fd8afa43658"
+ },
+ "governance": {
+  "test_reads": 0,
+  "training_jobs_started": 0,
+  "architecture_modified": false,
+  "benefit_predictor_trained": false,
+  "phase24_started": false,
+  "web_access_from_notebook": false
+ },
+ "terminal_state": "PHASE23_REVIEWER_VISUALS_COMPLETE__SCIENCE_UNCHANGED__PHASE24_NARROWED_SPEC_ELIGIBLE_NOT_STARTED",
+ "generated_utc": "2026-09-29T14:29:12.128933+00:00"
+}

@@ -1,0 +1,88 @@
+{
+ "artifact": "phase36_v1_1_to_v1_2_execution_semantic_diff",
+ "section": "§U",
+ "phase": 36,
+ "method": "RA-MedFiLM-BARR",
+ "from_revision": "ra_medfilm_barr_phase36_robustness_v1_1",
+ "to_revision": "ra_medfilm_barr_phase36_robustness_v1_2",
+ "classification": "IMPLEMENTATION_COMPLETION_OF_ALREADY_PROSPECTIVELY_FROZEN_V1_1_SCIENTIFIC_SEMANTICS",
+ "generated_utc": "2026-10-05T00:00:00Z",
+ "no_execution": true,
+ "torch_imported": false,
+ "classification_rationale": "No scientific semantic is changed. The perturbation registries (13 image / 7 proposal), base seeds {42,123,3407}, severities, thresholds (0.30 proposal / 0.50 segmentation), A8/C9 policy, state machine, population (VAL808), metric definitions, noise-seed rule, clean-equivalence comparator and claim boundary are all IDENTICAL to v1.1. v1.2 only supplies the EXECUTABLE IMPLEMENTATIONS that v1.1 declared but never provided. Therefore v1.2 is an IMPLEMENTATION COMPLETION, not a science change.",
+ "semantic_surfaces_unchanged": {
+  "image_perturbation_registry": {"v1_1": "13 conditions", "v1_2": "13 conditions", "changed": false},
+  "proposal_perturbation_registry": {"v1_1": "7 conditions", "v1_2": "7 conditions", "changed": false},
+  "noise_base_seeds": {"v1_1": [42, 123, 3407], "v1_2": [42, 123, 3407], "changed": false},
+  "noise_seed_rule": {"v1_1": "int(sha256('phase36|gaussian_noise|<base>|<sid>').hexdigest()[:8],16)", "v1_2": "identical", "changed": false},
+  "proposal_threshold": {"v1_1": 0.30, "v1_2": 0.30, "changed": false},
+  "segmentation_output_threshold": {"v1_1": 0.50, "v1_2": 0.50, "changed": false},
+  "somega_accept_threshold": {"v1_1": 0.50, "v1_2": 0.50, "changed": false},
+  "a8_c9_policy": {"v1_1": "A8/C9 budget 0.25", "v1_2": "A8/C9 budget 0.25", "changed": false},
+  "state_machine": {"v1_1": "FORCED_SKIP/SKIP_GLOBAL/EXECUTE_THEN_ACCEPT/EXECUTE_THEN_REJECT", "v1_2": "identical", "changed": false},
+  "population": {"v1_1": "VAL808 manifest-authoritative", "v1_2": "identical", "changed": false},
+  "metric_definitions": {"v1_1": "canonical evaluation_metrics (eps=1e-7)", "v1_2": "identical", "changed": false},
+  "clean_equivalence_comparator": {"v1_1": "np.isclose(atol=1e-7, rtol=0)", "v1_2": "identical", "changed": false},
+  "perturbation_algebra": {"v1_1": "v1.0 primitives + v1.1 seed", "v1_2": "identical", "changed": false},
+  "claim_boundary": {"v1_1": "DEVELOPMENT_SET_SYNTHETIC_PERTURBATION_ROBUSTNESS_EVIDENCE", "v1_2": "identical", "changed": false},
+  "gates": {"v1_1": "PHASE36_EXECUTE / PHASE36_SMOKE_EXECUTE", "v1_2": "identical", "changed": false}
+ },
+ "implementation_surfaces_changed": {
+  "D1_load_models": {
+   "v1_1": "unconditional reachable `raise RuntimeError('MODEL_LOAD_PATH_IS_BOUND_BUT_NOT_INVOKED_IN_THIS_WORK_ORDER')`",
+   "v1_2": "constructs + strict-loads G/B_phi/R_psi/S_omega; 0 missing / 0 unexpected keys; param counts 3523001/1276401/36801/1217",
+   "kind": "EXECUTABLE_IMPLEMENTATION_SUPPLIED"
+  },
+  "D2_router_class_source": {
+   "v1_1": "imported from non-existent `src.models.barr.router_variants.BARRBenefitRouterV1`",
+   "v1_2": "AST-extracted from canonical `scripts/analysis/train_phase25d_router.py`",
+   "kind": "CANONICAL_SOURCE_BOUND"
+  },
+  "D3_clean_generator": {
+   "v1_1": "returns a metadata dict; never touches data",
+   "v1_2": "iterates exactly the 808 manifest rows and executes the real per-sample CLEAN path",
+   "kind": "EXECUTABLE_IMPLEMENTATION_SUPPLIED"
+  },
+  "D4_bind_clean_reference": {
+   "v1_1": "declares empty roi_geometry / final_pred and never fills them",
+   "v1_2": "scalar/routing authority bound; masks supplied by STAGE-1 generation, consumed by the gate",
+   "kind": "EXECUTABLE_IMPLEMENTATION_SUPPLIED"
+  },
+  "D5_equivalence_gate": {
+   "v1_1": "permissive: silent skip when generated or bound value missing",
+   "v1_2": "STRICT: requires 808 generated == 808 bound; explicit missing_generated_dice / missing_bound_dice / route_mismatches / dice_mismatches == 0; fail closed on missing data",
+   "kind": "IMPLEMENTATION_STRENGTHENED (no semantic change to the comparator)"
+  },
+  "D6_clean_sample_evaluation": {
+   "v1_1": "absent (no per-sample clean evaluation function)",
+   "v1_2": "_evaluate_clean_sample: G + tap capture + 0.30 geometry + 202-D + state machine + Dice/IoU/HD95",
+   "kind": "EXECUTABLE_IMPLEMENTATION_SUPPLIED"
+  },
+  "D7_science_loop": {
+   "v1_1": "builds metadata rows without sample_id; never executes",
+   "v1_2": "rows carry sample_id; executes image + proposal perturbations end to end",
+   "kind": "EXECUTABLE_IMPLEMENTATION_SUPPLIED"
+  },
+  "D8_smoke_component_loading": {
+   "v1_1": "never loads the four components",
+   "v1_2": "STRICT-loads all four components and runs a synthetic CLEAN + IMAGE + PROPOSAL through the real adapters",
+   "kind": "EXECUTABLE_IMPLEMENTATION_SUPPLIED"
+  },
+  "D9_smoke_truth_flags": {
+   "v1_1": "hardcoded {skip_returns_global:True, reject_returns_global:True, accept_returns_regional:True}",
+   "v1_2": "REAL B_phi router scores with expected/observed/comparison_pass per branch",
+   "kind": "HARDCODED_ASSERTION_REMOVED"
+  },
+  "D10_split_guard": {
+   "v1_1": "rejects the token 'train', wrongly rejecting 231 of 808 authorized VAL rows under ISIC2018_Task1-2_Training_Input",
+   "v1_2": "manifest-membership authority; protected residual tokens = {holdout, router_holdout, test}; exact manifest-row path match",
+   "kind": "DEFECT_CORRECTED (fail-closed preserved)"
+  }
+ },
+ "defaults_side_effects": {
+  "gate_defaults": "unchanged — both gates remain UNSET and fail closed",
+  "execution_on_import": "v1.2 performs NO model construction and NO protected access at import time (verified: torch not in sys.modules after import)",
+  "no_new_scientific_choice": true
+ },
+ "verdict": "v1.2 changes ZERO scientific semantics relative to v1.1; it completes the executable implementation that v1.1 prospectively declared and repairs one latent guard defect (D10). All v1.1 science remains reproducible under v1.2 given the same registry inputs."
+}

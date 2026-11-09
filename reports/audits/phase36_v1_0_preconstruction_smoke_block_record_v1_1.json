@@ -1,0 +1,55 @@
+{
+ "artifact": "phase36_v1_0_preconstruction_smoke_block_record_v1_1",
+ "section": "§B",
+ "phase": 36,
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase36_robustness_v1_1",
+ "classification": "PHASE36_V1_0_PRECONSTRUCTION_SMOKE_WORK_ORDER_BLOCKED__NONEXECUTABLE_EXECUTION_SKELETON__NO_SCIENTIFIC_EFFECT",
+ "work_order_attempted": true,
+ "work_order": "PHASE 36 v1.0 - SYNTHETIC FULL-PIPELINE ROBUSTNESS SMOKE",
+ "historical_reported_terminal": "PHASE36_SYNTHETIC_FULL_PIPELINE_ROBUSTNESS_SMOKE_V1_0_BLOCKED__FROZEN_MODEL_PERTURBATION_METRIC_OR_STATE_MACHINE_INTERFACE_CHECK_FAILED__FIRST_VALID_ATTEMPT_PRESERVED__NO_RETRY__ZERO_PROTECTED_DATA_OR_SCIENTIFIC_OUTPUT_ACCESS",
+ "counters": {
+  "execution_source_invocations": 0,
+  "smoke_gate_set": false,
+  "model_constructions": 0,
+  "checkpoint_deserializations": 0,
+  "forwards": 0,
+  "autograd": 0,
+  "raw_VAL_reads": 0,
+  "VAL_GT_reads": 0,
+  "VAL808_cache_reads": 0,
+  "ROUTER_HOLDOUT_reads": 0,
+  "TEST_reads": 0,
+  "scientific_outputs": 0
+ },
+ "defects_discovered": [
+  {"id": 1, "name": "clean final prediction mask unavailable",
+   "evidence": "phase36_robustness_execution_v1_0.py::_bind_clean_reference returns 'final_pred': {} (empty); bound Phase27/Phase29 authorities carry scalars only"},
+  {"id": 2, "name": "_generate_clean_reference_once non-executable",
+   "evidence": "unconditional raise RuntimeError('CLEAN_REFERENCE_MISSING__SINGLE_CLEAN_REFERENCE_PASS_REQUIRED_BEFORE_PERTURBATION')"},
+  {"id": 3, "name": "_evaluate_frozen_system NotImplementedError",
+   "evidence": "phase36_robustness_execution_v1_0.py lines 221-222"},
+  {"id": 4, "name": "_evaluate_frozen_system_proposal NotImplementedError",
+   "evidence": "phase36_robustness_execution_v1_0.py lines 225-226"},
+  {"id": 5, "name": "_confusion NotImplementedError",
+   "evidence": "phase36_robustness_execution_v1_0.py lines 229-230"},
+  {"id": 6, "name": "science/smoke image/GT loaders non-executable",
+   "evidence": "_load_clean_image / _load_val_gt raise NotImplementedError (lines 213-218)"},
+  {"id": 7, "name": "proposal perturbation insertion semantics not prospectively unambiguous",
+   "evidence": "module docstring asserts a reuse policy with no implementing code; _evaluate_frozen_system_proposal is a stub"}
+ ],
+ "blocking_sections": {
+  "D": "clean_prediction_mask_available_for_prediction_consistency = false (FAIL)",
+  "E": "PROPOSAL_PERTURBATION_INSERTION_POINT_NOT_PROSPECTIVELY_UNAMBIGUOUS (FAIL / BLOCK)"
+ },
+ "passing_sections_before_block": {
+  "A": "Phase36 v1.0 authority hashes 13/13 exact",
+  "B": "Phase35 entry authority 3/3 exact (closure 7720c1d2..., final check 7c12f8aa..., terminal 6e343b7f...)",
+  "C": "frozen components 13/13 exact (G a04ff3e6/286689fd, B_phi fc7c1bdf/8a412b2f, R_psi 4fe0abde/6d28608a, S_omega 98cf958a/eee9b97b, A8/C9 f7aebb0f, threshold c49a1e53, metric 6c515f6f, empty-mask 16e702fd, registry 082c80b2)"
+ },
+ "disposition": "NO_PATCH__NO_RETRY__FIRST_VALID_ATTEMPT_PRESERVED",
+ "scientific_effect": "NONE",
+ "v1_0_history_preserved": true,
+ "generated_utc": "2026-10-05T15:16:00Z",
+ "all_pass": true
+}

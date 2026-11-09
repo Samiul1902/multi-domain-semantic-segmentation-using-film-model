@@ -1,0 +1,52 @@
+{
+ "artifact": "phase25b_project_status_sync",
+ "phase": "25B",
+ "terminal": "PHASE25B_GT_FREE_PRE_REFINEMENT_FEATURES_COMPLETE__202D_CANONICAL_FEATURE_CACHE_FROZEN__PHASE25C_ELIGIBLE_NOT_STARTED",
+ "generated_utc": "2026-09-30T16:41:28.330535+00:00",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_narrowed_v1_2",
+ "phase_status": {
+  "phase_24_router_feature_spec_v1_2": "COMPLETE_FROZEN",
+  "phase_25a_regional_refiner_roi030": "COMPLETE_FROZEN",
+  "phase_25b_gt_free_features": "COMPLETE_FROZEN",
+  "phase_25c_oof_paired_gain_labels": "ELIGIBLE_NOT_STARTED",
+  "phase_25d_benefit_router": "NOT_STARTED",
+  "phase_25e_resource_gate": "NOT_STARTED",
+  "phase_25f_post_safety_and_fusion": "NOT_STARTED",
+  "phase_25g_controlled_validation": "NOT_STARTED"
+ },
+ "retired_phase_keys": [],
+ "retired_stage_aliases": [
+  {
+   "alias": "router training mapped to phase 25C",
+   "status": "RETIRED",
+   "corrected_to": "phase_25d_benefit_router"
+  }
+ ],
+ "stage_semantics_note": "router training and the 16-D task embedding belong to Phase25D; Phase25C generates OOF paired-gain labels only",
+ "stage_semantics_repair": {
+  "classification": "DOCUMENTATION_AND_GOVERNANCE_REPAIR_ONLY",
+  "science_changed": false,
+  "feature_cache_changed": false,
+  "model_execution_required": false
+ },
+ "phase25b_terminal": "PHASE25B_GT_FREE_PRE_REFINEMENT_FEATURES_COMPLETE__202D_CANONICAL_FEATURE_CACHE_FROZEN__PHASE25C_ELIGIBLE_NOT_STARTED",
+ "frozen_artifacts": {
+  "feature_cache": "data_cache/phase25b_barr_pre_refinement_features_v1_2",
+  "notebook": "notebooks/phasewise/phase_25b_gt_free_features/phase25b_gt_free_pre_refinement_features.ipynb",
+  "notebook_sha256": "acdfe90a5042ef364c5ab28ec67ecd3fe3146b30e1e5715a2631a36deb4dc38a",
+  "figures_dir": "reports/figures/phase25b_gt_free_features"
+ },
+ "all_gates_pass": true,
+ "locks": {
+  "test_reads": 0,
+  "holdout_feature_extraction": 0,
+  "holdout_outcomes": 0,
+  "val_feature_extraction": 0,
+  "val_outcomes": 0,
+  "router_training": 0,
+  "refiner_forwards": 0,
+  "paired_gain_labels": 0
+ },
+ "next_authorized_phase": "PHASE25C -- eligible, NOT started"
+}

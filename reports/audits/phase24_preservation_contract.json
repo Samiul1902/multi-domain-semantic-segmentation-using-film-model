@@ -1,0 +1,22 @@
+{
+ "artifact": "phase24_preservation_contract",
+ "phase": 24,
+ "principle": "The global output must remain AVAILABLE until the final selection. No destructive replacement may occur before the final decision.",
+ "outcomes": {
+  "SKIP": "final = global",
+  "EXECUTE_THEN_REJECT": "final = global",
+  "EXECUTE_THEN_ACCEPT": "final = regional-fused"
+ },
+ "destructive_replacement_before_final_decision": false,
+ "structural_enforcement": "The global probability map is retained in memory for the whole sample lifetime; the regional candidate is stored separately and only composed at the final selection step.",
+ "non_inferiority": {
+  "metric": "Delta = Dice(final routed system) - Dice(global reference)",
+  "margin": 0.005,
+  "claim_only_if": "lower confidence bound of Delta > -0.005",
+  "per_domain_reporting": "mandatory",
+  "macro_may_not_hide_domain_harm": true,
+  "frozen_before_phase25": true
+ },
+ "generated_utc": "2026-09-29T14:45:29.300871+00:00",
+ "test_reads": 0
+}

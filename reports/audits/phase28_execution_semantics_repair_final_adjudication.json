@@ -1,0 +1,133 @@
+{
+ "artifact": "phase28_execution_semantics_repair_final_adjudication",
+ "phase": 28,
+ "classification": "PHASE28_PRE_EXECUTION_OPERATIONAL_SEMANTICS_REPAIR__FINAL_ADJUDICATION",
+ "method": "RA-MedFiLM-BARR",
+ "governance_only": true,
+ "execution": "NONE",
+ "resolved_ambiguity_2_core_contrast_topology": {
+  "status": "RESOLVED",
+  "result": "Core contrast map recovered: reference arms are NOT uniformly A8. A7-vs-A8 is the sole frozen matched one-factor isolation; A0/A1 are endpoint references; A2-A5 are routing-signal comparators vs A6; A6/A7 are adjacent incremental contrasts.",
+  "artifact": "reports/tables/phase28_core_contrast_map.csv",
+  "one_factor_contract_repaired_to": "v1.1 (v1.0 preserved)"
+ },
+ "resolved_ambiguity_1_rf_execution_semantics": {
+  "status": "UNRESOLVED__BLOCKED",
+  "result": "None of R1/R2/R3/F1 has an authoritatively frozen execution mechanism, and no separately trained variant checkpoint exists. No inference-time intervention was pre-registered. F1 routing membership is also unresolved, and no router-variant threshold/budget calibration rule exists.",
+  "classification": "DEFINED_ABLATION__EXECUTION_MECHANISM_NOT_PRE_REGISTERED",
+  "per_ablation_status": {
+   "R1": "BLOCKED_OPERATIONAL_SEMANTICS_REQUIRED",
+   "R2": "BLOCKED_OPERATIONAL_SEMANTICS_REQUIRED",
+   "R3": "BLOCKED_OPERATIONAL_SEMANTICS_REQUIRED",
+   "F1": "BLOCKED_OPERATIONAL_SEMANTICS_REQUIRED"
+  },
+  "additional_blocker": {
+   "router_calibration": "BLOCKED_THRESHOLD_CALIBRATION_RULE_MISSING (R1,R2,R3)"
+  }
+ },
+ "phase28_spec": "COMPLETE_FROZEN_V1_1_FOR_CORE__INCOMPLETE_FOR_RF_OPERATIONALIZATION",
+ "phase28_execution_eligible": false,
+ "phase28_execution_started": false,
+ "blocking_precedence": "§18 requires: if ANY R/F operationalization remains absent -> Phase28 = BLOCKED_PRE_EXECUTION.",
+ "blocked_reasons": [
+  "R1/R2/R3/F1 execution semantics absent",
+  "F1 membership semantics unresolved",
+  "router-ablation calibration rule absent"
+ ],
+ "new_artifacts": [
+  {
+   "path": "reports/audits/phase28_execution_semantics_repair_entry_gate.json",
+   "sha256": "82efc3e3be291d97eaef6955b8334bcdd3cc4da1a537a48e8591f734a6638d80",
+   "exists": true
+  },
+  {
+   "path": "reports/audits/phase28_execution_semantics_repair_classification.json",
+   "sha256": "eab5a9427ba5d5a800e5b00ec5a8e4356bd83fe90bef4756883810a0a98d741e",
+   "exists": true
+  },
+  {
+   "path": "reports/audits/phase28_rf_execution_semantics_recovery.json",
+   "sha256": "86ee0d2be5e9f327bf2d058a180ef27b28d903cf3c39514f3eb23b53fd097474",
+   "exists": true
+  },
+  {
+   "path": "reports/audits/phase28_variant_checkpoint_search.json",
+   "sha256": "c9651ad1daa7e1a49a4b5dc0e32849bc8029445901f8cbbfa3981f2e5fed44d8",
+   "exists": true
+  },
+  {
+   "path": "reports/audits/phase28_rf_operationalization_adjudication.json",
+   "sha256": "60fc5c855eec347b4b3734a95e094237debd4164ae341264b0bdc48a1ed15369",
+   "exists": true
+  },
+  {
+   "path": "reports/audits/phase28_occlusion_relabeling_guard.json",
+   "sha256": "0360372da78333d887f3bdae6b57bf17a5afbc9d0f0acba580bb1004ffd06cc0",
+   "exists": true
+  },
+  {
+   "path": "reports/audits/phase28_core_contrast_map.json",
+   "sha256": "25477776fb48c6ff6f60538a033e5bdaee09c14696c06baa43e966cfec176e18",
+   "exists": true
+  },
+  {
+   "path": "reports/audits/phase28_one_factor_control_contract_v1_1.json",
+   "sha256": "0e9730f07c36461342793e17cb128de4393b008b37942db203190f009395f982",
+   "exists": true
+  },
+  {
+   "path": "reports/audits/phase28_router_ablation_threshold_semantics.json",
+   "sha256": "7ccaba8237ac3ffed9ba63158fc4a5f7b0dd6f4916bdfa57620a03e56313ed62",
+   "exists": true
+  },
+  {
+   "path": "reports/audits/phase28_f1_membership_semantics.json",
+   "sha256": "f0cc21b3d03649104f693bb7ddf5b5fa8074e92b15d4fe16e34bafe427c461d7",
+   "exists": true
+  },
+  {
+   "path": "reports/audits/phase28_rf_post_safety_semantics.json",
+   "sha256": "4983e9284b8ed219936f46605a4a130dcf6058580dad52486269fc0e28200b6b",
+   "exists": true
+  },
+  {
+   "path": "reports/audits/phase28_a0_a5_artifact_reconstruction_verification.json",
+   "sha256": "e7c14bf4540c392d7802e9bdd2fcb08180540d7f903a7fc567f4a3d1e4a8fae2",
+   "exists": true
+  },
+  {
+   "path": "reports/audits/phase28_a6_a8_prior_evidence_binding.json",
+   "sha256": "b3862fd2545637e6050aa93ab3b74c4ca13227bc89302af595d25b32d77e956c",
+   "exists": true
+  },
+  {
+   "path": "reports/audits/phase28_execution_semantics_repair_no_execution_audit.json",
+   "sha256": "a1a078c3806020c6260e3bea7b290ef3a7b209a5c476b0f282632dfcff00cb78",
+   "exists": true
+  },
+  {
+   "path": "reports/tables/phase28_core_contrast_map.csv",
+   "sha256": "17646be8eb256b250d988ce0bbeab43d3f0395e067e5fecd6e952a3dbffdfb89",
+   "exists": true
+  },
+  {
+   "path": "reports/tables/phase28_ablation_executability_v1_1.csv",
+   "sha256": "4086216fae8706b4792d75a7e4474a9fe429eb673aeabd8b6ebdf52725a01652",
+   "exists": true
+  },
+  {
+   "path": "reports/tables/phase28_specification_completeness_v1_1.csv",
+   "sha256": "7c576cae69dc3fd8db82adb01b768dabc96ad81e1cee132687d70926b5a7af10",
+   "exists": true
+  }
+ ],
+ "n_new_artifacts": 17,
+ "all_new_artifacts_present": true,
+ "terminal": "PHASE28_BLOCKED__R1_R2_R3_F1_EXECUTION_SEMANTICS_INCOMPLETE",
+ "secondary_terminals_also_satisfied": [
+  "PHASE28_BLOCKED__ROUTER_ABLATION_CALIBRATION_RULE_INCOMPLETE"
+ ],
+ "core_topology_terminal_not_applicable": "PHASE28_BLOCKED__CORE_ABLATION_CONTRAST_TOPOLOGY_INCOMPLETE (NOT triggered — topology RESOLVED)",
+ "generated_utc": "2026-10-02T18:52:00Z",
+ "all_pass": true
+}

@@ -1,0 +1,22 @@
+{
+ "artifact": "phase34_memory_measurement_contract",
+ "phase": 34,
+ "section": "\u00a7S",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase34_efficiency_profiling_v1_0",
+ "separate_concepts": [
+  "checkpoint_file_bytes",
+  "parameter_bytes",
+  "baseline_GPU_allocated_after_model_load",
+  "baseline_GPU_reserved_after_model_load",
+  "peak_GPU_allocated_during_inference",
+  "peak_GPU_reserved_during_inference",
+  "incremental_peak_allocated_over_loaded_baseline"
+ ],
+ "reset_peak_memory_stats_point": "immediately before the timed inference region, after model load and warmup",
+ "fresh_subprocess_per_arm_preferred": true,
+ "caching_allocator_reserved_memory_reported": true,
+ "reserved_memory_called_model_memory": false,
+ "generated_utc": "2026-10-04T09:50:07+00:00",
+ "all_pass": true
+}

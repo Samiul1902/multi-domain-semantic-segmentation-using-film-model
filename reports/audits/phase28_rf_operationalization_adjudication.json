@@ -1,0 +1,51 @@
+{
+ "artifact": "phase28_rf_operationalization_adjudication",
+ "phase": 28,
+ "classification": "PHASE28_R1_R2_R3_F1_OPERATIONALIZATION_ADJUDICATION",
+ "governance_only": true,
+ "execution": "NONE",
+ "decision_path": "No separately trained frozen variant checkpoint exists (§3) AND no authoritative source pre-registers an inference-time intervention (§2). Therefore the branch 'IF A SEPARATELY TRAINED VARIANT EXISTS' does NOT apply, and the branch 'IF NO VARIANT CHECKPOINT EXISTS' requires an explicit pre-registered intervention — which also does not exist.",
+ "per_ablation": {
+  "R1": {
+   "definition": "router without deep global features",
+   "variant_checkpoint_exists": false,
+   "pre_registered_intervention_exists": false,
+   "invented_semantics_rejected": "zeroing deep features (NOT authorized; would be invention)",
+   "classification": "DEFINED_ABLATION__EXECUTION_MECHANISM_NOT_PRE_REGISTERED",
+   "execution_status": "BLOCKED_OPERATIONAL_SEMANTICS_REQUIRED"
+  },
+  "R2": {
+   "definition": "router without task_id",
+   "variant_checkpoint_exists": false,
+   "pre_registered_intervention_exists": false,
+   "invented_semantics_rejected": "zeroing learned task embedding (NOT authorized; would be invention)",
+   "classification": "DEFINED_ABLATION__EXECUTION_MECHANISM_NOT_PRE_REGISTERED",
+   "execution_status": "BLOCKED_OPERATIONAL_SEMANTICS_REQUIRED"
+  },
+  "R3": {
+   "definition": "router with scalar-only features",
+   "variant_checkpoint_exists": false,
+   "pre_registered_intervention_exists": false,
+   "invented_semantics_rejected": "zeroing all non-scalar inputs (NOT authorized; would be invention)",
+   "classification": "DEFINED_ABLATION__EXECUTION_MECHANISM_NOT_PRE_REGISTERED",
+   "execution_status": "BLOCKED_OPERATIONAL_SEMANTICS_REQUIRED"
+  },
+  "F1": {
+   "definition": "refiner without p_global channel",
+   "variant_checkpoint_exists": false,
+   "pre_registered_intervention_exists": false,
+   "invented_semantics_rejected": "feeding zeros into the p_global channel (NOT authorized; would be invention)",
+   "classification": "DEFINED_ABLATION__EXECUTION_MECHANISM_NOT_PRE_REGISTERED",
+   "execution_status": "BLOCKED_OPERATIONAL_SEMANTICS_REQUIRED"
+  }
+ },
+ "all_four_blocked": true,
+ "reason_codes": [
+  "NO_VARIANT_CHECKPOINT (R1,R2,R3,F1)",
+  "NO_PRE_REGISTERED_INFERENCE_INTERVENTION (R1,R2,R3,F1)",
+  "NO_TRAINING_AUTHORIZATION (R1,R2,R3,F1)"
+ ],
+ "no_semantics_invented": true,
+ "generated_utc": "2026-10-02T18:37:00Z",
+ "all_pass": true
+}

@@ -1,0 +1,90 @@
+{
+ "artifact": "phase36_robustness_negative_controls_v1_15",
+ "phase": 36,
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase36_robustness_v1_15",
+ "type": "NEGATIVE_CONTROL_REPORT",
+ "in_memory_mutants_only": true,
+ "canonical_files_modified": false,
+ "torch_imported": false,
+ "protected_population_read": false,
+ "subject_execution_sha256": "b194ad28345ea8b268748be383ca98b936cb051d85854666e3141250f3eae002",
+ "controls_total": 10,
+ "controls_passed": 10,
+ "controls_failed": 0,
+ "all_pass": true,
+ "records": [
+  {
+   "id": "NC_SRC",
+   "control": "v1_15_source_sha_frozen",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": {
+    "sha256": "b194ad28345ea8b268748be383ca98b936cb051d85854666e3141250f3eae002"
+   }
+  },
+  {
+   "id": "NC_D61_1",
+   "control": "restore_old_pad_unaware_fusion_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "old call restored -> detector returns False (rejected)"
+  },
+  {
+   "id": "NC_D61_2",
+   "control": "change_fusion_geom_source_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "geom replaced by window -> detector returns False (rejected)"
+  },
+  {
+   "id": "NC_D75_1",
+   "control": "helper_thresholds_live_f32_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "no f16 round-trip -> rejected"
+  },
+  {
+   "id": "NC_D75_2",
+   "control": "helper_drops_f16_cast_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "f16 cast removed -> rejected"
+  },
+  {
+   "id": "NC_D75_3",
+   "control": "helper_drops_cast_back_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "f16->f32 cast-back removed -> rejected"
+  },
+  {
+   "id": "NC_D75_4",
+   "control": "helper_threshold_change_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "threshold 0.51 -> rejected"
+  },
+  {
+   "id": "NC_D75_5",
+   "control": "helper_omitted_from_core_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "core wiring removed -> rejected"
+  },
+  {
+   "id": "NC_D75_6",
+   "control": "helper_omitted_from_clean_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "clean wiring removed -> rejected"
+  },
+  {
+   "id": "NC_G_1",
+   "control": "downstream_G_quantization_introduced_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "f16 cast injected -> rejected"
+  }
+ ]
+}

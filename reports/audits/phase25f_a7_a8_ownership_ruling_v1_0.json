@@ -1,0 +1,66 @@
+{
+ "artifact": "phase25f_a7_a8_ownership_ruling_v1_0",
+ "phase": "25F",
+ "stage": "SUPERVISOR_RULING_F1_PHASE25F_PHASE25G_OWNERSHIP",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_post_safety_v1_0",
+ "ruling_id": "F1",
+ "resolves": "documented A7/A8 evaluation-ownership ambiguity",
+ "phase25f_owns": [
+  "leakage-safe S_omega feature construction",
+  "S_omega cross-validated training",
+  "OOF S_omega probabilities / decisions",
+  "final S_omega refit",
+  "final S_omega checkpoint",
+  "deterministic fusion/fallback implementation",
+  "construction of the C9 decision artifact on ROUTER_DEVELOPMENT",
+  "classifier-level descriptive metrics for S_omega itself"
+ ],
+ "phase25f_does_not_own": [
+  "A7-vs-A8 integrated segmentation-performance comparison",
+  "C8-vs-C9 system-performance comparison",
+  "post-safety preservation adjudication",
+  "final comparator ranking",
+  "integrated ablation reporting"
+ ],
+ "phase25g_owns": [
+  "A7 vs A8",
+  "C8 vs C9",
+  "integrated preservation evaluation",
+  "comparator + ablation report",
+  "controlled development freeze"
+ ],
+ "phase25f_may_construct_C9_artifacts": true,
+ "phase25f_may_evaluate_A7_vs_A8_system_performance": false,
+ "hierarchy_basis": "Phase24 module-plan hierarchy",
+ "module_plan_binding": {
+  "25F": {
+   "name": "Post-refinement preservation selector + fusion",
+   "deliverable": "S_omega + ROI-weighted fusion",
+   "starts_after": [
+    "25A"
+   ]
+  },
+  "25G": {
+   "name": "Integrated controlled development evaluation / freeze",
+   "deliverable": "comparator + ablation evaluation report and freeze",
+   "starts_after": [
+    "25E",
+    "25F"
+   ]
+  }
+ },
+ "handoff_schema_scope": [
+  "C9 post-safety (S_omega) comparator",
+  "preservation-aware gating"
+ ],
+ "comparator_direction_contract": {
+  "C9": {
+   "name": "POST_SAFETY",
+   "scope": "Phase25F only; excluded"
+  }
+ },
+ "a7_a8_evaluation_performed": false,
+ "c8_c9_comparison_performed": false,
+ "all_pass": true
+}

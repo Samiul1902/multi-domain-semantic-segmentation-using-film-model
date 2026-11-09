@@ -1,0 +1,88 @@
+{
+ "artifact": "phase35_v1_0e_no_model_execution_audit",
+ "phase": 35,
+ "section": "\u00a7U",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase35_interpretability_v1_0e",
+ "purpose": "Attest that the v1.0e source-authoring + static-governance work performed NO model execution, NO checkpoint deserialization, NO forward/autograd/Grad-CAM, NO raw data read, and set NO gate / invoked NO mode.",
+ "counters": {
+  "model_constructions": 0,
+  "checkpoint_deserializations": 0,
+  "forwards": 0,
+  "autograd_calls": 0,
+  "gradcam_executions": 0,
+  "router_attribution_executions": 0,
+  "smoke_reruns": 0,
+  "raw_val_reads": 0,
+  "real_persisted_p_global_reads": 0,
+  "gt_reads": 0,
+  "router_holdout_reads": 0,
+  "test_reads": 0,
+  "training_steps": 0,
+  "gate_env_set": 0,
+  "mode_invocations": 0
+ },
+ "evidence": {
+  "static_preflight_model_constructed": false,
+  "static_preflight_forward_executed": false,
+  "static_preflight_gate_env_set": false,
+  "static_preflight_mode_invoked": false,
+  "unit_tests_device": "cpu",
+  "unit_tests_model_free": true,
+  "unit_tests_model_constructions": 0,
+  "unit_tests_forwards": 0
+ },
+ "v1_0d_smoke_preserved_not_rerun": true,
+ "predecessors": {
+  "scripts/analysis/phase35_interpretability_execution_v1_0d.py": {
+   "path": "scripts/analysis/phase35_interpretability_execution_v1_0d.py",
+   "expected_sha256": "cccc109ade27eb5ad7883912004c1e911e9e253a659146f3d64820af92244056",
+   "observed_sha256": "cccc109ade27eb5ad7883912004c1e911e9e253a659146f3d64820af92244056",
+   "match": true
+  },
+  "scripts/analysis/phase35_interpretability_execution_v1_0b.py": {
+   "path": "scripts/analysis/phase35_interpretability_execution_v1_0b.py",
+   "expected_sha256": "581926840d7717e19ed15ad77c7c5339b709efc881b938924d6eec0a2ceb1872",
+   "observed_sha256": "581926840d7717e19ed15ad77c7c5339b709efc881b938924d6eec0a2ceb1872",
+   "match": true
+  },
+  "scripts/analysis/phase35_interpretability_execution_v1_0c.py": {
+   "path": "scripts/analysis/phase35_interpretability_execution_v1_0c.py",
+   "expected_sha256": "4058fc5544e6e1af15339df20a88da4880549ea8d4dd434395df04e0fa261baa",
+   "observed_sha256": "4058fc5544e6e1af15339df20a88da4880549ea8d4dd434395df04e0fa261baa",
+   "match": true
+  },
+  "scripts/analysis/phase35_interpretability_common_v1_0b.py": {
+   "path": "scripts/analysis/phase35_interpretability_common_v1_0b.py",
+   "expected_sha256": "9963215e1431e968e11bacbcd917d96a8a985a7181000258b90f458ff0a778ac",
+   "observed_sha256": "9963215e1431e968e11bacbcd917d96a8a985a7181000258b90f458ff0a778ac",
+   "match": true
+  },
+  "reports/audits/phase35_synthetic_smoke_reporting_gap_disclosure_v1_0d.json": {
+   "path": "reports/audits/phase35_synthetic_smoke_reporting_gap_disclosure_v1_0d.json",
+   "expected_sha256": "4d9fc89ab58658891cb56f9645c26ef5cf9cfa195379e5eea3e5d89d4d68cff3",
+   "observed_sha256": "4d9fc89ab58658891cb56f9645c26ef5cf9cfa195379e5eea3e5d89d4d68cff3",
+   "match": true
+  },
+  "reports/audits/phase35_synthetic_interpretability_smoke_v1_0d.json": {
+   "path": "reports/audits/phase35_synthetic_interpretability_smoke_v1_0d.json",
+   "expected_sha256": "5bf61bc52d0c83ffb50849db973fb89133f0fa741140e58de8408a395979fee0",
+   "observed_sha256": "5bf61bc52d0c83ffb50849db973fb89133f0fa741140e58de8408a395979fee0",
+   "match": true
+  },
+  "reports/audits/phase35_synthetic_smoke_provenance_v1_0d.json": {
+   "path": "reports/audits/phase35_synthetic_smoke_provenance_v1_0d.json",
+   "expected_sha256": "8a7633cf05cbdb55453903e9bed31d09c953e0ab675b6b90df5567a0506a5dcf",
+   "observed_sha256": "8a7633cf05cbdb55453903e9bed31d09c953e0ab675b6b90df5567a0506a5dcf",
+   "match": true
+  },
+  "reports/audits/phase35_synthetic_smoke_final_check_v1_0d.json": {
+   "path": "reports/audits/phase35_synthetic_smoke_final_check_v1_0d.json",
+   "expected_sha256": "1cae9c7b45d679b8fc1d3e863d022795ad6f4c8a96fc441dde95d6fec436807f",
+   "observed_sha256": "1cae9c7b45d679b8fc1d3e863d022795ad6f4c8a96fc441dde95d6fec436807f",
+   "match": true
+  }
+ },
+ "generated_utc": "2026-10-05T02:12:42Z",
+ "all_pass": true
+}

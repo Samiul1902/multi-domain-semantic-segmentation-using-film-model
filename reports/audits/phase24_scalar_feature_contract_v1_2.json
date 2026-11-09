@@ -1,0 +1,283 @@
+{
+ "artifact": "phase24_scalar_feature_contract_v1_2",
+ "phase": "24",
+ "revision": "ra_medfilm_barr_narrowed_v1_2",
+ "resolves": "RF-3",
+ "classification": "SPECIFICATION_COMPLETENESS_AND_GOVERNANCE_SYNC",
+ "science_changed": false,
+ "probability_map": {
+  "name": "P",
+  "shape": [
+   512,
+   512
+  ],
+  "dtype_for_features": "float32",
+  "clamp": "clip only where needed for logarithms"
+ },
+ "thresholds": {
+  "t_roi": 0.3,
+  "t_seg": 0.5,
+  "N": 262144
+ },
+ "scalars": [
+  {
+   "feature_name": "entropy_proxy_mean",
+   "threshold_role": "THRESHOLD_FREE",
+   "threshold_value": null,
+   "formula": "mean over all N pixels of -[q*ln q + (1-q)*ln(1-q)]/ln 2, q = clip(P, 1e-7, 1-1e-7)",
+   "units": "dimensionless in [0,1]",
+   "input_source": "P (global probability map)",
+   "dtype": "float32",
+   "uses_GT": false,
+   "pre_refinement": true
+  },
+  {
+   "feature_name": "frac_prob_within_0p05_of_boundary",
+   "threshold_role": "SEGMENTATION_OUTPUT_PROBABILITY_BOUNDARY",
+   "threshold_value": 0.5,
+   "formula": "(1/N) * sum 1[|P - 0.50| <= 0.05]",
+   "units": "fraction in [0,1]",
+   "input_source": "P",
+   "dtype": "float32",
+   "uses_GT": false,
+   "pre_refinement": true
+  },
+  {
+   "feature_name": "frac_prob_within_0p02_of_boundary",
+   "threshold_role": "SEGMENTATION_OUTPUT_PROBABILITY_BOUNDARY",
+   "threshold_value": 0.5,
+   "formula": "(1/N) * sum 1[|P - 0.50| <= 0.02]",
+   "units": "fraction in [0,1]",
+   "input_source": "P",
+   "dtype": "float32",
+   "uses_GT": false,
+   "pre_refinement": true
+  },
+  {
+   "feature_name": "mean_boundary_margin",
+   "threshold_role": "SEGMENTATION_OUTPUT_PROBABILITY_BOUNDARY",
+   "threshold_value": 0.5,
+   "formula": "mean over all N pixels of |P - 0.50| (NOT negated)",
+   "units": "probability distance in [0,0.5]",
+   "input_source": "P",
+   "dtype": "float32",
+   "uses_GT": false,
+   "pre_refinement": true
+  },
+  {
+   "feature_name": "pred_foreground_pixels",
+   "threshold_role": "ROI_PROPOSAL",
+   "threshold_value": 0.3,
+   "formula": "sum M_roi where M_roi = 1[P >= 0.30]",
+   "units": "pixels on the 512x512 canvas",
+   "input_source": "P",
+   "dtype": "float32",
+   "uses_GT": false,
+   "pre_refinement": true
+  },
+  {
+   "feature_name": "pred_foreground_fraction",
+   "threshold_role": "ROI_PROPOSAL",
+   "threshold_value": 0.3,
+   "formula": "pred_foreground_pixels / N",
+   "units": "fraction in [0,1]",
+   "input_source": "P",
+   "dtype": "float32",
+   "uses_GT": false,
+   "pre_refinement": true
+  },
+  {
+   "feature_name": "pred_roi_exists",
+   "threshold_role": "ROI_PROPOSAL",
+   "threshold_value": 0.3,
+   "formula": "1.0 if pred_foreground_pixels > 0 else 0.0",
+   "units": "binary indicator",
+   "input_source": "P",
+   "dtype": "float32",
+   "uses_GT": false,
+   "pre_refinement": true
+  },
+  {
+   "feature_name": "pred_empty",
+   "threshold_role": "ROI_PROPOSAL",
+   "threshold_value": 0.3,
+   "formula": "1.0 - pred_roi_exists",
+   "units": "binary indicator",
+   "input_source": "P",
+   "dtype": "float32",
+   "uses_GT": false,
+   "pre_refinement": true
+  },
+  {
+   "feature_name": "predicted_roi_side",
+   "threshold_role": "ROI_PROPOSAL",
+   "threshold_value": 0.3,
+   "formula": "canonical cache field crop_side_pixels",
+   "units": "pixels on the 512 canvas",
+   "input_source": "ROI030 crop metadata",
+   "dtype": "float32",
+   "uses_GT": false,
+   "pre_refinement": true
+  },
+  {
+   "feature_name": "predicted_roi_area_fraction",
+   "threshold_role": "ROI_PROPOSAL",
+   "threshold_value": 0.3,
+   "formula": "predicted_roi_area_fraction = w_in * h_in / (512 * 512)",
+   "units": "fraction of the native 512x512 image canvas (clipped in-canvas ROI)",
+   "input_source": "ROI030 crop metadata",
+   "dtype": "float32",
+   "uses_GT": false,
+   "pre_refinement": true,
+   "expected_range": "[0,1]",
+   "semantic_role": "fraction of the native 512x512 image canvas occupied by the CLIPPED in-canvas ROI; external padding is excluded",
+   "external_padding_excluded": true,
+   "superseded_formula": "crop_side_pixels^2 / (512^2)",
+   "superseded_status": "SUPERSEDED_PRE_EXECUTION_SPEC_FORMULA__NOT_USED_FOR_PHASE25B"
+  }
+ ],
+ "n_scalars": 10,
+ "synthetic_definition_evaluation": {
+  "entropy_proxy_mean": 0.7214568021167014,
+  "frac_prob_within_0p05_of_boundary": 0.100311279296875,
+  "frac_prob_within_0p02_of_boundary": 0.040157318115234375,
+  "mean_boundary_margin": 0.24985671043395996,
+  "pred_foreground_pixels": 183598.0,
+  "pred_foreground_fraction": 0.7003707885742188,
+  "pred_roi_exists": 1.0,
+  "pred_empty": 0.0
+ },
+ "boundary_scalar_threshold_resolution": {
+  "resolved_here": true,
+  "governing_threshold": 0.5,
+  "role": "SEGMENTATION_OUTPUT_PROBABILITY_BOUNDARY",
+  "applies_to": [
+   "frac_prob_within_0p05_of_boundary",
+   "frac_prob_within_0p02_of_boundary",
+   "mean_boundary_margin"
+  ],
+  "note": "using 0.50 for these probability-margin descriptors does NOT redefine ROI geometry; using 0.30 for the ROI descriptors does NOT redefine Dice / final segmentation"
+ },
+ "connected_components": {
+  "in_primary_ten": false,
+  "convention_needed": false,
+  "phase24_prose_note_status": "OPTIONAL / NOT_PRIMARY (retained, not silently added)"
+ },
+ "defect": null,
+ "defect_present": false,
+ "defect_reporting_policy": "REPORTED, NOT SILENTLY REPAIRED",
+ "candidate_resolutions_for_supervisor": [
+  {
+   "id": "C1",
+   "change": "denominator becomes crop_side_pixels^2",
+   "gives": "constant 1.0 for every row (degenerate; carries no information)"
+  },
+  {
+   "id": "C2",
+   "change": "clip the ratio to [0,1]",
+   "gives": "saturates at 1.0 for 1257 rows; destroys the distinction among them"
+  },
+  {
+   "id": "C3",
+   "change": "redefine in canvas-clipped terms: ((clip_y2-clip_y1)*(clip_x2-clip_x1))/(512^2)",
+   "gives": "in [0,1]; the in-canvas ROI area actually available to the refiner"
+  },
+  {
+   "id": "C4",
+   "change": "rename the unit to 'squared pixel ratio, unbounded, max 2.25'",
+   "gives": "numerically unchanged; honest about a non-fraction quantity"
+  }
+ ],
+ "adopted_resolution": "C3",
+ "adopted_resolution_reason": "supervisor ruling: redefine in canvas-clipped terms so the field is a genuine fraction of the native 512x512 canvas; external padding excluded; crop-scale information retained by predicted_roi_side",
+ "checks": [
+  {
+   "check": "scalar_definitions_evaluate_on_synthetic_map",
+   "passed": true,
+   "detail": {
+    "entropy_proxy_mean": 0.7214568021167014,
+    "frac_prob_within_0p05_of_boundary": 0.100311279296875,
+    "frac_prob_within_0p02_of_boundary": 0.040157318115234375,
+    "mean_boundary_margin": 0.24985671043395996,
+    "pred_foreground_pixels": 183598.0,
+    "pred_foreground_fraction": 0.7003707885742188,
+    "pred_roi_exists": 1.0,
+    "pred_empty": 0.0
+   }
+  },
+  {
+   "check": "scalar_ranges_respected",
+   "passed": true,
+   "detail": "all nine threshold-complete scalars in range"
+  },
+  {
+   "check": "ten_scalars_enumerated",
+   "passed": true,
+   "detail": 10
+  },
+  {
+   "check": "ten_closed_form_formulas",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "ten_input_sources",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "ten_units",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "ten_dtypes_float32",
+   "passed": true,
+   "detail": "all scalar outputs float32 unless count/binary pre-cast"
+  },
+  {
+   "check": "ten_threshold_roles",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "zero_gt_derived_scalars",
+   "passed": true,
+   "detail": "no scalar reads GT"
+  },
+  {
+   "check": "zero_unresolved_threshold_roles",
+   "passed": true,
+   "detail": "all ten roles now bound (the three boundary scalars use t_seg=0.50)"
+  },
+  {
+   "check": "predicted_roi_area_fraction_internally_consistent",
+   "passed": true,
+   "detail": {
+    "new_range": {
+     "min": 1.52587890625e-05,
+     "max": 1.0,
+     "mean": 0.5126122526038384,
+     "median": 0.4916419982910156
+    },
+    "new_gt1_count": 0,
+    "external_padding_excluded": true
+   }
+  }
+ ],
+ "n_checks": 11,
+ "n_failed": 0,
+ "unresolved_threshold_roles": 0,
+ "gt_derived_scalars": 0,
+ "verdict": "RF3_FULLY_RESOLVED",
+ "model_instantiations": 0,
+ "forward_passes": 0,
+ "science_execution": false,
+ "d1_resolved": true,
+ "d2_resolved": true,
+ "threshold_semantics": {
+  "ROI_PROPOSAL": 0.3,
+  "SEGMENTATION_OUTPUT_PROBABILITY_BOUNDARY": 0.5,
+  "THRESHOLD_FREE": null
+ }
+}

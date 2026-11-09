@@ -1,0 +1,47 @@
+{
+ "phase": 28,
+ "governance_only": true,
+ "execution": "NONE",
+ "method": "RA-MedFiLM-BARR",
+ "canonical_baseline": "A8_C9 (budget 0.25, lambda 0.25)",
+ "one_factor_contract_ref": "reports/audits/phase28_one_factor_control_contract.json",
+ "population": "ROUTER_DEVELOPMENT (n=4957)",
+ "artifact": "phase28_ablation_family_rescue",
+ "classification": "PHASE28_ABLATION_FAMILY__EMPTY_PREDICTION_RESCUE",
+ "family_scope": "Empty-global-prediction behaviour",
+ "recovered_spec": {
+  "empty_global_prediction_primary_behavior": "A_SKIP_REFINEMENT",
+  "primary_justification": "Option A (skip) is PRIMARY: minimal, GT-free, zero-extra-cost; if the global model predicts no foreground there is no region to refine and the global output is preserved by fallback",
+  "option_B": "deterministic cheap uncertainty-based rescue — RETAINED ONLY AS A PRE-REGISTERED CONTROLLED ABLATION; any constant must be TRAIN-derived and frozen before Phase25",
+  "gt_rescue_forbidden": true,
+  "action_availability_definition": "action_available_i = predicted ROI exists",
+  "global_empty_action_available": false,
+  "global_empty_pre_gate": "FORCED_SKIP",
+  "global_empty_final": "global",
+  "global_empty_included_in_integrated_evaluation": true,
+  "global_empty_synthetic_gt_roi": false,
+  "global_empty_fabricated_gain_target": false,
+  "global_empty_excluded_from_regression_training_rows": true,
+  "global_empty_report_label": "ACTION_UNAVAILABLE_GLOBAL_EMPTY"
+ },
+ "rescue_ablation_class": "NOT_APPLICABLE__NO_FROZEN_RESCUE_ABLATION_ID",
+ "critical_finding": "The 'rescue' concept is NOT one of the frozen ablation IDs R1/R2/R3. R1=router without deep global features; R2=router without task_id; R3=router with scalar-only features. The empty-prediction rescue (Option B) is a REFERENCE_PROPOSAL pre-registered ablation option with NO ablation ID and is NOT part of the frozen Phase24 ablation matrix. Label-based inference that 'R' means 'Rescue' would have been WRONG.",
+ "label_inference_trap_avoided": true,
+ "retraining_required": false,
+ "source_refs": [
+  {
+   "path": "reports/audits/phase24_architecture_spec.json",
+   "sha256": "bd5522678571f9b40e3ae887c7fd6c2d7862b3e73152eab1ae7db13cab6c6071"
+  },
+  {
+   "path": "reports/audits/phase24_exact_implementation_spec.json",
+   "sha256": "6b1a71d5e88ce06baa8f200523be32773428417ffd233ff218d7e50b6af271dd"
+  },
+  {
+   "path": "reports/tables/phase24_ablation_plan.csv",
+   "sha256": "422967fa3484b19d90bfc3b2146278aa69c6bd7a34e42ae3dbcb43a9ccca9087"
+  }
+ ],
+ "generated_utc": "2026-10-02T18:44:00Z",
+ "all_pass": true
+}

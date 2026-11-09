@@ -1,0 +1,43 @@
+{
+  "timestamp": "2026-09-25T01:57:06Z",
+  "population": {
+    "val_full_field_images": 103,
+    "components": 152
+  },
+  "checkpoints": {
+    "global_unetpp": {
+      "sha256": "ec7eb13f32e43af27eab7fc617bd1a2a8fcce1d6651a1b4a3653f3e4d1283269"
+    },
+    "regional_refiner": {
+      "sha256": "2e09e3a9c39c731687db1a9fef0c80881ed6235e4cda070bb4b8b382caa45daa",
+      "epoch": 56
+    },
+    "stage4d_localizer": {
+      "sha256": "7673c34a2f2c86eca2e45c1bc6abe77842d17cd09f122f2da0f2d414ca492273",
+      "config": {
+        "threshold": 0.1,
+        "margin": 0.2,
+        "top_k": 5,
+        "nms_iou": 0.3
+      }
+    }
+  },
+  "counters": {
+    "search_sweeps": 0,
+    "tuning_runs": 0,
+    "checkpoint_comparisons": 0,
+    "retraining": 0,
+    "h3_training": 0,
+    "test_reads": 0,
+    "external_test_reads": 0
+  },
+  "governance": {
+    "no_training": true,
+    "no_h3": true,
+    "no_threshold_search": true,
+    "no_proposal_search": true,
+    "no_checkpoint_change": true,
+    "external_data_used": false,
+    "test_split_reads": 0
+  }
+}

@@ -1,0 +1,36 @@
+{
+ "artifact_kind": "PHASE36_FINAL_PROB_AUTHORITY_DIAGNOSTIC_V1_2_RESULT_ADJUDICATION_RECONCILIATION_D63_ADDENDUM",
+ "addendum_revision": "v1_0",
+ "amends": "phase36_final_probability_authority_diagnostic_v1_2_result_adjudication_reconciliation_v1_1.json",
+ "amends_sha256": "a85aaf4a0668effaecb148c3ada7a8f25c1bcd0216740e0c009df2115a3833bb",
+ "additive": true,
+ "mode": "STATIC_EXISTING_ARTIFACT_FORENSICS_ONLY",
+ "reason": "v1.1 compared RAW source spans (docstring-inclusive) for crop_and_resize_vec, yielding a false 'not equivalent'. This addendum recomputes the comparison from AST-normalized bodies (docstring stripped, comments dropped) to give the precise result.",
+ "corrected_d63_determination": {
+  "crop_and_resize_vec_semantic_body_sha_phase27": "f05bc1a039765535af28b2adfbef9fd5b29c6c3e3319bc59ba48a6d4924e1f38",
+  "crop_and_resize_vec_semantic_body_sha_v1_14": "376d0514da5f533886bbeb7ec6e19d40bf5191b1e49e4d4c3b6341dbacc1e809",
+  "crop_and_resize_vec_source_equivalent_corrected": false,
+  "crop_and_resize_vec_difference_is_cosmetic_only": true,
+  "crop_and_resize_vec_diff_detail": "Phase27 splits the resize into `resized = pil.resize(...)` then `channels.append(np.asarray(resized, ...))`; v1.14 inlines it. Same PIL resize, same BILINEAR resampling, same dtype. Cosmetically different, semantically IDENTICAL.",
+  "module_fuse_full_field_semantic_body_sha_phase27": "255141ec9581e8ebce4c0912f16440fb8ab49bd3b773758665c7e862c2abcf59",
+  "module_fuse_full_field_semantic_body_sha_v1_14": "44c00f9a59464f269f50bb84a580d98a5deca4b56a349a0003a2ceb9b6c87bf3",
+  "phase27_vs_v1_14_module_fuse_full_field_identical_corrected": false,
+  "module_fuse_full_field_diff_detail": "Phase27 uses temp vars wy1/wy2/wx1/wx2 then slices; v1.14 inlines the slice. Arithmetically IDENTICAL.",
+  "model_fuse_global_with_regional_semantic_body_sha": "408342545c38f3c465c17deff1813314acd6ea224d68b0376d77bd244a6f3218",
+  "model_method_differs_from_module_fuse_full_field_corrected": true,
+  "fusion_static_equivalent_corrected": false,
+  "model_method_semantic_body": "y0, y1, x0, x1 = window\nout = p_global.astype(np.float32).copy()\ncrop = np.asarray(p_refined_crop, dtype=np.float32)\nif crop.shape != (y1 - y0, x1 - x0):\n    tgt = torch.from_numpy(crop)[None, None]\n    resized = torch.nn.functional.interpolate(tgt, size=(y1 - y0, x1 - x0), mode='bilinear', align_corners=False)\n    crop = resized[0, 0].numpy()\nout[y0:y1, x0:x1] = crop\nreturn out"
+ },
+ "verdicts_unchanged": {
+  "D60_RECONCILED": "FINAL_AUTHORITY_MISMATCH_EXACTLY_LOCALIZED_TO_PHASE27_ACCEPT_FINAL_SOURCE",
+  "D61": "ESTABLISHED",
+  "D61_classification": "ACCEPT_FINAL_FUSION_SEMANTICS_DIVERGE_FROM_PHASE27",
+  "D61_sole_cause_established": false,
+  "D62": "RESOLVED",
+  "D63": "PASS",
+  "D64": "PASS"
+ },
+ "no_new_science": true,
+ "generated_utc": "2026-10-08T08:18:43Z",
+ "write_semantics": "O_CREAT|O_EXCL + full-write + fsync (exclusive-create, write-once)"
+}

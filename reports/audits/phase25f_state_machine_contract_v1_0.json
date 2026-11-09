@@ -1,0 +1,56 @@
+{
+ "artifact": "phase25f_state_machine_contract_v1_0",
+ "phase": "25F",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_post_safety_v1_0",
+ "stage": "SUPERVISOR_RULING_F14_PHASE25E_SKIP_INTERACTION",
+ "ruling_id": "F14",
+ "states": {
+  "STATE_A": {
+   "condition": "action_available = false",
+   "pre_gate": "FORCED_SKIP",
+   "refiner_executed": false,
+   "somega_executed": false,
+   "final": "GLOBAL"
+  },
+  "STATE_B": {
+   "condition": "action_available = true and Phase25E pre-gate says SKIP",
+   "refiner_executed": false,
+   "somega_executed": false,
+   "final": "GLOBAL"
+  },
+  "STATE_C": {
+   "condition": "Phase25E says EXECUTE",
+   "refiner_executes": true,
+   "candidate_fused_prediction_constructed": true,
+   "somega_features_computed": true,
+   "branch": {
+    "p_accept >= 0.50": {
+     "outcome": "EXECUTE_THEN_ACCEPT",
+     "final": "regional-fused candidate"
+    },
+    "else": {
+     "outcome": "EXECUTE_THEN_REJECT",
+     "final": "GLOBAL"
+    }
+   }
+  }
+ },
+ "somega_never_changes": "whether refinement was executed",
+ "somega_changes_only": "which already-computed prediction is returned",
+ "fusion_fallback": {
+  "if_accept": {
+   "outside_frozen_roi": "p_final = p_global",
+   "inside_frozen_roi": "p_final = resized p_refined"
+  },
+  "alpha_blending": false,
+  "learned_fusion": false,
+  "if_reject": "p_final = p_global everywhere",
+  "if_skip": "p_final = p_global everywhere",
+  "final_binary_segmentation": "p_final >= 0.50",
+  "roi_geometry_threshold": 0.3,
+  "threshold_role_substitution": false
+ },
+ "model_forwards": 0,
+ "all_pass": true
+}

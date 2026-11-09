@@ -1,0 +1,86 @@
+{
+ "artifact": "phase29_seed123_3407_training_output_canonical_status",
+ "phase": 29,
+ "stage": "SEED123_3407_TRAINING_OUTPUT_CANONICAL_STATUS",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_phase29_repro_v1_1",
+ "generated_utc": "2026-10-03T15:12:13+00:00",
+ "classification": "TRAINING_OUTPUTS_RETAIN_CANONICAL_PHASE29_STATUS",
+ "no_rerun_authorized_for_entrypoint_exception": true,
+ "rationale": "The Phase25A entrypoint generalization is implementation-only and imports/executes identically under the default CLI. Seed123/3407 R_psi/B_phi/S_omega outputs were produced under the canonical protocol and are unaffected; no rerun is authorized or required.",
+ "per_seed": {
+  "123": {
+   "n_checkpoints": 31,
+   "final_config_seed": 123,
+   "final_config_seed_matches_master": true,
+   "architecture_revision": "ra_medfilm_barr_narrowed_v1_1",
+   "module": "regional_refiner",
+   "fit_manifest": "data_cache\\phase25a_barr_roi030_cache\\folds\\final_all_development.csv",
+   "fit_manifest_sha256": "8d86d7ca76f5ae35b978fb4b40afce28dba2a21e3f0de62761a38e0831278159",
+   "loss": {
+    "name": "bce_dice",
+    "bce_weight": 0.5,
+    "dice_weight": 0.5,
+    "dice_epsilon": 1e-06
+   },
+   "optimizer": {
+    "name": "AdamW",
+    "lr": 0.0001,
+    "weight_decay": 0.0001
+   },
+   "scheduler": {
+    "name": "CosineAnnealingLR",
+    "T_max": 100
+   },
+   "batch_size": 8,
+   "max_epochs": 100,
+   "amp": true,
+   "global_checkpoint_binding_sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+   "histories_valid": true
+  },
+  "3407": {
+   "n_checkpoints": 31,
+   "final_config_seed": 3407,
+   "final_config_seed_matches_master": true,
+   "architecture_revision": "ra_medfilm_barr_narrowed_v1_1",
+   "module": "regional_refiner",
+   "fit_manifest": "data_cache\\phase25a_barr_roi030_cache\\folds\\final_all_development.csv",
+   "fit_manifest_sha256": "8d86d7ca76f5ae35b978fb4b40afce28dba2a21e3f0de62761a38e0831278159",
+   "loss": {
+    "name": "bce_dice",
+    "bce_weight": 0.5,
+    "dice_weight": 0.5,
+    "dice_epsilon": 1e-06
+   },
+   "optimizer": {
+    "name": "AdamW",
+    "lr": 0.0001,
+    "weight_decay": 0.0001
+   },
+   "scheduler": {
+    "name": "CosineAnnealingLR",
+    "T_max": 100
+   },
+   "batch_size": 8,
+   "max_epochs": 100,
+   "amp": true,
+   "global_checkpoint_binding_sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+   "histories_valid": true
+  }
+ },
+ "checks": {
+  "seed123_config_seed_master": true,
+  "seed3407_config_seed_master": true,
+  "seed123_architecture_canonical": true,
+  "seed3407_architecture_canonical": true,
+  "seed123_global_checkpoint_bound": true,
+  "seed3407_global_checkpoint_bound": true,
+  "seed123_hyperparameters_canonical": true,
+  "seed3407_hyperparameters_canonical": true,
+  "seed123_histories_valid": true,
+  "seed3407_histories_valid": true
+ },
+ "training_outputs_retain_canonical_phase29_status": true,
+ "rerun_performed": false,
+ "all_pass": true
+}

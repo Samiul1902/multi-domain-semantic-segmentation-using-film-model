@@ -1,0 +1,110 @@
+{
+ "artifact": "phase27_predecessor_immutability_gate",
+ "phase": "27",
+ "classification": "PHASE27_CANONICAL_MULTIDOMAIN_PRESERVATION_EXECUTION",
+ "method": "RA-MedFiLM-BARR",
+ "execution_phase": true,
+ "components": {
+  "global_medfilm": {
+   "path": "checkpoints/phase21_global_medfilm_fourdomain_seed42_clean_v3/best.pt",
+   "exists": true,
+   "sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+   "expected_sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+   "match": true
+  },
+  "regional_refiner": {
+   "path": "checkpoints/phase25a_barr_regional_refiner_v1_1_roi030/final/final.pt",
+   "exists": true,
+   "sha256": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109",
+   "expected_sha256": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109",
+   "match": true
+  },
+  "benefit_router": {
+   "path": "checkpoints/phase25d_barr_benefit_router_v1_2_1_seed42/final/final.pt",
+   "exists": true,
+   "sha256": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+   "expected_sha256": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+   "match": true
+  },
+  "post_safety": {
+   "path": "checkpoints/phase25f_barr_post_safety_v1_0_seed42/final/final.pt",
+   "exists": true,
+   "sha256": "eee9b97b9921e53fc07eac9281dce64ba518c6e1659916b97b0b3bec21ec6d2e",
+   "expected_sha256": "eee9b97b9921e53fc07eac9281dce64ba518c6e1659916b97b0b3bec21ec6d2e",
+   "match": true
+  }
+ },
+ "normalizations": {
+  "router_normalization": {
+   "path": "reports/tables/phase25d_final_normalization_stats.csv",
+   "exists": true,
+   "sha256": "ba37742e96610ec5e46fb47c093bf71ae1afd85b2a0db9696b612c873a4ba1fb",
+   "expected_sha256": "ba37742e96610ec5e46fb47c093bf71ae1afd85b2a0db9696b612c873a4ba1fb",
+   "match": true
+  },
+  "post_safety_normalization": {
+   "path": "reports/tables/phase25f_final_normalization_stats.csv",
+   "exists": true,
+   "sha256": "e112e18b134c6edcdcd0c254c362d0a954a75faffe634cc37a2a17e4fe6f4e7b",
+   "expected_sha256": "e112e18b134c6edcdcd0c254c362d0a954a75faffe634cc37a2a17e4fe6f4e7b",
+   "match": true
+  }
+ },
+ "schemas": {
+  "router_schema": {
+   "path": "reports/tables/phase25b_feature_schema.csv",
+   "exists": true,
+   "sha256": "da76aa34f14006146f46ca799f173378274d8c9d0792dc18edb30711a2486dd4",
+   "expected_sha256": "da76aa34f14006146f46ca799f173378274d8c9d0792dc18edb30711a2486dd4",
+   "match": true
+  },
+  "post_safety_schema": {
+   "path": "reports/tables/phase25f_feature_schema_v1_0.csv",
+   "exists": true,
+   "sha256": "3e70e20c541b93de752980c34cdfb6fe5af17ebe4c18cbb64397c0bbae465ee5",
+   "expected_sha256": "3e70e20c541b93de752980c34cdfb6fe5af17ebe4c18cbb64397c0bbae465ee5",
+   "match": true
+  }
+ },
+ "spec_artifacts": {
+  "phase27_spec_v1_1_terminal": {
+   "path": "reports/audits/phase27_spec_v1_1_terminal.json",
+   "exists": true,
+   "sha256": "43ef1b7501ebe18e7d3b9868eb8ebf3d2793013de4dc858174b9589b8a386e22",
+   "expected_sha256": null,
+   "match": true
+  },
+  "phase27_bootstrap_plan_freeze_v1_0": {
+   "path": "reports/audits/phase27_bootstrap_plan_freeze_v1_0.json",
+   "exists": true,
+   "sha256": "1313a497a16d0ccb40c2533b1bbb902669b31d0661898e31aa83504e5072a861",
+   "expected_sha256": null,
+   "match": true
+  },
+  "bootstrap_plan_npz": {
+   "path": "data_cache/phase27_barr_preservation_v1_0/phase27_val808_bootstrap_plan_v1_0.npz",
+   "exists": true,
+   "sha256": "8d32bd3c9b18f03c39128593f287bd21d716d26e11eb90d80f6f9c0d0b450a93",
+   "expected_sha256": "8d32bd3c9b18f03c39128593f287bd21d716d26e11eb90d80f6f9c0d0b450a93",
+   "match": true
+  },
+  "val808_group_manifest": {
+   "path": "data_cache/phase27_barr_preservation_v1_0/phase27_val808_group_manifest_v1_0.csv",
+   "exists": true,
+   "sha256": "481e705e53efa6cf1289f6da2a212fe2946c3d389390bcecdd28d5f08d9bd8bb",
+   "expected_sha256": null,
+   "match": true
+  }
+ },
+ "drift_count": 0,
+ "drift_items": [],
+ "checks": {
+  "components_immutable": true,
+  "normalizations_immutable": true,
+  "schemas_immutable": true,
+  "spec_artifacts_immutable": true,
+  "drift_count_is_zero": true
+ },
+ "all_pass": true,
+ "terminal_on_failure": "PHASE27_BLOCKED__PHASE26_BUNDLE_DRIFT"
+}

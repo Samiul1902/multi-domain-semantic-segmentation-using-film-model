@@ -1,0 +1,75 @@
+{
+ "artifact": "phase35_synthetic_smoke_reviewer_notebook_audit_v1_0h",
+ "section": "§S",
+ "phase": 35,
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase35_interpretability_v1_0h",
+ "notebook_path": "notebooks\\phasewise\\phase_35_interpretability\\phase35_interpretability_synthetic_smoke_v1_0h_review.ipynb",
+ "notebook_sha256": "9f0c56923c3d1fe8fea81d319a92bb6e1f64ff95e5b3d5f5475a8d319c7f456f",
+ "read_only": true,
+ "audit_method": "AST_BASED__STRING_LITERALS_BLANKED__CODE_LEVEL_API_AND_PATH_DETECTION",
+ "cells_total": 36,
+ "cells_code": 17,
+ "cells_markdown": 19,
+ "cell_errors": 0,
+ "imports_observed": [
+  "hashlib",
+  "json",
+  "pathlib"
+ ],
+ "allowed_imports": [
+  "hashlib",
+  "json",
+  "pathlib"
+ ],
+ "imports_within_allowed_surface": true,
+ "forbidden_imports": [],
+ "violations": [],
+ "violation_count": 0,
+ "benign_string_literal_counter_name_mentions": {
+  "VAL808": [
+   2
+  ],
+  "TEST": [
+   2,
+   30
+  ],
+  "p_global": [
+   2
+  ],
+  "raw_VAL": [
+   30
+  ],
+  "ROUTER_HOLDOUT": [
+   30
+  ],
+  "VAL_GT": [
+   30
+  ]
+ },
+ "benign_mention_note": "counter names and negative statements (e.g. printing \"raw_VAL_image_reads: 0\") appear only inside string literals; they are not data access. Confirmed by blanking string constants before detection.",
+ "reads_only": [
+  "produced smoke JSON",
+  "provenance JSON",
+  "final-check JSON",
+  "terminal JSON",
+  "v1.0h1 reconciled freeze",
+  "v1.0h1 eligibility"
+ ],
+ "must_not_did_not": {
+  "construct_models": true,
+  "deserialize_checkpoints": true,
+  "run_forwards": true,
+  "run_autograd": true,
+  "run_gradcam": true,
+  "run_router_attribution": true,
+  "read_raw_medical_data": true,
+  "read_VAL808": true,
+  "read_ROUTER_HOLDOUT": true,
+  "read_TEST": true,
+  "train": true
+ },
+ "representation_truthful": true,
+ "generated_utc": "2026-10-05T19:21:00Z",
+ "all_pass": true
+}

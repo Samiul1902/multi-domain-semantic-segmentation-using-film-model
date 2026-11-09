@@ -1,0 +1,171 @@
+{
+  "artifact": "phase20_cross_domain_duplicate_audit",
+  "phase": "20",
+  "resolves_phase19_residual_issue": true,
+  "phase19_residual_statement": "Cross-domain near-duplicate detection across the newly combined four-domain development pool is not yet established.",
+  "scope": "TRAIN and VAL image content only",
+  "test_reads": {
+    "test_image_reads": 0,
+    "test_mask_reads": 0
+  },
+  "method": {
+    "exact": "sha256 of raw image file bytes",
+    "perceptual": {
+      "implementation_source": "scripts/audit/run_phash_fast.py (approved repository method)",
+      "algorithm": "32x32 L (BOX) -> 2-D DCT ortho -> top-left 8x8 -> median threshold -> 64-bit",
+      "candidate_threshold_hamming": 6,
+      "high_attention_threshold_hamming": 2,
+      "classification_bands": {
+        "0_same_path": "EXACT_DUPLICATE",
+        "0_diff_path": "PERCEPTUALLY_IDENTICAL",
+        "1_2": "LIKELY_NEAR_DUPLICATE",
+        "3_4": "POSSIBLE_NEAR_DUPLICATE",
+        "5_6": "SIMILAR_BUT_DISTINCT"
+      }
+    }
+  },
+  "blocking_rule_declared_before_interpretation": {
+    "block_if": [
+      "identical content sha256 across TRAIN<->VAL",
+      "pHash Hamming distance == 0 across TRAIN<->VAL"
+    ],
+    "report_only": "1 <= Hamming <= 6",
+    "splits_modified": false,
+    "manifest_modified": false
+  },
+  "populations": {
+    "TRAIN": 5832,
+    "VAL": 808,
+    "compared_pairs": 4712256
+  },
+  "train_val_pairwise": {
+    "ISIC<->ISIC": {
+      "kind": "WITHIN_DATASET",
+      "n_pairs_compared": 912492,
+      "n_hamming_0": 0,
+      "n_hamming_1_2": 0,
+      "n_hamming_3_4": 10,
+      "n_hamming_5_6": 19,
+      "min_hamming": 4
+    },
+    "ISIC<->KVASIR": {
+      "kind": "CROSS_DATASET",
+      "n_pairs_compared": 470844,
+      "n_hamming_0": 0,
+      "n_hamming_1_2": 0,
+      "n_hamming_3_4": 0,
+      "n_hamming_5_6": 0,
+      "min_hamming": 10
+    },
+    "ISIC<->KUB": {
+      "kind": "CROSS_DATASET",
+      "n_pairs_compared": 1421826,
+      "n_hamming_0": 0,
+      "n_hamming_1_2": 0,
+      "n_hamming_3_4": 0,
+      "n_hamming_5_6": 0,
+      "min_hamming": 10
+    },
+    "BUSI<->ISIC": {
+      "kind": "CROSS_DATASET",
+      "n_pairs_compared": 429618,
+      "n_hamming_0": 0,
+      "n_hamming_1_2": 0,
+      "n_hamming_3_4": 0,
+      "n_hamming_5_6": 0,
+      "min_hamming": 12
+    },
+    "BUSI<->BUSI": {
+      "kind": "WITHIN_DATASET",
+      "n_pairs_compared": 50568,
+      "n_hamming_0": 0,
+      "n_hamming_1_2": 0,
+      "n_hamming_3_4": 0,
+      "n_hamming_5_6": 0,
+      "min_hamming": 12
+    },
+    "BUSI<->KVASIR": {
+      "kind": "CROSS_DATASET",
+      "n_pairs_compared": 110838,
+      "n_hamming_0": 0,
+      "n_hamming_1_2": 0,
+      "n_hamming_3_4": 0,
+      "n_hamming_5_6": 0,
+      "min_hamming": 14
+    },
+    "BUSI<->KUB": {
+      "kind": "CROSS_DATASET",
+      "n_pairs_compared": 334712,
+      "n_hamming_0": 0,
+      "n_hamming_1_2": 0,
+      "n_hamming_3_4": 0,
+      "n_hamming_5_6": 0,
+      "min_hamming": 12
+    },
+    "KVASIR<->KVASIR": {
+      "kind": "WITHIN_DATASET",
+      "n_pairs_compared": 60552,
+      "n_hamming_0": 0,
+      "n_hamming_1_2": 0,
+      "n_hamming_3_4": 1,
+      "n_hamming_5_6": 5,
+      "min_hamming": 4
+    },
+    "KUB<->KVASIR": {
+      "kind": "CROSS_DATASET",
+      "n_pairs_compared": 366966,
+      "n_hamming_0": 0,
+      "n_hamming_1_2": 0,
+      "n_hamming_3_4": 0,
+      "n_hamming_5_6": 0,
+      "min_hamming": 12
+    },
+    "KUB<->KUB": {
+      "kind": "WITHIN_DATASET",
+      "n_pairs_compared": 553840,
+      "n_hamming_0": 0,
+      "n_hamming_1_2": 0,
+      "n_hamming_3_4": 1,
+      "n_hamming_5_6": 1,
+      "min_hamming": 4
+    }
+  },
+  "within_split": [
+    {
+      "split": "TRAIN",
+      "n_images": 5832,
+      "n_pairs_compared": 17003196,
+      "n_hamming_0": 39,
+      "n_hamming_1_2": 43,
+      "n_hamming_3_4": 79,
+      "n_hamming_5_6": 189
+    },
+    {
+      "split": "VAL",
+      "n_images": 808,
+      "n_pairs_compared": 326028,
+      "n_hamming_0": 1,
+      "n_hamming_1_2": 0,
+      "n_hamming_3_4": 0,
+      "n_hamming_5_6": 5
+    }
+  ],
+  "n_candidate_pairs": 37,
+  "n_exact_content_sha_matches_train_val": 0,
+  "n_blocking_pairs": 0,
+  "blocking_pair_examples": [],
+  "candidates_high_attention": 0,
+  "cross_dataset_candidate_counts": {
+    "ISIC<->KVASIR": 0,
+    "ISIC<->KUB": 0,
+    "BUSI<->ISIC": 0,
+    "BUSI<->KVASIR": 0,
+    "BUSI<->KUB": 0,
+    "KUB<->KVASIR": 0
+  },
+  "verdict": "PHASE20_DUPLICATE_AUDIT_PASS__NO_TRAIN_VAL_LEAKAGE",
+  "training_may_start": true,
+  "fail_closed": true,
+  "candidates_table": "reports/tables/phase20_cross_domain_duplicate_candidates.csv",
+  "elapsed_seconds": 509.6
+}

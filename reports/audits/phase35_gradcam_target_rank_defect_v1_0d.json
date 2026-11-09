@@ -1,0 +1,88 @@
+{
+ "artifact": "phase35_gradcam_target_rank_defect_v1_0d",
+ "phase": 35,
+ "section": "\u00a7B",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase35_interpretability_v1_0d",
+ "classification": "PRE_SCIENTIFIC_GRADCAM_TARGET_IMPLEMENTATION_DEFECT__FROZEN_SCIENTIFIC_INTENT_UNCHANGED__NO_SCIENTIFIC_GRADCAM_EXECUTED",
+ "defect_id": "PHASE35_V1_0B_GRADCAM_TARGET_MASK_RANK_INCOMPATIBILITY",
+ "disclosed_in": "reports/audits/phase35_v1_0b_smoke_stub_defect_record_v1_0c.json",
+ "disclosing_revision": "ra_medfilm_barr_phase35_interpretability_v1_0c",
+ "frozen_defective_component": "phase35_interpretability_execution_v1_0b.gradcam_target_scalar (preserved byte-for-byte)",
+ "known_scientific_tensors": {
+  "canonical_G_logits": {
+   "rank": 4,
+   "shape": [
+    1,
+    1,
+    512,
+    512
+   ],
+   "authority": "GlobalMedFiLM.forward (out_channels=1)"
+  },
+  "persisted_p_global": {
+   "rank": 2,
+   "shape": [
+    512,
+    512
+   ],
+   "dtype": "float16",
+   "authority": "reports/predictions/phase21_global_medfilm_fourdomain_seed42_clean_v3/val/<sid>.npz[prob]"
+  },
+  "build_target_mask_p_global": {
+   "rank": 2,
+   "shape": [
+    512,
+    512
+   ],
+   "dtype": "Boolean",
+   "definition": "persisted p_global >= 0.50"
+  }
+ },
+ "frozen_scientific_intent": {
+  "M_pred": "persisted p_global >= 0.50",
+  "T_if_mask_nonempty": "mean(current_forward_foreground_logit[M_pred])",
+  "T_if_mask_empty": "mean(current_forward_foreground_logit over full field)",
+  "unchanged": true
+ },
+ "problem": "The frozen implementation performs `logits[mask]`, attempting rank-2 Boolean indexing directly against rank-4 logits; PyTorch requires the mask shape to match the indexed tensor's leading dimensions, so this deterministically raises IndexError for the canonical scientific inputs.",
+ "evidence": [
+  "reports/audits/phase35_v1_0b_smoke_stub_defect_record_v1_0c.json (defect_B)",
+  "model-free CPU tensor-semantics probe: x(1,1,4,4)[mask(4,4)] -> IndexError; x(1,1,4,4)[mask(1,1,4,4)] -> ok",
+  "metadata-only npy header inspection of all 808 VAL npz: prob = (512,512) '<f2', pred/gt = (512,512) '|u1' (the `gt` member was never accessed)",
+  "reproduced in this revision: unit test D1_frozen_v1_0b_logits_mask_indexing_reproduced -> IndexError"
+ ],
+ "scientific_specification_changed": false,
+ "scientific_population_changed": false,
+ "target_threshold_changed": false,
+ "target_selection_source_changed": false,
+ "causal_or_scientific_interpretation_changed": false,
+ "implementation_rank_contract_changed": true,
+ "scientific_result_invalidated": false,
+ "scientific_result_invalidated_reason": "no Phase35 scientific result exists yet; nothing to invalidate",
+ "repair_revision": "ra_medfilm_barr_phase35_interpretability_v1_0d",
+ "repair_artifacts": {
+  "execution_source_v1_0d": {
+   "path": "scripts/analysis/phase35_interpretability_execution_v1_0d.py",
+   "sha256": "cccc109ade27eb5ad7883912004c1e911e9e253a659146f3d64820af92244056"
+  },
+  "rank_unit_tests": {
+   "path": "scripts/analysis/phase35_gradcam_target_rank_unit_v1_0d.py",
+   "sha256": "6c3896b01e60c5e8361d0af9d98ebd29c5b592a906257c487c6c9140242ec19f"
+  },
+  "rank_unit_results": {
+   "path": "reports/audits/phase35_gradcam_target_rank_unit_v1_0d.json",
+   "sha256": "66a16c411b30852e32701f424384b925b42ab074bf2c199521f422f5b5e58933"
+  }
+ },
+ "frozen_v1_0b_modified": false,
+ "frozen_v1_0c_modified": false,
+ "model_constructions": 0,
+ "checkpoint_deserializations": 0,
+ "forwards": 0,
+ "autograd_calls": 0,
+ "gradcam_executions": 0,
+ "model_free_cpu_unit_tests": 11,
+ "generated_utc": "2026-10-04T16:06:06+00:00",
+ "all_pass": true
+}

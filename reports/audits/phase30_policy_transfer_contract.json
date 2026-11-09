@@ -1,0 +1,28 @@
+{
+ "artifact": "phase30_policy_transfer_contract",
+ "phase": 30,
+ "section": "\u00a77",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_phase30_final_dev_validation_v1_0",
+ "dev_calibration_target_budget": 0.25,
+ "realized_holdout_activation_rate": "OUTCOME__REPORTED_AFTER_EXECUTION",
+ "policy_applied": "sample-by-sample using only GT-free runtime inputs",
+ "apply_fixed_dev_calibrated_threshold_per_sample": true,
+ "force_exact_25pct": false,
+ "top_k_forcing": false,
+ "threshold_refitting": false,
+ "lambda_reselection": false,
+ "post_hoc_budget_adjustment": false,
+ "outcome_dependent_correction": false,
+ "realized_activation_may_differ_from_dev": true,
+ "report_nominal_budget": true,
+ "report_realized_activation": true,
+ "authority": {
+  "path": "reports/audits/phase26_future_cohort_rule_v1_2.json",
+  "sha256": "fe51b88a7044cf23a7c6e9fde5a32b95d7942a8929d21b61e221e6d52a073bef",
+  "force_exact_25pct": false,
+  "apply_fixed_dev_calibrated_threshold_per_sample": true
+ },
+ "generated_utc": "2026-10-04T02:46:58+00:00",
+ "all_pass": true
+}

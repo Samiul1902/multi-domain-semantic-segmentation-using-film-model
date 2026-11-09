@@ -1,0 +1,190 @@
+{
+ "artifact": "phase35_execution_source_static_preflight_v1_0a",
+ "phase": 35,
+ "section": "\u00a7E",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase35_interpretability_v1_0",
+ "method_of_inspection": "AST_PARSE_AND_TEXTUAL_IMPLEMENTATION_AUDIT",
+ "v1_0_bindings": [
+  {
+   "path": "reports/audits/phase35_specification_terminal_v1_0.json",
+   "expected_sha256": "cec3b2aadbc90a7a8ebd06e8149cd7a53122d42e3f6077c30634e7de96ac312b",
+   "observed_sha256": "cec3b2aadbc90a7a8ebd06e8149cd7a53122d42e3f6077c30634e7de96ac312b",
+   "match": true
+  },
+  {
+   "path": "reports/audits/phase35_specification_final_check_v1_0.json",
+   "expected_sha256": "7d7eae564f7c71e175fd5ba5c92ae013c8a9ed7a06f95303f193f42ee17886a9",
+   "observed_sha256": "7d7eae564f7c71e175fd5ba5c92ae013c8a9ed7a06f95303f193f42ee17886a9",
+   "match": true
+  },
+  {
+   "path": "docs/phase35_interpretability_spec_v1_0.md",
+   "expected_sha256": "6405ba5f7ad9f046226da916559a0d7a1166a1245bb56e8d38bc9971959acb37",
+   "observed_sha256": "6405ba5f7ad9f046226da916559a0d7a1166a1245bb56e8d38bc9971959acb37",
+   "match": true
+  },
+  {
+   "path": "reports/audits/phase35_execution_eligibility_adjudication_v1_0.json",
+   "expected_sha256": "c96b366fab0470fdff4577f74035d909108ae90b869e692bc3da7f563ada39fd",
+   "observed_sha256": "c96b366fab0470fdff4577f74035d909108ae90b869e692bc3da7f563ada39fd",
+   "match": true
+  },
+  {
+   "path": "reports/audits/phase35_preexecution_source_freeze_v1_0.json",
+   "expected_sha256": "582c950c96622e84b67e691db4ca02e392c68ff11885c5ddc3f3a785de87fc98",
+   "observed_sha256": "582c950c96622e84b67e691db4ca02e392c68ff11885c5ddc3f3a785de87fc98",
+   "match": true
+  }
+ ],
+ "v1_0_bindings_all_match": true,
+ "v1_0_final_check": {
+  "n_checks": 16,
+  "n_failed": 0
+ },
+ "frozen_source_verification": [
+  {
+   "key": "common_v1_0",
+   "path": "scripts/analysis/phase35_interpretability_common_v1_0.py",
+   "expected_sha256": "fce9527fbad3714e01beadf5f697646dbbad215e98fe233ddb4b9948c6071843",
+   "observed_sha256": "fce9527fbad3714e01beadf5f697646dbbad215e98fe233ddb4b9948c6071843",
+   "match": true
+  },
+  {
+   "key": "execution_v1_0",
+   "path": "scripts/analysis/phase35_interpretability_execution_v1_0.py",
+   "expected_sha256": "a2e150d89018087112c71dbaa92137b667e4269430463fd55fc1601f9ee99d27",
+   "observed_sha256": "a2e150d89018087112c71dbaa92137b667e4269430463fd55fc1601f9ee99d27",
+   "match": true
+  },
+  {
+   "key": "model_G",
+   "path": "src/models/film/global_medfilm.py",
+   "expected_sha256": "a04ff3e61b4d900ff47c2f390da4a999e73bd6047b28a19e41b05115e431d11f",
+   "observed_sha256": "a04ff3e61b4d900ff47c2f390da4a999e73bd6047b28a19e41b05115e431d11f",
+   "match": true
+  },
+  {
+   "key": "model_R_psi",
+   "path": "src/models/barr/regional_refiner.py",
+   "expected_sha256": "4fe0abde3ec3a183d930f676c4400b4d9ba778793ea64abf1755c5b8dabf947a",
+   "observed_sha256": "4fe0abde3ec3a183d930f676c4400b4d9ba778793ea64abf1755c5b8dabf947a",
+   "match": true
+  },
+  {
+   "key": "model_B_phi_authority",
+   "path": "scripts/analysis/train_phase25d_router.py",
+   "expected_sha256": "fc7c1bdf263ae4551dcb8f170d3203adb8540fbc189846265b74f6eca1541e91",
+   "observed_sha256": "fc7c1bdf263ae4551dcb8f170d3203adb8540fbc189846265b74f6eca1541e91",
+   "match": true
+  },
+  {
+   "key": "model_S_omega_authority",
+   "path": "scripts/analysis/phase25f_execution_common.py",
+   "expected_sha256": "98cf958a377e2de30e0b67e63fd56bafea418b2b061a362ee7284e852012cd2e",
+   "observed_sha256": "98cf958a377e2de30e0b67e63fd56bafea418b2b061a362ee7284e852012cd2e",
+   "match": true
+  },
+  {
+   "key": "domain_task_registry",
+   "path": "src/analysis/multidomain_harmonization.py",
+   "expected_sha256": "3f009d994ed24d9c2edf8e48646e93700ab4e54dea786fb4bd03180c825cbf92",
+   "observed_sha256": "3f009d994ed24d9c2edf8e48646e93700ab4e54dea786fb4bd03180c825cbf92",
+   "match": true
+  }
+ ],
+ "frozen_sources_all_match": true,
+ "checks": {
+  "01_repo_imports_cwd_independent": true,
+  "02_phase34_closure_handoff_hashes_checked": false,
+  "03_canonical_gallery_sha_checked_before_raw_read": false,
+  "04_gallery_ownership_checked_before_raw_read": true,
+  "05_router_holdout_prohibited": true,
+  "06_TEST_prohibited": true,
+  "07_GT_reads_prohibited": false,
+  "08_canonical_G_checkpoint_used": true,
+  "09_canonical_B_phi_checkpoint_used": true,
+  "10_R_psi_not_executed_v1_0": false,
+  "11_S_omega_not_executed_v1_0": false,
+  "12_G_strict_loaded": false,
+  "13_B_phi_strict_loaded": false,
+  "14_G_parameter_count_verified": false,
+  "15_B_phi_parameter_count_verified": false,
+  "16_film_parameters_for_tasks_implemented": true,
+  "17_G_task_embedding_extraction_implemented": false,
+  "18_B_phi_task_embedding_extraction_implemented": false,
+  "19_gradcam_bridge_hook_exact": false,
+  "20_gradcam_decoder1_hook_exact": false,
+  "21_target_mask_from_persisted_p_global_050": false,
+  "22_target_mask_not_recomputed_from_new_forward": false,
+  "23_no_GT_in_target_selection": true,
+  "24_scalar_target_matches_frozen_definitions": true,
+  "25_gradcam_forward_semantics_exact": false,
+  "26_no_optimizer": true,
+  "27_no_parameter_update": true,
+  "28_cam_formula_exact": true,
+  "29_align_corners_false": true,
+  "30_minmax_and_zero_range_exact": true,
+  "31_no_blur_smoothing_posthoc_threshold": true,
+  "32_ROI_proposal_uses_030": true,
+  "33_segmentation_foreground_uses_050": false,
+  "34_thresholds_never_conflated": false,
+  "35_64_case_raw_read_ceiling_enforced": false,
+  "36_display_subset_frozen_without_saliency_inspection": false,
+  "37_router_uses_canonical_VAL808_artifacts": false,
+  "38_router_population_n_808": true,
+  "39_router_raw_image_reads_0": false,
+  "40_router_GT_reads_0": false,
+  "41_B_phi_receives_canonical_task_ids": true,
+  "42_B_phi_receives_canonical_normalization": true,
+  "43_router_target_raw_delta_hat": true,
+  "44_no_sigmoid_on_delta_hat": true,
+  "45_numeric_feature_gradient_enabled": true,
+  "46_attribution_x_times_grad": true,
+  "47_integer_task_ids_no_numeric_gradient": true,
+  "48_B_phi_task_embedding_static": false,
+  "49_zero_denominator_NULL_and_flag": true,
+  "50_outcome_selected_galleries_prevented": false,
+  "51_no_phase30_holdout_raw_evidence_needed": true,
+  "52_no_TEST_access": true,
+  "53_no_training_path": true,
+  "54_phase36_not_started": true
+ },
+ "n_checks": 54,
+ "n_failed": 25,
+ "failed": [
+  "02_phase34_closure_handoff_hashes_checked",
+  "03_canonical_gallery_sha_checked_before_raw_read",
+  "07_GT_reads_prohibited",
+  "10_R_psi_not_executed_v1_0",
+  "11_S_omega_not_executed_v1_0",
+  "12_G_strict_loaded",
+  "13_B_phi_strict_loaded",
+  "14_G_parameter_count_verified",
+  "15_B_phi_parameter_count_verified",
+  "17_G_task_embedding_extraction_implemented",
+  "18_B_phi_task_embedding_extraction_implemented",
+  "19_gradcam_bridge_hook_exact",
+  "20_gradcam_decoder1_hook_exact",
+  "21_target_mask_from_persisted_p_global_050",
+  "22_target_mask_not_recomputed_from_new_forward",
+  "25_gradcam_forward_semantics_exact",
+  "33_segmentation_foreground_uses_050",
+  "34_thresholds_never_conflated",
+  "35_64_case_raw_read_ceiling_enforced",
+  "36_display_subset_frozen_without_saliency_inspection",
+  "37_router_uses_canonical_VAL808_artifacts",
+  "39_router_raw_image_reads_0",
+  "40_router_GT_reads_0",
+  "48_B_phi_task_embedding_static",
+  "50_outcome_selected_galleries_prevented"
+ ],
+ "static_source_preflight_pass": false,
+ "model_constructed": false,
+ "checkpoint_deserialized": false,
+ "forward_executed": false,
+ "raw_val_reads": 0,
+ "gt_reads": 0,
+ "generated_utc": "2026-10-04T14:53:22+00:00",
+ "all_pass": false
+}

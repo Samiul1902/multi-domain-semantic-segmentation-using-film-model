@@ -1,0 +1,73 @@
+{
+ "artifact": "phase35_router_population_contract",
+ "phase": 35,
+ "section": "\u00a7S",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase35_interpretability_v1_0",
+ "population": "VAL808 (NON-HOLDOUT)",
+ "n": 808,
+ "cache_root": "data_cache/phase29_val808_shared_fixed_g_v1_1_canonical",
+ "deep_features": "val808_router_deep_features_f32.npy (808x192 f32)",
+ "scalars": "val808_router_scalars_f32.npy (808x10 f32)",
+ "global_probability": "val808_global_prob_f16.npy (808x512x512 f16)",
+ "roi_geometry": "val808_roi_geometry.json",
+ "router_holdout_rows": 0,
+ "test_rows": 0,
+ "raw_image_reads_for_router_attribution": 0,
+ "gt_reads": 0,
+ "deep_features_sha256": "a1527411e6ae5dd41dd6db91ca018803e936724afdc297576fb14b18cd6aadc4",
+ "deep_features_exists": true,
+ "scalars_sha256": "3c789c981680ae3ac80bf38c791967d6a130bc7fc20def94b0f8bcdcedd51cdb",
+ "scalars_exists": true,
+ "global_probability_sha256": "cc6c54af986f56b4aba9265405ffeba4f6cac582eeff00fe6b0894429e7d3f13",
+ "global_probability_exists": true,
+ "roi_geometry_sha256": "7cb4bc4a079534aafa138f7798e87e5e8d6d9d67e0f3ce611bba97e738ce81dd",
+ "roi_geometry_exists": true,
+ "feature_groups": {
+  "bridge_global": 32,
+  "bridge_roi": 32,
+  "decoder2_global": 32,
+  "decoder2_roi": 32,
+  "decoder1_global": 32,
+  "decoder1_roi": 32
+ },
+ "scalar_features": [
+  "entropy_proxy_mean",
+  "frac_prob_within_0p05_of_boundary",
+  "frac_prob_within_0p02_of_boundary",
+  "mean_boundary_margin",
+  "pred_foreground_fraction",
+  "pred_foreground_pixels",
+  "pred_roi_exists",
+  "pred_empty",
+  "predicted_roi_area_fraction",
+  "predicted_roi_side"
+ ],
+ "attribution": {
+  "method": "GRADIENT_X_INPUT",
+  "baseline_required": false,
+  "target": "raw B_phi output delta_hat (no sigmoid)",
+  "per_sample": "a_j = x_j * d(delta_hat)/d(x_j)",
+  "persisted": [
+   "signed attribution",
+   "absolute attribution"
+  ],
+  "group_signed": "sum_j in g of a_j",
+  "group_absolute": "sum_j in g of abs(a_j)",
+  "normalized_absolute_share": "absolute_group / sum over all numeric features of abs(a_j)",
+  "zero_denominator_policy": "NULL shares with explicit ZERO_ROUTER_GRAD_ATTRIBUTION flag",
+  "preprocessing": "exact canonical preprocessing/normalization entering B_phi",
+  "feature_perturbation": false,
+  "retraining": false,
+  "optimization": false
+ },
+ "task_id_policy": {
+  "numeric_input_gradient_applied_to_integer_task_ids": false,
+  "static_characterization": "learned 16-D B_phi task embeddings: norm, pairwise Euclidean distance, cosine similarity",
+  "counterfactual_task_id_analysis": "INELIGIBLE_NOT_REQUIRED"
+ },
+ "regenerated_from_raw_images_during_phase35": false,
+ "router_holdout_reopened": false,
+ "generated_utc": "2026-10-04T14:41:26+00:00",
+ "all_pass": true
+}

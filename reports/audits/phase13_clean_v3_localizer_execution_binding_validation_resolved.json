@@ -1,0 +1,127 @@
+{
+  "artifact": "PHASE13_CLEAN_V3_LOCALIZER_EXECUTION_BINDING_VALIDATION_RESOLVED",
+  "phase": 13,
+  "part": "1B",
+  "sub_step": "1B-R0-R1",
+  "document_type": "NON_SCIENTIFIC_STATIC_UNIT_VALIDATION_RESOLVED",
+  "created_utc": "2026-09-21T00:00:00Z",
+  "experiment_id": "phase13b_kub_localizer_r512_h128_sigmaeq075_centernetfocal_seed42_clean_v3",
+  "validation_type": "STATIC_AND_UNIT_ONLY",
+
+  "supersedes": {
+    "artifact": "reports/audits/phase13_clean_v3_localizer_execution_binding_validation.json",
+    "sha256": "294f568a3762127f76e78b3ebb6a493a1494b6581766951bfc5cec76e50d6673",
+    "preserved": true,
+    "prior_status": "CHECK_REQUIRED",
+    "prior_reason": "LOSS_OBJECTIVE_BINDING_NOT_PHYSICALLY_RESOLVED"
+  },
+
+  "execution_governance": {
+    "training_performed": false,
+    "optimizer_created": false,
+    "forward_pass_performed": false,
+    "val_inference_performed": false,
+    "train_inference_performed": false,
+    "proposals_generated": false,
+    "grid_search_performed": false,
+    "test_accessed": false,
+    "cuda_requested": false,
+    "model_constructed": false,
+    "run_lock_acquired": false,
+    "checkpoint_written": false,
+    "import_touches_cuda": false,
+    "note": "All gates are static (AST/source/config inspection) or pure-unit (no model, no data iteration, no CUDA)."
+  },
+
+  "gate_results": {
+    "A_centernet_focal_only_executable_criterion": "PASS",
+    "B_alpha_equals_2_0": "PASS",
+    "C_beta_equals_4_0": "PASS",
+    "D_no_soft_focal_dice_on_executable_path": "PASS",
+    "E_no_not_implemented_error_on_executable_path": "PASS",
+    "F_exactly_one_proposal_configuration": "PASS",
+    "G_no_product_or_grid_loop": "PASS",
+    "H_4term_selection_tuple_unchanged": "PASS",
+    "I_diagnostics_structurally_excluded": "PASS",
+    "J_set_seed_before_model_construction": "PASS",
+    "K_train_loader_generator_exists": "PASS",
+    "L_generator_state_persisted": "PASS",
+    "M_resume_mismatch_fails_loudly": "PASS",
+    "N_manifest_hashes_non_empty": "PASS",
+    "O_heatmap_resolution_128_explicit": "PASS",
+    "P_binding_csv_parses_with_pandas": "PASS"
+  },
+
+  "test_suites": {
+    "r0r1_gate_suite": {
+      "path": "tests/test_phase13_part1b_r0r1_gates.py",
+      "sha256": "9050c077fb56f0df8a8843bf41ef6a760866bad81b2d11bb5ac3c28b68af7192",
+      "collected": 17,
+      "passed": 17,
+      "failed": 0,
+      "duration_seconds": 0.74
+    },
+    "selection_suite": {
+      "path": "tests/test_phase13_clean_v3_selection.py",
+      "sha256": "14fae0a1a65c64a98b1cd69dedcceeca62e8e9bbbaac0a520f6937cccd67c7f8",
+      "collected": 17,
+      "passed": 17,
+      "failed": 0
+    },
+    "combined": {
+      "collected": 34,
+      "passed": 34,
+      "failed": 0
+    }
+  },
+
+  "binding_csv_repair": {
+    "path": "reports/tables/phase13_clean_v3_executable_config_binding.csv",
+    "sha256": "52b16c7f52cd844fefed8b415de7f1a8517cfe2f59c93799b78148ea16f48652",
+    "prior_defect": "ParserError: Expected 6 fields in line 66, saw 7 (unquoted comma inside scientific_source)",
+    "repair_method": "real CSV writer (pandas.DataFrame.to_csv)",
+    "pandas_read_csv_succeeds_no_special_options": true,
+    "rows": 130,
+    "columns": 6,
+    "prior_check_required_rows_preserved": 9,
+    "loss_rows_updated_to": "R2A_LOSS_BINDING_EXECUTING",
+    "repo_script": "scripts/audits/repair_phase13_clean_v3_binding_csv.py"
+  },
+
+  "resume_safety": {
+    "resume_flag_required_for_existing_state": true,
+    "latest_pt_required": true,
+    "history_csv_required": true,
+    "history_contiguity_required": true,
+    "final_epoch_must_match_history": true,
+    "identity_fields_checked": [
+      "experiment_id", "manifest_version", "taxonomy_id", "input_resolution",
+      "seed", "r2_protocol_sha", "r2a_loss_sha", "config_sha", "loss_label",
+      "loss_class", "loss_alpha", "loss_beta", "heatmap_resolution",
+      "proposal_threshold", "proposal_margin", "proposal_top_k",
+      "proposal_nms_iou", "selection_term_names", "manifest_hashes"
+    ],
+    "fail_mode": "LOUD_RUNTIME_ERROR_NO_SILENT_RESTART",
+    "no_resume_with_existing_state": "STOP"
+  },
+
+  "static_binding_gates_executed": {
+    "experiment_id_verbatim_binding": "PASS",
+    "r2_protocol_sha_and_status": "PASS",
+    "r2a_loss_binding": "PASS",
+    "no_historical_manifest_usage": "PASS",
+    "heatmap_resolution_explicit_128": "PASS",
+    "single_proposal_configuration": "PASS",
+    "grid_search_disabled": "PASS",
+    "test_allowed_false": "PASS"
+  },
+
+  "overall_status": "PASS",
+  "gate": "PASS_READY_FOR_SUPERVISOR_TRAINING_REAUTHORIZATION",
+  "training_started": false,
+  "regional_gate": "NOT_DECIDED",
+  "phase14_started": false,
+  "next_action": "WAIT_FOR_SUPERVISOR_PHASE13_PART1B_TRAINING_REAUTHORIZATION",
+  "invented_values": false,
+  "scientific_changes": 0
+}

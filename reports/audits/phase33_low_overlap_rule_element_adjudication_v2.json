@@ -1,0 +1,187 @@
+{
+ "artifact": "phase33_low_overlap_rule_element_adjudication_v2",
+ "phase": 33,
+ "section": "\u00a7E",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase33_failure_boundary_v1_1",
+ "purpose": "re-affirm the fail-closed LOW_OVERLAP realization determination after a full re-read of every Phase33 authority artifact, with a finer element-level classification and an empirical-materiality check",
+ "authority_bindings": [
+  {
+   "path": "reports/audits/phase33_specification_terminal_v1_1.json",
+   "expected_sha256": "20c9b738782090c11774acd4e2b1f5dc096183881bb1c759de47f11c4348394b",
+   "observed_sha256": "20c9b738782090c11774acd4e2b1f5dc096183881bb1c759de47f11c4348394b",
+   "match": true
+  },
+  {
+   "path": "reports/audits/phase33_specification_final_check_v1_1.json",
+   "expected_sha256": "b929defad97ed0cae14f01be532a088a9a2012283cbaf8dc3fba1a2bf86fee02",
+   "observed_sha256": "b929defad97ed0cae14f01be532a088a9a2012283cbaf8dc3fba1a2bf86fee02",
+   "match": true
+  },
+  {
+   "path": "reports/audits/phase33_execution_eligibility_adjudication_v1_1.json",
+   "expected_sha256": "d404a5947e3f358785646e395c46942d49d8d562eff4cea26e3a880d50ed5584",
+   "observed_sha256": "d404a5947e3f358785646e395c46942d49d8d562eff4cea26e3a880d50ed5584",
+   "match": true
+  },
+  {
+   "path": "reports/audits/phase33_failure_taxonomy_contract_v1_1.json",
+   "expected_sha256": "522452cbf6e419f919deb9dadb8aba9734205c5afea9d2d0b16103c265cf4ae8",
+   "observed_sha256": "522452cbf6e419f919deb9dadb8aba9734205c5afea9d2d0b16103c265cf4ae8",
+   "match": true
+  },
+  {
+   "path": "reports/audits/phase33_failure_taxonomy_v1_1_reconciliation.json",
+   "expected_sha256": "d8171e5e4e8c1406ab7e70e6471c0ee8377a7ef5799961deecc6bcf5ea83041d",
+   "observed_sha256": "d8171e5e4e8c1406ab7e70e6471c0ee8377a7ef5799961deecc6bcf5ea83041d",
+   "match": true
+  }
+ ],
+ "all_authority_match": true,
+ "inputs": {
+  "scored_table": {
+   "path": "reports/tables/phase30_router_holdout_scored_results.csv",
+   "sha256": "dbc9f5f3867f0607cfc0a778736a92b9d6de6e27811fa382ad6d1cb0b2a04568",
+   "expected": "dbc9f5f3867f0607cfc0a778736a92b9d6de6e27811fa382ad6d1cb0b2a04568",
+   "match": true
+  },
+  "split_manifest": {
+   "path": "reports/audits/phase24_router_split_manifest.csv",
+   "sha256": "b5da52d6220ef9b59b4ba70d0b403b38bf5234b897615b6ad55d718114db6555",
+   "expected": "b5da52d6220ef9b59b4ba70d0b403b38bf5234b897615b6ad55d718114db6555",
+   "match": true
+  }
+ },
+ "authority_artifacts_re_read": [
+  "reports/audits/phase33_failure_threshold_provenance_contract.json",
+  "reports/audits/phase33_failure_taxonomy_contract_v1_1.json",
+  "reports/audits/phase33_quantitative_analysis_contract.json",
+  "reports/audits/phase33_hard_case_selection_contract.json",
+  "docs/phase33_final_system_failure_boundary_spec_v1_1.md"
+ ],
+ "elements": [
+  {
+   "n": 1,
+   "element": "target Dice field",
+   "status": "DETERMINABLE_BY_TEXT_NOT_EXPLICIT",
+   "authority_text": "threshold provenance: 'the frozen ROUTER_HOLDOUT per-sample Dice of the SAME system'",
+   "reading": "the system under analysis is the final A8/C9 system -> a8_dice; global_dice is the REFERENCE, not 'the system'",
+   "residual_ambiguity": "the taxonomy v1.1 LOW_OVERLAP record lists BOTH global_dice and a8_dice as required_fields, so no column name is stated outright",
+   "explicitly_named": false
+  },
+  {
+   "n": 2,
+   "element": "population",
+   "status": "EXPLICIT",
+   "authority_text": "ROUTER_HOLDOUT frozen table",
+   "explicitly_named": true
+  },
+  {
+   "n": 3,
+   "element": "quantile probability",
+   "status": "EXPLICIT",
+   "authority_text": "0.10",
+   "explicitly_named": true
+  },
+  {
+   "n": 4,
+   "element": "quantile algorithm/interpolation",
+   "status": "EXPLICIT",
+   "authority_text": "np.quantile(values, 0.10, method='linear') on float64",
+   "explicitly_named": true
+  },
+  {
+   "n": 5,
+   "element": "inclusive/exclusive comparison rule",
+   "status": "DETERMINABLE_BY_TEXT_NOT_EXPLICIT",
+   "authority_text": "definition says 'below a prospectively frozen stratum rule'; the threshold contract adds 'ties included'",
+   "reading": "'below' + 'ties included' -> inclusive comparison (<=) with ties at the cutoff counted as LOW_OVERLAP",
+   "residual_ambiguity": "the operator symbol is never written; 'below' alone would read as '<'",
+   "explicitly_named": false
+  },
+  {
+   "n": 6,
+   "element": "tie handling",
+   "status": "EXPLICIT",
+   "authority_text": "ties included",
+   "explicitly_named": true
+  },
+  {
+   "n": 7,
+   "element": "missing/NaN handling",
+   "status": "ABSENT",
+   "authority_text": "not stated in the threshold provenance contract, the taxonomy v1.1, the quantitative analysis contract, the hard-case selection contract, or the v1.1 specification document",
+   "reading": null,
+   "residual_ambiguity": "no basis in authority for inference",
+   "explicitly_named": false
+  },
+  {
+   "n": 8,
+   "element": "global vs domain-specific cutoff",
+   "status": "EXPLICIT",
+   "authority_text": "computed on the frozen ROUTER_HOLDOUT per-sample Dice (all 875 rows; not per-domain)",
+   "explicitly_named": true
+  }
+ ],
+ "element_status_counts": {
+  "EXPLICIT": 5,
+  "DETERMINABLE_BY_TEXT_NOT_EXPLICIT": 2,
+  "ABSENT": 1
+ },
+ "explicit_elements": [
+  "population",
+  "quantile probability",
+  "quantile algorithm/interpolation",
+  "tie handling",
+  "global vs domain-specific cutoff"
+ ],
+ "determinable_not_explicit_elements": [
+  "target Dice field",
+  "inclusive/exclusive comparison rule"
+ ],
+ "absent_elements": [
+  "missing/NaN handling"
+ ],
+ "element_7_empirical_materiality": {
+  "non_finite_a8_dice_rows": 0,
+  "non_finite_global_dice_rows": 0,
+  "empty_a8_dice_rows": 0,
+  "materiality": "IMMATERIAL_FOR_THIS_DATA",
+  "note": "the authority still does not STATE a missing/NaN policy; empirical absence of missing values does not convert an unstated rule into a frozen rule"
+ },
+ "dice_distribution_inspected": false,
+ "quantile_or_cutoff_computed": false,
+ "historical_phase11_precedent_used_as_permission": false,
+ "rule_exactly_frozen": false,
+ "blocking_elements": [
+  {
+   "n": 1,
+   "element": "target Dice field",
+   "status": "DETERMINABLE_BY_TEXT_NOT_EXPLICIT"
+  },
+  {
+   "n": 5,
+   "element": "inclusive/exclusive comparison rule",
+   "status": "DETERMINABLE_BY_TEXT_NOT_EXPLICIT"
+  },
+  {
+   "n": 7,
+   "element": "missing/NaN handling",
+   "status": "ABSENT"
+  }
+ ],
+ "action": "BLOCK",
+ "blocked_terminal": "PHASE33_TIER0_TIER1_EXECUTION_BLOCKED_PREANALYSIS__LOW_OVERLAP_REALIZATION_RULE_NOT_EXACTLY_FROZEN__NO_RESULTS_COMPUTED",
+ "unblock_amendment_required": {
+  "scope": "prospective Phase33 amendment (pre-outcome), additive",
+  "must_state": [
+   "the exact target Dice column (recommend naming a8_dice explicitly)",
+   "the exact cutoff comparison operator (recommend '<=, ties included')",
+   "the exact missing/NaN policy (recommend 'no NaN expected; any non-finite value excluded from the quantile and flagged, never silently dropped')"
+  ],
+  "then": "re-run the fail-closed preflight and realize the cutoff deterministically"
+ },
+ "science_definition_changed": false,
+ "generated_utc": "2026-10-04T08:48:43+00:00",
+ "all_pass": true
+}

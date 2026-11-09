@@ -1,0 +1,36 @@
+{
+  "classification": "PHASE25E_PRE_EXECUTION_RESOURCE_GATE_SPECIFICATION_FREEZE",
+  "specification_revision": "ra_medfilm_barr_resource_gate_v1_0",
+  "population": "eligible ROUTER_DEVELOPMENT; memberships frozen before any outcome join",
+  "notation": "S=frozen routed set; E=eligible set; d_i=true DeltaDice; B={i in E:d_i>=0.02}; H={i in E:d_i<=-0.01}; K=|S|",
+  "precision_at_budget": "|S intersect B| / K",
+  "benefit_capture_at_budget": "sum(max(d_i,0) for i in S) / sum(max(d_i,0) for i in E)",
+  "mean_true_delta_dice_among_routed": "sum(d_i for i in S) / K",
+  "harmful_activation_rate": "|S intersect H| / K (harmful share among routed)",
+  "beneficial_activation_rate": "|S intersect B| / |B| (coverage of beneficial eligible rows)",
+  "missed_benefit_rate": "|B minus S| / |B|",
+  "routing_regret_vs_oracle": "sum(d_i for i in oracle top-K) - sum(d_i for i in S)",
+  "regret_mean_per_sample": "routing_regret_vs_oracle / N_DEV",
+  "regret_mean_per_routed_sample": "routing_regret_vs_oracle / K",
+  "zero_denominator": "null with reason UNDEFINED_ZERO_DENOMINATOR; sums over empty sets are zero",
+  "benefit_labels": {
+    "BENEFICIAL": "d_i >= +0.02",
+    "HARMFUL": "d_i <= -0.01",
+    "NEUTRAL": "otherwise"
+  },
+  "oracle": "top-K eligible TRUE DeltaDice DESC, sample_id ASC; NONDEPLOYABLE DEVELOPMENT UPPER BOUND; later evaluation only",
+  "oracle_prohibitions": [
+    "deployable membership",
+    "comparator orientation",
+    "lambda selection",
+    "threshold selection"
+  ],
+  "activation_fraction": "K / N_DEV; also report eligible_activation_fraction=K/N_eligible separately",
+  "incremental_regional_macs": "(K / N_DEV) * REGIONAL_REFINER_MACS per DEV sample",
+  "average_total_analytical_macs": "GLOBAL_MACS + ROUTER_MACS + (K / N_DEV) * REGIONAL_REFINER_MACS for pre-gate pipeline",
+  "ratio_vs_global_only": "average_total_analytical_macs / GLOBAL_MACS (literal C1 anchor excludes router)",
+  "ratio_vs_always_refine": "average_total_analytical_macs / (GLOBAL_MACS + (N_eligible/N_DEV)*REGIONAL_REFINER_MACS) (literal C2 no-routing anchor)",
+  "anchor_clarification": "C1 and C2 bypass routing; gated K=0 and gated K=N_eligible retain router overhead and must be labeled separately.",
+  "units": "ANALYTICAL MAC LOWER BOUND; never measured latency",
+  "computed_in_spec_task": false
+}

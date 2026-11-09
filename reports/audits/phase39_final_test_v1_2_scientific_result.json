@@ -1,0 +1,204 @@
+{
+  "classification": "PHASE39_FINAL_TEST_SCIENTIFIC_RESULT",
+  "evidence_class": "POST_PROTOCOL_TECHNICAL_RECOVERY_TEST_RESULT_WITH_TWO_DISCLOSED_PREOUTCOME_TECHNICAL_FAILURES",
+  "revision": "ra_medfilm_barr_phase39_final_test_v1_2",
+  "phase": 39,
+  "method": "RA-MedFiLM-BARR",
+  "generated_utc": "2026-10-11T10:09:40Z",
+  "population": "TEST",
+  "test_n": 1683,
+  "component_load_audit": {
+    "components": {
+      "G": {
+        "class": "GlobalMedFiLM",
+        "checkpoint": "checkpoints/phase21_global_medfilm_fourdomain_seed42_clean_v3/best.pt",
+        "checkpoint_sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+        "checkpoint_sha256_expected": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+        "parameter_count": 3523001,
+        "parameter_count_expected": 3523001,
+        "missing_keys": [],
+        "unexpected_keys": [],
+        "strict_load_ok": true,
+        "all_weights_finite": true,
+        "eval_mode": true,
+        "requires_grad_false": true
+      },
+      "R_psi": {
+        "class": "BARRRegionalRefinerV1",
+        "checkpoint": "checkpoints/phase25a_barr_regional_refiner_v1_1_roi030/final/final.pt",
+        "checkpoint_sha256": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109",
+        "checkpoint_sha256_expected": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109",
+        "parameter_count": 1276401,
+        "parameter_count_expected": 1276401,
+        "missing_keys": [],
+        "unexpected_keys": [],
+        "strict_load_ok": true,
+        "all_weights_finite": true,
+        "eval_mode": true,
+        "requires_grad_false": true
+      },
+      "B_phi": {
+        "class": "BARRBenefitRouterV1",
+        "checkpoint": "checkpoints/phase25d_barr_benefit_router_v1_2_1_seed42/final/final.pt",
+        "checkpoint_sha256": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+        "checkpoint_sha256_expected": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+        "parameter_count": 36801,
+        "parameter_count_expected": 36801,
+        "missing_keys": [],
+        "unexpected_keys": [],
+        "strict_load_ok": true,
+        "all_weights_finite": true,
+        "eval_mode": true,
+        "requires_grad_false": true
+      },
+      "S_omega": {
+        "class": "BARRPostSafetyV1",
+        "checkpoint": "checkpoints/phase25f_barr_post_safety_v1_0_seed42/final/final.pt",
+        "checkpoint_sha256": "eee9b97b9921e53fc07eac9281dce64ba518c6e1659916b97b0b3bec21ec6d2e",
+        "checkpoint_sha256_expected": "eee9b97b9921e53fc07eac9281dce64ba518c6e1659916b97b0b3bec21ec6d2e",
+        "parameter_count": 1217,
+        "parameter_count_expected": 1217,
+        "missing_keys": [],
+        "unexpected_keys": [],
+        "strict_load_ok": true,
+        "all_weights_finite": true,
+        "eval_mode": true,
+        "requires_grad_false": true
+      }
+    },
+    "checks": {
+      "G_params_3523001": true,
+      "R_psi_params_1276401": true,
+      "B_phi_params_36801": true,
+      "S_omega_params_1217": true,
+      "all_strict_load_ok": true,
+      "zero_missing_keys": true,
+      "zero_unexpected_keys": true,
+      "all_weights_finite": true,
+      "all_eval_mode": true,
+      "all_requires_grad_false": true,
+      "all_checkpoint_sha_match": true
+    },
+    "device_contract": {
+      "call": "get_device(require_cuda=True)",
+      "resolved_device": "cuda:0",
+      "resolved_device_type": "cuda",
+      "cpu_scientific_fallback_permitted": false,
+      "fail_closed": true
+    },
+    "component_device_binding": {
+      "G": {
+        "explicit_to_device_call": true,
+        "parameter_device": "cuda:0",
+        "on_canonical_device": true
+      },
+      "B_phi": {
+        "explicit_to_device_call": true,
+        "parameter_device": "cuda:0",
+        "on_canonical_device": true
+      },
+      "R_psi": {
+        "explicit_to_device_call": true,
+        "parameter_device": "cuda:0",
+        "on_canonical_device": true
+      },
+      "S_omega": {
+        "explicit_to_device_call": true,
+        "parameter_device": "cuda:0",
+        "on_canonical_device": true
+      }
+    },
+    "component_inference_contexts": {
+      "G": {
+        "eval": true,
+        "model_dtype": "float32",
+        "input_dtype": "float32",
+        "autocast_enabled": true,
+        "autocast_dtype": "float16",
+        "grad_context": "torch.no_grad()",
+        "inference_mode": false,
+        "batch_size": 8,
+        "probability_computation": "torch.sigmoid(logits.float()).cpu().numpy()"
+      },
+      "B_phi": {
+        "eval": true,
+        "model_dtype": "float32",
+        "input_dtype": "float32",
+        "autocast_enabled": false,
+        "grad_context": "torch.inference_mode()",
+        "inference_mode": true,
+        "batch_size": "PER_SAMPLE_SINGLE_FORWARD",
+        "score": "raw logit delta_hat (no sigmoid)"
+      },
+      "R_psi": {
+        "eval": true,
+        "model_dtype": "float32",
+        "input_dtype": "float32",
+        "autocast_enabled": false,
+        "grad_context": "torch.inference_mode()",
+        "inference_mode": true,
+        "batch_size": "PER_SAMPLE_SINGLE_FORWARD",
+        "probability_computation": "torch.sigmoid(model(x).float())[:, 0]"
+      },
+      "S_omega": {
+        "eval": true,
+        "model_dtype": "float32",
+        "input_dtype": "float32",
+        "autocast_enabled": false,
+        "grad_context": "torch.inference_mode()",
+        "inference_mode": true,
+        "batch_size": "PER_SAMPLE_SINGLE_FORWARD",
+        "accept_threshold": 0.5
+      }
+    },
+    "component_contexts_not_interchangeable": true,
+    "canonical_probability_operator": "torch.sigmoid(logits.float()).cpu().numpy()"
+  },
+  "counters": {
+    "clean_g_forwards": 1683,
+    "clean_g_batch_forwards": 211,
+    "g_forwards": 0,
+    "b_phi_forwards": 1681,
+    "metric_evaluations": 1683,
+    "test_image_reads": 1683,
+    "test_gt_reads": 1683,
+    "r_psi_forwards": 501,
+    "s_omega_forwards": 501
+  },
+  "summary": {
+    "per_domain": [
+      {
+        "domain": "ISIC",
+        "task_id": 0,
+        "n": 735,
+        "dice_mean": 0.8869294005502611,
+        "dice_median": 0.9348934032019605
+      },
+      {
+        "domain": "BUSI",
+        "task_id": 1,
+        "n": 174,
+        "dice_mean": 0.8504187847033107,
+        "dice_median": 0.8898563815993948
+      },
+      {
+        "domain": "KVASIR",
+        "task_id": 2,
+        "n": 216,
+        "dice_mean": 0.8507055649364359,
+        "dice_median": 0.9095714712974567
+      },
+      {
+        "domain": "KUB",
+        "task_id": 3,
+        "n": 558,
+        "dice_mean": 0.7376936041924949,
+        "dice_median": 0.8420985490678784
+      }
+    ],
+    "macro_dice": 0.8314368385956257
+  },
+  "phase30_qualifier": "ONE_SHOT_ROUTER_HOLDOUT_RESULT_WITH_DISCLOSED_POST_FIRST_OPEN_SCIENTIFIC_SOURCE_FREEZE_DEVIATION",
+  "source_sha256": "e3544634095d86853ce0e7b2fa55bac4a0ecf84cef65ea6fab163a1466606d3c",
+  "manifest_schema_domain_field": "dataset"
+}

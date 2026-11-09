@@ -1,0 +1,141 @@
+{
+  "artifact": "phase19_legacy_evidence_reuse_map",
+  "policy": {
+    "legacy_status": "PRIOR_ENGINEERING_EXPERIMENTAL_EVIDENCE",
+    "not_current_prospective_result": true,
+    "prohibited_uses": [
+      "treating historical TEST performance as current clean-v3 validation evidence",
+      "using historical TEST performance to tune the new project",
+      "rebuilding from scratch a component that already exists and is technically valid"
+    ],
+    "search_first_rule": "Search the repository and legacy evidence before proposing any new Phase-19 implementation."
+  },
+  "reuse_type_counts": {
+    "DIRECT_REUSE": 3,
+    "ADAPT": 2,
+    "REFERENCE_ONLY": 6,
+    "DO_NOT_REUSE": 1
+  },
+  "entries": [
+    {
+      "component_id": "legacy.omni_seg.global_config",
+      "source": "D:\\Softfors\\Omni_segv2\\configs\\global_config.json",
+      "old_role": "Multi-domain dataset naming, modality + target definitions, per-domain root candidates",
+      "current_intended_reuse": "Dataset naming/modality vocabulary for the Phase-19 inventory",
+      "reuse_type": "REFERENCE_ONLY",
+      "reason": "The legacy config targets a different domain set (KiTS/BraTS) and a 2.5D-3D stream; only the naming vocabulary transfers.",
+      "scientific_risk": "LOW",
+      "current_validation_required": false
+    },
+    {
+      "component_id": "legacy.medfilm_seg.global_config",
+      "source": "D:\\Softfors\\final\\medfilm_seg\\configs\\global_config.json",
+      "old_role": "3-domain task-ID registry (isic2018=0, busi=1, kvasir=2), training hyperparameters, metric list",
+      "current_intended_reuse": "Independent corroboration of the task-ID mapping; metric-name vocabulary",
+      "reuse_type": "REFERENCE_ONLY",
+      "reason": "Task IDs agree with manifests/phase4_v3; hyperparameters belong to a superseded pipeline and are NOT adopted.",
+      "scientific_risk": "LOW",
+      "current_validation_required": false
+    },
+    {
+      "component_id": "legacy.medfilm_seg_v2.preprocessing",
+      "source": "D:\\Softfors\\final\\medfilm_seg_v2\\src_v2\\preprocessing_v2.py",
+      "old_role": "Orientation-aware image opening and radiograph-specific preprocessing",
+      "current_intended_reuse": "Orientation-handling lesson (EXIF/oriented open) for the harmonization contract",
+      "reuse_type": "ADAPT",
+      "reason": "The current canonical transform already resizes/pads; only the orientation-handling lesson is portable.",
+      "scientific_risk": "MEDIUM",
+      "current_validation_required": true
+    },
+    {
+      "component_id": "legacy.medfilm_seg_v2.near_duplicates",
+      "source": "D:\\Softfors\\final\\medfilm_seg_v2\\src_v2\\near_duplicates_v2.py",
+      "old_role": "Content-hash based near-duplicate / entity grouping for leakage control",
+      "current_intended_reuse": "Leakage-safeguard design for cross-domain duplicate detection",
+      "reuse_type": "ADAPT",
+      "reason": "The jup repo already remediated leakage in phase4_v3; the legacy approach is a design reference for additional cross-domain duplicate checks.",
+      "scientific_risk": "MEDIUM",
+      "current_validation_required": true
+    },
+    {
+      "component_id": "legacy.medfilm_seg_v2.weak_segmentation_dataset",
+      "source": "D:\\Softfors\\final\\medfilm_seg_v2\\src_v2\\weak_segmentation_dataset_v2.py",
+      "old_role": "Sparse CAM-seed weak-label dataset with 0/1..254/255 encoding",
+      "current_intended_reuse": "NOT adopted: the current program uses full ground-truth masks",
+      "reuse_type": "DO_NOT_REUSE",
+      "reason": "The RA-MedFiLM-Seg++ program is fully supervised; importing the weak-label encoding would corrupt the mask contract.",
+      "scientific_risk": "HIGH",
+      "current_validation_required": false
+    },
+    {
+      "component_id": "legacy.medfilm_seg_v2.film_module",
+      "source": "D:\\Softfors\\final\\medfilm_seg_v2\\src_v2\\models_v2\\medfilm_weak_segmentation_v2.py",
+      "old_role": "FeatureWiseLinearModulation: F_hat = (1 + gamma(t)) * F + beta(t), zero-initialised output projection (identity at init)",
+      "current_intended_reuse": "FiLM engineering reference for the Phase-25 RA-MedFiLM module",
+      "reuse_type": "REFERENCE_ONLY",
+      "reason": "Zero-init identity-at-start is a valuable, verified engineering property; the exact implementation belongs to Phase 25 and must be re-validated there.",
+      "scientific_risk": "MEDIUM",
+      "current_validation_required": true
+    },
+    {
+      "component_id": "legacy.medfilm_seg_v2.locked_test_contract",
+      "source": "D:\\Softfors\\final\\medfilm_seg_v2\\configs_v2\\locked_test_set_contract_v2.json",
+      "old_role": "Explicit locked-TEST contract with prohibited uses and a split fingerprint",
+      "current_intended_reuse": "Governance pattern for the Phase-39 TEST lock",
+      "reuse_type": "REFERENCE_ONLY",
+      "reason": "The jup repo already has a stronger, independently verified TEST lock (src.utils.test_lock).",
+      "scientific_risk": "LOW",
+      "current_validation_required": false
+    },
+    {
+      "component_id": "legacy.safeseg.notebooks",
+      "source": "D:\\Softfors\\safeseg\\notebooks\\safeseg.ipynb",
+      "old_role": "Multi-dataset (isic2018, kits23, mms, montgomery) segmentation experiments",
+      "current_intended_reuse": "Prior evidence that a single model can span multiple medical domains; dataset-adapter lessons",
+      "reuse_type": "REFERENCE_ONLY",
+      "reason": "Different domain set; no reusable code path. Historical numbers are not current clean-v3 evidence.",
+      "scientific_risk": "LOW",
+      "current_validation_required": false
+    },
+    {
+      "component_id": "legacy.final.external_test_ds",
+      "source": "D:\\Softfors\\final\\external_test_ds",
+      "old_role": "External evaluation dataset engineering for the MedFiLM-Seg project",
+      "current_intended_reuse": "External-evaluation engineering reference for Phase 32",
+      "reuse_type": "REFERENCE_ONLY",
+      "reason": "Phase 32 owns external validation; Phase 19 must not open an external TEST.",
+      "scientific_risk": "MEDIUM",
+      "current_validation_required": true
+    },
+    {
+      "component_id": "jup.src.data.transforms",
+      "source": "D:\\Softfors\\jup\\src\\data\\transforms.py",
+      "old_role": "Canonical aspect-preserving resize + centre pad (image BILINEAR / mask NEAREST)",
+      "current_intended_reuse": "Adopted unchanged as the Phase-19 spatial transform",
+      "reuse_type": "DIRECT_REUSE",
+      "reason": "Already validated on clean-v3 KUB; satisfies the harmonization spatial contract for all four domains.",
+      "scientific_risk": "LOW",
+      "current_validation_required": false
+    },
+    {
+      "component_id": "jup.src.utils.targets",
+      "source": "D:\\Softfors\\jup\\src\\utils\\targets.py",
+      "old_role": "Canonical binary target contract (foreground = mask > 0)",
+      "current_intended_reuse": "Adopted unchanged as the Phase-19 mask contract",
+      "reuse_type": "DIRECT_REUSE",
+      "reason": "Handles heterogeneous nonzero label vocabularies; required for KUB and valid for the other three domains.",
+      "scientific_risk": "LOW",
+      "current_validation_required": false
+    },
+    {
+      "component_id": "jup.src.utils.test_lock",
+      "source": "D:\\Softfors\\jup\\src\\utils\\test_lock.py",
+      "old_role": "Frozen TEST-lock verification (sha256 of manifests/test.csv, count 1683)",
+      "current_intended_reuse": "Adopted unchanged; asserted by the Phase-19 driver",
+      "reuse_type": "DIRECT_REUSE",
+      "reason": "The strongest available TEST lock; Phase 19 must not weaken it.",
+      "scientific_risk": "LOW",
+      "current_validation_required": false
+    }
+  ]
+}

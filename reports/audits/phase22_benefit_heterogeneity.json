@@ -1,0 +1,131 @@
+{
+  "artifact": "phase22_benefit_heterogeneity",
+  "phase": 22,
+  "source": "reports/tables/phase22_regional_intervention_per_image.csv",
+  "new_inference_performed": false,
+  "training_jobs_started": 0,
+  "variant": "oracle (GT-defined ROI) \u2014 UPPER BOUND, NOT DEPLOYABLE",
+  "n_total": 808,
+  "n_executed": 808,
+  "n_no_oracle_roi": 0,
+  "gain_distribution_executed": {
+    "mean_delta_dice": -0.042477861137391895,
+    "median_delta_dice": -0.013680136565675599,
+    "sd": 0.1478892872923432,
+    "p05": -0.30159923499591623,
+    "p25": -0.06638240752244665,
+    "p75": 0.01175328587130555,
+    "p95": 0.11483966404441578,
+    "min": -0.8334218445650708,
+    "max": 0.7207486152602737,
+    "n_positive": 271,
+    "n_zero": 1,
+    "n_negative": 536,
+    "share_positive": 0.3353960396039604
+  },
+  "gain_distribution_intent_to_treat": {
+    "mean_delta_dice": -0.042477861137391895,
+    "median_delta_dice": -0.013680136565675599,
+    "n_positive": 271,
+    "share_positive": 0.3353960396039604
+  },
+  "concentration": {
+    "gini_of_positive_benefit": 0.6439926672758494,
+    "share_of_positive_benefit_from_top_10pct_of_benefiting_cases": 0.49243071435177627,
+    "share_of_positive_benefit_from_top_20pct_of_benefiting_cases": 0.6823111184703063,
+    "interpretation": "a high Gini / high top-share means the regional benefit is concentrated in few cases, which is the regime in which a router would be valuable"
+  },
+  "correlates_of_gain": {
+    "pearson_r_baseline_global_dice": -0.21182609696098065,
+    "pearson_r_roi_area_fraction": 0.14525406370401153,
+    "pearson_r_log1p_gt_foreground_pixels": 0.004445449450422562,
+    "interpretation": "a NEGATIVE r with baseline Dice means the regional arm helps most where the global model is weakest"
+  },
+  "per_domain": [
+    {
+      "dataset": "ISIC",
+      "n_executed": 357,
+      "mean_delta": -0.025320844598570303,
+      "median_delta": -0.0088136504191189,
+      "sd_delta": 0.08213704087472304,
+      "p05_delta": -0.17419814964100327,
+      "p95_delta": 0.05486447305601019,
+      "n_positive": 112,
+      "n_negative": 244,
+      "share_positive": 0.3137254901960784,
+      "sum_positive": 3.722801406985292,
+      "sum_negative": -12.76234292867489
+    },
+    {
+      "dataset": "BUSI",
+      "n_executed": 84,
+      "mean_delta": -0.09337708755848126,
+      "median_delta": -0.0558883956820291,
+      "sd_delta": 0.14545975311810505,
+      "p05_delta": -0.32902009107584274,
+      "p95_delta": 0.10039879610894667,
+      "n_positive": 16,
+      "n_negative": 68,
+      "share_positive": 0.19047619047619047,
+      "sum_positive": 1.1975915642533037,
+      "sum_negative": -9.04126691916573
+    },
+    {
+      "dataset": "KVASIR",
+      "n_executed": 87,
+      "mean_delta": -0.05077252859482929,
+      "median_delta": -0.0387077224727581,
+      "sd_delta": 0.11080479510370352,
+      "p05_delta": -0.23340583831404174,
+      "p95_delta": 0.0732362351341226,
+      "n_positive": 24,
+      "n_negative": 63,
+      "share_positive": 0.27586206896551724,
+      "sum_positive": 1.4797159873481753,
+      "sum_negative": -5.896925975098325
+    },
+    {
+      "dataset": "KUB",
+      "n_executed": 280,
+      "mean_delta": -0.04650601762378742,
+      "median_delta": -0.011653522496129401,
+      "sd_delta": 0.20846711354714875,
+      "p05_delta": -0.5071027309232226,
+      "p95_delta": 0.16320062378888675,
+      "n_positive": 119,
+      "n_negative": 161,
+      "share_positive": 0.425,
+      "sum_positive": 10.595560417750285,
+      "sum_negative": -23.617245352410762
+    }
+  ],
+  "paired_bootstrap_executed_subset": {
+    "delta": -0.042477861137391826,
+    "ci_low": -0.05234330765960202,
+    "ci_high": -0.0323633392102823,
+    "p_value": 0.0,
+    "ci_excludes_zero": true,
+    "n_boot": 2000,
+    "seed": 42,
+    "alpha": 0.05,
+    "unit": "image",
+    "paired": true,
+    "domain_stratified": true,
+    "n_strata": 4
+  },
+  "paired_bootstrap_intent_to_treat": {
+    "delta": -0.042477861137391826,
+    "ci_low": -0.05234330765960202,
+    "ci_high": -0.0323633392102823,
+    "p_value": 0.0,
+    "ci_excludes_zero": true,
+    "n_boot": 2000,
+    "seed": 42,
+    "alpha": 0.05,
+    "unit": "image",
+    "paired": true,
+    "domain_stratified": true,
+    "n_strata": 4
+  },
+  "test_reads": 0
+}

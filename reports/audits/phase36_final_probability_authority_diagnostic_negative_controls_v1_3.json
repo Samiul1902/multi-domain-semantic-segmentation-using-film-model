@@ -1,0 +1,72 @@
+{
+ "artifact_kind": "PHASE36_FINAL_PROBABILITY_AUTHORITY_DIAGNOSTIC_NEGATIVE_CONTROLS",
+ "revision": "ra_medfilm_barr_phase36_final_probability_authority_diagnostic_v1_3",
+ "source": {
+  "path": "scripts/analysis/phase36_final_probability_authority_diagnostic_negative_controls_v1_3.py",
+  "sha256": "0ebd28e8fd2f3544eee7680a290a97063f73afcadab5eea74608569a00abb265"
+ },
+ "headline_control": {
+  "statement": "inherited foreign v1.14 token => launcher refuses (rc 2) before dispatch; diagnostic main() refuses (rc 8); no marker; and any GT access fails closed",
+  "exit_code_expected_no_one_shot_gate": 3,
+  "exit_code_expected_no_launch_authority": 5,
+  "exit_code_expected_foreign_token_present": 8,
+  "exit_code_expected_launcher_foreign_token": 2
+ },
+ "d61_controls": [
+  "v1.3 diagnostic ACCEPT branch calls canonical fuse_full_field",
+  "v1.3 diagnostic ACCEPT branch does NOT call _fuse_global_with_regional",
+  "v1.3 diagnostic contains NO _fuse_global_with_regional CALL anywhere",
+  "MUTATION: swap `fused = mod.fuse_full_field(...)` -> `fused = system._fuse_global_with_regional(...)` is DETECTED by the static validator",
+  "MUTATION: the launcher-side D61 AST gate ALSO rejects the mutated source",
+  "canonical pad-aware fuse_full_field DIVERGES from the old pad-unaware model fusion (pure synthetic evidence; NOT model execution)",
+  "canonical fuse_full_field is deterministic (idempotent replicate)"
+ ],
+ "d56_controls": [
+  "real types.ModuleType is NOT subscriptable (TypeError reproduced at runtime)",
+  "real v1.3 diagnostic contains NO _FROZEN_MOD[...] subscript site",
+  "_FROZEN_MOD._load_clean_image_tensor present as ATTRIBUTE access",
+  "_FROZEN_MOD.canonical_learned_core present as ATTRIBUTE access",
+  "launcher check_d56_module_interface() passes on the real diagnostic"
+ ],
+ "v1_2_consumed_state_controls": [
+  "v1.2 START sha + RESULT sha bound; v1.2 RESULT present",
+  "v1.2 result adjudication + reconciliation + D63 addenda bound",
+  "D61 classification bound (ACCEPT_FINAL_FUSION_SEMANTICS_DIVERGE_FROM_PHASE27)",
+  "no v1.1/v1.2 launch-authority token reused"
+ ],
+ "d52_controls": [
+  "FINAL_AUTHORITY_ABSENT",
+  "FINAL_AUTHORITY_SHA_MISMATCH",
+  "FINAL_AUTHORITY_SHAPE_MISMATCH",
+  "FINAL_AUTHORITY_DTYPE_MISMATCH",
+  "FINAL_AUTHORITY_SAMPLE_ORDER_MISMATCH (CSV order)",
+  "FINAL_AUTHORITY_SAMPLE_ORDER_MISMATCH (fg-pixel row binding)",
+  "VAL_MANIFEST_SHA_MISMATCH (reordered manifest)"
+ ],
+ "d53_controls": [
+  "single guarded callable => VAL_GT_READ == 1",
+  "four guarded callables => shared state == 4 + blocked_gt_calls recorded",
+  "temporary failure artifact records ACTUAL VAL_GT_READ (not hardcoded 0)"
+ ],
+ "d54_controls": [
+  "synthetic completed comparison + forced result-write failure => rc 3",
+  "failure artifact preserves final_authority_computed / comparison / classification",
+  "result_write_attempted == true, result_write_completed == false",
+  "terminal == TERMINAL_EVIDENCE_ANOMALY__RESULT_WRITE_FAILED_AFTER_COMPUTATION",
+  "no partial RESULT file deleted/created"
+ ],
+ "finite_controls": [
+  "NaN rejected",
+  "+inf rejected",
+  "-inf rejected",
+  "non-finite sample ids + element counts preserved"
+ ],
+ "run": {
+  "returncode": 0,
+  "n_checks": 21,
+  "n_pass": 21,
+  "all_pass": true
+ },
+ "scientific_output": false,
+ "generated_utc": "2026-10-08T08:40:49Z"
+}

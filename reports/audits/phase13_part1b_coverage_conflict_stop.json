@@ -1,0 +1,144 @@
+{
+  "artifact": "PHASE13_PART1B_COVERAGE_SEMANTICS_CONFLICT_STOP",
+  "document_type": "SECOND_SCIENTIFIC_SAFE_STOP_STATE_CAPTURE",
+  "model": "Gemini 3.8 Flash Medium",
+  "created_utc": "2026-09-21T14:46:00Z",
+  "project_root": "D:\\Softfors\\jup",
+  "experiment_id": "phase13b_kub_localizer_r512_h128_sigmaeq075_centernetfocal_seed42_clean_v3",
+
+  "status": "PASS",
+
+  "0_reason_for_stop": {
+    "conflict": "HISTORICAL_COVERAGE_SEMANTICS_VS_R2B_PIXEL_SEMANTICS",
+    "historical_executing_semantics": "BBOX_INTERSECTION (gt_components did not attach native masks; evaluate_roi_coverage used its bbox fallback)",
+    "r2b_semantics": "PIXEL_MASK_NATIVE_COMPONENT_COVERAGE",
+    "governance": "R2/R2A give precedence to HISTORICAL EXECUTING CODE for the primary checkpoint-selection protocol",
+    "implication": "R2B is potentially a MATERIAL primary checkpoint-metric change once proposals become nonzero",
+    "confirmed_material": true,
+    "confirmation_evidence": "Epoch 31 emitted 4.1456 proposals/image and nonzero primary recall, so the two semantics can no longer coincide"
+  },
+
+  "1_stop": {
+    "trainer_stopped": true,
+    "sigint_attempted": true,
+    "sigint_delivered": false,
+    "sigint_reason": "Git Bash kill -INT is not deliverable to a native Windows console process",
+    "sigterm_attempted": true,
+    "sigterm_delivered": false,
+    "sigterm_reason": "Git Bash kill -TERM is not deliverable to a native Windows console process",
+    "graceful_taskkill_attempted": true,
+    "graceful_taskkill_result": "REFUSED BY WINDOWS: 'This process can only be terminated forcefully (with /F option)'",
+    "forceful_termination_used": true,
+    "forceful_justification": "Graceful interruption FAILED at every available level (SIGINT, SIGTERM, graceful taskkill), which is the supervisor's stated precondition for /F",
+    "windows_pid": 11396,
+    "msys_pid": 1210,
+    "relaunch_performed": false,
+    "resume_performed": false
+  },
+
+  "2_preservation": {
+    "history_rows_rewritten": false,
+    "new_experiment_id_created": false,
+    "r2b_amendment_modified": false,
+    "runner_modified_during_stop": false,
+    "config_modified": false,
+    "training_start_audit_modified": false,
+    "epoch28_integrity_audit_modified": false,
+    "pre_repair_validation_audit_modified": false,
+    "stale_lock_recovery_audit_modified": false,
+    "best_pt_overwritten_by_run": true,
+    "best_pt_overwrite_disclosure": "The AUTHORIZED resume legitimately overwrote best.pt at epoch 31 under the frozen strict-improvement rule. The pre-stop epoch-27 best.pt (sha d71aed3e084653bfc49acf9461cc2f0b3332c03b43026947a54393f89cebd04c) no longer exists on disk. Its metrics remain in the immutable history row for epoch 27, but the epoch-27 WEIGHTS are not recoverable. This is reported, not hidden."
+  },
+
+  "3_completed_state": {
+    "last_completed_history_epoch": 31,
+    "history_rows": 31,
+    "history_contiguous_1_to_N": true,
+    "latest_pt_epoch": 31,
+    "best_pt_epoch": 31,
+    "best_epoch_so_far": 31,
+    "bad_epochs": 0,
+    "global_step": 5983,
+    "any_epoch_29_or_later_completed": true,
+    "completed_r2b_epochs_ge_29": 3,
+    "first_completed_r2b_epoch": 29,
+    "last_completed_r2b_epoch": 31,
+    "r2b_epochs": [
+      {"epoch": 29, "tiny_recall90": 0.0, "overall_recall90": 0.0,
+       "mean_roi_area_fraction": 0.0, "mean_proposals_per_image": 0.0,
+       "is_new_best": true, "best_epoch_so_far": 29, "bad_epochs": 0},
+      {"epoch": 30, "tiny_recall90": 0.0, "overall_recall90": 0.0,
+       "mean_roi_area_fraction": 0.0, "mean_proposals_per_image": 0.0,
+       "is_new_best": false, "best_epoch_so_far": 29, "bad_epochs": 1},
+      {"epoch": 31, "tiny_recall90": 0.402778, "overall_recall90": 0.427632,
+       "mean_roi_area_fraction": 0.00391812, "mean_proposals_per_image": 4.1456,
+       "is_new_best": true, "best_epoch_so_far": 31, "bad_epochs": 0}
+    ],
+    "values_read_from_immutable_history": true,
+    "values_recomputed": false
+  },
+
+  "4_classification": {
+    "rows_1_28_primary_status": "VALIDATED_ZERO_PROPOSAL_INVARIANT",
+    "rows_ge_29_primary_status": "R2B_PIXEL_SEMANTICS_PROVISIONAL_NOT_ACCEPTED_FOR_PRIMARY_SELECTION",
+    "rows_ge_29_are_invalid_training_epochs": false,
+    "rows_ge_29_salvage_note": "Their optimizer/model state may still be salvageable; only the PRIMARY checkpoint-selection INTERPRETATION is pending supervisor decision",
+    "rows_deleted": false,
+    "any_r2b_epoch_with_nonzero_proposals": true,
+    "any_r2b_epoch_with_nonzero_tiny_recall90": true,
+    "any_r2b_epoch_with_nonzero_overall_recall90": true,
+    "any_r2b_epoch_marked_new_best": true
+  },
+
+  "5_evidence_hashes": {
+    "history_csv": "27f99fb1b8760995373bfeb47bbc3f2a1f2ab81e08fbdb44abb3b6f479ab9440",
+    "latest_pt": "806ce086dc0fa0163029e0fb335ad6ae9605ea6b550b12371a2cb0d5340eb575",
+    "best_pt": "1a4863c96484871fda2a70b02678ac602245ceea4bc8c093160a407009ba8ecc",
+    "runner": "15a0c2f0cf02916f96f60b7cf3d148fac4d931df11d5e119eb9c76f22a0c889b",
+    "config": "922ff26916c1f7ebea0ea526fbaa6adbb9a7419f1f08b16d33ed5df049c4c8bf",
+    "r2b_json": "5574cd60a0bb69f392e818b96915fc522f4b706e9958d2d39a22911fe8424497",
+    "training_log": "420beb2544cccfa5863c34c7d9b8dac0de8c75e49abbe0d28928d2acada118a2",
+    "files_edited_after_hashing": false
+  },
+
+  "6_lock_and_process": {
+    "trainer_process_absent": true,
+    "waiters_absent": true,
+    "second_trainer_absent": true,
+    "lock_present": true,
+    "lock_stale": true,
+    "lock_owner_pid": 23452,
+    "lock_owner_alive": false,
+    "lock_contents": {
+      "experiment_id": "phase13b_kub_localizer_r512_h128_sigmaeq075_centernetfocal_seed42_clean_v3",
+      "pid": 23452,
+      "host": "DESKTOP-A568FKR",
+      "started_utc": "2026-09-21T14:28:29.150988+00:00",
+      "recovered_stale_lock": false,
+      "recovered_reason": null
+    },
+    "lock_deleted_in_this_task": false,
+    "lock_disposition": "RECORDED_ONLY_PER_SUPERVISOR_INSTRUCTION"
+  },
+
+  "7_test_and_grid": {
+    "grid_configurations_evaluated": 0,
+    "test_content_reads": 0,
+    "expected_grid_configurations": 0,
+    "expected_test_reads": 0
+  },
+
+  "8_closure": {
+    "code_modified": false,
+    "resume_started": false,
+    "restart_from_scratch_started": false,
+    "coverage_semantics_patched": false,
+    "threshold_changed": false,
+    "loss_changed": false,
+    "grid_run": false,
+    "downstream_analysis_run": false,
+    "test_touched": false,
+    "next_action": "WAIT_FOR_SUPERVISOR_COVERAGE_SEMANTICS_DECISION",
+    "stopped": true
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "classification": "EXT01_ANNOTATION_COMPATIBILITY",
+  "generated_utc": "2026-10-11T13:00:00Z",
+  "frozen_foreground": "binary foreground/background medical segmentation; task IDs 0=ISIC 1=BUSI 2=KVASIR 3=KUB",
+  "results": [
+    {
+      "dataset": "HAM10000",
+      "external_foreground": "skin lesion region",
+      "frozen_task": "ISIC / task 0",
+      "compatibility": "EXACT_COMPATIBLE",
+      "note": "binary lesion masks; 7-class diagnosis metadata is REPORTING_ONLY, never a model class"
+    },
+    {
+      "dataset": "Stones_where_are_you",
+      "external_foreground": "stone (id7) among 10 categories",
+      "frozen_task": "KUB / task 3",
+      "compatibility": "DETERMINISTICALLY_MAPPABLE",
+      "note": "requires a frozen rule (e.g. category=='stone' -> foreground; all other structures -> background). Urinary-stone subtype stays REPORTING_ONLY metadata, never a task ID. Rule not yet frozen."
+    },
+    {
+      "dataset": "CVC-ClinicDB",
+      "external_foreground": "polyp region",
+      "frozen_task": "KVASIR / task 2",
+      "compatibility": "EXACT_COMPATIBLE",
+      "note": "binary polyp masks"
+    },
+    {
+      "dataset": "BrEaST-Lesions_USG",
+      "external_foreground": "breast lesion (tumour)",
+      "frozen_task": "BUSI / task 1",
+      "compatibility": "EXACT_COMPATIBLE",
+      "note": "benign/malignant (if present) and 'other' structure masks must NOT become model classes; binary lesion only"
+    }
+  ]
+}

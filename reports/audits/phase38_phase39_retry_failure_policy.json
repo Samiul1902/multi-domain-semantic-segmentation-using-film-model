@@ -1,0 +1,47 @@
+{
+  "classification": "PHASE38_PHASE39_RETRY_FAILURE_POLICY",
+  "generated_utc": "2026-10-11T06:30:00Z",
+  "phase": 38,
+  "attempt_identity": {
+    "one_shot": true,
+    "version": "v1_0"
+  },
+  "once_test_opened": {
+    "attempt_consumed": true
+  },
+  "scientific_failure": {
+    "automatic_retry": false
+  },
+  "technical_failure": {
+    "new_revision_may_be_considered_only_if": [
+      "checkpoint SHA mismatch (byte-level corruption)",
+      "runtime source SHA mismatch (byte-level corruption)",
+      "authority-bundle SHA mismatch",
+      "wrong interpreter / incompatible runtime",
+      "pre-inference fail-closed gate triggered before any TEST inference"
+    ],
+    "conditions_that_do_not_qualify": [
+      "unfavorable scientific outcome",
+      "non-significant result",
+      "any outcome-dependent reason"
+    ]
+  },
+  "revision_constraints": {
+    "must_never_overwrite_prior_attempt_evidence": true,
+    "must_never_alter_checkpoints": true,
+    "must_never_alter_metrics": true,
+    "must_never_alter_thresholds": true,
+    "must_never_alter_sample_inclusion": true,
+    "must_never_alter_statistical_methods": true,
+    "must_never_inspect_test_outcomes_to_repair_science": true
+  },
+  "revision_requirements": {
+    "preserve_old_attempt_artifacts": true,
+    "new_version_number": true,
+    "document_exact_defect": true,
+    "prove_scientific_delta_zero": true,
+    "new_preexecution_gate_before_new_attempt": true
+  },
+  "no_same_version_rerun": true,
+  "no_automatic_retry": true
+}

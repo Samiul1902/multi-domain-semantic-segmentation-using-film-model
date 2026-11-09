@@ -1,0 +1,48 @@
+{
+ "artifact": "phase36_v1_16_robustness_contract",
+ "phase": 36,
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase36_robustness_v1_16",
+ "type": "EXECUTION_CONTRACT",
+ "supersedes": null,
+ "amends": "ra_medfilm_barr_phase36_robustness_v1_15 (byte-preserved; NOT modified)",
+ "scientific_semantics": "IDENTICAL_TO_V1_15",
+ "scientific_semantics_effect_vs_v1_15": "NONE",
+ "source_bindings": {
+  "v1_16_execution_source": "a96b74caa4587aa9d2f83b79ed39c13075a88086109e31d991695a75ec4abab9",
+  "v1_16_launcher": "a069345a8d332c549fc25799fc8d9e5e1b4b46e6b878e23f0e83d7a4c011e16c",
+  "v1_16_supervisor": "ffab12252ba334a54482136b1e4e80351c90adb50c44df6430ce4275dc6a9754",
+  "v1_16_runtime_manifest": "f9f245b41bdf904cdb4f9da7c3d32361da806c7451773ce721d3d0a023f64e18",
+  "v1_16_launch_authority_sha": "52a8783a978fb442ec1158e6b06ee1b08fb6e0cd58550e65b69678f5ca8d9d3b"
+ },
+ "frozen_ancestors": {
+  "v1_14_execution": "ac09ff8ded3610244920e66612145b246b33127140d344a9730d454bab27cff5",
+  "v1_15_execution": "b194ad28345ea8b268748be383ca98b936cb051d85854666e3141250f3eae002",
+  "phase27_final_prob": "506ab6c4e715a9106889e186c146b73903493c80a63258007954cf5deb3ea9cf",
+  "phase27_global_prob": "cc6c54af986f56b4aba9265405ffeba4f6cac582eeff00fe6b0894429e7d3f13",
+  "phase27_score_csv": "702133930ce14ac9513c992833396e3e250d08417b17d1032cbd260a405cfb12",
+  "phase27_phaseA_source": "ac0ffbdadbfe60349061a926f5a664716a3a3690ac3a90c21a35802263975841",
+  "phase27_phaseB_source": "35800e39d9220e638adbb640bd25e18bc14da5298d9bed4a603f2f0dec64cf37",
+  "D79_disclosure": "548b7e1541abb5c011936db73b3cf1e90222a733267b67c8106ff4d5197ad81d",
+  "D76_D78_reconciliation": "7f0957695939a03feca7d9909c47f56e6644a4f3b800664c9bb61f02486dbd9b",
+  "v1_4_result": "046a1e3c3053fb00b97895d8d1834d0011f8b190209daa01795e6915b7fd5284",
+  "v1_4_adjudication": "912cb24e4b27dcc7d66310b36db2154180411ec52d79d19c767aa708220b9b36",
+  "D80_adjudication": "fd66447fc1da1ad045fda102ed5ccfda39e1d0ffff5aa24cda6911e281e9d8c4"
+ },
+ "gate_env": "PHASE36_V1_16_EXECUTE",
+ "smoke_gate_env": "PHASE36_V1_16_SMOKE_EXECUTE",
+ "launch_authority_token": "PHASE36_V1_16_LAUNCH_AUTHORITY",
+ "dispatch_command": ".venv/Scripts/python.exe scripts/analysis/phase36_robustness_execution_v1_16.py --mode science",
+ "dispatch_mode_args": [
+  "--mode",
+  "science"
+ ],
+ "one_shot": true,
+ "automatic_retry": false,
+ "no_delete_or_recreate": true,
+ "protected_populations": {
+  "TEST": "PHASE39_ONLY_LOCKED",
+  "ROUTER_HOLDOUT": "LOCKED"
+ },
+ "generated_utc": "2026-10-10T13:26:59Z"
+}

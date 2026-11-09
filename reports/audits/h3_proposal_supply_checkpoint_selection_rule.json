@@ -1,0 +1,34 @@
+{
+  "artifact": "H3_PROPOSAL_SUPPLY_CHECKPOINT_SELECTION_RULE",
+  "generated_utc": "2026-09-25T09:30:00Z",
+  "intervention": "A_TARGET_SUPPORT_REDESIGN",
+  "purpose": "Prospective rule for selecting the single H3 localizer checkpoint to freeze and promote to downstream eval. Chosen to align the selection metric with the supply axis (component recall), not generic heatmap loss.",
+
+  "rule": {
+    "primary_metric": "VAL_LOCALIZATION_RECALL",
+    "definition": "Fraction of VAL GT components whose centroid falls within a predicted peak >= proposal_threshold (0.10) located within margin (0.20) of the GT component bounding box, after the frozen decode (extract_predicted_components + NMS + top_k).",
+    "primary_direction": "MAXIMIZE",
+    "tiebreak_metric": "VAL_LOSS",
+    "tiebreak_direction": "MINIMIZE",
+    "selection": "Among all epochs, select the checkpoint maximizing VAL_LOCALIZATION_RECALL; ties broken by lower VAL_LOSS."
+  },
+  "rationale": "The H3 axis is proposal SUPPLY, i.e., whether components (especially TINY) become decodable peaks. Component-level localization recall directly measures that, whereas BCE/Dice heatmap loss is dominated by large components and would not prioritize tiny supply.",
+  "stratified_reporting_required": [
+    "VAL_LOCALIZATION_RECALL per size stratum (TINY/SMALL/MEDIUM/LARGE)",
+    "zero_proposal_TINY count",
+    "zero_proposal_GT count"
+  ],
+  "post_selection": {
+    "action": "Freeze the selected checkpoint as checkpoints/h3_kub_localizer_sigma_adaptive_sizeaware_seed42_clean_v3/best.pt and use it unchanged in the downstream Stage-4D eval (H3 localizer -> Phase-14 refiner epoch 56).",
+    "downstream_metric": "Tiny Recall -> R_H3 = (TinyRecall_H3 - Tg)/G"
+  },
+  "explicit_non_criteria": [
+    "Do NOT select on global Dice (that is the contamination/refiner concern, not the supply axis).",
+    "Do NOT select on the generic heatmap regression loss alone.",
+    "Do NOT use TEST or external data for selection (0 reads)."
+  ],
+  "bound_evaluator": {
+    "scripts/evaluation/evaluate_phase14_clean_v3_diagnostic.py": "53958eb1601a15f29b6dc1635f802f87af88f2eef3b3268320ad471b92ef1a38",
+    "src/inference/predicted_roi.py": "bd9f8be84595f49ff1e25e6052b548488fb6ae6a48aa7adbc78b880fb8f2d4e7"
+  }
+}

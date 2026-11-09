@@ -1,0 +1,106 @@
+{
+  "standard_name": "Project-Wide Notebook Visualization Standard",
+  "version": "NV-1",
+  "scope": "All past, current, and future modeling/evaluation phases",
+  "governance_rule": "Canonical frozen notebooks with accepted SHA-256 hashes are strictly immutable. Retrospective visual companions are created as read-only, non-destructive companions in notebooks/retrospective/. Prospective phases integrate the visual standard directly prior to freeze.",
+  "core_requirements": {
+    "default_detailed_prediction_count": 16,
+    "allowed_detailed_range": "10 to 20 cases",
+    "case_selection_policy": "Strictly deterministic, prediction-independent, and non-cherry-picked using SHA-256 hash ranking: SHA256('<phase_seed>|' + sample_id). Selection table must be saved prospectively.",
+    "segmentation_panel_stages": {
+      "mandatory_panels": [
+        "A. Original image (grayscale/radiograph)",
+        "B. Ground-truth mask / contour (lime/green)",
+        "C. Model probability map (continuous [0, 1])",
+        "D. Thresholded binary prediction mask",
+        "E. Prediction-vs-GT error map (standardized TP/FP/FN)",
+        "F. Final prediction overlay on original radiograph"
+      ],
+      "pipeline_specific_panels": [
+        "Localizer heatmaps (CenterNet/focal)",
+        "Candidate proposal bounding boxes / proposal union",
+        "Cropped regional inputs",
+        "Regional probability outputs",
+        "Restored / fused canvas predictions"
+      ]
+    },
+    "error_map_standard": {
+      "TP": "True Positive (predicted stone overlapping GT stone, coded Green or Cyan)",
+      "FP": "False Positive (predicted stone in background tissue, coded Red or Orange)",
+      "FN": "False Negative (missed GT stone area, coded Blue or Yellow)",
+      "Background": "True Negative (coded Black or transparent)"
+    },
+    "sample_data_visualization": {
+      "requirement": "Every data/modeling notebook must visualize 8-12 deterministic representative samples at the outset.",
+      "content": "Original image, GT mask, overlay, and clinical metadata (FOV, component count, size stratum).",
+      "population_rule": "TRAIN or VAL only. Untouched TEST split is strictly forbidden during development."
+    },
+    "training_curves_visualization": {
+      "requirement": "Mandatory for all training phases.",
+      "curves": [
+        "Train loss vs epoch",
+        "Validation loss vs epoch (if evaluated)",
+        "Checkpoint selection metric vs epoch",
+        "Learning rate vs epoch",
+        "Markers for best checkpoint epoch, early stopping epoch, and power-resume points"
+      ]
+    },
+    "evaluation_visualization": {
+      "requirement": "Mandatory for all evaluation phases.",
+      "plots": [
+        "Dice distribution boxplots / violin plots",
+        "Strata-specific metric bars (Tiny, Small, Medium, Large)",
+        "Object detection recall bars",
+        "Precision / recall and false positive component distributions",
+        "Proposal burden and ROI area fraction distributions",
+        "Hard-case recovery summaries"
+      ]
+    },
+    "figure_saving_and_size_control": {
+      "directory": "reports/figures/<phase_specific_dir>/",
+      "format": "High-resolution PNG files",
+      "display_method": "Saved figures are rendered and embedded into notebook output cells via IPython.display.Image or display(fig), preventing massive raw base64 bloat."
+    }
+  },
+  "phase_15_specifications": {
+    "main_notebook": "notebooks/14_phase15_loss_study.ipynb",
+    "gallery_notebook": "notebooks/14b_phase15_val_prediction_gallery.ipynb",
+    "detailed_16_selection": {
+      "path": "reports/tables/phase15_val_detailed16_selection.csv",
+      "count": 16,
+      "rule": "Deterministic SHA-256 ranking of 'phase15_detailed16_seed42|' + sample_id across 106 FULL_FIELD VAL images",
+      "pagination": "4 cases per page across 4 pages (16 total)"
+    },
+    "gallery_75_selection": {
+      "path": "reports/tables/phase15_val_gallery_selection.csv",
+      "count": 75,
+      "rule": "Deterministic SHA-256 ranking of 'phase15_gallery_seed42|' + sample_id across 106 FULL_FIELD VAL images",
+      "pagination": "15 cases per page across 5 pages (75 total)"
+    },
+    "hard_case_appendix": "Independent appendix covering the 16 Hard-Tiny components and 7 Global-Empty images, strictly separated from unbiased 16-case and 75-case cohorts."
+  },
+  "test_lock_governance": {
+    "test_reads": 0,
+    "test_visualizations": 0,
+    "test_metrics": "NONE",
+    "terminology": "Inspection on VAL data must strictly be labeled 'VAL prediction inspection' or 'development visualization'; 'test' is prohibited."
+  },
+  "future_notebook_hard_gate": {
+    "SAMPLE_DATA": "PASS",
+    "PIPELINE_STEPS": "PASS",
+    "TRAINING_CURVES": "PASS/NA",
+    "AGGREGATE_RESULTS": "PASS",
+    "DETAILED_PREDICTIONS": "10-20",
+    "FAILURE_VISUALIZATION": "PASS",
+    "REAL_SCORES": "PASS",
+    "FIGURES_SAVED": "PASS",
+    "FIGURES_DISPLAYED_IN_NOTEBOOK": "PASS",
+    "RUN_ALL": "PASS",
+    "UNEXECUTED_CODE_CELLS": 0,
+    "ERROR_OUTPUTS": 0,
+    "SHA256": "RECORDED",
+    "TEST_LEAKAGE": 0
+  }
+}
+
+

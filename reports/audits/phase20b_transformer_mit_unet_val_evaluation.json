@@ -1,0 +1,32 @@
+{
+  "artifact": "phase20b_val_evaluation",
+  "phase": 20,
+  "subphase": "20B",
+  "model_key": "transformer_mit_unet",
+  "experiment_id": "phase20b_shared_transformer_mit_unet_fourdomain_seed42_clean_v3",
+  "canonical_val_inference_runs": 1,
+  "val_population": 808,
+  "samples_evaluated": 808,
+  "domains_evaluated": [
+    "BUSI",
+    "ISIC",
+    "KUB",
+    "KVASIR"
+  ],
+  "checkpoint_path": "checkpoints/phase20b_shared_transformer_mit_unet_fourdomain_seed42_clean_v3/best.pt",
+  "checkpoint_sha256": "e2c1fca196348d57e4bc8d8ae0f17d82ff0252142e8d94631f7e0ba7d69149e2",
+  "threshold": 0.5,
+  "per_image_table": "reports/tables/phase20b_transformer_mit_unet_per_image_val_metrics.csv",
+  "per_image_table_sha256": "0f96fef9d50831110a0b57a2be01aca57f28b2fc8906d008817ea3a255747f52",
+  "prediction_manifest": "reports/audits/phase20b_transformer_mit_unet_prediction_manifest.json",
+  "prob_maps_persisted": 808,
+  "binary_predictions_persisted": 808,
+  "test_reads": {
+    "test_image_reads": 0,
+    "test_mask_reads": 0,
+    "test_inference": 0,
+    "test_visualization": 0
+  },
+  "elapsed_seconds": 100.2,
+  "partial_mode": false
+}

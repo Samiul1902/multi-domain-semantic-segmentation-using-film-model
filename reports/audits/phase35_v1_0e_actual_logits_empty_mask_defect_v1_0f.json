@@ -1,0 +1,52 @@
+{
+ "artifact": "phase35_v1_0e_actual_logits_empty_mask_defect_v1_0f",
+ "phase": 35,
+ "section": "\u00a7B",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase35_interpretability_v1_0f",
+ "classification": "PRE_SCIENTIFIC_INSESSION_EMPTY_MASK_OBSERVABILITY_IMPLEMENTATION_DEFECT__V1_0E_BLOCK_PRESERVED__NO_MODEL_EXECUTION_OCCURRED",
+ "scientific_specification_changed": false,
+ "gradcam_mathematics_changed": false,
+ "target_mask_source_changed": false,
+ "target_threshold_changed": false,
+ "empty_mask_mathematical_fallback_changed": false,
+ "numerical_finite_guards_changed": false,
+ "scientific_result_invalidated": false,
+ "v1_0e_smoke_block_correct": true,
+ "required_defect": "v1.0e `empty_mask_helper_check_insession` uses zero-logit surrogate",
+ "required_repair": "use actual logits from same G forward",
+ "defect_detail": {
+  "function": "empty_mask_helper_check_insession",
+  "source_path": "scripts/analysis/phase35_interpretability_execution_v1_0e.py",
+  "source_sha256": "1ca50b773a185384b9f0a7eae47fe95c64eb84bad3826c70cbe88edefe535941",
+  "surrogate_construction": "logits_zero = torch.zeros(1, TARGET_LOGITS_CHANNELS, *tuple(mask_t.shape), dtype=torch.float32, device=mask_t.device)",
+  "self_documented_field": "fusion_mask_source = 'zero plane (deterministic bound; NOT a real logits tensor)'",
+  "reason_actual_logits_unavailable_in_v1_0e": "gradcam_gradient_enabled_numerically_guarded returns {cams, T, ..., mask_t} but NOT the logits tensor; the guarded path did not expose the actual logits to the empty-mask helper."
+ },
+ "v1_0e_block_reference": {
+  "block_record": "reports/audits/phase35_v1_0e_empty_mask_observability_block.json",
+  "block_record_sha256": "eef4f2b997fffc650b59b215649687b18868e3e5ca1a13cd67ed5fdcea0475e0",
+  "terminal": "reports/audits/phase35_synthetic_smoke_terminal_v1_0e.json",
+  "terminal_sha256": "aff064e2fb75e83592398f558cfffb40caa427b3252fe987d8ce052be5ed5dcb",
+  "determination": "V1_0E_EMPTY_MASK_OBSERVABILITY_IMPLEMENTATION_INCOMPLETE"
+ },
+ "counters": {
+  "model_constructions": 0,
+  "checkpoint_deserializations": 0,
+  "forwards": 0,
+  "autograd_calls": 0,
+  "gradcam_executions": 0,
+  "router_attribution_executions": 0,
+  "raw_val_reads": 0,
+  "gt_reads": 0,
+  "router_holdout_reads": 0,
+  "test_reads": 0,
+  "training_steps": 0,
+  "gate_env_sets": 0,
+  "mode_invocations": 0
+ },
+ "patch_attempted": false,
+ "retry_attempted": false,
+ "generated_utc": "2026-10-05T02:47:45Z",
+ "all_pass": true
+}

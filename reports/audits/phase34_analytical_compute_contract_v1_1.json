@@ -1,0 +1,104 @@
+{
+ "artifact": "phase34_analytical_compute_contract_v1_1",
+ "phase": 34,
+ "section": "\u00a7I",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase34_efficiency_profiling_v1_1",
+ "supersedes": "phase34_analytical_compute_contract.json",
+ "v1_0_preserved": true,
+ "label": "ANALYTICAL MAC LOWER BOUND",
+ "historical_component_macs_preserved": {
+  "G": 31551740928,
+  "B_phi": 36160,
+  "R_psi": 3230662656,
+  "S_omega": 1168
+ },
+ "comparators": {
+  "literal_global_only_C1": {
+   "predecessor_authority": "phase25e_execution_metrics_contract_v1_0 (literal C1 anchor excludes router)",
+   "graph_components": [
+    "G"
+   ],
+   "router_present": false,
+   "refiner_present": false,
+   "s_omega_present": false,
+   "formula": "MAC(G)",
+   "mac": 31551740928,
+   "scientific_label": "LITERAL_GLOBAL_ONLY_C1__ANALYTICAL_MAC_LOWER_BOUND"
+  },
+  "literal_always_refine_C2": {
+   "predecessor_authority": "phase25e_execution_metrics_contract_v1_0 (literal C2 no-routing anchor: GLOBAL_MACS + (N_eligible/N_DEV)*REGIONAL_REFINER_MACS, routing bypassed)",
+   "graph_components": [
+    "G",
+    "R_psi"
+   ],
+   "router_present": false,
+   "refiner_present": true,
+   "s_omega_present": false,
+   "formula": "MAC(G) + MAC(R_psi)",
+   "mac": 34782403584,
+   "scientific_label": "LITERAL_ALWAYS_REFINE_C2__NO_ROUTING__ANALYTICAL_MAC_LOWER_BOUND"
+  },
+  "final_A8_C9_expected_conditional": {
+   "predecessor_authority": "phase25e_execution_metrics_contract_v1_0 + phase26_resource_contract + phase26_state_machine_contract",
+   "graph_components": [
+    "G",
+    "B_phi",
+    "R_psi",
+    "S_omega"
+   ],
+   "router_present": true,
+   "refiner_present": true,
+   "s_omega_present": true,
+   "formula": "MAC(G) + MAC(B_phi) + p_activate * (MAC(R_psi) + MAC(S_omega))",
+   "p_activate": 0.2742857142857143,
+   "mac": 32437902022.582855,
+   "scientific_label": "ANALYTICAL_MAC_LOWER_BOUND"
+  },
+  "optional_gated_execute_all_C9": {
+   "predecessor_authority": "phase26_state_machine_contract (100% activation; router retained)",
+   "graph_components": [
+    "G",
+    "B_phi",
+    "R_psi",
+    "S_omega"
+   ],
+   "router_present": true,
+   "refiner_present": true,
+   "s_omega_present": true,
+   "formula": "MAC(G) + MAC(B_phi) + MAC(R_psi) + MAC(S_omega)",
+   "mac": 34782440912,
+   "scientific_label": "GATED_EXECUTE_ALL_C9_100PCT_ACTIVATION_REFERENCE__NOT_LITERAL_C2"
+  },
+  "phase25e_gated_K_N_eligible_pre_gate": {
+   "predecessor_authority": "phase25e_compute_frontier.csv budget 1.00 (gated, router retained, S_omega excluded)",
+   "graph_components": [
+    "G",
+    "B_phi",
+    "R_psi"
+   ],
+   "router_present": true,
+   "refiner_present": true,
+   "s_omega_present": false,
+   "formula": "MAC(G) + MAC(B_phi) + MAC(R_psi)",
+   "mac": 34782439744,
+   "scientific_label": "PHASE25E_GATED_K_N_Eligible_PRE_GATE__DISTINCT_FROM_LITERAL_C2"
+  }
+ },
+ "ratios": {
+  "ratio_vs_LITERAL_GLOBAL_ONLY_C1": 1.0280859651011032,
+  "ratio_vs_LITERAL_ALWAYS_REFINE_C2": 0.9325951826257453,
+  "absolute_saving_vs_LITERAL_ALWAYS_REFINE_C2": 2344501561.417145,
+  "ratio_vs_gated_execute_all_C9": 0.9325941817784192,
+  "absolute_saving_vs_gated_execute_all_C9": 2344538889.417145
+ },
+ "literal_always_refine_C2_router_present": false,
+ "literal_always_refine_C2_not_equal_gated_execute_all_C9": true,
+ "comparator_denominators_merged": false,
+ "conditional_formula_unchanged": "E[MAC] = MAC(G) + MAC(B_phi) + p_activate*(MAC(R_psi)+MAC(S_omega))",
+ "accept_reject_compute_identical": true,
+ "phase30_qualifier": "ONE_SHOT_ROUTER_HOLDOUT_RESULT_WITH_DISCLOSED_POST_FIRST_OPEN_SCIENTIFIC_SOURCE_FREEZE_DEVIATION",
+ "numeric_preview_note": "PREVIEW_ONLY_FROZEN_CONSTANT_ARITHMETIC__NO_PROFILER_NO_MODEL - values are arithmetic over frozen predecessor constants and frozen Phase30 frequencies.",
+ "generated_utc": "2026-10-04T10:35:59+00:00",
+ "all_pass": true
+}

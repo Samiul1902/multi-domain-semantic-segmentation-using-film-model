@@ -1,0 +1,128 @@
+{
+  "artifact": "phase36_v1_4_probability_and_device_context_defects",
+  "phase": 36,
+  "section": "§B",
+  "method": "RA-MedFiLM-BARR",
+  "revision": "ra_medfilm_barr_phase36_robustness_v1_5",
+  "type": "POST_BYTE_AUDIT_DEFECT_RECORD",
+  "generated_utc": "2026-10-06T08:42:40Z",
+  "subject": "scripts/analysis/phase36_robustness_execution_v1_4.py",
+  "subject_sha256": "96ebc36256e5d812949e1f1859d4f41f332f81607e562dbff7cfb2bce6483fbe",
+  "discovery_basis": "DIRECT_INDEPENDENT_AST_AND_SOURCE_BYTE_INSPECTION_OF_THE_FROZEN_V1_4_BYTES",
+  "no_source_modification": true,
+  "no_execution": true,
+  "torch_imported": false,
+  "defects": [
+    {
+      "id": "D11_CANONICAL_G_PROBABILITY_OPERATOR_DIVERGENCE",
+      "frozen_authority": "torch.sigmoid(logits.float()).cpu().numpy()",
+      "frozen_authority_source": "scripts/analysis/build_phase25a_global_cache.py L172; bound in phase29_phase_d_component_inference_semantics_contract_v1_1 and phase30_component_inference_semantics_contract_v1_1",
+      "v1_4_implementation": "1.0 / (1.0 + np.exp(-logits.astype(np.float64))) then astype(np.float32)",
+      "affected_v1_4_locations": [
+        "canonical_learned_core",
+        "_generate_clean_g_reference",
+        "run_smoke"
+      ],
+      "evidence": {
+        "executable_manual_sigmoid_sites": [
+          {
+            "line": 1026,
+            "function": "canonical_learned_core",
+            "forms": [
+              "manual_logistic",
+              "np.exp"
+            ]
+          },
+          {
+            "line": 1345,
+            "function": "_generate_clean_g_reference",
+            "forms": [
+              "manual_logistic",
+              "np.exp"
+            ]
+          },
+          {
+            "line": 2521,
+            "function": "run_smoke",
+            "forms": [
+              "manual_logistic",
+              "np.exp"
+            ]
+          }
+        ],
+        "distinct_site_count": 3,
+        "sites_by_function": [
+          "_generate_clean_g_reference",
+          "canonical_learned_core",
+          "run_smoke"
+        ],
+        "note": "each v1.4 site is a single expression containing BOTH the manual logistic and np.exp; deduplicated by source line"
+      },
+      "classification": "LOAD_BEARING_PRE_SCIENTIFIC_NUMERICAL_IMPLEMENTATION_DEFECT",
+      "scientific_result_effect": "NONE",
+      "reason": "Phase36 smoke = NOT_STARTED; Phase36 science = NOT_STARTED"
+    },
+    {
+      "id": "D12_CUDA_FAIL_CLOSED_NOT_EXPLICIT",
+      "v1_4_declares": "CANONICAL_G_REQUIRES_CUDA = True",
+      "v1_4_uses": "get_device()",
+      "v1_4_carries_cpu_fallback": "else torch.device(\"cpu\")",
+      "evidence": {
+        "get_device_plain_sites": [
+          593
+        ],
+        "cpu_fallback_sites": [
+          593
+        ],
+        "declared_requires_cuda": true,
+        "explicit_require_cuda_kwarg": false
+      },
+      "classification": "LOAD_BEARING_PRE_SCIENTIFIC_DEVICE_POLICY_DEFECT",
+      "scientific_result_effect": "NONE"
+    },
+    {
+      "id": "D13_COMPONENT_SPECIFIC_INFERENCE_CONTEXT_MISMATCH",
+      "requirement": "B_phi / R_psi / S_omega forwards require torch.inference_mode() with autocast DISABLED",
+      "v1_4_uses": "torch.no_grad()",
+      "evidence": {
+        "B_phi": {
+          "forward_line": 1068,
+          "context_line": 1065,
+          "context": "with torch.no_grad():"
+        },
+        "R_psi": {
+          "forward_line": 1088,
+          "context_line": 1086,
+          "context": "with torch.no_grad():"
+        },
+        "S_omega": {
+          "forward_line": 1106,
+          "context_line": 1105,
+          "context": "with torch.no_grad():"
+        }
+      },
+      "authority": "reports/audits/phase29_phase_d_component_inference_semantics_contract_v1_1.json + reports/audits/phase30_component_inference_semantics_contract_v1_1.json",
+      "distinctness_note": "G is the ONLY component whose canonical extraction runs under autocast(fp16); R_psi/B_phi/S_omega run WITHOUT autocast under torch.inference_mode()",
+      "classification": "LOAD_BEARING_PRE_SCIENTIFIC_INFERENCE_CONTEXT_DEFECT",
+      "scientific_result_effect": "NONE"
+    }
+  ],
+  "batch_size_caveat_resolution": {
+    "instruction": "Do NOT classify component batch-size differences as a new scientific defect without checking the existing Phase29/30 adjudication",
+    "checked_authorities": [
+      "reports/audits/phase27_conditional_branch_batch_semantics.json",
+      "reports/audits/phase29_phase_d_component_inference_semantics_contract_v1_1.json",
+      "reports/audits/phase30_component_inference_semantics_contract_v1_1.json"
+    ],
+    "finding": "Phase29/30 offline calibration batch constants (R_psi 8 / B_phi full-matrix / S_omega 128) are membership-independent for the conditional components; the Phase27 runtime contract freezes per-sample conditional evaluation (no_cross_sample_batching_of_conditional_components = true)",
+    "classification": "CHECKED_AND_ADJUDICATED__NOT_RECORDED_AS_A_NEW_DEFECT",
+    "new_batch_size_scientific_choice_introduced": false
+  },
+  "defect_count": 3,
+  "preserved_history": {
+    "v1_4_execution_source_sha256": "96ebc36256e5d812949e1f1859d4f41f332f81607e562dbff7cfb2bce6483fbe",
+    "v1_4_direct_source_byte_audit_sha256": "e6efd5fdb69e74fb32e33c15e6890047b8469b3182187e4c7630e00d8420ce45",
+    "v1_3_post_byte_audit_semantic_defects_v1_4_sha256": "de3d65f1282d71f43ab8e02891d2b2d49801b5473a43447fe4663a0328718fe0",
+    "historical_terminals_rewritten": false
+  }
+}

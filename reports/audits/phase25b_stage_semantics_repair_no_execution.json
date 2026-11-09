@@ -1,0 +1,53 @@
+{
+ "artifact": "phase25b_stage_semantics_repair_no_execution",
+ "phase": "25B",
+ "repair": "POST_PHASE25B_HANDOFF_SEMANTICS_REPAIR",
+ "classification": "DOCUMENTATION_AND_GOVERNANCE_REPAIR_ONLY",
+ "method": "RA-MedFiLM-BARR",
+ "architecture_revision": "ra_medfilm_barr_narrowed_v1_2",
+ "master_development_seed": 42,
+ "generated_utc": "2026-09-30T16:40:00+00:00",
+ "science_changed": false,
+ "feature_cache_changed": false,
+ "model_execution_required": false,
+ "diagnostics": {
+  "global_model_forwards": 0,
+  "regional_refiner_forwards": 0,
+  "router_forwards": 0,
+  "router_training_runs": 0,
+  "task_embedding_training_runs": 0,
+  "feature_rows_recomputed": 0,
+  "DeltaDice_computed": 0,
+  "paired_gain_labels_generated": 0,
+  "holdout_reads": 0,
+  "VAL_reads": 0,
+  "TEST_reads": 0,
+  "Phase25C_started": false,
+  "Phase25D_started": false
+ },
+ "frozen_cache_untouched": {
+  "feature_cache_dir": "data_cache/phase25b_barr_pre_refinement_features_v1_2",
+  "matrix_sha256": "9c241963b54f23de1c9671ff6670dde7d6f7e2510869ef5ebc1baf3f7c833e0a",
+  "metadata_sha256": "ee8c304350d28d907c053a355da1f878ff7f9dd137761034283459aeed071093",
+  "schema_sha256": "da76aa34f14006146f46ca799f173378274d8c9d0792dc18edb30711a2486dd4",
+  "all_three_hashes_unchanged": true
+ },
+ "degenerate_on_delta_check": {
+  "verdict": "NO_ON_DISK_FEATURE_DELTA",
+  "matrix_bytes_changed": false,
+  "metadata_bytes_changed": false,
+  "schema_bytes_changed": false
+ },
+ "repair_artifacts_written": [
+  "reports/audits/phase25b_phase25c_handoff_schema.json",
+  "reports/audits/phase25b_final_freeze.json",
+  "reports/audits/phase25b_project_status_sync.json",
+  "reports/audits/phase25b_stage_semantics_repository_scan.json",
+  "notebooks/phasewise/phase_25b_gt_free_features/phase25b_gt_free_pre_refinement_features.ipynb",
+  "docs/TASKS.md",
+  "docs/MEMORY.md",
+  "notebooks/phasewise/PHASE_INDEX.md"
+ ],
+ "verdict": "PHASE25B_STAGE_SEMANTICS_REPAIR_NO_EXECUTION_CONFIRMED",
+ "test_reads": 0
+}

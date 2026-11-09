@@ -1,0 +1,210 @@
+{
+  "artifact": "h3_supply_axis_evaluation",
+  "experiment_id": "h3_kub_localizer_sigma_adaptive_sizeaware_seed42_clean_v3",
+  "selected_epoch": 54,
+  "selected_checkpoint_path": "checkpoints/h3_kub_localizer_sigma_adaptive_sizeaware_seed42_clean_v3/best.pt",
+  "selected_checkpoint_sha": "d875cac7d09bbc3d32232191f0af2c138e5a74682fc63e4d6e01f30345eca75e",
+  "checkpoint_selection_replay_verdict": "H3_CHECKPOINT_SELECTION_REPLAY_PASS",
+  "training_closure_status": "H3_TRAINING_COMPLETE__CHECKPOINT_SELECTION_REPLAY_PASS__SUPPLY_EVALUATION_PENDING",
+  "val_population": {
+    "images": 103,
+    "components": 152,
+    "tiny": 72,
+    "small": 28,
+    "medium": 36,
+    "large": 16
+  },
+  "frozen_decode": {
+    "threshold": 0.1,
+    "margin": 0.2,
+    "top_k": 5,
+    "nms_iou": 0.3
+  },
+  "proposal_configurations_evaluated": 1,
+  "baseline_values": {
+    "source": "reports/audits/h3_proposal_supply_success_failure_criteria.json + reports/audits/post_phase14_h3_axis_priority_results.json",
+    "zero_proposal_gt": 79,
+    "zero_proposal_tiny": 57,
+    "val_components": 152,
+    "val_tiny": 72,
+    "Tg": 0.7916666666666666,
+    "G": 0.20833333333333337,
+    "tiny_recall_baseline": 0.20833333333333334,
+    "overall_any_overlap_recall_baseline": 0.48026315789473684
+  },
+  "h3_metrics": {
+    "proposal_counts": {
+      "total_proposals": 512,
+      "proposals_per_image": 4.970873786407767,
+      "zero_proposal_images": 0,
+      "zero_proposal_gt": 27,
+      "zero_proposal_gt_fraction": 0.17763157894736842
+    },
+    "supply_recall": {
+      "any_overlap_overall": 0.8223684210526315,
+      "any_overlap_tiny": 0.6944444444444444,
+      "any_overlap_small": 0.8928571428571429,
+      "any_overlap_medium": 0.9722222222222222,
+      "any_overlap_large": 0.9375
+    },
+    "coverage": {
+      "coverage50_overall": 0.7697368421052632,
+      "coverage50_tiny": 0.6944444444444444,
+      "coverage50_small": 0.7857142857142857,
+      "coverage50_medium": 0.8888888888888888,
+      "coverage50_large": 0.8125,
+      "coverage90_overall": 0.6381578947368421,
+      "coverage90_tiny": 0.6666666666666666,
+      "coverage90_small": 0.6785714285714286,
+      "coverage90_medium": 0.6666666666666666,
+      "coverage90_large": 0.375,
+      "mean_gt_coverage": 0.7546067029183025,
+      "median_gt_coverage": 1.0
+    },
+    "zero_proposal_by_size": {
+      "TINY": 22,
+      "SMALL": 3,
+      "MEDIUM": 1,
+      "LARGE": 1
+    }
+  },
+  "size_stratified_results": {
+    "TINY": {
+      "n": 72,
+      "zero_proposal": 22,
+      "any_overlap_recall": 0.6944444444444444,
+      "coverage50": 0.6944444444444444,
+      "coverage90": 0.6666666666666666
+    },
+    "SMALL": {
+      "n": 28,
+      "zero_proposal": 3,
+      "any_overlap_recall": 0.8928571428571429,
+      "coverage50": 0.7857142857142857,
+      "coverage90": 0.6785714285714286
+    },
+    "MEDIUM": {
+      "n": 36,
+      "zero_proposal": 1,
+      "any_overlap_recall": 0.9722222222222222,
+      "coverage50": 0.8888888888888888,
+      "coverage90": 0.6666666666666666
+    },
+    "LARGE": {
+      "n": 16,
+      "zero_proposal": 1,
+      "any_overlap_recall": 0.9375,
+      "coverage50": 0.8125,
+      "coverage90": 0.375
+    }
+  },
+  "r_h3": {
+    "TinyRecall_H3": 0.6666666666666666,
+    "Tg": 0.7916666666666666,
+    "G": 0.20833333333333337,
+    "R_H3": -0.5999999999999999,
+    "interpretation_band": "insufficient",
+    "meaningful_threshold": 0.3,
+    "intermediate_range": "0.15 <= R_H3 < 0.30",
+    "insufficient_threshold": 0.15,
+    "equivalent_tiny_recall_for_030": 0.8541666666666666,
+    "equivalent_tiny_recall_for_015": 0.8229166666666666
+  },
+  "primary_criteria": {
+    "criterion_a": {
+      "label": "zero_proposal_TINY <= 20/72",
+      "value": 22,
+      "threshold": 20,
+      "denominator": 72,
+      "passed": false
+    },
+    "criterion_b": {
+      "label": "zero_proposal_GT <= 35/152",
+      "value": 27,
+      "threshold": 35,
+      "denominator": 152,
+      "passed": true
+    },
+    "combined_primary_passed": false,
+    "role": "NECESSARY (must be met to claim supply improvement); NOT sufficient alone."
+  },
+  "failure_boundary": {
+    "label": "H3_SUPPLY_REDESIGN_INSUFFICIENT",
+    "condition_tiny": {
+      "rule": "zero_proposal_TINY >= 45/72 (recovers < 12 of 57)",
+      "value": 22,
+      "threshold": 45,
+      "fired": false
+    },
+    "condition_r_h3": {
+      "rule": "R_H3 < 0.15 (TinyRecall_H3 < 0.8229166666666666)",
+      "value": -0.5999999999999999,
+      "threshold": 0.15,
+      "fired": true
+    },
+    "fired": true
+  },
+  "contamination_descriptive": {
+    "tp_proposal_count": 114,
+    "background_fp_proposal_count": 398,
+    "proposal_precision": 0.22265625,
+    "background_fraction": 0.77734375,
+    "mean_proposals_per_image": 4.970873786407767,
+    "mean_roi_area_fraction": 0.006284722194587598,
+    "policy": "OBSERVATIONAL_ONLY - not used for checkpoint selection or supply verdict"
+  },
+  "trainer_lineage_provenance": {
+    "design_era_trainer": "37b64310d38222310ce060803e37d17e4b6916ce7c522d925234167dc26da366",
+    "epochs_1_2_trainer": "9099d6de339aba43d5e92284ea741568f16c7f5c39e7c189c595301ca5cb88f9",
+    "epochs_3_69_trainer": "45bef74f4eddb2e376fd768b1da2e0cba743897e30a725241ac6882d60ad3578",
+    "note": "The exact source bytes for the epoch-1/2 trainer are unavailable locally. The selected epoch-54 checkpoint was produced under the final segment trainer (45bef74f).",
+    "launch_era_trainer_bytes_recoverable_locally": false
+  },
+  "evaluator_binding": {
+    "evaluator_path": "scripts/evaluation/h3_supply_axis_evaluator.py",
+    "evaluator_sha": "17fcc58a94cf8dfc7816b027ad027fa3308a3b4fc086e76b0768fde0d712c697",
+    "dependency_shas": {
+      "src/inference/predicted_roi.py": "bd9f8be84595f49ff1e25e6052b548488fb6ae6a48aa7adbc78b880fb8f2d4e7",
+      "src/inference/learned_roi_clean_v3.py": "613e03d6e4dccccce2b743974dfaccd8a29a2c0932048f0af3d37a6d2a0241bf",
+      "src/inference/heatmap_targets.py": "4fe01377b5fb2f15377fda37ef2114a04185fa44a6dacef4983f2c0b15122d1c",
+      "src/data/kub_localizer_dataset.py": "77aba36b0ba65b951c49a5caf2e1abcdc2092ca0cd3e2d50ac2a896dd4c1f384",
+      "src/data/transforms.py": "8a8b636b58843d36810ebf5f3527a8ca1287b93483b962d5cf8e323a92566223",
+      "src/models/factory.py": "3377bbe021d7bd13c07350ff5c4927705c2d67f93fa99c388caf2cc79ef4086d",
+      "src/utils/checkpointing.py": "08366f72f3141e5d18f008981465f5e9138c0b51336fd65cae7c619456ee1eca"
+    },
+    "checkpoint_sha": "d875cac7d09bbc3d32232191f0af2c138e5a74682fc63e4d6e01f30345eca75e",
+    "val_manifest_sha": "082c80b2bda63fd73f371f109c34643adf01edaead921643fb2e44993ba53315",
+    "component_table_sha": "656f3f85f3bb98dfb98ce7cf1b47e1f37f49cabad9776eef392ad1ba99941de6",
+    "image_table_sha": "9cefcbf106c2d32bfa738f8e8c933e5919a498802b849b2d47ccf2fb847b6bcf",
+    "frozen_decode": {
+      "threshold": 0.1,
+      "margin": 0.2,
+      "top_k": 5,
+      "nms_iou": 0.3
+    },
+    "metric_definitions": "Any-overlap=coverage>0; Coverage50=coverage>=0.50; Coverage90=coverage>=0.90; TP=proposal overlapping >=1 GT; precision=TP/total; background_fraction=1-precision"
+  },
+  "inference_counters": {
+    "H3_VAL_inference_runs": 1,
+    "TEST_reads": 0,
+    "external_TEST_reads": 0,
+    "proposal_policy_searches": 0,
+    "alternate_checkpoints_evaluated": 0
+  },
+  "test_reads": 0,
+  "external_test_reads": 0,
+  "phase_15_status": "NOT_STARTED_AND_NOT_AUTHORIZED",
+  "downstream_refiner_evaluation": "NOT_PERFORMED_IN_THIS_TASK",
+  "per_component_table": {
+    "path": "reports/tables/h3_supply_eval_per_component.csv",
+    "sha": "659064d0917fe3b2a91351aff140221ca02dee059d1e7e52c53c4b372dc11c04",
+    "rows": 152
+  },
+  "per_image_table": {
+    "path": "reports/tables/h3_supply_eval_per_image.csv",
+    "sha": "5f109765718d41ae4374dd23886650c88010367dfa7b027e90c6927f2c138dd3",
+    "rows": 103
+  },
+  "status": "H3_SUPPLY_AXIS_EVALUATION_COMPLETE__FORMAL_ADJUDICATION_PENDING",
+  "timestamp_utc": "2026-09-25T14:00:33.954701+00:00"
+}

@@ -1,0 +1,63 @@
+{
+  "artifact": "phase22_scale_vs_regional",
+  "phase": 22,
+  "question": "which axis buys more Dice on this frozen reference: changing the input resolution, or adding a regional pass?",
+  "axes": {
+    "scale_256": {
+      "axis": "SCALE",
+      "value": 256,
+      "macro_domain_dice": 0.6884987673610603,
+      "mean_pooled_dice": 0.7008003155861964,
+      "relative_cost_vs_512": 0.25
+    },
+    "scale_512": {
+      "axis": "SCALE",
+      "value": 512,
+      "macro_domain_dice": 0.8353433576469,
+      "mean_pooled_dice": 0.8390402334224809,
+      "relative_cost_vs_512": 1.0
+    },
+    "scale_768": {
+      "axis": "SCALE",
+      "value": 768,
+      "macro_domain_dice": 0.776819081711754,
+      "mean_pooled_dice": 0.8021523433186615,
+      "relative_cost_vs_512": 2.25
+    },
+    "scale_1024": {
+      "axis": "SCALE",
+      "value": 1024,
+      "macro_domain_dice": 0.6825608407149975,
+      "mean_pooled_dice": 0.7386272837893347,
+      "relative_cost_vs_512": 4.0
+    },
+    "regional_oracle_512": {
+      "axis": "REGIONAL_ORACLE",
+      "macro_domain_dice": 0.781349238052983,
+      "mean_pooled_dice_executed": 0.7965623722850891,
+      "relative_cost_vs_512_always_global": 2.0,
+      "uses_ground_truth": true
+    },
+    "regional_predicted_512": {
+      "axis": "REGIONAL_PREDICTED",
+      "macro_domain_dice": 0.765238707525821,
+      "mean_pooled_dice": 0.7788225938856137,
+      "relative_cost_vs_512_always_global": 2.0,
+      "uses_ground_truth": false
+    },
+    "baseline_512_global": {
+      "axis": "BASELINE",
+      "macro_domain_dice": 0.8350794169575282,
+      "mean_pooled_dice": 0.8390402334224809,
+      "relative_cost_vs_512": 1.0
+    }
+  },
+  "comparison_conditions": {
+    "same_population": "808 VAL cases",
+    "same_model": "frozen Phase-21 checkpoint, unchanged",
+    "same_decision_rule": "pred = (float32(prob) >= 0.5)",
+    "regional_uses_ground_truth_geometry": true
+  },
+  "test_reads": 0,
+  "verdict_guard": "the scale axis is a genuine (if off-training-distribution) measurement. The regional-ORACLE axis is an UPPER BOUND that uses ground truth. The two are NOT directly comparable as methods, and the oracle must not be presented as the better 'method'."
+}

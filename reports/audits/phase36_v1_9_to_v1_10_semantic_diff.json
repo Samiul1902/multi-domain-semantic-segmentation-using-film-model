@@ -1,0 +1,284 @@
+{
+  "artifact": "phase36_v1_9_to_v1_10_execution_semantic_diff",
+  "phase": 36,
+  "section": "§O",
+  "method": "RA-MedFiLM-BARR",
+  "revision": "ra_medfilm_barr_phase36_robustness_v1_10",
+  "type": "TWO_SIDED_EXECUTION_SEMANTIC_DIFF",
+  "no_execution": true,
+  "torch_imported": false,
+  "protected_population_read": false,
+  "v1_9_execution_sha256": "433bad87b4ef77fd6997c77f688eb295e526bfa3e88dece4ec5d3d550255cbd0",
+  "v1_10_execution_sha256": "433bad87b4ef77fd6997c77f688eb295e526bfa3e88dece4ec5d3d550255cbd0",
+  "execution_subject_byte_identical": true,
+  "new_scientific_choice": false,
+  "semantic_groups": {
+    "VAL808_population": {
+      "keys": [
+        "AUTHORIZED_POPULATION_N",
+        "VAL_RUNTIME_EXPECTED_N",
+        "PROTECTED_RUNTIME_POPULATION",
+        "VAL_RUNTIME_AUTHORITY",
+        "CLEAN_EXECUTIONS_EXPECTED"
+      ],
+      "not_in_both_revisions": [],
+      "changed": [],
+      "unchanged": true
+    },
+    "perturbation_registry": {
+      "keys": [
+        "NONCLEAN_DETERMINISTIC_IMAGE_CONDITIONS",
+        "NONCLEAN_NOISE_IMAGE_CONDITIONS",
+        "NONCLEAN_PROPOSAL_CONDITIONS",
+        "PROPOSAL_CLEAN_CONDITION",
+        "NONCLEAN_IMAGE_REALIZATIONS_PER_SAMPLE",
+        "IMAGE_REALIZATIONS_PER_SAMPLE_INCL_CLEAN",
+        "NONCLEAN_PROPOSAL_CONDITIONS_PER_SAMPLE"
+      ],
+      "not_in_both_revisions": [],
+      "changed": [],
+      "unchanged": true
+    },
+    "G_numeric_semantics_phase27": {
+      "keys": [
+        "CANONICAL_G_DEVICE",
+        "CANONICAL_G_REQUIRES_CUDA",
+        "CANONICAL_G_MODEL_DTYPE",
+        "CANONICAL_G_INPUT_DTYPE",
+        "CANONICAL_G_MODEL_EVAL",
+        "CANONICAL_G_AUTOCAST_ENABLED",
+        "CANONICAL_G_AUTOCAST_DTYPE",
+        "CANONICAL_G_NO_GRAD",
+        "CANONICAL_G_INFERENCE_MODE",
+        "CANONICAL_G_BATCH_SIZE",
+        "CANONICAL_SAMPLE_ORDER",
+        "CANONICAL_BATCH_PARTITION",
+        "CANONICAL_LAST_PARTIAL_BATCH",
+        "CANONICAL_BATCH_FORWARDS_BY_DOMAIN",
+        "CANONICAL_BATCH_FORWARDS_TOTAL",
+        "CANONICAL_LAST_BATCH_SIZE_BY_DOMAIN",
+        "CANONICAL_DOMAIN_ORDER"
+      ],
+      "not_in_both_revisions": [],
+      "changed": [],
+      "unchanged": true
+    },
+    "G_probability_operator": {
+      "keys": [
+        "CANONICAL_PROBABILITY_OPERATOR",
+        "CANONICAL_PROBABILITY_COMPUTATION",
+        "CANONICAL_PROBABILITY_STORAGE_DTYPE",
+        "MANUAL_SIGMOID_FORBIDDEN"
+      ],
+      "not_in_both_revisions": [],
+      "changed": [],
+      "unchanged": true
+    },
+    "phase27_global_reproduction_authority": {
+      "keys": [
+        "PHASE27_GLOBAL_PROB_AUTHORITY",
+        "CLEAN_G_REPRODUCTION_GATE"
+      ],
+      "not_in_both_revisions": [],
+      "changed": [],
+      "unchanged": true
+    },
+    "device_contract": {
+      "keys": [
+        "CANONICAL_DEVICE_CONTRACT"
+      ],
+      "not_in_both_revisions": [],
+      "changed": [],
+      "unchanged": true
+    },
+    "component_inference_contexts": {
+      "keys": [
+        "COMPONENT_INFERENCE_CONTEXTS",
+        "COMPONENT_CONTEXTS_NOT_INTERCHANGEABLE",
+        "COMPONENT_BATCH_SIZE_ADJUDICATION"
+      ],
+      "not_in_both_revisions": [],
+      "changed": [],
+      "unchanged": true
+    },
+    "kub_reporting_only": {
+      "keys": [
+        "KUB_SUBGROUP_AUTHORITY"
+      ],
+      "not_in_both_revisions": [],
+      "changed": [],
+      "unchanged": true
+    },
+    "figure_registry_R1_R5": {
+      "keys": [
+        "FIGURE_REGISTRY"
+      ],
+      "not_in_both_revisions": [],
+      "changed": [],
+      "unchanged": true
+    },
+    "protected_population_flags": {
+      "keys": [
+        "ROUTER_HOLDOUT_RUNTIME_READS_ALLOWED",
+        "TEST_RUNTIME_READS_ALLOWED",
+        "VAL_MANIFEST_IS_ONLY_POPULATION_RUNTIME_AUTHORITY",
+        "PROTECTED_COUNTERS"
+      ],
+      "not_in_both_revisions": [],
+      "changed": [],
+      "unchanged": true
+    },
+    "route_state_machine_vocabulary": {
+      "keys": [
+        "ROUTE_STATES_FULL",
+        "ROUTER_DECISIONS"
+      ],
+      "not_in_both_revisions": [],
+      "changed": [],
+      "unchanged": true
+    },
+    "smoke_success_contract_shape": {
+      "keys": [
+        "SMOKE_CLASSIFICATION_ONLY_CHECKS",
+        "SMOKE_SUCCESS_CONTRACT"
+      ],
+      "not_in_both_revisions": [],
+      "changed": [],
+      "unchanged": true
+    },
+    "model_thresholds": {
+      "keys": [
+        "ROUTER_NUMERIC_DIM",
+        "ROUTER_SCALAR_IDX",
+        "SOMEGA_NUMERIC_DIM",
+        "SOMEGA_ACCEPT_THRESHOLD",
+        "SEGMENTATION_OUTPUT_THRESHOLD",
+        "ROI_PROPOSAL_THRESHOLD",
+        "ROI_FRACTIONAL_MARGIN",
+        "REGIONAL_INPUT_RESOLUTION",
+        "REGIONAL_CANVAS_RESOLUTION"
+      ],
+      "not_in_both_revisions": [],
+      "changed": [],
+      "unchanged": true
+    }
+  },
+  "all_semantic_groups_unchanged": true,
+  "smoke_check_ids": {
+    "v1_9_count": 53,
+    "v1_10_count": 53,
+    "identical": true,
+    "removed": [],
+    "added": [],
+    "is_strict_superset": true
+  },
+  "execution_functions_identical": true,
+  "unit_suite": {
+    "v1_9_contains_or_true": true,
+    "v1_10_contains_or_true": false,
+    "removed_checks": [
+      "14_run_smoke_derives_attempt_provenance",
+      "16_write_once_flag_derived_from_provenance",
+      "20_transitive_runtime_checkpoints_dict_present",
+      "21_integrity_hashes_checkpoints",
+      "22_manifest_missing_fails_closed",
+      "23_no_self_check_skipped_bypass",
+      "24_manifest_malformed_fails_closed",
+      "25_manifest_missing_field_fails_closed",
+      "26_integrity_called_before_load_models",
+      "27_integrity_hashes_self_source",
+      "28_transitive_deps_includes_v1_9_sources",
+      "41_hd95_four_cases",
+      "42_hd95_exact_reason_empty_prediction",
+      "43_hd95_exact_reason_empty_ground_truth",
+      "44_hd95_exact_reason_both_empty",
+      "45_hd95_metric_domain_bound",
+      "46_hd95_unit_bound"
+    ],
+    "added_checks": [
+      "00_self_no_or_true_expression",
+      "16_write_once_check_consumes_derived_provenance",
+      "20_run_smoke_derives_attempt_provenance",
+      "21_transitive_runtime_checkpoints_dict_present",
+      "22_integrity_hashes_checkpoints",
+      "23_manifest_missing_fails_closed",
+      "24_no_self_check_skipped_bypass",
+      "25_manifest_malformed_fails_closed",
+      "26_manifest_missing_field_fails_closed",
+      "27_integrity_called_before_load_models",
+      "28_integrity_hashes_self_source",
+      "28_transitive_dep_exact_count_14",
+      "28b_transitive_dep_exact_set_equality",
+      "28c_transitive_dep_no_missing",
+      "28d_transitive_dep_no_unexpected_replacement",
+      "41_hd95_four_actual_call_sites",
+      "42_hd95_call_sites_exact_semantics",
+      "43_hd95_case_exact_predicate_binds_reason",
+      "44_hd95_case_exact_predicate_binds_domain_unit",
+      "45_hd95_case_exact_binds_validity",
+      "46_hd95_exact_reasons_absent_from_tautology"
+    ],
+    "superseded_checks": {
+      "14_run_smoke_derives_attempt_provenance": "RENUMBERED_TO_20_run_smoke_derives_attempt_provenance",
+      "16_write_once_flag_derived_from_provenance": "D26_REPAIRED_AND_RENAMED_TO_16_write_once_check_consumes_derived_provenance",
+      "20_transitive_runtime_checkpoints_dict_present": "RENUMBERED_TO_21_transitive_runtime_checkpoints_dict_present",
+      "21_integrity_hashes_checkpoints": "RENUMBERED_TO_22_integrity_hashes_checkpoints",
+      "22_manifest_missing_fails_closed": "RENUMBERED_TO_23_manifest_missing_fails_closed",
+      "23_no_self_check_skipped_bypass": "RENUMBERED_TO_24_no_self_check_skipped_bypass",
+      "24_manifest_malformed_fails_closed": "RENUMBERED_TO_25_manifest_malformed_fails_closed",
+      "25_manifest_missing_field_fails_closed": "RENUMBERED_TO_26_manifest_missing_field_fails_closed",
+      "26_integrity_called_before_load_models": "RENUMBERED_TO_27_integrity_called_before_load_models",
+      "27_integrity_hashes_self_source": "RENUMBERED_TO_28_integrity_hashes_self_source",
+      "28_transitive_deps_includes_v1_9_sources": "D27_REPAIRED_TO_28_28b_28c_28d_exact_set_equality_family",
+      "41_hd95_four_cases": "D28_REPAIRED_AND_RENAMED_TO_41_hd95_four_actual_call_sites",
+      "42_hd95_exact_reason_empty_prediction": "D28_SUPERSEDED_BY_42_hd95_call_sites_exact_semantics",
+      "43_hd95_exact_reason_empty_ground_truth": "D28_SUPERSEDED_BY_42_hd95_call_sites_exact_semantics",
+      "44_hd95_exact_reason_both_empty": "D28_SUPERSEDED_BY_42_hd95_call_sites_exact_semantics",
+      "45_hd95_metric_domain_bound": "RENUMBERED_TO_44_hd95_case_exact_predicate_binds_domain_unit",
+      "46_hd95_unit_bound": "SUBSUMED_BY_44_hd95_case_exact_predicate_binds_domain_unit"
+    },
+    "unexplained_removed_checks": [],
+    "required_guards_present_in_v1_10": [
+      "00_self_no_or_true_expression",
+      "15_run_smoke_provenance_is_derived_not_literal",
+      "16_write_once_check_consumes_derived_provenance",
+      "28_transitive_dep_exact_count_14",
+      "28b_transitive_dep_exact_set_equality",
+      "28c_transitive_dep_no_missing",
+      "28d_transitive_dep_no_unexpected_replacement",
+      "41_hd95_four_actual_call_sites",
+      "42_hd95_call_sites_exact_semantics"
+    ],
+    "missing_required_guards": [],
+    "no_unexplained_removal": true,
+    "defects_repaired": {
+      "D26_TAUTOLOGICAL_D22_PROVENANCE_UNIT": {
+        "v1_9_defect": "check(... 'attempt_provenance = {' not in SRC.replace(' ', '') or True) — unconditional PASS + space-stripped haystack.",
+        "v1_10_disposition": "REPLACED_WITH_AST_DATAFLOW_ASSERTION",
+        "unit_assertion_changed": true,
+        "execution_effect": "NONE"
+      },
+      "D27_TRANSITIVE_DEPENDENCY_COUNT_UNDERCONSTRAINED": {
+        "v1_9_defect": "dep_count >= 13 lower bound only.",
+        "v1_10_disposition": "EXACT_SET_EQUALITY_14",
+        "unit_assertion_changed": true,
+        "execution_effect": "NONE"
+      },
+      "D28_HD95_FOUR_CASE_CALLSITE_UNDERCONSTRAINED": {
+        "v1_9_defect": "SRC.count('_hd95_case_exact(') >= 4 may count the definition.",
+        "v1_10_disposition": "AST_FOUR_ACTUAL_CALL_SITES",
+        "unit_assertion_changed": true,
+        "execution_effect": "NONE"
+      }
+    }
+  },
+  "permitted_differences": [
+    "unit_gate_assertion_strength_only",
+    "D26_ast_dataflow_provenance_assertion",
+    "D27_exact_transitive_dep_set_equality",
+    "D28_ast_hd95_actual_call_site_binding",
+    "associated_static_audits_and_negative_controls"
+  ],
+  "prohibited_differences_found": [],
+  "permitted_differences_all_within_scope": true
+}

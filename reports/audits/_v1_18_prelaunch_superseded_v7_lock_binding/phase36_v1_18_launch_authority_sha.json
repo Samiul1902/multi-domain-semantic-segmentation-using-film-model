@@ -1,0 +1,17 @@
+{
+ "artifact": "phase36_v1_18_launch_authority_sha",
+ "phase": 36,
+ "revision": "ra_medfilm_barr_phase36_robustness_v1_18",
+ "type": "LAUNCH_AUTHORITY_CONSTANT",
+ "generated_utc": "2026-10-10T14:51:36Z",
+ "launcher": "scripts\\analysis\\launch_phase36_v1_18.py",
+ "launcher_sha256": "727a3bdd47f626826575de286a2a382dd63eb899c244af9da6e1d9d078944f3e",
+ "prelaunch_authority_bundle": "reports\\audits\\phase36_v1_18_prelaunch_authority_bundle.json",
+ "prelaunch_authority_bundle_sha256": "6f361372432c8a1d920d2ad0583039ba7be9af5351e934a8d790f9f43588478f",
+ "runtime_manifest_sha256": "0a19c405641f0825a9869e6dd9f151ee4e5c5c83f0648a9a7844bf17b59f0a5d",
+ "release_attestation_sha256": "70e99853b2a7a36773105a19bb3067e2c8531c14f7fda1ea6c7a1fd27d1cbdc5",
+ "d85_d88_adjudication_sha256": "8b173e13109be3c51827a00f98de411f6115a3851f48b687692e217d2320f9c2",
+ "execution_source_sha256": "2259ce22e75ba9a3a8943769dc1e0ed5724f94902f5e8955976cd6ebeb8ce63e",
+ "non_circular_note": "The launcher reads its expected SHAs from this file; the supervisor pins THIS FILE's raw bytes BEFORE Popen.  That makes the chain acyclic: exec/manifest/governance -> bundle -> this file -> launcher -> supervisor.",
+ "terminal": "PHASE36_V1_18_LAUNCH_AUTHORITY_CONSTANT_WRITTEN"
+}

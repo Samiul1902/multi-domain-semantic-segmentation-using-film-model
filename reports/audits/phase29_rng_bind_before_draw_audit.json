@@ -1,0 +1,59 @@
+{
+ "artifact": "phase29_rng_bind_before_draw_audit",
+ "phase": 29,
+ "generated_utc": "2026-10-02T15:51:51+00:00",
+ "governance_only": true,
+ "execution": "NONE",
+ "method": "stdlib random.seed instrumented; SEED_BIND event index compared against FIRST_RNG_DRAW event index",
+ "components": [
+  {
+   "component": "R_psi",
+   "seed_bound_before_first_rng_draw": true,
+   "events": [
+    {
+     "event": "SEED_BIND",
+     "value": 3407
+    },
+    {
+     "event": "FIRST_RNG_DRAW",
+     "kind": "random.random"
+    },
+    {
+     "event": "FIRST_RNG_DRAW",
+     "kind": "numpy.random.rand"
+    }
+   ]
+  },
+  {
+   "component": "B_phi",
+   "seed_bound_before_first_rng_draw": true,
+   "events": [
+    {
+     "event": "SEED_BIND",
+     "value": 3407
+    },
+    {
+     "event": "FIRST_RNG_DRAW",
+     "kind": "random.random"
+    }
+   ]
+  },
+  {
+   "component": "S_omega",
+   "seed_bound_before_first_rng_draw": true,
+   "events": [
+    {
+     "event": "SEED_BIND",
+     "value": 3407
+    },
+    {
+     "event": "FIRST_RNG_DRAW",
+     "kind": "random.random"
+    }
+   ]
+  }
+ ],
+ "all_components_seed_bound_before_rng": true,
+ "blocked_terminal_if_fail": "PHASE29_PHASE_B_BLOCKED__SEED_BIND_AFTER_RNG_DRAW",
+ "all_pass": true
+}

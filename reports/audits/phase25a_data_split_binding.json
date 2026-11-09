@@ -1,0 +1,26 @@
+{
+ "artifact": "phase25a_data_split_binding",
+ "phase": "25A",
+ "purpose": "bind the frozen TRAIN-only router split; Phase 25A trains ONLY on action-available ROUTER_DEVELOPMENT samples",
+ "split_seed": 42,
+ "split_manifest": "reports/audits/phase24_router_split_manifest.csv",
+ "split_manifest_sha256": "b5da52d6220ef9b59b4ba70d0b403b38bf5234b897615b6ad55d718114db6555",
+ "development_n": 4957,
+ "holdout_n": 875,
+ "development_by_domain": {
+  "BUSI": 512,
+  "ISIC": 2173,
+  "KUB": 1680,
+  "KVASIR": 592
+ },
+ "group_overlap_dev_holdout": 0,
+ "val_overlap": 0,
+ "test_overlap": 0,
+ "holdout_outcomes_read_in_phase25a": 0,
+ "holdout_use_in_phase25a": "NONE \u2014 outcomes are never inspected; the holdout is not used for training, checkpoint selection or early stopping",
+ "val_use_in_phase25a": "NONE \u2014 the 808-case VAL is a SECONDARY/CONTINUITY development benchmark, untouched in Phase 25A",
+ "test_use_in_phase25a": "NONE \u2014 TEST is CLOSED",
+ "verdict": "PHASE25A_DATA_SPLIT_BINDING_PASS",
+ "generated_utc": "2026-09-30T04:27:30.880309+00:00",
+ "test_reads": 0
+}

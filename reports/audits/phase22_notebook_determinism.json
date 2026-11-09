@@ -1,0 +1,22 @@
+{
+  "artifact": "phase22_notebook_determinism",
+  "phase": 22,
+  "notebook_path": "notebooks/phasewise/phase_22_resource_gap/phase22_resource_gap_analysis.ipynb",
+  "builds": 3,
+  "sha256_per_build": [
+    "b98c8602541cf7bc7190ac285d3bd9991de9f7b0876ef274b3b46954ef760553",
+    "b98c8602541cf7bc7190ac285d3bd9991de9f7b0876ef274b3b46954ef760553",
+    "b98c8602541cf7bc7190ac285d3bd9991de9f7b0876ef274b3b46954ef760553"
+  ],
+  "three_builds_byte_identical": true,
+  "deterministic_practices": [
+    "deterministic cell ids (p22000..p22NNN)",
+    "stripped metadata.execution",
+    "coalesced stream outputs",
+    "fixed pandas Styler uuids via set_uuid",
+    "normalised object memory addresses (0x... -> 0xADDR)",
+    "stable output ordering",
+    "freeze values are read, never hashed (the freeze carries generated_utc)"
+  ],
+  "test_reads": 0
+}

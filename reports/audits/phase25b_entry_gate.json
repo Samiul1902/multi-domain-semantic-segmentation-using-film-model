@@ -1,0 +1,146 @@
+{
+ "artifact": "phase25b_entry_gate",
+ "phase": "25B",
+ "purpose": "fail-closed verification of the authorized Phase25A predecessor state",
+ "expected": {
+  "predecessor_terminal": "PHASE25A_CANONICAL_RERUN_COMPLETE__ROI_PROPOSAL_THRESHOLD_0P30__SEGMENTATION_OUTPUT_THRESHOLD_0P50__PHASE25B_ELIGIBLE_NOT_STARTED",
+  "phase25a_classification": "CANONICAL_PHASE25A_AFTER_THRESHOLD_ADJUDICATION",
+  "phase25a_notebook_sha256": "fd2bab0168eb3477125c655ada1bd5eb4b060f41a5b354fdbaaf6fd621dfb2dd",
+  "phase21_global_sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+  "phase25a_final_refiner_sha256": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109",
+  "roi_proposal_threshold": 0.3,
+  "segmentation_output_threshold": 0.5,
+  "router_development_n": 4957,
+  "router_holdout_n": 875,
+  "action_available_n": 4957,
+  "action_unavailable_n": 0,
+  "superseded_classification": "NONCANONICAL_PROTOCOL_DEVIATION__ROI_THRESHOLD_0P50",
+  "split_manifest_sha256": "b5da52d6220ef9b59b4ba70d0b403b38bf5234b897615b6ad55d718114db6555"
+ },
+ "n_checks": 22,
+ "n_failed": 0,
+ "checks": [
+  {
+   "check": "canonical_gov_pointer_exists",
+   "passed": true,
+   "detail": "D:\\Softfors\\jup\\reports\\audits\\phase25a_canonical_governance_pointer.json"
+  },
+  {
+   "check": "canonical_classification",
+   "passed": true,
+   "detail": "CANONICAL_PHASE25A_AFTER_THRESHOLD_ADJUDICATION"
+  },
+  {
+   "check": "canonical_notebook_sha256",
+   "passed": true,
+   "detail": "fd2bab0168eb3477125c655ada1bd5eb4b060f41a5b354fdbaaf6fd621dfb2dd"
+  },
+  {
+   "check": "roi_proposal_threshold_0p30",
+   "passed": true,
+   "detail": 0.3
+  },
+  {
+   "check": "segmentation_output_threshold_0p50",
+   "passed": true,
+   "detail": 0.5
+  },
+  {
+   "check": "ambiguous_threshold_fields_zero",
+   "passed": true,
+   "detail": []
+  },
+  {
+   "check": "canonical_final_refiner_sha256",
+   "passed": true,
+   "detail": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109"
+  },
+  {
+   "check": "phase21_global_checkpoint_sha256",
+   "passed": true,
+   "detail": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7"
+  },
+  {
+   "check": "router_development_n_4957",
+   "passed": true,
+   "detail": 4957
+  },
+  {
+   "check": "canonical_action_available_4957",
+   "passed": true,
+   "detail": 4957
+  },
+  {
+   "check": "canonical_action_unavailable_0",
+   "passed": true,
+   "detail": 0
+  },
+  {
+   "check": "superseded_run_is_noncanonical",
+   "passed": true,
+   "detail": "NONCANONICAL_PROTOCOL_DEVIATION__ROI_THRESHOLD_0P50"
+  },
+  {
+   "check": "superseded_scientific_use_allowed_false",
+   "passed": true,
+   "detail": false
+  },
+  {
+   "check": "superseded_preserved_on_disk",
+   "passed": true,
+   "detail": "checkpoints/phase25a_barr_regional_refiner_v1_1"
+  },
+  {
+   "check": "router_split_manifest_sha256",
+   "passed": true,
+   "detail": "b5da52d6220ef9b59b4ba70d0b403b38bf5234b897615b6ad55d718114db6555"
+  },
+  {
+   "check": "router_holdout_n_875",
+   "passed": true,
+   "detail": 875
+  },
+  {
+   "check": "router_development_manifest_n_4957",
+   "passed": true,
+   "detail": 4957
+  },
+  {
+   "check": "phase25b_previously_not_started",
+   "passed": true,
+   "detail": {
+    "cache": [],
+    "notebook": [],
+    "experiments": [],
+    "checkpoints": [],
+    "trainer": []
+   }
+  },
+  {
+   "check": "phase25c_previously_not_started",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "no_benefit_router_artifact",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "no_paired_gain_table",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "predecessor_terminal_exact",
+   "passed": true,
+   "detail": "PHASE25A_CANONICAL_RERUN_COMPLETE__ROI_PROPOSAL_THRESHOLD_0P30__SEGMENTATION_OUTPUT_THRESHOLD_0P50__PHASE25B_ELIGIBLE_NOT_STARTED"
+  }
+ ],
+ "verdict": "PHASE25B_ENTRY_GATE_PASS",
+ "fail_closed": true,
+ "phase25b_started": false,
+ "test_reads": 0,
+ "holdout_outcomes_read": 0,
+ "val_outcome_reads": 0
+}

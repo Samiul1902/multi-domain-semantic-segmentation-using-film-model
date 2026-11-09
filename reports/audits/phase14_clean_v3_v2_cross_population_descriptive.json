@@ -1,0 +1,131 @@
+{
+  "artifact": "phase14_clean_v3_v2_cross_population_descriptive",
+  "label": "DESCRIPTIVE_CROSS_POPULATION_ONLY__NOT_FORMAL_ADJUDICATION",
+  "warning": "This file is a DESCRIPTIVE, cross-population comparison of the v2-era Phase-14 three-contrast diagnostic and the clean-v3 Phase-14 three-contrast diagnostic. It is NOT a formal adjudication. The two evaluations were run on DIFFERENT frozen populations (v2-era 106 FULL_FIELD/156 components vs clean-v3 103 FULL_FIELD/152 components; different size strata and different hard-tiny/global-empty special sets). No gate is re-adjudicated here; the authoritative clean-v3 adjudication is in phase14_clean_v3_diagnostic_evaluation.json (see \u00a79 report).",
+  "populations": {
+    "v2_era": {
+      "view_type": "FULL_FIELD",
+      "val_samples": 106,
+      "authoritative_components": 156,
+      "size_strata": {
+        "TINY": 73,
+        "SMALL": 29,
+        "MEDIUM": 36,
+        "LARGE": 18
+      },
+      "hard_tiny_denominator": 16,
+      "global_empty_denominator": 7,
+      "status": "PRESERVED_FOR_PROVENANCE_ONLY (not the clean-v3 executable population)"
+    },
+    "clean_v3": {
+      "view_type": "FULL_FIELD",
+      "val_samples": 103,
+      "authoritative_components": 152,
+      "size_strata": {
+        "TINY": 72,
+        "SMALL": 28,
+        "MEDIUM": 36,
+        "LARGE": 16
+      },
+      "hard_tiny_denominator": 15,
+      "global_empty_denominator": 5,
+      "status": "EXECUTABLE clean-v3 diagnostic population (ruling OPTION B)"
+    }
+  },
+  "frozen_references": {
+    "v2_era": {
+      "Tg": 0.7808219178082192,
+      "Dg": 0.652776
+    },
+    "clean_v3": {
+      "Tg": 0.7916666666666666,
+      "Dg": 0.6359172411726776
+    },
+    "note": "Tg/Dg are population-dependent GLOBAL references (\u00a74 permits remeasurement for clean-v3)."
+  },
+  "diagnostic_contrasts": {
+    "v2_era": {
+      "Tg": 0.780822,
+      "To": 1.0,
+      "Tp": 0.890411,
+      "Dg": 0.652776,
+      "Do": 0.815175,
+      "Dp": 0.383905,
+      "G": 0.219178,
+      "R": 0.5
+    },
+    "clean_v3": {
+      "Tg": 0.791667,
+      "To": 1.0,
+      "Tp": 0.791667,
+      "Dg": 0.635917,
+      "Do": 0.802416,
+      "Dp": 0.418531,
+      "G": 0.208333,
+      "R": 0.0
+    }
+  },
+  "mode_summaries_descriptive": {
+    "v2_era": {
+      "GLOBAL_ONLY": {
+        "mean_dice": 0.652776,
+        "tiny_recall90": 0.780822
+      },
+      "ORACLE_REGIONAL": {
+        "mean_dice": 0.815175,
+        "tiny_recall90": 1.0,
+        "hard_tiny_recovered": 16,
+        "global_empty_recovered": 7
+      },
+      "PREDICTED_REGIONAL": {
+        "mean_dice": 0.383905,
+        "tiny_recall90": 0.890411,
+        "hard_tiny_recovered": 8,
+        "global_empty_recovered": 5
+      }
+    },
+    "clean_v3": {
+      "GLOBAL_ONLY": {
+        "mean_dice": 0.635917,
+        "tiny_recall90": 0.791667
+      },
+      "ORACLE_REGIONAL": {
+        "mean_dice": 0.802416,
+        "tiny_recall90": 1.0,
+        "hard_tiny_recovered": 15,
+        "global_empty_recovered": 5
+      },
+      "PREDICTED_REGIONAL": {
+        "mean_dice": 0.418531,
+        "tiny_recall90": 0.791667,
+        "hard_tiny_recovered": 0,
+        "global_empty_recovered": 1
+      }
+    }
+  },
+  "gates": {
+    "v2_era": {
+      "step_1": "PASS",
+      "step_2": "PASS (R=0.50)",
+      "step_3": "FAIL (Dp=0.383905)",
+      "final": "DIAGNOSTIC_PRACTICAL_SIGNAL_INSUFFICIENT",
+      "phase15": "NOT_AUTHORIZED"
+    },
+    "clean_v3": {
+      "step_1": "PASS",
+      "step_2": "FAIL (R=0.0)",
+      "step_3": "FAIL (Dp=0.418531)",
+      "final": "DIAGNOSTIC_PROPOSAL_BOTTLENECK",
+      "phase15": "NOT_AUTHORIZED"
+    }
+  },
+  "interpretation": [
+    "GLOBAL references are stable and population-dependent: Tg rises 0.780822->0.791667, Dg falls 0.652776->0.635917. Both within expected sampling variation of the smaller clean-v3 population.",
+    "ORACLE_REGIONAL mode is character-identical across populations (tiny recall 1.0, full-field dice ~0.80-0.82, hard-tiny fully recovered, global-empty fully recovered). The refiner POTENTIAL (Step 1) is preserved and not the limiting factor.",
+    "PREDICTED_REGIONAL is the divergent axis. In v2-era, predicted tiny recall (0.890) exceeded global (0.781) giving R=0.50 and a passing Step 2. In clean-v3, predicted tiny recall (0.791667) equals global tiny recall (0.791667), giving R=0.0 and a failing Step 2.",
+    "The clean-v3 predicted FULL_FIELD dice (0.418531) is slightly HIGHER than v2-era (0.383905) but still far below the 0.632776 Step-3 threshold; both populations fail Step 3 on Dp.",
+    "Because the refiner (Oracle) is intact but the frozen Stage-4D PREDICTED proposal pipeline yields no net tiny-recall gain in clean-v3, the clean-v3 diagnosis is PROPOSAL_BOTTLENECK (proposal supply is the bottleneck), whereas v2-era was PRACTICAL_SIGNAL_INSUFFICIENT (the refined proposal signal, though retained, was still insufficient on dice).",
+    "Both populations independently yield phase15_status = NOT_AUTHORIZED. Phase 15 must not be started in this task."
+  ],
+  "generated_utc": "2026-09-25T00:09:38Z"
+}

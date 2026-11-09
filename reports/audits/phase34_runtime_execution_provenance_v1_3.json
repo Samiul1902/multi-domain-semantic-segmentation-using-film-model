@@ -1,0 +1,127 @@
+{
+ "artifact": "phase34_runtime_execution_provenance_v1_3",
+ "phase": 34,
+ "section": "\u00a7T",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase34_efficiency_profiling_v1_3",
+ "execution_timestamp": "2026-10-04T13:47:38+00:00",
+ "harness_results_path": "reports/audits/phase34_efficiency_profiling_execution_results_v1_3.json",
+ "harness_results_sha256": "bfe1fe649f65b5c2d5c416606b76449f49b67726bf5bd664d57947ae94c3f866",
+ "source_shas": {
+  "freeze": "reports\\audits\\phase34_preexecution_source_freeze_v1_3.json",
+  "all_sources_match": true,
+  "n_sources": 10
+ },
+ "checkpoint_shas": {
+  "G": {
+   "sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+   "file_bytes": 42369710
+  },
+  "R_psi": {
+   "sha256": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109",
+   "file_bytes": 15425424
+  },
+  "B_phi": {
+   "sha256": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+   "file_bytes": 455682
+  },
+  "S_omega": {
+   "sha256": "eee9b97b9921e53fc07eac9281dce64ba518c6e1659916b97b0b3bec21ec6d2e",
+   "file_bytes": 7816
+  }
+ },
+ "environment": {
+  "os": "Windows-10-10.0.26200-SP0",
+  "python": "3.11.9",
+  "torch": "2.6.0+cu124",
+  "cuda_runtime": "12.4",
+  "cudnn": 90100,
+  "gpu": "NVIDIA GeForce RTX 3060 Ti",
+  "cc": "8.6",
+  "vram_bytes": 8589279232
+ },
+ "PHASE34_EXECUTE_state": "1",
+ "frozen_ARM_ORDER": [
+  "GLOBAL_ONLY_C1",
+  "SKIP_CONTROLLED_PATH",
+  "EXECUTE_CONTROLLED_PATH",
+  "FINAL_ROUTED_A8_C9",
+  "G_COMPONENT",
+  "R_PSI_COMPONENT",
+  "B_PHI_COMPONENT",
+  "S_OMEGA_COMPONENT"
+ ],
+ "smoke_only_driver_used": false,
+ "premeasurement_smoke_rerun_count": 1,
+ "premeasurement_smoke_forwards": 10,
+ "parameter_identities": {
+  "G": 3523001,
+  "R_psi": 1276401,
+  "B_phi": 36801,
+  "S_omega": 1217
+ },
+ "task_schedules": {
+  "batch1": "iteration_index mod 4 (0=ISIC,1=BUSI,2=KVASIR,3=KUB)",
+  "batch8": [
+   0,
+   1,
+   2,
+   3,
+   0,
+   1,
+   2,
+   3
+  ]
+ },
+ "precision_contexts": {
+  "G": "float32 + autocast(fp16) + torch.no_grad() + inference_mode false",
+  "R_psi": "float32 + autocast disabled + torch.inference_mode()",
+  "B_phi": "float32 + autocast disabled + torch.inference_mode()",
+  "S_omega": "float32 + autocast disabled + torch.inference_mode()"
+ },
+ "latency_protocol": {
+  "warmup": 50,
+  "blocks": 5,
+  "iterations_per_block": 200,
+  "measured_iterations": 1000,
+  "batch_size": 1,
+  "timer": "torch.cuda.Event + torch.cuda.synchronize()"
+ },
+ "throughput_protocol": {
+  "batch_size": 8,
+  "definition": "processed_samples / synchronized_wall_seconds"
+ },
+ "memory_protocol": "reset_peak_memory_stats at frozen point; fresh subprocess per arm",
+ "per_arm_attempt_counts": {
+  "GLOBAL_ONLY_C1": 1,
+  "SKIP_CONTROLLED_PATH": 1,
+  "EXECUTE_CONTROLLED_PATH": 1,
+  "FINAL_ROUTED_A8_C9": 1,
+  "G_COMPONENT": 1,
+  "R_PSI_COMPONENT": 1,
+  "B_PHI_COMPONENT": 1,
+  "S_OMEGA_COMPONENT": 1
+ },
+ "technical_failures": [],
+ "aliases": {
+  "G_COMPONENT": "GLOBAL_ONLY_C1",
+  "FINAL_ROUTED_A8_C9": "EXECUTE_CONTROLLED_PATH"
+ },
+ "distinct_measured_arms": [
+  "GLOBAL_ONLY_C1",
+  "R_PSI_COMPONENT",
+  "B_PHI_COMPONENT",
+  "S_OMEGA_COMPONENT",
+  "SKIP_CONTROLLED_PATH",
+  "EXECUTE_CONTROLLED_PATH"
+ ],
+ "protected_data_counters": {
+  "raw_image_reads": 0,
+  "raw_gt_reads": 0,
+  "router_holdout_raw_reads": 0,
+  "test_reads": 0,
+  "training_steps": 0
+ },
+ "generated_utc": "2026-10-04T13:47:38+00:00",
+ "all_pass": true
+}

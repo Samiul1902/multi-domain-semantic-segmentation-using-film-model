@@ -1,0 +1,83 @@
+{
+ "artifact": "phase25f_role_and_novelty_boundary_v1_0",
+ "phase": "25F",
+ "stage": "ROLE_NOVELTY_BOUNDARY_CARRIED_FORWARD",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_post_safety_v1_0",
+ "symbol": "S_omega",
+ "class_name": "BARRPostSafetyV1",
+ "role": "POST-REFINEMENT preservation / safety selector",
+ "classification": "CONTROLLED_CORE_EXTENSION",
+ "deployment_inputs_gt_free": true,
+ "post_safety_saves_compute": false,
+ "novelty_claimed": false,
+ "jfs_adjacency": true,
+ "changed_by_this_repair": false,
+ "verbatim_source_architecture_spec": {
+  "symbol": "S_omega",
+  "role": "quality preservation AFTER refinement",
+  "saves_compute": false,
+  "importance": "This is the component closest to JFS. S_omega must NEVER be presented as the compute-saving mechanism, because JFS already occupies the post-hoc decision.",
+  "deployment_inputs_gt_free": true,
+  "classification": "CONTROLLED_CORE_EXTENSION",
+  "mandatory_ablation": "A7 (router, no post-safety) vs A8 (router + post-safety)",
+  "novelty_claimed": false
+ },
+ "verbatim_source_exact_impl": {
+  "name": "BARRPostSafetyV1",
+  "extension_status": "CONTROLLED_CORE_EXTENSION",
+  "primary_evaluation_excludes_it": true,
+  "primary_evaluation": "A7 / benefit + resource gate WITHOUT post-safety",
+  "included_in": "A8",
+  "saves_compute": false,
+  "jfs_differentiation_required": true,
+  "second_image_encoder": false,
+  "inputs_from": "already-computed post-refinement quantities only",
+  "feature_family_examples": [
+   "global/refined probability summary difference",
+   "foreground-area change",
+   "component-count change",
+   "mean probability change",
+   "boundary-size change",
+   "ROI geometry",
+   "task_id"
+  ],
+  "gt_at_inference": false,
+  "target": "ACCEPT iff DeltaDice > 0",
+  "target_source": "OOF refinement predictions from ROUTER_DEVELOPMENT only",
+  "architecture": "input -> 32 -> 16 -> 1 (sigmoid/logit)",
+  "loss": "binary cross entropy",
+  "holdout_training": false,
+  "executed_in_phase24": false
+ },
+ "mandatory_conceptual_comparison": {
+  "A7": "pre-execution router/resource gate WITHOUT post-safety",
+  "A8": "matched routed policy PLUS post-safety/fallback"
+ },
+ "must_never_be_described_as": [
+  "the compute-saving mechanism",
+  "the novelty-bearing component",
+  "a causal estimator",
+  "a certified safety mechanism"
+ ],
+ "phase25e_remains_owner_of": "conditional execution savings",
+ "forbidden_tokens_guard": {
+  "forbidden": [
+   "counterfactual",
+   "certified",
+   "causal",
+   "guaranteed"
+  ],
+  "applied_to": "all Phase25F repair artifacts and future Phase25F documents"
+ },
+ "preservation_contract_bound": {
+  "outcomes": {
+   "SKIP": "final = global",
+   "EXECUTE_THEN_REJECT": "final = global",
+   "EXECUTE_THEN_ACCEPT": "final = regional-fused"
+  },
+  "margin": 0.005,
+  "destructive_replacement_before_final_decision": false
+ },
+ "all_pass": true
+}

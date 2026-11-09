@@ -1,0 +1,158 @@
+{
+  "artifact": "barr_m1_v1_0b_reproduction_semantics_audit",
+  "revision": "RA_MEDFILM_BARR_BARR_M1_V1_0B__NUMERICAL_AND_CONTRAST_AUTHORITY_RECONCILIATION",
+  "generated_utc": "2026-10-27T01:57:57Z",
+  "scope": "STRICT_READ_ONLY_AUDIT",
+  "alignment": {
+    "n_label_rows": 4957,
+    "n_safety_rows": 4957,
+    "n_membership_rows": 4957,
+    "n_dev_rows": 4957,
+    "label_ids_unique": true,
+    "safety_ids_unique": true,
+    "membership_ids_unique": true,
+    "label_set_equals_safety_set": true,
+    "label_set_equals_membership_set": true,
+    "label_set_equals_dev_set": true,
+    "label_order_equals_membership_order": false,
+    "feature_row_index_contiguous_0_4956": true,
+    "dev_feature_row_index_contiguous": true,
+    "membership_rank_contiguous_0_4956": false,
+    "row_alignment_verified": true,
+    "join_used": "inner join on sample_id; row counts identical (4957) so no case was dropped"
+  },
+  "reconstruction_identities": {
+    "A0": {
+      "identity": "delta ≡ 0.0 (no refinement executed)",
+      "sum": 0.0,
+      "n_executed": 0
+    },
+    "A1": {
+      "identity": "delta = phase25c delta_dice for all 4957 rows",
+      "sum": 8.219101516,
+      "n_executed": 4957
+    },
+    "A7": {
+      "identity": "delta = delta_dice where C8 membership selected, else 0.0",
+      "sum": 8.9785736244,
+      "n_executed": 1239
+    },
+    "A8": {
+      "identity": "delta = delta_dice where selected AND p_accept_oof >= 0.50, else 0.0",
+      "sum": 9.0564839294,
+      "n_executed": 1205
+    }
+  },
+  "frozen_aggregate_consistency": {
+    "checks": {
+      "A0": true,
+      "A1": true,
+      "A7": true,
+      "A8": true,
+      "A7_n": true,
+      "A8_n": true
+    },
+    "all_match": true,
+    "tolerance": 1e-09
+  },
+  "oof_vs_full_refit": {
+    "G": {
+      "array_used": "data_cache/phase25f_barr_post_safety_v1_0/oof_global_crop_prob.npy",
+      "upstream_source": "data_cache/phase25a_barr_roi030_cache/<DOMAIN>/prob512.npy → crop_and_resize(prob512, geom, 256, 'bilinear')",
+      "cross_fitted": false,
+      "full_refit": false,
+      "status": "IN_SAMPLE",
+      "reason": "G was trained on phase4_v3 TRAIN (n=5832) and ROUTER_DEVELOPMENT (4957) is a subset of TRAIN, so G's probability maps for DEV cases are in-sample. The 'oof_' filename prefix refers to the Phase-25C fold-specific REFINED array companion, not to G."
+    },
+    "R_psi": {
+      "array_used": "data_cache/phase25f_barr_post_safety_v1_0/oof_refined_crop_prob.npy",
+      "upstream_source": "Phase-25C fold-specific _tmp_refined_crop_prob_<DOMAIN>.npy (BUSI e4e37ab5…, ISIC 52f64fd3…, KUB 022da548…, KVASIR f3b56688…)",
+      "cross_fitted": true,
+      "full_refit": false,
+      "status": "OUT_OF_FOLD",
+      "reason": "Each case is scored by the fold-specific refiner whose OUTER_TARGET contains it. phase25c_crossfit_leakage_audit.json: outer∩fit = 0 and outer∩early_stop = 0 for all folds; 4957/4957 in exactly one outer target; crossfit_leakage_violations = 0."
+    },
+    "B_phi": {
+      "array_used": "reports/tables/phase25e_policy_memberships_v1_0/C8_lambda0.25_budget0.25.csv (routing_score)",
+      "training_regime": "5-fold CV within DEV + one all-DEV final refit",
+      "cross_fitted": true,
+      "full_refit": true,
+      "status": "OOF_SCORES_USED_FOR_MEMBERSHIP",
+      "evidence": "The frozen membership routing_score is NOT equal to delta_hat_final_dev (max |diff| = 0.0359), and the membership equals exactly the top-1239 by the membership's own routing_score. Phase-25E is documented as the '45 frozen OOF memberships' evaluation and Phase-29 fixes ranking as 'delta_hat_oof descending'. Hence A7/A8 membership uses OOF router scores; the final-refit score file exists but is not the membership source."
+    },
+    "S_omega": {
+      "array_used": "data_cache/phase25f_barr_post_safety_v1_0/phase25f_oof_safety_predictions.csv (p_accept_oof)",
+      "training_regime": "5-fold CV OOF + one all-DEV final refit (FINAL_SAFETY_EPOCHS = 23)",
+      "cross_fitted": true,
+      "full_refit": true,
+      "status": "OOF_DECISIONS_USED",
+      "evidence": "The consumed column is explicitly p_accept_oof / safety_decision_oof, and the A8 aggregate reproduces exactly from it (9.0564839294, n=1205). The final-refit checkpoint exists but is not the decision source for this arm."
+    }
+  },
+  "router_and_safety_training_inputs": {
+    "B_phi_targets": "Phase-25C OOF delta_dice labels (cross-fitted w.r.t. R_psi)",
+    "B_phi_features": "Phase-25B 202-D pre-refinement features derived from G (in-sample for DEV)",
+    "S_omega_targets": "safety_target = 1 iff the OOF refinement gain > 0",
+    "S_omega_features": "20-D post-refinement descriptors from the OOF refined/global crop probabilities",
+    "leakage_note": "The router and safety models never see a case's own ground truth, and their per-case predictions are cross-fitted. However the underlying G features are in-sample, and the same 4957 population was used for fitting, early stopping and selection."
+  },
+  "evaluation_classification": {
+    "population_level": "IN_SAMPLE_DEVELOPMENT",
+    "component_level": "G in-sample; R_psi out-of-fold; B_phi membership from OOF router scores; S_omega decisions from OOF safety predictions",
+    "default_retained": true,
+    "no_independent_generalisation_claim": true,
+    "refined_statement": "The population participated in fitting, early stopping and selection, so no generalisation claim is available. Within that population, the per-case router and safety predictions are cross-fitted, which limits (but does not eliminate) optimistic bias; G's contribution remains in-sample."
+  },
+  "negative_controls": {
+    "data": "synthetic only (n=200, seed 42)",
+    "controls": {
+      "NC1_shuffled_row_order_detected": {
+        "injected": "shuffle sample_id order against the delta vector",
+        "detector": "exact element-wise order equality",
+        "detected": true,
+        "expected": true
+      },
+      "NC2_missing_case_detected": {
+        "injected": "drop one case",
+        "detector": "row-count equality (expected 200)",
+        "observed": 199,
+        "detected": true,
+        "expected": true
+      },
+      "NC3_duplicate_case_detected": {
+        "injected": "duplicate one sample_id",
+        "detector": "unique-count equality",
+        "observed_unique": 200,
+        "detected": true,
+        "expected": true
+      },
+      "NC4_wrong_membership_detected": {
+        "injected": "replace the membership with a random 25% set",
+        "detector": "aggregate equality against the reference within 1e-9",
+        "reference_sum": 1.0229466389,
+        "injected_sum": 0.2972622414,
+        "detected": true,
+        "expected": true
+      },
+      "NC5_sign_corruption_detected": {
+        "injected": "negate the delta vector",
+        "detector": "harm-count equality OR signed-sum equality",
+        "reference_harm": 7,
+        "injected_harm": 41,
+        "reference_sum": 1.0229466389,
+        "injected_sum": -1.0229466389,
+        "detected": true,
+        "expected": true
+      },
+      "NC6_zero_delta_violation_detected": {
+        "injected": "set a non-executed case's delta to 0.01",
+        "detector": "all non-executed deltas exactly 0.0",
+        "detected": true,
+        "expected": true
+      }
+    },
+    "all_detected": true
+  },
+  "model_inference": 0,
+  "new_hypothesis_test": false
+}

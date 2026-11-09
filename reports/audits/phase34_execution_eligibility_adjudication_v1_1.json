@@ -1,0 +1,81 @@
+{
+ "artifact": "phase34_execution_eligibility_adjudication_v1_1",
+ "phase": 34,
+ "section": "\u00a7N",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase34_efficiency_profiling_v1_1",
+ "families": {
+  "historical_analytical_MAC_reuse_eligible": {
+   "value": true,
+   "basis": "phase34_analytical_compute_contract_v1_1.json"
+  },
+  "new_parameter_count_execution_eligible": {
+   "value": true,
+   "basis": "phase34_parameter_count_contract.json"
+  },
+  "new_analytical_MAC_profiler_execution_eligible": {
+   "value": false,
+   "basis": "no FLOP/MAC profiler installed; no install permitted"
+  },
+  "GPU_batch1_latency_execution_eligible": {
+   "value": true,
+   "basis": "phase34_latency_measurement_contract.json + v1.1 component-specific precision contract"
+  },
+  "GPU_batch8_throughput_execution_eligible": {
+   "value": true,
+   "basis": "phase34_batch_size_contract.json"
+  },
+  "GPU_memory_execution_eligible": {
+   "value": true,
+   "basis": "phase34_memory_measurement_contract.json"
+  },
+  "component_level_runtime_execution_eligible": {
+   "value": true,
+   "basis": "phase34_profiling_arm_registry_v1_1.csv"
+  },
+  "path_level_runtime_execution_eligible": {
+   "value": true,
+   "basis": "phase34_profiling_arm_registry_v1_1.csv"
+  },
+  "conditional_weighted_runtime_estimate_eligible": {
+   "value": true,
+   "basis": "phase34_conditional_runtime_reporting_contract.json"
+  },
+  "synthetic_route_replay_eligible": {
+   "value": false,
+   "basis": "no pre-frozen exact route harness"
+  },
+  "cold_start_timing_eligible": {
+   "value": false,
+   "basis": "phase34_runtime_scope_contract.json"
+  },
+  "raw_ROUTER_HOLDOUT_execution_eligible": {
+   "value": false,
+   "basis": "data access"
+  },
+  "raw_GT_execution_eligible": {
+   "value": false,
+   "basis": "data access"
+  },
+  "TEST_execution_eligible": {
+   "value": false,
+   "basis": "TEST LOCKED_UNTIL_PHASE39"
+  },
+  "training_eligible": {
+   "value": false,
+   "basis": "profiling phase only"
+  },
+  "Phase35_started": {
+   "value": false,
+   "basis": "out of scope"
+  }
+ },
+ "canonical_component_semantics_runtime_ready": true,
+ "batch1_runtime_role": "HARDWARE_MICROBENCHMARK_NOT_CANONICAL_NUMERICAL_REPRODUCTION",
+ "batch8_runtime_role": "SYNTHETIC_HARDWARE_THROUGHPUT_BENCHMARK",
+ "literal_C2_comparator_semantics_reconciled": true,
+ "measured_runtime_execution_eligible": true,
+ "load_bearing_harness_semantics_consistent": true,
+ "generated_utc": "2026-10-04T10:35:59+00:00",
+ "all_pass": true
+}

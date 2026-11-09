@@ -1,0 +1,26 @@
+{
+  "classification": "PHASE38_TASK_DOMAIN_SEMANTICS_FREEZE",
+  "generated_utc": "2026-10-11T06:30:00Z",
+  "phase": 38,
+  "tasks": {
+    "0": "ISIC",
+    "1": "BUSI",
+    "2": "KVASIR",
+    "3": "KUB"
+  },
+  "tasks_binary_foreground_background": true,
+  "kub_reporting_only_subgroups": [
+    "Kidney_Stone",
+    "Bladder_Stone",
+    "Ureteric_Stone"
+  ],
+  "kub_subgroups_never": [
+    "segmentation_class",
+    "task_id",
+    "conditioning_variable",
+    "router_input",
+    "model_input"
+  ],
+  "kub_subgroups_reporting_only": true,
+  "kub_subgroup_source": "manifests/phase4_v3/val.csv::category"
+}

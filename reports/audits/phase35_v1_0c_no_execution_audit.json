@@ -1,0 +1,52 @@
+{
+ "artifact": "phase35_v1_0c_no_execution_audit",
+ "phase": 35,
+ "section": "\u00a7AA",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase35_interpretability_v1_0c",
+ "zero_execution_declaration": true,
+ "counters": {
+  "model_constructions": 0,
+  "checkpoint_deserializations": 0,
+  "strict_loads": 0,
+  "forwards": 0,
+  "autograd_calls": 0,
+  "gradcam_forwards": 0,
+  "router_attribution_forwards": 0,
+  "optimizer_constructions": 0,
+  "optimizer_steps": 0,
+  "backward_calls": 0,
+  "raw_val_image_reads": 0,
+  "val_gt_reads": 0,
+  "router_holdout_reads": 0,
+  "test_reads": 0,
+  "train_raw_reads": 0,
+  "persisted_prediction_reads": 0,
+  "gt_key_accesses": 0,
+  "gate_env_vars_set": 0,
+  "mode_invocations": 0,
+  "smoke_runs": 0,
+  "scientific_figures_written": 0,
+  "scientific_tables_written": 0
+ },
+ "gate_env_checks": {
+  "PHASE35_EXECUTE_set_during_this_work_order": false,
+  "PHASE35_SMOKE_EXECUTE_set_during_this_work_order": false,
+  "any_mode_invoked": false
+ },
+ "inspections_performed": [
+  "AST parsing of the v1.0c / v1.0b execution sources and the v1.0b shared contracts",
+  "SHA-256 hashing of source files and audit artifacts",
+  "a model-free PyTorch tensor-indexing semantics probe on CPU tensors",
+  "metadata-only npy header parsing of the 808 VAL npz (no array decompression; the `gt` member was never accessed)",
+  "source-text reads of src/models/film/global_medfilm.py, experiments/phase21_global_medfilm_fourdomain_seed42_clean_v3/config.json and scripts/analysis/train_phase25d_router.py"
+ ],
+ "inspections_that_are_not_execution": true,
+ "scientific_result_produced": false,
+ "phase35_scientific_execution_started": false,
+ "phase36_started": false,
+ "TEST": "LOCKED_UNTIL_PHASE39",
+ "ROUTER_HOLDOUT": "OPENED_AND_FROZEN",
+ "generated_utc": "2026-10-04T15:46:25+00:00",
+ "all_pass": true
+}

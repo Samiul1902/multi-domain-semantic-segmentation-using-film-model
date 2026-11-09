@@ -1,0 +1,123 @@
+{
+ "artifact_kind": "PHASE36_V1_19_EXECUTION_FAILURE_ADJUDICATION",
+ "revision": "ra_medfilm_barr_phase36_robustness_adjudication_v1_0",
+ "work_order": "WO#20",
+ "section": "§1–§3 v1.19 FAILURE ADJUDICATION",
+ "mode": "POST_FAILURE_ADJUDICATION__STATIC_EVIDENCE_ONLY__NON_CONSUMING",
+ "created_utc": "2026-10-10T19:50:54Z",
+ "real_dispatch_occurred": true,
+ "attempt_consumed": true,
+ "relaunch_permitted": false,
+ "retry_permitted": false,
+ "attempt_id": "v1_19sup_3380_2026-10-10T19:40:57Z",
+ "supervisor_pid": 3380,
+ "child_pid": 4788,
+ "evidence_bindings": {
+  "PROCESS_EXIT": {
+   "path": "reports/audits/phase36_robustness_science_process_exit_v1_19.json",
+   "sha256": "ee0a4e3a010e57b62ff7043df813cdc23d3f8ed668ed9df46be08b4dcde0ecd3",
+   "size": 2198,
+   "present": true
+  },
+  "stdout": {
+   "path": "reports/audits/phase36_robustness_science_stdout_v1_19.txt",
+   "sha256": "1857f668c80d62d0e618cf0aa13b9dc0d7ed49674f26f2d665d16e3f04e6c805",
+   "size": 39,
+   "present": true
+  },
+  "stderr": {
+   "path": "reports/audits/phase36_robustness_science_stderr_v1_19.txt",
+   "sha256": "0e2dc81540ebbcced7d16ad9c9c068e42c9e5de3617605451b3033c140bc4438",
+   "size": 960,
+   "present": true
+  },
+  "START": {
+   "path": "reports/audits/phase36_robustness_science_start_v1_19.json",
+   "sha256": "ce275f81f822b310b2ceb3d9dd6ec63efdfed1053307ae7a3d86b9d22254bdf2",
+   "size": 589,
+   "present": true
+  },
+  "RESULT": {
+   "path": "reports/audits/phase36_robustness_scientific_result_v1_19.json",
+   "sha256": null,
+   "present": false
+  },
+  "FAILURE": {
+   "path": "reports/audits/phase36_robustness_science_failure_v1_19.json",
+   "sha256": null,
+   "present": false
+  },
+  "execution_source": {
+   "path": "scripts/analysis/phase36_robustness_execution_v1_19.py",
+   "sha256": "3ec5ea920af2b6d66864b3bbc7e5362f0756777512c29be70d3e5453e18693cd",
+   "size": 236195,
+   "present": true
+  }
+ },
+ "frozen_evidence_sha_match": true,
+ "exact_failure_location": {
+  "v1_19_START_present": true,
+  "v1_19_RESULT_present": false,
+  "v1_19_FAILURE_present": false,
+  "child_exit_code": 1,
+  "last_completed_journal_stage": "NONE",
+  "first_failed_stage": "START:BEGIN",
+  "journal_records_written": 0,
+  "journal_dir_created_before_crash": true,
+  "model_construction_reached": false,
+  "VAL_image_access_started": false,
+  "GT_scoring_started": false,
+  "scientific_outputs_written": false,
+  "root_exception_type": "NameError",
+  "root_exception_message": "name '_write_once_json' is not defined",
+  "root_source_file": "scripts/analysis/phase36_robustness_execution_v1_19.py",
+  "root_source_line": 561,
+  "root_reference_line": 561,
+  "root_definition_count": 0,
+  "root_reference_count": 1,
+  "observed_traceback": [
+   "line 4668 in <module>: raise SystemExit(main())",
+   "line 4391 in main: return _run_science_with_durable_evidence(journal=_ScienceJournal(",
+   "line 4270 in _run_science_with_durable_evidence: _j.begin(\"START\")",
+   "line 577 in begin: _journal_record(stage, \"BEGIN\", self.attempt_id)",
+   "line 561 in _journal_record: _write_once_json(path, payload)",
+   "NameError: name '_write_once_json' is not defined"
+  ]
+ },
+ "root_cause": {
+  "status": "ESTABLISHED",
+  "defect_id": "D93A",
+  "statement": "The v1.19 crash-survivable stage journal calls the helper `_write_once_json(path, payload)` at `_journal_record()` line 561, but that helper is NEVER defined at module scope (references = 1, definitions = 0).  The FIRST journal event is `_j.begin(\"START\")` (line 4270 -> begin line 577), so the NameError fires POST-START (the START marker was already written at line 10 of the START artifact / gate-authorised before model construction) but BEFORE any model construction, VAL image access, GT scoring, or scientific output.  The journal directory is created (mkdir) before the failing call, so the run aborts with an empty journal and NO scientific output.",
+  "scope_aware_ast_proof": "Scope-aware AST free-name analysis of the frozen v1.19 source reports `_write_once_json` as the SINGLETON unresolved module-level name (referenced at line 561 only).  The same defect is present in the frozen v1.18 source (reference line 561, definition absent): the shared journal block was introduced with an undefined helper.",
+  "no_guessing": true
+ },
+ "classification": "CONSUMED_POST_START_PRE_MODEL_FAILURE",
+ "classification_justification": "START marker present (post-START), but model construction / VAL image access / GT scoring / scientific output all NOT reached (pre-model). Hence CONSUMED_POST_START_PRE_MODEL_FAILURE.",
+ "scientific_effect": {
+  "scientific_computation_effect": "NONE",
+  "model_load_effect": "NONE",
+  "scientific_semantics_effect": "NONE",
+  "scientific_semantics_effect_reason": "The crash is in the observability-only stage journal, before any model is constructed, before any tensor, probability, mask, metric, threshold, seed, or fusion path is touched.",
+  "runtime_effect": "FATAL_POST_START_PRE_MODEL",
+  "execution_effect": "ABORTED_AFTER_START_BEFORE_MODEL",
+  "launcher_effect": "NONE",
+  "supervisor_effect": "NONE",
+  "governance_effect": "NONE"
+ },
+ "scientific_implementation_error": false,
+ "v1_19_to_v1_20_required_scientific_delta": 0,
+ "v1_20_creation_authorized": true,
+ "v1_20_creation_basis": "RUNTIME_DEFECT_ESTABLISHED__NOT_A_SCIENTIFIC_CHANGE",
+ "provenance": {
+  "derived_from": "frozen v1.19 evidence on disk + frozen execution source AST",
+  "val_gt_read": false,
+  "val_image_read": false,
+  "checkpoint_deserialization": false,
+  "test_reads": 0,
+  "router_holdout_reads": 0,
+  "model_loaded": false,
+  "new_scientific_output": false
+ },
+ "write_semantics": "O_CREAT|O_EXCL|O_WRONLY + O_BINARY (Windows) + full-write loop + os.fsync + post-write st_size check. Write-once; never overwritten.",
+ "terminal": "PHASE36_V1_19_FAILURE_ADJUDICATED__ROOT_CAUSE_ESTABLISHED"
+}

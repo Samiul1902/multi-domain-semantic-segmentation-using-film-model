@@ -1,0 +1,132 @@
+{
+ "artifact": "phase36_v1_22_d97_failure_adjudication",
+ "phase": 36,
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase36_robustness_v1_22",
+ "type": "CONSUMED_FAILURE_ADJUDICATION",
+ "defect_id": "D97_V1_22_SUMMARY_REFERENCES_UNDEFINED_COMMON_BEST_SEED_SELECTION",
+ "mode": "STATIC_ADJUDICATION_OF_CONSUMED_ATTEMPT__NON_CONSUMING",
+ "generated_utc": "2026-10-11T00:00:00Z",
+ "attempt": {
+  "revision": "v1.22",
+  "attempt_consumed": true,
+  "rerun_v1_22_permitted": false,
+  "automatic_retry": false,
+  "overwrite_permitted": false,
+  "execution_count": 1,
+  "START_present": true,
+  "RESULT_present": false,
+  "FAILURE_present": true,
+  "PROCESS_EXIT_present": true,
+  "child_exit_code": 1,
+  "termination_observed": true,
+  "termination_kind": "NORMAL_CHILD_COMPLETION",
+  "supervisor_return_rc": 1,
+  "rc_zero_permitted": false,
+  "unobserved_state_masked_as_success": false,
+  "supervisor_created_scientific_marker": false,
+  "supervisor_relaunched": false,
+  "attempt_id": "v1_22sup_32580_2026-10-11T02:24:18Z",
+  "supervisor_pid": 32580,
+  "child_pid": 34920,
+  "start_utc": "2026-10-11T02:24:18Z",
+  "end_utc": "2026-10-11T03:09:19Z"
+ },
+ "failure": {
+  "exception_type": "AttributeError",
+  "exception_message": "module 'scripts.analysis.phase36_robustness_common_v1_1' has no attribute 'BEST_SEED_SELECTION'",
+  "failing_stage": "run_science_exception",
+  "failing_function": "summarize_noise_seed",
+  "failing_expression": "\"best_seed_selection\": bool(C.BEST_SEED_SELECTION)",
+  "failing_source_line": 2980,
+  "runtime_common_module": "scripts.analysis.phase36_robustness_common_v1_1",
+  "missing_attribute": "BEST_SEED_SELECTION",
+  "secondary_missing_attribute": "KUB_REPORTING_ONLY",
+  "secondary_failing_function": "kub_subgroup_robustness",
+  "secondary_failing_source_line": 3118,
+  "failure_class": "POST_PERTURBATION__STAGE5_SUMMARY_RUNTIME_DEFECT",
+  "scientific_model_failure": false,
+  "new_scientific_choice": false,
+  "classification_rationale": "run_science() ordering proves the failure occurs in Stage 5 summaries, AFTER: canonical clean G generation, the Phase27 G reproduction gate, clean system evaluation, the clean-equivalence gate, complete image perturbation execution and complete proposal perturbation execution.  The defect is a late reporting/runtime name-resolution defect (an undefined common-module attribute referenced by the Stage-5 summary code), NOT a scientific model failure.  No model, checkpoint, threshold, seed, perturbation, metric or fusion semantics were involved."
+ },
+ "protected_populations": {
+  "TEST_accessed": false,
+  "ROUTER_HOLDOUT_accessed": false,
+  "TEST_lock": "PHASE39_ONLY_LOCKED",
+  "ROUTER_HOLDOUT_lock": "LOCKED"
+ },
+ "frozen_v1_22_evidence_bindings": {
+  "failure_artifact": {
+   "path": "reports/audits/phase36_robustness_science_failure_v1_22.json",
+   "sha256": "7752b5db740a3992ccc33357de31a4d2bab01224ee0efcbb02341f0b6caa8177"
+  },
+  "process_exit_artifact": {
+   "path": "reports/audits/phase36_robustness_science_process_exit_v1_22.json",
+   "sha256": "677adcabfea6258fb0e2944cc0a5965131e28d68410b3394c6eb11b3d888bd44"
+  },
+  "start_marker": {
+   "path": "reports/audits/phase36_robustness_science_start_v1_22.json",
+   "sha256": "11ce64fc9a6c58ab7f5d5159d108b29a164337a35de0f13fde169a8c835c834e"
+  },
+  "stdout": {
+   "path": "reports/audits/phase36_robustness_science_stdout_v1_22.txt",
+   "sha256": "bf67e6edc6fa3656b099f8003a32042074af3a7b201638d0788fa1e86dac2c6d"
+  },
+  "stderr": {
+   "path": "reports/audits/phase36_robustness_science_stderr_v1_22.txt",
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "execution_source": {
+   "path": "scripts/analysis/phase36_robustness_execution_v1_22.py",
+   "sha256": "29d29da8a9514db464f2db45f06a1ccaabf65aa302c18cd53bbb7419e2fbbd2b"
+  },
+  "launcher": {
+   "path": "scripts/analysis/launch_phase36_v1_22.py",
+   "sha256": "eb45f2fdbaa37170f5e92445883cd87d1008522c3e022e3fc844f5464ab8bbc8"
+  },
+  "supervisor": {
+   "path": "scripts/analysis/supervise_phase36_v1_22.py",
+   "sha256": "e721bacac8e76de437f5b2227c4e36acc63560064de082c074900cb8b9cdc9c9"
+  },
+  "runtime_manifest": {
+   "path": "reports/audits/phase36_v1_22_runtime_source_integrity_manifest.json",
+   "sha256": "98a9b6e5c58711ac7acf21bc8400db79ecab279c529af1d43e648f28eb8793f5"
+  },
+  "prelaunch_authority_bundle": {
+   "path": "reports/audits/phase36_v1_22_prelaunch_authority_bundle.json",
+   "sha256": "df0b38dfb31a4999e020e677cf362badbf2681f6fa5757dd453473d2a69d6ed7"
+  },
+  "launch_authority_file": {
+   "path": "reports/audits/phase36_v1_22_launch_authority_sha.json",
+   "sha256": "e89a17d182def2e56e582cb1482b26e4c5590080d65c05a3bdb5743bae227259"
+  }
+ },
+ "root_cause": {
+  "defect": "The v1.22 execution source referenced C.BEST_SEED_SELECTION and C.KUB_REPORTING_ONLY (C = scripts.analysis.phase36_robustness_common_v1_1).  The v1.1 additive common layer re-exports the frozen v1.0 contract surface but did NOT re-export these two frozen v1.0 REPORTING flags.",
+  "authoritative_provenance": {
+   "module": "scripts/analysis/phase36_robustness_common_v1_0.py",
+   "BEST_SEED_SELECTION": {
+    "line": 282,
+    "value": false
+   },
+   "KUB_REPORTING_ONLY": {
+    "line": 78,
+    "value": true
+   }
+  },
+  "authoritative_best_seed_semantics": {
+   "value": false,
+   "basis": "The frozen experiment uses ALL prescribed Gaussian-noise base seeds (NOISE_BASE_SEEDS = [42, 123, 3407]) and summarizes across seeds (mean_across_seeds_of_sample_means).  It NEVER outcome-selects a best seed (NO_OUTCOME_DEPENDENT_REPLACEMENT = True).  The frozen v1.0 contract therefore binds BEST_SEED_SELECTION = False."
+  }
+ },
+ "disposition": {
+  "repair_revision": "v1.23",
+  "repair_class": "REPORTING_RUNTIME_NAME_RESOLUTION_REPAIR",
+  "scientific_delta_v1_22_to_v1_23": 0,
+  "common_v1_1_mutated": false,
+  "repair": "v1.23 binds BEST_SEED_SELECTION = False and KUB_REPORTING_ONLY = True as LOCAL module-level frozen reporting constants in the v1.23 execution source (provenance-bound to the frozen v1.0 contract) and repairs the two call sites.  The frozen phase36_robustness_common_v1_1 module is NOT mutated.  No seed computation, averaging, selection or aggregation semantics change.",
+  "v1_22_files_modified": false,
+  "v1_23_science_executed_in_this_task": false
+ },
+ "terminal": "PHASE36_V1_22_D97_FAILURE_ADJUDICATED__V1_23_PREPARED"
+}

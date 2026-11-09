@@ -1,0 +1,30 @@
+{
+  "artifact": "phase20_val_evaluation",
+  "phase": 20,
+  "experiment_id": "phase20_shared_unetpp_fourdomain_seed42_clean_v3",
+  "canonical_val_inference_runs": 1,
+  "val_population": 808,
+  "samples_evaluated": 808,
+  "domains_evaluated": [
+    "BUSI",
+    "ISIC",
+    "KUB",
+    "KVASIR"
+  ],
+  "checkpoint_path": "checkpoints/phase20_shared_unetpp_fourdomain_seed42_clean_v3/best.pt",
+  "checkpoint_sha256": "d647ac52bf39704549ce2eea4fee8e17dfcb5ce9ace5e0b24ffb1f7db86a059f",
+  "threshold": 0.5,
+  "per_image_table": "reports/tables/phase20_per_image_val_metrics.csv",
+  "per_image_table_sha256": "0c96a07d85d9951e1b21f1f9b417fe6db9dbd99d75d512dbe46ff8ceb08b77e1",
+  "prediction_manifest": "reports/audits/phase20_prediction_manifest.json",
+  "prob_maps_persisted": 808,
+  "binary_predictions_persisted": 808,
+  "test_reads": {
+    "test_image_reads": 0,
+    "test_mask_reads": 0,
+    "test_inference": 0,
+    "test_visualization": 0
+  },
+  "elapsed_seconds": 123.0,
+  "partial_mode": false
+}

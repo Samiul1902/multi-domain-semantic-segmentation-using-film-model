@@ -1,0 +1,237 @@
+{
+  "artifact": "POST_PHASE13_H2A_B2_REPORTING_RECONCILIATION",
+  "status": "PASS",
+  "created_utc": "2026-09-24T00:05:00Z",
+  "model_attribution": "Claude (session assistant)",
+  "scope": "QUANTITATIVE_REPORTING_RECONCILIATION_ONLY",
+  "scientific_adjudication_performed": "NO",
+  "inference_or_training_performed": "NO",
+  "classification": "CHAT_TRANSCRIPTION_ONLY",
+  "classification_definition": "wrong numbers existed in the returned chat final note; all persisted quantitative artifacts are mutually consistent and were already correct",
+  "bindings": {
+    "model_summary": [
+      "reports/tables/post_phase13_h2a_downstream_model_summary.csv",
+      "60c707519b3ade980abdc6d7c2f1e71645bb5f5fc89ed32329ec0c642a550677"
+    ],
+    "cross_architecture_summary": [
+      "reports/tables/post_phase13_h2a_downstream_cross_architecture_summary.csv",
+      "32de3a43e907af11e07634de5ba80adeda21e63dcf3d71b1ceefdb65ede7dfd8"
+    ],
+    "b2_integrity_audit": [
+      "reports/audits/post_phase13_h2a_downstream_integrity.json",
+      "c80a5b7db16013efe1dc74d42d06a26bb5b3f4003ead8564cb4bcdb0efa4bd4b"
+    ],
+    "reviewer_notebook": [
+      "notebooks/phasewise/phase_13_predicted_roi_localization/post_phase13_h2a_downstream_analysis.ipynb",
+      "97ad366a6a2fb4f34a506829923363fb3700794b285920186f544781d6543fa7"
+    ],
+    "case_model_metrics": [
+      "reports/tables/post_phase13_h2a_downstream_case_model_metrics.csv",
+      "02f9ac5b420015599127e0d51a03dbd2c6f795fa31b877e4f2cde0950ca8f0a0"
+    ],
+    "component_model_metrics": [
+      "reports/tables/post_phase13_h2a_downstream_component_model_metrics.csv",
+      "b1a35888c259e55af9fe066d49d5ff740b1ce4bc6ec031815fb6971f0b03fd37"
+    ]
+  },
+  "binding_note_integrity_json_is_not_proposal_table": {
+    "clarification": "post_phase13_h2a_downstream_integrity.json is the DOWNSTREAM INTEGRITY audit SHA, NOT a proposal-table SHA",
+    "authoritative_proposal_table_sha": "4004e5b0b38bec11b9f63934be8efea253f20339952ac57ebf5e0b70e47e454f",
+    "proposal_table_sha_source": "post_phase13_h2a_downstream_integrity.json -> proposal_table_shas.proposals",
+    "case_table_sha": "93ebebf4ede237e408a7398bfe86620e28054950831595c3a24f7d1e0fe6ef9f",
+    "component_table_sha": "e93163b2b42eeadf725eb60c3c7e32c90560dc87392b94b3bc8281d045250368",
+    "stratified_table_sha": "23435283ecdfb963dabd88cb590c6f388ac74ab385ae3c5148a47efd69f1b1cf"
+  },
+  "integrity_audit_gate": {
+    "status": "PASS",
+    "proposal_count": 457,
+    "case_model_rows": 412,
+    "component_model_rows": 608,
+    "model_summary_rows": 4,
+    "regional_crop_evaluations": 1828,
+    "localizer_forwards": 0,
+    "proposal_regeneration": 0,
+    "new_global_forwards": 0,
+    "test_reads": 0,
+    "external_test_reads": 0,
+    "all_required_met": true
+  },
+  "authoritative_model_summary": {
+    "unet": {
+      "model_display": "UNet",
+      "global_macro_dice": 0.5941796681946068,
+      "phase13_predicted_macro_dice": 0.30231382673087426,
+      "h2a_predicted_macro_dice": 0.3137794923485532,
+      "oracle_macro_dice": 0.724721700948911,
+      "DELTA_H2A_GLOBAL_DICE": -0.2804001758460536,
+      "DELTA_H2A_PHASE13_DICE": 0.011465665617678922,
+      "H2A_ORACLE_BENEFIT_RETENTION": -2.147968511979589,
+      "mean_global_fp": 1297.2524271844661,
+      "mean_phase13_fp": 8622.223300970874,
+      "mean_h2a_fp": 8344.252427184467,
+      "fp_delta_vs_global": 7047.0,
+      "fp_delta_vs_phase13": -277.97087378640776,
+      "component_recoveries_vs_global": 17,
+      "component_losses_vs_global": 0
+    },
+    "attention_unet": {
+      "model_display": "Attention U-Net",
+      "global_macro_dice": 0.6298049685888003,
+      "phase13_predicted_macro_dice": 0.30861865569082303,
+      "h2a_predicted_macro_dice": 0.32017279784152786,
+      "oracle_macro_dice": 0.6995945682479338,
+      "DELTA_H2A_GLOBAL_DICE": -0.30963217074727245,
+      "DELTA_H2A_PHASE13_DICE": 0.011554142150704827,
+      "H2A_ORACLE_BENEFIT_RETENTION": -4.436652055027952,
+      "mean_global_fp": 1377.1941747572816,
+      "mean_phase13_fp": 8905.26213592233,
+      "mean_h2a_fp": 8683.320388349515,
+      "fp_delta_vs_global": 7306.126213592233,
+      "fp_delta_vs_phase13": -221.94174757281553,
+      "component_recoveries_vs_global": 11,
+      "component_losses_vs_global": 0
+    },
+    "unetpp": {
+      "model_display": "UNet++",
+      "global_macro_dice": 0.6405155030126884,
+      "phase13_predicted_macro_dice": 0.3113548759513804,
+      "h2a_predicted_macro_dice": 0.323045855948637,
+      "oracle_macro_dice": 0.726679342812567,
+      "DELTA_H2A_GLOBAL_DICE": -0.31746964706405145,
+      "DELTA_H2A_PHASE13_DICE": 0.0116909799972566,
+      "H2A_ORACLE_BENEFIT_RETENTION": -3.6844881542117514,
+      "mean_global_fp": 888.6796116504854,
+      "mean_phase13_fp": 8813.174757281553,
+      "mean_h2a_fp": 8610.660194174758,
+      "fp_delta_vs_global": 7721.980582524272,
+      "fp_delta_vs_phase13": -202.51456310679612,
+      "component_recoveries_vs_global": 14,
+      "component_losses_vs_global": 0
+    },
+    "deeplabv3plus": {
+      "model_display": "DeepLabV3+",
+      "global_macro_dice": 0.5602505353552288,
+      "phase13_predicted_macro_dice": 0.27729186444197307,
+      "h2a_predicted_macro_dice": 0.28891666193096105,
+      "oracle_macro_dice": 0.7503716374272004,
+      "DELTA_H2A_GLOBAL_DICE": -0.2713338734242678,
+      "DELTA_H2A_PHASE13_DICE": 0.011624797488987981,
+      "H2A_ORACLE_BENEFIT_RETENTION": -1.4271633735930727,
+      "mean_global_fp": 1081.5631067961165,
+      "mean_phase13_fp": 9415.980582524271,
+      "mean_h2a_fp": 9217.135922330097,
+      "fp_delta_vs_global": 8135.57281553398,
+      "fp_delta_vs_phase13": -198.84466019417476,
+      "component_recoveries_vs_global": 17,
+      "component_losses_vs_global": 1
+    }
+  },
+  "stale_values": {
+    "DELTA_H2A_GLOBAL_DICE": {
+      "pasted_chat_values": [
+        0.019465,
+        0.011554,
+        0.012691,
+        0.011625
+      ],
+      "pasted_chat_sign": "POSITIVE",
+      "authoritative_values": [
+        -0.2804001758460536,
+        -0.30963217074727245,
+        -0.31746964706405145,
+        -0.2713338734242678
+      ],
+      "authoritative_sign": "NEGATIVE",
+      "defect_class": "SIGN_AND_MAGNITUDE_TRANSCRIPTION",
+      "note": "The pasted chat values were in fact the H2A-PHASE13 deltas, mislabelled/misplaced into the H2A-GLOBAL column with the sign dropped."
+    },
+    "DELTA_H2A_PHASE13_DICE": {
+      "pasted_chat_values_as_reported_for_H2A_vs_Phase13": [
+        0.011466,
+        0.011554,
+        0.011691,
+        0.011625
+      ],
+      "authoritative_values": [
+        0.011465665617678922,
+        0.011554142150704827,
+        0.0116909799972566,
+        0.011624797488987981
+      ],
+      "verdict": "CORRECT (positive; not a defect). Only the sign of the H2A-vs-GLOBAL delta was inverted in chat."
+    },
+    "fp_delta_vs_global": {
+      "pasted_chat_value": 1064.8,
+      "authoritative_values": [
+        7047.0,
+        7306.126213592233,
+        7721.980582524272,
+        8135.57281553398
+      ],
+      "defect_class": "MAGNITUDE_TRANSCRIPTION",
+      "note": "pasted +1064.8 is not equal to any persisted quantity. Closest persisted quantity is fp_delta_vs_phase13 (negative, -277.97 / -221.94 / -202.51 / -198.84); the +1064.8 figure does not correspond to any column in the model summary."
+    }
+  },
+  "stale_value_search": {
+    "searched": [
+      "reports/audits/",
+      "reports/tables/",
+      "docs/TASKS.md",
+      "docs/MEMORY.md",
+      "reports/**/*.md",
+      "reports/**/*.json",
+      ".workbuddy-ai/memory/"
+    ],
+    "stale_values_found_in_persisted_artifacts": "YES__IN_CONTINUITY_DOCS_ONLY",
+    "locations": [
+      "docs/TASKS.md \u2014 model-summary table rows previously carried +0.019465 / +0.011554 / +0.012691 / +0.011625 in the H2A-Global column (CORRECTED in place to -0.280400 / -0.309632 / -0.317470 / -0.271334)",
+      "docs/MEMORY.md line 1138 \u2014 previously read 'H2A predicted-region Dice improves over GLOBAL for all 4 models (+0.011 to +0.019)' (CORRECTED in place)"
+    ],
+    "authoritative_tables_contained_stale_values": "NO",
+    "frozen_audits_contained_stale_values": "NO",
+    "reviewer_notebook_contained_stale_values": "NO",
+    "persisted_h2a_final_note_artifact": "DOES_NOT_EXIST"
+  },
+  "notebook_vs_model_summary": "PASS",
+  "repair_policy_applied": {
+    "authoritative_tables_modified": "NO",
+    "frozen_audits_rewritten": "NO",
+    "mutable_continuity_docs_corrected": "YES \u2014 docs/TASKS.md and docs/MEMORY.md",
+    "artifacts_created": [
+      "reports/audits/post_phase13_h2a_b2_reporting_reconciliation.json",
+      "reports/audits/post_phase13_h2a_b2_reporting_reconciliation.md"
+    ]
+  },
+  "preserved_valid_evidence": {
+    "h2a_macro_dice_below_global_all_four": true,
+    "h2a_macro_dice_above_phase13_all_four": true,
+    "h2a_macro_dice_below_oracle_all_four": true,
+    "oracle_benefit_retention_negative_all_four": true,
+    "component_losses_vs_global_nonzero_only_deeplabv3plus": true,
+    "fp_delta_vs_global_large_positive_all_four": true
+  },
+  "scientific_result_changed": "NO",
+  "b2_execution_status_changed": "NO",
+  "h2a_outcome_adjudicated": "NO",
+  "counters": {
+    "training": 0,
+    "cuda_requests": 0,
+    "model_constructions": 0,
+    "localizer_forwards": 0,
+    "segmentation_forwards": 0,
+    "proposal_generation": 0,
+    "test_reads": 0,
+    "external_test_reads": 0
+  },
+  "authoritative_cross_architecture": {
+    "cases_h2a_improved_vs_global_all4": 3,
+    "cases_h2a_nonworse_vs_global_all4": 3,
+    "cases_h2a_worse_vs_global_all4": 83,
+    "cases_h2a_improved_vs_phase13_all4": 37,
+    "cases_h2a_worse_vs_phase13_all4": 38,
+    "components_recovered_vs_global_by_at_least_one": 29,
+    "components_recovered_vs_global_by_all4": 5,
+    "components_lost_vs_global_by_at_least_one": 1,
+    "components_lost_vs_global_by_all4": 0
+  }
+}

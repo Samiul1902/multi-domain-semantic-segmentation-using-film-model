@@ -1,0 +1,74 @@
+{
+ "artifact": "phase35_gradcam_layer_contract",
+ "phase": 35,
+ "section": "\u00a7L",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase35_interpretability_v1_0",
+ "family": "SEGMENTATION_GRAD_CAM_DIAGNOSTIC",
+ "global_medfilm_is_attention_model": false,
+ "layers": {
+  "bridge": {
+   "semantic_location": "bridge output (post-FiLM bridge feature map)",
+   "exact_module_path": "film_layers[\"bridge\"]",
+   "output_shape_expected": [
+    1,
+    256,
+    32,
+    32
+   ],
+   "channel_count": 256,
+   "hook_mechanism": "forward hook capturing the module OUTPUT tensor",
+   "source_line_provenance": "src/models/film/global_medfilm.py L193 self.bridge = ResidualBlock(c4, cb); L281 bridge = self.bridge(self.pool(skip4)); L284 bridge,_,_ = film_layers['bridge'](bridge, embedding); L194 MaxPool2d(2,2) x4 -> 512/16 = 32"
+  },
+  "decoder1_pre_head": {
+   "semantic_location": "final decoder1 feature representation before the shared segmentation head",
+   "exact_module_path": "film_layers[\"decoder1\"]",
+   "output_shape_expected": [
+    1,
+    24,
+    512,
+    512
+   ],
+   "channel_count": 24,
+   "hook_mechanism": "forward hook capturing the module OUTPUT tensor",
+   "source_line_provenance": "src/models/film/global_medfilm.py L200 self.decoder1 = DecoderBlock(c2, c1, c1); L288 decoded = self.decoder1(decoded, skip1); L289 decoded,_,_ = film_layers['decoder1'](decoded, embedding); L290 logits = self.head(decoded)"
+  }
+ },
+ "algorithm": {
+  "weights": "alpha_k = mean over spatial positions of dT/dA_k",
+  "raw_cam": "CAM_raw = ReLU(sum_k alpha_k * A_k)",
+  "upsample": "bilinear to 512x512",
+  "align_corners": false,
+  "normalization": "if max(CAM)-min(CAM) > 0: CAM = (CAM-min)/(max-min) else CAM = all zeros",
+  "persisted_dtype": "float32",
+  "post_hoc_smoothing": false,
+  "gaussian_blur": false,
+  "threshold_chosen_after_viewing_results": false
+ },
+ "target": {
+  "mask": "M_pred = p_global >= 0.50 (from the already-frozen persisted canonical prediction)",
+  "primary": "T = mean(current_forward_foreground_logit[M_pred]) if M_pred has >= 1 foreground pixel",
+  "fallback": "T = mean(current_forward_foreground_logit over the full 512x512 field)",
+  "is_ground_truth": false,
+  "recomputed_from_new_phase35_forward_for_target_selection": false,
+  "target_selected_after_viewing_saliency": false
+ },
+ "execution_semantics": {
+  "classification": "GRADIENT_ENABLED_INTERPRETABILITY_DIAGNOSTIC_FORWARD",
+  "model_eval": true,
+  "parameter_storage_dtype": "float32",
+  "input_dtype": "float32",
+  "task_id": "correct canonical task id",
+  "torch_enable_grad": true,
+  "torch_inference_mode": false,
+  "autocast_policy": "match canonical G CUDA autocast(fp16) forward semantics while enabling gradients",
+  "gradient_context_differs_from_canonical_no_grad_inference": true,
+  "bit_identical_phase30_numerical_reproduction_claimed": false,
+  "parameter_updates": 0,
+  "optimizer": null,
+  "backward_used_solely_for_attribution": true
+ },
+ "module_names_guessed": false,
+ "generated_utc": "2026-10-04T14:41:26+00:00",
+ "all_pass": true
+}

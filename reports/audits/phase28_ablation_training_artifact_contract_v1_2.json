@@ -1,0 +1,50 @@
+{
+ "phase": 28,
+ "method": "RA-MedFiLM-BARR",
+ "governance_only": true,
+ "execution": "NONE",
+ "generated_utc": "2026-10-02T12:45:00Z",
+ "artifact": "phase28_ablation_training_artifact_contract_v1_2",
+ "classification": "PHASE28_ONLY_TRAINING_ARTIFACT_CONTRACT",
+ "output_roots": {
+  "R1": "checkpoints/phase28_router_R1_no_deep/",
+  "R2": "checkpoints/phase28_router_R2_no_task/",
+  "R3": "checkpoints/phase28_router_R3_scalar_only/",
+  "F1": "checkpoints/phase28_refiner_F1_no_pglobal/"
+ },
+ "experiment_roots": {
+  "R1": "experiments/phase28_router_R1_no_deep/",
+  "R2": "experiments/phase28_router_R2_no_task/",
+  "R3": "experiments/phase28_router_R3_scalar_only/",
+  "F1": "experiments/phase28_refiner_F1_no_pglobal/"
+ },
+ "predecessor_checkpoints_overwritten": false,
+ "per_fold_required": [
+  "config",
+  "history",
+  "best checkpoint",
+  "completion audit",
+  "normalization (if applicable)",
+  "fold identity",
+  "FIT/ES/OUTER_TARGET SHA binding"
+ ],
+ "expected_fold_counts": {
+  "R1": 5,
+  "R2": 5,
+  "R3": 5,
+  "F1": 3
+ },
+ "future_notebook_full_history_required": true,
+ "future_notebook_verifications": [
+  "contiguous epoch numbering",
+  "no duplicates",
+  "finite losses",
+  "checkpoint-selected epoch matches history",
+  "early-stop semantics"
+ ],
+ "truncation_forbidden": [
+  ".tail()",
+  ".head()",
+  "truncated epoch tables"
+ ]
+}

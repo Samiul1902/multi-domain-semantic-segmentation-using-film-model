@@ -1,0 +1,162 @@
+{
+  "artifact": "phase21_global_medfilm_architecture_binding",
+  "phase": 21,
+  "generated_utc": "2026-09-28T11:26:12.717649+00:00",
+  "frozen_before_training": true,
+  "training_performed_at_binding_time": false,
+  "experiment_id": "phase21_global_medfilm_fourdomain_seed42_clean_v3",
+  "architecture_id": "global_medfilm_shared_residual_unet_film5_no_se_no_deep_supervision_v1",
+  "architecture_family": "GLOBAL_MEDFILM_TASK_CONDITIONED_SHARED_SEGMENTATION",
+  "is_final_ra_medfilm_seg_plus_plus": false,
+  "is_global_reference_only": true,
+  "model_class": "src.models.film.global_medfilm.GlobalMedFiLM",
+  "model_file": "src/models/film/global_medfilm.py",
+  "model_file_sha256": "a04ff3e61b4d900ff47c2f390da4a999e73bd6047b28a19e41b05115e431d11f",
+  "model_package_init_sha256": "3df73eaa3439429137bd09ea8c53f73baa75edcdc1acf57a3c57160da2ebeca7",
+  "factory_file": "src/models/factory.py",
+  "factory_file_sha256": "f97f97a5632675ae54e4c42a629d06d1b5e265f73c85ba6d0a2077b9147afdde",
+  "measured_parameter_count": 3523001,
+  "measured_parameter_count_including_buffers": 3523001,
+  "one_shared_parameter_set": true,
+  "dataset_specific_head": false,
+  "output_definition": "single shared 1x1 head -> 1 foreground logit",
+  "component_specification": {
+    "task_conditioning": {
+      "mechanism": "FiLM (feature-wise linear modulation)",
+      "equation": "F_hat = (1 + gamma(t)) * F + beta(t)",
+      "gamma": "tanh(gamma_raw)",
+      "beta": "tanh(beta_raw)",
+      "output_projection_init": "zeros -> EXACT identity at initialisation",
+      "task_embedding": "nn.Embedding(task_count, 32)",
+      "task_embedding_init": "normal_(mean=0.0, std=0.02)",
+      "film_hidden_dim": 64,
+      "sites": [
+        "bridge",
+        "decoder4",
+        "decoder3",
+        "decoder2",
+        "decoder1"
+      ],
+      "site_count": 5,
+      "site_channels": {
+        "bridge": 256,
+        "decoder4": 192,
+        "decoder3": 96,
+        "decoder2": 48,
+        "decoder1": 24
+      },
+      "sole_task_signal": true
+    },
+    "shared_backbone": {
+      "encoder_stages": [
+        "encoder1",
+        "encoder2",
+        "encoder3",
+        "encoder4",
+        "bridge"
+      ],
+      "decoder_stages": [
+        "decoder4",
+        "decoder3",
+        "decoder2",
+        "decoder1"
+      ],
+      "block": "ResidualBlock(ConvNormAct + ConvNorm + 1x1 skip + SiLU)",
+      "normalization": "GroupNorm (groups from (8,4,2,1))",
+      "activation": "SiLU",
+      "pooling": "MaxPool2d(2,2)",
+      "upsampling": "bilinear interpolate to skip size",
+      "channels": [
+        24,
+        48,
+        96,
+        192,
+        256
+      ],
+      "in_channels": 3,
+      "out_channels": 1
+    },
+    "present": {
+      "residual_connections": true,
+      "task_embedding": true,
+      "film_conditioning": true,
+      "shared_segmentation_network": true,
+      "four_domain_joint_training": true
+    },
+    "absent": {
+      "roi_proposal": false,
+      "localizer": false,
+      "regional_refiner": false,
+      "high_resolution_crop_branch": false,
+      "global_regional_fusion": false,
+      "benefit_predictor": false,
+      "counterfactual_refinement_gain": false,
+      "resource_budget_router": false,
+      "adaptive_conditional_computation": false,
+      "mobile_compression": false,
+      "pruning": false,
+      "quantization": false,
+      "distillation": false,
+      "architecture_search": false,
+      "squeeze_excitation": false,
+      "deep_supervision": false,
+      "test_evaluation": false
+    }
+  },
+  "forbidden_module_audit": {
+    "tokens_checked": [
+      "localizer",
+      "proposal",
+      "roi",
+      "regional",
+      "refiner",
+      "crop_branch",
+      "benefit",
+      "router",
+      "budget",
+      "counterfactual",
+      "distill",
+      "prune",
+      "quant",
+      "architecture_search"
+    ],
+    "hits": {},
+    "passed": true
+  },
+  "search_policy": {
+    "architectures_considered_for_execution": 1,
+    "architecture_sweep_performed": false,
+    "hyperparameter_sweep_performed": false,
+    "logical_runs_authorized": 1,
+    "seed": 42,
+    "resume_is_same_logical_run": true,
+    "second_seed_belongs_to_later_phase": true
+  },
+  "inherited_protocol": {
+    "path": "reports/audits/phase20_shared_global_baseline_protocol.json",
+    "sha256": "b74f1f9f429adbce374f0306180943b9f373f872e1e69e115b7d17e81414283c",
+    "binding_artifact": "reports/audits/phase21_protocol_binding.json"
+  },
+  "legacy_evidence": {
+    "path": "reports/audits/phase21_legacy_medfilm_architecture_audit.json",
+    "reuse_type": "REFERENCE_ONLY",
+    "historical_result_claimed_as_current": false
+  },
+  "governance": {
+    "training_performed": false,
+    "inference_performed": false,
+    "checkpoints_created": 0,
+    "film_used": true,
+    "regional_module_used": false,
+    "localizer_used": false,
+    "roi_proposal_used": false,
+    "benefit_router_used": false,
+    "test_reads": 0
+  },
+  "output_isolation": {
+    "experiment_dir": "experiments/phase21_global_medfilm_fourdomain_seed42_clean_v3",
+    "checkpoint_dir": "checkpoints/phase21_global_medfilm_fourdomain_seed42_clean_v3",
+    "overwrites_phase20_checkpoints": false
+  },
+  "verdict": "PHASE21_ARCHITECTURE_FROZEN"
+}

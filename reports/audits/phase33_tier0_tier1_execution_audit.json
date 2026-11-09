@@ -1,0 +1,81 @@
+{
+ "artifact": "phase33_tier0_tier1_execution_audit",
+ "phase": 33,
+ "section": "\u00a7W",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase33_failure_boundary_v1_1",
+ "outcome": "BLOCKED_PREANALYSIS__NO_RESULTS_COMPUTED",
+ "authority_shas": {
+  "reports/audits/phase33_specification_terminal_v1_1.json": "20c9b738782090c11774acd4e2b1f5dc096183881bb1c759de47f11c4348394b",
+  "reports/audits/phase33_specification_final_check_v1_1.json": "b929defad97ed0cae14f01be532a088a9a2012283cbaf8dc3fba1a2bf86fee02",
+  "reports/audits/phase33_execution_eligibility_adjudication_v1_1.json": "d404a5947e3f358785646e395c46942d49d8d562eff4cea26e3a880d50ed5584",
+  "reports/audits/phase33_failure_taxonomy_contract_v1_1.json": "522452cbf6e419f919deb9dadb8aba9734205c5afea9d2d0b16103c265cf4ae8",
+  "reports/audits/phase33_failure_taxonomy_v1_1_reconciliation.json": "d8171e5e4e8c1406ab7e70e6471c0ee8377a7ef5799961deecc6bcf5ea83041d",
+  "reports/audits/phase33_failure_threshold_provenance_contract.json": "ff82a125af42b2977bad7d07449fbc7bf7e5bec445ef8b8d6207541376439d70"
+ },
+ "input_table": {
+  "path": "reports/tables/phase30_router_holdout_scored_results.csv",
+  "sha256": "dbc9f5f3867f0607cfc0a778736a92b9d6de6e27811fa382ad6d1cb0b2a04568"
+ },
+ "metadata_manifest": {
+  "path": "reports/audits/phase24_router_split_manifest.csv",
+  "sha256": "b5da52d6220ef9b59b4ba70d0b403b38bf5234b897615b6ad55d718114db6555"
+ },
+ "n_rows": 875,
+ "domain_counts": {
+  "BUSI": 90,
+  "ISIC": 383,
+  "KUB": 298,
+  "KVASIR": 104
+ },
+ "group_count": 628,
+ "phase30_count_reproduction": "NOT_EXECUTED__BLOCKED_BEFORE_SECTION_J",
+ "low_overlap_realization_authority": "reports/audits/phase33_low_overlap_realization_adjudication.json",
+ "low_overlap_rule_exactly_frozen": false,
+ "eligible_family_partition": [
+  "LOW_OVERLAP",
+  "EMPTY_PREDICTION",
+  "ROUTER_HARMFUL_ACTIVATION",
+  "ROUTER_MISSED_BENEFIT",
+  "EXECUTE_THEN_REJECT",
+  "DOMAIN_SPECIFIC_FAILURE",
+  "GROUP_OR_PATIENT_CLUSTERED_FAILURE"
+ ],
+ "ineligible_family_partition": [
+  "FALSE_POSITIVE_BURDEN",
+  "FALSE_NEGATIVE_BURDEN",
+  "OBJECT_MISS",
+  "MULTI_COMPONENT_PARTIAL_DETECTION",
+  "MULTI_COMPONENT_COMPLETE_MISS",
+  "BOUNDARY_ERROR"
+ ],
+ "output_artifacts": [],
+ "prohibited_counters": {
+  "prediction_array_reads": 0,
+  "probability_array_reads": 0,
+  "raw_image_reads": 0,
+  "raw_GT_reads": 0,
+  "ROUTER_HOLDOUT_raw_image_reads": 0,
+  "ROUTER_HOLDOUT_raw_GT_reads": 0,
+  "TEST_reads": 0,
+  "model_loads": 0,
+  "model_forwards": 0,
+  "prediction_generations": 0,
+  "training_steps": 0,
+  "new_Dice_from_mask_computations": 0,
+  "new_IoU_from_mask_computations": 0,
+  "new_HD95_computations": 0,
+  "new_component_computations": 0,
+  "new_p_values": 0,
+  "new_hypothesis_tests": 0,
+  "new_bootstrap_procedures": 0,
+  "new_cohen_effect_sizes": 0,
+  "new_multiple_comparison_corrections": 0
+ },
+ "phase30_qualifier_preserved": "ONE_SHOT_ROUTER_HOLDOUT_RESULT_WITH_DISCLOSED_POST_FIRST_OPEN_SCIENTIFIC_SOURCE_FREEZE_DEVIATION",
+ "phase30_status_upgraded": false,
+ "TEST_state": "LOCKED_UNTIL_PHASE39",
+ "Phase34_state": "NOT_STARTED",
+ "generated_utc": "2026-10-04T08:41:35+00:00",
+ "all_pass": true
+}

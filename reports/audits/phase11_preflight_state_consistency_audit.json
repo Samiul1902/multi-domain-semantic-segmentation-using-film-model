@@ -1,0 +1,79 @@
+{
+  "audit": "phase11_preflight_state_consistency_audit",
+  "created_utc": "2026-09-20T19:22:13.185895+00:00",
+  "purpose": "Record repair of stale live-state wording/flags before Phase-11 Part-1A protocol reconstruction",
+  "scope": "documentation/state repairs only - NO scientific artifact modified",
+  "repairs": {
+    "A_architecture_md": {
+      "defect": "repo tree comment said \"(NO deeplab config yet)\"",
+      "repair": "now lists phase10_deeplabv3plus_clean_v3.yaml; DeepLabV3+ run complete; Phase 10 final comparison complete",
+      "repaired": true
+    },
+    "B_design_md": {
+      "defect": "said final Phase-10 comparison \"has not been authorized or started\"",
+      "repair": "now states final descriptive Phase-10 comparison COMPLETE, no ranking, no winner, single-seed, no significance testing",
+      "repaired": true
+    },
+    "C_memory_md": {
+      "defect": "\"final comparison NOT STARTED\"; \"gallery reused by all three models\"",
+      "repair": "\"final comparison COMPLETE\"; \"gallery reused by all four models\"",
+      "repaired": true
+    },
+    "D_phasewise_readme": {
+      "defect": "opening state said comparison \"IN PROGRESS -> COMPLETE\" (transitional)",
+      "repair": "opening state now unambiguously PHASE 10 COMPLETE",
+      "repaired": true
+    },
+    "E_current_state_json": {
+      "defect": "phase10_status=PART_1B_COMPLETE; unetpp/deeplabv3plus/final_comparison started=False; next_action stale",
+      "repair": "phase10_status=COMPLETE; started flags=True; final_comparison_complete=True; winner_declared=False; phase11_started=False",
+      "repaired": true
+    }
+  },
+  "current_state_fields_changed": {
+    "current_phase": {
+      "before": "10",
+      "after": 11
+    },
+    "current_phase_status": {
+      "before": "PART_1B_COMPLETE",
+      "after": "PART_1A_IN_PROGRESS"
+    },
+    "next_eligible_phase": {
+      "before": "10 Part 1C",
+      "after": "11 Part 1A"
+    },
+    "next_phase_title": {
+      "before": "Phase 10 Part 1C \u2014 DeepLabV3+ clean-v3 training (awaiting authorization)",
+      "after": "Phase 11 Part 1A \u2014 failure-analysis protocol reconstruction + definition freeze"
+    },
+    "next_action": {
+      "before": "WAIT_FOR_SUPERVISOR_PHASE10_UNETPP_FINAL_REVIEW",
+      "after": "WAIT_FOR_SUPERVISOR_PHASE11_PROTOCOL_FREEZE_DECISION"
+    },
+    "phase10_status": {
+      "before": "PART_1B_COMPLETE",
+      "after": "COMPLETE"
+    },
+    "phase10_unetpp_started": {
+      "before": false,
+      "after": true
+    },
+    "phase10_deeplabv3plus_started": {
+      "before": false,
+      "after": true
+    },
+    "phase10_final_comparison_started": {
+      "before": false,
+      "after": true
+    },
+    "phase11_started": {
+      "before": "<ABSENT>",
+      "after": false
+    }
+  },
+  "current_state_sha_after": "18112bf5fd2302c675a248e5e62dc8fe8b91bb3d5aabaa14bd62d17df8cc4dfc",
+  "phase10_final_notebook_unchanged": true,
+  "scientific_artifacts_modified": false,
+  "status": "PASS"
+}

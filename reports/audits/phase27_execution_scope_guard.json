@@ -1,0 +1,29 @@
+{
+ "artifact": "phase27_execution_scope_guard",
+ "phase": "27",
+ "classification": "PHASE27_CANONICAL_MULTIDOMAIN_PRESERVATION_EXECUTION",
+ "method": "RA-MedFiLM-BARR",
+ "operational_meaning": "FROZEN_SYSTEM_EVALUATION_ONLY__NO_TRAINING",
+ "executed_scope": "FROZEN_PHASE26_A8_C9_BUNDLE_EVALUATION_ON_VAL808",
+ "forbidden_actions": [
+  "retraining",
+  "fine-tuning",
+  "recalibration",
+  "policy selection",
+  "threshold change",
+  "budget change",
+  "lambda change",
+  "ROUTER_HOLDOUT access",
+  "TEST access",
+  "Phase28",
+  "Phase30"
+ ],
+ "phase28_started": false,
+ "phase30_started": false,
+ "checks": {
+  "scope_respected": true,
+  "no_phase28": true,
+  "no_phase30": true
+ },
+ "all_pass": true
+}

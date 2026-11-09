@@ -1,0 +1,140 @@
+{
+  "audit": "phase10_clean_v3_final_comparison_audit",
+  "phase": "10 FINAL",
+  "scope": "four-model clean-v3 descriptive comparison + Phase-10 closure",
+  "models": [
+    "UNet",
+    "Attention U-Net",
+    "UNet++",
+    "DeepLabV3+"
+  ],
+  "experiment_ids": {
+    "UNet": "phase9_kub_unet_baseline_seed42_512_clean_v3",
+    "Attention U-Net": "phase10_kub_attention_unet_seed42_512_clean_v3",
+    "UNet++": "phase10_kub_unetpp_seed42_512_clean_v3",
+    "DeepLabV3+": "phase10_kub_deeplabv3plus_seed42_512_clean_v3"
+  },
+  "config_shas": {
+    "UNet": "8a45458c7c5e34062214a741550a84ff9ab56e4ad9ceef81cbcf263052b5172a",
+    "Attention U-Net": "70e08ad5b89461db0bb9cbb8e75da8bbc9ef357af36e5d70a3c4653818260c02",
+    "UNet++": "e2788e504b09cd8544e45fb7aef4001b8363452963d7d793f693647b4df24f53",
+    "DeepLabV3+": "a5220e3135618513a71e0094197b2cffe0aef9334f7d53e39642c7a00ddd5b57"
+  },
+  "history_shas": {
+    "UNet": "7678a5822542cd356f85e9c153da460a87e58d85e7cd1221d8fb66e323f60217",
+    "Attention U-Net": "ee5073f0bea745280ae7d9a8f651cc4cae72a18d408750623d838f7cd8d24e58",
+    "UNet++": "a733d8366278d2ddb1a44db0d94ff7525fb9b10afefba787abfd036c1fb1de5a",
+    "DeepLabV3+": "9c3a4611f0f38b474aa18537b0509bf9a4cb539baf077e6ba12c7880a73cd01f"
+  },
+  "best_checkpoint_shas": {
+    "UNet": "7b955ba86464a2fec2d569ecb6124de1fa9a4e66d0b5d58b267be9a280b4c2c0",
+    "Attention U-Net": "a49b19d66e43b57ed082ea6efc0ac10bccf444277abd3540dc68612bf30b88b3",
+    "UNet++": "ec7eb13f32e43af27eab7fc617bd1a2a8fcce1d6651a1b4a3653f3e4d1283269",
+    "DeepLabV3+": "f519027ba1a3a4d6212d83fecd4379f61f71bc05b0751924b9660da08d597dad"
+  },
+  "latest_checkpoint_shas": {
+    "UNet": "6de118bf21cacd560769bfc5781d2928e0ef0c96e41035c34d6bb17f375e4509",
+    "Attention U-Net": "74a7e612ac9d6a2fcc05c2b25d007f156959d69b3507f198562c07ff4926cd20",
+    "UNet++": "77a39b4f510f69956233af898f7f62d4ae755fac57375bab70f95102b142c8ef",
+    "DeepLabV3+": "69267fd0cd2104cb474665bda68f3f9a1b4c2c4dc9e074b603fea921434022ed"
+  },
+  "reviewer_notebook_shas": {
+    "UNet": "2e99b115afeaa8f51c8a978840be99925fab3123ee2bbbbd8db03b8445e186ea",
+    "Attention U-Net": "71ae94180551c96f768ffbe1f9b999bc14408b59bd1d4f36269e52a48cde9d9a",
+    "UNet++": "0fd9176fb82340b7762c130ab3b51ae4fc425da434b5553b3f55859061bb18e5",
+    "DeepLabV3+": "17942c35387a59353ce176cfc9e335d157cdb726130c95b6d531f2467ecc15ee"
+  },
+  "immutability_all_match": true,
+  "epoch_table_shas": {
+    "UNet": "484d27507bd0493235a5fd889943b29101fabc0c5b2e1e7ca3f4541cf9df2ba8",
+    "Attention U-Net": "2aecdb5e4fcb8cae1fa09864e17bbe5f50afe9d40ff09794364456d086255fd2",
+    "UNet++": "2dd885d27788e5981a9356cf3e1f518d55eaff61d34f061eee92660beed505d4",
+    "DeepLabV3+": "f0f5750025d0cfb8706c35958d3e76b28a3246105184bd715e161332bfcd19a2"
+  },
+  "epoch_row_counts": {
+    "UNet": 59,
+    "Attention U-Net": 69,
+    "UNet++": 85,
+    "DeepLabV3+": 67
+  },
+  "epoch_table_integrity_pass": {
+    "UNet": true,
+    "Attention U-Net": true,
+    "UNet++": true,
+    "DeepLabV3+": true
+  },
+  "missing_epochs": {
+    "UNet": [],
+    "Attention U-Net": [],
+    "UNet++": [],
+    "DeepLabV3+": []
+  },
+  "duplicate_epochs": {
+    "UNet": [],
+    "Attention U-Net": [],
+    "UNet++": [],
+    "DeepLabV3+": []
+  },
+  "improvement_events": {
+    "UNet": 21,
+    "Attention U-Net": 24,
+    "UNet++": 21,
+    "DeepLabV3+": 23
+  },
+  "long_epoch_table_sha": "9057cdd428995b88bf0c527152d072398573892649baebea5b4082de2b6476ca",
+  "combined_model_epoch_rows": 280,
+  "paired_val_rows": 280,
+  "val_kub_only": true,
+  "category_counts": {
+    "Bladder_Stone": 144,
+    "Kidney_Stone": 112,
+    "Ureteric_Stone": 24
+  },
+  "acquisition_counts": {
+    "ROI": 177,
+    "FULL_FIELD": 103
+  },
+  "aggregate_metric_reproduction": {
+    "UNet": {
+      "abs_diff": 1.2145594874279908e-07,
+      "pass_strict_1e-6": true,
+      "pass_material_1e-4": true
+    },
+    "Attention U-Net": {
+      "abs_diff": 1.8879767119228678e-05,
+      "pass_strict_1e-6": false,
+      "pass_material_1e-4": true
+    },
+    "UNet++": {
+      "abs_diff": 6.497291908935665e-07,
+      "pass_strict_1e-6": true,
+      "pass_material_1e-4": true
+    },
+    "DeepLabV3+": {
+      "abs_diff": 5.144857959660243e-06,
+      "pass_strict_1e-6": false,
+      "pass_material_1e-4": true
+    }
+  },
+  "aggregate_reproduction_note": "Residuals at 1e-6..1e-5 for two models arise from AMP fp16 batch-shape differences (training-time validation batch=4 vs paired re-inference batch=1); these are floating-point rounding, not metric differences. An earlier 1e-3-level discrepancy caused by using int() instead of round() for the resized extent was found and corrected.",
+  "canonical_gallery_sha": "10ad09cbcaabb56bc6bc6aefe016c83b2173933bf6d1f16e4baaf3f0845613db",
+  "canonical_gallery_verified": true,
+  "paired_gallery_cases": 16,
+  "test_reads": 0,
+  "test_image_reads": 0,
+  "test_mask_reads": 0,
+  "test_metrics": 0,
+  "test_visualizations": 0,
+  "training_performed": false,
+  "optimizer_steps": 0,
+  "training_epochs": 0,
+  "statistical_testing_performed": false,
+  "winner_declared": false,
+  "phase11_started": false,
+  "readme_stale_heading_repaired": true,
+  "deeplabv3plus_canonical_improvement_events": 23,
+  "part1c_note_improvement_count_24": "SUPERSEDED_REPORTING_NOTE_ONLY",
+  "final_notebook_sha256": "b9f5812eaef5b538dbd9b2640c974212a6e1dac0858fc13a882a4ff68971a06e",
+  "support_code_sha256": "eb9d8b1421f35bf78bd735cc5a65008609c1b911d81731b378c76e47cda1b9bf",
+  "status": "PASS"
+}

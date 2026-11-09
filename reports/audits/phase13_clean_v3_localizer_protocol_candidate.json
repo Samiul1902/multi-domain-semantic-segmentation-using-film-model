@@ -1,0 +1,83 @@
+{
+  "phase": "13",
+  "part": "1A",
+  "document_type": "CLEAN_V3_LOCALIZER_PROTOCOL_CANDIDATE",
+  "status": "PROSPECTIVE_FREEZE_CANDIDATE_AWAITING_SUPERVISOR",
+  "date": "2026-09-21",
+  "manifest_version": "phase4_v3",
+  "taxonomy": "kub_size_clean_v3_v1",
+  "candidate_population": {
+    "TRAIN_FULL_FIELD": {
+      "images": 770,
+      "components": 1161,
+      "max_components_per_image": 11,
+      "images_gt_5_components": 15,
+      "images_zero_components": 0
+    },
+    "VAL_FULL_FIELD": {
+      "images": 103,
+      "components": 152,
+      "max_components_per_image": 2,
+      "images_gt_5_components": 0,
+      "images_zero_components": 0
+    },
+    "VAL_strata": {
+      "TINY": 72,
+      "SMALL": 28,
+      "MEDIUM": 36,
+      "LARGE": 16
+    },
+    "roi_acquisitions": "excluded (ROI_NOT_PRIMARY_BINNED)",
+    "census_provenance": "reports/tables/kub_view_type_inventory.csv + TRAIN/VAL mask census (mask > 0, 8-connectivity); TEST never read"
+  },
+  "candidate_protocol_rows": 27,
+  "postprocessing_rows": 14,
+  "metric_contract_rows": 17,
+  "downstream_rows": 10,
+  "retention_contract_rows": 11,
+  "gate_dimension_b": "PRACTICAL_LOCALIZATION_RETENTION",
+  "gate_dimension_b_status": "CANDIDATE_FOR_SUPERVISOR_FREEZE",
+  "gate_dimensions_cd": {
+    "A": "SUPPORTED_DESCRIPTIVE_EVIDENCE",
+    "B": "NOT_EVALUABLE_UNTIL_PHASE13",
+    "C": "MIXED_DESCRIPTIVE_EVIDENCE",
+    "D": "SUPPORTED_WITH_HETEROGENEITY"
+  },
+  "supervisor_decisions_required": [
+    "Re-derivation of the clean-v3 hard sets (do NOT reuse the v2 16 Tiny / 7 global-empty sets).",
+    "Approval of the clean-v3 localizer architecture/resolution/sigma candidate (KUBLocalizer, 128 output, sigma 0.75).",
+    "Approval of the inference output-resolution contract that fixes the heatmap_resolution omission defect.",
+    "Fixing (or explicitly declining to fix) the train/inference proposal-distribution mismatch for any future regional integration.",
+    "Whether to freeze numeric thresholds for gate dimension B, or keep B descriptive for the Phase-13 decision."
+  ],
+  "oracle_retention_reference": {
+    "historical_v2": {
+      "T_g": 0.780822,
+      "T_o": 1.0,
+      "T_p": 0.890411,
+      "G": 0.219178,
+      "R": 0.5
+    },
+    "clean_v3": "NOT_YET_COMPUTED — must be recomputed on 103/152"
+  },
+  "explicitly_not_done": [
+    "No localizer training.",
+    "No localizer inference.",
+    "No proposal generation.",
+    "No Phase-14 execution.",
+    "No TEST access.",
+    "No winner declared; no reference architecture selected.",
+    "No regional-mechanism promotion; gate remains NOT_DECIDED."
+  ],
+  "governance": {
+    "test_reads": 0,
+    "test_metrics": "NONE",
+    "training_performed": false,
+    "inference_performed": false,
+    "proposals_generated": false,
+    "experiment_a_modified": false,
+    "external_data_used": false,
+    "phase14_executed": false
+  },
+  "conclusion": "A prospective clean-v3 localizer/proposal protocol candidate is frozen for supervisor review. Nothing has been executed."
+}

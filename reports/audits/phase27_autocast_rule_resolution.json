@@ -1,0 +1,30 @@
+{
+ "artifact": "phase27_autocast_rule_resolution",
+ "phase": "27",
+ "classification": "GOVERNANCE_AND_REVIEWER_EVIDENCE_REPAIR_ONLY",
+ "governance_only": true,
+ "no_execution": true,
+ "stage": "AUTOCAST_RULE",
+ "case_resolved": "CASE_A",
+ "case_a_definition": "An authoritative predecessor runtime contract physically proves that canonical scientific inference uses autocast and defines its dtype.",
+ "proof": [
+  "reports/audits/phase25b_global_checkpoint_binding.json: amp_autocast_enabled = true (verdict PHASE25B_GLOBAL_CHECKPOINT_BINDING_PASS)",
+  "scripts/analysis/build_phase25a_global_cache.py:163 torch.amp.autocast(device_type=device.type, enabled=True)",
+  "scripts/analysis/run_phase25b_determinism.py:140 identical forward path"
+ ],
+ "frozen_mode": {
+  "autocast_enabled": true,
+  "autocast_dtype": "float16",
+  "device": "cuda"
+ },
+ "phase27_may_not_introduce_new_precision": true,
+ "nearest_authorized_deterministic_semantics_used": true,
+ "blocked_terminal_not_triggered": true,
+ "checks": {
+  "case_a_applies": true,
+  "autocast_dtype_defined": true,
+  "no_silent_new_precision_choice": true,
+  "authoritative_runtime_contract_cited": true
+ },
+ "all_pass": true
+}

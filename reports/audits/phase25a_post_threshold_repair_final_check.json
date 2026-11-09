@@ -1,0 +1,226 @@
+{
+ "artifact": "phase25a_post_threshold_repair_final_check",
+ "phase": "25A",
+ "classification": "CANONICAL_PHASE25A_AFTER_THRESHOLD_ADJUDICATION",
+ "roi_proposal_threshold": 0.3,
+ "segmentation_output_threshold": 0.5,
+ "superseded_notebook_sha256": "7dfcf50540ee531e330c0338ea9326cdb73c24c9f8254b920c022598dd74733f",
+ "superseded_run_status": "NONCANONICAL_PROTOCOL_DEVIATION__ROI_THRESHOLD_0P50",
+ "checks": [
+  {
+   "requirement": "phase24_exact_roi_threshold_0p30",
+   "pass": true,
+   "detail": 0.3
+  },
+  {
+   "requirement": "roi_vs_segmentation_threshold_roles_separated",
+   "pass": true,
+   "detail": {
+    "roi": 0.3,
+    "seg": 0.5
+   }
+  },
+  {
+   "requirement": "old_roi050_run_preserved",
+   "pass": true,
+   "detail": {
+    "old_checkpoint_files": 8,
+    "preserved_shas": 8
+   }
+  },
+  {
+   "requirement": "old_roi050_scientific_use_forbidden",
+   "pass": true,
+   "detail": "PROVENANCE / DEBUGGING / PROTOCOL-DEVIATION RECORD ONLY"
+  },
+  {
+   "requirement": "roi030_cache_rebuilt",
+   "pass": true,
+   "detail": {
+    "cache_root": "data_cache\\phase25a_barr_roi030_cache",
+    "roi": 0.3,
+    "dtype": "float32"
+   }
+  },
+  {
+   "requirement": "same_development_population",
+   "pass": true,
+   "detail": 4957
+  },
+  {
+   "requirement": "same_holdout_population",
+   "pass": true,
+   "detail": {
+    "split_manifest_sha256": "b5da52d6220ef9b59b4ba70d0b403b38bf5234b897615b6ad55d718114db6555"
+   }
+  },
+  {
+   "requirement": "same_crossfit_memberships",
+   "pass": true,
+   "detail": "10/10 fold CSVs byte-identical"
+  },
+  {
+   "requirement": "architecture_unchanged",
+   "pass": true,
+   "detail": 1276401
+  },
+  {
+   "requirement": "training_protocol_unchanged",
+   "pass": true,
+   "detail": "identical hardened trainer used for all 4 runs"
+  },
+  {
+   "requirement": "three_roi030_fold_refiners_trained",
+   "pass": true,
+   "detail": {
+    "fold0": {
+     "epochs": 41,
+     "best": 25,
+     "stop": "early_stopping_patience_15"
+    },
+    "fold1": {
+     "epochs": 36,
+     "best": 20,
+     "stop": "early_stopping_patience_15"
+    },
+    "fold2": {
+     "epochs": 41,
+     "best": 25,
+     "stop": "early_stopping_patience_15"
+    }
+   }
+  },
+  {
+   "requirement": "canonical_best_epochs_persisted",
+   "pass": true,
+   "detail": [
+    25,
+    20,
+    25,
+    -1
+   ]
+  },
+  {
+   "requirement": "new_final_refit_epoch_derived_from_roi030_folds",
+   "pass": true,
+   "detail": {
+    "source": [
+     25,
+     20,
+     25
+    ],
+    "final_refit_epochs": 25,
+    "reused_roi050_27": false
+   }
+  },
+  {
+   "requirement": "new_final_refiner_trained",
+   "pass": true,
+   "detail": {
+    "epochs": 25,
+    "target": 25,
+    "stop": "max_epochs_reached"
+   }
+  },
+  {
+   "requirement": "no_delta_labels_generated",
+   "pass": true,
+   "detail": {
+    "scope_paired_gain_labels_not_started": true,
+    "scope_delta_dice_not_started": true,
+    "leakage_paired_gain_labels_created": false,
+    "leakage_deltadice_computed": false
+   }
+  },
+  {
+   "requirement": "no_router_trained",
+   "pass": true,
+   "detail": {
+    "scope_benefit_router_not_started": true,
+    "leakage_benefit_router_training_runs": 0,
+    "leakage_benefit_router_instantiated": false
+   }
+  },
+  {
+   "requirement": "holdout_untouched",
+   "pass": true,
+   "detail": {
+    "holdout_outcomes_inspected": false,
+    "images_used_for_outcome_evaluation": 0,
+    "gt_masks_read_for_evaluation": 0,
+    "refiner_inference": 0,
+    "dice": 0,
+    "deltadice": 0,
+    "holdout_sample_ids_in_cache": 0
+   }
+  },
+  {
+   "requirement": "val_untouched",
+   "pass": true,
+   "detail": {
+    "outcome_evaluation": 0,
+    "refiner_inference": 0,
+    "val_sample_ids_in_cache": 0
+   }
+  },
+  {
+   "requirement": "test_untouched",
+   "pass": true,
+   "detail": {
+    "scope_test_reads": 0,
+    "cache_manifest_test_reads": 0,
+    "leakage_test": {
+     "image_reads": 0,
+     "mask_reads": 0,
+     "inference": 0,
+     "visualization": 0,
+     "test_sample_ids_in_cache": 0
+    }
+   }
+  },
+  {
+   "requirement": "canonical_notebook_complete",
+   "pass": true,
+   "detail": {
+    "sha": "fd2bab0168eb3477125c655ada1bd5eb4b060f41a5b354fdbaaf6fd621dfb2dd",
+    "threshold_audit_verdict": "PHASE25A_THRESHOLD_SEMANTICS_AUDIT_PASS",
+    "superseded_sha_present": true
+   }
+  },
+  {
+   "requirement": "notebook_visuals_valid",
+   "pass": true,
+   "detail": {
+    "verdict": "PHASE25A_ROI030_NOTEBOOK_VISUAL_INTEGRITY_PASS",
+    "n_embedded_png": 10,
+    "n_valid_png": 10,
+    "n_corrupt": 0,
+    "n_missing": 0,
+    "zero_tracebacks": true,
+    "monotonic_execution_counts": true
+   }
+  },
+  {
+   "requirement": "notebook_3x_deterministic",
+   "pass": true,
+   "detail": {
+    "n_builds": 3,
+    "n_distinct_sha256": 1,
+    "byte_identical_three_builds": true,
+    "retrained": false,
+    "notebook_sha_on_disk": "fd2bab0168eb3477125c655ada1bd5eb4b060f41a5b354fdbaaf6fd621dfb2dd",
+    "notebook_sha_in_visual_integrity": "fd2bab0168eb3477125c655ada1bd5eb4b060f41a5b354fdbaaf6fd621dfb2dd"
+   }
+  },
+  {
+   "requirement": "phase25b_not_started",
+   "pass": true,
+   "detail": "no Phase25B artefact exists"
+  }
+ ],
+ "n_checks": 23,
+ "n_passed": 23,
+ "n_failed": 0,
+ "failed": [],
+ "verdict": "PHASE25A_POST_THRESHOLD_REPAIR_FINAL_CHECK_PASS"
+}

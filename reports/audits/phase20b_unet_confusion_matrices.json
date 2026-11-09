@@ -1,0 +1,125 @@
+{
+  "artifact": "phase20b_confusion_matrices",
+  "phase": 20,
+  "subphase": "20B",
+  "model_key": "unet",
+  "layout": "rows = GT (foreground, background); cols = PRED (foreground, background)",
+  "matrices": {
+    "ISIC": {
+      "raw": [
+        [
+          13041882,
+          3211710
+        ],
+        [
+          1088000,
+          76243816
+        ]
+      ],
+      "row_normalized": [
+        [
+          0.8023999864153105,
+          0.19760001358468945
+        ],
+        [
+          0.01406924156546382,
+          0.9859307584345361
+        ]
+      ],
+      "layout": "rows = GT (foreground, background); cols = PRED (foreground, background)"
+    },
+    "BUSI": {
+      "raw": [
+        [
+          911658,
+          206039
+        ],
+        [
+          123398,
+          20779001
+        ]
+      ],
+      "row_normalized": [
+        [
+          0.815657552986185,
+          0.18434244701381503
+        ],
+        [
+          0.005903532891128908,
+          0.9940964671088711
+        ]
+      ],
+      "layout": "rows = GT (foreground, background); cols = PRED (foreground, background)"
+    },
+    "KVASIR": {
+      "raw": [
+        [
+          2349990,
+          906048
+        ],
+        [
+          471665,
+          19078825
+        ]
+      ],
+      "row_normalized": [
+        [
+          0.7217329773178323,
+          0.27826702268216774
+        ],
+        [
+          0.024125482276914797,
+          0.9758745177230852
+        ]
+      ],
+      "layout": "rows = GT (foreground, background); cols = PRED (foreground, background)"
+    },
+    "KUB": {
+      "raw": [
+        [
+          9623687,
+          1397713
+        ],
+        [
+          2805092,
+          59573828
+        ]
+      ],
+      "row_normalized": [
+        [
+          0.8731819006659771,
+          0.1268180993340229
+        ],
+        [
+          0.044968588747608965,
+          0.955031411252391
+        ]
+      ],
+      "layout": "rows = GT (foreground, background); cols = PRED (foreground, background)"
+    },
+    "POOLED_DESCRIPTIVE": {
+      "raw": [
+        [
+          25927217,
+          5721510
+        ],
+        [
+          4488155,
+          175675470
+        ]
+      ],
+      "row_normalized": [
+        [
+          0.8192183211665985,
+          0.18078167883340143
+        ],
+        [
+          0.024911549154275733,
+          0.9750884508457243
+        ]
+      ],
+      "layout": "rows = GT (foreground, background); cols = PRED (foreground, background)"
+    }
+  },
+  "pooled_is_descriptive_only": true
+}

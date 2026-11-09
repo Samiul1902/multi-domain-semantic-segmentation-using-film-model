@@ -1,0 +1,86 @@
+{
+  "artifact": "phase36_v1_9_negative_controls",
+  "phase": 36,
+  "section": "§K",
+  "method": "RA-MedFiLM-BARR",
+  "revision": "ra_medfilm_barr_phase36_robustness_v1_9",
+  "type": "NEGATIVE_CONTROL_AUDIT",
+  "model_free": true,
+  "torch_imported": false,
+  "protected_population_read": false,
+  "mutants_are_in_memory_strings_only": true,
+  "canonical_source_sha256_before": "433bad87b4ef77fd6997c77f688eb295e526bfa3e88dece4ec5d3d550255cbd0",
+  "canonical_source_sha256_after": "433bad87b4ef77fd6997c77f688eb295e526bfa3e88dece4ec5d3d550255cbd0",
+  "canonical_source_unmodified": true,
+  "nc_range": "NC50-NC57",
+  "carried_over_v1_8": "NC41-NC49_remain_valid_in_phase36_v1_8_negative_controls.json",
+  "passed": 8,
+  "total": 8,
+  "all_pass": true,
+  "controls": [
+    {
+      "nc": "NC50_marker_created_before_gate_authorization",
+      "mutation_changed_bytes": true,
+      "detector_on_canonical": true,
+      "detector_on_mutant": false,
+      "mutant_bite": true,
+      "pass": true
+    },
+    {
+      "nc": "NC51_failure_artifact_overwrite_write_text",
+      "mutation_changed_bytes": true,
+      "detector_on_canonical": true,
+      "detector_on_mutant": false,
+      "mutant_bite": true,
+      "pass": true
+    },
+    {
+      "nc": "NC52_write_once_flag_hardcoded_true",
+      "mutation_changed_bytes": true,
+      "detector_on_canonical": true,
+      "detector_on_mutant": false,
+      "mutant_bite": true,
+      "pass": true
+    },
+    {
+      "nc": "NC53_manifest_missing_bypass_restored",
+      "mutation_changed_bytes": true,
+      "detector_on_canonical": true,
+      "detector_on_mutant": false,
+      "mutant_bite": true,
+      "pass": true
+    },
+    {
+      "nc": "NC54_checkpoint_prehash_removed",
+      "mutation_changed_bytes": true,
+      "detector_on_canonical": true,
+      "detector_on_mutant": false,
+      "mutant_bite": true,
+      "pass": true
+    },
+    {
+      "nc": "NC55_remove_R_psi_exact_shape_requirement",
+      "mutation_changed_bytes": true,
+      "detector_on_canonical": true,
+      "detector_on_mutant": false,
+      "mutant_bite": true,
+      "pass": true
+    },
+    {
+      "nc": "NC56_remove_final_S_omega_input_dim_finite_requirement",
+      "mutation_changed_bytes": true,
+      "detector_on_canonical": true,
+      "detector_on_mutant": false,
+      "mutant_bite": true,
+      "pass": true
+    },
+    {
+      "nc": "NC57_remove_HD95_exact_empty_case_reason_binding",
+      "mutation_changed_bytes": true,
+      "detector_on_canonical": true,
+      "detector_on_mutant": false,
+      "mutant_bite": true,
+      "pass": true
+    }
+  ]
+}

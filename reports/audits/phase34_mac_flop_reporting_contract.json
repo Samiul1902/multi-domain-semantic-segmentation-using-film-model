@@ -1,0 +1,22 @@
+{
+ "artifact": "phase34_mac_flop_reporting_contract",
+ "phase": 34,
+ "section": "\u00a7F",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase34_efficiency_profiling_v1_0",
+ "primary_structural_compute_metric": "MACs",
+ "historical_mac_convention_preserved": true,
+ "derived_flops_convention": "1 MAC = 2 FLOPs",
+ "derived_flops_label": "DERIVED_FLOPS_FROM_MAC_2X_CONVENTION",
+ "historical_mac_values_may_be_called_flops": false,
+ "profiler_flops_field": "PROFILER_REPORTED_FLOPS",
+ "profiler_tools_adjudicated_in": "reports/audits/phase34_profiler_tool_eligibility.json",
+ "profiler_tool": null,
+ "profiler_version": null,
+ "supported_operations": null,
+ "unsupported_operations": null,
+ "coverage_limitations": "No third-party FLOP/MAC profiler (fvcore/thop/ptflops/torchinfo) is installed. Phase34 will NOT install one. Profiler-reported FLOPs are therefore unavailable; the historical analytical Conv2d/Linear MAC lower bound plus parameter counts and measured runtime/memory remain the Phase34 evidence base.",
+ "mixing_rule": "PROFILER_REPORTED_FLOPS and ANALYTICAL MAC LOWER BOUND must never share one numeric column without explicit type labeling.",
+ "generated_utc": "2026-10-04T09:50:07+00:00",
+ "all_pass": true
+}

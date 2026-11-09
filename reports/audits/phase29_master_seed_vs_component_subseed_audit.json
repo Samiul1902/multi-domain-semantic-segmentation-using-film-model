@@ -1,0 +1,70 @@
+{
+ "artifact": "phase29_master_seed_vs_component_subseed_audit",
+ "phase": 29,
+ "classification": "PHASE29_MASTER_SEED_VS_COMPONENT_SUBSEED_AUDIT",
+ "rule": "master seed != every internal seed; each component has an exact frozen derivation",
+ "master_seed_role": "Phase29 master seed selects the TRAINING RANDOMNESS (weight init, shuffle order, augmentation RNG) for a replicate. It does NOT automatically equal every internal derived seed.",
+ "must_not_assume": "master seed == every internal seed",
+ "existing_component_seed_derivation": {
+  "GlobalMedFiLM_G": {
+   "source": "reports/audits/phase20_shared_global_baseline_protocol.json",
+   "source_sha256": "b74f1f9f429adbce374f0306180943b9f373f872e1e69e115b7d17e81414283c",
+   "training_seed": "MASTER_OR_SEED_DERIVED (Phase21 used literal 42)",
+   "canonical_seed42_value": 42,
+   "cv_folds": "NONE (single run, TRAIN=5832 / VAL=808 fixed membership)",
+   "dataloader": "torch.Generator(make_generator(seed)), seed_worker",
+   "note": "G trains on the fixed TRAIN membership; no fold structure."
+  },
+  "BARRRegionalRefinerV1_R_psi": {
+   "source": "reports/audits/phase25a_crossfit_protocol.json",
+   "source_sha256": "6868b5562fe02929e13d63905ca74a759e20dec3c01b14eef331e4cb948f55ce",
+   "crossfit_seed": 42,
+   "outer_folds": 3,
+   "fold_assignment": "deterministic group-safe domain-stratified; per domain, whole groups ordered by sha256('42::<group_key>')",
+   "inner_fit_fraction": 0.9,
+   "inner_early_stop_fraction": 0.1,
+   "inner_split_seeds": "derived from the cross-fit seed 42 (group-safe, domain-stratified)",
+   "outer_target_role": "UNTOUCHED; OOF prediction only"
+  },
+  "BARRBenefitRouterV1_B_phi": {
+   "source": "reports/audits/phase25d_data_loader_randomness_contract_v1_2_1.json",
+   "source_sha256": "92f96eee7fd9496642ef2d4fbade3044cfe954bc31f13d0709d4bef5015a3b04",
+   "base_seed": 42,
+   "outer_cv": "StratifiedGroupKFold(n_splits=5, shuffle=True, random_state=42)",
+   "outer_fold_seed_derivation": "42000 + outer_cv_fold",
+   "inner_split_seeds": "4200 + outer_fold_index",
+   "fold_seed_uses": [
+    "model initialization",
+    "task embedding initialization",
+    "training-shuffle generator"
+   ],
+   "per_fold_fresh": [
+    "model",
+    "optimizer",
+    "scheduler",
+    "loader RNG"
+   ],
+   "final_refit_seed": 42,
+   "persistence_required": [
+    "Python RNG",
+    "NumPy RNG",
+    "Torch CPU RNG",
+    "Torch CUDA RNG",
+    "DataLoader generator"
+   ]
+  },
+  "BARRPostSafetyV1_S_omega": {
+   "source": "reports/audits/phase25f_cv_manifest_reuse_contract_v1_0.json",
+   "source_sha256": "731376fd19d2fc922f5209fdf891a12f9db5ed0ddafc04f697fe5364e1d02533",
+   "cv_runs": 5,
+   "cv_seeds": "54000-54004",
+   "final_refit_seed": 42,
+   "fold_reuse": "reuses Phase25D FIT/EARLY_STOP/OUTER_TARGET manifests"
+  }
+ },
+ "seed_derivation_requires_prospective_freeze": true,
+ "prospective_derivation_frozen_before_execution_required": true,
+ "prospective_derivation_defined": false,
+ "prospective_derivation_note": "The Phase29 master-seed -> component sub-seed mapping is NOT yet prospectively defined for seeds 123 and 3407. Under the work order §3 this must be frozen BEFORE execution. It is an execution-critical field (see §35 completeness matrix) but the DERIVATION RULE ITSELF is derivable deterministically from the frozen components above.",
+ "all_pass": true
+}

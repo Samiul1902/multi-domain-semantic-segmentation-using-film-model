@@ -1,0 +1,139 @@
+{
+  "audit": "phase12_clean_v3_oracle_protocol_frozen",
+  "created_utc": "2026-09-21T00:33:02.161503+00:00",
+  "recorded_before_clean_v3_oracle_inference": true,
+  "authority": "supervisor freeze decision (Phase 12 Part 1B authorization)",
+  "readme_restoration": {
+    "restored": true,
+    "method": "git checkout HEAD -- <path>; proven by empty git diff",
+    "restored_sha256_crlf": "5f8db1300364a45cf37997fcb3c3094ba875782f539b32a361bfc987780d0990",
+    "part1a_reported_sha_lf": "9cb2eb5fae0021ab500fa7f79faf2e94e574aa9f0da89e891e6a830bfab8b23d",
+    "errata": "reports/audits/phase12_historical_readme_errata.md"
+  },
+  "decisions": {
+    "model_scope": {
+      "models": [
+        "unet",
+        "attention_unet",
+        "unetpp",
+        "deeplabv3plus"
+      ],
+      "reference_architecture": null,
+      "unetpp_role": "HISTORICAL_v2_PROVENANCE_ONLY",
+      "unetpp_is_not": [
+        "winner",
+        "best model",
+        "Phase-12 reference model",
+        "future RA-MedFiLM architecture selection"
+      ]
+    },
+    "oracle_geometry": {
+      "primary_population": "KUB FULL_FIELD VAL",
+      "expected_cases": 103,
+      "expected_native_components": 152,
+      "oracle_unit": "PER_COMPONENT_BBOX",
+      "connectivity": 8,
+      "bbox_space": "ORIGINAL_NATIVE",
+      "margin_rule": "round(0.25 * bbox_dim) per axis",
+      "primary_margin": 0.25,
+      "margins_not_run": [
+        0.1,
+        0.5
+      ],
+      "crop_shape": "SQUARE side = max(expanded_height, expanded_width), centred",
+      "boundary": "clip to native image then zero-pad",
+      "regional_resolution": 512,
+      "image_interpolation": "BILINEAR",
+      "resized_gt_crop_used": false,
+      "margin_tuning": false
+    },
+    "mapback": {
+      "primary": "FLOAT_BILINEAR",
+      "primary_quantisation": "none (float throughout)",
+      "procedure": [
+        "regional logit",
+        "sigmoid float prob at 512",
+        "bilinear restore to square-side geometry IN FLOAT",
+        "strip square padding",
+        "place into native clipped coordinates"
+      ],
+      "approved_material_correction": true,
+      "reason": "historical uint8 restoration introduced undocumented numerical quantisation"
+    },
+    "legacy_sensitivity": {
+      "variant": "ORACLE_LEGACY_UINT8_CROP_ONLY",
+      "semantics": "exact historical source-code restoration + historical crop-only outside rule",
+      "status": "HISTORICAL_NUMERICAL_SENSITIVITY_ONLY",
+      "second_model_pass_allowed": false,
+      "derivation": "reuse the SAME computed regional crop probability tensor"
+    },
+    "fusion": {
+      "multiple_component": "one crop per native component; restore independently",
+      "rule": "PIXELWISE MAX before thresholding",
+      "R_x": "max restored regional probability over all component crops covering x",
+      "threshold_after_full_map": true
+    },
+    "oracle_region_union": {
+      "name": "ORACLE_REGION_UNION",
+      "definition": "native pixel inside >=1 mapped-back oracle crop support region",
+      "derived_from": "prospectively frozen GT-derived crop geometry only",
+      "altered_by_predictions": false
+    },
+    "primary_variant": {
+      "name": "ORACLE_FLOAT_GLOBAL_RETAINED",
+      "formula": "P(x) = R(x) if U(x) else G(x)",
+      "inside_union": "REGIONAL probability (regional REPLACEMENT)",
+      "forbidden": [
+        "max(G,R) inside U",
+        "average G and R",
+        "learned fusion"
+      ],
+      "threshold": 0.5,
+      "threshold_timing": "AFTER full map construction"
+    },
+    "secondary_variant": {
+      "name": "ORACLE_FLOAT_CROP_ONLY",
+      "formula": "P(x) = R(x) if U(x) else 0",
+      "status": "SECONDARY_HISTORICAL_GEOMETRY_COMPARATOR",
+      "is_primary_sr1_estimate": false
+    },
+    "unauthorized_variants": [
+      "MAX_GLOBAL_REGIONAL",
+      "average global/regional",
+      "weighted fusion",
+      "learned fusion",
+      "confidence gating",
+      "different threshold",
+      "different margin",
+      "different crop resolution",
+      "union-case bbox",
+      "largest-component-only crop",
+      "Top-K crops",
+      "proposal-based crops"
+    ],
+    "gate_framework_frozen": {
+      "dimensions": [
+        "ORACLE_MECHANISM_VALUE",
+        "PRACTICAL_LOCALIZATION_RETENTION",
+        "GLOBAL_PRESERVATION_FP_COST",
+        "GENERALITY"
+      ],
+      "scalar_automatic_threshold": null,
+      "final_gate": "SUPERVISOR_REVIEWED",
+      "new_dimension_after_results": false
+    }
+  },
+  "global_reproduction_gate": {
+    "tolerance_max_abs_dice": 0.0001,
+    "must_pass_before_oracle": true
+  },
+  "native_space_comparison": {
+    "required": true,
+    "label": "PHASE12_NATIVE_SPACE_GLOBAL_BASELINE",
+    "note": "never compare EVALUATION_512 global Dice against native oracle Dice"
+  },
+  "test_reads": 0,
+  "training": false,
+  "optimizer_steps": 0,
+  "status": "SUPERVISOR_FROZEN"
+}

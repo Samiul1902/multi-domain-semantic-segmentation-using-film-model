@@ -1,0 +1,138 @@
+{
+ "artifact": "phase29_seed42_reuse_finalization_v1_1",
+ "phase": 29,
+ "revision": "ra_medfilm_barr_phase29_repro_v1_1",
+ "classification": "SUPERVISOR_PROSPECTIVE_REPRODUCIBILITY_SPECIFICATION_REPAIR",
+ "method": "RA-MedFiLM-BARR",
+ "governance_only": true,
+ "execution": "NONE",
+ "generated_utc": "2026-10-02T15:05:09+00:00",
+ "seed42_role": "REUSE_EXISTING_CANONICAL_REPLICATE",
+ "seed42_reused": true,
+ "seed42_retrained": false,
+ "match_checks": {
+  "protocol_exact_match": true,
+  "population_exact_match": true,
+  "split_exact_match": true,
+  "training_rule_exact_match": true,
+  "evaluation_rule_now_frozen": true,
+  "seed42_retrained": false,
+  "seed42_science_rerun_for_branding": false
+ },
+ "reused_evidence": [
+  {
+   "evidence": "R_psi OOF + final",
+   "source": "Phase25A seed42",
+   "path": "checkpoints/phase25a_barr_regional_refiner_v1_1_roi030",
+   "sha256": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109"
+  },
+  {
+   "evidence": "B_phi OOF + final",
+   "source": "Phase25D seed42",
+   "path": "checkpoints/phase25d_barr_benefit_router_v1_2_1_seed42",
+   "sha256": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b"
+  },
+  {
+   "evidence": "S_omega OOF + final",
+   "source": "Phase25F seed42",
+   "path": "checkpoints/phase25f_barr_post_safety_v1_0_seed42",
+   "sha256": "eee9b97b9921e53fc07eac9281dce64ba518c6e1659916b97b0b3bec21ec6d2e"
+  },
+  {
+   "evidence": "paired outcomes",
+   "source": "Phase25C seed42",
+   "path": "reports/tables/phase25c_*",
+   "sha256": null
+  },
+  {
+   "evidence": "integrated DEV evidence",
+   "source": "Phase25G seed42",
+   "path": "reports/tables/phase25g_*",
+   "sha256": null
+  },
+  {
+   "evidence": "VAL808 continuity evidence",
+   "source": "Phase27 seed42",
+   "path": "reports/tables/phase27_val808_per_sample_scores.csv",
+   "sha256": "702133930ce14ac9513c992833396e3e250d08417b17d1032cbd260a405cfb12"
+  }
+ ],
+ "physical_sha_binding": {
+  "rows": [
+   {
+    "component": "G",
+    "role": "FIXED_REFERENCE_NOT_A_SEED_REPLICATE",
+    "path": "checkpoints/phase21_global_medfilm_fourdomain_seed42_clean_v3/best.pt",
+    "sha256_expected": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+    "sha256_observed": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+    "exists": true,
+    "sha_match": true
+   },
+   {
+    "component": "R_psi",
+    "role": "SEED42_REPLICATE",
+    "path": "checkpoints/phase25a_barr_regional_refiner_v1_1_roi030/final/final.pt",
+    "sha256_expected": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109",
+    "sha256_observed": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109",
+    "exists": true,
+    "sha_match": true
+   },
+   {
+    "component": "B_phi",
+    "role": "SEED42_REPLICATE",
+    "path": "checkpoints/phase25d_barr_benefit_router_v1_2_1_seed42/final/final.pt",
+    "sha256_expected": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+    "sha256_observed": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+    "exists": true,
+    "sha_match": true
+   },
+   {
+    "component": "S_omega",
+    "role": "SEED42_REPLICATE",
+    "path": "checkpoints/phase25f_barr_post_safety_v1_0_seed42/final/final.pt",
+    "sha256_expected": "eee9b97b9921e53fc07eac9281dce64ba518c6e1659916b97b0b3bec21ec6d2e",
+    "sha256_observed": "eee9b97b9921e53fc07eac9281dce64ba518c6e1659916b97b0b3bec21ec6d2e",
+    "exists": true,
+    "sha_match": true
+   },
+   {
+    "component": "phase25b_features",
+    "role": "FIXED_FEATURE_MATRIX",
+    "path": "data_cache/phase25b_barr_pre_refinement_features_v1_2/features.npy",
+    "sha256_expected": "9c241963b54f23de1c9671ff6670dde7d6f7e2510869ef5ebc1baf3f7c833e0a",
+    "sha256_observed": "9c241963b54f23de1c9671ff6670dde7d6f7e2510869ef5ebc1baf3f7c833e0a",
+    "exists": true,
+    "sha_match": true
+   },
+   {
+    "component": "phase25e_final_router_dev_scores",
+    "role": "FIXED_DEV_CALIBRATION_SOURCE",
+    "path": "data_cache/phase25e_barr_resource_gate_v1_0/phase25e_final_router_dev_scores.csv",
+    "sha256_expected": "2d23e11090a5b3164d5b125c633bbccfbe307ecdc717d0f5689bf401bd849f9d",
+    "sha256_observed": "2d23e11090a5b3164d5b125c633bbccfbe307ecdc717d0f5689bf401bd849f9d",
+    "exists": true,
+    "sha_match": true
+   },
+   {
+    "component": "phase25e_final_router_dev_thresholds",
+    "role": "FIXED_DEV_CALIBRATION_THRESHOLD_TABLE",
+    "path": "reports/tables/phase25e_final_router_dev_thresholds.csv",
+    "sha256_expected": "980e44aba6bb57bc86b2fa03060eaa181207297367fe7f7b1bbbde9c9b3bcfd1",
+    "sha256_observed": "980e44aba6bb57bc86b2fa03060eaa181207297367fe7f7b1bbbde9c9b3bcfd1",
+    "exists": true,
+    "sha_match": true
+   },
+   {
+    "component": "phase27_val808_evidence",
+    "role": "SEED42_CONTINUITY_EVIDENCE",
+    "path": "reports/tables/phase27_val808_per_sample_scores.csv",
+    "sha256_expected": null,
+    "sha256_observed": "702133930ce14ac9513c992833396e3e250d08417b17d1032cbd260a405cfb12",
+    "exists": true,
+    "sha_match": true
+   }
+  ],
+  "all_pass": true
+ },
+ "all_pass": true
+}

@@ -1,0 +1,53 @@
+{
+ "artifact": "phase27_spec_entry_gate",
+ "phase": "27",
+ "classification": "PHASE27_PRE_EXECUTION_PRESERVATION_AUDIT_SPECIFICATION",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_preservation_v1_0",
+ "governance_only": true,
+ "no_execution": true,
+ "stage": "ENTRY_GATE",
+ "predecessor_terminal": "PHASE26_CANONICAL_INTEGRATION_COMPLETE__A8_C9_25PCT_FINAL_ROUTER_RUNTIME_POLICY_AND_BUNDLE_FROZEN__PHASE27_ELIGIBLE_NOT_STARTED",
+ "predecessor_terminal_expected": "PHASE26_CANONICAL_INTEGRATION_COMPLETE__A8_C9_25PCT_FINAL_ROUTER_RUNTIME_POLICY_AND_BUNDLE_FROZEN__PHASE27_ELIGIBLE_NOT_STARTED",
+ "bindings": {
+  "bundle_manifest": {
+   "path": "artifacts/phase26_ra_medfilm_barr_bundle_v1_0/canonical_bundle_manifest.json",
+   "exists": true,
+   "sha256": "f7aebb0f646bcc8de49fa91b70a4c4cc1051c9998ab6b055a8d4d187809cb3d9",
+   "expected_sha256": "f7aebb0f646bcc8de49fa91b70a4c4cc1051c9998ab6b055a8d4d187809cb3d9",
+   "match": true
+  },
+  "integration_wrapper": {
+   "path": "src/models/barr/ra_medfilm_barr.py",
+   "exists": true,
+   "sha256": "342f2163690c2fa8d5a601ab1d18178b982d701b916935c33e0793b0801c3724",
+   "expected_sha256": "342f2163690c2fa8d5a601ab1d18178b982d701b916935c33e0793b0801c3724",
+   "match": true
+  },
+  "phase26_notebook": {
+   "path": "notebooks/phasewise/phase_26_full_system_integration/phase26_canonical_integration_and_bundle_freeze.ipynb",
+   "exists": true,
+   "sha256": "57552c16b5a444f1b2404077eeac0004d37fd198355d679a66eb5c24ea15b4e0",
+   "expected_sha256": "57552c16b5a444f1b2404077eeac0004d37fd198355d679a66eb5c24ea15b4e0",
+   "match": true
+  }
+ },
+ "checks": {
+  "predecessor_terminal_matches": true,
+  "predecessor_phase26_complete": true,
+  "predecessor_phase27_eligible": true,
+  "predecessor_all_pass": true,
+  "predecessor_holdout_reserved": true,
+  "predecessor_val808_unopened": true,
+  "predecessor_test_locked": true,
+  "bundle_manifest_sha": true,
+  "integration_wrapper_sha": true,
+  "phase26_notebook_sha": true,
+  "no_scientific_inference_in_phase27_spec": true,
+  "no_val808_image_or_mask_read": true,
+  "no_training": true,
+  "holdout_not_read": true,
+  "test_not_read": true
+ },
+ "all_pass": true
+}

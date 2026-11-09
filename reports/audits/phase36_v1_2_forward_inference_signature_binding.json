@@ -1,0 +1,115 @@
+{
+ "artifact": "phase36_v1_2_forward_inference_signature_binding",
+ "section": "§E",
+ "phase": 36,
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase36_robustness_v1_2",
+ "classification": "CANONICAL_PHASE26_FORWARD_SIGNATURE_BINDING__FROM_SOURCE_NOT_ASSUMED",
+ "authority": {
+  "path": "src/models/barr/ra_medfilm_barr.py",
+  "sha256": "342f2163690c2fa8d5a601ab1d18178b982d701b916935c33e0793b0801c3724",
+  "class": "RAMedFiLMBARR",
+  "method": "forward_inference",
+  "parsed_signature": "forward_inference(self, image, task_id, router_features_202=None, roi_window=None, action_available=None, oof_refined_crop_prob=None, safety_post_features_16=None) -> Dict[str, Any]"
+ },
+ "arguments": [
+  {
+   "name": "image",
+   "required": true,
+   "optional_default": null,
+   "shape": "[1, C=3, H=512, W=512]",
+   "dtype": "torch.float32 (already preprocessed, /255.0, aspect-preserving centre-pad)",
+   "semantic_source": "preprocessed RGB image tensor",
+   "clean_generation": "SegmentationTransform(size=512, train=False, image_mode='RGB') from src/data/transforms.py; identical aspect-preserving BILINEAR resize + ImageOps.expand centre pad + /255.0",
+   "image_perturbation_generation": "frozen image condition applied to the PRE-NORMALIZED float32 [0,1] array (common_v1_1.apply_image_condition), then re-preprocessed to the tensor",
+   "proposal_perturbation_generation": "REUSED unchanged from the clean sample (clean_ref['image'][sid]); proposal perturbation never alters the image"
+  },
+  {
+   "name": "task_id",
+   "required": true,
+   "optional_default": null,
+   "shape": "python int in {0:ISIC, 1:BUSI, 2:KVASIR, 3:KUB}",
+   "dtype": "int",
+   "semantic_source": "canonical Phase4 VAL808 manifest task_id column / DOMAIN_TASK_ID",
+   "clean_generation": "manifest row task_id",
+   "image_perturbation_generation": "unchanged (same sample identity)",
+   "proposal_perturbation_generation": "unchanged (clean_ref['task_id'][sid])"
+  },
+  {
+   "name": "router_features_202",
+   "required": "REQUIRED to reach the router decision (raises ValueError if None on any non-FORCED_SKIP path)",
+   "optional_default": "None (python default) but semantically required",
+   "shape": "[202] float32",
+   "dtype": "np.ndarray float32 (reshaped to (-1), length checked == 202)",
+   "semantic_source": "canonical Phase25B 202-D GT-free extractor build_feature_vector(cmaps, P, roi_row)",
+   "clean_generation": "assembled from clean G taps (cmaps) + clean p_global + clean roi_row (geometry from roi_geometry(p_global, 0.30, margin=0.25))",
+   "image_perturbation_generation": "REASSEMBLED from perturbed G taps + perturbed p_global (G re-run on the perturbed image) with the corresponding perturbed roi_row",
+   "proposal_perturbation_generation": "REASSEMBLED from REUSED clean G taps + REUSED clean p_global, but with the PERTURBED roi_row (clip_* / crop_side_pixels) -> the 98 geometry-dependent dims differ"
+  },
+  {
+   "name": "roi_window",
+   "required": false,
+   "optional_default": "None (proposed internally via _roi_window_from_probability when absent and action_available is not False)",
+   "shape": "tuple (y0, y1, x0, x1) half-open; None == action unavailable",
+   "dtype": "python ints",
+   "semantic_source": "frozen ROI proposal (threshold 0.30 -> bbox -> centre-preserving expansion ROI_EXPANSION=1.50)",
+   "clean_generation": "canonical roi_geometry(p_global, 0.30, margin=0.25) -> (clip_y1, clip_y2, clip_x1, clip_x2)",
+   "image_perturbation_generation": "re-derived from the perturbed p_global proposal",
+   "proposal_perturbation_generation": "the PERTURBED window (shift/scale applied per frozen registry), clamped to image bounds"
+  },
+  {
+   "name": "action_available",
+   "required": false,
+   "optional_default": "None -> derived as (window is not None)",
+   "shape": "bool",
+   "dtype": "bool",
+   "semantic_source": "roi_available / ACTION_AVAILABLE flag (GT-free)",
+   "clean_generation": "bool(window is not None)",
+   "image_perturbation_generation": "bool(perturbed window is not None)",
+   "proposal_perturbation_generation": "bool(perturbed window is not None)"
+  },
+  {
+   "name": "oof_refined_crop_prob",
+   "required": "REQUIRED on the EXECUTE branch (raises ValueError if None after util >= tau_C8_final)",
+   "optional_default": "None",
+   "shape": "[256, 256] float32 probability",
+   "dtype": "np.ndarray float32",
+   "semantic_source": "frozen R_psi refined crop output",
+   "clean_generation": "R_psi(rin) where rin = concat(rgb_crop(3,256,256), prob_crop(1,256,256)); sigmoid(refiner_out)[0,0]",
+   "image_perturbation_generation": "R_psi over the perturbed-image crop geometry",
+   "proposal_perturbation_generation": "R_psi over the PERTURBED geometry crop (clean G reused, perturbed crop window)"
+  },
+  {
+   "name": "safety_post_features_16",
+   "required": "REQUIRED on the EXECUTE branch (raises ValueError if None)",
+   "optional_default": "None",
+   "shape": "[16] float32 numeric",
+   "dtype": "np.ndarray float32",
+   "semantic_source": "canonical Phase25F 16 numeric post-refinement features",
+   "clean_generation": "compute_numeric_features(p_g_crop_256, p_r_crop_256, area_fraction, crop_side_pixels)",
+   "image_perturbation_generation": "recomputed from the perturbed-image crops",
+   "proposal_perturbation_generation": "RECOMPUTED from the perturbed geometry crops (S_omega recomputed when EXECUTE)"
+  }
+ ],
+ "return_contract": {
+  "keys": ["state", "final_probability", "final_binary", "global_forward_count", "refiner_forward_count", "s_omega_forward_count", "delta_hat_final", "roi_window", "post_safety_logit", "post_safety_accept_probability"],
+  "state_values": ["FORCED_SKIP", "SKIP_GLOBAL", "EXECUTE_THEN_ACCEPT", "EXECUTE_THEN_REJECT"],
+  "final_binary_rule": "(final_probability >= 0.50).astype(uint8)"
+ },
+ "wrapper_executability_assessment": {
+  "integrated_wrapper_executes_required_graph_directly": true,
+  "rationale": "forward_inference accepts router_features_202 and roi_window INDEPENDENTLY; both proposal-perturbation recomputation (204-D reassembly via the extractor) and R_psi crop/fusion feed it directly. No lower-level Phase25F/25G/26 rebinding is required.",
+  "canonical_lower_level_functions_bound_for_completeness": [
+   "src.data.barr_roi.roi_geometry",
+   "src.data.barr_roi.crop_and_resize",
+   "src.data.barr_roi.extract_roi_triplet",
+   "scripts.analysis.phase29_phase_d_canonical_seed_inference.crop_and_resize_vec",
+   "scripts.analysis.phase29_phase_d_canonical_seed_inference.fuse_full_field",
+   "scripts.analysis.phase29_phase_d_canonical_seed_inference.somega_features",
+   "scripts.analysis.phase25f_post_safety_features.compute_numeric_features"
+  ]
+ },
+ "no_invented_placeholders": true,
+ "generated_utc": "2026-10-05T15:40:00Z",
+ "all_pass": true
+}

@@ -1,0 +1,84 @@
+{
+ "artifact": "phase35_execution_eligibility_adjudication_v1_0b",
+ "phase": 35,
+ "section": "\u00a7AH",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase35_interpretability_v1_0b",
+ "families": {
+  "film_parameter_analysis_eligible": {
+   "value": true,
+   "basis": "extract_film_parameters() + film_parameters_for_tasks(); G strict loader verified in source"
+  },
+  "G_task_embedding_analysis_eligible": {
+   "value": true,
+   "basis": "extract_task_embeddings() G [4,32]"
+  },
+  "B_phi_task_embedding_analysis_eligible": {
+   "value": true,
+   "basis": "extract_task_embeddings() B_phi [4,16]"
+  },
+  "fixed_64_VAL_gallery_raw_image_read_eligible": {
+   "value": true,
+   "basis": "load_gallery_allowlist() + guard_raw_path() + MAX_RAW_VAL_IMAGE_READS = 64"
+  },
+  "gradcam_bridge_eligible": {
+   "value": true,
+   "basis": "film_layers['bridge'] hook, [1,256,32,32]"
+  },
+  "gradcam_decoder1_eligible": {
+   "value": true,
+   "basis": "film_layers['decoder1'] hook, [1,24,512,512]"
+  },
+  "ROI_proposal_visualization_eligible": {
+   "value": true,
+   "basis": "build_roi_mask() at 0.30 from persisted p_global"
+  },
+  "router_VAL808_attribution_eligible": {
+   "value": true,
+   "basis": "router_population_verify() + router_normalized_features() + router_gradient_x_input()"
+  },
+  "regional_existing_artifact_visualization_eligible": {
+   "value": false,
+   "basis": "no frozen regional/fused probability artifact for the gallery"
+  },
+  "new_R_psi_visualization_forward_eligible": {
+   "value": false,
+   "basis": "_assert_executable_component('R_psi') raises"
+  },
+  "router_counterfactual_task_id_eligible": {
+   "value": false,
+   "basis": "INELIGIBLE_NOT_REQUIRED"
+  },
+  "ROUTER_HOLDOUT_raw_execution_eligible": {
+   "value": false,
+   "basis": "guard_raw_path raises"
+  },
+  "ROUTER_HOLDOUT_GT_execution_eligible": {
+   "value": false,
+   "basis": "guard_raw_path raises"
+  },
+  "TEST_execution_eligible": {
+   "value": false,
+   "basis": "guard_raw_path raises"
+  },
+  "training_eligible": {
+   "value": false,
+   "basis": "no optimizer; no .step()"
+  },
+  "Phase36_started": {
+   "value": false,
+   "basis": "out of scope"
+  }
+ },
+ "supersedes": "phase35_execution_eligibility_adjudication_v1_0.json",
+ "v1_0_eligibility_preserved": true,
+ "true_based_only_on": [
+  "scientific protocol resolved",
+  "population resolved",
+  "source implementation resolved",
+  "source freeze resolved"
+ ],
+ "phase35_execution_started": false,
+ "generated_utc": "2026-10-04T15:21:55+00:00",
+ "all_pass": true
+}

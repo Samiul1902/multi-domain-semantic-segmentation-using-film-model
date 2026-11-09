@@ -1,0 +1,42 @@
+{
+  "classification": "PHASE38_PHASE39_STATISTICAL_INTERPRETATION_PROTOCOL",
+  "generated_utc": "2026-10-11T06:30:00Z",
+  "phase": 38,
+  "authority": [
+    {
+      "path": "reports/audits/phase31_final_closure.json",
+      "sha256": "27993a7e97c4bc583abb3337b84e012d9843bc07f378e90bc2bbf6652adfb0dd"
+    },
+    {
+      "path": "reports/audits/phase31_scientific_interpretation_v1_1.json",
+      "sha256": "6b0fa20e0794aff6ce45db96ba46a15412421b5cf414053e6041dc6d130f8813"
+    },
+    {
+      "path": "reports/audits/phase31_multiplicity_provenance_contract.json",
+      "sha256": "e0f80822c9f537f526105aa8e89ef933dcae6f7379dc7f572b985bc8f7b5b833"
+    },
+    {
+      "path": "reports/audits/phase27_decision_rule_contract.json",
+      "sha256": "9c5b2b0ce3f392ec74ed48fdca20cadd50d1267c14349b242e2176854440ba96"
+    }
+  ],
+  "confirmatory_significance_eligible": false,
+  "correct_statement": "NO NEW CONFIRMATORY SIGNIFICANCE PROCEDURE IS ELIGIBLE.",
+  "primary_decision_rule": "PRESERVATION_ASSERTED iff macro lower 95% percentile-CI bound > -0.005 (strict)",
+  "p_value_role": "secondary/descriptive only for the primary preservation claim",
+  "per_domain_harm_rule": "A domain is HARM if its own 95% CI upper bound is below 0; preservation cannot be claimed while any domain CI indicates harm.",
+  "macro_may_not_hide_domain_harm": true,
+  "ci_method": "percentile bootstrap (frozen plan); domain-stratified group bootstrap where previously frozen (B=2000, seed=42)",
+  "paired_analysis_unit": "sample (per-domain group cluster for domain-stratified bootstrap)",
+  "multiplicity": {
+    "confirmatory_multiplicity_permitted": false,
+    "auto_apply_holm_bonferroni_bh": false,
+    "phase31_family": "None (all exploratory/descriptive)"
+  },
+  "significance_threshold": null,
+  "allowed_wording_significant": "NOT_PERMITTED (no confirmatory procedure eligible)",
+  "allowed_wording_nonsignificant": "descriptive only; report the estimate with its frozen CI and label it descriptive",
+  "prohibition_on_post_hoc_hypothesis_addition": true,
+  "no_test_values_used_to_choose_method": true,
+  "phase31_not_rerun": true
+}

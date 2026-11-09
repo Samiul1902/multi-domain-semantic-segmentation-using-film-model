@@ -1,0 +1,109 @@
+{
+  "artifact": "phase20_phase19_authority_binding",
+  "phase": "20",
+  "purpose": "SHA-bind every authoritative Phase-19 artifact and re-assert the four-domain task mapping and development populations before Phase-20 work.",
+  "authority_artifacts": {
+    "stage_b_authorization": {
+      "path": "reports/audits/stage_b_phase19_authorization.json",
+      "sha256": "44322100cd63aedc451408706db1aaa3e077d0a0173ab6d2581ea457ef03de23"
+    },
+    "stage_b_governance_state": {
+      "path": "reports/audits/stage_b_governance_state.json",
+      "sha256": "109112a9e947e6533e880fc9983c16773b036a89c30aec93ef1ccc6ec8965718"
+    },
+    "phase19_protocol": {
+      "path": "reports/audits/phase19_multidomain_harmonization_protocol.json",
+      "sha256": "ab8289a26fbd9946a49bc3fe89c9d875a0f80d94eb2807189dd124fafc267038"
+    },
+    "phase19_task_id_registry": {
+      "path": "reports/tables/phase19_task_id_registry.csv",
+      "sha256": "d1fed41c5b38c8e08798ac5adbfa427c45bf74c5c5a3a858c9dc4a3ce750e888"
+    },
+    "phase19_harmonized_schema": {
+      "path": "reports/tables/phase19_harmonized_schema.csv",
+      "sha256": "c64d4c434c4692214da87aaf7bb4803c49dc2f47e84c0c2c8e8966cefc02341a"
+    },
+    "phase19_phase20_entry_criteria": {
+      "path": "reports/tables/phase19_phase20_entry_criteria.csv",
+      "sha256": "5d37811ce4d9392b37d516368e5a289c46b46e4afa0ce93e34f348926db7d0e7"
+    },
+    "phase19_preprocessing_contract": {
+      "path": "reports/audits/phase19_preprocessing_contract.json",
+      "sha256": "a1db4b083611bc5a6ec4928427c77fcc49a949481aabfadaa5277735bf53fdf0"
+    },
+    "phase19_evaluation_contract": {
+      "path": "reports/audits/phase19_evaluation_contract.json",
+      "sha256": "7f7f18fc17e1f377ef8fefcd9f4c9280cd46443b1b1f500071037525f3d32355"
+    },
+    "phase19_legacy_evidence_reuse_map": {
+      "path": "reports/audits/phase19_legacy_evidence_reuse_map.json",
+      "sha256": "415eeedea6f9f7f1590dcf3e9dbaf4eea3783624793bf071637f9675295985a1"
+    },
+    "phase19_leakage_safeguards": {
+      "path": "reports/audits/phase19_leakage_safeguards.json",
+      "sha256": "b41307eb5c36401e7882f217e953163fb02d8c1a47fe4865cb651bee8b36245f"
+    },
+    "phase19_loader_smoke_test": {
+      "path": "reports/audits/phase19_loader_smoke_test.json",
+      "sha256": "225bcde30e4ac259d4a072c88b6ef75f9633e0d41e31ca9aa8eb0207065e957b"
+    }
+  },
+  "expected_task_id": {
+    "ISIC": 0,
+    "BUSI": 1,
+    "KVASIR": 2,
+    "KUB": 3
+  },
+  "observed_task_id_registry": {
+    "ISIC": 0,
+    "BUSI": 1,
+    "KVASIR": 2,
+    "KUB": 3
+  },
+  "expected_populations": {
+    "TRAIN": {
+      "ISIC": 2556,
+      "BUSI": 602,
+      "KVASIR": 696,
+      "KUB": 1978
+    },
+    "VAL": {
+      "ISIC": 357,
+      "BUSI": 84,
+      "KVASIR": 87,
+      "KUB": 280
+    },
+    "TRAIN_total": 5832,
+    "VAL_total": 808
+  },
+  "observed_populations": {
+    "TRAIN": {
+      "BUSI": 602,
+      "ISIC": 2556,
+      "KUB": 1978,
+      "KVASIR": 696
+    },
+    "VAL": {
+      "BUSI": 84,
+      "ISIC": 357,
+      "KUB": 280,
+      "KVASIR": 87
+    },
+    "TRAIN_total": 5832,
+    "VAL_total": 808
+  },
+  "test_status": "LOCKED__NOT_READ",
+  "checks": {
+    "authority_artifacts_present": true,
+    "task_id_registry_matches_expected": true,
+    "task_id_registry_manifest_agrees_flag": true,
+    "manifest_task_ids_match_expected": true,
+    "train_population_matches": true,
+    "val_population_matches": true,
+    "four_domains_present_in_both_splits": true,
+    "loader_smoke_test_passed": true,
+    "authorization_status_authorized": true
+  },
+  "all_checks_passed": true,
+  "fail_closed": true
+}

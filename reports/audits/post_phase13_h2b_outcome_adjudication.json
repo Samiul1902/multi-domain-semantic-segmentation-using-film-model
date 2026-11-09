@@ -1,0 +1,350 @@
+{
+  "artifact": "POST_PHASE13_H2B_OUTCOME_ADJUDICATION",
+  "status": "PASS",
+  "created_utc": "2026-09-23T16:11:00Z",
+  "task": "POST-PHASE13 REGIONAL REVISION H2B — OUTCOME ADJUDICATION",
+  "model_attribution": "Gemini 3.1 Pro High",
+  "execution_mode": "PURE_READ_AUDIT_OF_FROZEN_EVIDENCE",
+  "adjudication_authorized": "H2B_OUTCOME_ADJUDICATION_ONLY",
+  "frozen_protocol_recovery": {
+    "artifact": "reports/audits/post_phase13_h2b_protocol_frozen.json",
+    "sha256": "22d4e363a9375bc12828c944b1583921efa77d45b6df7d6387738d13d950949e",
+    "status": "SUPERVISOR_FROZEN_H2B_OBJECTIVE_ONLY_READY_FOR_B1_AUTHORIZATION",
+    "uniquely_identified": "YES",
+    "h2_axis": "H2B_SOFT_TARGET_FOCAL_BCE_OBJECTIVE_ONLY",
+    "scientific_question": "Can a SOFT-TARGET objective that directly treats the complete frozen Gaussian target as a continuous supervision signal improve heatmap discrimination and proposal precision while preserving object coverage, holding architecture, target, checkpoint selection, proposal policy and downstream fusion fixed?",
+    "authorized_changed_axis": "LOSS / OBJECTIVE SEMANTICS",
+    "changed_fields_count": 1,
+    "correct_statement": "Compared with the immediate H2A branch baseline, H2B changes exactly one new scientific axis: LOSS / OBJECTIVE.",
+    "frozen_unchanged_axes": [
+      "architecture",
+      "target construction",
+      "target sigma",
+      "input/heatmap resolution",
+      "dataset",
+      "split",
+      "augmentation",
+      "optimizer",
+      "learning rate",
+      "weight decay",
+      "scheduler",
+      "batch size",
+      "AMP semantics",
+      "seed",
+      "proposal threshold",
+      "margin",
+      "top_k",
+      "NMS",
+      "checkpoint-selection semantics",
+      "fusion",
+      "segmentation checkpoints",
+      "segmentation threshold"
+    ],
+    "prospective_evidence_dimensions": {
+      "A": "LOCALIZER_PROPOSAL_QUALITY",
+      "B": "DOWNSTREAM_GLOBAL_PRESERVATION",
+      "C": "REGIONAL_UTILITY",
+      "D": "CROSS_ARCHITECTURE_GENERALITY",
+      "numerical_success_threshold": "NONE",
+      "weighted_downstream_score": "NONE",
+      "winner": "NONE"
+    },
+    "prospective_outcome_space": [
+      "H2B_OBJECTIVE_REDESIGN_SUFFICIENT",
+      "H2B_OBJECTIVE_REDESIGN_PARTIAL",
+      "H2B_OBJECTIVE_REDESIGN_INSUFFICIENT",
+      "CHECK_REQUIRED"
+    ],
+    "outcome_adjudicated_at_protocol_time": "NO",
+    "claim_limits": {
+      "h2b_will_succeed_asserted": "NO",
+      "gamma_optimal_asserted": "NO",
+      "numerical_success_threshold": "NONE",
+      "hidden_grid": "NONE",
+      "test_or_external_access": "NONE",
+      "winner": "NONE"
+    },
+    "if_h2b_insufficient": {
+      "representation_head_redesign": "MAY_BECOME_ELIGIBLE_NOT_AUTHORIZED",
+      "h3_fusion_redesign": "FUTURE_AXIS_NOT_AUTHORIZED"
+    }
+  },
+  "outcome_space_definitional_provenance": {
+    "outcome_space_explicitly_frozen": "YES (4 exact labels enumerated in the frozen protocol)",
+    "explicit_decision_criteria_in_protocol": "NO — the protocol freezes the label LIST only; it contains no mapping from evidence to label",
+    "criteria_source_applied": "The project's immediately preceding adjudication (H2-A-C) froze explicit definitions for the IDENTICAL label family (<X>_SUFFICIENT / _PARTIAL / _INSUFFICIENT). Those pre-existing frozen definitions are applied here by inheritance; no new criterion was invented in this task.",
+    "new_criteria_invented": "NO",
+    "outcome_robust_to_definition_choice": {
+      "not_sufficient": "UNANIMOUS — H2B worsened every downstream comparator",
+      "not_partial": "PARTIAL requires reproducible FAVOURABLE localizer changes AND measurable downstream translation. H2B's localizer changes were unfavourable on every quality metric, so PARTIAL cannot apply under any reading.",
+      "remaining_label": "H2B_OBJECTIVE_REDESIGN_INSUFFICIENT",
+      "check_required_triggered": "NO — the outcome space is explicit; no label was invented."
+    }
+  },
+  "integrity": {
+    "status": "PASS",
+    "bindings": {
+      "h2b_protocol_sha": "22d4e363a9375bc12828c944b1583921efa77d45b6df7d6387738d13d950949e",
+      "h2b_b1_training_evaluation_sha": "34a52942ea4ef9da21c4aa450a925c8c59ada771e08f99ab99c3ec669c1e2175",
+      "h2b_b1_selection_replay_sha": "0b1e2f64d755409ff875f0ec0382f306b6d5145d3602d257ba50ce618f209c53",
+      "h2b_b1_standalone_evaluation_sha": "1d9a3032362c3099f908c0c61b84e7b1fb97b8f13552563f9ca0f670d2d0096d",
+      "h2b_b2_integrity_sha": "f6f128c03fdb89c3ec0efbba3850213743e0239d43a445f70a5a1ada588edb22",
+      "model_summary_sha": "d8215344148cd4e21e8e9323d753620601b5b43b0da69c7dfe028949480f0eab",
+      "cross_architecture_sha": "552f80005d004379dcb74b17c06310a4b0e7736c9eed99e1ce4333e5accdae6c",
+      "reviewer_notebook_sha": "40af2ee250478229fc6c0546afe9139d05407d4cf91462fef4be3dd91153de41",
+      "reporting_reconciliation_sha": "7d37cfcbc4ca83e764c66d2cf085e204878e32b418ece4795657d5f32a982cdc"
+    },
+    "b2_integrity_gate": {
+      "status": "PASS",
+      "proposal_count": 488,
+      "case_model_rows": 412,
+      "component_model_rows": 608,
+      "model_summary_rows": 4,
+      "regional_crop_evaluations": 1952,
+      "localizer_forwards": 0,
+      "proposal_regeneration": 0,
+      "test_reads": 0,
+      "external_test_reads": 0
+    },
+    "reporting_reconciliation_gate": {
+      "status": "PASS",
+      "classification": "CHAT_TRANSCRIPTION_ONLY",
+      "scientific_result_changed": "NO",
+      "b2_execution_status_changed": "NO",
+      "notebook_vs_model_summary": "PASS",
+      "citation": "reports/audits/post_phase13_h2b_b2_reporting_reconciliation.json"
+    }
+  },
+  "dimension_A_localizer_proposal_quality": {
+    "dimension_id": "A",
+    "dimension_name": "LOCALIZER_PROPOSAL_QUALITY",
+    "source": "frozen H2B-B1 best-checkpoint standalone evaluation vs frozen H2A-B1 evaluation",
+    "observed_evidence": {
+      "proposal_count": {
+        "h2b": 488,
+        "h2a": 457
+      },
+      "proposal_pixel_any_hit_precision": {
+        "h2b": 0.2151639344262295,
+        "h2a": 0.27571115973741794
+      },
+      "proposal_bbox_any_hit_precision": {
+        "h2b": 0.21311475409836064,
+        "h2a": 0.2735229759299781
+      },
+      "tiny_recall90": {
+        "h2b": 0.6111111111111112,
+        "h2a": 0.6944444444444444
+      },
+      "overall_recall90": {
+        "h2b": 0.5921052631578947,
+        "h2a": 0.6381578947368421
+      },
+      "overall_recall50": {
+        "h2b": 0.6973684210526315,
+        "h2a": 0.8223684210526315
+      },
+      "any_overlap_recall": {
+        "h2b": 0.7368421052631579,
+        "h2a": 0.875
+      },
+      "mean_coverage": {
+        "h2b": 0.6778087714762865,
+        "h2a": 0.7878969538240504
+      },
+      "roc_auc_score_to_pixel_any_hit": {
+        "h2b": 0.6149073728708193,
+        "h2a": 0.7011101520164964
+      },
+      "pr_auc_score_to_pixel_any_hit": {
+        "h2b": 0.22895342337838293,
+        "h2a": 0.3729361181989911
+      },
+      "score_iqr": {
+        "h2b": 0.0,
+        "h2a": 0.0016540437936782837
+      },
+      "fraction_exactly_at_max": {
+        "h2b": 0.7930327868852459,
+        "h2a": 0.6455142231947484
+      }
+    },
+    "quality_metrics_worse_than_h2a": 9,
+    "quality_metrics_better_than_h2a": 0,
+    "unfavourable_non_quality_moves": {
+      "proposal_count": "+31 (higher off-target burden)",
+      "mean_proposal_union_area": "+0.000983 (larger intervention union)",
+      "fraction_exactly_at_max": "+0.147519 (MORE score saturation — worse discrimination)"
+    },
+    "adjudicated_state": "DEGRADED_RELATIVE_TO_H2A_BASELINE",
+    "supports_h2b": "NO",
+    "limitations": [
+      "descriptive development comparison only — no significance claim",
+      "the intended direction of the objective redesign was IMPROVED heatmap discrimination and proposal precision; the opposite was observed"
+    ]
+  },
+  "dimension_B_downstream_global_preservation": {
+    "dimension_id": "B",
+    "dimension_name": "DOWNSTREAM_GLOBAL_PRESERVATION",
+    "per_model": {
+      "unet": {
+        "h2b_predicted_macro_dice": 0.2798484515365307,
+        "global_macro_dice": 0.5941796681946068,
+        "delta_h2b_global": -0.314331216658076,
+        "fp_delta_vs_global": 9625.621359223302
+      },
+      "attention_unet": {
+        "h2b_predicted_macro_dice": 0.2905690515971009,
+        "global_macro_dice": 0.6298049685888003,
+        "delta_h2b_global": -0.3392359169916993,
+        "fp_delta_vs_global": 9857.815533980582
+      },
+      "unetpp": {
+        "h2b_predicted_macro_dice": 0.2946880416231168,
+        "global_macro_dice": 0.6405155030126884,
+        "delta_h2b_global": -0.3458274613895716,
+        "fp_delta_vs_global": 10507.456310679612
+      },
+      "deeplabv3plus": {
+        "h2b_predicted_macro_dice": 0.2646137888806052,
+        "global_macro_dice": 0.5602505353552288,
+        "delta_h2b_global": -0.2956367464746235,
+        "fp_delta_vs_global": 11031.233009708738
+      }
+    },
+    "h2b_below_global_all_four": true,
+    "fp_delta_positive_all_four": true,
+    "adjudicated_state": "GLOBAL_PRESERVATION_NOT_RESTORED__WORSE_THAN_GLOBAL",
+    "supports_h2b": "NO",
+    "limitations": [
+      "no new numeric cutoff introduced"
+    ]
+  },
+  "dimension_C_regional_utility": {
+    "dimension_id": "C",
+    "dimension_name": "REGIONAL_UTILITY",
+    "per_model": {
+      "unet": {
+        "recoveries_vs_global": 10,
+        "losses_vs_global": 0,
+        "h2b_oracle_benefit_retention": -2.4078927685283187,
+        "h2b_oracle_gap": -0.4448732494123802
+      },
+      "attention_unet": {
+        "recoveries_vs_global": 7,
+        "losses_vs_global": 0,
+        "h2b_oracle_benefit_retention": -4.8608376985768125,
+        "h2b_oracle_gap": -0.4090255166508328
+      },
+      "unetpp": {
+        "recoveries_vs_global": 11,
+        "losses_vs_global": 0,
+        "h2b_oracle_benefit_retention": -4.01360317962593,
+        "h2b_oracle_gap": -0.4319913011894501
+      },
+      "deeplabv3plus": {
+        "recoveries_vs_global": 16,
+        "losses_vs_global": 0,
+        "h2b_oracle_benefit_retention": -1.5549917565842242,
+        "h2b_oracle_gap": -0.4857578485465951
+      }
+    },
+    "component_losses_vs_global_zero_all_four": true,
+    "cross_architecture": {
+      "components_recovered_vs_global_by_at_least_one": 22,
+      "components_recovered_vs_global_by_all4": 3,
+      "components_lost_vs_global_by_at_least_one": 0,
+      "components_lost_vs_global_by_all4": 0
+    },
+    "oracle_benefit_retention_negative_all_four": true,
+    "adjudicated_state": "PARTIAL_RECOVERY_SIGNAL_RETAINED__NET_UTILITY_NOT_ACHIEVED",
+    "supports_h2b": "NO",
+    "limitations": [
+      "favourable recovery evidence is real and preserved: 22 components recovered by >=1 architecture and ZERO lost vs GLOBAL",
+      "but oracle-benefit retention is negative for all four architectures"
+    ]
+  },
+  "dimension_D_cross_architecture_generality": {
+    "dimension_id": "D",
+    "dimension_name": "CROSS_ARCHITECTURE_GENERALITY",
+    "cross_architecture": {
+      "cases_h2b_improved_vs_global_all4": 2,
+      "cases_h2b_nonworse_vs_global_all4": 2,
+      "cases_h2b_worse_vs_global_all4": 87,
+      "cases_h2b_improved_vs_phase13_all4": 32,
+      "cases_h2b_worse_vs_phase13_all4": 50,
+      "components_recovered_vs_global_by_at_least_one": 22,
+      "components_recovered_vs_global_by_all4": 3,
+      "components_lost_vs_global_by_at_least_one": 0,
+      "components_lost_vs_global_by_all4": 0,
+      "cases_h2b_improved_vs_h2a_all4": 31,
+      "cases_h2b_worse_vs_h2a_all4": 51
+    },
+    "h2b_below_all_comparators_all_four": true,
+    "adjudicated_state": "CONSISTENTLY_UNFAVOURABLE_ACROSS_ALL_FOUR_ARCHITECTURES",
+    "supports_h2b": "NO",
+    "limitations": [
+      "no architecture ranking; no p-values"
+    ]
+  },
+  "authoritative_downstream_pattern": {
+    "h2b_dice_below_global_all_four": true,
+    "h2b_dice_below_phase13_all_four": true,
+    "h2b_dice_below_h2a_all_four": true,
+    "fp_burden_higher_than_global_all_four": true,
+    "fp_burden_higher_than_prior_predicted_paths": true,
+    "cross_architecture_case_level_consistently_unfavourable": true,
+    "favourable_evidence_preserved": [
+      "component recoveries vs GLOBAL: 10 / 7 / 11 / 16 (UNet / Attention / UNet++ / DeepLabV3+)",
+      "component losses vs GLOBAL: 0 for all four",
+      "components recovered vs GLOBAL by >=1 architecture: 22 (by all four: 3)",
+      "components lost vs GLOBAL by >=1 architecture: 0"
+    ]
+  },
+  "h2b_outcome": "H2B_OBJECTIVE_REDESIGN_INSUFFICIENT",
+  "h2b_outcome_is_frozen_label": true,
+  "reasoning": "H2B changed exactly the authorized axis (loss/objective semantics) and nothing else. The intended direction was improved heatmap discrimination and proposal precision while preserving object coverage. Physically, the H2B best checkpoint was WORSE than the H2A baseline on every localizer quality metric (9/9), and the downstream predicted-region path was worse than GLOBAL, Phase13 predicted and H2A predicted on all four architectures, with a materially larger FP burden. Because the frozen PARTIAL label requires reproducible FAVOURABLE localizer changes, PARTIAL cannot apply; SUFFICIENT plainly cannot apply. The frozen outcome space therefore resolves to INSUFFICIENT.",
+  "h2b_proves_sole_cause": "NO",
+  "winner": "NONE",
+  "selected_threshold": "NONE",
+  "new_numerical_thresholds": 0,
+  "new_configs": 0,
+  "new_subgroups": 0,
+  "new_weighted_score": 0,
+  "statistical_claim": "NONE",
+  "h2c_eligibility": {
+    "h2c_protocol_design": "ELIGIBLE_FOR_SUPERVISOR_AUTHORIZATION",
+    "basis": "Frozen protocol branch if_h2b_insufficient: representation/head redesign MAY_BECOME_ELIGIBLE_NOT_AUTHORIZED; h3 fusion redesign FUTURE_AXIS_NOT_AUTHORIZED.",
+    "h2c_execution": "NOT_AUTHORIZED",
+    "h2c_designed_in_this_task": "NO",
+    "h3": "FUTURE_AXIS_NOT_AUTHORIZED"
+  },
+  "counters": {
+    "training": 0,
+    "optimizer": 0,
+    "model_constructions": 0,
+    "cuda": 0,
+    "localizer_forwards": 0,
+    "segmentation_forwards": 0,
+    "proposal_generation": 0,
+    "oracle_reruns": 0,
+    "test_reads": 0,
+    "external_test_reads": 0
+  },
+  "continuity": {
+    "phase13": "COMPLETE_FROZEN",
+    "original_gate": "REVISE_LOCALIZER_FROZEN",
+    "h1": "CLOSED",
+    "h2a": "CLOSED__SELECTION_REDESIGN_PARTIAL",
+    "h2b_b1": "COMPLETE_PASS_FROZEN",
+    "h2b_b2": "COMPLETE_PASS_FROZEN",
+    "h2b_reporting_reconciliation": "COMPLETE_PASS",
+    "h2b_outcome_adjudication": "COMPLETE_PASS",
+    "h2b": "CLOSED__OBJECTIVE_REDESIGN_INSUFFICIENT",
+    "h2c": "PROTOCOL_DESIGN_ELIGIBLE_NOT_AUTHORIZED",
+    "phase14": "NOT_STARTED",
+    "test": "UNTOUCHED"
+  },
+  "next_action": "WAIT_FOR_SUPERVISOR_H2C_PROTOCOL_DESIGN_AUTHORIZATION",
+  "stopped": "YES"
+}

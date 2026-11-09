@@ -1,0 +1,120 @@
+{
+  "artifact": "phase36_v1_11_source_repair_no_execution_audit",
+  "phase": 36,
+  "section": "§Q",
+  "method": "RA-MedFiLM-BARR",
+  "revision": "ra_medfilm_barr_phase36_robustness_v1_11",
+  "type": "ZERO_EXECUTION_AUDIT",
+  "torch_imported": false,
+  "torch_imported_at_module_scope": false,
+  "protected_population_read": false,
+  "counter_source": "static analysis of the v1.11 pre-smoke governance convergence work order",
+  "counters": {
+    "model_constructions": 0,
+    "checkpoint_deserializations": 0,
+    "checkpoint_loads": 0,
+    "forwards": 0,
+    "cuda_execution": 0,
+    "autograd": 0,
+    "val_image_reads": 0,
+    "val_ground_truth_reads": 0,
+    "val808_scientific_reads": 0,
+    "router_holdout_reads": 0,
+    "test_reads": 0,
+    "training_runs": 0,
+    "optimizer_steps": 0,
+    "parameter_mutations": 0,
+    "phase36_smoke_executions": 0,
+    "phase36_science_executions": 0,
+    "launcher_dispatches": 0
+  },
+  "all_counters_zero": true,
+  "v1_11_generator_scan": {
+    "scripts/analysis/phase36_robustness_unit_v1_11.py": {
+      "present": true,
+      "ast_parse": true,
+      "imports_torch": false,
+      "protected_path_read_sites": [],
+      "sha256": "189b9957704beccff1ba9c198e7f2f9ed29fa351e9cfc6f46d03441adeaeac41"
+    },
+    "scripts/analysis/phase36_robustness_negative_controls_v1_11.py": {
+      "present": true,
+      "ast_parse": true,
+      "imports_torch": false,
+      "protected_path_read_sites": [],
+      "sha256": "38b7cdda85234c52c75fc28d8903ad9d46b64d9db89978e6e1fc93a1b97fb4ae"
+    },
+    "scripts/analysis/phase36_robustness_preflight_v1_11.py": {
+      "present": true,
+      "ast_parse": true,
+      "imports_torch": false,
+      "protected_path_read_sites": [],
+      "sha256": "5f70178c34a70c175413ea2ee97d785f875a4697df0c6c2f0110fcc9e607852f"
+    },
+    "scripts/analysis/build_phase36_v1_11_semantic_diff.py": {
+      "present": true,
+      "ast_parse": true,
+      "imports_torch": false,
+      "protected_path_read_sites": [],
+      "sha256": "1bff2b16c3b5ceea14d4a43cbe47d03755c428925b760130d3d062d64b6e2ba1"
+    },
+    "scripts/analysis/audit_phase36_v1_11_direct_source_bytes.py": {
+      "present": true,
+      "ast_parse": true,
+      "imports_torch": false,
+      "protected_path_read_sites": [],
+      "sha256": "1a964dd632a287ceed3157144d2e0209283c95599de8287314b97e604b9b0d91"
+    },
+    "scripts/analysis/audit_phase36_v1_11_no_execution.py": {
+      "present": true,
+      "ast_parse": true,
+      "imports_torch": false,
+      "protected_path_read_sites": [],
+      "sha256": "363c7c41fa4b42d2870fd6062dfcbf0cc7ac6c719c1f7f0bb57d3d42b92c9bd5"
+    },
+    "scripts/analysis/build_phase36_v1_11_runtime_integrity_manifest.py": {
+      "present": true,
+      "ast_parse": true,
+      "imports_torch": false,
+      "protected_path_read_sites": [],
+      "sha256": "d188b290f246d97aae2a2d9a79013733351c4033ff88e765a5130081df702d5c"
+    },
+    "scripts/analysis/build_phase36_v1_10_availability_record.py": {
+      "present": true,
+      "ast_parse": true,
+      "imports_torch": false,
+      "protected_path_read_sites": [],
+      "sha256": "3acdd3b7d18637c1141e703b4ee83a9f0f48032ee58b59f02439cbef9c1dac2f"
+    },
+    "scripts/analysis/build_phase36_v1_11_freeze_and_eligibility.py": {
+      "present": true,
+      "ast_parse": true,
+      "imports_torch": false,
+      "protected_path_read_sites": [],
+      "sha256": "02b4aba60046ae17dc9d27afdff216411d4fc1d8939db099db52be7c7c8af1bf"
+    },
+    "scripts/analysis/launch_phase36_v1_11.py": {
+      "present": true,
+      "ast_parse": true,
+      "imports_torch": false,
+      "protected_path_read_sites": [],
+      "sha256": "56612332d220f93611fc627b1f495aca3013bb3578ab801ee10b4ee0386b25b0"
+    }
+  },
+  "all_v1_11_generators_clean": true,
+  "v1_11_subject_scan": {
+    "present": true,
+    "ast_parse": true,
+    "imports_torch": true,
+    "protected_path_read_sites": [],
+    "sha256": "dc4928417444304ad637907c53089e512577254b368e438d0098ade6202083f0"
+  },
+  "v1_11_subject_clean": true,
+  "artifact_existence_proof": {
+    "forbidden_artifacts_present": [],
+    "smoke_executed": false,
+    "science_executed": false
+  },
+  "subject": "scripts/analysis/phase36_robustness_execution_v1_11.py",
+  "subject_sha256": "dc4928417444304ad637907c53089e512577254b368e438d0098ade6202083f0"
+}

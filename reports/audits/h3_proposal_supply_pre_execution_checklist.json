@@ -1,0 +1,101 @@
+{
+  "artifact": "H3_PROPOSAL_SUPPLY_PRE_EXECUTION_CHECKLIST",
+  "generated_utc": "2026-09-23T15:49:51Z",
+  "intervention": "A_TARGET_SUPPORT_REDESIGN",
+  "authorization_required_before_training": true,
+  "current_status": "H3_FINAL_PRETRAINING_BINDING_COMPLETE__AWAITING_TRAINING_AUTHORIZATION",
+  "correction_note": "Pre-execution reconciliation (supervisor ruling) completed: H3 YAML config loss/proposal/A_ref corrected, TRAIN population bound to clean-v3 manifest (770 images / 1161 components), authoritative A_ref=13.0 frozen, non-degeneracy + 12 unit tests PASS, dry-run (training_steps=0) PASS. No H3 training launched; all training counters remain 0.",
+  "checklist": [
+    {
+      "id": "C1",
+      "item": "Single intervention only — target-support redesign; no reweighting, no head change",
+      "status": "PASS__DESIGN",
+      "evidence": "h3_proposal_supply_code_change_spec.json (Option A only; B/C rejected)"
+    },
+    {
+      "id": "C2",
+      "item": "make_gaussian_heatmap modified with BACKWARD-COMPATIBLE component_areas default (None preserves fixed-sigma behavior)",
+      "status": "PASS__DESIGN",
+      "evidence": "code_change_spec.change_1"
+    },
+    {
+      "id": "C3",
+      "item": "kub_localizer_dataset opt-in flag size_adaptive_sigma default False (Phase-13B behavior byte-identical when False)",
+      "status": "PASS__DESIGN",
+      "evidence": "code_change_spec.change_2"
+    },
+    {
+      "id": "C4",
+      "item": "All non-H3 axes frozen and SHA-bound (dataset, input, architecture, loss, optimizer, proposal policy, refiner, global baseline, eval, TEST)",
+      "status": "PASS__DESIGN",
+      "evidence": "h3_proposal_supply_unchanged_axes_matrix.json"
+    },
+    {
+      "id": "C5",
+      "item": "Parent Phase-13B localizer bound (epoch 53, SHA 7673c34a...) — reused, NOT fine-tuned",
+      "status": "PASS__DESIGN",
+      "evidence": "h3_proposal_supply_design_protocol.json bound_parent_localizer"
+    },
+    {
+      "id": "C6",
+      "item": "Downstream checkpoints bound: Phase-14 refiner epoch 56 (2e09e3a9...), Phase-10 UNet++ epoch 70 (ec7eb13f...)",
+      "status": "PASS__DESIGN",
+      "evidence": "h3_proposal_supply_design_protocol.json bound_downstream_checkpoints"
+    },
+    {
+      "id": "C7",
+      "item": "No scientific parameter selected using B2/H2C results",
+      "status": "PASS__DESIGN",
+      "evidence": "governance.no_scientific_parameter_selected_using_b2_or_h2c_results"
+    },
+    {
+      "id": "C8",
+      "item": "TEST reads = 0; EXTERNAL_TEST reads = 0",
+      "status": "PASS__DESIGN",
+      "evidence": "counters.test_reads=0, counters.external_test_reads=0"
+    },
+    {
+      "id": "C9",
+      "item": "Prospective success/failure criteria defined, including H3_SUPPLY_REDESIGN_INSUFFICIENT boundary",
+      "status": "PASS__DESIGN",
+      "evidence": "h3_proposal_supply_success_failure_criteria.json"
+    },
+    {
+      "id": "C10",
+      "item": "Checkpoint-selection rule defined (VAL localization recall, tiebreak VAL loss)",
+      "status": "PASS__DESIGN",
+      "evidence": "h3_proposal_supply_checkpoint_selection_rule.json"
+    },
+    {
+      "id": "C11",
+      "item": "Resume/operational robustness for long localizer training present (operational only, scientific computation unchanged)",
+      "status": "PASS__BY_ANALOGY_WITH_PHASE14",
+      "evidence": "phase14 freeze manifest resume_capability pattern; localizer training uses same harness"
+    },
+    {
+      "id": "C12",
+      "item": "Apply code change (C2/C3) with the CORRECTED non-degenerate sigma mapping, VERIFY backward-compatibility + H3-branch unit tests pass, AND verify final execution-exact config + dry-run resolve with training_steps=0 BEFORE any training launch",
+      "status": "PASS__FINAL_IMPLEMENTATION_VERIFIED",
+      "evidence": "tests/test_h3_size_adaptive_sigma.py (12 passed); src/inference/heatmap_targets.py; src/data/kub_localizer_dataset.py; dry-run report (training_steps_executed=0, all bindings resolved); reports/audits/h3_proposal_supply_final_pretraining_binding_v2.json"
+    },
+    {
+      "id": "C13",
+      "item": "Supervisor authorizes H3 TRAINING (current task is DESIGN/IMPLEMENT-BIND ONLY — no training launched)",
+      "status": "PENDING__SUPERVISOR_TRAINING_AUTHORIZATION",
+      "evidence": "final_status = H3_FINAL_PRETRAINING_BINDING_COMPLETE__AWAITING_TRAINING_AUTHORIZATION; training_counters.epochs_trained = 0"
+    },
+    {
+      "id": "C14",
+      "item": "Pre-execution parameterization defect (sigma_i = clip(4.0*sqrt(area_i), 0.35, 0.75) degenerates to 0.75 for all components) corrected additively to sigma_i = clip(0.35 + 0.40*sqrt(A128_i / A_ref), 0.35, 0.75); non-degeneracy verified over TRAIN components",
+      "status": "PASS__CORRECTION_APPLIED_AND_VERIFIED",
+      "evidence": "h3_proposal_supply_design_correction.json; reports/tables/h3_v2_area_distribution.json (non_degeneracy.passed=true)"
+    },
+    {
+      "id": "C15",
+      "item": "Config and calibration RECONCILED: H3 YAML loss matches authoritative parent (CenterNetFocalLoss alpha=2.0/beta=4.0); singleton proposal decode frozen; A_ref bound to authoritative clean-v3 TRAIN p75=13.0; population bound to manifest (770/1161); orphans quarantined",
+      "status": "PASS__CONFIG_AND_CALIBRATION_RECONCILED",
+      "evidence": "configs/kub/phase13b_localizer_h3_size_adaptive_sigma.yaml (sha 320a3670...); reports/tables/h3_v2_area_distribution.json (sha a6830931...); dry-run report; reports/audits/h3_proposal_supply_final_pretraining_binding_v2.json"
+    }
+  ],
+  "summary": "All design-phase and pre-execution reconciliation gates PASS. C12 (final implementation verified — code applied, BC + 12 unit tests pass, dry-run resolves with training_steps=0), C14 (non-degenerate correction verified), and C15 (config + calibration reconciled) now PASS. C13 remains PENDING (training not authorized). No H3 checkpoint exists; training counters are 0. Phase-15 remains NOT_STARTED_AND_NOT_AUTHORIZED. Ready state: H3_FINAL_PRETRAINING_BINDING_COMPLETE__AWAITING_TRAINING_AUTHORIZATION."
+}

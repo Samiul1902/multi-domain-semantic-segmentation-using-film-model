@@ -1,0 +1,62 @@
+{
+  "audit": "phase09_clean_v3_training_start_audit",
+  "phase": "09 \u2014 CLEAN-v3 KUB UNet Baseline (Part 1A)",
+  "experiment_id": "phase9_kub_unet_baseline_seed42_512_clean_v3",
+  "config_path": "configs/phase09_clean_v3/phase09_unet_baseline_clean_v3.yaml",
+  "config_sha": "8a45458c7c5e34062214a741550a84ff9ab56e4ad9ceef81cbcf263052b5172a",
+  "manifest_version": "phase4_v3",
+  "manifest_hashes": {
+    "train": "28702fc3a5ff8b950db372f03232d335e3a30b1fc2f21db7cd8c066055826ed6",
+    "val": "082c80b2bda63fd73f371f109c34643adf01edaead921643fb2e44993ba53315",
+    "test": "9361eba61c91c034a9aa4988a4df229bba591a5cbd553c98689ac7915da29727"
+  },
+  "taxonomy_id": "kub_size_clean_v3_v1",
+  "taxonomy_artifact_sha": "89031c51a35c24f6f939fd6206fde6002a019d4bda24ce8cb21988f04db0f0d6",
+  "git_commit": "fb160ac442084f8a11b647f5a8411abe700f9835",
+  "environment": {
+    "cuda_available": true,
+    "cuda_device_count": 1,
+    "cuda_device": "NVIDIA GeForce RTX 3060 Ti",
+    "pytorch_version": "2.6.0+cu124",
+    "cuda_runtime_version": "12.4",
+    "cudnn_version": 90100,
+    "cuda_capability": [
+      8,
+      6
+    ],
+    "canonical_requires_cuda": true
+  },
+  "seed": 42,
+  "start_utc": "2026-09-20T06:53:00.854097+00:00",
+  "pre_run_gates": {
+    "manifest_guard": true,
+    "kub_train_1978": true,
+    "kub_val_280": true,
+    "patient_overlap_zero": true,
+    "test_construction_blocked": true,
+    "taxonomy_artifact_sha": true,
+    "cuda_available": true,
+    "device_require_cuda": true,
+    "config_validation": true,
+    "test_lock_verified": true
+  },
+  "run_lock": {
+    "pid": 28392,
+    "recovered_stale_lock": false
+  },
+  "historical_checkpoints_reference_only": {
+    "best.pt": "a32d7fff1e019a179ef011795b6be8ee98ab548831f790a557726f32b38db8ec",
+    "latest.pt": "2b535401e7db95469b39a62bd6b6df51e0e298c32d00047465bc39ababd0ad61"
+  },
+  "authorized_differences_vs_v2": [
+    "manifest_version phase4_v2 -> phase4_v3",
+    "taxonomy_id None -> kub_size_clean_v3_v1",
+    "experiment_id new clean-v3 logical run",
+    "fail-loud CUDA device contract",
+    "centralized mask > 0 target helper",
+    "additional provenance/checkpoint/resume metadata",
+    "single-writer protection"
+  ],
+  "test_content_reads": 0,
+  "scientific_parameter_changes": 0
+}

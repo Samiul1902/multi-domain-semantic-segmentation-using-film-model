@@ -1,0 +1,191 @@
+{
+ "artifact": "phase25d_frozen_training_spec_binding",
+ "phase": "25D",
+ "classification": "FAIL_CLOSED_SPEC_AUDIT",
+ "method": "RA-MedFiLM-BARR",
+ "architecture_revision": "ra_medfilm_barr_narrowed_v1_2",
+ "authoritative_sources": {
+  "phase24_exact_implementation_spec.json": {
+   "sha256": "6b1a71d5e88ce06baa8f200523be32773428417ffd233ff218d7e50b6af271dd"
+  },
+  "phase24_spec_repair_freeze.json": {
+   "sha256": "e0c5ea7b5ff129482a56236c6295b4bdbf82940747d556c9e67293815bb5362a"
+  },
+  "phase24_router_feature_dimension_contract_v1_2.json": {
+   "sha256": "d90387f6346937800288ee02b0700c5528065c34f63d0caffeb14a83d3099241"
+  },
+  "phase24_router_feature_spec_completion_v1_2.json": {
+   "sha256": "a5e3da503b8146a9162b74e19b91c74a8aa853b1e484c099d6063f5b51b4e5f4"
+  },
+  "phase24_benefit_data_protocol_exact.json": {
+   "sha256": "6e37a7c82668041e3a83a80e92465e5ea6036acb10e3104a25aa11cdc10a123f"
+  },
+  "phase24_paired_refinement_gain_contract.json": {
+   "sha256": "a16bf29c3fc1550e9a80bef438c57b7f776dbc30bf2236515564d000cd90624e"
+  },
+  "phase24_architecture_spec.json": {
+   "sha256": "bd5522678571f9b40e3ae887c7fd6c2d7862b3e73152eab1ae7db13cab6c6071"
+  },
+  "phase24_v1_2_feature_spec_final_check.json": {
+   "sha256": "314f1602cee09f601c8a21dfe20ac143249fd8ca4e5c97d13e6fa222deccff54"
+  }
+ },
+ "recovered_present_fields": {
+  "architecture": "Linear(input_dim,128) -> LayerNorm(128) -> SiLU -> Dropout(0.10) -> Linear(128,64) -> LayerNorm(64) -> SiLU -> Dropout(0.10) -> Linear(64,1)",
+  "activation": "SiLU",
+  "dropout": 0.1,
+  "hidden_dimensions": [
+   128,
+   64
+  ],
+  "task_embedding": {
+   "n_tasks": 4,
+   "embedding_dim": 16,
+   "task_id_mapping": {
+    "ISIC": 0,
+    "BUSI": 1,
+    "KVASIR": 2,
+    "KUB": 3
+   }
+  },
+  "input_dim_closed_form": 218,
+  "input_dim_breakdown": {
+   "tap_axes": 6,
+   "tap_axes_x_width": 192,
+   "scalars": 10,
+   "task_embedding": 16
+  },
+  "output": "Delta_hat_Dice (single continuous scalar)",
+  "harm_head": "NOT part of the primary router; pre-registered extension only",
+  "loss": "Huber loss, delta = 0.05",
+  "optimizer": "AdamW",
+  "lr": 0.001,
+  "weight_decay": 0.0001,
+  "batch_size": 128,
+  "max_epochs": 200,
+  "early_stopping_patience": 20,
+  "scheduler": "ReduceLROnPlateau(factor=0.5, patience=8, min_lr=1e-6)",
+  "seed": 42,
+  "epoch_selection": "deterministic 5-fold group-safe cross-validation inside ROUTER_DEVELOPMENT OOF gain rows",
+  "final_training": "B_phi_final trained on all eligible ROUTER_DEVELOPMENT gain rows for the median selected epoch count",
+  "holdout_for_fitting_or_epoch_selection": false,
+  "normalization": "mean/std computed on ROUTER_DEVELOPMENT only for scalar continuous descriptors",
+  "normalization_stats_source": "ROUTER_DEVELOPMENT only",
+  "normalization_from_holdout_val_test": "FORBIDDEN",
+  "expected_parameter_count_closed_form": 36353,
+  "canonical_total_trainable_parameters": 36801,
+  "resource_cost_enters_delta_hat": false
+ },
+ "genuinely_absent_fields": {
+  "cv_fold_count_explicit": {
+   "value": null,
+   "searched": [
+    "router.fold_count",
+    "router.cv.n_splits",
+    "router.crossfit"
+   ],
+   "found": "the string 'deterministic 5-fold group-safe cross-validation' in router.epoch_selection only -- a LABEL, not a numeric field"
+  },
+  "cv_fold_assignment_algorithm": {
+   "value": null,
+   "searched": [
+    "router.crossfit",
+    "router.cv_algorithm",
+    "any 'n_splits'/'GroupKFold'/'StratifiedGroup' definition"
+   ],
+   "found": "ABSENT -- no fold-assignment procedure, no group-stratification rule, no per-fold seed derivation, no ordering rule for the 5 router folds"
+  },
+  "cv_inner_split_rule": {
+   "value": null,
+   "searched": [
+    "router.crossfit",
+    "router.inner_split"
+   ],
+   "found": "ABSENT for the router (the refiner's 3-fold crossfit DOES specify inner_fitting_fraction 0.9 / inner_early_stop_fraction 0.1)"
+  },
+  "checkpoint_selection_rule": {
+   "value": null,
+   "searched": [
+    "router.checkpoint_selection",
+    "router.best_epoch_rule"
+   ],
+   "found": "ABSENT for the router (the refiner specifies 'lowest validation loss (primary)'). Phase25D was asked to expect 'lowest validation Huber loss' but no authoritative artifact states it."
+  },
+  "checkpoint_tie_rule": {
+   "value": null,
+   "searched": [
+    "router.tie_rule",
+    "router.epoch_selection tie handling"
+   ],
+   "found": "ABSENT"
+  },
+  "target_scaling_semantics": {
+   "value": null,
+   "searched": [
+    "router.target_scaling",
+    "router.target_normalization",
+    "paired_gain_contract target transform"
+   ],
+   "found": "ABSENT -- no statement on whether delta_dice is used raw; the contract only names the continuous target. (Phase25D intends raw/unscaled, but that is not authoritatively frozen.)"
+  },
+  "final_refit_scheduler_semantics": {
+   "value": null,
+   "searched": [
+    "router.final_refit_scheduler",
+    "router.final_monitor",
+    "final_training scheduler note"
+   ],
+   "found": "ABSENT -- router.final_training says 'median selected epoch count' but the no-validation refit has NO validation set to drive ReduceLROnPlateau, and no substitute monitor/step schedule is frozen. Contrast: the refiner's final block DOES state early_stopping_on_holdout=false with an explicit epoch_rule."
+  },
+  "final_refit_seed_policy": {
+   "value": null,
+   "searched": [
+    "router.final_refit_seed",
+    "router.final_training seed"
+   ],
+   "found": "ABSENT for the router (the refiner specifies 'reinitialize BARRRegionalRefinerV1 from seed 42'); router seed policy for the final refit is not stated."
+  },
+  "median_epoch_rule_exact": {
+   "value": null,
+   "searched": [
+    "router.median_rule",
+    "router.final_epoch_rule"
+   ],
+   "found": "PARTIAL -- 'median selected epoch count' is stated in prose but the exact integer rule for 5 values is not frozen (Phase25D was asked to expect 'third sorted value' -- that expectation is not authoritatively frozen)."
+  }
+ },
+ "blocking_fields": [
+  "cv_fold_assignment_algorithm",
+  "cv_inner_split_rule",
+  "checkpoint_selection_rule",
+  "checkpoint_tie_rule",
+  "target_scaling_semantics",
+  "final_refit_scheduler_semantics",
+  "final_refit_seed_policy",
+  "median_epoch_rule_exact"
+ ],
+ "hard_blocking_fields": [
+  "cv_fold_assignment_algorithm",
+  "cv_inner_split_rule",
+  "checkpoint_selection_rule",
+  "target_scaling_semantics",
+  "final_refit_scheduler_semantics"
+ ],
+ "specification_complete": false,
+ "specification_incomplete": true,
+ "missing_field_report": [
+  "cv_fold_assignment_algorithm",
+  "cv_inner_split_rule",
+  "checkpoint_selection_rule",
+  "target_scaling_semantics",
+  "final_refit_scheduler_semantics"
+ ],
+ "model_constructed": false,
+ "training_runs": 0,
+ "router_instantiated": false,
+ "verdict": "PHASE25D_BLOCKED__ROUTER_TRAINING_SPEC_INCOMPLETE",
+ "terminal": "PHASE25D_BLOCKED__ROUTER_TRAINING_SPEC_INCOMPLETE",
+ "action": "STOP_BEFORE_MODEL_CONSTRUCTION",
+ "test_reads": 0,
+ "generated_utc": "2026-09-30T17:51:38.401026+00:00"
+}

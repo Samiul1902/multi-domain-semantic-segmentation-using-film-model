@@ -1,0 +1,180 @@
+{
+ "classification": "EXT03_SEGFORMER_B0_DIVERGENCE_AND_THIRD_HOST_INTERRUPTION_ADJUDICATION",
+ "schema_version": "1.0",
+ "generated_local": "2026-10-25T21:20:00",
+ "scope": "EXT-03 baseline matrix, run segformer_b0_seed42",
+ "part_1_interruption": {
+  "sequence": 3,
+  "prior_incidents": [
+   {
+    "artifact": "reports/audits/ext03_host_interruption_adjudication_20261022_v1_0.json",
+    "run": "unetpp_seed123",
+    "epoch": 52
+   },
+   {
+    "artifact": "reports/audits/ext03_host_interruption_adjudication_20261025_v1_0.json",
+    "run": "deeplabv3plus_seed3407",
+    "epoch": 98
+   }
+  ],
+  "last_logged_epoch": 5,
+  "last_log_line_walltime": "2026-10-25T20:24:42",
+  "host_last_boot_up_time": "2026-10-25T21:08:14",
+  "system_log_silence_window": [
+   "2026-10-25T20:20:00",
+   "2026-10-25T21:08:33"
+  ],
+  "system_log_silence_minutes": 48.5,
+  "system_log_events_in_silence_window": 0,
+  "clean_shutdown_1074_present": false,
+  "eventlog_stopped_6006_present": false,
+  "unexpected_shutdown_41_6008_present": false,
+  "bugcheck_1001_present": false,
+  "kernel_power_42_107_109_present": false,
+  "memory_dumps_found": 0,
+  "wer_python_reports_found": 0,
+  "runner_traceback_lines": 0,
+  "process_state_after": "ABSENT (zero python.exe)",
+  "cause_class": "HOST_LEVEL_TERMINATION__NOT_A_TRAINER_DEFECT",
+  "origin_claimed": false,
+  "rtc_anomaly": {
+   "event": "Time-Service ID 52: time set with offset 448320 seconds",
+   "kernel_general_id_1": "system time changed to 2026-10-25T15:08:33Z from 2026-10-20T10:36:33Z",
+   "offset_days": 5.19,
+   "interpretation": "The hardware RTC was 5.19 days behind at this boot and was corrected by NTP. A real-time clock that does not advance across power-off is the signature of a depleted CMOS/RTC battery, which is itself consistent with repeated abrupt loss of wall power.",
+   "claim_strength": "SUPPORTING_EVIDENCE_ONLY__CAUSE_OF_POWER_LOSS_NOT_CLAIMED"
+  }
+ },
+ "part_2_segformer_divergence": {
+  "defect_id": "D99",
+  "name": "EXT03_SEGFORMER_B0_FROM_SCRATCH_DIVERGES_TO_NAN_UNDER_LR_1E_3_AND_AMP",
+  "is_scientific_result": false,
+  "is_technical_failure_of_run": true,
+  "observed_epoch_series": [
+   {
+    "epoch": 1,
+    "loss": 0.3898,
+    "macro": 0.0
+   },
+   {
+    "epoch": 2,
+    "loss": 0.3872,
+    "macro": 0.0
+   },
+   {
+    "epoch": 3,
+    "loss": 0.3498,
+    "macro": 0.0
+   },
+   {
+    "epoch": 4,
+    "loss": 0.3499,
+    "macro": 0.0027
+   },
+   {
+    "epoch": 5,
+    "loss": "nan",
+    "macro": 0.0
+   }
+  ],
+  "checkpoint_state": {
+   "path": "reports/baselines/runs/segformer_b0_seed42/latest.pt",
+   "size_bytes": 44849466,
+   "epoch": 5,
+   "best": 0.0027414185447021335,
+   "best_epoch": 4,
+   "bad": 1,
+   "float_tensors": 207,
+   "float_tensors_poisoned": 2,
+   "max_abs_weight": "inf",
+   "poisoned_tensors": {
+    "backbone.decode_head.batch_norm.running_mean": "contains inf (3.4028234663852886e+38)",
+    "backbone.decode_head.batch_norm.running_var": "contains nan"
+   },
+   "resumable": false,
+   "resume_rationale": "A checkpoint whose BatchNorm running statistics contain inf/nan produces NaN in every subsequent eval-mode forward pass. Resuming propagates the poisoning indefinitely; it does not recover."
+  },
+  "mechanism": {
+   "model_construction": "src/models/segformer_b0.py builds SegformerForSemanticSegmentation from SegformerConfig ONLY; no pretrained weights are loaded (documented as intentional in the module docstring: 'NO pretrained weights, NO from_pretrained download').",
+   "optimizer_in_use": "torch.optim.Adam(lr=1e-3, weight_decay=1e-4)  [run_ext03_baseline_matrix.py L121]",
+   "loss_in_use": "binary_cross_entropy_with_logits  [L171]",
+   "amp": "torch.cuda.amp.autocast + GradScaler enabled  [L122-123]",
+   "grad_clipping": "NONE",
+   "frozen_protocol_says": {
+    "optimizer": "AdamW",
+    "learning_rate": 0.0001,
+    "loss": "bce_dice 0.5/0.5",
+    "augmentation": "hflip 0.5 / rot 5deg / brightness 0.1 / contrast 0.1",
+    "amp": true
+   },
+   "divergence_factor": "10x higher LR than the frozen authority, with a first-order optimizer instead of AdamW",
+   "failure_chain": [
+    "1. SegFormer-B0 is trained from random initialisation, so early activations are large and unnormalised.",
+    "2. LR 1e-3 on a transformer with no gradient clipping grows the decode-head activations until they overflow the fp16 autocast range.",
+    "3. The decode head's BatchNorm1d(256) receives an infinite batch mean from the overflowed activations; running_mean becomes inf, and running_var becomes nan (inf - inf).",
+    "4. From that point every eval-mode forward pass is NaN, and the training loss itself goes NaN at epoch 5.",
+    "5. AMP GradScaler cannot protect against this: the overflow happens in the forward pass and the BN running-statistics update, neither of which is guarded by the scaler."
+   ]
+  },
+  "protocol_authority_gap": {
+   "finding": "No SegFormer configuration exists anywhere under configs/ (grep for 'segformer' in configs/ returns zero files). The frozen internal baseline authority (configs/phase09_clean_v3, phase10_clean_v3) covers only the UNet family.",
+   "consequence": "SegFormer-B0's hyperparameters have NO frozen authority. The runner's Adam(lr=1e-3) is the only definition it has ever had, and it was never validated before being committed to a 3-seed matrix."
+  },
+  "measured_epoch_cost": {
+   "minutes_per_epoch": 8.77,
+   "basis": "5 epochs between 2026-10-25T19:40:51 and 2026-10-25T20:24:42"
+  },
+  "remaining_work_if_fixed": {
+   "runs": 3,
+   "epochs_per_run": 79,
+   "hours": 33.6
+  },
+  "remaining_work_if_unfixed": {
+   "outcome": "3/3 runs diverge to NaN within ~5 epochs; ~0.75 h each, all scientifically void"
+  }
+ },
+ "part_3_matrix_state": {
+  "COMPLETE": 12,
+  "RUNNING": 0,
+  "NOT_STARTED": 3,
+  "note": "segformer_b0_seed42 has 5 void epochs and a poisoned checkpoint; registry still reads RUNNING for it and requires correction to a technical-failure state before any relaunch."
+ },
+ "part_4_recommendation": {
+  "action_taken": "NO_RELAUNCH",
+  "rationale": "Relaunching segformer_b0 under the unchanged configuration would reproduce the identical divergence in ~45 minutes per run and consume ~34 GPU-hours producing NaN. Changing the learning rate is a scientific configuration change and requires explicit operator approval under the standing EXT-03 rules.",
+  "blocking_decision_required": true,
+  "options": [
+   {
+    "id": "A",
+    "label": "Frozen-protocol LR for SegFormer only",
+    "change": "AdamW, lr 1e-4, bce_dice, augmentation, for segformer_b0 x3 only",
+    "cost_hours": 34,
+    "consequence": "Matrix completes; SegFormer is protocol-faithful while the 4 CNN families are not, so the table needs an explicit per-family protocol note."
+   },
+   {
+    "id": "B",
+    "label": "Full protocol fidelity, all 15 runs",
+    "change": "AdamW + 1e-4 + bce_dice + augmentation for every architecture",
+    "cost_hours": 207,
+    "consequence": "Defensible single-protocol table; invalidates all 12 completed runs."
+   },
+   {
+    "id": "C",
+    "label": "Hybrid: keep 12 as reduced-protocol, add seed-42 frozen-protocol column",
+    "change": "Frozen protocol for 5 architectures x seed 42 only, plus segformer x3 at 1e-4",
+    "cost_hours": 103,
+    "consequence": "Paper gets one protocol-faithful comparison row plus a 12-run seed-variance study; cheapest path to a defensible table."
+   },
+   {
+    "id": "D",
+    "label": "Drop SegFormer-B0",
+    "change": "none",
+    "cost_hours": 0,
+    "consequence": "Matrix closes at 12 runs / 4 architectures; SegFormer exclusion must be disclosed with the D99 divergence as justification."
+   }
+  ]
+ },
+ "test_accessed": false,
+ "router_holdout_accessed": false,
+ "teacher_student_touched": false
+}

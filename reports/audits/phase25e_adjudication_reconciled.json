@@ -1,0 +1,492 @@
+{
+  "classification": "PHASE25E_RESOURCE_GATE_POLICY_EVALUATION",
+  "specification_revision": "ra_medfilm_barr_resource_gate_v1_0",
+  "stage": "ADJUDICATION_RECONCILED",
+  "reconciliation_basis": "phase25e_multiplicity_provenance_audit.json classification B: the frozen protocol designates the raw paired two-sided p as PRIMARY and Holm-Bonferroni as SECONDARY. The closure used Holm as primary; this is repaired.",
+  "primary_decision_rule": "paired_p_raw < 0.05 (frozen PRIMARY statistic)",
+  "secondary_decision_rule": "holm_adjusted_p < 0.05 (retained as conservative sensitivity only)",
+  "holm_primary_role": "SUPERSEDED_FOR_PRIMARY_ADJUDICATION",
+  "holm_secondary_role": "CONSERVATIVE_MULTIPLICITY_SENSITIVITY",
+  "alpha": 0.05,
+  "informative_budgets": [
+    "0.10",
+    "0.25",
+    "0.50"
+  ],
+  "S1_H1_status": "PARTIAL",
+  "S1_H1_supported": false,
+  "S1_budget_pass": {
+    "0.10": true,
+    "0.25": true,
+    "0.50": false
+  },
+  "S1_detail": [
+    {
+      "budget": "0.10",
+      "comparator": "C3",
+      "precision_delta": 0.2828282828282828,
+      "mean_delta_gain": 0.0107110104541705,
+      "c7_wins_precision": true,
+      "c7_wins_mean": true,
+      "paired_p_raw": 0.000999500249875,
+      "significant": true,
+      "decision_rule": "PRIMARY_RAW_PAIRED_P"
+    },
+    {
+      "budget": "0.10",
+      "comparator": "C4",
+      "precision_delta": 0.15353535353535352,
+      "mean_delta_gain": 0.0054406063262713,
+      "c7_wins_precision": true,
+      "c7_wins_mean": true,
+      "paired_p_raw": 0.000999500249875,
+      "significant": true,
+      "decision_rule": "PRIMARY_RAW_PAIRED_P"
+    },
+    {
+      "budget": "0.10",
+      "comparator": "C5",
+      "precision_delta": 0.14141414141414133,
+      "mean_delta_gain": 0.0051462414978022,
+      "c7_wins_precision": true,
+      "c7_wins_mean": true,
+      "paired_p_raw": 0.000999500249875,
+      "significant": true,
+      "decision_rule": "PRIMARY_RAW_PAIRED_P"
+    },
+    {
+      "budget": "0.10",
+      "comparator": "C6",
+      "precision_delta": 0.27474747474747474,
+      "mean_delta_gain": 0.0142440861063877,
+      "c7_wins_precision": true,
+      "c7_wins_mean": true,
+      "paired_p_raw": 0.000999500249875,
+      "significant": true,
+      "decision_rule": "PRIMARY_RAW_PAIRED_P"
+    },
+    {
+      "budget": "0.25",
+      "comparator": "C3",
+      "precision_delta": 0.1234866828087168,
+      "mean_delta_gain": 0.0058331629600949,
+      "c7_wins_precision": true,
+      "c7_wins_mean": true,
+      "paired_p_raw": 0.000999500249875,
+      "significant": true,
+      "decision_rule": "PRIMARY_RAW_PAIRED_P"
+    },
+    {
+      "budget": "0.25",
+      "comparator": "C4",
+      "precision_delta": 0.008878127522195411,
+      "mean_delta_gain": 6.115297000609983e-05,
+      "c7_wins_precision": true,
+      "c7_wins_mean": true,
+      "paired_p_raw": 0.0279860069965017,
+      "significant": true,
+      "decision_rule": "PRIMARY_RAW_PAIRED_P"
+    },
+    {
+      "budget": "0.25",
+      "comparator": "C5",
+      "precision_delta": 0.008878127522195411,
+      "mean_delta_gain": 0.00012722430468150008,
+      "c7_wins_precision": true,
+      "c7_wins_mean": true,
+      "paired_p_raw": 0.0359820089955022,
+      "significant": true,
+      "decision_rule": "PRIMARY_RAW_PAIRED_P"
+    },
+    {
+      "budget": "0.25",
+      "comparator": "C6",
+      "precision_delta": 0.1452784503631962,
+      "mean_delta_gain": 0.0076800036408826,
+      "c7_wins_precision": true,
+      "c7_wins_mean": true,
+      "paired_p_raw": 0.000999500249875,
+      "significant": true,
+      "decision_rule": "PRIMARY_RAW_PAIRED_P"
+    },
+    {
+      "budget": "0.50",
+      "comparator": "C3",
+      "precision_delta": 0.0351089588377724,
+      "mean_delta_gain": 0.0021069661169702,
+      "c7_wins_precision": true,
+      "c7_wins_mean": true,
+      "paired_p_raw": 0.000999500249875,
+      "significant": true,
+      "decision_rule": "PRIMARY_RAW_PAIRED_P"
+    },
+    {
+      "budget": "0.50",
+      "comparator": "C4",
+      "precision_delta": 0.0012106537530267025,
+      "mean_delta_gain": -6.507029259849965e-05,
+      "c7_wins_precision": true,
+      "c7_wins_mean": false,
+      "paired_p_raw": 0.3258370814592704,
+      "significant": false,
+      "decision_rule": "PRIMARY_RAW_PAIRED_P"
+    },
+    {
+      "budget": "0.50",
+      "comparator": "C5",
+      "precision_delta": 0.0012106537530267025,
+      "mean_delta_gain": -4.912750836459992e-05,
+      "c7_wins_precision": true,
+      "c7_wins_mean": false,
+      "paired_p_raw": 0.3278360819590205,
+      "significant": false,
+      "decision_rule": "PRIMARY_RAW_PAIRED_P"
+    },
+    {
+      "budget": "0.50",
+      "comparator": "C6",
+      "precision_delta": 0.0722356739305892,
+      "mean_delta_gain": 0.0038813364395800356,
+      "c7_wins_precision": true,
+      "c7_wins_mean": true,
+      "paired_p_raw": 0.000999500249875,
+      "significant": true,
+      "decision_rule": "PRIMARY_RAW_PAIRED_P"
+    }
+  ],
+  "S1_status_under_secondary_holm": "PARTIAL",
+  "S1_budget_pass_under_secondary_holm": {
+    "0.10": true,
+    "0.25": false,
+    "0.50": false
+  },
+  "S1_detail_under_secondary_holm": [
+    {
+      "budget": "0.10",
+      "comparator": "C3",
+      "precision_delta": 0.2828282828282828,
+      "mean_delta_gain": 0.0107110104541705,
+      "c7_wins_precision": true,
+      "c7_wins_mean": true,
+      "holm_adjusted_p": 0.0059970014992503,
+      "significant": true,
+      "decision_rule": "SECONDARY_HOLM_BONFERRONI"
+    },
+    {
+      "budget": "0.10",
+      "comparator": "C4",
+      "precision_delta": 0.15353535353535352,
+      "mean_delta_gain": 0.0054406063262713,
+      "c7_wins_precision": true,
+      "c7_wins_mean": true,
+      "holm_adjusted_p": 0.0059970014992503,
+      "significant": true,
+      "decision_rule": "SECONDARY_HOLM_BONFERRONI"
+    },
+    {
+      "budget": "0.10",
+      "comparator": "C5",
+      "precision_delta": 0.14141414141414133,
+      "mean_delta_gain": 0.0051462414978022,
+      "c7_wins_precision": true,
+      "c7_wins_mean": true,
+      "holm_adjusted_p": 0.0059970014992503,
+      "significant": true,
+      "decision_rule": "SECONDARY_HOLM_BONFERRONI"
+    },
+    {
+      "budget": "0.10",
+      "comparator": "C6",
+      "precision_delta": 0.27474747474747474,
+      "mean_delta_gain": 0.0142440861063877,
+      "c7_wins_precision": true,
+      "c7_wins_mean": true,
+      "holm_adjusted_p": 0.0059970014992503,
+      "significant": true,
+      "decision_rule": "SECONDARY_HOLM_BONFERRONI"
+    },
+    {
+      "budget": "0.25",
+      "comparator": "C3",
+      "precision_delta": 0.1234866828087168,
+      "mean_delta_gain": 0.0058331629600949,
+      "c7_wins_precision": true,
+      "c7_wins_mean": true,
+      "holm_adjusted_p": 0.0059970014992503,
+      "significant": true,
+      "decision_rule": "SECONDARY_HOLM_BONFERRONI"
+    },
+    {
+      "budget": "0.25",
+      "comparator": "C4",
+      "precision_delta": 0.008878127522195411,
+      "mean_delta_gain": 6.115297000609983e-05,
+      "c7_wins_precision": true,
+      "c7_wins_mean": true,
+      "holm_adjusted_p": 0.0559720139930035,
+      "significant": false,
+      "decision_rule": "SECONDARY_HOLM_BONFERRONI"
+    },
+    {
+      "budget": "0.25",
+      "comparator": "C5",
+      "precision_delta": 0.008878127522195411,
+      "mean_delta_gain": 0.00012722430468150008,
+      "c7_wins_precision": true,
+      "c7_wins_mean": true,
+      "holm_adjusted_p": 0.0559720139930035,
+      "significant": false,
+      "decision_rule": "SECONDARY_HOLM_BONFERRONI"
+    },
+    {
+      "budget": "0.25",
+      "comparator": "C6",
+      "precision_delta": 0.1452784503631962,
+      "mean_delta_gain": 0.0076800036408826,
+      "c7_wins_precision": true,
+      "c7_wins_mean": true,
+      "holm_adjusted_p": 0.0059970014992503,
+      "significant": true,
+      "decision_rule": "SECONDARY_HOLM_BONFERRONI"
+    },
+    {
+      "budget": "0.50",
+      "comparator": "C3",
+      "precision_delta": 0.0351089588377724,
+      "mean_delta_gain": 0.0021069661169702,
+      "c7_wins_precision": true,
+      "c7_wins_mean": true,
+      "holm_adjusted_p": 0.0059970014992503,
+      "significant": true,
+      "decision_rule": "SECONDARY_HOLM_BONFERRONI"
+    },
+    {
+      "budget": "0.50",
+      "comparator": "C4",
+      "precision_delta": 0.0012106537530267025,
+      "mean_delta_gain": -6.507029259849965e-05,
+      "c7_wins_precision": true,
+      "c7_wins_mean": false,
+      "holm_adjusted_p": 0.6516741629185407,
+      "significant": false,
+      "decision_rule": "SECONDARY_HOLM_BONFERRONI"
+    },
+    {
+      "budget": "0.50",
+      "comparator": "C5",
+      "precision_delta": 0.0012106537530267025,
+      "mean_delta_gain": -4.912750836459992e-05,
+      "c7_wins_precision": true,
+      "c7_wins_mean": false,
+      "holm_adjusted_p": 0.6516741629185407,
+      "significant": false,
+      "decision_rule": "SECONDARY_HOLM_BONFERRONI"
+    },
+    {
+      "budget": "0.50",
+      "comparator": "C6",
+      "precision_delta": 0.0722356739305892,
+      "mean_delta_gain": 0.0038813364395800356,
+      "c7_wins_precision": true,
+      "c7_wins_mean": true,
+      "holm_adjusted_p": 0.0059970014992503,
+      "significant": true,
+      "decision_rule": "SECONDARY_HOLM_BONFERRONI"
+    }
+  ],
+  "closure_original_S1_H1_status": "PARTIAL",
+  "closure_original_budget_pass": {
+    "0.10": true,
+    "0.25": false,
+    "0.50": false
+  },
+  "budget_pass_changed": {
+    "0.10": false,
+    "0.25": true,
+    "0.50": false
+  },
+  "S1_status_changed": false,
+  "F2_router_failure": false,
+  "F2_router_failure_unchanged": true,
+  "comparator_specific_wording": [
+    {
+      "comparator": "C3",
+      "per_budget": [
+        {
+          "budget": "0.10",
+          "precision_delta": 0.2828282828282828,
+          "primary_raw_p": 0.000999500249875,
+          "primary_significant": true,
+          "secondary_holm_p": 0.0059970014992503,
+          "secondary_significant": true,
+          "wording": "At 10% budget, C7 vs C3: precision delta +0.2828; PRIMARY raw paired p = 0.001000 (SIGNIFICANT); SECONDARY Holm p = 0.005997 (SIGNIFICANT)."
+        },
+        {
+          "budget": "0.25",
+          "precision_delta": 0.1234866828087168,
+          "primary_raw_p": 0.000999500249875,
+          "primary_significant": true,
+          "secondary_holm_p": 0.0059970014992503,
+          "secondary_significant": true,
+          "wording": "At 25% budget, C7 vs C3: precision delta +0.1235; PRIMARY raw paired p = 0.001000 (SIGNIFICANT); SECONDARY Holm p = 0.005997 (SIGNIFICANT)."
+        },
+        {
+          "budget": "0.50",
+          "precision_delta": 0.0351089588377724,
+          "primary_raw_p": 0.000999500249875,
+          "primary_significant": true,
+          "secondary_holm_p": 0.0059970014992503,
+          "secondary_significant": true,
+          "wording": "At 50% budget, C7 vs C3: precision delta +0.0351; PRIMARY raw paired p = 0.001000 (SIGNIFICANT); SECONDARY Holm p = 0.005997 (SIGNIFICANT)."
+        }
+      ],
+      "any_primary_significant": true,
+      "any_secondary_significant": true
+    },
+    {
+      "comparator": "C4",
+      "per_budget": [
+        {
+          "budget": "0.10",
+          "precision_delta": 0.15353535353535352,
+          "primary_raw_p": 0.000999500249875,
+          "primary_significant": true,
+          "secondary_holm_p": 0.0059970014992503,
+          "secondary_significant": true,
+          "wording": "At 10% budget, C7 vs C4: precision delta +0.1535; PRIMARY raw paired p = 0.001000 (SIGNIFICANT); SECONDARY Holm p = 0.005997 (SIGNIFICANT)."
+        },
+        {
+          "budget": "0.25",
+          "precision_delta": 0.008878127522195411,
+          "primary_raw_p": 0.0279860069965017,
+          "primary_significant": true,
+          "secondary_holm_p": 0.0559720139930035,
+          "secondary_significant": false,
+          "wording": "At 25% budget, C7 vs C4: precision delta +0.0089; PRIMARY raw paired p = 0.027986 (SIGNIFICANT); SECONDARY Holm p = 0.055972 (not significant)."
+        },
+        {
+          "budget": "0.50",
+          "precision_delta": 0.0012106537530267025,
+          "primary_raw_p": 0.3258370814592704,
+          "primary_significant": false,
+          "secondary_holm_p": 0.6516741629185407,
+          "secondary_significant": false,
+          "wording": "At 50% budget, C7 vs C4: precision delta +0.0012; PRIMARY raw paired p = 0.325837 (not significant); SECONDARY Holm p = 0.651674 (not significant)."
+        }
+      ],
+      "any_primary_significant": true,
+      "any_secondary_significant": true
+    },
+    {
+      "comparator": "C5",
+      "per_budget": [
+        {
+          "budget": "0.10",
+          "precision_delta": 0.14141414141414133,
+          "primary_raw_p": 0.000999500249875,
+          "primary_significant": true,
+          "secondary_holm_p": 0.0059970014992503,
+          "secondary_significant": true,
+          "wording": "At 10% budget, C7 vs C5: precision delta +0.1414; PRIMARY raw paired p = 0.001000 (SIGNIFICANT); SECONDARY Holm p = 0.005997 (SIGNIFICANT)."
+        },
+        {
+          "budget": "0.25",
+          "precision_delta": 0.008878127522195411,
+          "primary_raw_p": 0.0359820089955022,
+          "primary_significant": true,
+          "secondary_holm_p": 0.0559720139930035,
+          "secondary_significant": false,
+          "wording": "At 25% budget, C7 vs C5: precision delta +0.0089; PRIMARY raw paired p = 0.035982 (SIGNIFICANT); SECONDARY Holm p = 0.055972 (not significant)."
+        },
+        {
+          "budget": "0.50",
+          "precision_delta": 0.0012106537530267025,
+          "primary_raw_p": 0.3278360819590205,
+          "primary_significant": false,
+          "secondary_holm_p": 0.6516741629185407,
+          "secondary_significant": false,
+          "wording": "At 50% budget, C7 vs C5: precision delta +0.0012; PRIMARY raw paired p = 0.327836 (not significant); SECONDARY Holm p = 0.651674 (not significant)."
+        }
+      ],
+      "any_primary_significant": true,
+      "any_secondary_significant": true
+    },
+    {
+      "comparator": "C6",
+      "per_budget": [
+        {
+          "budget": "0.10",
+          "precision_delta": 0.27474747474747474,
+          "primary_raw_p": 0.000999500249875,
+          "primary_significant": true,
+          "secondary_holm_p": 0.0059970014992503,
+          "secondary_significant": true,
+          "wording": "At 10% budget, C7 vs C6: precision delta +0.2747; PRIMARY raw paired p = 0.001000 (SIGNIFICANT); SECONDARY Holm p = 0.005997 (SIGNIFICANT)."
+        },
+        {
+          "budget": "0.25",
+          "precision_delta": 0.1452784503631962,
+          "primary_raw_p": 0.000999500249875,
+          "primary_significant": true,
+          "secondary_holm_p": 0.0059970014992503,
+          "secondary_significant": true,
+          "wording": "At 25% budget, C7 vs C6: precision delta +0.1453; PRIMARY raw paired p = 0.001000 (SIGNIFICANT); SECONDARY Holm p = 0.005997 (SIGNIFICANT)."
+        },
+        {
+          "budget": "0.50",
+          "precision_delta": 0.0722356739305892,
+          "primary_raw_p": 0.000999500249875,
+          "primary_significant": true,
+          "secondary_holm_p": 0.0059970014992503,
+          "secondary_significant": true,
+          "wording": "At 50% budget, C7 vs C6: precision delta +0.0722; PRIMARY raw paired p = 0.001000 (SIGNIFICANT); SECONDARY Holm p = 0.005997 (SIGNIFICANT)."
+        }
+      ],
+      "any_primary_significant": true,
+      "any_secondary_significant": true
+    }
+  ],
+  "sensitivity_summary": {
+    "rows_flipped_by_multiplicity": 2,
+    "flipped_rows": [
+      {
+        "budget": "0.25",
+        "comparator": "C4",
+        "metric": "precision_at_budget",
+        "mean_diff": 0.0088085793226303,
+        "paired_p_raw": 0.0279860069965017,
+        "raw_significant_at_0.05": true,
+        "holm_adjusted_p": 0.0559720139930035,
+        "holm_significant_at_0.05": false,
+        "primary_decision_changed_by_holm": true,
+        "role": "PRIMARY"
+      },
+      {
+        "budget": "0.25",
+        "comparator": "C5",
+        "metric": "precision_at_budget",
+        "mean_diff": 0.0085916427718638,
+        "paired_p_raw": 0.0359820089955022,
+        "raw_significant_at_0.05": true,
+        "holm_adjusted_p": 0.0559720139930035,
+        "holm_significant_at_0.05": false,
+        "primary_decision_changed_by_holm": true,
+        "role": "PRIMARY"
+      }
+    ]
+  },
+  "S2_preservation_satisfied": true,
+  "S3_frontier_measured": true,
+  "F5_domain_collapse_triggered": false,
+  "raw_scientific_values_changed": false,
+  "p_values_source": "reports/tables/phase25e_paired_bootstrap_tests.csv (frozen, unchanged)",
+  "metrics_source": "reports/tables/phase25e_policy_evaluation_metrics.csv (frozen, unchanged)",
+  "interpretation": "Under the frozen PRIMARY statistic (raw paired two-sided p), C7 beats all four simple GT-free proxies on precision at the 10% and 25% budgets (S1 budget_pass {'0.10': True, '0.25': True, '0.50': False}), and the advantage is not significant at the 50% budget. S1/H1 = PARTIAL. Under the conservative secondary Holm sensitivity, only the 10% budget passes (S1 = PARTIAL). The multiplicity correction changes the significance call on exactly 2 precision rows (25% budget, C4/C5).",
+  "population": "ROUTER_DEVELOPMENT (4957); NONDEPLOYABLE oracle excluded from all criteria",
+  "holdout_used": false,
+  "router_holdout_reads": 0,
+  "VAL808_reads": 0,
+  "TEST_reads": 0,
+  "failures": [],
+  "all_pass": true
+}

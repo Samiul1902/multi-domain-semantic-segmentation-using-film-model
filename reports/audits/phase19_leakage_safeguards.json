@@ -1,0 +1,53 @@
+{
+  "artifact": "phase19_leakage_safeguards",
+  "manifest_version": "phase4_v3",
+  "leakage_status": "REMEDIATED",
+  "remediation_reason": "Phase-05 leakage audit and remediation (Parts 1A-1D-R2/R5/R6)",
+  "quarantined_samples": 118,
+  "quarantined_by_dataset": {
+    "BUSI": 67,
+    "ISIC": 46,
+    "KUB": 4,
+    "KVASIR": 1
+  },
+  "duplicate_risk_groups": 76,
+  "duplicate_rows": 170,
+  "grouping_rules": [
+    {
+      "rule": "Rule 2: Exact KUB",
+      "items_quarantined": 1
+    },
+    {
+      "rule": "Rule 3: ISIC d=0",
+      "items_quarantined": 13
+    },
+    {
+      "rule": "Rule 4: d=2 Unresolved",
+      "items_quarantined": 4
+    },
+    {
+      "rule": "Rule 6: BUSI TEST-link",
+      "items_quarantined": 62
+    },
+    {
+      "rule": "Rule 6: BUSI TRAIN/VAL-link",
+      "items_quarantined": 5
+    },
+    {
+      "rule": "Rule 7: TEST-linked pHash",
+      "items_quarantined": 34
+    }
+  ],
+  "kub_patient_overlap_train_val": 0,
+  "kub_patient_disjoint": true,
+  "busi_patient_mapping": {
+    "artifact": "reports/tables/phase05_busi_patient_group_mapping.csv",
+    "sha256": "df4b01487ea6e1cb5c004e11535e4c3252c19dc3b84cbb21816c737dbaf2753b",
+    "source_metadata_sha256": "14f6bb5332036218e4c59d119d12ea67281b0a4d1373668d35530763f9121d44",
+    "mapped": 927,
+    "unmapped": 0,
+    "ambiguous": 0
+  },
+  "sample_id_overlap_train_val": 0,
+  "residual_risk": "Cross-domain near-duplicate detection across the newly combined four-domain development pool is not yet established. No blocker found, but Phase 20 should re-assert the duplicate audit on the combined pool."
+}

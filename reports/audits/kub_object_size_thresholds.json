@@ -1,0 +1,22 @@
+{
+  "taxonomy_version": "kub_size_v1",
+  "manifest_version": "phase4_v2",
+  "source_split": "TRAIN",
+  "source_view_type": "FULL_FIELD",
+  "source_full_field_sample_count": 771,
+  "source_full_field_component_count": 1162,
+  "connectivity": 8,
+  "size_measure": "component_ratio",
+  "Q25": 0.0001499766777599,
+  "Q50": 0.00033976472454305,
+  "Q75": 0.0008266496069636999,
+  "intervals": {
+    "TINY": "component_ratio <= Q25",
+    "SMALL": "Q25 < component_ratio <= Q50",
+    "MEDIUM": "Q50 < component_ratio <= Q75",
+    "LARGE": "component_ratio > Q75"
+  },
+  "thresholds_validated_unchanged": true,
+  "test_mask_reads": 0,
+  "clinical_interpretation": "NONE"
+}

@@ -1,0 +1,71 @@
+{
+  "artifact": "barr_m1_three_seed_evidence_audit_v1_0a",
+  "revision": "RA_MEDFILM_BARR_BARR_M1_V1_0A__SCIENTIFIC_DESIGN_RECONCILIATION",
+  "generated_utc": "2026-10-27T01:38:09Z",
+  "scope": "PLANNING_CORRECTION_ONLY",
+  "seeds": [
+    42,
+    123,
+    3407
+  ],
+  "authority": {
+    "authoritative_seeds": "reports/audits/phase29_authoritative_seeds_v1_1.json",
+    "rng_rule": "reports/audits/phase29_b_phi_rng_rule_v1_1.json",
+    "cross_seed_isolation": "reports/audits/phase29_cross_seed_dependency_isolation.json",
+    "three_seed_summary": "reports/audits/phase29_phase_d_three_seed_descriptive_summary.json"
+  },
+  "what_the_seeds_are": {
+    "independently_trained_models": "PARTIALLY — downstream stack only",
+    "global_model_G": "FIXED at seed 42 for ALL three seeds (shared_global_representation_is_seed42_fixed = true)",
+    "retrained_per_seed": [
+      "R_psi (own fold checkpoints)",
+      "B_phi",
+      "S_omega"
+    ],
+    "rng_rule": "router_fold_seed(s,k) = 1000*s + k; the seed changes optimisation randomness, NOT fold membership (seed_regenerates_fold_membership = false)",
+    "stochastic_routing": false,
+    "sampling_variation": false,
+    "repeated_inference_of_one_checkpoint": false,
+    "evidence_for_g": "NONE — macro_global_dice is identical to 1.36e-16 across seeds, proving G is the same checkpoint"
+  },
+  "observed_sd": {
+    "value": 0.0005902732514585419,
+    "ddof": 1,
+    "n": 3,
+    "degrees_of_freedom": 2,
+    "measures": "the sample SD of the MACRO-DOMAIN EQUAL-WEIGHT MEAN DICE DELTA across THREE INDEPENDENTLY RETRAINED DOWNSTREAM BARR STACKS (R_psi → B_phi → S_omega) evaluated on VAL808, with the global model G held fixed at seed 42.",
+    "does_not_measure": [
+      "stochastic inference repeat variability (each checkpoint is deterministic)",
+      "sampling error of the evaluation set",
+      "independent replication of the global model G",
+      "run-to-run hardware nondeterminism",
+      "a population-level standard error"
+    ],
+    "per_seed_macro_delta": {
+      "seed42": 0.0022101452700813433,
+      "seed123": 0.003387940558448247,
+      "seed3407": 0.002868801269949678
+    },
+    "per_seed_macro_global_dice": {
+      "seed42": 0.8350789601074979,
+      "seed123": 0.8350789601074979,
+      "seed3407": 0.8350789601074979
+    },
+    "per_seed_n_selected": {
+      "seed42": 279,
+      "seed123": 255,
+      "seed3407": 262
+    },
+    "interpretation_caution": "n=3 gives 2 degrees of freedom; the SD estimate is itself extremely unstable and no confidence interval or significance test may be derived from it.",
+    "frozen_gate": "NO_NUMERIC_REPRODUCIBILITY_PASS_FAIL_GATE = true (numeric_reproducibility_pass_fail_gate = NONE)"
+  },
+  "misreporting_prohibited": {
+    "report_as_independent_training_replication_of_the_full_system": false,
+    "report_as_inference_noise": false,
+    "report_as_confirmatory": false
+  },
+  "relevance_to_barr_m1": {
+    "barr_m1_uses_multiple_training_seeds": false,
+    "reason": "BARR-M1 is a single-frozen-bundle re-analysis; the three-seed spread is cited only as historical motivation for the ±0.0006 scale of downstream training randomness, never as a BARR-M1 uncertainty estimate."
+  }
+}

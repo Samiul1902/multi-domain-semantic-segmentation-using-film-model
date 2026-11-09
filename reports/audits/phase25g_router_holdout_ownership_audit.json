@@ -1,0 +1,75 @@
+{
+ "artifact": "phase25g_router_holdout_ownership_audit",
+ "phase": "25G",
+ "classification": "ONE_SHOT_HOLDOUT_PHASE_OWNERSHIP_NOT_EXPLICIT",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_integrated_evaluation_v1_0",
+ "governance_only": true,
+ "no_execution": true,
+ "stage": "ROUTER_HOLDOUT_OWNERSHIP",
+ "question": "Which phase explicitly owns the one-shot ROUTER_HOLDOUT evaluation?",
+ "recovered_roles": {
+  "ROUTER_DEVELOPMENT": "cross-fitted labels, fitting, threshold calibration",
+  "ROUTER_HOLDOUT": "clean out-of-sample routing evaluation",
+  "VAL808": "SECONDARY / CONTINUITY DEVELOPMENT BENCHMARK",
+  "TEST": "CLOSED until Phase39"
+ },
+ "holdout_use": "integrated evaluation ONLY",
+ "sole_regional_refiner_for": [
+  "ROUTER_HOLDOUT integrated evaluation",
+  "later continuity VAL evaluation",
+  "future Phase 26+ development unless explicitly superseded"
+ ],
+ "router_holdout_contract": {
+  "fraction_of_original_train": 0.15,
+  "approx_cases": 875,
+  "designated_before": [
+   "refiner performance inspection",
+   "benefit-router fitting",
+   "feature selection based on performance",
+   "lambda selection",
+   "threshold fitting"
+  ],
+  "inspected_in_phase24": [
+   "sample_ids",
+   "domain_counts",
+   "group_integrity",
+   "manifest_sha",
+   "split_seed"
+  ],
+  "must_not_inspect_in_phase24": [
+   "DeltaDice distribution",
+   "Dice",
+   "router AUC",
+   "benefit distribution",
+   "routing policy performance"
+  ],
+  "outcomes_read_in_phase24": 0
+ },
+ "benefit_data_protocol_holdout": {
+  "fraction": 0.15,
+  "approx_cases": 875,
+  "status": "designated_never_inspected_for_outcomes"
+ },
+ "phase25g_owns_dev_only": [
+  "A7 vs A8",
+  "C8 vs C9",
+  "integrated preservation evaluation",
+  "comparator + ablation report",
+  "controlled development freeze"
+ ],
+ "explicit_ownership_fragments": [],
+ "rejected_near_misses": [],
+ "resolved_to_phase25g": false,
+ "holdout_opened": false,
+ "holdout_outcome_reads": 0,
+ "blocking_governance_field": true,
+ "note": "No authoritative source names a phase that owns the one-shot ROUTER_HOLDOUT evaluation. The holdout is 'designated' with holdout_use='integrated evaluation ONLY', but no phase is assigned. Phase25G is explicitly a DEVELOPMENT evaluation. Per the work order, ownership MUST NOT be inferred from the phrase 'controlled validation' alone.",
+ "terminal_on_unresolved": "PHASE25G_BLOCKED__ONE_SHOT_HOLDOUT_OWNERSHIP_UNRESOLVED",
+ "checks": {
+  "holdout_use_integrated_evaluation_only": true,
+  "no_explicit_phase_ownership_claim": true,
+  "classification_is_not_explicit": true
+ },
+ "all_pass": true
+}

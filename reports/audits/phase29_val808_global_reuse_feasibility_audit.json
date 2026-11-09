@@ -1,0 +1,49 @@
+{
+ "artifact": "phase29_val808_global_reuse_feasibility_audit",
+ "phase": 29,
+ "classification": "CANONICAL_PHASE29_THREE_SEED_DOWNSTREAM_BARR_REPRODUCIBILITY",
+ "method": "RA-MedFiLM-BARR",
+ "governance_only": false,
+ "execution_stage": "PHASE_A_VAL808_REUSE_AUDIT",
+ "generated_utc": "2026-10-02T15:23:19+00:00",
+ "cache_dir": "data_cache/phase27_barr_preservation_v1_0",
+ "persisted_artifacts": {
+  "phase27_val808_bootstrap_plan_v1_0.npz": {
+   "path": "data_cache/phase27_barr_preservation_v1_0/phase27_val808_bootstrap_plan_v1_0.npz",
+   "sha256": "8d32bd3c9b18f03c39128593f287bd21d716d26e11eb90d80f6f9c0d0b450a93",
+   "size_bytes": 12219142
+  },
+  "phase27_val808_bootstrap_replicates.npz": {
+   "path": "data_cache/phase27_barr_preservation_v1_0/phase27_val808_bootstrap_replicates.npz",
+   "sha256": "fee0f7b6749a98cc7a72765ee02b7cb89fe4387c6771567b29179f37ec398b37",
+   "size_bytes": 106512
+  },
+  "phase27_val808_final_prob_f16.npy": {
+   "path": "data_cache/phase27_barr_preservation_v1_0/phase27_val808_final_prob_f16.npy",
+   "sha256": "506ab6c4e715a9106889e186c146b73903493c80a63258007954cf5deb3ea9cf",
+   "size_bytes": 423624832
+  },
+  "phase27_val808_global_prob_f16.npy": {
+   "path": "data_cache/phase27_barr_preservation_v1_0/phase27_val808_global_prob_f16.npy",
+   "sha256": "cc6c54af986f56b4aba9265405ffeba4f6cac582eeff00fe6b0894429e7d3f13",
+   "size_bytes": 423624832
+  },
+  "phase27_val808_group_manifest_v1_0.csv": {
+   "path": "data_cache/phase27_barr_preservation_v1_0/phase27_val808_group_manifest_v1_0.csv",
+   "sha256": "481e705e53efa6cf1289f6da2a212fe2946c3d389390bcecdd28d5f08d9bd8bb",
+   "size_bytes": 38300
+  }
+ },
+ "has_global_probabilities": true,
+ "has_final_probabilities": true,
+ "has_router_deep_features": false,
+ "val808_router_deep_feature_candidates": [],
+ "reuse_complete": false,
+ "decision": "SHARED_FIXED_G_VAL808_FEATURE_EXTRACTION_REQUIRED_ONCE",
+ "shared_global_forward_count_allowed": 1,
+ "runs_once_not_per_seed": true,
+ "G_retrained": false,
+ "seed42_val808_rerun": false,
+ "note": "Phase27 persisted VAL808 global probabilities and final probabilities but did NOT persist router deep features or ROI inputs. Therefore the seed-specific B_phi and S_omega VAL808 inference for seeds 123/3407 requires exactly ONE shared fixed-G Phase29 VAL808 feature-extraction pass (§38), run once and reused by both seeds.",
+ "all_pass": true
+}

@@ -1,0 +1,32 @@
+{
+ "artifact": "phase36_v1_13_no_scientific_execution_audit",
+ "phase": 36,
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase36_robustness_v1_13",
+ "type": "NO_SCIENTIFIC_EXECUTION_AUDIT",
+ "smoke_run": false,
+ "science_run": false,
+ "model_constructed": false,
+ "checkpoint_deserialized": false,
+ "forward_pass": false,
+ "val_image_read": false,
+ "gt_read": false,
+ "test_read": false,
+ "router_holdout_read": false,
+ "training": false,
+ "v1_13_attempt_artifacts_absent": true,
+ "v1_13_attempt_artifacts_checked": [
+  "reports/audits/phase36_robustness_smoke_v1_13.json",
+  "reports/audits/phase36_robustness_smoke_start_v1_13.json",
+  "reports/audits/phase36_robustness_smoke_failure_v1_13.json",
+  "reports/audits/phase36_robustness_scientific_result_v1_13.json",
+  "reports/audits/phase36_robustness_science_start_v1_13.json",
+  "reports/audits/phase36_robustness_science_failure_v1_13.json"
+ ],
+ "device_only_probe_performed": true,
+ "device_only_probe_note": "check_cuda_readiness calls only torch CUDA introspection + src.utils.device.get_device(require_cuda=True).",
+ "verified_only_launcher_commands_run": [
+  "launch_phase36_v1_13.py --mode smoke --verify-only (under venv) -> exit 0",
+  "launch_phase36_v1_13.py --mode smoke --verify-only (under bare system Python) -> exit 2, fail closed"
+ ]
+}

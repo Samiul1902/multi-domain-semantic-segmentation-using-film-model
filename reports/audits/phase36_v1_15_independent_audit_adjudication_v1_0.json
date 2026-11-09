@@ -1,0 +1,128 @@
+{
+ "artifact": "phase36_v1_15_independent_audit_adjudication_v1_0",
+ "phase": 36,
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase36_robustness_v1_15",
+ "type": "INDEPENDENT_AUDIT_ADJUDICATION",
+ "mode": "STATIC_NON_CONSUMING",
+ "generated_utc": "2026-10-10T13:20:23Z",
+ "v1_15_scientific_repairs_valid": true,
+ "D61": "PASS",
+ "D75_POLICY_B": "PASS",
+ "D80": "V1_15_OPERATIONAL_GOVERNANCE_LAYER_NOT_REBASED_FROM_V1_14",
+ "D80_status": "ESTABLISHED",
+ "D80_subfindings": {
+  "D80-A": {
+   "id": "LAUNCHER_OMITS_REQUIRED_MODE_SCIENCE_ARGUMENT",
+   "established": true,
+   "evidence": {
+    "execution_requires_mode": true,
+    "execution_argparse": "ap.add_argument(\"--mode\", required=True, choices=C.MODES)",
+    "launcher_real_cmd": "[canonical_python, execution_source]",
+    "launcher_cmd_contains_mode": false
+   },
+   "required_repair": "[canonical_python, execution_source, \"--mode\", \"science\"]"
+  },
+  "D80-B": {
+   "id": "V1_15_EXECUTION_REUSES_V1_14_SCIENCE_ARTIFACT_NAMESPACE",
+   "established": true,
+   "evidence": {
+    "inherited_v1_14_paths": [
+     "phase36_robustness_scientific_result_v1_14.json",
+     "phase36_robustness_science_start_v1_14.json",
+     "phase36_robustness_science_failure_v1_14.json"
+    ],
+    "separate_v1_15_paths_used": false
+   },
+   "required_repair": "entirely new v1.16 namespace"
+  },
+  "D80-C": {
+   "id": "V1_15_LAUNCH_AUTHORITY_TOKEN_MISMATCH",
+   "established": true,
+   "evidence": {
+    "execution_expects": "PHASE36_V1_14_LAUNCH_AUTHORITY",
+    "launcher_sets": "PHASE36_V1_15_LAUNCH_AUTHORITY"
+   },
+   "required_repair": "PHASE36_V1_16_LAUNCH_AUTHORITY (both sides)"
+  },
+  "D80-D": {
+   "id": "V1_15_SCIENCE_OPERATOR_GATE_NOT_REBASED",
+   "established": true,
+   "evidence": {
+    "execution_uses_inherited_C.GATE_ENV": true,
+    "smoke_gate_env_used": true
+   },
+   "required_repair": "explicit v1.16 gate PHASE36_V1_16_EXECUTE bound identically in exec + launcher"
+  },
+  "D80-E": {
+   "id": "V1_15_TRANSITIVE_SELF_INTEGRITY_STILL_BOUND_TO_V1_14_EXECUTION_SHA",
+   "established": true,
+   "evidence": {
+    "reads_v1_14_runtime_manifest": true,
+    "v1_14_manifest_path": "reports/audits/phase36_v1_14_runtime_source_integrity_manifest.json"
+   },
+   "required_repair": "new v1.16 runtime integrity authority whose execution_source_sha256 == exact v1.16 SHA"
+  },
+  "D80-F": {
+   "id": "V1_15_RELEASE_ATTESTATION_STILL_BOUND_TO_V1_14",
+   "established": true,
+   "evidence": {
+    "release_revision_is_v1_14": true,
+    "requires_v1_14_smoke_artifact": true
+   },
+   "required_repair": "new v1.16 science-release attestation binding the exact v1.16 source"
+  },
+  "D80-G": {
+   "id": "V1_15_STAGE_JOURNAL_NOT_IMPLEMENTED",
+   "established": true,
+   "evidence": {
+    "journal_mentions_in_v1_15_source": 0
+   },
+   "required_repair": "crash-survivable v1.16 stage journal"
+  },
+  "D80-H": {
+   "id": "V1_15_LAUNCHER_DOES_NOT_PIN_V1_15_EXECUTION_SOURCE_AUTHORITY",
+   "established": true,
+   "evidence": {
+    "launcher_records_current_exec_sha": true,
+    "launcher_requires_literal_v1_15_sha": false
+   },
+   "required_repair": "v1.16 launcher must compare v1.16 execution bytes against a literal frozen expected SHA"
+  },
+  "D80-I": {
+   "id": "V1_15_VALIDATION_COVERAGE_MISSED_OPERATIONAL_CROSS_CONTRACT",
+   "established": true,
+   "evidence": {
+    "existing_suites": [
+     "unit",
+     "preflight",
+     "negative_controls",
+     "science_repair_validator"
+    ],
+    "operational_cross_contract_validator_exists": false
+   },
+   "required_repair": "new validation must detect every D80-A..H mutation"
+  }
+ },
+ "v1_15_execution_authorized": false,
+ "v1_15_attempt_consumed": false,
+ "scientific_semantics_effect": "NONE",
+ "classification": "PREEXECUTION_AUDIT_FAILED__OPERATIONAL_GOVERNANCE_REBASE_REQUIRED",
+ "frozen_v1_15_authorities": {
+  "execution_sha256": "b194ad28345ea8b268748be383ca98b936cb051d85854666e3141250f3eae002",
+  "launcher_sha256": "2ad201fde72845891571cb1a53a675f6d7075dde23383da3eaa0b13b15d10c1c",
+  "handoff_sha256": "8aa164955032738dd3528df9424c8e373de840f20c62c054a5904980f7394273"
+ },
+ "v1_15_attempt_absence": {
+  "START": false,
+  "RESULT": false,
+  "FAILURE": false,
+  "PROCESS_EXIT": false,
+  "stdout": false,
+  "stderr": false
+ },
+ "preserved": true,
+ "v1_15_modified": false,
+ "write_semantics": "O_CREAT|O_EXCL + full-write + fsync",
+ "terminal": "PHASE36_V1_15_INDEPENDENT_AUDIT_ADJUDICATION_COMPLETE__D80_ESTABLISHED"
+}

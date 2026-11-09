@@ -1,0 +1,56 @@
+{
+  "classification": "EXT02_DATASET_COHORT_FREEZE",
+  "generated_utc": "2026-10-11T14:00:00Z",
+  "HAM10000": {
+    "candidate_task": 0,
+    "images": 10015,
+    "masks": 10015,
+    "evaluable_n": 10015,
+    "exclusions": 0,
+    "exclusion_reasons": {},
+    "pairing_rule": "exact ISIC stem",
+    "evidence_class": "SECONDARY_EXTERNAL_BENCHMARK",
+    "track": "B"
+  },
+  "CVC-ClinicDB": {
+    "candidate_task": 2,
+    "images": 612,
+    "masks": 612,
+    "evaluable_n": 612,
+    "exclusions": 0,
+    "exclusion_reasons": {},
+    "canonical_representation": "PNG",
+    "tif_excluded": "duplicate format NOT counted as separate samples",
+    "evidence_class": "SECONDARY_EXTERNAL_BENCHMARK",
+    "track": "B"
+  },
+  "BrEaST-Lesions_USG": {
+    "candidate_task": 1,
+    "images": 256,
+    "tumor_masks": 252,
+    "evaluable_n": 252,
+    "exclusions": 4,
+    "exclusion_reasons": {
+      "case045": "GT_UNAVAILABLE",
+      "case061": "GT_UNAVAILABLE",
+      "case209": "GT_UNAVAILABLE",
+      "case213": "GT_UNAVAILABLE"
+    },
+    "rule": "missing tumour mask = GT_UNAVAILABLE, excluded pre-inference; NOT treated as negative",
+    "other_masks_excluded": 14,
+    "evidence_class": "SECONDARY_EXTERNAL_BENCHMARK",
+    "track": "B"
+  },
+  "Stones_where_are_you": {
+    "candidate_task": 3,
+    "images": 460,
+    "evaluable_n": 460,
+    "exclusions": 0,
+    "source_groups": 115,
+    "statistical_unit": "source_group_id",
+    "foreground_rule": "category=='stone' -> fg; all other categories -> bg (reporting only)",
+    "annotation_completeness": "NOT_ESTABLISHED__remains_ELIGIBILITY_PENDING",
+    "evidence_class": "ELIGIBILITY_PENDING",
+    "track": "A candidate"
+  }
+}

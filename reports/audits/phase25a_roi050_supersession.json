@@ -1,0 +1,363 @@
+{
+ "artifact": "phase25a_roi050_supersession",
+ "phase": "25A",
+ "purpose": "preserve and classify the completed ROI-0.50 Phase25A execution as a noncanonical protocol deviation, without deleting or disguising it",
+ "classification": "NONCANONICAL_PROTOCOL_DEVIATION__ROI_THRESHOLD_0P50",
+ "old_notebook_sha256": "7dfcf50540ee531e330c0338ea9326cdb73c24c9f8254b920c022598dd74733f",
+ "old_notebook_path": "notebooks/phasewise/phase_25a_regional_refiner/phase25a_dedicated_regional_refiner.ipynb",
+ "old_threshold": 0.5,
+ "required_frozen_threshold": 0.3,
+ "reason_for_supersession": "ROI threshold affects predicted foreground, ROI existence, ROI geometry, training crops and therefore the trained refiner.",
+ "scientific_use_allowed": false,
+ "allowed_role": "PROVENANCE / DEBUGGING / PROTOCOL-DEVIATION RECORD ONLY",
+ "may_be_used_for_phase25c": false,
+ "may_be_used_for_router_labels": false,
+ "may_be_used_for_holdout_evaluation": false,
+ "preserved": true,
+ "deleted_or_overwritten": false,
+ "preserved_artifacts": {
+  "notebook": {
+   "path": "notebooks/phasewise/phase_25a_regional_refiner/phase25a_dedicated_regional_refiner.ipynb",
+   "sha256": "7dfcf50540ee531e330c0338ea9326cdb73c24c9f8254b920c022598dd74733f",
+   "bytes": 1020425,
+   "status": "PRESERVED_AS_NONCANONICAL"
+  },
+  "histories": {
+   "experiments/phase25a_barr_regional_refiner_v1_1/final_refit/history.csv": {
+    "sha256": "07e7f5ee19fd9ce1fec552a121b1b657f07d242c00a7bfa72632f306aadba520",
+    "bytes": 3404
+   },
+   "experiments/phase25a_barr_regional_refiner_v1_1/fold0/history.csv": {
+    "sha256": "9af29c7a2727227bf6fe5088d3e4f98702dc2c5683fd4b4aa3a372c51a24272d",
+    "bytes": 8913
+   },
+   "experiments/phase25a_barr_regional_refiner_v1_1/fold1/history.csv": {
+    "sha256": "e1a72dfb80801f617b423861005ebeb07c9a38ff3a9d165f7d386a97f0ff7b31",
+    "bytes": 7690
+   },
+   "experiments/phase25a_barr_regional_refiner_v1_1/fold2/history.csv": {
+    "sha256": "067d5ede5fa90f33507d4568d95fc7064ce90bccb35abc88a1604f5120333334",
+    "bytes": 6109
+   },
+   "experiments/phase25a_barr_regional_refiner_v1_1/final_refit/config.json": {
+    "sha256": "ccb31353286d57dd971c89cba2be902eac30d7ce27091fb1e2cf1e8dbc6681d7",
+    "bytes": 2379
+   },
+   "experiments/phase25a_barr_regional_refiner_v1_1/final_refit/run.json": {
+    "sha256": "1df977b17e76eda768b1c8ca2a976e58ac248176d7ec48b92aaff3d24d1a7aa8",
+    "bytes": 2050
+   },
+   "experiments/phase25a_barr_regional_refiner_v1_1/fold0/config.json": {
+    "sha256": "2f50f561bc55d96e10804211156abee69240b59574700c78872b75df1bb7cb60",
+    "bytes": 2426
+   },
+   "experiments/phase25a_barr_regional_refiner_v1_1/fold0/run.json": {
+    "sha256": "f6a2d08e6e91282c10c451484dd5c76856ddb2068178c7a8d31654b22e1c7190",
+    "bytes": 2073
+   },
+   "experiments/phase25a_barr_regional_refiner_v1_1/fold1/config.json": {
+    "sha256": "91d8dbb441824b504b858f08c775ed09fd366fff1aa67d593fbf39c9e3f4d700",
+    "bytes": 2426
+   },
+   "experiments/phase25a_barr_regional_refiner_v1_1/fold1/run.json": {
+    "sha256": "b520969a05b7d51993d4a09edaa9ca5e16826a82e934382c27074c98b58a837a",
+    "bytes": 2073
+   },
+   "experiments/phase25a_barr_regional_refiner_v1_1/fold2/config.json": {
+    "sha256": "86c163b7fa68ae7741226e29cbd12fbae831d214dc4e87b56476b980a14a3473",
+    "bytes": 2426
+   },
+   "experiments/phase25a_barr_regional_refiner_v1_1/fold2/run.json": {
+    "sha256": "0a5b8cc470aaf7c3417c80c631f8dcf7e553166535414b11dde42cd956600a21",
+    "bytes": 2072
+   }
+  },
+  "checkpoints": {
+   "checkpoints/phase25a_barr_regional_refiner_v1_1/final/final.pt": {
+    "sha256": "fe568580d32047452f5eca2774a703954eac3b765441e806998502e125f22dd9",
+    "bytes": 15425360
+   },
+   "checkpoints/phase25a_barr_regional_refiner_v1_1/final/latest.pt": {
+    "sha256": "ca62a0ea1d5d73e0edf87210d5e030390df54ab891f7f4b65a7eb71822a4d122",
+    "bytes": 15425658
+   },
+   "checkpoints/phase25a_barr_regional_refiner_v1_1/fold0/best.pt": {
+    "sha256": "38803648ba5894c62b8f5fd5675d6e5ab13e416003e82ebe41a2329883aeb3af",
+    "bytes": 15426022
+   },
+   "checkpoints/phase25a_barr_regional_refiner_v1_1/fold0/latest.pt": {
+    "sha256": "6211c31eab2a3760d8fea56cef0046fb3680a1fa7606d5950189ba583a600768",
+    "bytes": 15429370
+   },
+   "checkpoints/phase25a_barr_regional_refiner_v1_1/fold1/best.pt": {
+    "sha256": "b5f50b743b89b6153ad782c632edd89a7e13285e66573ccd5de9faddb8f1599b",
+    "bytes": 15424870
+   },
+   "checkpoints/phase25a_barr_regional_refiner_v1_1/fold1/latest.pt": {
+    "sha256": "c06a6a872bb765a1bd46ca63e5ef57520b6ca40a65a007d770a3cbf83c6e4911",
+    "bytes": 15428282
+   },
+   "checkpoints/phase25a_barr_regional_refiner_v1_1/fold2/best.pt": {
+    "sha256": "7c0924ff9e53f6403552a76c64425e45850073ff629832b5694109df5a60be86",
+    "bytes": 15423398
+   },
+   "checkpoints/phase25a_barr_regional_refiner_v1_1/fold2/latest.pt": {
+    "sha256": "a6d62aaecf52030547c733e8d0ea3ab23f4bef0c5b7772f6633f0528d9d95b9f",
+    "bytes": 15426810
+   }
+  },
+  "cache": {
+   "data_cache/phase25a_global_cache/BUSI/action.npy": {
+    "sha256": "5e62e58486fcce2a1c211faf39c74fd50ecc8c802d16d8c88f1419251ad7c961",
+    "bytes": 640
+   },
+   "data_cache/phase25a_global_cache/BUSI/gt_crop.npy": {
+    "sha256": "641da32d97579bf6315c64c95fb947fd2d244b8d0dbcdc9b88b19bf55e65f62b",
+    "bytes": 33554560
+   },
+   "data_cache/phase25a_global_cache/BUSI/meta.csv": {
+    "sha256": "c16dfedc15b69bc35d86c1cdeefbb22db650532da2a53c57bcb01ba65e9a177f",
+    "bytes": 124240
+   },
+   "data_cache/phase25a_global_cache/BUSI/prob512.npy": {
+    "sha256": "3e8e1d1c27de89fead666d484ef1be1021aa5eac964efee598f75e341d15d1f0",
+    "bytes": 268435584
+   },
+   "data_cache/phase25a_global_cache/BUSI/prob_crop.npy": {
+    "sha256": "361e0f5da6ff7fbd33658fd472d73ac9696c0ac836e32f791cac93109bcf736f",
+    "bytes": 67108992
+   },
+   "data_cache/phase25a_global_cache/BUSI/rgb_crop.npy": {
+    "sha256": "9b18ac2e5ac4a0dda1525ea5f87d62f8e35edcafa17f7911c0f327db5e28400c",
+    "bytes": 100663424
+   },
+   "data_cache/phase25a_global_cache/cache_manifest.json": {
+    "sha256": "f1fff7bed87d73e26a14d9aeae3496ac4122d01ef9782a28a3faee1998ef6dc2",
+    "bytes": 5006
+   },
+   "data_cache/phase25a_global_cache/folds/final_all_development.csv": {
+    "sha256": "8d86d7ca76f5ae35b978fb4b40afce28dba2a21e3f0de62761a38e0831278159",
+    "bytes": 406122
+   },
+   "data_cache/phase25a_global_cache/folds/fold0_early_stop.csv": {
+    "sha256": "674adbd5d5919bb4a2298ce3ea01cb0bbaab484cfb9c970f76fb90432c26f8cd",
+    "bytes": 28101
+   },
+   "data_cache/phase25a_global_cache/folds/fold0_fit.csv": {
+    "sha256": "58d0c00171e8bebfbf334c31df8badd40bb10b44de938f2a4be1bc3a28da9a3c",
+    "bytes": 248912
+   },
+   "data_cache/phase25a_global_cache/folds/fold0_outer_target.csv": {
+    "sha256": "e16d763debd6310ae6a5f787e1d8dfb84469deeb60cc8ea25dfd4fd1c743ac2a",
+    "bytes": 139130
+   },
+   "data_cache/phase25a_global_cache/folds/fold1_early_stop.csv": {
+    "sha256": "30f76b50ef135f6700f2091a805aa3879941726f87595fa3d15328dc55d5fe01",
+    "bytes": 27695
+   },
+   "data_cache/phase25a_global_cache/folds/fold1_fit.csv": {
+    "sha256": "a67f698687db67c80bfdde286fbf56694de579e1f212ddda669984d8208dc2b6",
+    "bytes": 249766
+   },
+   "data_cache/phase25a_global_cache/folds/fold1_outer_target.csv": {
+    "sha256": "f7dde49aa87f1f9ed8b4038f45cbe88c50a227ddffd8e50de5942bb91e049a51",
+    "bytes": 138682
+   },
+   "data_cache/phase25a_global_cache/folds/fold2_early_stop.csv": {
+    "sha256": "3096c117604915ea40d09f8005efca61b543012509decd36f2283ea08ecdeb30",
+    "bytes": 27841
+   },
+   "data_cache/phase25a_global_cache/folds/fold2_fit.csv": {
+    "sha256": "44f610e69e71196e40329ada32e489158b662910ba3ef70402b752d3ac6bbb17",
+    "bytes": 249971
+   },
+   "data_cache/phase25a_global_cache/folds/fold2_outer_target.csv": {
+    "sha256": "e8b4eeda3420aa9d4fd88815971fd805399c2c198d093458c506ad8fa7c0956c",
+    "bytes": 138331
+   },
+   "data_cache/phase25a_global_cache/ISIC/action.npy": {
+    "sha256": "1addccff3a59c1f54e113405791ab64483b07ba15a50c71a99e19c8f468e3c7b",
+    "bytes": 2301
+   },
+   "data_cache/phase25a_global_cache/ISIC/gt_crop.npy": {
+    "sha256": "6fa882e3ca496d8b6ba7f0a1bd85ce9775615b7da9c32c7117d499472c1e5e08",
+    "bytes": 142409856
+   },
+   "data_cache/phase25a_global_cache/ISIC/meta.csv": {
+    "sha256": "8e1b05daaee028df8db5cb33cad537ee44476b3d484cb0f5e82f7d3d721f0d11",
+    "bytes": 528238
+   },
+   "data_cache/phase25a_global_cache/ISIC/prob512.npy": {
+    "sha256": "a2b7381fe16e458146bb88e138d59a7d70924c21a4e33a89101a7f1060817a35",
+    "bytes": 1139277952
+   },
+   "data_cache/phase25a_global_cache/ISIC/prob_crop.npy": {
+    "sha256": "bf9b3c6712b6efb7bde570e3be5007cb90a85e1e409f4e999480da1442ba4534",
+    "bytes": 284819584
+   },
+   "data_cache/phase25a_global_cache/ISIC/rgb_crop.npy": {
+    "sha256": "65a112745e352c26d0e20121c83edda3727f4660384971451ca12222a43bf7fd",
+    "bytes": 427229312
+   },
+   "data_cache/phase25a_global_cache/KUB/action.npy": {
+    "sha256": "c1c9bd5ba44a9f57c484bcfda4f0b3d5b56eb0377d1ea8d843a22901889e69dc",
+    "bytes": 1808
+   },
+   "data_cache/phase25a_global_cache/KUB/gt_crop.npy": {
+    "sha256": "188df7a061b7a03ddf13bf09a9fb48b25a578e343ec9c9a10c518f5cb52796aa",
+    "bytes": 110100608
+   },
+   "data_cache/phase25a_global_cache/KUB/meta.csv": {
+    "sha256": "9757fe9e5427325029ca3ff2a7c11c804d2ab89b0913fc492a4a2c20c15fc1cb",
+    "bytes": 358879
+   },
+   "data_cache/phase25a_global_cache/KUB/prob512.npy": {
+    "sha256": "adeb5f72974345216251e866f7d5e3a6e7145212772ca4cb62fd389e8040f75d",
+    "bytes": 880803968
+   },
+   "data_cache/phase25a_global_cache/KUB/prob_crop.npy": {
+    "sha256": "ba2ac70c48a28f5108a0baf5fd5937f4f11cd37060c44b3401af6160bc38595a",
+    "bytes": 220201088
+   },
+   "data_cache/phase25a_global_cache/KUB/rgb_crop.npy": {
+    "sha256": "f336f9fca110b669cea92c0a86c54bdf1867286b6d10b02f8bd9a878a8784cfe",
+    "bytes": 330301568
+   },
+   "data_cache/phase25a_global_cache/KVASIR/action.npy": {
+    "sha256": "0d594560ad4cb9930ec2f8fb30ff65957cc4bdc8e536dbcd414fb4ea77ef34b5",
+    "bytes": 720
+   },
+   "data_cache/phase25a_global_cache/KVASIR/gt_crop.npy": {
+    "sha256": "2c78748b23d70ae01d816da0ee73ee0b16fa9c26e5d178bb0db9956aedb07ce7",
+    "bytes": 38797440
+   },
+   "data_cache/phase25a_global_cache/KVASIR/meta.csv": {
+    "sha256": "0012df5ce61e3d9558d7e2dd746dbccd1bec94b94b7c84d8bd8e9c4ead4bf202",
+    "bytes": 146802
+   },
+   "data_cache/phase25a_global_cache/KVASIR/prob512.npy": {
+    "sha256": "fe3d8be3c6f49987be14404a06854662c0232d56f2a9f6547834bd2a704fd9bd",
+    "bytes": 310378624
+   },
+   "data_cache/phase25a_global_cache/KVASIR/prob_crop.npy": {
+    "sha256": "48f927ae983f71fa43dbc63fac5ba932de4c6dceb18265e7e3115175559afbc3",
+    "bytes": 77594752
+   },
+   "data_cache/phase25a_global_cache/KVASIR/rgb_crop.npy": {
+    "sha256": "e81ed7a6056d0cf212189d1f1a50d3cc0371b1dc5f926e97ea6eb32a2f0bddb8",
+    "bytes": 116392064
+   }
+  },
+  "tables": {
+   "reports/tables/phase25a_action_availability_by_domain.csv": {
+    "sha256": "d45091e206eed6afd9217511cf4f19d7e43424be08582dec4d5b0533b15441d0",
+    "bytes": 345
+   },
+   "reports/tables/phase25a_crossfit_fold_manifest_summary.csv": {
+    "sha256": "0de818276694341ee2427206f701b5f4db8a8ae7e5360af094a086f6e29f58f2",
+    "bytes": 870
+   },
+   "reports/tables/phase25a_population_accounting.csv": {
+    "sha256": "d45091e206eed6afd9217511cf4f19d7e43424be08582dec4d5b0533b15441d0",
+    "bytes": 345
+   },
+   "reports/tables/phase25a_refiner_selected_epochs.csv": {
+    "sha256": "faf6c4506fb986dc671d48646cf32371fc49ff1564416b21de70d16619cfb18f",
+    "bytes": 605
+   },
+   "reports/tables/phase25a_resource_accounting.csv": {
+    "sha256": "945446bb42bae481e1aed63cbd3d6c2d84ae7e68bed4059a30c36ca5dbd93f8c",
+    "bytes": 374
+   },
+   "reports/tables/phase25a_run_summary.csv": {
+    "sha256": "7507e5126b761ccede80b1117f3e9ae7e83c99fafd71b2d88d5e962f4cb9535b",
+    "bytes": 968
+   },
+   "reports/tables/phase25a_training_epochs_final.csv": {
+    "sha256": "4f5847815e20cf34ab44ab07087dd2ec51bd8ba70a18a2b936ae65448afa8bd0",
+    "bytes": 3330
+   },
+   "reports/tables/phase25a_training_epochs_fold0.csv": {
+    "sha256": "bac3d8aa4174abfc32755441cf3b8177360b5aa41080fdb3ba845436dd89bb45",
+    "bytes": 8666
+   },
+   "reports/tables/phase25a_training_epochs_fold1.csv": {
+    "sha256": "243b1f0f7f9d2e5df629c35a0eea165648ef19e65316ea8b7f27fe1800665af7",
+    "bytes": 7477
+   },
+   "reports/tables/phase25a_training_epochs_fold2.csv": {
+    "sha256": "4ac2642d00c939fa31ea5a085de8fd69c8dc0bb6b70ccdf6cf101de9eafa7fa2",
+    "bytes": 5925
+   }
+  },
+  "figures": {
+   "reports/figures/phase25a_regional_refiner/p25a_action_availability_by_domain.png": {
+    "sha256": "bf74ea98abab7208a4ebb823dc336dc0a9a6abdd9990a6e762e21449de47b725",
+    "bytes": 29549
+   },
+   "reports/figures/phase25a_regional_refiner/p25a_best_epoch_summary.png": {
+    "sha256": "fdbf427de9449220b25a7fe7bc7f59c43a870e7a2d7b270f4e9952e679b41b32",
+    "bytes": 28347
+   },
+   "reports/figures/phase25a_regional_refiner/p25a_crop_geometry_distribution.png": {
+    "sha256": "7087944697c483c4255b50b8fb36c5287c3ca5fa5e3308c8989a8e4962ff90c5",
+    "bytes": 44368
+   },
+   "reports/figures/phase25a_regional_refiner/p25a_final_refit_training_curve.png": {
+    "sha256": "9b6ed3210a0609aa0bfd07c605c37d7dbe82a683cd1a27cedfd2aa72ea0cad07",
+    "bytes": 35370
+   },
+   "reports/figures/phase25a_regional_refiner/p25a_fold0_loss_curve.png": {
+    "sha256": "d5da51ee8ca5fef2a9d1d854a888aa37eb9cbcbe573dff35bd50e3b0021b6f1c",
+    "bytes": 44424
+   },
+   "reports/figures/phase25a_regional_refiner/p25a_fold1_loss_curve.png": {
+    "sha256": "dc963615e5d29d0e7bfb10c437a6e99254b197ea3c4d2bb86bffd022f4f07ed7",
+    "bytes": 45517
+   },
+   "reports/figures/phase25a_regional_refiner/p25a_fold2_loss_curve.png": {
+    "sha256": "6511248b9fe39ce81431d0d269e071a6cde2c0a4fb723a6409774ab635d64980",
+    "bytes": 44454
+   },
+   "reports/figures/phase25a_regional_refiner/p25a_fold_training_comparison.png": {
+    "sha256": "a23d1b4e4262cd6082f22cf3073a9bc7a26942ccbb84b1a4bbfce6a1379afe63",
+    "bytes": 77972
+   },
+   "reports/figures/phase25a_regional_refiner/p25a_learning_rate_curves.png": {
+    "sha256": "a1a02f405d84054096f75a86a9bfde1daf37ecd6f20a93af9e47c07a96cae52b",
+    "bytes": 32561
+   },
+   "reports/figures/phase25a_regional_refiner/p25a_refiner_architecture_summary.png": {
+    "sha256": "83b038d62d5551c78d74200676dfc03190d353a20ad01e8d946a64ba82bd8a34",
+    "bytes": 66569
+   }
+  }
+ },
+ "frozen_audits_preserved": true,
+ "training_incident_provenance_preserved": true,
+ "training_incident_ref": "reports/audits/phase25a_trainer_rebind_and_incident.json",
+ "training_incident_note": "the ROI-0.50 teardown incident and its atomic-write remedy remain recorded and must not be erased",
+ "threshold_dependent_derivatives_invalidated": [
+  "binary predicted-foreground masks",
+  "action_available values",
+  "ROI bbox coordinates",
+  "ROI crop geometry",
+  "crop tensors",
+  "crop cache",
+  "refiner training datasets",
+  "fold0 checkpoint",
+  "fold1 checkpoint",
+  "fold2 checkpoint",
+  "final refiner checkpoint",
+  "training histories"
+ ],
+ "split_assignments_reusable": true,
+ "split_assignments_note": "outer 3-fold membership and inner FIT/EARLY_STOP construction are threshold-independent and are reused unchanged",
+ "supersession_authority": "user instruction PHASE 25A \u2014 CANONICAL ROI-THRESHOLD ADJUDICATION + CLEAN RERUN, sections 0/2/5",
+ "phase24_science_changed": false,
+ "phase24_exact_spec_changed": false,
+ "p_global_is_threshold_independent": true,
+ "p_global_note": "the global probability maps are a property of the frozen Phase-21 Global MedFiLM and do not depend on the ROI threshold; only the threshold-dependent binary masks and crops are invalidated",
+ "generated_utc_note": "generated_utc intentionally omitted so this file is byte-reproducible",
+ "verdict": "PHASE25A_ROI050_SUPERSEDED_PRESERVED"
+}

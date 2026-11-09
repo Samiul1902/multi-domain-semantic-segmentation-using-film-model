@@ -1,0 +1,50 @@
+{
+ "artifact": "phase27_preservation_contract_binding_v1_0",
+ "phase": "27",
+ "classification": "PHASE27_PRE_EXECUTION_PRESERVATION_AUDIT_SPECIFICATION",
+ "method": "RA-MedFiLM-BARR",
+ "governance_only": true,
+ "no_execution": true,
+ "stage": "PRESERVATION_CONTRACT_BINDING",
+ "inherited_from": [
+  "reports/audits/phase25g_preservation_contract_binding.json",
+  "reports/audits/phase25g_statistics_contract.json"
+ ],
+ "estimand": "MACRO_DOMAIN_EQUAL_WEIGHT_MEAN_DICE_DELTA",
+ "estimand_note": "macro-domain equal-weight mean of the four domain mean Dice deltas. Cannot be reduced to a pooled row mean; each domain carries weight 1/4.",
+ "delta_definition": "Delta_i = Dice(final_A8_i, GT) - Dice(global_i, GT)",
+ "margin": 0.005,
+ "criterion": "lower 95% CI bound > -0.005 (strict)",
+ "bootstrap_type": "DOMAIN_STRATIFIED_GROUP_BOOTSTRAP",
+ "n_boot": 2000,
+ "seed": 42,
+ "rng": "numpy.random.Generator(numpy.random.PCG64(42))",
+ "ci_method": "percentile",
+ "ci_percentiles": [
+  2.5,
+  97.5
+ ],
+ "paired": true,
+ "per_domain_reporting": "mandatory",
+ "macro_may_not_hide_domain_harm": true,
+ "system_under_test": "A8_C9 (frozen Phase26 canonical bundle)",
+ "global_reference": "the SAME frozen GlobalMedFiLM inside the Phase26 bundle",
+ "no_new_margin": true,
+ "no_new_estimand": true,
+ "checks": {
+  "margin_is_0p005": true,
+  "delta_rule_matches": true,
+  "lower_ci_rule_frozen": true,
+  "per_domain_mandatory": true,
+  "macro_may_not_hide_domain_harm": true,
+  "final_statement_refers_to_A8": true,
+  "bootstrap_type_domain_stratified_group": true,
+  "n_boot_2000": true,
+  "seed_42": true,
+  "ci_percentile_method": true,
+  "ci_percentiles_2p5_97p5": true,
+  "rng_pcg64": true,
+  "paired": true
+ },
+ "all_pass": true
+}

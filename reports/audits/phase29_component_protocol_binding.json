@@ -1,0 +1,125 @@
+{
+ "artifact": "phase29_component_protocol_binding",
+ "phase": 29,
+ "classification": "PHASE29_COMPONENT_PROTOCOL_BINDING",
+ "note": "Protocol inheritance is frozen; whether each component is IN SCOPE is §4 (UNRESOLVED).",
+ "G_GlobalMedFiLM": {
+  "in_scope_status": "UNRESOLVED",
+  "inherits": "Phase21",
+  "architecture_id": "global_medfilm_shared_residual_unet_film5_no_se_no_deep_supervision_v1",
+  "architecture_binding": "reports/audits/phase21_global_medfilm_architecture_binding.json",
+  "architecture_binding_sha256": "21e2c195c8da33da761965817bab99f0eeec5fa84a846d05ae765b9567017e78",
+  "training_population": "TRAIN 5832",
+  "loss": {
+   "name": "bce_dice",
+   "bce_weight": 0.5,
+   "dice_weight": 0.5,
+   "dice_epsilon": 1e-06
+  },
+  "optimizer": {
+   "name": "AdamW",
+   "learning_rate": 0.0001,
+   "weight_decay": 0.0001
+  },
+  "scheduler": {
+   "name": "CosineAnnealingLR",
+   "T_max": 100,
+   "step": "per_epoch_after_train_and_val"
+  },
+  "max_epochs": 100,
+  "early_stopping_patience": 15,
+  "early_stopping_ties_count_as_bad_epochs": true,
+  "film_conditioning": true,
+  "amp": true,
+  "canonical_seed42_best_epoch": 66,
+  "canonical_seed42_final_epoch": 81,
+  "canonical_seed42_stop_reason": "EARLY_STOPPING_PATIENCE",
+  "train_membership_reused_for_all_seeds": "UNRESOLVED",
+  "per_seed_checkpoint_path_isolation_required": true,
+  "canonical_seed42_checkpoint_must_not_be_overwritten": true
+ },
+ "R_psi_BARRRegionalRefinerV1": {
+  "in_scope_status": "UNRESOLVED",
+  "inherits": "Phase25A ROI-0.30",
+  "crossfit_protocol": "reports/audits/phase25a_crossfit_protocol.json",
+  "crossfit_protocol_sha256": "6868b5562fe02929e13d63905ca74a759e20dec3c01b14eef331e4cb948f55ce",
+  "augmentation_binding": "reports/audits/phase25a_augmentation_binding.json",
+  "augmentation_binding_sha256": "b8b0f817e765dd5db267df6f5e5c5b33da4f81ff58b177f8a410e5d985e97f59",
+  "outer_folds": 3,
+  "inner_fit_fraction": 0.9,
+  "inner_early_stop_fraction": 0.1,
+  "outer_target_role": "UNTOUCHED; OOF only",
+  "roi_geometry": "ROI-0.30 canonical (threshold 0.30, expansion 1.50, 256 crop)",
+  "loss": "0.5*BCEWithLogits + 0.5*Dice(1e-6)",
+  "optimizer": {
+   "name": "AdamW",
+   "lr": 0.0001,
+   "weight_decay": 0.0001
+  },
+  "scheduler": {
+   "name": "CosineAnnealingLR",
+   "T_max": 100
+  },
+  "batch_size": 8,
+  "max_epochs": 100,
+  "patience": 15,
+  "checkpoint_rule": "min EARLY_STOP total loss",
+  "param_count": 1276401,
+  "fold_membership_behavior_across_seeds": "UNRESOLVED",
+  "final_refit_rule": "UNRESOLVED",
+  "changing_crossfit_fold_assignment_between_seeds": "MUST_BE_CLASSIFIED_AS_PARTITION_VARIATION"
+ },
+ "B_phi_BARRBenefitRouterV1": {
+  "in_scope_status": "UNRESOLVED",
+  "inherits": "Phase25D v1.2.1",
+  "spec_binding": "reports/audits/phase25d_frozen_training_spec_binding_v1_2_1.json",
+  "spec_binding_sha256": "f590b7170dad0a149d5b9c69a00dd88e76504466318599d2bbd8b3daf86ca6c6",
+  "architecture": "Embedding(4,16) -> Linear(218,128) -> LayerNorm(128) -> SiLU -> Dropout(0.10) -> Linear(128,64) -> LayerNorm -> SiLU -> Linear(64,1)",
+  "param_count": 36801,
+  "outer_folds": 5,
+  "inner_fit_early_stop": "StratifiedGroupKFold(n_splits=10, random_state=4200+k)",
+  "normalization": "FIT-only ddof=0; final refit on ALL 4957 DEV rows",
+  "loss": {
+   "name": "Huber",
+   "delta": 0.05
+  },
+  "optimizer": {
+   "name": "AdamW",
+   "lr": 0.001,
+   "weight_decay": 0.0001
+  },
+  "batch_size": 128,
+  "max_epochs": 200,
+  "patience": 20,
+  "scheduler": "ReduceLROnPlateau(factor 0.5, patience 8, threshold 1e-4, rel, min_lr 1e-6)",
+  "checkpoint_metric": "EARLY_STOP mean Huber loss",
+  "direction": "MINIMIZE",
+  "final_refit_epoch_rule": "sorted(best_epoch_0..4)[2] (exact integer median)",
+  "final_refit_seed": 42,
+  "final_checkpoint_rule": "LAST_FIXED_EPOCH",
+  "per_seed_required": "UNRESOLVED (OOF predictions? final all-DEV checkpoint?)",
+  "no_rule_may_be_invented_after_seed_results": true
+ },
+ "S_omega_BARRPostSafetyV1": {
+  "in_scope_status": "UNRESOLVED",
+  "inherits": "Phase25F",
+  "cv_manifest_reuse_contract": "reports/audits/phase25f_cv_manifest_reuse_contract_v1_0.json",
+  "cv_manifest_reuse_contract_sha256": "731376fd19d2fc922f5209fdf891a12f9db5ed0ddafc04f697fe5364e1d02533",
+  "architecture_contract": "reports/audits/phase25f_architecture_contract_v1_0.json",
+  "architecture_contract_sha256": "b90464eea2d527774a5734112a35b5be8035d840fd8ae7862729df0c1c4265df",
+  "architecture": "Linear(20,32)->SiLU->Linear(32,16)->SiLU->Linear(16,1)",
+  "param_count": 1217,
+  "input_features": "20-D = 16 numeric + 4 one-hot task",
+  "target": "post-refinement accept/fallback benefit label",
+  "folds": 5,
+  "cv_seeds": "54000-54004",
+  "normalization": "FIT-only ddof=0 of the 16 numeric features",
+  "loss": "BCEWithLogitsLoss (mean reduction; no class weighting)",
+  "threshold": 0.5,
+  "threshold_calibration": "NONE",
+  "final_refit_rule": "exact median of five best epochs; FINAL_SAFETY_EPOCHS=23; LAST_FIXED_EPOCH",
+  "final_refit_seed": 42,
+  "per_seed_required": "UNRESOLVED (OOF safety predictions? final all-DEV checkpoint?)"
+ },
+ "all_pass": false
+}

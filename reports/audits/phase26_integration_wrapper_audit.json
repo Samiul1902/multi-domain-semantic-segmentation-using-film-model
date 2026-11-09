@@ -1,0 +1,49 @@
+{
+ "artifact": "phase26_integration_wrapper_audit",
+ "phase": "26",
+ "classification": "CANONICAL_FULL_SYSTEM_INTEGRATION_AND_CONFIGURATION_FREEZE",
+ "method": "RA-MedFiLM-BARR",
+ "classification_of_calls": "IMPLEMENTATION_VALIDATION_ONLY",
+ "synthetic_forwards": true,
+ "scientific_sample_forwards": 0,
+ "tests": [
+  {
+   "test": "global_medfilm_io",
+   "pass": true,
+   "detail": "shape=(1, 1, 512, 512)"
+  },
+  {
+   "test": "router_feature_width_202",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "test": "benefit_router_218d_input",
+   "pass": true,
+   "detail": "shape=(1,)"
+  },
+  {
+   "test": "regional_refiner_4ch_256",
+   "pass": true,
+   "detail": "shape=(1, 1, 256, 256)"
+  },
+  {
+   "test": "post_safety_20d_input",
+   "pass": true,
+   "detail": "shape=(1,)"
+  },
+  {
+   "test": "fusion_shape_compatibility",
+   "pass": true,
+   "detail": "shape=(8, 8)"
+  },
+  {
+   "test": "fusion_outside_roi_unmodified",
+   "pass": true,
+   "detail": ""
+  }
+ ],
+ "n_tests": 7,
+ "n_pass": 7,
+ "all_pass": true
+}

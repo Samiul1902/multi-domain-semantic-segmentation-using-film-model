@@ -1,0 +1,331 @@
+{
+  "artifact": "phase36_v1_11_to_v1_12_execution_semantic_diff",
+  "phase": 36,
+  "section": "§O",
+  "method": "RA-MedFiLM-BARR",
+  "revision": "ra_medfilm_barr_phase36_robustness_v1_12",
+  "type": "TWO_SIDED_EXECUTION_SEMANTIC_DIFF",
+  "no_execution": true,
+  "torch_imported": false,
+  "protected_population_read": false,
+  "v1_11_execution_sha256": "dc4928417444304ad637907c53089e512577254b368e438d0098ade6202083f0",
+  "v1_12_execution_sha256": "8ed75a9b8f4ea8c204875bf1810e17df3f9c342a434f25399154f355ee888ea4",
+  "execution_subject_byte_identical": false,
+  "new_scientific_choice": false,
+  "semantic_groups": {
+    "VAL808_population": {
+      "keys": [
+        "AUTHORIZED_POPULATION_N",
+        "VAL_RUNTIME_EXPECTED_N",
+        "PROTECTED_RUNTIME_POPULATION",
+        "VAL_RUNTIME_AUTHORITY",
+        "CLEAN_EXECUTIONS_EXPECTED"
+      ],
+      "not_in_both_revisions": [],
+      "changed": [],
+      "unchanged": true
+    },
+    "perturbation_registry": {
+      "keys": [
+        "NONCLEAN_DETERMINISTIC_IMAGE_CONDITIONS",
+        "NONCLEAN_NOISE_IMAGE_CONDITIONS",
+        "NONCLEAN_PROPOSAL_CONDITIONS",
+        "PROPOSAL_CLEAN_CONDITION",
+        "NONCLEAN_IMAGE_REALIZATIONS_PER_SAMPLE",
+        "IMAGE_REALIZATIONS_PER_SAMPLE_INCL_CLEAN",
+        "NONCLEAN_PROPOSAL_CONDITIONS_PER_SAMPLE"
+      ],
+      "not_in_both_revisions": [],
+      "changed": [],
+      "unchanged": true
+    },
+    "G_numeric_semantics_phase27": {
+      "keys": [
+        "CANONICAL_G_DEVICE",
+        "CANONICAL_G_REQUIRES_CUDA",
+        "CANONICAL_G_MODEL_DTYPE",
+        "CANONICAL_G_INPUT_DTYPE",
+        "CANONICAL_G_MODEL_EVAL",
+        "CANONICAL_G_AUTOCAST_ENABLED",
+        "CANONICAL_G_AUTOCAST_DTYPE",
+        "CANONICAL_G_NO_GRAD",
+        "CANONICAL_G_INFERENCE_MODE",
+        "CANONICAL_G_BATCH_SIZE",
+        "CANONICAL_SAMPLE_ORDER",
+        "CANONICAL_BATCH_PARTITION",
+        "CANONICAL_LAST_PARTIAL_BATCH",
+        "CANONICAL_BATCH_FORWARDS_BY_DOMAIN",
+        "CANONICAL_BATCH_FORWARDS_TOTAL",
+        "CANONICAL_LAST_BATCH_SIZE_BY_DOMAIN",
+        "CANONICAL_DOMAIN_ORDER"
+      ],
+      "not_in_both_revisions": [],
+      "changed": [],
+      "unchanged": true
+    },
+    "G_probability_operator": {
+      "keys": [
+        "CANONICAL_PROBABILITY_OPERATOR",
+        "CANONICAL_PROBABILITY_COMPUTATION",
+        "CANONICAL_PROBABILITY_STORAGE_DTYPE",
+        "MANUAL_SIGMOID_FORBIDDEN"
+      ],
+      "not_in_both_revisions": [],
+      "changed": [],
+      "unchanged": true
+    },
+    "phase27_global_reproduction_authority": {
+      "keys": [
+        "PHASE27_GLOBAL_PROB_AUTHORITY",
+        "CLEAN_G_REPRODUCTION_GATE"
+      ],
+      "not_in_both_revisions": [],
+      "changed": [],
+      "unchanged": true
+    },
+    "device_contract": {
+      "keys": [
+        "CANONICAL_DEVICE_CONTRACT"
+      ],
+      "not_in_both_revisions": [],
+      "changed": [],
+      "unchanged": true
+    },
+    "component_inference_contexts": {
+      "keys": [
+        "COMPONENT_INFERENCE_CONTEXTS",
+        "COMPONENT_CONTEXTS_NOT_INTERCHANGEABLE",
+        "COMPONENT_BATCH_SIZE_ADJUDICATION"
+      ],
+      "not_in_both_revisions": [],
+      "changed": [],
+      "unchanged": true
+    },
+    "kub_reporting_only": {
+      "keys": [
+        "KUB_SUBGROUP_AUTHORITY"
+      ],
+      "not_in_both_revisions": [],
+      "changed": [],
+      "unchanged": true
+    },
+    "figure_registry_R1_R5": {
+      "keys": [
+        "FIGURE_REGISTRY"
+      ],
+      "not_in_both_revisions": [],
+      "changed": [],
+      "unchanged": true
+    },
+    "protected_population_flags": {
+      "keys": [
+        "ROUTER_HOLDOUT_RUNTIME_READS_ALLOWED",
+        "TEST_RUNTIME_READS_ALLOWED",
+        "VAL_MANIFEST_IS_ONLY_POPULATION_RUNTIME_AUTHORITY",
+        "PROTECTED_COUNTERS"
+      ],
+      "not_in_both_revisions": [],
+      "changed": [],
+      "unchanged": true
+    },
+    "route_state_machine_vocabulary": {
+      "keys": [
+        "ROUTE_STATES_FULL",
+        "ROUTER_DECISIONS"
+      ],
+      "not_in_both_revisions": [],
+      "changed": [],
+      "unchanged": true
+    },
+    "model_thresholds": {
+      "keys": [
+        "ROUTER_NUMERIC_DIM",
+        "ROUTER_SCALAR_IDX",
+        "SOMEGA_NUMERIC_DIM",
+        "SOMEGA_ACCEPT_THRESHOLD",
+        "SEGMENTATION_OUTPUT_THRESHOLD",
+        "ROI_PROPOSAL_THRESHOLD",
+        "ROI_FRACTIONAL_MARGIN",
+        "REGIONAL_INPUT_RESOLUTION",
+        "REGIONAL_CANVAS_RESOLUTION"
+      ],
+      "not_in_both_revisions": [],
+      "changed": [],
+      "unchanged": true
+    },
+    "somega_input_dim_d24": {
+      "keys": [
+        "SOMEGA_FINAL_INPUT_DIM"
+      ],
+      "not_in_both_revisions": [],
+      "changed": [],
+      "unchanged": true
+    },
+    "transitive_authority_set_d23": {
+      "keys": [
+        "TRANSITIVE_RUNTIME_DEPENDENCIES",
+        "TRANSITIVE_RUNTIME_CHECKPOINTS"
+      ],
+      "not_in_both_revisions": [],
+      "changed": [],
+      "unchanged": true
+    }
+  },
+  "all_semantic_groups_unchanged": true,
+  "smoke_check_ids": {
+    "v1_11_count": 53,
+    "v1_12_count": 53,
+    "v1_11_unique_count": 53,
+    "v1_12_unique_count": 53,
+    "identical": true,
+    "removed": [],
+    "added": [],
+    "is_superset": true,
+    "is_strict_superset": false,
+    "reporting_note": "identical check-id sets: is_superset=true, is_strict_superset=false (identical != strict superset)"
+  },
+  "execution_functions_added": [],
+  "execution_functions_removed": [],
+  "changed_line_classification": {
+    "n_added_lines": 137,
+    "n_removed_lines": 57,
+    "n_changed_nonblank": 186,
+    "unclassified_changed_lines": [],
+    "n_unclassified": 0,
+    "prohibited_scientific_changes": [],
+    "n_prohibited": 0,
+    "allowed_change_markers": [
+      "v1_12",
+      "V1_12",
+      "v1_11",
+      "V1_11",
+      "D34",
+      "D35",
+      "D36",
+      "D30",
+      "D31",
+      "D32",
+      "D33",
+      "SCIENCE_",
+      "_science_",
+      "science_",
+      "LAUNCH_AUTHORITY",
+      "launch",
+      "launcher",
+      "SMOKE_V1_12",
+      "PHASE36_V1_12",
+      "FORBIDDEN_SCIENCE_RESULT_V1_8",
+      "phase36_v1_12_runtime_source_integrity_manifest",
+      "ra_medfilm_barr_phase36_robustness_v1_12",
+      "phase36_robustness_smoke_start_v1_12",
+      "phase36_robustness_smoke_failure_v1_12",
+      "phase36_robustness_smoke_v1_12",
+      "phase36_robustness_science_start_v1_12",
+      "phase36_robustness_science_failure_v1_12",
+      "phase36_robustness_scientific_result_v1_12",
+      "_gate_smoke_state",
+      "_gate_science_state",
+      "_smoke_attempt_already_exists",
+      "_science_attempt_already_exists",
+      "_create_smoke_start_marker",
+      "_create_science_start_marker",
+      "_write_smoke_failure_artifact",
+      "_write_science_failure_artifact",
+      "_write_smoke_success_artifact",
+      "_write_science_success_artifact",
+      "_run_science_with_durable_evidence",
+      "classification",
+      "termination_kind",
+      "launcher_key_present",
+      "os",
+      "import"
+    ],
+    "science_token_blacklist": [
+      "torch.sigmoid",
+      "autocast",
+      "inference_mode",
+      "no_grad",
+      "SOMEGA_ACCEPT_THRESHOLD",
+      "SEGMENTATION_OUTPUT_THRESHOLD",
+      "ROI_PROPOSAL_THRESHOLD",
+      "CANONICAL_",
+      "PHASE27_GLOBAL_PROB_AUTHORITY",
+      "FIGURE_REGISTRY",
+      "KUB_SUBGROUP_AUTHORITY",
+      "NONCLEAN_",
+      "PROTECTED_RUNTIME_POPULATION",
+      "AUTHORIZED_POPULATION_N",
+      "_hd95_case_exact",
+      "TRANSITIVE_RUNTIME_DEPENDENCIES",
+      "TRANSITIVE_RUNTIME_CHECKPOINTS",
+      "ROUTE_STATES_FULL",
+      "ROUTER_DECISIONS"
+    ]
+  },
+  "unit_suite": {
+    "v1_12_contains_or_true": false,
+    "removed_checks_vs_v1_11": [
+      "01_v1_11_revision_tag",
+      "02_v1_11_smoke_paths",
+      "03_v1_11_science_paths",
+      "04_no_v1_9_smoke_path_binding",
+      "55_D31_science_result_is_v1_11_path"
+    ],
+    "added_checks_vs_v1_11": [
+      "01_v1_12_revision_tag",
+      "02_v1_12_smoke_paths",
+      "03_v1_12_science_paths",
+      "04_no_v1_11_smoke_path_binding",
+      "100_D34_source_does_not_read_manifest_launcher_sha",
+      "101_D34_source_no_expected_launcher_variable",
+      "102_D34_source_still_requires_launch_token",
+      "103_D34_source_fails_closed_on_unexpected_launcher_key",
+      "104_D34_launcher_key_membership_test",
+      "105_D34_all_match_binding_correct",
+      "110_D35_launcher_no_os_environ_get",
+      "113_D35_old_override_env_names_absent",
+      "114_D35_frozen_exec_const_is_literal_sha",
+      "115_D35_frozen_manifest_const_is_literal_sha",
+      "116_D35_main_no_hash_override_argument",
+      "120_D36_manifest_lacks_launcher_sha",
+      "121_D36_manifest_declares_exec_sha_exact",
+      "122_D36_execution_does_not_require_manifest_launcher_sha",
+      "123_D36_launcher_pins_exact_exec_and_manifest_constants",
+      "124_D36_launcher_verifies_both_before_dispatch",
+      "125_D36_execution_requires_launch_authority",
+      "126_D36_cross_contract_canonical_pair_satisfiable",
+      "127_D36_cross_contract_env_override_inert",
+      "128_D36_old_override_env_cannot_change_authority",
+      "55_D31_science_result_is_v1_12_path"
+    ],
+    "required_guard_tokens": [
+      "00_self_no_or_true_expression",
+      "20_D26_provenance_derived_not_literal",
+      "21_D26_binding_consumes_derived",
+      "25_D27_transitive_dep_exact_count_14",
+      "26_D27_transitive_dep_exact_set_equality",
+      "41_D28_four_actual_hd95_call_sites",
+      "42_D28_hd95_call_sites_exact_semantics",
+      "50_D30_science_integrity_gate_present",
+      "51_D30_science_integrity_gate_before_load_models",
+      "55_D31_science_result_is_v1_12_path",
+      "56_D31_no_v1_8_science_write",
+      "100_D34_source_does_not_read_manifest_launcher_sha",
+      "110_D35_launcher_no_os_environ_get",
+      "126_D36_cross_contract_canonical_pair_satisfiable"
+    ],
+    "missing_required_guards": [],
+    "renumber_note": "v1.12 unit is a NEW artifact that retains every v1.11 guard (possibly renumbered) onto the v1.12 paths and adds D34/D35/D36 cross-binding guards.",
+    "unexplained_removed_checks": [],
+    "no_unexplained_removal": true
+  },
+  "permitted_differences": [
+    "D34_source_manifest_launch_anchor_contradiction_removed",
+    "D35_immutable_non_env_overridable_launch_hashes",
+    "D36_three_file_validation_cross_binding",
+    "smoke_artifact_revision_renumber_v1_11_to_v1_12",
+    "associated_static_audits_and_negative_controls"
+  ],
+  "prohibited_differences_found": [],
+  "permitted_differences_all_within_scope": true
+}

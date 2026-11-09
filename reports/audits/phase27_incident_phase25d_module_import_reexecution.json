@@ -1,0 +1,67 @@
+{
+ "artifact": "phase27_incident_phase25d_module_import_reexecution",
+ "phase": "27",
+ "classification": "PHASE27_CANONICAL_MULTIDOMAIN_PRESERVATION_EXECUTION",
+ "method": "RA-MedFiLM-BARR",
+ "incident": "UNINTENDED_PHASE25D_MODULE_REEXECUTION_VIA_IMPORT",
+ "root_cause": "`train_phase25d_router.py` executes a full training run at import time (module-level code); importing its BARRBenefitRouterV1 class during Phase27 preparation re-ran the Phase25D CV + final refit once.",
+ "detection": "file-mtime inspection after a smoke test",
+ "retrain_seed": 42,
+ "determinism_conclusion": "the retrain is bit-deterministic at seed 42; every SHA-bound frozen artifact is byte-identical, and every scientific training-history column matches exactly.  Only the non-scientific wall-clock `elapsed_seconds` column differs.",
+ "frozen_outputs_live_vs_frozen": {
+  "oof_sha256": {
+   "frozen": "837be08e569053676b71d1ab216ff604184b2b61df567cca45e6f8a5546d4441",
+   "live": "837be08e569053676b71d1ab216ff604184b2b61df567cca45e6f8a5546d4441",
+   "match": true
+  },
+  "final_checkpoint_sha256": {
+   "frozen": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+   "live": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+   "match": true
+  },
+  "final_normalization_sha256": {
+   "frozen": "ba37742e96610ec5e46fb47c093bf71ae1afd85b2a0db9696b612c873a4ba1fb",
+   "live": "ba37742e96610ec5e46fb47c093bf71ae1afd85b2a0db9696b612c873a4ba1fb",
+   "match": true
+  },
+  "cv5_manifest_sha256": {
+   "frozen": "008b92963664f38e84f33c771cea1db90caae02a366f02b6a83635a535639707",
+   "live": "008b92963664f38e84f33c771cea1db90caae02a366f02b6a83635a535639707",
+   "match": true
+  }
+ },
+ "freeze_bound_copies_untouched": {
+  "reports/tables/phase25d_cv_fold{k}_training_history.csv": true
+ },
+ "scientific_impact": "NONE",
+ "science_changed": false,
+ "frozen_artifacts_modified": false,
+ "mitigation": "the Phase27 Phase A script must import BARRBenefitRouterV1 and BARRPostSafetyV1 without executing their training module bodies.  A dedicated class-extraction import shim is used instead.",
+ "phase27_science_performed": false,
+ "val808_reads": 0,
+ "holdout_reads": 0,
+ "test_reads": 0,
+ "checks": {
+  "frozen_oof_sha256_byte_identical": true,
+  "frozen_final_checkpoint_sha256_byte_identical": true,
+  "frozen_final_normalization_sha256_byte_identical": true,
+  "frozen_cv5_manifest_sha256_byte_identical": true,
+  "fold0_history_row_count_identical": true,
+  "fold0_history_scientific_columns_identical": true,
+  "fold1_history_row_count_identical": true,
+  "fold1_history_scientific_columns_identical": true,
+  "fold2_history_row_count_identical": true,
+  "fold2_history_scientific_columns_identical": true,
+  "fold3_history_row_count_identical": true,
+  "fold3_history_scientific_columns_identical": true,
+  "fold4_history_row_count_identical": true,
+  "fold4_history_scientific_columns_identical": true,
+  "final_history_row_count_80": true,
+  "val808_reads_zero": true,
+  "holdout_reads_zero": true,
+  "test_reads_zero": true,
+  "no_phase27_science_performed": true
+ },
+ "all_pass": true,
+ "verdict": "PHASE27_INCIDENT_BENIGN__PHASE25D_DETERMINISTIC_REEXECUTION_SCIENTIFIC_OUTPUTS_IDENTICAL"
+}

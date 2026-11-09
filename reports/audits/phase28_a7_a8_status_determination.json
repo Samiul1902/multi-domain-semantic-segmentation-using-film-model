@@ -1,0 +1,54 @@
+{
+ "artifact": "phase28_a7_a8_status_determination",
+ "phase": 28,
+ "classification": "PHASE28_A7_A8_EXECUTION_STATUS_DETERMINATION",
+ "governance_only": true,
+ "execution": "NONE",
+ "question": "Are A7 and A8 reference-frozen Phase25G results, or must Phase28 re-run them?",
+ "determination": "A7_A8=SATISFIED_BY_PHASE25G_CANONICAL_EVIDENCE",
+ "reasoning": "No authoritative source requires A7/A8 to be re-executed. Phase25G already produced FROZEN canonical A7/A8 results across the full frozen budget grid on the same ROUTER_DEVELOPMENT population (n=4957), with frozen C8 membership manifests and a bootstrap CI plan. phase24_ablation_plan.csv records executed_in_phase24='no' for A7/A8, and phase25g_final_freeze.json records the complete A7/A8 result table with all_pass=true. Re-running would violate the prospective-freeze / no-extra-run policy (phase24_exact_implementation_spec.run_policy).",
+ "no_source_requires_rerun": true,
+ "evidence": {
+  "phase25g_final_freeze": {
+   "path": "reports/audits/phase25g_final_freeze.json",
+   "sha256": "48fb05f88fdc88fa33f25342be64bf1f8cc1e62ba7a36eb0e6484c9208c6d276",
+   "A7_definition": "Phase25E C8 routing + always accept the executed regional candidate (= C8)",
+   "A8_definition": "same membership + Phase25F S_omega post-safety decision (= C9)",
+   "population": "ROUTER_DEVELOPMENT",
+   "n": 4957,
+   "policies": 20,
+   "budgets": [
+    0,
+    10,
+    25,
+    50,
+    100
+   ],
+   "lambda_grid": [
+    0,
+    0.25,
+    0.5,
+    1
+   ],
+   "A7_equals_C8": true,
+   "A8_equals_C9": true,
+   "H3_result_sha": "1a3f7ddf6ffdd12053fbf7da2176ca05e91126a4f89487e32e9d9492fc2de653"
+  },
+  "a7_a8_contract": {
+   "path": "reports/audits/phase25g_a7_a8_controlled_comparison_contract.json",
+   "sha256": "ef3c25da49a530e99cc33adaced031be4988432370181c7e8a994803ede1c503",
+   "single_difference_is_S_omega": true
+  },
+  "ablation_plan_executed_in_phase24": "no"
+ },
+ "baseline_A8_result_at_budget_0p25": {
+  "budget": "0.25",
+  "selected_count": 1239,
+  "A7_mean_dice": 0.9175945296315865,
+  "A8_mean_dice": 0.9176102468607679,
+  "A8_minus_A7": 1.5717229181085014e-05,
+  "harm_prevented": 22
+ },
+ "generated_utc": "2026-10-02T18:36:00Z",
+ "all_pass": true
+}

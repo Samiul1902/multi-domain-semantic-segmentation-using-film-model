@@ -1,0 +1,218 @@
+{
+ "artifact": "phase23_search_log",
+ "phase": 23,
+ "purpose": "reproducible, non-cherry-picked record of every prior-art search executed for the Phase-23 novelty audit",
+ "search_date": "2026-09-29",
+ "search_date_note": "single working session; WebSearch provider index + direct arXiv/CVF/Springer/ACM fetches",
+ "time_range": "2015-present (with foundational antecedents dated to 1970/1991/2001 where directly relevant)",
+ "databases_and_indices_screened": [
+  "arXiv (cs.CV, cs.LG, eess.IV)",
+  "Google Scholar / general web index via search provider",
+  "CVF Open Access (CVPR/ICCV/WACV)",
+  "SpringerLink (LNCS/MICCAI, Nature journals, Applied Intelligence)",
+  "ACM Digital Library",
+  "IEEE Xplore (indexed records)",
+  "PubMed / ResearchGate records (via index)",
+  "Google Patents / Justia / USPTO Gazette (limited scan)"
+ ],
+ "databases_not_directly_reachable": [
+  "Semantic Scholar API (no key in session)",
+  "Crossref API (no key in session)",
+  "ScienceDirect full text (paywall)",
+  "IEEE Xplore full text (paywall)",
+  "bioRxiv / medRxiv full text (not directly queried; indexed records only)"
+ ],
+ "search_families": [
+  {
+   "family": "A",
+   "label": "multi-domain / universal medical segmentation",
+   "queries": [
+    "universal medical image segmentation",
+    "multi-domain medical image segmentation",
+    "task-conditioned medical segmentation FiLM",
+    "multi-modality universal segmentation"
+   ],
+   "results_screened": 34,
+   "papers_retained": 6,
+   "notes": "Shared multi-domain/universal medical segmentor is fully occupied (UniverSeg, MedSAM, SAM-Med2D, MedUniSeg, M4oE)."
+  },
+  {
+   "family": "B",
+   "label": "regional / coarse-to-fine refinement",
+   "queries": [
+    "coarse to fine medical segmentation",
+    "ROI refinement medical segmentation",
+    "two-stage refinement segmentation",
+    "cascaded refinement medical"
+   ],
+   "results_screened": 31,
+   "papers_retained": 7,
+   "notes": "Always-execute cascades and regional refinement are occupied (nnU-Net cascade, Med-DANet, SegRefiner); the gate layer is the residual gap."
+  },
+  {
+   "family": "C",
+   "label": "uncertainty-guided refinement",
+   "queries": [
+    "uncertainty guided segmentation refinement",
+    "selective refinement segmentation",
+    "uncertain region reprocessing segmentation",
+    "hard region refinement segmentation"
+   ],
+   "results_screened": 28,
+   "papers_retained": 5,
+   "notes": "Uncertainty-guided refinement is occupied and overwhelmingly driven by CURRENT uncertainty, not future-action benefit."
+  },
+  {
+   "family": "D",
+   "label": "quality / error prediction",
+   "queries": [
+    "segmentation quality prediction without ground truth",
+    "predict segmentation Dice without ground truth",
+    "segmentation failure prediction",
+    "ground-truth-free segmentation evaluation medical"
+   ],
+   "results_screened": 26,
+   "papers_retained": 5,
+   "notes": "GT-free quality/error prediction is occupied; targets CURRENT or POST-REFINEMENT quality, not the \u0394Q of a future action."
+  },
+  {
+   "family": "E",
+   "label": "counterfactual benefit / value-of-computation",
+   "queries": [
+    "predict expected improvement of computation adaptive inference",
+    "value of computation metareasoning",
+    "counterfactual benefit prediction neural network",
+    "individual treatment effect CATE metalearners",
+    "expected gain prediction before refinement"
+   ],
+   "results_screened": 40,
+   "papers_retained": 9,
+   "notes": "HIGHEST-RISK family. Formal 'value of computation' (Russell & Wefald 1991), adaptive-inference bounds (Hor 2024), cascades with learned pass-on criteria (Latotzke 2021) and CATE meta-learners (Kunzel 2019) all occupy the mechanism at the general level."
+  },
+  {
+   "family": "F",
+   "label": "conditional computation",
+   "queries": [
+    "conditional computation segmentation",
+    "dynamic inference segmentation",
+    "early exit segmentation",
+    "budgeted inference segmentation",
+    "adaptive computation modules"
+   ],
+   "results_screened": 33,
+   "papers_retained": 6,
+   "notes": "Conditional/adaptive compute is a mature field (ACT, SkipNet, MoD, ACM). Gating is common; a regression on paired GT-derived \u0394Q for a segmentation refinement is not."
+  },
+  {
+   "family": "G",
+   "label": "mixture-of-experts / routing",
+   "queries": [
+    "mixture of experts medical segmentation",
+    "dynamic routing medical image segmentation",
+    "task routing medical segmentation",
+    "expert choice routing"
+   ],
+   "results_screened": 29,
+   "papers_retained": 6,
+   "notes": "Multi-domain gated medical segmentation is occupied (M4oE); pixel-wise predict-then-defer exists (DeferredSeg). Routing picks a PATHWAY/expert, not whether to spend on an optional refinement."
+  },
+  {
+   "family": "H",
+   "label": "performance-preserving / safe routing",
+   "queries": [
+    "selective prediction segmentation",
+    "conformal segmentation risk control",
+    "non-inferiority gating segmentation",
+    "reject refinement fallback segmentation",
+    "learning to abstain medical segmentation"
+   ],
+   "results_screened": 30,
+   "papers_retained": 7,
+   "notes": "Abstention/conformal/risk-control tools exist but operate on CURRENT confidence or POST-HOC output selection; none bounds the gain of a not-yet-executed refinement."
+  },
+  {
+   "family": "I",
+   "label": "resource-aware / device-aware",
+   "queries": [
+    "resource aware medical segmentation",
+    "mobile CPU medical image segmentation",
+    "edge medical segmentation",
+    "latency aware segmentation",
+    "energy aware segmentation"
+   ],
+   "results_screened": 27,
+   "papers_retained": 5,
+   "notes": "Lightweight/mobile/edge segmentation is a crowded generic area (MobileSAM, edge-adaptive nets). On its own it is engineering value, not algorithmic novelty."
+  },
+  {
+   "family": "J",
+   "label": "tiny-object / small-lesion",
+   "queries": [
+    "tiny lesion segmentation",
+    "small object medical image segmentation",
+    "scale-aware segmentation medical",
+    "kidney stone segmentation",
+    "small lesion super-resolution segmentation"
+   ],
+   "results_screened": 25,
+   "papers_retained": 5,
+   "notes": "Tiny-lesion focus and regional zoom/super-resolution for small structures are already surveyed; the novelty cannot rest on the tiny-object problem or the zoom primitive."
+  },
+  {
+   "family": "K",
+   "label": "falsification-first (deliberately aimed at disproving novelty)",
+   "queries": [
+    "predict refinement gain segmentation",
+    "expected improvement segmentation refinement",
+    "benefit-aware segmentation refinement",
+    "counterfactual refinement segmentation",
+    "predict whether refinement helps segmentation",
+    "selective refinement based on expected gain",
+    "cost-benefit routing segmentation",
+    "value of computation segmentation"
+   ],
+   "results_screened": 44,
+   "papers_retained": 8,
+   "notes": "The single most damaging find is JFS (Moon et al., ICIP 2025), which shares the SAME problem framing ('shall I keep the refined mask?') and a paired \u0394 target, but decides POST-HOC (after refinement) and has no cost term. It is the closest functional analogue in segmentation."
+  },
+  {
+   "family": "L",
+   "label": "general-CV / ML precedence (concept origins outside medicine)",
+   "queries": [
+    "learned halting anytime prediction",
+    "cascaded classifiers reject option",
+    "learning to defer to expert",
+    "metareasoning bounded rationality",
+    "Faster R-CNN region proposal network objectness"
+   ],
+   "results_screened": 36,
+   "papers_retained": 9,
+   "notes": "Establishes that the mechanism is a general idea with 1970s-2000s antecedents (Chow reject rule 1970, Viola-Jones cascade 2001, RPN 2015). Limits any 'algorithm-level' novelty claim."
+  },
+  {
+   "family": "M",
+   "label": "patent / prior-art scan (light, non-legal)",
+   "queries": [
+    "adaptive medical image analysis patent",
+    "dynamic segmentation refinement patent",
+    "selective inference patent",
+    "confidence-based reprocessing medical AI patent",
+    "resource-aware medical AI patent"
+   ],
+   "results_screened": 18,
+   "papers_retained": 2,
+   "notes": "Only general medical-segmentation documents surfaced; none identified in this limited search that claims 'predict-benefit-before-refining an optional expensive segmentation stage with a resource-cost-aware gate'. NOT a legal conclusion; a professional FTO search is required before any patentability statement."
+  }
+ ],
+ "totals": {
+  "queries_logged": 63,
+  "results_screened": 401,
+  "papers_retained_authoritative": 80,
+  "papers_promoted_to_closest_review": 16
+ },
+ "verification_policy": "Every retained paper was verified against at least one primary or authoritative index record (arXiv abstract page, CVF Open Access page, Springer/ACM/IEEE record). Items that could not be verified to the record level are marked UNVERIFIED and are excluded from the authoritative prior-art matrix (see phase23_excluded_nearby_works.csv).",
+ "cherry_picking_control": "Two search families (K and L) were purpose-built to falsify the novelty claim and were run after the affirmative families, so any close equivalent would be surfaced rather than hidden.",
+ "test_reads": 0,
+ "training_jobs_started": 0,
+ "totals_correction_note": "totals.queries_logged was 55 while the per-family ledger and phase23_search_query_summary.csv both sum to 63; corrected to 63 so the ledger identity holds. No classification, verdict, retained or excluded paper is affected."
+}

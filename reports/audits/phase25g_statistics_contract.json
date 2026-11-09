@@ -1,0 +1,54 @@
+{
+ "artifact": "phase25g_statistics_contract",
+ "phase": "25G",
+ "classification": "PHASE25G_PRE_EXECUTION_INTEGRATED_EVALUATION_SPECIFICATION_AUDIT",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_integrated_evaluation_v1_0",
+ "governance_only": true,
+ "no_execution": true,
+ "stage": "STATISTICS_CONTRACT",
+ "reuse_phase25e_mechanics": true,
+ "bootstrap_type": "DOMAIN_STRATIFIED_GROUP_BOOTSTRAP",
+ "group_unit": "phase24_router_split_manifest.csv:group_key (canonical composite PATIENT/ASSET/RISK/SINGLETON)",
+ "strata": [
+  "BUSI",
+  "ISIC",
+  "KUB",
+  "KVASIR"
+ ],
+ "total_groups": 3544,
+ "n_boot": 2000,
+ "seed": 42,
+ "rng": "numpy.random.Generator(numpy.random.PCG64(42))",
+ "ci_method": "percentile",
+ "ci_percentiles": [
+  2.5,
+  97.5
+ ],
+ "paired_two_sided_p": "p_lower=(1+count(D_b<=0))/(B+1); p_upper=(1+count(D_b>=0))/(B+1); p=min(1, 2*min(p_lower,p_upper)); D_b = metric_A(b) - metric_B(b)",
+ "multiplicity": "primary = raw paired two-sided p; secondary = Holm-Bonferroni within the pre-declared C7-vs-comparator family (C1..C6, C10)",
+ "multiplicity_role_phase25g": "no new correction introduced unless prospectively frozen; Phase25E Holm-Bonferroni retained as secondary",
+ "identical_bootstrap_draws_for": [
+  "A7",
+  "A8",
+  "A8-A7"
+ ],
+ "paired": true,
+ "bootstrap_plan_file": "data_cache/phase25e_barr_resource_gate_v1_0/phase25e_bootstrap_plan_v1_0.npz",
+ "bootstrap_plan_file_sha256": "241ed5232b35709494adbf230151cec21259f86f88e1f06e5b2881a6d88f9b63",
+ "reuse_condition": "Phase25E bootstrap-plan rows cover the same 4957 DEV population -> reuse exact frozen draws",
+ "report": [
+  "point estimate",
+  "95% CI",
+  "paired p-value where appropriate"
+ ],
+ "checks": {
+  "domain_stratified_group_bootstrap": true,
+  "n_boot_2000": true,
+  "seed_42": true,
+  "paired_draws_for_A7_A8_A8mA7": true,
+  "no_new_multiplicity_correction": true,
+  "same_4957_population": true
+ },
+ "all_pass": true
+}

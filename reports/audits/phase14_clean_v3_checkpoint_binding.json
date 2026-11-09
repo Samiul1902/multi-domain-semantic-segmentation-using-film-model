@@ -1,0 +1,47 @@
+{
+  "artifact": "phase14_clean_v3_checkpoint_binding",
+  "status": "BOUND_PROSPECTIVE",
+  "verification_required_before_inference": true,
+  "checkpoints": {
+    "GLOBAL_unetpp": {
+      "path": "checkpoints/phase10_kub_unetpp_seed42_512_clean_v3/best.pt",
+      "sha256": "ec7eb13f32e43af27eab7fc617bd1a2a8fcce1d6651a1b4a3653f3e4d1283269",
+      "selection": "best.pt (phase10 clean_v3 training best)",
+      "note": "GLOBAL_ONLY baseline; also the SOURCE of the GLOBAL references Tg/Dg."
+    },
+    "REGIONAL_refiner_unet": {
+      "path": "checkpoints/phase14_kub_refiner_unet_a3_256_seed42_clean_v3/best.pt",
+      "sha256": "2e09e3a9c39c731687db1a9fef0c80881ed6235e4cda070bb4b8b382caa45daa",
+      "epoch": 56,
+      "selection": "best_val_crop_dice epoch 56 (frozen checkpoint-selection replay PASS, 13/13)",
+      "note": "Regional refiner trained on clean_v3 (OPTION B amendment)."
+    },
+    "LOCALIZER_stage4d": {
+      "path": "checkpoints/phase13b_kub_localizer_r512_h128_sigmaeq075_centernetfocal_seed42_clean_v3/best.pt",
+      "sha256": "7673c34a2f2c86eca2e45c1bc6abe77842d17cd09f122f2da0f2d414ca492273",
+      "epoch": 53,
+      "config": {
+        "threshold": 0.1,
+        "margin": 0.2,
+        "top_k": 5,
+        "nms_iou": 0.3
+      },
+      "note": "Frozen Stage-4D proposal generator."
+    }
+  },
+  "proposal_contract": {
+    "threshold": 0.1,
+    "margin": 0.2,
+    "top_k": 5,
+    "nms_iou": 0.3
+  },
+  "oracle_downstream_margin": 0.2,
+  "predicted_proposal_margin": 0.2,
+  "role_resolved_margins": {
+    "ORACLE_DERIVED_REFINER_TRAIN_MARGIN": 0.25,
+    "ORACLE_DERIVED_REFINER_VAL_MARGIN": 0.25,
+    "ORACLE_DOWNSTREAM_MARGIN": 0.2,
+    "PREDICTED_PROPOSAL_MARGIN": 0.2
+  },
+  "governance_note": "All three SHAs MUST be re-verified by the evaluator (assert sha==expected) before any inference. No alternate checkpoint, no alternate epoch, no rerun permitted."
+}

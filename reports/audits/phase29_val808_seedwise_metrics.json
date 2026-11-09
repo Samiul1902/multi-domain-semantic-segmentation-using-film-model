@@ -1,0 +1,144 @@
+{
+ "artifact": "phase29_val808_seedwise_metrics",
+ "phase": 29,
+ "stage": "VAL808_SEEDWISE_METRICS",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_phase29_repro_v1_1",
+ "generated_utc": "2026-10-03T14:24:46+00:00",
+ "population": "VAL808",
+ "population_n": 808,
+ "domains": [
+  "BUSI",
+  "ISIC",
+  "KUB",
+  "KVASIR"
+ ],
+ "segmentation_output_threshold": 0.5,
+ "dice_scorer": "src.metrics.evaluation_metrics.dice (eps=1e-7)",
+ "gt_rule": "full_field_gt: NEAREST 512 + centre pad, (arr>0)",
+ "metrics_by_seed": {
+  "42": {
+   "macro_final_dice": 0.8373512365718179,
+   "macro_global_dice": 0.8351212135703313,
+   "macro_delta_dice": 0.002230023001486659,
+   "n_selected": 279,
+   "selected_fraction": 0.34529702970297027,
+   "n_accepted": 268,
+   "safety_accept_fraction": 0.9605734767025089,
+   "routed_candidate_mean_delta_dice": 0.00887211890257758,
+   "beneficial_coverage": 1.0,
+   "harmful_activation_share": 0.1865671641791045,
+   "n_final_refined": 268,
+   "per_domain": {
+    "BUSI": {
+     "n": 84,
+     "final_dice": 0.8589182037230485,
+     "global_dice": 0.8588274903669337,
+     "delta_dice": 9.071335611485871e-05
+    },
+    "ISIC": {
+     "n": 357,
+     "final_dice": 0.8981270370754663,
+     "global_dice": 0.8971655799822155,
+     "delta_dice": 0.0009614570932507744
+    },
+    "KUB": {
+     "n": 280,
+     "final_dice": 0.771738466681001,
+     "global_dice": 0.7642775760375169,
+     "delta_dice": 0.007460890643484057
+    },
+    "KVASIR": {
+     "n": 87,
+     "final_dice": 0.8206212388077558,
+     "global_dice": 0.8202142078946592,
+     "delta_dice": 0.00040703091309694637
+    }
+   }
+  },
+  "123": {
+   "macro_final_dice": 0.8385110701126937,
+   "macro_global_dice": 0.8351212135703313,
+   "macro_delta_dice": 0.0033898565423623535,
+   "n_selected": 256,
+   "selected_fraction": 0.31683168316831684,
+   "n_accepted": 231,
+   "safety_accept_fraction": 0.90234375,
+   "routed_candidate_mean_delta_dice": 0.013514458708412993,
+   "beneficial_coverage": 1.0,
+   "harmful_activation_share": 0.1471861471861472,
+   "n_final_refined": 231,
+   "per_domain": {
+    "BUSI": {
+     "n": 84,
+     "final_dice": 0.8589526142289579,
+     "global_dice": 0.8588274903669337,
+     "delta_dice": 0.0001251238620241777
+    },
+    "ISIC": {
+     "n": 357,
+     "final_dice": 0.8984941361659593,
+     "global_dice": 0.8971655799822155,
+     "delta_dice": 0.0013285561837436915
+    },
+    "KUB": {
+     "n": 280,
+     "final_dice": 0.7742345530042883,
+     "global_dice": 0.7642775760375169,
+     "delta_dice": 0.00995697696677152
+    },
+    "KVASIR": {
+     "n": 87,
+     "final_dice": 0.822362977051569,
+     "global_dice": 0.8202142078946592,
+     "delta_dice": 0.002148769156910025
+    }
+   }
+  },
+  "3407": {
+   "macro_final_dice": 0.8379998161559785,
+   "macro_global_dice": 0.8351212135703313,
+   "macro_delta_dice": 0.002878602585647206,
+   "n_selected": 262,
+   "selected_fraction": 0.32425742574257427,
+   "n_accepted": 256,
+   "safety_accept_fraction": 0.9770992366412213,
+   "routed_candidate_mean_delta_dice": 0.012611552363861208,
+   "beneficial_coverage": 1.0,
+   "harmful_activation_share": 0.15625,
+   "n_final_refined": 256,
+   "per_domain": {
+    "BUSI": {
+     "n": 84,
+     "final_dice": 0.8589936379506627,
+     "global_dice": 0.8588274903669337,
+     "delta_dice": 0.00016614758372909821
+    },
+    "ISIC": {
+     "n": 357,
+     "final_dice": 0.8979977756981394,
+     "global_dice": 0.8971655799822155,
+     "delta_dice": 0.0008321957159237438
+    },
+    "KUB": {
+     "n": 280,
+     "final_dice": 0.7750458590374039,
+     "global_dice": 0.7642775760375169,
+     "delta_dice": 0.01076828299988697
+    },
+    "KVASIR": {
+     "n": 87,
+     "final_dice": 0.819961991937708,
+     "global_dice": 0.8202142078946592,
+     "delta_dice": -0.00025221595695098647
+    }
+   }
+  }
+ },
+ "gt_used_for_final_metrics_only": true,
+ "gt_derived_information_persisted": false,
+ "best_seed_selected": false,
+ "ranking_performed": false,
+ "elapsed_seconds": 46.6,
+ "all_pass": true
+}

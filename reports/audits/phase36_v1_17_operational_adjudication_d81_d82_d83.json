@@ -1,0 +1,59 @@
+{
+ "artifact": "phase36_v1_17_operational_adjudication_d81_d82_d83",
+ "phase": 36,
+ "revision": "ra_medfilm_barr_phase36_robustness_v1_17",
+ "type": "OPERATIONAL_ADJUDICATION",
+ "method": "RA-MedFiLM-BARR",
+ "supersedes": null,
+ "writes_v1_16": {
+  "v1_16_output_namespace_audit_incomplete_adjudicated": true
+ },
+ "D81": {
+  "adjudication": "V1_16_OUTPUT_NAMESPACE_AUDIT_INCOMPLETE__INHERITED_UNVERSIONED_TABLE_AND_FIGURE_WRITE_TARGETS",
+  "status": "ESTABLISHED",
+  "repaired_in_v1_17": true,
+  "repair": "complete v1.17 namespace rebase + fail-closed write-once CSV",
+  "evidence": {
+   "csv_table_targets": 11,
+   "figure_targets": 5,
+   "unclassified_write_target_count": 0,
+   "all_reachable_write_targets_enumerated": true,
+   "v1_14_overlap": [],
+   "v1_15_overlap": [],
+   "v1_16_overlap": []
+  }
+ },
+ "D82": {
+  "adjudication": "V1_16_RELEASE_ATTESTATION_RUNTIME_GATE_SCHEMA_INCOMPATIBLE",
+  "status": "ESTABLISHED",
+  "repaired_in_v1_17": true,
+  "repair": "release gate binds HISTORICAL v1.14 smoke (role: HISTORICAL_RUNTIME_SMOKE_EVIDENCE_ONLY); attestation matches the runtime gate schema; requires_v1_17_smoke=false",
+  "evidence": {
+   "historical_smoke_path": "reports/audits/phase36_robustness_smoke_v1_14.json",
+   "historical_smoke_role": "HISTORICAL_RUNTIME_SMOKE_EVIDENCE_ONLY",
+   "historical_smoke_sha256": "53543729fb0c48695c2af202c5f3d2f5ebdfc29d87c7a7f100bcde9f94882441",
+   "smoke_all_pass": true,
+   "release_gate": "POST_SMOKE_RELEASE_ADJUDICATION",
+   "requires_v1_17_smoke": false
+  }
+ },
+ "D83": {
+  "adjudication": "V1_16_READINESS_VALIDATION_DID_NOT_PROVE_RUNTIME_RELEASE_STATE",
+  "status": "ESTABLISHED",
+  "repaired_in_v1_17": true,
+  "repair": "the launcher invokes the EXACT pure runtime release-state function and requires state == RELEASED; the pure release-gate test proves RELEASED with 7/7 mutations rejected",
+  "evidence": {
+   "base_gate_state": "RELEASED",
+   "all_mutations_not_released": true,
+   "mutation_count": 7,
+   "all_pass": true
+  }
+ },
+ "scientific_semantics_effect": "NONE",
+ "gt_read": false,
+ "val_gt_file_read": false,
+ "val_image_read": false,
+ "checkpoint_deserialization": false,
+ "model_free": true,
+ "generated_utc": "2026-10-10T13:46:07Z"
+}

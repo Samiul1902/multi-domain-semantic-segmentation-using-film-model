@@ -1,0 +1,36 @@
+{
+ "artifact_kind": "PHASE36_CLEAN_EQUIVALENCE_DIAGNOSTIC_SOURCE_FREEZE",
+ "revision": "ra_medfilm_barr_phase36_clean_equivalence_diagnostic_v1_0",
+ "diagnostic_source": {
+  "path": "scripts\\analysis\\phase36_clean_equivalence_diagnostic_v1_0.py",
+  "sha256": "7cc51cceacfa314d7f84acb8a6dc482a2b46ea81de0ec695c0c8f0ca8b0b50f7"
+ },
+ "launcher_source": {
+  "path": "scripts\\analysis\\launch_phase36_clean_equivalence_diagnostic_v1_0.py",
+  "sha256": "a34923faf6c27dd741ee1a1a1b4d1cbef1233664c2b02825e53b42c22c75b228"
+ },
+ "unit_source": {
+  "path": "scripts\\analysis\\phase36_clean_equivalence_diagnostic_unit_v1_0.py",
+  "sha256": "33e72386699aa0100c314846ffe2592f740ca7fb76e926a704cf4d46fbf78bf5"
+ },
+ "preflight_source": {
+  "path": "scripts\\analysis\\phase36_clean_equivalence_diagnostic_preflight_v1_0.py",
+  "sha256": "92c2d855e931d037e965d862a2ce0feb091d53e1bff0f91020f85729842e6653"
+ },
+ "frozen_ancestors": {
+  "v1_14_execution": {
+   "path": "scripts\\analysis\\phase36_robustness_execution_v1_14.py",
+   "sha256": "ac09ff8ded3610244920e66612145b246b33127140d344a9730d454bab27cff5"
+  },
+  "v1_14_runtime_manifest": {
+   "path": "reports\\audits\\phase36_v1_14_runtime_source_integrity_manifest.json",
+   "sha256": "b4c358dfcb5e7b59beb6ae1ba2cffc64677d10049e12568b4c8eea8e79bb911e"
+  }
+ },
+ "launcher_pinned_diagnostic_sha": "7cc51cceacfa314d7f84acb8a6dc482a2b46ea81de0ec695c0c8f0ca8b0b50f7",
+ "launcher_pinned_v1_14_exec_sha": "ac09ff8ded3610244920e66612145b246b33127140d344a9730d454bab27cff5",
+ "launcher_pinned_v1_14_manifest_sha": "b4c358dfcb5e7b59beb6ae1ba2cffc64677d10049e12568b4c8eea8e79bb911e",
+ "non_circularity": "launcher pins diagnostic + v1.14 exec + manifest; manifest declares v1.14 exec only; no launcher_sha256 in manifest",
+ "scientific_output": false,
+ "generated_utc": "2026-10-07T02:57:48Z"
+}

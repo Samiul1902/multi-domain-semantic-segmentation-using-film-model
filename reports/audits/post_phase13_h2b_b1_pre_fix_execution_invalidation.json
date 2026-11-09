@@ -1,0 +1,80 @@
+{
+  "artifact": "POST_PHASE13_H2B_B1_PRE_FIX_EXECUTION_INVALIDATION",
+  "status": "INVALIDATED_AND_PRESERVED",
+  "created_utc": "2026-09-23T09:36:00Z",
+  "classification": "INVALIDATED_EXECUTION_ATTEMPT__NON_SCIENTIFIC_CODE_PROVENANCE_DEFECT",
+  "experiment_id": "post_phase13_h2b_kub_localizer_r512_h128_sigmaeq075_softtargetfocalgamma2_deploymentbalance_seed42_clean_v3",
+  "reason_for_invalidation": "STALE_OBJECTIVE_IDENTITY_METADATA_IN_CHECKPOINT_AND_RESUME_CONTRACT",
+  "defect": {
+    "summary": "The H2B runner executed the CORRECT SoftTargetFocalBCE objective, but its resume-identity contract, checkpoint metadata and start audit still carried the stale Phase-13 CenterNet objective fields loss_alpha=2.0 / loss_beta=4.0, and declared protocol_identity 'R2 + R2A_LOSS_BINDING' as the ACTIVE identity.",
+    "material": true,
+    "why_material": "A checkpoint/resume contract that asserts alpha=2.0 / beta=4.0 as the active objective would make a resume, an audit reader or a downstream consumer believe the Phase-13 CenterNet objective was the executed objective. That is a provenance contradiction even though the executed mathematics was correct.",
+    "observed_in_checkpoint": {
+      "path": "configuration/_phase13_execution_metadata",
+      "loss_alpha": 2.0,
+      "loss_beta": 4.0
+    },
+    "observed_in_runner": {
+      "resume_identity_extended_identity": "loss_alpha=2.0, loss_beta=4.0",
+      "checkpoint_metadata_write": "loss_alpha=2.0, loss_beta=4.0, loss_dice_weight=0.0",
+      "start_audit_protocol_identity": "R2 + R2A_LOSS_BINDING",
+      "completion_audit_protocol_identity": "R2 + R2A_LOSS_BINDING",
+      "start_audit_artifact_label": "PHASE13_CLEAN_V3_LOCALIZER_TRAINING_START",
+      "completion_audit_artifact_label": "PHASE13_CLEAN_V3_LOCALIZER_TRAINING_COMPLETION",
+      "scientific_changes": 0
+    }
+  },
+  "interrupted_attempt_state": {
+    "completed_epochs": 4,
+    "epochs": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "history_sha": "12b28ab5fb209ce9a70df8d331d50a3b1bf7cb075e68a93c709265b40b19b9e6",
+    "latest_pt_sha": "b8565e095c7b1b487220ed2448903876fed37355b2cb9c66dfbdc619998c7bac",
+    "best_pt_sha": "f3206ecc3802b0b8da449cd1a612441944298a1252d0ac13db48144f74ef0188",
+    "runner_sha_at_attempt": "2e9c1faf0a6a2e823fcd0dec4a47401fa979f43b574152068aee55d76bda542d",
+    "config_sha_at_attempt": "2ceaa71d614475fed54248c353e247848f41df3ace423e3c36aba63d59431152",
+    "training_start_audit_sha": "79f71cec013a4c7a86a2b01ea5179cf1e8b21b331cbc25dda8eabd261cee30b8",
+    "training_log_sha": "bf3e5aabb87fb8e3b2fcf66c156e30f68feaefd93e471d2581e250613b91d57c"
+  },
+  "preservation": {
+    "archive_location": "reports/superseded/post_phase13_h2b_b1_invalidated_pre_fix_attempt_20260923T0936Z/",
+    "archived_files": [
+      "experiments/history.csv",
+      "experiments/.experiment.lock",
+      "checkpoints/latest.pt",
+      "checkpoints/best.pt",
+      "audits/post_phase13_h2b_b1_training_start.json",
+      "audits/post_phase13_h2b_b1_training_start.md",
+      "audits/training.log"
+    ],
+    "silently_deleted": "NO"
+  },
+  "promotion": {
+    "scientific_measurements_promoted": "NO",
+    "checkpoint_promoted": "NO",
+    "history_promoted": "NO",
+    "h2b_hypothesis_changed": "NO",
+    "h2b_protocol_changed": "NO"
+  },
+  "counts": {
+    "logical_scientific_experiment_count": 1,
+    "execution_attempt_count": 2,
+    "invalid_attempt_counts_as_scientific_experiment": "NO",
+    "test_reads": 0,
+    "external_test_reads": 0
+  },
+  "repair_applied": {
+    "stale_loss_alpha_beta_removed_from_resume_contract": "YES",
+    "stale_loss_alpha_beta_removed_from_checkpoint_metadata": "YES",
+    "h2b_objective_identity_bound_in_resume_gate": "YES",
+    "h2b_objective_identity_bound_in_checkpoint_metadata": "YES",
+    "audit_artifact_labels_moved_to_h2b_identity": "YES",
+    "scientific_changes_corrected_to": 1,
+    "zero_denominator_rule_wording_reconciled": "YES",
+    "scientific_parameter_changed": "NO"
+  }
+}

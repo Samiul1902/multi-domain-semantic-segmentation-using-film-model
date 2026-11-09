@@ -1,0 +1,39 @@
+{
+ "artifact": "phase34_execution_blocked_terminal_v1_1",
+ "phase": 34,
+ "section": "\u00a7X",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase34_efficiency_profiling_v1_1",
+ "terminal": "PHASE34_EXECUTION_BLOCKED_PREMODEL__V1_1_FROZEN_SOURCE_OR_RUNTIME_SEMANTICS_MISMATCH__NO_MEASUREMENTS_PERFORMED",
+ "status": "BLOCKED_PREMODEL",
+ "reason": "The static semantic audit required by \u00a7B FAILED before any model load, and the required G task/domain conditioning is not deterministically bound (\u00a7E). The frozen v1.1 worker is a non-executable skeleton: it contains no model construction, no checkpoint deserialization, no model.eval(), no autocast/inference_mode context, no forward call and no synchronized CUDA timing. The frozen v1.1 harness's synthetic-input builder emits only the image tensor and never supplies the task_ids that GlobalMedFiLM.forward requires.",
+ "blockers": [
+  "V1_1_WORKER_DOES_NOT_IMPLEMENT_REQUIRED_EXECUTABLE_RUNTIME_SEMANTICS",
+  "REQUIRED_TASK_DOMAIN_CONDITIONING_NOT_DETERMINISTICALLY_BOUND"
+ ],
+ "authority_all_match": true,
+ "source_hashes_match": true,
+ "checkpoint_hashes_match": true,
+ "measurements_performed": 0,
+ "model_loads": 0,
+ "model_forwards": 0,
+ "latency_iterations": 0,
+ "fps_measurements": 0,
+ "gpu_memory_measurements": 0,
+ "flop_mac_profiler_executions": 0,
+ "raw_image_reads": 0,
+ "raw_gt_reads": 0,
+ "router_holdout_raw_reads": 0,
+ "test_reads": 0,
+ "training_steps": 0,
+ "required_remediation": [
+  "Authorize an explicit v1.2 execution-harness amendment that implements the real per-component model construction, strict checkpoint load, canonical precision contexts, synchronized CUDA timing, memory measurement and isolated workers.",
+  "Deterministically bind the G task/domain conditioning (task_ids per component and the domain->task_id registry) in the frozen harness BEFORE any forward.",
+  "Re-freeze the amended sources and re-issue the execution authorization."
+ ],
+ "phase34_closure_status": "NOT_STARTED",
+ "phase35_started": false,
+ "TEST": "LOCKED_UNTIL_PHASE39",
+ "generated_utc": "2026-10-04T10:55:40+00:00",
+ "all_pass": true
+}

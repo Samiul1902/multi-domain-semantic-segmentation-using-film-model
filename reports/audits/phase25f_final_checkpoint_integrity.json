@@ -1,0 +1,22 @@
+{
+ "artifact": "phase25f_final_checkpoint_integrity",
+ "phase": "25F",
+ "stage": "FINAL_CHECKPOINT_INTEGRITY",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_post_safety_v1_0",
+ "final_checkpoint": "checkpoints/phase25f_barr_post_safety_v1_0_seed42/final/final.pt",
+ "final_checkpoint_sha256": "eee9b97b9921e53fc07eac9281dce64ba518c6e1659916b97b0b3bec21ec6d2e",
+ "final_safety_epochs": 23,
+ "checks": {
+  "state_dict_loads": true,
+  "parameter_count_1217": true,
+  "finite_params": true,
+  "synthetic_inference_finite": true,
+  "output_is_raw_logit": true,
+  "epoch_equals_final_epochs": true,
+  "checkpoint_semantics_last_fixed_epoch": true,
+  "normalizer_persisted": true,
+  "no_early_stopping": true
+ },
+ "all_pass": true
+}

@@ -1,0 +1,97 @@
+{
+ "artifact": "phase35_v1_0d_smoke_numerical_observability_gap_v1_0e",
+ "phase": 35,
+ "section": "\u00a7B",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase35_interpretability_v1_0e",
+ "classification": "PRE_EXECUTION_GRADCAM_NUMERICAL_OBSERVABILITY_AND_FAIL_CLOSED_FINITE_GUARD_AMENDMENT__NO_SCIENTIFIC_PROTOCOL_CHANGE",
+ "purpose": "Record the three reporting/verification gaps disclosed by the frozen v1.0d smoke and the exact v1.0e implementation measures that close them. This record is an ADJUDICATION of the disclosed gaps, not a defect claim against the frozen v1.0d scientific mathematics.",
+ "source_gap_disclosure": {
+  "path": "reports/audits/phase35_synthetic_smoke_reporting_gap_disclosure_v1_0d.json",
+  "expected_sha256": "4d9fc89ab58658891cb56f9645c26ef5cf9cfa195379e5eea3e5d89d4d68cff3",
+  "observed_sha256": "4d9fc89ab58658891cb56f9645c26ef5cf9cfa195379e5eea3e5d89d4d68cff3",
+  "match": true
+ },
+ "source_smoke": {
+  "path": "reports/audits/phase35_synthetic_interpretability_smoke_v1_0d.json",
+  "expected_sha256": "5bf61bc52d0c83ffb50849db973fb89133f0fa741140e58de8408a395979fee0",
+  "observed_sha256": "5bf61bc52d0c83ffb50849db973fb89133f0fa741140e58de8408a395979fee0",
+  "match": true
+ },
+ "gaps": {
+  "G1_empty_mask_helper_check_not_emitted": {
+   "disclosed_by": "phase35_synthetic_smoke_reporting_gap_disclosure_v1_0d.json",
+   "severity": "REPORTING_ONLY",
+   "v1_0e_closure": "empty_mask_helper_check_insession(mask_t) exercises V0D.gradcam_target_scalar_rank_safe with an all-False variant of the ALREADY-COMPUTED mask; the full-field mean of a zero plane is exactly 0.0; NO extra forward and NO extra autograd.",
+   "closed": true
+  },
+  "G2_parameter_non_null_grad_counts_not_measurable": {
+   "disclosed_by": "phase35_synthetic_smoke_reporting_gap_disclosure_v1_0d.json",
+   "severity": "REPORTING_ONLY",
+   "v1_0e_closure": "parameter_grad_state_audit_insession(models) reads .grad for every named parameter of G and B_phi IN-SESSION, before the mode returns; expected 0 / 0.",
+   "closed": true
+  },
+  "G3_gradient_finiteness_and_prenorm_state_unverified": {
+   "disclosed_by": "phase35_synthetic_smoke_reporting_gap_disclosure_v1_0d.json",
+   "severity": "MATERIAL_VERIFICATION_LIMITATION",
+   "why_material": "cam_normalize maps ANY non-finite CAM to all zeros (range NaN -> 'float(rng) > 0' False -> zeros_like), so an all-zero CAM was consistent with BOTH a genuinely non-positive weighted-activation sum AND non-finite gradients masked by the frozen fallback.",
+   "v1_0e_closure": "fail-closed finite guards on target scalar, every raw gradient, alpha, pre-ReLU weighted map, post-ReLU raw CAM, upsampled pre-normalization CAM and its range, and normalized CAM; PLUS direct diagnostics (gradient shape/dtype/finite/min/max/abs_max, prenorm range, prenorm all-zero, normalized min/max).",
+   "closed": true
+  }
+ },
+ "fail_closed_property": "A NON-FINITE pre-normalization CAM CANNOT reach the frozen zero-range fallback: cam_normalize_guarded raises. The frozen all-zeros fallback remains reachable ONLY on a FINITE zero-range CAM (semantics preserved).",
+ "scientific_mathematics_unchanged": true,
+ "on_finite_inputs_cam_identical_to_v1_0b_v1_0d": true,
+ "predecessors": {
+  "scripts/analysis/phase35_interpretability_execution_v1_0d.py": {
+   "path": "scripts/analysis/phase35_interpretability_execution_v1_0d.py",
+   "expected_sha256": "cccc109ade27eb5ad7883912004c1e911e9e253a659146f3d64820af92244056",
+   "observed_sha256": "cccc109ade27eb5ad7883912004c1e911e9e253a659146f3d64820af92244056",
+   "match": true
+  },
+  "scripts/analysis/phase35_interpretability_execution_v1_0b.py": {
+   "path": "scripts/analysis/phase35_interpretability_execution_v1_0b.py",
+   "expected_sha256": "581926840d7717e19ed15ad77c7c5339b709efc881b938924d6eec0a2ceb1872",
+   "observed_sha256": "581926840d7717e19ed15ad77c7c5339b709efc881b938924d6eec0a2ceb1872",
+   "match": true
+  },
+  "scripts/analysis/phase35_interpretability_execution_v1_0c.py": {
+   "path": "scripts/analysis/phase35_interpretability_execution_v1_0c.py",
+   "expected_sha256": "4058fc5544e6e1af15339df20a88da4880549ea8d4dd434395df04e0fa261baa",
+   "observed_sha256": "4058fc5544e6e1af15339df20a88da4880549ea8d4dd434395df04e0fa261baa",
+   "match": true
+  },
+  "scripts/analysis/phase35_interpretability_common_v1_0b.py": {
+   "path": "scripts/analysis/phase35_interpretability_common_v1_0b.py",
+   "expected_sha256": "9963215e1431e968e11bacbcd917d96a8a985a7181000258b90f458ff0a778ac",
+   "observed_sha256": "9963215e1431e968e11bacbcd917d96a8a985a7181000258b90f458ff0a778ac",
+   "match": true
+  },
+  "reports/audits/phase35_synthetic_smoke_reporting_gap_disclosure_v1_0d.json": {
+   "path": "reports/audits/phase35_synthetic_smoke_reporting_gap_disclosure_v1_0d.json",
+   "expected_sha256": "4d9fc89ab58658891cb56f9645c26ef5cf9cfa195379e5eea3e5d89d4d68cff3",
+   "observed_sha256": "4d9fc89ab58658891cb56f9645c26ef5cf9cfa195379e5eea3e5d89d4d68cff3",
+   "match": true
+  },
+  "reports/audits/phase35_synthetic_interpretability_smoke_v1_0d.json": {
+   "path": "reports/audits/phase35_synthetic_interpretability_smoke_v1_0d.json",
+   "expected_sha256": "5bf61bc52d0c83ffb50849db973fb89133f0fa741140e58de8408a395979fee0",
+   "observed_sha256": "5bf61bc52d0c83ffb50849db973fb89133f0fa741140e58de8408a395979fee0",
+   "match": true
+  },
+  "reports/audits/phase35_synthetic_smoke_provenance_v1_0d.json": {
+   "path": "reports/audits/phase35_synthetic_smoke_provenance_v1_0d.json",
+   "expected_sha256": "8a7633cf05cbdb55453903e9bed31d09c953e0ab675b6b90df5567a0506a5dcf",
+   "observed_sha256": "8a7633cf05cbdb55453903e9bed31d09c953e0ab675b6b90df5567a0506a5dcf",
+   "match": true
+  },
+  "reports/audits/phase35_synthetic_smoke_final_check_v1_0d.json": {
+   "path": "reports/audits/phase35_synthetic_smoke_final_check_v1_0d.json",
+   "expected_sha256": "1cae9c7b45d679b8fc1d3e863d022795ad6f4c8a96fc441dde95d6fec436807f",
+   "observed_sha256": "1cae9c7b45d679b8fc1d3e863d022795ad6f4c8a96fc441dde95d6fec436807f",
+   "match": true
+  }
+ },
+ "generated_utc": "2026-10-05T02:12:42Z",
+ "all_pass": true
+}

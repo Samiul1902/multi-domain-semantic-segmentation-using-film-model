@@ -1,0 +1,239 @@
+{
+ "artifact": "phase25b_reentry_gate",
+ "phase": "25B",
+ "classification": "FAIL_CLOSED_PRE_EXTRACTION_GATE",
+ "method": "RA-MedFiLM-BARR",
+ "feature_spec_revision": "ra_medfilm_barr_narrowed_v1_2",
+ "predecessor_terminal": "PHASE24_V1_2_FULLY_CLOSED__PROJECT_DOCS_AND_PHASEWISE_INDEX_SYNCED__PHASE25B_REENTRY_ELIGIBLE_NOT_STARTED",
+ "expected": {
+  "predecessor_terminal": "PHASE24_V1_2_FULLY_CLOSED__PROJECT_DOCS_AND_PHASEWISE_INDEX_SYNCED__PHASE25B_REENTRY_ELIGIBLE_NOT_STARTED",
+  "method": "RA-MedFiLM-BARR",
+  "feature_spec_revision": "ra_medfilm_barr_narrowed_v1_2",
+  "phase24_notebook_sha": "9d62384e8afa2f35e985eac219711df0334fbfe72c33c0edd29ff3f4897d4027",
+  "phase25a_notebook_sha": "fd2bab0168eb3477125c655ada1bd5eb4b060f41a5b354fdbaaf6fd621dfb2dd",
+  "phase25a_refiner_ckpt_sha": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109",
+  "phase21_global_ckpt_sha": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+  "master_seed": 42,
+  "router_development_n": 4957,
+  "router_holdout_n": 875,
+  "roi_proposal_threshold": 0.3,
+  "segmentation_output_threshold": 0.5,
+  "split_manifest_sha": "b5da52d6220ef9b59b4ba70d0b403b38bf5234b897615b6ad55d718114db6555",
+  "linear_core_params": 36353,
+  "total_trainable_params": 36801,
+  "deep_dim": 192,
+  "scalar_dim": 10,
+  "numeric_dim": 202,
+  "task_emb_dim": 16,
+  "router_input_dim": 218
+ },
+ "observed": {
+  "phase24_notebook_sha": "9d62384e8afa2f35e985eac219711df0334fbfe72c33c0edd29ff3f4897d4027",
+  "phase25a_notebook_sha": "fd2bab0168eb3477125c655ada1bd5eb4b060f41a5b354fdbaaf6fd621dfb2dd",
+  "phase25a_refiner_ckpt_sha": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109",
+  "phase21_global_ckpt_sha": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+  "split_manifest_sha": "b5da52d6220ef9b59b4ba70d0b403b38bf5234b897615b6ad55d718114db6555",
+  "router_development_n": 4957,
+  "router_holdout_n": 875
+ },
+ "checks": [
+  {
+   "check": "project_state_terminal_exact",
+   "passed": true,
+   "detail": "PHASE24_V1_2_FULLY_CLOSED__PROJECT_DOCS_AND_PHASEWISE_INDEX_SYNCED__PHASE25B_REENTRY_ELIGIBLE_NOT_STARTED"
+  },
+  {
+   "check": "phase24_v1_2_status_complete_frozen",
+   "passed": true,
+   "detail": "COMPLETE_FROZEN"
+  },
+  {
+   "check": "phase24_v1_2_final_check_pass",
+   "passed": true,
+   "detail": {
+    "n_checks": 35,
+    "n_failed": 0
+   }
+  },
+  {
+   "check": "RF1_RESOLVED",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "RF2_RESOLVED",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "RF3_FULLY_RESOLVED",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D1_RESOLVED",
+   "passed": true,
+   "detail": "D1_RESOLVED"
+  },
+  {
+   "check": "D2_RESOLVED",
+   "passed": true,
+   "detail": "D2_RESOLVED"
+  },
+  {
+   "check": "unresolved_feature_definitions_0",
+   "passed": true,
+   "detail": 0
+  },
+  {
+   "check": "unresolved_threshold_roles_0",
+   "passed": true,
+   "detail": 0
+  },
+  {
+   "check": "unresolved_supervisor_decisions_0",
+   "passed": true,
+   "detail": 0
+  },
+  {
+   "check": "phase24_notebook_sha_exact",
+   "passed": true,
+   "detail": "9d62384e8afa2f35e985eac219711df0334fbfe72c33c0edd29ff3f4897d4027"
+  },
+  {
+   "check": "phase25a_notebook_sha_exact",
+   "passed": true,
+   "detail": "fd2bab0168eb3477125c655ada1bd5eb4b060f41a5b354fdbaaf6fd621dfb2dd"
+  },
+  {
+   "check": "phase25a_refiner_checkpoint_sha_exact",
+   "passed": true,
+   "detail": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109"
+  },
+  {
+   "check": "phase21_global_checkpoint_sha_exact",
+   "passed": true,
+   "detail": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7"
+  },
+  {
+   "check": "roi_proposal_threshold_0p30",
+   "passed": true,
+   "detail": 0.3
+  },
+  {
+   "check": "segmentation_output_threshold_0p50",
+   "passed": true,
+   "detail": 0.5
+  },
+  {
+   "check": "router_development_n_4957",
+   "passed": true,
+   "detail": 4957
+  },
+  {
+   "check": "router_holdout_n_875",
+   "passed": true,
+   "detail": 875
+  },
+  {
+   "check": "split_manifest_sha_exact",
+   "passed": true,
+   "detail": "b5da52d6220ef9b59b4ba70d0b403b38bf5234b897615b6ad55d718114db6555"
+  },
+  {
+   "check": "old_roi050_phase25a_noncanonical",
+   "passed": true,
+   "detail": {
+    "superseded_classification": "NONCANONICAL_PROTOCOL_DEVIATION__ROI_THRESHOLD_0P50",
+    "scientific_use_allowed": false,
+    "roi050_cache_exists": true
+   }
+  },
+  {
+   "check": "phase25b_blocked_attempt_preserved",
+   "passed": true,
+   "detail": "PHASE25B_BLOCKED__FROZEN_FEATURE_SPEC_INCOMPLETE"
+  },
+  {
+   "check": "phase25b_successful_cache_absent",
+   "passed": true,
+   "detail": "D:\\Softfors\\jup\\data_cache\\phase25b_barr_pre_refinement_features_v1_2"
+  },
+  {
+   "check": "canonical_phase25b_notebook_absent",
+   "passed": true,
+   "detail": "D:\\Softfors\\jup\\notebooks\\phasewise\\phase_25b_gt_free_features\\phase25b_gt_free_pre_refinement_features.ipynb"
+  },
+  {
+   "check": "phase25c_started_false",
+   "passed": true,
+   "detail": "NOT_STARTED"
+  },
+  {
+   "check": "phase25d_started_false",
+   "passed": true,
+   "detail": "NOT_STARTED"
+  },
+  {
+   "check": "holdout_outcome_reads_0",
+   "passed": true,
+   "detail": 0
+  },
+  {
+   "check": "VAL_reads_for_phase25b_0",
+   "passed": true,
+   "detail": 0
+  },
+  {
+   "check": "TEST_all_zero",
+   "passed": true,
+   "detail": 0
+  },
+  {
+   "check": "no_25c_25d_artifact",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "dimension_contract_202_16_218",
+   "passed": true,
+   "detail": {
+    "deep_features": 192,
+    "scalar_features": 10,
+    "phase25b_numeric_matrix": 202,
+    "task_id_metadata": "retained separately (not embedded in Phase25B)",
+    "future_phase25d_task_embedding": 16,
+    "future_router_input": 218,
+    "task_embedding_materialized_in_phase25b": false
+   }
+  },
+  {
+   "check": "router_param_36801_36353",
+   "passed": true,
+   "detail": {
+    "router_linear_core_parameters": 36353,
+    "router_task_embedding_parameters": 64,
+    "router_layernorm_affine_parameters": 384,
+    "router_total_trainable_parameters": 36801,
+    "note": "TRAINABLE PARAMETERS -- distinct from INPUT DIMENSIONS above; 36353 is the historical linear-core bookkeeping value, NOT the total"
+   }
+  },
+  {
+   "check": "roi030_action_available_4957",
+   "passed": true,
+   "detail": {
+    "action_available_n": 4957,
+    "unavail": 0
+   }
+  }
+ ],
+ "n_checks": 33,
+ "n_failed": 0,
+ "verdict": "PHASE25B_REENTRY_GATE_PASS",
+ "fail_closed": true,
+ "model_instantiations": 0,
+ "forward_passes": 0,
+ "training_runs": 0,
+ "feature_rows_extracted": 0,
+ "test_reads": 0
+}

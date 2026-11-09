@@ -1,0 +1,63 @@
+{
+ "artifact": "phase26_inference_state_machine_v1_0",
+ "phase": "26",
+ "classification": "SUPERVISOR_SPECIFICATION_REPAIR__PHASE26_OPERATIONAL_REDEFINITION",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase26_integration_v1_0",
+ "governance_only": true,
+ "inputs": [
+  "image x",
+  "task_id t"
+ ],
+ "steps": [
+  {
+   "step": 1,
+   "action": "run frozen GlobalMedFiLM exactly once",
+   "outputs": [
+    "p_global",
+    "required frozen feature taps"
+   ]
+  },
+  {
+   "step": 2,
+   "action": "construct frozen Phase25B router feature vector"
+  },
+  {
+   "step": 3,
+   "action": "normalize using frozen Phase25D FINAL normalization"
+  },
+  {
+   "step": 4,
+   "action": "run frozen FINAL B_phi"
+  },
+  {
+   "step": 5,
+   "action": "compute resource utility using canonical lambda = 0.25"
+  },
+  {
+   "step": 6,
+   "action": "compare against frozen canonical 25%-budget DEV-calibrated threshold"
+  }
+ ],
+ "branch_SKIP": {
+  "final": "p_global",
+  "regional_refiner_run": false,
+  "s_omega_run": false
+ },
+ "branch_EXECUTE": {
+  "steps": [
+   "construct ROI using frozen 0.30 / 1.50 geometry",
+   "run frozen regional refiner once",
+   "construct deterministic regional-fused candidate",
+   "construct frozen 20-D post-safety vector",
+   "normalize using frozen Phase25F FINAL normalization",
+   "run frozen S_omega once"
+  ],
+  "if_sigmoid_logit_ge_0p50": "final = regional-fused candidate",
+  "else": "final = p_global"
+ },
+ "final_binary_mask": "p_final >= 0.50",
+ "second_global_forward": false,
+ "gt_at_inference": false,
+ "all_pass": true
+}

@@ -1,0 +1,91 @@
+{
+ "artifact": "phase24_router_feature_dimension_contract_v1_2",
+ "phase": "24",
+ "revision": "ra_medfilm_barr_narrowed_v1_2",
+ "classification": "SPECIFICATION_COMPLETENESS_AND_GOVERNANCE_SYNC",
+ "science_changed": false,
+ "dimension_contract": {
+  "deep_features": 192,
+  "scalar_features": 10,
+  "phase25b_numeric_matrix": 202,
+  "task_id_metadata": "retained separately (not embedded in Phase25B)",
+  "future_phase25d_task_embedding": 16,
+  "future_router_input": 218,
+  "task_embedding_materialized_in_phase25b": false
+ },
+ "dimension_checks": {
+  "deep_192": true,
+  "phase25b_202": true,
+  "future_218": true,
+  "total_trainable_36801": true,
+  "linear_core_36353": true
+ },
+ "v1_1_router_architecture": {
+  "input_dim": 218,
+  "layers": [
+   "Linear(218,128)",
+   "LayerNorm(128)",
+   "SiLU",
+   "Dropout(0.10)",
+   "Linear(128,64)",
+   "LayerNorm(64)",
+   "SiLU",
+   "Dropout(0.10)",
+   "Linear(64,1)"
+  ],
+  "task_conditioning": {
+   "n_tasks": 4,
+   "embedding_dim": 16
+  }
+ },
+ "parameter_recheck": {
+  "declared_in_v1_1": 36353,
+  "recomputed_with_layernorm_affine": 36801,
+  "recomputed_without_layernorm_affine": 36417,
+  "breakdown": {
+   "task_embedding_4x16": 64,
+   "Linear_218_128_W": 27904,
+   "Linear_218_128_b": 128,
+   "LayerNorm_128": 256,
+   "Linear_128_64_W": 8192,
+   "Linear_128_64_b": 64,
+   "LayerNorm_64": 128,
+   "Linear_64_1_W": 64,
+   "Linear_64_1_b": 1
+  },
+  "discrepancy": false,
+  "delta": 448,
+  "variants_reproducing_declared": [
+   "LayerNorm DISABLED, task embedding EXCLUDED"
+  ],
+  "declared_in_v1_1_semantics_corrected_to": "historical_mlp_linear_core_parameter_count",
+  "delta_breakdown": {
+   "task_embedding": 64,
+   "layernorm_affine": 384
+  },
+  "resolution": "the frozen architecture is unchanged; 36353 is reclassified as the linear-core-only count and 36801 is the canonical total trainable count"
+ },
+ "discrepancy_present": false,
+ "discrepancy_policy": "RESOLVED_BY_SUPERVISOR_RULING_D2",
+ "hidden_widths_modified": false,
+ "router_instantiated": false,
+ "verdict": "DIMENSION_AND_PARAMETER_CONTRACT_RESOLVED",
+ "test_reads": 0,
+ "input_dimension_contract": {
+  "deep_features": 192,
+  "scalar_features": 10,
+  "phase25b_numeric_matrix": 202,
+  "task_embedding": 16,
+  "router_input": 218,
+  "note": "INPUT DIMENSIONS -- distinct from TRAINABLE PARAMETERS below"
+ },
+ "trainable_parameter_contract": {
+  "router_linear_core_parameters": 36353,
+  "router_task_embedding_parameters": 64,
+  "router_layernorm_affine_parameters": 384,
+  "router_total_trainable_parameters": 36801,
+  "note": "TRAINABLE PARAMETERS -- distinct from INPUT DIMENSIONS above; 36353 is the historical linear-core bookkeeping value, NOT the total"
+ },
+ "d1_resolved": true,
+ "d2_resolved": true
+}

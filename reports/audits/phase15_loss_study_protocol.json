@@ -1,0 +1,232 @@
+{
+  "phase": "15",
+  "phase_name": "Regional Refiner Segmentation Loss Study",
+  "part": "0C",
+  "part": "0D",
+  "protocol_status": "PROTOCOL_FROZEN_AWAITING_SUPERVISOR_AUTHORIZATION",
+  "scientific_objective": "Determine whether an alternative segmentation loss improves regional-refiner crop segmentation quality, boundary fidelity, or small/tiny stone detection behavior compared to the Phase-14 baseline loss, while strictly isolating loss formulation as the sole independent variable across identical architecture, data splits, crop geometry, and optimization schedules.",
+  "research_question": "Can an alternative segmentation loss improve regional-refiner crop quality or object-size behavior without degrading overall full-field pipeline performance, when keeping architecture, dataset, crop geometry, optimizer, and training protocol fixed?",
+  "experimental_control": {
+    "loss_id": "L0",
+    "name": "BCE_Dice_Balanced",
+    "formula": "0.5 * BCEWithLogitsLoss() + 0.5 * SoftDiceLoss(epsilon=1e-6)",
+    "mathematical_definition": "L_{BCE} = - \\frac{1}{N} \\sum [y \\log \\sigma(z) + (1-y) \\log (1-\\sigma(z))]; L_{Dice} = 1 - \\frac{2 \\sum \\sigma(z) y + \\epsilon}{\\sum \\sigma(z) + \\sum y + \\epsilon}; L_0 = 0.5 L_{BCE} + 0.5 L_{Dice}",
+    "role": "Phase-14 Diagnostic Control Baseline",
+    "experiment_id": "phase14_diag_regional_unet_oracletrain_a3_seed42_v1",
+    "checkpoint_path": "checkpoints/phase14_diag_regional_unet_oracletrain_a3_seed42_v1/best.pt",
+    "checkpoint_sha256": "89ada72700385ed56b49b6caf34d9061349c24a566794176911b83fb0c8cd9f0",
+    "baseline_metrics": {
+      "best_epoch": 14,
+      "val_crop_dice": 0.8437233057743712,
+      "full_field_oracle_dice": 0.815175,
+      "full_field_predicted_dice": 0.383905,
+      "oracle_tiny_object_recall": 1.0,
+      "predicted_tiny_object_recall": 0.8904109589041096,
+      "predicted_tiny_object_count": "65 / 73"
+    },
+    "retraining_policy": "L0 will NOT be retrained. Pre-training verification confirmed that the Phase-15 L0 implementation achieves exact numerical equivalence to the frozen Phase-14 implementation on fixed tensors."
+  },
+  "candidate_loss_suite": [
+    {
+      "loss_id": "L1",
+      "name": "Focal_Dice",
+      "experiment_id": "phase15_regional_loss_focaldice_seed42_v1",
+      "family": "Hard-Negative Mining / Background Suppression",
+      "verified_alpha_semantics": {
+        "alpha": 0.25,
+        "gamma": 2.0,
+        "positive_pixel_weight": "alpha_t = alpha = 0.25 on foreground stone pixels (y=1)",
+        "negative_pixel_weight": "alpha_t = 1 - alpha = 0.75 on background tissue pixels (y=0)",
+        "p_t_definition": "p_t = y * sigma(z) + (1 - y) * (1 - sigma(z))",
+        "modulating_factor": "(1 - p_t)^gamma = (1 - p_t)^2.0",
+        "reduction": "mean across all crop pixels"
+      },
+      "corrected_rationale": "In regional radiograph crops, background tissue constitutes the vast majority of pixels. Alpha=0.25 (with 1-alpha=0.75 on background) combines with the focal modulating factor (1-p_t)^2.0 to heavily suppress loss contributions from confident, easy background pixels while penalizing false-positive background tissue, focusing parameter updates onto ambiguous anatomical borders and difficult stone/background pixels. This potentially reduces FALSE REGIONAL FOREGROUND within predicted proposal crops. It does NOT modify proposal count, proposal geometry, Stage-4D localization, NMS, or TopK (which remain strictly frozen).",
+      "corrected_rationale": "In regional radiograph crops, background tissue constitutes the vast majority of pixels. Alpha=0.25 (with 1-alpha=0.75 on background) combines with the focal modulating factor (1-p_t)^2.0 to heavily suppress loss contributions from confident, easy background pixels while penalizing false-positive background tissue, focusing parameter updates onto ambiguous anatomical borders and difficult stone/background pixels, potentially reducing FALSE REGIONAL FOREGROUND within predicted proposal crops. It does NOT modify proposal count, proposal geometry, Stage-4D localization, NMS, or TopK (which remain strictly frozen).",
+      "formula": "0.5 * BinaryFocalLoss(alpha=0.25, gamma=2.0) + 0.5 * SoftDiceLoss(epsilon=1e-6)",
+      "mathematical_definition": "p_t = y \\sigma(z) + (1-y) (1-\\sigma(z)); \\alpha_t = y \\alpha + (1-y) (1-\\alpha); L_{Focal} = - \\alpha_t (1 - p_t)^\\gamma \\log(p_t); L_{Dice} = 1 - \\frac{2 \\sum \\sigma(z) y + \\epsilon}{\\sum \\sigma(z) + \\sum y + \\epsilon}; L_1 = 0.5 L_{Focal} + 0.5 L_{Dice}",
+      "constants": {
+        "alpha": 0.25,
+        "gamma": 2.0,
+        "epsilon": 1e-06,
+        "focal_weight": 0.5,
+        "dice_weight": 0.5,
+        "reduction": "mean",
+        "sigmoid_placement": "applied internally to logits",
+        "background_handling": "smooth weighting via (1 - p_t)^gamma and alpha_t"
+      }
+    },
+    {
+      "loss_id": "L2",
+      "name": "Tversky_Loss",
+      "experiment_id": "phase15_regional_loss_tversky_seed42_v1",
+      "family": "Asymmetric Precision/Recall Regularization",
+      "verified_weights_convention": {
+        "alpha": 0.30,
+        "alpha_weights": "FALSE_POSITIVES (FP penalty weight)",
+        "beta": 0.70,
+        "beta_weights": "FALSE_NEGATIVES (FN penalty weight)",
+        "convention_status": "VERIFIED_CORRECT (beta=0.70 > alpha=0.30 prioritizes stone recall over precision)"
+      },
+      "rationale": "Inside 256x256 regional crops, Tiny and Small stones occupy a minute fraction (< 0.1%) of foreground pixels. Asymmetric Tversky penalization weights False Negatives more heavily than False Positives (beta=0.70 vs alpha=0.30), directly penalizing missed stone boundaries and boosting small-target sensitivity without post-hoc threshold shifting.",
+      "formula": "TverskyLoss(alpha=0.30, beta=0.70, epsilon=1e-6) = 1.0 - TI",
+      "mathematical_definition": "TP = \\sum \\sigma(z) y; FP = \\sum \\sigma(z) (1-y); FN = \\sum (1-\\sigma(z)) y; TI = \\frac{TP + \\epsilon}{TP + \\alpha FP + \\beta FN + \\epsilon}; L_2 = 1.0 - TI",
+      "constants": {
+        "alpha": 0.3,
+        "beta": 0.7,
+        "epsilon": 1e-06,
+        "reduction": "mean",
+        "sigmoid_placement": "applied internally to logits before overlap summation",
+        "batch_aggregation": "per-crop Tversky Index averaged across batch"
+      }
+    },
+    {
+      "loss_id": "L3",
+      "name": "Focal_Tversky_Loss",
+      "experiment_id": "phase15_regional_loss_focaltversky_seed42_v1",
+      "family": "Non-linear Tversky Reshaping with High-Overlap Sensitivity",
+      "mathematical_gradient_derivation": {
+        "formula": "L_3 = (1.0 - TI)^gamma, where gamma = 0.75",
+        "correct_analytic_derivative": "dL_3/dTI = - gamma * (1.0 - TI)^(gamma - 1) = - 0.75 * (1.0 - TI)^(-0.25)",
+        "correct_gradient_magnitude": "|dL_3/dTI| = 0.75 * (1.0 - TI)^(-0.25)",
+        "autograd_agreement": "PASS (Verified to < 1e-10 difference against PyTorch autograd across all TI test points)",
+        "representative_values": {
+          "TI=0.00": "|dL/dTI| = 0.750000 (Loss = 1.000000)",
+          "TI=0.25": "|dL/dTI| = 0.805927 (Loss = 0.805927)",
+          "TI=0.50": "|dL/dTI| = 0.891905 (Loss = 0.594604)",
+          "TI=0.75": "|dL/dTI| = 1.060660 (Loss = 0.353553)",
+          "TI=0.90": "|dL/dTI| = 1.333710 (Loss = 0.177828)",
+          "TI=0.99": "|dL/dTI| = 2.371708 (Loss = 0.031623)"
+        },
+        "mathematical_interpretation": "Because gamma = 0.75 < 1 in L = (1 - TI)^gamma, the magnitude of dL/dTI increases as TI approaches 1 (from 0.750 at TI=0.00 to 2.372 at TI=0.99). Therefore, this formulation emphasizes incremental refinement in the high-overlap regime relative to standard Tversky loss, rather than preferentially amplifying the gradient when TI << 1."
+      },
+      "corrected_rationale": "The gamma=0.75 transformation nonlinearly reshapes Tversky loss so that sensitivity with respect to TI increases as overlap approaches 1, while the alpha=0.30 / beta=0.70 Tversky term retains FN-heavy recall weighting.",
+      "parameter_justification": "gamma=0.75 is scientifically defensible and retained under this exact formula because it establishes a unique high-overlap sensitivity distinct from linear Tversky (L2) and pixel-wise focal suppression (L1).",
+      "constants": {
+        "alpha": 0.3,
+        "beta": 0.7,
+        "gamma": 0.75,
+        "epsilon": 1e-06,
+        "reduction": "mean",
+        "sigmoid_placement": "applied internally to logits before overlap summation",
+        "batch_aggregation": "per-crop Focal Tversky averaged across batch"
+      }
+    }
+  ],
+  "negative_crop_behavior_audit": {
+    "context": "A3 training inventory contains 1542 pure background negative crops (target mask has zero foreground pixels).",
+    "findings_by_loss": {
+      "L0_BCE_Dice": "BCE term provides active, non-zero gradient (norm ~0.0275) penalizing any predicted false-positive foreground. Dice term evaluates to 1.0 with zero gradient. Combined L0 effectively trains suppression on negative crops via BCE.",
+      "L1_Focal_Dice": "Focal term provides active, non-zero gradient (norm ~0.0252) penalizing false-positive pixels with alpha_t = 0.75 and (1 - p_t)^2.0. Dice term evaluates to 1.0 with zero gradient. Combined L1 actively trains background suppression on negative crops.",
+      "L2_Tversky": "When target is pure zero, TP=0 and FN=0. TI = epsilon / (alpha * FP + epsilon). Because epsilon=1e-6 << alpha * FP, TI evaluates to ~0.0 and Tversky loss evaluates to 1.0 - 1e-8 ~ 1.000000 with near-zero gradient (norm ~1e-9). Pure overlap Tversky produces effectively zero gradient on completely empty targets.",
+      "L3_Focal_Tversky": "Inherits L2 behavior: on pure zero targets, (1 - TI)^0.75 evaluates to ~1.0 with near-zero gradient (norm ~1e-9)."
+    },
+    "scientific_assessment": "This asymmetry is an inherent, mathematically authentic property of pure overlap losses (Dice/Tversky) versus compound distribution+overlap losses (BCE+Dice, Focal+Dice). In A3 training, negative crops are batched alongside positive crops (batch size 8). For L2 and L3, negative crops act as passive non-interfering distractors, whereas L0 and L1 actively backpropagate background suppression. This constitutes a fundamental scientific comparison between compound losses and pure asymmetric overlap losses in Phase 15. No artificial hacks or code modifications will be introduced; the comparison reflects authentic loss behavior."
+  },
+  "frozen_constants_and_controls": {
+    "architecture": "UNet (standard 4-stage nested contracting/expanding)",
+    "in_channels": 1,
+    "out_channels": 1,
+    "base_channels": 32,
+    "parameters": 7762465,
+    "input_resolution": "256x256",
+    "crop_geometry_rule": "Stage-4D margin=0.20 padding/unpadding context preservation",
+    "dataset_splits": {
+      "manifest_train": "manifests/train.csv (Phase4_v2 canonical, 771 images, 1162 components)",
+      "manifest_val": "manifests/val.csv (Phase4_v2 canonical, 106 FULL_FIELD images, 156 components)"
+    },
+    "crop_inventory_A3": {
+      "train_total_crops": 5028,
+      "train_base_crops": 1162,
+      "train_perturbed_crops": 2324,
+      "train_negative_crops": 1542,
+      "val_oracle_crops": 156
+    },
+    "training_protocol": {
+      "optimizer": "AdamW",
+      "learning_rate": 0.0001,
+      "weight_decay": 0.0001,
+      "scheduler": "CosineAnnealingLR (T_max=100, eta_min=0.0)",
+      "batch_size": 8,
+      "mixed_precision": "torch.amp.autocast('cuda') with GradScaler",
+      "seed": 42,
+      "max_epochs": 100,
+      "early_stopping_patience": 15,
+      "checkpoint_selection_metric": "best_val_crop_dice (on 156 Oracle VAL crops)",
+      "post_resumption_generator_tracking": true
+    },
+    "hardware_target": "NVIDIA GeForce RTX 3060 Ti (CUDA 12.4, PyTorch 2.6.0+cu124)"
+  },
+  "evaluation_metrics": {
+    "primary_crop_metrics": {
+      "macro_val_crop_dice": "Averaged across 156 Oracle VAL crops (empty prediction & target -> 1.0; non-empty prediction & empty target -> 0.0)",
+      "strata_crop_dice": "Crop Dice partitioned by stone size stratum (Tiny: 73, Small: 29, Medium: 36, Large: 18)",
+      "crop_precision": "Pixel-level precision within crop foreground",
+      "crop_recall": "Pixel-level recall within crop foreground",
+      "crop_fp_pixel_burden": "Total false-positive predicted foreground pixels per crop"
+    },
+    "secondary_pipeline_check": {
+      "pipeline_scope": "FULL_FIELD VAL (106 images)",
+      "proposal_stream": "Frozen Stage-4D localizer proposals (exact 494 proposals, mean 4.660377, heatmap 128, AvgPool4 active)",
+      "fusion_rule": "Frozen Phase-14 DIRECT_REPLACEMENT_IN_PROPOSAL_UNION (max fusion inside ROI union, global outside; NO Phase 16 fusion modifications allowed)",
+      "secondary_metrics": [
+        "full_field_macro_dice_512",
+        "oracle_tiny_object_recall",
+        "predicted_tiny_object_recall",
+        "hard_tiny_recovery_fraction (out of 16)",
+        "global_empty_recovery_fraction (out of 7)",
+        "mean_fp_components_per_image"
+      ]
+    }
+  },
+  "phase15_success_decision_rule": {
+    "primary_improvement": {
+      "criterion_A": "Macro Oracle VAL crop Dice >= 0.8437233057743712 + 0.010 = 0.8537233057743712",
+      "criterion_B": "Tiny crop Dice improves by >= +0.020 AND overall crop Dice degradation <= 0.005"
+    },
+    "secondary_stability": {
+      "full_field_dice": "FULL_FIELD predicted Dice D_p >= 0.383905 - 0.010 = 0.373905",
+      "predicted_tiny_object_recall_count": "Predicted Tiny object recall >= 62 / 73 components",
+      "predicted_tiny_object_recall_decimal": "0.8493150684931506 (retains at least 62 of the 65 Tiny components detected by L0)"
+    },
+    "deterministic_selection_hierarchy": [
+      "1. Highest Macro Oracle VAL crop Dice",
+      "2. If tied within 0.001 (1e-3), higher Tiny crop Dice",
+      "3. If still tied within 0.001, higher FULL_FIELD predicted Dice (D_p)",
+      "4. If still tied within 0.001, lower mean false-positive components per image"
+    ],
+    "fallback_policy": "If no alternative loss satisfies both the primary improvement and secondary stability criteria, L0 (0.5 BCE + 0.5 SoftDice) is formally RETAINED as the canonical loss formulation. A null/negative result is fully acceptable and scientifically valid."
+  },
+  "notebook_suite": {
+    "notebook_A": {
+      "path": "notebooks/14_phase15_loss_study.ipynb",
+      "title": "Phase 15 - Regional Refiner Loss Study Analysis",
+      "purpose": "Primary scientific analysis of the controlled loss comparison, containing training curves, best epochs, crop metrics, size-stratified evaluations, secondary full-field checks, gate hierarchy evaluation, and artifact audits.",
+      "governance": "Executable, read-only analysis of persisted artifacts, 0 errors, no in-notebook training."
+    },
+    "notebook_B": {
+      "path": "notebooks/14b_phase15_val_prediction_gallery.ipynb",
+      "title": "Phase 15 - 75-Case VAL Prediction Visual Gallery",
+      "purpose": "Large-scale visual inspection of model predictions on 75 deterministic FULL_FIELD VAL cases across 5 paginated visual chapters (15 cases/page). Strictly evaluated on VAL; untouched TEST split is locked and forbidden.",
+      "selection_table": "reports/tables/phase15_val_gallery_selection.csv",
+      "selection_table_sha256": "e89ea839783fd27d46892c5c8fa0f35da48b969eb6e4d4f12516a5863ef225ed",
+      "selection_rule": "Deterministic SHA-256 hash ranking of 'phase15_gallery_seed42|' + sample_id across all 106 FULL_FIELD VAL images; select first 75 ranked cases (independent of model predictions).",
+      "gallery_count": 75,
+      "gallery_metrics_table": "reports/tables/phase15_val_gallery_metrics.csv",
+      "figure_cache_dir": "reports/figures/phase15_val_gallery/",
+      "hard_case_appendix": "Clearly separated appendix displaying the 16 Hard-Tiny components and 7 Global-Empty images, strictly separated from the unbiased 75-case gallery cohort."
+    }
+  },
+  "governance_and_locks": {
+    "training_authorized": false,
+    "inference_authorized": false,
+    "optimizer_steps": 0,
+    "test_content_reads": 0,
+    "test_metrics": "NONE",
+    "test_visualizations": 0,
+    "external_data_used": false,
+    "experiment_a_modified": false,
+    "phase15_training_executed": false,
+    "phase16_started": false
+  }
+}

@@ -1,0 +1,50 @@
+{
+ "artifact": "phase32_system_under_test_binding",
+ "phase": 32,
+ "section": "\u00a7K",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase32_external_domain_shift_v1_0",
+ "system": "frozen canonical A8/C9 RA-MedFiLM-BARR",
+ "bundle_manifest": {
+  "path": "artifacts/phase26_ra_medfilm_barr_bundle_v1_0/canonical_bundle_manifest.json",
+  "sha256": "f7aebb0f646bcc8de49fa91b70a4c4cc1051c9998ab6b055a8d4d187809cb3d9",
+  "expected_sha256": "f7aebb0f646bcc8de49fa91b70a4c4cc1051c9998ab6b055a8d4d187809cb3d9"
+ },
+ "components": {
+  "G": {
+   "path": "checkpoints/phase21_global_medfilm_fourdomain_seed42_clean_v3/best.pt",
+   "sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+   "expected_sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+   "match": true
+  },
+  "R_psi": {
+   "path": "checkpoints/phase25a_barr_regional_refiner_v1_1_roi030/final/final.pt",
+   "sha256": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109",
+   "expected_sha256": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109",
+   "match": true
+  },
+  "B_phi": {
+   "path": "checkpoints/phase25d_barr_benefit_router_v1_2_1_seed42/final/final.pt",
+   "sha256": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+   "expected_sha256": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+   "match": true
+  },
+  "S_omega": {
+   "path": "checkpoints/phase25f_barr_post_safety_v1_0_seed42/final/final.pt",
+   "sha256": "eee9b97b9921e53fc07eac9281dce64ba518c6e1659916b97b0b3bec21ec6d2e",
+   "expected_sha256": "eee9b97b9921e53fc07eac9281dce64ba518c6e1659916b97b0b3bec21ec6d2e",
+   "match": true
+  }
+ },
+ "retraining": false,
+ "fine_tuning": false,
+ "external_domain_adaptation": false,
+ "threshold_tuning": false,
+ "normalization_refit": false,
+ "router_recalibration": false,
+ "post_safety_recalibration": false,
+ "policy_changes": false,
+ "dataset_specific_parameter_selection": false,
+ "generated_utc": "2026-10-04T07:07:23+00:00",
+ "all_pass": true
+}

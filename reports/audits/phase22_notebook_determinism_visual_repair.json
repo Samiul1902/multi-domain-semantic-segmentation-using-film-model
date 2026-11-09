@@ -1,0 +1,42 @@
+{
+  "artifact": "phase22_notebook_determinism_visual_repair",
+  "phase": 22,
+  "classification": "PHASE22_CANONICAL_NOTEBOOK_MATERIALIZATION",
+  "notebook_path": "notebooks\\phasewise\\phase_22_resource_gap\\phase22_resource_gap_analysis.ipynb",
+  "previous_sha256_before_this_repair": "daf61386d60d8abcbc5af0122bbc3e26a5201756f713e6683b5c7e1f54c47242",
+  "previous_sha256_semantic_repair": "daf61386d60d8abcbc5af0122bbc3e26a5201756f713e6683b5c7e1f54c47242",
+  "claimed_historical_visual_repair_sha256": "02719bf0988c31c2158e26f061523c46dc9cc68b6896a0e58b024c1eab2b5c36",
+  "new_sha256": "cca76123336f0895426f76024138b90565631d44ba51dced405e0fd8afa43658",
+  "historical_sha_match": false,
+  "historical_sha_divergence_reason": "generator changed: (a) the phase-15 GT-free ranking cell is now FAIL-CLOSED — it RAISES if phase22_postfreeze_semantic_repair.json is absent instead of falling back to the stale GT-mixed phase22_uncertainty_vs_benefit.json ranked_abs_spearman path; and (b) phase22_figure_manifest.csv gained the required §13 columns filename / uses_GT / deployable_interpretation_allowed. The 15 source PNGs are byte-identical, all rendered tables/figures and every scientific value are unchanged. The hash was NOT forced.",
+  "three_build_sha256": [
+    "cca76123336f0895426f76024138b90565631d44ba51dced405e0fd8afa43658",
+    "cca76123336f0895426f76024138b90565631d44ba51dced405e0fd8afa43658",
+    "cca76123336f0895426f76024138b90565631d44ba51dced405e0fd8afa43658"
+  ],
+  "n_builds": 3,
+  "three_builds_byte_identical": true,
+  "figure_coverage_numerator": 15,
+  "figure_coverage_denominator": 15,
+  "figure_coverage_fraction": 1.0,
+  "valid_png_count": 15,
+  "png_outputs_total": 15,
+  "table_count_html_outputs": 40,
+  "required_tables": 17,
+  "tables_referenced_in_notebook": 17,
+  "code_cell_count": 24,
+  "executed_code_cells": 24,
+  "error_count": 0,
+  "determinism_contract": [
+    "fixed cell ids (p22NNN)",
+    "metadata.execution stripped",
+    "adjacent stream outputs coalesced",
+    "pandas Styler fixed uuid (.set_uuid)",
+    "object memory addresses normalised (0x... -> 0xADDR)",
+    "FIGURE ORDER IS FIXED (sorted on figure_id) so the manifest column order can never perturb the notebook hash",
+    "figures embedded from a SHA-bound manifest (fail-closed)"
+  ],
+  "figure_regenerated_from_persisted_tables_only": true,
+  "new_segmentation_inference": false,
+  "generated_utc": "2026-09-29T13:36:52.400046+00:00"
+}

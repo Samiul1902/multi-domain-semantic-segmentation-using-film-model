@@ -1,0 +1,100 @@
+{
+ "artifact": "phase36_v1_16_output_namespace_map",
+ "revision": "ra_medfilm_barr_phase36_robustness_v1_16",
+ "v1_16_output_paths": [
+  "phase36_robustness_science_v1_16_journal",
+  "reports/audits/phase36_robustness_science_failure_v1_16.json",
+  "reports/audits/phase36_robustness_science_start_v1_16.json",
+  "reports/audits/phase36_robustness_scientific_result_v1_16.json",
+  "reports/audits/phase36_robustness_smoke_failure_v1_16.json",
+  "reports/audits/phase36_robustness_smoke_start_v1_16.json",
+  "reports/audits/phase36_robustness_smoke_v1_16.json",
+  "reports/audits/phase36_v1_16_runtime_source_integrity_manifest.json",
+  "reports/audits/phase36_v1_16_science_release_attestation.json"
+ ],
+ "v1_16_science_output_paths": [
+  "reports/audits/phase36_robustness_science_start_v1_16.json",
+  "reports/audits/phase36_robustness_scientific_result_v1_16.json",
+  "reports/audits/phase36_robustness_science_failure_v1_16.json",
+  "reports/audits/phase36_robustness_science_process_exit_v1_16.json",
+  "reports/audits/phase36_robustness_science_stdout_v1_16.txt",
+  "reports/audits/phase36_robustness_science_stderr_v1_16.txt",
+  "reports/audits/phase36_robustness_smoke_start_v1_16.json",
+  "reports/audits/phase36_robustness_smoke_v1_16.json",
+  "reports/audits/phase36_robustness_smoke_failure_v1_16.json"
+ ],
+ "v1_16_governance_artifacts_created_in_preparation": [
+  "reports/audits/phase36_v1_16_runtime_source_integrity_manifest.json",
+  "reports/audits/phase36_v1_16_science_release_attestation.json"
+ ],
+ "v1_16_science_artifacts": {
+  "START": "reports/audits/phase36_robustness_science_start_v1_16.json",
+  "RESULT": "reports/audits/phase36_robustness_scientific_result_v1_16.json",
+  "FAILURE": "reports/audits/phase36_robustness_science_failure_v1_16.json",
+  "PROCESS_EXIT": "reports/audits/phase36_robustness_science_process_exit_v1_16.json",
+  "stdout": "reports/audits/phase36_robustness_science_stdout_v1_16.txt",
+  "stderr": "reports/audits/phase36_robustness_science_stderr_v1_16.txt",
+  "journal_dir": "reports/audits/phase36_robustness_science_v1_16_journal"
+ },
+ "v1_14_output_paths_observed": [
+  "reports/audits/phase36_robustness_science_failure_v1_14.json",
+  "reports/audits/phase36_robustness_science_start_v1_14.json",
+  "reports/audits/phase36_robustness_scientific_result_v1_14.json",
+  "reports/audits/phase36_robustness_scientific_result_v1_8.json",
+  "reports/audits/phase36_robustness_smoke_failure_v1_14.json",
+  "reports/audits/phase36_robustness_smoke_start_v1_14.json",
+  "reports/audits/phase36_robustness_smoke_v1_14.json",
+  "reports/audits/phase36_v1_14_runtime_source_integrity_manifest.json",
+  "reports/audits/phase36_v1_14_science_release_attestation.json"
+ ],
+ "v1_15_output_paths_observed": [],
+ "v1_14_overwrite_paths": [],
+ "v1_15_overwrite_paths": [],
+ "no_v1_14_overwrite": true,
+ "no_v1_15_overwrite": true,
+ "all_v1_16_science_paths_absent_pre_execution": true,
+ "absence_pre_execution": {
+  "reports/audits/phase36_robustness_science_start_v1_16.json": {
+   "exists": false,
+   "kind": "SCIENCE_EXECUTION_OUTPUT"
+  },
+  "reports/audits/phase36_robustness_scientific_result_v1_16.json": {
+   "exists": false,
+   "kind": "SCIENCE_EXECUTION_OUTPUT"
+  },
+  "reports/audits/phase36_robustness_science_failure_v1_16.json": {
+   "exists": false,
+   "kind": "SCIENCE_EXECUTION_OUTPUT"
+  },
+  "reports/audits/phase36_robustness_science_process_exit_v1_16.json": {
+   "exists": false,
+   "kind": "SCIENCE_EXECUTION_OUTPUT"
+  },
+  "reports/audits/phase36_robustness_science_stdout_v1_16.txt": {
+   "exists": false,
+   "kind": "SCIENCE_EXECUTION_OUTPUT"
+  },
+  "reports/audits/phase36_robustness_science_stderr_v1_16.txt": {
+   "exists": false,
+   "kind": "SCIENCE_EXECUTION_OUTPUT"
+  },
+  "reports/audits/phase36_robustness_smoke_start_v1_16.json": {
+   "exists": false,
+   "kind": "SCIENCE_EXECUTION_OUTPUT"
+  },
+  "reports/audits/phase36_robustness_smoke_v1_16.json": {
+   "exists": false,
+   "kind": "SCIENCE_EXECUTION_OUTPUT"
+  },
+  "reports/audits/phase36_robustness_smoke_failure_v1_16.json": {
+   "exists": false,
+   "kind": "SCIENCE_EXECUTION_OUTPUT"
+  },
+  "reports/audits/phase36_robustness_science_v1_16_journal": {
+   "exists": false,
+   "kind": "SCIENCE_JOURNAL_DIR"
+  }
+ },
+ "note": "The v1.16 science path writes ONLY into an isolated v1.16 artifact namespace.  No v1.14 and no v1.15 output path is overwritten, and all v1.16 SCIENCE-EXECUTION output paths (START/RESULT/FAILURE/PROCESS_EXIT/stdout/stderr/journal/smoke) are ABSENT before execution.  Governance artifacts (runtime manifest, release attestation) are created during preparation by design.",
+ "model_free": true
+}

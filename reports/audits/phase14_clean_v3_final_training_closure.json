@@ -1,0 +1,150 @@
+{
+  "artifact": "PHASE14_CLEAN_V3_FINAL_TRAINING_CLOSURE",
+  "status": "TRAINING_COMPLETE__EARLY_STOPPING__CHECKPOINT_LINEAGE_RECORDED",
+  "kind": "FINAL_CLOSURE",
+  "created_utc": "2026-09-25T00:30:00Z",
+  "created_local_bst": "2026-09-25T06:30:00+06:00",
+  "phase": "PHASE_14_CLEAN_V3",
+  "experiment_id": "phase14_kub_refiner_unet_a3_256_seed42_clean_v3",
+
+  "outcome": {
+    "best_epoch": 56,
+    "best_val_crop_dice": 0.8471670276240298,
+    "total_epochs": 71,
+    "stop_reason": "EARLY_STOPPING_PATIENCE_15",
+    "early_stopping_arithmetic": "best_epoch 56 + patience 15 = epoch 71, exactly as observed",
+    "best_checkpoint_sha256": "2e09e3a9c39c731687db1a9fef0c80881ed6235e4cda070bb4b8b382caa45daa",
+    "latest_checkpoint_sha256": "fcd71dec9fea397ba7e98e22047d5d405ff60fbcf96acd2090ab0ae3749ff17a",
+    "history_sha256": "8de46a4ae001a377756c7303a6bceeb1f731be911527cb845f2ee90e6de5f996",
+    "history_rows": 71
+  },
+
+  "checkpoint_selection_replay": {
+    "artifact": "reports/audits/phase14_clean_v3_checkpoint_selection_replay.json",
+    "verdict": "REPLAY_PASS__FROZEN_RULE_HONOURED",
+    "checks_total": 13,
+    "checks_passed": 13,
+    "failed_checks": [],
+    "frozen_rule": "best_val_crop_dice (max over val_crop_dice)",
+    "key_findings": {
+      "history_argmax_epoch": 56,
+      "best_pt_epoch": 56,
+      "best_pt_best_epoch_field": 56,
+      "latest_pt_epoch": 71,
+      "latest_pt_best_epoch_field": 56,
+      "latest_pt_bad_epochs": 15,
+      "best_pt_bad_epochs": 0
+    },
+    "method_note": "Disk-only. No forward pass, no backward pass, no inference, no TEST read."
+  },
+
+  "checkpoint_lineage": {
+    "honesty_requirement": "The trajectory spans multiple trainer revisions. It is FALSE to claim a single trainer SHA produced the entire trajectory.",
+    "single_sha_claim_permitted": false,
+    "segments": [
+      {
+        "epochs": "1-10",
+        "trainer_sha": "6b940fa30b1cea949ce599d87542af0af35a0724e1fcf7024aee3eb9c400573a",
+        "trainer_revision": 3,
+        "note": "produced by the epoch-0 restart after the first operational interruption; this SHA contained the RNG-device-coercion defect, but that defect only affects the RESUME path, which was never exercised while producing these epochs, so it cannot have influenced any training computation"
+      },
+      {
+        "epochs": "11-71",
+        "trainer_sha": "99a4335ec63a026225871cf59a8c6f813dc533ec957940712b0f670dd9912e89",
+        "trainer_revision": 4,
+        "note": "continuation after the RNG-device-coercion fix; all resume steps used this SHA"
+      }
+    ],
+    "selected_best_checkpoint": {
+      "epoch": 56,
+      "sha256": "2e09e3a9c39c731687db1a9fef0c80881ed6235e4cda070bb4b8b382caa45daa",
+      "producing_trainer_sha": "99a4335ec63a026225871cf59a8c6f813dc533ec957940712b0f670dd9912e89",
+      "producing_trainer_revision": 4,
+      "produced_after_all_code_fixes": true,
+      "code_only_caveat_required": false,
+      "caveat_statement": "The selected best checkpoint was produced by the final bound trainer revision, after every code fix. No code-only caveat applies to it."
+    },
+    "superseded_checkpoints_requiring_a_caveat": [
+      {
+        "epoch": 9,
+        "val_crop_dice": 0.8380951787296095,
+        "sha256": "5bbd12f00cde72831f1ea24339bc2738b85ae6fe5445f0b777a4a94ada6cf3cb",
+        "producing_trainer_sha": "6b940fa30b1cea949ce599d87542af0af35a0724e1fcf7024aee3eb9c400573a",
+        "caveat": "produced before the RNG-device-coercion fix; the defect is code-only with respect to this checkpoint",
+        "status": "SUPERSEDED__RETAINED_FOR_THE_RECORD"
+      }
+    ],
+    "best_progression": [
+      {"epoch": 9,  "val_crop_dice": 0.8380951787296095},
+      {"epoch": 21, "val_crop_dice": 0.83969793821636},
+      {"epoch": 25, "val_crop_dice": 0.842247},
+      {"epoch": 32, "val_crop_dice": 0.842954},
+      {"epoch": 43, "val_crop_dice": 0.844241989},
+      {"epoch": 56, "val_crop_dice": 0.847167028, "status": "SELECTED"}
+    ],
+    "total_gain_over_first_best": 0.009071849
+  },
+
+  "configuration_as_executed": {
+    "model": "UNet(in_channels=1, out_channels=1, base_channels=32)",
+    "trainable_parameters": 7762465,
+    "loss": "BCEDiceLoss(bce_weight=0.5, dice_weight=0.5, epsilon=1e-6)",
+    "optimizer": "AdamW(lr=1e-4, weight_decay=1e-4)",
+    "scheduler": "CosineAnnealingLR(T_max=100)",
+    "batch_size": 8,
+    "seed": 42,
+    "max_epochs": 100,
+    "early_stopping": {"patience": 15, "metric": "val_crop_dice", "mode": "max"},
+    "checkpoint_rule": "best_val_crop_dice",
+    "amp": true,
+    "final_threshold": 0.5,
+    "crop_resolution": [256, 256],
+    "train_manifest": "manifests/phase4_v3/train.csv",
+    "val_manifest": "manifests/phase4_v3/val.csv",
+    "train_crops_constructed": 5023,
+    "val_crops_constructed": 152,
+    "scientific_parameters_changed_from_frozen": 0
+  },
+
+  "role_margin_binding_as_executed": {
+    "ORACLE_DERIVED_REFINER_TRAIN_MARGIN": 0.25,
+    "ORACLE_DERIVED_REFINER_VAL_MARGIN": 0.25,
+    "ORACLE_DOWNSTREAM_MARGIN": 0.20,
+    "PREDICTED_PROPOSAL_MARGIN": 0.20,
+    "cardinality_note": "four separate keys; never collapsed into one scalar",
+    "resolution_artifact": "reports/audits/phase14_roi_margin_role_resolution.json",
+    "verified_in_checkpoint_config": true
+  },
+
+  "operational_history": {
+    "interruptions": 6,
+    "successful_resumes": 3,
+    "failed_resumes": 1,
+    "failed_resume_cause": "RNG device-coercion defect, fixed at revision 4; executed zero epochs",
+    "epochs_ever_recomputed": 0,
+    "data_lost": 0,
+    "resume_equivalence": {
+      "classification": "BIT_EXACT_CONFIRMED",
+      "artifact": "reports/audits/phase14_resume_equivalence_verification.json",
+      "note": "resumed trajectory verified bit-identical to the preserved uninterrupted trajectory on all metrics for epochs 1-12 and on model/optimizer/scheduler/scaler state at the shared epoch 9"
+    },
+    "host_clock_skew_observed": true,
+    "host_clock_skew_impact": "NONE on science; affects only wall-clock log timestamps and the epoch_s field of the affected epoch"
+  },
+
+  "counters": {
+    "test_reads": 0,
+    "external_test_reads": 0,
+    "proposal_grid": 0,
+    "threshold_searches": 0,
+    "hyperparameter_sweeps": 0,
+    "scientific_parameters_changed": 0
+  },
+
+  "next_step": {
+    "authorized": "frozen three-contrast Phase-14 diagnostic",
+    "status": "BLOCKED__see reports/audits/phase14_clean_v3_diagnostic_readiness_blocker.json",
+    "blocker": "the frozen diagnostic protocol's population constants and gate reference values are v2-era and disagree with the frozen clean_v3 population",
+    "phase_15_started": false
+  }
+}

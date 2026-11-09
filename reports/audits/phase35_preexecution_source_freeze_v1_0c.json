@@ -1,0 +1,197 @@
+{
+ "artifact": "phase35_preexecution_source_freeze_v1_0c",
+ "phase": 35,
+ "section": "\u00a7W",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase35_interpretability_v1_0c",
+ "frozen_source_set": {
+  "execution_v1_0c": {
+   "path": "scripts/analysis/phase35_interpretability_execution_v1_0c.py",
+   "sha256": "4058fc5544e6e1af15339df20a88da4880549ea8d4dd434395df04e0fa261baa",
+   "role": "executable harness; real synthetic smoke entry point"
+  },
+  "common_v1_0b_reused": {
+   "path": "scripts/analysis/phase35_interpretability_common_v1_0b.py",
+   "sha256": "9963215e1431e968e11bacbcd917d96a8a985a7181000258b90f458ff0a778ac",
+   "role": "frozen shared contracts (unchanged)"
+  },
+  "execution_v1_0b_reused": {
+   "path": "scripts/analysis/phase35_interpretability_execution_v1_0b.py",
+   "sha256": "581926840d7717e19ed15ad77c7c5339b709efc881b938924d6eec0a2ceb1872",
+   "role": "frozen scientific mode implementations (reused verbatim)"
+  },
+  "static_preflight_v1_0c": {
+   "path": "scripts/analysis/phase35_execution_preflight_v1_0c.py",
+   "sha256": "81dac2de8c5c84bece0c46e73461687828cdc28b8d6ff5fe770df509d31205c5",
+   "role": "static source preflight (zero execution)"
+  },
+  "static_preflight_v1_0c_result": {
+   "path": "reports/audits/phase35_execution_source_static_preflight_v1_0c.json",
+   "sha256": "80c90c1130ae3bc22fc9cb5baf6a6bd6e6024cf97b9adc913bbe75b0598bb7bf",
+   "role": "static preflight result"
+  }
+ },
+ "static_preflight": {
+  "total_n_checks": 94,
+  "total_n_failed": 0,
+  "original_54_all_pass": true,
+  "additional_n_checks": 40,
+  "additional_n_failed": 0,
+  "static_source_preflight_pass": true
+ },
+ "predecessors_verified": [
+  {
+   "path": "reports/audits/phase35_specification_terminal_v1_0.json",
+   "expected_sha256": "cec3b2aadbc90a7a8ebd06e8149cd7a53122d42e3f6077c30634e7de96ac312b",
+   "observed_sha256": "cec3b2aadbc90a7a8ebd06e8149cd7a53122d42e3f6077c30634e7de96ac312b",
+   "match": true
+  },
+  {
+   "path": "reports/audits/phase35_preexecution_source_freeze_v1_0.json",
+   "expected_sha256": "582c950c96622e84b67e691db4ca02e392c68ff11885c5ddc3f3a785de87fc98",
+   "observed_sha256": "582c950c96622e84b67e691db4ca02e392c68ff11885c5ddc3f3a785de87fc98",
+   "match": true
+  },
+  {
+   "path": "reports/audits/phase35_execution_source_static_preflight_v1_0a.json",
+   "expected_sha256": "bed25b64d83d8076f07f42569977351d0fef757faa476191acf4792d0aedd5fd",
+   "observed_sha256": "bed25b64d83d8076f07f42569977351d0fef757faa476191acf4792d0aedd5fd",
+   "match": true
+  },
+  {
+   "path": "reports/audits/phase35_preexecution_smoke_terminal_v1_0a.json",
+   "expected_sha256": "447e202196b2de79d21d88d76ebbc7be841afa00361ca613a4b7c04cade0fac9",
+   "observed_sha256": "447e202196b2de79d21d88d76ebbc7be841afa00361ca613a4b7c04cade0fac9",
+   "match": true
+  },
+  {
+   "path": "scripts/analysis/phase35_interpretability_common_v1_0.py",
+   "expected_sha256": "fce9527fbad3714e01beadf5f697646dbbad215e98fe233ddb4b9948c6071843",
+   "observed_sha256": "fce9527fbad3714e01beadf5f697646dbbad215e98fe233ddb4b9948c6071843",
+   "match": true
+  },
+  {
+   "path": "scripts/analysis/phase35_interpretability_execution_v1_0.py",
+   "expected_sha256": "a2e150d89018087112c71dbaa92137b667e4269430463fd55fc1601f9ee99d27",
+   "observed_sha256": "a2e150d89018087112c71dbaa92137b667e4269430463fd55fc1601f9ee99d27",
+   "match": true
+  },
+  {
+   "path": "scripts/analysis/phase35_interpretability_common_v1_0b.py",
+   "expected_sha256": "9963215e1431e968e11bacbcd917d96a8a985a7181000258b90f458ff0a778ac",
+   "observed_sha256": "9963215e1431e968e11bacbcd917d96a8a985a7181000258b90f458ff0a778ac",
+   "match": true
+  },
+  {
+   "path": "scripts/analysis/phase35_interpretability_execution_v1_0b.py",
+   "expected_sha256": "581926840d7717e19ed15ad77c7c5339b709efc881b938924d6eec0a2ceb1872",
+   "observed_sha256": "581926840d7717e19ed15ad77c7c5339b709efc881b938924d6eec0a2ceb1872",
+   "match": true
+  },
+  {
+   "path": "scripts/analysis/phase35_execution_preflight_v1_0b.py",
+   "expected_sha256": "498e68277168a8ee200842d799cb186bd410f09764d1fdb796ad463912704e63",
+   "observed_sha256": "498e68277168a8ee200842d799cb186bd410f09764d1fdb796ad463912704e63",
+   "match": true
+  },
+  {
+   "path": "reports/audits/phase35_v1_0_execution_source_defect_record_v1_0b.json",
+   "expected_sha256": "523d991c7c2b259a2828879c003e532f4705d6dad3322d648a66bf28c0bd8855",
+   "observed_sha256": "523d991c7c2b259a2828879c003e532f4705d6dad3322d648a66bf28c0bd8855",
+   "match": true
+  },
+  {
+   "path": "reports/audits/phase35_execution_source_static_preflight_v1_0b.json",
+   "expected_sha256": "8c026c1b01304747da0f49148a5cf9f0757313bb98870cebfd78a4f589d647df",
+   "observed_sha256": "8c026c1b01304747da0f49148a5cf9f0757313bb98870cebfd78a4f589d647df",
+   "match": true
+  },
+  {
+   "path": "reports/audits/phase35_preexecution_source_freeze_v1_0b.json",
+   "expected_sha256": "95bcd7913b4ebfdb915134ff6cace69efec1edbdcaa31d828f840548f886a06f",
+   "observed_sha256": "95bcd7913b4ebfdb915134ff6cace69efec1edbdcaa31d828f840548f886a06f",
+   "match": true
+  },
+  {
+   "path": "reports/audits/phase35_source_amendment_terminal_v1_0b.json",
+   "expected_sha256": "c1fa5d2d8b2cc70f8615fbd7dee3fcc75ac2d51dd86bf785a25bdb2c5b0f0c79",
+   "observed_sha256": "c1fa5d2d8b2cc70f8615fbd7dee3fcc75ac2d51dd86bf785a25bdb2c5b0f0c79",
+   "match": true
+  },
+  {
+   "path": "reports/audits/phase35_source_amendment_final_check_v1_0b.json",
+   "expected_sha256": "f7b99345e56ca0b32e233b7d0896a23e4d6175a26705bdf8a696d590a5972469",
+   "observed_sha256": "f7b99345e56ca0b32e233b7d0896a23e4d6175a26705bdf8a696d590a5972469",
+   "match": true
+  },
+  {
+   "path": "reports/audits/phase35_v1_0b_no_execution_audit.json",
+   "expected_sha256": "9e4aae8d9ee3f0783da847691f48f256b90807c96ce097797152a093efd082a4",
+   "observed_sha256": "9e4aae8d9ee3f0783da847691f48f256b90807c96ce097797152a093efd082a4",
+   "match": true
+  },
+  {
+   "path": "reports/audits/phase35_synthetic_smoke_terminal_v1_0b.json",
+   "expected_sha256": "3def25817370ce9a90942610d4a474f56384a99e86ba8ba6a2630ad8002e80ee",
+   "observed_sha256": "3def25817370ce9a90942610d4a474f56384a99e86ba8ba6a2630ad8002e80ee",
+   "match": true
+  },
+  {
+   "path": "reports/audits/phase35_synthetic_smoke_final_check_v1_0b.json",
+   "expected_sha256": "0a57dca0d13c0dd20beb1a2546fc89948b02e99f45ed6bc070189f91037b8267",
+   "observed_sha256": "0a57dca0d13c0dd20beb1a2546fc89948b02e99f45ed6bc070189f91037b8267",
+   "match": true
+  },
+  {
+   "path": "reports/audits/phase35_synthetic_interpretability_smoke_v1_0b.json",
+   "expected_sha256": "bd51d09cca091244b46db11d61988572368539fbf4d46ddbfcbc4afc93137ff2",
+   "observed_sha256": "bd51d09cca091244b46db11d61988572368539fbf4d46ddbfcbc4afc93137ff2",
+   "match": true
+  },
+  {
+   "path": "reports/audits/phase35_synthetic_smoke_provenance_v1_0b.json",
+   "expected_sha256": "f44b2b0e5c38b9a695a6fe02fbb55856af33718948ddd399838153539a30f27c",
+   "observed_sha256": "f44b2b0e5c38b9a695a6fe02fbb55856af33718948ddd399838153539a30f27c",
+   "match": true
+  },
+  {
+   "path": "docs/phase35_interpretability_source_amendment_v1_0b.md",
+   "expected_sha256": "ed42edb9059d3d78d64e730c730075b2df19798f8274af86301bb3053155b4a5",
+   "observed_sha256": "ed42edb9059d3d78d64e730c730075b2df19798f8274af86301bb3053155b4a5",
+   "match": true
+  },
+  {
+   "path": "notebooks/phasewise/phase_35_interpretability/phase35_interpretability_synthetic_smoke_v1_0b_review.ipynb",
+   "expected_sha256": "b524f5fc5f57eaee0ce6c640b2ae1dad5bc9135e46d2b7efa9d709e8dab08752",
+   "observed_sha256": "b524f5fc5f57eaee0ce6c640b2ae1dad5bc9135e46d2b7efa9d709e8dab08752",
+   "match": true
+  },
+  {
+   "path": "reports/tables/phase21_gallery_selection_64.csv",
+   "expected_sha256": "2bc7c16286999ced374840cc987dcd352c3e546668322a9ccc4d1e8e8a097fd9",
+   "observed_sha256": "2bc7c16286999ced374840cc987dcd352c3e546668322a9ccc4d1e8e8a097fd9",
+   "match": true
+  }
+ ],
+ "n_predecessors_verified": 22,
+ "predecessor_drift": [],
+ "source_freeze_complete": true,
+ "smoke_entry_point_implemented": true,
+ "smoke_entry_point_is_stub": false,
+ "scientific_modes_unchanged": true,
+ "disclosed_defect": "PHASE35_V1_0B_GRADCAM_TARGET_MASK_RANK_INCOMPATIBILITY",
+ "model_constructed": false,
+ "checkpoint_deserialized": false,
+ "forward_executed": false,
+ "backward_executed": false,
+ "gradcam_executed": false,
+ "router_attribution_executed": false,
+ "gate_env_set": false,
+ "mode_invoked": false,
+ "raw_VAL_reads": 0,
+ "GT_reads": 0,
+ "ROUTER_HOLDOUT_reads": 0,
+ "TEST_reads": 0,
+ "generated_utc": "2026-10-04T15:46:25+00:00",
+ "all_pass": true
+}

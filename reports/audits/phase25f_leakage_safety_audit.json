@@ -1,0 +1,29 @@
+{
+  "classification": "PHASE25F_POST_SAFETY_SPEC_COMPLETENESS_AUDIT",
+  "stage": "LEAKAGE_SAFETY_AUDIT",
+  "method": "RA-MedFiLM-BARR",
+  "requirement": "For every development sample used to train/evaluate S_omega, the regional-refiner output used as an input MUST come from a refiner that did not fit / early-stop / select its checkpoint on that sample outer fold.",
+  "phase25c_crossfit_leakage_violations": 0,
+  "phase25c_crossfit_verdict": "PHASE25C_CROSSFIT_LEAKAGE_CLEAN",
+  "phase25a_final_refiner_used_for_oof": false,
+  "fold_specific_checkpoints_only": true,
+  "oof_target_fold_never_used_for_checkpoint_selection": true,
+  "leakage_safe_source_exists": true,
+  "leakage_safe_source": "Phase25C OOF fold-specific refined crop probability outputs on ROUTER_DEVELOPMENT (cross-fit leakage-clean).",
+  "leakage_safe_source_is_frozen_bound_artifact": false,
+  "unbound_source_problem": "The OOF refined crop probability arrays exist only as \"_tmp_refined_crop_prob_<DOMAIN>.npy\" files that NO audit or contract references or hashes. They are not a frozen, reproducible artifact.",
+  "ambiguity_count": 0,
+  "blocking_rows": [
+    "phase25c_oof_refined_crop_prob_<DOMAIN>.npy",
+    "phase25a_roi030_cache.prob512 (p_global)",
+    "predicted_roi_area_fraction"
+  ],
+  "sources": {
+    "reports/audits/phase25c_crossfit_leakage_audit.json": "a59473df2788ab32344987a65c859a1448ea452f4d01d55db76952464a096281",
+    "reports/audits/phase25c_refiner_inference_execution_binding.json": "9b9018ed38501febbd80c132639dcac825d9e5e4e7e75d7167794bcfccd7b57b",
+    "reports/audits/phase25c_phase25d_handoff_schema.json": "abaf7e4ce7d056d89a6b923772276de0f27765f8be3db66c4c56c64a204c84f4",
+    "data_cache/phase25c_barr_oof_paired_gain_labels_v1_2/label_manifest.json": "cd82ff31f185c4d470317227c78a4490b60e24d346caeee48b546c517989c1c9"
+  },
+  "verdict": "LEAKAGE_SAFE_SOURCE_EXISTS_BUT_INPUT_CONTRACT_AND_ARTIFACT_BINDING_MISSING",
+  "all_pass": true
+}

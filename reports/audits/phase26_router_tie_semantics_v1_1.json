@@ -1,0 +1,21 @@
+{
+ "artifact": "phase26_router_tie_semantics_v1_1",
+ "phase": "26",
+ "classification": "PHASE26_ROUTER_SCORE_THRESHOLD_SEMANTICS_RECONCILIATION",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase26_router_threshold_reconciliation_v1_1",
+ "governance_only": true,
+ "boundary_tied": false,
+ "scalar_comparator_sufficient": true,
+ "fallback_tie_rule": "score descending, then sample_id ascending",
+ "frozen_tie_rule_reference": "reports/audits/phase25e_tie_break_contract_v1_0.json",
+ "new_comparator_invented": false,
+ "equality_at_threshold_observed": false,
+ "checks": {
+  "boundary_tied_false": true,
+  "scalar_comparator_sufficient": true,
+  "tie_rule_frozen": true,
+  "outcome_tiebreak_forbidden": true
+ },
+ "all_pass": true
+}

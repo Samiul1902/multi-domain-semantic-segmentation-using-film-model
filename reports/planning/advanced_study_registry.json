@@ -1,0 +1,1032 @@
+{
+  "classification": "ADVANCED_STUDY_REGISTRY",
+  "generated_utc": "2026-10-11T16:00:00Z",
+  "revision_id": "RA_MEDFILM_BARR_EXT02_1A_ADVANCED_STUDY_PROGRAM_V1_0",
+  "n_studies": 32,
+  "all_status": "NOT_STARTED",
+  "scientific_delta": 0,
+  "studies": [
+    {
+      "study_id": "AS-01",
+      "study_name": "Four-Domain Dataset Progression",
+      "scientific_question": "How does adding domains P1->P4 affect performance, router behaviour, negative transfer and domain retention?",
+      "priority_tier": "TIER 1",
+      "study_class": "CORE_CONFIRMATORY_EXTENSION",
+      "population": "internal TRAIN/development; P1 ISIC, P2 +BUSI, P3 +KVASIR, P4 +KUB",
+      "systems": [
+        "GlobalMedFiLM",
+        "RA-MedFiLM-BARR"
+      ],
+      "primary_endpoint": "macro-domain Dice across P1..P4",
+      "secondary_endpoints": [
+        "router behaviour",
+        "negative transfer",
+        "domain retention"
+      ],
+      "analysis_unit": "domain (per stage)",
+      "training_required": true,
+      "new_inference_required": true,
+      "external_data_used": false,
+      "protected_data_used": false,
+      "dependencies": [
+        "EXT-02 progression freeze"
+      ],
+      "planned_tables": [
+        "T-ADV-03"
+      ],
+      "planned_figures": [
+        "F-ADV-02"
+      ],
+      "claim_boundary": "internal scaling evidence only",
+      "status": "NOT_STARTED"
+    },
+    {
+      "study_id": "AS-02",
+      "study_name": "Fixed-N Domain-Diversity Progression",
+      "scientific_question": "Holding total sample budget ~constant, does adding domains (diversity) versus more data drive change?",
+      "priority_tier": "TIER 2",
+      "study_class": "PRESPECIFIED_ESTIMATION",
+      "population": "internal TRAIN/development; diversity-matched subsets",
+      "systems": [
+        "GlobalMedFiLM",
+        "RA-MedFiLM-BARR"
+      ],
+      "primary_endpoint": "macro-domain Dice at fixed N",
+      "secondary_endpoints": [
+        "negative transfer"
+      ],
+      "analysis_unit": "domain",
+      "training_required": true,
+      "new_inference_required": true,
+      "external_data_used": false,
+      "protected_data_used": false,
+      "dependencies": [
+        "AS-01"
+      ],
+      "planned_tables": [
+        "T-ADV-03"
+      ],
+      "planned_figures": [
+        "F-ADV-02"
+      ],
+      "claim_boundary": "isolates domain-diversity effect",
+      "status": "NOT_STARTED"
+    },
+    {
+      "study_id": "AS-03",
+      "study_name": "Training Data-Volume / Learning-Curve Study",
+      "scientific_question": "How does performance scale with nested TRAIN subsets 25/50/75/100%?",
+      "priority_tier": "TIER 1",
+      "study_class": "CORE_CONFIRMATORY_EXTENSION",
+      "population": "nested domain-stratified TRAIN subsets",
+      "systems": [
+        "GlobalMedFiLM",
+        "RA-MedFiLM-BARR"
+      ],
+      "primary_endpoint": "Dice vs training volume",
+      "secondary_endpoints": [
+        "IoU",
+        "Precision",
+        "Recall",
+        "HD95",
+        "Global->Final DeltaDice",
+        "router execution"
+      ],
+      "analysis_unit": "domain",
+      "training_required": true,
+      "new_inference_required": true,
+      "external_data_used": false,
+      "protected_data_used": false,
+      "dependencies": [],
+      "planned_tables": [
+        "T-ADV-04"
+      ],
+      "planned_figures": [
+        "F-ADV-03"
+      ],
+      "claim_boundary": "learning-curve evidence",
+      "status": "NOT_STARTED"
+    },
+    {
+      "study_id": "AS-04",
+      "study_name": "Single-Domain vs Shared Multi-Domain",
+      "scientific_question": "For each domain, is gain from multi-domain learning or from BARR?",
+      "priority_tier": "TIER 1",
+      "study_class": "CORE_CONFIRMATORY_EXTENSION",
+      "population": "internal; per-domain single vs shared",
+      "systems": [
+        "single-domain model",
+        "shared multi-domain model",
+        "GlobalMedFiLM",
+        "RA-MedFiLM-BARR"
+      ],
+      "primary_endpoint": "per-domain Dice",
+      "secondary_endpoints": [
+        "IoU",
+        "Precision",
+        "Recall",
+        "HD95"
+      ],
+      "analysis_unit": "domain",
+      "training_required": true,
+      "new_inference_required": true,
+      "external_data_used": false,
+      "protected_data_used": false,
+      "dependencies": [],
+      "planned_tables": [
+        "T-ADV-02"
+      ],
+      "planned_figures": [
+        "F-ADV-01"
+      ],
+      "claim_boundary": "separates multi-domain benefit from BARR benefit",
+      "status": "NOT_STARTED"
+    },
+    {
+      "study_id": "AS-05",
+      "study_name": "Negative Transfer / Domain Retention",
+      "scientific_question": "Does introducing new domains degrade older domains?",
+      "priority_tier": "TIER 1",
+      "study_class": "CORE_CONFIRMATORY_EXTENSION",
+      "population": "internal progression stages",
+      "systems": [
+        "GlobalMedFiLM",
+        "RA-MedFiLM-BARR"
+      ],
+      "primary_endpoint": "change in old-domain Dice from introduction stage",
+      "secondary_endpoints": [
+        "absolute Dice",
+        "per-domain retention"
+      ],
+      "analysis_unit": "domain",
+      "training_required": true,
+      "new_inference_required": true,
+      "external_data_used": false,
+      "protected_data_used": false,
+      "dependencies": [
+        "AS-01"
+      ],
+      "planned_tables": [
+        "T-ADV-05"
+      ],
+      "planned_figures": [
+        "F-ADV-04"
+      ],
+      "claim_boundary": "retention evidence; descriptive",
+      "status": "NOT_STARTED"
+    },
+    {
+      "study_id": "AS-06",
+      "study_name": "Leave-One-Domain-Out / Domain-Exclusion Generalization",
+      "scientific_question": "How does excluding a domain affect generalization, given learned task embeddings?",
+      "priority_tier": "TIER 1",
+      "study_class": "PRESPECIFIED_ESTIMATION",
+      "population": "4 holds: without ISIC/BUSI/KVASIR/KUB (internal)",
+      "systems": [
+        "GlobalMedFiLM",
+        "RA-MedFiLM-BARR"
+      ],
+      "primary_endpoint": "held-out-domain Dice (if embedding valid)",
+      "secondary_endpoints": [
+        "retention"
+      ],
+      "analysis_unit": "domain",
+      "training_required": true,
+      "new_inference_required": true,
+      "external_data_used": false,
+      "protected_data_used": false,
+      "dependencies": [],
+      "planned_tables": [
+        "T-ADV-06"
+      ],
+      "planned_figures": [],
+      "claim_boundary": "LODO feasibility caveat: if held-out task embedding untrained -> DOMAIN_EXCLUSION_GENERALIZATION_STRESS_TEST, NOT zero-shot LODO",
+      "status": "NOT_STARTED"
+    },
+    {
+      "study_id": "AS-07",
+      "study_name": "Domain-Order Sensitivity",
+      "scientific_question": "Does one alternative predeclared domain-addition order change conclusions?",
+      "priority_tier": "TIER 3",
+      "study_class": "OPTIONAL_RESOURCE_DEPENDENT",
+      "population": "internal; 1 extra order",
+      "systems": [
+        "GlobalMedFiLM",
+        "RA-MedFiLM-BARR"
+      ],
+      "primary_endpoint": "macro-domain Dice",
+      "secondary_endpoints": [
+        "retention"
+      ],
+      "analysis_unit": "domain",
+      "training_required": true,
+      "new_inference_required": true,
+      "external_data_used": false,
+      "protected_data_used": false,
+      "dependencies": [
+        "AS-01"
+      ],
+      "planned_tables": [
+        "T-ADV-03"
+      ],
+      "planned_figures": [
+        "F-ADV-02"
+      ],
+      "claim_boundary": "one additional order only; no permutation search",
+      "status": "NOT_STARTED"
+    },
+    {
+      "study_id": "AS-08",
+      "study_name": "Same-Protocol Model Benchmark",
+      "scientific_question": "How do 7 models compare under identical protocol?",
+      "priority_tier": "TIER 1",
+      "study_class": "CORE_CONFIRMATORY_EXTENSION",
+      "population": "internal TRAIN + development-validation",
+      "systems": [
+        "GlobalMedFiLM",
+        "RA-MedFiLM-BARR V1",
+        "U-Net",
+        "Attention U-Net",
+        "UNet++",
+        "DeepLabV3+",
+        "SegFormer-B0"
+      ],
+      "primary_endpoint": "macro-domain + per-domain Dice",
+      "secondary_endpoints": [
+        "IoU",
+        "Precision",
+        "Recall",
+        "HD95",
+        "parameters",
+        "MACs",
+        "latency"
+      ],
+      "analysis_unit": "domain",
+      "training_required": true,
+      "new_inference_required": true,
+      "external_data_used": false,
+      "protected_data_used": false,
+      "dependencies": [
+        "EXT-03 baselines frozen"
+      ],
+      "planned_tables": [
+        "T-ADV-01",
+        "T-ADV-02"
+      ],
+      "planned_figures": [
+        "F-ADV-01"
+      ],
+      "claim_boundary": "SAME_PROTOCOL/CONTEXTUAL_ONLY labels apply",
+      "status": "NOT_STARTED"
+    },
+    {
+      "study_id": "AS-09",
+      "study_name": "Oracle Refinement Upper Bound",
+      "scientific_question": "How close is B_phi (+S_omega) to an oracle routing policy?",
+      "priority_tier": "TIER 1",
+      "study_class": "PRESPECIFIED_MECHANISTIC",
+      "population": "INTERNAL DEVELOPMENT ONLY",
+      "systems": [
+        "Always Global",
+        "Always Refine",
+        "Random Routing",
+        "B_phi",
+        "B_phi+S_omega",
+        "Oracle Routing"
+      ],
+      "primary_endpoint": "Final Dice / utility vs oracle",
+      "secondary_endpoints": [
+        "raw refined-global DeltaDice (descriptive)"
+      ],
+      "analysis_unit": "sample",
+      "training_required": false,
+      "new_inference_required": true,
+      "external_data_used": false,
+      "protected_data_used": false,
+      "dependencies": [],
+      "planned_tables": [
+        "T-ADV-07"
+      ],
+      "planned_figures": [
+        "F-ADV-05"
+      ],
+      "claim_boundary": "internal development only; no TEST/external",
+      "status": "NOT_STARTED"
+    },
+    {
+      "study_id": "AS-10",
+      "study_name": "Router Regret / Oracle Gap",
+      "scientific_question": "Quantify false SKIP/EXECUTE, missed benefit, avoidable harm, oracle gap, routing regret.",
+      "priority_tier": "TIER 1",
+      "study_class": "PRESPECIFIED_MECHANISTIC",
+      "population": "internal development",
+      "systems": [
+        "B_phi",
+        "B_phi+S_omega",
+        "Oracle"
+      ],
+      "primary_endpoint": "oracle gap",
+      "secondary_endpoints": [
+        "routing regret",
+        "false SKIP",
+        "false EXECUTE"
+      ],
+      "analysis_unit": "sample",
+      "training_required": false,
+      "new_inference_required": true,
+      "external_data_used": false,
+      "protected_data_used": false,
+      "dependencies": [
+        "AS-09"
+      ],
+      "planned_tables": [
+        "T-ADV-07"
+      ],
+      "planned_figures": [
+        "F-ADV-05"
+      ],
+      "claim_boundary": "descriptive mechanism",
+      "status": "NOT_STARTED"
+    },
+    {
+      "study_id": "AS-11",
+      "study_name": "Benefit-Capture Study",
+      "scientific_question": "What fraction of available positive utility does the router capture?",
+      "priority_tier": "TIER 1",
+      "study_class": "PRESPECIFIED_MECHANISTIC",
+      "population": "internal development (Phase28-compatible benefit definition)",
+      "systems": [
+        "B_phi",
+        "B_phi+S_omega",
+        "Oracle"
+      ],
+      "primary_endpoint": "benefit capture fraction",
+      "secondary_endpoints": [
+        "available/captured/missed utility",
+        "execution fraction"
+      ],
+      "analysis_unit": "sample",
+      "training_required": false,
+      "new_inference_required": true,
+      "external_data_used": false,
+      "protected_data_used": false,
+      "dependencies": [],
+      "planned_tables": [
+        "T-ADV-07"
+      ],
+      "planned_figures": [
+        "F-ADV-06"
+      ],
+      "claim_boundary": "reuse frozen Phase28 definition where applicable",
+      "status": "NOT_STARTED"
+    },
+    {
+      "study_id": "AS-12",
+      "study_name": "Harm-Avoidance / Safety-Rescue Study",
+      "scientific_question": "How much harm do B_phi and S_omega prevent?",
+      "priority_tier": "TIER 1",
+      "study_class": "PRESPECIFIED_MECHANISTIC",
+      "population": "internal development",
+      "systems": [
+        "Global",
+        "pre-safety refined",
+        "Final after S_omega"
+      ],
+      "primary_endpoint": "harm prevented",
+      "secondary_endpoints": [
+        "harmful attempted/accepted/rejected",
+        "remaining harmful activations"
+      ],
+      "analysis_unit": "sample",
+      "training_required": false,
+      "new_inference_required": true,
+      "external_data_used": false,
+      "protected_data_used": false,
+      "dependencies": [],
+      "planned_tables": [
+        "T-ADV-08"
+      ],
+      "planned_figures": [
+        "F-ADV-07"
+      ],
+      "claim_boundary": "safety mechanism evidence",
+      "status": "NOT_STARTED"
+    },
+    {
+      "study_id": "AS-13",
+      "study_name": "State-Machine Performance",
+      "scientific_question": "How do the four states differ in performance and geometry?",
+      "priority_tier": "TIER 1",
+      "study_class": "PRESPECIFIED_MECHANISTIC",
+      "population": "internal development",
+      "systems": [
+        "RA-MedFiLM-BARR"
+      ],
+      "primary_endpoint": "DeltaDice per state",
+      "secondary_endpoints": [
+        "n",
+        "fraction",
+        "Global/Final Dice",
+        "fg size",
+        "ROI size",
+        "uncertainty"
+      ],
+      "analysis_unit": "sample",
+      "training_required": false,
+      "new_inference_required": true,
+      "external_data_used": false,
+      "protected_data_used": false,
+      "dependencies": [],
+      "planned_tables": [
+        "T-ADV-09"
+      ],
+      "planned_figures": [],
+      "claim_boundary": "state membership NOT causal",
+      "status": "NOT_STARTED"
+    },
+    {
+      "study_id": "AS-14",
+      "study_name": "Execution-Budget Study",
+      "scientific_question": "How does performance vary across frozen budgets 0/10/25/50/75/100%?",
+      "priority_tier": "TIER 2",
+      "study_class": "PRESPECIFIED_ESTIMATION",
+      "population": "internal development",
+      "systems": [
+        "RA-MedFiLM-BARR"
+      ],
+      "primary_endpoint": "Final Dice vs budget",
+      "secondary_endpoints": [
+        "DeltaDice",
+        "benefit capture",
+        "harmful activation",
+        "execute n",
+        "MACs",
+        "latency"
+      ],
+      "analysis_unit": "sample",
+      "training_required": false,
+      "new_inference_required": true,
+      "external_data_used": false,
+      "protected_data_used": false,
+      "dependencies": [],
+      "planned_tables": [
+        "T-ADV-12"
+      ],
+      "planned_figures": [
+        "F-ADV-08"
+      ],
+      "claim_boundary": "internal only; canonical ranking quantity",
+      "status": "NOT_STARTED"
+    },
+    {
+      "study_id": "AS-15",
+      "study_name": "Compute-Accuracy Pareto Study",
+      "scientific_question": "What is the compute/execution vs performance trade-off?",
+      "priority_tier": "TIER 1",
+      "study_class": "PRESPECIFIED_ESTIMATION",
+      "population": "internal development",
+      "systems": [
+        "RA-MedFiLM-BARR"
+      ],
+      "primary_endpoint": "compute vs performance Pareto",
+      "secondary_endpoints": [
+        "harmful activation"
+      ],
+      "analysis_unit": "sample",
+      "training_required": false,
+      "new_inference_required": true,
+      "external_data_used": false,
+      "protected_data_used": false,
+      "dependencies": [
+        "AS-14"
+      ],
+      "planned_tables": [
+        "T-ADV-12"
+      ],
+      "planned_figures": [
+        "F-ADV-08"
+      ],
+      "claim_boundary": "Phase34-compatible compute accounting",
+      "status": "NOT_STARTED"
+    },
+    {
+      "study_id": "AS-16",
+      "study_name": "Router Calibration",
+      "scientific_question": "Is B_phi output a probability; how well is it calibrated/ranked?",
+      "priority_tier": "TIER 1",
+      "study_class": "PRESPECIFIED_MECHANISTIC",
+      "population": "internal development",
+      "systems": [
+        "B_phi"
+      ],
+      "primary_endpoint": "calibration or rank association",
+      "secondary_endpoints": [
+        "reliability/Brier/ECE OR score-bins/Spearman/quantiles"
+      ],
+      "analysis_unit": "sample",
+      "training_required": false,
+      "new_inference_required": true,
+      "external_data_used": false,
+      "protected_data_used": false,
+      "dependencies": [],
+      "planned_tables": [],
+      "planned_figures": [
+        "F-ADV-09"
+      ],
+      "claim_boundary": "do NOT misuse probability metrics if output not a probability",
+      "status": "NOT_STARTED"
+    },
+    {
+      "study_id": "AS-17",
+      "study_name": "Segmentation Uncertainty",
+      "scientific_question": "Do uncertainty quantities associate with error?",
+      "priority_tier": "TIER 2",
+      "study_class": "PRESPECIFIED_EXPLORATORY",
+      "population": "internal development",
+      "systems": [
+        "RA-MedFiLM-BARR"
+      ],
+      "primary_endpoint": "uncertainty vs error association",
+      "secondary_endpoints": [
+        "Dice",
+        "IoU",
+        "HD95",
+        "FP/FN burden"
+      ],
+      "analysis_unit": "sample",
+      "training_required": false,
+      "new_inference_required": true,
+      "external_data_used": false,
+      "protected_data_used": false,
+      "dependencies": [],
+      "planned_tables": [],
+      "planned_figures": [],
+      "claim_boundary": "association, not causation",
+      "status": "NOT_STARTED"
+    },
+    {
+      "study_id": "AS-18",
+      "study_name": "Selective Risk / Coverage",
+      "scientific_question": "How does risk vary with coverage 100/90/75/50/25%?",
+      "priority_tier": "TIER 2",
+      "study_class": "PRESPECIFIED_EXPLORATORY",
+      "population": "internal development",
+      "systems": [
+        "RA-MedFiLM-BARR"
+      ],
+      "primary_endpoint": "risk/error vs coverage",
+      "secondary_endpoints": [
+        "Dice",
+        "HD95"
+      ],
+      "analysis_unit": "sample",
+      "training_required": false,
+      "new_inference_required": true,
+      "external_data_used": false,
+      "protected_data_used": false,
+      "dependencies": [
+        "AS-17"
+      ],
+      "planned_tables": [],
+      "planned_figures": [
+        "F-ADV-10"
+      ],
+      "claim_boundary": "AURC only if definition/implementation frozen prospectively",
+      "status": "NOT_STARTED"
+    },
+    {
+      "study_id": "AS-19",
+      "study_name": "Domain-Shift / OOD Uncertainty",
+      "scientific_question": "Do internal vs external distributions of uncertainty/router/ROI/state differ?",
+      "priority_tier": "TIER 2",
+      "study_class": "PRESPECIFIED_EXPLORATORY",
+      "population": "internal vs external (AFTER EXT-06)",
+      "systems": [
+        "RA-MedFiLM-BARR"
+      ],
+      "primary_endpoint": "distribution comparison",
+      "secondary_endpoints": [
+        "uncertainty",
+        "router score",
+        "ROI",
+        "state dist"
+      ],
+      "analysis_unit": "sample",
+      "training_required": false,
+      "new_inference_required": true,
+      "external_data_used": true,
+      "protected_data_used": false,
+      "dependencies": [
+        "EXT-06"
+      ],
+      "planned_tables": [],
+      "planned_figures": [],
+      "claim_boundary": "no adaptation; no external threshold tuning",
+      "status": "NOT_STARTED"
+    },
+    {
+      "study_id": "AS-20",
+      "study_name": "External Cross-Dataset Evaluation",
+      "scientific_question": "How does the frozen system perform on the four external datasets?",
+      "priority_tier": "TIER 1",
+      "study_class": "CORE_CONFIRMATORY_EXTENSION",
+      "population": "HAM10000/CVC/BrEaST (secondary benchmark) + Stones (domain-shift stress test)",
+      "systems": [
+        "GlobalMedFiLM",
+        "RA-MedFiLM-BARR"
+      ],
+      "primary_endpoint": "per-dataset Final Dice",
+      "secondary_endpoints": [
+        "IoU",
+        "Precision",
+        "Recall",
+        "HD95",
+        "DeltaDice",
+        "CI",
+        "state freq"
+      ],
+      "analysis_unit": "source-group/case",
+      "training_required": false,
+      "new_inference_required": true,
+      "external_data_used": true,
+      "protected_data_used": false,
+      "dependencies": [
+        "EXT-01",
+        "EXT-02",
+        "EXT-02.1",
+        "EXT-03"
+      ],
+      "planned_tables": [
+        "T-ADV-10"
+      ],
+      "planned_figures": [
+        "F-ADV-11"
+      ],
+      "claim_boundary": "Stones: PRIMARY_EXTERNAL_VALIDATION_NOT_ESTABLISHED; evidence classes frozen",
+      "status": "NOT_STARTED"
+    },
+    {
+      "study_id": "AS-21",
+      "study_name": "Foreground-Size Stratification",
+      "scientific_question": "How does performance vary by GT-area bin (small/medium/large)?",
+      "priority_tier": "TIER 1",
+      "study_class": "PRESPECIFIED_ESTIMATION",
+      "population": "internal + external where valid",
+      "systems": [
+        "GlobalMedFiLM",
+        "RA-MedFiLM-BARR"
+      ],
+      "primary_endpoint": "Dice by GT-area bin",
+      "secondary_endpoints": [
+        "IoU",
+        "Precision",
+        "Recall",
+        "HD95",
+        "DeltaDice",
+        "execute rate"
+      ],
+      "analysis_unit": "sample",
+      "training_required": false,
+      "new_inference_required": true,
+      "external_data_used": false,
+      "protected_data_used": false,
+      "dependencies": [
+        "AS-20"
+      ],
+      "planned_tables": [
+        "T-ADV-11"
+      ],
+      "planned_figures": [
+        "F-ADV-12"
+      ],
+      "claim_boundary": "bins frozen from development authority BEFORE outcome analysis",
+      "status": "NOT_STARTED"
+    },
+    {
+      "study_id": "AS-22",
+      "study_name": "Input-Difficulty / Contrast Stratification",
+      "scientific_question": "Do prespecified input features associate with performance?",
+      "priority_tier": "TIER 2",
+      "study_class": "PRESPECIFIED_EXPLORATORY",
+      "population": "internal",
+      "systems": [
+        "GlobalMedFiLM",
+        "RA-MedFiLM-BARR"
+      ],
+      "primary_endpoint": "performance vs prespecified features",
+      "secondary_endpoints": [
+        "foreground contrast",
+        "boundary complexity",
+        "fragmentation",
+        "image entropy",
+        "GT area"
+      ],
+      "analysis_unit": "sample",
+      "training_required": false,
+      "new_inference_required": true,
+      "external_data_used": false,
+      "protected_data_used": false,
+      "dependencies": [],
+      "planned_tables": [],
+      "planned_figures": [],
+      "claim_boundary": "never label hard/easy from prediction quality",
+      "status": "NOT_STARTED"
+    },
+    {
+      "study_id": "AS-23",
+      "study_name": "Boundary-Quality Study",
+      "scientific_question": "How does boundary quality vary?",
+      "priority_tier": "TIER 2",
+      "study_class": "PRESPECIFIED_EXPLORATORY",
+      "population": "internal + external where valid",
+      "systems": [
+        "GlobalMedFiLM",
+        "RA-MedFiLM-BARR"
+      ],
+      "primary_endpoint": "HD95",
+      "secondary_endpoints": [
+        "Boundary Dice",
+        "ASSD (prospective)"
+      ],
+      "analysis_unit": "sample",
+      "training_required": false,
+      "new_inference_required": true,
+      "external_data_used": false,
+      "protected_data_used": false,
+      "dependencies": [],
+      "planned_tables": [],
+      "planned_figures": [],
+      "claim_boundary": "new metrics only if implementation + edge cases validated before execution",
+      "status": "NOT_STARTED"
+    },
+    {
+      "study_id": "AS-24",
+      "study_name": "FP/FN Error Decomposition",
+      "scientific_question": "How are errors decomposed into FP/FN per domain?",
+      "priority_tier": "TIER 1",
+      "study_class": "PRESPECIFIED_ESTIMATION",
+      "population": "internal + external where valid",
+      "systems": [
+        "GlobalMedFiLM",
+        "RA-MedFiLM-BARR"
+      ],
+      "primary_endpoint": "FP/FN decomposition",
+      "secondary_endpoints": [
+        "TP",
+        "FP",
+        "FN",
+        "TN",
+        "Precision",
+        "Recall",
+        "FP/FN area fraction"
+      ],
+      "analysis_unit": "sample",
+      "training_required": false,
+      "new_inference_required": true,
+      "external_data_used": false,
+      "protected_data_used": false,
+      "dependencies": [],
+      "planned_tables": [],
+      "planned_figures": [
+        "F-ADV-13"
+      ],
+      "claim_boundary": "descriptive error decomposition",
+      "status": "NOT_STARTED"
+    },
+    {
+      "study_id": "AS-25",
+      "study_name": "Corruption-Severity / Robustness Curves",
+      "scientific_question": "How robust is the system to corruption severity?",
+      "priority_tier": "TIER 2",
+      "study_class": "PRESPECIFIED_EXPLORATORY",
+      "population": "internal VAL808 (Phase36 reuse first)",
+      "systems": [
+        "GlobalMedFiLM",
+        "RA-MedFiLM-BARR"
+      ],
+      "primary_endpoint": "Dice vs severity",
+      "secondary_endpoints": [
+        "Gaussian noise",
+        "blur",
+        "brightness",
+        "contrast",
+        "compression"
+      ],
+      "analysis_unit": "sample",
+      "training_required": false,
+      "new_inference_required": true,
+      "external_data_used": false,
+      "protected_data_used": false,
+      "dependencies": [
+        "Phase36"
+      ],
+      "planned_tables": [],
+      "planned_figures": [],
+      "claim_boundary": "reuse Phase36 where sufficient; never TEST",
+      "status": "NOT_STARTED"
+    },
+    {
+      "study_id": "AS-26",
+      "study_name": "ROI / Proposal Sensitivity",
+      "scientific_question": "How sensitive is performance to ROI/proposal perturbation?",
+      "priority_tier": "TIER 2",
+      "study_class": "PRESPECIFIED_EXPLORATORY",
+      "population": "internal VAL808 (Phase36 reuse first)",
+      "systems": [
+        "RA-MedFiLM-BARR"
+      ],
+      "primary_endpoint": "Final Dice sensitivity",
+      "secondary_endpoints": [
+        "ROI expansion/contraction",
+        "shift",
+        "proposal corruption",
+        "FORCED_SKIP"
+      ],
+      "analysis_unit": "sample",
+      "training_required": false,
+      "new_inference_required": true,
+      "external_data_used": false,
+      "protected_data_used": false,
+      "dependencies": [
+        "Phase36"
+      ],
+      "planned_tables": [],
+      "planned_figures": [],
+      "claim_boundary": "reuse Phase36 where sufficient",
+      "status": "NOT_STARTED"
+    },
+    {
+      "study_id": "AS-27",
+      "study_name": "Seed Stability / Reproducibility",
+      "scientific_question": "Are results stable across the frozen seed set?",
+      "priority_tier": "TIER 1",
+      "study_class": "CORE_CONFIRMATORY_EXTENSION",
+      "population": "internal; seeds 42/123/3407",
+      "systems": [
+        "newly trained models",
+        "RA-MedFiLM-BARR"
+      ],
+      "primary_endpoint": "mean Dice across seeds",
+      "secondary_endpoints": [
+        "per-seed",
+        "SD",
+        "range"
+      ],
+      "analysis_unit": "seed",
+      "training_required": true,
+      "new_inference_required": true,
+      "external_data_used": false,
+      "protected_data_used": false,
+      "dependencies": [
+        "EXT-03"
+      ],
+      "planned_tables": [],
+      "planned_figures": [],
+      "claim_boundary": "never headline best seed",
+      "status": "NOT_STARTED"
+    },
+    {
+      "study_id": "AS-28",
+      "study_name": "Model Capacity / Size",
+      "scientific_question": "Is improvement simply parameter-count driven?",
+      "priority_tier": "TIER 3",
+      "study_class": "OPTIONAL_RESOURCE_DEPENDENT",
+      "population": "internal; small prespecified comparison",
+      "systems": [
+        "GlobalMedFiLM variants"
+      ],
+      "primary_endpoint": "Dice vs capacity",
+      "secondary_endpoints": [],
+      "analysis_unit": "domain",
+      "training_required": true,
+      "new_inference_required": true,
+      "external_data_used": false,
+      "protected_data_used": false,
+      "dependencies": [],
+      "planned_tables": [],
+      "planned_figures": [],
+      "claim_boundary": "no large architecture search",
+      "status": "NOT_STARTED"
+    },
+    {
+      "study_id": "AS-29",
+      "study_name": "FiLM / Representation Analysis",
+      "scientific_question": "How do task embeddings / FiLM modulation differ across domains?",
+      "priority_tier": "TIER 2",
+      "study_class": "PRESPECIFIED_MECHANISTIC",
+      "population": "internal",
+      "systems": [
+        "GlobalMedFiLM"
+      ],
+      "primary_endpoint": "representation statistics",
+      "secondary_endpoints": [
+        "task-embedding similarity",
+        "FiLM scale/shift magnitude",
+        "feature modulation",
+        "domain representation differences"
+      ],
+      "analysis_unit": "domain",
+      "training_required": false,
+      "new_inference_required": true,
+      "external_data_used": false,
+      "protected_data_used": false,
+      "dependencies": [],
+      "planned_tables": [],
+      "planned_figures": [],
+      "claim_boundary": "descriptive/mechanistic; no unsupported causality",
+      "status": "NOT_STARTED"
+    },
+    {
+      "study_id": "AS-30",
+      "study_name": "Counterfactual Safety Study",
+      "scientific_question": "What harm is avoided by S_omega rejecting a refinement?",
+      "priority_tier": "TIER 1",
+      "study_class": "PRESPECIFIED_MECHANISTIC",
+      "population": "INTERNAL DEVELOPMENT; EXECUTE_THEN_REJECT",
+      "systems": [
+        "actual final Global restoration",
+        "counterfactual acceptance"
+      ],
+      "primary_endpoint": "Dice loss avoided",
+      "secondary_endpoints": [
+        "distribution of avoided harm"
+      ],
+      "analysis_unit": "sample",
+      "training_required": false,
+      "new_inference_required": true,
+      "external_data_used": false,
+      "protected_data_used": false,
+      "dependencies": [
+        "AS-12"
+      ],
+      "planned_tables": [
+        "T-ADV-08"
+      ],
+      "planned_figures": [
+        "F-ADV-07"
+      ],
+      "claim_boundary": "internal development only",
+      "status": "NOT_STARTED"
+    },
+    {
+      "study_id": "AS-31",
+      "study_name": "Structured Qualitative Error Atlas",
+      "scientific_question": "Deterministic qualitative panels across strata/states.",
+      "priority_tier": "TIER 1",
+      "study_class": "PRESPECIFIED_MECHANISTIC",
+      "population": "internal (deterministic selection)",
+      "systems": [
+        "RA-MedFiLM-BARR"
+      ],
+      "primary_endpoint": "qualitative atlas",
+      "secondary_endpoints": [
+        "typical",
+        "small/large target",
+        "low contrast",
+        "FP/FN-dominant",
+        "SKIP_GLOBAL",
+        "EXECUTE_THEN_ACCEPT",
+        "EXECUTE_THEN_REJECT",
+        "FORCED_SKIP"
+      ],
+      "analysis_unit": "sample",
+      "training_required": false,
+      "new_inference_required": true,
+      "external_data_used": false,
+      "protected_data_used": false,
+      "dependencies": [
+        "AS-13"
+      ],
+      "planned_tables": [],
+      "planned_figures": [
+        "F-ADV-14"
+      ],
+      "claim_boundary": "selection by sample-ID rule or predefined GT/input strata; NO cherry-picking",
+      "status": "NOT_STARTED"
+    },
+    {
+      "study_id": "AS-32",
+      "study_name": "Foundation-Model Context Benchmark",
+      "scientific_question": "How do prompt-based foundation models compare (contextually)?",
+      "priority_tier": "TIER 3",
+      "study_class": "OPTIONAL_RESOURCE_DEPENDENT",
+      "population": "internal",
+      "systems": [
+        "SAM-family",
+        "MedSAM-family"
+      ],
+      "primary_endpoint": "contextual comparison",
+      "secondary_endpoints": [],
+      "analysis_unit": "domain",
+      "training_required": true,
+      "new_inference_required": true,
+      "external_data_used": false,
+      "protected_data_used": false,
+      "dependencies": [],
+      "planned_tables": [],
+      "planned_figures": [],
+      "claim_boundary": "default CONTEXTUAL_ONLY unless same-protocol automatic fairness established prospectively",
+      "status": "NOT_STARTED"
+    }
+  ]
+}

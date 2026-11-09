@@ -1,0 +1,312 @@
+{
+  "artifact": "phase36_v1_4_to_v1_5_execution_semantic_diff",
+  "section": "§O",
+  "phase": 36,
+  "method": "RA-MedFiLM-BARR",
+  "revision": "ra_medfilm_barr_phase36_robustness_v1_5",
+  "type": "EXECUTION_SEMANTIC_DIFF",
+  "classification": "PRE_SCIENTIFIC_IMPLEMENTATION_REPAIR_TO_RESTORE_ALREADY_FROZEN_NUMERICAL_AND_DEVICE_SEMANTICS",
+  "from": {
+    "path": "scripts/analysis/phase36_robustness_execution_v1_4.py",
+    "sha256": "96ebc36256e5d812949e1f1859d4f41f332f81607e562dbff7cfb2bce6483fbe"
+  },
+  "to": {
+    "path": "scripts/analysis/phase36_robustness_execution_v1_5.py",
+    "sha256": "f219d06cb83c43b24be446205df2223b964c417e9547d5a657799aa3218f9876"
+  },
+  "method_of_proof": "TOKEN_PRESENCE_COMPARED_IN_BOTH_FROZEN_SOURCES",
+  "new_scientific_choice": false,
+  "protected_data_opened_before_repair": false,
+  "scientific_results_existed_before_repair": false,
+  "smoke_existed_before_repair": false,
+  "changed": {
+    "D11_canonical_g_probability_operator": "np.exp manual logistic (3 sites) -> torch.sigmoid(logits.float()).cpu().numpy() (1 central site)",
+    "D12_device_policy": "plain get_device() + CPU fallback -> get_device(require_cuda=True) + device.type=='cuda' fail-closed",
+    "D13_component_inference_contexts": "B_phi/R_psi/S_omega torch.no_grad() -> torch.inference_mode() with autocast disabled",
+    "H_explicit_component_device_binding": "added explicit g/b_phi/r_psi/s_omega .to(device) + parameter-device verification",
+    "single_probability_authority": "3 divergent reconstructions -> 1 central implementation consumed by all paths"
+  },
+  "unchanged": {
+    "perturbation_registries": true,
+    "severities": true,
+    "seeds": true,
+    "population": true,
+    "A8_C9": true,
+    "thresholds": true,
+    "features": true,
+    "proposal_semantics": true,
+    "metrics": true,
+    "figures": true,
+    "tables": true,
+    "claim_boundary": true
+  },
+  "unchanged_evidence": {
+    "perturbation_registries": [
+      {
+        "token": "NONCLEAN_DETERMINISTIC_IMAGE_CONDITIONS",
+        "in_v1_4": true,
+        "in_v1_5": true,
+        "unchanged": true
+      },
+      {
+        "token": "NONCLEAN_NOISE_IMAGE_CONDITIONS",
+        "in_v1_4": true,
+        "in_v1_5": true,
+        "unchanged": true
+      },
+      {
+        "token": "NONCLEAN_PROPOSAL_CONDITIONS",
+        "in_v1_4": true,
+        "in_v1_5": true,
+        "unchanged": true
+      },
+      {
+        "token": "NONCLEAN_IMAGE_REALIZATIONS_PER_SAMPLE = 16",
+        "in_v1_4": true,
+        "in_v1_5": true,
+        "unchanged": true
+      },
+      {
+        "token": "NONCLEAN_PROPOSAL_CONDITIONS_PER_SAMPLE = 6",
+        "in_v1_4": true,
+        "in_v1_5": true,
+        "unchanged": true
+      }
+    ],
+    "severities": [
+      {
+        "token": "BRIGHTNESS_NEG",
+        "in_v1_4": true,
+        "in_v1_5": true,
+        "unchanged": true
+      },
+      {
+        "token": "CONTRAST_HIGH",
+        "in_v1_4": true,
+        "in_v1_5": true,
+        "unchanged": true
+      },
+      {
+        "token": "GAMMA_LOW",
+        "in_v1_4": true,
+        "in_v1_5": true,
+        "unchanged": true
+      },
+      {
+        "token": "GAUSSIAN_BLUR_HIGH",
+        "in_v1_4": true,
+        "in_v1_5": true,
+        "unchanged": true
+      },
+      {
+        "token": "GAUSSIAN_NOISE_HIGH",
+        "in_v1_4": true,
+        "in_v1_5": true,
+        "unchanged": true
+      },
+      {
+        "token": "RESOLUTION_050",
+        "in_v1_4": true,
+        "in_v1_5": true,
+        "unchanged": true
+      },
+      {
+        "token": "SCALE_115",
+        "in_v1_4": true,
+        "in_v1_5": true,
+        "unchanged": true
+      }
+    ],
+    "seeds": [
+      {
+        "token": "C.NOISE_BASE_SEEDS",
+        "in_v1_4": true,
+        "in_v1_5": true,
+        "unchanged": true
+      },
+      {
+        "token": "C.derive_noise_seed",
+        "in_v1_4": true,
+        "in_v1_5": true,
+        "unchanged": true
+      }
+    ],
+    "population": [
+      {
+        "token": "AUTHORIZED_POPULATION_N = C.POPULATION_N",
+        "in_v1_4": true,
+        "in_v1_5": true,
+        "unchanged": true
+      },
+      {
+        "token": "C.VAL_MANIFEST_SHA",
+        "in_v1_4": true,
+        "in_v1_5": true,
+        "unchanged": true
+      },
+      {
+        "token": "C.VAL_MANIFEST",
+        "in_v1_4": true,
+        "in_v1_5": true,
+        "unchanged": true
+      }
+    ],
+    "A8_C9": [
+      {
+        "token": "TAU_C8_FINAL_FLOAT",
+        "in_v1_4": true,
+        "in_v1_5": true,
+        "unchanged": true
+      },
+      {
+        "token": "canonical_utility",
+        "in_v1_4": true,
+        "in_v1_5": true,
+        "unchanged": true
+      },
+      {
+        "token": "system.benefit_router",
+        "in_v1_4": true,
+        "in_v1_5": true,
+        "unchanged": true
+      }
+    ],
+    "thresholds": [
+      {
+        "token": "SEGMENTATION_OUTPUT_THRESHOLD = 0.50",
+        "in_v1_4": true,
+        "in_v1_5": true,
+        "unchanged": true
+      },
+      {
+        "token": "ROI_PROPOSAL_THRESHOLD = 0.30",
+        "in_v1_4": true,
+        "in_v1_5": true,
+        "unchanged": true
+      },
+      {
+        "token": "SOMEGA_ACCEPT_THRESHOLD = 0.50",
+        "in_v1_4": true,
+        "in_v1_5": true,
+        "unchanged": true
+      },
+      {
+        "token": "ROI_FRACTIONAL_MARGIN = 0.25",
+        "in_v1_4": true,
+        "in_v1_5": true,
+        "unchanged": true
+      }
+    ],
+    "features": [
+      {
+        "token": "ROUTER_NUMERIC_DIM = 202",
+        "in_v1_4": true,
+        "in_v1_5": true,
+        "unchanged": true
+      },
+      {
+        "token": "SOMEGA_NUMERIC_DIM = 16",
+        "in_v1_4": true,
+        "in_v1_5": true,
+        "unchanged": true
+      },
+      {
+        "token": "ROUTER_SCALAR_IDX = [192, 193, 194, 195, 196, 197, 200, 201]",
+        "in_v1_4": true,
+        "in_v1_5": true,
+        "unchanged": true
+      }
+    ],
+    "proposal_semantics": [
+      {
+        "token": "C.EMPTY_PROPOSAL_HANDLING",
+        "in_v1_4": true,
+        "in_v1_5": true,
+        "unchanged": true
+      },
+      {
+        "token": "C.apply_proposal_condition",
+        "in_v1_4": true,
+        "in_v1_5": true,
+        "unchanged": true
+      },
+      {
+        "token": "proposal_geometry_plan",
+        "in_v1_4": true,
+        "in_v1_5": true,
+        "unchanged": true
+      },
+      {
+        "token": "NOT_APPLICABLE_EMPTY_PROPOSAL",
+        "in_v1_4": true,
+        "in_v1_5": true,
+        "unchanged": true
+      }
+    ],
+    "metrics": [
+      {
+        "token": "from src.metrics import evaluation_metrics",
+        "in_v1_4": true,
+        "in_v1_5": true,
+        "unchanged": true
+      },
+      {
+        "token": "_prediction_consistency_dice",
+        "in_v1_4": true,
+        "in_v1_5": true,
+        "unchanged": true
+      }
+    ],
+    "figures": [
+      {
+        "token": "FIGURE_REGISTRY = C.FIGURES",
+        "in_v1_4": true,
+        "in_v1_5": true,
+        "unchanged": true
+      },
+      {
+        "token": "generate_all_figures",
+        "in_v1_4": true,
+        "in_v1_5": true,
+        "unchanged": true
+      }
+    ],
+    "tables": [
+      {
+        "token": "phase36_image_robustness_per_sample.csv",
+        "in_v1_4": true,
+        "in_v1_5": true,
+        "unchanged": true
+      },
+      {
+        "token": "phase36_worst_case_by_domain.csv",
+        "in_v1_4": true,
+        "in_v1_5": true,
+        "unchanged": true
+      },
+      {
+        "token": "phase36_kub_subgroup_robustness.csv",
+        "in_v1_4": true,
+        "in_v1_5": true,
+        "unchanged": true
+      }
+    ],
+    "claim_boundary": [
+      {
+        "token": "C.EVIDENCE_CLASS",
+        "in_v1_4": true,
+        "in_v1_5": true,
+        "unchanged": true
+      }
+    ]
+  },
+  "noise_base_seeds_frozen_value": [
+    42,
+    123,
+    3407
+  ],
+  "all_unchanged_confirmed": true,
+  "batch_size_semantics": "PRESERVED_PER_SAMPLE_CONDITIONAL_EVALUATION__ADJUDICATED_NOT_A_NEW_SCIENTIFIC_CHOICE",
+  "no_new_scientific_semantics_introduced": true,
+  "generated_utc": "2026-10-06T08:42:40Z"
+}

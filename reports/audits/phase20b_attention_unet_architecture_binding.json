@@ -1,0 +1,52 @@
+{
+  "artifact": "phase20b_architecture_binding",
+  "phase": 20,
+  "subphase": "20B",
+  "model_key": "attention_unet",
+  "model_display_name": "Attention U-Net",
+  "experiment_id": "phase20b_shared_attention_unet_fourdomain_seed42_clean_v3",
+  "repository_implementation": "src/models/attention_unet.py",
+  "model_source_sha256": "834c02170aafc1093de9edb2afad99f76a200ae1eb5ecae16ad57eb7c2e21690",
+  "class_name": "AttentionUNet",
+  "module": "src.models.attention_unet",
+  "factory_key": null,
+  "architecture_descriptor": "attention_unet_4_stage_additive_skip_gates_base32",
+  "model_contract": {
+    "in_channels": 3,
+    "out_channels": 1,
+    "base_channels": 32,
+    "output": "single binary segmentation logit channel",
+    "shared_parameters_across_domains": true,
+    "forbidden_modules": [
+      "FiLM",
+      "task_embedding",
+      "domain_embedding",
+      "regional_branch",
+      "localizer",
+      "ROI_proposal",
+      "routing",
+      "dataset_specific_decoder",
+      "dataset_specific_head"
+    ],
+    "forbidden_modules_present": []
+  },
+  "n_trainable_params": 7851285,
+  "selection_basis": "LEGACY_TESTED_PROJECT_PRIOR_EVIDENCE",
+  "selection_time": "PRE_TRAINING",
+  "current_phase20_results_used_for_selection": false,
+  "protocol_path": "reports/audits/phase20_shared_global_baseline_protocol.json",
+  "protocol_sha256": "b74f1f9f429adbce374f0306180943b9f373f872e1e69e115b7d17e81414283c",
+  "phase20a_reference_experiment": "phase20_shared_unetpp_fourdomain_seed42_clean_v3",
+  "immutability": {
+    "architecture_will_not_be_switched_after_training": true,
+    "no_architecture_search_in_phase20b": true,
+    "no_per_model_recipe_change": true,
+    "no_per_model_threshold_tuning": true,
+    "no_post_hoc_restart_from_epoch_1": true
+  },
+  "notes": [
+    "Already implemented and tested in this repository (src/models/attention_unet.py, Phase-10 clean-v3).",
+    "Additive attention gates on all four encoder skip connections; base width 32.",
+    "Intrinsic to the conventional Attention U-Net definition; not a new design."
+  ]
+}

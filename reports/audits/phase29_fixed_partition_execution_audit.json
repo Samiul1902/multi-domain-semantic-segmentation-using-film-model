@@ -1,0 +1,584 @@
+{
+ "artifact": "phase29_fixed_partition_execution_audit",
+ "phase": 29,
+ "classification": "FIXED_PARTITIONS__OPTIMIZATION_RANDOMNESS_ONLY",
+ "governance_only": false,
+ "execution_stage": "PHASE_A_FIXED_PARTITIONS",
+ "generated_utc": "2026-10-02T15:23:19+00:00",
+ "rule": "Reuse exact seed42 cross-fit memberships for seeds 123 and 3407",
+ "components": {
+  "R_psi": {
+   "manifest": "Phase25A 3 folds",
+   "source": "reports/audits/phase25a_crossfit_protocol.json"
+  },
+  "B_phi": {
+   "manifest": "Phase25D 5 outer folds",
+   "source": "reports/audits/phase25d_cv_protocol_v1_2_1.json"
+  },
+  "S_omega": {
+   "manifest": "Phase25F 5 folds",
+   "source": "reports/audits/phase25f_cv_manifest_reuse_contract_v1_0.json"
+  }
+ },
+ "manifests_found": [
+  {
+   "path": "reports/tables/phase25a_crossfit_fold_manifest_summary.csv",
+   "sha256": "0de818276694341ee2427206f701b5f4db8a8ae7e5360af094a086f6e29f58f2",
+   "n_rows": 3,
+   "header": [
+    "fold",
+    "outer_target_n",
+    "training_portion_n",
+    "fit_n",
+    "early_stop_n",
+    "early_stop_fraction",
+    "fit_domains",
+    "early_stop_domains",
+    "outer_target_domains",
+    "group_overlap_fit_es",
+    "group_overlap_train_outer"
+   ]
+  },
+  {
+   "path": "reports/tables/phase25a_roi030_fold0_training_history.csv",
+   "sha256": "ab312797bf73dfabfceb31a88992579896d9d3c15755c86b6a7c95b40ff00347",
+   "n_rows": 41,
+   "header": [
+    "run",
+    "epoch",
+    "train_loss",
+    "train_BCE",
+    "train_Dice_loss",
+    "early_stop_loss",
+    "early_stop_Dice",
+    "learning_rate",
+    "elapsed_seconds",
+    "amp",
+    "checkpoint_event",
+    "best_epoch_so_far"
+   ]
+  },
+  {
+   "path": "reports/tables/phase25a_roi030_fold1_training_history.csv",
+   "sha256": "15cc4c672d4a67d72923948a1cf1b56b3f053862a326cc2353a7356cb1c16b3a",
+   "n_rows": 36,
+   "header": [
+    "run",
+    "epoch",
+    "train_loss",
+    "train_BCE",
+    "train_Dice_loss",
+    "early_stop_loss",
+    "early_stop_Dice",
+    "learning_rate",
+    "elapsed_seconds",
+    "amp",
+    "checkpoint_event",
+    "best_epoch_so_far"
+   ]
+  },
+  {
+   "path": "reports/tables/phase25a_roi030_fold2_training_history.csv",
+   "sha256": "abce610677268c0a082dd224567bdb108bb96a29d39af1f2edc0c3d6572418de",
+   "n_rows": 41,
+   "header": [
+    "run",
+    "epoch",
+    "train_loss",
+    "train_BCE",
+    "train_Dice_loss",
+    "early_stop_loss",
+    "early_stop_Dice",
+    "learning_rate",
+    "elapsed_seconds",
+    "amp",
+    "checkpoint_event",
+    "best_epoch_so_far"
+   ]
+  },
+  {
+   "path": "reports/tables/phase25a_training_epochs_fold0.csv",
+   "sha256": "bac3d8aa4174abfc32755441cf3b8177360b5aa41080fdb3ba845436dd89bb45",
+   "n_rows": 50,
+   "header": [
+    "run",
+    "epoch",
+    "train_loss",
+    "train_BCE",
+    "train_Dice_loss",
+    "early_stop_loss",
+    "early_stop_Dice",
+    "learning_rate",
+    "elapsed_seconds",
+    "amp",
+    "checkpoint_event",
+    "best_epoch_so_far"
+   ]
+  },
+  {
+   "path": "reports/tables/phase25a_training_epochs_fold1.csv",
+   "sha256": "243b1f0f7f9d2e5df629c35a0eea165648ef19e65316ea8b7f27fe1800665af7",
+   "n_rows": 43,
+   "header": [
+    "run",
+    "epoch",
+    "train_loss",
+    "train_BCE",
+    "train_Dice_loss",
+    "early_stop_loss",
+    "early_stop_Dice",
+    "learning_rate",
+    "elapsed_seconds",
+    "amp",
+    "checkpoint_event",
+    "best_epoch_so_far"
+   ]
+  },
+  {
+   "path": "reports/tables/phase25a_training_epochs_fold2.csv",
+   "sha256": "4ac2642d00c939fa31ea5a085de8fd69c8dc0bb6b70ccdf6cf101de9eafa7fa2",
+   "n_rows": 34,
+   "header": [
+    "run",
+    "epoch",
+    "train_loss",
+    "train_BCE",
+    "train_Dice_loss",
+    "early_stop_loss",
+    "early_stop_Dice",
+    "learning_rate",
+    "elapsed_seconds",
+    "amp",
+    "checkpoint_event",
+    "best_epoch_so_far"
+   ]
+  },
+  {
+   "path": "reports/tables/phase25c_fold_checkpoint_binding.csv",
+   "sha256": "7630a03d37ac2b8b32aa1299f6f3701a99d3be4fd89b007564aead70a22e2988",
+   "n_rows": 3,
+   "header": [
+    "outer_fold",
+    "checkpoint",
+    "checkpoint_sha256",
+    "n_oof_samples"
+   ]
+  },
+  {
+   "path": "reports/tables/phase25c_gain_summary_by_fold.csv",
+   "sha256": "f5d188c1c93e63fcb7e4900adc68ed3828fb6da19961d64622da936e62cd5a00",
+   "n_rows": 3,
+   "header": [
+    "group",
+    "n",
+    "mean",
+    "median",
+    "std",
+    "iqr",
+    "p05",
+    "p95",
+    "min",
+    "max"
+   ]
+  },
+  {
+   "path": "reports/tables/phase25d_cv5_manifest.csv",
+   "sha256": "008b92963664f38e84f33c771cea1db90caae02a366f02b6a83635a535639707",
+   "n_rows": 4957,
+   "header": [
+    "sample_id",
+    "dataset",
+    "task_id",
+    "group_key",
+    "router_cv_fold"
+   ]
+  },
+  {
+   "path": "reports/tables/phase25d_cv5_manifest_summary.csv",
+   "sha256": "cb3cd666c1d562de31df22a793e692b0aae976ac16f0aded796ee67bb184f7f3",
+   "n_rows": 5,
+   "header": [
+    "fold",
+    "total",
+    "BUSI",
+    "ISIC",
+    "KUB",
+    "KVASIR"
+   ]
+  },
+  {
+   "path": "reports/tables/phase25d_cv_fold0_early_stop_ids.csv",
+   "sha256": "a602cbe2530356da934a628764d8dfc95e2e8145a0320615be5228db0b90ec42",
+   "n_rows": 396,
+   "header": [
+    "sample_id",
+    "dataset",
+    "task_id",
+    "group_key"
+   ]
+  },
+  {
+   "path": "reports/tables/phase25d_cv_fold0_fit_ids.csv",
+   "sha256": "e78552ad7dac4108d976472903ba8d57386f26639e84f9aed0f8c09ac8eb73a3",
+   "n_rows": 3569,
+   "header": [
+    "sample_id",
+    "dataset",
+    "task_id",
+    "group_key"
+   ]
+  },
+  {
+   "path": "reports/tables/phase25d_cv_fold0_outer_target_ids.csv",
+   "sha256": "f7209b141d0b33dfe6570114d4fba4cd1503dcd07f9edc5f9bc8d808a315e7cd",
+   "n_rows": 992,
+   "header": [
+    "sample_id",
+    "dataset",
+    "task_id",
+    "group_key"
+   ]
+  },
+  {
+   "path": "reports/tables/phase25d_cv_fold0_training_history.csv",
+   "sha256": "1b5bfa6136b00172458b2a09f64e1402883b79e1354765cb49c42577e2e1695a",
+   "n_rows": 57,
+   "header": [
+    "epoch",
+    "train_huber",
+    "early_stop_huber",
+    "learning_rate",
+    "bad_epochs",
+    "is_best",
+    "elapsed_seconds"
+   ]
+  },
+  {
+   "path": "reports/tables/phase25d_cv_fold1_early_stop_ids.csv",
+   "sha256": "146fe774cad99de2960a3cdc3cbdc344d75770dde6447ee8d8fc84608f168300",
+   "n_rows": 396,
+   "header": [
+    "sample_id",
+    "dataset",
+    "task_id",
+    "group_key"
+   ]
+  },
+  {
+   "path": "reports/tables/phase25d_cv_fold1_fit_ids.csv",
+   "sha256": "d6f67df55fe67af41e637e18ae66d0e46df654771d39eae9694bffd824627a4b",
+   "n_rows": 3569,
+   "header": [
+    "sample_id",
+    "dataset",
+    "task_id",
+    "group_key"
+   ]
+  },
+  {
+   "path": "reports/tables/phase25d_cv_fold1_outer_target_ids.csv",
+   "sha256": "cac7971ca8b5fcd056bf2f0472426926779ff0cc198b303692afbcbabab24b03",
+   "n_rows": 992,
+   "header": [
+    "sample_id",
+    "dataset",
+    "task_id",
+    "group_key"
+   ]
+  },
+  {
+   "path": "reports/tables/phase25d_cv_fold1_training_history.csv",
+   "sha256": "0a3102c81aa2c30ea922ddc19f38fd67c0a6bd73aefaff1c664ef059bec54488",
+   "n_rows": 54,
+   "header": [
+    "epoch",
+    "train_huber",
+    "early_stop_huber",
+    "learning_rate",
+    "bad_epochs",
+    "is_best",
+    "elapsed_seconds"
+   ]
+  },
+  {
+   "path": "reports/tables/phase25d_cv_fold2_early_stop_ids.csv",
+   "sha256": "d0fc38e7efb3dcc43f2f1ec8626a9e8c3aec60d49c6438476b4d22b2133741bf",
+   "n_rows": 396,
+   "header": [
+    "sample_id",
+    "dataset",
+    "task_id",
+    "group_key"
+   ]
+  },
+  {
+   "path": "reports/tables/phase25d_cv_fold2_fit_ids.csv",
+   "sha256": "45a3af35f7079d9edc837423719bb77b910e691b1a4d3a2a7a68a0c91dc86fc7",
+   "n_rows": 3570,
+   "header": [
+    "sample_id",
+    "dataset",
+    "task_id",
+    "group_key"
+   ]
+  },
+  {
+   "path": "reports/tables/phase25d_cv_fold2_outer_target_ids.csv",
+   "sha256": "8205316a0db4d837518c432400e0b637b38ad4accb08d70e2d9468cd2e7acabf",
+   "n_rows": 991,
+   "header": [
+    "sample_id",
+    "dataset",
+    "task_id",
+    "group_key"
+   ]
+  },
+  {
+   "path": "reports/tables/phase25d_cv_fold2_training_history.csv",
+   "sha256": "7a98beff501b3266d89062cdb1b69197b983a2b5c5c3542f9fd4a60ea9a80b3a",
+   "n_rows": 159,
+   "header": [
+    "epoch",
+    "train_huber",
+    "early_stop_huber",
+    "learning_rate",
+    "bad_epochs",
+    "is_best",
+    "elapsed_seconds"
+   ]
+  },
+  {
+   "path": "reports/tables/phase25d_cv_fold3_early_stop_ids.csv",
+   "sha256": "d22f07701e3340e3c676795561ea15a2f028443d7395f041aad0907617dd6fef",
+   "n_rows": 397,
+   "header": [
+    "sample_id",
+    "dataset",
+    "task_id",
+    "group_key"
+   ]
+  },
+  {
+   "path": "reports/tables/phase25d_cv_fold3_fit_ids.csv",
+   "sha256": "409922e3959d69d1abd1d9e025169c60f336b140438d02cfbc1e98e06bf5d209",
+   "n_rows": 3569,
+   "header": [
+    "sample_id",
+    "dataset",
+    "task_id",
+    "group_key"
+   ]
+  },
+  {
+   "path": "reports/tables/phase25d_cv_fold3_outer_target_ids.csv",
+   "sha256": "391897f9533075844a43483666d92f248d918804e7602e249f1db504cf5e2e52",
+   "n_rows": 991,
+   "header": [
+    "sample_id",
+    "dataset",
+    "task_id",
+    "group_key"
+   ]
+  },
+  {
+   "path": "reports/tables/phase25d_cv_fold3_training_history.csv",
+   "sha256": "e159168f90b33cbad45a157902a78e498296b2a0dee30a731ee5024526479203",
+   "n_rows": 200,
+   "header": [
+    "epoch",
+    "train_huber",
+    "early_stop_huber",
+    "learning_rate",
+    "bad_epochs",
+    "is_best",
+    "elapsed_seconds"
+   ]
+  },
+  {
+   "path": "reports/tables/phase25d_cv_fold4_early_stop_ids.csv",
+   "sha256": "acf1b139a16da6b85a082e76955c825330b71d9bef224cf784f1b7749354c37c",
+   "n_rows": 397,
+   "header": [
+    "sample_id",
+    "dataset",
+    "task_id",
+    "group_key"
+   ]
+  },
+  {
+   "path": "reports/tables/phase25d_cv_fold4_fit_ids.csv",
+   "sha256": "69d5cb255b8a896c1c4528bbb00eef18d3602a7b598170e23c44d2a96a7d8546",
+   "n_rows": 3569,
+   "header": [
+    "sample_id",
+    "dataset",
+    "task_id",
+    "group_key"
+   ]
+  },
+  {
+   "path": "reports/tables/phase25d_cv_fold4_outer_target_ids.csv",
+   "sha256": "3749af0c37c17cce2f2e2828eeff5fae268d488b8ccf069f777ae4ae6932ef78",
+   "n_rows": 991,
+   "header": [
+    "sample_id",
+    "dataset",
+    "task_id",
+    "group_key"
+   ]
+  },
+  {
+   "path": "reports/tables/phase25d_cv_fold4_training_history.csv",
+   "sha256": "5d4fe57797753e5c77ef3657bc16573f570a8d352bfb7f7c3a4032c35b45902d",
+   "n_rows": 100,
+   "header": [
+    "epoch",
+    "train_huber",
+    "early_stop_huber",
+    "learning_rate",
+    "bad_epochs",
+    "is_best",
+    "elapsed_seconds"
+   ]
+  },
+  {
+   "path": "reports/tables/phase25d_oof_regression_metrics_by_fold.csv",
+   "sha256": "e539b85bae712db0c664e54156f9b52be7dbebcbe76ec7f18886d3b667d62cdb",
+   "n_rows": 5,
+   "header": [
+    "fold",
+    "huber",
+    "mae",
+    "rmse",
+    "pearson",
+    "spearman",
+    "r2"
+   ]
+  },
+  {
+   "path": "reports/tables/phase25f_c9_decision_manifest.csv",
+   "sha256": "cde91c474bf19bb36368357ce4b38dd1cc7dad1b37d900fcec7cde6b9e72dbd1",
+   "n_rows": 99140,
+   "header": [
+    "policy_id",
+    "comparator",
+    "lambda",
+    "budget",
+    "sample_id",
+    "action_available",
+    "c8_decision",
+    "c9_state",
+    "c9_outcome",
+    "safety_logit_oof",
+    "p_accept_oof",
+    "somega_decision"
+   ]
+  },
+  {
+   "path": "reports/tables/phase25f_classifier_metrics_by_fold.csv",
+   "sha256": "22b5146c11f40689a98d0fa40b47ff11097e06a5696d39507217155022594b13",
+   "n_rows": 5,
+   "header": [
+    "fold",
+    "n",
+    "n_pos",
+    "n_neg",
+    "bce",
+    "brier",
+    "accuracy",
+    "balanced_accuracy",
+    "precision",
+    "recall_sensitivity",
+    "specificity",
+    "f1"
+   ]
+  },
+  {
+   "path": "reports/tables/phase25f_cv_fold0_normalization_stats.csv",
+   "sha256": "214e97755a970df8941a518bb58eaa351a79a79a0b1f3ea6bbd58542cb061460",
+   "n_rows": 16,
+   "header": [
+    "feature_index",
+    "name",
+    "mu",
+    "sigma",
+    "is_constant"
+   ]
+  },
+  {
+   "path": "reports/tables/phase25f_cv_fold1_normalization_stats.csv",
+   "sha256": "608926224454eed6628ae216725c8caef151a080e1b3880d12d69cb06951ec54",
+   "n_rows": 16,
+   "header": [
+    "feature_index",
+    "name",
+    "mu",
+    "sigma",
+    "is_constant"
+   ]
+  },
+  {
+   "path": "reports/tables/phase25f_cv_fold2_normalization_stats.csv",
+   "sha256": "26cd5ef517e24afe7d4b45f843bc3c43ce38b01c09b66b7c4f6129ce02f6d956",
+   "n_rows": 16,
+   "header": [
+    "feature_index",
+    "name",
+    "mu",
+    "sigma",
+    "is_constant"
+   ]
+  },
+  {
+   "path": "reports/tables/phase25f_cv_fold3_normalization_stats.csv",
+   "sha256": "06f8e5cb19c01e734a20d319d79d7794200d06bfebec5a768f2e670690cca273",
+   "n_rows": 16,
+   "header": [
+    "feature_index",
+    "name",
+    "mu",
+    "sigma",
+    "is_constant"
+   ]
+  },
+  {
+   "path": "reports/tables/phase25f_cv_fold4_normalization_stats.csv",
+   "sha256": "c5b61fae6d58b8eeb4a0deca65b634423fec7a3caa6c451874d19b42c222b301",
+   "n_rows": 16,
+   "header": [
+    "feature_index",
+    "name",
+    "mu",
+    "sigma",
+    "is_constant"
+   ]
+  },
+  {
+   "path": "reports/tables/phase25f_cv_fold_role_assignments.csv",
+   "sha256": "a98a22906346d0a365468b9c53beeb30e1e07de6fa904738fdf389e3edc78e46",
+   "n_rows": 15,
+   "header": [
+    "fold",
+    "role",
+    "n"
+   ]
+  },
+  {
+   "path": "reports/tables/phase25f_oof_fold_coverage.csv",
+   "sha256": "13e3512b8a6a6e711470cbaa9988a1b1759265c1092eb65140a28cbbd389e645",
+   "n_rows": 5,
+   "header": [
+    "fold",
+    "n",
+    "n_accept",
+    "n_fallback",
+    "n_pos",
+    "n_neg"
+   ]
+  }
+ ],
+ "n_manifests": 41,
+ "regenerate_folds_from_new_seeds": false,
+ "physical_sample_id_equality_proof": "DEFERRED_TO_PHASE_C_AT_TRAINING_LOAD",
+ "all_pass": true
+}

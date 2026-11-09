@@ -1,0 +1,116 @@
+{
+ "artifact": "phase25a_augmentation_binding",
+ "phase": "25A",
+ "purpose": "record the EXACT augmentation inherited from the frozen Phase-20/21 pipeline; nothing is invented",
+ "inherited_from": "src.data.transforms.SegmentationTransform(train=True)",
+ "inherited_source_file": "src/data/transforms.py",
+ "inherited_source_sha256": "09fcff4887ff8cda4daa215efad1d504d4d61f70982262022b6c2a30c8cf8bd1",
+ "inherited_defaults": {
+  "size": 512,
+  "train": false,
+  "flip_probability": 0.5,
+  "rotation_degrees": 5.0,
+  "brightness": 0.1,
+  "contrast": 0.1,
+  "image_mode": "L"
+ },
+ "applied_after": "the frozen ROI crop at 256x256 (crops are cached before augmentation)",
+ "applied_consistently_to": [
+  "rgb_crop",
+  "prob_crop",
+  "gt_crop"
+ ],
+ "prob_crop_resample_rule": "nearest (mask-like / probability array), per the frozen p_global_crop_consistency rule",
+ "operations": [
+  {
+   "operation": "horizontal_flip",
+   "classification": "INHERITED_ACTIVE",
+   "parameter": "p=0.5",
+   "implementation": "ImageOps.mirror",
+   "applied_to": [
+    "rgb_crop",
+    "prob_crop",
+    "gt_crop"
+   ]
+  },
+  {
+   "operation": "rotation_continuous",
+   "classification": "INHERITED_ACTIVE",
+   "parameter": "uniform(-5.0, +5.0) degrees",
+   "implementation": "Image.rotate",
+   "applied_to": [
+    "rgb_crop (bilinear)",
+    "prob_crop (nearest)",
+    "gt_crop (nearest)"
+   ]
+  },
+  {
+   "operation": "brightness",
+   "classification": "INHERITED_ACTIVE",
+   "parameter": "uniform(0.9, 1.1)",
+   "implementation": "ImageEnhance.Brightness",
+   "applied_to": [
+    "rgb_crop"
+   ]
+  },
+  {
+   "operation": "contrast",
+   "classification": "INHERITED_ACTIVE",
+   "parameter": "uniform(0.9, 1.1)",
+   "implementation": "ImageEnhance.Contrast",
+   "applied_to": [
+    "rgb_crop"
+   ]
+  },
+  {
+   "operation": "aspect_resize_pad_to_canvas",
+   "classification": "INHERITED_INACTIVE",
+   "parameter": "n/a",
+   "implementation": "SegmentationTransform resize/pad",
+   "reason": "this is the GLOBAL preprocessing stage that produces the 512 canvas; for the refiner it is replaced by the frozen ROI crop at 256. It is not applied a second time to the crop."
+  },
+  {
+   "operation": "vertical_flip",
+   "classification": "NOT_INHERITED",
+   "parameter": "n/a",
+   "implementation": "n/a",
+   "reason": "the inherited SegmentationTransform defines no vertical flip; it is NOT added"
+  },
+  {
+   "operation": "rotation_90_degree_set",
+   "classification": "NOT_INHERITED",
+   "parameter": "n/a",
+   "implementation": "n/a",
+   "reason": "the inherited pipeline uses continuous +/-5 degree rotation, not a {0,90,180,270} set; it is NOT added"
+  },
+  {
+   "operation": "elastic_deformation",
+   "classification": "FORBIDDEN",
+   "parameter": "n/a"
+  },
+  {
+   "operation": "cutmix",
+   "classification": "FORBIDDEN",
+   "parameter": "n/a"
+  },
+  {
+   "operation": "mixup",
+   "classification": "FORBIDDEN",
+   "parameter": "n/a"
+  },
+  {
+   "operation": "aggressive_domain_specific_augmentation",
+   "classification": "FORBIDDEN",
+   "parameter": "n/a"
+  },
+  {
+   "operation": "test_time_augmentation",
+   "classification": "FORBIDDEN",
+   "parameter": "n/a"
+  }
+ ],
+ "augmentation_sweep": false,
+ "verdict": "PHASE25A_AUGMENTATION_BINDING_PASS",
+ "generated_utc": "2026-09-30T04:27:30.880309+00:00",
+ "test_reads": 0
+}

@@ -1,0 +1,335 @@
+{
+  "artifact": "h3_downstream_evaluation",
+  "task": "H3 METRIC-DOMAIN RECONCILIATION + FROZEN DOWNSTREAM EVALUATION + NOTEBOOK 06",
+  "status": "H3_DOWNSTREAM_EVALUATION_COMPLETE__FORMAL_ADJUDICATION_PENDING",
+  "metric_domain_corrected": true,
+  "formal_adjudication_performed": false,
+  "h3_verdict_issued": false,
+  "selected_h3_checkpoint": {
+    "path": "D:\\Softfors\\jup\\checkpoints\\h3_kub_localizer_sigma_adaptive_sizeaware_seed42_clean_v3\\best.pt",
+    "sha256": "d875cac7d09bbc3d32232191f0af2c138e5a74682fc63e4d6e01f30345eca75e",
+    "selected_epoch": 54,
+    "heatmap_resolution": 128,
+    "construction": "build_clean_v3_localizer (explicit heatmap_resolution=128)"
+  },
+  "refiner_checkpoint": {
+    "path": "D:\\Softfors\\jup\\checkpoints\\phase14_kub_refiner_unet_a3_256_seed42_clean_v3\\best.pt",
+    "sha256": "2e09e3a9c39c731687db1a9fef0c80881ed6235e4cda070bb4b8b382caa45daa",
+    "epoch": 56
+  },
+  "global_checkpoint": {
+    "path": "D:\\Softfors\\jup\\checkpoints\\phase10_kub_unetpp_seed42_512_clean_v3\\best.pt",
+    "sha256": "ec7eb13f32e43af27eab7fc617bd1a2a8fcce1d6651a1b4a3653f3e4d1283269"
+  },
+  "evaluator_binding": {
+    "evaluator_path": "scripts/evaluation/h3_downstream_evaluator.py",
+    "evaluator_sha256": "5afb3d9419ebebd2096ed29c52fe744af6197e5260ed1f8d91f9e7de61688a1d",
+    "dependency_shas": {
+      "src/analysis/oracle_roi.py": "0d1ab96b71c8f1c7280679d0f089d19110ca681fbecdce17dfa178176545623d",
+      "src/data/regional_dataset.py": "e7eb24968e9946b8c4190093152b0c7790d2f740cc710a7e232548ea179a06c8",
+      "src/data/transforms.py": "8a8b636b58843d36810ebf5f3527a8ca1287b93483b962d5cf8e323a92566223",
+      "src/inference/kub_predict.py": "b0397d2c30d7e5d270b8087f68997026d30ea1e2c99b7371eb7121a6406e4282",
+      "src/inference/predicted_roi.py": "bd9f8be84595f49ff1e25e6052b548488fb6ae6a48aa7adbc78b880fb8f2d4e7",
+      "src/inference/regional_evaluator.py": "ea09b9efc12b832ad1a7f6a3746fc30756193555ae4c5bfe2929a54b395773f2",
+      "src/inference/learned_roi_clean_v3.py": "613e03d6e4dccccce2b743974dfaccd8a29a2c0932048f0af3d37a6d2a0241bf",
+      "src/metrics/object_metrics.py": "9824397f0c2b5d8807fadd2ba79ec565902ae47b8a36f719a4ae5a4e99a81238",
+      "src/models/factory.py": "3377bbe021d7bd13c07350ff5c4927705c2d67f93fa99c388caf2cc79ef4086d",
+      "src/models/unet.py": "62edc8fb481eb02c46c2c64f6e7219254a57d7ba935a4c840a5a7965b41bdfc2",
+      "src/utils/checkpointing.py": "08366f72f3141e5d18f008981465f5e9138c0b51336fd65cae7c619456ee1eca"
+    },
+    "population_binding": {
+      "val_samples": "D:\\Softfors\\jup\\reports\\tables\\kub_val_samples_sized_clean_v3.csv",
+      "val_samples_sha256": "19dabc2b917adcc50256431ed0604433f9bdf0220be0b3befbfccbe2312a5d10",
+      "val_components": "D:\\Softfors\\jup\\reports\\tables\\kub_val_components_sized_clean_v3.csv",
+      "val_components_sha256": "c219f6b6947d6b3408654a8e0de61319d0dd2141991773b6b6a0ff8d52140ec7"
+    },
+    "component_table_sha256": "c219f6b6947d6b3408654a8e0de61319d0dd2141991773b6b6a0ff8d52140ec7",
+    "frozen_proposal_config": {
+      "threshold": 0.1,
+      "margin": 0.2,
+      "top_k": 5,
+      "nms_iou": 0.3
+    },
+    "fusion_semantics": "MAX probability replacement inside proposal union (aggregate_and_fuse)",
+    "final_fusion_threshold": 0.5,
+    "global_threshold": 0.5,
+    "refiner_crop_target_size": 256,
+    "metric_definitions": {
+      "downstream_recall90": "component overlap pixels / component pixels >= 0.90 on the fused FULL_FIELD mask",
+      "fp_components_per_image": "object_metrics(mask, gt, minimum_overlap_pixels=1)['false_positive_predicted_components']",
+      "dice": "binary Dice with eps=1e-7 on the FULL_FIELD native-space mask",
+      "R_H3": "R_H3 = (TinyRecall_H3 - Tg) / G ; TinyRecall_H3 = H3 DOWNSTREAM TINY recall@90"
+    },
+    "formal_R_H3_source": "DOWNSTREAM_TINY_RECALL",
+    "formal_R_H3_source_is_not": "PROPOSAL_COVERAGE90"
+  },
+  "population": {
+    "view_type": "FULL_FIELD",
+    "val_images": 103,
+    "components": 152,
+    "size_strata": {
+      "TINY": 72,
+      "SMALL": 28,
+      "MEDIUM": 36,
+      "LARGE": 16
+    },
+    "hard_tiny_denominator": 15,
+    "global_empty_denominator": 5
+  },
+  "frozen_proposal_policy": {
+    "threshold": 0.1,
+    "margin": 0.2,
+    "top_k": 5,
+    "nms_iou": 0.3
+  },
+  "proposal_configurations_evaluated": 1,
+  "frozen_references": {
+    "Tg": 0.7916666666666666,
+    "G": 0.20833333333333337,
+    "Dg": 0.6359172411726776
+  },
+  "metric_domain_correction": {
+    "nature": "ADDITIVE_METRIC_LAYER_CORRECTION__NO_NEW_INFERENCE",
+    "discovery": "The frozen project definition of 'Tiny Recall@90' is the DETECTION criterion (component overlap >= 1 pixel), NOT >=90% component-pixel coverage.",
+    "authoritative_source": {
+      "path": "reports/audits/phase14_clean_v3_global_reference_freeze.json",
+      "Tg_definition": "GLOBAL_ONLY Tiny Recall@90 = mean over TINY components of (global mask >=1px overlap)",
+      "numeric_confirmation": "Tg = 57/72 = 0.7916666666666666 (detection), not 14/72 = 0.1944 (>=90% coverage)"
+    },
+    "defect_in_asrun_artifact": "The as-run artifact's aggregate layer used the strict >=90%-coverage definition, producing a metric-domain mismatch with Tg/G. The pipeline outputs (fused masks and per-component overlap pixels) were correct and are unchanged.",
+    "defect_origin": "reports/audits/h3_downstream_evaluator_binding.json bound the metric definition as 'downstream_recall90 = overlap/component_pixels>=0.90' (strict coverage). That definition is inconsistent with the earlier-frozen reference Tg = 0.7916666666666666, which is the DETECTION criterion (>=1px overlap) per reports/audits/phase14_clean_v3_global_reference_freeze.json. Using a strict-coverage TinyRecall_H3 against a detection-domain Tg and a detection-domain gap G is a category error: the numerator and denominator are in different metric domains.",
+    "why_detection_is_formal": "R_H3 = (TinyRecall_H3 - Tg) / G is only meaningful when TinyRecall_H3, Tg, and G share a metric domain. The frozen Tg (0.7916666666666666 = 57/72) and G (0.20833333333333337 = 15/72) are detection-domain quantities, so the formal TinyRecall_H3 must be detection-domain. This is a correctness-driven (not favorability-driven) alignment.",
+    "asrun_artifact_preserved": {
+      "path": "reports/audits/h3_downstream_evaluation_v1_asrun.json",
+      "sha256": "6acf4880c6b3aa180108083c1fd1efbecf7b414e1fe0105277970c50747a284d",
+      "formal_R_H3_asrun_cov90": -1.3999999999999995,
+      "status_of_asrun_formal_block": "SUPERSEDED__WRONG_METRIC_DOMAIN__RETAINED_FOR_PROVENANCE"
+    },
+    "correction_action": "Re-aggregate the saved per-component overlap pixels in the frozen detection domain. No inference, no checkpoint change, no pipeline change, no threshold change.",
+    "inference_rerun": false
+  },
+  "primary_metric_definition": {
+    "name": "H3_DOWNSTREAM_TINY_RECALL90",
+    "frozen_domain": "DETECTION (component overlap >= 1 pixel)",
+    "formal_TinyRecall_H3": 0.8194444444444444,
+    "formal_TinyRecall_H3_fraction": "59/72",
+    "definition": "Mean over the 72 canonical clean-v3 FULL_FIELD VAL TINY GT components of (H3 downstream fused FULL_FIELD mask overlap >= 1 px). Identical semantics to the frozen Phase-14 GLOBAL/PREDICTED/ORACLE reference.",
+    "not_the_proposal_coverage": "This is a DOWNSTREAM segmentation quantity (post-refiner fusion), not the localizer-only proposal coverage90."
+  },
+  "h3_downstream_metrics": {
+    "mean_dice": 0.38862753520437243,
+    "median_dice": 0.3693602693708862,
+    "overall_recall90_det": 0.9013157894736842,
+    "tiny_recall90_det": 0.8194444444444444,
+    "small_recall90_det": 0.9642857142857143,
+    "medium_recall90_det": 1.0,
+    "large_recall90_det": 0.9375,
+    "det_by_size": {
+      "TINY": {
+        "count": 59,
+        "denominator": 72,
+        "recall": 0.8194444444444444
+      },
+      "SMALL": {
+        "count": 27,
+        "denominator": 28,
+        "recall": 0.9642857142857143
+      },
+      "MEDIUM": {
+        "count": 36,
+        "denominator": 36,
+        "recall": 1.0
+      },
+      "LARGE": {
+        "count": 15,
+        "denominator": 16,
+        "recall": 0.9375
+      }
+    },
+    "hard_tiny_recovered": 5,
+    "hard_tiny_total": 15,
+    "global_empty_recovered": 3,
+    "global_empty_total": 5,
+    "mean_fp_components_per_image": 7.572815533980583,
+    "proposal_burden": {
+      "mean_proposals_per_image": 4.970873786407767,
+      "median_proposals_per_image": 5.0,
+      "zero_proposal_images": 0,
+      "multi_proposal_images": 103,
+      "max_proposals": 5,
+      "mean_roi_area_fraction": 0.006277483743227978,
+      "median_roi_area_fraction": 0.0051099989149305,
+      "p90_roi_area_fraction": 0.0101883796982507,
+      "p95_roi_area_fraction": 0.016394271330056415,
+      "max_roi_area_fraction": 0.0259550118152006
+    },
+    "descriptive_strict_cov90": {
+      "note": "Retained descriptively; NOT the frozen formal domain.",
+      "overall_cov90": 0.42105263157894735,
+      "tiny_cov90": 0.5,
+      "small_cov90": 0.4642857142857143,
+      "medium_cov90": 0.3888888888888889,
+      "large_cov90": 0.0625,
+      "cov90_by_size": {
+        "TINY": {
+          "count": 36,
+          "denominator": 72,
+          "recall": 0.5
+        },
+        "SMALL": {
+          "count": 13,
+          "denominator": 28,
+          "recall": 0.4642857142857143
+        },
+        "MEDIUM": {
+          "count": 14,
+          "denominator": 36,
+          "recall": 0.3888888888888889
+        },
+        "LARGE": {
+          "count": 1,
+          "denominator": 16,
+          "recall": 0.0625
+        }
+      },
+      "hard_tiny_recovered_cov90": 2,
+      "global_empty_recovered_cov90": 1
+    }
+  },
+  "formal_downstream": {
+    "TinyRecall_H3": 0.8194444444444444,
+    "TinyRecall_H3_fraction": "59/72",
+    "metric_domain": "DETECTION (>=1px overlap) -- frozen-consistent",
+    "Tg": 0.7916666666666666,
+    "G": 0.20833333333333337,
+    "R_H3": 0.13333333333333336,
+    "R_H3_exact_fraction": "2/15",
+    "interpretation_band": "insufficient",
+    "meaningful_threshold": 0.3,
+    "intermediate_range": "0.15 <= R_H3 < 0.30",
+    "insufficient_threshold": 0.15,
+    "sensitivity_strict_cov90": {
+      "note": "Sensitivity only; NOT the formal prospective R_H3.",
+      "TinyRecall_H3_cov90": 0.5,
+      "R_H3_cov90": -1.3999999999999995,
+      "interpretation_band_cov90": "insufficient"
+    }
+  },
+  "contrast_table": {
+    "GLOBAL": {
+      "label": "GLOBAL_ONLY",
+      "source": "REUSED (phase14_clean_v3_mode_summary.csv)",
+      "mean_dice": 0.6359172411726776,
+      "median_dice": 0.7456556082282435,
+      "overall_recall90_det": 0.8223684210526315,
+      "tiny_recall90_det": 0.7916666666666666,
+      "small_recall90_det": 0.8214285714285714,
+      "medium_recall90_det": 0.8611111111111112,
+      "large_recall90_det": 0.875,
+      "hard_tiny_recovered": 0,
+      "global_empty_recovered": 0,
+      "mean_fp_components_per_image": 0.4854368932038835,
+      "mean_proposals_per_image": 0.0
+    },
+    "PREDICTED": {
+      "label": "PREDICTED_REGIONAL",
+      "source": "REUSED (phase14_clean_v3_mode_summary.csv)",
+      "mean_dice": 0.4185309062818487,
+      "median_dice": 0.3706720977703552,
+      "overall_recall90_det": 0.875,
+      "tiny_recall90_det": 0.7916666666666666,
+      "small_recall90_det": 0.8928571428571429,
+      "medium_recall90_det": 1.0,
+      "large_recall90_det": 0.9375,
+      "hard_tiny_recovered": 0,
+      "global_empty_recovered": 1,
+      "mean_fp_components_per_image": 7.776699029126213,
+      "mean_proposals_per_image": 4.990291262135922
+    },
+    "H3": {
+      "label": "H3_DOWNSTREAM",
+      "source": "NEWLY GENERATED (single frozen H3 downstream evaluation)",
+      "pipeline": "H3 localizer (epoch 54, 128 heatmap) + frozen Stage-4D proposal policy + Phase-14 refiner (epoch 56)",
+      "mean_dice": 0.38862753520437243,
+      "median_dice": 0.3693602693708862,
+      "overall_recall90_det": 0.9013157894736842,
+      "tiny_recall90_det": 0.8194444444444444,
+      "small_recall90_det": 0.9642857142857143,
+      "medium_recall90_det": 1.0,
+      "large_recall90_det": 0.9375,
+      "hard_tiny_recovered": 5,
+      "global_empty_recovered": 3,
+      "mean_fp_components_per_image": 7.572815533980583,
+      "mean_proposals_per_image": 4.970873786407767,
+      "overall_cov90": 0.42105263157894735,
+      "tiny_cov90": 0.5,
+      "small_cov90": 0.4642857142857143,
+      "medium_cov90": 0.3888888888888889,
+      "large_cov90": 0.0625,
+      "hard_tiny_recovered_cov90": 2,
+      "global_empty_recovered_cov90": 1
+    },
+    "ORACLE_REGIONAL": {
+      "label": "ORACLE_REGIONAL",
+      "source": "REUSED (phase14_clean_v3_mode_summary.csv)",
+      "mean_dice": 0.8024158112932394,
+      "median_dice": 0.8343285329606096,
+      "overall_recall90_det": 1.0,
+      "tiny_recall90_det": 1.0,
+      "small_recall90_det": 1.0,
+      "medium_recall90_det": 1.0,
+      "large_recall90_det": 1.0,
+      "hard_tiny_recovered": 15,
+      "global_empty_recovered": 5,
+      "mean_fp_components_per_image": 0.6310679611650486,
+      "mean_proposals_per_image": 1.4757281553398058
+    }
+  },
+  "supply_agreement_check": {
+    "expected_zero_proposal_gt": 27,
+    "expected_zero_proposal_tiny": 22,
+    "recomputed_zero_proposal_gt": 26,
+    "recomputed_zero_proposal_tiny": 21,
+    "recomputed_zero_proposal_by_size": {
+      "TINY": 21,
+      "SMALL": 3,
+      "MEDIUM": 1,
+      "LARGE": 1
+    },
+    "deterministic_agreement": false,
+    "source": "reports/audits/h3_supply_axis_evaluation.json",
+    "discrepancy": "Off-by-one on TINY only (21 vs 22; SMALL/MEDIUM/LARGE agree exactly). Root cause: GT component bbox provenance. The supply-axis evaluator sourced GT bboxes from reports/tables/phase13_predicted_roi_per_component.csv, whereas this downstream evaluator uses extract_gt_components(raw_mask) (the frozen Phase-14 method). One TINY component's bbox is an edge case between the two provenances. The supply gates are already INVALID_FOR_FORMAL_ADJUDICATION and are not used here."
+  },
+  "provenance_caveats": [
+    "The frozen PREDICTED baseline (GLOBAL/PREDICTED/ORACLE contrast rows) was produced by the bound Phase-14 clean-v3 evaluator, whose localizer was constructed WITHOUT an explicit heatmap_resolution (KUBLocalizer default = 512, logit_downsample = Identity).",
+    "The H3 downstream arm follows the frozen prospective design, which specifies a 128-space heatmap; the H3 localizer is therefore constructed with heatmap_resolution=128 (logit_downsample = AvgPool2d(4)), which is also the training-faithful construction.",
+    "Consequently the frozen PREDICTED contrast row and the H3 row differ in localizer heatmap-decode construction in addition to the localizer checkpoint. This is a provenance nuance of the pre-existing frozen artifacts, NOT introduced by this task. It is recorded here for transparency and is flagged as an unresolved issue.",
+    "The proposal-supply agreement check confirms the H3 arm reproduces the previously saved supply metrics (zero-proposal GT=27, TINY=22) exactly.",
+    "Metric layer corrected post-hoc (additively) to the frozen detection domain; the as-run cov90 artifact is preserved at reports/audits/h3_downstream_evaluation_v1_asrun.json.",
+    "The frozen PREDICTED contrast row was produced by the bound Phase-14 evaluator with the localizer constructed at the KUBLocalizer default heatmap_resolution (512), whereas the H3 arm follows the frozen prospective 128-space heatmap design. This pre-existing provenance nuance is unrelated to the metric-domain correction."
+  ],
+  "inference_counters": {
+    "supply_axis_h3_val_inference_runs_previously_performed": 1,
+    "h3_downstream_inference_runs_this_task": 1,
+    "h3_downstream_metric_correction_inference_runs": 0,
+    "alternate_h3_checkpoints_evaluated": 0,
+    "proposal_policy_searches": 0,
+    "refiner_checkpoints_searched": 0,
+    "test_reads": 0,
+    "external_test_reads": 0
+  },
+  "test_reads": 0,
+  "external_test_reads": 0,
+  "phase_15_status": "NOT_STARTED_AND_NOT_AUTHORIZED",
+  "per_component_table": {
+    "path": "reports/tables/h3_downstream_per_component.csv",
+    "sha256": "84db1d11dd7374c90d960a610e990d1140dedf5c9acddd86aeccec75966712af",
+    "rows": 152
+  },
+  "per_image_table": {
+    "path": "reports/tables/h3_downstream_per_image.csv",
+    "sha256": "cb120f3e13503d700706360265b9784c90558a2a45bf8f6ab80199b6f58b4a23",
+    "rows": 103
+  },
+  "generated_utc": "2026-09-25T14:27:24Z"
+}

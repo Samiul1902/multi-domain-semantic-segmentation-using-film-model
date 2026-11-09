@@ -1,0 +1,46 @@
+{
+  "classification": "EXT02_1_BASELINE_TRAINING_PROTOCOL_FREEZE",
+  "generated_utc": "2026-10-11T15:00:00Z",
+  "segformer_b0_identity": {
+    "architecture": "SegFormer-B0 encoder + binary segmentation head",
+    "input": "3-channel 512x512",
+    "imagenet_pretrained_encoder": "PERMITTED_ONLY_IF_SAME_INITIALIZATION_POLICY_DOCUMENTED_AND_DISCLOSED",
+    "medical_finetuning": "FORBIDDEN",
+    "library": "transformers/timm (identity to be bound at EXT-03 implementation)",
+    "identity_status": "PROSPECTIVE_PENDING_EXT03_CONSTRUCTOR_BINDING"
+  },
+  "common_recipe": {
+    "input_size": 512,
+    "image_normalization": "as frozen V1 pipeline",
+    "mask_conversion": "binary (mask>0)",
+    "loss_family": "frozen internal baseline loss family",
+    "optimizer": "as frozen internal baseline authority",
+    "learning_rate": "as frozen internal baseline authority",
+    "weight_decay": "as frozen internal baseline authority",
+    "scheduler": "as frozen internal baseline authority",
+    "warmup": "as frozen internal baseline authority",
+    "batch_size": "as frozen internal baseline authority",
+    "gradient_accumulation": "as frozen internal baseline authority",
+    "max_epochs": "as frozen internal baseline authority",
+    "early_stopping": "as frozen internal baseline authority",
+    "checkpoint_selection_metric": "macro-domain validation Dice (equal domain weighting)",
+    "augmentation": "same augmentation family for all trainable baselines",
+    "mixed_precision": "as frozen internal baseline authority",
+    "gradient_clipping": "as frozen internal baseline authority",
+    "determinism_env": "fixed (CUBLAS_WORKSPACE_CONFIG / seed_everything as frozen)"
+  },
+  "seed_set": [
+    42,
+    123,
+    3407
+  ],
+  "seed_policy": "common prospective seed set for all trainable comparators; report per-seed and mean; never change seeds from results",
+  "checkpoint_selection": "INTERNAL development-validation only; never external / ROUTER_HOLDOUT / TEST / Phase39 TEST / external benchmark",
+  "fairness": "all trainable baselines receive the same internal TRAIN authority, dev-validation authority, resolution, augmentation family, seed count, loss family, optimizer/scheduler policy, max budget, early-stopping opportunity, checkpoint criterion unless architecture-specific differences are unavoidable and prospectively documented",
+  "no_external_use": "no external image or GT may participate in training/validation/checkpoint selection/early stopping/hyperparameter choice",
+  "authority_binding": {
+    "note": "recipe values are bound to existing frozen internal baseline authorities where they exist (configs/phase09_clean_v3, configs/phase10_clean_v3, scripts/training/train_phase10_baselines.py); any value not present in an authority is a prospective EXT-02.1 choice",
+    "prospective": true
+  },
+  "ext03_may_not_tune": true
+}

@@ -1,0 +1,36 @@
+{
+ "phase": "25D",
+ "classification": "PRE_EXECUTION_SPECIFICATION_COMPLETENESS_REPAIR",
+ "router_training_spec_revision": "ra_medfilm_barr_router_training_v1_2_1",
+ "method": "RA-MedFiLM-BARR",
+ "architecture_revision": "ra_medfilm_barr_narrowed_v1_2",
+ "generated_utc": "2026-10-01T02:01:22+00:00",
+ "artifact": "phase25d_final_refit_scheduler_contract_v1_2_1",
+ "population": "ALL 4957 ROUTER_DEVELOPMENT rows",
+ "validation_population": "NONE",
+ "early_stopping": false,
+ "fixed_epoch_count": "FINAL_ROUTER_EPOCHS (exact median of five best epochs)",
+ "optimizer": "AdamW(lr=1e-3, weight_decay=1e-4)",
+ "scheduler_class": "ReduceLROnPlateau",
+ "scheduler_constructor": {
+  "mode": "min",
+  "factor": 0.5,
+  "patience": 8,
+  "threshold": 0.0001,
+  "threshold_mode": "rel",
+  "cooldown": 0,
+  "min_lr": 1e-06,
+  "eps": 1e-08
+ },
+ "scheduler_monitor": "FULL-EPOCH TRAINING HUBER LOSS",
+ "monitor_definition": "sample-weighted mean Huber loss over every training example processed during that epoch",
+ "scheduler_step_call": "scheduler.step(train_huber_epoch)",
+ "scheduler_effects": "LR only; MUST NOT change FINAL_ROUTER_EPOCHS, trigger early stopping, or select a checkpoint",
+ "final_checkpoint_rule": "LAST_FIXED_EPOCH",
+ "forbidden": [
+  "choose_best_training_loss_epoch_afterward",
+  "use_validation_monitor",
+  "use_holdout_monitor",
+  "use_VAL808_monitor"
+ ]
+}

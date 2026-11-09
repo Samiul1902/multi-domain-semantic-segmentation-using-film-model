@@ -1,0 +1,75 @@
+{
+ "artifact": "phase29_rpsi_wrapper_parity",
+ "phase": 29,
+ "generated_utc": "2026-10-02T15:51:51+00:00",
+ "governance_only": true,
+ "execution": "NONE",
+ "retrained": false,
+ "parity": {
+  "canonical": {
+   "component": "R_psi",
+   "class": "BARRRegionalRefinerV1",
+   "arch_revision": "ra_medfilm_barr_narrowed_v1_1",
+   "seed": 42,
+   "batch": 8,
+   "lr": 0.0001,
+   "weight_decay": 0.0001,
+   "max_epochs": 100,
+   "patience": 15,
+   "t_max": 100,
+   "amp": true,
+   "selection_rule": "minimum EARLY_STOP total loss",
+   "roi_threshold": 0.3,
+   "fold_roles": [
+    "fit",
+    "early_stop",
+    "outer_target"
+   ],
+   "n_folds": 3
+  },
+  "phase29_wrapper_seed42": {
+   "component": "R_psi",
+   "training_seed_fold": [
+    42,
+    42,
+    42
+   ],
+   "training_seed_final": 42,
+   "spec_fold0": {
+    "component": "R_psi",
+    "role": "fold0",
+    "master_seed": 42,
+    "training_seed": 42,
+    "is_final_refit": false,
+    "cache_root": "D:\\Softfors\\jup\\data_cache\\phase25a_barr_roi030_cache",
+    "checkpoint_root": "D:\\Softfors\\jup\\checkpoints\\phase29_seed42",
+    "experiment_root": "D:\\Softfors\\jup\\experiments\\phase29_seed42",
+    "run_checkpoint_dir": "D:\\Softfors\\jup\\checkpoints\\phase29_seed42\\rpsi\\fold0",
+    "run_experiment_dir": "D:\\Softfors\\jup\\experiments\\phase29_seed42\\rpsi\\fold0",
+    "refit_rule": null,
+    "fit_manifest": "D:\\Softfors\\jup\\data_cache\\phase25a_barr_roi030_cache\\folds\\fold0_fit.csv",
+    "early_stop_manifest": "D:\\Softfors\\jup\\data_cache\\phase25a_barr_roi030_cache\\folds\\fold0_early_stop.csv",
+    "early_stopping": true
+   },
+   "spec_final": {
+    "component": "R_psi",
+    "role": "final",
+    "master_seed": 42,
+    "training_seed": 42,
+    "is_final_refit": true,
+    "cache_root": "D:\\Softfors\\jup\\data_cache\\phase25a_barr_roi030_cache",
+    "checkpoint_root": "D:\\Softfors\\jup\\checkpoints\\phase29_seed42",
+    "experiment_root": "D:\\Softfors\\jup\\experiments\\phase29_seed42",
+    "run_checkpoint_dir": "D:\\Softfors\\jup\\checkpoints\\phase29_seed42\\rpsi\\final",
+    "run_experiment_dir": "D:\\Softfors\\jup\\experiments\\phase29_seed42\\rpsi\\final_refit",
+    "refit_rule": "D:\\Softfors\\jup\\reports\\audits\\phase25a_roi030_final_refit_epoch_rule.json",
+    "fit_manifest": null,
+    "early_stop_manifest": null,
+    "early_stopping": false
+   }
+  }
+ },
+ "output_roots_expected_to_differ": true,
+ "scientific_config_matches": true,
+ "all_pass": true
+}

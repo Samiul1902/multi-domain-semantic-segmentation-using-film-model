@@ -1,0 +1,99 @@
+{
+ "artifact": "phase29_phase_c_final_check",
+ "phase": 29,
+ "stage": "PHASE_C_FINAL_CHECK",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_phase29_repro_v1_1",
+ "generated_utc": "2026-10-02T22:01:05+00:00",
+ "n_checks": 29,
+ "n_failed": 0,
+ "failed": [],
+ "checks": {
+  "seed123_rpsi_complete": true,
+  "seed123_rpsi_oof_complete": true,
+  "seed123_delta_target_complete": true,
+  "seed123_bphi_complete": true,
+  "seed123_somega_complete": true,
+  "seed123_integrated_complete": true,
+  "seed3407_rpsi_complete": true,
+  "seed3407_rpsi_oof_complete": true,
+  "seed3407_delta_target_complete": true,
+  "seed3407_bphi_complete": true,
+  "seed3407_somega_complete": true,
+  "seed3407_integrated_complete": true,
+  "new_training_runs_32": true,
+  "unauthorized_training_runs_zero": true,
+  "all_OOF_leakage_checks_pass": true,
+  "cross_seed_dependency_isolation": true,
+  "all_histories_complete": true,
+  "three_seed_DEV_summary_complete": true,
+  "training_run_registry_48": true,
+  "pre_VAL808_freeze_gate": true,
+  "VAL808_cache_contract_v1_1_complete": true,
+  "VAL808_reads_zero": true,
+  "ROUTER_HOLDOUT_reads_zero": true,
+  "TEST_reads_zero": true,
+  "best_seed_selected_false": true,
+  "canonical_bundle_changed_false": true,
+  "canonical_trainer_drift_is_only_declared_exception": true,
+  "canonical_trainer_drift_is_additive_entrypoint_only": true,
+  "other_canonical_trainers_clean": true
+ },
+ "canonical_trainer_drift": {
+  "declared_exception": [
+   "train_phase25a_refiner"
+  ],
+  "observed_drift": [
+   "train_phase25a_refiner"
+  ],
+  "strict_byte_identical": false,
+  "reviewed_and_approved_by_user_utc": "2026-10-02",
+  "repair_class": "ADDITIVE_ONLY_ENTRYPOINT_GENERALIZATION",
+  "detail": {
+   "file": "scripts/training/train_phase25a_refiner.py",
+   "sha256_frozen": "487efd3a934c97bf3b4db13717ac29b567a535346a2510a946943e2506345835",
+   "sha256_current": "f281ad8bba4ab502be41e0eebd1315133ff4032a7ae1017b961a82bb3f67c5fd",
+   "tokens_changed": 2,
+   "diff": [
+    "L188 def main()->main(argv=None)",
+    "L209 ap.parse_args()->ap.parse_args(argv)"
+   ],
+   "behavioural_delta": "NONE — argparse.parse_args(None) reads sys.argv[1:], identical to parse_args()",
+   "scientific_constants_touched": false
+  },
+  "records": [
+   {
+    "name": "train_phase25a_refiner",
+    "path": "scripts/training/train_phase25a_refiner.py",
+    "sha256_expected": "487efd3a934c97bf3b4db13717ac29b567a535346a2510a946943e2506345835",
+    "sha256_observed": "f281ad8bba4ab502be41e0eebd1315133ff4032a7ae1017b961a82bb3f67c5fd",
+    "unchanged": false
+   },
+   {
+    "name": "train_phase25d_router",
+    "path": "scripts/analysis/train_phase25d_router.py",
+    "sha256_expected": "fc7c1bdf263ae4551dcb8f170d3203adb8540fbc189846265b74f6eca1541e91",
+    "sha256_observed": "fc7c1bdf263ae4551dcb8f170d3203adb8540fbc189846265b74f6eca1541e91",
+    "unchanged": true
+   },
+   {
+    "name": "phase25f_execution_common",
+    "path": "scripts/analysis/phase25f_execution_common.py",
+    "sha256_expected": "98cf958a377e2de30e0b67e63fd56bafea418b2b061a362ee7284e852012cd2e",
+    "sha256_observed": "98cf958a377e2de30e0b67e63fd56bafea418b2b061a362ee7284e852012cd2e",
+    "unchanged": true
+   }
+  ]
+ },
+ "new_training_runs": 32,
+ "unauthorized_training_runs": 0,
+ "VAL808_reads": 0,
+ "ROUTER_HOLDOUT_reads": 0,
+ "TEST_reads": 0,
+ "best_seed_selected": false,
+ "canonical_bundle_changed": false,
+ "blocked_terminal_if_fail": "PHASE29_PHASE_C_BLOCKED__CROSS_SEED_DEPENDENCY_FAILURE",
+ "success_terminal_if_pass": "PHASE29_PHASE_C_NEW_SEED_TRAINING_COMPLETE__32_RUNS_AND_THREE_SEED_DEV_REPRODUCIBILITY_FROZEN__PRE_VAL808_GATE_PASS",
+ "all_pass": true,
+ "stop_after": "PRE_VAL808_FREEZE_GATE"
+}

@@ -1,0 +1,75 @@
+{
+  "classification": "EXT02_EXTERNAL_PROTOCOL_FREEZE",
+  "generated_utc": "2026-10-11T14:00:00Z",
+  "scientific_delta": 0,
+  "phase": "EXT-02",
+  "status": "COMPLETE",
+  "principles": [
+    "all performance-affecting choices frozen before external inference",
+    "no outcome-dependent changes later",
+    "external evidence is estimation, not automatic significance"
+  ],
+  "members": [
+    "ext02_dataset_cohort_freeze.json",
+    "ext02_annotation_mapping_freeze.json",
+    "ext02_preprocessing_freeze.json",
+    "ext02_model_identity_freeze.json",
+    "ext02_comparator_panel_freeze.json",
+    "ext02_metric_freeze.json",
+    "ext02_statistical_analysis_freeze.json",
+    "ext02_evidence_hierarchy_freeze.json",
+    "ext02_stones_source_group_audit.json",
+    "ext02_external_structural_validation.json",
+    "ext02_metric_edge_cases.json",
+    "manifests/ext02_*_manifest.csv"
+  ],
+  "strengthened_dependency": {
+    "EXT-06_requires": [
+      "EXT-01 PASS",
+      "EXT-02 PASS",
+      "EXT-03 required baselines FROZEN",
+      "EXT-04/EXT-05 model identities FROZEN if externally reported"
+    ],
+    "no_external_inference_in": [
+      "EXT-03",
+      "EXT-04",
+      "EXT-05"
+    ]
+  },
+  "progression_intention": {
+    "P1": "ISIC",
+    "P2": "ISIC+BUSI",
+    "P3": "ISIC+BUSI+KVASIR",
+    "P4": "ISIC+BUSI+KVASIR+KUB",
+    "frozen_now": true,
+    "external_evaluation_intended": false,
+    "note": "external progression reporting not allowed later unless labelled post-hoc"
+  },
+  "lodo_intention": {
+    "holds_out": [
+      "ISIC",
+      "BUSI",
+      "KVASIR",
+      "KUB"
+    ],
+    "internal_only": true,
+    "external_evaluation_intended": false,
+    "frozen_now": true
+  },
+  "qualitative_figure_rule": "deterministic ID-based selection OR GT-only morphology quantiles; never best/worst/interesting after outcomes unless labelled post-hoc exploratory",
+  "claim_language": {
+    "HAM/CVC/Breast_allowed": [
+      "secondary external benchmark",
+      "external-domain evaluation",
+      "mixed-provenance external benchmark"
+    ],
+    "HAM/CVC/Breast_forbidden": [
+      "independent external validation",
+      "prospective validation",
+      "untouched external test"
+    ],
+    "Stones": "independent external validation terminology ONLY if source-independence + source grouping + annotation completeness + eligibility resolved before inference; else domain-shift stress test / secondary benchmark"
+  },
+  "single_test_to_be_run_once": true,
+  "no_model_inference_yet": true
+}

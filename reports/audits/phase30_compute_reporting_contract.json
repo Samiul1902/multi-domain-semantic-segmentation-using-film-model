@@ -1,0 +1,36 @@
+{
+ "artifact": "phase30_compute_reporting_contract",
+ "phase": 30,
+ "section": "\u00a714",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_phase30_final_dev_validation_v1_0",
+ "accounting_label": "ANALYTICAL MAC LOWER BOUND",
+ "mac_constants": {
+  "global": 31551740928,
+  "benefit_router": 36160,
+  "regional_refiner": 3230662656,
+  "s_omega": 1168
+ },
+ "cost_formulas": {
+  "A7_average_cost": "GLOBAL + ROUTER + activation_fraction * REFINER",
+  "A8_average_cost": "GLOBAL + ROUTER + activation_fraction * (REFINER + S_omega)"
+ },
+ "report": [
+  "router overhead",
+  "conditional refiner compute",
+  "post-safety compute",
+  "realized execution fraction",
+  "analytical expected/realized cost"
+ ],
+ "s_omega_saves_compute": false,
+ "forbidden_labels": [
+  "latency",
+  "wall-clock speed",
+  "mobile latency",
+  "measured memory",
+  "measured energy"
+ ],
+ "measured_deployment_efficiency_phase": "DESIGNATED_LATER_PHASE",
+ "generated_utc": "2026-10-04T02:46:58+00:00",
+ "all_pass": true
+}

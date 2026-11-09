@@ -1,0 +1,297 @@
+{
+ "artifact": "phase29_predecessor_immutability_gate",
+ "phase": 29,
+ "classification": "CANONICAL_PHASE29_THREE_SEED_DOWNSTREAM_BARR_REPRODUCIBILITY",
+ "method": "RA-MedFiLM-BARR",
+ "governance_only": false,
+ "execution_stage": "PHASE_A_IMMUTABILITY_GATE",
+ "generated_utc": "2026-10-02T15:23:19+00:00",
+ "n_predecessors": 28,
+ "predecessors": [
+  {
+   "name": "G_checkpoint",
+   "level": "PRIMARY",
+   "requirement": "REQUIRED",
+   "path": "checkpoints/phase21_global_medfilm_fourdomain_seed42_clean_v3/best.pt",
+   "sha256_expected": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+   "sha256_observed": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+   "exists": true,
+   "sha_match": true
+  },
+  {
+   "name": "phase25b_features",
+   "level": "PRIMARY",
+   "requirement": "REQUIRED",
+   "path": "data_cache/phase25b_barr_pre_refinement_features_v1_2/features.npy",
+   "sha256_expected": "9c241963b54f23de1c9671ff6670dde7d6f7e2510869ef5ebc1baf3f7c833e0a",
+   "sha256_observed": "9c241963b54f23de1c9671ff6670dde7d6f7e2510869ef5ebc1baf3f7c833e0a",
+   "exists": true,
+   "sha_match": true
+  },
+  {
+   "name": "phase25b_handoff_schema",
+   "level": "PRIMARY",
+   "requirement": "REQUIRED",
+   "path": "reports/audits/phase25b_phase25c_handoff_schema.json",
+   "sha256_expected": "0f79346b06ce74fb538f66e5f5e4aae6b57f0c8c115b2cff0d7e4fc3e6510332",
+   "sha256_observed": "0f79346b06ce74fb538f66e5f5e4aae6b57f0c8c115b2cff0d7e4fc3e6510332",
+   "exists": true,
+   "sha_match": true
+  },
+  {
+   "name": "phase25a_crossfit_protocol",
+   "level": "PRIMARY",
+   "requirement": "REQUIRED",
+   "path": "reports/audits/phase25a_crossfit_protocol.json",
+   "sha256_expected": "6868b5562fe02929e13d63905ca74a759e20dec3c01b14eef331e4cb948f55ce",
+   "sha256_observed": "6868b5562fe02929e13d63905ca74a759e20dec3c01b14eef331e4cb948f55ce",
+   "exists": true,
+   "sha_match": true
+  },
+  {
+   "name": "phase25a_rpsi_final_ckpt",
+   "level": "PRIMARY",
+   "requirement": "REQUIRED",
+   "path": "checkpoints/phase25a_barr_regional_refiner_v1_1_roi030/final/final.pt",
+   "sha256_expected": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109",
+   "sha256_observed": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109",
+   "exists": true,
+   "sha_match": true
+  },
+  {
+   "name": "phase25c_gain_summary_by_domain",
+   "level": "PRIMARY",
+   "requirement": "REQUIRED",
+   "path": "reports/tables/phase25c_gain_summary_by_domain.csv",
+   "sha256_expected": null,
+   "sha256_observed": "ce5a6fa6b7e6acadebd1fe52a4d759de9b1cc8a2cf067ffabec64b63403b5016",
+   "exists": true,
+   "sha_match": "BOUND_AT_GATE"
+  },
+  {
+   "name": "phase25c_gain_category_counts",
+   "level": "PRIMARY",
+   "requirement": "REQUIRED",
+   "path": "reports/tables/phase25c_gain_category_counts.csv",
+   "sha256_expected": null,
+   "sha256_observed": "3f94cc5a9d4dcebd45dc99ae6e356a2fdb60889532dbc0d899f0ed94c85b0c7c",
+   "exists": true,
+   "sha_match": "BOUND_AT_GATE"
+  },
+  {
+   "name": "phase25d_cv_protocol",
+   "level": "PRIMARY",
+   "requirement": "REQUIRED",
+   "path": "reports/audits/phase25d_cv_protocol_v1_2_1.json",
+   "sha256_expected": "276e45f42fa00d74a5338dbef15ed990f548d1a992223e2afb2623c7fe08471e",
+   "sha256_observed": "276e45f42fa00d74a5338dbef15ed990f548d1a992223e2afb2623c7fe08471e",
+   "exists": true,
+   "sha_match": true
+  },
+  {
+   "name": "phase25d_frozen_training_spec",
+   "level": "PRIMARY",
+   "requirement": "REQUIRED",
+   "path": "reports/audits/phase25d_frozen_training_spec_binding_v1_2_1.json",
+   "sha256_expected": "f590b7170dad0a149d5b9c69a00dd88e76504466318599d2bbd8b3daf86ca6c6",
+   "sha256_observed": "f590b7170dad0a149d5b9c69a00dd88e76504466318599d2bbd8b3daf86ca6c6",
+   "exists": true,
+   "sha_match": true
+  },
+  {
+   "name": "phase25d_data_loader_randomness",
+   "level": "PRIMARY",
+   "requirement": "REQUIRED",
+   "path": "reports/audits/phase25d_data_loader_randomness_contract_v1_2_1.json",
+   "sha256_expected": "92f96eee7fd9496642ef2d4fbade3044cfe954bc31f13d0709d4bef5015a3b04",
+   "sha256_observed": "92f96eee7fd9496642ef2d4fbade3044cfe954bc31f13d0709d4bef5015a3b04",
+   "exists": true,
+   "sha_match": true
+  },
+  {
+   "name": "phase25d_final_refit_seed",
+   "level": "PRIMARY",
+   "requirement": "REQUIRED",
+   "path": "reports/audits/phase25d_final_refit_seed_contract_v1_2_1.json",
+   "sha256_expected": "b7f4f82e12ec265a4766fb9fcfa7b57a860803655faee6c1f6acbbf7b3be006e",
+   "sha256_observed": "b7f4f82e12ec265a4766fb9fcfa7b57a860803655faee6c1f6acbbf7b3be006e",
+   "exists": true,
+   "sha_match": true
+  },
+  {
+   "name": "phase25d_bphi_final_ckpt",
+   "level": "PRIMARY",
+   "requirement": "REQUIRED",
+   "path": "checkpoints/phase25d_barr_benefit_router_v1_2_1_seed42/final/final.pt",
+   "sha256_expected": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+   "sha256_observed": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+   "exists": true,
+   "sha_match": true
+  },
+  {
+   "name": "phase25e_final_router_dev_scores",
+   "level": "PRIMARY",
+   "requirement": "REQUIRED",
+   "path": "data_cache/phase25e_barr_resource_gate_v1_0/phase25e_final_router_dev_scores.csv",
+   "sha256_expected": "2d23e11090a5b3164d5b125c633bbccfbe307ecdc717d0f5689bf401bd849f9d",
+   "sha256_observed": "2d23e11090a5b3164d5b125c633bbccfbe307ecdc717d0f5689bf401bd849f9d",
+   "exists": true,
+   "sha_match": true
+  },
+  {
+   "name": "phase25e_final_router_dev_thresholds",
+   "level": "PRIMARY",
+   "requirement": "REQUIRED",
+   "path": "reports/tables/phase25e_final_router_dev_thresholds.csv",
+   "sha256_expected": "980e44aba6bb57bc86b2fa03060eaa181207297367fe7f7b1bbbde9c9b3bcfd1",
+   "sha256_observed": "980e44aba6bb57bc86b2fa03060eaa181207297367fe7f7b1bbbde9c9b3bcfd1",
+   "exists": true,
+   "sha_match": true
+  },
+  {
+   "name": "phase25e_final_router_calibration_contract",
+   "level": "PRIMARY",
+   "requirement": "REQUIRED",
+   "path": "reports/audits/phase25e_final_router_threshold_calibration_contract_v1_0.json",
+   "sha256_expected": "8b2cb0a220241db0aeb4795af9ae31af651e1a88dc7437b2e4afbcd5d249510f",
+   "sha256_observed": "8b2cb0a220241db0aeb4795af9ae31af651e1a88dc7437b2e4afbcd5d249510f",
+   "exists": true,
+   "sha_match": true
+  },
+  {
+   "name": "phase25f_cv_manifest_reuse",
+   "level": "PRIMARY",
+   "requirement": "REQUIRED",
+   "path": "reports/audits/phase25f_cv_manifest_reuse_contract_v1_0.json",
+   "sha256_expected": "731376fd19d2fc922f5209fdf891a12f9db5ed0ddafc04f697fe5364e1d02533",
+   "sha256_observed": "731376fd19d2fc922f5209fdf891a12f9db5ed0ddafc04f697fe5364e1d02533",
+   "exists": true,
+   "sha_match": true
+  },
+  {
+   "name": "phase25f_architecture_contract",
+   "level": "PRIMARY",
+   "requirement": "REQUIRED",
+   "path": "reports/audits/phase25f_architecture_contract_v1_0.json",
+   "sha256_expected": "b90464eea2d527774a5734112a35b5be8035d840fd8ae7862729df0c1c4265df",
+   "sha256_observed": "b90464eea2d527774a5734112a35b5be8035d840fd8ae7862729df0c1c4265df",
+   "exists": true,
+   "sha_match": true
+  },
+  {
+   "name": "phase25f_somega_final_ckpt",
+   "level": "PRIMARY",
+   "requirement": "REQUIRED",
+   "path": "checkpoints/phase25f_barr_post_safety_v1_0_seed42/final/final.pt",
+   "sha256_expected": "eee9b97b9921e53fc07eac9281dce64ba518c6e1659916b97b0b3bec21ec6d2e",
+   "sha256_observed": "eee9b97b9921e53fc07eac9281dce64ba518c6e1659916b97b0b3bec21ec6d2e",
+   "exists": true,
+   "sha_match": true
+  },
+  {
+   "name": "phase26_final_freeze",
+   "level": "PRIMARY",
+   "requirement": "REQUIRED",
+   "path": "reports/audits/phase26_final_freeze.json",
+   "sha256_expected": "e709f5301894dc0377420500a9b6d6e95bd54858fde4cb472cad73d630b8adb4",
+   "sha256_observed": "e709f5301894dc0377420500a9b6d6e95bd54858fde4cb472cad73d630b8adb4",
+   "exists": true,
+   "sha_match": true
+  },
+  {
+   "name": "phase27_final_freeze",
+   "level": "PRIMARY",
+   "requirement": "REQUIRED",
+   "path": "reports/audits/phase27_final_freeze.json",
+   "sha256_expected": null,
+   "sha256_observed": "42e51a6734c8c620bd056a829a770f23d4d354e3ba82f2272150636d96062187",
+   "exists": true,
+   "sha_match": "BOUND_AT_GATE"
+  },
+  {
+   "name": "phase27_val808_per_sample_scores",
+   "level": "PRIMARY",
+   "requirement": "REQUIRED",
+   "path": "reports/tables/phase27_val808_per_sample_scores.csv",
+   "sha256_expected": null,
+   "sha256_observed": "702133930ce14ac9513c992833396e3e250d08417b17d1032cbd260a405cfb12",
+   "exists": true,
+   "sha_match": "BOUND_AT_GATE"
+  },
+  {
+   "name": "phase28_final_freeze",
+   "level": "PRIMARY",
+   "requirement": "REQUIRED",
+   "path": "reports/audits/phase28_final_freeze.json",
+   "sha256_expected": "ac4b9f72ce663e57d4f7049a979e3bad8cd3ec460cca494c332e9ebc32bb098a",
+   "sha256_observed": "ac4b9f72ce663e57d4f7049a979e3bad8cd3ec460cca494c332e9ebc32bb098a",
+   "exists": true,
+   "sha_match": true
+  },
+  {
+   "name": "phase29_v1_1_spec_doc",
+   "level": "PRIMARY",
+   "requirement": "REQUIRED",
+   "path": "docs/phase29_repro_spec.md",
+   "sha256_expected": null,
+   "sha256_observed": "3888e0e0987484741c52c1fb2cf75ba7159cc47f1fc8fad368922760c080e6a8",
+   "exists": true,
+   "sha_match": "BOUND_AT_GATE"
+  },
+  {
+   "name": "phase29_seed42_reuse_eligibility_v1_1",
+   "level": "PRIMARY",
+   "requirement": "REQUIRED",
+   "path": "reports/tables/phase29_seed42_reuse_eligibility_v1_1.csv",
+   "sha256_expected": null,
+   "sha256_observed": "d34e01b73a1c1b2ed5f85dc7d29558e5457d3cb8307514f888c9dc855f9d3f6f",
+   "exists": true,
+   "sha_match": "BOUND_AT_GATE"
+  },
+  {
+   "name": "phase29_seed_dependency_graph_v1_1",
+   "level": "PRIMARY",
+   "requirement": "REQUIRED",
+   "path": "reports/tables/phase29_seed_dependency_graph_v1_1.csv",
+   "sha256_expected": null,
+   "sha256_observed": "bfd026f83c3665e0296c5394f1eb36ef8f8fd34b021ec7a5a1a9e96782f61e00",
+   "exists": true,
+   "sha_match": "BOUND_AT_GATE"
+  },
+  {
+   "name": "phase29_evaluation_plan_v1_1",
+   "level": "PRIMARY",
+   "requirement": "REQUIRED",
+   "path": "reports/tables/phase29_evaluation_plan_v1_1.csv",
+   "sha256_expected": null,
+   "sha256_observed": "9edc116afd9a99f0c1424265b06abe54ac6178531fba6c610113e89b79e60ac8",
+   "exists": true,
+   "sha_match": "BOUND_AT_GATE"
+  },
+  {
+   "name": "phase29_training_run_plan_v1_1",
+   "level": "PRIMARY",
+   "requirement": "REQUIRED",
+   "path": "reports/tables/phase29_training_run_plan_v1_1.csv",
+   "sha256_expected": null,
+   "sha256_observed": "62518271a59a392c7101933131546df28529e25803ff0899091a1c2209d08a8b",
+   "exists": true,
+   "sha_match": "BOUND_AT_GATE"
+  },
+  {
+   "name": "phase29_spec_v1_1_terminal",
+   "level": "PRIMARY",
+   "requirement": "REQUIRED",
+   "path": "reports/audits/phase29_spec_v1_1_terminal.json",
+   "sha256_expected": null,
+   "sha256_observed": "81d5e47906429ad97381bcf6e0d1517c40918aeb13fd7d629186831d4faf7e99",
+   "exists": true,
+   "sha_match": "BOUND_AT_GATE"
+  }
+ ],
+ "n_drift": 0,
+ "drift": [],
+ "artifact_drift": false,
+ "blocked_terminal_if_drift": "PHASE29_BLOCKED__PREDECESSOR_ARTIFACT_DRIFT",
+ "all_pass": true
+}

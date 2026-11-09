@@ -1,0 +1,184 @@
+{
+  "artifact": "PHASE14_ROI_MARGIN_ROLE_RESOLUTION",
+  "classification": "PHASE14_ROI_MARGIN_ROLE_RESOLUTION",
+  "status": "RESOLVED_BY_FROZEN_CORPUS",
+  "kind": "ADDITIVE_SUPERVISOR_RESOLUTION",
+  "supersedes_nothing": true,
+  "does_not_rewrite_frozen_protocol": true,
+  "created_utc": "2026-09-24T08:12:00Z",
+  "created_local_bst": "2026-09-24T14:12:00+06:00",
+  "authority": "USER_SUPERVISOR",
+  "phase": "PHASE_14_CLEAN_V3",
+  "revision": "v2__supersedes_v1_which_recorded_RECORDED_status_only",
+  "scope_note": "Resolves the ROI-margin role ambiguity raised before patching the Phase-14 clean-v3 trainer. This artifact changes no scientific parameter; it records which of two competing readings governs the disputed row and why.",
+
+  "binding": {
+    "ORACLE_DERIVED_REFINER_TRAIN_MARGIN": 0.25,
+    "ORACLE_DERIVED_REFINER_VAL_MARGIN": 0.25,
+    "ORACLE_DOWNSTREAM_MARGIN": 0.20,
+    "PREDICTED_PROPOSAL_MARGIN": 0.2
+  },
+
+  "binding_semantics": {
+    "ORACLE_DERIVED_REFINER_TRAIN_MARGIN": "Crop framing margin used when constructing training crops from ground-truth (oracle-derived) component ROIs. Applies to src/data/regional_dataset.py split=TRAIN, line 105 (base positive) and line 114 (perturbation scale).",
+    "ORACLE_DERIVED_REFINER_VAL_MARGIN": "Crop framing margin used when constructing crop-level validation crops from ground-truth component ROIs. Applies to src/data/regional_dataset.py split=VAL, line 188. Shares the single code path and single value with the TRAIN margin; the two are not separable within one run.",
+    "ORACLE_DOWNSTREAM_MARGIN": "Margin governing oracle-derived ROI geometry AT EVALUATION TIME in the Stage-4D-comparable diagnostic contrast (Condition B). Governed by the frozen protocol amendment, NOT by the trainer.",
+    "PREDICTED_PROPOSAL_MARGIN": "Margin governing predicted-proposal geometry consumed downstream (Condition C). Frozen at 0.20 by the Phase-13B clean-v3 proposal contract and guarded at runtime against any second expansion."
+  },
+
+  "supervisor_directive_reference": {
+    "required_static_trace": "TRAIN -> 0.25 / VAL -> 0.25 / ORACLE EVAL -> 0.25 / PREDICTED EVAL -> 0.20",
+    "narrow_patch_instruction": "Patch roi_margin=0.25 ONLY for the frozen OPTION_A3 oracle-derived / jittered-oracle TRAIN and crop-level VAL crops. Explicitly NOT a global 0.20 -> 0.25 replacement."
+  },
+
+  "resolution": {
+    "governing_reading": "FROZEN_CORPUS",
+    "decision": "TRAIN and crop-level VAL margins move to 0.25. Oracle-derived ROI geometry at evaluation time REMAINS 0.20. Predicted proposal margin REMAINS 0.20.",
+    "trace_result": {
+      "TRAIN": "PASS",
+      "VAL_CROP_LEVEL": "PASS",
+      "ORACLE_EVAL": "FAIL_LITERAL__RESOLVED_FROM_CORPUS",
+      "PREDICTED_EVAL": "PASS"
+    },
+    "rationale": [
+      "The directive's own instruction is explicitly NARROW: 0.25 applies to the frozen OPTION_A3 oracle-derived / jittered-oracle TRAIN crops and crop-level VAL crops. It states this is not a global replacement.",
+      "The directive's required trace lists ORACLE EVAL -> 0.25 as a separate row. That row is the only one of the four that conflicts with the frozen corpus.",
+      "The frozen protocol amendment resolves the oracle side to margin=0.20 in five authoritative places and excludes 0.25 by name.",
+      "The directive itself forbids any other scientific parameter from changing. Overwriting the amendment's oracle_geometry_control would be exactly such a change, so it cannot be done silently.",
+      "Therefore the narrow instruction and the frozen corpus agree on three rows and disagree on one. The freezing authority, the amendment, governs the disputed row.",
+      "Disposition of the user at the decision point was to apply the best-supported reading rather than to authorize a rewrite of a frozen methodological control."
+    ],
+    "disputed_row_handling": "Row 3 is recorded as FAIL against the literal required string, not PASS. It is not silently overwritten to satisfy the template. This is the only honest way to satisfy both the directive's own 'no other scientific parameter' clause and its 'If this does not hold, STOP' clause."
+  },
+
+  "structural_finding": {
+    "summary": "TRAIN crop construction and oracle-derived crop construction are the SAME code path, so they cannot hold different margin values within a single run.",
+    "evidence": [
+      "src/data/regional_dataset.py line 105: apply_context_margin(bbox, (h, w), self.margin) for split=TRAIN base_positive.",
+      "src/data/regional_dataset.py line 114: side = max(bh, bw) * (1.0 + 2.0 * self.margin) for split=TRAIN perturbed_positive.",
+      "src/data/regional_dataset.py line 188: apply_context_margin(bbox, (h, w), self.margin) for split=VAL base_positive.",
+      "Both branches read the single instance attribute self.margin, set once from the constructor argument."
+    ],
+    "implication": "The directive's separation of a TRAIN margin from an ORACLE EVAL margin is meaningful only if ORACLE EVAL denotes evaluation-time ROI geometry (governed by the amendment), not crop construction (governed by the trainer). This artifact adopts that reading, and records it explicitly.",
+    "disambiguation": "ORACLE_DERIVED_REFINER_{TRAIN,VAL}_MARGIN govern CROP CONSTRUCTION in the trainer. ORACLE_DOWNSTREAM_MARGIN governs ROI GEOMETRY AT EVALUATION TIME in the diagnostic contrast. These are distinct roles, recorded as four separate keys precisely so no ambiguous scalar can conflate them."
+  },
+
+  "frozen_corpus_evidence": [
+    {
+      "source": "reports/audits/phase14_diagnostic_protocol_amendment.md",
+      "line": 27,
+      "section": "3",
+      "verbatim": "Condition B (Oracle Regional Refinement): Regional refiner evaluated with ground-truth component ROIs (margin 0.20 to match Stage-4D).",
+      "resolves": "ORACLE_DOWNSTREAM_MARGIN = 0.20"
+    },
+    {
+      "source": "reports/audits/phase14_diagnostic_protocol_amendment.md",
+      "line": 51,
+      "section": "5.1",
+      "verbatim": "Margin: `margin=0.20`. ... Oracle Match uses `margin=0.20` strictly.",
+      "resolves": "ORACLE_DOWNSTREAM_MARGIN = 0.20"
+    },
+    {
+      "source": "reports/audits/phase14_diagnostic_protocol_amendment.md",
+      "line": 70,
+      "section": "6",
+      "verbatim": "Base Positive Crops: 1162 crops per epoch (1 per TRAIN component). Margin=0.20.",
+      "resolves": "CONFLICT_SOURCE__crop_construction_margin_stated_as_0.20",
+      "note": "This is the one line that speaks to crop construction rather than evaluation geometry, and it states 0.20. The directive overrides it for the refiner TRAIN / VAL crops on the authority of the explicit narrow instruction. Recorded here for full provenance rather than suppressed."
+    },
+    {
+      "source": "reports/audits/phase14_diagnostic_protocol_amendment.json",
+      "pointer": "methodological_resolutions.oracle_geometry_control.resolution",
+      "verbatim": "Oracle must be run using exactly margin=0.20 (not 0.25) to perfectly match Stage-4D context. Both use identical crop_and_preprocess(raw_image, crop_geom, target_size=256).",
+      "resolves": "ORACLE_DOWNSTREAM_MARGIN = 0.20"
+    },
+    {
+      "source": "reports/audits/phase14_diagnostic_protocol_amendment.json",
+      "pointer": "methodological_resolutions.oracle_multi_component.construction",
+      "verbatim": "Generate a separate Oracle ROI for each individual GT component using margin=0.20. Run inference on each separately, then MAX-fuse the probability maps to match the predicted pipeline.",
+      "resolves": "ORACLE_DOWNSTREAM_MARGIN = 0.20"
+    },
+    {
+      "source": "reports/audits/phase14_diagnostic_protocol_amendment.json",
+      "pointer": "model_specifications.roi_margin_rule",
+      "value": 0.25,
+      "resolves": "CONFLICT_SOURCE__carries_the_superseded_Phase12_oracle_convention",
+      "note": "This scalar is the origin of the ambiguity. It is retained unmodified because changing it would be a scientific parameter change not authorized by this task."
+    },
+    {
+      "source": "reports/audits/phase14_clean_v3_freeze_manifest.json",
+      "pointer": "frozen_axes",
+      "verbatim": "ROI margin (0.25 for oracle, 0.20 for predicted)",
+      "resolves": "CONFLICT_SOURCE__splits_by_oracle_vs_predicted_not_by_train_vs_eval"
+    }
+  ],
+
+  "phase12_provenance": {
+    "note": "The value 0.25 traces to the Phase-12 oracle convention and is preserved for provenance. The Phase-14 amendment explicitly overrides it by name for oracle geometry.",
+    "preserved": true
+  },
+
+  "scientific_axis_note": {
+    "network_magnification_unchanged": true,
+    "explanation": "Both margin values pass through crop_and_preprocess(raw_image, crop_geom, target_size=256), so the network input is always 256x256. Margin changes crop EXTENT and JITTER SCALE, not network magnification.",
+    "perturbation_side_formula": "side = max(bh, bw) * (1.0 + 2.0 * margin)",
+    "side_at_020": "1.40 times max(bh,bw)",
+    "side_at_025": "1.50 times max(bh,bw)",
+    "interpretation": "A 0.20 -> 0.25 change widens training crop context by roughly 7 percent linearly and widens the jitter scale correspondingly. This is a genuine scientific framing axis, which is why the oracle-eval row was not overwritten without a ruling."
+  },
+
+  "dispositions_considered": [
+    {
+      "option": "KEEP_0_20_PROTOCOL_WINS",
+      "description": "Oracle-derived crops remain 0.20; only the refiner TRAIN / VAL base-positive crop margin moves to 0.25.",
+      "outcome": "ADOPTED"
+    },
+    {
+      "option": "CHANGE_TO_0_25_DIRECTIVE_OVERRIDES",
+      "description": "Oracle-derived crops also become 0.25, with an additive override entry appended to the amendment.",
+      "outcome": "NOT_ADOPTED__would_require_rewriting_a_frozen_methodological_control"
+    },
+    {
+      "option": "REVERT_ALL_TO_0_20_DROP_PATCH",
+      "description": "All roles remain 0.20; only the operational logging defect is fixed.",
+      "outcome": "NOT_ADOPTED__contradicts_the_explicit_narrow_instruction_for_refiner_TRAIN_VAL_crops"
+    }
+  ],
+
+  "patch_authorization": {
+    "authorized_files": [
+      "src/data/regional_dataset.py",
+      "scripts/training/train_phase14_refiner.py"
+    ],
+    "authorized_change": "Set the refiner crop-construction margin to 0.25 for split=TRAIN and split=VAL, expressed as role-named module constants so that no ambiguous bare scalar is introduced.",
+    "forbidden_changes": [
+      "Global replacement of every 0.20 with 0.25",
+      "Any change to the predicted-proposal margin",
+      "Any change to the oracle evaluation geometry governed by the amendment",
+      "Any change to the protocol amendment files",
+      "Any second margin expansion on already-expanded geometry"
+    ],
+    "no_second_expansion_confirmed": "src/inference/phase13_part1d_predicted_region_inference.py lines 97-98 raise if stored geometry margin is not 0.20, preventing double expansion on the predicted side."
+  },
+
+  "counters": {
+    "model_forwards": 0,
+    "backward_passes": 0,
+    "optimizer_steps": 0,
+    "training_runs_started": 0,
+    "cuda_requests": 0,
+    "test_reads": 0,
+    "external_test_reads": 0,
+    "padding_zeros_stripped": 0,
+    "bytes_removed": 0,
+    "bytes_delta_from_strip": 0
+  },
+
+  "evidence_bindings": {
+    "freeze_manifest_sha256": "8c05638327afec0a2e5184237bce59fd91fb7acc4587fdba020ebc79ca0f8753",
+    "protocol_amendment_json_sha256": "a65025ba4861a575d1cada7983e75c7ebf852c33d4da24f54abaff7115fb09a9",
+    "protocol_amendment_md_sha256": "7b9bfead2de762f084fa9a6fb285c06f8af169ecfa1ba828a96ba445c7fc72f4",
+    "trainer_sha256_before_patch": "d768422f77abae415be8bd712ff67bef4e16605f053287db04e1840c9f7f0aa8",
+    "regional_dataset_sha256_before_patch": "4e495350c213be0d821938c1c6fe9a1a68286d08d24cf5d3cb88042b473dc70a"
+  }
+}

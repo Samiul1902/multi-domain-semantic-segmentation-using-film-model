@@ -1,0 +1,50 @@
+{
+  "classification": "EXT01_EXTERNAL_DATASET_ELIGIBILITY",
+  "generated_utc": "2026-10-11T13:00:00Z",
+  "conservative_definitions": {
+    "PRIMARY_EXTERNAL_ELIGIBLE": "independent, segmentation compatible, no relevant prior use/overlap",
+    "SECONDARY_EXTERNAL_BENCHMARK_ELIGIBLE": "externally sourced and usable, but prior-use/provenance means not pristine prospective validation",
+    "ELIGIBLE_WITH_DISCLOSURE": "usable with a defined qualification",
+    "ELIGIBILITY_PENDING": "usable but open items must be resolved before protocol freeze",
+    "INELIGIBLE_FOR_SEGMENTATION": "no usable segmentation ground truth",
+    "INELIGIBLE_DUE_TO_OVERLAP": "overlaps frozen data",
+    "CHECK_REQUIRED": "cannot determine"
+  },
+  "results": [
+    {
+      "dataset": "HAM10000 (ISIC-2018 Task3 training input)",
+      "domain": "ISIC",
+      "segmentation_gt": "FOUND",
+      "eligibility": "SECONDARY_EXTERNAL_BENCHMARK_ELIGIBLE",
+      "study_track": "TRACK_B_PRIOR_USED_EXTERNAL_BENCHMARK"
+    },
+    {
+      "dataset": "Stones_where_are_you? v3 (Roboflow COCO-seg)",
+      "domain": "KUB",
+      "segmentation_gt": "FOUND",
+      "eligibility": "ELIGIBILITY_PENDING",
+      "study_track": "TRACK_A_CANDIDATE_INDEPENDENT_EXTERNAL_VALIDATION"
+    },
+    {
+      "dataset": "CVC-ClinicDB",
+      "domain": "KVASIR",
+      "segmentation_gt": "FOUND",
+      "eligibility": "SECONDARY_EXTERNAL_BENCHMARK_ELIGIBLE",
+      "study_track": "TRACK_B_PRIOR_USED_EXTERNAL_BENCHMARK"
+    },
+    {
+      "dataset": "BrEaST-Lesions_USG",
+      "domain": "BUSI",
+      "segmentation_gt": "FOUND",
+      "eligibility": "SECONDARY_EXTERNAL_BENCHMARK_ELIGIBLE",
+      "study_track": "TRACK_B_PRIOR_USED_EXTERNAL_BENCHMARK"
+    }
+  ],
+  "summary": {
+    "n_audited": 4,
+    "primary_eligible": 0,
+    "secondary_eligible": 3,
+    "eligibility_pending": 1,
+    "ineligible": 0
+  }
+}

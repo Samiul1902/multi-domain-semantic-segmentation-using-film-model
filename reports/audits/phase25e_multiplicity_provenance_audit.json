@@ -1,0 +1,245 @@
+{
+  "classification": "PHASE25E_RESOURCE_GATE_POLICY_EVALUATION",
+  "specification_revision": "ra_medfilm_barr_resource_gate_v1_0",
+  "stage": "MULTIPLICITY_PROVENANCE_AUDIT",
+  "question": "Was Holm-Bonferroni used as the PRIMARY Phase25E S1/H1 adjudication rule PROVABLY FROZEN before outcome access?",
+  "method": "Read-only provenance scan of every pre-registration artifact (Phase24 pre-Phase25 design set + Phase25E pre-outcome specification contracts) for multiplicity terminology, then comparison of the frozen ROLE of Holm against the ROLE actually used post-outcome.",
+  "term_regex": "(?i)(holm|bonferroni|multiplicity|fwer|family[- ]?wise|multiple[- ]comparison)",
+  "scan_results": {
+    "reports/audits/phase24_architecture_spec.json": {
+      "exists": true,
+      "sha256": "bd5522678571f9b40e3ae887c7fd6c2d7862b3e73152eab1ae7db13cab6c6071",
+      "pre_registration_class": "PHASE24_PRE_PHASE25",
+      "term_hits": [],
+      "mentions_multiplicity": false
+    },
+    "reports/audits/phase24_benefit_data_protocol.json": {
+      "exists": true,
+      "sha256": "20be99f4b67b7bf3a878574167c9c912c24df5470af36133553b13608e3eed1c",
+      "pre_registration_class": "PHASE24_PRE_PHASE25",
+      "term_hits": [],
+      "mentions_multiplicity": false
+    },
+    "reports/audits/phase24_benefit_data_protocol_exact.json": {
+      "exists": true,
+      "sha256": "6e37a7c82668041e3a83a80e92465e5ea6036acb10e3104a25aa11cdc10a123f",
+      "pre_registration_class": "PHASE24_PRE_PHASE25",
+      "term_hits": [],
+      "mentions_multiplicity": false
+    },
+    "reports/audits/phase24_paired_refinement_gain_contract.json": {
+      "exists": true,
+      "sha256": "a16bf29c3fc1550e9a80bef438c57b7f776dbc30bf2236515564d000cd90624e",
+      "pre_registration_class": "PHASE24_PRE_PHASE25",
+      "term_hits": [],
+      "mentions_multiplicity": false
+    },
+    "reports/audits/phase24_preservation_contract.json": {
+      "exists": true,
+      "sha256": "a4e829b07350611438aabf629315438e8bf0f995194d0fba5974c9a843b1b20c",
+      "pre_registration_class": "PHASE24_PRE_PHASE25",
+      "term_hits": [],
+      "mentions_multiplicity": false
+    },
+    "reports/audits/phase24_exact_implementation_spec.json": {
+      "exists": true,
+      "sha256": "6b1a71d5e88ce06baa8f200523be32773428417ffd233ff218d7e50b6af271dd",
+      "pre_registration_class": "PHASE24_PRE_PHASE25",
+      "term_hits": [],
+      "mentions_multiplicity": false
+    },
+    "reports/audits/phase24_resource_utility_contract.json": {
+      "exists": true,
+      "sha256": "19c85fc299ee2858100fba06eeaf3fe092df62ba1d7af08c9331bccd72be279b",
+      "pre_registration_class": "PHASE24_PRE_PHASE25",
+      "term_hits": [],
+      "mentions_multiplicity": false
+    },
+    "reports/audits/phase24_spec_repair_freeze.json": {
+      "exists": true,
+      "sha256": "e0c5ea7b5ff129482a56236c6295b4bdbf82940747d556c9e67293815bb5362a",
+      "pre_registration_class": "PHASE24_PRE_PHASE25",
+      "term_hits": [],
+      "mentions_multiplicity": false
+    },
+    "reports/audits/phase24_final_freeze.json": {
+      "exists": true,
+      "sha256": "41191c20d2a1815a05439f3abd02860376f69950b2170fa65ad03a70a33c2f70",
+      "pre_registration_class": "PHASE24_PRE_PHASE25",
+      "term_hits": [],
+      "mentions_multiplicity": false
+    },
+    "reports/tables/phase24_success_failure_criteria.csv": {
+      "exists": true,
+      "sha256": "d78033ed9131a4689fbc301a68d5229fea2536b7d4eb60f69da3b9cae9ba6219",
+      "pre_registration_class": "PHASE24_PRE_PHASE25",
+      "term_hits": [],
+      "mentions_multiplicity": false
+    },
+    "reports/tables/phase24_comparator_plan.csv": {
+      "exists": true,
+      "sha256": "6ac9808056db2d8745e4059f77debc0ccdd897263a99dd00910192517280222a",
+      "pre_registration_class": "PHASE24_PRE_PHASE25",
+      "term_hits": [],
+      "mentions_multiplicity": false
+    },
+    "reports/tables/phase24_ablation_plan.csv": {
+      "exists": true,
+      "sha256": "422967fa3484b19d90bfc3b2146278aa69c6bd7a34e42ae3dbcb43a9ccca9087",
+      "pre_registration_class": "PHASE24_PRE_PHASE25",
+      "term_hits": [],
+      "mentions_multiplicity": false
+    },
+    "reports/audits/phase25e_evaluation_statistics_contract_v1_0.json": {
+      "exists": true,
+      "sha256": "fc90a1362a06eda342d987d2f6e1e12a1190ac650d7bb0db1234514a297644af",
+      "pre_registration_class": "PHASE25E_PRE_OUTCOME",
+      "term_hits": [
+        {
+          "line": 41,
+          "text": "\"multiplicity\": \"primary = raw paired two-sided p; secondary = Holm-Bonferroni within the pre-declared C7-vs-comparator family (C1..C6, C10)\","
+        }
+      ],
+      "mentions_multiplicity": true
+    },
+    "reports/audits/phase25e_success_failure_criteria_binding.json": {
+      "exists": true,
+      "sha256": "e2580d9de572c41ade39ca05ad0dbf4b57a0427aea0e788f48bf707e25d37b36",
+      "pre_registration_class": "PHASE25E_PRE_OUTCOME",
+      "term_hits": [],
+      "mentions_multiplicity": false
+    },
+    "reports/audits/phase25e_fixed_budget_contract_v1_0.json": {
+      "exists": true,
+      "sha256": "c8ade16f835617c23aa6c363e2f27ac4a7d175d9e2dd6dc8544d962976050ff8",
+      "pre_registration_class": "PHASE25E_PRE_OUTCOME",
+      "term_hits": [],
+      "mentions_multiplicity": false
+    },
+    "reports/audits/phase25e_comparator_direction_contract_v1_0.json": {
+      "exists": true,
+      "sha256": "7652e7bdf65722c0877e17f35e565f0ee809aaff8c99448928372a71f58e2beb",
+      "pre_registration_class": "PHASE25E_PRE_OUTCOME",
+      "term_hits": [],
+      "mentions_multiplicity": false
+    },
+    "reports/audits/phase25e_resource_cost_contract_v1_0.json": {
+      "exists": true,
+      "sha256": "c571cd3271142c8c2c3d9a4df98f2593895e025798ecbfffeaa4edd05f0441e1",
+      "pre_registration_class": "PHASE25E_PRE_OUTCOME",
+      "term_hits": [],
+      "mentions_multiplicity": false
+    },
+    "reports/audits/phase25e_execution_metrics_contract_v1_0.json": {
+      "exists": true,
+      "sha256": "24fa469ac4623665654adde88bab4e23b714b1a5199372c3b64603bacf47bbc6",
+      "pre_registration_class": "PHASE25E_PRE_OUTCOME",
+      "term_hits": [],
+      "mentions_multiplicity": false
+    },
+    "reports/audits/phase25e_tie_break_contract_v1_0.json": {
+      "exists": true,
+      "sha256": "9bb910f0439329ebf8988860fe4909cb34d541d43170fde63ccd1ee57e78bfdf",
+      "pre_registration_class": "PHASE25E_PRE_OUTCOME",
+      "term_hits": [],
+      "mentions_multiplicity": false
+    },
+    "reports/audits/phase25e_lambda_grid_contract_v1_0.json": {
+      "exists": true,
+      "sha256": "ffefe0db74725c2436d8e651b770949183640db5ad718bd32cf35fab55a613b2",
+      "pre_registration_class": "PHASE25E_PRE_OUTCOME",
+      "term_hits": [],
+      "mentions_multiplicity": false
+    },
+    "reports/audits/phase25e_final_router_threshold_calibration_contract_v1_0.json": {
+      "exists": true,
+      "sha256": "8b2cb0a220241db0aeb4795af9ae31af651e1a88dc7437b2e4afbcd5d249510f",
+      "pre_registration_class": "PHASE25E_PRE_OUTCOME",
+      "term_hits": [],
+      "mentions_multiplicity": false
+    },
+    "reports/audits/phase25e_no_execution_audit.json": {
+      "exists": true,
+      "sha256": "1b166966d7e7a6da59c5ac9f4a06c077d569416618a1a4ba3e809e783e975271",
+      "pre_registration_class": "PHASE25E_PRE_OUTCOME",
+      "term_hits": [],
+      "mentions_multiplicity": false
+    },
+    "reports/audits/phase25e_spec_governance.json": {
+      "exists": true,
+      "sha256": "ce4474164375332b67ba467bac83fea48679eaa28a78d5d3910d7a2ce97c8264",
+      "pre_registration_class": "PHASE25E_PRE_OUTCOME",
+      "term_hits": [],
+      "mentions_multiplicity": false
+    },
+    "reports/audits/phase25e_spec_final_check.json": {
+      "exists": true,
+      "sha256": "a35a19e4e2288a325691561658fb90db91ddee9e569c7c92a66a348780efb1e3",
+      "pre_registration_class": "PHASE25E_PRE_OUTCOME",
+      "term_hits": [],
+      "mentions_multiplicity": false
+    }
+  },
+  "phase24_pre_registration_artifacts_scanned": 12,
+  "phase25e_pre_outcome_artifacts_scanned": 12,
+  "phase24_artifacts_mentioning_multiplicity": [],
+  "phase25e_pre_outcome_artifacts_mentioning_multiplicity": [
+    "reports/audits/phase25e_evaluation_statistics_contract_v1_0.json"
+  ],
+  "frozen_multiplicity_clause": "primary = raw paired two-sided p; secondary = Holm-Bonferroni within the pre-declared C7-vs-comparator family (C1..C6, C10)",
+  "frozen_contract_frozen_before_outcome_access": true,
+  "frozen_contract_DeltaDice_outcomes_read": 0,
+  "frozen_contract_outcome_access": false,
+  "phase24_statistics_block": {
+    "method": "paired bootstrap",
+    "n_boot": 2000,
+    "seed": 42,
+    "domain_stratified_for": "macro-domain metrics",
+    "report": [
+      "point estimate",
+      "95% CI",
+      "paired p-value where appropriate"
+    ],
+    "test_used": false
+  },
+  "phase24_declared_report_items": [
+    "point estimate",
+    "95% CI",
+    "paired p-value where appropriate"
+  ],
+  "phase24_declares_multiplicity": false,
+  "frozen_primary_is_raw_paired_p": true,
+  "frozen_holm_role": "secondary",
+  "adjudication_primary_rule_observed": "holm_adjusted_p<0.05 (Holm used as the primary significance gate)",
+  "holm_used_as_primary_in_closure": true,
+  "raw_p_used_as_primary_in_closure": false,
+  "material_sensitivity_rows": [
+    {
+      "budget": "0.25",
+      "comparator": "C4",
+      "paired_p_raw": 0.02798600699650175,
+      "holm_adjusted_p": 0.0559720139930035,
+      "raw_significant": true,
+      "holm_significant": false
+    },
+    {
+      "budget": "0.25",
+      "comparator": "C5",
+      "paired_p_raw": 0.035982008995502246,
+      "holm_adjusted_p": 0.0559720139930035,
+      "raw_significant": true,
+      "holm_significant": false
+    }
+  ],
+  "material_sensitivity_count": 2,
+  "classification_code": "B",
+  "classification_label": "HOLM_NOT_PRE_REGISTERED__UNAUTHORIZED_PRIMARY_ADJUDICATION_EXTENSION",
+  "verdict": "Holm-Bonferroni was frozen ONLY as a SECONDARY multiplicity sensitivity. The frozen Phase25E statistics contract explicitly designates the raw paired two-sided p as the PRIMARY statistic, and the Phase24 pre-registration declares only \"paired p-value where appropriate\" with no multiplicity term at all. Using Holm as the primary significance gate in the post-outcome adjudication is therefore an UNAUTHORIZED extension of the frozen protocol. The primary adjudication MUST be restored to the frozen raw paired bootstrap p; Holm is retained as a conservative secondary sensitivity. This correction follows from protocol provenance, NOT from which result looks stronger.",
+  "reconciliation_terminal_if_repaired": "PHASE25E_CANONICAL_ADJUDICATION_REPAIRED__PRIMARY_PHASE24_STATISTICS_RESTORED__HOLM_RETAINED_AS_SENSITIVITY__PHASE25F_ELIGIBLE_NOT_STARTED",
+  "outcome_access_semantics": "No new outcome access. The audit reads the frozen paired-bootstrap p-values and the frozen statistics contract only.",
+  "router_holdout_reads": 0,
+  "VAL808_reads": 0,
+  "TEST_reads": 0,
+  "failures": [],
+  "all_pass": true
+}

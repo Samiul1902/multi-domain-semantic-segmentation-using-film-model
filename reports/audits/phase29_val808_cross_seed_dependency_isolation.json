@@ -1,0 +1,44 @@
+{
+ "artifact": "phase29_val808_cross_seed_dependency_isolation",
+ "phase": 29,
+ "stage": "CROSS_SEED_DEPENDENCY_ISOLATION",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_phase29_repro_v1_1",
+ "generated_utc": "2026-10-03T14:24:47+00:00",
+ "shared_components": {
+  "G": {
+   "path": "checkpoints/phase21_global_medfilm_fourdomain_seed42_clean_v3/best.pt",
+   "sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+   "role": "FIXED_REFERENCE_SHARED_BY_ALL_SEEDS"
+  },
+  "shared_cache": "data_cache/phase29_val808_shared_fixed_g_v1_0"
+ },
+ "seed_specific_components": {
+  "42": {
+   "rpsi_final": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109",
+   "bphi_final": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+   "somega_final": "eee9b97b9921e53fc07eac9281dce64ba518c6e1659916b97b0b3bec21ec6d2e"
+  },
+  "123": {
+   "rpsi_final": "57646649d9c6fd1eced3a11a4dcc43633198da58fefe05638da39cb6687910ca",
+   "bphi_final": "ac01945a32ba967194cb8fcfab593eeca76cc13fb5ea03d68618a7a53eb2e81a",
+   "somega_final": "c3f1588102cdf3b9ba9baff42c428c9d82be725ad98751c826a7d52479a212d0"
+  },
+  "3407": {
+   "rpsi_final": "c569f0aa725dddf5c2800dfe643e9646c8386c0f6b8669a799d5cf7cc44c8889",
+   "bphi_final": "f1c710aed2fa59771865186eaea555dc382386cb1dae5591408584d33915a982",
+   "somega_final": "7d7d2923ebc5b23c890aec93ed7834cada4a89e9b789704fd4f6a889ab8fbd4f"
+  }
+ },
+ "checks": {
+  "shared_G_identical_across_seeds": true,
+  "shared_cache_identical_across_seeds": true,
+  "seed_specific_artifacts_distinct": true,
+  "no_cross_seed_reuse_of_B_phi": true,
+  "no_cross_seed_reuse_of_R_psi": true,
+  "no_cross_seed_reuse_of_S_omega": true,
+  "no_cross_seed_threshold_sharing": true,
+  "no_common_val808_derived_threshold": true
+ },
+ "all_pass": true
+}

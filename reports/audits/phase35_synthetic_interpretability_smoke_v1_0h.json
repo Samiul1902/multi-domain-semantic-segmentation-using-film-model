@@ -1,0 +1,955 @@
+{
+ "artifact": "phase35_synthetic_interpretability_smoke_v1_0h",
+ "section": "§Q",
+ "phase": 35,
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase35_interpretability_v1_0h",
+ "classification": "PRE_SCIENTIFIC_SYNTHETIC_NUMERICAL_INTERFACE_AND_FULL_COUNTER_CONTRACT_VALIDATION",
+ "not": "NOT_PHASE35_SCIENTIFIC_INTERPRETABILITY_RESULT",
+ "mode": "smoke",
+ "smoke_gate_env": "PHASE35_SMOKE_EXECUTE=1",
+ "science_gate_env_not_set": "PHASE35_EXECUTE",
+ "authority_binding": {
+  "execution_source": {
+   "path": "scripts/analysis/phase35_interpretability_execution_v1_0h.py",
+   "sha256": "48193f09672b047757e0eba9fa674df12c5b00a41629ba9671e48b50fe81ee81"
+  },
+  "reconciled_freeze_v1_0h1": {
+   "path": "reports/audits/phase35_preexecution_source_freeze_v1_0h1.json",
+   "sha256": "79a7ce549e7704ef3e8903265facc3d928c76c1c983fe722c88d50f6b6c119d2"
+  },
+  "freeze_consistency": {
+   "path": "reports/audits/phase35_v1_0h1_freeze_consistency_check.json",
+   "sha256": "310064b9e130d1f76e8c2e19b6e69f5381a82486b844598120ab15576b8db8dc"
+  },
+  "eligibility_v1_0h1": {
+   "path": "reports/audits/phase35_synthetic_smoke_eligibility_v1_0h1.json",
+   "sha256": "748c060b58954dcf24bf9dde17d6d3bbe3d2d5ec10ff64ccf09d262ff5cf2bf5"
+  },
+  "freeze_reconciliation_final_check": {
+   "path": "reports/audits/phase35_v1_0h1_freeze_reconciliation_final_check.json",
+   "sha256": "d1fef9b8c9daf041f02cc94654ca3fb63e77f9cacc6c9d2fa183bf15bc12881e"
+  },
+  "superseded_freeze_v1_0h": {
+   "path": "reports/audits/phase35_preexecution_source_freeze_v1_0h.json",
+   "sha256": "a380068026a2107ca19bb1edb39907f47cf8cc5b62c536514a2c691ef7037f8a",
+   "used_for_expected_table": false
+  }
+ },
+ "runtime_payload": {
+  "revision": "ra_medfilm_barr_phase35_interpretability_v1_0h",
+  "classification": "PRE_SCIENTIFIC_SYNTHETIC_INTERFACE_VALIDATION",
+  "mode": "smoke",
+  "smoke_gate_env": "PHASE35_SMOKE_EXECUTE",
+  "science_gate_env": "PHASE35_EXECUTE",
+  "counter_baseline": {
+   "legacy": {
+    "legacy_store_id": 1940808651584,
+    "legacy_store_is_v0c_store": true,
+    "legacy_counter_count": 31,
+    "nonzero_legacy_counters": {},
+    "all_legacy_counters_zero": true
+   },
+   "extension": {
+    "extension_store_id": 1940808655040,
+    "extension_counter_count": 4,
+    "extension_counter_keys": [
+     "primary_synthetic_target_masks",
+     "actual_logits_empty_mask_helper_checks",
+     "additional_G_forwards_for_empty_mask",
+     "additional_autograd_calls_for_empty_mask"
+    ],
+    "nonzero_extension_counters": {},
+    "all_extension_counters_zero": true
+   }
+  },
+  "authority_gates": {
+   "phase34_final_closure": {
+    "path": "reports/audits/phase34_final_closure.json",
+    "expected_sha256": "00f975e71a1c4cdef606ab4324e0de226d66be2daa6cebe9f063cf0f2134d6da",
+    "observed_sha256": "00f975e71a1c4cdef606ab4324e0de226d66be2daa6cebe9f063cf0f2134d6da",
+    "match": true
+   },
+   "phase34_final_closure_check": {
+    "path": "reports/audits/phase34_final_closure_check.json",
+    "expected_sha256": "1e89f313be39a2273a54337d15f4a273caf72f10ffdba60f6a876578a4691fd3",
+    "observed_sha256": "1e89f313be39a2273a54337d15f4a273caf72f10ffdba60f6a876578a4691fd3",
+    "match": true
+   },
+   "phase34_phase35_handoff": {
+    "path": "reports/audits/phase34_phase35_handoff.json",
+    "expected_sha256": "68e10f3e7964fce079785bcecfd79c34fc2ac6e6cb3ee1047c167d0be87e7710",
+    "observed_sha256": "68e10f3e7964fce079785bcecfd79c34fc2ac6e6cb3ee1047c167d0be87e7710",
+    "match": true
+   },
+   "phase35_v1_0_specification_terminal": {
+    "path": "reports/audits/phase35_specification_terminal_v1_0.json",
+    "expected_sha256": "cec3b2aadbc90a7a8ebd06e8149cd7a53122d42e3f6077c30634e7de96ac312b",
+    "observed_sha256": "cec3b2aadbc90a7a8ebd06e8149cd7a53122d42e3f6077c30634e7de96ac312b",
+    "match": true
+   },
+   "canonical_gallery": {
+    "path": "reports/tables/phase21_gallery_selection_64.csv",
+    "expected_sha256": "2bc7c16286999ced374840cc987dcd352c3e546668322a9ccc4d1e8e8a097fd9",
+    "observed_sha256": "2bc7c16286999ced374840cc987dcd352c3e546668322a9ccc4d1e8e8a097fd9",
+    "match": true
+   }
+  },
+  "environment": {
+   "os": "Windows-10-10.0.26200-SP0",
+   "python": "3.11.9",
+   "torch": "2.6.0+cu124",
+   "cuda_runtime": "12.4",
+   "cuda_driver_version": "596.36",
+   "cudnn": 90100,
+   "cuda_available": true,
+   "gpu": "NVIDIA GeForce RTX 3060 Ti",
+   "cc": "8.6",
+   "vram_bytes": 8589279232,
+   "compatible": true
+  },
+  "checkpoint_identity": {
+   "G": {
+    "path": "checkpoints/phase21_global_medfilm_fourdomain_seed42_clean_v3/best.pt",
+    "expected_sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+    "observed_sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+    "match": true,
+    "deserialized_yet": false
+   },
+   "B_phi": {
+    "path": "checkpoints/phase25d_barr_benefit_router_v1_2_1_seed42/final/final.pt",
+    "expected_sha256": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+    "observed_sha256": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+    "match": true,
+    "deserialized_yet": false
+   },
+   "R_psi": {
+    "touched": false,
+    "constructions": 0,
+    "checkpoint_loads": 0,
+    "forwards": 0
+   },
+   "S_omega": {
+    "touched": false,
+    "constructions": 0,
+    "checkpoint_loads": 0,
+    "forwards": 0
+   }
+  },
+  "G_identity": {
+   "parameter_count": 3523001,
+   "strict_load_missing": [],
+   "strict_load_unexpected": []
+  },
+  "B_phi_identity": {
+   "parameter_count": 36801,
+   "task_embedding_shape": [
+    4,
+    16
+   ],
+   "strict_load_missing": [],
+   "strict_load_unexpected": []
+  },
+  "film_smoke": {
+   "per_task_site": {
+    "ISIC|bridge": {
+     "gamma_len": 256,
+     "beta_len": 256,
+     "expected_channels": 256,
+     "finite": true,
+     "channel_count_exact": true
+    },
+    "ISIC|decoder4": {
+     "gamma_len": 192,
+     "beta_len": 192,
+     "expected_channels": 192,
+     "finite": true,
+     "channel_count_exact": true
+    },
+    "ISIC|decoder3": {
+     "gamma_len": 96,
+     "beta_len": 96,
+     "expected_channels": 96,
+     "finite": true,
+     "channel_count_exact": true
+    },
+    "ISIC|decoder2": {
+     "gamma_len": 48,
+     "beta_len": 48,
+     "expected_channels": 48,
+     "finite": true,
+     "channel_count_exact": true
+    },
+    "ISIC|decoder1": {
+     "gamma_len": 24,
+     "beta_len": 24,
+     "expected_channels": 24,
+     "finite": true,
+     "channel_count_exact": true
+    },
+    "BUSI|bridge": {
+     "gamma_len": 256,
+     "beta_len": 256,
+     "expected_channels": 256,
+     "finite": true,
+     "channel_count_exact": true
+    },
+    "BUSI|decoder4": {
+     "gamma_len": 192,
+     "beta_len": 192,
+     "expected_channels": 192,
+     "finite": true,
+     "channel_count_exact": true
+    },
+    "BUSI|decoder3": {
+     "gamma_len": 96,
+     "beta_len": 96,
+     "expected_channels": 96,
+     "finite": true,
+     "channel_count_exact": true
+    },
+    "BUSI|decoder2": {
+     "gamma_len": 48,
+     "beta_len": 48,
+     "expected_channels": 48,
+     "finite": true,
+     "channel_count_exact": true
+    },
+    "BUSI|decoder1": {
+     "gamma_len": 24,
+     "beta_len": 24,
+     "expected_channels": 24,
+     "finite": true,
+     "channel_count_exact": true
+    },
+    "KVASIR|bridge": {
+     "gamma_len": 256,
+     "beta_len": 256,
+     "expected_channels": 256,
+     "finite": true,
+     "channel_count_exact": true
+    },
+    "KVASIR|decoder4": {
+     "gamma_len": 192,
+     "beta_len": 192,
+     "expected_channels": 192,
+     "finite": true,
+     "channel_count_exact": true
+    },
+    "KVASIR|decoder3": {
+     "gamma_len": 96,
+     "beta_len": 96,
+     "expected_channels": 96,
+     "finite": true,
+     "channel_count_exact": true
+    },
+    "KVASIR|decoder2": {
+     "gamma_len": 48,
+     "beta_len": 48,
+     "expected_channels": 48,
+     "finite": true,
+     "channel_count_exact": true
+    },
+    "KVASIR|decoder1": {
+     "gamma_len": 24,
+     "beta_len": 24,
+     "expected_channels": 24,
+     "finite": true,
+     "channel_count_exact": true
+    },
+    "KUB|bridge": {
+     "gamma_len": 256,
+     "beta_len": 256,
+     "expected_channels": 256,
+     "finite": true,
+     "channel_count_exact": true
+    },
+    "KUB|decoder4": {
+     "gamma_len": 192,
+     "beta_len": 192,
+     "expected_channels": 192,
+     "finite": true,
+     "channel_count_exact": true
+    },
+    "KUB|decoder3": {
+     "gamma_len": 96,
+     "beta_len": 96,
+     "expected_channels": 96,
+     "finite": true,
+     "channel_count_exact": true
+    },
+    "KUB|decoder2": {
+     "gamma_len": 48,
+     "beta_len": 48,
+     "expected_channels": 48,
+     "finite": true,
+     "channel_count_exact": true
+    },
+    "KUB|decoder1": {
+     "gamma_len": 24,
+     "beta_len": 24,
+     "expected_channels": 24,
+     "finite": true,
+     "channel_count_exact": true
+    }
+   },
+   "all_pass": true,
+   "scientific_film_tables_emitted": false
+  },
+  "embedding_smoke": {
+   "G_task_embedding_shape": [
+    4,
+    32
+   ],
+   "G_expected_shape": [
+    4,
+    32
+   ],
+   "G_finite": true,
+   "B_phi_task_embedding_shape": [
+    4,
+    16
+   ],
+   "B_phi_expected_shape": [
+    4,
+    16
+   ],
+   "B_phi_finite": true,
+   "scientific_embedding_tables_emitted": false
+  },
+  "gradcam_smoke": {
+   "activation_shapes": {
+    "bridge": [
+     1,
+     256,
+     32,
+     32
+    ],
+    "decoder1": [
+     1,
+     24,
+     512,
+     512
+    ]
+   },
+   "cams": {
+    "bridge": {
+     "shape": [
+      512,
+      512
+     ],
+     "dtype": "torch.float32",
+     "finite": true,
+     "min": 0.0,
+     "max": 0.0,
+     "nonzero": false
+    },
+    "decoder1": {
+     "shape": [
+      512,
+      512
+     ],
+     "dtype": "torch.float32",
+     "finite": true,
+     "min": 0.0,
+     "max": 0.0,
+     "nonzero": false
+    }
+   },
+   "scalar_target_evaluations": 1,
+   "autograd_calls": 1,
+   "target_scalar": -13.834142684936523,
+   "target_scalar_finite": true,
+   "empty_prediction_fallback_used": false,
+   "target_scalar_impl": "gradcam_target_scalar_rank_safe",
+   "normalization_impl": "cam_normalize_guarded",
+   "gradient_impl": "gradcam_gradient_enabled_numerically_guarded_v1_0f",
+   "finite_guards_applied": [
+    "target_scalar_finite",
+    "gradient_finite",
+    "alpha_finite",
+    "pre_relu_weighted_map_finite",
+    "post_relu_raw_cam_finite",
+    "upsampled_prenorm_cam_finite",
+    "prenorm_cam_range_finite",
+    "normalized_cam_finite"
+   ],
+   "gradient_diagnostics": {
+    "bridge": {
+     "shape": [
+      1,
+      256,
+      32,
+      32
+     ],
+     "dtype": "torch.float32",
+     "finite": true,
+     "min": -0.01265224814414978,
+     "max": 0.016281485557556152,
+     "abs_max": 0.016281485557556152
+    },
+    "decoder1": {
+     "shape": [
+      1,
+      24,
+      512,
+      512
+     ],
+     "dtype": "torch.float32",
+     "finite": true,
+     "min": -7.033348083496094e-06,
+     "max": 5.066394805908203e-06,
+     "abs_max": 7.033348083496094e-06
+    }
+   },
+   "gradient_shapes_match_activations": {
+    "bridge": true,
+    "decoder1": true
+   },
+   "all_gradients_finite": true,
+   "cam_diagnostics": {
+    "bridge": {
+     "gradient": {
+      "shape": [
+       1,
+       256,
+       32,
+       32
+      ],
+      "dtype": "torch.float32",
+      "finite": true,
+      "min": -0.01265224814414978,
+      "max": 0.016281485557556152,
+      "abs_max": 0.016281485557556152
+     },
+     "alpha_finite": true,
+     "pre_relu_weighted_map_finite": true,
+     "post_relu_raw_cam_finite": true,
+     "pre_relu_weighted_map_abs_max": 0.013898851349949837,
+     "post_relu_raw_cam_abs_max": 0.0,
+     "upsampled_prenorm_cam": {
+      "shape": [
+       1,
+       1,
+       512,
+       512
+      ],
+      "dtype": "torch.float32",
+      "finite": true,
+      "min": 0.0,
+      "max": 0.0,
+      "abs_max": 0.0
+     },
+     "upsampled_prenorm_cam_finite": true,
+     "upsampled_prenorm_cam_range": 0.0,
+     "prenorm_cam_all_zero": true,
+     "normalized_cam_min": 0.0,
+     "normalized_cam_max": 0.0,
+     "normalized_cam_finite": true
+    },
+    "decoder1": {
+     "gradient": {
+      "shape": [
+       1,
+       24,
+       512,
+       512
+      ],
+      "dtype": "torch.float32",
+      "finite": true,
+      "min": -7.033348083496094e-06,
+      "max": 5.066394805908203e-06,
+      "abs_max": 7.033348083496094e-06
+     },
+     "alpha_finite": true,
+     "pre_relu_weighted_map_finite": true,
+     "post_relu_raw_cam_finite": true,
+     "pre_relu_weighted_map_abs_max": 7.756943523418158e-05,
+     "post_relu_raw_cam_abs_max": 0.0,
+     "upsampled_prenorm_cam": {
+      "shape": [
+       1,
+       1,
+       512,
+       512
+      ],
+      "dtype": "torch.float32",
+      "finite": true,
+      "min": 0.0,
+      "max": 0.0,
+      "abs_max": 0.0
+     },
+     "upsampled_prenorm_cam_finite": true,
+     "upsampled_prenorm_cam_range": 0.0,
+     "prenorm_cam_all_zero": true,
+     "normalized_cam_min": 0.0,
+     "normalized_cam_max": 0.0,
+     "normalized_cam_finite": true
+    }
+   },
+   "all_prenorm_cams_finite": true,
+   "all_prenorm_cam_ranges_finite": true,
+   "all_normalized_cams_finite": true,
+   "all_cams_all_zero": true,
+   "prenorm_all_zero": true,
+   "empty_mask_helper_check": {
+    "same_actual_G_logits_used": true,
+    "surrogate_zero_logits_used": false,
+    "empty_mask_rank": 2,
+    "empty_mask_shape": [
+     512,
+     512
+    ],
+    "empty_mask_dtype": "bool",
+    "empty_mask_true_pixels": 0,
+    "empty_mask_any": false,
+    "fallback_selected": true,
+    "helper_return": -13.863729476928711,
+    "expected_full_plane_mean": -13.863729476928711,
+    "difference": 0.0,
+    "atol": 1e-07,
+    "rtol": 0.0,
+    "comparison_pass": true,
+    "finite": true,
+    "fusion_mask_source": "actual same-forward synthetic G logits tensor (v1.0h)",
+    "counter_category": "actual_logits_empty_mask_helper_checks",
+    "counts_as_primary_target_mask": false,
+    "additional_G_forwards": 0,
+    "additional_autograd_calls": 0,
+    "extra_forward_performed": false,
+    "extra_autograd_performed": false
+   },
+   "target_mask_name": "SMOKE_SYNTHETIC_TARGET_MASK_RANK2",
+   "target_mask_geometry": "boolean tensor [512,512]; centered square rows 192:320, columns 192:320 = True, all other positions False (non-empty). Rank 2 is the CANONICAL scientific mask shape, so the smoke validates the same rank-4 logits + rank-2 mask contract that scientific Grad-CAM uses, through the same repaired helper `gradcam_target_scalar_rank_safe`. No rank-4 workaround.",
+   "target_mask_shape": [
+    512,
+    512
+   ],
+   "target_mask_rank": 2,
+   "scientific_target_selection_used": false,
+   "rank4_workaround_used": false,
+   "mask_rank_contract": {
+    "canonical_logits_rank": 4,
+    "canonical_logits_shape_batch1": [
+     1,
+     1,
+     512,
+     512
+    ],
+    "smoke_mask_shape": [
+     512,
+     512
+    ],
+    "smoke_mask_rank": 2,
+    "scientific_mask_producer": "build_target_mask(persisted p_global >= 0.50)",
+    "scientific_mask_shape": [
+     512,
+     512
+    ],
+    "scientific_mask_rank_compatible_with_canonical_helper": true,
+    "repaired_defect": "PHASE35_V1_0B_GRADCAM_TARGET_MASK_RANK_INCOMPATIBILITY",
+    "repair_revision": "ra_medfilm_barr_phase35_interpretability_v1_0d",
+    "observability_amendment_revision": "ra_medfilm_barr_phase35_interpretability_v1_0e",
+    "actual_logits_empty_mask_revision": "ra_medfilm_barr_phase35_interpretability_v1_0h"
+   }
+  },
+  "router_smoke": {
+   "raw_router_input_shape": [
+    4,
+    202
+   ],
+   "raw_router_input_dtype": "float32",
+   "raw_router_input_finite": true,
+   "normalized_router_input_shape": [
+    4,
+    202
+   ],
+   "normalized_router_input_dtype": "float32",
+   "normalized_router_input_finite": true,
+   "raw_delta_hat_shape": [
+    4
+   ],
+   "raw_delta_hat_finite": true,
+   "sigmoid_applied": false,
+   "sigmoid_count": 0,
+   "router_gradient_shape": [
+    4,
+    202
+   ],
+   "router_gradient_finite": true,
+   "gradient_x_input_shape": [
+    4,
+    202
+   ],
+   "gradient_x_input_finite": true,
+   "task_id_dtype": "int64",
+   "task_id_requires_grad": false,
+   "task_id_numeric_attribution": false,
+   "deep_group_boundaries": {
+    "bridge_global": 32,
+    "bridge_roi": 32,
+    "decoder2_global": 32,
+    "decoder2_roi": 32,
+    "decoder1_global": 32,
+    "decoder1_roi": 32
+   },
+   "scalar_positions": [
+    "entropy_proxy_mean",
+    "frac_prob_within_0p05_of_boundary",
+    "frac_prob_within_0p02_of_boundary",
+    "mean_boundary_margin",
+    "pred_foreground_fraction",
+    "pred_foreground_pixels",
+    "pred_roi_exists",
+    "pred_empty",
+    "predicted_roi_area_fraction",
+    "predicted_roi_side"
+   ]
+  },
+  "zero_denominator_policy": {
+   "denominator": 0.0,
+   "normalized_group_shares": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "ZERO_ROUTER_GRAD_ATTRIBUTION": true,
+   "epsilon_added": false,
+   "renormalization": false,
+   "b_phi_forwards_used": 0
+  },
+  "parameter_grad_state_audit": {
+   "G": {
+    "named_parameter_tensors": 86,
+    "non_null_grad_tensors": 0,
+    "all_grads_null": true
+   },
+   "B_phi": {
+    "named_parameter_tensors": 11,
+    "non_null_grad_tensors": 0,
+    "all_grads_null": true
+   },
+   "total_non_null_grad_tensors": 0,
+   "NO_PARAMETER_GRAD_POPULATED": true,
+   "mechanism": "torch.autograd.grad does not populate .grad; attribution targets are activations / numeric inputs, never parameters"
+  },
+  "parameter_immutability": {
+   "G_identity_before": "daecea4f8f944373a99336937909ec49a5747fac0a87d49a8819a3410e16458e",
+   "G_identity_after": "daecea4f8f944373a99336937909ec49a5747fac0a87d49a8819a3410e16458e",
+   "B_phi_identity_before": "550177e7c1777f123cfe411f9c83e6bd939cc8217b0f1371fc80d70674afe169",
+   "B_phi_identity_after": "550177e7c1777f123cfe411f9c83e6bd939cc8217b0f1371fc80d70674afe169",
+   "G_state_tensors_unchanged": true,
+   "B_phi_state_tensors_unchanged": true,
+   "parameter_mutations": 0,
+   "MODEL_PARAMETERS_UNCHANGED": true
+  },
+  "not": "PHASE35_SCIENTIFIC_INTERPRETABILITY_RESULT",
+  "counters": {
+   "G_model_constructions": 1,
+   "B_phi_model_constructions": 1,
+   "checkpoint_deserializations": 2,
+   "strict_loads": 2,
+   "G_synthetic_forwards": 1,
+   "B_phi_synthetic_forwards": 1,
+   "total_model_forwards": 2,
+   "G_gradcam_autograd_calls": 1,
+   "router_numeric_input_autograd_calls": 1,
+   "total_autograd_calls": 2,
+   "synthetic_CAM_maps": 2,
+   "synthetic_router_attribution_rows": 4,
+   "synthetic_smoke_target_masks": 1,
+   "R_psi_model_constructions": 0,
+   "R_psi_checkpoint_loads": 0,
+   "R_psi_forwards": 0,
+   "S_omega_model_constructions": 0,
+   "S_omega_checkpoint_loads": 0,
+   "S_omega_forwards": 0,
+   "optimizer_constructions": 0,
+   "optimizer_step_calls": 0,
+   "training_backward_calls": 0,
+   "parameter_mutations": 0,
+   "raw_VAL_image_reads": 0,
+   "real_persisted_VAL_probability_reads": 0,
+   "VAL_GT_reads": 0,
+   "router_feature_cache_rows_read": 0,
+   "ROUTER_HOLDOUT_reads": 0,
+   "TEST_reads": 0,
+   "TRAIN_raw_reads": 0,
+   "scientific_outputs": 0,
+   "primary_synthetic_target_masks": 1,
+   "actual_logits_empty_mask_helper_checks": 1,
+   "additional_G_forwards_for_empty_mask": 0,
+   "additional_autograd_calls_for_empty_mask": 0
+  },
+  "legacy_counters": {
+   "G_model_constructions": 1,
+   "B_phi_model_constructions": 1,
+   "checkpoint_deserializations": 2,
+   "strict_loads": 2,
+   "G_synthetic_forwards": 1,
+   "B_phi_synthetic_forwards": 1,
+   "total_model_forwards": 2,
+   "G_gradcam_autograd_calls": 1,
+   "router_numeric_input_autograd_calls": 1,
+   "total_autograd_calls": 2,
+   "synthetic_CAM_maps": 2,
+   "synthetic_router_attribution_rows": 4,
+   "synthetic_smoke_target_masks": 1,
+   "R_psi_model_constructions": 0,
+   "R_psi_checkpoint_loads": 0,
+   "R_psi_forwards": 0,
+   "S_omega_model_constructions": 0,
+   "S_omega_checkpoint_loads": 0,
+   "S_omega_forwards": 0,
+   "optimizer_constructions": 0,
+   "optimizer_step_calls": 0,
+   "training_backward_calls": 0,
+   "parameter_mutations": 0,
+   "raw_VAL_image_reads": 0,
+   "real_persisted_VAL_probability_reads": 0,
+   "VAL_GT_reads": 0,
+   "router_feature_cache_rows_read": 0,
+   "ROUTER_HOLDOUT_reads": 0,
+   "TEST_reads": 0,
+   "TRAIN_raw_reads": 0,
+   "scientific_outputs": 0
+  },
+  "extension_counters": {
+   "primary_synthetic_target_masks": 1,
+   "actual_logits_empty_mask_helper_checks": 1,
+   "additional_G_forwards_for_empty_mask": 0,
+   "additional_autograd_calls_for_empty_mask": 0
+  },
+  "counter_ownership": {
+   "legacy_counter_owner_module": "phase35_interpretability_execution_v1_0c",
+   "legacy_store_is_v0c_store": true,
+   "router_writer_store_is_legacy_store": true,
+   "router_writer_store_identity_verified": true,
+   "router_reader_store_identity_verified": true,
+   "router_counter_writer_reader_same_object_or_explicit_delta_bridge": true,
+   "extension_owned_keys": [
+    "primary_synthetic_target_masks",
+    "actual_logits_empty_mask_helper_checks",
+    "additional_G_forwards_for_empty_mask",
+    "additional_autograd_calls_for_empty_mask"
+   ],
+   "legacy_key_count": 31,
+   "extension_key_count": 4,
+   "merged_key_count": 35,
+   "ownership_disjoint": true
+  },
+  "expected_counters": {
+   "G_model_constructions": 1,
+   "B_phi_model_constructions": 1,
+   "checkpoint_deserializations": 2,
+   "strict_loads": 2,
+   "G_synthetic_forwards": 1,
+   "B_phi_synthetic_forwards": 1,
+   "total_model_forwards": 2,
+   "G_gradcam_autograd_calls": 1,
+   "router_numeric_input_autograd_calls": 1,
+   "total_autograd_calls": 2,
+   "synthetic_CAM_maps": 2,
+   "synthetic_router_attribution_rows": 4,
+   "synthetic_smoke_target_masks": 1,
+   "R_psi_model_constructions": 0,
+   "R_psi_checkpoint_loads": 0,
+   "R_psi_forwards": 0,
+   "S_omega_model_constructions": 0,
+   "S_omega_checkpoint_loads": 0,
+   "S_omega_forwards": 0,
+   "optimizer_constructions": 0,
+   "optimizer_step_calls": 0,
+   "training_backward_calls": 0,
+   "parameter_mutations": 0,
+   "raw_VAL_image_reads": 0,
+   "real_persisted_VAL_probability_reads": 0,
+   "VAL_GT_reads": 0,
+   "router_feature_cache_rows_read": 0,
+   "ROUTER_HOLDOUT_reads": 0,
+   "TEST_reads": 0,
+   "TRAIN_raw_reads": 0,
+   "scientific_outputs": 0,
+   "primary_synthetic_target_masks": 1,
+   "actual_logits_empty_mask_helper_checks": 1,
+   "additional_G_forwards_for_empty_mask": 0,
+   "additional_autograd_calls_for_empty_mask": 0
+  },
+  "expected_counter_count": 35,
+  "counter_contract_exact": {
+   "observed_key_count": 35,
+   "expected_key_count": 35,
+   "required_key_count": 35,
+   "extra_observed_keys": [],
+   "missing_expected_keys": [],
+   "counter_keyset_exact": true,
+   "counter_count_exact": true,
+   "counter_values_exact": true,
+   "counter_value_mismatches": {},
+   "counts_match_expected": true
+  },
+  "counter_keyset_exact": true,
+  "counter_count_exact": true,
+  "counter_values_exact": true,
+  "counts_match_expected": true,
+  "counter_contract": {
+   "primary_target_mask_counter": "primary_synthetic_target_masks",
+   "primary_target_mask_alias_counter": "synthetic_smoke_target_masks",
+   "empty_mask_observability_counter": "actual_logits_empty_mask_helper_checks",
+   "primary_target_mask_count": 1,
+   "primary_target_mask_alias_count": 1,
+   "empty_mask_helper_check_count": 1,
+   "alias_equals_primary": true,
+   "empty_mask_not_counted_as_primary": true,
+   "additional_G_forwards_for_empty_mask": 0,
+   "additional_autograd_calls_for_empty_mask": 0
+  },
+  "counter_contract_pass": true,
+  "scientific_interface_checks_pass": true,
+  "smoke_success": true,
+  "artifact_generation_pass": true,
+  "terminal_state": "SUCCESS",
+  "success": true,
+  "all_pass": true,
+  "single_blocking_condition": null
+ },
+ "canonical_35_key_contract": {
+  "G_model_constructions": 1,
+  "B_phi_model_constructions": 1,
+  "checkpoint_deserializations": 2,
+  "strict_loads": 2,
+  "G_synthetic_forwards": 1,
+  "B_phi_synthetic_forwards": 1,
+  "total_model_forwards": 2,
+  "G_gradcam_autograd_calls": 1,
+  "router_numeric_input_autograd_calls": 1,
+  "total_autograd_calls": 2,
+  "synthetic_CAM_maps": 2,
+  "synthetic_router_attribution_rows": 4,
+  "synthetic_smoke_target_masks": 1,
+  "R_psi_model_constructions": 0,
+  "R_psi_checkpoint_loads": 0,
+  "R_psi_forwards": 0,
+  "S_omega_model_constructions": 0,
+  "S_omega_checkpoint_loads": 0,
+  "S_omega_forwards": 0,
+  "optimizer_constructions": 0,
+  "optimizer_step_calls": 0,
+  "training_backward_calls": 0,
+  "parameter_mutations": 0,
+  "raw_VAL_image_reads": 0,
+  "real_persisted_VAL_probability_reads": 0,
+  "VAL_GT_reads": 0,
+  "router_feature_cache_rows_read": 0,
+  "ROUTER_HOLDOUT_reads": 0,
+  "TEST_reads": 0,
+  "TRAIN_raw_reads": 0,
+  "scientific_outputs": 0,
+  "primary_synthetic_target_masks": 1,
+  "actual_logits_empty_mask_helper_checks": 1,
+  "additional_G_forwards_for_empty_mask": 0,
+  "additional_autograd_calls_for_empty_mask": 0
+ },
+ "observed_counters": {
+  "G_model_constructions": 1,
+  "B_phi_model_constructions": 1,
+  "checkpoint_deserializations": 2,
+  "strict_loads": 2,
+  "G_synthetic_forwards": 1,
+  "B_phi_synthetic_forwards": 1,
+  "total_model_forwards": 2,
+  "G_gradcam_autograd_calls": 1,
+  "router_numeric_input_autograd_calls": 1,
+  "total_autograd_calls": 2,
+  "synthetic_CAM_maps": 2,
+  "synthetic_router_attribution_rows": 4,
+  "synthetic_smoke_target_masks": 1,
+  "R_psi_model_constructions": 0,
+  "R_psi_checkpoint_loads": 0,
+  "R_psi_forwards": 0,
+  "S_omega_model_constructions": 0,
+  "S_omega_checkpoint_loads": 0,
+  "S_omega_forwards": 0,
+  "optimizer_constructions": 0,
+  "optimizer_step_calls": 0,
+  "training_backward_calls": 0,
+  "parameter_mutations": 0,
+  "raw_VAL_image_reads": 0,
+  "real_persisted_VAL_probability_reads": 0,
+  "VAL_GT_reads": 0,
+  "router_feature_cache_rows_read": 0,
+  "ROUTER_HOLDOUT_reads": 0,
+  "TEST_reads": 0,
+  "TRAIN_raw_reads": 0,
+  "scientific_outputs": 0,
+  "primary_synthetic_target_masks": 1,
+  "actual_logits_empty_mask_helper_checks": 1,
+  "additional_G_forwards_for_empty_mask": 0,
+  "additional_autograd_calls_for_empty_mask": 0
+ },
+ "expected_counters": {
+  "G_model_constructions": 1,
+  "B_phi_model_constructions": 1,
+  "checkpoint_deserializations": 2,
+  "strict_loads": 2,
+  "G_synthetic_forwards": 1,
+  "B_phi_synthetic_forwards": 1,
+  "total_model_forwards": 2,
+  "G_gradcam_autograd_calls": 1,
+  "router_numeric_input_autograd_calls": 1,
+  "total_autograd_calls": 2,
+  "synthetic_CAM_maps": 2,
+  "synthetic_router_attribution_rows": 4,
+  "synthetic_smoke_target_masks": 1,
+  "R_psi_model_constructions": 0,
+  "R_psi_checkpoint_loads": 0,
+  "R_psi_forwards": 0,
+  "S_omega_model_constructions": 0,
+  "S_omega_checkpoint_loads": 0,
+  "S_omega_forwards": 0,
+  "optimizer_constructions": 0,
+  "optimizer_step_calls": 0,
+  "training_backward_calls": 0,
+  "parameter_mutations": 0,
+  "raw_VAL_image_reads": 0,
+  "real_persisted_VAL_probability_reads": 0,
+  "VAL_GT_reads": 0,
+  "router_feature_cache_rows_read": 0,
+  "ROUTER_HOLDOUT_reads": 0,
+  "TEST_reads": 0,
+  "TRAIN_raw_reads": 0,
+  "scientific_outputs": 0,
+  "primary_synthetic_target_masks": 1,
+  "actual_logits_empty_mask_helper_checks": 1,
+  "additional_G_forwards_for_empty_mask": 0,
+  "additional_autograd_calls_for_empty_mask": 0
+ },
+ "counter_contract_exact": {
+  "observed_key_count": 35,
+  "expected_key_count": 35,
+  "required_key_count": 35,
+  "extra_observed_keys": [],
+  "missing_expected_keys": [],
+  "counter_keyset_exact": true,
+  "counter_count_exact": true,
+  "counter_values_exact": true,
+  "counter_value_mismatches": {},
+  "counts_match_expected": true
+ },
+ "gate_results": {
+  "counters_key_count_35": true,
+  "expected_key_count_35": true,
+  "counters_equal_canonical": true,
+  "expected_equal_canonical": true,
+  "counter_keyset_exact": true,
+  "counter_count_exact": true,
+  "counter_values_exact": true,
+  "counts_match_expected": true
+ },
+ "all_gates_pass": true,
+ "generated_utc": "2026-10-05T13:16:09Z",
+ "all_pass": true
+}

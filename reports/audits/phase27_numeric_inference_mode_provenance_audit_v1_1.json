@@ -1,0 +1,115 @@
+{
+ "artifact": "phase27_numeric_inference_mode_provenance_audit_v1_1",
+ "phase": "27",
+ "classification": "GOVERNANCE_AND_REVIEWER_EVIDENCE_REPAIR_ONLY",
+ "method": "RA-MedFiLM-BARR",
+ "governance_only": true,
+ "no_execution": true,
+ "stage": "NUMERIC_INFERENCE_MODE_PROVENANCE",
+ "evidence_basis": "AUTHORITATIVE_PREDECESSOR_IMPLEMENTATION_ONLY",
+ "phase27_wording_used_as_evidence": false,
+ "authoritative_sources": {
+  "phase25a_global_cache": {
+   "path": "scripts/analysis/build_phase25a_global_cache.py",
+   "sha256": "58b5586b1ef0a447f81ada61a45cbf9f467dae1a9941ce239e8b8981d3fe870e"
+  },
+  "phase25a_roi030_cache": {
+   "path": "scripts/analysis/build_phase25a_roi030_cache.py",
+   "sha256": "dbd27c0a95957d61f652865ca0dad570a8ecdd060970733190cb8e905603c37a"
+  },
+  "phase25b_determinism": {
+   "path": "scripts/analysis/run_phase25b_determinism.py",
+   "sha256": "4997cd6fff2c8a3f9b46c478350d1699b7de2445225acc004b0e380cd77c8557"
+  },
+  "phase25b_cache_tables": {
+   "path": "scripts/analysis/build_phase25b_cache_and_tables.py",
+   "sha256": "2d0f1360cb9cbb610768809a2194b276ed6edd57f55b0957e84eaa5b120ee7cf"
+  },
+  "phase25b_binding_audits": {
+   "path": "scripts/analysis/build_phase25b_binding_audits.py",
+   "sha256": "075e4b6d828e7342726f05392c032b2d5c640b1b8cb93a1da7925a833566f480"
+  },
+  "device_contract": {
+   "path": "src/utils/device.py",
+   "sha256": "9adabfbd145a5952275aa25b0ec99aab8a5114bb41aa443ecde52ce19a8448b6"
+  },
+  "transforms": {
+   "path": "src/data/transforms.py",
+   "sha256": "09fcff4887ff8cda4daa215efad1d504d4d61f70982262022b6c2a30c8cf8bd1"
+  },
+  "phase25b_checkpoint_binding": {
+   "path": "reports/audits/phase25b_global_checkpoint_binding.json",
+   "sha256": "809dff61c25ad1cf183e9bf33d4bd1c3e23f9c7c91c703a0ad686fb8b94c2225"
+  },
+  "phase26_wrapper": {
+   "path": "src/models/barr/ra_medfilm_barr.py",
+   "sha256": "342f2163690c2fa8d5a601ab1d18178b982d701b916935c33e0793b0801c3724"
+  },
+  "phase25b_determinism_audit": {
+   "path": "reports/audits/phase25b_feature_determinism.json",
+   "sha256": "3f9f2922bfe9c2bacc0dc58279308e7be9cc565bf9c72bff8181d54620f016b9"
+  }
+ },
+ "resolved_fields": {
+  "device_policy": {
+   "value": "CUDA_FIRST__CANONICAL_REQUIRES_CUDA",
+   "source": "src/utils/device.py",
+   "source_sha": "9adabfbd145a5952275aa25b0ec99aab8a5114bb41aa443ecde52ce19a8448b6",
+   "detail": "get_device(require_cuda=True) raises CudaUnavailableError rather than silently falling back to CPU; canonical scientific runs are CUDA-first."
+  },
+  "autocast_enabled": {
+   "value": true,
+   "source": "scripts/analysis/build_phase25a_global_cache.py + run_phase25b_determinism.py + build_phase25b_binding_audits.py",
+   "source_sha": "809dff61c25ad1cf183e9bf33d4bd1c3e23f9c7c91c703a0ad686fb8b94c2225",
+   "detail": "Frozen Phase25B binding audit records amp_autocast_enabled = true."
+  },
+  "autocast_dtype": {
+   "value": "float16",
+   "source": "torch.amp.autocast(device_type='cuda') default (torch 2.6.0+cu124)",
+   "source_sha": "58b5586b1ef0a447f81ada61a45cbf9f467dae1a9941ce239e8b8981d3fe870e",
+   "detail": "All canonical forward calls use torch.amp.autocast(device_type=device.type, enabled=True) with no explicit dtype -> CUDA default float16."
+  },
+  "input_dtype": {
+   "value": "float32",
+   "source": "src/data/transforms.py",
+   "source_sha": "09fcff4887ff8cda4daa215efad1d504d4d61f70982262022b6c2a30c8cf8bd1",
+   "detail": "image tensor = from_numpy(...).permute(2,0,1) / 255.0 -> float32."
+  },
+  "model_parameter_dtype": {
+   "value": "float32",
+   "source": "canonical checkpoints + autocast compute casting",
+   "source_sha": "58b5586b1ef0a447f81ada61a45cbf9f467dae1a9941ce239e8b8981d3fe870e",
+   "detail": "Parameters persist in float32; autocast selects fp16 kernels for eligible ops."
+  },
+  "output_probability_dtype": {
+   "value": "float32 (computed) ; float16 (stored in canonical caches)",
+   "source": "build_phase25a_global_cache.py (prob512[gi] = p512.astype(np.float16))",
+   "source_sha": "58b5586b1ef0a447f81ada61a45cbf9f467dae1a9941ce239e8b8981d3fe870e",
+   "detail": "prob = torch.sigmoid(logits.float()).cpu().numpy(); canonical cache stores fp16."
+  },
+  "canonical_batch_size": {
+   "value": 8,
+   "source": "build_phase25a_global_cache.py BATCH = 8 ; run_phase25b_determinism.py BATCH = 8",
+   "source_sha": "58b5586b1ef0a447f81ada61a45cbf9f467dae1a9941ce239e8b8981d3fe870e",
+   "detail": "Contiguous chunks of 8 inside a single domain."
+  },
+  "batch_membership_dependence": {
+   "value": "EMPIRICALLY_BATCH_MEMBERSHIP_DEPENDENT_UNDER_AUTOCAST",
+   "source": "run_phase25b_determinism.py (AMP batching contract)",
+   "source_sha": "4997cd6fff2c8a3f9b46c478350d1699b7de2445225acc004b0e380cd77c8557",
+   "detail": "Replay achieved max_abs = 0.0 ONLY when the exact canonical batch membership was reproduced."
+  }
+ },
+ "checks": {
+  "device_cuda_first_proven": true,
+  "autocast_enabled_proven": true,
+  "autocast_dtype_proven": true,
+  "input_dtype_proven": true,
+  "param_dtype_proven": true,
+  "output_prob_dtype_proven": true,
+  "batch_size_proven": true,
+  "batch_membership_dependence_proven": true,
+  "no_phase27_self_reference": true
+ },
+ "all_pass": true
+}

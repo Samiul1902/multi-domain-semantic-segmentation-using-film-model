@@ -1,0 +1,83 @@
+{
+  "artifact": "phase36_preexecution_source_freeze_v1_9",
+  "phase": 36,
+  "method": "RA-MedFiLM-BARR",
+  "revision": "ra_medfilm_barr_phase36_robustness_v1_9",
+  "type": "PREEXECUTION_SOURCE_FREEZE",
+  "section": "§R",
+  "frozen_sources": {
+    "scripts/analysis/phase36_robustness_execution_v1_9.py": "433bad87b4ef77fd6997c77f688eb295e526bfa3e88dece4ec5d3d550255cbd0",
+    "scripts/analysis/phase36_robustness_unit_v1_9.py": "c39edd7764a0e9733cc5905e5e54935b1bcd9cc62c345189f618b0c6f4ea690e",
+    "scripts/analysis/phase36_robustness_preflight_v1_9.py": "8be71837b50156919411ac6818b09c29571c7917c1c3285c35f778a9210fc917",
+    "scripts/analysis/phase36_robustness_negative_controls_v1_9.py": "8067a99f1d4841632c9858869c52ff300493dd77715898132185001eb26ad47a"
+  },
+  "frozen_audits_and_reports": {
+    "reports/audits/phase36_v1_9_runtime_source_integrity_manifest.json": "026424d34ca8c5fc7c2a4c9afa9c58a42ff013f9b293cc799e8d023ded0664f9",
+    "reports/audits/phase36_robustness_unit_v1_9.json": "75a15d3126d3b982b744e7f8e206b5e393ac8efee0941230f0c0c2c4f987c03d",
+    "reports/audits/phase36_robustness_preflight_v1_9.json": "af22f75e9d509f1181e83e581b18001f02c23b0ab30fe64190814ca937366b81",
+    "reports/audits/phase36_v1_9_negative_controls.json": "64b524bffacfa2e30f8e1a79802fde7ec288c4b60f5543250159f78794716759",
+    "reports/audits/phase36_v1_8_to_v1_9_execution_semantic_diff.json": "773d7a4dfeca43bcacf8577f3a1672277139934c1568b77af780bb7bf38fcb8f",
+    "reports/audits/phase36_v1_9_direct_source_byte_audit.json": "2b512059008d2935099187dda40ce249927bc331f49ef10df424db1af55942bf",
+    "reports/audits/phase36_v1_9_source_repair_no_execution_audit.json": "134cdb9b0e613355772108ac485193fccb835c67cde66704dfda9bc630b278d6"
+  },
+  "supporting_generators": {
+    "scripts/analysis/build_phase36_v1_9_semantic_diff.py": "7cb5f1b49bfd28322716f61fc1296ed8a47679104ffbe93890237d6c92d24856",
+    "scripts/analysis/audit_phase36_v1_9_direct_source_bytes.py": "d4fdae7b9f58fce3a525ebf180b009c156e07696b5079d604bbd86ee421b3d61",
+    "scripts/analysis/audit_phase36_v1_9_no_execution.py": "1454a7349a6fe523a6cda535086f79daf65a6844f3318e9567d2b59f46773401",
+    "scripts/analysis/build_phase36_v1_9_runtime_integrity_manifest.py": "29bacdbbe9f034e2bcd1ae8933165986174f8f3408a754a5cc741e9f844642de"
+  },
+  "v1_8_history_preserved": {
+    "scripts/analysis/phase36_robustness_execution_v1_8.py": "c95ff9884ec05a859b39ce7976376bf40e4543b1a8d8a19830e5893120039f4d",
+    "byte_preserved": true
+  },
+  "v1_7_history_preserved": {
+    "scripts/analysis/phase36_robustness_execution_v1_7.py": "87062d2b38232c73b8ce620d7bfafb389658c4b877d9196a26b8b01d09daf192",
+    "byte_preserved": true
+  },
+  "canonical_component_sources": {
+    "src/models/film/global_medfilm.py": "a04ff3e61b4d900ff47c2f390da4a999e73bd6047b28a19e41b05115e431d11f",
+    "scripts/analysis/train_phase25d_router.py": "fc7c1bdf263ae4551dcb8f170d3203adb8540fbc189846265b74f6eca1541e91",
+    "src/models/barr/regional_refiner.py": "4fe0abde3ec3a183d930f676c4400b4d9ba778793ea64abf1755c5b8dabf947a",
+    "scripts/analysis/phase25f_execution_common.py": "98cf958a377e2de30e0b67e63fd56bafea418b2b061a362ee7284e852012cd2e"
+  },
+  "n_transitive_dependencies": 14,
+  "n_transitive_checkpoints": 4,
+  "all_dependencies_match": true,
+  "all_checkpoints_match": true,
+  "n_declared_smoke_check_ids": 53,
+  "gate_results": {
+    "unit": {
+      "passed": 63,
+      "total": 63,
+      "all_pass": true
+    },
+    "preflight": {
+      "passed": 103,
+      "total": 103,
+      "all_pass": true
+    },
+    "negative_controls_NC50_NC57": {
+      "passed": 8,
+      "total": 8,
+      "all_pass": true
+    },
+    "direct_source_byte_audit": {
+      "passed": 48,
+      "total": 48,
+      "verdict": "PASS"
+    },
+    "semantic_diff_new_scientific_choice": false,
+    "semantic_diff_all_semantic_groups_unchanged": true,
+    "zero_execution_audit_all_counters_zero": true
+  },
+  "gate_artifacts_byte_deterministic_across_reruns": true,
+  "future_phase36_smoke_must_use_exact_v1_9_bytes": true,
+  "future_phase36_science_must_use_exact_v1_9_bytes": true,
+  "source_freeze_complete": true,
+  "smoke_started": false,
+  "science_started": false,
+  "protected_population_read": false,
+  "test_read": false,
+  "router_holdout_read": false,
+  "terminal": "PHASE36_V1_9_SOURCE_FREEZE_COMPLETE__SMOKE_AND_SCIENCE_NOT_STARTED"
+}

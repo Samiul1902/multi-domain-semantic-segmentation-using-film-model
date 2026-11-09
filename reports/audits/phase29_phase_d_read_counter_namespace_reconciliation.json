@@ -1,0 +1,83 @@
+{
+ "artifact": "phase29_phase_d_read_counter_namespace_reconciliation",
+ "phase": 29,
+ "stage": "PHASE_D_READ_COUNTER_NAMESPACE_RECONCILIATION",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_phase29_repro_v1_1",
+ "generated_utc": "2026-10-03T15:35:04+00:00",
+ "classification": "READ_COUNTER_NAMESPACE_SEMANTIC_RECONCILIATION_ONLY",
+ "frozen_scoped_counters": {
+  "historical_phase29_raw_VAL808_image_reads": 808,
+  "noncanonical_pre_reconciliation_VAL808_image_reads": 808,
+  "new_VAL808_image_reads_during_preexecution_reconciliation": 0,
+  "canonical_phase_d_VAL808_image_reads_before_authorized_execution": 0,
+  "VAL808_GT_reads": 0,
+  "ROUTER_HOLDOUT_reads": 0,
+  "TEST_reads": 0
+ },
+ "counter_definitions": {
+  "historical_phase29_raw_VAL808_image_reads": "Every raw VAL808 image physically opened at any point during Phase 29. This is 808 and is REAL. It must never again be represented as zero.",
+  "noncanonical_pre_reconciliation_VAL808_image_reads": "The subset of historical reads attributable to the noncanonical pre-reconciliation cache build under superseded no-autocast semantics. Also 808.",
+  "new_VAL808_image_reads_during_preexecution_reconciliation": "Raw VAL808 images opened during this Phase-D pre-execution reconciliation. Zero.",
+  "canonical_phase_d_VAL808_image_reads_before_authorized_execution": "Raw VAL808 images opened under canonical Phase27 autocast-fp16 semantics before authorized Phase-D execution. Zero.",
+  "VAL808_GT_reads": "VAL808 ground-truth reads. Zero.",
+  "ROUTER_HOLDOUT_reads": "ROUTER_HOLDOUT reads. Zero (population remains closed).",
+  "TEST_reads": "TEST reads. Zero (population remains closed)."
+ },
+ "required_statements": {
+  "historical_808_reads_are_real": "The historical Phase29 raw VAL808 image reads number 808 and are real. They must never again be represented as zero.",
+  "historical_reads_not_canonical_phase_d_extraction": "The 808 historical reads do NOT constitute canonical Phase-D scientific extraction, because the corresponding cache was generated under SUPERSEDED numerical semantics (FP32 / inference_mode / no autocast) that contradict the frozen Phase27 autocast-fp16 contract.",
+  "noncanonical_cache_disposition": "The noncanonical cache remains preserved as evidence but is scientifically NON-REUSABLE.",
+  "unqualified_zero_counter_forbidden": "'VAL808_reads = 0' is FORBIDDEN as an unqualified counter from this point onward.",
+  "zero_counters_must_be_scoped": "Any zero VAL808 counter must name its exact scope."
+ },
+ "source_evidence_binding": {
+  "build_summary": {
+   "path": "reports/audits/phase29_val808_shared_cache_build_summary.json",
+   "sha256": "53419138a0d4183c384488f952aaa82c3fc2fd3f298096a0d79dae121a614eab",
+   "generated_utc": "2026-10-03T14:15:32+00:00",
+   "val808_images_read": 808,
+   "val808_gt_reads": 0
+  },
+  "read_counter_audit": {
+   "path": "reports/audits/phase29_phase_d_read_counter_audit.json",
+   "sha256": "c4cd64276613201263e71fddf0c3271ce200f24d7e8072557585f88e8ffeeb0e",
+   "VAL808_reads": 808
+  },
+  "cache_provenance": {
+   "path": "reports/audits/phase29_phase_d_existing_val808_cache_provenance.json",
+   "sha256": "bd406dfc4ecb8a66d5f057b0f50ab0d5a4b471e71bd5e4cda0c48c8592823da0",
+   "noncanonical_reads": 808,
+   "canonical_reads_before_execution": 0
+  },
+  "superseded_gate": {
+   "path": "reports/audits/phase29_pre_val808_freeze_gate_v1_2.json",
+   "sha256": "43858f707d3fce38b88d899629303b66f10079cc399689bc234b15c310b39414",
+   "AMBIGUOUS_FIELDS_DEPRECATED": [
+    "VAL808_reads_zero",
+    "VAL808_reads"
+   ]
+  }
+ },
+ "invalidation_scope": {
+  "scientific_execution_invalidated": false,
+  "training_invalidated": false,
+  "phase_c_invalidated": false
+ },
+ "checks": {
+  "historical_808_bound_from_build_summary": true,
+  "historical_808_bound_from_read_audit": true,
+  "noncanonical_reads_808": true,
+  "canonical_pre_execution_reads_zero": true,
+  "new_reconciliation_reads_zero": true,
+  "gt_reads_zero": true,
+  "router_holdout_reads_zero": true,
+  "test_reads_zero": true,
+  "namespace_explicitly_frozen": true,
+  "unqualified_zero_forbidden_attested": true,
+  "scientific_execution_not_invalidated": true,
+  "training_not_invalidated": true,
+  "phase_c_not_invalidated": true
+ },
+ "all_pass": true
+}

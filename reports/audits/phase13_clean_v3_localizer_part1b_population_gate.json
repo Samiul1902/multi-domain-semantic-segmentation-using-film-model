@@ -1,0 +1,119 @@
+{
+  "document_type": "PHASE13_PART1B_POPULATION_AND_COMPONENT_SOURCE_GATE",
+  "generated_utc": "2026-09-21T04:53:12.470144+00:00",
+  "status": "PASS",
+  "manifest_version": "phase4_v3",
+  "population": {
+    "train_cases": 770,
+    "train_components": 1161,
+    "val_cases": 103,
+    "val_components": 152,
+    "val_strata": {
+      "TINY": 72,
+      "SMALL": 28,
+      "MEDIUM": 36,
+      "LARGE": 16
+    },
+    "train_val_patient_overlap": 0,
+    "acquisition_regime": "FULL_FIELD",
+    "roi_inclusion": false,
+    "roi_crop_train_cases_excluded": 1208
+  },
+  "component_source": {
+    "path": "reports/tables/phase12_clean_v3_oracle_geometry.csv",
+    "sha256": "29326d5b9a3bf71add74d8743750511f146d8c4dfbd1dc5b04a5e1b647c37cc0",
+    "cases": 103,
+    "components": 152,
+    "strata": {
+      "TINY": 72,
+      "MEDIUM": 36,
+      "SMALL": 28,
+      "LARGE": 16
+    }
+  },
+  "checks": [
+    {
+      "name": "train_cases",
+      "observed": 770,
+      "expected": 770,
+      "pass": true
+    },
+    {
+      "name": "train_components",
+      "observed": 1161,
+      "expected": 1161,
+      "pass": true
+    },
+    {
+      "name": "val_cases",
+      "observed": 103,
+      "expected": 103,
+      "pass": true
+    },
+    {
+      "name": "val_components",
+      "observed": 152,
+      "expected": 152,
+      "pass": true
+    },
+    {
+      "name": "val_strata_TINY",
+      "observed": 72,
+      "expected": 72,
+      "pass": true
+    },
+    {
+      "name": "val_strata_SMALL",
+      "observed": 28,
+      "expected": 28,
+      "pass": true
+    },
+    {
+      "name": "val_strata_MEDIUM",
+      "observed": 36,
+      "expected": 36,
+      "pass": true
+    },
+    {
+      "name": "val_strata_LARGE",
+      "observed": 16,
+      "expected": 16,
+      "pass": true
+    },
+    {
+      "name": "train_val_patient_overlap",
+      "observed": 0,
+      "expected": 0,
+      "pass": true
+    },
+    {
+      "name": "roi_included_in_train",
+      "observed": 0,
+      "expected": 0,
+      "pass": true
+    },
+    {
+      "name": "test_content_reads",
+      "observed": 0,
+      "expected": 0,
+      "pass": true
+    },
+    {
+      "name": "geometry_cases",
+      "observed": 103,
+      "expected": 103,
+      "pass": true
+    },
+    {
+      "name": "geometry_components",
+      "observed": 152,
+      "expected": 152,
+      "pass": true
+    }
+  ],
+  "test_content_reads": 0,
+  "cuda_initialized": false,
+  "model_constructed": false,
+  "training_epochs": 0,
+  "optimizer_steps": 0
+}

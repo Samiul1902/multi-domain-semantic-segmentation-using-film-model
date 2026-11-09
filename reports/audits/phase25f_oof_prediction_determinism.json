@@ -1,0 +1,24 @@
+{
+ "artifact": "phase25f_oof_prediction_determinism",
+ "phase": "25F",
+ "stage": "OOF_PREDICTION_DETERMINISM",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_post_safety_v1_0",
+ "protocol": "re-load each fold's best checkpoint + fold normalization stats, re-run the full canonical fold-batched OOF inference 3x, compare the 64-row (16/domain) subset and the full 4957 rows to the stored OOF logits",
+ "checks": {
+  "replay_count": 3,
+  "subset_size": 64,
+  "per_domain": 16,
+  "replay_is_full_oof_in_canonical_fold_batches": true,
+  "full_oof_max_abs_vs_stored": 0.0,
+  "full_oof_bit_identical_to_stored": true,
+  "run1_matches_stored_max_abs": 0.0,
+  "run2_matches_stored_max_abs": 0.0,
+  "run3_matches_stored_max_abs": 0.0,
+  "run1_vs_run2_max_abs": 0.0,
+  "run1_vs_run3_max_abs": 0.0,
+  "bit_identical_to_stored": true,
+  "replays_bit_identical": true
+ },
+ "all_pass": true
+}

@@ -1,0 +1,41 @@
+{
+  "classification": "PHASE38_PHASE39_POPULATION_PROTOCOL",
+  "generated_utc": "2026-10-11T06:30:00Z",
+  "phase": 38,
+  "population_name": "TEST",
+  "test_n": 1683,
+  "test_n_authority": [
+    {
+      "path": "reports/audits/phase28_test_lock.json",
+      "sha256": "96a60fdd47c87807b5afd8e8c2ebb395772c279f15fc9b616215012d47270c37",
+      "key": "TEST_n"
+    },
+    {
+      "path": "reports/audits/phase36_v1_3a_split_disjointness_audit.json",
+      "sha256": "7b6ecaa21cdd48400d73d11dd0951b3504f08161afbedbdc63c05c3e616b4db3",
+      "key": "test_n"
+    }
+  ],
+  "test_owner": "PHASE39",
+  "test_state": "LOCKED_UNTIL_PHASE39",
+  "test_must_remain_unopened_during_phase38": true,
+  "disjointness": {
+    "val808_n": 808,
+    "router_holdout_n": 875,
+    "test_n": 1683,
+    "val808_intersect_test": 0,
+    "router_holdout_intersect_test": 0,
+    "val808_intersect_router_holdout": 0
+  },
+  "no_new_test_enumeration": true,
+  "test_n_bound_from_existing_authority_only": true,
+  "domains": [
+    "ISIC",
+    "BUSI",
+    "KVASIR",
+    "KUB"
+  ],
+  "per_domain_reporting_required": true,
+  "pooled_aggregate": "macro_domain_equal_weight",
+  "no_outcome_dependent_subgroup_creation_after_test_open": true
+}

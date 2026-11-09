@@ -1,0 +1,135 @@
+{
+ "artifact": "phase36_v1_20_interruption_adjudication_v1_0",
+ "phase": 36,
+ "revision": "ra_medfilm_barr_phase36_robustness_v1_20",
+ "method": "RA-MedFiLM-BARR",
+ "type": "INTERRUPTED_EXECUTION_ADJUDICATION",
+ "mode": "STATIC_ADDITIVE_GOVERNANCE_ONLY_NON_CONSUMING",
+ "generated_utc": "2026-10-11T00:00:00Z",
+ "classification": "CONSUMED_INTERRUPTED_POST_START_PRE_SCIENTIFIC_RESULT",
+ "real_dispatch_occurred": true,
+ "attempt_consumed": true,
+ "relaunch_permitted": false,
+ "retry_permitted": false,
+ "rerun_permitted": false,
+ "v1_20_must_never_be_rerun": true,
+ "is_scientific_model_failure": false,
+ "scientific_result_written": false,
+ "failure_marker_written": false,
+ "post_start_pre_scientific_result": true,
+ "interrupt_origin_established": false,
+ "interrupt_origin_note": "The ORIGIN of the KeyboardInterrupt is NOT established by durable evidence and is deliberately NOT claimed. Only the OBSERVED supervisor-visible outcome is adjudicated.",
+ "bound_evidence": {
+  "start_marker": {
+   "path": "reports/audits/phase36_robustness_science_start_v1_20.json",
+   "sha256": "f60eac4fb6296a69455848e66aa09cecd999ac527243e8d05e3a2c5e70b25aa8",
+   "size_bytes": 589,
+   "mtime_utc": "2026-10-11T01:38:30Z",
+   "present": true,
+   "science_gate_state": "GATE_AUTHORIZED__MARKER_CREATED_PRE_MODEL_CONSTRUCTION",
+   "scientific_output": false,
+   "source_sha256": "b9d128240596c5c6b7c040480823f4cc653d26a4bc665fc69b396d00e4fe0ad8"
+  },
+  "process_exit": {
+   "path": "reports/audits/phase36_robustness_science_process_exit_v1_20.json",
+   "sha256": "26e80a164a05a1dce9f2c7377508149da189702007f0be1f6fa9b4ef7cd0e7b3",
+   "size_bytes": 2204,
+   "mtime_utc": "2026-10-11T01:44:15Z",
+   "present": true,
+   "attempt_id": "v1_20sup_23724_2026-10-11T01:38:28Z",
+   "supervisor_pid": 23724,
+   "child_pid": 5968,
+   "child_exit_code": null,
+   "termination_observed": false,
+   "START_present": true,
+   "RESULT_present": false,
+   "FAILURE_present": false
+  },
+  "stderr": {
+   "path": "reports/audits/phase36_robustness_science_stderr_v1_20.txt",
+   "sha256": "8e29136d5cd0e97f3ff0c3bfb71cc7ddebfb0084f101272648bcee4159a83fb1",
+   "size_bytes": 41,
+   "mtime_utc": "2026-10-11T01:44:15Z",
+   "present": true,
+   "content": "SUPERVISOR_EXCEPTION::KeyboardInterrupt::",
+   "supervisor_exception_observed": true,
+   "supervisor_exception_type": "KeyboardInterrupt"
+  },
+  "stdout": {
+   "path": "reports/audits/phase36_robustness_science_stdout_v1_20.txt",
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "size_bytes": 0,
+   "present": true,
+   "empty": true
+  },
+  "journal_start_begin_record": {
+   "path": "reports/audits/phase36_robustness_science_v1_20_journal/000_START__BEGIN.json",
+   "sha256": "ee7e4e661b2b8768b19fb1352683a14b49e725179e80a58bd62ce57718afec99",
+   "size_bytes": 625,
+   "mtime_utc": "2026-10-11T01:38:30Z",
+   "present": true,
+   "stage": "START",
+   "event": "BEGIN",
+   "attempt_id": "v1_20_31652_2026-10-11T01:38:30Z",
+   "scientific_output": false
+  },
+  "v1_20_execution_source": {
+   "path": "scripts/analysis/phase36_robustness_execution_v1_20.py",
+   "sha256": "b9d128240596c5c6b7c040480823f4cc653d26a4bc665fc69b396d00e4fe0ad8",
+   "size_bytes": 237346
+  },
+  "v1_20_supervisor_source": {
+   "path": "scripts/analysis/supervise_phase36_v1_20.py",
+   "sha256": "ce06475ea7030bd97b96f7fb1f61fdd5cb7f99254e821270f0a4dcbf32e9db46",
+   "size_bytes": 23916
+  },
+  "v1_20_launcher_source": {
+   "path": "scripts/analysis/launch_phase36_v1_20.py",
+   "sha256": "8df467446a4fe7a1fdaf44a2e15889ea783ea2a8b4e81b773030c51d56697722",
+   "size_bytes": 31632
+  }
+ },
+ "observed_state": {
+  "START_present": true,
+  "RESULT_present": false,
+  "FAILURE_present": false,
+  "journal_records": 1,
+  "last_journal_stage": "START:BEGIN",
+  "first_failed_stage": "POST_START__NO_SCIENTIFIC_RESULT",
+  "child_exit_code": null,
+  "termination_observed": false,
+  "supervisor_exception_type": "KeyboardInterrupt",
+  "supervisor_exception_message": "",
+  "supervisor_returned_rc": 0,
+  "supervisor_rc_zero_when_termination_unobserved": true,
+  "scientific_outputs_written": false,
+  "all_23_targets_absent": true
+ },
+ "defect": {
+  "id": "D95",
+  "code": "V1_20_SUPERVISOR_RETURNS_ZERO_ON_UNOBSERVED_CHILD_TERMINATION",
+  "description": "supervise_phase36_v1_20.supervise_once() falls through to `return {\"rc\": 0, ...}` whenever termination_observed is False (including a KeyboardInterrupt raised from proc.communicate()). An UNOBSERVED child state is therefore masked as SUCCESS. The supervisor also does not deterministically terminate/wait for the launcher child/process tree and does not distinguish normal child completion vs supervisor interruption vs supervisor internal exception in PROCESS_EXIT.",
+  "scientific_semantics_effect": "NONE",
+  "governance_effect": "YES",
+  "repaired_in": "v1.21",
+  "repair_class": "D95_SUPERVISOR_RC_ZERO_ON_UNOBSERVED_TERMINATION"
+ },
+ "effects": {
+  "scientific_effect": "NONE",
+  "runtime_effect": "NONE",
+  "governance_history_accuracy": "YES"
+ },
+ "next_revision": {
+  "revision": "v1.21",
+  "scientific_delta_count_v1_20_to_v1_21": 0,
+  "supervisor_repair_only": true
+ },
+ "protected_populations": {
+  "TEST": "PHASE39_ONLY_LOCKED",
+  "ROUTER_HOLDOUT": "LOCKED"
+ },
+ "TEST_accessed": false,
+ "ROUTER_HOLDOUT_accessed": false,
+ "write_semantics": "O_CREAT|O_EXCL|O_WRONLY{+O_BINARY} + full-write + fsync + st_size check",
+ "terminal": "PHASE36_V1_20_INTERRUPTION_ADJUDICATION_WRITTEN"
+}

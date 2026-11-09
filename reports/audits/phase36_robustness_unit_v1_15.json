@@ -1,0 +1,247 @@
+{
+ "artifact": "phase36_robustness_unit_v1_15",
+ "phase": 36,
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase36_robustness_v1_15",
+ "type": "STATIC_UNIT_REPORT",
+ "model_free": true,
+ "torch_imported": false,
+ "protected_population_read": false,
+ "subject_execution_sha256": "b194ad28345ea8b268748be383ca98b936cb051d85854666e3141250f3eae002",
+ "frozen_v1_14_execution_sha256": "ac09ff8ded3610244920e66612145b246b33127140d344a9730d454bab27cff5",
+ "checks_total": 44,
+ "checks_passed": 44,
+ "checks_failed": 0,
+ "all_pass": true,
+ "failed_checks": [],
+ "checks": [
+  {
+   "check": "A01_v1_14_source_frozen_unchanged",
+   "passed": true,
+   "detail": {
+    "sha256": "ac09ff8ded3610244920e66612145b246b33127140d344a9730d454bab27cff5"
+   }
+  },
+  {
+   "check": "A02_v1_15_source_sha_exact",
+   "passed": true,
+   "detail": {
+    "sha256": "b194ad28345ea8b268748be383ca98b936cb051d85854666e3141250f3eae002"
+   }
+  },
+  {
+   "check": "A03_v1_15_source_compiles",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "B01_canonical_fusion_call_present",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "B02_old_pad_unaware_call_absent",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "B03_fuse_full_field_defined",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "B04_fuse_full_field_pad_aware",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "B05_fusion_uses_roi_geometry_same_geom",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "B06_no_geometry_recompute_in_accept_path",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "B07_psi_somega_unchanged_markers",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "C01_policy_helper_defined",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "C02_helper_uses_live_f32",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "C03_helper_casts_to_f16",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "C04_helper_casts_back_to_f32",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "C05_helper_thresholds_at_0_50",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "C06_segmentation_threshold_unchanged",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "C07_helper_wiring_count_3",
+   "passed": true,
+   "detail": {
+    "count": 3
+   }
+  },
+  {
+   "check": "C08_core_binary_uses_helper",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "C09_clean_binary_uses_helper",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "C10_clean_store_final_binary_policy_b",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D01_final_probability_never_quantized",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D02_f16_cast_only_in_policy_helper",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D03_downstream_G_quantization_absent",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D04_live_probability_preserved",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "E01_image_pert_consumes_core_binary",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "E02_proposal_pert_consumes_core_binary",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "E03_prediction_consistency_uses_policy_b",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "F01_smoke_ids_count_53",
+   "passed": true,
+   "detail": {
+    "count": 53
+   }
+  },
+  {
+   "check": "F02_smoke_ids_unique",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "F03_smoke_ids_exact_set_equality",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "F04_smoke_ids_order_identical",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "G01_image_conditions_present",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "G02_seeds_42_123_3407",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "G03_proposal_scale_conditions",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "G04_forced_skip_action_unavailable",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "G05_no_jpeg_rotation_crop_conditions",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "H01_launcher_present",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "H02_launcher_binds_frozen_v1_14_execution_sha",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "H03_launcher_verify_only_supported",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "H04_launcher_token_names",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "H05_launcher_no_delete_or_recreate",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "H06_supervisor_present",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "I01_policy_b_bitwise_equal",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "I02_boundary_repair_applied",
+   "passed": true,
+   "detail": null
+  }
+ ]
+}

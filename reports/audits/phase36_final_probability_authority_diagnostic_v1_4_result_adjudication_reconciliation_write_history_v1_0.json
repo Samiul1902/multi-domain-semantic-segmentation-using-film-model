@@ -1,0 +1,186 @@
+{
+  "artifact_kind": "PHASE36_FINAL_PROBABILITY_AUTHORITY_DIAGNOSTIC_V1_4_RESULT_ADJUDICATION_RECONCILIATION_WRITE_HISTORY_DISCLOSURE",
+  "revision": "v1.0",
+  "decision_id": "D79",
+  "purpose": "Additive provenance disclosure for the D76/D77/D78 reconciliation build history, which was not historically write-once from its first successful creation. STATIC / governance-only / non-consuming.",
+  "execution_scope": "STATIC_GOVERNANCE_ONLY_NON_CONSUMING",
+  "D79": "D76_D77_D78_RECONCILIATION_WRITE_ONCE_HISTORY_VIOLATED_DURING_REBUILD",
+  "D79_status": "DISCLOSED_AND_RECONCILED",
+  "scientific_semantics_effect": "NONE",
+  "current_final_reconciliation_content_effect": "NONE",
+  "current_builder_content_effect": "NONE",
+  "governance_provenance_effect": "YES",
+  "D79_reason": "The same intended write-once output path was successfully created once, then deleted and recreated after the builder changed.  The final artifact is internally coherent and independently hash-bound, but its path history was not strictly first-write immutable.",
+  "D79_sequence": [
+    "1. an earlier reconciliation artifact was successfully written",
+    "2. its builder was subsequently modified",
+    "3. the already-written reconciliation artifact was deleted",
+    "4. the same output path was recreated using the updated builder"
+  ],
+  "first_write_recovery": {
+    "attempted": true,
+    "method": "STATIC_EVIDENCE_SEARCH_ONLY (no recreation)",
+    "searched_sources": [
+      {
+        "path": ".workbuddy-ai/memory/2026-10-10.md",
+        "present": true,
+        "contains_recon_prefix": false,
+        "contains_builder_prefix": false
+      },
+      {
+        "path": ".workbuddy-ai/memory/MEMORY.md",
+        "present": true,
+        "contains_recon_prefix": false,
+        "contains_builder_prefix": false
+      },
+      {
+        "path": ".workbuddy-ai/memory/NOTES_ARCHIVE.md",
+        "present": true,
+        "contains_recon_prefix": false,
+        "contains_builder_prefix": false
+      }
+    ],
+    "inconclusive_sources": [
+      "terminal_transcripts:not_durably_present",
+      "shell_history:not_durably_present",
+      "git_reflog:single_initial_commit_path_untracked"
+    ],
+    "full_reconciliation_hash_found": false,
+    "full_builder_hash_found": false
+  },
+  "first_written_reconciliation_sha256": "NOT_DURABLY_RECOVERED",
+  "first_generator_builder_sha256": "NOT_DURABLY_RECOVERED",
+  "first_written_reconciliation_sha256_prefix_known": "3af908c8",
+  "first_written_reconciliation_sha256_prefix_len": 8,
+  "first_generator_builder_sha256_prefix_known": "eb2e6400",
+  "first_generator_builder_sha256_prefix_len": 8,
+  "first_write_timestamp": "NOT_DURABLY_RECOVERED",
+  "first_write_hash_expanded_by_guessing": false,
+  "current_final_reconciliation_sha256": "7f0957695939a03feca7d9909c47f56e6644a4f3b800664c9bb61f02486dbd9b",
+  "current_final_builder_sha256": "4788f7eb758f4927582a7fb5f6f3b623ba4192b8f5e3515b3025d70505c59ee7",
+  "current_final_test_sha256": "ee9742f43a979cddb0d82dcc0a0e3b1bb31a2277625c3c4bb869dbd7f810536d",
+  "current_final_pair_self_consistent": true,
+  "current_final_reconciliation_records_builder_sha256_correctly": true,
+  "current_final_fail_closed_gate": "PASS",
+  "current_final_fail_closed_gate_detail": {
+    "n_checks": 22,
+    "n_checks_pass": 22,
+    "all_required_checks_pass": true
+  },
+  "D76_D77_D78_substantive_conclusions_remain_valid": true,
+  "preserved_accepted_conclusions": {
+    "D61": "PRESERVED",
+    "D75": "PRESERVED",
+    "D76_status": "RECONCILED",
+    "D77_status": "RECONCILED",
+    "D78": "D75_SCORING_SOURCE_PROVENANCE_BOUND",
+    "v1_15_repair_policy": "POLICY_B",
+    "phase27_historical_scored_representation": "PERSISTED_F16__RECAST_F32__THRESHOLD_0_50",
+    "v1_14_clean_scored_representation": "LIVE_F32__THRESHOLD_0_50",
+    "journal_result_snapshot_records": 29,
+    "journal_final_on_disk_records": 31
+  },
+  "preserved_accepted_conclusions_ok": true,
+  "ancestor_verification": {
+    "frozen_v1_0_adjudication": {
+      "path": "reports/audits/phase36_final_probability_authority_diagnostic_v1_4_result_adjudication_v1_0.json",
+      "sha256_expected": "912cb24e4b27dcc7d66310b36db2154180411ec52d79d19c767aa708220b9b36",
+      "sha256_actual": "912cb24e4b27dcc7d66310b36db2154180411ec52d79d19c767aa708220b9b36",
+      "match": true
+    },
+    "frozen_v1_0_builder": {
+      "path": "scripts/analysis/build_phase36_final_probability_authority_diagnostic_v1_4_result_adjudication_v1_0.py",
+      "sha256_expected": "8c95a6f6c3d9f3735169256d9c6f06bd538ed5ebbba8afb8a96ed72b2e81baf7",
+      "sha256_actual": "8c95a6f6c3d9f3735169256d9c6f06bd538ed5ebbba8afb8a96ed72b2e81baf7",
+      "match": true
+    },
+    "current_reconciliation": {
+      "path": "reports/audits/phase36_final_probability_authority_diagnostic_v1_4_result_adjudication_reconciliation_v1_1.json",
+      "sha256_expected": "7f0957695939a03feca7d9909c47f56e6644a4f3b800664c9bb61f02486dbd9b",
+      "sha256_actual": "7f0957695939a03feca7d9909c47f56e6644a4f3b800664c9bb61f02486dbd9b",
+      "match": true
+    },
+    "current_reconciliation_builder": {
+      "path": "scripts/analysis/build_phase36_final_probability_authority_diagnostic_v1_4_result_adjudication_reconciliation_v1_1.py",
+      "sha256_expected": "4788f7eb758f4927582a7fb5f6f3b623ba4192b8f5e3515b3025d70505c59ee7",
+      "sha256_actual": "4788f7eb758f4927582a7fb5f6f3b623ba4192b8f5e3515b3025d70505c59ee7",
+      "match": true
+    },
+    "current_validation_test": {
+      "path": "scripts/analysis/test_phase36_final_probability_authority_diagnostic_v1_4_result_adjudication_reconciliation_v1_1.py",
+      "sha256_expected": "ee9742f43a979cddb0d82dcc0a0e3b1bb31a2277625c3c4bb869dbd7f810536d",
+      "sha256_actual": "ee9742f43a979cddb0d82dcc0a0e3b1bb31a2277625c3c4bb869dbd7f810536d",
+      "match": true
+    },
+    "attempt_artifacts": {
+      "START": {
+        "path": "reports/audits/phase36_final_probability_authority_diagnostic_start_v1_4.json",
+        "sha256_expected": "298f56414eaa39281e8dfaf33faa5e1260d6e7708ae5bfe5f850bcf04520caca",
+        "sha256_actual": "298f56414eaa39281e8dfaf33faa5e1260d6e7708ae5bfe5f850bcf04520caca",
+        "match": true
+      },
+      "RESULT": {
+        "path": "reports/audits/phase36_final_probability_authority_diagnostic_result_v1_4.json",
+        "sha256_expected": "046a1e3c3053fb00b97895d8d1834d0011f8b190209daa01795e6915b7fd5284",
+        "sha256_actual": "046a1e3c3053fb00b97895d8d1834d0011f8b190209daa01795e6915b7fd5284",
+        "match": true
+      },
+      "PROCESS_EXIT": {
+        "path": "reports/audits/phase36_final_probability_authority_diagnostic_process_exit_v1_4.json",
+        "sha256_expected": "7475ce8c8a6abfc7f8697a1682ec3a93f22178503bb342ef52569175ca8061e2",
+        "sha256_actual": "7475ce8c8a6abfc7f8697a1682ec3a93f22178503bb342ef52569175ca8061e2",
+        "match": true
+      },
+      "STDOUT": {
+        "path": "reports/audits/phase36_final_probability_authority_diagnostic_stdout_v1_4.txt",
+        "sha256_expected": "822adf6b61ff8b4cdec307d5d755cb83b3cc583dcf2de4dd94f3fb9be548b393",
+        "sha256_actual": "822adf6b61ff8b4cdec307d5d755cb83b3cc583dcf2de4dd94f3fb9be548b393",
+        "match": true
+      },
+      "STDERR": {
+        "path": "reports/audits/phase36_final_probability_authority_diagnostic_stderr_v1_4.txt",
+        "sha256_expected": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "sha256_actual": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "match": true
+      }
+    },
+    "FAILURE_absent": true,
+    "all_required_checks_pass": true,
+    "no_ancestor_modified": true
+  },
+  "final_state": {
+    "D61": "PRESERVED",
+    "D75": "PRESERVED",
+    "D76": "RECONCILED",
+    "D77": "RECONCILED",
+    "D78": "RECONCILED",
+    "D79": "DISCLOSED_AND_RECONCILED",
+    "v1_15_repair_policy": "POLICY_B",
+    "v1_4_retry_permitted": false,
+    "v1_15_created": false,
+    "v1_15_executed": false,
+    "Phase36": "NOT_COMPLETE_PENDING_V1_15",
+    "Phase37": "NOT_STARTED",
+    "TEST_accessed": false,
+    "ROUTER_HOLDOUT_accessed": false
+  },
+  "prohibitions_observed": {
+    "no_model_execution": true,
+    "no_checkpoint_load": true,
+    "no_val_image_read": true,
+    "no_val_gt_read": true,
+    "no_test": true,
+    "no_router_holdout": true,
+    "no_perturbation": true,
+    "no_metric_execution": true,
+    "no_v1_4_retry": true,
+    "no_v1_15_implementation": true,
+    "no_v1_15_execution": true,
+    "no_phase37": true,
+    "no_modification_of_final_reconciliation": true,
+    "no_modification_of_final_builder": true,
+    "no_recreation_of_first_write_artifact": true
+  },
+  "builder_source_sha256": "5a1a60d7318e4f387e7a5bc40a7fc3c3ac5bf63bf9dfcb20d2e813a499137522",
+  "write_semantics": "WRITE_ONCE_O_CREAT_O_EXCL_FSYNC_FAIL_CLOSED"
+}

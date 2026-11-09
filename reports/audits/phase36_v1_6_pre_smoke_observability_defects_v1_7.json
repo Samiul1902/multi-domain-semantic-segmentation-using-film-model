@@ -1,0 +1,77 @@
+{
+  "artifact": "phase36_v1_6_pre_smoke_observability_defects",
+  "phase": 36,
+  "section": "§B",
+  "method": "RA-MedFiLM-BARR",
+  "revision": "ra_medfilm_barr_phase36_robustness_v1_7",
+  "type": "PRE_SMOKE_OBSERVABILITY_AND_GOVERNANCE_DEFECT_RECORD",
+  "generated_utc": "2026-10-06T09:24:23Z",
+  "subject": "scripts/analysis/phase36_robustness_execution_v1_6.py",
+  "subject_sha256": "d2c4dfd8ab37bf6f4153cf42c2b0f45664b431af6ec626d3bdfbc4038fcfdc2b",
+  "discovery_basis": "DIRECT_INDEPENDENT_AST_AND_SOURCE_BYTE_INSPECTION_OF_THE_FROZEN_V1_6_BYTES",
+  "no_source_modification": true,
+  "no_execution": true,
+  "torch_imported": false,
+  "defects": [
+    {
+      "id": "D16_FORCED_SOMEGA_BRANCH_CONTROL_FALSE_FORWARD_COUNT",
+      "exact_evidence": {
+        "forced_s_omega_logit_bypass_lines": [
+          1338
+        ],
+        "bypass_code": "if forced_s_omega_logit is not None: logit = float(forced_s_omega_logit)",
+        "real_post_safety_increment_lines": [
+          1347
+        ],
+        "hardcoded_somega_1_result_branch_lines": [
+          1354,
+          1357
+        ],
+        "hardcoded_code": "_core_result(... somega=1 ...)",
+        "smoke_branch_controls_forced_safety_lines": [
+          2679,
+          2680
+        ],
+        "smoke_branch_controls_expects_S_omega_1_lines": [
+          2706
+        ],
+        "consequence": "the returned s_omega_forward_count can equal 1 when ZERO real S_omega forwards occurred; smoke_branch_controls (forced logits +50/-50) expects exactly 1, so the policy control can falsely certify an actual S_omega forward"
+      },
+      "classification": "PRE_SCIENTIFIC_SMOKE_OBSERVABILITY_AND_FORWARD_ACCOUNTING_DEFECT",
+      "scientific_effect": "NONE",
+      "reason": "v1.6 smoke NOT_STARTED; Phase36 science NOT_STARTED"
+    },
+    {
+      "id": "D17_ROUTER_202D_FINITE_CHECK_BOUND_TO_WRONG_VALUE",
+      "exact_evidence": {
+        "rf202_finite_lines": [
+          2787
+        ],
+        "v1_6_code": "clean_check[\"rf202_finite\"] = bool(np.isfinite(np.asarray(out_clean[\"final_probability\"])).all())",
+        "bound_to": "out_clean[final_probability]",
+        "should_bind_to": "the actual canonical 202-D router vector rf202"
+      },
+      "classification": "PRE_SCIENTIFIC_SMOKE_OBSERVABILITY_DEFECT",
+      "scientific_effect": "NONE"
+    },
+    {
+      "id": "D18_SMOKE_HAS_NO_AUTHORITATIVE_TOP_LEVEL_FAIL_CLOSED_SUCCESS_CONTRACT",
+      "exact_evidence": {
+        "smoke_all_pass_or_smoke_checks_lines_in_v1_6": [],
+        "main_definition_line": 2890,
+        "v1_6_main_behaviour": "res = run_smoke(); write JSON; return 0",
+        "consequence": "a logically failed smoke can terminate with process success"
+      },
+      "classification": "PRE_SCIENTIFIC_SMOKE_GOVERNANCE_DEFECT",
+      "scientific_effect": "NONE"
+    }
+  ],
+  "defect_count": 3,
+  "preserved_history": {
+    "v1_6_execution_source_sha256": "d2c4dfd8ab37bf6f4153cf42c2b0f45664b431af6ec626d3bdfbc4038fcfdc2b",
+    "v1_6_direct_source_byte_audit_sha256": "af41b8ca9b902572ca9cc87686088a7e86a98850aa64f51705192633683fb3e3",
+    "v1_6_source_freeze_sha256": "59e48e63888d473322d230cc799fc2849d78cd98ed924121f44b35f3e692e147",
+    "v1_6_protected_population_repair": "VALID_HISTORICAL_PREEXECUTION_EVIDENCE",
+    "historical_terminals_rewritten": false
+  }
+}

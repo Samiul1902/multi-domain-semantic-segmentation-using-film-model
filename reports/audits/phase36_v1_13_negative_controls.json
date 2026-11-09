@@ -1,0 +1,166 @@
+{
+ "artifact": "phase36_v1_13_negative_controls",
+ "phase": 36,
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase36_robustness_v1_13",
+ "type": "NEGATIVE_CONTROL_REPORT",
+ "controls_range": "NC100..NC114",
+ "model_free": true,
+ "checkpoint_read": false,
+ "protected_population_read": false,
+ "no_canonical_file_modified": true,
+ "launcher_has_no_marker_creation_code": true,
+ "canonical_anchor_ok": true,
+ "canonical_interpreter_ok": true,
+ "canonical_cuda_readiness_ok": true,
+ "canonical_cuda_snapshot": {
+  "torch_version": "2.6.0+cu124",
+  "torch_version_cuda": "12.4",
+  "cuda_is_available": true,
+  "cuda_device_count": 1,
+  "device_name_0": "NVIDIA GeForce RTX 3060 Ti",
+  "get_device_resolved": "cuda:0"
+ },
+ "controls_total": 15,
+ "controls_passed": 15,
+ "controls_failed": 0,
+ "all_pass": true,
+ "failed_controls": [],
+ "controls": [
+  {
+   "control": "NC100_wrong_executable_rejected",
+   "mutation_changed_input": true,
+   "detector_canonical": true,
+   "detector_mutant": true,
+   "mutant_rejected": true,
+   "passed": true,
+   "note": "bare system Python 3.11 vs canonical .venv interpreter"
+  },
+  {
+   "control": "NC101_cpu_only_torch_build_rejected",
+   "mutation_changed_input": true,
+   "detector_canonical": true,
+   "detector_mutant": true,
+   "mutant_rejected": true,
+   "passed": true,
+   "note": "CPU-only build: version.cuda=None + is_available=False"
+  },
+  {
+   "control": "NC102_torch_version_cuda_none_rejected",
+   "mutation_changed_input": true,
+   "detector_canonical": true,
+   "detector_mutant": true,
+   "mutant_rejected": true,
+   "passed": true,
+   "note": null
+  },
+  {
+   "control": "NC103_cuda_is_available_false_rejected",
+   "mutation_changed_input": true,
+   "detector_canonical": true,
+   "detector_mutant": true,
+   "mutant_rejected": true,
+   "passed": true,
+   "note": null
+  },
+  {
+   "control": "NC104_device_count_zero_rejected",
+   "mutation_changed_input": true,
+   "detector_canonical": true,
+   "detector_mutant": true,
+   "mutant_rejected": true,
+   "passed": true,
+   "note": null
+  },
+  {
+   "control": "NC105_get_device_require_cuda_failure_rejected",
+   "mutation_changed_input": true,
+   "detector_canonical": true,
+   "detector_mutant": true,
+   "mutant_rejected": true,
+   "passed": true,
+   "note": null
+  },
+  {
+   "control": "NC106_wrong_interpreter_cannot_set_launch_token",
+   "mutation_changed_input": true,
+   "detector_canonical": true,
+   "detector_mutant": true,
+   "mutant_rejected": true,
+   "passed": true,
+   "note": "wrong interpreter branch returns before token assignment"
+  },
+  {
+   "control": "NC107_failed_cuda_readiness_cannot_set_launch_token",
+   "mutation_changed_input": true,
+   "detector_canonical": true,
+   "detector_mutant": true,
+   "mutant_rejected": true,
+   "passed": true,
+   "note": "cuda-readiness-failed branch returns before token assignment"
+  },
+  {
+   "control": "NC108_wrong_interpreter_cannot_create_start_marker",
+   "mutation_changed_input": true,
+   "detector_canonical": true,
+   "detector_mutant": true,
+   "mutant_rejected": true,
+   "passed": true,
+   "note": null
+  },
+  {
+   "control": "NC109_failed_cuda_readiness_cannot_create_start_marker",
+   "mutation_changed_input": true,
+   "detector_canonical": true,
+   "detector_mutant": true,
+   "mutant_rejected": true,
+   "passed": true,
+   "note": null
+  },
+  {
+   "control": "NC110_source_mutation_rejected",
+   "mutation_changed_input": true,
+   "detector_canonical": true,
+   "detector_mutant": true,
+   "mutant_rejected": true,
+   "passed": true,
+   "note": null
+  },
+  {
+   "control": "NC111_manifest_mutation_rejected",
+   "mutation_changed_input": true,
+   "detector_canonical": true,
+   "detector_mutant": true,
+   "mutant_rejected": true,
+   "passed": true,
+   "note": null
+  },
+  {
+   "control": "NC112_source_and_manifest_co_edit_rejected",
+   "mutation_changed_input": true,
+   "detector_canonical": true,
+   "detector_mutant": true,
+   "mutant_rejected": true,
+   "passed": true,
+   "note": "co-edit cannot supply its own hashes; frozen constants unchanged"
+  },
+  {
+   "control": "NC113_old_expected_hash_env_vars_inert",
+   "mutation_changed_input": true,
+   "detector_canonical": true,
+   "detector_mutant": true,
+   "mutant_rejected": true,
+   "passed": true,
+   "note": "env vars do not replace frozen constants; canonical anchor still passes"
+  },
+  {
+   "control": "NC114_canonical_venv_cuda_passes_readiness",
+   "mutation_changed_input": false,
+   "detector_canonical": true,
+   "detector_mutant": true,
+   "mutant_rejected": true,
+   "passed": true,
+   "note": null
+  }
+ ]
+}

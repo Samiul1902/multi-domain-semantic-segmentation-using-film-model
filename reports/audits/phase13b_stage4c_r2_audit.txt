@@ -1,0 +1,105 @@
+================ ANTIGRAVITY RESEARCH NOTE ================
+
+STATUS:
+CHECK_REQUIRED
+
+PHASE:
+13B Stage-4C-R2 — Preflight Discrepancy Audit
+
+TRAINING STATUS:
+- existing epochs: 1-4
+- preserved: YES
+- valid for final selection: NO
+- training resumed: NO
+
+COMPONENT RECONCILIATION:
+- authoritative original components: 1162
+- heatmap pipeline components: 1156
+- difference: 6 net components (some lost, some split)
+- unique canonical centers: 1162
+- collisions: 0
+- images responsible: 11 images (see reports/tables/phase13b_stage4c_component_reconciliation.csv)
+- root cause: The Stage-4C target source is incorrectly extracting components AFTER resize (which drops/splits tiny objects due to NEAREST interpolation) instead of mapping authoritative original-space components.
+
+TARGET:
+- exact-1 centers: [WAITING]
+- zero-positive images: 0
+- sigma unchanged: YES
+- geometry unchanged: YES
+- deterministic: NO (due to dataset augmentations; generation logic itself is deterministic)
+
+LOSS DECOMPOSITION:
+- positive centers: 8.0
+- negative pixels: 1048568.0
+- logits mean/std: 0.5004 / 1.4129
+- probabilities mean/std: 0.5766 / 0.1878
+- raw positive sum: 0.5450
+- raw negative sum: 648051.1875
+- normalized positive: 0.0681
+- normalized negative: 81006.3984
+- final loss: 81006.4688
+
+CURRENT INITIALIZATION:
+- head weights: mean 0.091486, std 0.469580
+- head bias: 0.000000
+- initial probability: 0.5766
+- loss: 81006.4688
+- gradient norm: 227333.3281
+- output-head gradient: 127404.7656
+
+TEMPORARY p=0.1 BIAS DIAGNOSTIC:
+- bias: -2.197225
+- initial probability: 0.174085
+- loss: 2224.0427
+- positive contribution: 1.2287
+- negative contribution: 2222.8140
+- gradient norm: 21620.8828
+- output-head gradient: 8729.8555
+- model saved: NO
+- training performed: NO
+
+ROOT CAUSE OF EXTREME LOSS:
+The extreme CenterNet loss and gradient norms are principally caused by the standard random initialization (`bias=0`) which produces `p ~ 0.5` across the ~512x512 grid. This generates massive negative focal loss penalties because CenterNet normalizes the loss strictly by the number of positive instances (which is extremely small compared to the 1 million background pixels).
+
+TARGET COMPONENT PIPELINE VALID:
+NO
+
+CENTERNET LOSS IMPLEMENTATION VALID:
+YES (Correctly mathematically formulated and bounded)
+
+CURRENT INITIALIZATION COMPATIBLE:
+NO
+
+TESTS:
+- passed: 50
+- failed: 0
+
+STATIC:
+- compileall: PASS
+
+CUDA:
+AVAILABLE, EXPECTED BUILD
+
+MANIFEST:
+PASS
+
+TEST CONTENT READS:
+0
+
+EXTERNAL:
+NO
+
+EXPERIMENT A MODIFIED:
+NO
+
+PHASE14:
+NOT EXECUTED
+
+NEXT RECOMMENDED ACTION:
+1. Fix `KUBLocalizerDataset.__getitem__` to map authoritative original-space components instead of extracting them from the resized mask.
+2. Initialize the output-head bias to `math.log(0.1 / 0.9)` or similar sparse foreground prior to safely handle CenterNet loss magnitude on un-downsampled grids.
+
+STOPPED:
+YES
+==================================================
+

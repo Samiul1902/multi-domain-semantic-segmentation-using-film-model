@@ -1,0 +1,82 @@
+{
+ "artifact": "phase34_latency_execution_provenance_v1_4",
+ "phase": 34,
+ "section": "\u00a7W",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase34_efficiency_profiling_v1_4",
+ "execution_timestamp": "2026-10-04T14:12:03+00:00",
+ "source_hashes": {
+  "worker": "369ae8c65b78f61acd59973d9b184e15be5733c6049f586ae0eb917b0168fab3",
+  "harness": "1c96183c5554a3d3f8f734dd50a048407558338900f4924c4ed695cd3e236960",
+  "preflight": "f0fce5b58693d0dc1f3b42fcfe494df5cbf83ea907c3c83b9f5d7304218d4852",
+  "common": "ca74fe88a8314b6099b2455f3450ea6f075dcd3cf69208cdd8a784ad24e9a0f9"
+ },
+ "environment": {
+  "os": "Windows-10-10.0.26200-SP0",
+  "python": "3.11.9",
+  "torch": "2.6.0+cu124",
+  "cuda_runtime": "12.4",
+  "cudnn": 90100,
+  "gpu": "NVIDIA GeForce RTX 3060 Ti",
+  "cc": "8.6",
+  "vram_bytes": 8589279232
+ },
+ "checkpoint_hashes": {
+  "G": {
+   "sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7"
+  },
+  "R_psi": {
+   "sha256": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109"
+  },
+  "B_phi": {
+   "sha256": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b"
+  },
+  "S_omega": {
+   "sha256": "eee9b97b9921e53fc07eac9281dce64ba518c6e1659916b97b0b3bec21ec6d2e"
+  }
+ },
+ "six_arm_order": [
+  "GLOBAL_ONLY_C1",
+  "R_PSI_COMPONENT",
+  "B_PHI_COMPONENT",
+  "S_OMEGA_COMPONENT",
+  "SKIP_CONTROLLED_PATH",
+  "EXECUTE_CONTROLLED_PATH"
+ ],
+ "physical_worker_count": 6,
+ "alias_physical_worker_count": 0,
+ "aliases": {
+  "G_COMPONENT": "GLOBAL_ONLY_C1",
+  "FINAL_ROUTED_A8_C9": "EXECUTE_CONTROLLED_PATH"
+ },
+ "model_parameter_identities": {
+  "G": 3523001,
+  "R_psi": 1276401,
+  "B_phi": 36801,
+  "S_omega": 1217
+ },
+ "warmup_count_per_arm": 50,
+ "measured_observations_per_arm": 1000,
+ "total_measured_observations": 6000,
+ "task_schedule": "global_iteration_index mod 4 (0=ISIC,1=BUSI,2=KVASIR,3=KUB)",
+ "precision_contexts": {
+  "G": "float32 + autocast(fp16) + torch.no_grad() + inference_mode false",
+  "R_psi": "float32 + autocast disabled + torch.inference_mode()",
+  "B_phi": "float32 + autocast disabled + torch.inference_mode()",
+  "S_omega": "float32 + autocast disabled + torch.inference_mode()"
+ },
+ "cuda_event_granularity": "ONE_CUDA_EVENT_PAIR_PER_INDIVIDUAL_FORWARD",
+ "raw_observation_sha256": "4b50dc96d1c07d780f614a7221a6432febdc572119d6d6c3665a5099a100d34c",
+ "summary_sha256": "da5292d4551209339b3880c0e64d4152007eb42e7c262ad296bc2c2ec586ab26",
+ "technical_failures": [],
+ "retries": 0,
+ "protected_data_counters": {
+  "raw_image_reads": 0,
+  "raw_gt_reads": 0,
+  "router_holdout_raw_reads": 0,
+  "test_reads": 0,
+  "training_steps": 0
+ },
+ "generated_utc": "2026-10-04T14:12:03+00:00",
+ "all_pass": true
+}

@@ -1,0 +1,43 @@
+{
+ "artifact": "phase23_certification_terminology_audit",
+ "phase": 23,
+ "purpose": "decide whether the word 'certified' is defensible in the method name, given the evidence standard of each guarantee family",
+ "candidate_terms_examined": [
+  {
+   "term": "calibrated confidence bound on predicted gain (A)",
+   "what_it_would_mean": "a well-calibrated predictive interval / lower confidence bound on DeltaQ",
+   "evidence_required": "calibration diagnostics (coverage vs nominal) on held-out data; no distribution-free claim",
+   "achievable_now": "YES, in principle, but not yet demonstrated; Phase 22 shows the GT-free proxies are near-chance, so calibration is unproven",
+   "status": "NOT_YET_EARNED"
+  },
+  {
+   "term": "conformal guarantee (B)",
+   "what_it_would_mean": "distribution-free finite-sample coverage of a prediction interval for DeltaQ",
+   "evidence_required": "exchangeability assumption, a calibration set, explicit coverage/size trade-off",
+   "achievable_now": "NO \u2014 requires a conformal construction and an exchangeability argument that do not exist yet; the refinement/ROI rules break naive exchangeability",
+   "status": "NOT_EARNED"
+  },
+  {
+   "term": "empirical risk threshold (C)",
+   "what_it_would_mean": "the gate meets a pre-declared risk target on held-out data",
+   "evidence_required": "a held-out, non-inspected evaluation population and a pre-declared risk level",
+   "achievable_now": "NO \u2014 Phase 22's policies were all evaluated on the population they were inspected on (post-hoc, optimistic). No held-out protocol exists yet",
+   "status": "NOT_EARNED"
+  },
+  {
+   "term": "simple probability threshold (D)",
+   "what_it_would_mean": "refine when p(DeltaQ > epsilon) exceeds a chosen threshold",
+   "evidence_required": "only a fixed threshold; no guarantee claim",
+   "achievable_now": "YES \u2014 this is a straightforward design choice, but it is NOT a certificate",
+   "status": "ACHIEVABLE_BUT_NOT_A_CERTIFICATE"
+  }
+ ],
+ "semantic_risk": "'Certified' in the machine-learning literature implies a GUARANTEE (conformal coverage, risk control, safety certificate). Using it for an uncalibrated threshold would be a terminological overclaim and a likely reviewer objection.",
+ "outcome": "USE_CALIBRATED_IF_AND_ONLY_IF_CALIBRATION_IS_DEMONSTRATED_ELSE_USE_BENEFIT_AWARE_ONLY",
+ "recommendation": "USE_BENEFIT_AWARE_ONLY",
+ "recommendation_detail": "Adopt 'benefit-aware' (or 'gain-gated') as the defensible descriptor for the gate. The word 'certified' must be DROPPED from any provisional method name until EITHER (a) a conformal/risk-control construction is completed and validated on held-out data, OR (b) calibration coverage is demonstrated. Phase 23 cannot certify anything; it only rules out the claim for now.",
+ "conditional_upgrade_path": "If, in a later phase, a conformal or risk-controlled construction on held-out data demonstrates coverage, the term may be revisited (USE_CALIBRATED or USE_RISK_CONTROLLED). That is a Phase-24+ decision and is explicitly NOT authorized here.",
+ "reviewer_credibility_note": "An unearned 'certified' is the single easiest way to have the contribution dismissed. 'Benefit-aware' is both accurate and defensible today.",
+ "test_reads": 0,
+ "generated_utc": "2026-09-29T13:53:57.250737+00:00"
+}

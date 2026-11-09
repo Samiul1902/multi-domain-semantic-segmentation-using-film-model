@@ -1,0 +1,249 @@
+{
+  "artifact": "POST_PHASE13_H2A_TRAINING_EVALUATION",
+  "status": "PASS",
+  "created_utc": "2026-09-22T16:35:00Z",
+  "experiment_id": "post_phase13_h2a_kub_localizer_r512_h128_sigmaeq075_centernetfocal_deploymentbalance_seed42_clean_v3",
+  "protocol_sha": "0fafc793b3a814e010e1fdd48f6a2333042985eaef4a44e0382b3991800da96b",
+  "score_path_audit_sha": "3d9fea04ba8ca8b603314bd72f84ce2176ad33c5cc0bfed8f5b6dae1e64bec99",
+  "training_contract": "FROZEN H2A contract honoured (TRAIN 770/1161, VAL 103/152, ROI EXCLUDED, manifest phase4_v3, taxonomy kub_size_clean_v3_v1, 512/128, sigma 0.75, KUBLocalizer 1/1/16, CenterNetFocalLoss(2.0,4.0), AdamW 1e-4/1e-4, CosineAnnealingLR(T_max=100), batch 4, AMP, seed 42, workers 0, max_epochs 100, CUDA required)",
+  "proposal_config": {
+    "threshold": 0.1,
+    "margin": 0.2,
+    "top_k": 5,
+    "nms_iou": 0.3,
+    "configs": 1,
+    "grid": 0
+  },
+  "new_selection_definition": {
+    "label": "H2A_DEPLOYMENT_BALANCED_6TERM_FIXED_CONFIG_SELECTION",
+    "tuple": [
+      "DEPLOYMENT_BALANCE_HMEAN_P_TINY90_OVERALL90",
+      "tiny_recall90",
+      "overall_recall90",
+      "PROPOSAL_PIXEL_ANY_HIT_PRECISION",
+      "-mean_roi_area_fraction",
+      "-val_loss"
+    ],
+    "comparison": "STRICT_LEXICOGRAPHIC_GREATER_THAN",
+    "ties": "BAD_EPOCH",
+    "patience": 15,
+    "primary_utility": "0.0 if any of P,T,O <= 0 else 3/(1/P + 1/T + 1/O)"
+  },
+  "termination": {
+    "reason": "EARLY_STOPPING_PATIENCE",
+    "best_epoch": 83,
+    "final_epoch": 98,
+    "bad_epochs": 15,
+    "patience": 15,
+    "max_epochs": 100
+  },
+  "completed_epochs": 98,
+  "best_epoch": 83,
+  "best_six_term_tuple": [
+    0.4522162369629855,
+    0.6944444444444444,
+    0.6381578947368421,
+    0.27571115973741794,
+    -0.0047946270615735415,
+    -1.8425761369558482
+  ],
+  "final_bad_epochs": 15,
+  "checkpoint_shas": {
+    "best_pt": "2e2e8f7909649f50cf7b830aab357d9e14a4b62b71a00fc0efe22aa300ba54c8",
+    "latest_pt": "429041f8aabfda238cf226f3872991c236c63a8fd6938656d4016bebb1492588",
+    "history": "ed96c4b617a8940c30df30d9a9b8f562819e31d1370b31ee60776142fd077b99"
+  },
+  "trajectory_reproduction": {
+    "result": "PASS",
+    "overlapping_epochs": 68,
+    "epochs_aligned": true,
+    "max_abs_train_loss_diff": 4.440892098500626e-16,
+    "max_abs_val_loss_diff": 0.0,
+    "lr_mismatches": 0,
+    "train_loss_exact_match": false,
+    "val_loss_exact_match": true,
+    "gradient_semantics_changed": "NO",
+    "checkpoint_state_cross_checks": []
+  },
+  "selection_replay": {
+    "result": "PASS",
+    "mismatch_count": 0,
+    "max_abs_term_diff": 2.220446049250313e-16,
+    "best_epoch": 83,
+    "final_bad_epochs": 15,
+    "early_stop_epoch": 98
+  },
+  "standalone_proposal_results": {
+    "proposal_total_count": 457,
+    "proposal_count_per_image": 4.436893203883495,
+    "proposal_pixel_hit_count": 126,
+    "proposal_bbox_hit_count": 125,
+    "proposal_pixel_any_hit_precision": 0.27571115973741794,
+    "proposal_bbox_any_hit_precision": 0.2735229759299781,
+    "tiny_recall90": 0.6944444444444444,
+    "overall_recall90": 0.6381578947368421,
+    "overall_recall50": 0.8223684210526315,
+    "any_overlap_recall": 0.875,
+    "mean_coverage": 0.7878969538240504,
+    "mean_proposal_union_area": 0.0047946270615735415,
+    "score_mean": 0.13751165047124908,
+    "score_median": 0.14163722097873688,
+    "score_q25": 0.1399831771850586,
+    "score_q75": 0.14163722097873688,
+    "score_max": 0.14163722097873688,
+    "score_iqr": 0.0016540437936782837,
+    "fraction_exactly_at_max": 0.6455142231947484,
+    "roc_auc_score_to_pixel_any_hit": 0.7011101520164964,
+    "pr_auc_score_to_pixel_any_hit": 0.3729361181989911,
+    "hard_tiny": {
+      "n": 15,
+      "covered90": 3,
+      "covered90_rate": 0.2,
+      "any_overlap": 7
+    },
+    "global_empty": {
+      "n": 8,
+      "covered90": 2,
+      "covered90_rate": 0.25,
+      "any_overlap": 3
+    },
+    "multi_component": {
+      "n": 98,
+      "covered90": 61,
+      "covered90_rate": 0.6224489795918368
+    }
+  },
+  "phase13_comparison": {
+    "reference": "FROZEN Phase-13 Part-1C best-checkpoint tables (epoch 53); no Phase-13 re-inference",
+    "phase13_proposals_sha": "8c3151a3f1f9a56f0692c6ff2d2171472a777a56e99fa2e474aff8a3478a564a",
+    "phase13_component_sha": "2a3623fecbc1fc5dd5a2c2a12fbd6d5e78fe2e123a9c45431ba53ca14e4e4b87",
+    "rows": [
+      {
+        "quantity": "proposal_total_count",
+        "phase13": 494,
+        "h2a": 457,
+        "delta": -37
+      },
+      {
+        "quantity": "proposal_pixel_any_hit_precision",
+        "phase13": 0.24696356275303644,
+        "h2a": 0.27571115973741794,
+        "delta": 0.028747596984381507
+      },
+      {
+        "quantity": "proposal_bbox_any_hit_precision",
+        "phase13": 0.24898785425101214,
+        "h2a": 0.2735229759299781,
+        "delta": 0.02453512167896596
+      },
+      {
+        "quantity": "tiny_recall90",
+        "phase13": 0.6805555555555556,
+        "h2a": 0.6944444444444444,
+        "delta": 0.01388888888888884
+      },
+      {
+        "quantity": "overall_recall90",
+        "phase13": 0.5986842105263158,
+        "h2a": 0.6381578947368421,
+        "delta": 0.03947368421052633
+      },
+      {
+        "quantity": "overall_recall50",
+        "phase13": 0.7894736842105263,
+        "h2a": 0.8223684210526315,
+        "delta": 0.0328947368421052
+      },
+      {
+        "quantity": "any_overlap_recall",
+        "phase13": 0.8486842105263158,
+        "h2a": 0.875,
+        "delta": 0.02631578947368418
+      },
+      {
+        "quantity": "mean_coverage",
+        "phase13": 0.7584022780771768,
+        "h2a": 0.7878969538240504,
+        "delta": 0.0294946757468737
+      },
+      {
+        "quantity": "mean_proposal_union_area",
+        "phase13": 0.004846047236646118,
+        "h2a": 0.0047946270615735415,
+        "delta": -5.1420175072576166e-05
+      },
+      {
+        "quantity": "proposal_score_max",
+        "phase13": 0.1250653713941574,
+        "h2a": 0.14163722097873688,
+        "delta": 0.016571849584579468
+      },
+      {
+        "quantity": "fraction_exactly_at_max",
+        "phase13": 0.6821862348178138,
+        "h2a": 0.6455142231947484,
+        "delta": -0.03667201162306544
+      },
+      {
+        "quantity": "proposal_count_per_image",
+        "phase13": 4.796116504854369,
+        "h2a": 4.436893203883495,
+        "delta": -0.3592233009708732
+      }
+    ],
+    "language": "DESCRIPTIVE_DEVELOPMENT_COMPARISON__NO_SUPERIORITY_CLAIM__NO_SIGNIFICANCE_CLAIM"
+  },
+  "counters": {
+    "logical_training_experiments": 1,
+    "optimizer_construction": 1,
+    "localizer_model_constructions": "as technically required within the SAME logical run",
+    "cuda": "required",
+    "proposal_configs": 1,
+    "proposal_grid": 0,
+    "downstream_segmentation_model_constructions": 0,
+    "downstream_segmentation_forwards": 0,
+    "oracle_reruns": 0,
+    "test_reads": 0,
+    "external_test_reads": 0
+  },
+  "adaptive_development_disclosure": {
+    "nature": "adaptive VAL-development experiment initiated after Phase 13 REVISE_LOCALIZER and H1 acceptance-only insufficiency",
+    "selection_rule_frozen_before_training": "YES",
+    "val_role": "development data",
+    "substitutes_for_final_test": "NO",
+    "test_untouched": "YES"
+  },
+  "stop_boundary": {
+    "downstream_regional_segmentation": "NOT RUN",
+    "r1_selective_acceptance_applied": "NO",
+    "segmentation_models_loaded": "NO"
+  },
+  "continuity": {
+    "h2a_protocol": "COMPLETE_PASS_FROZEN",
+    "h2a_b1_training": "COMPLETE_PASS",
+    "h2a_standalone_localizer_evaluation": "COMPLETE_PASS",
+    "h2a_downstream_segmentation": "ELIGIBLE_FOR_SUPERVISOR_REVIEW__NOT_AUTHORIZED",
+    "h2a_outcome_adjudication": "NOT_STARTED",
+    "h2_loss_target_redesign": "NOT_STARTED",
+    "h3": "NOT_STARTED",
+    "phase14": "NOT_STARTED",
+    "test": "UNTOUCHED"
+  },
+  "next_action": "WAIT_FOR_SUPERVISOR_H2A_DOWNSTREAM_AUTHORIZATION",
+  "reviewer_notebook": {
+    "path": "notebooks/phasewise/phase_13_predicted_roi_localization/post_phase13_h2a_localizer_training_review.ipynb",
+    "sha256": "aace38193f1af10c34e9c449eb73f8eb6ad8577efc44f132745a40491de7a332",
+    "read_only": "YES",
+    "training_in_notebook": "NONE",
+    "sections": 26,
+    "cells": 54,
+    "code_cells": 27,
+    "run_all_unexecuted": 0,
+    "run_all_errors": 0,
+    "sha_stable_across_three_runs": "YES",
+    "sha_pass1": "aace38193f1af10c34e9c449eb73f8eb6ad8577efc44f132745a40491de7a332",
+    "sha_pass2": "aace38193f1af10c34e9c449eb73f8eb6ad8577efc44f132745a40491de7a332",
+    "sha_pass3": "aace38193f1af10c34e9c449eb73f8eb6ad8577efc44f132745a40491de7a332",
+    "epoch_table_untruncated": "YES (98/98 rows, one completed epoch per row, no ellipsis)"
+  }
+}

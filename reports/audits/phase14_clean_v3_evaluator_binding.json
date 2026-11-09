@@ -1,0 +1,41 @@
+{
+  "artifact": "phase14_clean_v3_evaluator_binding",
+  "status": "BOUND_PROSPECTIVE",
+  "evaluator": {
+    "path": "scripts/evaluation/evaluate_phase14_clean_v3_diagnostic.py",
+    "sha256": "53958eb1601a15f29b6dc1635f802f87af88f2eef3b3268320ad471b92ef1a38"
+  },
+  "reference_generator": {
+    "path": "scripts/audits/phase14_clean_v3_generate_global_reference.py",
+    "sha256": "c82128636e7f5cab4969b7e197e8b3cee5abe83ed542547f87ca685c84d1c771"
+  },
+  "dependency_sha256": {
+    "src/analysis/oracle_roi.py": "0d1ab96b71c8f1c7280679d0f089d19110ca681fbecdce17dfa178176545623d",
+    "src/data/regional_dataset.py": "e7eb24968e9946b8c4190093152b0c7790d2f740cc710a7e232548ea179a06c8",
+    "src/data/transforms.py": "8a8b636b58843d36810ebf5f3527a8ca1287b93483b962d5cf8e323a92566223",
+    "src/inference/kub_predict.py": "b0397d2c30d7e5d270b8087f68997026d30ea1e2c99b7371eb7121a6406e4282",
+    "src/inference/predicted_roi.py": "bd9f8be84595f49ff1e25e6052b548488fb6ae6a48aa7adbc78b880fb8f2d4e7",
+    "src/inference/regional_evaluator.py": "ea09b9efc12b832ad1a7f6a3746fc30756193555ae4c5bfe2929a54b395773f2",
+    "src/metrics/object_metrics.py": "9824397f0c2b5d8807fadd2ba79ec565902ae47b8a36f719a4ae5a4e99a81238",
+    "src/models/factory.py": "3377bbe021d7bd13c07350ff5c4927705c2d67f93fa99c388caf2cc79ef4086d",
+    "src/models/unet.py": "62edc8fb481eb02c46c2c64f6e7219254a57d7ba935a4c840a5a7965b41bdfc2",
+    "src/utils/checkpointing.py": "08366f72f3141e5d18f008981465f5e9138c0b51336fd65cae7c619456ee1eca",
+    "src/utils/manifest_guard.py": "64c5f4d11bbb443c7b47aff7ab84b41e2d2496af981d7b1c6877758cf3461bea",
+    "src/utils/test_lock.py": "7cff4732b1f643738c410d672372684486d79e475eae18da5fee7ae10d2d22f3"
+  },
+  "frozen_operational_config": {
+    "oracle_downstream_margin": 0.2,
+    "predicted_proposal_threshold": 0.1,
+    "predicted_proposal_margin": 0.2,
+    "predicted_proposal_top_k": 5,
+    "predicted_proposal_nms_iou": 0.3,
+    "final_fusion_threshold": 0.5,
+    "fusion_mode": "MAX (DIRECT_REPLACEMENT_IN_PROPOSAL_UNION)",
+    "global_threshold": 0.5
+  },
+  "metric_fusion_semantics": "UNCHANGED from v2-era evaluate_phase14_diagnostic.py (verbatim copy, clean_v3 bindings only)",
+  "population_binding_ref": "reports/audits/phase14_clean_v3_population_freeze.json",
+  "checkpoint_binding_ref": "reports/audits/phase14_clean_v3_checkpoint_binding.json",
+  "global_reference_ref": "reports/audits/phase14_clean_v3_global_reference_freeze.json",
+  "governance_note": "The adapted evaluator and its dependency closure are hashed prospectively. Post-binding modification of any listed file invalidates this binding and requires a new supervisor amendment. The evaluator must run exactly once (\u00a78)."
+}

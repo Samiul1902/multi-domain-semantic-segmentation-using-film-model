@@ -1,0 +1,28 @@
+{
+ "artifact": "phase36_preexecution_source_freeze_v1_18",
+ "phase": 36,
+ "revision": "ra_medfilm_barr_phase36_robustness_v1_18",
+ "type": "PREEXECUTION_SOURCE_FREEZE",
+ "generated_utc": "2026-10-10T14:32:47Z",
+ "frozen_sources": {
+  "execution_source": {
+   "path": "scripts\\analysis\\phase36_robustness_execution_v1_18.py",
+   "sha256": "2259ce22e75ba9a3a8943769dc1e0ed5724f94902f5e8955976cd6ebeb8ce63e"
+  },
+  "execution_generator": {
+   "path": "scripts\\analysis\\build_phase36_robustness_execution_v1_18.py",
+   "sha256": "0eac6a6fad4fc960f9425e2c5deb57aadbe6e65a6893b69dec51fa5caa077560"
+  },
+  "launcher": {
+   "path": "scripts\\analysis\\launch_phase36_v1_18.py",
+   "sha256": "dcb6e046d845eaa7e43fde8713aaa85bf3794e2dc1dbbf9bc84569b9a23f215b"
+  },
+  "runtime_manifest": {
+   "path": "reports\\audits\\phase36_v1_18_runtime_source_integrity_manifest.json",
+   "sha256": "f551b24c565a1e90fc5fa47ab1106d07334669d66f96281f1a0570d1f71c4027"
+  }
+ },
+ "supervisor_deferred": true,
+ "supervisor_deferred_reason": "ACYCLIC ORDER (§11): the supervisor is built LAST and pins the prelaunch authority bundle SHA; the freeze therefore cannot (and does not) contain a supervisor SHA.",
+ "terminal": "PHASE36_V1_18_SOURCE_FREEZE_WRITTEN"
+}

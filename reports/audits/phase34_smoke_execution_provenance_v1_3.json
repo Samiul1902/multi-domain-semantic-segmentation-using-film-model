@@ -1,0 +1,126 @@
+{
+ "artifact": "phase34_smoke_execution_provenance_v1_3",
+ "phase": 34,
+ "section": "\u00a7P",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase34_efficiency_profiling_v1_3",
+ "runtime_preflight_sha256": "c158e57db219519d4316236d41e34014b8a8c54fc234e918b1ba38b2ef1238cb",
+ "v1_3_source_freeze_sha256": "c7ee684c24d3ddaf4af3eeca6eed3bd44c856c9152b6eccaec0443e6df14c742",
+ "environment": {
+  "os": "Windows-10-10.0.26200-SP0",
+  "python_version": "3.11.9",
+  "torch_version": "2.6.0+cu124",
+  "cuda_runtime": "12.4",
+  "cuda_driver_version": "596.36",
+  "cudnn_version": 90100,
+  "cuda_available": true,
+  "gpu_model": "NVIDIA GeForce RTX 3060 Ti",
+  "gpu_compute_capability": "8.6",
+  "gpu_total_vram_bytes": 8589279232,
+  "cpu_logical_cores": 16,
+  "cpu_torch_threads": 8,
+  "system_ram_bytes": 34281005056
+ },
+ "checkpoint_shas": [
+  {
+   "component": "G",
+   "path": "checkpoints/phase21_global_medfilm_fourdomain_seed42_clean_v3/best.pt",
+   "expected_sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+   "observed_sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+   "match": true,
+   "file_bytes": 42369710,
+   "expected_parameters": 3523001
+  },
+  {
+   "component": "R_psi",
+   "path": "checkpoints/phase25a_barr_regional_refiner_v1_1_roi030/final/final.pt",
+   "expected_sha256": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109",
+   "observed_sha256": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109",
+   "match": true,
+   "file_bytes": 15425424,
+   "expected_parameters": 1276401
+  },
+  {
+   "component": "B_phi",
+   "path": "checkpoints/phase25d_barr_benefit_router_v1_2_1_seed42/final/final.pt",
+   "expected_sha256": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+   "observed_sha256": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+   "match": true,
+   "file_bytes": 455682,
+   "expected_parameters": 36801
+  },
+  {
+   "component": "S_omega",
+   "path": "checkpoints/phase25f_barr_post_safety_v1_0_seed42/final/final.pt",
+   "expected_sha256": "eee9b97b9921e53fc07eac9281dce64ba518c6e1659916b97b0b3bec21ec6d2e",
+   "observed_sha256": "eee9b97b9921e53fc07eac9281dce64ba518c6e1659916b97b0b3bec21ec6d2e",
+   "match": true,
+   "file_bytes": 7816,
+   "expected_parameters": 1217
+  }
+ ],
+ "constructor_identities": {
+  "G": "GlobalMedFiLM(task_count=4,in_channels=3,out_channels=1,channels=(24,48,96,192,256),task_embedding_dim=32,film_hidden_dim=64)",
+  "R_psi": "BARRRegionalRefinerV1()",
+  "B_phi": "BARRBenefitRouterV1() from scripts/analysis/train_phase25d_router.py",
+  "S_omega": "BARRPostSafetyV1() from scripts/analysis/phase25f_execution_common.py"
+ },
+ "strict_load_outcomes": {
+  "G": {
+   "missing_keys": [],
+   "unexpected_keys": []
+  },
+  "R_psi": {
+   "missing_keys": [],
+   "unexpected_keys": []
+  },
+  "B_phi": {
+   "missing_keys": [],
+   "unexpected_keys": []
+  },
+  "S_omega": {
+   "missing_keys": [],
+   "unexpected_keys": []
+  }
+ },
+ "parameter_counts": {
+  "G": 3523001,
+  "R_psi": 1276401,
+  "B_phi": 36801,
+  "S_omega": 1217
+ },
+ "SMOKE_TASK_ID": 0,
+ "SMOKE_DOMAIN": "ISIC",
+ "synthetic_generator": "PYTORCH_CUDA_GENERATOR_SEED_42",
+ "precision_contexts": {
+  "G": "eval + float32 + autocast(float16) + torch.no_grad() + inference_mode false",
+  "R_psi": "eval + float32 + autocast disabled + torch.inference_mode()",
+  "B_phi": "eval + float32 + autocast disabled + torch.inference_mode()",
+  "S_omega": "eval + float32 + autocast disabled + torch.inference_mode()"
+ },
+ "smoke_order": [
+  "G_COMPONENT",
+  "R_PSI_COMPONENT",
+  "B_PHI_COMPONENT",
+  "S_OMEGA_COMPONENT",
+  "SKIP_CONTROLLED_PATH",
+  "EXECUTE_CONTROLLED_PATH"
+ ],
+ "forward_call_accounting": {
+  "individual": 4,
+  "controlled_path": 6,
+  "total": 10
+ },
+ "cuda_synchronization_used_only_for_error_surfacing": true,
+ "protected_data_counters": {
+  "raw_image_reads": 0,
+  "raw_gt_reads": 0,
+  "router_holdout_raw_reads": 0,
+  "test_reads": 0,
+  "training_data_image_reads": 0,
+  "external_image_reads": 0,
+  "training_steps": 0
+ },
+ "generated_utc": "2026-10-04T13:22:34+00:00",
+ "all_pass": true
+}

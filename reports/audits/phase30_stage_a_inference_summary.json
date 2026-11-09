@@ -1,0 +1,86 @@
+{
+ "artifact": "phase30_stage_a_inference_summary",
+ "phase": 30,
+ "stage": "STAGE_A",
+ "specification_revision": "ra_medfilm_barr_phase30_final_dev_validation_v1_3",
+ "method": "RA-MedFiLM-BARR",
+ "population": "ROUTER_HOLDOUT",
+ "n": 875,
+ "domain_counts": {
+  "BUSI": 90,
+  "ISIC": 383,
+  "KUB": 298,
+  "KVASIR": 104
+ },
+ "logical_G_passes": 1,
+ "G_samples": 875,
+ "G_batch_forwards": 111,
+ "G_batch_forwards_by_domain": {
+  "BUSI": 12,
+  "ISIC": 48,
+  "KUB": 38,
+  "KVASIR": 13
+ },
+ "G_semantics": {
+  "device": "cuda",
+  "autocast_enabled": true,
+  "autocast_dtype": "float16",
+  "grad_context": "torch.no_grad()",
+  "inference_mode": false,
+  "batch_size": 8,
+  "sample_order": "(dataset asc, sample_id asc)",
+  "domain_order": [
+   "BUSI",
+   "ISIC",
+   "KUB",
+   "KVASIR"
+  ],
+  "contiguous_within_domain": true
+ },
+ "router": {
+  "policy": "C8_FINAL_ROUTER_RESOURCE_AWARE_UTILITY",
+  "runtime_score": "delta_hat_final - 0.25*C",
+  "tau_C8_exact": "-5003565381643716252018011/205414980000000000000000000",
+  "tau_C7_exact": "24796109646558761/20000000000000000000",
+  "lambda_C_exact": "262912/10270749",
+  "score_path": "FULL_FEATURE_MATRIX_SINGLE_FORWARD",
+  "sigmoid_applied": false
+ },
+ "component_batch_semantics": {
+  "R_psi": {
+   "batch_size": 8,
+   "autocast": false,
+   "inference_mode": true,
+   "note": "eval fp32 GroupNorm/conv -> batch-independent"
+  },
+  "S_omega": {
+   "batch_size": 128,
+   "autocast": false,
+   "inference_mode": true,
+   "note": "eval fp32 -> batch-independent"
+  },
+  "B_phi": {
+   "batch_size": "FULL_FEATURE_MATRIX",
+   "sigmoid_applied": false
+  }
+ },
+ "n_selected": 240,
+ "n_skip": 635,
+ "realized_activation_fraction": 0.2742857142857143,
+ "n_Rpsi_exec": 240,
+ "n_Somega_exec": 240,
+ "n_accept": 236,
+ "n_reject": 4,
+ "n_forced_skip": 0,
+ "safety_accept_fraction": 0.9833333333333333,
+ "A7_additional_model_forwards": 0,
+ "R_psi_exec_equals_router_execute": true,
+ "Somega_exec_equals_Rpsi_exec": true,
+ "S_omega_saves_compute": false,
+ "val808_gt_reads": 0,
+ "ROUTER_HOLDOUT_GT_reads": 0,
+ "TEST_reads": 0,
+ "elapsed_seconds": 148.2,
+ "generated_utc": "2026-10-04T03:18:02+00:00",
+ "all_pass": true
+}

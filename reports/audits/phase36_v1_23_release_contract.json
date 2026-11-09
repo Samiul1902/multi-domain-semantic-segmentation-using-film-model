@@ -1,0 +1,52 @@
+{
+ "artifact": "phase36_v1_23_release_contract",
+ "phase": 36,
+ "revision": "ra_medfilm_barr_phase36_robustness_v1_23",
+ "type": "RELEASE_CONTRACT",
+ "mode": "PREPARATION_ONLY_NON_CONSUMING",
+ "execution_source": "scripts/analysis/phase36_robustness_execution_v1_23.py",
+ "execution_source_sha256": "2287cc78ba60d715ff371ba58f0ea90f772219b510e198bea6053a7043159396",
+ "supersedes_revision": "v1.22",
+ "v1_22_state": "CONSUMED_POST_PERTURBATION__STAGE5_SUMMARY_RUNTIME_DEFECT",
+ "v1_21_state": "NOT_EXECUTED__PRELAUNCH_REAL_PATH_DEFECT",
+ "v1_20_state": "CONSUMED_INTERRUPTED_POST_START_PRE_SCIENTIFIC_RESULT",
+ "scientific_delta_distinct_classes": [],
+ "scientific_delta_count": 0,
+ "runtime_repairs": [
+  "D93A"
+ ],
+ "supervisor_repairs": [
+  "D95"
+ ],
+ "launcher_repairs": [
+  "D96"
+ ],
+ "execution_source_repairs": [
+  "D97"
+ ],
+ "d97_repair": {
+  "defect": "D97_V1_22_SUMMARY_REFERENCES_UNDEFINED_COMMON_BEST_SEED_SELECTION",
+  "class": "POST_PERTURBATION__STAGE5_SUMMARY_RUNTIME_DEFECT",
+  "repair": "LOCAL frozen reporting constants (BEST_SEED_SELECTION = False, KUB_REPORTING_ONLY = True) bound in the v1.23 execution source with frozen v1.0 contract provenance; common_v1_1 NOT mutated",
+  "scientific_semantics_effect": "NONE"
+ },
+ "d61_canonical_fusion_preserved": true,
+ "d75_policy_b_preserved": true,
+ "science_path_repairs": {
+  "v1_14_to_v1_23_classes": [
+   "D61",
+   "D75"
+  ],
+  "v1_22_to_v1_23_classes": []
+ },
+ "operator_gates": {
+  "execute": "PHASE36_V1_23_EXECUTE",
+  "launch_authority": "PHASE36_V1_23_LAUNCH_AUTHORITY"
+ },
+ "runtime_release_state": "RELEASED",
+ "protected_populations": {
+  "test": "LOCKED_PHASE39_ONLY",
+  "router_holdout": "LOCKED"
+ },
+ "terminal": "PHASE36_V1_23_RELEASE_CONTRACT_WRITTEN"
+}

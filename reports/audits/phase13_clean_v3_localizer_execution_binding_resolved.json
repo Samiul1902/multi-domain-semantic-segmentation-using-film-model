@@ -1,0 +1,232 @@
+{
+  "artifact": "PHASE13_CLEAN_V3_LOCALIZER_EXECUTION_BINDING_RESOLVED",
+  "phase": 13,
+  "part": "1B",
+  "sub_step": "1B-R0-R1",
+  "document_type": "NON_SCIENTIFIC_EXECUTION_BINDING_RESOLVED",
+  "created_utc": "2026-09-21T00:00:00Z",
+  "experiment_id": "phase13b_kub_localizer_r512_h128_sigmaeq075_centernetfocal_seed42_clean_v3",
+  "binding_type": "NON_SCIENTIFIC_EXECUTION_BINDING",
+
+  "supersedes": {
+    "artifact": "reports/audits/phase13_clean_v3_localizer_execution_binding.json",
+    "sha256": "f066a1fb6d28d3b8e35bf269f8e36e0bcdf964ecc3c28d59ae399580bdc725ad",
+    "preserved": true,
+    "prior_status": "READY_FOR_SUPERVISOR_PART1B_EXECUTION_REVIEW",
+    "prior_blocking_discrepancy": "LOSS_OBJECTIVE_BINDING_NOT_PHYSICALLY_RESOLVED",
+    "note": "The prior R0 binding audit is PRESERVED on disk, byte-for-byte. This resolved artifact is ADDITIVE and does not overwrite it."
+  },
+
+  "protocol_identity": {
+    "base": "SUPERVISOR_FROZEN_R2",
+    "base_protocol_path": "reports/audits/phase13_clean_v3_localizer_protocol_frozen_r2.json",
+    "base_protocol_sha256": "ab451e03366c589fae5c303ebf1382e086f4f115b97768eb36d491256a3b5e53",
+    "base_protocol_status": "SUPERVISOR_FROZEN_R2_READY_FOR_PART1B_TRAINING",
+    "amendment": "R2A_LOSS_BINDING",
+    "amendment_path": "reports/audits/phase13_clean_v3_localizer_loss_binding_r2a.json",
+    "amendment_sha256": "f3aececfbe683fa7c60ea758b7b7d6446e3cc6584e86e8faa2c7eb4f14029667",
+    "amendment_scope": "LOSS_OBJECTIVE_ONLY",
+    "resulting_executable_protocol_identity": "R2 + R2A_LOSS_BINDING",
+    "new_variant_created": false,
+    "material_change_relative_to_R2": "NO",
+    "material_resolution_of_prior_ambiguity": "YES"
+  },
+
+  "collision_check": {
+    "experiments_dir": "experiments/phase13b_kub_localizer_r512_h128_sigmaeq075_centernetfocal_seed42_clean_v3",
+    "checkpoints_dir": "checkpoints/phase13b_kub_localizer_r512_h128_sigmaeq075_centernetfocal_seed42_clean_v3",
+    "result": "NO_COLLISION",
+    "derived_or_altered_id": false
+  },
+
+  "loss_binding_resolution": {
+    "decision": "SUPERVISOR_LOSS_DECISION_L1",
+    "label": "EXECUTING_HISTORICAL_CENTERNET_FOCAL_L1",
+    "role": "PRIMARY_PHASE13_CLEAN_V3_LOCALIZER_OBJECTIVE",
+    "loss_class": "src.losses.localization.CenterNetFocalLoss",
+    "alpha": 2.0,
+    "beta": 4.0,
+    "dice_term": "NONE",
+    "dice_weight": 0.0,
+    "no_0_75_0_25_weighting": true,
+    "no_alpha_0_25": true,
+    "no_gamma_2_0": true,
+    "executing_source": "scripts/training/train_phase13b_localizer.py",
+    "executing_source_line": 121,
+    "executing_source_sha256": "5985b9eb2fe43018babbd88004bf7e5b99d2783dcfa78c7404591a02bdcb555a",
+    "physically_verified": true,
+    "historical_best_checkpoint_used_executing_path": true,
+    "historical_best_checkpoint_epoch": 73,
+    "dispositions": {
+      "composite_contract_string": {
+        "value": "0.75 CenterNet focal (alpha 0.25, gamma 2.0) + 0.25 soft Dice",
+        "status": "SUPERSEDED_DOCUMENTED_NOT_EXECUTING_OBJECTIVE",
+        "executable": false,
+        "preserved": true,
+        "note": "Retained as provenance. Documented-only; the executing historical trainer never instantiated it."
+      },
+      "SoftFocalDiceLoss": {
+        "class": "src.losses.localization.SoftFocalDiceLoss",
+        "status": "NON_PRIMARY_IMPLEMENTATION_DEFECT",
+        "executable": false,
+        "repaired": false,
+        "note": "Dead code on the executable path. Normalisation defect (focal_values.mean()) retained unrepaired because the class is not the primary objective."
+      }
+    }
+  },
+
+  "artifact_shas": {
+    "config": {
+      "path": "configs/phase13_clean_v3/phase13b_kub_localizer_r512_h128_sigmaeq075_centernetfocal_seed42_clean_v3.yaml",
+      "sha256": "922ff26916c1f7ebea0ea526fbaa6adbb9a7419f1f08b16d33ed5df049c4c8bf"
+    },
+    "runner": {
+      "path": "scripts/training/train_phase13_clean_v3_localizer.py",
+      "sha256": "903f53e53f25fdb2a23b9fc88dfde36a0681a74420f8f4aa06eced13a75e7c82"
+    },
+    "safe_inference_wrapper": {
+      "path": "src/inference/learned_roi_clean_v3.py",
+      "sha256": "613e03d6e4dccccce2b743974dfaccd8a29a2c0932048f0af3d37a6d2a0241bf"
+    },
+    "selection_module": {
+      "path": "src/training/clean_v3_selection.py",
+      "sha256": "e4083bc1adda0effdd54630e018fe56b678bfcc8673c77f8ecc38340e56cce6e"
+    },
+    "selection_tests": {
+      "path": "tests/test_phase13_clean_v3_selection.py",
+      "sha256": "14fae0a1a65c64a98b1cd69dedcceeca62e8e9bbbaac0a520f6937cccd67c7f8"
+    },
+    "binding_csv": {
+      "path": "reports/tables/phase13_clean_v3_executable_config_binding.csv",
+      "sha256": "52b16c7f52cd844fefed8b415de7f1a8517cfe2f59c93799b78148ea16f48652",
+      "rows": 130,
+      "columns": 6
+    },
+    "r2a_loss_amendment_json": {
+      "path": "reports/audits/phase13_clean_v3_localizer_loss_binding_r2a.json",
+      "sha256": "f3aececfbe683fa7c60ea758b7b7d6446e3cc6584e86e8faa2c7eb4f14029667"
+    },
+    "r2a_loss_amendment_md": {
+      "path": "reports/audits/phase13_clean_v3_localizer_loss_binding_r2a.md",
+      "sha256": "3969ea2c57e75942af343bec801792cf696a3899dcc85dde224819ec0aa1e196"
+    }
+  },
+
+  "clean_v3_val_component_source": {
+    "path": "reports/tables/phase12_clean_v3_oracle_geometry.csv",
+    "sha256": "29326d5b9a3bf71add74d8743750511f146d8c4dfbd1dc5b04a5e1b647c37cc0",
+    "components": 152,
+    "cases": 103,
+    "strata": {"TINY": 72, "SMALL": 28, "MEDIUM": 36, "LARGE": 16},
+    "coordinate_space": "NATIVE",
+    "bbox_columns": ["bbox_min_y", "bbox_max_y", "bbox_min_x", "bbox_max_x"],
+    "native_dims_columns": ["native_H", "native_W"],
+    "rejected_alternatives": {
+      "kub_size_v1_component_table": {
+        "path": "reports/tables/kub_*_components_sized.csv",
+        "reason": "STALE_TAXONOMY_kub_size_v1_NOT_clean_v3"
+      },
+      "historical_v2_manifest": {
+        "reason": "KNOWN_SPLIT_CONTAMINATION / NOT_ACTIVE_MANIFEST"
+      }
+    }
+  },
+
+  "immutability_verification": {
+    "historical_runner": {
+      "path": "scripts/training/train_phase13b_localizer.py",
+      "sha256": "5985b9eb2fe43018babbd88004bf7e5b99d2783dcfa78c7404591a02bdcb555a",
+      "expected": "5985b9eb2fe43018babbd88004bf7e5b99d2783dcfa78c7404591a02bdcb555a",
+      "unmodified": true
+    },
+    "historical_helper": {
+      "path": "src/inference/learned_roi.py",
+      "sha256": "457aa10a7f513ebc8e9a43dadc9108d42738af164b9ce8b42324f4c87abe1590",
+      "expected": "457aa10a7f513ebc8e9a43dadc9108d42738af164b9ce8b42324f4c87abe1590",
+      "unmodified": true
+    },
+    "frozen_r2_protocol": {
+      "path": "reports/audits/phase13_clean_v3_localizer_protocol_frozen_r2.json",
+      "sha256": "ab451e03366c589fae5c303ebf1382e086f4f115b97768eb36d491256a3b5e53",
+      "expected": "ab451e03366c589fae5c303ebf1382e086f4f115b97768eb36d491256a3b5e53",
+      "unmodified": true
+    },
+    "prior_check_required_audits": {
+      "execution_binding": {
+        "json_sha256": "f066a1fb6d28d3b8e35bf269f8e36e0bcdf964ecc3c28d59ae399580bdc725ad",
+        "md_sha256": "46e10e9d6055d0c94dfc5fa8b9870bfc2aa8df821b7f7a4c2e704f2ecc3444c3",
+        "preserved": true
+      },
+      "validation": {
+        "json_sha256": "294f568a3762127f76e78b3ebb6a493a1494b6581766951bfc5cec76e50d6673",
+        "md_sha256": "97530789992d9859095860baccaf6e54d5cf3405e83d5cf1249c898cdbe5ebab",
+        "preserved": true
+      }
+    }
+  },
+
+  "executable_binding_summary": {
+    "experiment_id_bound": true,
+    "manifest_version": "phase4_v3",
+    "taxonomy_id": "kub_size_clean_v3_v1",
+    "heatmap_resolution": 128,
+    "input_resolution": 512,
+    "input_resolution_source": "EXPLICIT_CONSTRUCTOR_ARG",
+    "proposal_configuration_count": 1,
+    "proposal_config": {
+      "threshold": 0.10,
+      "margin": 0.20,
+      "top_k": 5,
+      "nms_iou": 0.30
+    },
+    "grid_search_enabled": false,
+    "selection_label": "EXECUTING_HISTORICAL_4TERM_FIXED_CONFIG_SELECTION",
+    "selection_tuple": [
+      "tiny_recall90",
+      "overall_recall90",
+      "-mean_roi_area_fraction",
+      "-val_loss"
+    ],
+    "secondary_term_names": [
+      "hard_tiny_recovered90",
+      "global_empty_images_covered90",
+      "multi_component_recall90",
+      "mean_proposals_per_image"
+    ],
+    "secondary_excluded_from_selection": true,
+    "seed": 42,
+    "accumulation_steps": 1,
+    "test_reads": 0
+  },
+
+  "train_readiness": {
+    "not_implemented_error_remaining": false,
+    "todo_remaining": false,
+    "dummy_metrics": false,
+    "fabricated_metrics": false,
+    "val_evaluator_implemented": true,
+    "val_evaluator_function": "evaluate_fixed_config_localizer",
+    "deterministic_seeding": {
+      "set_seed_before_model_construction": true,
+      "train_loader_generator": true,
+      "val_loader_generator": true,
+      "seed_worker": true
+    },
+    "loader_generator_state_persisted": true,
+    "manifest_hashes_populated": true,
+    "checkpoint_metadata_complete": true,
+    "resume_safety_gates": true,
+    "training_start_audit_code_path": true,
+    "training_completion_audit_code_path": true,
+    "atomic_history_write": true
+  },
+
+  "status": "READY_FOR_SUPERVISOR_TRAINING_REAUTHORIZATION_REVIEW",
+  "gate": "PASS_READY_FOR_SUPERVISOR_TRAINING_REAUTHORIZATION",
+  "training_started": false,
+  "regional_gate": "NOT_DECIDED",
+  "phase14_started": false,
+  "next_action": "WAIT_FOR_SUPERVISOR_PHASE13_PART1B_TRAINING_REAUTHORIZATION",
+  "invented_values": false,
+  "scientific_changes": 0
+}

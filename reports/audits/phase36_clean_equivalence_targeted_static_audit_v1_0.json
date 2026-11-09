@@ -1,0 +1,139 @@
+{
+  "artifact_kind": "PHASE36_CLEAN_EQUIVALENCE_TARGETED_STATIC_AUDIT",
+  "audit_revision": "phase36_clean_equivalence_targeted_static_audit_v1_0",
+  "work_order": "H_STEP_2",
+  "execution_mode": "STATIC_ONLY_NO_MODEL_NO_GT_NO_CHECKPOINT",
+  "scientific_output": false,
+  "created_utc": "2026-10-07T02:54:37Z",
+  "findings": {
+    "n_scores_rows": 808,
+    "final_dice_decimal_length_histogram": {
+      "13": 1,
+      "14": 11,
+      "15": 77,
+      "16": 690,
+      "17": 18,
+      "18": 3,
+      "19": 4,
+      "20": 4
+    },
+    "final_dice_min_decimals": 13,
+    "final_dice_max_decimals": 20,
+    "final_dice_roundtrip_failures": 0,
+    "final_dice_nonfinite": 0,
+    "final_dice_all_finite": true,
+    "final_dice_full_precision": true,
+    "gate_atol_1e-7_compatible_with_full_precision": true,
+    "gate_dice_comparator": "np.isclose(gen,bound,atol=1e-7,rtol=0)",
+    "v1_14_dice_uses_evaluation_metrics_dice": true,
+    "v1_14_confusion_uses_evaluation_metrics": true,
+    "phase27_canon_dice_uses_evaluation_metrics": true,
+    "evaluation_metrics_defines_dice": true,
+    "evaluation_metrics_defines_binary_confusion_counts": true,
+    "dice_definition_equivalence": "SHARED_CALLABLE::src.metrics.evaluation_metrics.dice(eps=1e-7)::same_inside_both_paths",
+    "v1_14_mask_preprocess_nearest_centerpad_gt": true,
+    "phase29_full_field_gt_nearest_centerpad": true,
+    "gt_construction_equivalence": "SAME_ALGORITHM::NEAREST_aspect_resize_to_512+centre_pad+(arr>0)",
+    "v1_14_segmentation_output_threshold": 0.5,
+    "phase27_phaseA_SEG": 0.5,
+    "C7_exact_str": "24796109646558761/20000000000000000000",
+    "C7_float": "0.001239805482327938",
+    "C8_exact_str": "-5003565381643716252018011/205414980000000000000000000",
+    "C8_float": "-0.024358327623641256",
+    "C8_equals_phase27_exact_constant": true,
+    "runtime_model_defines_TAU_C8_FINAL_FLOAT": true,
+    "runtime_model_TAU_C8_derivation": "TAU_C7_FINAL - LAMBDA_C",
+    "phase27_common_TAU_C8_FINAL_EXACT": "-5003565381643716252018011/205414980000000000000000000",
+    "phase27_exact_constant_equals_runtime_C8": true,
+    "phase27_phaseA_uses_TAU_C8_FINAL_EXACT": true,
+    "phase27_phaseA_skip_when_util_lt_TAU": true,
+    "runtime_decision_form": "EXECUTE iff canonical_utility(delta_hat_final) >= TAU_C8_FINAL_FLOAT else SKIP",
+    "phase29_selected_uses_TAU_C7": true,
+    "phase29_asserts_C7_selected_equals_C8_utility_decision": true,
+    "phase29_router_utility_form": "router_scores - LAMBDA_C ; selected == (router_utility >= TAU_C8)",
+    "phase29_router_threshold_column_is_display_only_C7": true,
+    "runtime_form_reproduces_phase29_selected_mismatches": 0,
+    "runtime_form_reproduces_phase29_selected_all": true,
+    "threshold_provenance_verdict": "EQUIVALENT__C7_AND_C8_FORMS_PROVEN_IDENTICAL_BY_PHASE29_ASSERT_AND_EMPIRICAL_808_CHECK",
+    "runtime_S_omega_accept_threshold": 0.5,
+    "runtime_roi_proposal_threshold": 0.3,
+    "runtime_segmentation_output_threshold": 0.5,
+    "runtime_accept_semantics": "ACCEPT iff sigmoid(logit) >= s_omega_accept_threshold; ACCEPT->REFINED, REJECT->GLOBAL",
+    "runtime_state_vocabulary": [
+      "FORCED_SKIP",
+      "SKIP_GLOBAL",
+      "EXECUTE_THEN_ACCEPT",
+      "EXECUTE_THEN_REJECT"
+    ],
+    "runtime_router_decision_vocabulary": [
+      "SKIP",
+      "EXECUTE"
+    ],
+    "runtime_normalized_decision_mapping": "ACCEPT/REJECT -> EXECUTE ; SKIP_GLOBAL/FORCED_SKIP -> SKIP",
+    "phase27_authority_router_decision_mapping": "EXECUTE iff state in (EXECUTE_THEN_ACCEPT,EXECUTE_THEN_REJECT) else SKIP/FORCED_SKIP",
+    "phase27_authority_state_column": "state_machine_branch = state (exact branch, ACCEPT/REJECT NOT collapsed)",
+    "branch_vocabulary_equivalence": "IDENTICAL_4_STATE_VOCABULARY",
+    "safety_semantics_verdict": "EQUIVALENT",
+    "feature_runtime_semantics_checks": {
+      "v1_14_ROUTER_NUMERIC_DIM_202": true,
+      "v1_14_uses_system_router_normalization": true,
+      "v1_14_uses_system_post_safety_normalization": true,
+      "v1_14_uses_onehot_task": true,
+      "v1_14_bphi_under_inference_mode_no_autocast": true,
+      "v1_14_rpsi_runs_only_on_execute": true,
+      "v1_14_somega_runs_only_after_rpsi": true,
+      "v1_14_fuse_only_on_accept": true
+    },
+    "feature_runtime_semantics_verdict": "BOUND_BY_FROZEN_SHARED_CALLABLES",
+    "gate_branch_comparator": "EXACT string equality of state_machine_branch",
+    "gate_router_decision_comparator": "EXACT string equality of router_decision",
+    "gate_increments_dice_only_when_generated_finite": true
+  },
+  "provenance": {
+    "v1_14_execution_source_sha256": "ac09ff8ded3610244920e66612145b246b33127140d344a9730d454bab27cff5",
+    "v1_14_exec_expected": "ac09ff8ded3610244920e66612145b246b33127140d344a9730d454bab27cff5",
+    "v1_14_match": true,
+    "phase27_scores_sha256": "702133930ce14ac9513c992833396e3e250d08417b17d1032cbd260a405cfb12",
+    "phase27_scores_expected": "702133930ce14ac9513c992833396e3e250d08417b17d1032cbd260a405cfb12",
+    "phase27_scores_match": true,
+    "phase29_routing_sha256": "df4a0f376a7edab221d584b2a7152bf7e8f55c00ade87e39cd94c9bb13fedea6",
+    "phase29_routing_expected": "df4a0f376a7edab221d584b2a7152bf7e8f55c00ade87e39cd94c9bb13fedea6",
+    "phase29_routing_match": true,
+    "audited_source_files": {
+      "v1_14_execution": {
+        "path": "scripts\\analysis\\phase36_robustness_execution_v1_14.py",
+        "sha256": "ac09ff8ded3610244920e66612145b246b33127140d344a9730d454bab27cff5"
+      },
+      "runtime_model_wrapper": {
+        "path": "src\\models\\barr\\ra_medfilm_barr.py",
+        "sha256": "342f2163690c2fa8d5a601ab1d18178b982d701b916935c33e0793b0801c3724"
+      },
+      "phase27_phaseA": {
+        "path": "scripts\\analysis\\run_phase27_exec_phaseA.py",
+        "sha256": "ac0ffbdadbfe60349061a926f5a664716a3a3690ac3a90c21a35802263975841"
+      },
+      "phase27_phaseB": {
+        "path": "scripts\\analysis\\run_phase27_exec_phaseB.py",
+        "sha256": "35800e39d9220e638adbb640bd25e18bc14da5298d9bed4a603f2f0dec64cf37"
+      },
+      "phase27_common": {
+        "path": "scripts\\analysis\\phase27_exec_common.py",
+        "sha256": "c6de3a5ba3febffbaa4e787c2fb5514b40feb296d25a0c47b71c152ddea22bfb"
+      },
+      "phase29_canonical_inference": {
+        "path": "scripts\\analysis\\phase29_phase_d_canonical_seed_inference.py",
+        "sha256": "7c0d0039e6e215b6a73607b9892a9cd2785620cfcc75e7baf655d486f594f2f6"
+      },
+      "evaluation_metrics": {
+        "path": "src\\metrics\\evaluation_metrics.py",
+        "sha256": "6c515f6f1a495315c79238292c385a082ae8347489130ad5bff34d74c4f181f6"
+      }
+    }
+  },
+  "static_defect_count": 0,
+  "static_defects": [],
+  "root_cause_static_verdict": "STATIC_ROOT_CAUSE_NOT_ESTABLISHED",
+  "static_audit_scope": "targeted: final_dice precision | Dice-definition equivalence | routing threshold equivalence (C7 vs C8) | safety/branch semantics | feature/runtime semantics | gate comparator strictness",
+  "diagnostic_reexecution_required": true,
+  "terminal_recommendation": "PROCEED_TO_STEP_3_CLEAN_EQUIVALENCE_DIAGNOSTIC_HARNESS"
+}

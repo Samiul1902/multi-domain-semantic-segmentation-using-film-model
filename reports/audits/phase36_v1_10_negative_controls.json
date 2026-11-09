@@ -1,0 +1,87 @@
+{
+  "artifact": "phase36_v1_10_negative_controls",
+  "phase": 36,
+  "section": "§K",
+  "method": "RA-MedFiLM-BARR",
+  "revision": "ra_medfilm_barr_phase36_robustness_v1_10",
+  "type": "NEGATIVE_CONTROL_AUDIT",
+  "model_free": true,
+  "torch_imported": false,
+  "protected_population_read": false,
+  "mutants_are_in_memory_strings_only": true,
+  "canonical_source_sha256_before": "433bad87b4ef77fd6997c77f688eb295e526bfa3e88dece4ec5d3d550255cbd0",
+  "canonical_source_sha256_after": "433bad87b4ef77fd6997c77f688eb295e526bfa3e88dece4ec5d3d550255cbd0",
+  "canonical_source_unmodified": true,
+  "nc_range": "NC63-NC70",
+  "targets": "D26/D27/D28_unit_gate_repairs",
+  "carried_over_v1_9": "NC50-NC57_remain_valid_in_phase36_v1_9_negative_controls.json",
+  "passed": 8,
+  "total": 8,
+  "all_pass": true,
+  "controls": [
+    {
+      "nc": "NC63_D26_provenance_hardcoded_literal_true",
+      "mutation_changed_bytes": true,
+      "detector_on_canonical": true,
+      "detector_on_mutant": false,
+      "mutant_bite": true,
+      "pass": true
+    },
+    {
+      "nc": "NC64_D26_provenance_or_true_tautology",
+      "mutation_changed_bytes": true,
+      "detector_on_canonical": true,
+      "detector_on_mutant": false,
+      "mutant_bite": true,
+      "pass": true
+    },
+    {
+      "nc": "NC65_D26_provenance_missing_one_input_signal",
+      "mutation_changed_bytes": true,
+      "detector_on_canonical": true,
+      "detector_on_mutant": false,
+      "mutant_bite": true,
+      "pass": true
+    },
+    {
+      "nc": "NC66_D26_exclusive_create_open_x_removed",
+      "mutation_changed_bytes": true,
+      "detector_on_canonical": true,
+      "detector_on_mutant": false,
+      "mutant_bite": true,
+      "pass": true
+    },
+    {
+      "nc": "NC67_D27_transitive_dep_path_dropped",
+      "mutation_changed_bytes": true,
+      "detector_on_canonical": true,
+      "detector_on_mutant": false,
+      "mutant_bite": true,
+      "pass": true
+    },
+    {
+      "nc": "NC68_D27_transitive_dep_path_replaced",
+      "mutation_changed_bytes": true,
+      "detector_on_canonical": true,
+      "detector_on_mutant": false,
+      "mutant_bite": true,
+      "pass": true
+    },
+    {
+      "nc": "NC69_D28_hd95_call_site_dropped",
+      "mutation_changed_bytes": true,
+      "detector_on_canonical": true,
+      "detector_on_mutant": false,
+      "mutant_bite": true,
+      "pass": true
+    },
+    {
+      "nc": "NC70_D28_hd95_call_site_reason_weakened",
+      "mutation_changed_bytes": true,
+      "detector_on_canonical": true,
+      "detector_on_mutant": false,
+      "mutant_bite": true,
+      "pass": true
+    }
+  ]
+}

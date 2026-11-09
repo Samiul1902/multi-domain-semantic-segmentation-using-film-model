@@ -1,0 +1,83 @@
+{
+ "artifact": "phase25a_crossfit_protocol",
+ "phase": "25A",
+ "purpose": "freeze the 3-fold cross-fit structure and the nested FIT/EARLY_STOP split so no outer-target information can reach gradient updates, checkpoint selection, early stopping or architecture selection",
+ "seed": 42,
+ "outer_folds": 3,
+ "within": "ROUTER_DEVELOPMENT",
+ "assignment": "deterministic, group-safe, domain-stratified; per domain, whole groups are ordered by sha256('42::<salt>::<group_key>') and placed into the currently smallest bucket (ties by bucket index)",
+ "group_key": "the frozen composite group key from phase24_router_split_manifest.csv",
+ "inner_fit_fraction": 0.9,
+ "inner_early_stop_fraction": 0.1,
+ "inner_split_rules": [
+  "group-safe",
+  "domain-stratified",
+  "seed 42"
+ ],
+ "outer_target_role": "UNTOUCHED in Phase 25A; never used for training, checkpoint selection, early stopping or architecture selection; its paired-gain labels belong to Phase 25C",
+ "oof_target_fold_never_used_for_checkpoint_selection": true,
+ "deltadice_computed_in_phase25a": false,
+ "folds": [
+  {
+   "fold": "fold0",
+   "outer_target_n": 1657,
+   "training_portion_n": 3300,
+   "fit_n": 2964,
+   "early_stop_n": 336,
+   "early_stop_fraction": 0.101818,
+   "fit_domains": "{\"BUSI\": 307, \"ISIC\": 1303, \"KUB\": 999, \"KVASIR\": 355}",
+   "early_stop_domains": "{\"BUSI\": 34, \"ISIC\": 145, \"KUB\": 118, \"KVASIR\": 39}",
+   "outer_target_domains": "{\"BUSI\": 171, \"ISIC\": 725, \"KUB\": 563, \"KVASIR\": 198}",
+   "group_overlap_fit_es": 0,
+   "group_overlap_train_outer": 0
+  },
+  {
+   "fold": "fold1",
+   "outer_target_n": 1652,
+   "training_portion_n": 3305,
+   "fit_n": 2975,
+   "early_stop_n": 330,
+   "early_stop_fraction": 0.099849,
+   "fit_domains": "{\"BUSI\": 307, \"ISIC\": 1304, \"KUB\": 1008, \"KVASIR\": 356}",
+   "early_stop_domains": "{\"BUSI\": 34, \"ISIC\": 145, \"KUB\": 112, \"KVASIR\": 39}",
+   "outer_target_domains": "{\"BUSI\": 171, \"ISIC\": 724, \"KUB\": 560, \"KVASIR\": 197}",
+   "group_overlap_fit_es": 0,
+   "group_overlap_train_outer": 0
+  },
+  {
+   "fold": "fold2",
+   "outer_target_n": 1648,
+   "training_portion_n": 3309,
+   "fit_n": 2977,
+   "early_stop_n": 332,
+   "early_stop_fraction": 0.100332,
+   "fit_domains": "{\"BUSI\": 308, \"ISIC\": 1304, \"KUB\": 1009, \"KVASIR\": 356}",
+   "early_stop_domains": "{\"BUSI\": 34, \"ISIC\": 145, \"KUB\": 114, \"KVASIR\": 39}",
+   "outer_target_domains": "{\"BUSI\": 170, \"ISIC\": 724, \"KUB\": 557, \"KVASIR\": 197}",
+   "group_overlap_fit_es": 0,
+   "group_overlap_train_outer": 0
+  }
+ ],
+ "fold_manifest_sha256": {
+  "fold0_outer_target": "e16d763debd6310ae6a5f787e1d8dfb84469deeb60cc8ea25dfd4fd1c743ac2a",
+  "fold1_outer_target": "f7dde49aa87f1f9ed8b4038f45cbe88c50a227ddffd8e50de5942bb91e049a51",
+  "fold2_outer_target": "e8b4eeda3420aa9d4fd88815971fd805399c2c198d093458c506ad8fa7c0956c"
+ },
+ "fit_manifest_sha256": {
+  "fold0_fit": "58d0c00171e8bebfbf334c31df8badd40bb10b44de938f2a4be1bc3a28da9a3c",
+  "fold1_fit": "a67f698687db67c80bfdde286fbf56694de579e1f212ddda669984d8208dc2b6",
+  "fold2_fit": "44f610e69e71196e40329ada32e489158b662910ba3ef70402b752d3ac6bbb17"
+ },
+ "early_stop_manifest_sha256": {
+  "fold0_early_stop": "674adbd5d5919bb4a2298ce3ea01cb0bbaab484cfb9c970f76fb90432c26f8cd",
+  "fold1_early_stop": "30f76b50ef135f6700f2091a805aa3879941726f87595fa3d15328dc55d5fe01",
+  "fold2_early_stop": "3096c117604915ea40d09f8005efca61b543012509decd36f2283ea08ecdeb30"
+ },
+ "global_empty_samples_excluded_from_refiner_training": true,
+ "global_empty_samples_retained_in_population_accounting": true,
+ "router_holdout_used": false,
+ "val_used": false,
+ "test_reads": 0,
+ "verdict": "PHASE25A_CROSSFIT_PROTOCOL_FROZEN",
+ "generated_utc": "2026-09-30T04:30:02.043891+00:00"
+}

@@ -1,0 +1,48 @@
+{
+ "artifact_kind": "PHASE36_FINAL_PROBABILITY_AUTHORITY_DIAGNOSTIC_NEGATIVE_CONTROLS",
+ "revision": "ra_medfilm_barr_phase36_final_probability_authority_diagnostic_v1_1",
+ "source": {
+  "path": "scripts/analysis/phase36_final_probability_authority_diagnostic_negative_controls_v1_1.py",
+  "sha256": "ef7a7d8c5b7d9699fa375b2bcfccc3c482ac9e4d1b4ce9a1c3807142100a6950"
+ },
+ "headline_control": {
+  "statement": "inherited foreign v1.14 token => launcher refuses (rc 2) before dispatch; diagnostic main() refuses (rc 8); no marker; and any GT access fails closed",
+  "exit_code_expected_no_launch_authority": 5,
+  "exit_code_expected_foreign_token_present": 8
+ },
+ "d52_controls": [
+  "FINAL_AUTHORITY_ABSENT",
+  "FINAL_AUTHORITY_SHA_MISMATCH",
+  "FINAL_AUTHORITY_SHAPE_MISMATCH",
+  "FINAL_AUTHORITY_DTYPE_MISMATCH",
+  "FINAL_AUTHORITY_SAMPLE_ORDER_MISMATCH (CSV order)",
+  "FINAL_AUTHORITY_SAMPLE_ORDER_MISMATCH (fg-pixel row binding)",
+  "VAL_MANIFEST_SHA_MISMATCH (reordered manifest)"
+ ],
+ "d53_controls": [
+  "single guarded callable => VAL_GT_READ == 1",
+  "four guarded callables => shared state == 4 + blocked_gt_calls recorded",
+  "temporary failure artifact records ACTUAL VAL_GT_READ (not hardcoded 0)"
+ ],
+ "d54_controls": [
+  "synthetic completed comparison + forced result-write failure => rc 3",
+  "failure artifact preserves final_authority_computed / comparison / classification",
+  "result_write_attempted == true, result_write_completed == false",
+  "terminal == TERMINAL_EVIDENCE_ANOMALY__RESULT_WRITE_FAILED_AFTER_COMPUTATION",
+  "no partial RESULT file deleted/created"
+ ],
+ "finite_controls": [
+  "NaN rejected",
+  "+inf rejected",
+  "-inf rejected",
+  "non-finite sample ids + element counts preserved"
+ ],
+ "run": {
+  "returncode": 0,
+  "n_checks": 116,
+  "n_pass": 116,
+  "all_pass": true
+ },
+ "scientific_output": false,
+ "generated_utc": "2026-10-07T17:23:29Z"
+}

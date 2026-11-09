@@ -1,0 +1,50 @@
+{
+  "classification": "PHASE38_PHASE39_METRIC_ENDPOINT_PROTOCOL",
+  "generated_utc": "2026-10-11T06:30:00Z",
+  "phase": 38,
+  "primary_metric": {
+    "name": "Dice",
+    "definition": "canonical scorer src/metrics/evaluation_metrics.py::dice",
+    "aggregation": "per-sample then per-domain then macro_domain_equal_weight",
+    "per_domain_and_pooled": true,
+    "binary_threshold": 0.5,
+    "empty_gt_handling": "canonical scorer semantics",
+    "empty_prediction_handling": "canonical scorer semantics",
+    "role": "PRIMARY",
+    "gating_statistic": "lower 95% CI bound of macro-domain estimand"
+  },
+  "boundary_metric": {
+    "name": "HD95",
+    "definition": "src/metrics/segmentation.py::hd95 / src/metrics/evaluation_metrics.py::hd95",
+    "aggregation": "per-sample then per-domain",
+    "role": "SECONDARY_BOUNDARY",
+    "validity": "hd95_valid flag; NaN when undefined"
+  },
+  "secondary_metrics": {
+    "IoU": {
+      "definition": "src/metrics/evaluation_metrics.py::iou",
+      "role": "SECONDARY_IF_FROZEN"
+    },
+    "precision": {
+      "role": "SECONDARY_IF_FROZEN"
+    },
+    "recall_sensitivity": {
+      "role": "SECONDARY_IF_FROZEN"
+    }
+  },
+  "secondary_resolution_rule": "Report IoU/precision/recall as SECONDARY only if canonical scorer semantics are frozen; else NOT_REPORTED__SEMANTICS_NOT_FROZEN",
+  "no_new_metric_definition": true,
+  "no_outcome_dependent_endpoint": true,
+  "metric_conflict": false,
+  "stop_check_required": false,
+  "metric_modules": [
+    {
+      "path": "src/metrics/evaluation_metrics.py",
+      "sha256": "6c515f6f1a495315c79238292c385a082ae8347489130ad5bff34d74c4f181f6"
+    },
+    {
+      "path": "src/metrics/segmentation.py",
+      "sha256": "d46ef71e2cd9faf89c58c2a36b98d9141fbf7f32222a692abecbfe1ebe87dc3d"
+    }
+  ]
+}

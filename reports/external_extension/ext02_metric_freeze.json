@@ -1,0 +1,23 @@
+{
+  "classification": "EXT02_METRIC_FREEZE",
+  "generated_utc": "2026-10-11T14:00:00Z",
+  "primary_metric": "Dice",
+  "secondary_metrics": [
+    "IoU",
+    "Precision",
+    "Recall",
+    "HD95"
+  ],
+  "accuracy_not_primary": true,
+  "bar_benefit_quantities": [
+    "paired_DeltaDice = Dice(FINAL) - Dice(GLOBAL)",
+    "FORCED_SKIP rate",
+    "SKIP_GLOBAL rate",
+    "EXECUTE_THEN_ACCEPT rate",
+    "EXECUTE_THEN_REJECT rate",
+    "router execute rate",
+    "post-safety accept rate"
+  ],
+  "source": "existing frozen metric implementations (src/metrics/segmentation.py, src/metrics/evaluation_metrics.py)",
+  "threshold_policy": "no new threshold may be created after seeing results"
+}

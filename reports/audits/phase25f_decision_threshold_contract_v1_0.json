@@ -1,0 +1,32 @@
+{
+ "artifact": "phase25f_decision_threshold_contract_v1_0",
+ "phase": "25F",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_post_safety_v1_0",
+ "stage": "SUPERVISOR_RULING_F13_SOMEGA_DECISION_THRESHOLD",
+ "ruling_id": "F13",
+ "accept_rule": "ACCEPT_REFINEMENT iff sigmoid(safety_logit) >= 0.50",
+ "equivalent_logit_rule": "safety_logit >= 0.0",
+ "else_rule": "FALLBACK_GLOBAL",
+ "constant_name": "S_OMEGA_ACCEPT_PROBABILITY_THRESHOLD",
+ "value": 0.5,
+ "distinct_from": [
+  {
+   "role": "ROI proposal threshold",
+   "value": 0.3
+  },
+  {
+   "role": "segmentation output threshold",
+   "value": 0.5
+  }
+ ],
+ "numeric_equality_must_not_conflate_semantics": true,
+ "threshold_tuning": false,
+ "roc_threshold_selection": false,
+ "youden": false,
+ "f1_optimal": false,
+ "budget_dependent_safety_threshold": false,
+ "domain_specific_safety_threshold": false,
+ "model_forwards": 0,
+ "all_pass": true
+}

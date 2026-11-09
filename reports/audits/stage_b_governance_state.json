@@ -1,0 +1,118 @@
+{
+  "artifact": "stage_b_governance_state",
+  "status": "POST_H3_REGIONAL_BRANCH_DEFERRED__STAGE_B_ACTIVE__PHASE19_READY",
+  "generated_by": "scripts/notebooks/sync_stage_b_governance.py",
+  "authorization_artifact": {
+    "path": "reports/audits/stage_b_phase19_authorization.json",
+    "sha256": "44322100cd63aedc451408706db1aaa3e077d0a0173ab6d2581ea457ef03de23",
+    "status": "STAGE_B_AUTHORIZED__PHASE19_READY_TO_START"
+  },
+  "phase19_protocol": {
+    "path": "reports/audits/phase19_multidomain_harmonization_protocol.json",
+    "sha256": "ab8289a26fbd9946a49bc3fe89c9d875a0f80d94eb2807189dd124fafc267038",
+    "status": "PROTOCOL_FROZEN__PHASE19_HARMONIZATION_PREPARATION_COMPLETE"
+  },
+  "governance": {
+    "h3": "CLOSED__FORMALLY_INSUFFICIENT",
+    "regional_localizer_redesign": "DEFERRED",
+    "phases_15_18": "DEFERRED_CONDITIONAL__NOT_EXECUTED",
+    "stage_b": "ACTIVE",
+    "phase_19": "AUTHORIZED / PROTOCOL + HARMONIZATION PREPARATION COMPLETE",
+    "phase_20": "NOT_STARTED_AND_NOT_AUTHORIZED",
+    "option_b": "DEFERRED__NOT_AUTHORIZED",
+    "option_c": "DEFERRED__NOT_AUTHORIZED",
+    "test": "CLOSED",
+    "training_performed": false,
+    "inference_performed": false,
+    "checkpoints_created": 0,
+    "test_reads": 0,
+    "frozen_historical_artifacts_modified": 0
+  },
+  "synchronized": {
+    "phasewise_notebook_map": {
+      "path": "reports/audits/phasewise_notebook_map.json",
+      "old_sha256": "54687041c22cbab299b9a796c2bc4367e45ff1f135744220809e2de2cf6bbc9a",
+      "new_sha256": "54687041c22cbab299b9a796c2bc4367e45ff1f135744220809e2de2cf6bbc9a",
+      "status_changes": [
+        {
+          "phase_id": "15",
+          "from": "NOT_STARTED_AND_NOT_AUTHORIZED",
+          "to": "DEFERRED_CONDITIONAL__NOT_EXECUTED"
+        },
+        {
+          "phase_id": "16",
+          "from": "NOT_STARTED",
+          "to": "DEFERRED_CONDITIONAL__NOT_EXECUTED"
+        },
+        {
+          "phase_id": "17",
+          "from": "NOT_STARTED",
+          "to": "DEFERRED_CONDITIONAL__NOT_EXECUTED"
+        },
+        {
+          "phase_id": "18",
+          "from": "NOT_STARTED",
+          "to": "DEFERRED_CONDITIONAL__NOT_EXECUTED"
+        },
+        {
+          "phase_id": "19",
+          "from": "NOT_STARTED",
+          "to": "CURRENT_AUTHORIZED"
+        }
+      ],
+      "status_changes_baseline": "declared_pre_stage_b (canonical, run-independent)",
+      "status_changes_baseline_provenance": "reports/audits/h3_post_adjudication_governance_state.json (phase 15) + notebooks/phasewise/README.md roadmap rows (phases 16-20)"
+    },
+    "phasewise_readme": {
+      "path": "notebooks/phasewise/README.md",
+      "old_sha256": "885e20ffa877277768a769299ce191a4bfc6bcf384cb934ac743a9abfa6ad868",
+      "new_sha256": "885e20ffa877277768a769299ce191a4bfc6bcf384cb934ac743a9abfa6ad868"
+    },
+    "phase_readmes": {
+      "phase_15": {
+        "path": "notebooks/phasewise/phase_15_loss_study/README.md",
+        "old_sha256": "f11e1239ca2b39082884adb4dcf69190b4f01f99421eb128c2f631bda68986f1",
+        "new_sha256": "f11e1239ca2b39082884adb4dcf69190b4f01f99421eb128c2f631bda68986f1"
+      },
+      "phase_16": {
+        "path": "notebooks/phasewise/phase_16_fusion/README.md",
+        "old_sha256": "5fd1552e849a4d9d26d475516dc849bd91782b010630f58368b8f1f13f734abb",
+        "new_sha256": "5fd1552e849a4d9d26d475516dc849bd91782b010630f58368b8f1f13f734abb"
+      },
+      "phase_17": {
+        "path": "notebooks/phasewise/phase_17_kub_regional_ablation/README.md",
+        "old_sha256": "d8d6108d4ce90ef8cb762d0c79e5ae64fb09e36d10fdc9a78ad43fa5e9c45d73",
+        "new_sha256": "d8d6108d4ce90ef8cb762d0c79e5ae64fb09e36d10fdc9a78ad43fa5e9c45d73"
+      },
+      "phase_18": {
+        "path": "notebooks/phasewise/phase_18_kub_final_dev_benchmark/README.md",
+        "old_sha256": "3935c4356df37485c799ed07a60fbd855c1494158301f1585e87b7cd7a5543b0",
+        "new_sha256": "3935c4356df37485c799ed07a60fbd855c1494158301f1585e87b7cd7a5543b0"
+      },
+      "phase_19": {
+        "path": "notebooks/phasewise/phase_19_harmonization/README.md",
+        "old_sha256": "eb456deba4ea0246f7efdacd90f8d12417b2633dfa00a6719a7ed4118e6a5e8e",
+        "new_sha256": "eb456deba4ea0246f7efdacd90f8d12417b2633dfa00a6719a7ed4118e6a5e8e"
+      }
+    },
+    "project_master_plan": {
+      "path": "PROJECT_MASTER_PLAN.md",
+      "old_sha256": "97a3e3828226e646debe0f29f7501e173fdf5e7e7d6de649dcdc335b8b7e8805",
+      "new_sha256": "97a3e3828226e646debe0f29f7501e173fdf5e7e7d6de649dcdc335b8b7e8805"
+    },
+    "phasewise_index": {
+      "path": "notebooks/phasewise/00_PHASEWISE_PROJECT_INDEX.ipynb",
+      "old_sha256": "3115a487229d127c473b2b5977e2263d60ad355dba28f212604a3ef7e635f0ca",
+      "new_sha256": "3115a487229d127c473b2b5977e2263d60ad355dba28f212604a3ef7e635f0ca",
+      "change": "added Stage-B activation / Phase-19 authorization section",
+      "code_cells": 6,
+      "tracebacks": 0,
+      "monotonic": true
+    }
+  },
+  "idempotence": {
+    "all_synchronized_files_converged": true,
+    "files_checked": 9,
+    "note": "Every synchronized file was byte-identical before and after this run; the sync is convergent/idempotent. No content artifact is modified by a re-run."
+  }
+}

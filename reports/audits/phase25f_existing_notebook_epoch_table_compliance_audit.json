@@ -1,0 +1,68 @@
+{
+ "artifact": "phase25f_existing_notebook_epoch_table_compliance_audit",
+ "phase": "25F",
+ "classification": "PHASE25F_SCIENCE_ACCEPTED__REVIEWER_NOTEBOOK_CV_HISTORY_TRUNCATED",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_post_safety_v1_0",
+ "scientific_failure": false,
+ "presentation_compliance_failure": true,
+ "per_fold": {
+  "0": {
+   "uses_tail": true,
+   "visible_rows": 8,
+   "true_rows": 36
+  },
+  "1": {
+   "uses_tail": true,
+   "visible_rows": 8,
+   "true_rows": 27
+  },
+  "2": {
+   "uses_tail": true,
+   "visible_rows": 8,
+   "true_rows": 86
+  },
+  "3": {
+   "uses_tail": true,
+   "visible_rows": 8,
+   "true_rows": 55
+  },
+  "4": {
+   "uses_tail": true,
+   "visible_rows": 8,
+   "true_rows": 43
+  }
+ },
+ "expected_completed_histories": {
+  "fold0": 36,
+  "fold1": 27,
+  "fold2": 86,
+  "fold3": 55,
+  "fold4": 43
+ },
+ "expected_best_epochs": [
+  16,
+  7,
+  66,
+  35,
+  23
+ ],
+ "expected_terminations": [
+  "early_stop",
+  "early_stop",
+  "early_stop",
+  "early_stop",
+  "early_stop"
+ ],
+ "final_refit_rows": 23,
+ "final_refit_complete": true,
+ "defect_confirmed": true,
+ "truncated_folds": [
+  0,
+  1,
+  2,
+  3,
+  4
+ ],
+ "all_pass": true
+}

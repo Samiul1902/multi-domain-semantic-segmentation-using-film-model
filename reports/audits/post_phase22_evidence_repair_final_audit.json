@@ -1,0 +1,439 @@
+{
+  "artifact": "post_phase22_evidence_repair_final_audit",
+  "purpose": "final combined audit of the additive reviewer/evidence repair (Parts A, B, C). No training, no inference, no TEST access.",
+  "checks": [
+    {
+      "check": "P21_macro_dice_unchanged",
+      "pass": true,
+      "detail": "0.8350794169575282"
+    },
+    {
+      "check": "P21_best_epoch_unchanged",
+      "pass": true,
+      "detail": "66"
+    },
+    {
+      "check": "P21_best_pt_sha_unchanged",
+      "pass": true,
+      "detail": "best.pt"
+    },
+    {
+      "check": "P21_canonical_val_runs_exactly_1",
+      "pass": true,
+      "detail": "1"
+    },
+    {
+      "check": "P21_no_inference_rerun",
+      "pass": true,
+      "detail": "test counters 0"
+    },
+    {
+      "check": "P21_scientific_results_changed_false",
+      "pass": true,
+      "detail": "freeze still verified (historical)"
+    },
+    {
+      "check": "P21_inventory_figures_43",
+      "pass": true,
+      "detail": "43"
+    },
+    {
+      "check": "P21_embedded_png_43",
+      "pass": true,
+      "detail": "43"
+    },
+    {
+      "check": "P21_valid_png_43_of_43",
+      "pass": true,
+      "detail": "43/43"
+    },
+    {
+      "check": "P21_zero_corruption",
+      "pass": true,
+      "detail": "corrupt=0"
+    },
+    {
+      "check": "P21_zero_errors",
+      "pass": true,
+      "detail": "0"
+    },
+    {
+      "check": "P21_code_cells_executed",
+      "pass": true,
+      "detail": "37/37"
+    },
+    {
+      "check": "P21_three_builds_byte_identical",
+      "pass": true,
+      "detail": "['e7fadc7c9040d52ab6894f0f9487c29b1c3289f7d2bf68d2b71976609d644d94', 'e7fadc7c9040d52ab6894f0f9487c29b1c3289f7d2bf68d2b71976609d644d94', 'e7fadc7c9040d52ab6894f0f9487c29b1c3289f7d2bf68d2b71976609d644d94']"
+    },
+    {
+      "check": "P21_repair_attests_no_science_change",
+      "pass": true,
+      "detail": "attestations"
+    },
+    {
+      "check": "P22_checkpoint_unchanged",
+      "pass": true,
+      "detail": "best.pt"
+    },
+    {
+      "check": "P22_diagnostic_protocol_unchanged",
+      "pass": true,
+      "detail": "protocol SHA"
+    },
+    {
+      "check": "P22_no_training_rerun",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "P22_no_segmentation_inference_rerun",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "P22_checkpoint_changed_false",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "P22_roi_protocol_unchanged",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "P22_scale_protocol_unchanged",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "P22_no_gt_signal_called_deployable",
+      "pass": true,
+      "detail": "violations=[]"
+    },
+    {
+      "check": "P22_gt_free_table_exists",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "P22_gt_aware_table_exists",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "P22_gt_free_table_all_gtfree",
+      "pass": true,
+      "detail": "8 rows"
+    },
+    {
+      "check": "P22_gt_aware_table_all_gt",
+      "pass": true,
+      "detail": "14 rows"
+    },
+    {
+      "check": "P22_recall_not_in_gtfree_table",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "P22_gtfree_routing_recomputed",
+      "pass": true,
+      "detail": "predicted_roi_side"
+    },
+    {
+      "check": "P22_routing_policies_all_consistent",
+      "pass": true,
+      "detail": "6 policies"
+    },
+    {
+      "check": "P22_report_no_deployable_recall_claim",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "P22_report_has_512_required_wording",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "P22_report_has_kub_tiny_required_wording",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "P22_report_preserves_useful_finding",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "P22_notebook_wording_corrected",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "P22_notebook_zero_errors",
+      "pass": true,
+      "detail": "0"
+    },
+    {
+      "check": "P22_expected_figures_15",
+      "pass": true,
+      "detail": "15"
+    },
+    {
+      "check": "P22_required_figures_embedded_15",
+      "pass": true,
+      "detail": "15"
+    },
+    {
+      "check": "P22_all_required_png_decode",
+      "pass": true,
+      "detail": "valid=15/15"
+    },
+    {
+      "check": "P22_all_required_png_PIL_verify",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "P22_zero_corrupt_figures",
+      "pass": true,
+      "detail": "notebook=0 source=0"
+    },
+    {
+      "check": "P22_zero_missing_figures",
+      "pass": true,
+      "detail": "notebook=[] source=0"
+    },
+    {
+      "check": "P22_zero_unintended_duplicates",
+      "pass": true,
+      "detail": "dupes=0 unexpected=0"
+    },
+    {
+      "check": "P22_gtfree_visual_semantically_current",
+      "pass": true,
+      "detail": "figure sourced from the GT-free table with a labelled GT-aware panel"
+    },
+    {
+      "check": "P22_scale_visual_wording_current",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "P22_kub_tiny_visual_wording_current",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "P22_all_code_cells_executed",
+      "pass": true,
+      "detail": "24/24"
+    },
+    {
+      "check": "P22_zero_notebook_errors",
+      "pass": true,
+      "detail": "0"
+    },
+    {
+      "check": "P22_three_builds_byte_identical",
+      "pass": true,
+      "detail": "1 distinct SHA(s)"
+    },
+    {
+      "check": "P22_canonical_ipynb_exists",
+      "pass": true,
+      "detail": "notebooks\\phasewise\\phase_22_resource_gap\\phase22_resource_gap_analysis.ipynb"
+    },
+    {
+      "check": "P22_canonical_ipynb_nonempty",
+      "pass": true,
+      "detail": "1630306 bytes"
+    },
+    {
+      "check": "P22_png_decode_15_of_15",
+      "pass": true,
+      "detail": "15/15"
+    },
+    {
+      "check": "P22_png_verify_15_of_15",
+      "pass": true,
+      "detail": "PIL-verified 15/15"
+    },
+    {
+      "check": "P22_zero_corrupt_png",
+      "pass": true,
+      "detail": "notebook=0 source=0"
+    },
+    {
+      "check": "P22_zero_unexpected_figures",
+      "pass": true,
+      "detail": "0"
+    },
+    {
+      "check": "P22_required_tables_17_of_17",
+      "pass": true,
+      "detail": "17/17"
+    },
+    {
+      "check": "P22_code_cells_all_executed",
+      "pass": true,
+      "detail": "24/24"
+    },
+    {
+      "check": "P22_execution_counts_monotonic",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "P22_zero_errors",
+      "pass": true,
+      "detail": "notebook=0 quality=0"
+    },
+    {
+      "check": "P22_gtfree_visual_current",
+      "pass": true,
+      "detail": "figure generated from the GT-free table"
+    },
+    {
+      "check": "P22_gtaware_visual_separate",
+      "pass": true,
+      "detail": "GT-aware associations labelled NOT deployable"
+    },
+    {
+      "check": "P22_no_deployable_recall",
+      "pass": true,
+      "detail": "no literal stale claim"
+    },
+    {
+      "check": "P22_no_deployable_predicted_delta_dice",
+      "pass": true,
+      "detail": "predicted_delta_dice never presented as deployable"
+    },
+    {
+      "check": "P22_scale_wording_current",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "P22_kub_tiny_wording_current",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "P22_science_identity_unchanged",
+      "pass": true,
+      "detail": "checkpoint + protocol + freeze byte-identical"
+    },
+    {
+      "check": "P22_no_training",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "P22_no_inference_rerun",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "P22_test_reads_zero",
+      "pass": true,
+      "detail": "image=0 mask=0 infer=0 viz=0"
+    },
+    {
+      "check": "P23_not_started",
+      "pass": true,
+      "detail": "no phase23_* artifact"
+    },
+    {
+      "check": "GLOBAL_test_image_reads_zero",
+      "pass": true,
+      "detail": "0"
+    },
+    {
+      "check": "GLOBAL_test_mask_reads_zero",
+      "pass": true,
+      "detail": "0"
+    },
+    {
+      "check": "GLOBAL_test_inference_zero",
+      "pass": true,
+      "detail": "0"
+    },
+    {
+      "check": "GLOBAL_test_visualization_zero",
+      "pass": true,
+      "detail": "0"
+    },
+    {
+      "check": "GLOBAL_phase23_not_started",
+      "pass": true,
+      "detail": "no phase23 entry artifact present"
+    }
+  ],
+  "n_checks": 74,
+  "n_passed": 74,
+  "all_passed": true,
+  "phase21": {
+    "notebook_sha256_current": "e7fadc7c9040d52ab6894f0f9487c29b1c3289f7d2bf68d2b71976609d644d94",
+    "notebook_sha256_original": "bb916f54296719b0c38643c0a9302e713cacd33a418850dc9b316d8d9a26a4ed",
+    "inventory_figures": 43,
+    "image_png_outputs": 43,
+    "valid_png_outputs": 43,
+    "macro_domain_dice": 0.8350794169575282,
+    "best_pt_sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7"
+  },
+  "phase22": {
+    "notebook_sha256": "cca76123336f0895426f76024138b90565631d44ba51dced405e0fd8afa43658",
+    "notebook_sha256_semantic_repair": "daf61386d60d8abcbc5af0122bbc3e26a5201756f713e6683b5c7e1f54c47242",
+    "protocol_sha256": "9d620d6c85276e1a9a086ec60172cdef3b94dc58fe8288222378d196dd4609b7",
+    "best_gt_free_signal": {
+      "signal": "predicted_roi_side",
+      "spearman_r": -0.068947494425616,
+      "pearson_r": -0.00941394581211811,
+      "roc_auc": 0.4187710871522123,
+      "pr_auc": 0.29944643188754605,
+      "n": 808
+    },
+    "gt_free_signals": 8,
+    "gt_aware_signals": 14,
+    "notebook_visual_integrity": {
+      "gate_verdict": "PASS",
+      "expected_required_figures": 15,
+      "required_figures_embedded": 15,
+      "valid_png_outputs": 15,
+      "png_outputs_total": 15,
+      "corrupt_figures": 0,
+      "missing_figures": 0,
+      "duplicate_figures": 0,
+      "unexpected_figures": 0,
+      "three_builds_byte_identical": true,
+      "figure_manifest": "reports\\figures\\phase22_resource_gap\\phase22_figure_manifest.csv",
+      "fail_closed_build_and_embedding": true,
+      "figure_repaired": "p22_uncertainty_vs_benefit"
+    },
+    "new_visual_integrity_checks": 13,
+    "new_visual_integrity_checks_passed": 13,
+    "canonical_notebook_materialization": {
+      "path": "notebooks\\phasewise\\phase_22_resource_gap\\phase22_resource_gap_analysis.ipynb",
+      "exists": true,
+      "size_bytes": 1630306,
+      "sha256": "cca76123336f0895426f76024138b90565631d44ba51dced405e0fd8afa43658",
+      "sha256_claimed_historical": "02719bf0988c31c2158e26f061523c46dc9cc68b6896a0e58b024c1eab2b5c36",
+      "historical_sha_match": false,
+      "mathematical_fields_unchanged": true
+    },
+    "spec_named_checks": 26,
+    "spec_named_checks_passed": 26
+  },
+  "terminal_states": [
+    "PHASE21_REVIEWER_VISUAL_INTEGRITY_REPAIRED__SCIENCE_UNCHANGED",
+    "PHASE22_POSTFREEZE_SEMANTIC_REPAIR_COMPLETE__PHASE23_ELIGIBLE_NOT_STARTED",
+    "PHASE22_REVIEWER_VISUAL_INTEGRITY_REPAIRED__SCIENCE_UNCHANGED__PHASE23_ELIGIBLE_NOT_STARTED",
+    "PHASE22_CANONICAL_IPYNB_MATERIALIZED__VISUAL_INTEGRITY_PASS__SCIENCE_UNCHANGED__PHASE23_ELIGIBLE_NOT_STARTED"
+  ],
+  "phase23_started": false,
+  "generated_utc": "2026-09-29T13:36:57.094851+00:00"
+}

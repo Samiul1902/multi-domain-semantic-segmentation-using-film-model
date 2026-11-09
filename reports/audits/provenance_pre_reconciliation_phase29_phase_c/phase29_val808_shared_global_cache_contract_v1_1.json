@@ -1,0 +1,80 @@
+{
+ "artifact": "phase29_val808_shared_global_cache_contract_v1_1",
+ "phase": 29,
+ "stage": "VAL808_SHARED_CACHE_CONTRACT_V1_1",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_phase29_repro_v1_1",
+ "generated_utc": "2026-10-02T20:20:49+00:00",
+ "supersedes": "phase29_val808_shared_global_cache_contract",
+ "val808_opened": false,
+ "execution": "NONE",
+ "inspection_only": true,
+ "decision": "SHARED_FIXED_G_VAL808_FEATURE_EXTRACTION_REQUIRED_ONCE",
+ "shared_G_logical_passes": 1,
+ "shared_G_samples": 808,
+ "runs_once_not_per_seed": true,
+ "G_retrained": false,
+ "cache_schema": {
+  "sample_id_order": "frozen VAL808 population order (domain asc, sample_id asc)",
+  "domain_task_mapping": "ISIC=0, BUSI=1, KVASIR=2, KUB=3 (frozen)",
+  "global_probability": {
+   "name": "val808_global_prob_f16.npy",
+   "shape": [
+    808,
+    512,
+    512
+   ],
+   "dtype": "float16",
+   "semantics": "canonical fixed-G full-canvas probability"
+  },
+  "router_deep_features_192d": {
+   "name": "val808_router_deep_features_f32.npy",
+   "shape": [
+    808,
+    192
+   ],
+   "dtype": "float32",
+   "semantics": "Phase25B deep-feature block (indices 0..191) of the frozen pre-refinement feature extractor",
+   "resolved_from": "TO_BE_CONFIRMED_AT_EXECUTION -> RESOLVED"
+  },
+  "gt_free_router_scalar_ingredients": {
+   "name": "val808_router_scalars_f32.npy",
+   "shape": [
+    808,
+    10
+   ],
+   "dtype": "float32",
+   "semantics": "10 GT-free scalars (indices 192..201) required to reconstruct the 202-D router vector"
+  },
+  "roi_proposal_inputs_geometry": {
+   "name": "val808_roi_geometry.json",
+   "semantics": "ROI-0.30 proposal geometry per sample (crop side, clip window, pad) re-derived from the global probability; inputs are REGENERABLE from the stored global probability",
+   "decision": "REGENERABLE_FROM_STORED_GLOBAL_PROBABILITY",
+   "resolved_from": "IF_REUSABLE -> RESOLVED"
+  },
+  "dtype": {
+   "probabilities": "float16",
+   "features_scalars": "float32"
+  },
+  "batch_partition": "frozen Phase27 batch semantics (derived, not invented)",
+  "numeric_inference_semantics": "FP32 eval, inference_mode, no autocast (frozen Phase26/27)"
+ },
+ "must_persist": {
+  "global_probability": true,
+  "router_deep_features_192d": true,
+  "gt_free_router_scalar_ingredients": true,
+  "roi_proposal_inputs_geometry": "REGENERABLE"
+ },
+ "gt_derived_information_persisted": false,
+ "phase27_cache_files_observed": [
+  "phase27_val808_bootstrap_plan_v1_0.npz",
+  "phase27_val808_bootstrap_replicates.npz",
+  "phase27_val808_final_prob_f16.npy",
+  "phase27_val808_global_prob_f16.npy",
+  "phase27_val808_group_manifest_v1_0.csv"
+ ],
+ "unresolved_placeholders": [],
+ "all_pass": true,
+ "no_TO_BE_CONFIRMED": true,
+ "no_IF_REUSABLE": true
+}

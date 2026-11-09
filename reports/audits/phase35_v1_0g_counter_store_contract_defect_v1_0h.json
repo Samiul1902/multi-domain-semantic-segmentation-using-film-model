@@ -1,0 +1,140 @@
+{
+ "artifact": "phase35_v1_0g_counter_store_contract_defect_v1_0h",
+ "section": "§B",
+ "phase": 35,
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase35_interpretability_v1_0h",
+ "supersedes": "phase35_synthetic_smoke_terminal_v1_0g.json#blocking_defect (partial/superseded classification)",
+ "corrected_classification": "PHASE35_V1_0G_COUNTER_STORE_OWNERSHIP_OR_AGGREGATION_DIVERGENCE__PRIMARY_ALIAS_STALE__FULL_EXPECTED_KEYSET_INCOMPLETE",
+ "superseded_classification": "EXPECTED_COUNTER_TABLE_PARTIAL_AND_ALIAS_STALE (INCOMPLETE: wrongly framed the router rows as omitted expectations)",
+ "why_the_old_framing_was_wrong": "The v1.0g emitted expected table ALREADY contained the router expectations (B_phi_synthetic_forwards=1, router_numeric_input_autograd_calls=1, total_model_forwards=2, total_autograd_calls=2, synthetic_router_attribution_rows=4). The failure was NOT an omitted expectation; it was that the OBSERVED store could not see the router increments. The observed store and the writer store were different objects.",
+ "evidence_scientific_router_executed": {
+  "raw_delta_hat_shape": [
+   4
+  ],
+  "raw_delta_hat_finite": true,
+  "router_gradient_shape": [
+   4,
+   202
+  ],
+  "router_gradient_finite": true,
+  "gradient_x_input_shape": [
+   4,
+   202
+  ],
+  "gradient_x_input_finite": true,
+  "conclusion": "The router path DID execute and produced finite attributions; the counter store simply did not record it."
+ },
+ "divergence_table": [
+  {
+   "counter": "B_phi_synthetic_forwards",
+   "observed": 0,
+   "expected": 1
+  },
+  {
+   "counter": "router_numeric_input_autograd_calls",
+   "observed": 0,
+   "expected": 1
+  },
+  {
+   "counter": "total_model_forwards",
+   "observed": 1,
+   "expected": 2
+  },
+  {
+   "counter": "total_autograd_calls",
+   "observed": 1,
+   "expected": 2
+  },
+  {
+   "counter": "synthetic_router_attribution_rows",
+   "observed": 0,
+   "expected": 4
+  },
+  {
+   "counter": "synthetic_smoke_target_masks (alias)",
+   "observed": 0,
+   "expected": 1
+  }
+ ],
+ "effects": {
+  "scientific_effect": "NONE",
+  "numerical_effect": "NONE",
+  "model_interface_effect": "NONE",
+  "protected_data_effect": "NONE"
+ },
+ "root_cause_from_source": {
+  "type": "COUNTER_STORE_ALIASING_DIVERGENCE__SHALLOW_COPY_INSTEAD_OF_OBJECT_ALIAS",
+  "summary": "The frozen v1.0d inherited store as an OBJECT ALIAS of the live v1.0c store (V0D.SMOKE_COUNTERS = V0C.SMOKE_COUNTERS, same object). v1.0g instead took a SHALLOW COPY (v1.0g: SMOKE_COUNTERS = OrderedDict(V0C.SMOKE_COUNTERS)). Consequently every inherited writer that mutates the live v1.0c store - V0C.smoke_router (5 counters) and V0D.smoke_synthetic_target_mask_rank2 (the alias) - wrote into objects the v1.0g reported store could not observe. v1.0g mode_smoke's own explicit increments (lines 499-505) and its local smoke_gradcam (420-426) wrote into the copy, which is why those rows matched.",
+  "exact_source_evidence": [
+   {
+    "file": "scripts/analysis/phase35_interpretability_execution_v1_0c.py",
+    "sha256_utf8": "4058fc5544e6e1af15339df20a88da4880549ea8d4dd434395df04e0fa261baa",
+    "line": 77,
+    "role": "LEGACY AUTHORITATIVE STORE (live)",
+    "code": "SMOKE_COUNTERS = OrderedDict([...31 keys...])",
+    "sha256_field_name": "sha256_file_bytes"
+   },
+   {
+    "file": "scripts/analysis/phase35_interpretability_execution_v1_0c.py",
+    "line": 266,
+    "symbol": "def smoke_router",
+    "role": "DELEGATED ROUTER WRITER",
+    "writes": [
+     "line 277: SMOKE_COUNTERS['B_phi_synthetic_forwards'] += 1",
+     "line 278: SMOKE_COUNTERS['total_model_forwards'] += 1",
+     "line 279: SMOKE_COUNTERS['router_numeric_input_autograd_calls'] += 1",
+     "line 280: SMOKE_COUNTERS['total_autograd_calls'] += 1",
+     "line 281: SMOKE_COUNTERS['synthetic_router_attribution_rows'] += int(res['signed'].shape[0])"
+    ],
+    "note": "unqualified SMOKE_COUNTERS resolves to V0C's module global = the live legacy store"
+   },
+   {
+    "file": "scripts/analysis/phase35_interpretability_execution_v1_0d.py",
+    "sha256_utf8": "cccc109ade27eb5ad7883912004c1e911e9e253a659146f3d64820af92244056",
+    "line": 90,
+    "role": "V0D ALIASES the live store (same object)",
+    "code": "SMOKE_COUNTERS = V0C.SMOKE_COUNTERS",
+    "sha256_field_name": "sha256_file_bytes"
+   },
+   {
+    "file": "scripts/analysis/phase35_interpretability_execution_v1_0d.py",
+    "line": 256,
+    "symbol": "def smoke_synthetic_target_mask_rank2",
+    "code": "SMOKE_COUNTERS['synthetic_smoke_target_masks'] += 1",
+    "note": "this is the ONLY channel through which the alias can be incremented"
+   },
+   {
+    "file": "scripts/analysis/phase35_interpretability_execution_v1_0g.py",
+    "sha256_utf8": "88456e46c94e53d45b10d864d9dbcd38eb773d7dd441441def9e6f221a0c9be3",
+    "line": 148,
+    "role": "DEFECT SITE (shallow copy)",
+    "code": "SMOKE_COUNTERS = OrderedDict(V0C.SMOKE_COUNTERS)",
+    "note": "breaks the aliasing contract honoured by V0D",
+    "sha256_field_name": "sha256_file_bytes"
+   },
+   {
+    "file": "scripts/analysis/phase35_interpretability_execution_v1_0g.py",
+    "line": 514,
+    "symbol": "mode_smoke",
+    "code": "out['router_smoke'] = V0C.smoke_router(bphi_model, bphi_state)",
+    "note": "delegates to the V0C writer; mutation lands in V0C store, invisible to the copy"
+   }
+  ],
+  "runtime_identity_proof": {
+   "method": "MODEL_FREE_MODULE_LEVEL_OBJECT_IDENTITY_ASSERTION (no torch, no model, no forward)",
+   "V0D_SMOKE_COUNTERS_is_V0C_SMOKE_COUNTERS": true,
+   "V1_0G_SMOKE_COUNTERS_is_V0C_SMOKE_COUNTERS": false,
+   "V1_0G_SMOKE_COUNTERS_is_V0D_SMOKE_COUNTERS": false,
+   "V1_0G_SMOKE_COUNTERS_is_V1_0G_V0C_SMOKE_COUNTERS": false,
+   "causal_reproduction": "Incrementing V0C.SMOKE_COUNTERS['B_phi_synthetic_forwards'] (exactly what V0C.smoke_router does) left the v1.0g reported store at 0 while the V0C store became 1 - reproduced model-free."
+  },
+  "alias_stale_sub_cause": "The alias channel (V0D.smoke_synthetic_target_mask_rank2 -> V0D.SMOKE_COUNTERS alias -> V0C.SMOKE_COUNTERS) is the SAME aliasing mechanism. Because v1.0g copied the store, V0D's alias increment landed in the live V0C store, not in the v1.0g reported copy: alias observed 0 vs expected 1.",
+  "keyset_sub_cause": "The expected table was the frozen v1.0c table (23 entries), a strict subset of the 35-key observed store; 8 protected-data keys were never declared and could not be keyset-compared.",
+  "no_manual_faking": true,
+  "no_post_hoc_injection_was_present": true
+ },
+ "defect_summary_for_supervisor": "A single implementation divergence (shallow copy vs object alias) disconnected the v1.0g reported counter store from the inherited writer store, producing 6 divergence rows (5 router + 1 alias). The repair is COUNTER_STORE_OWNERSHIP_RECONCILIATION + PRIMARY_ALIAS_MIRROR_RESTORATION + FULL_35_KEY_EXPECTED_TABLE + EXACT_COUNTER_KEYSET_VALIDATION. No scientific protocol change.",
+ "generated_utc": "2026-10-05T05:47:47Z",
+ "all_pass": true
+}

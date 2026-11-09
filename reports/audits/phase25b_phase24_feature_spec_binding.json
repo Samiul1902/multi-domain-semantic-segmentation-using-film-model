@@ -1,0 +1,154 @@
+{
+ "artifact": "phase25b_phase24_feature_spec_binding",
+ "phase": "25B",
+ "purpose": "verify that the authoritative Phase24 v1.1 artifact explicitly and completely defines every Phase25B feature, BEFORE any extraction",
+ "work_order_ref": "sections 3, 4, 10, 11, 12",
+ "frozen_artifacts_read": {
+  "phase24_exact_implementation_spec.json": "6b1a71d5e88ce06baa8f200523be32773428417ffd233ff218d7e50b6af271dd",
+  "phase24_architecture_spec.json": "bd5522678571f9b40e3ae887c7fd6c2d7862b3e73152eab1ae7db13cab6c6071",
+  "phase24_router_input_contract.csv": "2aef05c81492e40bcb6e520201ea76cd3d0375406d877352398222f3ba9a335a",
+  "phase24_router_primary_feature_set.csv": "7a030b0f36f2aeef16bc079c8a87d3f88da4a5a628b3c4df434509f1d231947d"
+ },
+ "spec_version": "ra_medfilm_barr_narrowed_v1_1",
+ "requirements": [
+  {
+   "requirement": "six_deep_feature_vectors_enumerated",
+   "present": true,
+   "blocking_if_absent": true,
+   "detail": [
+    "bridge global average pool",
+    "bridge ROI-aware average pool",
+    "decoder2 global average pool",
+    "decoder2 ROI-aware average pool",
+    "decoder1 global average pool",
+    "decoder1 ROI-aware average pool"
+   ]
+  },
+  {
+   "requirement": "source_taps_named",
+   "present": true,
+   "blocking_if_absent": true,
+   "detail": {
+    "feature_taps": [
+     "bridge",
+     "decoder2",
+     "decoder1"
+    ]
+   }
+  },
+  {
+   "requirement": "pooling_operation_named",
+   "present": true,
+   "blocking_if_absent": true,
+   "detail": "ROI-aware average pool mapped to that feature grid"
+  },
+  {
+   "requirement": "declared_width_is_32",
+   "present": true,
+   "blocking_if_absent": true,
+   "detail": 32
+  },
+  {
+   "requirement": "closed_form_total_218",
+   "present": true,
+   "blocking_if_absent": true,
+   "detail": 218
+  },
+  {
+   "requirement": "breakdown_sums_to_218",
+   "present": true,
+   "blocking_if_absent": true,
+   "detail": {
+    "tap_axes": 6,
+    "tap_axes_x_width": 192,
+    "scalars": 10,
+    "task_embedding": 16
+   }
+  },
+  {
+   "requirement": "deterministic_reduction_to_32_explicitly_defined",
+   "present": false,
+   "blocking_if_absent": true,
+   "detail": {
+    "tokens_found": [
+     "projection",
+     "1x1 conv"
+    ],
+    "projection_is_only_declared_FORBIDDEN": true,
+    "note": "the spec fixes the OUTPUT width (32) but never fixes the OPERATION that produces 32 values from a C-channel map"
+   }
+  },
+  {
+   "requirement": "tap_widths_equal_declared_32",
+   "present": false,
+   "blocking_if_absent": true,
+   "detail": {
+    "observed": {
+     "bridge": 256,
+     "decoder2": 48,
+     "decoder1": 24
+    },
+    "declared": 32
+   }
+  },
+  {
+   "requirement": "ten_scalar_descriptors_enumerated",
+   "present": true,
+   "blocking_if_absent": true,
+   "detail": [
+    "entropy_proxy_mean",
+    "frac_prob_within_0p05_of_boundary",
+    "frac_prob_within_0p02_of_boundary",
+    "mean_boundary_margin",
+    "pred_foreground_fraction",
+    "pred_foreground_pixels",
+    "pred_roi_exists",
+    "pred_empty",
+    "predicted_roi_area_fraction",
+    "predicted_roi_side"
+   ]
+  },
+  {
+   "requirement": "scalar_count_matches",
+   "present": true,
+   "blocking_if_absent": true,
+   "detail": 10
+  },
+  {
+   "requirement": "scalar_rows_present",
+   "present": true,
+   "blocking_if_absent": true,
+   "detail": 10
+  },
+  {
+   "requirement": "scalar_mapping_kinds_recorded",
+   "present": true,
+   "blocking_if_absent": true,
+   "detail": [
+    "DERIVED",
+    "DIRECT",
+    "DIRECT_EQUIVALENT"
+   ]
+  },
+  {
+   "requirement": "scalar_closed_form_equations_defined",
+   "present": false,
+   "blocking_if_absent": true,
+   "detail": {
+    "note": "mapping_kind + English derivation prose are present, but no closed-form definition (entropy base, margin sign convention, boundary-band definition, connected-component convention) is frozen; several scalars are derived-by-prose only"
+   }
+  }
+ ],
+ "n_requirements": 13,
+ "n_blocking_absent": 3,
+ "blocked": true,
+ "decision": "STOP -- do NOT invent a reduction / projection method",
+ "forbidden_workaround_avoided": "no trainable 1x1 projection, random projection, PCA, first-32-channel truncation, or averaging bins was invented",
+ "extraction_performed": false,
+ "features_written": 0,
+ "refiner_forwards": 0,
+ "test_reads": 0,
+ "holdout_outcomes_read": 0,
+ "val_outcome_reads": 0,
+ "verdict": "PHASE25B_BLOCKED__FROZEN_FEATURE_SPEC_INCOMPLETE"
+}

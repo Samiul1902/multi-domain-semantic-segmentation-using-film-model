@@ -1,0 +1,66 @@
+{
+  "artifact": "POST_PHASE13_H2C_B2_FREEZE_MANIFEST",
+  "status": "FROZEN_PRE_FIRST_SEGMENTATION_FORWARD",
+  "created_utc": "2026-09-24T00:29:00Z",
+  "h2c_experiment_id": "post_phase13_h2c_kub_localizer_spatialhead3x3relu_r512_h128_sigmaeq075_centernetfocal_deploymentbalance_seed42_clean_v3",
+  "h2c_b1_best_checkpoint_path": "checkpoints/post_phase13_h2c_kub_localizer_spatialhead3x3relu_r512_h128_sigmaeq075_centernetfocal_deploymentbalance_seed42_clean_v3/best.pt",
+  "h2c_b1_best_checkpoint_sha256": "021ab63f2cbc064b5c4de90c5f181ebee75f8d10e7dead2eb53f4f9578060f98",
+  "selected_epoch": 57,
+  "head_identity": "SPATIAL_DISCRIMINATIVE_HEAD_3X3_RELU_1X1_V1",
+  "authoritative_h2c_protocol_sha": "91166259c10a84e9526eda43e83b227cc760a37b8834a4d4a65fe3e5a90ba4b6",
+  "b2_specification": {
+    "location": "reports/audits/post_phase13_h2c_protocol_frozen.json :: prospective_downstream_contract",
+    "sha256": "91166259c10a84e9526eda43e83b227cc760a37b8834a4d4a65fe3e5a90ba4b6",
+    "note": "The frozen H2C protocol contains the frozen B2 downstream contract, evidence dimensions A-D, four prospective outcome definitions, comparator discipline and the execution split. Crop/restore and fusion are specified by reference to the already-frozen Part1D square/padding-correct lineage."
+  },
+  "proposal_policy_identity": {
+    "source": "post_phase13_h2c_best_checkpoint_proposals.csv",
+    "sha256": "d742834a7275e1493428382d9b5da38ee52045969fa4c3c1304835fe5166d46c",
+    "threshold": 0.1,
+    "margin": 0.2,
+    "top_k": 5,
+    "nms_iou": 0.3,
+    "proposal_rows": 462
+  },
+  "segmentation_checkpoint_identity": {
+    "unet": "7b955ba86464a2fec2d569ecb6124de1fa9a4e66d0b5d58b267be9a280b4c2c0",
+    "attention_unet": "a49b19d66e43b57ed082ea6efc0ac10bccf444277abd3540dc68612bf30b88b3",
+    "unetpp": "ec7eb13f32e43af27eab7fc617bd1a2a8fcce1d6651a1b4a3653f3e4d1283269",
+    "deeplabv3plus": "f519027ba1a3a4d6212d83fecd4379f61f71bc05b0751924b9660da08d597dad"
+  },
+  "dataset_split_identity": {
+    "split": "VAL (phase4_v3 manifest)",
+    "manifest_sha": "082c80b2bda63fd73f371f109c34643adf01edaead921643fb2e44993ba53315",
+    "cases": 103,
+    "components": 152,
+    "ROI": "EXCLUDED"
+  },
+  "global_cache": {
+    "manifest": "data_cache/phase13_part1d_b_predicted_region_clean_v3/global_512_manifest.csv",
+    "sha256": "76e1034d2bc7925260af33826fc19565b2d5ef786c612a7ad71f3bde46fb89a8",
+    "items": 412,
+    "dtype": "float32"
+  },
+  "evaluation_script": {
+    "path": "scripts/inference/post_phase13_h2c_downstream_eval.py",
+    "sha256": null
+  },
+  "relevant_configuration_shas": {
+    "h2c_config": "b96223eecade2938a9ca9733ddcfba1bbd2f7cd34155ab4d48a1fba51f09bc33",
+    "part1d_helper": "8cd7e39814a049a025f706c57ccea0b535a230908a177690d6289318234c6284"
+  },
+  "random_seed": {
+    "training_seed": 42,
+    "downstream_deterministic": true,
+    "stochastic_operations_in_b2": "NONE"
+  },
+  "authorization_identity": "USER_SUPERVISOR_MESSAGE_POST_H2C_B1",
+  "scientific_axis_change_count": 1,
+  "test_read_counter": 0,
+  "external_test_read_counter": 0,
+  "downstream_forward_counter_before_b2": 0,
+  "confirmations": {
+    "NO_SCIENTIFIC_PARAMETER_SELECTED_USING_B2_RESULTS": true,
+    "H2C_B2_IS_EVALUATION_ONLY": true
+  }
+}

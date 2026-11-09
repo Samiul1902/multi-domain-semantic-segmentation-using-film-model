@@ -1,0 +1,273 @@
+{
+  "artifact": "POST_PHASE13_H2A_PROTOCOL_FROZEN",
+  "status": "SUPERVISOR_FROZEN_H2A_SELECTION_ONLY_READY_FOR_EXECUTION",
+  "created_utc": "2026-09-22T07:28:00Z",
+  "experiment_id": "post_phase13_h2a_kub_localizer_r512_h128_sigmaeq075_centernetfocal_deploymentbalance_seed42_clean_v3",
+  "experiment_id_collision": "NONE (both checkpoints/ and experiments/ paths absent)",
+  "h2_axis": "H2A_DEPLOYMENT_BALANCED_CHECKPOINT_SELECTION_ONLY",
+  "scientific_question": "Can a deployment-aligned LOCALIZER CHECKPOINT-SELECTION rule improve proposal precision / precision-recall balance sufficiently WITHOUT changing architecture, training target, sigma, loss, optimizer, scheduler, augmentation, data, seed, proposal geometry, proposal threshold, margin, top-k, NMS, regional segmentation models or fusion semantics?",
+  "score_path_verdict": "SCORE_PATH_IMPLEMENTATION_VALID",
+  "trajectory_classification": "C__ONLY_BEST_AND_LATEST_AVAILABLE",
+  "execution_mode": "MODE_B__DETERMINISTIC_TRAINING_REPLAY_WITH_NEW_SELECTION",
+  "execution_mode_reason": "The new rule requires PROPOSAL_PIXEL_ANY_HIT_PRECISION for EVERY epoch. That quantity needs proposals, which need each epoch's weights and an inference pass. Only 3 distinct epoch weights exist (31, 53, 68 of 68) and no per-epoch proposal outputs were persisted, so checkpoint replay alone cannot apply the new rule. MODE_B is therefore required. The replay MUST retain identical gradient-update semantics; the ONLY scientific change is which epoch is declared best and drives early stopping.",
+  "frozen_training_contract": {
+    "TRAIN": "770 FULL_FIELD cases / 1161 components",
+    "VAL": "103 FULL_FIELD cases / 152 components",
+    "ROI": "EXCLUDED",
+    "manifest": "phase4_v3",
+    "taxonomy": "kub_size_clean_v3_v1",
+    "input": "512 x 512",
+    "heatmap": "128 x 128",
+    "sigma": 0.75,
+    "architecture": "existing compact KUB localizer",
+    "in_channels": 1,
+    "out_channels": 1,
+    "base_channels": 16,
+    "target": "existing CenterNet-style heatmap target unchanged",
+    "loss": "CenterNetFocalLoss(alpha=2.0, beta=4.0)",
+    "optimizer": "AdamW",
+    "lr": 0.0001,
+    "weight_decay": 0.0001,
+    "scheduler": "CosineAnnealingLR(T_max=100)",
+    "batch": 4,
+    "amp": "same accepted Phase13 semantics",
+    "seed": 42,
+    "augmentation": "UNCHANGED from clean-v3 Phase13",
+    "max_epochs": 100,
+    "workers": 0,
+    "cuda": "required",
+    "test": "forbidden"
+  },
+  "frozen_proposal_evaluation_contract": {
+    "threshold": 0.1,
+    "margin": 0.2,
+    "top_k": 5,
+    "nms_iou": 0.3,
+    "grid": "NONE",
+    "threshold_search": "NONE",
+    "per_epoch_sensitivity_analysis": "NONE",
+    "coverage_semantics": "canonical historical executing BBOX coverage remains available; pixel semantics remain secondary sensitivity where appropriate",
+    "new_primary_quantity": {
+      "name": "PROPOSAL_PIXEL_ANY_HIT_PRECISION",
+      "numerator": "number of generated proposals whose CLIPPED native proposal support contains at least one native GT foreground pixel",
+      "denominator": "total generated proposals across the complete 103-case VAL population",
+      "zero_denominator_rule": "precision = 0.0"
+    },
+    "secondary_diagnostic": "PROPOSAL_BBOX_ANY_HIT_PRECISION"
+  },
+  "new_primary_checkpoint_utility": {
+    "label": "DEPLOYMENT_BALANCE_HMEAN_P_TINY90_OVERALL90",
+    "definition": "0.0 if any of P,T,O <= 0 else 3 / (1/P + 1/T + 1/O)",
+    "P": "PROPOSAL_PIXEL_ANY_HIT_PRECISION",
+    "T": "tiny_recall90",
+    "O": "overall_recall90",
+    "is_statistical_f1": "NO - must not be called an F1 score",
+    "purpose": "balance proposal intervention precision, tiny-object coverage and overall component coverage without an arbitrary weighted sum"
+  },
+  "h2a_primary_checkpoint_tuple": {
+    "tuple": [
+      "DEPLOYMENT_BALANCE_HMEAN_P_TINY90_OVERALL90",
+      "tiny_recall90",
+      "overall_recall90",
+      "PROPOSAL_PIXEL_ANY_HIT_PRECISION",
+      "-mean_roi_area_fraction",
+      "-val_loss"
+    ],
+    "tuple_length": 6,
+    "comparison": "STRICT_LEXICOGRAPHIC_GREATER_THAN",
+    "ties": "BAD_EPOCH",
+    "early_stop_patience": 15,
+    "checkpoint": "strict improvement only",
+    "latest_pt": "every completed epoch",
+    "downstream_segmentation_metric_participates": "NO",
+    "phase12_oracle_result_participates": "NO",
+    "r1_segmentation_outcome_participates": "NO"
+  },
+  "secondary_per_epoch_diagnostics": {
+    "computed_but_structurally_excluded_from_selection": [
+      "proposal_bbox_any_hit_precision",
+      "proposal_count_per_image",
+      "hard_Tiny_recovery",
+      "global_empty_recovery",
+      "multi_component_recall",
+      "overall_recall50",
+      "any_overlap_recall",
+      "mean_coverage",
+      "proposal_score_mean",
+      "proposal_score_median",
+      "proposal_score_Q25",
+      "proposal_score_Q75",
+      "proposal_score_max",
+      "fraction_proposals_exactly_at_epoch_max_score",
+      "score_IQR",
+      "hit_proposal_score_distribution",
+      "miss_proposal_score_distribution",
+      "ROC_AUC_score_to_pixel_any_hit",
+      "PR_AUC_score_to_pixel_any_hit"
+    ],
+    "auc_role": "DIAGNOSTIC_ONLY",
+    "score_calibration_threshold_search": "NONE"
+  },
+  "selection_only_interpretation": {
+    "loss_changed": "NO",
+    "target_changed": "NO",
+    "architecture_changed": "NO",
+    "sigma_changed": "NO",
+    "data_changed": "NO",
+    "augmentation_changed": "NO",
+    "optimizer_changed": "NO",
+    "proposal_config_changed": "NO",
+    "checkpoint_selection_changed": "YES"
+  },
+  "h2_standalone_localizer_evaluation_contract": {
+    "population": "103 cases / 152 components",
+    "required": [
+      "proposal_count",
+      "proposal_pixel_any_hit_precision",
+      "proposal_bbox_any_hit_precision",
+      "tiny_recall90",
+      "overall_recall90",
+      "recall50",
+      "any_overlap_recall",
+      "mean_coverage",
+      "mean_proposal_union_area",
+      "hard_Tiny",
+      "global_empty",
+      "multi_component",
+      "score_saturation_distribution",
+      "size_stratified_coverage"
+    ],
+    "proposal_threshold_tuning": "NONE",
+    "grid": "NONE"
+  },
+  "downstream_evaluation_contract": {
+    "segmentation_checkpoints": [
+      "unet",
+      "attention_unet",
+      "unetpp",
+      "deeplabv3plus"
+    ],
+    "global_cache": "same GLOBAL cache where provenance remains valid",
+    "variant": "PREDICTED_REGION_FLOAT_GLOBAL_RETAINED",
+    "fusion": "unchanged",
+    "crop_restore": "square/padding-correct",
+    "margin": 0.2,
+    "nms_iou": 0.3,
+    "segmentation_threshold": 0.5,
+    "r1_selective_acceptance_carried_over": "NO",
+    "primary_downstream_policy": "localizer native frozen proposal policy (threshold 0.10, top_k 5)",
+    "rationale": "H2A must isolate checkpoint selection; it must NOT be combined with H1 selectivity"
+  },
+  "prospective_evidence_dimensions": {
+    "A_LOCALIZER_PROPOSAL_QUALITY": [
+      "proposal_pixel_any_hit_precision",
+      "tiny_recall90",
+      "overall_recall90",
+      "score_separability_saturation"
+    ],
+    "B_DOWNSTREAM_GLOBAL_PRESERVATION": [
+      "Dice",
+      "IoU",
+      "precision",
+      "recall",
+      "FP_burden",
+      "FN_burden",
+      "cases_improved_worsened"
+    ],
+    "C_REGIONAL_UTILITY": [
+      "component_recoveries",
+      "component_losses",
+      "empty_recoveries",
+      "oracle_benefit_retention"
+    ],
+    "D_CROSS_ARCHITECTURE_GENERALITY": [
+      "all four segmentation architectures"
+    ],
+    "numerical_success_threshold": "NONE",
+    "weighted_downstream_score": "NONE",
+    "model_ranking": "NONE",
+    "winner": "NONE"
+  },
+  "h2a_outcome_space": [
+    "H2A_SELECTION_REDESIGN_SUFFICIENT",
+    "H2A_SELECTION_REDESIGN_PARTIAL",
+    "H2A_SELECTION_REDESIGN_INSUFFICIENT",
+    "CHECK_REQUIRED"
+  ],
+  "adjudicated_now": "NO",
+  "if_h2a_insufficient": "loss/target/representation redesign MAY become eligible later; NOT automatically authorized",
+  "training_notebook_requirement": {
+    "applies_if_mode_b_authorized": "YES",
+    "must_display": [
+      "epoch",
+      "train_loss",
+      "val_loss",
+      "P",
+      "T",
+      "O",
+      "deployment_balance_hmean",
+      "proposal_count",
+      "mean_roi_area",
+      "checkpoint_tuple",
+      "is_new_best",
+      "bad_epochs"
+    ],
+    "one_completed_epoch_per_row": "YES",
+    "untruncated": "YES"
+  },
+  "scientific_change_register": [
+    {
+      "id": "CHANGE_H2A_001",
+      "field": "checkpoint selection",
+      "old": [
+        "tiny_recall90",
+        "overall_recall90",
+        "-mean_roi_area_fraction",
+        "-val_loss"
+      ],
+      "new": [
+        "DEPLOYMENT_BALANCE_HMEAN_P_TINY90_OVERALL90",
+        "tiny_recall90",
+        "overall_recall90",
+        "PROPOSAL_PIXEL_ANY_HIT_PRECISION",
+        "-mean_roi_area_fraction",
+        "-val_loss"
+      ],
+      "motivation": "Phase13 + H1 show recall-first selection yields useful target recovery but unacceptable off-target intervention / downstream FP burden, while acceptance-only mitigation is insufficient. No causal claim is made."
+    }
+  ],
+  "claim_limits": {
+    "new_numerical_success_threshold": "NONE",
+    "hidden_grid": "NONE",
+    "downstream_metric_in_selection": "NO",
+    "phase12_oracle_in_selection": "NO",
+    "r1_outcome_in_selection": "NO",
+    "test_or_external_access": "NONE",
+    "selection_redesign_will_succeed_asserted": "NO"
+  },
+  "counters": {
+    "training": 0,
+    "optimizer_construction": 0,
+    "model_construction": 0,
+    "cuda_requests": 0,
+    "localizer_forwards": 0,
+    "segmentation_forwards": 0,
+    "regional_forwards": 0,
+    "proposal_generation": 0,
+    "checkpoint_writes": 0,
+    "test_reads": 0,
+    "external_test_reads": 0
+  },
+  "continuity": {
+    "phase13": "COMPLETE_FROZEN",
+    "original_regional_gate": "REVISE_LOCALIZER_FROZEN",
+    "h1": "CLOSED__PARTIAL_MITIGATION_INSUFFICIENT",
+    "h2a_protocol": "COMPLETE_PASS_FROZEN",
+    "h2a_execution": "ELIGIBLE_FOR_SUPERVISOR_AUTHORIZATION__NOT_AUTHORIZED",
+    "h2_loss_redesign": "NOT_STARTED",
+    "h3_fusion_redesign": "NOT_STARTED",
+    "phase14": "NOT_STARTED",
+    "test": "UNTOUCHED"
+  },
+  "next_action": "WAIT_FOR_SUPERVISOR_H2A_EXECUTION_AUTHORIZATION"
+}

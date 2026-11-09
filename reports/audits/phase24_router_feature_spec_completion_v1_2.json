@@ -1,0 +1,101 @@
+{
+ "artifact": "phase24_router_feature_spec_completion_v1_2",
+ "phase": "24",
+ "revision": "ra_medfilm_barr_narrowed_v1_2",
+ "supersedes_router_feature_spec_of": "ra_medfilm_barr_narrowed_v1_1",
+ "classification": "SPECIFICATION_COMPLETENESS_AND_GOVERNANCE_SYNC",
+ "science_changed": false,
+ "method_changed": false,
+ "is_new_method": false,
+ "architecture_search": false,
+ "feature_selection": false,
+ "method_name": "RA-MedFiLM-BARR",
+ "blocked_predecessor_terminal": "PHASE24_ROUTER_FEATURE_SPEC_V1_2_BLOCKED__SUPERVISOR_REVIEW_REQUIRED",
+ "pre_closure_terminal": "PHASE24_ROUTER_FEATURE_SPEC_V1_2_BLOCKED__SUPERVISOR_REVIEW_REQUIRED",
+ "RF1": {
+  "status": "RF1_RESOLVED",
+  "artifact": "phase24_router_feature_reduction_contract_v1_2.json",
+  "n_checks": 14,
+  "n_failed": 0
+ },
+ "RF2": {
+  "status": "RF2_RESOLVED",
+  "artifact": "phase24_roi_feature_mapping_contract_v1_2.json",
+  "n_checks": 13,
+  "n_failed": 0
+ },
+ "RF3": {
+  "status": "RF3_FULLY_RESOLVED",
+  "artifact": "phase24_scalar_feature_contract_v1_2.json",
+  "n_checks": 11,
+  "n_failed": 0,
+  "unresolved_threshold_roles": 0,
+  "defect_present": false
+ },
+ "D1": {
+  "status": "D1_RESOLVED",
+  "artifact": "phase24_predicted_roi_area_fraction_adjudication.json",
+  "resolution": "C3 (clipped in-canvas area fraction)",
+  "new_range": {
+   "min": 1.52587890625e-05,
+   "max": 1.0,
+   "mean": 0.5126122526038384,
+   "median": 0.4916419982910156
+  },
+  "new_gt1_count": 0
+ },
+ "D2": {
+  "status": "D2_RESOLVED",
+  "artifact": "phase24_router_parameter_count_adjudication.json",
+  "canonical_total_trainable_params": 36801,
+  "historical_linear_core_count": 36353,
+  "architecture_changed": false
+ },
+ "defects_reported": 0,
+ "defects_resolved": 2,
+ "n_defects_reported": 0,
+ "silently_repaired": false,
+ "resolved": true,
+ "fully_closed": true,
+ "verdict": "RF1_RF2_RF3_D1_D2_RESOLVED",
+ "blocked_predecessor_artifacts_classification": "BLOCKED_ATTEMPT_PROVENANCE",
+ "blocked_predecessor_artifacts_preserved": [
+  {
+   "artifact": "phase25b_final_freeze.json",
+   "exists": true,
+   "sha256": "d0654c94ebe87705f4a37d1851265af6828db6f23244ae7c14929076e7aa019e"
+  },
+  {
+   "artifact": "phase25b_phase24_feature_spec_binding.json",
+   "exists": true,
+   "sha256": "acefbaa23bacf83aa8988967f698b10a2356c2893204ff1b8bc416fadcdcd112"
+  },
+  {
+   "artifact": "phase25b_threshold_semantics_audit.json",
+   "exists": true,
+   "sha256": "d36aa45808c15306b32c13a5ea9176849ecb4d6251b628f53700858f4c9c3440"
+  },
+  {
+   "artifact": "phase25b_scope_guard.json",
+   "exists": true,
+   "sha256": "3c90e64df89b076a2397c4ea1c5752c1dcc6f510e4315c12830476d71b37874d"
+  },
+  {
+   "artifact": "phase25b_test_lock_audit.json",
+   "exists": true,
+   "sha256": "97ed04a64da3e502ae6ca92c072b82c49c9cbca8fd6297b3147857b4366cd754"
+  },
+  {
+   "artifact": "phase25b_implementation_test_suite.json",
+   "exists": true,
+   "sha256": "9c24be97d707e84beaa40db99b024a973595a92504a7a23e6e2104211a27d0e6"
+  }
+ ],
+ "historical_v1_1_preserved": true,
+ "phase25a_retraining_required": false,
+ "model_instantiations": 0,
+ "forward_passes": 0,
+ "training_runs": 0,
+ "feature_rows_extracted": 0,
+ "test_reads": 0
+}

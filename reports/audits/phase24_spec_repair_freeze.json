@@ -1,0 +1,99 @@
+{
+ "artifact": "phase24_spec_repair_freeze",
+ "phase": 24,
+ "repair": "POST_PHASE24_SPECIFICATION_COMPLETENESS_REPAIR",
+ "classification": "SPECIFICATION_COMPLETENESS_REPAIR",
+ "architecture_id": "ra_medfilm_barr_narrowed_v1_1",
+ "supersedes_architecture_id": "ra_medfilm_barr_narrowed_v1",
+ "method_name": "RA-MedFiLM-BARR",
+ "science_changed": false,
+ "revision_reason": "SPECIFICATION_COMPLETENESS_ONLY",
+ "is_final": true,
+ "bindings": {
+  "method_name": "RA-MedFiLM-BARR",
+  "architecture_id": "ra_medfilm_barr_narrowed_v1_1",
+  "split_seed": 42,
+  "split_development_n": 4957,
+  "split_holdout_n": 875,
+  "split_manifest_sha256": "b5da52d6220ef9b59b4ba70d0b403b38bf5234b897615b6ad55d718114db6555",
+  "roi_expansion_factor": 1.5,
+  "roi_resolution": 256,
+  "refiner_name": "BARRRegionalRefinerV1",
+  "refiner_active_channels": [
+   16,
+   32,
+   64,
+   96,
+   128
+  ],
+  "refiner_params_closed_form": 1276401,
+  "router_name": "BARRBenefitRouterV1",
+  "router_feature_taps": [
+   "bridge",
+   "decoder2",
+   "decoder1"
+  ],
+  "router_params_closed_form": 36353,
+  "router_lambda_grid": [
+   0.0,
+   0.25,
+   0.5,
+   1.0
+  ],
+  "post_safety_extension": "CONTROLLED_CORE_EXTENSION",
+  "fusion_threshold": 0.5,
+  "notebook_sha256_previous": "e4383d5ac9c33787b809407e4884cd7069f1f4514ed0abf7c21c844024221207",
+  "notebook_sha256_current": "612d71700c1c1a45b94b8fcb8a3ff427bf32f6f6453130febeec49c6ec78caef",
+  "spec_completeness_verdict": "PHASE24_SPEC_COMPLETENESS_REPAIR_PASS",
+  "spec_completeness_passed": "49/49",
+  "no_execution_verdict": "PHASE24_NO_EXECUTION_AUDIT_PASS",
+  "test_lock": "CLOSED",
+  "phase25_started": false
+ },
+ "predecessor_sha256": {
+  "phase21_best_pt": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+  "phase22_protocol": "9d620d6c85276e1a9a086ec60172cdef3b94dc58fe8288222378d196dd4609b7",
+  "phase22_freeze": "9a0aa2f8c1a2850770fb09f2838e95f0fe08b3b40e55ab1d10c3564841107bca",
+  "phase23_notebook": "e9f78ccefd96abad742fa5570a44110cd67c62f5510b99300448e44b961107b0"
+ },
+ "predecessor_unchanged": {
+  "phase21_best_pt_sha256": true,
+  "phase22_protocol_sha256": true,
+  "phase22_freeze_sha256": true,
+  "phase23_notebook_sha256": true
+ },
+ "science_unchanged": true,
+ "counters": {
+  "training_runs": 0,
+  "optimizer_instances_used_for_training": 0,
+  "backward_calls": 0,
+  "segmentation_forward_passes": 0,
+  "regional_refiner_forward_passes": 0,
+  "router_forward_passes": 0,
+  "module_instantiations": 0,
+  "holdout_outcomes_read": 0,
+  "val_outcome_reads": 0,
+  "test_image_reads": 0,
+  "test_mask_reads": 0,
+  "test_inference_calls": 0,
+  "test_visualizations": 0,
+  "phase25_modules_started": 0
+ },
+ "artifacts": {
+  "exact_spec": "reports/audits/phase24_exact_implementation_spec.json",
+  "exact_split": "reports/audits/phase24_benefit_data_protocol_exact.json",
+  "split_manifest": "reports/audits/phase24_router_split_manifest.csv",
+  "architecture_revision": "reports/audits/phase24_architecture_revision_v1_1.json",
+  "primary_feature_set": "reports/tables/phase24_router_primary_feature_set.csv",
+  "module_envelope": "reports/tables/phase24_spec_module_envelope.csv",
+  "oof_gain_schema": "reports/tables/phase25_future_oof_gain_schema.csv",
+  "spec_completeness_audit": "reports/audits/phase24_spec_completeness_repair.json",
+  "notebook": "notebooks/phasewise/phase_24_architecture_spec/phase24_narrowed_benefit_aware_refinement_spec.ipynb",
+  "notebook_sha256": "612d71700c1c1a45b94b8fcb8a3ff427bf32f6f6453130febeec49c6ec78caef"
+ },
+ "terminal_state": "PHASE24_SPEC_COMPLETENESS_REPAIR_COMPLETE__RA_MEDFILM_BARR_V1_1_FROZEN__PHASE25_ELIGIBLE_NOT_STARTED",
+ "phase25_started": false,
+ "notes": "Phase 24 remains DESIGN-ONLY. This repair closes implementation degrees of freedom only. No predecessor artifact was modified. No Phase-25 module was started.",
+ "generated_utc": "2026-09-30T04:04:18.898474+00:00",
+ "test_reads": 0
+}

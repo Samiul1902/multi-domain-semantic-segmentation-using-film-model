@@ -1,0 +1,149 @@
+{
+  "version": "1.0",
+  "mode": "READ_ONLY_DECISION_SUPPORT",
+  "training_performed": false,
+  "inference_performed": false,
+  "frozen_artifacts_modified": false,
+  "test_accessed": false,
+  "router_holdout_accessed": false,
+  "authorization_granted": false,
+  "generated_local": "2026-10-26T22:47:47+06:00",
+  "generated_utc": "2026-10-26T16:47:47+00:00",
+  "timestamp_provenance": "COMPUTED_AT_WRITE_BY_SCRIPT",
+  "clock_uncertainty": "HOST_CLOCK_NOT_SYNCHRONIZED__ABSOLUTE_UTC_CORRESPONDENCE_UNVERIFIED",
+  "artifact": "task_a_host_readiness_diagnostics",
+  "classification": "RA_MEDFILM_BARR_HOST_READINESS_DIAGNOSTICS",
+  "companion_markdown": {
+    "path": "reports/planning/reauthorization_gate_v1_0/task_a_host_readiness_v1_0.md",
+    "sha256": "55387d9330ffacc6ddd6b5961c5c7d2e8bcc38be361d75a49d95e76bca686f7b",
+    "bytes": 9192
+  },
+  "time_sync": {
+    "synchronized": false,
+    "leap_indicator": "3(not synchronized)",
+    "stratum": 0,
+    "source": "Local CMOS Clock",
+    "last_successful_sync": "unspecified",
+    "peer": "time.windows.com,0x9",
+    "peer_state": "Pending",
+    "peer_time_remaining_s": 26235,
+    "service_state": "Running",
+    "service_start_type": "Manual",
+    "registry_start_value": 3,
+    "provider_type": "NTP",
+    "special_poll_interval_s": 32768,
+    "verdict": "NOT_WORKING__NOT_REPORTED_AS_WORKING",
+    "benign_note": "Time-Service ID 158 (VMICTimeProvider unsupported on non-HyperV) recurs every ~17 min and is NOT the cause"
+  },
+  "rtc": {
+    "fault": "CONFIRMED_NOT_REMEDIATED",
+    "offset_events": [
+      {
+        "logged": "2026-10-22T10:48:18",
+        "offset_s": 151916,
+        "offset_days": 1.758
+      },
+      {
+        "logged": "2026-10-25T19:11:17",
+        "offset_s": 441283,
+        "offset_days": 5.107
+      },
+      {
+        "logged": "2026-10-25T21:08:33",
+        "offset_s": 448320,
+        "offset_days": 5.189
+      }
+    ],
+    "interpretation": "offset grew 1.76 d -> 5.11 d over 3.35 d of clock time; clock loses essentially all elapsed time across power-off",
+    "boot_corroboration": {
+      "last_boot_up_time": "2026-10-25T21:08:14",
+      "matches_correction": "2026-10-25T21:08:33",
+      "448320_s_before_correction_lands_on": "2026-10-20T16:36:33",
+      "consequence": "the apparent 10/20 16:35-16:36 Kernel-Power cluster is the PRE-CORRECTION stamp of the same 10/25 boot, not separate power losses"
+    },
+    "no_id52_since": "2026-10-25T21:08:33"
+  },
+  "power_events": {
+    "kernel_power_41_count": 87,
+    "oldest_stamped": "2026-08-05T19:48:34",
+    "newest_stamped": "2026-10-20T16:36:20",
+    "eventlog_6008_present": true,
+    "count_since_current_boot": 0,
+    "current_uptime": "1d 01h 33m",
+    "caveat": "pre-correction event stamps are shifted; per-event TRUE times are unreliable, totals and presence are reliable"
+  },
+  "power_hardware": {
+    "battery_device_count": 0,
+    "chassis_type": 3,
+    "chassis_meaning": "Desktop",
+    "ups_device_enumerated": false,
+    "power_plan": "Balanced",
+    "verdict": "UPS_INSTALLATION_NOT_ESTABLISHED__NO_EVIDENCE_OF_PRESENCE"
+  },
+  "gpu": {
+    "name": "NVIDIA GeForce RTX 3060 Ti",
+    "vram_mib": 8192,
+    "vram_used_mib": 568,
+    "driver": "610.88",
+    "cuda_umd": "13.3",
+    "temperature_c": 49,
+    "utilization_pct": 12,
+    "pstate": "P5",
+    "power_w": "33 / 265",
+    "driver_model": "WDDM",
+    "second_adapter": "Parsec Virtual Display Adapter",
+    "torch": "2.6.0+cu124",
+    "cuda_available": true,
+    "cudnn": 90100,
+    "python": "3.11.9",
+    "ram_gb": 31.9,
+    "disk_D_free_gb": 128.9,
+    "disk_D_total_gb": 931.5,
+    "verdict": "HEALTHY__NO_REMEDIATION_REQUIRED"
+  },
+  "remediation_required": [
+    {
+      "id": "P1",
+      "item": "Replace CMOS / RTC battery",
+      "status": "NOT_DONE",
+      "physical": true
+    },
+    {
+      "id": "P2",
+      "item": "Install UPS / battery-backed power",
+      "status": "NOT_DONE",
+      "physical": true
+    },
+    {
+      "id": "P3",
+      "item": "Remediate power delivery (mains/PSU/cabling)",
+      "status": "NOT_DONE",
+      "physical": true
+    },
+    {
+      "id": "S1",
+      "item": "w32time start type -> Automatic",
+      "status": "NOT_DONE",
+      "physical": false
+    },
+    {
+      "id": "S2",
+      "item": "Reduce SpecialPollInterval and verify a held sync",
+      "status": "NOT_DONE",
+      "physical": false
+    }
+  ],
+  "readiness_verdict": {
+    "gpu_stack": true,
+    "ram_disk": true,
+    "clock_absolute": false,
+    "rtc_holds_across_poweroff": false,
+    "power_stability": false,
+    "unattended_multiday_safe": false
+  },
+  "explicit_non_claims": [
+    "CMOS battery NOT reported as replaced",
+    "UPS NOT reported as installed",
+    "time synchronisation NOT reported as working"
+  ]
+}

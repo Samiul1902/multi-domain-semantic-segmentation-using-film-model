@@ -1,0 +1,90 @@
+{
+  "status": "PASS",
+  "diagnostic_classification": "DIAGNOSTIC_PRACTICAL_SIGNAL_INSUFFICIENT",
+  "phase15_status": "NOT_AUTHORIZED",
+  "evaluator_provenance": {
+    "authoritative_metric": "FROZEN_HISTORICAL_OBJECT_RECALL",
+    "source_module": "src/metrics/object_metrics.py",
+    "function": "object_metrics(prediction, target, minimum_overlap_pixels=1)",
+    "source_sha256": "9824397f0c2b5d8807fadd2ba79ec565902ae47b8a36f719a4ae5a4e99a81238",
+    "historical_reproduction": {
+      "metric": "Global UNet++ 512 Tiny Recall",
+      "components_detected": 57,
+      "components_total": 73,
+      "measured_ratio": 0.7808219178082192,
+      "historical_frozen_reference": 0.780822,
+      "exact_match": true
+    },
+    "secondary_coverage_metric": {
+      "name": "cov90",
+      "definition": "GT component pixel coverage fraction >= 0.90",
+      "global_tiny": 0.3424657534246575,
+      "oracle_tiny": 0.6438356164383562,
+      "predicted_tiny": 0.5753424657534246,
+      "role": "Secondary descriptive metric; NOT feeding decision gates"
+    }
+  },
+  "frozen_references": {
+    "Tg": 0.7808219178082192,
+    "Dg": 0.652776
+  },
+  "official_512_space": {
+    "To_512": 1.0,
+    "Tp_512": 0.8904109589041096,
+    "Do_512": 0.8151747123335596,
+    "Dp_512": 0.3839050725540553,
+    "G": 0.2191780821917808,
+    "R": 0.5
+  },
+  "diagnostic_contrasts": {
+    "Tg": 0.7808219178082192,
+    "Dg": 0.652776,
+    "To": 1.0,
+    "Do": 0.8151747123335596,
+    "Tp": 0.8904109589041096,
+    "Dp": 0.3839050725540553,
+    "G": 0.2191780821917808,
+    "R": 0.5,
+    "R_string": "0.500000"
+  },
+  "gates": {
+    "step1_pass": true,
+    "step2_status": "PASS",
+    "step2_pass": true,
+    "step3_pass": false,
+    "step_1": {
+      "pass": true,
+      "G": 0.2191780821917808,
+      "Do": 0.8151747123335596
+    },
+    "step_2": {
+      "status": "PASS",
+      "pass": true,
+      "R": 0.5
+    },
+    "step_3": {
+      "pass": false,
+      "Tp": 0.8904109589041096,
+      "Dp": 0.3839050725540553,
+      "hard_tiny_recovered": 8,
+      "global_empty_recovered": 5,
+      "conditions": {
+        "Tp_ge_0780822": true,
+        "Dp_ge_0632776": false,
+        "hard_tiny_ge_2": true,
+        "global_empty_ge_1": true
+      }
+    }
+  },
+  "hard_case_reconstruction": {
+    "hard_tiny_total": 16,
+    "hard_tiny_recovered_global": 0,
+    "hard_tiny_recovered_oracle": 16,
+    "hard_tiny_recovered_predicted": 8,
+    "global_empty_total": 7,
+    "global_empty_recovered_global": 0,
+    "global_empty_recovered_oracle": 7,
+    "global_empty_recovered_predicted": 5
+  },
+  "final_classification": "DIAGNOSTIC_PRACTICAL_SIGNAL_INSUFFICIENT"
+}

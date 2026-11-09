@@ -1,0 +1,44 @@
+{
+ "artifact": "phase29_fixed_partition_ruling_v1_1",
+ "phase": 29,
+ "revision": "ra_medfilm_barr_phase29_repro_v1_1",
+ "classification": "SUPERVISOR_PROSPECTIVE_REPRODUCIBILITY_SPECIFICATION_REPAIR",
+ "governance_only": true,
+ "execution": "NONE",
+ "generated_utc": "2026-10-02T15:05:09+00:00",
+ "partition_classification": "FIXED_PARTITIONS__OPTIMIZATION_RANDOMNESS_ONLY",
+ "components": {
+  "R_psi": {
+   "reused_manifest": "Phase25A three outer folds",
+   "n_outer_folds": 3,
+   "same_FIT_rows": true,
+   "same_EARLY_STOP_rows": true,
+   "same_OUTER_TARGET_rows": true,
+   "source_artifact": "reports/audits/phase25a_crossfit_protocol.json",
+   "source_sha256": "6868b5562fe02929e13d63905ca74a759e20dec3c01b14eef331e4cb948f55ce"
+  },
+  "B_phi": {
+   "reused_manifest": "Phase25D five outer folds",
+   "n_outer_folds": 5,
+   "same_inner_FIT_ES_roles": true,
+   "same_OUTER_TARGET_rows": true,
+   "source_artifact": "reports/audits/phase25d_cv_protocol_v1_2_1.json",
+   "source_sha256": "276e45f42fa00d74a5338dbef15ed990f548d1a992223e2afb2623c7fe08471e",
+   "cv_name": "BARR_ROUTER_CV5_GROUP_SAFE_DOMAIN_STRATIFIED_V1",
+   "algorithm": "StratifiedGroupKFold(n_splits=5, shuffle=True, random_state=42)"
+  },
+  "S_omega": {
+   "reused_manifest": "Phase25F five-fold manifests",
+   "n_folds": 5,
+   "same_FIT": true,
+   "same_EARLY_STOP": true,
+   "same_OUTER_TARGET": true,
+   "source_artifact": "reports/audits/phase25f_cv_manifest_reuse_contract_v1_0.json",
+   "source_sha256": "731376fd19d2fc922f5209fdf891a12f9db5ed0ddafc04f697fe5364e1d02533"
+  }
+ },
+ "folds_regenerated_from_new_seeds": false,
+ "crossfit_folds_fixed": true,
+ "load_bearing_for_across_seed_variance": true,
+ "all_pass": true
+}

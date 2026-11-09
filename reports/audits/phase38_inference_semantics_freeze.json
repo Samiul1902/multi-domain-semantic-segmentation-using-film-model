@@ -1,0 +1,80 @@
+{
+  "classification": "PHASE38_INFERENCE_SEMANTICS_FREEZE",
+  "generated_utc": "2026-10-11T06:30:00Z",
+  "phase": 38,
+  "method": "RA-MedFiLM-BARR",
+  "global_G": {
+    "input_shape": [
+      3,
+      512,
+      512
+    ],
+    "cuda_required": true,
+    "model_dtype": "float32",
+    "input_dtype": "float32",
+    "autocast": {
+      "enabled": true,
+      "dtype": "float16"
+    },
+    "no_grad": true,
+    "inference_mode": false,
+    "batch_size": 8,
+    "batching": "domain_local_contiguous_batches_of_8",
+    "probability_operator": "sigmoid(logits.float())",
+    "final_scoring_representation_D75_POLICY_B": "live_f32 -> f16 -> f32 -> >= 0.50",
+    "D75_scope": "affects final segmentation scoring representation only"
+  },
+  "regional": {
+    "roi_p_global_threshold": 0.3,
+    "margin": 0.25,
+    "expansion": 1.5,
+    "canvas": 512,
+    "crop": 256,
+    "empty_roi": "ACTION_UNAVAILABLE -> FORCED_SKIP",
+    "no_router_refiner_safety_when_roi_unavailable": true,
+    "G_not_rerun_for_proposal_perturbations": true
+  },
+  "router_B_phi": {
+    "semantics": "exact frozen B_phi",
+    "utility": "exact frozen canonical_utility",
+    "tau": "exact frozen TAU_C8_FINAL_FLOAT",
+    "decision": "EXECUTE iff frozen utility comparison passes"
+  },
+  "refiner_R_psi": {
+    "semantics": "exact frozen residual U-Net behavior"
+  },
+  "post_safety_S_omega": {
+    "semantics": "exact frozen S_omega behavior",
+    "accept_threshold": 0.5
+  },
+  "fusion": {
+    "operator": "canonical D61 pad-aware fuse_full_field"
+  },
+  "state_machine": [
+    "FORCED_SKIP",
+    "SKIP_GLOBAL",
+    "EXECUTE_THEN_ACCEPT",
+    "EXECUTE_THEN_REJECT"
+  ],
+  "segmentation_threshold": 0.5,
+  "no_inference_semantic_may_change": true,
+  "canonical_structural_choices": {
+    "system": "A8/C9",
+    "nominal_budget": 0.25,
+    "lambda_representative": 0.25,
+    "roi_proposal_threshold": 0.3,
+    "s_omega_threshold": 0.5,
+    "segmentation_threshold": 0.5,
+    "K": 1239
+  },
+  "authority": [
+    {
+      "path": "reports/audits/phase29_canonical_policy_binding.json",
+      "sha256": "31f26b6ecc942a6ac02504917d390014eb7f4e82a0ee1f2e2797d044f8461b23"
+    },
+    {
+      "path": "reports/audits/phase36_robustness_scientific_result_v1_23.json",
+      "sha256": "6c092fbd5354b3efcd55a2f5d13d3529c80dae1e699a9df3c88441a377eb5b1f"
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "classification": "PHASE25E_PRE_EXECUTION_RESOURCE_GATE_SPECIFICATION_FREEZE",
+  "specification_revision": "ra_medfilm_barr_resource_gate_v1_0",
+  "comparators": {
+    "C1": {
+      "name": "GLOBAL_ONLY",
+      "score": null,
+      "rule": "K=0"
+    },
+    "C2": {
+      "name": "ALWAYS_REFINE",
+      "score": null,
+      "rule": "K=N_eligible"
+    },
+    "C3": {
+      "name": "RANDOM_ROUTING",
+      "score": "random_priority",
+      "orientation": "higher first",
+      "seed": 42,
+      "algorithm": "numpy Generator(PCG64(42)).random(N_DEV) in sample_id ascending order",
+      "random_priority_sha256": "2cfbf22449a91e95d3e82416993bd4d6dfb8e49eacde961e431f4c833f5a5768",
+      "random_search_allowed": false
+    },
+    "C4": {
+      "name": "ENTROPY_ROUTING",
+      "score": "entropy_proxy_mean",
+      "orientation": "higher first"
+    },
+    "C5": {
+      "name": "MARGIN_ROUTING",
+      "score": "-mean_boundary_margin",
+      "orientation": "smaller raw margin first"
+    },
+    "C6": {
+      "name": "PREDICTED_ROI_SIZE_ROUTING",
+      "score": "-predicted_roi_area_fraction",
+      "orientation": "smaller ROI first",
+      "classification": "SIMPLE_GEOMETRY_HEURISTIC",
+      "orientation_optimized": false
+    },
+    "C7": {
+      "name": "LEARNED_PAIRED_GAIN_ROUTING",
+      "score": "delta_hat_oof",
+      "orientation": "higher first"
+    },
+    "C8": {
+      "name": "LEARNED_GAIN_PLUS_RESOURCE_COST",
+      "score": "delta_hat_oof - lambda*C_i",
+      "orientation": "higher first"
+    },
+    "C9": {
+      "name": "POST_SAFETY",
+      "scope": "Phase25F only; excluded"
+    },
+    "C10": {
+      "name": "ORACLE_BENEFIT_ROUTING",
+      "scope": "later evaluation only; NONDEPLOYABLE DEVELOPMENT UPPER BOUND"
+    },
+    "C11": {
+      "name": "JFS_LIKE_POST_HOC_SELECTOR",
+      "scope": "excluded unless separately authorized"
+    }
+  },
+  "tie_rule": "routing_score DESCENDING, sample_id ASCENDING (case-sensitive ASCII identifiers)",
+  "outcome_based_orientation_selection": false,
+  "random_frozen_before_score_projection": true
+}

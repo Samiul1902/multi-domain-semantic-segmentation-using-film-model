@@ -1,0 +1,132 @@
+{
+  "artifact": "PHASE13_CLEAN_V3_LOCALIZER_METRIC_SEMANTICS_R2B",
+  "document_type": "IMPLEMENTATION_CORRECTION_AMENDMENT",
+  "created_utc": "2026-09-21T14:20:00Z",
+  "project_root": "D:\\Softfors\\jup",
+  "experiment_id": "phase13b_kub_localizer_r512_h128_sigmaeq075_centernetfocal_seed42_clean_v3",
+
+  "base_protocol": "R2",
+  "loss_amendment": "R2A_LOSS_BINDING",
+  "amendment": "R2B_METRIC_SEMANTICS_IMPLEMENTATION_CORRECTION",
+  "scope": "VAL_EVALUATION_IMPLEMENTATION_ONLY",
+
+  "scientific_definitions_changed": "NO",
+  "implementation_corrected_to_frozen_definitions": "YES",
+  "primary_selection_tuple_changed": "NO",
+  "proposal_configuration_changed": "NO",
+  "loss_changed": "NO",
+  "architecture_changed": "NO",
+  "target_changed": "NO",
+  "optimizer_changed": "NO",
+  "threshold_changed": "NO",
+  "history_rows_1_28_rewritten": "NO",
+  "test_reads": 0,
+
+  "defects_corrected": [
+    {
+      "id": "MISSING_NATIVE_COMPONENT_MASK_IN_PRODUCTION_EVALUATOR",
+      "impact": "PRIMARY (tiny_recall90, overall_recall90, mean_roi_area_fraction)",
+      "description": "The clean-v3 production VAL evaluator built component records from the Phase-12 geometry table carrying only a bbox. evaluate_roi_coverage falls back to BBOX-INTERSECTION coverage when component['mask'] is absent, silently contradicting the frozen native-PIXEL coverage definition.",
+      "correction": "Reconstruct native-space 8-connected components from the real VAL mask (foreground = mask > 0, connectivity = 8) and attach the FULL native boolean mask before evaluate_roi_coverage."
+    },
+    {
+      "id": "HARD_TINY_SAMPLE_LEVEL_INSTEAD_OF_COMPONENT_LEVEL",
+      "impact": "SECONDARY (hard_tiny_recovered90)",
+      "description": "Membership was tested as sample_id in a hard-Tiny sample set, and the metric was emitted as a ratio.",
+      "correction": "Component-level identity (sample_id, native_component_id); INTEGER COUNT of the 15 hard-Tiny components whose covered90 is True."
+    },
+    {
+      "id": "GLOBAL_EMPTY_GT_EMPTY_BRANCH_ERROR",
+      "impact": "SECONDARY (global_empty_images_covered90)",
+      "description": "The global-empty cohort was evaluated only inside a 'no GT components' branch. Global-empty means the frozen UNet++ GLOBAL prediction was empty; those images still contain GT target components, so the branch was never taken correctly.",
+      "correction": "INTEGER COUNT of the 5 frozen image IDs for which ANY GT component has covered90 True, evaluated over all component rows of those images."
+    },
+    {
+      "id": "MULTICOMPONENT_CASE_COMPLETE_INSTEAD_OF_COMPONENT_MEAN",
+      "impact": "SECONDARY (multi_component_recall90)",
+      "description": "Computed the fraction of multi-component cases where ALL components were covered.",
+      "correction": "COMPONENT-LEVEL mean of covered90 over all component rows belonging to multi-component images."
+    }
+  ],
+
+  "frozen_definitions_preserved": {
+    "coverage_fraction": "native GT component pixels inside the union of proposal supports / total native GT component pixels",
+    "covered90": "coverage_fraction >= 0.90",
+    "covered50": "coverage_fraction >= 0.50",
+    "any_overlap": "coverage_fraction > 0",
+    "tiny_recall90": "mean(covered90) over the 72 TINY components",
+    "overall_recall90": "mean(covered90) over all 152 components",
+    "mean_roi_area_fraction": "mean over 103 VAL images of union proposal area / native image area",
+    "hard_tiny_recovered90": "INTEGER COUNT 0..15 over hard-Tiny components",
+    "global_empty_images_covered90": "INTEGER COUNT 0..5 over global-empty images",
+    "multi_component_recall90": "mean(covered90) over component rows of multi-component images",
+    "mean_proposals_per_image": "mean emitted proposals over 103 VAL images",
+    "reference": "frozen historical executing semantics, scripts/training/train_phase13b_localizer.py lines 83 and 86"
+  },
+
+  "banned_implementations_explicitly_rejected": [
+    "bbox area as component coverage",
+    "bbox intersection as component coverage",
+    "case-level detection as component recall",
+    "sample-level hard-Tiny membership",
+    "global-empty restricted to a GT-empty branch",
+    "multi-component fraction-of-fully-covered-cases"
+  ],
+
+  "runner_sha_transition": {
+    "pre_repair_runner_sha": "f9d8c0d4166b283f279a43102083ad2d898724385729ab30ab6a3723fc4744f0",
+    "post_repair_runner_sha": "15a0c2f0cf02916f96f60b7cf3d148fac4d931df11d5e119eb9c76f22a0c889b",
+    "authorized_transitions": 1,
+    "transition_gate": "checkpoint epoch 28 -> first resumed epoch 29",
+    "generic_runner_sha_bypass": "NONE",
+    "note": "This amendment physically declares both runner SHAs. The runner verifies that post_repair_runner_sha equals its own executing SHA, so a runner edited after R2B was frozen cannot inherit the transition."
+  },
+
+  "pre_repair_runner_sha": "f9d8c0d4166b283f279a43102083ad2d898724385729ab30ab6a3723fc4744f0",
+  "post_repair_runner_sha": "15a0c2f0cf02916f96f60b7cf3d148fac4d931df11d5e119eb9c76f22a0c889b",
+
+  "supporting_artifacts": {
+    "component_module": "src/inference/clean_v3_components.py",
+    "metrics_module": "src/inference/clean_v3_metrics.py",
+    "component_join_verification": "reports/audits/phase13_clean_v3_component_join_verification.json",
+    "geometry_table": "reports/tables/phase12_clean_v3_oracle_geometry.csv",
+    "geometry_table_sha": "29326d5b9a3bf71add74d8743750511f146d8c4dfbd1dc5b04a5e1b647c37cc0",
+    "hard_tiny_table_sha": "2f9828d77c008e7c90cd69e82d0af3568902ca9d508fdfcb9d8ccf8abd569538",
+    "global_empty_table_sha": "a0b332cad6bca4466ccc528cbe18cc527ef6503603ab69c55b9d699d7979f0ea"
+  },
+
+  "component_contract": {
+    "val_cases": 103,
+    "val_components": 152,
+    "unique_identities": 152,
+    "strata": {"TINY": 72, "SMALL": 28, "MEDIUM": 36, "LARGE": 16},
+    "hard_tiny_components": 15,
+    "global_empty_images": 5,
+    "join": "152 / 152 matched, 0 missing, 0 duplicates, 0 ambiguous",
+    "join_key": "sample_id + native_component_id"
+  },
+
+  "history_governance": {
+    "rows_1_28": "PRESERVED_UNMODIFIED",
+    "rows_1_28_primary_status": "VALID_ZERO_PROPOSAL_INVARIANT",
+    "rows_1_28_secondary_status": "PRE_R2B_NONCANONICAL",
+    "rows_29_plus_secondary_status": "R2B_CANONICAL"
+  },
+
+  "additional_implementation_corrections": [
+    {
+      "id": "RESUME_LOADER_GENERATOR_STATE_DEVICE",
+      "scope_extension": "YES — exceeds VAL_EVALUATION_IMPLEMENTATION_ONLY; non-scientific execution fix required to make the authorized same-ID resume runnable",
+      "impact": "NONE on metrics, selection, loss, threshold, architecture, target, optimizer or scheduler",
+      "description": "load_training_checkpoint(..., map_location=device) relocates the stored loader generator state onto CUDA. torch.Generator.set_state requires a CPU uint8 (Byte) tensor, so the first resume attempt aborted with TypeError: RNG state must be a torch.ByteTensor before epoch 29 began. No history row, checkpoint or audit was written by that attempt; all pre-stop evidence re-verified byte-identical afterwards.",
+      "correction": "Move the stored generator state to CPU and pin dtype=torch.uint8 before set_state.",
+      "discovered_by": "first same-ID resume attempt (task ix0ui1), aborted pre-epoch-29",
+      "evidence_integrity_after_abort": "history.csv / latest.pt / best.pt / config / training-start audit all unchanged"
+    }
+  ],
+
+  "disclosure": {
+    "historical_helper_observation": "The frozen historical helper gt_components(mask_path, component_metadata) accepts mask_path but does not attach a mask, so pre-R2B coverage (historical and clean-v3 alike) used the bbox fallback path. R2B corrects the clean-v3 implementation to the frozen PIXEL definition. Historical artifacts are frozen and were NOT modified.",
+    "no_claim_of_prior_correctness": "This amendment does NOT claim the pre-repair evaluator was correct. It claims only that its defect could not alter the primary selection tuple while proposals were zero."
+  }
+}

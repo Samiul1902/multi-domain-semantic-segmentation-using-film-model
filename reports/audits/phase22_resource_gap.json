@@ -1,0 +1,89 @@
+{
+  "artifact": "phase22_resource_gap",
+  "phase": 22,
+  "reference_params": 3523001,
+  "reference_gmacs_at_512": 31.5517,
+  "panel": [
+    {
+      "model_key": "global_medfilm",
+      "display_name": "Global MedFiLM",
+      "params": 3523001,
+      "gmacs": 31.5517,
+      "params_rank": 1,
+      "gmacs_rank": 1,
+      "params_ratio_vs_medfilm": 1.0,
+      "gmacs_ratio_vs_medfilm": 1.0,
+      "params_lower_bound_macs": true
+    },
+    {
+      "model_key": "unet",
+      "display_name": "U-Net",
+      "params": 7763041,
+      "gmacs": 46.1373,
+      "params_rank": 2,
+      "gmacs_rank": 2,
+      "params_ratio_vs_medfilm": 2.2035,
+      "gmacs_ratio_vs_medfilm": 1.4623,
+      "params_lower_bound_macs": true
+    },
+    {
+      "model_key": "attention_unet",
+      "display_name": "Attention U-Net",
+      "params": 7851285,
+      "gmacs": 47.219,
+      "params_rank": 3,
+      "gmacs_rank": 3,
+      "params_ratio_vs_medfilm": 2.2286,
+      "gmacs_ratio_vs_medfilm": 1.4966,
+      "params_lower_bound_macs": true
+    },
+    {
+      "model_key": "deeplabv3plus",
+      "display_name": "DeepLabV3+",
+      "params": 40347041,
+      "gmacs": 69.1394,
+      "params_rank": 6,
+      "gmacs_rank": 4,
+      "params_ratio_vs_medfilm": 11.4525,
+      "gmacs_ratio_vs_medfilm": 2.1913,
+      "params_lower_bound_macs": true
+    },
+    {
+      "model_key": "transformer_mit_unet",
+      "display_name": "Transformer/MiT",
+      "params": 16347777,
+      "gmacs": 99.0986,
+      "params_rank": 5,
+      "gmacs_rank": 5,
+      "params_ratio_vs_medfilm": 4.6403,
+      "gmacs_ratio_vs_medfilm": 3.1408,
+      "params_lower_bound_macs": true
+    },
+    {
+      "model_key": "unetpp",
+      "display_name": "U-Net++",
+      "params": 9159681,
+      "gmacs": 137.9423,
+      "params_rank": 4,
+      "gmacs_rank": 6,
+      "params_ratio_vs_medfilm": 2.6,
+      "gmacs_ratio_vs_medfilm": 4.3719,
+      "params_lower_bound_macs": true
+    }
+  ],
+  "param_rank_of_reference": 1,
+  "gmacs_rank_of_reference": 1,
+  "absolute_cost_statement": {
+    "gmacs": 31.5517,
+    "is_small_in_absolute_terms": false,
+    "note": "the reference is the LIGHTEST of the six-model panel, but ~31.6 G MACs per image is NOT a small absolute cost. 'Lightest of the panel' must never be reported as 'fit for constrained deployment'. No pruning, quantization, distillation, or NAS has been performed and none is claimed."
+  },
+  "regional_arm_cost": {
+    "gmacs_per_execution": 31.5517,
+    "fraction_of_global_pass": 1.0,
+    "note": "one extra full-resolution forward per routed image"
+  },
+  "measurement_provenance": "MACs are an exact closed-form count for Conv2d and Linear layers and a LOWER bound on total arithmetic; GroupNorm, SiLU, pooling, bilinear interpolation, FiLM modulation and sigmoid are excluded",
+  "no_optimisation_performed": true,
+  "test_reads": 0
+}

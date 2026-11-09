@@ -1,0 +1,33 @@
+{
+ "artifact": "phase26_oof_vs_final_router_membership_relationship_v1_2",
+ "phase": "26",
+ "classification": "ROUTER_CALIBRATION_ROLE_RECONCILIATION",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase26_deployment_semantics_v1_2",
+ "governance_only": true,
+ "descriptive_only": true,
+ "not_a_pass_fail_gate": true,
+ "oof_selected_count": 1239,
+ "final_router_selected_count": 1239,
+ "intersection": 1086,
+ "union": 1392,
+ "overlap_fraction_of_final": 0.8765133171912833,
+ "symmetric_difference": 306,
+ "oof_selected_ids_sha256": "e71e368cbb95b8d3398b47427df243bb8b387dd6d442ccf038188446677f446f",
+ "final_router_selected_ids_sha256": "10de16dec21e6750c8e9451af96bed0ca3f2686bbf0d6084a6300cf0d4adbbe5",
+ "OOF_vs_final_membership_equality_required": false,
+ "difference_classification": "EXPECTED_MODEL_FIT_SPACE_DIFFERENCE",
+ "reason": "OOF scores from fold-specific models (development performance estimation); final-router scores from one model refit on all 4957 ROUTER_DEVELOPMENT labels; identical ranking not required",
+ "is_artifact_drift": false,
+ "is_threshold_corruption": false,
+ "is_membership_corruption": false,
+ "reason_to_recalibrate_from_outcomes": false,
+ "checks": {
+  "oof_selected_1239": true,
+  "final_selected_1239": true,
+  "intersection_1086": true,
+  "oof_ids_sha_matches_frozen": true,
+  "oof_equals_final_NOT_required": true
+ },
+ "all_pass": true
+}

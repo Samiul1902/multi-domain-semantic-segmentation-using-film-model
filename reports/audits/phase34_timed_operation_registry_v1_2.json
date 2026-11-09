@@ -1,0 +1,241 @@
+{
+ "artifact": "phase34_timed_operation_registry_v1_2",
+ "phase": 34,
+ "section": "\u00a7N",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase34_efficiency_profiling_v1_2",
+ "arms": {
+  "GLOBAL_ONLY_C1": {
+   "included_operations": [
+    "G model forward",
+    "G sigmoid"
+   ],
+   "excluded_operations": [
+    "feature normalization",
+    "router feature construction",
+    "ROI geometry",
+    "crop/resizing",
+    "interpolation",
+    "fusion",
+    "decision logic",
+    "host-to-device transfer",
+    "device-to-host transfer",
+    "checkpoint loading",
+    "synthetic tensor generation"
+   ],
+   "input_tensors_preconstructed": true,
+   "host_device_transfer_included": false,
+   "checkpoint_load_included": false,
+   "roi_geometry_included": false,
+   "crop_resize_included": false,
+   "fusion_included": false,
+   "decision_logic_included": false,
+   "scope": "MODEL_COMPUTE_PATH_RUNTIME"
+  },
+  "FINAL_ROUTED_A8_C9": {
+   "included_operations": [
+    "G model forward",
+    "G sigmoid",
+    "B_phi model forward",
+    "R_psi model forward",
+    "R_psi sigmoid",
+    "S_omega model forward"
+   ],
+   "excluded_operations": [
+    "feature normalization",
+    "router feature construction",
+    "ROI geometry",
+    "crop/resizing",
+    "interpolation",
+    "fusion",
+    "decision logic",
+    "host-to-device transfer",
+    "device-to-host transfer",
+    "checkpoint loading",
+    "synthetic tensor generation"
+   ],
+   "input_tensors_preconstructed": true,
+   "host_device_transfer_included": false,
+   "checkpoint_load_included": false,
+   "roi_geometry_included": false,
+   "crop_resize_included": false,
+   "fusion_included": false,
+   "decision_logic_included": false,
+   "scope": "MODEL_COMPUTE_PATH_RUNTIME"
+  },
+  "SKIP_CONTROLLED_PATH": {
+   "included_operations": [
+    "G model forward",
+    "G sigmoid",
+    "B_phi model forward"
+   ],
+   "excluded_operations": [
+    "R_psi model forward",
+    "S_omega model forward",
+    "feature normalization",
+    "router feature construction",
+    "ROI geometry",
+    "crop/resizing",
+    "interpolation",
+    "fusion",
+    "decision logic",
+    "host-to-device transfer",
+    "device-to-host transfer",
+    "checkpoint loading",
+    "synthetic tensor generation"
+   ],
+   "input_tensors_preconstructed": true,
+   "host_device_transfer_included": false,
+   "checkpoint_load_included": false,
+   "roi_geometry_included": false,
+   "crop_resize_included": false,
+   "fusion_included": false,
+   "decision_logic_included": false,
+   "scope": "MODEL_COMPUTE_PATH_RUNTIME"
+  },
+  "EXECUTE_CONTROLLED_PATH": {
+   "included_operations": [
+    "G model forward",
+    "G sigmoid",
+    "B_phi model forward",
+    "R_psi model forward",
+    "R_psi sigmoid",
+    "S_omega model forward"
+   ],
+   "excluded_operations": [
+    "feature normalization",
+    "router feature construction",
+    "ROI geometry",
+    "crop/resizing",
+    "interpolation",
+    "fusion",
+    "decision logic",
+    "host-to-device transfer",
+    "device-to-host transfer",
+    "checkpoint loading",
+    "synthetic tensor generation"
+   ],
+   "input_tensors_preconstructed": true,
+   "host_device_transfer_included": false,
+   "checkpoint_load_included": false,
+   "roi_geometry_included": false,
+   "crop_resize_included": false,
+   "fusion_included": false,
+   "decision_logic_included": false,
+   "scope": "MODEL_COMPUTE_PATH_RUNTIME"
+  },
+  "G_COMPONENT": {
+   "included_operations": [
+    "component model forward",
+    "component sigmoid (where applicable)"
+   ],
+   "excluded_operations": [
+    "all other components",
+    "feature normalization",
+    "ROI geometry",
+    "crop/resizing",
+    "interpolation",
+    "fusion",
+    "decision logic",
+    "host-to-device transfer",
+    "device-to-host transfer",
+    "checkpoint loading",
+    "synthetic tensor generation"
+   ],
+   "input_tensors_preconstructed": true,
+   "host_device_transfer_included": false,
+   "checkpoint_load_included": false,
+   "roi_geometry_included": false,
+   "crop_resize_included": false,
+   "fusion_included": false,
+   "decision_logic_included": false,
+   "scope": "SYNTHETIC_COMPONENT_RUNTIME"
+  },
+  "R_PSI_COMPONENT": {
+   "included_operations": [
+    "component model forward",
+    "component sigmoid (where applicable)"
+   ],
+   "excluded_operations": [
+    "all other components",
+    "feature normalization",
+    "ROI geometry",
+    "crop/resizing",
+    "interpolation",
+    "fusion",
+    "decision logic",
+    "host-to-device transfer",
+    "device-to-host transfer",
+    "checkpoint loading",
+    "synthetic tensor generation"
+   ],
+   "input_tensors_preconstructed": true,
+   "host_device_transfer_included": false,
+   "checkpoint_load_included": false,
+   "roi_geometry_included": false,
+   "crop_resize_included": false,
+   "fusion_included": false,
+   "decision_logic_included": false,
+   "scope": "SYNTHETIC_COMPONENT_RUNTIME"
+  },
+  "B_PHI_COMPONENT": {
+   "included_operations": [
+    "component model forward",
+    "component sigmoid (where applicable)"
+   ],
+   "excluded_operations": [
+    "all other components",
+    "feature normalization",
+    "ROI geometry",
+    "crop/resizing",
+    "interpolation",
+    "fusion",
+    "decision logic",
+    "host-to-device transfer",
+    "device-to-host transfer",
+    "checkpoint loading",
+    "synthetic tensor generation"
+   ],
+   "input_tensors_preconstructed": true,
+   "host_device_transfer_included": false,
+   "checkpoint_load_included": false,
+   "roi_geometry_included": false,
+   "crop_resize_included": false,
+   "fusion_included": false,
+   "decision_logic_included": false,
+   "scope": "SYNTHETIC_COMPONENT_RUNTIME"
+  },
+  "S_OMEGA_COMPONENT": {
+   "included_operations": [
+    "component model forward",
+    "component sigmoid (where applicable)"
+   ],
+   "excluded_operations": [
+    "all other components",
+    "feature normalization",
+    "ROI geometry",
+    "crop/resizing",
+    "interpolation",
+    "fusion",
+    "decision logic",
+    "host-to-device transfer",
+    "device-to-host transfer",
+    "checkpoint loading",
+    "synthetic tensor generation"
+   ],
+   "input_tensors_preconstructed": true,
+   "host_device_transfer_included": false,
+   "checkpoint_load_included": false,
+   "roi_geometry_included": false,
+   "crop_resize_included": false,
+   "fusion_included": false,
+   "decision_logic_included": false,
+   "scope": "SYNTHETIC_COMPONENT_RUNTIME"
+  }
+ },
+ "authority": "reports/audits/phase34_measured_runtime_scope_v1_1.json",
+ "sigmoid_scope": "included for G, R_psi (and path arms) exactly as frozen in v1.1; B_phi and S_omega return raw logits",
+ "end_to_end_pipeline_runtime_used": false,
+ "generated_utc": "2026-10-04T11:08:33+00:00",
+ "all_pass": true
+}

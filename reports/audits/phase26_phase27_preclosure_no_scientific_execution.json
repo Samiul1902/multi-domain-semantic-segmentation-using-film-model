@@ -1,0 +1,33 @@
+{
+ "artifact": "phase26_phase27_preclosure_no_scientific_execution",
+ "phase": "26+27",
+ "classification": "GOVERNANCE_AND_REVIEWER_EVIDENCE_REPAIR_ONLY",
+ "method": "RA-MedFiLM-BARR",
+ "governance_only": true,
+ "no_execution": true,
+ "stage": "NO_SCIENTIFIC_EXECUTION",
+ "counters": {
+  "val808_image_reads": 0,
+  "val808_mask_reads": 0,
+  "scientific_model_forwards": 0,
+  "training_runs": 0,
+  "backward_passes": 0,
+  "optimizer_steps": 0,
+  "new_segmentation_predictions": 0,
+  "router_holdout_reads": 0,
+  "test_reads": 0
+ },
+ "note": "The Phase26 notebook was re-executed, but it only loads frozen Phase26 audit artifacts; it performs zero scientific model forwards, zero training, and opens no VAL808 image/mask.",
+ "checks": {
+  "val808_image_reads": true,
+  "val808_mask_reads": true,
+  "scientific_model_forwards": true,
+  "training_runs": true,
+  "backward_passes": true,
+  "optimizer_steps": true,
+  "new_segmentation_predictions": true,
+  "router_holdout_reads": true,
+  "test_reads": true
+ },
+ "all_pass": true
+}

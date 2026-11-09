@@ -1,0 +1,31 @@
+{
+ "artifact": "phase27_batch_semantics_audit",
+ "phase": "27",
+ "classification": "GOVERNANCE_AND_REVIEWER_EVIDENCE_REPAIR_ONLY",
+ "governance_only": true,
+ "no_execution": true,
+ "stage": "BATCH_SEMANTICS_AUDIT",
+ "authoritative_provenance": [
+  "scripts/analysis/build_phase25a_global_cache.py: BATCH=8, dev.sort_values(['dataset','sample_id'])",
+  "scripts/analysis/run_phase25b_determinism.py: BATCH=8, same sort, contiguous chunks",
+  "scripts/analysis/build_phase25a_roi030_cache.py: BATCH=8, same sort"
+ ],
+ "frozen_fields": {
+  "canonical_sample_order": "sort by (dataset asc, sample_id asc)",
+  "canonical_batch_size": 8,
+  "batch_construction": "contiguous chunks of 8 inside a single domain",
+  "last_partial_batch_behavior": "kept as the trailing chunk of size n mod 8 (not padded)",
+  "batch_membership": "fixed by the canonical sort + chunking",
+  "batch_size_replay_mandatory": true
+ },
+ "batch_membership_sensitivity": "SENSITIVE_UNDER_AUTOCAST_FP16",
+ "prospective_freeze_required": true,
+ "imposed_for_scientific_partition": true,
+ "checks": {
+  "batch_size_proven_8": true,
+  "sample_order_proven": true,
+  "last_partial_batch_rule_frozen": true,
+  "replay_mandatory_established_not_assumed": true
+ },
+ "all_pass": true
+}

@@ -1,0 +1,59 @@
+{
+ "artifact": "phase27_population_ownership_ruling_v1_0",
+ "phase": "27",
+ "classification": "PHASE27_PRE_EXECUTION_PRESERVATION_AUDIT_SPECIFICATION",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_preservation_v1_0",
+ "governance_only": true,
+ "no_execution": true,
+ "stage": "POPULATION_OWNERSHIP_RULING",
+ "ruling_type": "PROSPECTIVE_POPULATION_OWNERSHIP_ASSIGNMENT",
+ "science_changed": false,
+ "populations": [
+  {
+   "population": "VAL808",
+   "path": "manifests/phase4_v3/val.csv",
+   "n": 808,
+   "role": "SECONDARY / CONTINUITY DEVELOPMENT BENCHMARK",
+   "owner": "PHASE27",
+   "state_before": "UNOPENED",
+   "state_after_spec": "OWNED_BY_PHASE27__UNOPENED_UNTIL_PHASE27_EXECUTION",
+   "use": "continuity development benchmark for the frozen Phase26 bundle",
+   "is_untouched_routing_holdout": false,
+   "substitute_for_router_holdout": false
+  },
+  {
+   "population": "ROUTER_HOLDOUT",
+   "n": 875,
+   "role": "FINAL DEVELOPMENT VALIDATION BENCHMARK (one-shot)",
+   "owner": "PHASE30",
+   "state": "RESERVED_UNOPENED_FOR_PHASE30",
+   "phase27_access": "FORBIDDEN",
+   "is_untouched_routing_holdout": true
+  },
+  {
+   "population": "TEST",
+   "n": 1683,
+   "role": "UNTOUCHED FINAL EVALUATION",
+   "owner": "PHASE39",
+   "state": "LOCKED_UNTIL_PHASE39",
+   "phase27_access": "FORBIDDEN"
+  }
+ ],
+ "phase27_may_open": [
+  "VAL808"
+ ],
+ "phase27_may_not_open": [
+  "ROUTER_HOLDOUT",
+  "TEST"
+ ],
+ "no_val808_substitution_for_holdout": true,
+ "checks": {
+  "val808_owned_by_phase27": true,
+  "holdout_owned_by_phase30": true,
+  "test_owned_by_phase39": true,
+  "no_population_conflation": true,
+  "science_changed_false": true
+ },
+ "all_pass": true
+}

@@ -1,0 +1,17 @@
+{
+ "artifact": "phase25c_threshold_semantics_audit",
+ "phase": "25C",
+ "method": "RA-MedFiLM-BARR",
+ "roi_proposal_threshold": 0.3,
+ "roi_proposal_threshold_role": "ROI_PROPOSAL (bbox/geometry/ACTION_AVAILABLE only)",
+ "segmentation_output_threshold": 0.5,
+ "segmentation_output_threshold_role": "SEGMENTATION_OUTPUT (the Dice mask threshold)",
+ "dice_uses_segmentation_threshold": true,
+ "dice_uses_roi_threshold": false,
+ "roi_threshold_is_not_dice_threshold": true,
+ "global_mask_rule": "M_global = prob512 >= 0.50",
+ "candidate_mask_rule": "M_candidate = p_candidate_full >= 0.50",
+ "verdict": "PHASE25C_THRESHOLD_SEMANTICS_OK",
+ "test_reads": 0,
+ "generated_utc": "2026-09-30T17:07:00+00:00"
+}

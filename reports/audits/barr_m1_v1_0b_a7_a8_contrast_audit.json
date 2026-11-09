@@ -1,0 +1,119 @@
+{
+  "artifact": "barr_m1_v1_0b_a7_a8_contrast_audit",
+  "revision": "RA_MEDFILM_BARR_BARR_M1_V1_0B__NUMERICAL_AND_CONTRAST_AUTHORITY_RECONCILIATION",
+  "generated_utc": "2026-10-27T01:57:57Z",
+  "scope": "STRICT_READ_ONLY_AUDIT",
+  "question": "Do A7 and A8 differ exclusively in S_omega under an identical population, budget, ROI source, router and fusion rule?",
+  "sources": {
+    "core_contrast_map": "reports/audits/phase28_core_contrast_map.json",
+    "one_factor_contract_v1_0": "reports/audits/phase28_one_factor_control_contract.json",
+    "one_factor_contract_v1_1": "reports/audits/phase28_one_factor_control_contract_v1_1.json",
+    "arm_definitions": "reports/tables/phase28_table_01_arm_definitions.csv",
+    "arm_primary_metrics": "reports/tables/phase28_table_02_arm_primary_metrics.csv",
+    "paired_contrasts": "reports/tables/phase28_table_07_matched_paired_contrasts.csv",
+    "bootstrap": "reports/tables/phase28_table_08_bootstrap_statistics.csv",
+    "post_safety_family": "reports/audits/phase28_ablation_family_post_safety.json",
+    "phase25g_contract": "reports/audits/phase25g_a7_a8_controlled_comparison_contract.json"
+  },
+  "field_by_field": {
+    "population": {
+      "A7": "ROUTER_DEVELOPMENT n=4957",
+      "A8": "ROUTER_DEVELOPMENT n=4957",
+      "identical": true
+    },
+    "budget": {
+      "A7": "0.25 nominal, K=1239",
+      "A8": "0.25 nominal, K=1239",
+      "identical": true
+    },
+    "membership": {
+      "A7": "C8 lambda0.25 budget0.25 — 1239 selected",
+      "A8": "same 1239 selected",
+      "identical": true
+    },
+    "roi_source": {
+      "A7": "GT-free predicted ROI, 0.30 / 1.50 / 256",
+      "A8": "identical",
+      "identical": true
+    },
+    "router": {
+      "A7": "frozen B_phi 8a412b2f…, U = delta_hat - 0.25*C",
+      "A8": "identical",
+      "identical": true
+    },
+    "fusion_rule": {
+      "A7": "outside p_global, inside p_refined, 0.50",
+      "A8": "identical",
+      "identical": true
+    },
+    "post_safety": {
+      "A7": "ABSENT — always accept the executed candidate",
+      "A8": "PRESENT — S_omega eee9b97b…, ACCEPT iff sigmoid >= 0.50",
+      "identical": false
+    },
+    "n_executed": {
+      "A7": 1239,
+      "A8": 1205,
+      "difference": 34,
+      "identical": false
+    }
+  },
+  "single_component_isolation": {
+    "isolated_component": "S_omega",
+    "n_fields_differing": 1,
+    "verdict": "A7_vs_A8_IS_A_VALID_SINGLE_COMPONENT_ISOLATION",
+    "frozen_status": "PRE_REGISTERED — phase28_core_contrast_map.json lists A7_vs_A8 under frozen_matched_contrasts (the ONLY such entry)"
+  },
+  "frozen_paired_result": {
+    "contrast": "A8_vs_A7",
+    "n": 4957,
+    "reference_mean_routed_delta": 0.001811291835,
+    "variant_mean_routed_delta": 0.001827009064,
+    "paired_mean_difference": 1.5717229e-05,
+    "se_bootstrap": 1.6292351e-05,
+    "ci95_low": -1.4313785e-05,
+    "ci95_high": 5.1010811e-05,
+    "bootstrap_replicates": 2000,
+    "bootstrap_seed": 42,
+    "ci_crosses_zero": true,
+    "multiplicity": "DESCRIPTIVE_NO_POST_HOC_CORRECTION"
+  },
+  "paired_per_case_data_exist": {
+    "answer": true,
+    "artifacts": [
+      "data_cache/phase25c_barr_oof_paired_gain_labels_v1_2/phase25c_oof_paired_gain_labels.csv",
+      "reports/tables/phase25e_policy_memberships_v1_0/C8_lambda0.25_budget0.25.csv",
+      "data_cache/phase25f_barr_post_safety_v1_0/phase25f_oof_safety_predictions.csv"
+    ],
+    "exact_reproduction_verified_in_v1_0a": true,
+    "additional_model_inference_required": false
+  },
+  "computable_without_inference": [
+    "per-case delta for A7 (delta on selected, 0 elsewhere) and A8 (delta on accepted, 0 elsewhere)",
+    "harm counts and rates under both all-population and conditional denominators",
+    "harm avoided / introduced by the 34 safety rejections",
+    "paired difference distribution and its bootstrap CI",
+    "per-domain decomposition of the safety effect",
+    "execution rate, acceptance rate and rejection rate"
+  ],
+  "not_computed_here": true,
+  "recommendation": {
+    "recommend_separate_study": true,
+    "proposed_identifier": "BARR-M2 (provisional; not an EXT- id)",
+    "scope": "A7 vs A8 matched-mechanism descriptive decomposition, zero inference, separately authorised",
+    "must_not_extend_barr_m1": true,
+    "reason": "BARR-M1 is scoped to A0/A1/A8. Adding A7 would silently extend it and would also change the study from a three-policy comparison to a component-isolation analysis with a different claim class."
+  },
+  "segmentation_harm_vs_clinical_safety": {
+    "segmentation_harm": "A Dice decrease caused by executing the regional branch on a specific case. It is a descriptive per-case image-segmentation outcome, measured against a frozen reference arm with ground truth used only for scoring.",
+    "clinical_safety": "A patient-outcome property (missed diagnosis, delayed care, adverse event). It requires clinical endpoints, a clinical population, prospective design and regulatory framing — none of which exist here.",
+    "conflation_forbidden": true,
+    "permitted_wording": "segmentation-harm mitigation / reduction in harmful refinement",
+    "prohibited_wording": [
+      "clinical safety",
+      "clinically safer",
+      "safe for clinical use",
+      "reduces patient risk"
+    ]
+  }
+}

@@ -1,0 +1,736 @@
+{
+ "artifact": "phase35_synthetic_interpretability_smoke_v1_0f",
+ "phase": 35,
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase35_interpretability_v1_0f",
+ "classification": "PRE_SCIENTIFIC_SYNTHETIC_NUMERICAL_SAFETY_AND_INTERFACE_VALIDATION",
+ "not": "NOT_PHASE35_SCIENTIFIC_INTERPRETABILITY_RESULT",
+ "mode": "smoke",
+ "invoked_once": true,
+ "invocation_count": 1,
+ "retries_performed": 0,
+ "run_exit_code": 0,
+ "authority_gates": {
+  "phase34_final_closure": {
+   "path": "reports/audits/phase34_final_closure.json",
+   "expected_sha256": "00f975e71a1c4cdef606ab4324e0de226d66be2daa6cebe9f063cf0f2134d6da",
+   "observed_sha256": "00f975e71a1c4cdef606ab4324e0de226d66be2daa6cebe9f063cf0f2134d6da",
+   "match": true
+  },
+  "phase34_final_closure_check": {
+   "path": "reports/audits/phase34_final_closure_check.json",
+   "expected_sha256": "1e89f313be39a2273a54337d15f4a273caf72f10ffdba60f6a876578a4691fd3",
+   "observed_sha256": "1e89f313be39a2273a54337d15f4a273caf72f10ffdba60f6a876578a4691fd3",
+   "match": true
+  },
+  "phase34_phase35_handoff": {
+   "path": "reports/audits/phase34_phase35_handoff.json",
+   "expected_sha256": "68e10f3e7964fce079785bcecfd79c34fc2ac6e6cb3ee1047c167d0be87e7710",
+   "observed_sha256": "68e10f3e7964fce079785bcecfd79c34fc2ac6e6cb3ee1047c167d0be87e7710",
+   "match": true
+  },
+  "phase35_v1_0_specification_terminal": {
+   "path": "reports/audits/phase35_specification_terminal_v1_0.json",
+   "expected_sha256": "cec3b2aadbc90a7a8ebd06e8149cd7a53122d42e3f6077c30634e7de96ac312b",
+   "observed_sha256": "cec3b2aadbc90a7a8ebd06e8149cd7a53122d42e3f6077c30634e7de96ac312b",
+   "match": true
+  },
+  "canonical_gallery": {
+   "path": "reports/tables/phase21_gallery_selection_64.csv",
+   "expected_sha256": "2bc7c16286999ced374840cc987dcd352c3e546668322a9ccc4d1e8e8a097fd9",
+   "observed_sha256": "2bc7c16286999ced374840cc987dcd352c3e546668322a9ccc4d1e8e8a097fd9",
+   "match": true
+  }
+ },
+ "environment": {
+  "os": "Windows-10-10.0.26200-SP0",
+  "python": "3.11.9",
+  "torch": "2.6.0+cu124",
+  "cuda_runtime": "12.4",
+  "cuda_driver_version": "596.36",
+  "cudnn": 90100,
+  "cuda_available": true,
+  "gpu": "NVIDIA GeForce RTX 3060 Ti",
+  "cc": "8.6",
+  "vram_bytes": 8589279232,
+  "compatible": true
+ },
+ "checkpoint_identity": {
+  "G": {
+   "path": "checkpoints/phase21_global_medfilm_fourdomain_seed42_clean_v3/best.pt",
+   "expected_sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+   "observed_sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+   "match": true,
+   "deserialized_yet": false
+  },
+  "B_phi": {
+   "path": "checkpoints/phase25d_barr_benefit_router_v1_2_1_seed42/final/final.pt",
+   "expected_sha256": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+   "observed_sha256": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+   "match": true,
+   "deserialized_yet": false
+  },
+  "R_psi": {
+   "touched": false,
+   "constructions": 0,
+   "checkpoint_loads": 0,
+   "forwards": 0
+  },
+  "S_omega": {
+   "touched": false,
+   "constructions": 0,
+   "checkpoint_loads": 0,
+   "forwards": 0
+  }
+ },
+ "G_identity": {
+  "parameter_count": 3523001,
+  "strict_load_missing": [],
+  "strict_load_unexpected": []
+ },
+ "B_phi_identity": {
+  "parameter_count": 36801,
+  "task_embedding_shape": [
+   4,
+   16
+  ],
+  "strict_load_missing": [],
+  "strict_load_unexpected": []
+ },
+ "model_scope": {
+  "G_constructions": 1,
+  "B_phi_constructions": 1,
+  "checkpoint_deserializations": 2,
+  "strict_loads": 2,
+  "G_parameter_count": 3523001,
+  "B_phi_parameter_count": 36801,
+  "G_missing_keys": [],
+  "G_unexpected_keys": [],
+  "B_phi_missing_keys": [],
+  "B_phi_unexpected_keys": [],
+  "G_float32": true,
+  "B_phi_float32": true,
+  "G_eval": true,
+  "B_phi_eval": true,
+  "R_psi_construction_load_forward": [
+   0,
+   0,
+   0
+  ],
+  "S_omega_construction_load_forward": [
+   0,
+   0,
+   0
+  ]
+ },
+ "film_smoke": {
+  "per_task_site": {
+   "ISIC|bridge": {
+    "gamma_len": 256,
+    "beta_len": 256,
+    "expected_channels": 256,
+    "finite": true,
+    "channel_count_exact": true
+   },
+   "ISIC|decoder4": {
+    "gamma_len": 192,
+    "beta_len": 192,
+    "expected_channels": 192,
+    "finite": true,
+    "channel_count_exact": true
+   },
+   "ISIC|decoder3": {
+    "gamma_len": 96,
+    "beta_len": 96,
+    "expected_channels": 96,
+    "finite": true,
+    "channel_count_exact": true
+   },
+   "ISIC|decoder2": {
+    "gamma_len": 48,
+    "beta_len": 48,
+    "expected_channels": 48,
+    "finite": true,
+    "channel_count_exact": true
+   },
+   "ISIC|decoder1": {
+    "gamma_len": 24,
+    "beta_len": 24,
+    "expected_channels": 24,
+    "finite": true,
+    "channel_count_exact": true
+   },
+   "BUSI|bridge": {
+    "gamma_len": 256,
+    "beta_len": 256,
+    "expected_channels": 256,
+    "finite": true,
+    "channel_count_exact": true
+   },
+   "BUSI|decoder4": {
+    "gamma_len": 192,
+    "beta_len": 192,
+    "expected_channels": 192,
+    "finite": true,
+    "channel_count_exact": true
+   },
+   "BUSI|decoder3": {
+    "gamma_len": 96,
+    "beta_len": 96,
+    "expected_channels": 96,
+    "finite": true,
+    "channel_count_exact": true
+   },
+   "BUSI|decoder2": {
+    "gamma_len": 48,
+    "beta_len": 48,
+    "expected_channels": 48,
+    "finite": true,
+    "channel_count_exact": true
+   },
+   "BUSI|decoder1": {
+    "gamma_len": 24,
+    "beta_len": 24,
+    "expected_channels": 24,
+    "finite": true,
+    "channel_count_exact": true
+   },
+   "KVASIR|bridge": {
+    "gamma_len": 256,
+    "beta_len": 256,
+    "expected_channels": 256,
+    "finite": true,
+    "channel_count_exact": true
+   },
+   "KVASIR|decoder4": {
+    "gamma_len": 192,
+    "beta_len": 192,
+    "expected_channels": 192,
+    "finite": true,
+    "channel_count_exact": true
+   },
+   "KVASIR|decoder3": {
+    "gamma_len": 96,
+    "beta_len": 96,
+    "expected_channels": 96,
+    "finite": true,
+    "channel_count_exact": true
+   },
+   "KVASIR|decoder2": {
+    "gamma_len": 48,
+    "beta_len": 48,
+    "expected_channels": 48,
+    "finite": true,
+    "channel_count_exact": true
+   },
+   "KVASIR|decoder1": {
+    "gamma_len": 24,
+    "beta_len": 24,
+    "expected_channels": 24,
+    "finite": true,
+    "channel_count_exact": true
+   },
+   "KUB|bridge": {
+    "gamma_len": 256,
+    "beta_len": 256,
+    "expected_channels": 256,
+    "finite": true,
+    "channel_count_exact": true
+   },
+   "KUB|decoder4": {
+    "gamma_len": 192,
+    "beta_len": 192,
+    "expected_channels": 192,
+    "finite": true,
+    "channel_count_exact": true
+   },
+   "KUB|decoder3": {
+    "gamma_len": 96,
+    "beta_len": 96,
+    "expected_channels": 96,
+    "finite": true,
+    "channel_count_exact": true
+   },
+   "KUB|decoder2": {
+    "gamma_len": 48,
+    "beta_len": 48,
+    "expected_channels": 48,
+    "finite": true,
+    "channel_count_exact": true
+   },
+   "KUB|decoder1": {
+    "gamma_len": 24,
+    "beta_len": 24,
+    "expected_channels": 24,
+    "finite": true,
+    "channel_count_exact": true
+   }
+  },
+  "all_pass": true,
+  "scientific_film_tables_emitted": false
+ },
+ "embedding_smoke": {
+  "G_task_embedding_shape": [
+   4,
+   32
+  ],
+  "G_expected_shape": [
+   4,
+   32
+  ],
+  "G_finite": true,
+  "B_phi_task_embedding_shape": [
+   4,
+   16
+  ],
+  "B_phi_expected_shape": [
+   4,
+   16
+  ],
+  "B_phi_finite": true,
+  "scientific_embedding_tables_emitted": false
+ },
+ "synthetic_input": {
+  "seed": 42,
+  "image_shape": [
+   1,
+   3,
+   512,
+   512
+  ],
+  "image_dtype": "float32",
+  "image_device": "cuda",
+  "task_id": [
+   0
+  ],
+  "task_id_dtype": "int64",
+  "target_mask_name": "SMOKE_SYNTHETIC_TARGET_MASK_RANK2",
+  "target_mask_geometry": "boolean tensor [512,512]; centered square rows 192:320, columns 192:320 = True, all other positions False (non-empty). Rank 2 is the CANONICAL scientific mask shape, so the smoke validates the same rank-4 logits + rank-2 mask contract that scientific Grad-CAM uses, through the same repaired helper `gradcam_target_scalar_rank_safe`. No rank-4 workaround.",
+  "target_mask_shape": [
+   512,
+   512
+  ],
+  "target_mask_rank": 2,
+  "target_mask_true_pixels": 16384,
+  "target_mask_centered_square": "rows 192:320, cols 192:320"
+ },
+ "target_scalar_direct": {
+  "impl": "gradcam_target_scalar_rank_safe",
+  "value": -13.834142684936523,
+  "finite": true,
+  "selected_pixels": 16384,
+  "surrogate_logits_used": false,
+  "scalar_target_evaluations": 1
+ },
+ "gradcam_forward": {
+  "G_forward_count": 1,
+  "autograd_calls": 1,
+  "logits_shape": [
+   1,
+   1,
+   512,
+   512
+  ],
+  "enable_grad": true,
+  "autocast_cuda_fp16": true,
+  "no_grad_used": false,
+  "inference_mode_used": false,
+  "activation_shapes": {
+   "bridge": [
+    1,
+    256,
+    32,
+    32
+   ],
+   "decoder1": [
+    1,
+    24,
+    512,
+    512
+   ]
+  },
+  "hooks": [
+   "film_layers[\"bridge\"]",
+   "film_layers[\"decoder1\"]"
+  ],
+  "gradient_impl": "gradcam_gradient_enabled_numerically_guarded_v1_0f",
+  "normalization_impl": "cam_normalize_guarded",
+  "finite_guards_applied": [
+   "target_scalar_finite",
+   "gradient_finite",
+   "alpha_finite",
+   "pre_relu_weighted_map_finite",
+   "post_relu_raw_cam_finite",
+   "upsampled_prenorm_cam_finite",
+   "prenorm_cam_range_finite",
+   "normalized_cam_finite"
+  ]
+ },
+ "gradient_diagnostics": {
+  "bridge": {
+   "shape": [
+    1,
+    256,
+    32,
+    32
+   ],
+   "dtype": "torch.float32",
+   "finite": true,
+   "min": -0.01265224814414978,
+   "max": 0.016281485557556152,
+   "abs_max": 0.016281485557556152
+  },
+  "decoder1": {
+   "shape": [
+    1,
+    24,
+    512,
+    512
+   ],
+   "dtype": "torch.float32",
+   "finite": true,
+   "min": -7.033348083496094e-06,
+   "max": 5.066394805908203e-06,
+   "abs_max": 7.033348083496094e-06
+  }
+ },
+ "gradient_shapes_match_activations": {
+  "bridge": true,
+  "decoder1": true
+ },
+ "all_gradients_finite": true,
+ "numerical_guard_chain": {
+  "bridge": {
+   "target_scalar_finite": true,
+   "gradient_finite": true,
+   "alpha_finite": true,
+   "pre_relu_weighted_map_finite": true,
+   "post_relu_raw_cam_finite": true,
+   "upsampled_prenorm_cam_finite": true,
+   "prenorm_cam_range_finite": true,
+   "normalized_cam_finite": true,
+   "alpha_abs_max": null,
+   "pre_relu_weighted_map_abs_max": 0.013898851349949837,
+   "post_relu_raw_cam_abs_max": 0.0,
+   "upsampled_prenorm_cam": {
+    "shape": [
+     1,
+     1,
+     512,
+     512
+    ],
+    "dtype": "torch.float32",
+    "finite": true,
+    "min": 0.0,
+    "max": 0.0,
+    "abs_max": 0.0
+   },
+   "upsampled_prenorm_cam_range": 0.0,
+   "prenorm_cam_all_zero": true,
+   "normalized_cam_min": 0.0,
+   "normalized_cam_max": 0.0,
+   "nonfinite_at_any_stage": false,
+   "nan_to_num_applied": false,
+   "clamp_to_hide_nonfinite": false
+  },
+  "decoder1": {
+   "target_scalar_finite": true,
+   "gradient_finite": true,
+   "alpha_finite": true,
+   "pre_relu_weighted_map_finite": true,
+   "post_relu_raw_cam_finite": true,
+   "upsampled_prenorm_cam_finite": true,
+   "prenorm_cam_range_finite": true,
+   "normalized_cam_finite": true,
+   "alpha_abs_max": null,
+   "pre_relu_weighted_map_abs_max": 7.756943523418158e-05,
+   "post_relu_raw_cam_abs_max": 0.0,
+   "upsampled_prenorm_cam": {
+    "shape": [
+     1,
+     1,
+     512,
+     512
+    ],
+    "dtype": "torch.float32",
+    "finite": true,
+    "min": 0.0,
+    "max": 0.0,
+    "abs_max": 0.0
+   },
+   "upsampled_prenorm_cam_range": 0.0,
+   "prenorm_cam_all_zero": true,
+   "normalized_cam_min": 0.0,
+   "normalized_cam_max": 0.0,
+   "nonfinite_at_any_stage": false,
+   "nan_to_num_applied": false,
+   "clamp_to_hide_nonfinite": false
+  }
+ },
+ "cam_results": {
+  "bridge_cam_all_zero": true,
+  "decoder1_cam_all_zero": true,
+  "cams_finite_zero_range": true,
+  "cams_nonzero": false,
+  "finite_zero_range_cam_treatment": "PASS",
+  "cams": {
+   "bridge": {
+    "shape": [
+     512,
+     512
+    ],
+    "dtype": "torch.float32",
+    "finite": true,
+    "min": 0.0,
+    "max": 0.0,
+    "nonzero": false
+   },
+   "decoder1": {
+    "shape": [
+     512,
+     512
+    ],
+    "dtype": "torch.float32",
+    "finite": true,
+    "min": 0.0,
+    "max": 0.0,
+    "nonzero": false
+   }
+  }
+ },
+ "empty_mask_actual_logits_check": {
+  "same_actual_G_logits_used": true,
+  "surrogate_zero_logits_used": false,
+  "empty_mask_rank": 2,
+  "empty_mask_shape": [
+   512,
+   512
+  ],
+  "empty_mask_dtype": "bool",
+  "empty_mask_true_pixels": 0,
+  "empty_mask_any": false,
+  "fallback_selected": true,
+  "helper_return": -13.863729476928711,
+  "expected_full_plane_mean": -13.863729476928711,
+  "difference": 0.0,
+  "atol": 1e-07,
+  "rtol": 0.0,
+  "comparison_pass": true,
+  "finite": true,
+  "fusion_mask_source": "actual same-forward synthetic G logits tensor (v1.0f)",
+  "additional_G_forwards": 0,
+  "additional_autograd_calls": 0,
+  "extra_forward_performed": false,
+  "extra_autograd_performed": false
+ },
+ "parameter_grad_state_audit": {
+  "G": {
+   "named_parameter_tensors": 86,
+   "non_null_grad_tensors": 0,
+   "all_grads_null": true
+  },
+  "B_phi": {
+   "named_parameter_tensors": 11,
+   "non_null_grad_tensors": 0,
+   "all_grads_null": true
+  },
+  "total_non_null_grad_tensors": 0,
+  "NO_PARAMETER_GRAD_POPULATED": true,
+  "mechanism": "torch.autograd.grad does not populate .grad; attribution targets are activations / numeric inputs, never parameters"
+ },
+ "parameter_immutability": {
+  "G_identity_before": "daecea4f8f944373a99336937909ec49a5747fac0a87d49a8819a3410e16458e",
+  "G_identity_after": "daecea4f8f944373a99336937909ec49a5747fac0a87d49a8819a3410e16458e",
+  "B_phi_identity_before": "550177e7c1777f123cfe411f9c83e6bd939cc8217b0f1371fc80d70674afe169",
+  "B_phi_identity_after": "550177e7c1777f123cfe411f9c83e6bd939cc8217b0f1371fc80d70674afe169",
+  "G_state_tensors_unchanged": true,
+  "B_phi_state_tensors_unchanged": true,
+  "parameter_mutations": 0,
+  "MODEL_PARAMETERS_UNCHANGED": true
+ },
+ "router_smoke": {
+  "raw_router_input_shape": [
+   4,
+   202
+  ],
+  "raw_router_input_dtype": "float32",
+  "raw_router_input_finite": true,
+  "normalized_router_input_shape": [
+   4,
+   202
+  ],
+  "normalized_router_input_dtype": "float32",
+  "normalized_router_input_finite": true,
+  "raw_delta_hat_shape": [
+   4
+  ],
+  "raw_delta_hat_finite": true,
+  "sigmoid_applied": false,
+  "sigmoid_count": 0,
+  "router_gradient_shape": [
+   4,
+   202
+  ],
+  "router_gradient_finite": true,
+  "gradient_x_input_shape": [
+   4,
+   202
+  ],
+  "gradient_x_input_finite": true,
+  "task_id_dtype": "int64",
+  "task_id_requires_grad": false,
+  "task_id_numeric_attribution": false,
+  "deep_group_boundaries": {
+   "bridge_global": 32,
+   "bridge_roi": 32,
+   "decoder2_global": 32,
+   "decoder2_roi": 32,
+   "decoder1_global": 32,
+   "decoder1_roi": 32
+  },
+  "scalar_positions": [
+   "entropy_proxy_mean",
+   "frac_prob_within_0p05_of_boundary",
+   "frac_prob_within_0p02_of_boundary",
+   "mean_boundary_margin",
+   "pred_foreground_fraction",
+   "pred_foreground_pixels",
+   "pred_roi_exists",
+   "pred_empty",
+   "predicted_roi_area_fraction",
+   "predicted_roi_side"
+  ]
+ },
+ "zero_denominator_policy": {
+  "denominator": 0.0,
+  "normalized_group_shares": [
+   null,
+   null,
+   null,
+   null,
+   null,
+   null
+  ],
+  "ZERO_ROUTER_GRAD_ATTRIBUTION": true,
+  "epsilon_added": false,
+  "renormalization": false,
+  "b_phi_forwards_used": 0
+ },
+ "execution_counters": {
+  "G_model_constructions": 1,
+  "B_phi_model_constructions": 1,
+  "checkpoint_deserializations": 2,
+  "strict_loads": 2,
+  "G_synthetic_forwards": 1,
+  "B_phi_synthetic_forwards": 1,
+  "total_model_forwards": 2,
+  "G_gradcam_autograd_calls": 1,
+  "router_numeric_input_autograd_calls": 1,
+  "total_autograd_calls": 2,
+  "synthetic_CAM_maps": 2,
+  "synthetic_router_attribution_rows": 4,
+  "synthetic_smoke_target_masks": 2,
+  "R_psi_model_constructions": 0,
+  "R_psi_checkpoint_loads": 0,
+  "R_psi_forwards": 0,
+  "S_omega_model_constructions": 0,
+  "S_omega_checkpoint_loads": 0,
+  "S_omega_forwards": 0,
+  "optimizer_constructions": 0,
+  "optimizer_step_calls": 0,
+  "training_backward_calls": 0,
+  "parameter_mutations": 0,
+  "raw_VAL_image_reads": 0,
+  "real_persisted_VAL_probability_reads": 0,
+  "VAL_GT_reads": 0,
+  "router_feature_cache_rows_read": 0,
+  "ROUTER_HOLDOUT_reads": 0,
+  "TEST_reads": 0,
+  "TRAIN_raw_reads": 0,
+  "scientific_outputs": 0
+ },
+ "expected_counters": {
+  "G_model_constructions": 1,
+  "B_phi_model_constructions": 1,
+  "checkpoint_deserializations": 2,
+  "strict_loads": 2,
+  "G_synthetic_forwards": 1,
+  "B_phi_synthetic_forwards": 1,
+  "total_model_forwards": 2,
+  "G_gradcam_autograd_calls": 1,
+  "router_numeric_input_autograd_calls": 1,
+  "total_autograd_calls": 2,
+  "synthetic_CAM_maps": 2,
+  "synthetic_router_attribution_rows": 4,
+  "synthetic_smoke_target_masks": 1,
+  "R_psi_model_constructions": 0,
+  "R_psi_checkpoint_loads": 0,
+  "R_psi_forwards": 0,
+  "S_omega_model_constructions": 0,
+  "S_omega_checkpoint_loads": 0,
+  "S_omega_forwards": 0,
+  "optimizer_constructions": 0,
+  "optimizer_step_calls": 0,
+  "training_backward_calls": 0,
+  "parameter_mutations": 0
+ },
+ "counts_match_expected": false,
+ "counter_mismatches": {
+  "synthetic_smoke_target_masks": {
+   "observed": 2,
+   "expected": 1,
+   "cause": "DOUBLE_INCREMENT: V0D.smoke_synthetic_target_mask_rank2() increments for the PRIMARY target mask, and the v1.0f in-scope empty-mask observability check (empty_mask_helper_check_insession_actual_logits, line 176 of the v1.0f source) increments AGAIN for the same primary mask's all-False empty variant.",
+   "semantic_effect": "NONE: a secondary observability derivative of the SAME primary mask; the work order specifies primary_target_masks=1 (actual-logits empty-mask checks are a separate category), so the primary-target-mask execution count is 1 and remains compliant.",
+   "scientific_effect": "NONE: no additional model construction, forward, autograd, CAM, router row, or protected-data access."
+  }
+ },
+ "protected_data_counters": {
+  "raw_VAL_image_reads": 0,
+  "real_persisted_VAL_probability_reads": 0,
+  "VAL_GT_reads": 0,
+  "router_feature_cache_rows_read": 0,
+  "ROUTER_HOLDOUT_reads": 0,
+  "TEST_reads": 0,
+  "TRAIN_raw_reads": 0
+ },
+ "scientific_output_counters": {
+  "scientific_outputs": 0,
+  "scientific_figures": 0,
+  "scientific_tables": 0,
+  "scientific_gradcam_outputs": 0,
+  "scientific_router_attribution_outputs": 0,
+  "scientific_film_outputs": 0
+ },
+ "counters_all_protected_zero": true,
+ "gates": {
+  "PHASE35_SMOKE_EXECUTE_set": true,
+  "PHASE35_EXECUTE_set": false,
+  "smoke_gate_env": "PHASE35_SMOKE_EXECUTE",
+  "science_gate_env": "PHASE35_EXECUTE",
+  "mode": "smoke"
+ },
+ "check_results": {
+  "film_all_pass": true,
+  "immutability_pass": true,
+  "zero_denominator_pass": true,
+  "all_gradients_finite": true,
+  "all_prenorm_cams_finite": true,
+  "all_normalized_cams_finite": true,
+  "empty_mask_same_actual_logits": true,
+  "empty_mask_no_surrogate": true,
+  "empty_mask_fallback_selected": true,
+  "empty_mask_comparison_pass": true,
+  "empty_mask_finite": true,
+  "no_parameter_grad_populated": true,
+  "counts_match_expected": false
+ },
+ "scientific_and_interface_checks_all_pass": true,
+ "harness_all_pass": false,
+ "result": "FAIL_CLOSED",
+ "block_reason": "INTERNAL_EXECUTION_COUNT_INTEGRITY_MISMATCH__synthetic_smoke_target_masks",
+ "phase35_scientific_execution_started": false,
+ "phase36_started": false,
+ "TEST": "LOCKED_UNTIL_PHASE39",
+ "ROUTER_HOLDOUT": "OPENED_AND_FROZEN",
+ "generated_utc": "2026-10-05T04:23:25Z"
+}

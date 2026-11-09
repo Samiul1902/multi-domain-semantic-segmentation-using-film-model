@@ -1,0 +1,45 @@
+{
+ "artifact": "phase36_v1_14_to_v1_17_semantic_diff_reconciliation",
+ "phase": 36,
+ "revision": "ra_medfilm_barr_phase36_robustness_v1_17",
+ "type": "ADDITIVE_RECONCILIATION",
+ "method": "RA-MedFiLM-BARR",
+ "amends": "reports/audits/phase36_v1_14_to_v1_17_semantic_diff.json",
+ "amends_sha256": "b9a329e568dce3e41b7539ec6ddda2d9468b4b47d7832a45616ac251a6097971",
+ "supersedes": "reports/audits/phase36_v1_14_to_v1_17_semantic_diff_reconciliation.json",
+ "supersedes_sha256": "4d4d602c762a6412716bef2545d8ffdd0d0cf08b400d8b9590c4ec690f6bc35a",
+ "revision_of_artifact": "v1_1",
+ "written_by": "build_phase36_v1_17_diff_reconciliation.py",
+ "frozen_original_modified": false,
+ "delete_or_recreate_performed": false,
+ "from_sha256": "ac09ff8ded3610244920e66612145b246b33127140d344a9730d454bab27cff5",
+ "to_sha256": "81d78460b2f20f176bc697cba662c43bc7c7443ea555ba95a30609faf0ccbe31",
+ "correction": {
+  "field": "scientific_delta_count",
+  "frozen_value": 4,
+  "reconciled_value": 2,
+  "note": "The v1.14->v1.17 NET scientific surface comprises EXACTLY the 2 canonical scientific repair CLASSES (D61 canonical pad-aware ACCEPT fusion; D75 POLICY_B float16 scored representation).  The frozen artifact recorded the raw changed-hunk count (4) instead of the repair-class count (2)."
+ },
+ "reconciled_classification_counts": {
+  "SCIENTIFIC_D61": 1,
+  "SCIENTIFIC_D75": 3,
+  "OPERATIONAL_GOVERNANCE": 67,
+  "UNCLASSIFIED": 0
+ },
+ "scientific_repair_classes": [
+  "SCIENTIFIC_D61",
+  "SCIENTIFIC_D75"
+ ],
+ "reconciled_scientific_delta_count": 2,
+ "reconciled_unclassified_delta_count": 0,
+ "scientific_semantics_effect": "NONE",
+ "new_scientific_output": false,
+ "gt_read": false,
+ "val_gt_file_read": false,
+ "val_image_read": false,
+ "model_free": true,
+ "torch_imported": false,
+ "checkpoint_deserialization": false,
+ "test_reads": 0,
+ "router_holdout_reads": 0
+}

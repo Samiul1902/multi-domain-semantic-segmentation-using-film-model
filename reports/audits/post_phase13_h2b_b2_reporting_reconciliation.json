@@ -1,0 +1,228 @@
+{
+  "artifact": "POST_PHASE13_H2B_B2_REPORTING_RECONCILIATION",
+  "status": "PASS",
+  "created_utc": "2026-09-23T15:59:00Z",
+  "model_attribution": "Gemini 3.8 Flash Medium",
+  "scope": "QUANTITATIVE_REPORTING_RECONCILIATION_ONLY",
+  "scientific_adjudication_performed": "NO",
+  "inference_or_training_performed": "NO",
+  "classification": "CHAT_TRANSCRIPTION_ONLY",
+  "classification_definition": "wrong numbers exist only in the pasted chat final note; all persisted quantitative artifacts are mutually consistent",
+  "bindings": {
+    "model_summary": [
+      "reports/tables/post_phase13_h2b_downstream_model_summary.csv",
+      "d8215344148cd4e21e8e9323d753620601b5b43b0da69c7dfe028949480f0eab"
+    ],
+    "cross_architecture_summary": [
+      "reports/tables/post_phase13_h2b_downstream_cross_architecture_summary.csv",
+      "552f80005d004379dcb74b17c06310a4b0e7736c9eed99e1ce4333e5accdae6c"
+    ],
+    "b2_integrity_audit": [
+      "reports/audits/post_phase13_h2b_b2_downstream_integrity.json",
+      "f6f128c03fdb89c3ec0efbba3850213743e0239d43a445f70a5a1ada588edb22"
+    ],
+    "reviewer_notebook": [
+      "notebooks/phasewise/phase_13_predicted_roi_localization/post_phase13_h2b_downstream_analysis.ipynb",
+      "40af2ee250478229fc6c0546afe9139d05407d4cf91462fef4be3dd91153de41"
+    ]
+  },
+  "integrity_audit_gate": {
+    "status": "PASS",
+    "proposal_count": 488,
+    "case_model_rows": 412,
+    "component_model_rows": 608,
+    "model_summary_rows": 4,
+    "regional_crop_evaluations": 1952,
+    "localizer_forwards": 0,
+    "proposal_regeneration": 0,
+    "test_reads": 0,
+    "external_test_reads": 0,
+    "all_required_met": true
+  },
+  "authoritative_model_summary": {
+    "unet": {
+      "model_display": "UNet",
+      "global_macro_dice": 0.5941796681946068,
+      "phase13_predicted_macro_dice": 0.3023138267308742,
+      "h2a_predicted_macro_dice": 0.3137794923485532,
+      "h2b_predicted_macro_dice": 0.2798484515365307,
+      "DELTA_H2B_GLOBAL_DICE": -0.314331216658076,
+      "DELTA_H2B_PHASE13_DICE": -0.0224653751943434,
+      "DELTA_H2B_H2A_DICE": -0.0339310408120224,
+      "mean_global_fp": 1297.252427184466,
+      "mean_phase13_fp": 8622.223300970874,
+      "mean_h2a_fp": 8344.252427184467,
+      "mean_h2b_fp": 10922.873786407768,
+      "fp_delta_vs_global": 9625.621359223302,
+      "fp_delta_vs_phase13": 2300.650485436893,
+      "fp_delta_vs_h2a": 2578.621359223301,
+      "component_recoveries_vs_global": 10,
+      "component_losses_vs_global": 0,
+      "component_recoveries_vs_phase13": 0,
+      "component_losses_vs_phase13": 6,
+      "component_recoveries_vs_h2a": 0,
+      "component_losses_vs_h2a": 7
+    },
+    "attention_unet": {
+      "model_display": "Attention U-Net",
+      "global_macro_dice": 0.6298049685888003,
+      "phase13_predicted_macro_dice": 0.308618655690823,
+      "h2a_predicted_macro_dice": 0.3201727978415278,
+      "h2b_predicted_macro_dice": 0.2905690515971009,
+      "DELTA_H2B_GLOBAL_DICE": -0.3392359169916993,
+      "DELTA_H2B_PHASE13_DICE": -0.018049604093722,
+      "DELTA_H2B_H2A_DICE": -0.0296037462444269,
+      "mean_global_fp": 1377.1941747572816,
+      "mean_phase13_fp": 8905.26213592233,
+      "mean_h2a_fp": 8683.320388349515,
+      "mean_h2b_fp": 11235.009708737864,
+      "fp_delta_vs_global": 9857.815533980582,
+      "fp_delta_vs_phase13": 2329.747572815534,
+      "fp_delta_vs_h2a": 2551.6893203883496,
+      "component_recoveries_vs_global": 7,
+      "component_losses_vs_global": 0,
+      "component_recoveries_vs_phase13": 1,
+      "component_losses_vs_phase13": 3,
+      "component_recoveries_vs_h2a": 0,
+      "component_losses_vs_h2a": 4
+    },
+    "unetpp": {
+      "model_display": "UNet++",
+      "global_macro_dice": 0.6405155030126884,
+      "phase13_predicted_macro_dice": 0.3113548759513804,
+      "h2a_predicted_macro_dice": 0.3230458559486369,
+      "h2b_predicted_macro_dice": 0.2946880416231168,
+      "DELTA_H2B_GLOBAL_DICE": -0.3458274613895716,
+      "DELTA_H2B_PHASE13_DICE": -0.0166668343282636,
+      "DELTA_H2B_H2A_DICE": -0.02835781432552,
+      "mean_global_fp": 888.6796116504854,
+      "mean_phase13_fp": 8813.174757281553,
+      "mean_h2a_fp": 8610.660194174758,
+      "mean_h2b_fp": 11396.135922330095,
+      "fp_delta_vs_global": 10507.456310679612,
+      "fp_delta_vs_phase13": 2582.9611650485435,
+      "fp_delta_vs_h2a": 2785.47572815534,
+      "component_recoveries_vs_global": 11,
+      "component_losses_vs_global": 0,
+      "component_recoveries_vs_phase13": 0,
+      "component_losses_vs_phase13": 3,
+      "component_recoveries_vs_h2a": 1,
+      "component_losses_vs_h2a": 4
+    },
+    "deeplabv3plus": {
+      "model_display": "DeepLabV3+",
+      "global_macro_dice": 0.5602505353552288,
+      "phase13_predicted_macro_dice": 0.277291864441973,
+      "h2a_predicted_macro_dice": 0.288916661930961,
+      "h2b_predicted_macro_dice": 0.2646137888806052,
+      "DELTA_H2B_GLOBAL_DICE": -0.2956367464746235,
+      "DELTA_H2B_PHASE13_DICE": -0.0126780755613677,
+      "DELTA_H2B_H2A_DICE": -0.0243028730503557,
+      "mean_global_fp": 1081.5631067961165,
+      "mean_phase13_fp": 9415.980582524273,
+      "mean_h2a_fp": 9217.135922330095,
+      "mean_h2b_fp": 12112.796116504856,
+      "fp_delta_vs_global": 11031.233009708738,
+      "fp_delta_vs_phase13": 2696.8155339805826,
+      "fp_delta_vs_h2a": 2895.660194174757,
+      "component_recoveries_vs_global": 16,
+      "component_losses_vs_global": 0,
+      "component_recoveries_vs_phase13": 3,
+      "component_losses_vs_phase13": 3,
+      "component_recoveries_vs_h2a": 4,
+      "component_losses_vs_h2a": 4
+    }
+  },
+  "authoritative_cross_architecture": {
+    "cases_h2b_improved_vs_global_all4": 2,
+    "cases_h2b_nonworse_vs_global_all4": 2,
+    "cases_h2b_worse_vs_global_all4": 87,
+    "cases_h2b_improved_vs_phase13_all4": 32,
+    "cases_h2b_worse_vs_phase13_all4": 50,
+    "components_recovered_vs_global_by_at_least_one": 22,
+    "components_recovered_vs_global_by_all4": 3,
+    "components_lost_vs_global_by_at_least_one": 0,
+    "components_lost_vs_global_by_all4": 0,
+    "cases_h2b_improved_vs_h2a_all4": 31,
+    "cases_h2b_worse_vs_h2a_all4": 51
+  },
+  "stale_values": {
+    "component_recoveries_losses_vs_global_sequence": {
+      "pasted_chat_values": [
+        "8/0",
+        "5/0",
+        "5/0",
+        "4/0"
+      ],
+      "authoritative_values": [
+        "10/0",
+        "7/0",
+        "11/0",
+        "16/0"
+      ]
+    },
+    "fp_delta_vs_global": {
+      "pasted_chat_values": [
+        7203.65,
+        7410.66,
+        7722.28,
+        8083.96
+      ],
+      "authoritative_values": [
+        9625.621359223302,
+        9857.815533980582,
+        10507.456310679612,
+        11031.233009708738
+      ]
+    },
+    "mean_h2b_fp_unet": {
+      "pasted_chat_value": 8500.9,
+      "authoritative_value": 10922.873786407768
+    }
+  },
+  "stale_value_search": {
+    "searched": [
+      "reports/audits/",
+      "reports/tables/",
+      "docs/TASKS.md",
+      "docs/MEMORY.md",
+      "reports/**/*.md",
+      "reports/**/*.json",
+      ".workbuddy-ai/memory/2026-09-23.md"
+    ],
+    "stale_values_found_in_persisted_artifacts": "NO",
+    "mean_h2b_fp_8500.90_found_anywhere": "NO",
+    "notes": "Numeric substring matches for 7203 / 7410.66 / 7722.28 / 8083.96 exist only in unrelated earlier-phase tables (phase07/phase09/phase10/phase11/phase12/phase13 case-level metrics) and are not H2B reporting. No H2B artifact, doc, or memory file contains the stale values.",
+    "persisted_h2b_final_note_artifact": "DOES_NOT_EXIST"
+  },
+  "notebook_vs_model_summary": "PASS",
+  "repair_policy_applied": {
+    "authoritative_tables_modified": "NO",
+    "frozen_audits_rewritten": "NO",
+    "mutable_continuity_docs_corrected": "NOT_REQUIRED (they never contained the stale values)",
+    "artifacts_created": [
+      "reports/audits/post_phase13_h2b_b2_reporting_reconciliation.json",
+      "reports/audits/post_phase13_h2b_b2_reporting_reconciliation.md"
+    ]
+  },
+  "preserved_valid_evidence": {
+    "h2b_macro_dice_below_global_all_four": true,
+    "h2b_macro_dice_below_phase13_all_four": true,
+    "h2b_macro_dice_below_h2a_all_four": true,
+    "component_losses_vs_global_zero_all_four": true,
+    "cross_architecture_union_recovery": "DESCRIPTIVE_EVIDENCE_PRESERVED"
+  },
+  "scientific_result_changed": "NO",
+  "b2_execution_status_changed": "NO",
+  "h2b_outcome_adjudicated": "NO",
+  "counters": {
+    "training": 0,
+    "cuda_requests": 0,
+    "model_constructions": 0,
+    "localizer_forwards": 0,
+    "segmentation_forwards": 0,
+    "proposal_generation": 0,
+    "test_reads": 0,
+    "external_test_reads": 0
+  }
+}

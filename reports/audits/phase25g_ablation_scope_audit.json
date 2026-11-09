@@ -1,0 +1,45 @@
+{
+ "artifact": "phase25g_ablation_scope_audit",
+ "phase": "25G",
+ "classification": "PHASE25G_PRE_EXECUTION_INTEGRATED_EVALUATION_SPECIFICATION_AUDIT",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_integrated_evaluation_v1_0",
+ "governance_only": true,
+ "no_execution": true,
+ "stage": "ABLATION_SCOPE",
+ "phase25g_core_required_comparison": [
+  "A7",
+  "A8"
+ ],
+ "core_family": [
+  "A0",
+  "A1",
+  "A2",
+  "A3",
+  "A4",
+  "A5",
+  "A6",
+  "A7",
+  "A8"
+ ],
+ "non_core_ablation_ids": [
+  "R1",
+  "R2",
+  "R3",
+  "F1"
+ ],
+ "deferred_to_phase28": [
+  "R1",
+  "R2",
+  "R3",
+  "F1"
+ ],
+ "deferred_statement": "R1/R2/R3 (router family) and F1 (refiner family) are NOT auto-executed by Phase25G unless Phase24 explicitly assigns them; they belong to the Phase28 Comprehensive System Ablation Matrix.",
+ "opportunistic_expansion_forbidden": true,
+ "checks": {
+  "core_is_A7_vs_A8": true,
+  "R1_R2_R3_F1_not_in_phase25g": true,
+  "no_opportunistic_expansion": true
+ },
+ "all_pass": true
+}

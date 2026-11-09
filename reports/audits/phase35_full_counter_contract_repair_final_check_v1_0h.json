@@ -1,0 +1,335 @@
+{
+ "artifact": "phase35_full_counter_contract_repair_final_check_v1_0h",
+ "section": "§Q",
+ "phase": 35,
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase35_interpretability_v1_0h",
+ "check_class": "INDEPENDENT_REVERIFICATION__SOURCE_AND_GOVERNANCE_ONLY",
+ "expected_counter_count": 35,
+ "extension_counter_count": 4,
+ "expected_table_keys_found": 35,
+ "protected_zero_keys_verified": [
+  "raw_VAL_image_reads",
+  "real_persisted_VAL_probability_reads",
+  "VAL_GT_reads",
+  "router_feature_cache_rows_read",
+  "ROUTER_HOLDOUT_reads",
+  "TEST_reads",
+  "TRAIN_raw_reads",
+  "scientific_outputs"
+ ],
+ "router_keys_verified": [
+  "B_phi_synthetic_forwards",
+  "router_numeric_input_autograd_calls",
+  "total_model_forwards",
+  "total_autograd_calls",
+  "synthetic_router_attribution_rows"
+ ],
+ "verified_source_hashes": {
+  "v1_0h_execution": "48193f09672b047757e0eba9fa674df12c5b00a41629ba9671e48b50fe81ee81",
+  "v1_0c_legacy": "4058fc5544e6e1af15339df20a88da4880549ea8d4dd434395df04e0fa261baa",
+  "v1_0d": "cccc109ade27eb5ad7883912004c1e911e9e253a659146f3d64820af92244056",
+  "v1_0g_predecessor": "88456e46c94e53d45b10d864d9dbcd38eb773d7dd441441def9e6f221a0c9be3",
+  "v1_0h_unit": "7fb6e4253e1ccfbbc1ce516727cf5f2a7baa4bbe45b04fafc6c33ee746a8dbbf",
+  "v1_0h_preflight": "d98dc8d095937b2670520f62ca74fe8f04197bc2be27b2f14c5bd857aaffb4e3"
+ },
+ "requirements": [
+  {
+   "id": "R01",
+   "desc": "v1.0g counter-store defect record exists and parses",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "R02",
+   "desc": "defect classification is the store-ownership (not omitted-expectation) class",
+   "pass": true,
+   "detail": "PHASE35_V1_0G_COUNTER_STORE_OWNERSHIP_OR_AGGREGATION_DIVERGENCE__PRIMARY_ALIAS_STALE__FULL_EXPECTED_KEYSET_INCOMPLETE"
+  },
+  {
+   "id": "R03",
+   "desc": "defect record shows the router path DID execute on real evidence",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "R04",
+   "desc": "defect record states the old framing wrongly called router rows omitted",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "R05",
+   "desc": "defect record proves shallow copy, not alias",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "R06-scientific",
+   "desc": "defect record: scientific effect = NONE",
+   "pass": true,
+   "detail": "key=scientific_effect value=NONE"
+  },
+  {
+   "id": "R06-numerical",
+   "desc": "defect record: numerical effect = NONE",
+   "pass": true,
+   "detail": "key=numerical_effect value=NONE"
+  },
+  {
+   "id": "R06-model_interface",
+   "desc": "defect record: model_interface effect = NONE",
+   "pass": true,
+   "detail": "key=model_interface_effect value=NONE"
+  },
+  {
+   "id": "R06-protected_data",
+   "desc": "defect record: protected_data effect = NONE",
+   "pass": true,
+   "detail": "key=protected_data_effect value=NONE"
+  },
+  {
+   "id": "R07",
+   "desc": "v1.0g predecessor contains the shallow-copy defect site",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "R08",
+   "desc": "v1.0d inherits the legacy store as an OBJECT ALIAS",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "R09",
+   "desc": "v1.0h removed the shallow copy from CODE (docstring may still quote the defect)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "R10",
+   "desc": "v1.0h aliases the live V0C legacy store",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "R11",
+   "desc": "v1.0h asserts legacy store identity at runtime",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "R12",
+   "desc": "v1.0h does NOT create an independent copy of the legacy store (code level)",
+   "pass": true,
+   "detail": "docstring-only mention of the historical defect is permitted"
+  },
+  {
+   "id": "R13",
+   "desc": "extension store owns exactly the four post-v1.0c counters",
+   "pass": true,
+   "detail": "got ['primary_synthetic_target_masks', 'actual_logits_empty_mask_helper_checks', 'additional_G_forwards_for_empty_mask', 'additional_autograd_calls_for_empty_mask']"
+  },
+  {
+   "id": "R14",
+   "desc": "extension/legacy disjointness asserted in source",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "R15",
+   "desc": "single-ownership rule stated (no independent copy before execution)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "R16",
+   "desc": "V0C.smoke_router increments exactly five unqualified legacy counters",
+   "pass": true,
+   "detail": "[\"SMOKE_COUNTERS['B_phi_synthetic_forwards']\", \"SMOKE_COUNTERS['total_model_forwards']\", \"SMOKE_COUNTERS['router_numeric_input_autograd_calls']\", \"SMOKE_COUNTERS['total_autograd_calls']\", \"SMOKE_COUNTERS['synthetic_router_attribution_rows']\"]"
+  },
+  {
+   "id": "R17",
+   "desc": "v1.0h delegates the router to V0C.smoke_router",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "R18",
+   "desc": "v1.0h merge reads the SAME live legacy store",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "R19",
+   "desc": "writer/reader store identity evidence emitted",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "R20",
+   "desc": "no post-hoc hardcoded manual router count assignment",
+   "pass": true,
+   "detail": "no '= literal' assignment to any router counter"
+  },
+  {
+   "id": "R21",
+   "desc": "primary mask helper increments the extension primary counter exactly once",
+   "pass": true,
+   "detail": "['SMOKE_COUNTERS_EXT[PRIMARY_TARGET_MASK_COUNTER]']"
+  },
+  {
+   "id": "R22",
+   "desc": "primary helper invokes the frozen V0D producer (alias increments exactly once)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "R23",
+   "desc": "empty-mask helper increments ONLY the empty observability counter",
+   "pass": true,
+   "detail": "['SMOKE_COUNTERS_EXT[EMPTY_MASK_OBSERVABILITY_COUNTER]']"
+  },
+  {
+   "id": "R24",
+   "desc": "empty-mask helper does NOT increment primary or alias",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "R25",
+   "desc": "expected table has exactly 35 keys",
+   "pass": true,
+   "detail": "got 35"
+  },
+  {
+   "id": "R26",
+   "desc": "expected table key count asserted at import time",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "R27",
+   "desc": "all 8 protected-data keys explicitly present with expected 0",
+   "pass": true,
+   "detail": "missing/wrong []"
+  },
+  {
+   "id": "R28",
+   "desc": "expected router row values 1/1/2/2/4 frozen",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "R29",
+   "desc": "exact keyset equality implemented",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "R30",
+   "desc": "keyset / count / values emitted as SEPARATE booleans",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "R31",
+   "desc": "merge is fail-closed on duplicate ownership and keyset mismatch",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "R32",
+   "desc": "counter baseline gate precedes model construction",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "R33",
+   "desc": "baseline gate never silently resets a nonzero counter",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "R34",
+   "desc": "all inherited scientific call sites present verbatim",
+   "pass": true,
+   "detail": "missing []"
+  },
+  {
+   "id": "R35",
+   "desc": "numerical guards and helper math unchanged (atol/rtol/guard stages inherited)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "R36",
+   "desc": "semantic diff declares no scientific-protocol / model / gradcam / router / protected change",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "R37",
+   "desc": "unambiguous terminal fields present and all_pass aliases smoke_success",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "R38",
+   "desc": "model-free unit contract passes with zero failures",
+   "pass": true,
+   "detail": "all_pass=True failed=0"
+  },
+  {
+   "id": "R39",
+   "desc": "unit contract reproduces both historical defects as negative controls",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "R40",
+   "desc": "static preflight passes with zero failures",
+   "pass": true,
+   "detail": "all_pass=True failed=0"
+  },
+  {
+   "id": "R41",
+   "desc": "no-execution audit is entirely zero / false",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "R42",
+   "desc": "source freeze requires exact v1.0h bytes for any future smoke",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "R43",
+   "desc": "scientific execution still ineligible pending a successful v1.0h smoke",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "R44",
+   "desc": "v1.0g blocked smoke history preserved and no retry performed",
+   "pass": true,
+   "detail": ""
+  }
+ ],
+ "total_requirements": 47,
+ "passed": 47,
+ "failed": 0,
+ "counter_store_root_cause_corrected": true,
+ "primary_alias_ownership_reconciled": true,
+ "empty_mask_observability_ownership_reconciled": true,
+ "full_35_key_contract_frozen": true,
+ "exact_keyset_validation_implemented": true,
+ "no_post_hoc_router_count_injection": true,
+ "no_scientific_protocol_change": true,
+ "v1_0f_scientific_authority_preserved": true,
+ "v1_0g_blocked_history_preserved": true,
+ "scientific_execution_eligible": false,
+ "generated_utc": "2026-10-05T05:55:25Z",
+ "all_pass": true
+}

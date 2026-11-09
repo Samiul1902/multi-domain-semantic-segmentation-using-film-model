@@ -1,0 +1,46 @@
+{
+  "artifact": "POST_PHASE13_H2B_B1_DEFECT_LINKAGE",
+  "status": "LINKAGE_ONLY",
+  "created_utc": "2026-09-23T09:40:00Z",
+  "purpose": "Additively link the two distinct H2B-B1 execution defects WITHOUT rewriting or deleting the original defect artifact, and without conflating them.",
+
+  "defects": [
+    {
+      "id": "H2B_B1_DEFECT_001",
+      "classification": "NONBLOCKING_REPORTING_ARTIFACT_NAMING_DEFECT",
+      "artifact": "reports/audits/post_phase13_h2b_b1_reporting_basename_collision_defect.json",
+      "summary": "Inherited TRAINING_START_BASENAME / TRAINING_COMPLETION_BASENAME constants omitted the experiment id, so successive lineage runs overwrote the same two audit files.",
+      "scientific_impact": "NONE",
+      "gradient_update_impact": "NONE",
+      "status": "CONTAINED",
+      "resolution": "Basenames renamed to post_phase13_h2b_b1_training_{start,completion}."
+    },
+    {
+      "id": "H2B_B1_DEFECT_002",
+      "classification": "MATERIAL_EXECUTION_PROVENANCE_DEFECT",
+      "artifact": "reports/audits/post_phase13_h2b_b1_pre_fix_execution_invalidation.json",
+      "summary": "The runner executed the correct SoftTargetFocalBCE objective, but the resume contract, checkpoint metadata and start/completion audits still carried stale Phase-13 CenterNet fields loss_alpha=2.0 / loss_beta=4.0 and declared protocol_identity 'R2 + R2A_LOSS_BINDING' as the ACTIVE identity.",
+      "scientific_impact": "NONE on executed mathematics; MATERIAL on provenance / resume-contract correctness.",
+      "gradient_update_impact": "NONE",
+      "status": "INVALIDATED_AND_REPAIRED",
+      "resolution": "Stale objective identity removed and replaced with the H2B objective identity; pre-fix execution invalidated, archived and relaunched from scratch."
+    }
+  ],
+
+  "relationship": {
+    "conflated": "NO",
+    "defect_001_is_not_defect_002": true,
+    "defect_002_is_not_defect_001": true,
+    "both_share_a_root_cause_family": "H2B runner derived from the Phase-13/H2A lineage without re-labelling inherited identity constants.",
+    "defect_001_severity": "NONBLOCKING",
+    "defect_002_severity": "MATERIAL"
+  },
+
+  "original_artifacts_rewritten_or_deleted": "NO",
+  "counts": {
+    "test_reads": 0,
+    "external_test_reads": 0,
+    "logical_scientific_experiment_count": 1,
+    "execution_attempt_count": 2
+  }
+}

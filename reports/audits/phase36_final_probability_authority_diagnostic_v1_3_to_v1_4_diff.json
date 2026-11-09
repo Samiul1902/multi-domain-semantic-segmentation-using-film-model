@@ -1,0 +1,79 @@
+{
+ "artifact_kind": "PHASE36_FINAL_PROBABILITY_AUTHORITY_DIAGNOSTIC_V1_3_TO_V1_4_DIFF",
+ "revision": "ra_medfilm_barr_phase36_final_probability_authority_diagnostic_v1_4",
+ "from_revision": "ra_medfilm_barr_phase36_final_probability_authority_diagnostic_v1_3",
+ "to_revision": "ra_medfilm_barr_phase36_final_probability_authority_diagnostic_v1_4",
+ "additive": true,
+ "observability_only": true,
+ "v1_0_state": "FROZEN_NEVER_CONSUMED_NOT_AUTHORIZED",
+ "v1_0_modified": false,
+ "v1_1_state": "CONSUMED_FAILED",
+ "v1_1_modified": false,
+ "v1_2_state": "CONSUMED_RESULT",
+ "v1_2_modified": false,
+ "v1_3_state": "CONSUMED_TERMINAL_EVIDENCE_ANOMALY",
+ "v1_3_modified": false,
+ "scientific_path_changed": "NONE_SINCE_V1_3",
+ "scientific_path_identical_to_v1_3": true,
+ "scientific_path_changed_v1_3_vs_v1_2": "ONLY_D61_ACCEPT_FINAL_FUSION",
+ "changes": {
+  "SCIENTIFIC_PATH": {
+   "v1_3": "single D61 ACCEPT-fusion repair (canonical fuse_full_field)",
+   "v1_4": "IDENTICAL_TO_V1_3 (D69 proves the repaired core is byte-identical once observability statements are removed)"
+  },
+  "OBSERVABILITY": {
+   "v1_3": "none (terminal-evidence anomaly was not crash-survivable)",
+   "v1_4": "write-once stage journal + GT-free progress checkpoints + durable supervisor process/exit evidence + synthetic abrupt-termination fixtures"
+  },
+  "AUTHORITY_TOKEN": {
+   "v1_3": "PHASE36_FINAL_PROB_AUTHORITY_V1_3_LAUNCH_AUTHORITY",
+   "v1_4": "PHASE36_FINAL_PROB_AUTHORITY_V1_4_LAUNCH_AUTHORITY"
+  },
+  "MARKERS": {
+   "v1_3": [
+    "..._start_v1_3.json",
+    "..._result_v1_3.json",
+    "..._failure_v1_3.json"
+   ],
+   "v1_4": [
+    "..._start_v1_4.json",
+    "..._result_v1_4.json",
+    "..._failure_v1_4.json",
+    "..._process_exit_v1_4.json",
+    "..._v1_4_journal/"
+   ]
+  },
+  "NEW_PRECONSUMPTION_GATE": {
+   "v1_3": "v1.2 consumed-state binding",
+   "v1_4": "ADDITIONALLY binds the v1.3 consumed state (v1.3 START sha + D67 adjudication + D68 reconciliation + D66) ordered AFTER the v1.2 consumed-state gate and BEFORE the verify-only STOP / token set"
+  },
+  "GATE_REUSE": {
+   "v1_3": "reuses the frozen v1.2 launcher gates verbatim",
+   "v1_4": "reuses the frozen v1.3 launcher gates verbatim (which themselves reuse the frozen v1.2 gates), so gate semantics cannot drift"
+  }
+ },
+ "preserved_unchanged": [
+  "frozen v1.14 exec + manifest",
+  "v1.2 clean-equivalence consumed evidence",
+  "v1.2 final-probability authority consumed evidence",
+  "v1.3 CONSUMED_TERMINAL_EVIDENCE_ANOMALY evidence + D67/D68 preservation",
+  "prior-failure provenance",
+  "one-shot env gate PHASE36_FINAL_PROB_AUTHORITY_EXECUTE",
+  "forbidden foreign token PHASE36_V1_14_LAUNCH_AUTHORITY",
+  "the D52 final-authority pre-consumption gate",
+  "the D53 shared GT runtime-evidence state",
+  "the D54 computed-evidence preservation on result-write failure",
+  "the D56 module-interface AST control",
+  "the finite-probability fail-closed hardening",
+  "G / router / ROI / rf202 / R_psi / S_omega / task IDs / sample order / final threshold (scientific path EXCEPT the single D61 ACCEPT fusion)"
+ ],
+ "source_sha256": {
+  "v1_3_diagnostic": "b32a9db41a53b5007c6b9989bdbee22a0b7ea14587d222a3399980142dd9621e",
+  "v1_4_diagnostic": "778af67fe41e44cec0717365b2c3427bcfd43442145af09a7aca2abe1f4a3eab",
+  "v1_3_launcher": "d5f9cd3dff302c849d195d909f6f2c9a59fbbbaaf359d859e69442d9fe05b504",
+  "v1_4_launcher": "221a15a1f2dd341c59a65d9f8c0f57f4e339ff5a66f8bece6c7b2a5d8ad10a0a",
+  "v1_4_supervisor": "792302085ccde4f09bfc7d3ca6534f411a9b776b54cbca5b83e8a7ad02277c2b"
+ },
+ "scientific_output": false,
+ "generated_utc": "2026-10-10T03:20:53Z"
+}

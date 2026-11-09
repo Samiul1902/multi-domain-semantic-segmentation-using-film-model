@@ -1,0 +1,100 @@
+{
+  "classification": "PHASE25E_RESOURCE_GATE_POLICY_EVALUATION",
+  "specification_revision": "ra_medfilm_barr_resource_gate_v1_0",
+  "stage": "FINAL_FREEZE_RECONCILIATION_ADDENDUM",
+  "additive_to": "reports/audits/phase25e_final_freeze.json",
+  "frozen_final_freeze_sha256": "e20581efab5bb81ec63d118923558df82089b2509f7d5a964da42db4252bab4e",
+  "frozen_final_freeze_unmodified": true,
+  "closure_terminal": "PHASE25E_RESOURCE_GATE_POLICY_EVALUATION_COMPLETE__OOF_FIXED_BUDGET_FRONTIER_AND_FINAL_DEV_THRESHOLDS_FROZEN__PHASE25F_ELIGIBLE_NOT_STARTED",
+  "reconciliation_terminal": "PHASE25E_CANONICAL_ADJUDICATION_REPAIRED__PRIMARY_PHASE24_STATISTICS_RESTORED__HOLM_RETAINED_AS_SENSITIVITY__PHASE25F_ELIGIBLE_NOT_STARTED",
+  "multiplicity_classification": "B",
+  "multiplicity_classification_label": "HOLM_NOT_PRE_REGISTERED__UNAUTHORIZED_PRIMARY_ADJUDICATION_EXTENSION",
+  "primary_decision_rule": "paired_p_raw < 0.05 (frozen PRIMARY statistic)",
+  "secondary_decision_rule": "holm_adjusted_p < 0.05 (retained as conservative sensitivity only)",
+  "holm_primary_role": "SUPERSEDED_FOR_PRIMARY_ADJUDICATION",
+  "holm_secondary_role": "CONSERVATIVE_MULTIPLICITY_SENSITIVITY",
+  "S1_H1_status_primary": "PARTIAL",
+  "S1_budget_pass_primary": {
+    "0.10": true,
+    "0.25": true,
+    "0.50": false
+  },
+  "S1_H1_status_secondary_holm": "PARTIAL",
+  "S1_budget_pass_secondary_holm": {
+    "0.10": true,
+    "0.25": false,
+    "0.50": false
+  },
+  "closure_original_S1_H1_status": "PARTIAL",
+  "closure_original_budget_pass": {
+    "0.10": true,
+    "0.25": false,
+    "0.50": false
+  },
+  "S2_preservation_satisfied": true,
+  "S3_frontier_measured": true,
+  "F5_domain_collapse_triggered": false,
+  "F2_router_failure": false,
+  "notebook_sha256": "b587cc925fa178f1a0eaaa986caa3cb77dbc71ecd9fd520312af7f2097091797",
+  "notebook_pre_reconciliation_sha256": "e5d8f5657b43a18fd87e50bcf6f4834bcdd94dcbb2def0ef02ce720f0f1d7718",
+  "notebook_three_times_byte_identical": true,
+  "notebook_addendum_present": true,
+  "phase25f_status": "ELIGIBLE_NOT_STARTED",
+  "phase25g_status": "NOT_STARTED",
+  "phase25f_started": false,
+  "phase25g_started": false,
+  "lambda_selected": false,
+  "test_lock": "LOCKED UNTIL PHASE39",
+  "router_holdout_reads": 0,
+  "VAL808_reads": 0,
+  "TEST_reads": 0,
+  "raw_scientific_values_changed": false,
+  "generator_scripts_containing_removed_sentence": {
+    "scripts/analysis/repair_phase25e_reconciliation_docs.py": 2,
+    "scripts/analysis/run_phase25e_preservation_and_execution_wording.py": 1,
+    "scripts/analysis/run_phase25e_reconciliation_final_check.py": 1,
+    "scripts/analysis/sync_phase25e_status_docs.py": 1
+  },
+  "generator_script_regression_note": "The removed sentence survives only as a string constant inside the historical docs-sync generator. That generator is idempotent-safe: its source (OLD) strings no longer exist in any live control document, so re-running it cannot reintroduce the claim. The pre-reconciliation generator is preserved untouched as provenance of the original defect.",
+  "live_docs_containing_removed_sentence": [],
+  "reconciliation_artifacts": {
+    "entry_gate": {
+      "path": "reports/audits/phase25e_postclosure_reconciliation_entry_gate.json",
+      "sha256": "52442142383d46f7ae94c16fa752baa0ce11dcf8a51177ae3619ecbc5f27a54a"
+    },
+    "multiplicity_provenance_audit": {
+      "path": "reports/audits/phase25e_multiplicity_provenance_audit.json",
+      "sha256": "30d5fbd2a4c4bc54486513432a0b3bde507c13b0d7bb49a620860a05be6938ee"
+    },
+    "adjudication_reconciled": {
+      "path": "reports/audits/phase25e_adjudication_reconciled.json",
+      "sha256": "239abea983866dc791c4efdb6a767fb68adb099f9509f5aa267bbd40e7822bbc"
+    },
+    "s1_sensitivity_table": {
+      "path": "reports/tables/phase25e_s1_primary_vs_multiplicity_sensitivity.csv",
+      "sha256": "691abbcea85ee89bce76dde36648ee06a6241cf8f2bcc63373b1753176b9bfe0"
+    },
+    "preservation_scope_clarification": {
+      "path": "reports/audits/phase25e_preservation_scope_clarification.json",
+      "sha256": "14e18c8cfa2e29aa0333ba60d507c14e4694858a68739203409df3800de57d9d"
+    },
+    "model_execution_wording_reconciliation": {
+      "path": "reports/audits/phase25e_model_execution_wording_reconciliation.json",
+      "sha256": "134960f4b91101863d1e3270a8709660bde2a715a327ea0fd536643f04a2b3cb"
+    },
+    "notebook_determinism": {
+      "path": "reports/audits/phase25e_reconciliation_notebook_determinism.json",
+      "sha256": "cdefe85afd60b2377e57361e9a3b0ea7454e8720494731a035f896fe20513076"
+    },
+    "phase_index_repair": {
+      "path": "reports/audits/phase25e_phase_index_repair.json",
+      "sha256": "420f52209c83f5671e42cb0967f0755da38ed6bd274f65e0ce2694ccc38d7538"
+    },
+    "docs_scan": {
+      "path": "reports/audits/phase25e_postclosure_docs_scan.json",
+      "sha256": "335899a5bd89501171686a9e52f41e298db3501ec3e4f24e7a562ebf1e065ea9"
+    }
+  },
+  "failures": [],
+  "all_pass": true
+}

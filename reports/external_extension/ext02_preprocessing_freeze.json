@@ -1,0 +1,29 @@
+{
+  "classification": "EXT02_PREPROCESSING_FREEZE",
+  "generated_utc": "2026-10-11T14:00:00Z",
+  "frozen_v1_pipeline": "RGB 3-channel; aspect-preserving resize (min(512/w,512/h)); symmetric pad to 512; image BILINEAR; mask NEAREST; resize extent max(1,round(extent*scale))",
+  "per_dataset": {
+    "HAM10000": {
+      "image": "RGB",
+      "mask": "binary png",
+      "channel_conv": "none (already RGB)"
+    },
+    "CVC-ClinicDB": {
+      "image": "RGB",
+      "mask": "binary png",
+      "channel_conv": "none"
+    },
+    "BrEaST-Lesions_USG": {
+      "image": "RGBA -> drop alpha -> RGB (deterministic)",
+      "mask": "binary png (drop alpha)",
+      "channel_conv": "RGBA->RGB (alpha discarded)"
+    },
+    "Stones_where_are_you": {
+      "image": "RGB",
+      "mask": "COCO polygon rasterized to binary at native res, then NEAREST resize",
+      "channel_conv": "none"
+    }
+  },
+  "empty_and_padding": "external padding excluded from ROI area; mask binarize = (mask>0)",
+  "no_tuning": true
+}

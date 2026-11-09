@@ -1,0 +1,236 @@
+{
+  "artifact": "phase20_shared_global_baseline_protocol",
+  "phase_id": 20,
+  "stage": "B",
+  "title": "Shared Multi-Domain Global Baseline (single frozen UNet++, no FiLM, no regional module)",
+  "status": "PHASE20_PROTOCOL_FROZEN__AWAITING_EXECUTION",
+  "primary_question": "How well can ONE shared conventional segmentation model represent all four medical domains under the harmonized Stage-B data contract, WITHOUT task-conditioned FiLM and WITHOUT the regional mechanism?",
+  "is_model_training_phase": true,
+  "experiment_id": "phase20_shared_unetpp_fourdomain_seed42_clean_v3",
+  "architecture": "unetpp_nested_4_level_no_deep_supervision_base32",
+  "architecture_selection_evidence": "reports/audits/phase20_baseline_architecture_freeze.json",
+  "input_representation": {
+    "channel_policy": "RGB_3CH",
+    "contract_label": "PHASE20_BASELINE_OPERATIONAL_INPUT_ONLY",
+    "not_the_final_phase24_policy": true,
+    "rules": [
+      "native RGB domains remain deterministic RGB",
+      "native-L domains are deterministically replicated to 3 identical channels",
+      "no learned modality adapter",
+      "no domain-specific normalization branch"
+    ],
+    "intensity_normalization": "divide by 255.0 -> [0, 1]",
+    "model_input_excludes": [
+      "task_id",
+      "dataset_id",
+      "KUB category",
+      "patient_id",
+      "case_id",
+      "foreground_fraction",
+      "mask-derived metadata"
+    ]
+  },
+  "input_resolution": 512,
+  "resolution_decision": {
+    "frozen": 512,
+    "decision_time": "PRE_TRAINING",
+    "no_resolution_search": true,
+    "did_not_compare": [
+      "256 vs 384",
+      "256 vs 512",
+      "384 vs 512"
+    ],
+    "evidence": [
+      "No legacy KUB-bearing four-domain shared baseline exists (reports/audits/phase20_legacy_baseline_selection_evidence.json).",
+      "The legacy fully-supervised shared three-domain baseline used 256 px (medfilm_seg) but belongs to a superseded pipeline whose hyperparameters the Phase-19 reuse map explicitly does NOT adopt.",
+      "The frozen architecture's own repository clean-v3 evidence (Phase-10 UNet++) was obtained at 512 px.",
+      "512 is the Phase-19 preprocessing default_size and preserves KUB tiny-object detail, which is the project's central difficulty.",
+      "A throughput probe (execution mechanism only) confirmed 512 px at batch 4 with 4 loader workers costs ~7.3 min/epoch against ~7.0 min/epoch of GPU time, so 512 is operationally affordable."
+    ],
+    "supported_sizes_available": [
+      256,
+      512,
+      768,
+      1024
+    ]
+  },
+  "preprocessing_contract_id": "phase19_preprocessing_contract_v1",
+  "preprocessing_contract_sha256": "a1db4b083611bc5a6ec4928427c77fcc49a949481aabfadaa5277735bf53fdf0",
+  "evaluation_contract_id": "phase19_evaluation_contract_v1",
+  "evaluation_contract_sha256": "7f7f18fc17e1f377ef8fefcd9f4c9280cd46443b1b1f500071037525f3d32355",
+  "dataset_populations": {
+    "manifest_version": "phase4_v3",
+    "TRAIN": {
+      "BUSI": 602,
+      "ISIC": 2556,
+      "KUB": 1978,
+      "KVASIR": 696
+    },
+    "VAL": {
+      "BUSI": 84,
+      "ISIC": 357,
+      "KUB": 280,
+      "KVASIR": 87
+    },
+    "TRAIN_total": 5832,
+    "VAL_total": 808,
+    "task_ids": {
+      "ISIC": 0,
+      "BUSI": 1,
+      "KVASIR": 2,
+      "KUB": 3
+    }
+  },
+  "sampling_policy": {
+    "policy_id": "phase20_domain_balanced_uniform_v1",
+    "type": "domain_balanced_weighted",
+    "num_samples_per_epoch": 5832,
+    "replacement": true,
+    "task_id_role": "sampling_only__never_a_model_input",
+    "audit": "reports/audits/phase20_sampling_policy_audit.json"
+  },
+  "loss": {
+    "name": "bce_dice",
+    "bce_weight": 0.5,
+    "dice_weight": 0.5,
+    "dice_epsilon": 1e-06
+  },
+  "optimizer": {
+    "name": "AdamW",
+    "learning_rate": 0.0001,
+    "weight_decay": 0.0001
+  },
+  "learning_rate": 0.0001,
+  "weight_decay": 0.0001,
+  "scheduler": {
+    "name": "CosineAnnealingLR",
+    "T_max": 100,
+    "step": "per_epoch_after_train_and_val"
+  },
+  "batch_size": 4,
+  "eval_batch_size": 8,
+  "num_workers": 4,
+  "amp": true,
+  "seed": 42,
+  "max_epochs": 100,
+  "early_stopping": {
+    "enabled": true,
+    "patience": 15,
+    "ties_count_as_bad_epochs": true,
+    "check_after_checkpoint_save": true
+  },
+  "checkpoint_selection": {
+    "rule_id": "phase20_macro_domain_mean_dice_v1",
+    "metric": "macro_domain_mean_validation_dice",
+    "formula": "mean(Dice_ISIC, Dice_BUSI, Dice_KVASIR, Dice_KUB)",
+    "per_domain_aggregation": "unweighted mean of per-image Dice within the domain",
+    "tie_break": "lower validation loss",
+    "not_used": [
+      "pooled/micro pixel Dice",
+      "KUB alone",
+      "weighted Dice"
+    ],
+    "replayed_from_disk_after_training": true
+  },
+  "evaluation_metrics": {
+    "per_domain_and_macro": [
+      "dice",
+      "iou",
+      "precision",
+      "recall",
+      "specificity",
+      "balanced_accuracy",
+      "mcc"
+    ],
+    "boundary": [
+      "hd95",
+      "assd",
+      "surface_dice"
+    ],
+    "calibration": [
+      "brier",
+      "ece",
+      "mce"
+    ],
+    "ranking": [
+      "roc_auc",
+      "average_precision"
+    ],
+    "summary_statistics": [
+      "mean",
+      "median",
+      "sd",
+      "iqr",
+      "bootstrap_95_ci"
+    ],
+    "threshold": 0.5,
+    "boundary_unit": "pixel",
+    "implementation": "src.metrics.evaluation_metrics",
+    "bootstrap": {
+      "n_boot": 2000,
+      "seed": 42,
+      "alpha": 0.05,
+      "unit": "image"
+    }
+  },
+  "single_run_authorization": {
+    "logical_runs_authorized": 1,
+    "seed": 42,
+    "no_architecture_alternatives": true,
+    "no_post_hoc_restart_from_epoch_1": true,
+    "resume_is_same_logical_run": true,
+    "second_seed_belongs_to_phase_29": true
+  },
+  "test_locks": {
+    "test_image_reads": 0,
+    "test_mask_reads": 0,
+    "test_inference": 0,
+    "test_visualization": 0,
+    "final_test_evaluation_phase": 39,
+    "enforced_by": [
+      "src.utils.test_lock",
+      "src.data.loaders.create_loader",
+      "src.data.multidomain_dataset.MultiDomainDataset"
+    ]
+  },
+  "output_isolation": {
+    "experiment_dir": "experiments/phase20_shared_unetpp_fourdomain_seed42_clean_v3",
+    "checkpoint_dir": "checkpoints/phase20_shared_unetpp_fourdomain_seed42_clean_v3",
+    "overwrites_legacy_checkpoints": false,
+    "overwrites_stage_a_checkpoints": false
+  },
+  "code_shas": {
+    "scripts/training/train_phase20_shared_unetpp.py": "7ba1ed8238c18277d62c47081a1ff2de0fd1a8fa6b9ef67c04de9d09c108bd85",
+    "src/models/unetpp.py": "87adb3f39d72fc4220445eb8a29f4f9a2c1930f98563b012edb7bd7847425db2",
+    "src/models/unet.py": "62edc8fb481eb02c46c2c64f6e7219254a57d7ba935a4c840a5a7965b41bdfc2",
+    "src/data/multidomain_dataset.py": "461062e5d6bf564872645c51c4175e69cb6169b729f1e5f311f2783f3f0b70b3",
+    "src/data/transforms.py": "09fcff4887ff8cda4daa215efad1d504d4d61f70982262022b6c2a30c8cf8bd1",
+    "src/data/loaders.py": "eb0c1b5d295d3b77b3e9745fcdeb4ff93f985fd7a58fc8909d8098b5820a8f1a",
+    "src/data/domain_balanced_sampler.py": "a59782f1aa85882aa6c1f0dddd75a9888ec34ecc1bdbcc7f0cd733a4ae0ef0d2",
+    "src/losses/segmentation.py": "2af539bd47a07c966d4a2784f4df7d81bce0620af8ef8e8ddc8b34a3e6de0e8f",
+    "src/training/phase20_selection.py": "99d412361445c10e45f148ba87dfc39b95e9ca51f82b2a1571964ca2df9421c3",
+    "src/metrics/evaluation_metrics.py": "6c515f6f1a495315c79238292c385a082ae8347489130ad5bff34d74c4f181f6",
+    "src/utils/targets.py": "cd586a75e503b7d5c61f2d83ffd401a85c6d62b1c6f88b90a72bbe2535fd2b19",
+    "src/utils/test_lock.py": "7cff4732b1f643738c410d672372684486d79e475eae18da5fee7ae10d2d22f3",
+    "src/utils/device.py": "9adabfbd145a5952275aa25b0ec99aab8a5114bb41aa443ecde52ce19a8448b6",
+    "src/utils/reproducibility.py": "1f4e1fd2de7ed8b1697eb2b3e8ebe6d98a90fc84b66e35b0c6e46dbdeea374ee",
+    "src/utils/run_lock.py": "0a38f2338775fbf6b6a8c12c3bf2e65d0fe1b410c6bb9f8f6d158b4633c0fada"
+  },
+  "entry_conditions": {
+    "phase19_authority_binding": "reports/audits/phase20_phase19_authority_binding.json",
+    "entry_gate": "reports/audits/phase20_entry_gate.json",
+    "duplicate_audit": "reports/audits/phase20_cross_domain_duplicate_audit.json",
+    "pre_execution_check": "reports/audits/phase20_pre_execution_check.json"
+  },
+  "governance": {
+    "training_performed": false,
+    "inference_performed": false,
+    "checkpoints_created": 0,
+    "film_used": false,
+    "regional_module_used": false,
+    "localizer_used": false,
+    "roi_proposal_used": false,
+    "task_conditioning_used": false,
+    "test_reads": 0
+  }
+}

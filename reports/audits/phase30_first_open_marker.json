@@ -1,0 +1,69 @@
+{
+ "artifact": "phase30_first_open_marker",
+ "phase": 30,
+ "stage": "FIRST_OPEN_MARKER",
+ "specification_revision": "ra_medfilm_barr_phase30_final_dev_validation_v1_3",
+ "method": "RA-MedFiLM-BARR",
+ "utc_timestamp": "2026-10-04T03:15:34+00:00",
+ "population": "ROUTER_HOLDOUT",
+ "n": 875,
+ "groups": 628,
+ "split_manifest_sha256": "b5da52d6220ef9b59b4ba70d0b403b38bf5234b897615b6ad55d718114db6555",
+ "g_batch_manifest_sha256": "fc4c785770c45523fdfd440a464820f78caa6bcedeaa1cbe264e10ce5c4e0088",
+ "bootstrap_plan_sha256": "59c97ccf6fbea823d38a1fba12d5e81b7e5fb103f31bc7fdfe443fd4971faab1",
+ "spec_v1_3_sha256": "bcc98c6c2b27290159855e43469e35c3b9575227232c6e3a2620bcef05667a8c",
+ "terminal_v1_3_sha256": "61f615b8ccab4b4b5ad3bf493dc3ffe7b78b23437b17277aaa0bd2d54c39a074",
+ "final_check_v1_3_sha256": "aa16a8782196d9434c5e4ba54d1cfad93562d6bee7a5386f4de240d02b67ee5a",
+ "bundle_manifest_sha256": "f7aebb0f646bcc8de49fa91b70a4c4cc1051c9998ab6b055a8d4d187809cb3d9",
+ "component_checkpoint_shas": {
+  "G": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+  "R_psi": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109",
+  "B_phi": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+  "S_omega": "eee9b97b9921e53fc07eac9281dce64ba518c6e1659916b97b0b3bec21ec6d2e"
+ },
+ "normalizer_shas": {
+  "router": "ba37742e96610ec5e46fb47c093bf71ae1afd85b2a0db9696b612c873a4ba1fb",
+  "post_safety": "e112e18b134c6edcdcd0c254c362d0a954a75faffe634cc37a2a17e4fe6f4e7b"
+ },
+ "feature_schema_shas": {
+  "router": "da76aa34f14006146f46ca799f173378274d8c9d0792dc18edb30711a2486dd4",
+  "post_safety": "3e70e20c541b93de752980c34cdfb6fe5af17ebe4c18cbb64397c0bbae465ee5"
+ },
+ "execution_script_shas": {
+  "scripts/analysis/phase30_execution_common.py": "b7f6a920c652a0d439625897c953dace0db9649418ef254eb7e233a9fefd1051",
+  "scripts/analysis/phase30_execution_stage_a.py": "ec631caae4c8483ed47c5264b65ce0cf7cc1e83d5ae534f0063d9b0edf278e8f",
+  "scripts/analysis/run_phase27_exec_phaseA.py": "ac0ffbdadbfe60349061a926f5a664716a3a3690ac3a90c21a35802263975841",
+  "scripts/analysis/phase27_exec_common.py": "c6de3a5ba3febffbaa4e787c2fb5514b40feb296d25a0c47b71c152ddea22bfb",
+  "scripts/analysis/phase27_spec_common.py": "6d20da31bada56e313ace14f3beed3759dcea843ce0c772ed3aa6a70e42a0667",
+  "scripts/analysis/phase25f_post_safety_features.py": "4f4763fa67eea833643dc1870206d5c0b49890fe974122249711e259cddc8bec",
+  "scripts/analysis/phase25f_execution_common.py": "98cf958a377e2de30e0b67e63fd56bafea418b2b061a362ee7284e852012cd2e",
+  "scripts/analysis/train_phase25d_router.py": "fc7c1bdf263ae4551dcb8f170d3203adb8540fbc189846265b74f6eca1541e91",
+  "src/data/barr_roi.py": "4b1015275e4e31f9cc2b662a290c18f988eaea65cec64082cea217fad9aba9d6",
+  "src/features/barr_pre_refinement_features.py": "f0323e78caa7a3f8c1d24cf68d4321972d86f95d36913a7af795b15acdb26f6a",
+  "src/models/barr/regional_refiner.py": "4fe0abde3ec3a183d930f676c4400b4d9ba778793ea64abf1755c5b8dabf947a",
+  "src/models/film/global_medfilm.py": "a04ff3e61b4d900ff47c2f390da4a999e73bd6047b28a19e41b05115e431d11f",
+  "src/metrics/evaluation_metrics.py": "6c515f6f1a495315c79238292c385a082ae8347489130ad5bff34d74c4f181f6",
+  "src/utils/device.py": "9adabfbd145a5952275aa25b0ec99aab8a5114bb41aa443ecde52ce19a8448b6",
+  "src/utils/test_lock.py": "7cff4732b1f643738c410d672372684486d79e475eae18da5fee7ae10d2d22f3",
+  "src/data/transforms.py": "09fcff4887ff8cda4daa215efad1d504d4d61f70982262022b6c2a30c8cf8bd1"
+ },
+ "environment": {
+  "python": "3.11.9",
+  "torch": "2.6.0+cu124",
+  "cuda": "12.4",
+  "gpu": "NVIDIA GeForce RTX 3060 Ti",
+  "git_commit": "fb160ac442084f8a11b647f5a8411abe700f9835"
+ },
+ "git_source_state": {
+  "commit": "fb160ac442084f8a11b647f5a8411abe700f9835",
+  "dirty": true,
+  "dirty_count": 604
+ },
+ "pre_open_counters": {
+  "ROUTER_HOLDOUT_image_reads": 0,
+  "ROUTER_HOLDOUT_GT_reads": 0,
+  "ROUTER_HOLDOUT_outcome_reads": 0,
+  "TEST_reads": 0
+ },
+ "one_shot_open_about_to_begin": true
+}

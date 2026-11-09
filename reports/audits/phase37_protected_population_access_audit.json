@@ -1,0 +1,28 @@
+{
+  "classification": "PHASE37_PROTECTED_POPULATION_ACCESS_AUDIT",
+  "generated_utc": "2026-10-11T06:05:00Z",
+  "purpose": "audit that Phase37 accessed NO raw protected-population data (TEST, raw ROUTER_HOLDOUT)",
+  "test_reads": 0,
+  "test_raw_access": false,
+  "test_status": "LOCKED_UNTIL_PHASE39",
+  "router_holdout_raw_reads": 0,
+  "router_holdout_raw_access": false,
+  "router_holdout_state": "OPENED_AND_FROZEN_IN_PHASE30__NOT_REOPENED_BY_PHASE37",
+  "router_holdout_frozen_table_reads": 3,
+  "router_holdout_frozen_table_artifacts": [
+    "reports/tables/phase30_router_holdout_per_domain_results.csv",
+    "reports/tables/phase30_router_holdout_scored_results.csv",
+    "reports/tables/phase30_router_holdout_predictions.csv"
+  ],
+  "router_holdout_frozen_table_note": "Phase37 consumed ONLY frozen Phase30 ROUTER_HOLDOUT result tables (table-level artifacts already authorized for evidence consolidation); raw ROUTER_HOLDOUT images/masks were NEVER reopened.",
+  "training_runs": 0,
+  "inference_forwards": 0,
+  "checkpoint_selections": 0,
+  "threshold_selections": 0,
+  "hyperparameter_selections": 0,
+  "new_statistical_hypotheses": 0,
+  "raw_data_or_checkpoint_files_read_by_phase37": [],
+  "n_frozen_report_artifacts_consumed": 104,
+  "all_phase37_inputs_are_frozen_report_artifacts": true,
+  "pass": true
+}

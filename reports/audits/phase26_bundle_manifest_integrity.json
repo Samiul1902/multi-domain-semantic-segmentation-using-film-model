@@ -1,0 +1,42 @@
+{
+ "artifact": "phase26_bundle_manifest_integrity",
+ "phase": "26",
+ "method": "RA-MedFiLM-BARR",
+ "bundle_revision": "ra_medfilm_barr_bundle_v1_0",
+ "required_files": [
+  "canonical_bundle_manifest.json",
+  "component_inventory.json",
+  "threshold_contract.json",
+  "feature_contract.json",
+  "state_machine_contract.json",
+  "resource_contract.json",
+  "provenance_manifest.json",
+  "README.md"
+ ],
+ "present_files": [
+  "canonical_bundle_manifest.json",
+  "component_inventory.json",
+  "threshold_contract.json",
+  "feature_contract.json",
+  "state_machine_contract.json",
+  "resource_contract.json",
+  "provenance_manifest.json",
+  "README.md"
+ ],
+ "checks": {
+  "all_required_files_present": true,
+  "all_component_shas_match": true,
+  "all_normalization_shas_match": true,
+  "all_schema_shas_match": true,
+  "oof_authority_false": true,
+  "final_authority_true": true,
+  "unique_runtime_authority": true,
+  "lambda_cost_exact": true,
+  "operational_threshold_selector": true,
+  "holdout_reservation": true,
+  "no_weights_copied": true,
+  "thresholds_parse_exactly": true
+ },
+ "all_pass": true,
+ "terminal_on_failure": "PHASE26_BLOCKED__CANONICAL_BUNDLE_INTEGRITY_FAILURE"
+}

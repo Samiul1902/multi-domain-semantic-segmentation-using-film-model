@@ -1,0 +1,131 @@
+{
+ "artifact": "phase36_v1_19_terminal_success_state_reconciliation",
+ "phase": 36,
+ "revision": "ra_medfilm_barr_phase36_robustness_v1_19",
+ "type": "TERMINAL_SUCCESS_STATE_RECONCILIATION",
+ "work_order": "WO#19A",
+ "section": "§5",
+ "mode": "STATIC_ADDITIVE_GOVERNANCE_ONLY_NON_CONSUMING",
+ "generated_utc": "2026-10-10T16:54:54Z",
+ "amends": "reports/audits/phase36_v1_19_terminal_success_state.json",
+ "amended_artifact_sha256": "7eba2b45c619973c29bdca99f50eb94d9ab01497c66011d058c0110db08cc1a0",
+ "amended_artifact_size": 6926,
+ "amended_artifact_modified_by_this_artifact": false,
+ "supersedes": null,
+ "amendment_kind": "HISTORICAL_REVISION_STATE_CORRECTION_ONLY",
+ "preserved_unchanged": {
+  "v1_18": "CONSUMED_PRE_START_RUNTIME_FAILURE",
+  "v1_19": "ELIGIBLE_NOT_STARTED",
+  "phase36": "NOT_COMPLETE_PENDING_V1_19_EXECUTION",
+  "phase37": "NOT_STARTED",
+  "D92": "REPAIRED",
+  "v1_18_to_v1_19_scientific_delta_count": 0,
+  "v1_14_to_v1_19_scientific_delta_count": 2,
+  "scientific_delta_classes": [
+   "D61",
+   "D75"
+  ],
+  "unclassified_scientific_delta_count": 0,
+  "TEST_accessed": false,
+  "ROUTER_HOLDOUT_accessed": false
+ },
+ "corrected_revision_states": {
+  "v1_14": {
+   "as_stated_in_amended_artifact": "CONSUMED_FAILED",
+   "corrected_state": "CONSUMED_FAILED",
+   "correction_applied": false,
+   "agrees_with_frozen_evidence": true
+  },
+  "v1_15": {
+   "as_stated_in_amended_artifact": "NOT_CREATED",
+   "corrected_state": null,
+   "corrected_booleans": {
+    "source_or_revision_existed": true,
+    "scientific_execution": false,
+    "scientific_attempt_consumed": false
+   },
+   "correction_applied": true,
+   "superseded_label_was_incorrect": true,
+   "justification": "prefer explicit booleans; no stronger frozen label supplied"
+  },
+  "v1_16": {
+   "as_stated_in_amended_artifact": "CONSUMED_RESULT",
+   "corrected_state": "ELIGIBLE_NOT_STARTED",
+   "corrected_booleans": {
+    "scientific_execution": false,
+    "scientific_attempt_consumed": false
+   },
+   "correction_applied": true,
+   "superseded_label_was_incorrect": true
+  },
+  "v1_17": {
+   "as_stated_in_amended_artifact": "CONSUMED_RESULT",
+   "corrected_state": "ELIGIBLE_NOT_STARTED",
+   "corrected_booleans": {
+    "scientific_execution": false,
+    "scientific_output": false,
+    "scientific_attempt_consumed": false
+   },
+   "correction_applied": true,
+   "superseded_label_was_incorrect": true
+  },
+  "v1_18": {
+   "as_stated_in_amended_artifact": "CONSUMED_PRE_START_RUNTIME_FAILURE",
+   "corrected_state": "CONSUMED_PRE_START_RUNTIME_FAILURE",
+   "correction_applied": false,
+   "agrees_with_frozen_evidence": true
+  },
+  "v1_19": {
+   "as_stated_in_amended_artifact": "ELIGIBLE_NOT_STARTED",
+   "corrected_state": "ELIGIBLE_NOT_STARTED",
+   "correction_applied": false,
+   "agrees_with_frozen_evidence": true
+  }
+ },
+ "historical_revision_state_corrections": {
+  "v1_15": {
+   "superseded_label": "NOT_CREATED",
+   "corrected_booleans": {
+    "source_or_revision_existed": true,
+    "scientific_execution": false,
+    "scientific_attempt_consumed": false
+   }
+  },
+  "v1_16": {
+   "superseded_label": "CONSUMED_RESULT",
+   "corrected_state": "ELIGIBLE_NOT_STARTED",
+   "corrected_booleans": {
+    "scientific_execution": false,
+    "scientific_attempt_consumed": false
+   }
+  },
+  "v1_17": {
+   "superseded_label": "CONSUMED_RESULT",
+   "corrected_state": "ELIGIBLE_NOT_STARTED",
+   "corrected_booleans": {
+    "scientific_execution": false,
+    "scientific_output": false,
+    "scientific_attempt_consumed": false
+   }
+  }
+ },
+ "D93_status": "DISCLOSED_AND_RECONCILED",
+ "D94_status": "DISCLOSED_AND_RECONCILED",
+ "disclosure_artifact": "reports/audits/phase36_v1_19_terminal_history_disclosure_v1_0.json",
+ "scientific_semantics_effect": "NONE",
+ "runtime_semantics_effect": "NONE",
+ "v1_19_runtime_family_effect": "NONE",
+ "write_semantics": "O_CREAT|O_EXCL|O_WRONLY + O_BINARY (Windows) + full-write loop + os.fsync + post-write st_size check. Write-once; never overwritten.",
+ "provenance": {
+  "derived_from": "frozen authorities on disk (read-only)",
+  "val_gt_read": false,
+  "val_image_read": false,
+  "checkpoint_deserialization": false,
+  "test_reads": 0,
+  "router_holdout_reads": 0,
+  "model_loaded": false,
+  "validator_rerun": false,
+  "new_scientific_output": false
+ },
+ "terminal": "PHASE36_V1_19_TERMINAL_SUCCESS_STATE_RECONCILIATION_WRITTEN"
+}

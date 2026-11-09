@@ -1,0 +1,210 @@
+{
+  "artifact": "phase36_robustness_negative_controls_v1_4",
+  "revision": "ra_medfilm_barr_phase36_robustness_v1_4",
+  "model_free": true,
+  "torch_imported": false,
+  "subject_v1_3_sha256": "a3290c640f9632499905b974606d4c7e7e7be89886ef1f8507a9007814da297c",
+  "controls": [
+    {
+      "control": "NC15_proposal_smoke_geometry_only_no_evaluator",
+      "v1_3_fails_control": true,
+      "v1_4_passes_control": true,
+      "pass": true,
+      "note": "v1.3 smoke perturbed geometry via apply_proposal_condition but never reached the real proposal evaluator; v1.4 smoke reaches proposal_core_adapter (the same adapter science uses) and explicitly refuses to count geometry-only mutation as coverage.",
+      "evidence": {
+        "v1_3_run_smoke_direct_calls": [
+          "_assemble_202d",
+          "_dice",
+          "_evaluate_frozen_system",
+          "_finite_summary",
+          "_gate_smoke",
+          "_geo_row",
+          "_hd95",
+          "_iou",
+          "_load_models",
+          "_prediction_consistency_dice",
+          "_roi_geometry_from_prob",
+          "_roi_row_from_window",
+          "_smoke_state_machine",
+          "_synth_image",
+          "_synthetic_batch_image",
+          "crop_and_resize_vec",
+          "now",
+          "somega_features"
+        ],
+        "v1_4_run_smoke_direct_calls": [
+          "_dice",
+          "_finite_summary",
+          "_gate_smoke",
+          "_hd95",
+          "_iou",
+          "_load_models",
+          "_prediction_consistency_dice",
+          "_synth_image",
+          "_synthetic_batch_image_np",
+          "canonical_g_forward_batched",
+          "canonical_images_tensor",
+          "canonical_learned_core",
+          "canonical_task_ids_tensor",
+          "now",
+          "smoke_branch_controls",
+          "smoke_empty_proposal_pipeline",
+          "smoke_nonempty_proposal_pipeline"
+        ]
+      }
+    },
+    {
+      "control": "NC16_empty_proposal_smoke_constant_check_only",
+      "v1_3_fails_control": true,
+      "v1_4_passes_control": true,
+      "pass": true,
+      "note": "v1.3 asserted the empty-proposal contract from a constant geometry check; v1.4 calls the real adapter with proposal_geometry=None and programmatically verifies NOT_APPLICABLE_EMPTY_PROPOSAL, zero R_psi forwards, zero S_omega forwards and no replacement geometry.",
+      "evidence": {
+        "v1_3_had_empty_constant_check": true
+      }
+    },
+    {
+      "control": "NC17_r_psi_reachable_before_decision",
+      "v1_3_fails_control": true,
+      "v1_4_passes_control": true,
+      "pass": true,
+      "note": "v1.3 executed R_psi before forward_inference (which contains the B_phi/A8-C9 decision) in all three evaluators; v1.4's shared core runs R_psi and S_omega only after the canonical utility comparison.",
+      "evidence": {
+        "v1_3": {
+          "_evaluate_clean_sample": {
+            "r_psi_line": 739,
+            "forward_inference_line": 750,
+            "r_psi_precedes_decision": true
+          },
+          "_evaluate_frozen_system": {
+            "r_psi_line": 956,
+            "forward_inference_line": 964,
+            "r_psi_precedes_decision": true
+          },
+          "_evaluate_frozen_system_proposal": {
+            "r_psi_line": 1010,
+            "forward_inference_line": 1021,
+            "r_psi_precedes_decision": true
+          }
+        },
+        "v1_4": {
+          "decision_line": 1071,
+          "r_psi_line": 1088,
+          "s_omega_line": 1106
+        }
+      }
+    },
+    {
+      "control": "NC18_g_path_missing_autocast_fp16",
+      "v1_3_fails_control": true,
+      "v1_4_passes_control": true,
+      "pass": true,
+      "note": "v1.3 had no autocast context at all (and no inference_mode declaration); v1.4 binds the frozen Phase27 AMP contract (autocast fp16 enabled, inference_mode false) and uses it on every canonical G forward.",
+      "evidence": {
+        "v1_3_autocast_mentions": 0,
+        "v1_4_autocast_mentions": 15
+      }
+    },
+    {
+      "control": "NC19_g_clean_path_batch_size_1_not_batch_8",
+      "v1_3_fails_control": true,
+      "v1_4_passes_control": true,
+      "pass": true,
+      "note": "v1.3 ran G strictly sample-by-sample (batch size 1); v1.4 partitions VAL808 into the frozen Phase27 domain-local contiguous batches of 8 and reproduces the exact partition (102 batches; 11/45/35/11; last 4/5/8/7).",
+      "evidence": {
+        "v1_4_partition_audit": {
+          "batch_size": 8,
+          "total_batches": 102,
+          "total_sample_forwards": 808,
+          "batches_by_domain": {
+            "BUSI": 11,
+            "ISIC": 45,
+            "KUB": 35,
+            "KVASIR": 11
+          },
+          "last_batch_size_by_domain": {
+            "BUSI": 4,
+            "ISIC": 5,
+            "KUB": 8,
+            "KVASIR": 7
+          },
+          "expected_total_batches": 102,
+          "expected_batches_by_domain": {
+            "BUSI": 11,
+            "ISIC": 45,
+            "KUB": 35,
+            "KVASIR": 11
+          },
+          "matches_phase27_exact_partition": true,
+          "last_partial_batch_rule": "trailing chunk of size n mod 8 (never padded)"
+        }
+      }
+    },
+    {
+      "control": "NC20_cpu_task_id_tensor_to_cuda_g",
+      "v1_3_fails_control": true,
+      "v1_4_passes_control": true,
+      "pass": true,
+      "note": "v1.3 constructed unbound CPU task-id tensors at 4 G call sites and had zero device-bound sites; v1.4 has zero unbound sites, binds every task-id tensor with device=device, and fails closed on a device mismatch.",
+      "evidence": {
+        "v1_3": {
+          "bare": 4,
+          "device_bound": 0
+        },
+        "v1_4": {
+          "bare": 0,
+          "device_bound": 2
+        }
+      }
+    },
+    {
+      "control": "NC21_clean_route_comparison_global_vs_nonglobal",
+      "v1_3_fails_control": true,
+      "v1_4_passes_control": true,
+      "pass": true,
+      "note": "v1.3 collapsed SKIP vs non-SKIP only; v1.4 compares the EXACT state_machine_branch for all 808 samples and explicitly prohibits collapsing ACCEPT and REJECT.",
+      "evidence": {
+        "v1_3_collapse_expression": true
+      }
+    },
+    {
+      "control": "NC22_router_decision_assigned_from_final_state",
+      "v1_3_fails_control": true,
+      "v1_4_passes_control": true,
+      "pass": true,
+      "note": "v1.3 populated router_decision from the final state in both the clean and perturbed paths; v1.4 separates router_decision in {SKIP, EXECUTE} from final_state in {FORCED_SKIP, SKIP_GLOBAL, EXECUTE_THEN_ACCEPT, EXECUTE_THEN_REJECT} and the row builder rejects a final state passed as a router decision.",
+      "evidence": {
+        "v1_3_clean_assignment_present": true
+      }
+    },
+    {
+      "control": "NC23_kub_report_without_subgroup_metadata",
+      "v1_3_fails_control": true,
+      "v1_4_passes_control": true,
+      "pass": true,
+      "note": "v1.3 emitted KUB rows with no subgroup label and never read the frozen category column; v1.4 binds the frozen KUB subgroup metadata authority (280 KUB rows; 144/112/24) and emits real subgroup labels plus per-subgroup robustness summaries (reporting only \u2014 never classes, task ids or model inputs).",
+      "evidence": {
+        "v1_4_subgroup_counts": {
+          "Bladder_Stone": 144,
+          "Kidney_Stone": 112,
+          "Ureteric_Stone": 24
+        }
+      }
+    },
+    {
+      "control": "NC24_missing_r1_r5_scientific_figure_call_graph",
+      "v1_3_fails_control": true,
+      "v1_4_passes_control": true,
+      "pass": true,
+      "note": "v1.3 had no figure builders and no figure call graph in the science path; v1.4 implements the frozen R1-R5 registry and reaches it only after successful scientific execution, asserting the emitted set equals the frozen registry.",
+      "evidence": {
+        "v1_3_figure_builders": []
+      }
+    }
+  ],
+  "passed": 10,
+  "total": 10,
+  "all_pass": true,
+  "nc_range": "NC15-NC24",
+  "each_control_requires": "v1_3_fails_control AND v1_4_passes_control"
+}

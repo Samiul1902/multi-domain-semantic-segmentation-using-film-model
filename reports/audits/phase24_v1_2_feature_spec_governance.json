@@ -1,0 +1,63 @@
+{
+ "artifact": "phase24_v1_2_feature_spec_governance",
+ "classification": "SPECIFICATION_COMPLETENESS_AND_GOVERNANCE_SYNC",
+ "previous_architecture_revision": "ra_medfilm_barr_narrowed_v1_1",
+ "current_router_feature_spec_revision": "ra_medfilm_barr_narrowed_v1_2",
+ "method_name": "RA-MedFiLM-BARR",
+ "science_changed": false,
+ "Phase25A_retraining_required": false,
+ "reason": "v1.2 completes router-feature implementation details absent from v1.1 and resolves the two supervisor rulings D1 (area-fraction semantics) and D2 (parameter-count bookkeeping); it does not change the trained regional refiner",
+ "historical_v1_1_preserved": true,
+ "blocked_phase25b_attempt_preserved": true,
+ "D1_resolved": true,
+ "D2_resolved": true,
+ "supervisor_review_required": false,
+ "Phase25B_may_resume_after_pass": true,
+ "phase25a_governance_pointer_unchanged": true,
+ "phase25a_canonical_notebook_sha256": "fd2bab0168eb3477125c655ada1bd5eb4b060f41a5b354fdbaaf6fd621dfb2dd",
+ "v1_1_artifacts_preserved": {
+  "phase24_exact_implementation_spec.json": "6b1a71d5e88ce06baa8f200523be32773428417ffd233ff218d7e50b6af271dd",
+  "phase24_architecture_spec.json": "bd5522678571f9b40e3ae887c7fd6c2d7862b3e73152eab1ae7db13cab6c6071",
+  "phase24_router_input_contract.csv": "2aef05c81492e40bcb6e520201ea76cd3d0375406d877352398222f3ba9a335a",
+  "phase24_router_primary_feature_set.csv": "7a030b0f36f2aeef16bc079c8a87d3f88da4a5a628b3c4df434509f1d231947d"
+ },
+ "v1_2_additive_artifacts": [
+  "reports/audits/phase24_router_feature_spec_completion_v1_2.json",
+  "reports/audits/phase24_router_feature_reduction_contract_v1_2.json",
+  "reports/audits/phase24_roi_feature_mapping_contract_v1_2.json",
+  "reports/audits/phase24_scalar_feature_contract_v1_2.json",
+  "reports/audits/phase24_router_feature_dimension_contract_v1_2.json",
+  "reports/tables/phase24_router_primary_feature_set_v1_2.csv",
+  "reports/audits/phase24_v1_2_notebook_addendum.json",
+  "reports/audits/phase24_v1_2_notebook_determinism.json",
+  "notebooks/phasewise/phase_24_architecture_spec/phase24_narrowed_benefit_aware_refinement_spec.ipynb"
+ ],
+ "supervisor_review_reasons": [],
+ "supervisor_rulings_applied": [
+  {
+   "id": "D1",
+   "where": "predicted_roi_area_fraction",
+   "ruling": "redefine as clipped in-canvas area fraction (C3); old formula SUPERSEDED",
+   "artifact": "phase24_predicted_roi_area_fraction_adjudication.json"
+  },
+  {
+   "id": "D2",
+   "where": "router.expected_parameter_count_closed_form",
+   "ruling": "architecture unchanged; 36353 reclassified as historical linear-core count; canonical total trainable = 36801",
+   "artifact": "phase24_router_parameter_count_adjudication.json"
+  }
+ ],
+ "test_reads": 0,
+ "closure_pass_complete": true,
+ "closure_terminal": "PHASE24_V1_2_FULLY_CLOSED__PROJECT_DOCS_AND_PHASEWISE_INDEX_SYNCED__PHASE25B_REENTRY_ELIGIBLE_NOT_STARTED",
+ "notebook_current_sha256": "9d62384e8afa2f35e985eac219711df0334fbfe72c33c0edd29ff3f4897d4027",
+ "notebook_pre_supervisor_closure_sha256": "97f0efd99a9be662b2c5ba2338132b70131e07ddb01eec58eac2b80295adddff",
+ "notebook_closure_section": "Router Feature Specification v1.2 — Supervisor Closure",
+ "phase25b_reentry_eligible": true,
+ "phase25b_resumed": false,
+ "phase25c_started": false,
+ "phase25d_started": false,
+ "method_changed": false,
+ "is_new_method": false,
+ "governance_synced_on": "2026-09-30"
+}

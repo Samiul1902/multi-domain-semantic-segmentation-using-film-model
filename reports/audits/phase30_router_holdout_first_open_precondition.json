@@ -1,0 +1,54 @@
+{
+ "artifact": "phase30_router_holdout_first_open_precondition",
+ "phase": 30,
+ "section": "\u00a73",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_phase30_final_dev_validation_v1_0",
+ "population": "ROUTER_HOLDOUT",
+ "population_n": 875,
+ "state": "RESERVED_UNOPENED",
+ "prior_ROUTER_HOLDOUT_image_reads": 0,
+ "prior_ROUTER_HOLDOUT_GT_reads": 0,
+ "prior_ROUTER_HOLDOUT_model_forwards": 0,
+ "prior_ROUTER_HOLDOUT_outcome_inspections": 0,
+ "prior_ROUTER_HOLDOUT_Dice_reads": 0,
+ "prior_ROUTER_HOLDOUT_DeltaDice_reads": 0,
+ "prior_ROUTER_HOLDOUT_policy_performance_reads": 0,
+ "TEST_reads": 0,
+ "prior_access_discovered": false,
+ "lock_evidence": [
+  {
+   "path": "reports/audits/phase25g_holdout_reservation_for_phase30.json",
+   "sha256": "2935d2dbe00d6658ba52d2bfccd154322145c40e2fbf439b46725cec98b16129",
+   "exists": true
+  },
+  {
+   "path": "reports/audits/phase25g_phase30_holdout_lock_audit.json",
+   "sha256": "3e91d631c21d9288785bb1f3c0d121d56403672d6ad7022a58e2d276134d3824",
+   "exists": true
+  },
+  {
+   "path": "reports/audits/phase26_holdout_lock_audit.json",
+   "sha256": "8fef14e98304dfe2a80bfb6b2e7d5da67db0e2a2d6ddb20cc2f2993703be7df5",
+   "exists": true
+  },
+  {
+   "path": "reports/audits/phase27_holdout_lock.json",
+   "sha256": "222933210d1a8ade39268391048cff8be9cec4f0d472b113918db4150cdc1694",
+   "exists": true
+  },
+  {
+   "path": "reports/audits/phase28_phase30_holdout_lock.json",
+   "sha256": "9faa5f83e0c061e11209a7bce2821a08d7e947cdf543b020c2e39784829c8a77",
+   "exists": true
+  },
+  {
+   "path": "reports/audits/phase29_phase30_holdout_lock_v1_1.json",
+   "sha256": "e4e829c11fde7adb4540387b3f1d5d9191ecec31989d043a2a94d8f13dda4f06",
+   "exists": true
+  }
+ ],
+ "interpretation_rule": "A prior access may never be re-interpreted as harmless after outcomes have been seen; any discovered prior access BLOCKS the specification.",
+ "generated_utc": "2026-10-04T02:46:57+00:00",
+ "all_pass": true
+}

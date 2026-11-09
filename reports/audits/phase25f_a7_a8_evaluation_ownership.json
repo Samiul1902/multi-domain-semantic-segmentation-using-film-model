@@ -1,0 +1,97 @@
+{
+  "classification": "PHASE25F_POST_SAFETY_SPEC_COMPLETENESS_AUDIT",
+  "stage": "A7_A8_EVALUATION_OWNERSHIP",
+  "method": "RA-MedFiLM-BARR",
+  "recovered_definitions": {
+    "A7": {
+      "ablation_plan": "A6 + resource cost",
+      "purpose": "H5 test",
+      "comparator_equivalent": "C8 (LEARNED_GAIN_PLUS_RESOURCE_COST)"
+    },
+    "A8": {
+      "ablation_plan": "A7 + post-safety",
+      "purpose": "H3 test; isolates S_omega",
+      "comparator_equivalent": "C9 (LEARNED_GAIN_PLUS_RESOURCE_COST_PLUS_POST_SAFETY)"
+    },
+    "C9": {
+      "comparator_plan": {
+        "name": "POST_SAFETY",
+        "scope": "Phase25F only; excluded"
+      },
+      "architecture_spec": {
+        "symbol": "S_omega",
+        "role": "quality preservation AFTER refinement",
+        "saves_compute": false,
+        "importance": "This is the component closest to JFS. S_omega must NEVER be presented as the compute-saving mechanism, because JFS already occupies the post-hoc decision.",
+        "deployment_inputs_gt_free": true,
+        "classification": "CONTROLLED_CORE_EXTENSION",
+        "mandatory_ablation": "A7 (router, no post-safety) vs A8 (router + post-safety)",
+        "novelty_claimed": false
+      },
+      "phase25e_scope": "Phase25F only; excluded from Phase25E"
+    },
+    "C11": {
+      "comparator_plan": {
+        "name": "JFS_LIKE_POST_HOC_SELECTOR",
+        "scope": "excluded unless separately authorized"
+      },
+      "status": "excluded unless separately authorized"
+    }
+  },
+  "authoritative_evidence": {
+    "reports/audits/phase24_phase25_module_plan.json": {
+      "sha256": "ef9426a9cff94f2727b84c5c97488e20bf6355764a0c5d1df69851bd728883b8",
+      "25F": {
+        "id": "25F",
+        "name": "Post-refinement preservation selector + fusion",
+        "deliverable": "S_omega + ROI-weighted fusion",
+        "starts_after": [
+          "25A"
+        ]
+      },
+      "25G": {
+        "id": "25G",
+        "name": "Integrated controlled development evaluation / freeze",
+        "deliverable": "comparator + ablation evaluation report and freeze",
+        "starts_after": [
+          "25E",
+          "25F"
+        ]
+      }
+    },
+    "reports/audits/phase25e_phase25f_handoff_schema.json": {
+      "sha256": "406ae9d72d102e542f67b04f6681175f0312bb56e3ee738e55e7fe3b2b234008",
+      "phase25f_scope": [
+        "C9 post-safety (S_omega) comparator",
+        "preservation-aware gating"
+      ]
+    },
+    "reports/audits/phase25e_comparator_direction_contract_v1_0.json": {
+      "sha256": "7652e7bdf65722c0877e17f35e565f0ee809aaff8c99448928372a71f58e2beb",
+      "C9": {
+        "name": "POST_SAFETY",
+        "scope": "Phase25F only; excluded"
+      }
+    },
+    "reports/tables/phase24_ablation_plan.csv": {
+      "sha256": "422967fa3484b19d90bfc3b2146278aa69c6bd7a34e42ae3dbcb43a9ccca9087",
+      "A7": "A6 + resource cost",
+      "A8": "A7 + post-safety"
+    }
+  },
+  "reading_A_25F_constructs_25G_evaluates": {
+    "claim": "The module plan gives 25F the deliverable \"S_omega + ROI-weighted fusion\" and gives 25G the deliverable \"comparator + ablation evaluation report and freeze\", with 25G starting after 25E and 25F. Under this reading Phase25F CONSTRUCTS S_omega and the C9 policy, while the A7-vs-A8 comparative ablation evaluation belongs to Phase25G.",
+    "support": "phase24_phase25_module_plan.json (25F/25G deliverables and starts_after)"
+  },
+  "reading_B_25F_owns_C9_evaluation": {
+    "claim": "The Phase25E->25F handoff schema lists \"C9 post-safety (S_omega) comparator\" under phase25f_scope, and the Phase25E comparator direction contract marks C9 \"Phase25F only\", which could be read as Phase25F owning the C9 comparison.",
+    "support": "phase25e_phase25f_handoff_schema.json; phase25e_comparator_direction_contract_v1_0.json"
+  },
+  "ownership_resolved": false,
+  "ownership_ambiguous": true,
+  "blocking_governance_field": true,
+  "recommended_ruling": "Phase25F constructs S_omega + ROI-weighted fusion and may compute C9 policy artifacts on ROUTER_DEVELOPMENT, but the A7-vs-A8 (C8-vs-C9) comparative ablation evaluation and report are owned by Phase25G per the frozen module plan. A supervisor ruling is required to confirm before any A7/A8 evaluation.",
+  "evaluation_on_router_development_authorized_for_25F": "AMBIGUOUS",
+  "verdict": "BLOCKING_GOVERNANCE_FIELD__A7_A8_OWNERSHIP_AMBIGUOUS",
+  "all_pass": true
+}

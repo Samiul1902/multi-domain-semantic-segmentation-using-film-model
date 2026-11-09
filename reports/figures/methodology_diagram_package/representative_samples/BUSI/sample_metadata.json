@@ -1,0 +1,74 @@
+{
+  "sample_id": "15389cbf2bdf0c79ba7a2646c704cbc2",
+  "domain": "BUSI",
+  "task_id": 1,
+  "category": "NOT_AVAILABLE",
+  "split": "VAL",
+  "source_manifest": "manifests/phase4_v3/val.csv",
+  "new_inference_performed": false,
+  "01_input": {
+    "availability": "AVAILABLE",
+    "kind": "frozen VAL808 raw input",
+    "original_path": "D:\\Softfors\\omni_seg\\data_raw\\BUSI_WHU Breast Cancer Ultrasound Image  Dataset\\BUSI-WHU\\img\\00944.bmp",
+    "size": [
+      433,
+      297
+    ]
+  },
+  "02_ground_truth": {
+    "availability": "AVAILABLE",
+    "kind": "frozen VAL808 raw GT",
+    "original_path": "D:\\Softfors\\omni_seg\\data_raw\\BUSI_WHU Breast Cancer Ultrasound Image  Dataset\\BUSI-WHU\\gt\\00944_anno.bmp",
+    "size": [
+      433,
+      297
+    ]
+  },
+  "03_input_gt_overlay": {
+    "availability": "AVAILABLE",
+    "kind": "DERIVED (input + GT boundary), no model"
+  },
+  "04_global_probability": {
+    "availability": "AVAILABLE",
+    "kind": "EXISTING frozen Phase29 canonical p_global cache (no new inference)",
+    "source": "data_cache/phase29_val808_shared_fixed_g_v1_1_canonical/val808_global_prob_f16.npy",
+    "array_index": 2
+  },
+  "07_final_segmentation": {
+    "availability": "AVAILABLE",
+    "kind": "EXISTING frozen Phase27 final fused probability cache (no new inference)",
+    "source": "data_cache/phase27_barr_preservation_v1_0/phase27_val808_final_prob_f16.npy",
+    "array_index": 2
+  },
+  "05_roi_proposal": {
+    "availability": "AVAILABLE",
+    "kind": "EXISTING frozen GT-free ROI geometry drawn over the input (no new inference)",
+    "source": "data_cache/phase29_val808_shared_fixed_g_v1_1_canonical/val808_roi_geometry.json",
+    "roi_box": [
+      230,
+      100,
+      350,
+      220
+    ],
+    "roi_proposal_threshold": 0.3,
+    "roi_fractional_margin": 0.25
+  },
+  "06_regional_refinement": {
+    "availability": "NOT_AVAILABLE_WITHOUT_NEW_MODEL_EXECUTION",
+    "reason": "No frozen per-sample refined-probability image cache exists; rendering would require a new R_psi forward."
+  },
+  "why_selected": "Ordinary median-index VAL808 sample for this domain; NOT a best-result/cherry-picked case. KUB picks a Kidney_Stone row near the domain median (subgroup is reporting metadata only).",
+  "input_is": "raw VAL808 input image",
+  "gt_is": "raw VAL808 ground-truth mask (binarized for overlay)",
+  "cache_or_existing_output": true,
+  "frozen_clean_reference": {
+    "source": "reports/tables/phase27_val808_per_sample_scores.csv",
+    "state_machine_branch": "SKIP_GLOBAL",
+    "router_decision": "SKIP",
+    "global_dice": 0.9015384615401446,
+    "final_dice": 0.9015384615401446,
+    "delta_dice": 0.0,
+    "note": "Clean-reference state from the frozen Phase27 VAL808 authority. Used only to explain why 04 and 07 may coincide (SKIP_GLOBAL => final = global). NOT a selection criterion."
+  },
+  "panels_note": "04 and 07 are byte-identical for SKIP_GLOBAL samples because the final output equals the global probability; that is the frozen behaviour, not a rendering error."
+}

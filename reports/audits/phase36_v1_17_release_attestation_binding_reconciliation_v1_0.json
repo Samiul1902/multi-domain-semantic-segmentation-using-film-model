@@ -1,0 +1,32 @@
+{
+ "artifact": "phase36_v1_17_release_attestation_binding_reconciliation_v1_0",
+ "phase": 36,
+ "revision": "ra_medfilm_barr_phase36_robustness_v1_17",
+ "type": "ADDITIVE_RECONCILIATION",
+ "amends": "reports/audits/phase36_v1_17_science_release_attestation.json",
+ "amends_sha256": "4a23f9df0663133f6be75563ccc92933f7408e519fba09e84205a3bd96fbd90b",
+ "supersedes": null,
+ "frozen_original_modified": false,
+ "delete_or_recreate_performed": false,
+ "reason": "The frozen release attestation was written BEFORE the runtime manifest and the D81-D83 adjudication existed, so its launcher_sha256 / supervisor_sha256 / runtime_manifest_sha256 / d81_d83_adjudication_sha256 fields are null (deferred binding).  WO#17D §6 requires the attestation to bind the runtime-manifest SHA.  Per §8, the frozen artifact is NOT overwritten; this additive reconciliation supplies the deferred bindings.",
+ "deferred_bindings_supplied": {
+  "launcher_sha256": "11d88feec5b47802165ee9b873c6042e8b60a49f4e183034ef66eec769d2148b",
+  "supervisor_sha256": "88852d3341feffba3ce687169f0dcf1df89366a16a7412c12140a48c8f457eb5",
+  "runtime_manifest_sha256": "729f3676c86ba687bf808f9d79bac38916252563fc4b5814dd75d3d3f6b2bfc9",
+  "d81_d83_adjudication_sha256": "5af29e216d754be306719dbcafa125bada93bed6c5173a6765a7bcf5b1a2ca7b",
+  "execution_source_sha256": "81d78460b2f20f176bc697cba662c43bc7c7443ea555ba95a30609faf0ccbe31",
+  "smoke_artifact_sha256": "53543729fb0c48695c2af202c5f3d2f5ebdfc29d87c7a7f100bcde9f94882441"
+ },
+ "frozen_attestation_null_fields": {
+  "launcher_sha256": null,
+  "supervisor_sha256": null,
+  "runtime_manifest_sha256": null,
+  "d81_d83_adjudication_sha256": null
+ },
+ "release_state": "RELEASED",
+ "scientific_semantics_effect": "NONE",
+ "runtime_semantics_effect": "NONE",
+ "governance_provenance_effect": "YES",
+ "model_free": true,
+ "generated_utc": "2026-10-10T13:57:20Z"
+}

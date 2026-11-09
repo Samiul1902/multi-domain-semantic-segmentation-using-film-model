@@ -1,0 +1,54 @@
+{
+  "classification": "PHASE39_V1_1_FEATURE_DIM_AUTHORITY_BINDING",
+  "generated_utc": "2026-10-11T07:30:00Z",
+  "phase": 39,
+  "defect_id": "D98",
+  "authoritative_source": "scripts/analysis/phase25f_execution_common.py",
+  "authoritative_source_sha256": "98cf958a377e2de30e0b67e63fd56bafea418b2b061a362ee7284e852012cd2e",
+  "definition": "FEATURE_DIM = 20",
+  "definition_line": 56,
+  "value": 20,
+  "companion_constants": {
+    "HIDDEN": "(32, 16)",
+    "HIDDEN_line": 59,
+    "NUMERIC_IDX": "list(range(0,16))",
+    "ONEHOT_IDX": "list(range(16,20))",
+    "EXPECTED_PARAMS": 1217
+  },
+  "consumers": [
+    {
+      "consumer": "BARRPostSafetyV1.__init__",
+      "source": "scripts/analysis/phase25f_execution_common.py",
+      "line": 154,
+      "expression": "self.fc1 = nn.Linear(FEATURE_DIM, HIDDEN[0])"
+    }
+  ],
+  "architectural_semantics": "Linear(20,32) -> SiLU -> Linear(32,16) -> SiLU -> Linear(16,1)",
+  "parameter_count_proof": {
+    "fc1": 672,
+    "fc2": 528,
+    "fc3": 17,
+    "total": 1217,
+    "expected": 1217
+  },
+  "corroborating_authorities": [
+    {
+      "path": "scripts/analysis/phase25f_spec_repair_common.py",
+      "line": 91,
+      "value": 20
+    },
+    {
+      "path": "scripts/analysis/phase29_train_somega.py",
+      "line": 45,
+      "value": 20
+    },
+    {
+      "path": "scripts/analysis/phase36_robustness_execution_v1_23.py",
+      "line": 421,
+      "note": "FEATURE_DIM = 20 = NUMERIC_IDX [0..15] (16 numeric, post _apply_norm)"
+    }
+  ],
+  "restoring_resolution_changes_no_model_semantics": true,
+  "strict_load_identity_preserved": true,
+  "proved_by": "reports/audits/phase39_v1_1_model_load_regression_report.json (S_omega param_count==1217, zero missing/unexpected keys)"
+}

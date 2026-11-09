@@ -1,0 +1,54 @@
+{
+ "artifact": "phase36_v1_21_adjudication_d85_d86_d87_d88",
+ "phase": 36,
+ "revision": "ra_medfilm_barr_phase36_robustness_v1_21",
+ "type": "GOVERNANCE_ADJUDICATION_CARRY_FORWARD",
+ "mode": "STATIC_NON_CONSUMING",
+ "generated_utc": "2026-10-11T00:00:00Z",
+ "supersedes_revision": "v1.20",
+ "carried_from": {
+  "path": "reports/audits/phase36_v1_20_adjudication_d85_d86_d87_d88.json",
+  "sha256": "689cebadcc7d7187d86b487d18947267584c26c334aeb926d4d4386c676eb0ab"
+ },
+ "note": "v1.21 CARRIES FORWARD the frozen v1.20 D85/D86/D87/D88/D92/D93A adjudication UNCHANGED and ADDS the D95 supervisor interruption-safety reconciliation. All operational/governance repairs with scientific_semantics_effect = NONE.",
+ "D85": {
+  "id": "V1_17_SUPERVISOR_LAUNCHER_SHA_PIN_MUTABLE_OR_ENV_OVERRIDABLE",
+  "status": "RECONCILED"
+ },
+ "D86": {
+  "id": "V1_17_SUPERVISOR_STDOUT_STDERR_NOT_EXCLUSIVE_CREATE",
+  "status": "RECONCILED"
+ },
+ "D87": {
+  "id": "V1_17_PREINVOCATION_AUTHORITY_DOES_NOT_BIND_FINAL_GOVERNANCE_CHAIN",
+  "status": "RECONCILED"
+ },
+ "D88": {
+  "id": "V1_17_REAL_LAUNCH_DOES_NOT_RECHECK_COMPLETE_OUTPUT_ABSENCE__FIGURE_WRITES_NOT_FAIL_CLOSED",
+  "status": "RECONCILED"
+ },
+ "D92": {
+  "id": "V1_18_REAL_EXECUTION_OUTPUT_ABSENCE_GATE_REFERENCES_UNDEFINED_JOURNAL_SYMBOL",
+  "status": "RECONCILED"
+ },
+ "D93A": {
+  "id": "V1_19_JOURNAL_RECORD_REFERENCES_UNDEFINED_WRITE_ONCE_JSON_SYMBOL",
+  "status": "RECONCILED",
+  "repaired_in": "v1.20",
+  "scientific_semantics_effect": "NONE",
+  "v1_19_consumed_attempt": "CONSUMED_POST_START_PRE_MODEL_FAILURE"
+ },
+ "D95": {
+  "id": "V1_20_SUPERVISOR_RETURNS_ZERO_ON_UNOBSERVED_CHILD_TERMINATION",
+  "status": "RECONCILED",
+  "repaired_in": "v1.21",
+  "scope": "SUPERVISOR_ONLY",
+  "repair": "(a) KeyboardInterrupt and ANY supervisor BaseException can NEVER return rc 0; (b) an unobserved child termination deterministically terminates/waits for the launcher child process tree and records cleanup evidence; (c) PROCESS_EXIT distinguishes NORMAL_CHILD_COMPLETION / SUPERVISOR_INTERRUPTION / SUPERVISOR_INTERNAL_EXCEPTION; (d) single dispatch, no retry, no relaunch, never writes a scientific marker.",
+  "scientific_semantics_effect": "NONE",
+  "governance_effect": "YES",
+  "v1_20_consumed_attempt": "CONSUMED_INTERRUPTED_POST_START_PRE_SCIENTIFIC_RESULT"
+ },
+ "all_defects_reconciled": true,
+ "scientific_semantics_effect_total": "NONE",
+ "terminal": "PHASE36_V1_21_D85_D88_D92_D93A_D95_ADJUDICATION_WRITTEN"
+}

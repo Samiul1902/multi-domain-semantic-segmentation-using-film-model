@@ -1,0 +1,401 @@
+{
+ "artifact": "phase36_v1_14_post_smoke_adjudication",
+ "phase": 36,
+ "revision": "ra_medfilm_barr_phase36_robustness_v1_14",
+ "type": "POST_SMOKE_RELEASE_ADJUDICATION",
+ "generated_utc": "2026-10-06T17:32:52Z",
+ "adjudicator": "independent_read_only_post_smoke_adjudication",
+ "consumed_inputs": {
+  "smoke_start_marker": "reports/audits/phase36_robustness_smoke_start_v1_14.json",
+  "smoke_start_marker_sha256": "e7c685e37eb23de0105b6d487be88437cf60c4c3ffc970668207db120cfbfca1",
+  "smoke_result": "reports/audits/phase36_robustness_smoke_v1_14.json",
+  "smoke_result_sha256": "53543729fb0c48695c2af202c5f3d2f5ebdfc29d87c7a7f100bcde9f94882441",
+  "execution_source": "scripts/analysis/phase36_robustness_execution_v1_14.py",
+  "execution_source_sha256": "ac09ff8ded3610244920e66612145b246b33127140d344a9730d454bab27cff5"
+ },
+ "byte_verification": {
+  "execution_source_sha_matches_frozen": true,
+  "smoke_start_present": true,
+  "smoke_result_present": true,
+  "failure_artifact_absent": true
+ },
+ "smoke_success_verified": {
+  "smoke_all_pass": true,
+  "n_smoke_checks": 53,
+  "n_smoke_checks_true": 53,
+  "failed_smoke_checks": [],
+  "automatic_retry": false,
+  "first_write_once": true
+ },
+ "science_release_eligibility": {
+  "attestation_written_by_this_step": false,
+  "attestation_eligible": true,
+  "release_gate_literal_required": "POST_SMOKE_RELEASE_ADJUDICATION",
+  "required_attestation_fields": [
+   "revision",
+   "execution_source_sha256",
+   "smoke_artifact_sha256",
+   "smoke_all_pass",
+   "scientific_output",
+   "release_gate"
+  ]
+ },
+ "facts": [
+  {
+   "fact": "execution_source_sha_matches_frozen",
+   "pass": true,
+   "detail": "ac09ff8ded3610244920e66612145b246b33127140d344a9730d454bab27cff5"
+  },
+  {
+   "fact": "start_artifact_kind",
+   "pass": true,
+   "detail": "SMOKE_START_MARKER"
+  },
+  {
+   "fact": "start_attempted_true",
+   "pass": true,
+   "detail": true
+  },
+  {
+   "fact": "start_authorized_attempt_true",
+   "pass": true,
+   "detail": true
+  },
+  {
+   "fact": "start_gate_authorized_before_marker_true",
+   "pass": true,
+   "detail": true
+  },
+  {
+   "fact": "start_automatic_retry_false",
+   "pass": true,
+   "detail": false
+  },
+  {
+   "fact": "start_overwrite_permitted_false",
+   "pass": true,
+   "detail": false
+  },
+  {
+   "fact": "start_source_sha256_matches_exec",
+   "pass": true,
+   "detail": "ac09ff8ded3610244920e66612145b246b33127140d344a9730d454bab27cff5"
+  },
+  {
+   "fact": "start_scientific_output_false",
+   "pass": true,
+   "detail": false
+  },
+  {
+   "fact": "start_synthetic_only_true",
+   "pass": true,
+   "detail": true
+  },
+  {
+   "fact": "result_mode_smoke",
+   "pass": true,
+   "detail": "smoke"
+  },
+  {
+   "fact": "result_classification",
+   "pass": true,
+   "detail": "PRE_SCIENTIFIC_SYNTHETIC_FULL_PIPELINE_ROBUSTNESS_VALIDATION"
+  },
+  {
+   "fact": "result_synthetic_only_true",
+   "pass": true,
+   "detail": true
+  },
+  {
+   "fact": "result_scientific_output_false",
+   "pass": true,
+   "detail": false
+  },
+  {
+   "fact": "result_not_phase36_scientific_result_true",
+   "pass": true,
+   "detail": true
+  },
+  {
+   "fact": "result_four_real_components_loaded_true",
+   "pass": true,
+   "detail": true
+  },
+  {
+   "fact": "result_source_sha256_matches_exec",
+   "pass": true,
+   "detail": "ac09ff8ded3610244920e66612145b246b33127140d344a9730d454bab27cff5"
+  },
+  {
+   "fact": "result_smoke_all_pass_true",
+   "pass": true,
+   "detail": true
+  },
+  {
+   "fact": "result_n_smoke_checks_53",
+   "pass": true,
+   "detail": 53
+  },
+  {
+   "fact": "result_failed_smoke_checks_empty",
+   "pass": true,
+   "detail": []
+  },
+  {
+   "fact": "contract_ids_count_53",
+   "pass": true,
+   "detail": 53
+  },
+  {
+   "fact": "contract_ids_unique",
+   "pass": true,
+   "detail": 53
+  },
+  {
+   "fact": "contract_n_checks_53",
+   "pass": true,
+   "detail": 53
+  },
+  {
+   "fact": "checks_keyset_equals_ids",
+   "pass": true,
+   "detail": {
+    "checks": 53,
+    "ids": 53
+   }
+  },
+  {
+   "fact": "all_53_checks_true",
+   "pass": true,
+   "detail": []
+  },
+  {
+   "fact": "contract_automatic_retry_false",
+   "pass": true,
+   "detail": false
+  },
+  {
+   "fact": "four_component_checkpoint_loads_strict",
+   "pass": true,
+   "detail": true
+  },
+  {
+   "fact": "four_checkpoint_sha_matches_frozen",
+   "pass": true,
+   "detail": true
+  },
+  {
+   "fact": "four_parameter_counts_exact",
+   "pass": true,
+   "detail": {
+    "G": 3523001,
+    "R_psi": 1276401,
+    "B_phi": 36801,
+    "S_omega": 1217
+   }
+  },
+  {
+   "fact": "all_component_weights_finite",
+   "pass": true,
+   "detail": true
+  },
+  {
+   "fact": "device_contract_cuda0",
+   "pass": true,
+   "detail": "cuda:0"
+  },
+  {
+   "fact": "device_no_cpu_fallback",
+   "pass": true,
+   "detail": false
+  },
+  {
+   "fact": "all_four_on_canonical_device",
+   "pass": true,
+   "detail": {
+    "G": "cuda:0",
+    "R_psi": "cuda:0",
+    "B_phi": "cuda:0",
+    "S_omega": "cuda:0"
+   }
+  },
+  {
+   "fact": "probe_router_vector_dim_202",
+   "pass": true,
+   "detail": 202
+  },
+  {
+   "fact": "probe_post_safety_feature_dim_16",
+   "pass": true,
+   "detail": 16
+  },
+  {
+   "fact": "probe_final_s_omega_input_dim_20",
+   "pass": true,
+   "detail": 20
+  },
+  {
+   "fact": "probe_real_R_psi_forward_1",
+   "pass": true,
+   "detail": 1
+  },
+  {
+   "fact": "probe_real_S_omega_forward_1",
+   "pass": true,
+   "detail": 1
+  },
+  {
+   "fact": "probe_final_probability_finite",
+   "pass": true,
+   "detail": true
+  },
+  {
+   "fact": "probe_final_probability_shape_512",
+   "pass": true,
+   "detail": [
+    512,
+    512
+   ]
+  },
+  {
+   "fact": "probe_s_omega_prob_in_unit_interval",
+   "pass": true,
+   "detail": 0.521658182144165
+  },
+  {
+   "fact": "probe_refined_output_shape_256",
+   "pass": true,
+   "detail": [
+    256,
+    256
+   ]
+  },
+  {
+   "fact": "proposal_real_B_phi_forward_proven",
+   "pass": true,
+   "detail": true
+  },
+  {
+   "fact": "proposal_router_vector_dim_202",
+   "pass": true,
+   "detail": 202
+  },
+  {
+   "fact": "proposal_final_probability_finite",
+   "pass": true,
+   "detail": true
+  },
+  {
+   "fact": "state_machine_all_pass",
+   "pass": true,
+   "detail": true
+  },
+  {
+   "fact": "state_machine_three_branches_covered",
+   "pass": true,
+   "detail": [
+    "EXECUTE_THEN_ACCEPT",
+    "EXECUTE_THEN_REJECT",
+    "SKIP_GLOBAL"
+   ]
+  },
+  {
+   "fact": "state_machine_controls_not_scientific",
+   "pass": true,
+   "detail": {
+    "controls": true,
+    "tests": true
+   }
+  },
+  {
+   "fact": "empty_proposal_adapter_called",
+   "pass": true,
+   "detail": true
+  },
+  {
+   "fact": "empty_proposal_R_psi_zero",
+   "pass": true,
+   "detail": 0
+  },
+  {
+   "fact": "empty_proposal_S_omega_zero",
+   "pass": true,
+   "detail": 0
+  },
+  {
+   "fact": "empty_proposal_no_replacement_geometry",
+   "pass": true,
+   "detail": "NOT_APPLICABLE_EMPTY_PROPOSAL"
+  },
+  {
+   "fact": "hd95_nonempty_valid_20px",
+   "pass": true,
+   "detail": {
+    "hd95": 20.0,
+    "valid": true
+   }
+  },
+  {
+   "fact": "hd95_empty_case_invalid_empty_prediction",
+   "pass": true,
+   "detail": {
+    "valid": false,
+    "reason": "empty_prediction"
+   }
+  },
+  {
+   "fact": "metric_empty_empty_exact_one",
+   "pass": true,
+   "detail": {
+    "dice": 1.0,
+    "iou": 1.0
+   }
+  },
+  {
+   "fact": "prediction_consistency_finite",
+   "pass": true,
+   "detail": 0.9025000000001219
+  },
+  {
+   "fact": "protected_test_holdout_runtime_io_statically_unreachable",
+   "pass": true,
+   "detail": true
+  },
+  {
+   "fact": "determinism_same_inputs_identical",
+   "pass": true,
+   "detail": true
+  },
+  {
+   "fact": "clean_bitwise_identity",
+   "pass": true,
+   "detail": true
+  },
+  {
+   "fact": "write_semantics_write_once",
+   "pass": true,
+   "detail": "open(x) (exclusive-create, write-once)"
+  },
+  {
+   "fact": "smoke_attempt_is_first_write_once",
+   "pass": true,
+   "detail": true
+  },
+  {
+   "fact": "no_failure_artifact_present",
+   "pass": true,
+   "detail": true
+  }
+ ],
+ "n_facts": 62,
+ "n_facts_pass": 62,
+ "n_facts_fail": 0,
+ "failed_facts": [],
+ "adjudication_result": "PASS",
+ "all_facts_pass": true,
+ "scientific_output_produced": false,
+ "smoke_rerun": false,
+ "science_executed": false,
+ "test_or_router_holdout_accessed": false,
+ "terminal": "PHASE36_V1_14_POST_SMOKE_ADJUDICATION_PASS__SCIENCE_RELEASE_ATTESTATION_ELIGIBLE_NOT_EXECUTED"
+}

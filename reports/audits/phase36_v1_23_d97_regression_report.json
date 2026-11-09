@@ -1,0 +1,288 @@
+{
+ "artifact": "phase36_v1_23_d97_regression_report",
+ "phase": 36,
+ "revision": "ra_medfilm_barr_phase36_robustness_v1_23",
+ "type": "D97_PRE_EXECUTION_REGRESSION_REPORT",
+ "mode": "PRE_EXECUTION_VERIFY_ONLY__NON_CONSUMING",
+ "generated_utc": "2026-10-11T00:00:00Z",
+ "defect": "D97_V1_22_SUMMARY_REFERENCES_UNDEFINED_COMMON_BEST_SEED_SELECTION",
+ "execution_source": "scripts/analysis/phase36_robustness_execution_v1_23.py",
+ "execution_source_sha256": "2287cc78ba60d715ff371ba58f0ea90f772219b510e198bea6053a7043159396",
+ "frozen_v1_22_sha256": "29d29da8a9514db464f2db45f06a1ccaabf65aa302c18cd53bbb7419e2fbbd2b",
+ "checks": {
+  "A_c_attribute_audit": {
+   "execution_source": "scripts/analysis/phase36_robustness_execution_v1_23.py",
+   "execution_source_sha256": "2287cc78ba60d715ff371ba58f0ea90f772219b510e198bea6053a7043159396",
+   "frozen_sha256_match": true,
+   "common_module": "scripts/analysis/phase36_robustness_common_v1_1.py",
+   "n_c_attribute_references": 18,
+   "c_attribute_references": [
+    "CLEAN_REFERENCE",
+    "COUNTERS_FOREVER_ZERO",
+    "COUNTERS_REQUIRED",
+    "EMPTY_PROPOSAL_HANDLING",
+    "EVIDENCE_CLASS",
+    "FIGURES",
+    "IMAGE_CONDITIONS",
+    "MODES",
+    "NOISE_BASE_SEEDS",
+    "POPULATION_N",
+    "VAL_MANIFEST",
+    "VAL_MANIFEST_SHA",
+    "apply_gaussian_noise",
+    "apply_image_condition",
+    "apply_proposal_condition",
+    "derive_noise_seed",
+    "image_condition_ids",
+    "seed_conversion_audit"
+   ],
+   "n_common_v1_1_exports": 61,
+   "missing_attributes": [],
+   "pass": true,
+   "fail_closed_if_any_missing": true
+  },
+  "B_d97_mutation_control": {
+   "description": "The EXACT old v1.22 mutations must be flagged as invalid against the current common module.",
+   "mutations": {
+    "C.BEST_SEED_SELECTION__exact_v1_22_mutation": {
+     "references": [
+      "BEST_SEED_SELECTION",
+      "CLEAN_REFERENCE",
+      "COUNTERS_FOREVER_ZERO",
+      "COUNTERS_REQUIRED",
+      "EMPTY_PROPOSAL_HANDLING",
+      "EVIDENCE_CLASS",
+      "FIGURES",
+      "IMAGE_CONDITIONS",
+      "MODES",
+      "NOISE_BASE_SEEDS",
+      "POPULATION_N",
+      "VAL_MANIFEST",
+      "VAL_MANIFEST_SHA",
+      "apply_gaussian_noise",
+      "apply_image_condition",
+      "apply_proposal_condition",
+      "derive_noise_seed",
+      "image_condition_ids",
+      "seed_conversion_audit"
+     ],
+     "missing": [
+      "BEST_SEED_SELECTION"
+     ],
+     "pass": false
+    },
+    "C.KUB_REPORTING_ONLY__exact_v1_22_mutation": {
+     "references": [
+      "CLEAN_REFERENCE",
+      "COUNTERS_FOREVER_ZERO",
+      "COUNTERS_REQUIRED",
+      "EMPTY_PROPOSAL_HANDLING",
+      "EVIDENCE_CLASS",
+      "FIGURES",
+      "IMAGE_CONDITIONS",
+      "KUB_REPORTING_ONLY",
+      "MODES",
+      "NOISE_BASE_SEEDS",
+      "POPULATION_N",
+      "VAL_MANIFEST",
+      "VAL_MANIFEST_SHA",
+      "apply_gaussian_noise",
+      "apply_image_condition",
+      "apply_proposal_condition",
+      "derive_noise_seed",
+      "image_condition_ids",
+      "seed_conversion_audit"
+     ],
+     "missing": [
+      "KUB_REPORTING_ONLY"
+     ],
+     "pass": false
+    },
+    "C.POPULATION_N_UNDEFINED_XYZ__generic_guard": {
+     "references": [
+      "CLEAN_REFERENCE",
+      "COUNTERS_FOREVER_ZERO",
+      "COUNTERS_REQUIRED",
+      "EMPTY_PROPOSAL_HANDLING",
+      "EVIDENCE_CLASS",
+      "FIGURES",
+      "IMAGE_CONDITIONS",
+      "MODES",
+      "NOISE_BASE_SEEDS",
+      "POPULATION_N",
+      "POPULATION_N_UNDEFINED_XYZ",
+      "VAL_MANIFEST",
+      "VAL_MANIFEST_SHA",
+      "apply_gaussian_noise",
+      "apply_image_condition",
+      "apply_proposal_condition",
+      "derive_noise_seed",
+      "image_condition_ids",
+      "seed_conversion_audit"
+     ],
+     "missing": [
+      "POPULATION_N_UNDEFINED_XYZ"
+     ],
+     "pass": false
+    }
+   },
+   "all_mutations_caught": true,
+   "pass": true
+  },
+  "C_d97_dynamic_regression": {
+   "late_path_functions_executed": [
+    "generate_all_figures",
+    "kub_subgroup_robustness",
+    "summarize_execution_rate",
+    "summarize_image_by_domain_condition",
+    "summarize_image_per_sample",
+    "summarize_noise_seed",
+    "summarize_proposal_by_domain_condition",
+    "summarize_proposal_per_sample",
+    "summarize_route_stability",
+    "worst_case_by_domain",
+    "worst_case_per_sample"
+   ],
+   "n_late_path_functions": 11,
+   "expected_late_path_functions": [
+    "summarize_image_per_sample",
+    "summarize_image_by_domain_condition",
+    "summarize_noise_seed",
+    "summarize_proposal_per_sample",
+    "summarize_proposal_by_domain_condition",
+    "summarize_route_stability",
+    "summarize_execution_rate",
+    "worst_case_per_sample",
+    "worst_case_by_domain",
+    "kub_subgroup_robustness",
+    "generate_all_figures"
+   ],
+   "dynamic_errors": [],
+   "summarize_noise_seed": {
+    "executed_without_attribute_error": true,
+    "rows_contain_best_seed_selection": true,
+    "best_seed_selection_values": [
+     false
+    ],
+    "frozen_authority_module": "scripts/analysis/phase36_robustness_common_v1_0.py",
+    "frozen_authority_line": 282,
+    "frozen_authority_value": false,
+    "value_matches_frozen_authority": true,
+    "multi_seed_aggregation": {
+     "n_prescribed_seeds_exercised": 3,
+     "prescribed_base_seeds": [
+      42,
+      123,
+      3407
+     ],
+     "per_seed_paired_delta_dice": [
+      -0.1499999999999999,
+      -0.1399999999999999,
+      -0.10999999999999999
+     ],
+     "mean_across_all_seeds": -0.13333333333333328,
+     "reported_mean_across_seeds_of_sample_means": -0.13333333333333328,
+     "reported_equals_any_single_seed_delta": false,
+     "best_seed_selected": false
+    },
+    "multiple_prescribed_seeds_aggregated": true,
+    "no_best_or_outcome_seed_selected": true
+   },
+   "kub_subgroup_robustness": {
+    "executed": true,
+    "reporting_only": true,
+    "pass": true
+   },
+   "generate_all_figures": {
+    "executed": true,
+    "n_figures": 5,
+    "new_figure_selection": false,
+    "pass": true
+   },
+   "isolation": {
+    "model_construction_required": false,
+    "torch_imported": false,
+    "load_models_called": false,
+    "run_science_called": false,
+    "main_called": false,
+    "TEST_accessed": false,
+    "ROUTER_HOLDOUT_accessed": false,
+    "test_holdout_paths_opened": [],
+    "non_temp_non_source_opens": [
+     "D:\\Softfors\\jup\\manifests\\phase4_v3\\val.csv"
+    ],
+    "only_frozen_val_manifest_read": true,
+    "real_v1_23_write_targets_consumed": [],
+    "scientific_output_targets_consumed": false,
+    "writes_redirected_to_temp": "C:\\Users\\user\\AppData\\Local\\Temp\\p36_v1_23_d97_reg_ishldw8_"
+   },
+   "pass": true
+  },
+  "D_late_path_static_audit": {
+   "functions_audited": [
+    "summarize_image_per_sample",
+    "summarize_image_by_domain_condition",
+    "summarize_noise_seed",
+    "summarize_proposal_per_sample",
+    "summarize_proposal_by_domain_condition",
+    "summarize_route_stability",
+    "summarize_execution_rate",
+    "worst_case_per_sample",
+    "worst_case_by_domain",
+    "kub_subgroup_robustness",
+    "generate_all_figures"
+   ],
+   "stale_v1_22_identifier_tokens": [],
+   "write_call_targets_outside_tab_fig": [],
+   "scientific_write_namespaces_v1_23": true,
+   "n_reachable_write_targets": 23,
+   "all_reachable_write_targets_unique": true,
+   "writer_exclusive_create_and_parent_mkdir": {
+    "_write_csv": {
+     "exclusive_create": true,
+     "refuses_existing": true,
+     "mkdir_parents": true
+    },
+    "_savefig_once": {
+     "exclusive_create": true,
+     "refuses_existing": true,
+     "mkdir_parents": true
+    },
+    "_write_science_success_artifact": {
+     "exclusive_create": true,
+     "refuses_existing": false,
+     "mkdir_parents": true
+    },
+    "_write_science_failure_artifact": {
+     "exclusive_create": true,
+     "refuses_existing": false,
+     "mkdir_parents": true
+    }
+   },
+   "writer_semantics_ok": true,
+   "late_path_undefined_globals": {
+    "summarize_image_per_sample": [],
+    "summarize_image_by_domain_condition": [],
+    "summarize_noise_seed": [],
+    "summarize_proposal_per_sample": [],
+    "summarize_proposal_by_domain_condition": [],
+    "summarize_route_stability": [],
+    "summarize_execution_rate": [],
+    "worst_case_per_sample": [],
+    "worst_case_by_domain": [],
+    "kub_subgroup_robustness": [],
+    "generate_all_figures": []
+   },
+   "late_path_undefined_globals_present": false,
+   "stale_v1_xx_function_names": [],
+   "pass": true
+  }
+ },
+ "all_pass": true,
+ "science_executed": false,
+ "TEST_accessed": false,
+ "ROUTER_HOLDOUT_accessed": false,
+ "model_construction_required": false,
+ "scientific_output_targets_consumed": false,
+ "terminal": "PHASE36_V1_23_D97_REGRESSION_PASS"
+}

@@ -1,0 +1,71 @@
+{
+  "phase": "9-R3 - Notebook Completeness and Traceability Patch",
+  "status": "PASS",
+  "scope": "presentation_and_audit_only",
+  "notebook": {
+    "path": "notebooks/07_kub_unet_baseline_training.ipynb",
+    "restart_run_all": "PASS",
+    "retraining_triggered": false,
+    "errors": 0,
+    "sha256": "a0f522b0392ff5ed867dbc7e5319b5939250de9481c46c5447c6f1c64a0e5d25",
+    "learning_rate_curve_inline": true,
+    "learning_rate_source": "reports/figures/phase9_unet_baseline/phase9_unet_lr_curve.png"
+  },
+  "full_field_component_analysis": {
+    "grouping_source": "reports/tables/phase9_unet_val_per_image.csv component_count (original-space component metadata)",
+    "object_detection_source": "reports/tables/phase9_unet_val_per_component.csv",
+    "single_component": {
+      "n_images": 56,
+      "macro_dice": 0.605988733165677,
+      "gt_components": 56,
+      "detected_components": 46,
+      "object_recall": 0.8214285714285714,
+      "missed_object_rate": 0.17857142857142858
+    },
+    "multi_component": {
+      "n_images": 50,
+      "macro_dice": 0.620884684556593,
+      "gt_components": 100,
+      "detected_components": 79,
+      "object_recall": 0.79,
+      "missed_object_rate": 0.21
+    }
+  },
+  "qualitative_panel": {
+    "same_deterministic_samples": true,
+    "sample_ids": [
+      "14d07b995aba3f2559d9a474c586495c",
+      "15c6b69254f60701d181da403d8c2906",
+      "692a2b7bb79dcd6d92552d53efe32031",
+      "608acc38d4a151803e72f2f033ade67e",
+      "32ad57d52f8e35a81f534efc2e2358db"
+    ],
+    "labels_include": ["sample_id", "category", "FOV", "Dice", "IoU"],
+    "versioned_stem": "reports/qualitative/phase9_unet_baseline/phase9_val_qualitative_panel_r3"
+  },
+  "failure_panel": {
+    "same_deterministic_samples": true,
+    "sample_ids": [
+      "14d07b995aba3f2559d9a474c586495c",
+      "501570377c27ca3a1b04f8e78ebbaa45",
+      "b2808e41b8867a697246a3f07d56ccf6",
+      "b9c83c40ec013198ea1355ef26cd6bdb"
+    ],
+    "labels_include": ["sample_id", "category", "FOV", "Dice", "IoU"],
+    "versioned_stem": "reports/qualitative/phase9_unet_baseline/phase9_val_failure_panel_r3"
+  },
+  "per_component_row_audit": {
+    "csv_rows": 333,
+    "object_summary_gt_components": 332,
+    "scientifically_consistent": true,
+    "explanation": "The per-component CSV represents original-space GT components; the object summary represents connected components after 512x512 aspect-ratio resize and symmetric padding. Sample 32c06da36a7221dc5369e3ee4723c10c has two original FULL_FIELD components (1145 and 1047 pixels) that become touching and merge into one component after nearest-neighbor downsampling. This accounts for exactly one additional original-component CSV row. There are no prediction-only rows."
+  },
+  "authoritative_phase9_macro_dice": 0.7455439340960021,
+  "phase9_metrics_changed": false,
+  "source_tables_modified": false,
+  "retraining": false,
+  "test_accessed": false,
+  "external_data_accessed": false,
+  "experiment_a_modified": false,
+  "phase_10_executed": false
+}

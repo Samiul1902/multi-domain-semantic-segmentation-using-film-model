@@ -1,0 +1,69 @@
+{
+  "status": "PASS",
+  "experiment_id": "phase14_diag_regional_unet_oracletrain_a3_seed42_v1",
+  "phase": "14 - Regional Refiner Diagnostic",
+  "part": "2 - Single Frozen Regional-Refiner Training Run",
+  "training_executed": true,
+  "power_interruption": true,
+  "resumed_from_epoch": 25,
+  "first_new_epoch": 26,
+  "optimizer_steps": 18241,
+  "environment": {
+    "python_executable": "D:\\Softfors\\jup\\.venv\\Scripts\\python.exe",
+    "python_version": "3.11.9",
+    "pytorch_version": "2.6.0+cu124",
+    "torch_cuda": "12.4",
+    "cuda_available": true,
+    "gpu_name": "NVIDIA GeForce RTX 3060 Ti"
+  },
+  "scheduler": {
+    "scheduler": "CosineAnnealingLR",
+    "source": "reports/audits/phase14_diagnostic_protocol_amendment.json and configs/research_protocol.json",
+    "step_semantics": "CosineAnnealingLR(optimizer, T_max=100) stepped once per epoch after validation"
+  },
+  "training_data": {
+    "train_images": 771,
+    "train_components": 1162,
+    "base_positives": 1162,
+    "perturbed_positives": 2324,
+    "background_negatives": 1542,
+    "total_examples_per_epoch": 5028,
+    "negative_contamination": 0
+  },
+  "validation_data": {
+    "val_images": 106,
+    "val_components": 156,
+    "checkpoint_metric": "best_val_crop_dice on Oracle FULL_FIELD VAL crops",
+    "empty_oracle_crops": 0
+  },
+  "model": {
+    "architecture": "UNet",
+    "in_channels": 1,
+    "out_channels": 1,
+    "base_channels": 32,
+    "params": 7762465,
+    "resolution": [
+      256,
+      256
+    ]
+  },
+  "training_results": {
+    "final_epoch": 29,
+    "best_epoch": 14,
+    "best_val_crop_dice": 0.8437233057743712,
+    "stop_reason": "EARLY_STOPPING_PATIENCE_15",
+    "best_checkpoint_path": "D:\\Softfors\\jup\\checkpoints\\phase14_diag_regional_unet_oracletrain_a3_seed42_v1\\best.pt",
+    "best_checkpoint_sha256": "89ada72700385ed56b49b6caf34d9061349c24a566794176911b83fb0c8cd9f0",
+    "latest_checkpoint_path": "D:\\Softfors\\jup\\checkpoints\\phase14_diag_regional_unet_oracletrain_a3_seed42_v1\\latest.pt",
+    "latest_checkpoint_sha256": "7cb4eb5c8316b1d6e2dba90ace9b49fea30432a4f825d515b7be15e79f80c5af"
+  },
+  "governance": {
+    "test_content_reads": 0,
+    "test_metrics": "NONE",
+    "external_data": false,
+    "experiment_a_modified": false,
+    "full_diagnostic_evaluation_executed": false,
+    "phase15_authorized": false,
+    "phase16_started": false
+  }
+}

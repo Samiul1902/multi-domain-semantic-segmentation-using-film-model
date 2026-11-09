@@ -1,0 +1,543 @@
+{
+ "artifact": "phase36_robustness_unit_v1_18",
+ "phase": 36,
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase36_robustness_v1_18",
+ "type": "STATIC_UNIT_REPORT",
+ "defects_repaired": [
+  "D85",
+  "D86",
+  "D87",
+  "D88"
+ ],
+ "model_free": true,
+ "torch_imported": false,
+ "protected_population_read": false,
+ "subject_execution_sha256": "2259ce22e75ba9a3a8943769dc1e0ed5724f94902f5e8955976cd6ebeb8ce63e",
+ "frozen_v1_17_execution_sha256": "81d78460b2f20f176bc697cba662c43bc7c7443ea555ba95a30609faf0ccbe31",
+ "frozen_v1_16_execution_sha256": "a96b74caa4587aa9d2f83b79ed39c13075a88086109e31d991695a75ec4abab9",
+ "frozen_v1_14_execution_sha256": "ac09ff8ded3610244920e66612145b246b33127140d344a9730d454bab27cff5",
+ "checks_total": 99,
+ "checks_passed": 99,
+ "checks_failed": 0,
+ "all_pass": true,
+ "failed_checks": [],
+ "checks": [
+  {
+   "check": "A01_v1_14_source_frozen_unchanged",
+   "passed": true,
+   "detail": {
+    "sha256": "ac09ff8ded3610244920e66612145b246b33127140d344a9730d454bab27cff5"
+   }
+  },
+  {
+   "check": "A02_v1_16_source_frozen_unchanged",
+   "passed": true,
+   "detail": {
+    "sha256": "a96b74caa4587aa9d2f83b79ed39c13075a88086109e31d991695a75ec4abab9"
+   }
+  },
+  {
+   "check": "A03_v1_17_source_frozen_unchanged",
+   "passed": true,
+   "detail": {
+    "sha256": "81d78460b2f20f176bc697cba662c43bc7c7443ea555ba95a30609faf0ccbe31"
+   }
+  },
+  {
+   "check": "A04_v1_18_source_sha_exact",
+   "passed": true,
+   "detail": {
+    "sha256": "2259ce22e75ba9a3a8943769dc1e0ed5724f94902f5e8955976cd6ebeb8ce63e"
+   }
+  },
+  {
+   "check": "A05_v1_18_source_compiles",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "A06_launcher_present",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "A07_supervisor_present",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "A08_governance_builder_present",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "B01_canonical_fusion_call_present",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "B02_old_pad_unaware_call_absent",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "B03_fuse_full_field_defined",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "B04_fuse_full_field_pad_aware",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "B05_fusion_uses_roi_geometry_same_geom",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "B06_fusion_call_count_exactly_one",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "B07_psi_somega_unchanged_markers",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "C01_policy_helper_defined",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "C02_helper_uses_live_f32",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "C03_helper_casts_to_f16",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "C04_helper_casts_back_to_f32",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "C05_helper_thresholds_at_0_50",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "C06_segmentation_threshold_unchanged",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "C07_helper_wiring_count_3",
+   "passed": true,
+   "detail": {
+    "count": 3
+   }
+  },
+  {
+   "check": "C08_core_binary_uses_helper",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "C09_clean_binary_uses_helper",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "C10_clean_store_final_binary_policy_b",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D01_f16_cast_only_in_policy_helper",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D02_downstream_G_quantization_absent",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D03_live_probability_preserved",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "E01_image_pert_consumes_core_binary",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "E02_proposal_pert_consumes_core_binary",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "E03_prediction_consistency_uses_policy_b",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "F01_smoke_ids_count_53",
+   "passed": true,
+   "detail": {
+    "count": 53
+   }
+  },
+  {
+   "check": "F02_smoke_ids_unique",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "F03_smoke_ids_exact_set_equality",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "F04_smoke_ids_order_identical",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "G01_image_conditions_present",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "G02_seeds_42_123_3407",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "G03_proposal_scale_conditions",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "G04_forced_skip_action_unavailable",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "G05_no_jpeg_rotation_crop_conditions",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "H01_launcher_dispatch_has_mode_science",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "H02_launcher_dispatch_mode_args_literal",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "H03_launcher_binds_literal_v1_18_execution_sha",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "H04_launcher_verify_only_supported",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "H05_launcher_token_names_v1_18",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "H06_launcher_no_v1_17_token_residue",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "H07_launcher_no_delete_or_recreate",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "H08_launcher_invokes_pure_release_state",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "H09_execution_namespace_v1_18_start_marker",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "H10_execution_namespace_v1_18_result_marker",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "H11_execution_namespace_v1_18_failure_marker",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "H12_no_v1_17_science_start_path_residue",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "H13_execution_launch_authority_v1_18",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "H14_execution_explicit_science_gate",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "H15_no_v1_17_gate_env_residue",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "H16_runtime_manifest_v1_18_path",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "H17_no_v1_17_runtime_manifest_residue",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "H18_release_revision_v1_18",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "H19_no_v1_17_release_revision_residue",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "H20_stage_journal_module_present",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "H21_stage_journal_dir_v1_18",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "H22_no_v1_17_journal_dir_residue",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "H23_tab_root_v1_18_namespace",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "H24_fig_root_v1_18_namespace",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "H25_arr_root_v1_18_namespace",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "H26_no_v1_17_namespace_residue",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "H27_csv_writer_fail_closed_exclusive_create",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "H28_csv_writer_refuses_existing_target",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "H29_csv_writer_fsyncs",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "H30_savefig_once_defined",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "H31_savefig_once_exclusive_create",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "H32_savefig_once_no_o_trunc",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "H33_savefig_once_refuses_existing",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "H34_savefig_once_fsyncs",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "H35_plain_savefig_absent_from_source",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "H36_savefig_once_call_sites_eq_5",
+   "passed": true,
+   "detail": {
+    "count": 5
+   }
+  },
+  {
+   "check": "H37_absence_gate_defined",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "H38_reachable_targets_helper_defined",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "H39_reachable_tables_count_11",
+   "passed": true,
+   "detail": {
+    "count": 11
+   }
+  },
+  {
+   "check": "H40_reachable_figures_count_5",
+   "passed": true,
+   "detail": {
+    "count": 5
+   }
+  },
+  {
+   "check": "H41_absence_gate_invoked_in_dispatch",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "H42_absence_gate_before_start_marker",
+   "passed": true,
+   "detail": {
+    "gate_idx": 217478,
+    "start_call_idx": 218008
+   }
+  },
+  {
+   "check": "H43_gate_fail_closed_terminal_literal",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "H44_gate_pass_terminal_literal",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "H45_supervisor_literal_launcher_sha",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "H46_supervisor_literal_bundle_sha",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "H47_supervisor_literal_launch_authority_file_sha",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "H48_supervisor_no_env_launcher_sha",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "H49_supervisor_env_override_prohibited_declared",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "H50_supervisor_json_field_not_trusted",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "H51_supervisor_exclusive_text_writer",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "H52_exclusive_writer_uses_o_excl",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "H53_exclusive_writer_no_o_trunc_flag_use",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "H54_supervisor_predispatch_absence_check",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "H55_launcher_reads_launch_authority_file",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "H56_governance_builds_prelaunch_bundle",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "H57_governance_bundle_excludes_supervisor_sha",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "I01_policy_b_bitwise_equal",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "I02_boundary_repair_applied",
+   "passed": true,
+   "detail": null
+  }
+ ]
+}

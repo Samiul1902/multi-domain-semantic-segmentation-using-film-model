@@ -1,0 +1,35 @@
+{
+ "artifact": "phase25f_oof_integrity",
+ "phase": "25F",
+ "stage": "OOF_INTEGRITY",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_post_safety_v1_0",
+ "oof_classification": "META_LEVEL_OOF_DEVELOPMENT_PREDICTIONS",
+ "oof_predictions_csv": "data_cache/phase25f_barr_post_safety_v1_0/phase25f_oof_safety_predictions.csv",
+ "oof_predictions_sha256": "a9f63edd6d58a9a1d78a052a3e4539c6e0dd4d68bfb1c09c4c36789c441ebdee",
+ "per_fold_counts": {
+  "0": 992,
+  "1": 992,
+  "2": 991,
+  "3": 991,
+  "4": 991
+ },
+ "decision_counts": {
+  "ACCEPT_REFINEMENT": 3949,
+  "FALLBACK_GLOBAL": 1008
+ },
+ "checks": {
+  "rows_4957": true,
+  "unique_sample_ids": true,
+  "logits_finite": true,
+  "probabilities_finite": true,
+  "probabilities_in_unit_interval": true,
+  "sigmoid_matches_logit": true,
+  "fold_assignment_matches_manifest": true,
+  "per_fold_counts_match_outer_target": true,
+  "decisions_match_fixed_threshold": true,
+  "outer_target_union_4957": true,
+  "oof_rows_only_from_own_outer_target": true
+ },
+ "all_pass": true
+}

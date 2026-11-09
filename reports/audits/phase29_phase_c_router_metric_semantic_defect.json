@@ -1,0 +1,175 @@
+{
+ "artifact": "phase29_phase_c_router_metric_semantic_defect",
+ "phase": 29,
+ "stage": "PHASE_C_ROUTER_METRIC_SEMANTIC_DEFECT",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_phase29_repro_v1_1",
+ "generated_utc": "2026-10-03T15:02:12+00:00",
+ "classification": "ROUTER_METRIC_SEMANTIC_DRIFT__POSITIVE_GAIN_USED_WHERE_FROZEN_BENEFICIAL_THRESHOLD_REQUIRED",
+ "binding": "FROZEN_PHASE25E_ROUTER_METRIC_CONTRACT",
+ "frozen_category_thresholds": {
+  "BENEFICIAL": "d_i >= +0.02",
+  "HARMFUL": "d_i <= -0.01",
+  "NEUTRAL": "otherwise"
+ },
+ "frozen_definitions": {
+  "S": "selected/routed set (K=|S|=1239)",
+  "E": "eligible set (all DEV candidates with true DeltaDice; |E|=4957)",
+  "d_i": "true seed-specific DeltaDice",
+  "B": "{i in E : d_i >= +0.02}",
+  "H": "{i in E : d_i <= -0.01}",
+  "precision_at_budget": "|S∩B|/K",
+  "benefit_capture_at_budget": "sum(max(d_i,0) for i in S)/sum(max(d_i,0) for i in E)",
+  "mean_true_delta_dice_among_routed": "sum(d_i for i in S)/K",
+  "harmful_activation_rate": "|S∩H|/K",
+  "beneficial_activation_rate": "|S∩B|/|B|",
+  "missed_benefit_rate": "|B−S|/|B|"
+ },
+ "erroneous_implementation_observed": {
+  "files": [
+   "scripts/analysis/phase29_phase_c_integrated.py (L116-117, L131-135)",
+   "scripts/analysis/phase29_phase_c_finalize.py (L372, L373)"
+  ],
+  "expression_used": "precision_at_25pct = mean(delta_dice > 0 for r in selected)",
+  "note": "Uses the S_omega target-construction positive-gain condition (d_i > 0) in place of the frozen Phase25E BENEFICIAL routing category (d_i >= +0.02).",
+  "second_expression_used": "beneficial_coverage := benefit_capture (aliased, not independently defined)"
+ },
+ "physical_root_cause": "The Phase29 Phase-C integrated/finalize metric code substituted the S_omega positive-gain condition (DeltaDice > 0) for the frozen Phase25E BENEFICIAL routing category (DeltaDice >= +0.02) when computing precision_at_25pct. Because |{i in S: d_i > 0}| / K (0.62-0.67) is far larger than the mathematically maximal |S∩B|/K bounded by |B|/K (0.23-0.28), the recorded precision values for all three seeds exceed the mathematical maximum allowed by the frozen BENEFICIAL counts. beneficial_coverage was additionally aliased to benefit_capture rather than defined as |S∩B|/|B|.",
+ "affected_seeds": [
+  42,
+  123,
+  3407
+ ],
+ "seeds_exceeding_mathematical_maximum": [
+  42,
+  123,
+  3407
+ ],
+ "per_seed": [
+  {
+   "seed": 42,
+   "frozen_membership": {
+    "K": 1239,
+    "n_eligible": 4957,
+    "membership_source": "phase25e_final_router_dev_scores.csv (seed42, tau_C7 exact threshold)"
+   },
+   "frozen_category_population": {
+    "BENEFICIAL_ge_+0.02": 282,
+    "HARMFUL_le_-0.01": 335,
+    "NEUTRAL": 4340
+   },
+   "frozen_routed_crossings": {
+    "n_BENEFICIAL_routed": 229,
+    "n_HARMFUL_routed": 130,
+    "n_positive_gain_routed": 857
+   },
+   "mathematical_maximum_precision_at_budget": 0.22760290556900725,
+   "recorded": {
+    "precision_at_25pct": 0.6674737691686844,
+    "benefit_capture": 0.7836879432624113,
+    "harmful_activation_share": 0.10705394190871369,
+    "beneficial_coverage": null,
+    "safety_accept_fraction": 0.9725585149313963
+   },
+   "frozen_semantics": {
+    "precision_at_25pct": 0.1848264729620662,
+    "benefit_capture": 0.6235956898240006,
+    "harmful_activation_share": 0.10492332526230831,
+    "beneficial_coverage": 0.8120567375886525,
+    "missed_benefit_rate": 0.1879432624113475,
+    "mean_true_delta_dice_among_routed": 0.007723092545039504
+   },
+   "recorded_exceeds_mathematical_maximum": true,
+   "recorded_precision_reproduced_by_positive_gain_rule": false,
+   "recorded_benefit_capture_reproduced_by_BENEFICIAL_threshold_rule": false,
+   "verdict": "POSITIVE_GAIN_RULE_USED_FOR_PRECISION_WHERE_FROZEN_BENEFICIAL_THRESHOLD_REQUIRED"
+  },
+  {
+   "seed": 123,
+   "frozen_membership": {
+    "K": 1239,
+    "n_eligible": 4957,
+    "membership_source": "phase29_seed123_bphi_oof_membership.csv (selected=True)"
+   },
+   "frozen_category_population": {
+    "BENEFICIAL_ge_+0.02": 353,
+    "HARMFUL_le_-0.01": 415,
+    "NEUTRAL": 4189
+   },
+   "frozen_routed_crossings": {
+    "n_BENEFICIAL_routed": 256,
+    "n_HARMFUL_routed": 154,
+    "n_positive_gain_routed": 768
+   },
+   "mathematical_maximum_precision_at_budget": 0.28490718321226793,
+   "recorded": {
+    "precision_at_25pct": 0.6198547215496368,
+    "benefit_capture": 0.6940509915014165,
+    "harmful_activation_share": 0.12924528301886792,
+    "beneficial_coverage": 0.6940509915014165,
+    "safety_accept_fraction": 0.8555286521388217
+   },
+   "frozen_semantics": {
+    "precision_at_25pct": 0.2066182405165456,
+    "benefit_capture": 0.5603838550778453,
+    "harmful_activation_share": 0.12429378531073447,
+    "beneficial_coverage": 0.7252124645892352,
+    "missed_benefit_rate": 0.2747875354107649,
+    "mean_true_delta_dice_among_routed": 0.006587838823025936
+   },
+   "recorded_exceeds_mathematical_maximum": true,
+   "recorded_precision_reproduced_by_positive_gain_rule": true,
+   "recorded_benefit_capture_reproduced_by_BENEFICIAL_threshold_rule": false,
+   "verdict": "POSITIVE_GAIN_RULE_USED_FOR_PRECISION_WHERE_FROZEN_BENEFICIAL_THRESHOLD_REQUIRED"
+  },
+  {
+   "seed": 3407,
+   "frozen_membership": {
+    "K": 1239,
+    "n_eligible": 4957,
+    "membership_source": "phase29_seed3407_bphi_oof_membership.csv (selected=True)"
+   },
+   "frozen_category_population": {
+    "BENEFICIAL_ge_+0.02": 334,
+    "HARMFUL_le_-0.01": 446,
+    "NEUTRAL": 4177
+   },
+   "frozen_routed_crossings": {
+    "n_BENEFICIAL_routed": 239,
+    "n_HARMFUL_routed": 176,
+    "n_positive_gain_routed": 805
+   },
+   "mathematical_maximum_precision_at_budget": 0.26957223567393057,
+   "recorded": {
+    "precision_at_25pct": 0.6497175141242938,
+    "benefit_capture": 0.7005988023952096,
+    "harmful_activation_share": 0.1455160744500846,
+    "beneficial_coverage": 0.7005988023952096,
+    "safety_accept_fraction": 0.9539951573849879
+   },
+   "frozen_semantics": {
+    "precision_at_25pct": 0.19289749798224373,
+    "benefit_capture": 0.5869805242739916,
+    "harmful_activation_share": 0.1420500403551251,
+    "beneficial_coverage": 0.7155688622754491,
+    "missed_benefit_rate": 0.2844311377245509,
+    "mean_true_delta_dice_among_routed": 0.006623227488185624
+   },
+   "recorded_exceeds_mathematical_maximum": true,
+   "recorded_precision_reproduced_by_positive_gain_rule": true,
+   "recorded_benefit_capture_reproduced_by_BENEFICIAL_threshold_rule": false,
+   "verdict": "POSITIVE_GAIN_RULE_USED_FOR_PRECISION_WHERE_FROZEN_BENEFICIAL_THRESHOLD_REQUIRED"
+  }
+ ],
+ "harmful_activation_share_note": "harmful_activation_share was originally computed over the ACCEPTED set in phase29_phase_c_integrated.py; the frozen Phase25E definition requires |S∩H|/K over the routed set. This is corrected in the reconciliation artifact.",
+ "membership_immutability_attestation": {
+  "seed42_K": 1239,
+  "seed123_K": 1239,
+  "seed3407_K": 1239,
+  "reranking_performed": false,
+  "threshold_changed": false,
+  "router_inference_performed": false,
+  "new_model_forward_performed": false
+ },
+ "all_pass": true
+}

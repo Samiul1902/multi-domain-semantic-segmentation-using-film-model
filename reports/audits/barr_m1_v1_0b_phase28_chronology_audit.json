@@ -1,0 +1,129 @@
+{
+  "artifact": "barr_m1_v1_0b_phase28_chronology_audit",
+  "revision": "RA_MEDFILM_BARR_BARR_M1_V1_0B__NUMERICAL_AND_CONTRAST_AUTHORITY_RECONCILIATION",
+  "generated_utc": "2026-10-27T01:57:57Z",
+  "scope": "STRICT_READ_ONLY_AUDIT",
+  "question": "The contract states governance_only=true and execution=NONE, while later artifacts claim 13 executed arms, 18 training runs and frozen aggregates. Is this an authorization discrepancy, a version difference, or a scope difference?",
+  "answer": "VERSION_AND_SCOPE_DIFFERENCE__NOT_AN_AUTHORIZATION_DISCREPANCY",
+  "explanation": "`execution: \"NONE\"` is a field on PRE-EXECUTION GOVERNANCE ARTIFACTS. It asserts that the artifact itself performs no execution. It is not a global claim that Phase-28 never executed. The v1.0 contract was superseded by v1.1, then by the v1.2 operationalisation ruling and the v1.2 execution binding; execution began only after the 19:01 entry gate passed with an all-zero execution state.",
+  "timeline": [
+    {
+      "time_local": "2026-10-02T18:21-18:23 local",
+      "stage": "SPEC_V1_0",
+      "artifacts": "phase28_ablation_registry.json, phase28_one_factor_control_contract.json, phase28_core_contrast_map.json, phase28_no_execution_audit.json",
+      "note": "Contract declared `governance_only: true`, `execution: \"NONE\"` — a statement about the CONTRACT ARTIFACT (it performs no execution), not a claim that Phase-28 never ran."
+    },
+    {
+      "time_local": "2026-10-02T18:29-18:31 local",
+      "stage": "PRE_EXECUTION_BLOCK",
+      "artifacts": "phase28_execution_semantics_repair_final_adjudication.json",
+      "note": "R1/R2/R3/F1 operationalisation absent ⇒ terminal PHASE28_BLOCKED__R1_R2_R3_F1_EXECUTION_SEMANTICS_INCOMPLETE. phase28_execution_eligible=false, phase28_execution_started=false."
+    },
+    {
+      "time_local": "2026-10-02T18:30 local",
+      "stage": "SPEC_V1_1",
+      "artifacts": "phase28_one_factor_control_contract_v1_1.json",
+      "note": "Contract repaired to v1.1; v1.0 preserved."
+    },
+    {
+      "time_local": "2026-10-02T18:45-18:46 local",
+      "stage": "SPEC_V1_2",
+      "artifacts": "phase28_router_variant_*_v1_2.json, phase28_f1_*_v1_2.json, phase28_v1_2_entry_gate.json, phase28_v1_2_no_execution_audit.json, phase28_specification_final_check_v1_2.json, phase28_supervisor_operationalization_ruling_v1_2.json",
+      "note": "Supervisor prospective operationalisation ruling (SEPARATELY_TRAINED_CONTROLLED_ABLATION_VARIANT); entry gate requires the BLOCKED terminal as predecessor; no execution yet."
+    },
+    {
+      "time_local": "2026-10-02T19:01 local",
+      "stage": "EXECUTION_BINDING",
+      "artifacts": "phase28_execution_spec_v1_2_binding.json, phase28_execution_entry_gate.json",
+      "note": "17-artifact zero-drift binding (all match). Entry gate: predecessor terminal PHASE28_SPEC_V1_2_COMPLETE__…__PHASE28_EXECUTION_ELIGIBLE_NOT_STARTED observed; execution_state_at_entry all zeros; gate_pass=true."
+    },
+    {
+      "time_local": "2026-10-02T19:50-19:56 local",
+      "stage": "EXECUTION",
+      "artifacts": "phase28_f1_pipeline_validation.json, phase28_execution_statistics.json",
+      "note": "Ablation execution and statistics produced."
+    },
+    {
+      "time_local": "2026-10-02T19:59 local",
+      "stage": "FREEZE",
+      "artifacts": "phase28_training_run_registry.json, phase28_tables/*, phase28_final_freeze.json",
+      "note": "18 training runs registered (15 router + 3 refiner), 13 arms, 10 tables, 8 figures."
+    }
+  ],
+  "artifact_based_execution_evidence": {
+    "method": "checkpoint presence and run registry, NOT table existence",
+    "n_checkpoint_files_found": 18,
+    "n_registered_runs": 18,
+    "n_router_runs": 15,
+    "n_refiner_runs": 3,
+    "registry_csv_sha256": "cf8d841a62de3b3acfbd1791207e161c009f0b99942aed2e0179181a4d231c4b",
+    "registry_declared_sha256": "cf8d841a62de3b3acfbd1791207e161c009f0b99942aed2e0179181a4d231c4b",
+    "registry_sha_match": true,
+    "checkpoint_count_matches_registry": true,
+    "sample_checkpoints": [
+      "checkpoints/phase28_router_R1_no_deep/fold0/best.pt",
+      "checkpoints/phase28_router_R1_no_deep/fold1/best.pt",
+      "checkpoints/phase28_router_R1_no_deep/fold2/best.pt",
+      "checkpoints/phase28_router_R1_no_deep/fold3/best.pt"
+    ]
+  },
+  "key_artifacts": {
+    "v1_0_contract": {
+      "path": "reports/audits/phase28_one_factor_control_contract.json",
+      "sha256": "6ab2e9108e24ee452499b351f73bef22f65e5c9381252e665ba730ca4b50c1ec"
+    },
+    "v1_1_contract": {
+      "path": "reports/audits/phase28_one_factor_control_contract_v1_1.json",
+      "sha256": "0e9730f07c36461342793e17cb128de4393b008b37942db203190f009395f982"
+    },
+    "blocked_adjudication": {
+      "path": "reports/audits/phase28_execution_semantics_repair_final_adjudication.json",
+      "sha256": "c389e740e7f4e0664ecc7a957c744146590c7100112d019e4c6cff00f313a8ab"
+    },
+    "v1_2_entry_gate": {
+      "path": "reports/audits/phase28_v1_2_entry_gate.json",
+      "sha256": "584f7b6f9881ad6c43f6fdb90f1c18425be44ded3933e94e1d7e49d636457d9d"
+    },
+    "v1_2_execution_binding": {
+      "path": "reports/audits/phase28_execution_spec_v1_2_binding.json",
+      "sha256": "396774069af72191683d377aba03f95167a45852855bb94d936f2847b0fcc1c1"
+    },
+    "execution_entry_gate": {
+      "path": "reports/audits/phase28_execution_entry_gate.json",
+      "sha256": "711a7e0552bfaee1781a8f57fcb63f8d5d8b0a495420a634afe49a6ba2c82e62"
+    },
+    "run_registry": {
+      "path": "reports/audits/phase28_training_run_registry.json",
+      "sha256": "08ab9adaa765887d4fe2c24e1d747a496dbfdb514c1ba366302518e00347bc01"
+    },
+    "final_freeze": {
+      "path": "reports/audits/phase28_final_freeze.json",
+      "sha256": "ac4b9f72ce663e57d4f7049a979e3bad8cd3ec460cca494c332e9ebc32bb098a"
+    }
+  },
+  "authorization_chain": {
+    "explicit_signed_authorization_artifact_found": false,
+    "evidence": "Supervisor prospective operationalisation ruling v1.2 (limited_to_phase28, pre_phase28_outcome) + spec v1.2 terminal PHASE28_SPEC_V1_2_COMPLETE__…__PHASE28_EXECUTION_ELIGIBLE_NOT_STARTED + entry gate requiring that predecessor and passing with an all-zero execution state.",
+    "classification": "IMPLICIT_AUTHORIZATION_VIA_ELIGIBILITY_TERMINAL",
+    "is_a_blocker_for_barr_m1": false,
+    "recommended_action": "Record as a governance observation. A future Phase-28-class study should carry an explicit signed authorization artifact rather than relying on an ELIGIBLE_NOT_STARTED terminal."
+  },
+  "disclosed_defects": [
+    {
+      "id": "C-D1",
+      "defect": "phase28_execution_entry_gate.json has generated_utc = null",
+      "impact": "Chronology must be reconstructed from filesystem mtime and surrounding artifacts; the gate itself is undated.",
+      "classification": "GOVERNANCE_METADATA_DEFECT"
+    },
+    {
+      "id": "C-D2",
+      "defect": "`execution: \"NONE\"` is an ambiguous field name that reads as a global execution claim but means artifact-scope.",
+      "impact": "Caused the independent review's apparent contradiction.",
+      "classification": "GOVERNANCE_NAMING_AMBIGUITY"
+    }
+  ],
+  "historical_execution_class": "EXECUTED_AND_FROZEN",
+  "execution_class_resolved": true,
+  "A0_A1_A8_trained_in_phase28": false,
+  "A0_A1_A8_provenance": "A0 = ENDPOINT_BY_CONSTRUCTION (delta ≡ 0); A1 = ENDPOINT_BY_CONSTRUCTION from the Phase-25C OOF refined predictions; A8 = PRIOR_CANONICAL_EVIDENCE_EXACT from Phase-25G C9. The 18 Phase-28 training runs belong to R1/R2/R3 (router variants) and F1 (refiner variant), NOT to A0/A1/A8."
+}

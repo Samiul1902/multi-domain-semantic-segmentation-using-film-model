@@ -1,0 +1,44 @@
+{
+  "artifact": "barr_m1_v1_0c_erratum_sha256",
+  "revision": "RA_MEDFILM_BARR_BARR_M1_V1_0C__FINAL_APPROVAL_PACKAGE",
+  "erratum_id": "BARR_M1_V1_0C_ERRATUM_20261027",
+  "generated_utc": "2026-10-27T02:34:16Z",
+  "mode": "ADDITIVE_WORDING_CORRECTION_ONLY",
+  "preserved_original": {
+    "path": "reports/planning/barr_m1_approval_v1_0c/barr_m1_v1_0c_supervisor_authorization_request.md",
+    "sha256": "a1a59cffc83e7b167b6ae28f75123167abf06d37d080e09c3cc0cdf519419a42",
+    "note": "PRESERVED_BYTE_FOR_BYTE"
+  },
+  "erratum_file": {
+    "path": "reports\\planning\\barr_m1_approval_v1_0c\\barr_m1_v1_0c_erratum.md",
+    "sha256": "7653cefd5b1bf6a1e28e5c9f65e1850a561f7316d48226dfb0859195c1c38f45",
+    "size_bytes": 3800
+  },
+  "corrections": [
+    {
+      "id": "ERRATUM_1",
+      "location": "barr_m1_v1_0c_supervisor_authorization_request.md Section 4 Limitation 6",
+      "issue": "CONTRADICTORY_SAFETY_STATEMENT",
+      "summary": "Original claimed no S_omega-absent arm exists and no safety metric exists. Corrected: A7 is the S_omega-absent comparator; A8 includes S_omega; A7_vs_A8 is the preregistered single-component contrast; segmentation-harm and Dice measurements exist; clinical safety not established; BARR-M1 does not authorize A7-A8; BARR-M2 is separate."
+    },
+    {
+      "id": "ERRATUM_2",
+      "location": "barr_m1_v1_0c_supervisor_authorization_request.md Section 1 Research question",
+      "issue": "CAUSAL_ATTRIBUTION_LANGUAGE",
+      "summary": "Original asked how much difference is attributable to refining everywhere vs routing with post-safety gate. Corrected: BARR-M1 compares complete policies descriptively; cannot attribute differences uniquely to router, safety stage, or computation budget because these are confounded across A0/A1/A8."
+    }
+  ],
+  "approval_readiness_checklist": {
+    "BARR_M1_remains_A0_A1_A8_only": "CONFIRMED",
+    "ROUTER_DEVELOPMENT_n4957_sole_primary_population": "CONFIRMED",
+    "study_remains_in_sample_descriptive": "CONFIRMED",
+    "both_harm_rate_denominators_separately_reported": "CONFIRMED",
+    "equal_domain_macro_and_pooled_conditional_distinguished": "CONFIRMED",
+    "CPU_only_frozen_array_reanalysis_only": "CONFIRMED",
+    "no_scientific_authorization_granted": "CONFIRMED",
+    "all_previous_artifacts_unchanged": "CONFIRMED"
+  },
+  "terminal": "BARR_M1_APPROVAL_PACKET_SCIENTIFIC_WORDING_CORRECTED__AWAITING_SUPERVISOR_DECISION",
+  "approval_status": "NOT_APPROVED",
+  "scientific_execution": "NOT_AUTHORIZED"
+}

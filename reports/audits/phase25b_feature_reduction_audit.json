@@ -1,0 +1,36 @@
+{
+ "artifact": "phase25b_feature_reduction_audit",
+ "phase": "25B",
+ "operation": "DETERMINISTIC_CHANNEL_ADAPTIVE_AVG_POOL_1D_V1",
+ "output_width_K": 32,
+ "taps": {
+  "bridge": {
+   "native_width": 256,
+   "bins": 32,
+   "all_bins_valid": true,
+   "covers_all_channels": true,
+   "overlapping_bins_expected": false,
+   "output_dtype": "float32"
+  },
+  "decoder2": {
+   "native_width": 48,
+   "bins": 32,
+   "all_bins_valid": true,
+   "covers_all_channels": true,
+   "overlapping_bins_expected": false,
+   "output_dtype": "float32"
+  },
+  "decoder1": {
+   "native_width": 24,
+   "bins": 32,
+   "all_bins_valid": true,
+   "covers_all_channels": true,
+   "overlapping_bins_expected": true,
+   "output_dtype": "float32"
+  }
+ },
+ "trainable_parameters": 0,
+ "forbidden_ops_used": [],
+ "verdict": "PHASE25B_FEATURE_REDUCTION_PASS",
+ "generated_utc": "2026-09-30T15:55:52.086198+00:00"
+}

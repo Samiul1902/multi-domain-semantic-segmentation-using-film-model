@@ -1,0 +1,76 @@
+{
+  "classification": "PHASE25E_RESOURCE_GATE_POLICY_EVALUATION",
+  "specification_revision": "ra_medfilm_barr_resource_gate_v1_0",
+  "stage": "PRE_OUTCOME_STATISTICS_FREEZE",
+  "bootstrap_type": "DOMAIN_STRATIFIED_GROUP_BOOTSTRAP",
+  "group_unit": "phase24_router_split_manifest.csv:group_key (canonical composite PATIENT/ASSET/RISK/SINGLETON)",
+  "strata": [
+    "BUSI",
+    "ISIC",
+    "KUB",
+    "KVASIR"
+  ],
+  "strata_group_counts": {
+    "BUSI": 512,
+    "ISIC": 2173,
+    "KUB": 267,
+    "KVASIR": 592
+  },
+  "total_groups": 3544,
+  "n_boot": 2000,
+  "seed": 42,
+  "rng": "numpy.random.Generator(numpy.random.PCG64(42))",
+  "draw_algorithm": "for b in range(n_boot): for d in sorted(strata): idx = rng.integers(0, n_groups[d], size=n_groups[d], dtype=int64); replicate rows = concat of member rows of sampled groups (with replacement, groups may repeat)",
+  "resample_unit": "group (cluster), within domain stratum",
+  "bootstrap_selection_rule": "within each replicate, re-apply the frozen policy ranking (routing_score DESC, sample_id ASC over the canonical sample_id-ascending order) to the resampled eligible multiset and select the top K_b_rep = n_elig_rep if budget==1.00 else floor(budget*n_elig_rep); the budget is treated as a fraction of the replicate eligible count",
+  "oracle_in_replicate": "top K_b_rep of the replicate eligible multiset by true DeltaDice DESC, sample_id ASC, with K_b_rep as defined by bootstrap_selection_rule",
+  "size_strata_definition": "quartiles of the GT-free predicted_roi_area_fraction over the 4957 eligible DEV rows (Q25/Q50/Q75 frozen); strata Q1..Q4 lower-inclusive/upper-exclusive; a GT-free deployment-available proxy distinct from the historical GT tiny taxonomy",
+  "size_strata_quartiles": {
+    "Q25": 0.12497329711914062,
+    "Q50": 0.4916419982910156,
+    "Q75": 0.949676513671875,
+    "n_eligible": 4957
+  },
+  "domain_strata_definition": "domain field (BUSI/ISIC/KUB/KVASIR)",
+  "ci_method": "percentile",
+  "ci_percentiles": [
+    2.5,
+    97.5
+  ],
+  "paired_two_sided_p": "p_lower=(1+count(D_b<=0))/(B+1); p_upper=(1+count(D_b>=0))/(B+1); p=min(1, 2*min(p_lower,p_upper)); D_b = metric_A(b) - metric_B(b)",
+  "multiplicity": "primary = raw paired two-sided p; secondary = Holm-Bonferroni within the pre-declared C7-vs-comparator family (C1..C6, C10)",
+  "comparison_family": [
+    "C1",
+    "C2",
+    "C3",
+    "C4",
+    "C5",
+    "C6",
+    "C10"
+  ],
+  "primary_method": "C7",
+  "metrics": {
+    "precision_at_budget": "|S intersect B| / K",
+    "benefit_capture_at_budget": "sum(max(d_i,0) for i in S) / sum(max(d_i,0) for i in E)",
+    "mean_true_delta_dice_among_routed": "sum(d_i for i in S) / K",
+    "harmful_activation_rate": "|S intersect H| / K",
+    "beneficial_activation_rate": "|S intersect B| / |B|",
+    "missed_benefit_rate": "|B minus S| / |B|",
+    "routing_regret_vs_oracle": "sum(d_i for i in oracle top-K) - sum(d_i for i in S)",
+    "regret_mean_per_sample": "routing_regret_vs_oracle / N_DEV",
+    "regret_mean_per_routed_sample": "routing_regret_vs_oracle / K",
+    "macro_domain_mean_true_delta_dice": "mean over domains of mean(d_i for i in S intersect domain)"
+  },
+  "zero_denominator": "null with reason UNDEFINED_ZERO_DENOMINATOR; sums over empty sets are zero",
+  "benefit_labels": {
+    "BENEFICIAL": "d_i >= +0.02",
+    "HARMFUL": "d_i <= -0.01",
+    "NEUTRAL": "otherwise"
+  },
+  "bootstrap_plan_sha256": "918e971cfe5ac20a0c2306548604938a1a31e4cab210cff255141d7e65f39861",
+  "bootstrap_plan_file": "data_cache/phase25e_barr_resource_gate_v1_0/phase25e_bootstrap_plan_v1_0.npz",
+  "bootstrap_plan_file_sha256": "241ed5232b35709494adbf230151cec21259f86f88e1f06e5b2881a6d88f9b63",
+  "frozen_before_outcome_access": true,
+  "DeltaDice_outcomes_read": 0,
+  "outcome_access": false
+}

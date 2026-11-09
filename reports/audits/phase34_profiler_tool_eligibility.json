@@ -1,0 +1,60 @@
+{
+ "artifact": "phase34_profiler_tool_eligibility",
+ "phase": 34,
+ "section": "\u00a7X",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase34_efficiency_profiling_v1_0",
+ "tools": {
+  "fvcore": {
+   "available": false,
+   "version": null,
+   "metric_semantics": "FLOP/MAC counter",
+   "unsupported_op_behavior": "unknown",
+   "canonical_model_compatibility": "unverified (no model loaded)",
+   "eligible": false,
+   "scientific_role": "INELIGIBLE (absent)"
+  },
+  "thop": {
+   "available": false,
+   "version": null,
+   "metric_semantics": "FLOP/MAC counter",
+   "unsupported_op_behavior": "unknown",
+   "canonical_model_compatibility": "unverified (no model loaded)",
+   "eligible": false,
+   "scientific_role": "INELIGIBLE (absent)"
+  },
+  "ptflops": {
+   "available": false,
+   "version": null,
+   "metric_semantics": "FLOP/MAC counter",
+   "unsupported_op_behavior": "unknown",
+   "canonical_model_compatibility": "unverified (no model loaded)",
+   "eligible": false,
+   "scientific_role": "INELIGIBLE (absent)"
+  },
+  "torchinfo": {
+   "available": false,
+   "version": null,
+   "metric_semantics": "model summary",
+   "unsupported_op_behavior": "unknown",
+   "canonical_model_compatibility": "unverified (no model loaded)",
+   "eligible": false,
+   "scientific_role": "INELIGIBLE (absent)"
+  },
+  "torch.profiler": {
+   "available": true,
+   "version": "2.6.0+cu124",
+   "metric_semantics": "op-level timing/memory trace",
+   "unsupported_op_behavior": "unknown",
+   "canonical_model_compatibility": "unverified (no model loaded)",
+   "eligible": true,
+   "scientific_role": "NOT a FLOP profiler; timing/memory trace only"
+  }
+ },
+ "installed_anything": false,
+ "complete_flop_profiler_available": false,
+ "negative_result_acceptable": true,
+ "residual_evidence_base": "historical analytical MAC lower bound + parameter count + measured runtime/memory",
+ "generated_utc": "2026-10-04T09:50:07+00:00",
+ "all_pass": true
+}

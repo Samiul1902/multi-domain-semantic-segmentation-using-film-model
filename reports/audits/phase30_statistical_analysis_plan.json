@@ -1,0 +1,57 @@
+{
+ "artifact": "phase30_statistical_analysis_plan",
+ "phase": 30,
+ "section": "\u00a712",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_phase30_final_dev_validation_v1_0",
+ "primary_estimand": "MACRO_DOMAIN_EQUAL_WEIGHT_MEAN_DICE_DELTA (A8 final vs global reference)",
+ "primary_comparator": "GLOBAL_REFERENCE (G only)",
+ "secondary_estimands": [
+  "A8 minus A7 (S_omega marginal effect; controlled companion)",
+  "H3: harmful-replacement reduction (descriptive/statistical, no invented threshold)"
+ ],
+ "per_domain_reporting": "mandatory",
+ "macro_aggregation_rule": "mean over 4 domain-mean deltas (equal domain weight)",
+ "bootstrap_type": "DOMAIN_STRATIFIED_GROUP_BOOTSTRAP",
+ "resampling_unit": "group (cluster), within domain stratum",
+ "group_unit": "phase24_router_split_manifest.csv:group_key",
+ "group_handling": "groups never split; sampled with replacement within stratum",
+ "strata": [
+  "BUSI",
+  "ISIC",
+  "KUB",
+  "KVASIR"
+ ],
+ "n_boot": 2000,
+ "rng": "numpy.random.Generator(numpy.random.PCG64(42))",
+ "seed": 42,
+ "ci_method": "percentile",
+ "ci_percentiles": [
+  2.5,
+  97.5
+ ],
+ "paired": true,
+ "paired_draws_identical_for": [
+  "A8",
+  "A7",
+  "A8-A7"
+ ],
+ "paired_two_sided_p": "p_lower=(1+count(D_b<=0))/(B+1); p_upper=(1+count(D_b>=0))/(B+1); p=min(1, 2*min(p_lower,p_upper)); D_b = metric_A(b) - metric_B(b)",
+ "multiplicity": "primary = raw paired two-sided p; no new multiplicity correction introduced",
+ "non_inferiority_margin": 0.005,
+ "claim_criterion": "non-inferiority claim iff lower 95% CI of macro DeltaDice > -0.005",
+ "harm_flags": {
+  "BENEFICIAL": "d_i >= +0.02",
+  "HARMFUL": "d_i <= -0.01",
+  "NEUTRAL": "otherwise"
+ },
+ "holdout_bootstrap_plan": {
+  "status": "GENERATED_AT_EXECUTION_FROM_METADATA_ONLY",
+  "reason": "the DEV plan (4957) does not cover the 875-row holdout; a holdout plan is generated pre-outcome from the metadata-only group structure under the frozen rule above"
+ },
+ "statistic_invented_after_outcome": false,
+ "val808_phase27_bootstrap_copied": false,
+ "separate_from_phase27": true,
+ "generated_utc": "2026-10-04T02:46:58+00:00",
+ "all_pass": true
+}

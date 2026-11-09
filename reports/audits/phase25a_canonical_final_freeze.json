@@ -1,0 +1,350 @@
+{
+ "artifact": "phase25a_canonical_final_freeze",
+ "phase": "25A",
+ "classification": "CANONICAL_PHASE25A_AFTER_THRESHOLD_ADJUDICATION",
+ "method": "RA-MedFiLM-BARR",
+ "architecture": "ra_medfilm_barr_narrowed_v1_1",
+ "roi_proposal_threshold": 0.3,
+ "segmentation_output_threshold": 0.5,
+ "roi_vs_segmentation_threshold_roles_separated": true,
+ "superseded_phase25a_notebook_sha": "7dfcf50540ee531e330c0338ea9326cdb73c24c9f8254b920c022598dd74733f",
+ "superseded_run_status": "NONCANONICAL_PROTOCOL_DEVIATION__ROI_THRESHOLD_0P50",
+ "superseded_run_scientific_use_allowed": false,
+ "canonical_action_availability": {
+  "population_n": 4957,
+  "action_available_n": 4957,
+  "action_unavailable_global_empty_n": 0,
+  "by_domain": {
+   "BUSI": {
+    "total": 512,
+    "action_available": 512,
+    "action_unavailable_global_empty": 0
+   },
+   "ISIC": {
+    "total": 2173,
+    "action_available": 2173,
+    "action_unavailable_global_empty": 0
+   },
+   "KUB": {
+    "total": 1680,
+    "action_available": 1680,
+    "action_unavailable_global_empty": 0
+   },
+   "KVASIR": {
+    "total": 592,
+    "action_available": 592,
+    "action_unavailable_global_empty": 0
+   }
+  }
+ },
+ "canonical_fold_best_epochs": {
+  "fold0": 25,
+  "fold1": 20,
+  "fold2": 25
+ },
+ "canonical_fold_checkpoint_sha256": {
+  "fold0/best.pt": "40b7573a4a15483f895fece8b9624f4f23b1ee040e294b7594ed3cdf8438fc1c",
+  "fold1/best.pt": "512cc116b2a1baa5368711f438dfd0b2aabff1448d02fbc0c369b91da8ffc1ce",
+  "fold2/best.pt": "1259e2d938a7e6e81ad9ddce4bfc25189e20858e8f201d167663c26c72c269ec"
+ },
+ "canonical_final_refit_epoch_count": 25,
+ "canonical_final_refit_epoch_rule_source": [
+  20,
+  25,
+  25
+ ],
+ "canonical_final_checkpoint_sha256": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109",
+ "canonical_checkpoint_inventory": {
+  "checkpoints/phase25a_barr_regional_refiner_v1_1_roi030/final/final.pt": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109",
+  "checkpoints/phase25a_barr_regional_refiner_v1_1_roi030/final/latest.pt": "56f7a86801da5e4685822b09d395bca469ca88777a2e4657481b41c0bb768ce2",
+  "checkpoints/phase25a_barr_regional_refiner_v1_1_roi030/fold0/best.pt": "40b7573a4a15483f895fece8b9624f4f23b1ee040e294b7594ed3cdf8438fc1c",
+  "checkpoints/phase25a_barr_regional_refiner_v1_1_roi030/fold0/latest.pt": "e5bfc5b4a8c1de91f1e2c45da09efc997a646b30d7f662c43ab7dba13c07847b",
+  "checkpoints/phase25a_barr_regional_refiner_v1_1_roi030/fold1/best.pt": "512cc116b2a1baa5368711f438dfd0b2aabff1448d02fbc0c369b91da8ffc1ce",
+  "checkpoints/phase25a_barr_regional_refiner_v1_1_roi030/fold1/latest.pt": "ca6b9f6b204e26cedcfeaf763df0dc80d7bf2d4b51e80e398ed24865ff3c3aad",
+  "checkpoints/phase25a_barr_regional_refiner_v1_1_roi030/fold2/best.pt": "1259e2d938a7e6e81ad9ddce4bfc25189e20858e8f201d167663c26c72c269ec",
+  "checkpoints/phase25a_barr_regional_refiner_v1_1_roi030/fold2/latest.pt": "2786d5450728a7104582ddf629c8383b7c505d044e46a57ca22d7942193d1fa0"
+ },
+ "actual_parameter_count": 1276401,
+ "actual_macs": 3230662656,
+ "actual_gmacs": 3.230663,
+ "trainer_hardening_provenance": {
+  "trainer": "scripts/training/train_phase25a_refiner.py",
+  "sha256": "487efd3a934c97bf3b4db13717ac29b567a535346a2510a946943e2506345835",
+  "atomic_writes": true,
+  "history_persisted_before_checkpoint": true,
+  "rng_restore_on_resume": true,
+  "change_class": "EXECUTION_MECHANISM_ONLY"
+ },
+ "roi050_execution_preserved": true,
+ "roi050_supersession_artifact": "reports/audits/phase25a_roi050_supersession.json",
+ "paired_gain_labels_generated": false,
+ "benefit_router_trained": false,
+ "holdout_outcomes_read": 0,
+ "val_outcome_reads": 0,
+ "test_reads": 0,
+ "test_image_reads": 0,
+ "test_mask_reads": 0,
+ "test_inference": 0,
+ "phase25b_started": false,
+ "phase25c_started": false,
+ "canonical_notebook": "notebooks/phasewise/phase_25a_regional_refiner/phase25a_dedicated_regional_refiner.ipynb",
+ "canonical_notebook_sha256": "fd2bab0168eb3477125c655ada1bd5eb4b060f41a5b354fdbaaf6fd621dfb2dd",
+ "notebook_determinism": {
+  "byte_identical_three_builds": true,
+  "sha256_per_build": [
+   "fd2bab0168eb3477125c655ada1bd5eb4b060f41a5b354fdbaaf6fd621dfb2dd",
+   "fd2bab0168eb3477125c655ada1bd5eb4b060f41a5b354fdbaaf6fd621dfb2dd",
+   "fd2bab0168eb3477125c655ada1bd5eb4b060f41a5b354fdbaaf6fd621dfb2dd"
+  ],
+  "retrained": false
+ },
+ "checks": [
+  {
+   "check": "roi_proposal_threshold_0p30",
+   "ok": true,
+   "detail": 0.3
+  },
+  {
+   "check": "segmentation_output_threshold_0p50",
+   "ok": true,
+   "detail": 0.5
+  },
+  {
+   "check": "adjudication_present",
+   "ok": true,
+   "detail": "FROZEN_SPEC_CLARIFICATION__NOT_SCIENCE_CHANGE"
+  },
+  {
+   "check": "supersession_present",
+   "ok": true,
+   "detail": "NONCANONICAL_PROTOCOL_DEVIATION__ROI_THRESHOLD_0P50"
+  },
+  {
+   "check": "canonical_cache_present",
+   "ok": true,
+   "detail": "0.3"
+  },
+  {
+   "check": "cache_provenance_pass",
+   "ok": true,
+   "detail": "PHASE25A_ROI030_CACHE_PROVENANCE_PASS"
+  },
+  {
+   "check": "population_4957",
+   "ok": true,
+   "detail": 4957
+  },
+  {
+   "check": "three_folds_trained",
+   "ok": true,
+   "detail": {
+    "fold0": 25,
+    "fold1": 20,
+    "fold2": 25
+   }
+  },
+  {
+   "check": "canonical_best_epochs_persisted",
+   "ok": true,
+   "detail": {
+    "fold0": 25,
+    "fold1": 20,
+    "fold2": 25
+   }
+  },
+  {
+   "check": "refit_rule_derived_from_roi030_folds",
+   "ok": true,
+   "detail": {
+    "source": [
+     20,
+     25,
+     25
+    ],
+    "final_refit_epochs": 25
+   }
+  },
+  {
+   "check": "final_refiner_trained",
+   "ok": true,
+   "detail": {
+    "epochs": 25
+   }
+  },
+  {
+   "check": "checkpoints_all_present",
+   "ok": true,
+   "detail": [
+    "checkpoints/phase25a_barr_regional_refiner_v1_1_roi030/final/final.pt",
+    "checkpoints/phase25a_barr_regional_refiner_v1_1_roi030/final/latest.pt",
+    "checkpoints/phase25a_barr_regional_refiner_v1_1_roi030/fold0/best.pt",
+    "checkpoints/phase25a_barr_regional_refiner_v1_1_roi030/fold0/latest.pt",
+    "checkpoints/phase25a_barr_regional_refiner_v1_1_roi030/fold1/best.pt",
+    "checkpoints/phase25a_barr_regional_refiner_v1_1_roi030/fold1/latest.pt",
+    "checkpoints/phase25a_barr_regional_refiner_v1_1_roi030/fold2/best.pt",
+    "checkpoints/phase25a_barr_regional_refiner_v1_1_roi030/fold2/latest.pt"
+   ]
+  },
+  {
+   "check": "old_roi050_checkpoints_preserved",
+   "ok": true,
+   "detail": 8
+  },
+  {
+   "check": "nine_canonical_tables",
+   "ok": true,
+   "detail": "9/9"
+  },
+  {
+   "check": "nine_canonical_figures",
+   "ok": true,
+   "detail": "9/9"
+  },
+  {
+   "check": "parameters_1276401",
+   "ok": true,
+   "detail": 1276401
+  },
+  {
+   "check": "macs_present",
+   "ok": true,
+   "detail": 3.230663
+  },
+  {
+   "check": "threshold_semantics_audit_pass",
+   "ok": true,
+   "detail": "PHASE25A_THRESHOLD_SEMANTICS_AUDIT_PASS"
+  },
+  {
+   "check": "notebook_visual_integrity_pass",
+   "ok": true,
+   "detail": "PHASE25A_ROI030_NOTEBOOK_VISUAL_INTEGRITY_PASS"
+  },
+  {
+   "check": "notebook_3x_deterministic",
+   "ok": true,
+   "detail": [
+    "fd2bab0168eb3477125c655ada1bd5eb4b060f41a5b354fdbaaf6fd621dfb2dd",
+    "fd2bab0168eb3477125c655ada1bd5eb4b060f41a5b354fdbaaf6fd621dfb2dd",
+    "fd2bab0168eb3477125c655ada1bd5eb4b060f41a5b354fdbaaf6fd621dfb2dd"
+   ]
+  },
+  {
+   "check": "no_paired_gain_labels",
+   "ok": true,
+   "detail": {
+    "not_started.paired_gain_labels": true,
+    "not_started.delta_dice": true,
+    "leakage.paired_gain_labels_created": false,
+    "leakage.deltadice_computed": false
+   }
+  },
+  {
+   "check": "no_benefit_router_trained",
+   "ok": true,
+   "detail": {
+    "not_started.benefit_router": true,
+    "leakage.benefit_router_training_runs": 0,
+    "leakage.benefit_router_instantiated": false
+   }
+  },
+  {
+   "check": "holdout_outcomes_read_zero",
+   "ok": true,
+   "detail": {
+    "holdout_outcomes_inspected": false,
+    "images_used_for_outcome_evaluation": 0,
+    "gt_masks_read_for_evaluation": 0,
+    "refiner_inference": 0,
+    "dice": 0,
+    "deltadice": 0,
+    "holdout_sample_ids_in_cache": 0
+   }
+  },
+  {
+   "check": "val_outcome_reads_zero",
+   "ok": true,
+   "detail": {
+    "outcome_evaluation": 0,
+    "refiner_inference": 0,
+    "val_sample_ids_in_cache": 0,
+    "scope.val_808_evaluated": false
+   }
+  },
+  {
+   "check": "test_all_zero",
+   "ok": true,
+   "detail": {
+    "scope.test_reads": 0,
+    "cache_manifest.test_reads": 0,
+    "leakage.test": {
+     "image_reads": 0,
+     "mask_reads": 0,
+     "inference": 0,
+     "visualization": 0,
+     "test_sample_ids_in_cache": 0
+    }
+   }
+  },
+  {
+   "check": "canonical_notebook_present",
+   "ok": true,
+   "detail": "fd2bab0168eb3477125c655ada1bd5eb4b060f41a5b354fdbaaf6fd621dfb2dd"
+  },
+  {
+   "check": "notebook_states_both_roles",
+   "ok": true,
+   "detail": {
+    "roi_role_str_present": true,
+    "seg_role_str_present": true
+   }
+  },
+  {
+   "check": "notebook_preserves_superseded_sha",
+   "ok": true,
+   "detail": {
+    "superseded_sha_present": true
+   }
+  },
+  {
+   "check": "notebook_asserts_no_deltadice_or_router",
+   "ok": true,
+   "detail": {
+    "canonical paired-gain labels NOT created": true,
+    "canonical DeltaDice NOT computed": true,
+    "canonical benefit router NOT trained": true
+   }
+  },
+  {
+   "check": "phase25b_not_started",
+   "ok": true,
+   "detail": {
+    "phase25b_dirs": [],
+    "phase25c_dirs": [],
+    "scope.not_started.phase25b_started": false,
+    "scope.not_started.phase25c_started": false
+   }
+  },
+  {
+   "check": "phase25c_not_started",
+   "ok": true,
+   "detail": {
+    "scope.not_started.phase25c_started": false,
+    "phase25c_dirs": []
+   }
+  },
+  {
+   "check": "post_repair_check_pass",
+   "ok": true,
+   "detail": "PHASE25A_POST_THRESHOLD_REPAIR_FINAL_CHECK_PASS"
+  }
+ ],
+ "n_checks": 32,
+ "n_passed": 32,
+ "n_failed": 0,
+ "failed": [],
+ "science_changed": false,
+ "phase24_science_changed": false,
+ "terminal": "PHASE25A_CANONICAL_RERUN_COMPLETE__ROI_PROPOSAL_THRESHOLD_0P30__SEGMENTATION_OUTPUT_THRESHOLD_0P50__PHASE25B_ELIGIBLE_NOT_STARTED",
+ "verdict": "PHASE25A_CANONICAL_FINAL_FREEZE_PASS"
+}

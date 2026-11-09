@@ -1,0 +1,73 @@
+{
+ "artifact": "phase26_inference_state_machine_v1_2",
+ "phase": "26",
+ "classification": "ROUTER_CALIBRATION_ROLE_RECONCILIATION",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase26_deployment_semantics_v1_2",
+ "governance_only": true,
+ "additive_to": "reports/audits/phase26_inference_state_machine_v1_1.json",
+ "inputs": [
+  "image x",
+  "task_id t"
+ ],
+ "steps": [
+  {
+   "step": 1,
+   "action": "run frozen GlobalMedFiLM exactly once",
+   "outputs": [
+    "p_global",
+    "frozen feature taps"
+   ]
+  },
+  {
+   "step": 2,
+   "action": "construct Phase25B 202-D router features"
+  },
+  {
+   "step": 3,
+   "action": "normalize using Phase25D FINAL normalization"
+  },
+  {
+   "step": 4,
+   "action": "run FINAL frozen B_phi",
+   "outputs": [
+    "delta_hat_final"
+   ]
+  },
+  {
+   "step": 5,
+   "action": "compute utility = delta_hat_final - 0.25*(1051648/10270749)",
+   "score_space": "C8_FINAL_ROUTER_RESOURCE_AWARE_UTILITY"
+  },
+  {
+   "step": 6,
+   "action": "EXECUTE iff utility >= -5003565381643716252018011/205414980000000000000000000 ; else SKIP",
+   "tau_C8_final_exact": "-5003565381643716252018011/205414980000000000000000000",
+   "comparator": ">="
+  }
+ ],
+ "runtime_score_name": "C8_FINAL_ROUTER_RESOURCE_AWARE_UTILITY",
+ "runtime_formula": "delta_hat_final - 0.25*C",
+ "runtime_threshold": "-5003565381643716252018011/205414980000000000000000000",
+ "branch_SKIP": {
+  "final": "p_global",
+  "regional_refiner_run": false,
+  "s_omega_run": false
+ },
+ "branch_EXECUTE": {
+  "steps": [
+   "apply frozen ROI geometry",
+   "run frozen refiner",
+   "construct deterministic candidate",
+   "construct frozen 20-D S_omega features",
+   "normalize with Phase25F FINAL normalization",
+   "run frozen S_omega"
+  ],
+  "if_sigmoid_logit_ge_0p50": "final = candidate",
+  "else": "final = p_global"
+ },
+ "final_mask_threshold": 0.5,
+ "second_global_forward": false,
+ "gt_at_inference": false,
+ "all_pass": true
+}

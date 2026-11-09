@@ -1,0 +1,228 @@
+{
+  "reconciliation_revision": "ra_medfilm_barr_phase36_final_probability_authority_diagnostic_v1_4_final_readiness_attestation_reconciliation_v1_1",
+  "work_order": "PHASE36_WORK_ORDER_12__D73_D74_FINAL_READINESS_GOVERNANCE_RECONCILIATION",
+  "mode": "STATIC_NON_CONSUMING_ONLY",
+  "v1_4_executed": false,
+  "created_utc": "2026-10-10T06:24:52Z",
+  "classification": {
+    "D72": "PRESERVED",
+    "D73": "RECONCILED",
+    "D74": "RECONCILED"
+  },
+  "d72_frozen": {
+    "d72_attestation_sha256": "4cffd388f6fbdacf15abc2d5984c8cad9e6f186c7a3d8137c796a53b6b96db27",
+    "d72_builder_sha256": "ff35008ff9edc3efd66eb7363f3e027021f30cc4b824d7799e2d0856a40d4cba",
+    "d72_attestation_sha256_observed": "4cffd388f6fbdacf15abc2d5984c8cad9e6f186c7a3d8137c796a53b6b96db27",
+    "d72_builder_sha256_observed": "ff35008ff9edc3efd66eb7363f3e027021f30cc4b824d7799e2d0856a40d4cba",
+    "d72_attestation_unmodified": true,
+    "d72_builder_unmodified": true,
+    "d72_attestation_path": "reports/audits/phase36_final_probability_authority_diagnostic_v1_4_final_readiness_attestation_v1_0.json",
+    "d72_builder_path": "scripts/analysis/build_phase36_final_probability_authority_diagnostic_v1_4_final_readiness_attestation_v1_0.py"
+  },
+  "D73_reconciliation": {
+    "defect": "D72_PIN_NAMESPACE_COLLISION__SOURCE_PINS_OVERWRITTEN_BY_GOVERNANCE_PINS",
+    "root_cause": "D72 builder merged SOURCE_PINS and GOVERNANCE_PINS into one dict via ALL_PINS.update(SOURCE_PINS); ALL_PINS.update(GOVERNANCE_PINS); the shared keys 'preflight' and 'negative_controls' caused governance JSON tuples to overwrite the source .py tuples",
+    "observed_d72_artifact_impact": {
+      "frozen_pins.source.preflight.path": "reports/audits/phase36_final_probability_authority_diagnostic_preflight_v1_4.json",
+      "frozen_pins.source.negative_controls.path": "reports/audits/phase36_final_probability_authority_diagnostic_negative_controls_v1_4.json",
+      "note": "source .py pins for preflight and negative_controls were NOT recorded"
+    },
+    "repair": "disjoint canonical identifiers (source::* / governance::*)",
+    "n_expected_pins": 14,
+    "n_unique_pin_keys": 14,
+    "n_unique_paths": 14,
+    "disjoint_namespace_ok": true,
+    "explicit_source_bindings": {
+      "source::preflight": {
+        "path": "scripts/analysis/phase36_final_probability_authority_diagnostic_preflight_v1_4.py",
+        "sha256": "bb14fca6f9344459f9c812d61de6c1abf90fd5fe7d8a966d46a6ca10fbadc1ec"
+      },
+      "source::negative_controls": {
+        "path": "scripts/analysis/phase36_final_probability_authority_diagnostic_negative_controls_v1_4.py",
+        "sha256": "492c03fd231969dc80347713c3106c7970854d060d2d5780e285ffbac8372256"
+      }
+    },
+    "explicit_governance_bindings": {
+      "governance::preflight": {
+        "path": "reports/audits/phase36_final_probability_authority_diagnostic_preflight_v1_4.json",
+        "sha256": "224cf6d1f108119caf3ce365bfa4cfe36945d0fd4a7d334e472f2b3e7cd32006"
+      },
+      "governance::negative_controls": {
+        "path": "reports/audits/phase36_final_probability_authority_diagnostic_negative_controls_v1_4.json",
+        "sha256": "fe35ac673bca59e6bcb20900f4c541f283ba3bc6aaf3bf8b4e82ba537a08bcb2"
+      }
+    },
+    "source_and_governance_paths_distinct": true
+  },
+  "D74_reconciliation": {
+    "defect": "D72_PRE_POST_SOURCE_DRIFT_COMPARISON_NOT_IMPLEMENTED",
+    "repair": "real before/after 14-file snapshot comparison; pre captured before any validator and NEVER recomputed; both complete maps persisted",
+    "n_files_compared": 14,
+    "pre_validator_hashes": {
+      "source::diagnostic": "778af67fe41e44cec0717365b2c3427bcfd43442145af09a7aca2abe1f4a3eab",
+      "source::launcher": "221a15a1f2dd341c59a65d9f8c0f57f4e339ff5a66f8bece6c7b2a5d8ad10a0a",
+      "source::supervisor": "792302085ccde4f09bfc7d3ca6534f411a9b776b54cbca5b83e8a7ad02277c2b",
+      "source::unit": "a4f1ddb854847435388e1dd9984812bc0b295c42443f63c76ac5d55c01b34738",
+      "source::preflight": "bb14fca6f9344459f9c812d61de6c1abf90fd5fe7d8a966d46a6ca10fbadc1ec",
+      "source::negative_controls": "492c03fd231969dc80347713c3106c7970854d060d2d5780e285ffbac8372256",
+      "source::builder": "ec5432ac875580b331a9e2e5910499d15c41f30de843c01e589005d9ea8fb29b",
+      "governance::contract": "1052946e87b9060bec5e06488569ab06b1cb85cf52d2969e2876a4a7355d5a57",
+      "governance::source_freeze": "ff1d23e11da61645cc117bbc0e7674b680056c83164cad9266beb24d6c5e0ba0",
+      "governance::preflight": "224cf6d1f108119caf3ce365bfa4cfe36945d0fd4a7d334e472f2b3e7cd32006",
+      "governance::negative_controls": "fe35ac673bca59e6bcb20900f4c541f283ba3bc6aaf3bf8b4e82ba537a08bcb2",
+      "governance::eligibility": "9ba0c2fd94c6d5d7d29b50430b2c78d13e48e7003725c80cac2012b6ddb1ad11",
+      "governance::no_execution_audit": "09feb4bfc9e7c9ffa157a3afb93a0d9085e462d4b6c2bc3676295d03f3c80a37",
+      "governance::v1_3_to_v1_4_diff": "ccffd91d4dff41a6ea4d9a6be3c66237e5c17a4cc6bb92103e122eb9dbae8ee2"
+    },
+    "post_validator_hashes": {
+      "source::diagnostic": "778af67fe41e44cec0717365b2c3427bcfd43442145af09a7aca2abe1f4a3eab",
+      "source::launcher": "221a15a1f2dd341c59a65d9f8c0f57f4e339ff5a66f8bece6c7b2a5d8ad10a0a",
+      "source::supervisor": "792302085ccde4f09bfc7d3ca6534f411a9b776b54cbca5b83e8a7ad02277c2b",
+      "source::unit": "a4f1ddb854847435388e1dd9984812bc0b295c42443f63c76ac5d55c01b34738",
+      "source::preflight": "bb14fca6f9344459f9c812d61de6c1abf90fd5fe7d8a966d46a6ca10fbadc1ec",
+      "source::negative_controls": "492c03fd231969dc80347713c3106c7970854d060d2d5780e285ffbac8372256",
+      "source::builder": "ec5432ac875580b331a9e2e5910499d15c41f30de843c01e589005d9ea8fb29b",
+      "governance::contract": "1052946e87b9060bec5e06488569ab06b1cb85cf52d2969e2876a4a7355d5a57",
+      "governance::source_freeze": "ff1d23e11da61645cc117bbc0e7674b680056c83164cad9266beb24d6c5e0ba0",
+      "governance::preflight": "224cf6d1f108119caf3ce365bfa4cfe36945d0fd4a7d334e472f2b3e7cd32006",
+      "governance::negative_controls": "fe35ac673bca59e6bcb20900f4c541f283ba3bc6aaf3bf8b4e82ba537a08bcb2",
+      "governance::eligibility": "9ba0c2fd94c6d5d7d29b50430b2c78d13e48e7003725c80cac2012b6ddb1ad11",
+      "governance::no_execution_audit": "09feb4bfc9e7c9ffa157a3afb93a0d9085e462d4b6c2bc3676295d03f3c80a37",
+      "governance::v1_3_to_v1_4_diff": "ccffd91d4dff41a6ea4d9a6be3c66237e5c17a4cc6bb92103e122eb9dbae8ee2"
+    },
+    "frozen_expected_hashes": {
+      "source::diagnostic": "778af67fe41e44cec0717365b2c3427bcfd43442145af09a7aca2abe1f4a3eab",
+      "source::launcher": "221a15a1f2dd341c59a65d9f8c0f57f4e339ff5a66f8bece6c7b2a5d8ad10a0a",
+      "source::supervisor": "792302085ccde4f09bfc7d3ca6534f411a9b776b54cbca5b83e8a7ad02277c2b",
+      "source::unit": "a4f1ddb854847435388e1dd9984812bc0b295c42443f63c76ac5d55c01b34738",
+      "source::preflight": "bb14fca6f9344459f9c812d61de6c1abf90fd5fe7d8a966d46a6ca10fbadc1ec",
+      "source::negative_controls": "492c03fd231969dc80347713c3106c7970854d060d2d5780e285ffbac8372256",
+      "source::builder": "ec5432ac875580b331a9e2e5910499d15c41f30de843c01e589005d9ea8fb29b",
+      "governance::contract": "1052946e87b9060bec5e06488569ab06b1cb85cf52d2969e2876a4a7355d5a57",
+      "governance::source_freeze": "ff1d23e11da61645cc117bbc0e7674b680056c83164cad9266beb24d6c5e0ba0",
+      "governance::preflight": "224cf6d1f108119caf3ce365bfa4cfe36945d0fd4a7d334e472f2b3e7cd32006",
+      "governance::negative_controls": "fe35ac673bca59e6bcb20900f4c541f283ba3bc6aaf3bf8b4e82ba537a08bcb2",
+      "governance::eligibility": "9ba0c2fd94c6d5d7d29b50430b2c78d13e48e7003725c80cac2012b6ddb1ad11",
+      "governance::no_execution_audit": "09feb4bfc9e7c9ffa157a3afb93a0d9085e462d4b6c2bc3676295d03f3c80a37",
+      "governance::v1_3_to_v1_4_diff": "ccffd91d4dff41a6ea4d9a6be3c66237e5c17a4cc6bb92103e122eb9dbae8ee2"
+    },
+    "pre_equals_post": true,
+    "all_pre_equal_frozen_pins": true,
+    "all_post_equal_frozen_pins": true
+  },
+  "frozen_pins": {
+    "n_source_pins": 7,
+    "n_governance_pins": 7,
+    "n_unique_pins": 14,
+    "n_unique_paths": 14,
+    "source": {
+      "source::diagnostic": {
+        "path": "scripts/analysis/phase36_final_probability_authority_diagnostic_v1_4.py",
+        "expected_sha256": "778af67fe41e44cec0717365b2c3427bcfd43442145af09a7aca2abe1f4a3eab"
+      },
+      "source::launcher": {
+        "path": "scripts/analysis/launch_phase36_final_probability_authority_diagnostic_v1_4.py",
+        "expected_sha256": "221a15a1f2dd341c59a65d9f8c0f57f4e339ff5a66f8bece6c7b2a5d8ad10a0a"
+      },
+      "source::supervisor": {
+        "path": "scripts/analysis/supervise_phase36_final_probability_authority_diagnostic_v1_4.py",
+        "expected_sha256": "792302085ccde4f09bfc7d3ca6534f411a9b776b54cbca5b83e8a7ad02277c2b"
+      },
+      "source::unit": {
+        "path": "scripts/analysis/phase36_final_probability_authority_diagnostic_unit_v1_4.py",
+        "expected_sha256": "a4f1ddb854847435388e1dd9984812bc0b295c42443f63c76ac5d55c01b34738"
+      },
+      "source::preflight": {
+        "path": "scripts/analysis/phase36_final_probability_authority_diagnostic_preflight_v1_4.py",
+        "expected_sha256": "bb14fca6f9344459f9c812d61de6c1abf90fd5fe7d8a966d46a6ca10fbadc1ec"
+      },
+      "source::negative_controls": {
+        "path": "scripts/analysis/phase36_final_probability_authority_diagnostic_negative_controls_v1_4.py",
+        "expected_sha256": "492c03fd231969dc80347713c3106c7970854d060d2d5780e285ffbac8372256"
+      },
+      "source::builder": {
+        "path": "scripts/analysis/build_phase36_final_probability_authority_diagnostic_v1_4.py",
+        "expected_sha256": "ec5432ac875580b331a9e2e5910499d15c41f30de843c01e589005d9ea8fb29b"
+      }
+    },
+    "governance": {
+      "governance::contract": {
+        "path": "reports/audits/phase36_final_probability_authority_diagnostic_contract_v1_4.json",
+        "expected_sha256": "1052946e87b9060bec5e06488569ab06b1cb85cf52d2969e2876a4a7355d5a57"
+      },
+      "governance::source_freeze": {
+        "path": "reports/audits/phase36_final_probability_authority_diagnostic_source_freeze_v1_4.json",
+        "expected_sha256": "ff1d23e11da61645cc117bbc0e7674b680056c83164cad9266beb24d6c5e0ba0"
+      },
+      "governance::preflight": {
+        "path": "reports/audits/phase36_final_probability_authority_diagnostic_preflight_v1_4.json",
+        "expected_sha256": "224cf6d1f108119caf3ce365bfa4cfe36945d0fd4a7d334e472f2b3e7cd32006"
+      },
+      "governance::negative_controls": {
+        "path": "reports/audits/phase36_final_probability_authority_diagnostic_negative_controls_v1_4.json",
+        "expected_sha256": "fe35ac673bca59e6bcb20900f4c541f283ba3bc6aaf3bf8b4e82ba537a08bcb2"
+      },
+      "governance::eligibility": {
+        "path": "reports/audits/phase36_final_probability_authority_diagnostic_eligibility_v1_4.json",
+        "expected_sha256": "9ba0c2fd94c6d5d7d29b50430b2c78d13e48e7003725c80cac2012b6ddb1ad11"
+      },
+      "governance::no_execution_audit": {
+        "path": "reports/audits/phase36_final_probability_authority_diagnostic_no_execution_audit_v1_4.json",
+        "expected_sha256": "09feb4bfc9e7c9ffa157a3afb93a0d9085e462d4b6c2bc3676295d03f3c80a37"
+      },
+      "governance::v1_3_to_v1_4_diff": {
+        "path": "reports/audits/phase36_final_probability_authority_diagnostic_v1_3_to_v1_4_diff.json",
+        "expected_sha256": "ccffd91d4dff41a6ea4d9a6be3c66237e5c17a4cc6bb92103e122eb9dbae8ee2"
+      }
+    }
+  },
+  "attempt_absence": {
+    "before": {
+      "START": true,
+      "RESULT": true,
+      "FAILURE": true,
+      "PROCESS_EXIT": true
+    },
+    "after": {
+      "START": true,
+      "RESULT": true,
+      "FAILURE": true,
+      "PROCESS_EXIT": true
+    },
+    "journal_records_before": 0,
+    "journal_records_after": 0,
+    "START_ABSENT": true,
+    "RESULT_ABSENT": true,
+    "FAILURE_ABSENT": true,
+    "PROCESS_EXIT_ABSENT": true,
+    "real_journal_records": 0
+  },
+  "post_governance_readiness": {
+    "unit": "68/68",
+    "preflight": "102/102",
+    "negative_controls": "31/31",
+    "supervisor": "6/6",
+    "launcher_verify_only": "PASS",
+    "launcher_verify_only_terminal": "PHASE36_FINAL_PROB_AUTHORITY_DIAGNOSTIC_V1_4_LAUNCH_READINESS_VERIFIED__DISPATCH_SUPPRESSED_BY_VERIFY_ONLY"
+  },
+  "state": {
+    "v1_4": "ELIGIBLE_NOT_STARTED",
+    "attempt_consumed": false,
+    "scientific_semantics_effect": "NONE",
+    "runtime_execution_effect": "NONE",
+    "governance_evidence_effect": "YES"
+  },
+  "prohibitions_observed": {
+    "v1_4_execution": "NOT_PERFORMED",
+    "model_run": "NOT_PERFORMED",
+    "checkpoint_deserialization": "NOT_PERFORMED",
+    "val_image_read": "NOT_PERFORMED",
+    "val_gt_read": "NOT_PERFORMED",
+    "test_access": "NOT_PERFORMED",
+    "router_holdout_access": "NOT_PERFORMED",
+    "perturbations": "NOT_PERFORMED",
+    "v1_15_science": "NOT_PERFORMED",
+    "phase37": "NOT_PERFORMED"
+  },
+  "note": "Additive governance-evidence reconciliation only; NO scientific-path change. Frozen D72 attestation and builder PRESERVED UNMODIFIED. v1.4 remains ELIGIBLE_NOT_STARTED; attempt not consumed."
+}

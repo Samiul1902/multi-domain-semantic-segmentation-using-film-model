@@ -1,0 +1,229 @@
+{
+ "artifact": "phase24_spec_completeness_repair",
+ "phase": 24,
+ "repair": "POST_PHASE24_SPECIFICATION_COMPLETENESS_REPAIR",
+ "purpose": "prove every remaining implementation degree of freedom was frozen BEFORE Phase 25 so Phase 25 cannot choose architecture or protocol from observed performance",
+ "architecture_id": "ra_medfilm_barr_narrowed_v1_1",
+ "supersedes": "ra_medfilm_barr_narrowed_v1",
+ "method_name": "RA-MedFiLM-BARR",
+ "science_changed": false,
+ "n_checks": 49,
+ "n_passed": 49,
+ "n_failed": 0,
+ "verdict": "PHASE24_SPEC_COMPLETENESS_REPAIR_PASS",
+ "checks": [
+  {
+   "check": "exact_split_seed_frozen",
+   "pass": true
+  },
+  {
+   "check": "exact_split_manifests_bound",
+   "pass": true
+  },
+  {
+   "check": "exact_roi_expansion_frozen",
+   "pass": true
+  },
+  {
+   "check": "exact_refiner_resolution_frozen",
+   "pass": true
+  },
+  {
+   "check": "exact_refiner_channels_frozen",
+   "pass": true
+  },
+  {
+   "check": "exact_refiner_blocks_frozen",
+   "pass": true
+  },
+  {
+   "check": "exact_refiner_training_protocol_frozen",
+   "pass": true
+  },
+  {
+   "check": "action_availability_frozen",
+   "pass": true
+  },
+  {
+   "check": "OOF_procedure_exact",
+   "pass": true
+  },
+  {
+   "check": "final_refiner_refit_rule_frozen",
+   "pass": true
+  },
+  {
+   "check": "router_feature_taps_frozen",
+   "pass": true
+  },
+  {
+   "check": "router_scalar_inputs_frozen",
+   "pass": true
+  },
+  {
+   "check": "router_architecture_frozen",
+   "pass": true
+  },
+  {
+   "check": "router_training_protocol_frozen",
+   "pass": true
+  },
+  {
+   "check": "routing_threshold_rule_frozen",
+   "pass": true
+  },
+  {
+   "check": "lambda_grid_frozen",
+   "pass": true
+  },
+  {
+   "check": "post_safety_extension_frozen",
+   "pass": true
+  },
+  {
+   "check": "fusion_exact",
+   "pass": true
+  },
+  {
+   "check": "segmentation_threshold_inherited",
+   "pass": true
+  },
+  {
+   "check": "no_architecture_search_allowed",
+   "pass": true
+  },
+  {
+   "check": "no_holdout_outcomes_read",
+   "pass": true
+  },
+  {
+   "check": "no_VAL_tuning",
+   "pass": true
+  },
+  {
+   "check": "TEST_zero",
+   "pass": true
+  },
+  {
+   "check": "Phase25_not_started",
+   "pass": true
+  },
+  {
+   "check": "revision_v1_1_present",
+   "pass": true
+  },
+  {
+   "check": "revision_reason_completeness_only",
+   "pass": true
+  },
+  {
+   "check": "science_changed_false",
+   "pass": true
+  },
+  {
+   "check": "method_name_unchanged",
+   "pass": true
+  },
+  {
+   "check": "historical_provenance_preserved",
+   "pass": true
+  },
+  {
+   "check": "refiner_within_ceiling",
+   "pass": true
+  },
+  {
+   "check": "router_within_250k",
+   "pass": true
+  },
+  {
+   "check": "refiner_envelope_reduction_documented",
+   "pass": true
+  },
+  {
+   "check": "augmentation_inherited_exactly",
+   "pass": true
+  },
+  {
+   "check": "augmentation_no_elastic_cutmix_mixup",
+   "pass": true
+  },
+  {
+   "check": "run_policy_no_sweeps",
+   "pass": true
+  },
+  {
+   "check": "oof_schema_schema_only",
+   "pass": true
+  },
+  {
+   "check": "split_group_integrity",
+   "pass": true
+  },
+  {
+   "check": "split_domain_stratified",
+   "pass": true
+  },
+  {
+   "check": "split_deterministic",
+   "pass": true
+  },
+  {
+   "check": "split_dev_hold_counts",
+   "pass": true
+  },
+  {
+   "check": "phase23_bindings_unchanged",
+   "pass": true
+  },
+  {
+   "check": "novelty_boundary_unchanged",
+   "pass": true
+  },
+  {
+   "check": "hypotheses_unchanged",
+   "pass": true
+  },
+  {
+   "check": "comparators_unchanged",
+   "pass": true
+  },
+  {
+   "check": "preservation_margin_unchanged",
+   "pass": true
+  },
+  {
+   "check": "statistics_unchanged",
+   "pass": true
+  },
+  {
+   "check": "failure_criteria_unchanged",
+   "pass": true
+  },
+  {
+   "check": "science_predecessors_unchanged",
+   "pass": true
+  },
+  {
+   "check": "all_four_predecessors_ok",
+   "pass": true
+  }
+ ],
+ "notebook_sha256_previous": "e4383d5ac9c33787b809407e4884cd7069f1f4514ed0abf7c21c844024221207",
+ "notebook_sha256_current": "612d71700c1c1a45b94b8fcb8a3ff427bf32f6f6453130febeec49c6ec78caef",
+ "science_predecessors": {
+  "phase21_best_pt": true,
+  "phase22_protocol": true,
+  "phase22_freeze": true,
+  "phase23_notebook": true
+ },
+ "science_unchanged": true,
+ "no_training": true,
+ "no_inference": true,
+ "module_instantiations": 0,
+ "holdout_outcomes_read": 0,
+ "val_outcome_reads": 0,
+ "test_reads": 0,
+ "phase25_started": false,
+ "generated_utc": "2026-09-30T04:04:14.945295+00:00"
+}

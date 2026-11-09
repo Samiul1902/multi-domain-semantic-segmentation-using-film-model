@@ -1,0 +1,197 @@
+{
+ "artifact": "phase34_execution_source_preflight_v1_1",
+ "phase": 34,
+ "section": "\u00a7B",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase34_efficiency_profiling_v1_1",
+ "purpose": "mandatory static source + semantics preflight BEFORE any model load",
+ "authority_bindings": [
+  {
+   "path": "reports/audits/phase34_specification_terminal_v1_1.json",
+   "expected_sha256": "3b8c0d55a13584a0730e2095c3b1df261447217661e6de1130c8c0b234786a86",
+   "observed_sha256": "3b8c0d55a13584a0730e2095c3b1df261447217661e6de1130c8c0b234786a86",
+   "match": true
+  },
+  {
+   "path": "reports/audits/phase34_specification_final_check_v1_1.json",
+   "expected_sha256": "ffa567d780e6527cd18553268bd59e893b2b659544ee223b2da57340220dcbea",
+   "observed_sha256": "ffa567d780e6527cd18553268bd59e893b2b659544ee223b2da57340220dcbea",
+   "match": true
+  },
+  {
+   "path": "reports/audits/phase34_preexecution_source_freeze_v1_1.json",
+   "expected_sha256": "27402c5a65004660fcbd944e422073447f10afcedddb2f8625dbd9a57ba8d689",
+   "observed_sha256": "27402c5a65004660fcbd944e422073447f10afcedddb2f8625dbd9a57ba8d689",
+   "match": true
+  },
+  {
+   "path": "docs/phase34_efficiency_profiling_spec_v1_1.md",
+   "expected_sha256": "bacd3a4e436f433b7ba82c71687ec182b2ef90ffbabaaaf5e92c3d5a8b5b4191",
+   "observed_sha256": "bacd3a4e436f433b7ba82c71687ec182b2ef90ffbabaaaf5e92c3d5a8b5b4191",
+   "match": true
+  },
+  {
+   "path": "reports/audits/phase34_precision_execution_semantics_contract_v1_1.json",
+   "expected_sha256": "a37d29c2960b627c92d973f6c40632577ea1d90a0546220ad43723a2e8772fde",
+   "observed_sha256": "a37d29c2960b627c92d973f6c40632577ea1d90a0546220ad43723a2e8772fde",
+   "match": true
+  },
+  {
+   "path": "reports/audits/phase34_analytical_compute_contract_v1_1.json",
+   "expected_sha256": "c126ab3337b56e2f82e9cf79e5d7dce5c436696bb5177d43e8305144977f4732",
+   "observed_sha256": "c126ab3337b56e2f82e9cf79e5d7dce5c436696bb5177d43e8305144977f4732",
+   "match": true
+  },
+  {
+   "path": "reports/tables/phase34_profiling_arm_registry_v1_1.csv",
+   "expected_sha256": "91648b8758e1ebfc990728e2d43b5381eea074d911ca6c30ac5558ed70457038",
+   "observed_sha256": "91648b8758e1ebfc990728e2d43b5381eea074d911ca6c30ac5558ed70457038",
+   "match": true
+  },
+  {
+   "path": "reports/audits/phase34_measured_runtime_scope_v1_1.json",
+   "expected_sha256": "4b7bcc269a86cadb8dbf8ff512da3e51619579599a369b8cf457929f8fbd170d",
+   "observed_sha256": "4b7bcc269a86cadb8dbf8ff512da3e51619579599a369b8cf457929f8fbd170d",
+   "match": true
+  },
+  {
+   "path": "reports/audits/phase34_execution_eligibility_adjudication_v1_1.json",
+   "expected_sha256": "4da89314f8c2372e92aa78adcec0c0823b128e1ab9683179b5559a6e8e785757",
+   "observed_sha256": "4da89314f8c2372e92aa78adcec0c0823b128e1ab9683179b5559a6e8e785757",
+   "match": true
+  }
+ ],
+ "authority_all_match": true,
+ "load_bearing_source_hashes": {
+  "harness": {
+   "path": "scripts/analysis/phase34_efficiency_profiling_execution_v1_1.py",
+   "expected_sha256": "e6effd91ef847d2735648a2abd3fd254d09b015b336554005f94866168afda59",
+   "observed_sha256": "e6effd91ef847d2735648a2abd3fd254d09b015b336554005f94866168afda59",
+   "match": true
+  },
+  "worker": {
+   "path": "scripts/analysis/phase34_efficiency_profiling_worker_v1_1.py",
+   "expected_sha256": "bd2cd11a744891282e976185ff1c77883f0c1e5da97792932b70b0fc55a31463",
+   "observed_sha256": "bd2cd11a744891282e976185ff1c77883f0c1e5da97792932b70b0fc55a31463",
+   "match": true
+  }
+ },
+ "model_source_hashes": [
+  {
+   "path": "src/models/barr/ra_medfilm_barr.py",
+   "role": "CANONICAL_WRAPPER_SOURCE",
+   "sha256": "342f2163690c2fa8d5a601ab1d18178b982d701b916935c33e0793b0801c3724"
+  },
+  {
+   "path": "src/models/barr/regional_refiner.py",
+   "role": "R_psi_SOURCE",
+   "sha256": "4fe0abde3ec3a183d930f676c4400b4d9ba778793ea64abf1755c5b8dabf947a"
+  },
+  {
+   "path": "src/models/barr/router_variants.py",
+   "role": "B_phi_SOURCE",
+   "sha256": "f8dab77d2dc01bd84d7569ee1ca839607be55e852fa462f5212c229097de0ad0"
+  },
+  {
+   "path": "src/models/film/global_medfilm.py",
+   "role": "G_SOURCE",
+   "sha256": "a04ff3e61b4d900ff47c2f390da4a999e73bd6047b28a19e41b05115e431d11f"
+  }
+ ],
+ "static_semantic_audit": {
+  "executable_code_lines": 71,
+  "G_model_eval": false,
+  "G_autocast_enabled": false,
+  "G_autocast_dtype_float16": false,
+  "G_no_grad": false,
+  "G_not_inference_mode": false,
+  "no_autocast_components_present": false,
+  "constructs_models": false,
+  "loads_checkpoints": false,
+  "runs_forwards": false,
+  "synchronized_cuda_timing": false,
+  "memory_measurement": false,
+  "uses_flop_mac_profiler": false,
+  "training_or_optimizer_reachable": false,
+  "protected_data_path": false,
+  "required_executable_behaviours_missing": [
+   "G_model_eval",
+   "G_autocast_enabled",
+   "G_autocast_dtype_float16",
+   "G_no_grad",
+   "constructs_models",
+   "loads_checkpoints",
+   "runs_forwards",
+   "synchronized_cuda_timing",
+   "memory_measurement"
+  ],
+  "static_semantic_audit_pass": false,
+  "prohibited_behaviours_present": []
+ },
+ "checkpoint_file_verification": [
+  {
+   "component": "G",
+   "path": "checkpoints/phase21_global_medfilm_fourdomain_seed42_clean_v3/best.pt",
+   "expected_sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+   "observed_sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+   "match": true,
+   "file_bytes": 42369710,
+   "model_class": "GlobalMedFiLM",
+   "historical_parameter_count": 3523001
+  },
+  {
+   "component": "R_psi",
+   "path": "checkpoints/phase25a_barr_regional_refiner_v1_1_roi030/final/final.pt",
+   "expected_sha256": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109",
+   "observed_sha256": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109",
+   "match": true,
+   "file_bytes": 15425424,
+   "model_class": "BARRRegionalRefinerV1",
+   "historical_parameter_count": 1276401
+  },
+  {
+   "component": "B_phi",
+   "path": "checkpoints/phase25d_barr_benefit_router_v1_2_1_seed42/final/final.pt",
+   "expected_sha256": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+   "observed_sha256": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+   "match": true,
+   "file_bytes": 455682,
+   "model_class": "BARRBenefitRouterV1",
+   "historical_parameter_count": 36801
+  },
+  {
+   "component": "S_omega",
+   "path": "checkpoints/phase25f_barr_post_safety_v1_0_seed42/final/final.pt",
+   "expected_sha256": "eee9b97b9921e53fc07eac9281dce64ba518c6e1659916b97b0b3bec21ec6d2e",
+   "observed_sha256": "eee9b97b9921e53fc07eac9281dce64ba518c6e1659916b97b0b3bec21ec6d2e",
+   "match": true,
+   "file_bytes": 7816,
+   "model_class": "BARRPostSafetyV1",
+   "historical_parameter_count": 1217
+  }
+ ],
+ "checkpoint_files_all_match": true,
+ "required_task_conditioning_binding": {
+  "G_forward_requires_task_ids": true,
+  "G_task_conditioning_evidence": "src/models/film/global_medfilm.py: forward consumes task_ids [B]; _validate_task_ids enforces shape [B] and range [0, task_count); task_embedding + FiLM sites are 'the ONLY task signal'",
+  "harness_defines_task_ids": false,
+  "harness_defines_domain_index": false,
+  "synthetic_input_builder_emits_only_image_tensor": true,
+  "deterministic_task_conditioning_bound": false
+ },
+ "source_hash_check_pass": true,
+ "static_semantic_audit_pass": false,
+ "task_conditioning_bound": false,
+ "preflight_pass": false,
+ "blockers": [
+  "V1_1_WORKER_DOES_NOT_IMPLEMENT_REQUIRED_EXECUTABLE_RUNTIME_SEMANTICS",
+  "REQUIRED_TASK_DOMAIN_CONDITIONING_NOT_DETERMINISTICALLY_BOUND"
+ ],
+ "model_deserialized": false,
+ "model_constructed": false,
+ "forward_executed": false,
+ "cuda_timing_performed": false,
+ "memory_measured": false,
+ "generated_utc": "2026-10-04T10:55:40+00:00",
+ "all_pass": false
+}

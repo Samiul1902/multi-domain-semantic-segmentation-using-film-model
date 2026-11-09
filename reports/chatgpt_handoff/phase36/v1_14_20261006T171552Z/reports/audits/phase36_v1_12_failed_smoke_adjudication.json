@@ -1,0 +1,36 @@
+{
+  "artifact": "phase36_v1_12_failed_smoke_adjudication",
+  "phase": 36,
+  "revision": "v1.12",
+  "type": "FAILED_SMOKE_ATTEMPT_ADJUDICATION",
+  "attempt_consumed": true,
+  "retry_same_revision": "forbidden",
+  "failure_stage": "pre-model CUDA device resolution",
+  "failure_exception_type": "CudaUnavailableError",
+  "failure_exception_message": "CUDA is required for canonical execution but is unavailable. Refusing to silently fall back to CPU. Pass allow_cpu_fallback=True only in explicitly labelled non-canonical unit tests.",
+  "failure_root_cause": "B_CPU_ONLY_PYTORCH_BUILD (torch.version.cuda = None in the interpreter used for the smoke)",
+  "failure_trigger": "WRONG_INTERPRETER (bare system Python 3.11 with torch 2.10.0+cpu instead of the project venv with torch 2.6.0+cu124)",
+  "scientific_output": false,
+  "checkpoint_deserialization": false,
+  "val_read": false,
+  "gt_read": false,
+  "test_read": false,
+  "router_holdout_read": false,
+  "science_eligible": false,
+  "next_revision_required_for_future_smoke": "v1.13",
+  "consumed_artifacts_preserved": [
+    "reports/audits/phase36_robustness_smoke_start_v1_12.json",
+    "reports/audits/phase36_robustness_smoke_failure_v1_12.json",
+    "reports/audits/phase36_v1_12_smoke_console_first_attempt.txt"
+  ],
+  "consumed_artifacts_immutable": true,
+  "consumed_artifacts_write_semantics": "write-once (O_CREAT|O_EXCL marker; open(x) exclusive failure artifact)",
+  "diagnosis_reference": "reports/audits/phase36_v1_12_cuda_environment_diagnosis.json",
+  "terminal": "PHASE36_V1_12_FIRST_SMOKE_ATTEMPT_CONSUMED__FAILED_PRE_MODEL_CUDA_RESOLUTION__RETRY_FORBIDDEN__NEXT_REVISION_V1_13",
+  "notes": [
+    "The GPU, the NVIDIA driver, and the project venv are all healthy; CUDA works under D:\\Softfors\\jup\\.venv\\Scripts\\python.exe.",
+    "The failure is an interpreter/BUILD selection defect, not a hardware or driver defect.",
+    "No v1.13 artifacts were created. Diagnosis only; execution STOPPED."
+  ],
+  "generated_utc": "2026-10-06T16:18:00Z"
+}

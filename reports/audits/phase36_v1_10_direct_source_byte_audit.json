@@ -1,0 +1,148 @@
+{
+  "artifact": "phase36_v1_10_direct_source_byte_audit",
+  "phase": 36,
+  "section": "§M",
+  "method": "RA-MedFiLM-BARR",
+  "revision": "ra_medfilm_barr_phase36_robustness_v1_10",
+  "type": "DIRECT_SOURCE_BYTE_AUDIT",
+  "read_only": true,
+  "torch_imported": false,
+  "protected_population_read": false,
+  "subject": "scripts/analysis/phase36_robustness_execution_v1_9.py",
+  "execution_sha256": "433bad87b4ef77fd6997c77f688eb295e526bfa3e88dece4ec5d3d550255cbd0",
+  "n_declared_check_ids": null,
+  "items": [
+    {
+      "item": "v1_9_execution_subject_sha256",
+      "pass": true,
+      "evidence": {
+        "expected": "433bad87b4ef77fd6997c77f688eb295e526bfa3e88dece4ec5d3d550255cbd0",
+        "observed": "433bad87b4ef77fd6997c77f688eb295e526bfa3e88dece4ec5d3d550255cbd0"
+      }
+    },
+    {
+      "item": "v1_9_unit_history_sha256",
+      "pass": true,
+      "evidence": {
+        "expected": "c39edd7764a0e9733cc5905e5e54935b1bcd9cc62c345189f618b0c6f4ea690e"
+      }
+    },
+    {
+      "item": "v1_10_execution_subject_is_v1_9_bytes",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "item": "ast_parse_success",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "item": "line_count",
+      "pass": true,
+      "evidence": 3871
+    },
+    {
+      "item": "D26_provenance_is_derived_bool_call",
+      "pass": true,
+      "evidence": {
+        "observed_names": [
+          "_marker_exists",
+          "_marker_sole_and_trueseal",
+          "bool"
+        ]
+      }
+    },
+    {
+      "item": "D26_exclusive_create_open_x_present",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "item": "D26_write_once_flag_not_literal_true",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "item": "D26_binding_consumes_derived",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "item": "D27_exact_14_transitive_dependencies",
+      "pass": true,
+      "evidence": {
+        "observed": 14
+      }
+    },
+    {
+      "item": "D27_expected_14_paths_exact_match",
+      "pass": true,
+      "evidence": {
+        "observed": [
+          "experiments/phase21_global_medfilm_fourdomain_seed42_clean_v3/config.json",
+          "reports/tables/phase25d_final_normalization_stats.csv",
+          "reports/tables/phase25f_final_normalization_stats.csv",
+          "scripts/analysis/phase25f_execution_common.py",
+          "scripts/analysis/phase25f_post_safety_features.py",
+          "scripts/analysis/phase36_robustness_common_v1_1.py",
+          "scripts/analysis/train_phase25d_router.py",
+          "src/data/barr_roi.py",
+          "src/features/barr_pre_refinement_features.py",
+          "src/metrics/evaluation_metrics.py",
+          "src/models/barr/ra_medfilm_barr.py",
+          "src/models/barr/regional_refiner.py",
+          "src/models/film/global_medfilm.py",
+          "src/utils/device.py"
+        ]
+      }
+    },
+    {
+      "item": "D28_four_actual_hd95_call_sites",
+      "pass": true,
+      "evidence": {
+        "n": 4
+      }
+    },
+    {
+      "item": "D28_four_hd95_call_semantics_exact",
+      "pass": true,
+      "evidence": {
+        "observed": [
+          "('empty_empty', False, 'both_empty')",
+          "('empty_prediction_nonempty_gt', False, 'empty_prediction')",
+          "('nonempty_nonempty', True, '')",
+          "('nonempty_prediction_empty_gt', False, 'empty_ground_truth')"
+        ]
+      }
+    },
+    {
+      "item": "unit_reads_v1_9_execution_source",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "item": "unit_report_exists_and_passes",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "item": "negative_controls_report_exists_and_passes",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "item": "no_smoke_or_science_artifact_written",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "item": "no_v1_10_smoke_or_science_artifact_written",
+      "pass": true,
+      "evidence": null
+    }
+  ],
+  "passed": 18,
+  "total": 18,
+  "verdict": "PASS"
+}

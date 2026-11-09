@@ -1,0 +1,29 @@
+{
+ "artifact": "phase25g_dev_result_ownership",
+ "phase": "25G",
+ "classification": "CONTROLLED_DEVELOPMENT_RESULTS",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_integrated_evaluation_v1_0",
+ "governance_only": true,
+ "no_execution": true,
+ "stage": "DEV_RESULT_OWNERSHIP",
+ "sources": {
+  "Phase25C": "OOF refinement outcomes (delta_dice)",
+  "Phase25D": "OOF router decisions",
+  "Phase25E": "prospective memberships",
+  "Phase25F": "OOF safety probabilities / decisions"
+ },
+ "not_claimable_as": [
+  "untouched holdout results",
+  "TEST results",
+  "fully end-to-end independently nested CV results"
+ ],
+ "meta_level_oof_disclosure": "Phase25C's 3-fold upstream cross-fit and Phase25F's 5-fold downstream cross-validation are NOT a fully nested end-to-end hierarchy: the refined-probability features seen by a Phase25F fold were produced by a Phase25C refiner that was not cross-fit with respect to that Phase25F fold. Phase25F OOF predictions are therefore META_LEVEL_OOF_DEVELOPMENT_PREDICTIONS, suitable for Phase25G development evaluation only.",
+ "oof_classification": "META_LEVEL_OOF_DEVELOPMENT_PREDICTIONS",
+ "checks": {
+  "classified_as_controlled_development": true,
+  "meta_level_oof_disclosure_carried_forward": true,
+  "not_holdout_not_test": true
+ },
+ "all_pass": true
+}

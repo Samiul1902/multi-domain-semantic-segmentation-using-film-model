@@ -1,0 +1,140 @@
+{
+  "classification": "PHASE38_PHASE39_RESULT_SHELL_REGISTRY",
+  "generated_utc": "2026-10-11T06:35:00Z",
+  "phase": 38,
+  "purpose": "pre-specified Phase39 manuscript result shells; prove the reporting structure was frozen before TEST opened",
+  "placeholder": "TEST_VALUE_PENDING",
+  "n_shells": 8,
+  "shells": [
+    {
+      "shell": "S39-01_final_test_main_result_shell.csv",
+      "columns": [
+        "claim_id",
+        "system",
+        "comparator",
+        "metric",
+        "population",
+        "test_n",
+        "estimate",
+        "ci_low",
+        "ci_high",
+        "direction",
+        "evidence_class",
+        "mandatory_qualifier"
+      ],
+      "rows": 2,
+      "note": "final TEST main-result shell; values TEST_VALUE_PENDING; frozen pre-outcome"
+    },
+    {
+      "shell": "S39-02_per_domain_test_result_shell.csv",
+      "columns": [
+        "domain",
+        "task_id",
+        "n",
+        "dice",
+        "iou",
+        "hd95",
+        "hd95_valid_n",
+        "delta_dice_vs_global",
+        "ci_low",
+        "ci_high",
+        "harm_flag"
+      ],
+      "rows": 4,
+      "note": "per-domain TEST result shell; values TEST_VALUE_PENDING"
+    },
+    {
+      "shell": "S39-03_comparator_table_shell.csv",
+      "columns": [
+        "comparator_id",
+        "role",
+        "identity",
+        "macro_dice",
+        "macro_delta_dice_vs_global",
+        "test_n"
+      ],
+      "rows": 2,
+      "note": "comparator table shell; values TEST_VALUE_PENDING"
+    },
+    {
+      "shell": "S39-04_statistical_result_shell.csv",
+      "columns": [
+        "claim_id",
+        "estimand",
+        "point",
+        "ci_low",
+        "ci_high",
+        "criterion",
+        "decision",
+        "confirmatory_status",
+        "p_value",
+        "multiplicity",
+        "allowed_wording"
+      ],
+      "rows": 1,
+      "note": "statistical-result shell; values TEST_VALUE_PENDING; no confirmatory procedure eligible"
+    },
+    {
+      "shell": "S39-05_kub_reporting_only_subgroup_shell.csv",
+      "columns": [
+        "kub_subgroup",
+        "n",
+        "dice",
+        "delta_dice",
+        "reporting_only_flag"
+      ],
+      "rows": 3,
+      "note": "KUB reporting-only subgroup shell; values TEST_VALUE_PENDING; may not alter primary conclusion"
+    },
+    {
+      "shell": "S39-06_test_figure_registry_shell.csv",
+      "columns": [
+        "figure_id",
+        "source_phase",
+        "input_artifact",
+        "population",
+        "plotted_variables",
+        "caption",
+        "qualifier",
+        "designation"
+      ],
+      "rows": 3,
+      "note": "TEST figure registry shell; values TEST_VALUE_PENDING"
+    },
+    {
+      "shell": "S39-07_manuscript_ledger_update_shell.csv",
+      "columns": [
+        "ledger_id",
+        "claim_id",
+        "phase",
+        "population",
+        "metric",
+        "estimate",
+        "uncertainty",
+        "comparator",
+        "direction",
+        "evidence_class",
+        "mandatory_qualifier",
+        "main_text_allowed",
+        "abstract_allowed",
+        "test_confirmed"
+      ],
+      "rows": 1,
+      "note": "manuscript ledger update shell; values TEST_VALUE_PENDING; test_confirmed frozen pre-outcome"
+    },
+    {
+      "shell": "S39-08_limitations_update_shell.csv",
+      "columns": [
+        "limitation_id",
+        "phase",
+        "population",
+        "statement",
+        "qualifier",
+        "status"
+      ],
+      "rows": 4,
+      "note": "limitations update shell; frozen limitations pre-bound; TEST-derived rows TEST_VALUE_PENDING"
+    }
+  ],
+  "no_fabricated_test_values": true
+}

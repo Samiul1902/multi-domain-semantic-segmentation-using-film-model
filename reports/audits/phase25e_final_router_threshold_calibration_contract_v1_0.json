@@ -1,0 +1,24 @@
+{
+  "classification": "PHASE25E_PRE_EXECUTION_RESOURCE_GATE_SPECIFICATION_FREEZE",
+  "specification_revision": "ra_medfilm_barr_resource_gate_v1_0",
+  "development_performance_analysis": "frozen delta_hat_oof",
+  "final_deployment_calibration": "frozen final Phase25D checkpoint on 4957 ROUTER_DEVELOPMENT feature rows only; later separately authorized execution",
+  "final_checkpoint_sha256": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+  "normalization_sha256": "ba37742e96610ec5e46fb47c093bf71ae1afd85b2a0db9696b612c873a4ba1fb",
+  "model_pass_allowed_in_this_task": false,
+  "outcomes_needed": false,
+  "prohibited_populations": [
+    "ROUTER_HOLDOUT",
+    "VAL808",
+    "TEST"
+  ],
+  "frozen_policies": "same lambda, budgets, eligibility and tie contract",
+  "calibration": "derive rank boundaries and tau from final-router DEV scores, not OOF thresholds transferred blindly",
+  "boundary_tie": "persist score boundary and sample_id cutoff; scalar tau alone does not reproduce DEV exact K",
+  "endpoints": [
+    "EXECUTE_NONE",
+    "EXECUTE_ALL_ELIGIBLE"
+  ],
+  "deployment_caveat": "Quantile calibration fixes membership/cardinality on DEV only; future cohort activation fraction is not guaranteed. Exact cohort budgets require authorized cohort ranking.",
+  "holdout_feature_inference_in_this_task": 0
+}

@@ -1,0 +1,34 @@
+{
+ "artifact": "phase25c_phase25b_binding",
+ "phase": "25C",
+ "method": "RA-MedFiLM-BARR",
+ "architecture_revision": "ra_medfilm_barr_narrowed_v1_2",
+ "phase25b_notebook_path": "notebooks/phasewise/phase_25b_gt_free_features/phase25b_gt_free_pre_refinement_features.ipynb",
+ "phase25b_notebook_sha256": "acdfe90a5042ef364c5ab28ec67ecd3fe3146b30e1e5715a2631a36deb4dc38a",
+ "phase25b_notebook_sha_matches": true,
+ "feature_cache_dir": "data_cache/phase25b_barr_pre_refinement_features_v1_2",
+ "matrix_sha256": "9c241963b54f23de1c9671ff6670dde7d6f7e2510869ef5ebc1baf3f7c833e0a",
+ "metadata_sha256": "ee8c304350d28d907c053a355da1f878ff7f9dd137761034283459aeed071093",
+ "schema_sha256": "da76aa34f14006146f46ca799f173378274d8c9d0792dc18edb30711a2486dd4",
+ "matrix_sha_matches": true,
+ "metadata_sha_matches": true,
+ "schema_sha_matches": true,
+ "phase25b_feature_values_used_for_label_generation": false,
+ "phase25b_allowed_reads": [
+  "metadata.csv",
+  "feature_schema.csv",
+  "cache hashes",
+  "sample_id",
+  "feature_row_index",
+  "outer_fold",
+  "task_id/domain metadata"
+ ],
+ "phase25c_label_source": "candidate-refined vs global full-field Dice against GT",
+ "role_separation": {
+  "phase25b": "202-D GT-free pre-refinement features (identity join only)",
+  "phase25c": "OOF paired refinement-gain labels",
+  "phase25d": "benefit-router training (owns the 16-D task embedding)"
+ },
+ "test_reads": 0,
+ "generated_utc": "2026-09-30T16:57:00+00:00"
+}

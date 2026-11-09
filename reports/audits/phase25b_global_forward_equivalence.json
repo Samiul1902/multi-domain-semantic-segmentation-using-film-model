@@ -1,0 +1,15 @@
+{
+ "artifact": "phase25b_global_forward_equivalence",
+ "phase": "25B",
+ "reference": "data_cache/phase25a_barr_roi030_cache/<DOMAIN>/prob512.npy (float32)",
+ "n_samples_compared": 4957,
+ "tolerance": 1e-06,
+ "max_abs_difference": 0.0,
+ "mean_abs_difference": 0.0,
+ "p99_abs_difference": 0.0,
+ "n_exceeding_tolerance": 0,
+ "byte_identical_possible": true,
+ "byte_identical_note": "the replayed forward reproduces the frozen prob512 cache EXACTLY (bit-identical) because it uses the identical frozen checkpoint, the identical aspect-preserving preprocessing, and the identical no_grad + AMP batched forward path as the canonical Phase25A cache build",
+ "verdict": "PHASE25B_GLOBAL_FORWARD_EQUIVALENCE_PASS",
+ "byte_identical_achieved": true
+}

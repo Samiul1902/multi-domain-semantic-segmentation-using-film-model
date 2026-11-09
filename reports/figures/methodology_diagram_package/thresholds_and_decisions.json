@@ -1,0 +1,73 @@
+{
+  "artifact": "phase36_methodology_diagram_evidence_package__thresholds_and_decisions",
+  "method": "RA-MedFiLM-BARR",
+  "governance_note": "Threshold-only extraction from executable source/config. No model execution was performed to produce this file.",
+  "threshold_contract_source": "artifacts/phase26_ra_medfilm_barr_bundle_v1_0/threshold_contract.json (all_pass=true)",
+  "thresholds": {
+    "segmentation_output_threshold": {
+      "value": 0.50,
+      "symbol": "SEGMENTATION_OUTPUT_THRESHOLD",
+      "role": "Final mask = (probability >= 0.50).",
+      "source_file": "src/models/barr/ra_medfilm_barr.py:62"
+    },
+    "roi_proposal_threshold": {
+      "value": 0.30,
+      "symbol": "ROI_PROPOSAL_THRESHOLD",
+      "role": "Bounding box from p_global >= 0.30; empty ROI -> ACTION_UNAVAILABLE -> FORCED_SKIP.",
+      "source_file": "src/models/barr/ra_medfilm_barr.py:60"
+    },
+    "roi_fractional_margin": {
+      "value": 0.25,
+      "symbol": "ROI_FRACTIONAL_MARGIN / ROI_EXPANSION",
+      "role": "Centre-preserving expansion; expansion factor = (1 + 2*margin) = 1.50.",
+      "source_file": "src/models/barr/ra_medfilm_barr.py:63; scripts/analysis/phase36_robustness_execution_v1_12.py:374"
+    },
+    "s_omega_acceptance_threshold": {
+      "value": 0.50,
+      "symbol": "SOMEGA_ACCEPT_THRESHOLD",
+      "role": "ACCEPT iff sigmoid(safety logit) >= 0.50 (equivalently logit >= 0.0).",
+      "source_file": "src/models/barr/ra_medfilm_barr.py:61"
+    },
+    "router_utility_transformation": {
+      "symbol": "U = delta_hat_final - lambda*C",
+      "lambda": "1/4",
+      "C_ACTION": "1051648/10270749",
+      "lambda_C": "0.25 * C_ACTION",
+      "role": "Resource-aware utility used by the B_phi runtime gate.",
+      "source_file": "src/models/barr/ra_medfilm_barr.py:48-56"
+    },
+    "router_runtime_threshold_tau_C8_final": {
+      "exact_rational": "-5003565381643716252018011/205414980000000000000000000",
+      "float": -0.024358327623641256,
+      "derivation": "tau_C8_final = tau_C7_final - lambda*C, with tau_C7_final = 24796109646558761/20000000000000000000",
+      "comparator": ">=",
+      "runtime_authority": true,
+      "role": "DEPLOYED runtime threshold: EXECUTE iff U >= tau_C8_final.",
+      "source_file": "src/models/barr/ra_medfilm_barr.py:52-54; artifacts/phase26_ra_medfilm_barr_bundle_v1_0/threshold_contract.json"
+    },
+    "router_oof_scientific_threshold": {
+      "exact_rational": "-2326256430798223/102707490000000000",
+      "runtime_authority": false,
+      "role": "SEPARATE score space used for scientific evidence only. NEVER a runtime gate. Overlap of OOF-vs-final decision IDs is 1086/1239, so the two spaces MUST NOT be conflated.",
+      "source_file": "artifacts/phase26_ra_medfilm_barr_bundle_v1_0/threshold_contract.json (oof_scientific_threshold)"
+    }
+  },
+  "decision_vocabulary": {
+    "router_decision": {
+      "values": ["SKIP", "EXECUTE"],
+      "definition": "B_phi gate decision. EXECUTE iff U(delta_hat_final) >= tau_C8_final, else SKIP.",
+      "source_file": "src/models/barr/ra_medfilm_barr.py:66-71 (router_decision)"
+    },
+    "final_state": {
+      "values": ["FORCED_SKIP", "SKIP_GLOBAL", "EXECUTE_THEN_ACCEPT", "EXECUTE_THEN_REJECT"],
+      "definitions": {
+        "FORCED_SKIP": "ROI proposal empty (ACTION_UNAVAILABLE). Router and refiner are never invoked; global prediction is the final output.",
+        "SKIP_GLOBAL": "Router decided SKIP. Global prediction is the final output.",
+        "EXECUTE_THEN_ACCEPT": "Router decided EXECUTE, R_psi refined, S_omega accepted. Refined/fused prediction is the final output.",
+        "EXECUTE_THEN_REJECT": "Router decided EXECUTE, R_psi refined, S_omega rejected. Fall back to the global prediction as the final output."
+      },
+      "source_file": "src/models/barr/ra_medfilm_barr.py:65 (STATES)"
+    }
+  },
+  "key_distinction": "router_decision (SKIP/EXECUTE) is the B_phi gate outcome and is DISTINCT from the four-state final state. FORCED_SKIP is decided BEFORE the router (empty proposal), so it has no router_decision of its own."
+}

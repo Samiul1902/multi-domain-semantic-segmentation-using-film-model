@@ -1,0 +1,131 @@
+{
+ "artifact": "phase25b_scalar_feature_semantics",
+ "phase": "25B",
+ "revision": "ra_medfilm_barr_narrowed_v1_2",
+ "scalars": [
+  {
+   "feature_index": 192,
+   "feature_name": "entropy_proxy_mean",
+   "threshold_role": "THRESHOLD_FREE",
+   "threshold_value": null,
+   "formula": "mean over all N pixels of -[q*ln q + (1-q)*ln(1-q)]/ln 2, q = clip(P, 1e-7, 1-1e-7)",
+   "units": "dimensionless in [0,1]",
+   "input_source": "P (global probability map)",
+   "dtype": "float32",
+   "uses_GT": false
+  },
+  {
+   "feature_index": 193,
+   "feature_name": "frac_prob_within_0p05_of_boundary",
+   "threshold_role": "SEGMENTATION_OUTPUT_PROBABILITY_BOUNDARY",
+   "threshold_value": 0.5,
+   "formula": "(1/N) * sum 1[|P - 0.50| <= 0.05]",
+   "units": "fraction in [0,1]",
+   "input_source": "P",
+   "dtype": "float32",
+   "uses_GT": false
+  },
+  {
+   "feature_index": 194,
+   "feature_name": "frac_prob_within_0p02_of_boundary",
+   "threshold_role": "SEGMENTATION_OUTPUT_PROBABILITY_BOUNDARY",
+   "threshold_value": 0.5,
+   "formula": "(1/N) * sum 1[|P - 0.50| <= 0.02]",
+   "units": "fraction in [0,1]",
+   "input_source": "P",
+   "dtype": "float32",
+   "uses_GT": false
+  },
+  {
+   "feature_index": 195,
+   "feature_name": "mean_boundary_margin",
+   "threshold_role": "SEGMENTATION_OUTPUT_PROBABILITY_BOUNDARY",
+   "threshold_value": 0.5,
+   "formula": "mean over all N pixels of |P - 0.50| (NOT negated)",
+   "units": "probability distance in [0,0.5]",
+   "input_source": "P",
+   "dtype": "float32",
+   "uses_GT": false
+  },
+  {
+   "feature_index": 197,
+   "feature_name": "pred_foreground_pixels",
+   "threshold_role": "ROI_PROPOSAL",
+   "threshold_value": 0.3,
+   "formula": "sum M_roi where M_roi = 1[P >= 0.30]",
+   "units": "pixels on the 512x512 canvas",
+   "input_source": "P",
+   "dtype": "float32",
+   "uses_GT": false
+  },
+  {
+   "feature_index": 196,
+   "feature_name": "pred_foreground_fraction",
+   "threshold_role": "ROI_PROPOSAL",
+   "threshold_value": 0.3,
+   "formula": "pred_foreground_pixels / N",
+   "units": "fraction in [0,1]",
+   "input_source": "P",
+   "dtype": "float32",
+   "uses_GT": false
+  },
+  {
+   "feature_index": 198,
+   "feature_name": "pred_roi_exists",
+   "threshold_role": "ROI_PROPOSAL",
+   "threshold_value": 0.3,
+   "formula": "1.0 if pred_foreground_pixels > 0 else 0.0",
+   "units": "binary indicator",
+   "input_source": "P",
+   "dtype": "float32",
+   "uses_GT": false
+  },
+  {
+   "feature_index": 199,
+   "feature_name": "pred_empty",
+   "threshold_role": "ROI_PROPOSAL",
+   "threshold_value": 0.3,
+   "formula": "1.0 - pred_roi_exists",
+   "units": "binary indicator",
+   "input_source": "P",
+   "dtype": "float32",
+   "uses_GT": false
+  },
+  {
+   "feature_index": 200,
+   "feature_name": "predicted_roi_area_fraction",
+   "threshold_role": "ROI_PROPOSAL",
+   "threshold_value": 0.3,
+   "formula": "w_in = max(0, min(512, x1) - max(0, x0)); h_in = max(0, min(512, y1) - max(0, y0)); predicted_roi_area_fraction = w_in * h_in / (512 * 512)",
+   "units": "fraction of the native 512x512 canvas (clipped in-canvas ROI)",
+   "input_source": "ROI030 crop metadata",
+   "dtype": "float32",
+   "uses_GT": false,
+   "expected_range": "[0,1]",
+   "external_padding_excluded": true,
+   "superseded_formula": "crop_side_pixels^2 / (512^2)",
+   "superseded_status": "SUPERSEDED_PRE_EXECUTION_SPEC_FORMULA__NOT_USED_FOR_PHASE25B"
+  },
+  {
+   "feature_index": 201,
+   "feature_name": "predicted_roi_side",
+   "threshold_role": "ROI_PROPOSAL",
+   "threshold_value": 0.3,
+   "formula": "canonical cache field crop_side_pixels (before resize to 256x256)",
+   "units": "pixels on the 512 canvas (crop support incl. padding; may exceed 512)",
+   "input_source": "ROI030 crop metadata",
+   "dtype": "float32",
+   "uses_GT": false,
+   "may_exceed_512": true
+  }
+ ],
+ "n_scalars": 10,
+ "threshold_roles": {
+  "THRESHOLD_FREE": 1,
+  "SEGMENTATION_OUTPUT_PROBABILITY_BOUNDARY": 3,
+  "ROI_PROPOSAL": 6
+ },
+ "unresolved_threshold_roles": 0,
+ "uses_GT": false,
+ "generated_utc": "2026-09-30T15:55:52.086198+00:00"
+}

@@ -1,0 +1,40 @@
+{
+  "classification": "EXT01_PREPROCESSING_COMPATIBILITY",
+  "generated_utc": "2026-10-11T13:00:00Z",
+  "frozen_input_contract": "RGB 3-channel, 512x512, aspect-preserving resize + pad; image BILINEAR, mask NEAREST",
+  "results": [
+    {
+      "dataset": "HAM10000",
+      "image_type": "jpg RGB",
+      "mask_type": "png binary",
+      "channels": "RGB -> RGB",
+      "resize_required": true,
+      "notes": "direct RGB; standard resize/pad"
+    },
+    {
+      "dataset": "Stones_where_are_you",
+      "image_type": "jpg RGB",
+      "mask_type": "COCO polygon (rasterize)",
+      "channels": "RGB -> RGB",
+      "resize_required": true,
+      "notes": "polygons must be rasterized to binary masks deterministically before the pipeline"
+    },
+    {
+      "dataset": "CVC-ClinicDB",
+      "image_type": "png/tif RGB",
+      "mask_type": "png/tif binary",
+      "channels": "RGB -> RGB",
+      "resize_required": true,
+      "notes": "PNG and TIF duplicate formats; must pick one deterministically"
+    },
+    {
+      "dataset": "BrEaST-Lesions_USG",
+      "image_type": "png (ultrasound, likely single-channel)",
+      "mask_type": "png binary",
+      "channels": "L -> RGB (replicate)",
+      "resize_required": true,
+      "notes": "grayscale ultrasound must be replicated to 3 channels to enter the frozen RGB pipeline (L->RGB)"
+    }
+  ],
+  "note": "No dataset is transformed at EXT-01; this documents the deterministic preprocessing required at EXT-02."
+}

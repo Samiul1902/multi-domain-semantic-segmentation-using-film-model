@@ -1,0 +1,138 @@
+{
+  "phase": "13",
+  "part": "1B-R0-R1",
+  "document_type": "CLEAN_V3_LOCALIZER_LOSS_BINDING_AMENDMENT_R2A",
+  "status": "SUPERVISOR_AUTHORIZED_LOSS_BINDING_L1",
+  "date": "2026-09-21",
+  "model": "Gemini 3.8 Flash Medium",
+  "task": "LOSS_FREEZE_AND_EXECUTION_READINESS_REPAIR",
+  "amendment_scope": "LOSS_OBJECTIVE_ONLY",
+  "amendment_is_additive": true,
+  "amendment_supersedes_any_field_of_R2": false,
+
+  "base_scientific_protocol": "SUPERVISOR_FROZEN_R2",
+  "base_protocol_path": "reports/audits/phase13_clean_v3_localizer_protocol_frozen_r2.json",
+  "base_protocol_SHA": "ab451e03366c589fae5c303ebf1382e086f4f115b97768eb36d491256a3b5e53",
+  "base_protocol_status_verified": "SUPERVISOR_FROZEN_R2_READY_FOR_PART1B_TRAINING",
+  "base_protocol_modified_by_this_task": false,
+
+  "loss": {
+    "class": "src.losses.localization.CenterNetFocalLoss",
+    "constructor": "CenterNetFocalLoss(alpha=2.0, beta=4.0)",
+    "alpha": 2.0,
+    "beta": 4.0,
+    "dice_term": "NONE",
+    "focal_weight": null,
+    "dice_weight": 0.0
+  },
+  "label": "EXECUTING_HISTORICAL_CENTERNET_FOCAL_L1",
+  "supervisor_loss_decision": "L1",
+  "scientific_role": "PRIMARY_PHASE13_CLEAN_V3_LOCALIZER_OBJECTIVE",
+  "reason": "the physically verified historical EXECUTING trainer has higher authority than the historical config/prose when they disagree; the executing objective is therefore the frozen clean-v3 primary objective",
+
+  "material_change_relative_to_R2": "NO",
+  "material_change_rationale": "R2 is silent on the training objective; it contains no loss field at all. This amendment therefore resolves an R2 gap rather than changing an R2 decision.",
+  "material_resolution_of_prior_ambiguity": "YES",
+  "prior_ambiguity": {
+    "id": "LOSS_OBJECTIVE_BINDING_NOT_PHYSICALLY_RESOLVED",
+    "recorded_in": "reports/audits/phase13_clean_v3_localizer_execution_binding.json",
+    "status_now": "RESOLVED_BY_SUPERVISOR_DECISION_L1"
+  },
+  "supervisor_authorized": true,
+  "supervisor_authorized_scope": "L1 loss binding only",
+
+  "physical_verification": {
+    "required": true,
+    "performed": true,
+    "source": "scripts/training/train_phase13b_localizer.py",
+    "source_SHA256": "5985b9eb2fe43018babbd88004bf7e5b99d2783dcfa78c7404591a02bdcb555a",
+    "source_SHA_expected": "5985b9eb2fe43018babbd88004bf7e5b99d2783dcfa78c7404591a02bdcb555a",
+    "source_SHA_verified": true,
+    "executing_line": 121,
+    "executing_code": "criterion=CenterNetFocalLoss(alpha=2.0, beta=4.0)",
+    "executing_construction_verified_exact": true,
+    "soft_focal_dice_constructed_on_executable_path": false,
+    "soft_focal_dice_import_status": "imported at line 16 and line 17 but NEVER constructed or called",
+    "criterion_assignments_in_runner": 1,
+    "class_signature_verified": "CenterNetFocalLoss(self, alpha=2.0, beta=4.0)",
+    "prose_alone_trusted": false
+  },
+
+  "historical_best_checkpoint_lineage": {
+    "checkpoint": "checkpoints/phase13b_kub_localizer_r512_h128_sigmaeq075_centernetfocal_seed42_v1/best.pt",
+    "checkpoint_sha256": "ece906df6c73f2e93c3f873661490bf3cb1a6b82be2d2d93b58c25bc967cbace",
+    "epoch": 73,
+    "manifest_version": "phase4_v2",
+    "input_resolution": 512,
+    "best_validation_score": [0.726027397260274, 0.6410256410256411, -0.005898906179948982, -1.7902289982195254],
+    "used_executing_path": true,
+    "used_executing_path_evidence": "the historical runner contains exactly ONE criterion assignment (line 121), so every epoch of that run -- including the best epoch 73 -- was optimised with CenterNetFocalLoss(alpha=2.0, beta=4.0)",
+    "declared_configuration_loss_field": {
+      "value": {"name": "soft_focal_dice", "focal_weight": 0.75, "dice_weight": 0.25, "alpha": 0.25, "gamma": 2.0},
+      "provenance": "configs/kub/phase13b_localizer.yaml, copied verbatim into the checkpoint 'configuration' payload",
+      "status": "DECLARED_ONLY_NOT_EXECUTING",
+      "note": "this exact declared-vs-executing divergence is the ambiguity R2A resolves. The declared field is inert documentation; the objective actually optimised was CenterNetFocalLoss(alpha=2.0,beta=4.0)."
+    }
+  },
+
+  "dispositions": {
+    "part1a_documented_composite_objective": {
+      "documented_objective": "0.75 CenterNet focal (alpha 0.25, gamma 2.0) + 0.25 soft Dice",
+      "sources": [
+        "reports/tables/phase13_clean_v3_localizer_protocol_candidate.csv (row: loss)",
+        "notebooks/phasewise/phase_13_predicted_roi_localization/code/phase13_localizer_protocol.py (PROTOCOL_MATRIX J_loss)",
+        "configs/kub/phase13b_localizer.yaml (loss block)"
+      ],
+      "canonical_disposition": "SUPERSEDED_DOCUMENTED_NOT_EXECUTING_OBJECTIVE",
+      "preserved_as": "PROVENANCE",
+      "rows_deleted": false,
+      "is_clean_v3_primary_objective": false
+    },
+    "soft_focal_dice_loss_defect": {
+      "module": "src/losses/localization.py",
+      "class": "SoftFocalDiceLoss",
+      "defect": "the focal term is overwritten by dead code at line 20 (`focal=focal_values.mean()`), discarding the positive/negative normalisation computed on lines 17-19",
+      "canonical_disposition": "NON_PRIMARY_IMPLEMENTATION_DEFECT",
+      "repair_required_for_this_phase13_run": false,
+      "repair_rationale": "SoftFocalDiceLoss is NOT on the clean-v3 executable path; it is not constructed, not called, and not bound by the clean-v3 config",
+      "module_modified_by_this_task": false
+    }
+  },
+
+  "all_other_R2_fields": "UNCHANGED",
+  "unchanged_fields_scope": [
+    "population",
+    "hard_sets",
+    "heatmap_contract",
+    "proposal_configuration",
+    "checkpoint_selection",
+    "coverage_contract",
+    "downstream_geometry",
+    "downstream_composition",
+    "retention_contract",
+    "gate_governance",
+    "governance"
+  ],
+
+  "resulting_executable_protocol_identity": "R2 + R2A_LOSS_BINDING",
+  "is_new_experimental_variant": false,
+  "is_new_architecture_variant": false,
+  "biases_R2_to_unaltered_runs": false,
+
+  "governance": {
+    "training": 0,
+    "model_constructions": 0,
+    "forward_passes": 0,
+    "optimizer_creations": 0,
+    "localizer_inference": 0,
+    "proposals_generated": 0,
+    "grid_configs_evaluated": 0,
+    "test_content_reads": 0,
+    "phase14_started": false,
+    "r2_modified": false,
+    "r3_created": false,
+    "historical_artifacts_modified": false
+  },
+  "next_action": "WAIT_FOR_SUPERVISOR_PHASE13_PART1B_TRAINING_REAUTHORIZATION",
+  "stopped": true
+}

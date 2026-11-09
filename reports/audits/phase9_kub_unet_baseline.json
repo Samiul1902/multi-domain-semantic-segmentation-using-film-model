@@ -1,0 +1,125 @@
+{
+  "phase": "9 - KUB U-Net Baseline Training",
+  "status": "PASS",
+  "experiment_id": "phase9_kub_unet_baseline_seed42_512",
+  "seed": 42,
+  "best_epoch": 47,
+  "best_val_macro_dice": 0.7455300688743591,
+  "best_checkpoint_sha256": "a32d7fff1e019a179ef011795b6be8ee98ab548831f790a557726f32b38db8ec",
+  "latest_checkpoint_sha256": "2b535401e7db95469b39a62bd6b6df51e0e298c32d00047465bc39ababd0ad61",
+  "history_sha256": "1012c73b2d51b9c7cde2512ee404978c722a5baea07dad1684a5f476323008e4",
+  "val_per_image_sha256": "af3f09dc0dd27952f3e2f1df80af3446167e6b4a35b87faee5a4f47b055bcda4",
+  "val_per_component_sha256": "9ebc149997b9efae839f1d603efc178186b0dffd23a94c387bca98c673e9596d",
+  "test_accessed": false,
+  "external_accessed": false,
+  "experiment_a_modified": false,
+  "manifest_modified": false,
+  "overall_val_metrics": {
+    "Metric_Type": "Macro_and_Micro",
+    "N_Samples": 283,
+    "Macro_Dice": 0.7455439340960021,
+    "Macro_IoU": 0.6316429351398896,
+    "Macro_Precision": 0.7994464457819005,
+    "Macro_Recall": 0.7654216624244355,
+    "Micro_Dice": 0.8382042114434533,
+    "Micro_IoU": 0.7214729298380963,
+    "Global_TP_Pixels": 9241328,
+    "Global_FP_Pixels": 1782283,
+    "Global_FN_Pixels": 1785363,
+    "HD95_Valid_N": 275,
+    "HD95_Invalid_N": 8,
+    "Empty_Predictions_N": 8,
+    "Empty_Prediction_Rate": 0.028268551236749116,
+    "Median_Valid_HD95": 40.38066904263445,
+    "Mean_Valid_HD95": 53.61131202242719
+  },
+  "fov_summary": [
+    {
+      "View_Type": "FULL_FIELD",
+      "N_Samples": 106,
+      "Macro_Dice": 0.6130151253312034,
+      "Macro_IoU": 0.4980820307942826,
+      "Macro_Precision": 0.7487444317955442,
+      "Macro_Recall": 0.6393032959189899,
+      "Empty_Prediction_Rate": 0.07547169811320754,
+      "Object_Recall": 0.8
+    },
+    {
+      "View_Type": "ROI_CROP",
+      "N_Samples": 177,
+      "Macro_Dice": 0.8249114692884804,
+      "Macro_IoU": 0.711628561471157,
+      "Macro_Precision": 0.82981036376243,
+      "Macro_Recall": 0.8409501756988832,
+      "Empty_Prediction_Rate": 0.0,
+      "Object_Recall": 0.9943502824858758
+    }
+  ],
+  "category_summary": [
+    {
+      "Category": "Bladder_Stone",
+      "N_Samples": 145,
+      "Macro_Dice": 0.7239520417552178,
+      "Macro_IoU": 0.6022825752571347,
+      "Macro_Precision": 0.7642294993130927,
+      "Macro_Recall": 0.7579364874461217,
+      "Empty_Prediction_Rate": 0.020689655172413793,
+      "Object_Recall": 0.8988095238095238
+    },
+    {
+      "Category": "Kidney_Stone",
+      "N_Samples": 114,
+      "Macro_Dice": 0.7659345140908642,
+      "Macro_IoU": 0.6613450790150133,
+      "Macro_Precision": 0.844076867876245,
+      "Macro_Recall": 0.7629291917198802,
+      "Empty_Prediction_Rate": 0.03508771929824561,
+      "Object_Recall": 0.9191176470588235
+    },
+    {
+      "Category": "Ureteric_Stone",
+      "N_Samples": 24,
+      "Macro_Dice": 0.7791396953459783,
+      "Macro_IoU": 0.6679432593580289,
+      "Macro_Precision": 0.8002209924161434,
+      "Macro_Recall": 0.8224838304317199,
+      "Empty_Prediction_Rate": 0.041666666666666664,
+      "Object_Recall": 0.8571428571428571
+    }
+  ],
+  "size_summary": [
+    {
+      "Stratum": "LARGE",
+      "GT_Components": 18,
+      "Detected_Components": 17,
+      "Object_Recall": 0.9444444444444444
+    },
+    {
+      "Stratum": "MEDIUM",
+      "GT_Components": 36,
+      "Detected_Components": 29,
+      "Object_Recall": 0.8055555555555556
+    },
+    {
+      "Stratum": "SMALL",
+      "GT_Components": 29,
+      "Detected_Components": 24,
+      "Object_Recall": 0.8275862068965517
+    },
+    {
+      "Stratum": "TINY",
+      "GT_Components": 73,
+      "Detected_Components": 55,
+      "Object_Recall": 0.7534246575342466
+    }
+  ],
+  "object_summary": {
+    "Total_GT_Components": 332,
+    "Total_Predicted_Components": 4842,
+    "Detected_GT_Components": 300,
+    "Missed_GT_Components": 32,
+    "Object_Recall": 0.9036144578313253,
+    "Missed_Object_Rate": 0.0963855421686747,
+    "False_Positive_Components": 2548
+  }
+}

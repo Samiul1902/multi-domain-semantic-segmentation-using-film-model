@@ -1,0 +1,192 @@
+{
+  "artifact": "phase36_robustness_unit_v1_8",
+  "phase": 36,
+  "section": "§J",
+  "method": "RA-MedFiLM-BARR",
+  "revision": "ra_medfilm_barr_phase36_robustness_v1_8",
+  "type": "UNIT_CHECK_REPORT",
+  "model_free": true,
+  "torch_imported": false,
+  "protected_population_read": false,
+  "passed": 35,
+  "total": 35,
+  "all_pass": true,
+  "checks": [
+    {
+      "check": "01_write_once_attempt_exists_check",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "02_write_once_attempt_uses_v1_8_paths",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "03_main_checks_attempt_before_model_construction",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "04_main_records_attempt_pre_model",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "05_main_wraps_run_smoke_in_try_except",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "06_exception_path_writes_failure_artifact",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "07_exception_path_exits_nonzero",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "08_no_automatic_retry_in_main",
+      "passed": true,
+      "detail": "{\"loop_nodes\": 0, \"run_smoke_call_sites\": 1}"
+    },
+    {
+      "check": "10_real_execute_probe_present",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "11_real_execute_router_decision_is_execute_check",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "12_real_execute_R_psi_output_finite_check",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "13_real_execute_R_psi_output_shape_valid_check",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "14_real_execute_post_safety_feature_dim_16_check",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "15_real_execute_post_safety_features_finite_check",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "16_real_execute_S_omega_logit_finite_check",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "17_real_execute_S_omega_probability_finite_check",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "18_real_execute_S_omega_probability_in_unit_interval_check",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "19_real_execute_final_state_valid_check",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "20_real_execute_final_probability_shape_512x512_check",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "21_real_execute_final_probability_finite_check",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "25_metric_hd95_nonempty_plumbing_valid_check",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "26_metric_hd95_empty_mask_semantics_valid_check",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "27_metric_dice_iou_plumbing_valid_check",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "30_transitive_runtime_dependencies_dict_present",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "31_source_integrity_verification_function_present",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "32_source_integrity_called_before_load_models",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "33_source_integrity_fail_closed_on_mismatch",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "35_smoke_attempt_is_first_write_once_check",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "36_smoke_check_ids_count_47",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "37_smoke_all_pass_derives_from_all_checks",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "40_v1_7_execution_sha_in_docstring",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "41_canonical_sigmoid_preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "42_cuda_fail_closed_preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "43_val808_only_preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "44_static_protected_io_unreachable_preserved",
+      "passed": true,
+      "detail": null
+    }
+  ],
+  "generated_utc": "2026-10-06T10:48:58Z"
+}

@@ -1,0 +1,67 @@
+{
+  "audit_name": "phase14_part3d_model_handoff_recovery",
+  "status": "PASS",
+  "timestamp": "2026-09-19T15:27:00+06:00",
+  "handoff_summary": {
+    "previous_model": "Gemini 3.1 Pro High (and Claude Opus Thinking interim)",
+    "interruption_reason": "MODEL_USAGE_LIMIT / USER_PAUSED_FOR_MODEL_SWITCH",
+    "recovery_model": "Gemini 3.8 Flash",
+    "previous_gemini_work_preserved": true,
+    "full_evaluation_rerun": false,
+    "proposal_regeneration": false,
+    "scientific_settings_changed": false,
+    "training_executed": false
+  },
+  "canonical_proposals": {
+    "total_proposals": 494,
+    "mean_proposals_per_image": 4.660377358490566,
+    "heatmap_resolution": 128,
+    "avgpool4_active": true
+  },
+  "repaired_cells": {
+    "count": 5,
+    "column_mapping": {
+      "Cell_29": "size_group -> size_stratum; global_recall90_success -> cov90_global_512; oracle_recall90_success -> cov90_oracle_512; predicted_recall90_success -> cov90_predicted_512",
+      "Cell_31": "per-case columns (case_type, sample_id, component_id) -> canonical mode-level hardcase summary table (mode, hard_tiny_recovered_512, global_empty_recovered_512, etc.)",
+      "Cell_37": "audit key alignment: diagnostic_contrasts and official_512_space, step2_status NOT_DEFINED, step2_pass null",
+      "Cell_39": "global_dice -> global_dice_512; oracle_dice -> oracle_dice_512; predicted_dice -> predicted_dice_512",
+      "Cell_44": "predicted_proposals_512 -> predicted_proposals; robust step2 display (NOT_DEFINED)",
+      "Cell_46": "deterministic sample selection from kub_val_samples_sized.csv; canonical image/mask paths; SegmentationTransform train=False; float() casting for PIL conversion; crop_geometry dict unpacking"
+    }
+  },
+  "step2_serialization": {
+    "G": -0.13698638356164383,
+    "R": "NOT_DEFINED",
+    "step1_pass": false,
+    "step2_status": "NOT_DEFINED",
+    "step2_pass": null,
+    "step3_pass": false,
+    "final_classification": "DIAGNOSTIC_REFUTED_REFINER_INEFFECTIVE",
+    "phase15_status": "NOT_AUTHORIZED"
+  },
+  "notebook_validation": {
+    "notebook_path": "notebooks/13_phase14_regional_refiner_diagnostic.ipynb",
+    "total_cells": 47,
+    "markdown_cells": 26,
+    "code_cells": 21,
+    "executed_code_cells": 21,
+    "unexecuted_code_cells": 0,
+    "notebook_errors": 0,
+    "training_side_effects": "NONE",
+    "test_reads": 0,
+    "sha256": "4392272f44c8be3d51ba3c2687b938e8860123b4d2e36f280169f76721701ce7"
+  },
+  "demonstration_sample": {
+    "sample_id": "0785b56594049121d6281aa40e475e26",
+    "split": "VAL",
+    "fov": "FULL_FIELD",
+    "gt_components": 2,
+    "proposal_count": 5,
+    "roi_union_fraction": 0.0032,
+    "global_dice": 0.8036,
+    "predicted_regional_dice": 0.3542,
+    "global_fp_components": 0,
+    "predicted_fp_components": 4
+  }
+}
+

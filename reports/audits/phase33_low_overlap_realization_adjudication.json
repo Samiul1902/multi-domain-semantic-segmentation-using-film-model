@@ -1,0 +1,111 @@
+{
+ "artifact": "phase33_low_overlap_realization_adjudication",
+ "phase": 33,
+ "section": "\u00a7E",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase33_failure_boundary_v1_1",
+ "authority_artifacts": [
+  {
+   "path": "reports/audits/phase33_failure_threshold_provenance_contract.json",
+   "sha256": "ff82a125af42b2977bad7d07449fbc7bf7e5bec445ef8b8d6207541376439d70"
+  },
+  {
+   "path": "reports/audits/phase33_quantitative_analysis_contract.json",
+   "sha256": "73b386e3d570ba453f944806fb4e3d6a87e1f9e116e6c68cf68a343d67216fa4"
+  },
+  {
+   "path": "reports/audits/phase33_failure_taxonomy_contract_v1_1.json",
+   "sha256": "522452cbf6e419f919deb9dadb8aba9734205c5afea9d2d0b16103c265cf4ae8"
+  }
+ ],
+ "required_elements": [
+  {
+   "n": 1,
+   "element": "target Dice field",
+   "status": "AMBIGUOUS",
+   "frozen_text": "taxonomy v1.1 LOW_OVERLAP required_fields = [global_dice, a8_dice]; threshold contract says only 'the frozen ROUTER_HOLDOUT per-sample Dice of the SAME system'",
+   "why_blocking": "no single unambiguous target field is named"
+  },
+  {
+   "n": 2,
+   "element": "population",
+   "status": "EXPLICIT",
+   "frozen_text": "ROUTER_HOLDOUT frozen table",
+   "why_blocking": null
+  },
+  {
+   "n": 3,
+   "element": "quantile probability",
+   "status": "EXPLICIT",
+   "frozen_text": "0.10",
+   "why_blocking": null
+  },
+  {
+   "n": 4,
+   "element": "quantile algorithm/interpolation",
+   "status": "EXPLICIT",
+   "frozen_text": "np.quantile(values, 0.10, method='linear') on float64",
+   "why_blocking": null
+  },
+  {
+   "n": 5,
+   "element": "inclusive/exclusive comparison rule",
+   "status": "ABSENT",
+   "frozen_text": "definition says only 'per-sample Dice below a prospectively frozen stratum rule'; the operator (<= vs <) is never stated",
+   "why_blocking": "cutoff comparison operator undetermined"
+  },
+  {
+   "n": 6,
+   "element": "tie handling",
+   "status": "EXPLICIT",
+   "frozen_text": "ties included",
+   "why_blocking": null
+  },
+  {
+   "n": 7,
+   "element": "missing/NaN handling",
+   "status": "ABSENT",
+   "frozen_text": "never stated in any Phase33 authority artifact",
+   "why_blocking": "NaN/missing-value policy undetermined"
+  },
+  {
+   "n": 8,
+   "element": "global vs domain-specific cutoff",
+   "status": "EXPLICIT",
+   "frozen_text": "computed on the frozen ROUTER_HOLDOUT per-sample Dice (all 875 rows; not per-domain)",
+   "why_blocking": null
+  }
+ ],
+ "blocking_elements": [
+  {
+   "n": 1,
+   "element": "target Dice field",
+   "status": "AMBIGUOUS",
+   "why_blocking": "no single unambiguous target field is named"
+  },
+  {
+   "n": 5,
+   "element": "inclusive/exclusive comparison rule",
+   "status": "ABSENT",
+   "why_blocking": "cutoff comparison operator undetermined"
+  },
+  {
+   "n": 7,
+   "element": "missing/NaN handling",
+   "status": "ABSENT",
+   "why_blocking": "NaN/missing-value policy undetermined"
+  }
+ ],
+ "blocking_element_count": 3,
+ "rule_exactly_frozen": false,
+ "realized_cutoff": null,
+ "cutoff_realized": false,
+ "historical_phase11_precedent_used_as_permission": false,
+ "details_invented_after_seeing_distribution": false,
+ "dice_distribution_inspected": false,
+ "action": "BLOCK",
+ "blocked_terminal": "PHASE33_TIER0_TIER1_EXECUTION_BLOCKED_PREANALYSIS__LOW_OVERLAP_REALIZATION_RULE_NOT_EXACTLY_FROZEN__NO_RESULTS_COMPUTED",
+ "science_definition_changed": false,
+ "generated_utc": "2026-10-04T08:41:35+00:00",
+ "all_pass": true
+}

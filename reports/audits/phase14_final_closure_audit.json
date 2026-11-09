@@ -1,0 +1,202 @@
+{
+  "phase": "14",
+  "phase_name": "Regional Refiner Diagnostic",
+  "closure_type": "FINAL_FREEZE_CLOSURE_AUDIT",
+  "phase14_status": "COMPLETE",
+  "final_diagnostic_classification": "DIAGNOSTIC_PRACTICAL_SIGNAL_INSUFFICIENT",
+  "phase15_status": "NOT_AUTHORIZED",
+  "next_action": "WAIT_FOR_SUPERVISOR_ROADMAP_DECISION",
+  "population": {
+    "split": "VAL",
+    "fov": "FULL_FIELD",
+    "images": 106,
+    "components": 156,
+    "strata_counts": {
+      "TINY": 73,
+      "SMALL": 29,
+      "MEDIUM": 36,
+      "LARGE": 18
+    }
+  },
+  "proposals": {
+    "canonical_total_proposals": 494,
+    "mean_proposals_per_image": 4.660377,
+    "heatmap_resolution": 128,
+    "pooling": "AvgPool4_ACTIVE"
+  },
+  "authoritative_metric_provenance": {
+    "metric_name": "FROZEN_HISTORICAL_OBJECT_RECALL",
+    "module": "src/metrics/object_metrics.py",
+    "function": "object_metrics(prediction, target, minimum_overlap_pixels=1)",
+    "evaluator_sha256": "9824397f0c2b5d8807fadd2ba79ec565902ae47b8a36f719a4ae5a4e99a81238",
+    "operational_definition": "A ground-truth stone component is detected if predicted foreground overlaps it by at least 1 pixel (overlap_pixels >= 1).",
+    "historical_reproduction": {
+      "metric": "Global UNet++ 512 Tiny Recall",
+      "detected": 57,
+      "total": 73,
+      "measured_ratio": 0.7808219178082192,
+      "frozen_reference": 0.780822,
+      "exact_match": true
+    },
+    "legacy_terminology_caveat": "Historical project summary tables and legacy column headers (e.g. *_recall90_*) used legacy labels. Secondary cov90 metric (>=90% component mask coverage: Global Tiny 25/73, Oracle Tiny 47/73, Predicted Tiny 42/73) is preserved for descriptive resolution purposes only and strictly excluded from feeding decision gates."
+  },
+  "authoritative_object_recall_results": {
+    "GLOBAL": {
+      "TINY": "57/73 = 0.7808219178082192",
+      "SMALL": "25/29 = 0.8620689655172413",
+      "MEDIUM": "32/36 = 0.8888888888888888",
+      "LARGE": "17/18 = 0.9444444444444444",
+      "OVERALL": "131/156 = 0.8397435897435898"
+    },
+    "ORACLE": {
+      "TINY": "73/73 = 1.0",
+      "SMALL": "29/29 = 1.0",
+      "MEDIUM": "36/36 = 1.0",
+      "LARGE": "18/18 = 1.0",
+      "OVERALL": "156/156 = 1.0"
+    },
+    "PREDICTED": {
+      "TINY": "65/73 = 0.8904109589041096",
+      "SMALL": "28/29 = 0.9655172413793104",
+      "MEDIUM": "35/36 = 0.9722222222222222",
+      "LARGE": "17/18 = 0.9444444444444444",
+      "OVERALL": "145/156 = 0.9294871794871795"
+    }
+  },
+  "hard_case_reconstruction": {
+    "hard_tiny_components": {
+      "total": 16,
+      "source": "Phase 11/12 Global UNet++ Missed Tiny Components",
+      "recovered_global": 0,
+      "recovered_oracle": 16,
+      "recovered_predicted": 8
+    },
+    "global_empty_images": {
+      "total": 7,
+      "source": "Phase 11/12 Zero-Foreground Global UNet++ Predictions",
+      "recovery_definition": "Ground-truth stone target recovery (detected stone components > 0), not merely non-empty mask",
+      "recovered_global": 0,
+      "recovered_oracle": 7,
+      "recovered_predicted": 5
+    },
+    "reconstruction_table": "reports/tables/phase14_part3d_frozen_hardcase_reconstruction.csv",
+    "reconstruction_table_sha256": "b3e6ec55def6bf5599760710d22f340a95eab42e82091908dfea1e7cf8beb368"
+  },
+  "dice_and_gate_evaluation": {
+    "frozen_references": {
+      "Tg": 0.780822,
+      "Dg": 0.652776
+    },
+    "canonical_metrics": {
+      "To": 1.0,
+      "Tp": 0.8904109589041096,
+      "Do": 0.815175,
+      "Dp": 0.383905
+    },
+    "contrasts": {
+      "G": 0.2191780821917808,
+      "G_exact_fraction": "16/73",
+      "R": 0.5,
+      "R_exact_fraction": "8/16"
+    },
+    "gates": {
+      "step_1": {
+        "condition": "G >= 0.05 AND Do >= 0.632776",
+        "pass": true,
+        "details": "G = +0.219178 >= 0.05 (PASS), Do = 0.815175 >= 0.632776 (PASS)"
+      },
+      "step_2": {
+        "condition": "R >= 0.50",
+        "pass": true,
+        "details": "R = 8/16 = 0.500000 >= 0.50 (PASS)"
+      },
+      "step_3": {
+        "condition": "Tp >= 0.780822 AND Dp >= 0.632776 AND Hard-Tiny >= 2/16 AND Global-Empty >= 1/7",
+        "pass": false,
+        "details": "Tp = 0.890411 >= 0.780822 (PASS); Hard-Tiny = 8/16 >= 2 (PASS); Global-Empty = 5/7 >= 1 (PASS); Dp = 0.383905 < 0.632776 (FAIL)"
+      }
+    }
+  },
+  "checkpoints": {
+    "global_unetpp": {
+      "path": "checkpoints/phase10_kub_unetpp_seed42_512/best.pt",
+      "sha256": "4bffcf926227fb11029ead6bcd8e7dd8ed246e0f1678e3efb2ce4297439a3f2d"
+    },
+    "stage4d_localizer": {
+      "path": "checkpoints/phase13b_kub_localizer_r512_h128_sigmaeq075_centernetfocal_seed42_v1/best.pt",
+      "sha256": "ece906df6c73f2e93c3f873661490bf3cb1a6b82be2d2d93b58c25bc967cbace"
+    },
+    "regional_refiner": {
+      "path": "checkpoints/phase14_diag_regional_unet_oracletrain_a3_seed42_v1/best.pt",
+      "sha256": "89ada72700385ed56b49b6caf34d9061349c24a566794176911b83fb0c8cd9f0",
+      "best_epoch": 14,
+      "best_val_crop_dice": 0.8437233057743712,
+      "final_training_epoch": 29,
+      "stop_reason": "EARLY_STOPPING_PATIENCE_15",
+      "power_resume_validity": "VALID_SAME_EXPERIMENT"
+    }
+  },
+  "canonical_artifact_hashes": {
+    "notebook": {
+      "path": "notebooks/13_phase14_regional_refiner_diagnostic.ipynb",
+      "sha256": "b5b329d1d100138db640e4a3e91069a4008a434d998945646bc7a4522c040948",
+      "total_cells": 47,
+      "markdown_cells": 26,
+      "code_cells": 21,
+      "executed_code_cells": 21,
+      "execution_counts": "1 through 21",
+      "errors": 0,
+      "training_side_effects": "NONE"
+    },
+    "diagnostic_audit_json": {
+      "path": "reports/audits/phase14_part3_diagnostic_evaluation.json",
+      "sha256": "48ec4beafd7a090b084b53bc662f5cb59cc349bf5f2bde1c39caacdc39910b4b"
+    },
+    "diagnostic_audit_md": {
+      "path": "reports/audits/phase14_part3_diagnostic_evaluation.md",
+      "sha256": "8aaef263deda3c36fd083b95dd5b28c800d4380f41d7dcb3b93312354cf6e5f8"
+    },
+    "mode_summary": {
+      "path": "reports/tables/phase14_part3_mode_summary.csv",
+      "sha256": "aabf89da1e8e464ce8d509e1e5fb69e7ded124fb4565dec3103f53bcc8a6cef8"
+    },
+    "component_metrics": {
+      "path": "reports/tables/phase14_part3_component_metrics.csv",
+      "sha256": "20f75b163d699dcfcfb3118108b1e370c7d1ea75552e2fdc3196115ee0bd63f5"
+    },
+    "hardcase_summary": {
+      "path": "reports/tables/phase14_part3_hardcase_summary.csv",
+      "sha256": "9853d141654f7b19a967145cef5a5542bedd2438f9d4158881967f62266827e3"
+    },
+    "frozen_hardcase_reconstruction": {
+      "path": "reports/tables/phase14_part3d_frozen_hardcase_reconstruction.csv",
+      "sha256": "b3e6ec55def6bf5599760710d22f340a95eab42e82091908dfea1e7cf8beb368"
+    },
+    "image_metrics": {
+      "path": "reports/tables/phase14_part3_image_metrics.csv",
+      "sha256": "874f4447935b5d77be5f099ae9cbc122150924cc5de53301319f38f394870b6e"
+    },
+    "object_metrics_evaluator": {
+      "path": "src/metrics/object_metrics.py",
+      "sha256": "9824397f0c2b5d8807fadd2ba79ec565902ae47b8a36f719a4ae5a4e99a81238"
+    }
+  },
+  "superseded_artifact_provenance": {
+    "original_heatmap512_part3": "Preserved in historical repository record; superseded due to heatmap_resolution=512 bypassing 4x pooling.",
+    "part3b_consistency_audit": "Preserved at reports/audits/phase14_part3b_consistency_audit.json.",
+    "part3c_intermediate_evaluation": "Preserved; superseded by Part 3D-R3 authoritative metric reconciliation.",
+    "part3d_model_handoff_recovery": "Preserved at reports/audits/phase14_part3d_model_handoff_recovery.json.",
+    "earlier_not_run_closure": "Earlier administrative closure stating NOT_RUN is historical and superseded by this completed diagnostic branch."
+  },
+  "governance_locks": {
+    "training": false,
+    "inference": false,
+    "optimizer_steps": 0,
+    "test_content_reads": 0,
+    "test_metrics": "NONE",
+    "external_used": false,
+    "experiment_a_modified": false,
+    "phase15_started": false,
+    "phase16_started": false
+  }
+}

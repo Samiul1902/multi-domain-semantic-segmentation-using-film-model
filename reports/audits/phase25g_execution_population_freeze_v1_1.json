@@ -1,0 +1,45 @@
+{
+ "artifact": "phase25g_execution_population_freeze_v1_1",
+ "phase": "25G",
+ "classification": "PHASE25G_PRE_EXECUTION_INTEGRATED_EVALUATION_SPECIFICATION_AUDIT",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_integrated_evaluation_v1_0",
+ "governance_only": true,
+ "no_execution": true,
+ "stage": "POPULATION_FREEZE",
+ "population": "ROUTER_DEVELOPMENT",
+ "n": 4957,
+ "evaluation_sources": [
+  "Phase25C OOF delta_dice",
+  "Phase25E frozen prospective C8 memberships",
+  "Phase25F OOF S_omega probabilities / decisions",
+  "Phase25F C9 manifest"
+ ],
+ "new_model_inference_required": false,
+ "final_router_in_sample_forbidden": true,
+ "final_somega_in_sample_forbidden": true,
+ "phase25g_owns": [
+  "A7 vs A8",
+  "C8 vs C9",
+  "DEV integrated segmentation effect",
+  "DEV post-safety effect",
+  "harmful-replacement reduction",
+  "fallback behavior",
+  "per-domain integrated effect",
+  "A8 preservation non-inferiority on DEV",
+  "analytical compute accounting",
+  "controlled development comparator / ablation freeze"
+ ],
+ "phase25g_does_not_own": [
+  "ROUTER_HOLDOUT one-shot evaluation",
+  "VAL808 continuity evaluation unless later separately authorized",
+  "TEST"
+ ],
+ "checks": {
+  "population_dev_only": true,
+  "n_4957": true,
+  "no_new_inference": true,
+  "holdout_not_owned": true
+ },
+ "all_pass": true
+}

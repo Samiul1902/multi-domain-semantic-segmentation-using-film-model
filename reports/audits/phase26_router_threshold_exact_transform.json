@@ -1,0 +1,39 @@
+{
+ "artifact": "phase26_router_threshold_exact_transform",
+ "phase": "26",
+ "classification": "PHASE26_ROUTER_SCORE_THRESHOLD_SEMANTICS_RECONCILIATION",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase26_router_threshold_reconciliation_v1_1",
+ "governance_only": true,
+ "exact_rational_arithmetic": true,
+ "identity": "tau_C8 = tau_C7 - lambda * C",
+ "action_cost_C_exact": "1051648/10270749",
+ "canonical_lambda_exact": "1/4",
+ "lambda_C_exact": "262912/10270749",
+ "lambda_C_float": 0.025598133105969194,
+ "space_A_final_router_dev_calibration": {
+  "score_variable": "delta_hat_final_dev",
+  "tau_C7_exact": "24796109646558761/20000000000000000000",
+  "tau_C7_float": 0.001239805482327938,
+  "tau_C8_exact": "-5003565381643716252018011/205414980000000000000000000",
+  "tau_C8_float": -0.024358327623641256
+ },
+ "space_B_canonical_policy_oof": {
+  "score_variable": "delta_hat_oof",
+  "tau_C7_exact": "29487973/10000000000",
+  "tau_C7_float": 0.0029487973,
+  "tau_C8_exact": "-2326256430798223/102707490000000000",
+  "tau_C8_float": -0.022649335805969194
+ },
+ "work_order_expected_tau_c8_approx": -0.024358327624,
+ "work_order_expected_matched_by_space": "A_final_router_dev_calibration",
+ "checks": {
+  "work_order_expected_tau_c8_approx_matched": true,
+  "lambda_C_exact_positive": true,
+  "tau_c8_dev_below_tau_c7_dev": true,
+  "tau_c8_pol_below_tau_c7_pol": true,
+  "shift_equals_lambda_C_dev": true,
+  "shift_equals_lambda_C_pol": true
+ },
+ "all_pass": true
+}

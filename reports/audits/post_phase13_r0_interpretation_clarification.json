@@ -1,0 +1,57 @@
+{
+  "artifact": "POST_PHASE13_R0_INTERPRETATION_CLARIFICATION",
+  "classification": "CAUSAL_LANGUAGE_SCOPE_CLARIFICATION_ONLY",
+  "status": "ADDITIVE_ERRATUM__R0_ARTIFACTS_NOT_REWRITTEN",
+  "created_utc": "2026-09-22T06:09:00Z",
+  "reason": "The persisted R0 artifacts contain exclusionary causal language ('not a representation failure'). That phrasing overstates what the R0 evidence establishes: the decomposition shows the deployable failure is DOMINATED by intervention precision, but it does not establish that representation failure is excluded as a contributor.",
+  "locations_found": [
+    {
+      "path": "reports/audits/post_phase13_regional_revision_r0_failure_decomposition.json",
+      "needle": "not a representation failure"
+    },
+    {
+      "path": "reports/audits/post_phase13_regional_revision_r0_failure_decomposition.md",
+      "needle": "not a representation failure"
+    },
+    {
+      "path": "docs/TASKS.md",
+      "needle": "not a representation failure"
+    }
+  ],
+  "canonical_wording": "The observed Phase-13 deployable failure is dominated by poor intervention precision / off-target intervention burden. Existing evidence does not establish that representation failure is the primary limitation, but it also does not exclude localizer representation or score calibration as contributors.",
+  "superseded_phrasing": "the failure is an intervention-precision failure, not a representation failure",
+  "scope_of_correction": {
+    "h1_ordering_changed": "NO",
+    "scientific_measurements_changed": "NO",
+    "candidate_family_changed": "NO",
+    "membership_changed": "NO",
+    "r0_artifacts_rewritten": "NO",
+    "r0_artifacts_deleted_or_edited": "NO"
+  },
+  "what_remains_supported": [
+    "122 GT-hit proposals exist and 27 components are recovered with 0 component losses, so the existing localizer does produce usable targets",
+    "the off-target support fraction is the strongest descriptive associate of the FP burden (Spearman rho 0.5918 to 0.6372, consistent across all four architectures)",
+    "every label-blind marginal floor removes strictly more off-target than GT-hit proposals",
+    "therefore intervention precision is the dominant contributor to the deployable failure"
+  ],
+  "what_is_not_established": [
+    "that localizer representation quality is NOT a contributing limitation",
+    "that the proposal score is adequately calibrated",
+    "that fixing acceptance alone will recover the oracle benefit",
+    "any sole-cause attribution"
+  ],
+  "implication_for_r1": "H1 remains the correct FIRST experiment because it is the minimum-change test that can falsify the intervention-precision explanation. H1 failing would NOT by itself prove a representation failure; it would leave representation and score calibration as live candidates for H2.",
+  "counters": {
+    "training": 0,
+    "optimizer": 0,
+    "model_constructions": 0,
+    "cuda_requests": 0,
+    "localizer_forwards": 0,
+    "segmentation_forwards": 0,
+    "regional_crop_forwards": 0,
+    "proposal_generation": 0,
+    "checkpoint_writes": 0,
+    "test_reads": 0,
+    "external_test_reads": 0
+  }
+}

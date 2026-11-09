@@ -1,0 +1,48 @@
+{
+ "artifact": "phase34_v1_3_latency_granularity_and_alias_defect_record",
+ "phase": 34,
+ "section": "\u00a7B",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase34_efficiency_profiling_v1_4",
+ "classification": "POST_MEASUREMENT_LATENCY_IMPLEMENTATION_DEFECT__THROUGHPUT_MEMORY_STATIC_AND_ANALYTICAL_RESULTS_PRESERVED",
+ "DEFECT_1": {
+  "code": "LATENCY_BLOCK_ELAPSED_TIME_REPORTED_AS_PER_ITERATION_MILLISECONDS",
+  "observed_evidence": {
+   "warmup": 50,
+   "measured_blocks": 5,
+   "iterations_per_block": 200,
+   "iterations_total": 1000,
+   "reported_GLOBAL_ONLY_C1_mean_ms": 3120.52431640625,
+   "reported_SKIP_mean_ms": 3143.79365234375,
+   "reported_EXECUTE_mean_ms": 3740.71328125,
+   "latency_table_std_ms": "NaN for all six canonical rows",
+   "percentile_anomaly": "p90 == p95 == p99 == max for all canonical rows"
+  },
+  "source_confirmed": true,
+  "recorded_latency_observations_are": "200_ITERATION_BLOCK_ELAPSED_DURATIONS",
+  "block_size": 200,
+  "reported_latency_unit_semantics": "MILLISECONDS_PER_200_FORWARD_BLOCK",
+  "not": "MILLISECONDS_PER_FORWARD"
+ },
+ "DEFECT_2": {
+  "code": "ALIAS_EXECUTABLE_PATHS_WERE_MEASURED_SEPARATELY_DESPITE_DEDUPLICATION_REQUIREMENT",
+  "aliases": {
+   "G_COMPONENT": "GLOBAL_ONLY_C1",
+   "FINAL_ROUTED_A8_C9": "EXECUTE_CONTROLLED_PATH"
+  },
+  "duplicate_worker_executions": {
+   "G_COMPONENT": {
+    "canonical": "GLOBAL_ONLY_C1",
+    "reported_mean_ms": 3120.52431640625
+   },
+   "FINAL_ROUTED_A8_C9": {
+    "canonical": "EXECUTE_CONTROLLED_PATH",
+    "reported_mean_ms": 3740.71328125
+   }
+  },
+  "deleted": false,
+  "classification": "EXTRANEOUS_ALIAS_MEASUREMENTS__NOT_CANONICAL_INDEPENDENT_EVIDENCE"
+ },
+ "generated_utc": "2026-10-04T14:00:23+00:00",
+ "all_pass": true
+}

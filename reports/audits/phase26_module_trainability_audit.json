@@ -1,0 +1,29 @@
+{
+ "artifact": "phase26_module_trainability_audit",
+ "phase": "26",
+ "classification": "PHASE26_PRE_EXECUTION_TRAINING_SPECIFICATION_AUDIT",
+ "method": "RA-MedFiLM-BARR",
+ "governance_only": true,
+ "modules": [
+  "G",
+  "R_psi",
+  "B_phi",
+  "S_omega",
+  "FUSION"
+ ],
+ "n_modules": 5,
+ "n_trainability_defined": 0,
+ "modules_trained_and_frozen": [
+  "G",
+  "R_psi",
+  "B_phi",
+  "S_omega"
+ ],
+ "trainable_parameter_set_defined": false,
+ "frozen_parameter_set_defined": false,
+ "module_init_source_defined": false,
+ "note": "Every module is trained and frozen from a prior phase.  No authoritative source states which parameters (if any) remain trainable in Phase26, nor whether Phase26 constructs a new model at all.",
+ "verdict": "MODULE_TRAINABILITY_NOT_DEFINED_FOR_PHASE26",
+ "blocking": true,
+ "all_pass": false
+}

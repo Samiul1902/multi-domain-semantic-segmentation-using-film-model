@@ -1,0 +1,32 @@
+{
+ "artifact": "phase25f_cv_normalization_audit",
+ "phase": "25F",
+ "stage": "CV_NORMALIZATION_AUDIT",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_post_safety_v1_0",
+ "normalized_indices": "0..15",
+ "not_normalized_indices": "16..19",
+ "statistics_source": "FIT only, per fold, ddof=0",
+ "zero_sigma_rule": "sigma < 1e-12 -> transformed feature = 0.0",
+ "silent_epsilon_division": false,
+ "outer_target_used_for_normalization": false,
+ "checks": {
+  "fold0_mu_matches_fit": true,
+  "fold0_sigma_matches_fit_ddof0": true,
+  "fold0_zero_sigma_rule": true,
+  "fold1_mu_matches_fit": true,
+  "fold1_sigma_matches_fit_ddof0": true,
+  "fold1_zero_sigma_rule": true,
+  "fold2_mu_matches_fit": true,
+  "fold2_sigma_matches_fit_ddof0": true,
+  "fold2_zero_sigma_rule": true,
+  "fold3_mu_matches_fit": true,
+  "fold3_sigma_matches_fit_ddof0": true,
+  "fold3_zero_sigma_rule": true,
+  "fold4_mu_matches_fit": true,
+  "fold4_sigma_matches_fit_ddof0": true,
+  "fold4_zero_sigma_rule": true,
+  "all_five_stats_persisted": true
+ },
+ "all_pass": true
+}

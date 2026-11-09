@@ -1,0 +1,146 @@
+{
+  "artifact": "phase36_v1_3a_direct_source_and_split_authority_audit",
+  "section": "\u00a7K",
+  "phase": 36,
+  "method": "RA-MedFiLM-BARR",
+  "revision": "ra_medfilm_barr_phase36_robustness_v1_3a",
+  "type": "READ_ONLY_PRE_SMOKE_AUDIT",
+  "generated_utc": "2026-10-05T22:52:00Z",
+  "no_source_modification": true,
+  "no_execution": true,
+  "torch_imported": false,
+  "A_source_byte_gate": {
+    "execution": "a3290c640f9632499905b974606d4c7e7e7be89886ef1f8507a9007814da297c",
+    "execution_expected": "a3290c640f9632499905b974606d4c7e7e7be89886ef1f8507a9007814da297c",
+    "unit": "01c5e960a01b1e3bcda350c923c7aa3761075385fdc606d871c8ab0d3503e7cb",
+    "unit_expected": "01c5e960a01b1e3bcda350c923c7aa3761075385fdc606d871c8ab0d3503e7cb",
+    "preflight": "769b3a8c7a5852858897ba65c0f29d57d7829dd3c38cfbd537ae2cf33b7704f1",
+    "preflight_expected": "769b3a8c7a5852858897ba65c0f29d57d7829dd3c38cfbd537ae2cf33b7704f1",
+    "negative_controls": "6b9b87a28e8a89c0bf2a7c272b140018407c67845cfc53fe28bdd386c24d195d",
+    "negative_controls_expected": "6b9b87a28e8a89c0bf2a7c272b140018407c67845cfc53fe28bdd386c24d195d",
+    "all_match": true,
+    "verdict": "PASS"
+  },
+  "B_defect_reaudit": {
+    "D1_sample_first": {
+      "run_science_is_sample_first": true,
+      "image_driver_iterates_sample_order": true,
+      "proposal_driver_iterates_sample_order": true,
+      "image_driver_calls_real_evaluator": true,
+      "image_driver_builds_full_rows": true,
+      "proposal_driver_calls_real_evaluator": true,
+      "anonymous_condition_rows_present": false,
+      "silent_missing_sample_continue_present": false,
+      "verdict": "PASS"
+    },
+    "D2_no_vendor_substring_split": {
+      "note": "All occurrences of train/training/test/testing/holdout/router_holdout classified.",
+      "occurrences_are_split_decision_logic": false,
+      "classification": {
+        "lines_22_31_206_210": "COMMENT_DOCSTRING_DESCRIBING_DELETED_V1_2_GUARD",
+        "line_94": "SOURCE_FILE_PATH_train_phase25d_router.py_FOR_AST_CLASS_EXTRACTION",
+        "lines_170_171_254_255_260_263_280_283_297_298": "IDENTITY_DENY_SET_MANIFEST_MEMBERSHIP_NOT_SUBSTRING",
+        "line_470": "TORCH_MODULE_MODE_eval_mode_NOT_SPLIT",
+        "line_683": "SEGMENTATION_TRANSFORM_AUGMENTATION_FLAG_NOT_SPLIT",
+        "lines_1464_1466": "COUNTER_RESETS_NOT_SPLIT",
+        "line_1715": "DICT_KEY_policy_tests_NOT_SPLIT"
+      },
+      "verdict": "PASS"
+    }
+  },
+  "C_router_holdout_authority": {
+    "path": "reports/audits/phase24_router_split_manifest.csv",
+    "sha256": "b5da52d6220ef9b59b4ba70d0b403b38bf5234b897615b6ad55d718114db6555",
+    "unique_sample_ids": 875,
+    "duplicate_sample_ids": 0,
+    "selector": "split_role == 'ROUTER_HOLDOUT'"
+  },
+  "D_test_authority": {
+    "path": "manifests/phase4_v3/test.csv",
+    "sha256": "9361eba61c91c034a9aa4988a4df229bba591a5cbd553c98689ac7915da29727",
+    "unique_sample_ids": 1683
+  },
+  "E_disjointness": {
+    "val808_n": 808,
+    "router_holdout_n": 875,
+    "test_n": 1683,
+    "val808_intersect_router_holdout": 0,
+    "val808_intersect_test": 0,
+    "router_holdout_intersect_test": 0
+  },
+  "F_runtime_authorize_sample_audit": {
+    "runtime_val_allow_set_size": 808,
+    "runtime_router_holdout_deny_set_size": 0,
+    "runtime_test_deny_set_size": 1683,
+    "preferred_router_holdout_deny_set_size": 875,
+    "runtime_holdout_authority_configured_path": "manifests/phase4_v3/val_router_holdout.csv",
+    "runtime_holdout_authority_path_exists": false,
+    "runtime_test_authority_configured_path": "manifests/phase4_v3/test.csv",
+    "runtime_test_authority_path_exists": true,
+    "reason_holdout_deny_set_empty": "ROUTER_HOLDOUT_MANIFEST points at manifests/phase4_v3/val_router_holdout.csv which does NOT exist; _identity_deny_set returns an empty set for a missing file. The real holdout authority lives in reports/audits/phase24_router_split_manifest.csv (split_role).",
+    "source_relies_on_val_membership_first": true,
+    "classification": "VAL_ALLOWLIST_PRIMARY__HOLDOUT_EXCLUSION_REDUNDANT__EXPLICIT_DENY_SET_NOT_POPULATED"
+  },
+  "G_case": "CASE_B",
+  "G_case_b_proof": {
+    "every_non_val_id_fails_before_path_or_model_access": true,
+    "holdout_rejection_mechanism": "NOT_IN_VAL808_MANIFEST (allowlist membership)",
+    "holdout_ids_tested": 875,
+    "holdout_ids_rejected": 875,
+    "holdout_rejected_875_of_875": true,
+    "test_ids_tested": 1683,
+    "test_ids_rejected": 1683,
+    "test_rejected_1683_of_1683": true,
+    "explicit_holdout_deny_set_would_reject": 875,
+    "defense_in_depth_available": true,
+    "no_image_or_mask_open_during_authorization": true
+  },
+  "H_manifest_vendor_positive_controls": {
+    "training_input_authorized": 231,
+    "training_input_accepted": 231,
+    "test_input_authorized": 112,
+    "test_input_accepted": 112,
+    "false_reject_count": 0
+  },
+  "I_science_loop_byte_audit": {
+    "sample_loop_present_in_image_driver": true,
+    "sample_loop_present_in_proposal_driver": true,
+    "image_evaluator_call_site": "run_image_perturbations -> _evaluate_frozen_system",
+    "proposal_evaluator_call_site": "run_proposal_perturbations -> _evaluate_frozen_system_proposal",
+    "result_row_builder_call_site": "run_image_perturbations -> build_image_result_row",
+    "fixed_summary_call_sites": [
+      "summarize_image_per_sample",
+      "summarize_image_by_domain_condition",
+      "summarize_noise_seed",
+      "summarize_proposal_per_sample",
+      "summarize_proposal_by_domain_condition",
+      "summarize_route_stability"
+    ],
+    "worst_case_call_sites": [
+      "worst_case_per_sample",
+      "worst_case_by_domain"
+    ],
+    "all_reachable_from_run_science": true
+  },
+  "J_smoke_call_graph_byte_audit": {
+    "load_models_reachable": true,
+    "real_clean_evaluator_reachable_directly": false,
+    "real_clean_evaluator_note": "run_smoke exercises the clean pipeline INLINE (G forward + 202-D + forward_inference), not via _evaluate_clean_sample; this matches v1.2 byte-for-byte.",
+    "real_nonclean_image_evaluator_reachable": true,
+    "real_nonempty_proposal_evaluator_reachable": false,
+    "real_nonempty_proposal_evaluator_disclosure": "run_smoke exercises the proposal path via C.apply_proposal_condition (geometry) only; the real _evaluate_frozen_system_proposal adapter is reachable from run_science but NOT directly from run_smoke. IDENTICAL to v1.2 (preserved, not weakened).",
+    "empty_proposal_check_reachable": true,
+    "metric_checks_reachable": true,
+    "state_machine_checks_reachable": true,
+    "all_four_real_checkpoint_paths_bound": true,
+    "verdict": "PASS__WITH_DISCLOSED_INHERITED_V1_2_PROPOSAL_SMOKE_COVERAGE_NOTE"
+  },
+  "classification": "V1_3_DIRECT_SOURCE_AND_VAL_ALLOWLIST_PRIMARY_SPLIT_AUTHORITY_AUDIT_PASS__EXPLICIT_HOLDOUT_DENY_SET_NOT_POPULATED__SCIENTIFICALLY_SAFE_GOVERNANCE_WORDING_RECONCILED",
+  "governance_wording_correction": {
+    "old_claim": "ROUTER_HOLDOUT denied by identity authority",
+    "corrected_claim": "ROUTER_HOLDOUT excluded by exact VAL808 allowlist membership; explicit holdout deny set not independently populated."
+  },
+  "source_modified_for_case_b": false,
+  "smoke_run": false,
+  "science_run": false
+}

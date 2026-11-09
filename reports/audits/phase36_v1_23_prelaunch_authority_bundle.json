@@ -1,0 +1,68 @@
+{
+ "artifact": "phase36_v1_23_prelaunch_authority_bundle",
+ "phase": 36,
+ "revision": "ra_medfilm_barr_phase36_robustness_v1_23",
+ "type": "FINAL_PRELAUNCH_AUTHORITY_BUNDLE",
+ "mode": "STATIC_NON_CONSUMING_GOVERNANCE_ONLY",
+ "generated_utc": "2026-10-11T00:00:00Z",
+ "authority_order": "ACYCLIC (A->B->C->D->E)",
+ "supersedes_revision": "v1.22",
+ "supervisor_sha256_present": false,
+ "count_semantics": {
+  "table_figure_target_count": 16,
+  "total_reachable_write_target_count": 23,
+  "unclassified_write_target_count": 0,
+  "namespace_overlap_count": 0
+ },
+ "v1_21_attempt_state": {
+  "classification": "NOT_EXECUTED__PRELAUNCH_REAL_PATH_DEFECT",
+  "defect": "D96",
+  "attempt_consumed": false,
+  "retry_permitted": false
+ },
+ "v1_20_consumed_state": {
+  "classification": "CONSUMED_INTERRUPTED_POST_START_PRE_SCIENTIFIC_RESULT",
+  "defect": "D95",
+  "attempt_consumed": true,
+  "retry_permitted": false
+ },
+ "binds": {
+  "v1_23_execution_source": {
+   "path": "scripts/analysis/phase36_robustness_execution_v1_23.py",
+   "sha256": "2287cc78ba60d715ff371ba58f0ea90f772219b510e198bea6053a7043159396"
+  },
+  "v1_23_launcher": {
+   "path": "scripts/analysis/launch_phase36_v1_23.py",
+   "sha256": "1f761db7e3b49b41d7d238b8a39ecc288e56f578b5a84a191ccd83225b0de2a2",
+   "role": "PINNED_BY_DEDICATED_LAUNCH_AUTHORITY_FILE"
+  },
+  "v1_23_runtime_manifest": {
+   "path": "reports/audits/phase36_v1_23_runtime_source_integrity_manifest.json",
+   "sha256": "48891a38c2929568e4f0e0960645767552b7e1f058002e933895ed2b11b38da4"
+  },
+  "v1_20_interruption_adjudication": {
+   "path": "reports/audits/phase36_v1_20_interruption_adjudication_v1_0.json",
+   "sha256": "31c29955380c6ec75d18f747dec4f91332177ddabeccef40cb0cafa8b37f5b72"
+  },
+  "v1_21_prelaunch_defect_adjudication": {
+   "path": "reports/audits/phase36_v1_21_prelaunch_defect_adjudication_v1_0.json",
+   "sha256": "4c2bd8f78778d9e3661a2ee5a828dfa4ac159be0d36ffada15b74083ac061bb9"
+  },
+  "v1_22_d97_failure_adjudication": {
+   "path": "reports/audits/phase36_v1_22_d97_failure_adjudication.json",
+   "sha256": "9f07d45ad631425f5edb130c054afd3d66f8a5e29c96ff09232c9627c14bf383"
+  }
+ },
+ "acyclicity": {
+  "bundle_contains_supervisor_sha256": false,
+  "bundle_contains_launch_authority_file_sha256": false,
+  "note": "The bundle binds exec/manifest/governance. It NEVER carries the supervisor SHA (acyclic by construction). The launcher's expected SHAs are read from a SEPARATELY-FROZEN launch-authority constant file whose OWN raw bytes are pinned by the supervisor."
+ },
+ "terminal": "PHASE36_V1_23_PRELAUNCH_AUTHORITY_BUNDLE_WRITTEN",
+ "v1_22_consumed_state": {
+  "classification": "CONSUMED_POST_PERTURBATION__STAGE5_SUMMARY_RUNTIME_DEFECT",
+  "defect": "D97",
+  "attempt_consumed": true,
+  "retry_permitted": false
+ }
+}

@@ -1,0 +1,65 @@
+{
+ "artifact": "phase34_synthetic_structured_feature_contract_v1_2",
+ "phase": 34,
+ "section": "\u00a7G",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase34_efficiency_profiling_v1_2",
+ "S_omega": {
+  "feature_dim": 20,
+  "numeric_indices": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11,
+   12,
+   13,
+   14,
+   15
+  ],
+  "onehot_indices": [
+   16,
+   17,
+   18,
+   19
+  ],
+  "first_16_numeric": "deterministic synthetic float32 under PYTORCH_CUDA_GENERATOR_SEED_42",
+  "final_4_dimensions": "VALID ONE-HOT task encoding (exactly one 1.0)",
+  "all_20_as_unconstrained_randn": false,
+  "task_schedule_source": "same schedule as the associated benchmark condition",
+  "batch8_onehot_balancing": "[0,1,2,3,0,1,2,3] -> two of each task identity",
+  "authority": "reports/tables/phase25f_feature_schema_v1_0.csv",
+  "authority_sha256": "3e70e20c541b93de752980c34cdfb6fe5af17ebe4c18cbb64397c0bbae465ee5"
+ },
+ "B_phi": {
+  "numeric_feature_dim": 202,
+  "feature_vector_contains_categorical_or_onehot_fields": false,
+  "feature_vector_fields": "192 deep global features + 10 GT-free scalars (all numeric float32)",
+  "B_PHI_EXPLICIT_TASK_CONDITIONING": "INTEGER_TASK_ID_EMBEDDING",
+  "task_conditioning_detail": "Embedding(4,16) consumed from a separate integer task_ids [B] argument; the router forward signature is model(features[B,202], task_ids[B])",
+  "categorical_or_onehot_replaced_with_gaussian": false,
+  "structured_binding": "task_ids bound deterministically via the frozen domain->task_id registry and the frozen batch-1/batch-8 task schedules",
+  "authority": "reports/tables/phase25b_feature_schema.csv",
+  "authority_sha256": "da76aa34f14006146f46ca799f173378274d8c9d0792dc18edb30711a2486dd4"
+ },
+ "R_psi": {
+  "input_shape": "[B,4,256,256]",
+  "R_PSI_EXPLICIT_TASK_CONDITIONING": "NONE",
+  "note": "BARRRegionalRefinerV1 takes no task/domain argument; no conditioning is invented."
+ },
+ "G": {
+  "image_shape": "[B,3,512,512]",
+  "task_ids_shape": "[B]",
+  "task_ids_dtype": "int64",
+  "G_TASK_CONDITIONING": "INTEGER_TASK_ID_FILM_EMBEDDING"
+ },
+ "generated_utc": "2026-10-04T11:08:33+00:00",
+ "all_pass": true
+}

@@ -1,0 +1,343 @@
+{
+  "artifact": "ext03_chronology_reconciliation",
+  "version": "1.2",
+  "classification": "EXT03_CHRONOLOGY_RECONCILIATION",
+  "generator": "scripts/analysis/ext03_v1_2_chronology_reconciliation.py",
+  "generator_version": "1.2",
+  "generated_local": "2026-10-26T22:26:38+06:00",
+  "mode": "READ_ONLY_MEASUREMENT",
+  "artifacts_modified": false,
+  "timestamps_rewritten": false,
+  "creation_order_asserted_beyond_evidence": false,
+  "clock_state_measured_now": {
+    "command": "w32tm /query /status",
+    "raw": "Leap Indicator: 3(not synchronized)\nStratum: 0 (unspecified)\nPrecision: -23 (119.209ns per tick)\nRoot Delay: 0.0000000s\nRoot Dispersion: 0.0000000s\nReferenceId: 0x00000000 (unspecified)\nLast Successful Sync Time: unspecified\nSource: Local CMOS Clock\nPoll Interval: 10 (1024s)",
+    "source": "Local CMOS Clock",
+    "leap_indicator": "3(not synchronized)",
+    "synchronized": false,
+    "error": null
+  },
+  "clock_history_recorded": {
+    "source": ".workbuddy-ai/memory/2026-10-25.md",
+    "time_service_event_id": 52,
+    "recorded_offset_seconds": 448320,
+    "offset_days": 5.19,
+    "system_time_set_from": "2026-10-20T10:36:33",
+    "system_time_set_to": "2026-10-25T15:08:33",
+    "interpretation": "RTC was 5.19 days behind at boot; the clock was stepped forward by 448320 s.",
+    "evidence_class": "RECORDED_FROM_PRIOR_SESSION_LOG"
+  },
+  "clock_uncertainty_label": "HOST_CLOCK_NOT_SYNCHRONIZED__ABSOLUTE_UTC_CORRESPONDENCE_UNVERIFIED",
+  "clock_uncertainty_statement": "w32tm reports the clock is NOT synchronized and is sourced from the Local CMOS Clock, the same hardware previously measured 5.19 days behind at boot. Absolute wall-clock values therefore carry an unquantified offset. Relative ordering within this session remains valid because the measured modification times are strictly monotonic and no clock step occurred between them; a step would appear as a non-monotonic sequence or as an implausible gap.",
+  "measured_order_by_filesystem_mtime": [
+    {
+      "seq": 1,
+      "path": "scripts/analysis/ext03_matrix_completion_summary_v1_1.py",
+      "modified_local": "2026-10-26T21:37:18+06:00",
+      "embedded": null,
+      "embedded_tz_basis": "ABSENT",
+      "class": "NO_EMBEDDED_TIMESTAMP"
+    },
+    {
+      "seq": 2,
+      "path": "scripts/analysis/tests/test_ext03_completion_summary_v1_1.py",
+      "modified_local": "2026-10-26T21:37:34+06:00",
+      "embedded": null,
+      "embedded_tz_basis": "ABSENT",
+      "class": "NO_EMBEDDED_TIMESTAMP"
+    },
+    {
+      "seq": 3,
+      "path": "reports/baselines/ext03_matrix_completion_summary_v1_1.json",
+      "modified_local": "2026-10-26T21:37:58+06:00",
+      "embedded": "2026-10-26T21:37:58+06:00",
+      "embedded_tz_basis": "OFFSET_AWARE",
+      "class": "COMPUTED_AT_WRITE"
+    },
+    {
+      "seq": 4,
+      "path": "reports/tables/ext03_matrix_final_family_summary_v1_1.csv",
+      "modified_local": "2026-10-26T21:37:58+06:00",
+      "embedded": null,
+      "embedded_tz_basis": "ABSENT",
+      "class": "NO_EMBEDDED_TIMESTAMP"
+    },
+    {
+      "seq": 5,
+      "path": "reports/audits/ext03_disposition_v1_1/ext03_evidence_provenance_reconciliation_v1_1.json",
+      "modified_local": "2026-10-26T21:38:28+06:00",
+      "embedded": "2026-10-26T21:45:00+06:00",
+      "embedded_tz_basis": "OFFSET_AWARE",
+      "class": "LITERAL_ROUND_FIVE_MINUTE"
+    },
+    {
+      "seq": 6,
+      "path": "reports/audits/ext03_disposition_v1_1/ext03_scientific_adjudication_addendum_v1_1.md",
+      "modified_local": "2026-10-26T21:39:05+06:00",
+      "embedded": "2026-10-26T21:50:00+06:00",
+      "embedded_tz_basis": "OFFSET_AWARE",
+      "class": "LITERAL_ROUND_FIVE_MINUTE"
+    },
+    {
+      "seq": 7,
+      "path": "reports/audits/ext03_disposition_v1_1/ext03_scientific_adjudication_addendum_v1_1.json",
+      "modified_local": "2026-10-26T21:39:23+06:00",
+      "embedded": "2026-10-26T21:50:00+06:00",
+      "embedded_tz_basis": "OFFSET_AWARE",
+      "class": "LITERAL_ROUND_FIVE_MINUTE"
+    },
+    {
+      "seq": 8,
+      "path": "reports/audits/ext03_disposition_v1_1/ext03_false_certification_supersession_register_v1_1.json",
+      "modified_local": "2026-10-26T21:39:50+06:00",
+      "embedded": "2026-10-26T21:55:00+06:00",
+      "embedded_tz_basis": "OFFSET_AWARE",
+      "class": "LITERAL_ROUND_FIVE_MINUTE"
+    },
+    {
+      "seq": 9,
+      "path": "reports/audits/ext03_disposition_v1_1/ext03_missing_evidence_disposition_v1_1.json",
+      "modified_local": "2026-10-26T21:40:21+06:00",
+      "embedded": "2026-10-26T22:00:00+06:00",
+      "embedded_tz_basis": "OFFSET_AWARE",
+      "class": "LITERAL_ROUND_FIVE_MINUTE"
+    },
+    {
+      "seq": 10,
+      "path": "reports/audits/ext03_disposition_v1_1/ext03_supervisor_decision_memorandum_v1_1.md",
+      "modified_local": "2026-10-26T21:42:36+06:00",
+      "embedded": "2026-10-26T21:42:00+06:00",
+      "embedded_tz_basis": "OFFSET_AWARE",
+      "class": "LITERAL_ROUNDED_DOWN"
+    },
+    {
+      "seq": 11,
+      "path": "reports/audits/ext03_disposition_v1_1/ext03_supervisor_decision_memorandum_v1_1.json",
+      "modified_local": "2026-10-26T21:42:50+06:00",
+      "embedded": "2026-10-26T21:42:00+06:00",
+      "embedded_tz_basis": "OFFSET_AWARE",
+      "class": "LITERAL_ROUNDED_DOWN"
+    },
+    {
+      "seq": 12,
+      "path": "reports/audits/ext03_disposition_v1_1/ext03_sha256_manifest_v1_1.json",
+      "modified_local": "2026-10-26T21:43:08+06:00",
+      "embedded": "2026-10-26T21:43:08+06:00",
+      "embedded_tz_basis": "OFFSET_AWARE",
+      "class": "COMPUTED_AT_WRITE"
+    }
+  ],
+  "apparent_inversions": [
+    {
+      "path": "reports/audits/ext03_disposition_v1_1/ext03_evidence_provenance_reconciliation_v1_1.json",
+      "claimed": "2026-10-26T21:45:00+06:00",
+      "actual_mtime": "2026-10-26T21:38:28+06:00",
+      "overstatement_seconds": 391.032913
+    },
+    {
+      "path": "reports/audits/ext03_disposition_v1_1/ext03_scientific_adjudication_addendum_v1_1.md",
+      "claimed": "2026-10-26T21:50:00+06:00",
+      "actual_mtime": "2026-10-26T21:39:05+06:00",
+      "overstatement_seconds": 654.90796
+    },
+    {
+      "path": "reports/audits/ext03_disposition_v1_1/ext03_scientific_adjudication_addendum_v1_1.json",
+      "claimed": "2026-10-26T21:50:00+06:00",
+      "actual_mtime": "2026-10-26T21:39:23+06:00",
+      "overstatement_seconds": 636.209074
+    },
+    {
+      "path": "reports/audits/ext03_disposition_v1_1/ext03_false_certification_supersession_register_v1_1.json",
+      "claimed": "2026-10-26T21:55:00+06:00",
+      "actual_mtime": "2026-10-26T21:39:50+06:00",
+      "overstatement_seconds": 909.607755
+    },
+    {
+      "path": "reports/audits/ext03_disposition_v1_1/ext03_missing_evidence_disposition_v1_1.json",
+      "claimed": "2026-10-26T22:00:00+06:00",
+      "actual_mtime": "2026-10-26T21:40:21+06:00",
+      "overstatement_seconds": 1178.713715
+    }
+  ],
+  "n_apparent_inversions": 5,
+  "finding": {
+    "question": "Why does the v1.1 manifest carry 21:43:08 while documents it hashes claim 21:45-22:00?",
+    "answer": "5 documents carry an embedded timestamp LATER than the moment the file was actually written, using 4 distinct round values (21:45:00, 21:50:00, 21:55:00, 22:00:00). Every one lands on an exact five-minute boundary. A measured clock does not produce consecutive exact boundaries, so these are hand-authored literals, not measurements. All eight v1.1 documents were created between 21:37:18 and 21:43:08 by filesystem evidence, and the manifest is the LAST of them — the correct dependency order for a manifest that hashes its inputs. No chronology violation occurred. The apparent inversion is an artefact of fabricated embedded timestamps.",
+    "manifest_is_correctly_ordered_relative_to_its_inputs": true,
+    "dependency_order_violated": false,
+    "embedded_timestamps_unreliable": true,
+    "n_documents_with_embedded_timestamp": 9,
+    "n_literal_timestamps": 7,
+    "n_computed_timestamps": 2,
+    "distinct_overstated_values": [
+      "21:45:00",
+      "21:50:00",
+      "21:55:00",
+      "22:00:00"
+    ]
+  },
+  "per_artifact": [
+    {
+      "path": "reports/audits/ext03_disposition_v1_1/ext03_evidence_provenance_reconciliation_v1_1.json",
+      "filesystem_created_local": "2026-10-26T21:38:28+06:00",
+      "filesystem_modified_local": "2026-10-26T21:38:28+06:00",
+      "created_equals_modified": true,
+      "embedded_timestamp_raw": "2026-10-26T21:45:00+06:00",
+      "embedded_timestamp_parsed": "2026-10-26T21:45:00+06:00",
+      "embedded_timezone_basis": "OFFSET_AWARE",
+      "embedded_minus_mtime_seconds": 391.032913,
+      "embedded_provenance_class": "LITERAL_ROUND_FIVE_MINUTE",
+      "classification_reason": "embedded is +391s from mtime and lands on an exact 45:00 boundary",
+      "bytes": 12703
+    },
+    {
+      "path": "reports/audits/ext03_disposition_v1_1/ext03_scientific_adjudication_addendum_v1_1.md",
+      "filesystem_created_local": "2026-10-26T21:39:05+06:00",
+      "filesystem_modified_local": "2026-10-26T21:39:05+06:00",
+      "created_equals_modified": true,
+      "embedded_timestamp_raw": "2026-10-26T21:50",
+      "embedded_timestamp_parsed": "2026-10-26T21:50:00+06:00",
+      "embedded_timezone_basis": "OFFSET_AWARE",
+      "embedded_minus_mtime_seconds": 654.90796,
+      "embedded_provenance_class": "LITERAL_ROUND_FIVE_MINUTE",
+      "classification_reason": "embedded is +655s from mtime and lands on an exact 50:00 boundary",
+      "bytes": 20386
+    },
+    {
+      "path": "reports/audits/ext03_disposition_v1_1/ext03_scientific_adjudication_addendum_v1_1.json",
+      "filesystem_created_local": "2026-10-26T21:39:23+06:00",
+      "filesystem_modified_local": "2026-10-26T21:39:23+06:00",
+      "created_equals_modified": true,
+      "embedded_timestamp_raw": "2026-10-26T21:50:00+06:00",
+      "embedded_timestamp_parsed": "2026-10-26T21:50:00+06:00",
+      "embedded_timezone_basis": "OFFSET_AWARE",
+      "embedded_minus_mtime_seconds": 636.209074,
+      "embedded_provenance_class": "LITERAL_ROUND_FIVE_MINUTE",
+      "classification_reason": "embedded is +636s from mtime and lands on an exact 50:00 boundary",
+      "bytes": 15323
+    },
+    {
+      "path": "reports/audits/ext03_disposition_v1_1/ext03_false_certification_supersession_register_v1_1.json",
+      "filesystem_created_local": "2026-10-26T21:39:50+06:00",
+      "filesystem_modified_local": "2026-10-26T21:39:50+06:00",
+      "created_equals_modified": true,
+      "embedded_timestamp_raw": "2026-10-26T21:55:00+06:00",
+      "embedded_timestamp_parsed": "2026-10-26T21:55:00+06:00",
+      "embedded_timezone_basis": "OFFSET_AWARE",
+      "embedded_minus_mtime_seconds": 909.607755,
+      "embedded_provenance_class": "LITERAL_ROUND_FIVE_MINUTE",
+      "classification_reason": "embedded is +910s from mtime and lands on an exact 55:00 boundary",
+      "bytes": 16871
+    },
+    {
+      "path": "reports/audits/ext03_disposition_v1_1/ext03_missing_evidence_disposition_v1_1.json",
+      "filesystem_created_local": "2026-10-26T21:40:21+06:00",
+      "filesystem_modified_local": "2026-10-26T21:40:21+06:00",
+      "created_equals_modified": true,
+      "embedded_timestamp_raw": "2026-10-26T22:00:00+06:00",
+      "embedded_timestamp_parsed": "2026-10-26T22:00:00+06:00",
+      "embedded_timezone_basis": "OFFSET_AWARE",
+      "embedded_minus_mtime_seconds": 1178.713715,
+      "embedded_provenance_class": "LITERAL_ROUND_FIVE_MINUTE",
+      "classification_reason": "embedded is +1179s from mtime and lands on an exact 00:00 boundary",
+      "bytes": 9723
+    },
+    {
+      "path": "reports/audits/ext03_disposition_v1_1/ext03_supervisor_decision_memorandum_v1_1.md",
+      "filesystem_created_local": "2026-10-26T21:42:36+06:00",
+      "filesystem_modified_local": "2026-10-26T21:42:36+06:00",
+      "created_equals_modified": true,
+      "embedded_timestamp_raw": "2026-10-26T21:42",
+      "embedded_timestamp_parsed": "2026-10-26T21:42:00+06:00",
+      "embedded_timezone_basis": "OFFSET_AWARE",
+      "embedded_minus_mtime_seconds": -36.862266,
+      "embedded_provenance_class": "LITERAL_ROUNDED_DOWN",
+      "classification_reason": "embedded is -37s from mtime, truncated to the minute",
+      "bytes": 16844
+    },
+    {
+      "path": "reports/audits/ext03_disposition_v1_1/ext03_supervisor_decision_memorandum_v1_1.json",
+      "filesystem_created_local": "2026-10-26T21:42:50+06:00",
+      "filesystem_modified_local": "2026-10-26T21:42:50+06:00",
+      "created_equals_modified": true,
+      "embedded_timestamp_raw": "2026-10-26T21:42:00+06:00",
+      "embedded_timestamp_parsed": "2026-10-26T21:42:00+06:00",
+      "embedded_timezone_basis": "OFFSET_AWARE",
+      "embedded_minus_mtime_seconds": -50.209086,
+      "embedded_provenance_class": "LITERAL_ROUNDED_DOWN",
+      "classification_reason": "embedded is -50s from mtime, truncated to the minute",
+      "bytes": 9913
+    },
+    {
+      "path": "reports/audits/ext03_disposition_v1_1/ext03_sha256_manifest_v1_1.json",
+      "filesystem_created_local": "2026-10-26T21:43:08+06:00",
+      "filesystem_modified_local": "2026-10-26T21:43:08+06:00",
+      "created_equals_modified": true,
+      "embedded_timestamp_raw": "2026-10-26T21:43:08+06:00",
+      "embedded_timestamp_parsed": "2026-10-26T21:43:08+06:00",
+      "embedded_timezone_basis": "OFFSET_AWARE",
+      "embedded_minus_mtime_seconds": -0.137519,
+      "embedded_provenance_class": "COMPUTED_AT_WRITE",
+      "classification_reason": "embedded matches filesystem mtime to the second",
+      "bytes": 25588
+    },
+    {
+      "path": "reports/baselines/ext03_matrix_completion_summary_v1_1.json",
+      "filesystem_created_local": "2026-10-26T21:37:58+06:00",
+      "filesystem_modified_local": "2026-10-26T21:37:58+06:00",
+      "created_equals_modified": true,
+      "embedded_timestamp_raw": "2026-10-26T15:37:58+00:00",
+      "embedded_timestamp_parsed": "2026-10-26T21:37:58+06:00",
+      "embedded_timezone_basis": "OFFSET_AWARE",
+      "embedded_minus_mtime_seconds": -0.353038,
+      "embedded_provenance_class": "COMPUTED_AT_WRITE",
+      "classification_reason": "embedded matches filesystem mtime to the second",
+      "bytes": 16952
+    },
+    {
+      "path": "reports/tables/ext03_matrix_final_family_summary_v1_1.csv",
+      "filesystem_created_local": "2026-10-26T21:37:58+06:00",
+      "filesystem_modified_local": "2026-10-26T21:37:58+06:00",
+      "created_equals_modified": true,
+      "embedded_timestamp_raw": null,
+      "embedded_timestamp_parsed": null,
+      "embedded_timezone_basis": "ABSENT",
+      "embedded_minus_mtime_seconds": null,
+      "embedded_provenance_class": "NO_EMBEDDED_TIMESTAMP",
+      "classification_reason": null,
+      "bytes": 682
+    },
+    {
+      "path": "scripts/analysis/ext03_matrix_completion_summary_v1_1.py",
+      "filesystem_created_local": "2026-10-26T21:37:07+06:00",
+      "filesystem_modified_local": "2026-10-26T21:37:18+06:00",
+      "created_equals_modified": false,
+      "embedded_timestamp_raw": null,
+      "embedded_timestamp_parsed": null,
+      "embedded_timezone_basis": "ABSENT",
+      "embedded_minus_mtime_seconds": null,
+      "embedded_provenance_class": "NO_EMBEDDED_TIMESTAMP",
+      "classification_reason": null,
+      "bytes": 17043
+    },
+    {
+      "path": "scripts/analysis/tests/test_ext03_completion_summary_v1_1.py",
+      "filesystem_created_local": "2026-10-26T21:37:34+06:00",
+      "filesystem_modified_local": "2026-10-26T21:37:34+06:00",
+      "created_equals_modified": true,
+      "embedded_timestamp_raw": null,
+      "embedded_timestamp_parsed": null,
+      "embedded_timezone_basis": "ABSENT",
+      "embedded_minus_mtime_seconds": null,
+      "embedded_provenance_class": "NO_EMBEDDED_TIMESTAMP",
+      "classification_reason": null,
+      "bytes": 10364
+    }
+  ],
+  "uncertainty_labels": [
+    "FILESYSTEM_TIMES_MEASURED_NOW__ABSOLUTE_VALUE_INHERITS_HOST_CLOCK_DEFECT",
+    "EMBEDDED_TIMESTAMPS_ARE_NOT_MEASUREMENTS_UNLESS_CLASS_IS_COMPUTED_AT_WRITE",
+    "EXACT_CREATION_ORDER_BEFORE_2026-10-26_UNRECOVERABLE_FROM_THIS_EVIDENCE",
+    "NO_TIMESTAMP_WAS_REWRITTEN_TO_RESOLVE_THE_APPARENT_INVERSION"
+  ]
+}

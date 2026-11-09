@@ -1,0 +1,37 @@
+{
+ "artifact": "phase25g_dev_reconstruction_contract",
+ "phase": "25G",
+ "classification": "PHASE25G_PRE_EXECUTION_INTEGRATED_EVALUATION_SPECIFICATION_AUDIT",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_integrated_evaluation_v1_0",
+ "governance_only": true,
+ "no_execution": true,
+ "stage": "DEV_OUTPUT_RECONSTRUCTION",
+ "population": "ROUTER_DEVELOPMENT",
+ "population_n": 4957,
+ "no_model_inference_required": true,
+ "paired_gain_source": {
+  "file": "data_cache/phase25c_barr_oof_paired_gain_labels_v1_2/phase25c_oof_paired_gain_labels.csv",
+  "sha256": "fd6ca32c33a3bddb75f986b1350d54ec35b11d3bf5cb0fdc029962a5aa94865f",
+  "column": "delta_dice",
+  "definition": "d_i = Phase25C OOF paired delta_dice"
+ },
+ "reconstruction": {
+  "A7_final_delta": "final_delta_A7 = d_i if Phase25E selected (c8_decision == EXECUTE) else 0",
+  "A8_final_delta": "final_delta_A8 = d_i if C9 outcome == EXECUTE_THEN_ACCEPT else 0",
+  "A8_minus_A7": "final_delta_A8 - final_delta_A7",
+  "A7_dice": "global_dice + final_delta_A7",
+  "A8_dice": "global_dice + final_delta_A8"
+ },
+ "c9_outcome_field": "c9_outcome in {PRE_GATE_SKIP, EXECUTE_THEN_ACCEPT, EXECUTE_THEN_REJECT}",
+ "c9_state_field": "c9_state in {STATE_B (pre-gate skip), STATE_C (executed)}",
+ "note": "The work-order phrase 'C9 state == EXECUTE_THEN_ACCEPT' is realised by the phase25f_c9_decision_manifest.csv column c9_outcome; the column c9_state only carries STATE_B/STATE_C. A8 selects exactly the rows with c9_outcome == 'EXECUTE_THEN_ACCEPT'.",
+ "reconstruction_only_no_rerun": true,
+ "checks": {
+  "delta_source_is_phase25c_oof": true,
+  "A8_subset_of_A7": true,
+  "global_and_candidate_dice_available_for_cross_check": true,
+  "no_segmentation_rerun": true
+ },
+ "all_pass": true
+}

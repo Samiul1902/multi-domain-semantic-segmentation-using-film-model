@@ -1,0 +1,34 @@
+{
+ "artifact": "phase25g_hard_stop_conditions",
+ "phase": "25G",
+ "classification": "PHASE25G_PRE_EXECUTION_INTEGRATED_EVALUATION_SPECIFICATION_AUDIT",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_integrated_evaluation_v1_0",
+ "governance_only": true,
+ "no_execution": true,
+ "stage": "HARD_STOP_CONDITIONS",
+ "conditions": {
+  "ROUTER_HOLDOUT phase ownership": false,
+  "A7/A8 exact output reconstruction": true,
+  "preservation criterion": true,
+  "statistical pairing": true,
+  "holdout threshold semantics if holdout belongs Phase25G": false,
+  "holdout normalization semantics": true,
+  "holdout GT-open ordering": true,
+  "VAL808 ownership if required": true,
+  "success/failure criterion needed for Phase25G": true
+ },
+ "unresolved": [
+  "ROUTER_HOLDOUT phase ownership",
+  "holdout threshold semantics if holdout belongs Phase25G"
+ ],
+ "triggered": true,
+ "no_inferred_values": true,
+ "terminal_if_triggered": "PHASE25G_BLOCKED__ONE_SHOT_HOLDOUT_OWNERSHIP_UNRESOLVED",
+ "checks": {
+  "hard_stop_list_evaluated": true,
+  "no_missing_value_inferred": true,
+  "triggered": true
+ },
+ "all_pass": true
+}

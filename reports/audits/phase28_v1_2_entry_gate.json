@@ -1,0 +1,59 @@
+{
+ "artifact": "phase28_v1_2_entry_gate",
+ "phase": 28,
+ "classification": "PHASE28_SUPERVISOR_OPERATIONALIZATION_RULING_SPEC_REPAIR_V1_2__ENTRY_GATE",
+ "method": "RA-MedFiLM-BARR",
+ "governance_only": true,
+ "execution": "NONE",
+ "required_predecessor_terminal": "PHASE28_BLOCKED__R1_R2_R3_F1_EXECUTION_SEMANTICS_INCOMPLETE",
+ "observed_predecessor_terminal": "PHASE28_BLOCKED__R1_R2_R3_F1_EXECUTION_SEMANTICS_INCOMPLETE",
+ "predecessor_terminal_match": true,
+ "required_secondary_blocker": "PHASE28_BLOCKED__ROUTER_ABLATION_CALIBRATION_RULE_INCOMPLETE",
+ "observed_secondary_blockers": [
+  "PHASE28_BLOCKED__ROUTER_ABLATION_CALIBRATION_RULE_INCOMPLETE"
+ ],
+ "secondary_blocker_match": true,
+ "phase28_execution_started": false,
+ "predecessor_counters": {
+  "model_forwards": 0,
+  "training_runs": 0,
+  "new_predictions": 0,
+  "ablation_metrics": 0,
+  "predictions_recomputed": 0,
+  "metrics_recomputed": 0,
+  "bootstrap_recomputed": 0,
+  "ablations_executed": 0,
+  "new_thresholds_selected": 0,
+  "lambda_changes": 0,
+  "budget_changes": 0,
+  "ROUTER_HOLDOUT_reads": 0,
+  "TEST_reads": 0,
+  "TEST_mask_reads": 0,
+  "phase29_started": 0,
+  "phase30_started": 0
+ },
+ "predecessor_all_counters_zero": true,
+ "required_preserved_artifacts": {
+  "reports/tables/phase28_core_contrast_map.csv": {
+   "sha256": "17646be8eb256b250d988ce0bbeab43d3f0395e067e5fecd6e952a3dbffdfb89",
+   "exists": true
+  },
+  "reports/audits/phase28_one_factor_control_contract_v1_1.json": {
+   "sha256": "0e9730f07c36461342793e17cb128de4393b008b37942db203190f009395f982",
+   "exists": true
+  },
+  "reports/tables/phase28_ablation_executability_v1_1.csv": {
+   "sha256": "4086216fae8706b4792d75a7e4474a9fe429eb673aeabd8b6ebdf52725a01652",
+   "exists": true
+  },
+  "reports/tables/phase28_specification_completeness_v1_1.csv": {
+   "sha256": "7c576cae69dc3fd8db82adb01b768dabc96ad81e1cee132687d70926b5a7af10",
+   "exists": true
+  }
+ },
+ "v1_0_v1_1_historical_artifacts_modified": false,
+ "canonical_bundle_sha256": "f7aebb0f646bcc8de49fa91b70a4c4cc1051c9998ab6b055a8d4d187809cb3d9",
+ "phase27_freeze_sha256": "42e51a6734c8c620bd056a829a770f23d4d354e3ba82f2272150636d96062187",
+ "generated_utc": "2026-10-02T12:30:00Z",
+ "gate_pass": true
+}

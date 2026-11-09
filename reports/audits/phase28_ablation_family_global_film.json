@@ -1,0 +1,44 @@
+{
+ "phase": 28,
+ "governance_only": true,
+ "execution": "NONE",
+ "method": "RA-MedFiLM-BARR",
+ "canonical_baseline": "A8_C9 (budget 0.25, lambda 0.25)",
+ "one_factor_contract_ref": "reports/audits/phase28_one_factor_control_contract.json",
+ "population": "ROUTER_DEVELOPMENT (n=4957)",
+ "artifact": "phase28_ablation_family_global_film",
+ "classification": "PHASE28_ABLATION_FAMILY__GLOBAL_FILM",
+ "family_scope": "Global reference (GlobalMedFiLM) contribution to the integrated system",
+ "recovered_spec": {
+  "global_reference": {
+   "phase21_checkpoint": "checkpoints/phase21_global_medfilm_fourdomain_seed42_clean_v3/best.pt",
+   "sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+   "architecture": "global_medfilm_shared_residual_unet_film5_no_se_no_deep_supervision_v1",
+   "parameters": 3523001,
+   "signature": "G(x, t) -> (p_global, F_global)",
+   "modification_policy": "MUST NOT be modified during the initial controlled Phase-25 experiments",
+   "feature_reuse_requirement": "router MUST reuse F_global; a SECOND full global forward purely for routing is FORBIDDEN"
+  },
+  "film_conditioning": "GlobalMedFiLM uses FiLM (5 blocks) for task/domain conditioning; task_id mapping ISIC=0,BUSI=1,KVASIR=2,KUB=3",
+  "related_ablation_ids": [
+   "A0",
+   "A1"
+  ],
+  "A0_definition": "global-only (compute floor / preservation reference)",
+  "A1_definition": "always-refine (compute ceiling / no-routing reference)"
+ },
+ "retraining_required": false,
+ "reconstruction_class": "ARTIFACT_RECONSTRUCTABLE (A0/A1 from frozen global + frozen refiner outputs)",
+ "source_refs": [
+  {
+   "path": "reports/audits/phase24_architecture_spec.json",
+   "sha256": "bd5522678571f9b40e3ae887c7fd6c2d7862b3e73152eab1ae7db13cab6c6071"
+  },
+  {
+   "path": "reports/audits/phase24_exact_implementation_spec.json",
+   "sha256": "6b1a71d5e88ce06baa8f200523be32773428417ffd233ff218d7e50b6af271dd"
+  }
+ ],
+ "generated_utc": "2026-10-02T18:44:00Z",
+ "all_pass": true
+}

@@ -1,0 +1,403 @@
+{
+  "artifact": "phase36_robustness_unit_v1_11",
+  "phase": 36,
+  "section": "§J",
+  "method": "RA-MedFiLM-BARR",
+  "revision": "ra_medfilm_barr_phase36_robustness_v1_11",
+  "type": "UNIT_CHECK_REPORT",
+  "model_free": true,
+  "torch_imported": false,
+  "protected_population_read": false,
+  "subject_execution_source": "scripts/analysis/phase36_robustness_execution_v1_11.py",
+  "subject_execution_sha256": "dc4928417444304ad637907c53089e512577254b368e438d0098ade6202083f0",
+  "subject_launcher": "scripts/analysis/launch_phase36_v1_11.py",
+  "subject_launcher_sha256": "56612332d220f93611fc627b1f495aca3013bb3578ab801ee10b4ee0386b25b0",
+  "repairs": {
+    "D22_TRUE_WRITE_ONCE_SMOKE": "PRESERVED_ENFORCED",
+    "D23_14SRC_4CKPT_INTEGRITY": "PRESERVED_ENFORCED",
+    "D24_RPSI_SOMEGA_INPUT": "PRESERVED_ENFORCED",
+    "D25_FOUR_HD95_CASES": "PRESERVED_ENFORCED",
+    "D26_NO_TAUTOLOGICAL_PROVENANCE": "PRESERVED_ENFORCED",
+    "D27_EXACT_DEP_SET_EQUALITY": "PRESERVED_ENFORCED",
+    "D28_FOUR_ACTUAL_HD95_CALL_SITES": "PRESERVED_ENFORCED",
+    "D30_SCIENCE_TRANSITIVE_PRE_MODEL_GATE": "ENFORCED",
+    "D31_UNIQUE_V1_11_SCIENCE_PATHS": "ENFORCED",
+    "D32_SCIENCE_FIRST_ATTEMPT_WRITE_ONCE": "ENFORCED",
+    "D33_EXTERNAL_LAUNCH_ANCHOR": "ENFORCED"
+  },
+  "passed": 74,
+  "total": 74,
+  "all_pass": true,
+  "checks": [
+    {
+      "check": "00_self_no_or_true_expression",
+      "passed": true,
+      "detail": "{\"offending\": []}"
+    },
+    {
+      "check": "01_v1_11_revision_tag",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "02_v1_11_smoke_paths",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "03_v1_11_science_paths",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "04_no_v1_9_smoke_path_binding",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "10_gate_state_helper_present",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "11_gate_state_pure_no_io",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "12_start_marker_uses_os_excl",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "13_failure_artifact_exclusive_create",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "14_failure_artifact_no_write_text",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "15_success_artifact_exclusive_create",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "16_main_smoke_gate_before_marker",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "17_main_refuses_unauthorized_smoke",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "18_main_refuses_second_smoke_attempt",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "20_D26_provenance_derived_not_literal",
+      "passed": true,
+      "detail": "{\"val_names\": [\"_marker_exists\", \"_marker_sole_and_trueseal\", \"bool\"], \"is_literal_true\": false, \"has_or_true\": false, \"probe_ok\": true, \"exclusive_open_x\": true}"
+    },
+    {
+      "check": "21_D26_binding_consumes_derived",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "25_D27_transitive_dep_exact_count_14",
+      "passed": true,
+      "detail": "{\"observed\": 14}"
+    },
+    {
+      "check": "26_D27_transitive_dep_exact_set_equality",
+      "passed": true,
+      "detail": "{\"missing\": [], \"unexpected\": []}"
+    },
+    {
+      "check": "27_transitive_checkpoints_four",
+      "passed": true,
+      "detail": "{\"n_ckpt\": 4}"
+    },
+    {
+      "check": "28_integrity_hashes_checkpoints",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "29_manifest_missing_fails_closed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "30_manifest_malformed_fails_closed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "31_manifest_missing_field_fails_closed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "32_no_self_check_skipped_bypass",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "35_somega_final_input_dim_is_20",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "36_core_exposes_final_s_omega_input",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "37_core_exposes_refined_probability_range",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "38_real_execute_R_psi_output_exact_shape_check",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "38_real_execute_R_psi_output_in_unit_interval_check",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "38_real_execute_final_S_omega_input_exact_dim_check",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "38_real_execute_final_S_omega_input_finite_check",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "40_hd95_case_exact_predicate",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "41_D28_four_actual_hd95_call_sites",
+      "passed": true,
+      "detail": "{\"n\": 4}"
+    },
+    {
+      "check": "42_D28_hd95_call_sites_exact_semantics",
+      "passed": true,
+      "detail": "{\"missing\": [], \"unexpected\": []}"
+    },
+    {
+      "check": "43_hd95_predicate_binds_reason",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "44_hd95_predicate_binds_domain_unit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "45_hd95_exact_reasons_absent_from_tautology",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "50_D30_science_integrity_gate_present",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "51_D30_science_integrity_gate_before_load_models",
+      "passed": true,
+      "detail": "{\"science_calls\": [\"OrderedDict\", \"_verify_transitive_source_integrity\", \"SystemExit\", \"dumps\", \"_load_models\", \"_bind_clean_reference\", \"_generate_clean_g_reference\", \"_phase27_global_reproduction_gate\", \"SystemExit\", \"_clean_row_index\", \"append\", \"_evaluate_clean_sample\", \"get\", \"_clean_equivalence_gate\", \"SystemExit\", \"run_image_perturbations\", \"run_proposal_perturbations\", \"get\", \"SystemExit\", \"get\", \"SystemExit\", \"summarize_image_per_sample\", \"summarize_image_by_domain_condition\", \"summarize_noise_seed\", \"summarize_proposal_per_sample\", \"summarize_proposal_by_domain_condition\", \"summarize_route_stability\", \"summarize_execution_rate\", \"worst_case_per_sample\", \"worst_case_by_domain\", \"kub_subgroup_robustness\", \"generate_all_figures\", \"len\", \"len\", \"now\"]}"
+    },
+    {
+      "check": "52_D30_science_integrity_fail_closed_terminal",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "53_D30_smoke_also_gates_integrity_before_load",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "54_D30_same_gate_function_used_both_paths",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "55_D31_science_result_is_v1_11_path",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "56_D31_no_v1_8_science_write",
+      "passed": true,
+      "detail": "{\"write_paths_clean\": true}"
+    },
+    {
+      "check": "57_D31_forbidden_sentinel_present_and_unused",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "58_D31_science_success_exclusive_create",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "59_D31_science_failure_exclusive_create",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "60_D31_science_paths_distinct_from_smoke",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "65_D32_science_gate_state_helper",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "66_D32_main_science_gate_before_marker",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "67_D32_main_refuses_unauthorized_science",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "68_D32_main_refuses_second_science_attempt",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "69_D32_science_attempt_exists_checks_all_three",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "70_D32_start_marker_exclusive_create_os_excl",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "71_D32_marker_before_model_construction",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "72_D32_records_SystemExit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "73_D32_records_Exception",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "74_D32_records_logical_failure",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "75_D32_failure_kinds_distinct",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "76_D32_wrapper_returns_process_code",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "80_D33_launcher_exists",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "81_D33_launcher_model_free",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "82_D33_launcher_verifies_exec_and_manifest_shas",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "83_D33_launcher_sets_authority_token",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "84_D33_source_requires_launch_token",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "85_D33_manifest_exists",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "86_D33_manifest_declares_exec_sha",
+      "passed": true,
+      "detail": "{\"declared\": \"dc4928417444304ad637907c53089e512577254b368e438d0098ade6202083f0\", \"observed\": \"dc4928417444304ad637907c53089e512577254b368e438d0098ade6202083f0\"}"
+    },
+    {
+      "check": "87_D33_manifest_14_deps_4_ckpts",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "88_D33_manifest_no_launcher_sha_cycle",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "90_test_runtime_reads_disallowed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "91_holdout_runtime_reads_disallowed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "92_val_manifest_only_authority",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "93_smoke_science_gates_separate",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "94_no_smoke_or_science_artifact_written",
+      "passed": true,
+      "detail": null
+    }
+  ]
+}

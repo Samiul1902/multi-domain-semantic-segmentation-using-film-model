@@ -1,0 +1,237 @@
+{
+ "artifact": "phase25f_feature_equation_contract_v1_0",
+ "phase": "25F",
+ "stage": "SUPERVISOR_RULING_F3_EXACT_SOMEGA_INPUT_VECTOR",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_post_safety_v1_0",
+ "ruling_id": "F3",
+ "input_dimension": 20,
+ "numeric_dim": 16,
+ "onehot_dim": 4,
+ "definitions": {
+  "P_g": "canonical global probability crop, P_g in [0,1]^(256x256), float32 (data_cache/phase25f_barr_post_safety_v1_0/oof_global_crop_prob.npy)",
+  "P_r": "canonical OOF refined probability crop, P_r in [0,1]^(256x256), float32 (data_cache/phase25f_barr_post_safety_v1_0/oof_refined_crop_prob.npy)",
+  "t_seg": 0.5,
+  "t_seg_role": "already-frozen SEGMENTATION OUTPUT threshold; explicitly NOT the S_omega decision threshold",
+  "B_g": "B_g(x) = 1[P_g(x) >= 0.50]",
+  "B_r": "B_r(x) = 1[P_r(x) >= 0.50]",
+  "eps": 1e-07,
+  "p_c": "clip(p, eps, 1-eps)",
+  "H": "H(p) = -[p_c*log2(p_c) + (1-p_c)*log2(1-p_c)]; units bits",
+  "connected_components": "8-connectivity, 3x3 all-ones structuring element, applied to the binary mask at t_seg=0.50",
+  "E": "binary_erosion(B, structure=3x3 ones, border_value=0)",
+  "boundary": "boundary = B AND NOT E",
+  "boundary_fraction": "sum(boundary) / (256*256)",
+  "N_PIX": 65536
+ },
+ "numeric_features": [
+  {
+   "index": 0,
+   "name": "global_prob_mean",
+   "formula": "mean(P_g)",
+   "source": "P_g (canonical global probability crop)",
+   "units": "dimensionless probability in [0,1]",
+   "dtype": "float32",
+   "normalization_role": "STANDARDIZED_FIT_ONLY_DDOF0",
+   "gt_free": true
+  },
+  {
+   "index": 1,
+   "name": "refined_prob_mean",
+   "formula": "mean(P_r)",
+   "source": "P_r (canonical OOF refined probability crop)",
+   "units": "dimensionless probability in [0,1]",
+   "dtype": "float32",
+   "normalization_role": "STANDARDIZED_FIT_ONLY_DDOF0",
+   "gt_free": true
+  },
+  {
+   "index": 2,
+   "name": "mean_abs_prob_change",
+   "formula": "mean(abs(P_r - P_g))",
+   "source": "P_g, P_r",
+   "units": "dimensionless probability in [0,1]",
+   "dtype": "float32",
+   "normalization_role": "STANDARDIZED_FIT_ONLY_DDOF0",
+   "gt_free": true
+  },
+  {
+   "index": 3,
+   "name": "max_abs_prob_change",
+   "formula": "max(abs(P_r - P_g))",
+   "source": "P_g, P_r",
+   "units": "dimensionless probability in [0,1]",
+   "dtype": "float32",
+   "normalization_role": "STANDARDIZED_FIT_ONLY_DDOF0",
+   "gt_free": true
+  },
+  {
+   "index": 4,
+   "name": "frac_abs_prob_change_ge_0p10",
+   "formula": "mean(abs(P_r - P_g) >= 0.10)",
+   "source": "P_g, P_r",
+   "units": "fraction in [0,1]",
+   "dtype": "float32",
+   "normalization_role": "STANDARDIZED_FIT_ONLY_DDOF0",
+   "gt_free": true
+  },
+  {
+   "index": 5,
+   "name": "global_entropy_mean",
+   "formula": "mean(H(P_g)); H(p) = -[p_c*log2(p_c) + (1-p_c)*log2(1-p_c)], p_c = clip(p, 1e-7, 1-1e-7)",
+   "source": "P_g",
+   "units": "bits in [0,1]",
+   "dtype": "float32",
+   "normalization_role": "STANDARDIZED_FIT_ONLY_DDOF0",
+   "gt_free": true
+  },
+  {
+   "index": 6,
+   "name": "refined_entropy_mean",
+   "formula": "mean(H(P_r)); H(p) = -[p_c*log2(p_c) + (1-p_c)*log2(1-p_c)], p_c = clip(p, 1e-7, 1-1e-7)",
+   "source": "P_r",
+   "units": "bits in [0,1]",
+   "dtype": "float32",
+   "normalization_role": "STANDARDIZED_FIT_ONLY_DDOF0",
+   "gt_free": true
+  },
+  {
+   "index": 7,
+   "name": "global_foreground_fraction",
+   "formula": "mean(B_g); B_g(x) = 1[P_g(x) >= 0.50]",
+   "source": "P_g",
+   "units": "fraction in [0,1]",
+   "dtype": "float32",
+   "normalization_role": "STANDARDIZED_FIT_ONLY_DDOF0",
+   "gt_free": true
+  },
+  {
+   "index": 8,
+   "name": "refined_foreground_fraction",
+   "formula": "mean(B_r); B_r(x) = 1[P_r(x) >= 0.50]",
+   "source": "P_r",
+   "units": "fraction in [0,1]",
+   "dtype": "float32",
+   "normalization_role": "STANDARDIZED_FIT_ONLY_DDOF0",
+   "gt_free": true
+  },
+  {
+   "index": 9,
+   "name": "binary_xor_fraction",
+   "formula": "mean(B_g XOR B_r)",
+   "source": "P_g, P_r",
+   "units": "fraction in [0,1]",
+   "dtype": "float32",
+   "normalization_role": "STANDARDIZED_FIT_ONLY_DDOF0",
+   "gt_free": true
+  },
+  {
+   "index": 10,
+   "name": "global_component_count",
+   "formula": "number of 8-connected components in B_g (3x3 all-ones structuring element)",
+   "source": "P_g",
+   "units": "count (cast to float32)",
+   "dtype": "float32",
+   "normalization_role": "STANDARDIZED_FIT_ONLY_DDOF0",
+   "gt_free": true
+  },
+  {
+   "index": 11,
+   "name": "refined_component_count",
+   "formula": "number of 8-connected components in B_r (3x3 all-ones structuring element)",
+   "source": "P_r",
+   "units": "count (cast to float32)",
+   "dtype": "float32",
+   "normalization_role": "STANDARDIZED_FIT_ONLY_DDOF0",
+   "gt_free": true
+  },
+  {
+   "index": 12,
+   "name": "global_boundary_fraction",
+   "formula": "boundary_fraction(B_g); E = binary_erosion(B, 3x3 ones, border_value=0); boundary = B AND NOT E; boundary_fraction = sum(boundary)/(256*256)",
+   "source": "P_g",
+   "units": "fraction in [0,1]",
+   "dtype": "float32",
+   "normalization_role": "STANDARDIZED_FIT_ONLY_DDOF0",
+   "gt_free": true
+  },
+  {
+   "index": 13,
+   "name": "refined_boundary_fraction",
+   "formula": "boundary_fraction(B_r); E = binary_erosion(B, 3x3 ones, border_value=0); boundary = B AND NOT E; boundary_fraction = sum(boundary)/(256*256)",
+   "source": "P_r",
+   "units": "fraction in [0,1]",
+   "dtype": "float32",
+   "normalization_role": "STANDARDIZED_FIT_ONLY_DDOF0",
+   "gt_free": true
+  },
+  {
+   "index": 14,
+   "name": "predicted_roi_area_fraction",
+   "formula": "frozen Phase25B corrected in-canvas ROI area / 512^2, area = max(0,min(512,x2)-max(0,x1)) * max(0,min(512,y2)-max(0,y1))",
+   "source": "data_cache/phase25b_barr_pre_refinement_features_v1_2 (scalar index 200)",
+   "units": "fraction in [0,1]",
+   "dtype": "float32",
+   "normalization_role": "STANDARDIZED_FIT_ONLY_DDOF0",
+   "gt_free": true
+  },
+  {
+   "index": 15,
+   "name": "predicted_roi_side_normalized",
+   "formula": "predicted_roi_side / 512.0",
+   "source": "data_cache/phase25b_barr_pre_refinement_features_v1_2 (scalar index 201)",
+   "units": "dimensionless in [0,1.5]",
+   "dtype": "float32",
+   "normalization_role": "STANDARDIZED_FIT_ONLY_DDOF0",
+   "gt_free": true
+  }
+ ],
+ "task_onehot": {
+  "order": [
+   "task_0_ISIC",
+   "task_1_BUSI",
+   "task_2_KVASIR",
+   "task_3_KUB"
+  ],
+  "mapping": {
+   "ISIC": 0,
+   "BUSI": 1,
+   "KVASIR": 2,
+   "KUB": 3
+  },
+  "learned_task_embedding": false,
+  "normalization_role": "NONE"
+ },
+ "final_input_dimension": "16 numeric + 4 one-hot = 20",
+ "component_counts_cast_to_float32_after_exact_integer_computation": true,
+ "explicitly_excluded_inputs": [
+  "GT mask",
+  "DeltaDice",
+  "gain_category",
+  "global_dice",
+  "candidate_refined_dice",
+  "BENEFICIAL/HARMFUL/NEUTRAL label",
+  "patient_id",
+  "group_id",
+  "mask path",
+  "GT object size",
+  "benefit-router delta_hat",
+  "resource lambda",
+  "budget",
+  "routing threshold",
+  "refiner hidden feature maps",
+  "new image encoder features"
+ ],
+ "exclusion_rationale": "S_omega stays focused on already-computed post-refinement prediction behaviour rather than reusing the benefit predictor.",
+ "feature_construction_must_not_inspect": [
+  "DeltaDice",
+  "gain category",
+  "global Dice",
+  "candidate Dice"
+ ],
+ "authoritative_tables": [
+  "reports/tables/phase25f_post_safety_input_contract_v1_0.csv",
+  "reports/tables/phase25f_feature_schema_v1_0.csv"
+ ],
+ "all_pass": true
+}

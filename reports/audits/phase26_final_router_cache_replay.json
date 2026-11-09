@@ -1,0 +1,24 @@
+{
+ "artifact": "phase26_final_router_cache_replay",
+ "phase": "26",
+ "classification": "CANONICAL_FULL_SYSTEM_INTEGRATION_AND_CONFIGURATION_FREEZE",
+ "method": "RA-MedFiLM-BARR",
+ "source": "data_cache/phase25e_barr_resource_gate_v1_0/phase25e_final_router_dev_scores.csv",
+ "source_sha256": "2d23e11090a5b3164d5b125c633bbccfbe307ecdc717d0f5689bf401bd849f9d",
+ "score_column": "delta_hat_final_dev_exact",
+ "threshold_exact": "-5003565381643716252018011/205414980000000000000000000",
+ "selected_count": 1239,
+ "selected_ids_sha256": "10de16dec21e6750c8e9451af96bed0ca3f2686bbf0d6084a6300cf0d4adbbe5",
+ "expected_selected_count": 1239,
+ "expected_membership_sha256": "10de16dec21e6750c8e9451af96bed0ca3f2686bbf0d6084a6300cf0d4adbbe5",
+ "oof_final_overlap_recorded_as_provenance_only": true,
+ "oof_final_membership_equality_required": false,
+ "model_forward": 0,
+ "checks": {
+  "selected_count_1239": true,
+  "membership_matches_frozen": true,
+  "no_model_forward": true
+ },
+ "all_pass": true,
+ "terminal_on_failure": "PHASE26_BLOCKED__FINAL_ROUTER_RUNTIME_THRESHOLD_FAILURE"
+}

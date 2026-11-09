@@ -1,0 +1,131 @@
+{
+  "artifact": "POST_PHASE13_H2C_B2_EXECUTION_AUDIT",
+  "status": "PASS",
+  "created_utc": "2026-09-24T00:29:00Z",
+  "run_id": "post_phase13_h2c_downstream_best_native_policy",
+  "h2c_experiment_id": "post_phase13_h2c_kub_localizer_spatialhead3x3relu_r512_h128_sigmaeq075_centernetfocal_deploymentbalance_seed42_clean_v3",
+  "authorization": {
+    "source": "USER_SUPERVISOR_MESSAGE_POST_H2C_B1",
+    "h2c_b2_supervisor_authorization": "GRANTED"
+  },
+  "bindings": {
+    "h2c_protocol_sha": "91166259c10a84e9526eda43e83b227cc760a37b8834a4d4a65fe3e5a90ba4b6",
+    "h2c_b1_training_evaluation_sha": "ae20f39de080d60f59fbfef93ff42bc0fdebf9f4410149440b06873f1c6f975b",
+    "h2c_b2_freeze_manifest_sha": "3efb739df79f67a5782c7655ecd0fbf474ce8a772343310727a3d2ae5335d92d",
+    "h2c_best_pt_sha": "021ab63f2cbc064b5c4de90c5f181ebee75f8d10e7dead2eb53f4f9578060f98",
+    "evaluation_script_sha": "928fc170300497220cf498e75a9206b95de9b0d08adf2625af3bfdd2839805d6",
+    "b2_integrity_sha": "8aad74d04ba0373dc60a7433ae953c7ceab04cd93f332b5c55886413221e15ec",
+    "adjudication_sha": "b1d19ba8032520d98f3f2b25132795142c9bb4f98e565d9431b1795c23fe48fe",
+    "model_summary_sha": "bdc0962bd5aa4a1e92775f2123bf0d3be83aae15a29a64f6eaa264f56c9e273c",
+    "case_model_sha": "b95041f4cd259acbeb77dd731d93ed930d284e34208adf2f6845f60b0ac304d3",
+    "component_model_sha": "35b2b718325e442ea6f12fdff00e1645236e70200e713f812a9f29035b511c0b",
+    "cross_architecture_sha": "89b4e548eda50b0dca0555fe75cbc90ce8f4cf3815f8f4ff9ffc5417f9ea0184",
+    "localizer_to_downstream_sha": "5fa7c01a5e35f4353cb1f73ecb13d7e85f465a4733f09abf397d40ea6d8d945d",
+    "comparison_sha": "fbd110a49347aa72b8510b42806e9635859981edcb10fc7fbce00807a92a1876",
+    "reviewer_notebook_sha": "7eb813a66b28c83ff6710be57db2ed03ffd6cf3decaeeee46fc3ceab07b6aabd"
+  },
+  "downstream_configuration": {
+    "segmentation_checkpoints": [
+      "unet",
+      "attention_unet",
+      "unetpp",
+      "deeplabv3plus"
+    ],
+    "proposal_source": "frozen H2C-B1 best-checkpoint proposals (epoch 57)",
+    "proposal_policy": {
+      "threshold": 0.1,
+      "margin": 0.2,
+      "top_k": 5,
+      "nms_iou": 0.3
+    },
+    "fusion_variant": "PREDICTED_REGION_FLOAT_GLOBAL_RETAINED",
+    "segmentation_threshold": 0.5,
+    "crop_restore": "Part1D square/padding-correct",
+    "global_cache": "frozen Phase13 Part1D-B float32 cache",
+    "configurations": 1
+  },
+  "results_per_model": {
+    "unet": {
+      "global_macro_dice": 0.5941796681946068,
+      "phase13_predicted_macro_dice": 0.3023138267308742,
+      "h2a_predicted_macro_dice": 0.3137794923485532,
+      "h2c_predicted_macro_dice": 0.3002298677803521,
+      "oracle_macro_dice": 0.724721700948911,
+      "DELTA_H2C_GLOBAL_DICE": -0.2939498004142546,
+      "DELTA_H2C_PHASE13_DICE": -0.0020839589505221,
+      "DELTA_H2C_H2A_DICE": -0.013549624568201,
+      "H2C_ORACLE_BENEFIT_RETENTION": -2.251763621357908,
+      "H2C_ORACLE_GAP": -0.4244918331685589
+    },
+    "attention_unet": {
+      "global_macro_dice": 0.6298049685888003,
+      "phase13_predicted_macro_dice": 0.308618655690823,
+      "h2a_predicted_macro_dice": 0.3201727978415278,
+      "h2c_predicted_macro_dice": 0.3010887538924692,
+      "oracle_macro_dice": 0.6995945682479338,
+      "DELTA_H2C_GLOBAL_DICE": -0.3287162146963311,
+      "DELTA_H2C_PHASE13_DICE": -0.0075299017983538,
+      "DELTA_H2C_H2A_DICE": -0.0190840439490586,
+      "H2C_ORACLE_BENEFIT_RETENTION": -4.710103171559197,
+      "H2C_ORACLE_GAP": -0.3985058143554645
+    },
+    "unetpp": {
+      "global_macro_dice": 0.6405155030126884,
+      "phase13_predicted_macro_dice": 0.3113548759513804,
+      "h2a_predicted_macro_dice": 0.3230458559486369,
+      "h2c_predicted_macro_dice": 0.304041605567754,
+      "oracle_macro_dice": 0.726679342812567,
+      "DELTA_H2C_GLOBAL_DICE": -0.3364738974449344,
+      "DELTA_H2C_PHASE13_DICE": -0.0073132703836263,
+      "DELTA_H2C_H2A_DICE": -0.0190042503808828,
+      "H2C_ORACLE_BENEFIT_RETENTION": -3.9050476188899927,
+      "H2C_ORACLE_GAP": -0.4226377372448129
+    },
+    "deeplabv3plus": {
+      "global_macro_dice": 0.5602505353552288,
+      "phase13_predicted_macro_dice": 0.277291864441973,
+      "h2a_predicted_macro_dice": 0.288916661930961,
+      "h2c_predicted_macro_dice": 0.2823565835523283,
+      "oracle_macro_dice": 0.7503716374272004,
+      "DELTA_H2C_GLOBAL_DICE": -0.2778939518029005,
+      "DELTA_H2C_PHASE13_DICE": 0.0050647191103552,
+      "DELTA_H2C_H2A_DICE": -0.0065600783786327,
+      "H2C_ORACLE_BENEFIT_RETENTION": -1.4616681092964736,
+      "H2C_ORACLE_GAP": -0.468015053874872
+    }
+  },
+  "b2_integrity": {
+    "status": "PASS",
+    "proposal_count": 462,
+    "regional_crop_evaluations": 1848,
+    "global_reproduction": "PASS",
+    "case_model_rows": 412,
+    "component_model_rows": 608,
+    "model_summary_rows": 4
+  },
+  "h2c_outcome": "H2C_HEAD_REDESIGN_INSUFFICIENT",
+  "adjudication_basis": "reports/audits/post_phase13_h2c_protocol_frozen.json :: prospective_outcome_definitions",
+  "counters": {
+    "logical_training_experiments": 1,
+    "h2c_training_experiments": 1,
+    "proposal_configurations": 1,
+    "proposal_grid": 0,
+    "threshold_searches": 0,
+    "oracle_reruns": 0,
+    "downstream_segmentation_model_constructions": 4,
+    "downstream_segmentation_forwards": 1848,
+    "checkpoint_candidates_evaluated_downstream": 1,
+    "validation_reads": "103 VAL cases",
+    "test_reads": 0,
+    "external_test_reads": 0
+  },
+  "counter_explanations": {
+    "downstream_segmentation_model_constructions": "4 frozen architectures loaded (0 trained)",
+    "downstream_segmentation_forwards": "462 proposals x 4 architectures = 1848 regional crops",
+    "checkpoint_candidates_evaluated_downstream": "exactly 1 (H2C epoch 57 best.pt)"
+  },
+  "reporting_defect_scientific_impact": "NONE",
+  "scientific_axes_changed_during_b2": 0,
+  "phase14": "ELIGIBLE_NOT_STARTED",
+  "next_action": "WAIT_FOR_SUPERVISOR_PHASE14_AUTHORIZATION"
+}

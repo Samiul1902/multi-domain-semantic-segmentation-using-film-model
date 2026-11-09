@@ -1,0 +1,50 @@
+{
+ "artifact": "phase34_synthetic_task_conditioning_contract_v1_2",
+ "phase": 34,
+ "section": "\u00a7D",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase34_efficiency_profiling_v1_2",
+ "domain_task_registry": {
+  "ISIC": {
+   "task_id": 0,
+   "source_authority": "src/analysis/multidomain_harmonization.py",
+   "authority_sha256": "3f009d994ed24d9c2edf8e48646e93700ab4e54dea786fb4bd03180c825cbf92",
+   "dtype": "torch.long / int64",
+   "shape_rule": "[B]",
+   "device_rule": "same CUDA device as the component input"
+  },
+  "BUSI": {
+   "task_id": 1,
+   "source_authority": "src/analysis/multidomain_harmonization.py",
+   "authority_sha256": "3f009d994ed24d9c2edf8e48646e93700ab4e54dea786fb4bd03180c825cbf92",
+   "dtype": "torch.long / int64",
+   "shape_rule": "[B]",
+   "device_rule": "same CUDA device as the component input"
+  },
+  "KVASIR": {
+   "task_id": 2,
+   "source_authority": "src/analysis/multidomain_harmonization.py",
+   "authority_sha256": "3f009d994ed24d9c2edf8e48646e93700ab4e54dea786fb4bd03180c825cbf92",
+   "dtype": "torch.long / int64",
+   "shape_rule": "[B]",
+   "device_rule": "same CUDA device as the component input"
+  },
+  "KUB": {
+   "task_id": 3,
+   "source_authority": "src/analysis/multidomain_harmonization.py",
+   "authority_sha256": "3f009d994ed24d9c2edf8e48646e93700ab4e54dea786fb4bd03180c825cbf92",
+   "dtype": "torch.long / int64",
+   "shape_rule": "[B]",
+   "device_rule": "same CUDA device as the component input"
+  }
+ },
+ "registry_authority_line": "TASK_ID = {\"ISIC\": 0, \"BUSI\": 1, \"KVASIR\": 2, \"KUB\": 3}",
+ "cross_authority": {
+  "phase30_system_under_test_contract": "reports/audits/phase30_system_under_test_contract.json",
+  "somega_feature_schema_onehot_tail": "reports/tables/phase25f_feature_schema_v1_0.csv"
+ },
+ "inferred_or_arbitrary_task_id_permitted_during_measurement": false,
+ "G_task_conditioning": "INTEGER_TASK_ID_FILM_EMBEDDING",
+ "generated_utc": "2026-10-04T11:08:33+00:00",
+ "all_pass": true
+}

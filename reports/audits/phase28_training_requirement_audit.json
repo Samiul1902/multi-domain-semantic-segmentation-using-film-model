@@ -1,0 +1,18 @@
+{
+ "artifact": "phase28_training_requirement_audit",
+ "phase": 28,
+ "classification": "PHASE28_TRAINING_AUTHORIZATION_AUDIT",
+ "governance_only": true,
+ "execution": "NONE",
+ "default_policy": "NO_TRAINING",
+ "training_authorized_in_this_work_order": false,
+ "new_training_runs": 0,
+ "fine_tuning_runs": 0,
+ "optimizer_steps": 0,
+ "backward_passes": 0,
+ "rationale": "Unchanged baseline components are FROZEN. Ablations R1/R2/R3/F1 are classified NEW_FROZEN_MODEL_INFERENCE_REQUIRED, NOT TRAINING_REQUIRED, because they can be expressed as controlled variants under the frozen protocol; however their EXECUTION is explicitly NOT authorized by this specification audit. If any future reviewer determines a variant genuinely requires additional training, it must STOP with PHASE28_BLOCKED__ABLATION_TRAINING_SPEC_INCOMPLETE until a training-authorized spec exists.",
+ "training_required_any_ablation": false,
+ "blocked_terminal_would_be": "PHASE28_BLOCKED__ABLATION_TRAINING_SPEC_INCOMPLETE",
+ "generated_utc": "2026-10-02T18:40:00Z",
+ "all_pass": true
+}

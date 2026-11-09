@@ -1,0 +1,37 @@
+{
+ "artifact": "phase34_synthetic_input_contract",
+ "phase": 34,
+ "section": "\u00a7K",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase34_efficiency_profiling_v1_0",
+ "generator": "torch.Generator(device='cuda').manual_seed(42) -> torch.randn",
+ "seed": 42,
+ "dtype": "float32",
+ "device": "cuda",
+ "memory_format": "contiguous (default)",
+ "per_component": {
+  "G": {
+   "shape": "Bx3x512x512",
+   "domain_conditioning": "task one-hot supplied at model interface (4 domains)"
+  },
+  "R_psi": {
+   "shape": "Bx4x256x256",
+   "roi_geometry": "canonical ROI crop geometry (256x256)"
+  },
+  "B_phi": {
+   "shape": "Bx218",
+   "feature_geometry": "202 numeric + 16 task embedding"
+  },
+  "S_omega": {
+   "shape": "Bx20",
+   "feature_geometry": "16 numeric + 4 one-hot task"
+  }
+ },
+ "values_optimized_for_favorable_runtime": false,
+ "forced_routing_label": "SYNTHETIC_CONTROLLED_PATH_BENCHMARK",
+ "forced_routing_is_natural_routing": false,
+ "path_level_benchmark_ineligible_if_branch_cannot_be_reproduced_without_modifying_scientific_model_behavior": true,
+ "component_level_benchmarking_retained_regardless": true,
+ "generated_utc": "2026-10-04T09:50:07+00:00",
+ "all_pass": true
+}

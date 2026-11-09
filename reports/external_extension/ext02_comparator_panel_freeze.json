@@ -1,0 +1,42 @@
+{
+  "classification": "EXT02_COMPARATOR_PANEL_FREEZE",
+  "generated_utc": "2026-10-11T14:00:00Z",
+  "external_facing_families": [
+    {
+      "id": "A",
+      "model": "GlobalMedFiLM G",
+      "label_pending": "SAME_PROTOCOL"
+    },
+    {
+      "id": "B",
+      "model": "RA-MedFiLM-BARR final frozen V1",
+      "label_pending": "SAME_PROTOCOL"
+    },
+    {
+      "id": "C",
+      "model": "U-Net",
+      "label_pending": "SAME_PROTOCOL"
+    },
+    {
+      "id": "D",
+      "model": "Attention U-Net",
+      "label_pending": "SAME_PROTOCOL"
+    },
+    {
+      "id": "E",
+      "model": "UNet++",
+      "label_pending": "SAME_PROTOCOL"
+    },
+    {
+      "id": "F",
+      "model": "DeepLabV3+",
+      "label_pending": "SAME_PROTOCOL"
+    }
+  ],
+  "optional_hybrid": {
+    "allowed": true,
+    "condition": "must be frozen now and built in EXT-03 before any external inference"
+  },
+  "rule": "only SAME_PROTOCOL models may be used for direct quantitative claims; no comparator may be added/removed after any external outcome is observed",
+  "panel_frozen": true
+}

@@ -1,0 +1,50 @@
+{
+ "artifact": "phase29_component_dependency_audit",
+ "phase": 29,
+ "classification": "PHASE29_COMPONENT_DEPENDENCY_AUDIT",
+ "question": "is each seed's system internally seed-consistent?",
+ "example": {
+  "seed123_router_must_consume": [
+   "seed123 global features?",
+   "seed123 refiner candidates?",
+   "or canonical seed-42 predecessors?"
+  ],
+  "status": "MUST_BE_EXPLICIT_UNRESOLVED"
+ },
+ "allowed_classifications": [
+  "FULL_SEED_CONSISTENT_PIPELINE",
+  "MODULEWISE_REPRODUCIBILITY_WITH_CANONICAL_FIXED_UPSTREAM"
+ ],
+ "selected_classification": "UNRESOLVED",
+ "must_not_mix_silently": true,
+ "dependency_edges": [
+  {
+   "from": "G",
+   "to": "R_psi",
+   "reason": "refiner consumes global probability channel (p_global)"
+  },
+  {
+   "from": "G",
+   "to": "B_phi",
+   "reason": "router consumes 202-D pre-refinement features derived from G"
+  },
+  {
+   "from": "R_psi",
+   "to": "B_phi",
+   "reason": "router target = paired refinement gain (DeltaDice) produced by R_psi"
+  },
+  {
+   "from": "R_psi",
+   "to": "S_omega",
+   "reason": "post-safety features derive from refined candidate probability"
+  },
+  {
+   "from": "B_phi",
+   "to": "S_omega",
+   "reason": "S_omega consumes the routed/fused decisions"
+  }
+ ],
+ "dependency_chain_resolved": false,
+ "blocked_terminal_if_unresolved": "PHASE29_BLOCKED__SEED_SPECIFIC_DEPENDENCY_CHAIN_UNRESOLVED",
+ "all_pass": false
+}

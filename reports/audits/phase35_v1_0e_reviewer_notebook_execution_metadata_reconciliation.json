@@ -1,0 +1,52 @@
+{
+ "artifact": "phase35_v1_0e_reviewer_notebook_execution_metadata_reconciliation",
+ "phase": 35,
+ "section": "\u00a7C",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase35_interpretability_v1_0e",
+ "generated_utc_placeholder": "GENERATED_AT_RUN",
+ "purpose": "Additively reconcile the v1.0e reviewer-notebook execution-metadata representation. The delivered .ipynb is a CLEAN SOURCE notebook (no execution counts / no outputs persisted). The historical audit truthfully records that the code cells WERE executed in-session during authoring (14/14, 0 errors) and that a 3x byte-identical replay of the SOURCE occurred. 'executed in-session' and 'execution metadata persisted in the delivered file' are DIFFERENT claims; this record states both truthfully. No notebook is rewritten and no model work is rerun.",
+ "notebook_byte_identity_valid": true,
+ "notebook_read_only": true,
+ "model_execution_from_notebook": false,
+ "uploaded_notebook_code_cells": 14,
+ "uploaded_notebook_saved_execution_counts_present": false,
+ "uploaded_notebook_saved_outputs_present": false,
+ "existing_audit_claims_code_cells_executed": 14,
+ "existing_audit_claims_replay_3x_byte_identical": true,
+ "existing_audit_claims_execution_errors": 0,
+ "delivered_notebook_representation": "CLEAN_SOURCE_NOTEBOOK_OUTPUTS_STRIPPED",
+ "distinction": {
+  "execution_replay_occurred": true,
+  "execution_metadata_persisted_in_final_notebook": false,
+  "note": "'code_cells_executed=14' in the historical audit = cells were run in-session during authoring (stdout captured transiently), NOT that execution_count/outputs are embedded in the shipped .ipynb."
+ },
+ "classification": "GOVERNANCE_ONLY_NOTEBOOK_EXECUTION_METADATA_REPRESENTATION_MISMATCH__NO_SCIENTIFIC_IMPACT",
+ "blocks_smoke": false,
+ "blocks_smoke_reason": "Governance-only representation mismatch, disclosed additively; no scientific or numerical impact.",
+ "notebook": {
+  "path": "notebooks/phasewise/phase_35_interpretability/phase35_gradcam_numerical_guard_v1_0e_review.ipynb",
+  "sha256": "13e084d2a2f9b03aa7dd3fe2a3123c6fb38e4d75eed785f8611c7b16adffb5f4"
+ },
+ "existing_audit": {
+  "path": "reports/audits/phase35_gradcam_numerical_guard_reviewer_notebook_audit_v1_0e.json",
+  "sha256": "e9824dc9e25254f8b8ec81a1f04b0961e5735da6a98c2e340bf9962e84633d86"
+ },
+ "actions_taken": [
+  "notebook NOT rewritten",
+  "historical notebook audit NOT rewritten",
+  "NO model work rerun"
+ ],
+ "counters": {
+  "model_constructions": 0,
+  "checkpoint_deserializations": 0,
+  "forwards": 0,
+  "autograd_calls": 0,
+  "gradcam_executions": 0,
+  "raw_val_reads": 0,
+  "gt_reads": 0,
+  "router_holdout_reads": 0,
+  "test_reads": 0
+ },
+ "all_pass": true
+}

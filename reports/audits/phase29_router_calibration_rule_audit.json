@@ -1,0 +1,43 @@
+{
+ "artifact": "phase29_router_calibration_rule_audit",
+ "phase": 29,
+ "classification": "PHASE29_ROUTER_CALIBRATION_RULE_AUDIT",
+ "hard_blocker": true,
+ "question": "if each seed has a newly trained final B_phi its score scale may differ; what is the Phase29 rule?",
+ "candidate_rules": {
+  "A": "reuse canonical seed-42 absolute runtime threshold",
+  "B": "calibrate each seed's final router on development to the same frozen nominal 25% rule",
+  "C": "evaluate by rank-based fixed K only"
+ },
+ "rule_A_exact_threshold": "-5003565381643716252018011/205414980000000000000000000",
+ "rule_B_nominal_budget": 0.25,
+ "rule_C_K": 1239,
+ "search_for_existing_governance_binding": [
+  {
+   "path": "reports/audits/phase26_canonical_router_threshold_binding_v1_0.json",
+   "exists": true,
+   "binds_multiseed_rule": false
+  },
+  {
+   "path": "reports/audits/phase26_final_router_calibration_binding_v1_2.json",
+   "exists": true,
+   "binds_multiseed_rule": false
+  },
+  {
+   "path": "reports/audits/phase25e_adjudication_reconciled.json",
+   "exists": true,
+   "binds_multiseed_rule": false
+  },
+  {
+   "path": "docs/RULES.md",
+   "sha256": "2c495daecf2066317be18c84a25bc3d0ed1063df59e897eac875dd3d5c7da13a",
+   "binds_multiseed_rule": false,
+   "note": "RULES.md binds TEST/single-seed superiority rules but does NOT bind a multi-seed router calibration rule"
+  }
+ ],
+ "existing_governance_binds_multiseed_rule": false,
+ "selected_rule": null,
+ "rule_must_be_bound_before_seeing_seed_scores": true,
+ "blocked_terminal_if_unresolved": "PHASE29_BLOCKED__MULTISEED_ROUTER_CALIBRATION_RULE_UNRESOLVED",
+ "all_pass": false
+}

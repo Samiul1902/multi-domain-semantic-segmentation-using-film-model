@@ -1,0 +1,203 @@
+{
+ "artifact": "phase36_robustness_unit_v1_0",
+ "section": "§Q",
+ "phase": 36,
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase36_robustness_v1_0",
+ "classification": "MODEL_FREE_UNIT_TESTS__PERTURBATION_AND_CONTRACT",
+ "model_free": true,
+ "torch_used": false,
+ "checks": [
+  {
+   "id": "01",
+   "desc": "identity perturbation is exact and float32",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "02",
+   "desc": "brightness x' = clip(x ± 0.10, 0, 1)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "03",
+   "desc": "contrast x' = clip((x - mean_hw)*f + mean_hw, 0, 1)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "04",
+   "desc": "gamma x' = clip(x,0,1)^gamma",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "05",
+   "desc": "gaussian noise deterministic given (sample_id, base_seed, sigma)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "06",
+   "desc": "noise differs across sample_id and base_seed",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "07",
+   "desc": "seed derivation = SHA256('phase36|gaussian_noise|<base>|<sid>')[:8]",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "08",
+   "desc": "gaussian blur kernel sums to 1 and radius = ceil(3*sigma)",
+   "pass": true,
+   "detail": "radius=3"
+  },
+  {
+   "id": "09",
+   "desc": "blur preserves shape/range, float32",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "10",
+   "desc": "resolution restores to working resolution 512x512",
+   "pass": true,
+   "detail": "out_shape=(4, 512, 512)"
+  },
+  {
+   "id": "11",
+   "desc": "align_corners frozen False",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "12",
+   "desc": "proposal shift magnitude = 0.10 * canonical crop side",
+   "pass": true,
+   "detail": "delta=10"
+  },
+  {
+   "id": "13",
+   "desc": "proposal scale side = factor * canonical crop side",
+   "pass": true,
+   "detail": "side=84 exp=85"
+  },
+  {
+   "id": "14",
+   "desc": "proposal coordinates clamped inside image bounds",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "15",
+   "desc": "empty canonical proposal -> NOT_APPLICABLE_EMPTY_PROPOSAL",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "16",
+   "desc": "image & proposal condition registries are unique",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "17",
+   "desc": "no perturbation chaining (each from original clean input)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "18",
+   "desc": "KUB subgroups are REPORTING_ONLY metadata, never classes/task ids",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "19",
+   "desc": "KUB metadata does not alter domain task-id mapping",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "20",
+   "desc": "TEST and ROUTER_HOLDOUT declared MUST_NOT_READ",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "21",
+   "desc": "no jpeg / color-space / rotation / crop / random augmentation",
+   "pass": true,
+   "detail": "forbidden_present=[]"
+  },
+  {
+   "id": "22",
+   "desc": "noise base seeds exactly {42,123,3407}",
+   "pass": true,
+   "detail": "seeds=[42, 123, 3407]"
+  },
+  {
+   "id": "23",
+   "desc": "no best-seed selection (per-seed then arithmetic mean)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "24",
+   "desc": "canonical Dice bound; IoU/HD95 bound before execution",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "25",
+   "desc": "canonical thresholds unchanged (seg 0.50 / roi 0.30)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "26",
+   "desc": "science gate PHASE36_EXECUTE and separate smoke gate",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "27",
+   "desc": "common module imports no torch at import time",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "28",
+   "desc": "A8/C9 policy preserved (budget 0.25, no retraining, no threshold change)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "29",
+   "desc": "stress flags descriptive only; no p-values",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "30",
+   "desc": "worst-case image min excludes proposal perturbations",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "31",
+   "desc": "all image conditions output float32 within [0,1]",
+   "pass": true,
+   "detail": ""
+  }
+ ],
+ "total_checks": 31,
+ "passed": 31,
+ "failed": 0,
+ "all_pass": true,
+ "generated_utc": "2026-10-05T14:40:20Z"
+}

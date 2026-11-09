@@ -1,0 +1,55 @@
+{
+  "artifact": "phase14_clean_v3_global_reference_freeze",
+  "status": "FROZEN",
+  "generation_timestamp_utc": "2026-09-24T23:57:24Z",
+  "references": {
+    "Tg_clean_v3": 0.7916666666666666,
+    "Dg_clean_v3": 0.6359172411726776
+  },
+  "derivation": {
+    "checkpoint": "checkpoints/phase10_kub_unetpp_seed42_512_clean_v3/best.pt",
+    "checkpoint_sha256": "ec7eb13f32e43af27eab7fc617bd1a2a8fcce1d6651a1b4a3653f3e4d1283269",
+    "population": "103 FULL_FIELD KUB VAL images (phase4_v3) via reports/tables/kub_val_samples_sized_clean_v3.csv",
+    "Tg_definition": "GLOBAL_ONLY Tiny Recall@90 = mean over TINY components of (global mask >=1px overlap) \u2014 identical semantics to v2-era evaluate_phase14_diagnostic.py",
+    "Dg_definition": "GLOBAL_ONLY mean Dice over the 103-image FULL_FIELD VAL population",
+    "preprocessing": "resize 512, sigmoid, threshold 0.50, restore to native coordinates (verbatim v2)",
+    "NOT_used": "val_macro_dice = 0.7641601653354622 (all-view-types macro; not the FULL_FIELD mean-dice reference)"
+  },
+  "population_counts": {
+    "val_samples": 103,
+    "authoritative_components": 152,
+    "tiny_components": 72
+  },
+  "forward_count": 103,
+  "elapsed_seconds": 44.45,
+  "evaluator_sha256": {
+    "reference_generator": "c82128636e7f5cab4969b7e197e8b3cee5abe83ed542547f87ca685c84d1c771",
+    "main_evaluator": "53958eb1601a15f29b6dc1635f802f87af88f2eef3b3268320ad471b92ef1a38"
+  },
+  "dependency_sha256": {
+    "src/analysis/oracle_roi.py": "0d1ab96b71c8f1c7280679d0f089d19110ca681fbecdce17dfa178176545623d",
+    "src/inference/kub_predict.py": "b0397d2c30d7e5d270b8087f68997026d30ea1e2c99b7371eb7121a6406e4282",
+    "src/models/unet.py": "62edc8fb481eb02c46c2c64f6e7219254a57d7ba935a4c840a5a7965b41bdfc2",
+    "src/models/factory.py": "3377bbe021d7bd13c07350ff5c4927705c2d67f93fa99c388caf2cc79ef4086d",
+    "src/utils/checkpointing.py": "08366f72f3141e5d18f008981465f5e9138c0b51336fd65cae7c619456ee1eca",
+    "reports/tables/kub_val_samples_sized_clean_v3.csv": "19dabc2b917adcc50256431ed0604433f9bdf0220be0b3befbfccbe2312a5d10",
+    "reports/tables/kub_val_components_sized_clean_v3.csv": "c219f6b6947d6b3408654a8e0de61319d0dd2141991773b6b6a0ff8d52140ec7"
+  },
+  "governance_locks": {
+    "test_split_reads": 0,
+    "external_test_reads": 0,
+    "external_data_used": false,
+    "training_executed": false
+  },
+  "governance_note": "Generated ONCE and FROZEN. Tg/Dg are population-dependent clean_v3 GLOBAL references. No favorability-driven rerun permitted. The \u00a78 three-contrast diagnostic MUST read these frozen values; it must not recompute or overwrite them (a deterministic verification recompute inside the main evaluator is allowed but must agree within 1e-6).",
+  "post_freeze_evaluator_correction": {
+    "timestamp_utc": "2026-09-25T00:20:00Z",
+    "type": "COSMETIC_GOVERNANCE_CORRECTION",
+    "description": "The main evaluator file (scripts/evaluation/evaluate_phase14_clean_v3_diagnostic.py) was corrected for two stale v2-era constants (audit 'epoch':14 -> 56 to match the \u00a73 checkpoint binding; console/comment denominators 16/7 -> 15/5 to match the executable clean-v3 special-set denominators). No metric, fusion, gate, or reference value was altered.",
+    "previous_main_evaluator_sha": "86cfa1efcfb6bc1847280f33777f76b492cfe2439f041ae20fcf61f94a80da63",
+    "corrected_main_evaluator_sha": "53958eb1601a15f29b6dc1635f802f87af88f2eef3b3268320ad471b92ef1a38",
+    "references_unchanged": true,
+    "Tg_clean_v3": 0.7916666666666666,
+    "Dg_clean_v3": 0.6359172411726776
+  }
+}

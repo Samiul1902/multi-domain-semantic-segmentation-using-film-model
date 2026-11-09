@@ -1,0 +1,39 @@
+{
+ "artifact": "phase36_preexecution_source_freeze_v1_13",
+ "phase": 36,
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase36_robustness_v1_13",
+ "type": "PREEXECUTION_SOURCE_FREEZE",
+ "execution_source": "scripts/analysis/phase36_robustness_execution_v1_13.py",
+ "execution_source_sha256": "57f78447e77f2bcee07265825232cf0a8f96d1a31974d5d52c4cc82229e5d39c",
+ "launcher": "scripts/analysis/launch_phase36_v1_13.py",
+ "launcher_sha256": "5f7fc91f9f0b8689adf42fc50527e216227ce7c4b853ba82ae1bce92a4805cab",
+ "runtime_manifest": "reports/audits/phase36_v1_13_runtime_source_integrity_manifest.json",
+ "runtime_manifest_sha256": "1f261eb95ab246619cf68a2340e8fc52e2887fe2d019fe9bc77ae8a9d5f5f1fe",
+ "history_preserved_sha256": {
+  "v1_12_execution": "8ed75a9b8f4ea8c204875bf1810e17df3f9c342a434f25399154f355ee888ea4",
+  "v1_12_launcher": "b3ffe88c44f084f9f03700419cd717afb0be8b103afad43d458ece3a42b4ad9d"
+ },
+ "historical_v1_12_state": {
+  "first_attempt": "CONSUMED",
+  "result": "FAILED_PRE_MODEL",
+  "retry": "FORBIDDEN",
+  "scientific_output": false,
+  "classification": "PRE_MODEL_EXECUTION_ENVIRONMENT_SELECTION_FAILURE",
+  "root_cause": "B_CPU_ONLY_PYTORCH_BUILD",
+  "failure_trigger": "WRONG_INTERPRETER (bare system Python 3.11, torch 2.10.0+cpu)"
+ },
+ "v1_12_bound_evidence_sha256": {
+  "reports/audits/phase36_robustness_smoke_start_v1_12.json": "ab6a3ff010fe7015644962b8a9295939c0430ba14ebbf53de3145bb7f6efcabd",
+  "reports/audits/phase36_robustness_smoke_failure_v1_12.json": "40f0a3abbbb5857f5b096e12cd6c7976205a1bcfbb3f469589a472e526885669",
+  "reports/audits/phase36_v1_12_smoke_console_first_attempt.txt": "d9a03637650991f27bbacfcf943f5c64eb6494d10b1b76ef154a6766ad092210",
+  "reports/audits/phase36_v1_12_cuda_environment_diagnosis.json": "a5d16219ada168868fb69e52656ebd8cc3c13c09c75c7dd1f7349ade0de59ba0",
+  "reports/audits/phase36_v1_12_failed_smoke_adjudication.json": "14f9ceb8b6a4d3beda86abdffb007e8f78a3cbb7161c4ea8a508a61a14e34a3f"
+ },
+ "v1_13_smoke_state": "ELIGIBLE_NOT_STARTED",
+ "v1_13_science_state": "INELIGIBLE_NOT_STARTED",
+ "phase37_state": "NOT_STARTED",
+ "test_state": "REMAINS_PHASE39_ONLY",
+ "new_scientific_choice": false,
+ "terminal": "PHASE36_V1_13_PREEXECUTION_SOURCE_FREEZE_COMPLETE__SMOKE_ELIGIBLE_NOT_STARTED"
+}

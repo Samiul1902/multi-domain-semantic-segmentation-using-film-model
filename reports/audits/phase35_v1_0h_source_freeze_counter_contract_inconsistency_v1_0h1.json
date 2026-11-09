@@ -1,0 +1,92 @@
+{
+ "artifact": "phase35_v1_0h_source_freeze_counter_contract_inconsistency_v1_0h1",
+ "section": "§B",
+ "phase": 35,
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase35_interpretability_v1_0h1",
+ "classification": "FREEZE_MANIFEST_INTERNAL_COUNTER_SCHEMA_INCONSISTENCY",
+ "high_level_classification": "GOVERNANCE_FREEZE_MANIFEST_DEFECT__SCIENTIFIC_EFFECT_NONE__EXECUTION_NOT_YET_STARTED",
+ "artifact_containing_defect": "reports/audits/phase35_preexecution_source_freeze_v1_0h.json",
+ "defective_artifact_sha256": "a380068026a2107ca19bb1edb39907f47cf8cc5b62c536514a2c691ef7037f8a",
+ "defect_is_addressed_by": "ADDITIVE_SUCCESSOR__phase35_preexecution_source_freeze_v1_0h1.json",
+ "defective_artifact_overwritten": false,
+ "declared_counts": {
+  "counter_count": 35,
+  "legacy_counter_count": 31,
+  "extension_counter_count": 4,
+  "len_nested_expected_counters": 38
+ },
+ "contradiction": "declared counter_count=35 but len(expected_counters)=38",
+ "required_stale_entries_confirmed": {
+  "synthetic_CAM_maps": {
+   "observed_in_freeze": 4,
+   "required_current_contract": 2,
+   "conflict": true
+  },
+  "additional_G_forwards_for_empty_mask": {
+   "observed_in_freeze": 1,
+   "required_current_contract": 0,
+   "conflict": true
+  },
+  "additional_autograd_calls_for_empty_mask": {
+   "observed_in_freeze": 1,
+   "required_current_contract": 0,
+   "conflict": true
+  }
+ },
+ "stale_key_count": 38,
+ "runtime_authoritative_key_count": 35,
+ "keys_only_in_stale_freeze": [
+  "G_synthetic_backward_calls",
+  "synthetic_CAM_finite_checks",
+  "synthetic_CAM_normalizations",
+  "synthetic_CAM_zero_range_fallbacks",
+  "synthetic_target_mask_rank_checks",
+  "synthetic_router_zero_denominator_events",
+  "router_gradient_x_input_finite_checks",
+  "film_smoke_checks",
+  "film_smoke_conditioning_pairs",
+  "embedding_smoke_checks",
+  "checkpoint_identity_checks",
+  "environment_checks",
+  "parameter_immutability_checks"
+ ],
+ "keys_only_in_runtime_source": [
+  "R_psi_model_constructions",
+  "R_psi_checkpoint_loads",
+  "R_psi_forwards",
+  "S_omega_model_constructions",
+  "S_omega_checkpoint_loads",
+  "S_omega_forwards",
+  "optimizer_constructions",
+  "optimizer_step_calls",
+  "training_backward_calls",
+  "parameter_mutations"
+ ],
+ "value_mismatches": [
+  {
+   "key": "synthetic_CAM_maps",
+   "stale_value": 4,
+   "runtime_value": 2
+  },
+  {
+   "key": "additional_G_forwards_for_empty_mask",
+   "stale_value": 1,
+   "runtime_value": 0
+  },
+  {
+   "key": "additional_autograd_calls_for_empty_mask",
+   "stale_value": 1,
+   "runtime_value": 0
+  }
+ ],
+ "stale_table_origin": "the nested expected_counters is a v1.0f/v1.0g-era table (38 keys: 31 legacy + 4 extension + 3 extra CAM/observability counters) embedded verbatim into the v1.0h freeze instead of the v1.0h canonical 35-key table produced by the AST transform",
+ "authority_decision": "SOURCE IS AUTHORITATIVE. The frozen v1.0h execution source contains exactly the canonical 35-key mapping with correct values; the freeze manifest's nested table is a serialization/construction defect only.",
+ "scientific_effect": "NONE",
+ "numerical_effect": "NONE",
+ "model_interface_effect": "NONE",
+ "protected_data_effect": "NONE",
+ "execution_started": false,
+ "generated_utc": "2026-10-05T13:00:57Z",
+ "all_pass": true
+}

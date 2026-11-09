@@ -1,0 +1,54 @@
+{
+  "classification": "PHASE38_FINAL_SYSTEM_CHECKPOINT_MANIFEST",
+  "generated_utc": "2026-10-11T06:30:00Z",
+  "phase": 38,
+  "final_system": "RA-MedFiLM-BARR",
+  "final_system_id": "A8/C9",
+  "wrapper": {
+    "role": "assembly_only",
+    "trainable_parameters": 0
+  },
+  "total_parameters": 4837420,
+  "components": {
+    "G": {
+      "component_class": "GlobalMedFiLM",
+      "path": "checkpoints/phase21_global_medfilm_fourdomain_seed42_clean_v3/best.pt",
+      "sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+      "parameters": 3523001,
+      "execution_role": "always_executed"
+    },
+    "B_phi": {
+      "component_class": "BARRBenefitRouterV1",
+      "path": "checkpoints/phase25d_barr_benefit_router_v1_2_1_seed42/final/final.pt",
+      "sha256": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+      "parameters": 36801,
+      "execution_role": "pre_gate_always_executed"
+    },
+    "R_psi": {
+      "component_class": "BARRRegionalRefinerV1",
+      "path": "checkpoints/phase25a_barr_regional_refiner_v1_1_roi030/final/final.pt",
+      "sha256": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109",
+      "parameters": 1276401,
+      "execution_role": "EXECUTE_branch_only"
+    },
+    "S_omega": {
+      "component_class": "BARRPostSafetyV1",
+      "path": "checkpoints/phase25f_barr_post_safety_v1_0_seed42/final/final.pt",
+      "sha256": "eee9b97b9921e53fc07eac9281dce64ba518c6e1659916b97b0b3bec21ec6d2e",
+      "parameters": 1217,
+      "execution_role": "EXECUTE_branch_only"
+    }
+  },
+  "checkpoint_replacement_permitted": false,
+  "fail_closed_on_hash_mismatch": true,
+  "component_load_contract": {
+    "strict_load": true,
+    "zero_missing_keys": true,
+    "zero_unexpected_keys": true,
+    "all_weights_finite": true,
+    "all_eval_mode": true,
+    "all_requires_grad_false": true,
+    "device_contract": "get_device(require_cuda=True); no CPU scientific fallback"
+  },
+  "all_pass": true
+}

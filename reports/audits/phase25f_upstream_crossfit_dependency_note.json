@@ -1,0 +1,19 @@
+{
+ "artifact": "phase25f_upstream_crossfit_dependency_note",
+ "phase": "25F",
+ "stage": "META_LEVEL_OOF_DISCLOSURE",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_post_safety_v1_0",
+ "oof_classification": "META_LEVEL_OOF_DEVELOPMENT_PREDICTIONS",
+ "upstream": {
+  "phase25c": "3-fold refiner cross-fit produced the OOF refined probability arrays consumed as S_omega feature inputs"
+ },
+ "downstream": {
+  "phase25f": "5-fold S_omega cross-validation over the frozen Phase25D identity manifests"
+ },
+ "fully_nested_end_to_end_hierarchy": false,
+ "disclosure": "Phase25C's 3-fold upstream cross-fit and Phase25F's 5-fold downstream cross-validation are NOT a fully nested end-to-end hierarchy: the refined-probability features seen by a Phase25F fold were produced by a Phase25C refiner that was not cross-fit with respect to that Phase25F fold. Phase25F OOF predictions are therefore META_LEVEL_OOF_DEVELOPMENT_PREDICTIONS, suitable for Phase25G development evaluation only.",
+ "claims_made": false,
+ "model_constructed": false,
+ "all_pass": true
+}

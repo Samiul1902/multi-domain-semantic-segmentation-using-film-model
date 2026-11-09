@@ -1,0 +1,164 @@
+{
+  "audit": "phase07_historical_tiny_definition_audit",
+  "phase": "07 \u2014 Tiny-Object Definition (Part 1A)",
+  "definition_found": true,
+  "definition": {
+    "taxonomy_version": "kub_size_v1",
+    "metric": "component_ratio",
+    "metric_definition": "component_pixels / (native_image_height * native_image_width)",
+    "metric_family": "connected-component area, normalized by native image area",
+    "unit": "object (connected foreground component)",
+    "connectivity": 8,
+    "coordinate_system": "native image pixels, normalized by native image area",
+    "resize_convention": "NONE for the taxonomy (native masks); the training pipeline separately applies aspect-ratio-preserving resize + centre pad to 512",
+    "acquisition_scope": "FULL_FIELD only (ROI components were not primary-binned)",
+    "source_split": "TRAIN",
+    "source_manifest_version": "phase4_v2",
+    "source_full_field_sample_count": 771,
+    "source_full_field_component_count": 1162,
+    "Q25": 0.0001499766777599,
+    "Q50": 0.00033976472454305,
+    "Q75": 0.0008266496069636999,
+    "boundaries": {
+      "TINY": "component_ratio <= Q25",
+      "SMALL": "Q25 < component_ratio <= Q50",
+      "MEDIUM": "Q50 < component_ratio <= Q75",
+      "LARGE": "component_ratio > Q75"
+    },
+    "boundary_semantics": "lower-inclusive / upper-exclusive cumulative: a value exactly equal to a quartile falls into the LOWER bin",
+    "case_level_convention": "per-case flags contains_{tiny,small,medium,large}_object plus dominant_object_stratum from the largest component",
+    "roi_handling": "ROI_NOT_PRIMARY_BINNED",
+    "threshold_source": "TRAIN_ONLY",
+    "historical_train_counts": {
+      "TINY": 291,
+      "SMALL": 290,
+      "MEDIUM": 290,
+      "LARGE": 291
+    },
+    "historical_train_total": 1162,
+    "historical_val_counts": {
+      "TINY": 73,
+      "SMALL": 29,
+      "MEDIUM": 36,
+      "LARGE": 18
+    },
+    "historical_train_by_category": {
+      "Kidney_Stone": {
+        "TINY": 48,
+        "SMALL": 173,
+        "MEDIUM": 212,
+        "LARGE": 276,
+        "TOTAL": 709
+      },
+      "Bladder_Stone": {
+        "TINY": 221,
+        "SMALL": 85,
+        "MEDIUM": 31,
+        "LARGE": 7,
+        "TOTAL": 344
+      },
+      "Ureteric_Stone": {
+        "TINY": 22,
+        "SMALL": 32,
+        "MEDIUM": 47,
+        "LARGE": 8,
+        "TOTAL": 109
+      }
+    },
+    "used_in_phases": [
+      "06",
+      "07",
+      "10",
+      "11",
+      "12",
+      "13",
+      "14"
+    ]
+  },
+  "sources": [
+    {
+      "source_file": "src/analysis/kub_object_size.py",
+      "sha256": "4dbf35d074cfe505f43ed3fe6325557b9cb0da900cdb8402584345ef3e55c58e",
+      "exists": true,
+      "establishes": "canonical taxonomy module: STRATA, TAXONOMY_VERSION, compute_size_thresholds, stratum_for_ratio, assign_component_strata, assign_sample_strata"
+    },
+    {
+      "source_file": "src/analysis/kub_characterization.py",
+      "sha256": "7726f70dfe2470d23a9e1df7eca5c8fc7a3f884d1a02fb5db9c564474e74f34b",
+      "exists": true,
+      "establishes": "component extraction: analyze_kub_mask_v2(mask_path, connectivity=8); component_ratio = c_pixels / total_pixels"
+    },
+    {
+      "source_file": "src/data/transforms.py",
+      "sha256": "8a8b636b58843d36810ebf5f3527a8ca1287b93483b962d5cf8e323a92566223",
+      "exists": true,
+      "establishes": "documented preprocessing: SegmentationTransform \u2014 aspect-ratio-preserving resize (scale = min(size/w, size/h)) + centre pad; mask binarized as (> 0)"
+    },
+    {
+      "source_file": "reports/audits/kub_object_size_thresholds.json",
+      "sha256": "20d3ba58fd5d1272aa52c7c6f82a074b1c903d38de8896ad3a78c3af95eb5043",
+      "exists": true,
+      "establishes": "frozen threshold record (taxonomy_version kub_size_v1, connectivity 8, Q25/Q50/Q75)"
+    },
+    {
+      "source_file": "reports/audits/kub_object_size_provenance.json",
+      "sha256": "024d36495a1062cbc9fd2beb5500a910411997cbe3b47307b90aaac53d34a8b2",
+      "exists": true,
+      "establishes": "provenance: source split/scope/counts, source table hashes, test_mask_reads 0"
+    },
+    {
+      "source_file": "reports/tables/kub_size_thresholds_v2.csv",
+      "sha256": "d93ca6cf9ccc64d2f56580236fec8cb3686bed1f51227d7aaa0af51e5f8f9102",
+      "exists": true,
+      "establishes": "threshold table with boundary definitions"
+    },
+    {
+      "source_file": "reports/tables/kub_size_distribution_train_val_v2.csv",
+      "sha256": "c81f4ef935543f3a3dff33eafb0227b47561897db9da6d9ee0b365e4f1a01f8c",
+      "exists": true,
+      "establishes": "historical TRAIN/VAL stratum counts"
+    },
+    {
+      "source_file": "reports/tables/kub_size_distribution_by_category_v2.csv",
+      "sha256": "35939755daa39d846e4e7421766363e57280f68461a8c205d154b0bcdb731caa",
+      "exists": true,
+      "establishes": "historical TRAIN stratum counts by anatomical category"
+    },
+    {
+      "source_file": "notebooks/05_kub_object_size_taxonomy.ipynb",
+      "sha256": "760d62a4d323d2c0f963a8c5c48e3ae3dd7827eff38f966938210d21444e1e13",
+      "exists": true,
+      "establishes": "historical Phase-07 reviewer notebook"
+    },
+    {
+      "source_file": "scripts/legacy/run_phase7_analysis.py",
+      "sha256": "b8f88fa993062080dfee04fb51e642b0c80a8d8240338336f04891eb24fd75db",
+      "exists": true,
+      "establishes": "legacy driver: reuses compute_size_thresholds from the canonical module"
+    }
+  ],
+  "disagreements": [],
+  "disagreement_note": "No competing definition was found. All located sources (module, threshold record, provenance record, threshold table, legacy driver, notebook) implement the same kub_size_v1 quartile taxonomy over FULL_FIELD TRAIN components.",
+  "critical_question_answers": {
+    "A_native_pixels": "PARTIAL \u2014 native pixels, but NORMALIZED by native image area",
+    "B_512_representation": "NO \u2014 the taxonomy used native masks; 512 resize+pad is a separate training-pipeline transform",
+    "C_bbox_width": "NO",
+    "D_bbox_height": "NO",
+    "E_bbox_max_side": "NO",
+    "F_bbox_area": "NO (bbox geometry is recorded but not the taxonomy metric)",
+    "G_component_area": "YES \u2014 connected-component area, normalized as a fraction of native image area (component_ratio)",
+    "H_equivalent_diameter": "NO",
+    "I_foreground_fraction": "NO (case-level total foreground is separate)",
+    "conclusion": "The historical metric is G: connected-component area normalized by native image area (component_ratio). The \"<32 px\" hypothesis is NOT supported by any canonical source."
+  },
+  "resize_convention": {
+    "taxonomy": "native resolution, no resize",
+    "training_pipeline": "aspect-ratio-preserving resize + centre pad to 512x512 (scale = min(512/w, 512/h); rw=round(w*scale), rh=round(h*scale); bilinear image, nearest mask)",
+    "non_isotropic_resize_used": false,
+    "documented_in": "src/data/transforms.py (SegmentationTransform)"
+  },
+  "test_mask_reads": 0,
+  "external_data_accessed": false,
+  "generated_at": "2026-09-20T04:00:44.761326+00:00",
+  "model": "Gemini 3.1 Pro High"
+}

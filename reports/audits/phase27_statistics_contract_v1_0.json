@@ -1,0 +1,72 @@
+{
+ "artifact": "phase27_statistics_contract_v1_0",
+ "phase": "27",
+ "classification": "PHASE27_PRE_EXECUTION_PRESERVATION_AUDIT_SPECIFICATION",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_preservation_v1_0",
+ "governance_only": true,
+ "no_execution": true,
+ "stage": "STATISTICS_CONTRACT",
+ "estimand": "MACRO_DOMAIN_EQUAL_WEIGHT_MEAN_DICE_DELTA",
+ "estimand_formula": "macro = (1/4) * sum_d mean_i_in_d( Dice(final_A8_i, GT_i) - Dice(global_i, GT_i) )",
+ "estimand_note": "Equal weight per domain; the four domain mean deltas are averaged with weight 1/4 each. This is NOT a pooled row mean and must never be reported as one.",
+ "margin": 0.005,
+ "criterion": "lower 95% CI bound > -0.005 (strict)",
+ "decision_convention": "preservation asserted iff lower 95% CI bound > -0.005 (strict >)",
+ "bootstrap_type": "DOMAIN_STRATIFIED_GROUP_BOOTSTRAP",
+ "group_unit": "METADATA_ONLY_COMPOSITE_PATIENT_SINGLETON",
+ "group_unit_detail": "KUB -> PATIENT::<patient_id>; ISIC/BUSI/KVASIR -> SINGLETON::<dataset>::<sample_id>",
+ "strata": [
+  "BUSI",
+  "ISIC",
+  "KUB",
+  "KVASIR"
+ ],
+ "strata_group_counts": {
+  "ISIC": 357,
+  "BUSI": 84,
+  "KVASIR": 87,
+  "KUB": 111
+ },
+ "total_groups": 639,
+ "n_boot": 2000,
+ "seed": 42,
+ "rng": "numpy.random.Generator(numpy.random.PCG64(42))",
+ "ci_method": "percentile",
+ "ci_percentiles": [
+  2.5,
+  97.5
+ ],
+ "paired": true,
+ "identical_bootstrap_draws_for": [
+  "global",
+  "final_A8",
+  "delta"
+ ],
+ "per_domain_reporting": "mandatory",
+ "macro_may_not_hide_domain_harm": true,
+ "secondary_reports_mandatory": [
+  "per-domain point estimate and 95% CI",
+  "per-domain sample count and group count",
+  "realized activation fraction (no forcing to 25%)",
+  "SKIP / EXECUTE_ACCEPT / EXECUTE_REJECT counts"
+ ],
+ "no_new_multiplicity_correction": true,
+ "frozen_before_val808_inference": true,
+ "checks": {
+  "estimand_macro_domain": true,
+  "margin_0p005": true,
+  "criterion_strict_lower_ci": true,
+  "bootstrap_domain_stratified_group": true,
+  "n_boot_2000": true,
+  "seed_42": true,
+  "ci_percentile": true,
+  "ci_percentiles_2p5_97p5": true,
+  "paired": true,
+  "per_domain_reporting_mandatory": true,
+  "macro_cannot_hide_harm": true,
+  "four_strata_equal_weight": true,
+  "frozen_before_inference": true
+ },
+ "all_pass": true
+}

@@ -1,0 +1,53 @@
+{
+ "artifact": "phase26_router_score_definitions_binding_v1_1",
+ "phase": "26",
+ "classification": "PHASE26_ROUTER_SCORE_THRESHOLD_SEMANTICS_RECONCILIATION",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase26_router_threshold_reconciliation_v1_1",
+ "governance_only": true,
+ "source_artifacts": {
+  "comparator_direction_contract": "reports/audits/phase25e_comparator_direction_contract_v1_0.json",
+  "lambda_grid_contract": "reports/audits/phase25e_lambda_grid_contract_v1_0.json",
+  "cost_binding_audit": "reports/audits/phase25e_cost_binding_audit.json",
+  "cost_variability_audit": "reports/audits/phase25e_cost_variability_and_policy_redundancy_audit.json"
+ },
+ "C7_definition": {
+  "name": "LEARNED_PAIRED_GAIN_ROUTING",
+  "score": "delta_hat_oof",
+  "formula": "s_C7(i) = delta_hat_oof_i",
+  "orientation": "higher first"
+ },
+ "C8_definition": {
+  "name": "LEARNED_GAIN_PLUS_RESOURCE_COST",
+  "score": "delta_hat_oof - lambda*C_i",
+  "formula": "s_C8(i; lambda) = delta_hat_oof_i - lambda * C_i",
+  "orientation": "higher first"
+ },
+ "action_cost": {
+  "unique_action_cost_count": 1,
+  "C_i_exact": "1051648/10270749",
+  "C_i_float": 0.10239253242387678
+ },
+ "canonical_lambda": {
+  "value": 0.25,
+  "exact": "1/4"
+ },
+ "lambda_C": {
+  "exact": "262912/10270749",
+  "float": 0.025598133105969194,
+  "derivation": "(1/4) * (1051648 / 10270749)"
+ },
+ "exact_rational_arithmetic": true,
+ "checks": {
+  "C7_score_is_delta_hat_oof": true,
+  "C8_score_is_delta_hat_minus_lambda_C": true,
+  "utility_formula_matches": true,
+  "unique_action_cost_count_1": true,
+  "cost_exact_ratio_matches": true,
+  "cost_binding_audit_matches": true,
+  "lambda_grid_includes_0p25": true,
+  "lambda_no_performance_selection": true
+ },
+ "all_pass": true,
+ "terminal_on_failure": "PHASE26_SPEC_REPAIR_BLOCKED__RAW_GAIN_THRESHOLD_PROVENANCE_UNRESOLVED"
+}

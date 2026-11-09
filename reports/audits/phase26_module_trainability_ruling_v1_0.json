@@ -1,0 +1,73 @@
+{
+ "artifact": "phase26_module_trainability_ruling_v1_0",
+ "phase": "26",
+ "classification": "SUPERVISOR_SPECIFICATION_REPAIR__PHASE26_OPERATIONAL_REDEFINITION",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase26_integration_v1_0",
+ "governance_only": true,
+ "modules": [
+  {
+   "module_id": "G",
+   "module_name": "GlobalMedFiLM",
+   "phase_origin": "Phase21",
+   "phase26_trainability": "FROZEN_NO_GRAD",
+   "trainable_parameters": 0,
+   "requires_grad": "false",
+   "checkpoint_path": "\u2014(Phase21 global, see identity binding)",
+   "rationale": "already trained + final in Phase21"
+  },
+  {
+   "module_id": "R_psi",
+   "module_name": "BARRRegionalRefinerV1 (ROI-0.30 canonical)",
+   "phase_origin": "Phase25A",
+   "phase26_trainability": "FROZEN_NO_GRAD",
+   "trainable_parameters": 0,
+   "requires_grad": "false",
+   "checkpoint_path": "checkpoints/phase25a_barr_regional_refiner_v1_1_roi030/final/final.pt",
+   "rationale": "canonical final refiner frozen in Phase25A"
+  },
+  {
+   "module_id": "B_phi",
+   "module_name": "BARRBenefitRouterV1",
+   "phase_origin": "Phase25D",
+   "phase26_trainability": "FROZEN_NO_GRAD",
+   "trainable_parameters": 0,
+   "requires_grad": "false",
+   "checkpoint_path": "checkpoints/phase25d_barr_benefit_router_v1_2_1_seed42/final/final.pt",
+   "rationale": "final all-DEV router frozen in Phase25D"
+  },
+  {
+   "module_id": "S_omega",
+   "module_name": "BARRPostSafetyV1",
+   "phase_origin": "Phase25F",
+   "phase26_trainability": "FROZEN_NO_GRAD",
+   "trainable_parameters": 0,
+   "requires_grad": "false",
+   "checkpoint_path": "checkpoints/phase25f_barr_post_safety_v1_0_seed42/final/final.pt",
+   "rationale": "final all-DEV post-safety frozen in Phase25F"
+  },
+  {
+   "module_id": "FUSION",
+   "module_name": "deterministic ROI/fusion rule",
+   "phase_origin": "Phase24 spec / Phase25A",
+   "phase26_trainability": "NOT_TRAINABLE",
+   "trainable_parameters": 0,
+   "requires_grad": "false",
+   "checkpoint_path": "\u2014(rule)",
+   "rationale": "deterministic rule; trainable parameters = NONE"
+  }
+ ],
+ "module_trainability": {
+  "G": "FROZEN_NO_GRAD",
+  "R_psi": "FROZEN_NO_GRAD",
+  "B_phi": "FROZEN_NO_GRAD",
+  "S_omega": "FROZEN_NO_GRAD",
+  "FUSION": "NOT_TRAINABLE"
+ },
+ "trainable_parameter_set": "EMPTY",
+ "frozen_parameter_set": "ALL_CANONICAL_COMPONENT_PARAMETERS",
+ "requires_grad_false_for_every_parameter": true,
+ "optimizers_constructed": 0,
+ "trainable_parameters_total": 0,
+ "all_pass": true
+}

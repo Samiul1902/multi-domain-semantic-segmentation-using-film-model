@@ -1,0 +1,18 @@
+{
+ "artifact": "phase25g_reconstruction_integrity",
+ "phase": "25G",
+ "stage": "A7_A8_RECONSTRUCTION",
+ "A7_definition": "final_delta_A7 = d_i if C8 selected else 0 ; A7_dice = global_dice + final_delta_A7",
+ "A8_definition": "final_delta_A8 = d_i if c9_outcome == EXECUTE_THEN_ACCEPT else 0 ; A8_dice = global_dice + final_delta_A8",
+ "checks": {
+  "A7_selected_true_dice_equals_candidate": true,
+  "A8_accept_dice_equals_candidate_reject_equals_global": true,
+  "post_safety_effect_identity": true
+ },
+ "max_abs_residual_A7": 3.3306690738754696e-16,
+ "max_abs_residual_A8": 3.3306690738754696e-16,
+ "max_abs_residual_effect_identity": 0.0,
+ "identity": "post_safety_effect = A8_final_delta - A7_final_delta = -selected * rejected * delta_dice",
+ "rows_checked": 99140,
+ "all_pass": true
+}

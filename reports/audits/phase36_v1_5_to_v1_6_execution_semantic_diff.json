@@ -1,0 +1,394 @@
+{
+  "artifact": "phase36_v1_5_to_v1_6_execution_semantic_diff",
+  "section": "§N",
+  "phase": 36,
+  "method": "RA-MedFiLM-BARR",
+  "revision": "ra_medfilm_barr_phase36_robustness_v1_6",
+  "type": "EXECUTION_SEMANTIC_DIFF",
+  "classification": "PRE_SCIENTIFIC_PROTECTED_POPULATION_RUNTIME_ACCESS_AND_ACCOUNTING_REPAIR",
+  "from": {
+    "path": "scripts/analysis/phase36_robustness_execution_v1_5.py",
+    "sha256": "f219d06cb83c43b24be446205df2223b964c417e9547d5a657799aa3218f9876"
+  },
+  "to": {
+    "path": "scripts/analysis/phase36_robustness_execution_v1_6.py",
+    "sha256": "d2c4dfd8ab37bf6f4153cf42c2b0f45664b431af6ec626d3bdfbc4038fcfdc2b"
+  },
+  "method_of_proof": "TOKEN_PRESENCE_COMPARED_IN_BOTH_FROZEN_SOURCES",
+  "new_scientific_choice": false,
+  "scientific_results_existed_before_repair": false,
+  "smoke_existed_before_repair": false,
+  "protected_population_opened_before_repair": false,
+  "changed_only": [
+    "removal of runtime TEST/HOLDOUT identity-file reads",
+    "simplification to exact frozen VAL808 manifest authority",
+    "removal of post-hoc protected-read counter zeroing",
+    "addition of fail-closed zero protected-read assertions"
+  ],
+  "unchanged": {
+    "image_registry": true,
+    "proposal_registry": true,
+    "noise_seeds": true,
+    "no_chaining": true,
+    "population_n": true,
+    "component_identities": true,
+    "a8_c9": true,
+    "thresholds": true,
+    "features_202d": true,
+    "canonical_g_batching": true,
+    "sample_level_rows": true,
+    "clean_reproduction_gate": true,
+    "clean_equivalence_gate": true,
+    "dice_iou_hd95": true,
+    "kub_reporting": true,
+    "figures_r1_r5": true,
+    "claim_boundary": true,
+    "probability_operator": true,
+    "cuda_fail_closed": true,
+    "component_contexts": true
+  },
+  "unchanged_evidence": {
+    "image_registry": [
+      {
+        "token": "NONCLEAN_DETERMINISTIC_IMAGE_CONDITIONS",
+        "in_v1_5": true,
+        "in_v1_6": true,
+        "unchanged": true
+      },
+      {
+        "token": "NONCLEAN_NOISE_IMAGE_CONDITIONS",
+        "in_v1_5": true,
+        "in_v1_6": true,
+        "unchanged": true
+      },
+      {
+        "token": "NONCLEAN_IMAGE_REALIZATIONS_PER_SAMPLE = 16",
+        "in_v1_5": true,
+        "in_v1_6": true,
+        "unchanged": true
+      },
+      {
+        "token": "IMAGE_REALIZATIONS_PER_SAMPLE_INCL_CLEAN = 17",
+        "in_v1_5": true,
+        "in_v1_6": true,
+        "unchanged": true
+      }
+    ],
+    "proposal_registry": [
+      {
+        "token": "NONCLEAN_PROPOSAL_CONDITIONS",
+        "in_v1_5": true,
+        "in_v1_6": true,
+        "unchanged": true
+      },
+      {
+        "token": "NONCLEAN_PROPOSAL_CONDITIONS_PER_SAMPLE = 6",
+        "in_v1_5": true,
+        "in_v1_6": true,
+        "unchanged": true
+      },
+      {
+        "token": "PROPOSAL_CLEAN_CONDITION",
+        "in_v1_5": true,
+        "in_v1_6": true,
+        "unchanged": true
+      }
+    ],
+    "noise_seeds": [
+      {
+        "token": "C.NOISE_BASE_SEEDS",
+        "in_v1_5": true,
+        "in_v1_6": true,
+        "unchanged": true
+      },
+      {
+        "token": "C.derive_noise_seed",
+        "in_v1_5": true,
+        "in_v1_6": true,
+        "unchanged": true
+      }
+    ],
+    "no_chaining": [
+      {
+        "token": "C.apply_image_condition",
+        "in_v1_5": true,
+        "in_v1_6": true,
+        "unchanged": true
+      },
+      {
+        "token": "C.apply_proposal_condition",
+        "in_v1_5": true,
+        "in_v1_6": true,
+        "unchanged": true
+      }
+    ],
+    "population_n": [
+      {
+        "token": "AUTHORIZED_POPULATION_N = C.POPULATION_N",
+        "in_v1_5": true,
+        "in_v1_6": true,
+        "unchanged": true
+      },
+      {
+        "token": "C.VAL_MANIFEST_SHA",
+        "in_v1_5": true,
+        "in_v1_6": true,
+        "unchanged": true
+      }
+    ],
+    "component_identities": [
+      {
+        "token": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+        "in_v1_5": true,
+        "in_v1_6": true,
+        "unchanged": true
+      },
+      {
+        "token": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+        "in_v1_5": true,
+        "in_v1_6": true,
+        "unchanged": true
+      },
+      {
+        "token": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109",
+        "in_v1_5": true,
+        "in_v1_6": true,
+        "unchanged": true
+      },
+      {
+        "token": "eee9b97b9921e53fc07eac9281dce64ba518c6e1659916b97b0b3bec21ec6d2e",
+        "in_v1_5": true,
+        "in_v1_6": true,
+        "unchanged": true
+      }
+    ],
+    "a8_c9": [
+      {
+        "token": "TAU_C8_FINAL_FLOAT",
+        "in_v1_5": true,
+        "in_v1_6": true,
+        "unchanged": true
+      },
+      {
+        "token": "canonical_utility",
+        "in_v1_5": true,
+        "in_v1_6": true,
+        "unchanged": true
+      }
+    ],
+    "thresholds": [
+      {
+        "token": "SEGMENTATION_OUTPUT_THRESHOLD = 0.50",
+        "in_v1_5": true,
+        "in_v1_6": true,
+        "unchanged": true
+      },
+      {
+        "token": "ROI_PROPOSAL_THRESHOLD = 0.30",
+        "in_v1_5": true,
+        "in_v1_6": true,
+        "unchanged": true
+      },
+      {
+        "token": "SOMEGA_ACCEPT_THRESHOLD = 0.50",
+        "in_v1_5": true,
+        "in_v1_6": true,
+        "unchanged": true
+      }
+    ],
+    "features_202d": [
+      {
+        "token": "ROUTER_NUMERIC_DIM = 202",
+        "in_v1_5": true,
+        "in_v1_6": true,
+        "unchanged": true
+      },
+      {
+        "token": "SOMEGA_NUMERIC_DIM = 16",
+        "in_v1_5": true,
+        "in_v1_6": true,
+        "unchanged": true
+      },
+      {
+        "token": "ROUTER_SCALAR_IDX",
+        "in_v1_5": true,
+        "in_v1_6": true,
+        "unchanged": true
+      }
+    ],
+    "canonical_g_batching": [
+      {
+        "token": "CANONICAL_G_BATCH_SIZE = 8",
+        "in_v1_5": true,
+        "in_v1_6": true,
+        "unchanged": true
+      },
+      {
+        "token": "def canonical_batch_partition",
+        "in_v1_5": true,
+        "in_v1_6": true,
+        "unchanged": true
+      },
+      {
+        "token": "CANONICAL_BATCH_FORWARDS_TOTAL = 102",
+        "in_v1_5": true,
+        "in_v1_6": true,
+        "unchanged": true
+      }
+    ],
+    "sample_level_rows": [
+      {
+        "token": "SCIENCE_ROW_SCHEMA_LOSS",
+        "in_v1_5": true,
+        "in_v1_6": true,
+        "unchanged": true
+      },
+      {
+        "token": "_IMAGE_ROW_REQUIRED",
+        "in_v1_5": true,
+        "in_v1_6": true,
+        "unchanged": true
+      },
+      {
+        "token": "def build_image_result_row",
+        "in_v1_5": true,
+        "in_v1_6": true,
+        "unchanged": true
+      }
+    ],
+    "clean_reproduction_gate": [
+      {
+        "token": "CLEAN_G_NOT_BIT_IDENTICAL_TO_PHASE27_AUTHORITY",
+        "in_v1_5": true,
+        "in_v1_6": true,
+        "unchanged": true
+      },
+      {
+        "token": "PHASE27_GLOBAL_PROB_AUTHORITY",
+        "in_v1_5": true,
+        "in_v1_6": true,
+        "unchanged": true
+      }
+    ],
+    "clean_equivalence_gate": [
+      {
+        "token": "n_state_machine_branch_comparisons_808",
+        "in_v1_5": true,
+        "in_v1_6": true,
+        "unchanged": true
+      },
+      {
+        "token": "accept_reject_collapse_prohibited",
+        "in_v1_5": true,
+        "in_v1_6": true,
+        "unchanged": true
+      }
+    ],
+    "dice_iou_hd95": [
+      {
+        "token": "from src.metrics import evaluation_metrics",
+        "in_v1_5": true,
+        "in_v1_6": true,
+        "unchanged": true
+      },
+      {
+        "token": "_prediction_consistency_dice",
+        "in_v1_5": true,
+        "in_v1_6": true,
+        "unchanged": true
+      }
+    ],
+    "kub_reporting": [
+      {
+        "token": "KUB_SUBGROUP_AUTHORITY",
+        "in_v1_5": true,
+        "in_v1_6": true,
+        "unchanged": true
+      },
+      {
+        "token": "reporting_only",
+        "in_v1_5": true,
+        "in_v1_6": true,
+        "unchanged": true
+      }
+    ],
+    "figures_r1_r5": [
+      {
+        "token": "FIGURE_REGISTRY = C.FIGURES",
+        "in_v1_5": true,
+        "in_v1_6": true,
+        "unchanged": true
+      },
+      {
+        "token": "def figure_R1",
+        "in_v1_5": true,
+        "in_v1_6": true,
+        "unchanged": true
+      },
+      {
+        "token": "def figure_R5",
+        "in_v1_5": true,
+        "in_v1_6": true,
+        "unchanged": true
+      }
+    ],
+    "claim_boundary": [
+      {
+        "token": "C.EVIDENCE_CLASS",
+        "in_v1_5": true,
+        "in_v1_6": true,
+        "unchanged": true
+      }
+    ],
+    "probability_operator": [
+      {
+        "token": "prob = torch.sigmoid(t.float())",
+        "in_v1_5": true,
+        "in_v1_6": true,
+        "unchanged": true
+      },
+      {
+        "token": "CANONICAL_PROBABILITY_OPERATOR",
+        "in_v1_5": true,
+        "in_v1_6": true,
+        "unchanged": true
+      }
+    ],
+    "cuda_fail_closed": [
+      {
+        "token": "get_device(require_cuda=True)",
+        "in_v1_5": true,
+        "in_v1_6": true,
+        "unchanged": true
+      },
+      {
+        "token": "PHASE36_V1_5_CUDA_FAIL_CLOSED__DEVICE_TYPE",
+        "in_v1_5": true,
+        "in_v1_6": true,
+        "unchanged": true
+      }
+    ],
+    "component_contexts": [
+      {
+        "token": "component_inference_context",
+        "in_v1_5": true,
+        "in_v1_6": true,
+        "unchanged": true
+      },
+      {
+        "token": "component_autocast_disabled",
+        "in_v1_5": true,
+        "in_v1_6": true,
+        "unchanged": true
+      },
+      {
+        "token": "COMPONENT_INFERENCE_CONTEXTS",
+        "in_v1_5": true,
+        "in_v1_6": true,
+        "unchanged": true
+      }
+    ]
+  },
+  "all_unchanged_confirmed": true,
+  "generated_utc": "2026-10-06T09:10:15Z"
+}

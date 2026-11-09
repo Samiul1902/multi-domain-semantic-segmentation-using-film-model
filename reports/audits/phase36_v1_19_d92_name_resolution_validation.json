@@ -1,0 +1,42 @@
+{
+ "artifact": "phase36_v1_19_d92_name_resolution_validation",
+ "revision": "ra_medfilm_barr_phase36_robustness_v1_19",
+ "type": "D92_NAME_RESOLUTION_VALIDATION_REPORT",
+ "v1_19_source_sha256": "3ec5ea920af2b6d66864b3bbc7e5362f0756777512c29be70d3e5453e18693cd",
+ "v1_18_source_sha256": "2259ce22e75ba9a3a8943769dc1e0ed5724f94902f5e8955976cd6ebeb8ce63e",
+ "validator_note": "v1.19 execution source SHA is read from disk at run time; the literal above is the EXPECTED value and a mismatch FAILS CLOSED.",
+ "method": "AST name-resolution + structural inventory + 5 negative controls",
+ "reachable_write_targets": {
+  "count": 23,
+  "expected": 23,
+  "breakdown": {
+   "tables": 11,
+   "figures": 5,
+   "start_result_failure_journal_stdout_stderr_processexit": 7
+  },
+  "unclassified": 0,
+  "duplicates": 0
+ },
+ "d92_repair": {
+  "old": "targets.append(ROOT / SCIENCE_V1_18_JOURNAL_DIR)",
+  "new": "targets.append(V1_19_JOURNAL_DIR)",
+  "canonical_symbol": "V1_19_JOURNAL_DIR"
+ },
+ "negative_controls": {
+  "NC_D92_0_undefined_symbol": "DETECTED",
+  "NC_D92_1_missing_canonical_def": "DETECTED",
+  "NC_D92_2_inventory_shortfall": "DETECTED",
+  "NC_D92_3_inventory_inflation": "DETECTED",
+  "NC_D92_4_unresolved_global": "DETECTED"
+ },
+ "model_free": true,
+ "torch_imported": false,
+ "protected_population_read": false,
+ "val_gt_read": false,
+ "val_image_read": false,
+ "checkpoint_deserialization": false,
+ "checks_passed": 23,
+ "checks_failed": 0,
+ "failures": [],
+ "all_pass": true
+}

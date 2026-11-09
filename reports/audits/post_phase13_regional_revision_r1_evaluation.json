@@ -1,0 +1,185 @@
+{
+  "artifact": "POST_PHASE13_REGIONAL_REVISION_R1_EVALUATION",
+  "status": "PASS",
+  "created_utc": "2026-09-22T06:20:00Z",
+  "run_id": "post_phase13_regional_revision_r1_selective_acceptance",
+  "hypothesis": "H1_FIRST_SELECTIVE_ACCEPTANCE",
+  "authorized_axis": "proposal acceptance / abstention ONLY",
+  "bindings": {
+    "r0_protocol": {
+      "path": "reports/audits/post_phase13_regional_revision_r0_protocol_frozen.json",
+      "sha": "c24ed2cca28740f3d38fdbb9109cae078ef58be571d85b0f421bc47497ea5d6b"
+    },
+    "r0_failure_decomposition": {
+      "path": "reports/audits/post_phase13_regional_revision_r0_failure_decomposition.json",
+      "sha": "ecf6997170f236f7fba1d610a44132bc31401ff79be66d55f5503ba152e1add9"
+    },
+    "r0_interpretation_clarification": {
+      "path": "reports/audits/post_phase13_r0_interpretation_clarification.json",
+      "sha": "6ff0495978c808e30bf3f72bf99cc72c06fea73cdcaf77a483d4def17190f3e6"
+    },
+    "r1_policy": {
+      "path": "reports/audits/post_phase13_regional_revision_r1_policy_frozen.json",
+      "sha": "13d9d95c3bc03776003a3b824eeaf52f2dc8b158ad47e65d238895ce50ba118b"
+    },
+    "candidate_family": {
+      "path": "reports/tables/post_phase13_regional_revision_r1_candidate_family.csv",
+      "sha": "4a6dca9d1333ea7efcb31c6b3b441fa23b12543c62f2992556e5d215712d4c4a"
+    },
+    "membership_table": {
+      "path": "reports/tables/post_phase13_regional_revision_r1_frozen_membership.csv",
+      "sha": "c65e3e43038d0ebe7d12c966686e709897a43dd051d9283d099e362ca8e6aa0e"
+    },
+    "membership_summary": {
+      "path": "reports/tables/post_phase13_regional_revision_r1_membership_summary.csv",
+      "sha": "a4f4ecf4f592405d3e76d06a77c763f70f4ff3380cb23e06d8d3906a8a977594"
+    },
+    "membership_hashes": {
+      "R1-C0": "ac5bbc02a12177cf447dab48a99bb5c44a658f653f16e9dab49247591911d327",
+      "R1-C1": "844f70d35188815bb1fc42c464ae83ee78726d78777d4c10b24de24dda709354",
+      "R1-C2": "ec8c5b9ca97734c08bfcb67985c5706c56a4ab9d39f277bb61dbe10b2a6eb21b",
+      "R1-C3": "844f70d35188815bb1fc42c464ae83ee78726d78777d4c10b24de24dda709354",
+      "R1-C4": "f58a5a945fa96437c3d4bac68640a7d3f7452b62c11e01bea06151e7b02b17cf",
+      "R1-C5": "0c424bb6d0b6b21850e95281daafea51ee17386dfe916e77b66f4d9ca23b0852",
+      "R1-C6": "5b40128e981d9114a4c622b378fbd1050d3f073c5b8ae60f0c29b7cb8d3015ad"
+    },
+    "phase13_c0_evidence": {
+      "path": "reports/tables/phase13_part1d_predicted_region_case_model_metrics.csv",
+      "sha": "53e93982c0235e32568e01fbddbdd858d205077e3e0a50fd69bef992454f2658"
+    },
+    "part1d_r1_helper": {
+      "path": "scripts/inference/phase13_part1d_predicted_region_inference.py",
+      "sha": "8cd7e39814a049a025f706c57ccea0b535a230908a177690d6289318234c6284"
+    },
+    "segmentation_checkpoints": {
+      "unet": "7b955ba86464a2fec2d569ecb6124de1fa9a4e66d0b5d58b267be9a280b4c2c0",
+      "attention_unet": "a49b19d66e43b57ed082ea6efc0ac10bccf444277abd3540dc68612bf30b88b3",
+      "unetpp": "ec7eb13f32e43af27eab7fc617bd1a2a8fcce1d6651a1b4a3653f3e4d1283269",
+      "deeplabv3plus": "f519027ba1a3a4d6212d83fecd4379f61f71bc05b0751924b9660da08d597dad"
+    },
+    "global_cache_manifest": {
+      "path": "data_cache/phase13_part1d_b_predicted_region_clean_v3/global_512_manifest.csv",
+      "sha": "76e1034d2bc7925260af33826fc19565b2d5ef786c612a7ad71f3bde46fb89a8"
+    }
+  },
+  "global_cache": {
+    "reused": "YES",
+    "items_verified": 412,
+    "manifest_sha": "76e1034d2bc7925260af33826fc19565b2d5ef786c612a7ad71f3bde46fb89a8",
+    "global_native_reproduction_max_abs_dice_diff": {
+      "unet": 5.551e-17,
+      "attention_unet": 1.11e-16,
+      "unetpp": 1.11e-16,
+      "deeplabv3plus": 1.11e-16
+    },
+    "new_global_pass_run": "NO"
+  },
+  "counters": {
+    "training": 0,
+    "optimizer": 0,
+    "localizer_forwards": 0,
+    "proposal_generation": 0,
+    "global_model_forwards": 0,
+    "regional_crop_evaluations": 1976,
+    "regional_crop_evaluations_expected": 1976,
+    "regional_crop_evaluations_per_model": {
+      "UNet": 494,
+      "Attention U-Net": 494,
+      "UNet++": 494,
+      "DeepLabV3+": 494
+    },
+    "oracle_reruns": 0,
+    "test_reads": 0,
+    "external_test_reads": 0,
+    "candidate_family_expansion": 0,
+    "h2_execution": "NOT_STARTED",
+    "h3_execution": "NOT_STARTED"
+  },
+  "policies_declared": 7,
+  "policies_distinct": 6,
+  "case_model_policy_rows": 2884,
+  "component_model_policy_rows": 4256,
+  "model_policy_summary_rows": 28,
+  "policy_intervention_summary_rows": 7,
+  "cross_architecture_rows": 7,
+  "integrity_checks": {
+    "candidate_configs_7": true,
+    "distinct_memberships_6": true,
+    "membership_hashes_exact": true,
+    "c0_accepted_494": true,
+    "c0_reproduction_pass_all_four": true,
+    "c1_eq_c3_downstream_pass": true,
+    "case_policy_model_rows_2884": true,
+    "unique_config_sample_model_2884": true,
+    "component_policy_model_rows_4256": true,
+    "unique_config_component_model_4256": true,
+    "model_policy_summary_28": true,
+    "policy_intervention_summary_7": true,
+    "cross_architecture_7": true,
+    "proposal_membership_never_changed": true,
+    "checkpoints_never_changed": true,
+    "proposal_table_never_changed": true,
+    "no_nan_inf_valid_metrics": true,
+    "hd95_invalid_labelled": true,
+    "test_reads_zero": true,
+    "external_test_reads_zero": true,
+    "regional_crops_1976": true
+  },
+  "integrity_failures": [],
+  "final_r1_execution_status": "PASS",
+  "h1_verdict": "NOT_ADJUDICATED",
+  "r1_evidence_state": "COMPLETE",
+  "h1_adjudication": "ELIGIBLE_FOR_SUPERVISOR_AUTHORIZATION__NOT_AUTHORIZED",
+  "adaptive_development_disclosure": {
+    "nature": "adaptive VAL-development revision initiated after Phase 13 failed the regional-integration gate",
+    "family_frozen_before_candidate_specific_segmentation_execution": "YES",
+    "candidate_membership_label_blind": "YES",
+    "gt_usage": "post-freeze evaluation only",
+    "val_role": "development data",
+    "substitutes_for_final_test": "NO",
+    "test_untouched_until": "PHASE_39",
+    "external_test_tuning": "NONE",
+    "hidden_candidate_search": "NONE"
+  },
+  "claim_discipline": {
+    "best_policy_declared": "NO",
+    "winner_declared": "NO",
+    "optimal_threshold_declared": "NO",
+    "go_no_go_issued": "NO",
+    "regional_mechanism_promoted": "NO",
+    "retrain_localizer_recommended": "NO",
+    "h2_authorized": "NO"
+  },
+  "continuity": {
+    "phase13": "COMPLETE_FROZEN",
+    "original_regional_gate": "REVISE_LOCALIZER_FROZEN",
+    "revision_r0": "COMPLETE_PASS_FROZEN",
+    "revision_r1_policy": "COMPLETE_PASS_FROZEN",
+    "revision_r1_execution": "PASS",
+    "h1_adjudication": "ELIGIBLE_FOR_SUPERVISOR_AUTHORIZATION__NOT_AUTHORIZED",
+    "h2": "NOT_STARTED",
+    "phase14": "NOT_STARTED",
+    "test": "UNTOUCHED"
+  },
+  "next_action": "WAIT_FOR_SUPERVISOR_R1_H1_ADJUDICATION_AUTHORIZATION",
+  "reviewer_notebook": {
+    "path": "notebooks/phasewise/phase_13_predicted_roi_localization/post_phase13_regional_revision_r1_analysis.ipynb",
+    "sha256": "2cbf25da6290ca15ee5863b63da8a8de99f8deccff48b59e927cb306de3cbbdb",
+    "read_only": "YES",
+    "inference_in_notebook": "NONE",
+    "sections": 21,
+    "cells": 45,
+    "code_cells": 22,
+    "run_all_unexecuted": 0,
+    "run_all_errors": 0,
+    "sha_stable_across_three_runs": "YES",
+    "sha_pass1": "2cbf25da6290ca15ee5863b63da8a8de99f8deccff48b59e927cb306de3cbbdb",
+    "sha_pass2": "2cbf25da6290ca15ee5863b63da8a8de99f8deccff48b59e927cb306de3cbbdb",
+    "sha_pass3": "2cbf25da6290ca15ee5863b63da8a8de99f8deccff48b59e927cb306de3cbbdb",
+    "visible_full_tables": [
+      "policy intervention summary 7/7",
+      "model-policy summary 28/28"
+    ],
+    "large_tables_dumped": "NO__validated_by_row_count_uniqueness_and_sha"
+  }
+}

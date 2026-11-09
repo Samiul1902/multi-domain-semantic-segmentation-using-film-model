@@ -1,0 +1,21 @@
+{
+ "artifact": "phase29_deterministic_environment_v1_1",
+ "phase": 29,
+ "revision": "ra_medfilm_barr_phase29_repro_v1_1",
+ "governance_only": true,
+ "execution": "NONE",
+ "generated_utc": "2026-10-02T15:05:09+00:00",
+ "frozen_for_every_new_seed": [
+  "Python random seed",
+  "NumPy seed",
+  "torch.manual_seed",
+  "torch.cuda.manual_seed_all",
+  "DataLoader generator",
+  "worker initialization",
+  "cudnn.deterministic = true",
+  "cudnn.benchmark = false"
+ ],
+ "amp_inherited_from_component_canonical_protocol": true,
+ "standardize_all_components_to_one_precision_mode": false,
+ "all_pass": true
+}

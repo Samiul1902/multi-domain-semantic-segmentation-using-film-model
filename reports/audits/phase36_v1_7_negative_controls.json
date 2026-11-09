@@ -1,0 +1,83 @@
+{
+  "artifact": "phase36_v1_7_negative_controls",
+  "phase": 36,
+  "section": "§K",
+  "method": "RA-MedFiLM-BARR",
+  "revision": "ra_medfilm_barr_phase36_robustness_v1_7",
+  "type": "NEGATIVE_CONTROL_AUDIT",
+  "model_free": true,
+  "torch_imported": false,
+  "protected_population_read": false,
+  "mutants_are_in_memory_strings_only": true,
+  "nc_range": "NC36-NC40",
+  "repair_controls_passed": 4,
+  "repair_controls_total": 4,
+  "preservation_controls_passed": 1,
+  "preservation_controls_total": 1,
+  "passed": 5,
+  "total": 5,
+  "all_pass": true,
+  "controls": [
+    {
+      "nc": "NC36_FORCED_SOMEGA_FALSE_FORWARD_COUNT",
+      "v1_6_mutant_bite": true,
+      "v1_7_pass": true,
+      "v1_7_fail_reason": "v1.7 MUST increment actual_s_omega_forwards only after a real S_omega forward; the forced-safety path must leave it at 0",
+      "evidence": {
+        "actual_s_omega_forwards_in_v1_7": true,
+        "somega_passes_actual_in_v1_7": true,
+        "mutant_has_bypass_pattern": false
+      }
+    },
+    {
+      "nc": "NC37_REAL_SOMEGA_FORWARD_PROBE_REQUIRED",
+      "v1_6_mutant_bite": true,
+      "v1_7_pass": true,
+      "v1_7_fail_reason": "v1.7 MUST contain a guaranteed real S_omega forward probe in synthetic smoke",
+      "evidence": {
+        "probe_present": true,
+        "probe_forces_router_execute": false,
+        "probe_does_not_force_somega_logit": true
+      }
+    },
+    {
+      "nc": "NC38_ROUTER_FEATURE_FINITE_MISBINDING",
+      "v1_6_mutant_bite": true,
+      "v1_7_pass": true,
+      "v1_7_fail_reason": "v1.7 MUST bind rf202_finite to the actual 202-D router vector, never to final_probability",
+      "evidence": {
+        "v1_7_binds_router_vector_finite": true,
+        "v1_7_no_misbind_to_final_probability": true,
+        "mutant_has_misbind": true
+      }
+    },
+    {
+      "nc": "NC39_SMOKE_SUCCESS_FAIL_CLOSED",
+      "v1_6_mutant_bite": true,
+      "v1_7_pass": true,
+      "v1_7_fail_reason": "v1.7 main MUST exit nonzero when smoke_all_pass is false",
+      "evidence": {
+        "v1_7_checks_smoke_all_pass": true,
+        "v1_7_returns_1_on_fail": true,
+        "v1_7_returns_0_on_pass": true,
+        "mutant_bypasses_check": true
+      }
+    },
+    {
+      "nc": "NC40_V1_6_PRESERVATION",
+      "v1_6_mutant_bite": false,
+      "v1_7_pass": true,
+      "v1_7_fail_reason": "v1.7 MUST preserve all v1.6 protected-population, probability, CUDA, device and component-context repairs",
+      "evidence": {
+        "cuda_fail_closed": true,
+        "val_only_population": true,
+        "four_component_binding": true,
+        "canonical_sigmoid": true,
+        "inference_contexts": true,
+        "val_manifest_sha_guard": true,
+        "static_protected_io_unreachable": true
+      }
+    }
+  ],
+  "generated_utc": "2026-10-06T09:24:23Z"
+}

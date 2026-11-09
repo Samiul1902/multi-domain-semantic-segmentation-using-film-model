@@ -1,0 +1,59 @@
+{
+ "artifact": "phase24_method_naming_decision",
+ "phase": 24,
+ "purpose": "freeze ONE provisional research name for Phases 25-38",
+ "retired_name": "Counterfactual Benefit-Certified Refinement / CBCR",
+ "retired_reason": "Contains 'Counterfactual' (Phase-23 audit outcome PREFER_PAIRED_REFINEMENT_GAIN: both potential outcomes are fully observed, so there is no identification problem) and 'Certified' (Phase-23 audit outcome USE_BENEFIT_AWARE_ONLY: no conformal, risk-control or calibration guarantee is earned). Both are unsupported overclaims.",
+ "candidates_evaluated": [
+  {
+   "candidate": "RA-MedFiLM-BARR",
+   "expansion": "Resource-Aware MedFiLM with Benefit-Aware Refinement Routing",
+   "acronym_ambiguity": "MODERATE \u2014 'BARR' is pronounceable and unique in this project, but 'RA' collides with 'Regional Attention' / 'Resource-Aware' / 'Risk-Averse' in adjacent literature, so the expansion MUST always be written out on first use.",
+   "terminology_collision": "LOW-MODERATE \u2014 'Benefit-Aware' is not a term of art claimed by any of the six closest works; but 'benefit' alone is generic and must be qualified as 'paired refinement gain' in the abstract.",
+   "misleading_implication": "LOW \u2014 'Resource-Aware' is defensible because C6 forces an explicit lambda*C term. The name does NOT imply a measured device result, provided the paper states that cost is ANALYTICAL MACs in Phase 25 and that device measurement belongs to Phase 34.",
+   "clarity_vs_jfs": "GOOD \u2014 the presence of both 'Benefit-Aware' and 'Routing' in the expansion makes the pre-execution decision explicit, which is exactly the axis on which JFS differs (JFS decides post-hoc). A reader who knows JFS will see the intended distinction.",
+   "consistency_with_phase23_boundary": "CONSISTENT \u2014 no forbidden token appears ('counterfactual', 'certified', 'causal', 'guaranteed' all absent). 'Resource-Aware' is retained as a name component only because C6 requires the cost term to be explicit.",
+   "verdict": "SELECTED",
+   "note": "Chosen because it encodes the two specification-level facts that carry the contribution: the routing is benefit-aware AND resource-aware. 'Benefit-Aware' matches the Phase-23 terminology outcome (USE_BENEFIT_AWARE_ONLY)."
+  },
+  {
+   "candidate": "RA-MedFiLM-GGR",
+   "expansion": "Resource-Aware MedFiLM with Gain-Gated Refinement",
+   "acronym_ambiguity": "LOW \u2014 'GGR' is unique here.",
+   "terminology_collision": "HIGH \u2014 'Gating' is heavily overloaded: mixture-of-experts gating, attention gating, and the cascade 'gate' all use it. The Phase-23 audit explicitly found the gate MECHANISM occupied (metareasoning 1991; Latotzke 2021; Med-DANet V2). Naming the method after the occupied primitive invites the exact 'this is just a gate' objection.",
+   "misleading_implication": "MODERATE \u2014 'Gated' foregrounds the mechanism rather than the decision variable, which is the part Phase 23 found OCCUPIED. It also risks implying the contribution is the gate rather than the integrated system.",
+   "clarity_vs_jfs": "WEAKER \u2014 'Gain-Gated' does not by itself signal pre-execution; a reader could assume a post-hoc gate, which is JFS's setting. The distinction would have to be argued in prose rather than carried by the name.",
+   "consistency_with_phase23_boundary": "CONSISTENT on forbidden tokens, but WEAKER on the Phase-23 boundary because it names the contribution after a primitive the audit classified as OCCUPIED.",
+   "verdict": "NOT_SELECTED",
+   "note": "Rejected primarily for terminology collision with the occupied 'gating' primitive."
+  }
+ ],
+ "selection_criteria": [
+  "acronym ambiguity",
+  "terminology collision",
+  "misleading implication",
+  "clarity relative to JFS",
+  "consistency with the Phase-23 novelty boundary"
+ ],
+ "frozen_method_name": "RA-MedFiLM-BARR",
+ "frozen_method_name_expansion": "Resource-Aware MedFiLM with Benefit-Aware Refinement Routing",
+ "short_form": "BARR",
+ "frozen_for_phases": "25-38",
+ "forbidden_tokens_in_name": [
+  "counterfactual",
+  "certified",
+  "causal",
+  "guaranteed"
+ ],
+ "forbidden_tokens_check": "PASS (none present in the frozen name or its expansion)",
+ "required_first_use_form": "'RA-MedFiLM-BARR (Resource-Aware MedFiLM with Benefit-Aware Refinement Routing)'. The expansion must appear on first use in every document; the bare acronym may not be used as the first mention.",
+ "required_terminology_companions": {
+  "instead_of_counterfactual": "PREFER_PAIRED_REFINEMENT_GAIN",
+  "instead_of_certified": "USE_BENEFIT_AWARE_ONLY"
+ },
+ "binding": "This name is PROVISIONAL and DESIGN-LEVEL. It may not be used to assert a result. It carries no claim of novelty for any individual primitive.",
+ "no_training": true,
+ "no_inference": true,
+ "test_reads": 0,
+ "generated_utc": "2026-09-29T14:42:54.240868+00:00"
+}

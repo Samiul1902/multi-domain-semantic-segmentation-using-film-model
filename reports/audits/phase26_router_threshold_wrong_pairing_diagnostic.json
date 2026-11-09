@@ -1,0 +1,31 @@
+{
+ "artifact": "phase26_router_threshold_wrong_pairing_diagnostic",
+ "phase": "26",
+ "classification": "PHASE26_ROUTER_SCORE_THRESHOLD_SEMANTICS_RECONCILIATION",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase26_router_threshold_reconciliation_v1_1",
+ "governance_only": true,
+ "not_a_candidate_policy": true,
+ "adopted": false,
+ "definition": "WRONG_PAIRING = (delta_hat - lambda*C >= tau_C7)",
+ "effect": "shifts cutoff upward by lambda*C in utility space; selects strictly fewer rows",
+ "space_A_final_router_dev_calibration": {
+  "wrong_pairing_selected_count": 3,
+  "wrong_pairing_membership_mismatch_vs_frozen": 1236
+ },
+ "space_B_canonical_policy_oof": {
+  "wrong_pairing_selected_count": 1,
+  "wrong_pairing_membership_mismatch_vs_frozen": 1238
+ },
+ "wrong_pairing_selected_count": 3,
+ "wrong_pairing_membership_mismatch_vs_frozen": 1236,
+ "expected_mismatch_positive": true,
+ "mismatch_positive": true,
+ "checks": {
+  "wrong_pairing_is_not_a_policy": true,
+  "wrong_pairing_dev_mismatch_gt_0": true,
+  "wrong_pairing_pol_mismatch_gt_0": true,
+  "wrong_pairing_selects_strict_subset": true
+ },
+ "all_pass": true
+}

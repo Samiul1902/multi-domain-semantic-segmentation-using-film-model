@@ -1,0 +1,62 @@
+{
+ "artifact": "phase29_phase_c_reconciliation_terminal",
+ "phase": 29,
+ "stage": "PHASE_C_RECONCILIATION_TERMINAL",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_phase29_repro_v1_1",
+ "generated_utc": "2026-10-03T15:12:31+00:00",
+ "classification": "ARTIFACT_LEVEL_METRIC_AND_EXECUTION_CONTRACT_REPAIR_ONLY",
+ "repair_scope": {
+  "A_router_metric_semantics": "RESTORED",
+  "B_phase27_val808_numerics": "RESTORED",
+  "C_phase25a_entrypoint_drift": "ADJUDICATED_ACCEPTED_AS_DECLARED_IMPLEMENTATION_ONLY_ENTRYPOINT_GENERALIZATION"
+ },
+ "terminal": "PHASE29_PHASE_C_RECONCILED__ROUTER_METRIC_SEMANTICS_PHASE27_VAL808_NUMERICS_AND_ENTRYPOINT_EXCEPTION_FROZEN__PHASE_D_ELIGIBLE_NOT_STARTED",
+ "success_terminal": true,
+ "required_outputs_present": {
+  "reports/audits/phase29_phase_c_router_metric_semantic_defect.json": true,
+  "reports/audits/phase29_router_metric_reconciliation.json": true,
+  "reports/audits/phase29_val808_shared_global_cache_contract_v1_2.json": true,
+  "reports/audits/phase29_phase_d_component_inference_semantics_contract.json": true,
+  "reports/audits/phase29_phase25a_entrypoint_exception_adjudication.json": true,
+  "reports/audits/phase29_phase_c_final_check_reconciled.json": true,
+  "reports/audits/phase29_pre_val808_freeze_gate_v1_1.json": true,
+  "reports/audits/phase29_phase_c_reconciliation_terminal.json": true
+ },
+ "all_required_outputs_present": true,
+ "corrected_tables": [
+  "reports/tables/phase29_seedwise_primary_dev_metrics.csv",
+  "reports/tables/phase29_three_seed_dev_summary.csv"
+ ],
+ "pre_reconciliation_provenance": "reports/audits/provenance_pre_reconciliation_phase29_phase_c/",
+ "frozen_state": {
+  "training_changed": false,
+  "checkpoints_changed": false,
+  "OOF_predictions_changed": false,
+  "memberships_changed": false,
+  "DeltaDice_targets_changed": false,
+  "integrated_predictions_changed": false,
+  "macro_DEV_Dice_changed": false,
+  "VAL808_opened": false
+ },
+ "read_counters": {
+  "VAL808_reads": 0,
+  "ROUTER_HOLDOUT_reads": 0,
+  "TEST_reads": 0
+ },
+ "best_seed_selected": false,
+ "canonical_bundle_changed": false,
+ "phase_d_eligible": true,
+ "phase_d_started": false,
+ "stop_after": "PHASE_C_RECONCILED",
+ "blocked_terminals_not_used": [
+  "PHASE29_PHASE_C_REPAIR_BLOCKED__INTEGRATED_DEV_RESULT_DRIFT",
+  "PHASE29_PHASE_C_REPAIR_BLOCKED__CANONICAL_TRAINER_DRIFT_EXCEEDS_DECLARED_EXCEPTION",
+  "PHASE29_PHASE_C_REPAIR_BLOCKED__ROUTER_METRIC_ARITHMETIC_MAXIMUM_VIOLATED",
+  "PHASE29_PHASE_C_REPAIR_BLOCKED__FROZEN_MEMBERSHIP_UNAVAILABLE",
+  "PHASE29_PHASE_C_REPAIR_BLOCKED__PHASE27_NUMERIC_CONTRACT_UNREADABLE",
+  "PHASE29_PHASE_C_REPAIR_BLOCKED__ENTRYPOINT_DIFF_NOT_EXACTLY_TWO_TOKENS",
+  "PHASE29_PHASE_C_REPAIR_BLOCKED__SEED123_3407_TRAINING_OUTPUT_INCONSISTENT"
+ ],
+ "all_pass": true
+}

@@ -1,0 +1,50 @@
+{
+ "artifact": "phase25c_phase25d_handoff_schema",
+ "phase": "25C",
+ "method": "RA-MedFiLM-BARR",
+ "architecture_revision": "ra_medfilm_barr_narrowed_v1_2",
+ "phase25b_provides": {
+  "features": "202-D GT-free pre-refinement features",
+  "numeric_dimensions": 202,
+  "fields": [
+   "sample_id",
+   "feature_row_index",
+   "task_id",
+   "domain",
+   "outer_fold",
+   "action_available"
+  ]
+ },
+ "phase25c_provides": {
+  "fields": [
+   "sample_id",
+   "outer_fold",
+   "delta_dice (continuous target)",
+   "gain_category",
+   "global_dice",
+   "candidate_refined_dice",
+   "fold_refiner_checkpoint_sha"
+  ],
+  "label_csv": "data_cache/phase25c_barr_oof_paired_gain_labels_v1_2/phase25c_oof_paired_gain_labels.csv",
+  "label_csv_sha256": "fd6ca32c33a3bddb75f986b1350d54ec35b11d3bf5cb0fdc029962a5aa94865f",
+  "primary_target": "delta_dice",
+  "secondary_target": "gain_category",
+  "join_key": "sample_id"
+ },
+ "phase25d_will": [
+  "join Phase25B 202-D features + Phase25C labels by sample_id",
+  "verify exact one-to-one coverage",
+  "instantiate learned Embedding(4,16)",
+  "form 218-D router input (202 numeric + 16 task embedding)",
+  "train BARRBenefitRouterV1"
+ ],
+ "phase25c": {
+  "router_instantiated": false,
+  "task_embedding_trained": false
+ },
+ "task_embedding_owner": "PHASE25D",
+ "benefit_router_owner": "PHASE25D",
+ "verdict": "PHASE25C_PHASE25D_HANDOFF_READY",
+ "test_reads": 0,
+ "generated_utc": "2026-09-30T17:18:00+00:00"
+}

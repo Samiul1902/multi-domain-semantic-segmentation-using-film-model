@@ -1,0 +1,53 @@
+{
+  "artifact": "H3_PROPOSAL_SUPPLY_CODE_CHANGE_SPEC",
+  "status": "PROSPECTIVE_SPEC__NOT_APPLIED__DESIGN_ONLY",
+  "generated_utc": "2026-09-25T09:30:00Z",
+  "intervention": "A_TARGET_SUPPORT_REDESIGN",
+  "changed_files": [
+    "src/inference/heatmap_targets.py",
+    "src/data/kub_localizer_dataset.py"
+  ],
+  "backward_compatibility": "make_gaussian_heatmap gains an OPTIONAL component_areas parameter defaulting to None (original fixed-sigma behavior preserved). kub_localizer_dataset gains an OPT-IN size_adaptive_sigma flag defaulting to False. All other callers/pipelines (Phase-13B, Phase-14 refiner) are unaffected.",
+
+  "change_1": {
+    "file": "src/inference/heatmap_targets.py",
+    "function": "make_gaussian_heatmap",
+    "current_signature": "def make_gaussian_heatmap(image_size: int, centroids, sigma: float) -> np.ndarray:",
+    "proposed_signature": "def make_gaussian_heatmap(image_size: int, centroids, sigma: float, component_areas=None, sigma_min: float = 0.35, sigma_max: float = 0.75, scale_ref: float = 4.0) -> np.ndarray:",
+    "logic": [
+      "If component_areas is None: sigma_i = sigma (original behavior).",
+      "Else: for each component i, sigma_i = min(sigma_max, max(sigma_min, scale_ref * sqrt(area_i))).",
+      "Replace the per-component Gaussian: comp_hm = exp(-((ys-cy)**2 + (xs-cx)**2) / (2 * sigma_i**2)).",
+      "Keep canonical center pixel forced to 1.0 (comp_hm[icy, icx] = 1.0).",
+      "Keep pixelwise-max fusion (heatmap = maximum(heatmap, comp_hm))."
+    ],
+    "effect": "Tiny components (small area_i) get a SMALLER sigma -> sharper, higher-contrast peak; large components capped at sigma_max=0.75 (historical behavior)."
+  },
+
+  "change_2": {
+    "file": "src/data/kub_localizer_dataset.py",
+    "class": "KUBLocalizerDataset",
+    "current_call": "target = make_gaussian_heatmap(self.heatmap_resolution, mapped_centroids, self.sigma)  # line 91",
+    "proposed": [
+      "Add constructor flag: self.size_adaptive_sigma (bool, default False).",
+      "In __getitem__, after obtaining mapped_centroids, also compute per-component pixel area in localizer/heatmap space (count of foreground pixels in each labeled component after mapping to localizer space).",
+      "Conditionally pass component_areas to make_gaussian_heatmap only when self.size_adaptive_sigma is True.",
+      "When False: call unchanged (fixed self.sigma) -> bit-identical to Phase-13B behavior."
+    ],
+    "helper": "Extend get_component_centroids_in_localizer_space (heatmap_targets.py:35) to ALSO return per-component area in localizer space, OR add a sibling helper get_component_areas_in_localizer_space; the dataset binds both."
+  },
+
+  "explicit_non_changes": [
+    "src/inference/predicted_roi.py (proposal decoder) — UNCHANGED",
+    "src/inference/learned_roi_clean_v3.py (inference wrapper) — UNCHANGED",
+    "src/models/kub_localizer.py (architecture) — UNCHANGED",
+    "loss / optimizer / scheduler — UNCHANGED",
+    "proposal policy (thr/margin/top_k/nms) — UNCHANGED",
+    "Phase-13B / Phase-14 / Phase-10 checkpoints — UNCHANGED"
+  ],
+  "verification_after_apply": [
+    "Unit: make_gaussian_heatmap with component_areas=None reproduces the pre-change target byte-for-byte.",
+    "Unit: a tiny component (area ~2-4 px in heatmap space) yields a tighter peak (smaller sigma) than a large component.",
+    "Integration: training the H3 localizer with size_adaptive_sigma=True; confirm VAL zero-proposal TINY decreases vs Phase-13B baseline."
+  ]
+}

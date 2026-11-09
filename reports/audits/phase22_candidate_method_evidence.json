@@ -1,0 +1,211 @@
+{
+  "artifact": "phase22_candidate_method_evidence",
+  "phase": 22,
+  "purpose": "record, for each CANDIDATE direction, the measured evidence that either supports or does not support it. No method is claimed, implemented, or trained here.",
+  "evidence_policy": "every statement is sourced to a Phase-22 artifact. Where Phase 22 cannot support a claim, the claim is marked UNSUPPORTED rather than omitted.",
+  "candidates": [
+    {
+      "candidate": "C1 REGIONAL ZOOM (oracle upper bound)",
+      "status": "BOUNDED_ONLY",
+      "evidence": {
+        "oracle_accept_if_beneficial_ceiling_gain": 0.021034244277644776,
+        "oracle_acceptance_rate": 0.335396,
+        "oracle_mean_delta_executed": -0.042477861137391895,
+        "oracle_harm_rate_intent_to_treat": 0.663366
+      },
+      "supports": "a positive, measurable ceiling exists for a perfect selector on this population",
+      "does_not_support": [
+        "that any deployable selector attains it",
+        "that the gain survives on TEST (never measured)"
+      ]
+    },
+    {
+      "candidate": "C2 PREDICTION-DERIVED ROI (untrained)",
+      "status": "WEAK_AS_IMPLEMENTED",
+      "evidence": {
+        "no_predicted_roi_rate": 0.0,
+        "mean_delta_intent_to_treat": -0.06021763953686703,
+        "mean_delta_executed": -0.06021763953686703,
+        "correlation_with_oracle_gain": 0.68391404684425
+      },
+      "supports": "the ROI can be derived without ground truth, so the shape of a deployable pipeline is realisable",
+      "does_not_support": "that the untrained ROI is an effective policy; the no-ROI rate and the ITT delta are the evidence against"
+    },
+    {
+      "candidate": "C3 SCALE (input resolution)",
+      "status": "MEASURED_OFF_TRAINING_DISTRIBUTION",
+      "evidence": {
+        "sizes_probed": [
+          256,
+          512,
+          768,
+          1024
+        ],
+        "summary": [
+          {
+            "probe_size": 256,
+            "is_canonical_reference": false,
+            "n": 808,
+            "macro_domain_dice_native": 0.6884987673610603,
+            "macro_domain_dice_delta_vs_512": -0.13823991783628448,
+            "delta_ci_low": -0.1552532908820662,
+            "delta_ci_high": -0.12217223483435337,
+            "delta_p_value": 0.0,
+            "delta_separable_from_512": true,
+            "dice_ISIC": 0.8078811283950837,
+            "dice_BUSI": 0.6532656862185053,
+            "dice_KVASIR": 0.720407962892929,
+            "dice_KUB": 0.5724402919377233
+          },
+          {
+            "probe_size": 512,
+            "is_canonical_reference": true,
+            "n": 808,
+            "macro_domain_dice_native": 0.8353433576469,
+            "macro_domain_dice_delta_vs_512": 0.0,
+            "delta_ci_low": 0.0,
+            "delta_ci_high": 0.0,
+            "delta_p_value": 1.0,
+            "delta_separable_from_512": false,
+            "dice_ISIC": 0.8971816155115423,
+            "dice_BUSI": 0.8591869183150126,
+            "dice_KVASIR": 0.820323317947201,
+            "dice_KUB": 0.7646815788138442
+          },
+          {
+            "probe_size": 768,
+            "is_canonical_reference": false,
+            "n": 808,
+            "macro_domain_dice_native": 0.776819081711754,
+            "macro_domain_dice_delta_vs_512": -0.03688789010381927,
+            "delta_ci_low": -0.04463243450248566,
+            "delta_ci_high": -0.02915998185469751,
+            "delta_p_value": 0.0,
+            "delta_separable_from_512": true,
+            "dice_ISIC": 0.8822940042571304,
+            "dice_BUSI": 0.7428757914325047,
+            "dice_KVASIR": 0.747312234832715,
+            "dice_KUB": 0.7347942963246656
+          },
+          {
+            "probe_size": 1024,
+            "is_canonical_reference": false,
+            "n": 808,
+            "macro_domain_dice_native": 0.6825608407149975,
+            "macro_domain_dice_delta_vs_512": -0.10041294963314609,
+            "delta_ci_low": -0.11064502494972948,
+            "delta_ci_high": -0.09044540222448447,
+            "delta_p_value": 0.0,
+            "delta_separable_from_512": true,
+            "dice_ISIC": 0.8599241696175102,
+            "dice_BUSI": 0.5482153911313868,
+            "dice_KVASIR": 0.6550323352218201,
+            "dice_KUB": 0.6670714668892732
+          }
+        ],
+        "canonical_training_resolution": 512
+      },
+      "supports": "resolution is a real sensitivity of this reference",
+      "does_not_support": [
+        "that any non-512 resolution is better (the model was trained at 512)",
+        "that re-training at another resolution would reproduce this ordering"
+      ]
+    },
+    {
+      "candidate": "C4 ROUTING (benefit-aware compute allocation)",
+      "status": "PRE_TRAINING_EVIDENCE_ONLY",
+      "evidence": {
+        "compute_envelopes": [
+          {
+            "n_regional": 0,
+            "fraction_regional": 0.0,
+            "mean_macs": 31551740928.0,
+            "mean_macs_gmacs": 31.5517,
+            "total_macs": 25493806669824.0,
+            "multiplier_vs_always_global": 1.0,
+            "policy": "ALWAYS_GLOBAL",
+            "pooled_dice": 0.8390402334224809,
+            "gain_over_always_global": 0.0,
+            "regret_vs_oracle_ceiling": 0.02103424,
+            "gmacs_per_dice_point": 37.604563
+          },
+          {
+            "n_regional": 808,
+            "fraction_regional": 1.0,
+            "mean_macs": 63103481856.0,
+            "mean_macs_gmacs": 63.1035,
+            "total_macs": 50987613339648.0,
+            "multiplier_vs_always_global": 2.0,
+            "policy": "ALWAYS_REGIONAL_ORACLE",
+            "pooled_dice": 0.7965623722850891,
+            "gain_over_always_global": -0.042477861137391826,
+            "regret_vs_oracle_ceiling": 0.06351211,
+            "gmacs_per_dice_point": 79.219762
+          },
+          {
+            "n_regional": 271,
+            "fraction_regional": 0.335396,
+            "mean_macs": 42134069877.86139,
+            "mean_macs_gmacs": 42.1341,
+            "total_macs": 34044328461312.0,
+            "multiplier_vs_always_global": 1.335396,
+            "policy": "ORACLE_ACCEPT_IF_BENEFICIAL",
+            "pooled_dice": 0.8600744777001257,
+            "gain_over_always_global": 0.021034244277644776,
+            "regret_vs_oracle_ceiling": 0.0,
+            "gmacs_per_dice_point": 48.988862
+          },
+          {
+            "n_regional": 808,
+            "fraction_regional": 1.0,
+            "mean_macs": 63103481856.0,
+            "mean_macs_gmacs": 63.1035,
+            "total_macs": 50987613339648.0,
+            "multiplier_vs_always_global": 2.0,
+            "policy": "PRED_ROI_EXISTS",
+            "pooled_dice": 0.7965623722850891,
+            "gain_over_always_global": -0.042477861137391826,
+            "regret_vs_oracle_ceiling": 0.06351211,
+            "gmacs_per_dice_point": 79.219762
+          },
+          {
+            "n_regional": 236,
+            "fraction_regional": 0.292079,
+            "mean_macs": 40767348426.77228,
+            "mean_macs_gmacs": 40.7673,
+            "total_macs": 32940017528832.0,
+            "multiplier_vs_always_global": 1.292079,
+            "policy": "PRED_ACCEPT_IF_PREDICTED_BENEFICIAL",
+            "pooled_dice": 0.8518041101592042,
+            "gain_over_always_global": 0.0127638767367233,
+            "regret_vs_oracle_ceiling": 0.00827037,
+            "gmacs_per_dice_point": 47.860004
+          }
+        ]
+      },
+      "supports": "a well-defined cost/accuracy trade-off exists",
+      "does_not_support": "any claim about a learned router: none was trained, and Phase 22 forbids training one"
+    },
+    {
+      "candidate": "C5 COMPRESSION / EFFICIENCY",
+      "status": "UNSUPPORTED",
+      "evidence": {
+        "gmacs": 31.5517,
+        "is_small_in_absolute_terms": false,
+        "note": "the reference is the LIGHTEST of the six-model panel, but ~31.6 G MACs per image is NOT a small absolute cost. 'Lightest of the panel' must never be reported as 'fit for constrained deployment'. No pruning, quantization, distillation, or NAS has been performed and none is claimed."
+      },
+      "supports": "the reference is the lightest of the six-model panel",
+      "does_not_support": [
+        "that ~31.6 G MACs is small in absolute terms",
+        "that pruning/quantization/distillation would preserve accuracy: none was performed"
+      ]
+    }
+  ],
+  "explicit_non_claims": [
+    "Phase 22 did not train, fine-tune, prune, quantize, distill, or NAS.",
+    "Phase 22 did not evaluate TEST.",
+    "Phase 22 did not establish an optimal resolution, ROI rule, or router.",
+    "Phase 22 did not establish that FiLM caused any measured difference."
+  ],
+  "test_reads": 0
+}

@@ -1,0 +1,48 @@
+{
+ "artifact": "phase29_phase_d_preexecution_terminal_v1_1",
+ "phase": 29,
+ "stage": "PHASE_D_PREEXECUTION_TERMINAL_V1_1",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_phase29_repro_v1_1",
+ "generated_utc": "2026-10-03T15:35:04+00:00",
+ "classification": "READ_COUNTER_NAMESPACE_SEMANTIC_RECONCILIATION_AND_CAUSAL_PROVENANCE_FREEZE",
+ "terminal": "PHASE29_PHASE_D_PREEXECUTION_RECONCILED__READ_COUNTER_NAMESPACE_AND_CAUSAL_PROVENANCE_EXPLICITLY_FROZEN__PHASE_D_EXECUTION_ELIGIBLE_NOT_STARTED",
+ "success_terminal": true,
+ "historical_phase29_raw_VAL808_image_reads": 808,
+ "noncanonical_pre_reconciliation_VAL808_image_reads": 808,
+ "canonical_phase_d_VAL808_image_reads_before_authorized_execution": 0,
+ "new_VAL808_reads_during_this_repair": 0,
+ "VAL808_GT_reads": 0,
+ "ROUTER_HOLDOUT_reads": 0,
+ "TEST_reads": 0,
+ "phase_d_execution_started": false,
+ "phase_d_execution_eligible": true,
+ "repair_scope": {
+  "read_counter_namespace": "EXPLICITLY_FROZEN",
+  "pre_val808_gate": "SUPERSEDED_BY_V1_3",
+  "causal_provenance": "INDEPENDENTLY_REBOUND",
+  "numeric_semantics": "UNCHANGED",
+  "global_reproduction_gate": "RETAINED"
+ },
+ "created_artifacts": [
+  "phase29_phase_d_read_counter_namespace_reconciliation.json",
+  "phase29_pre_val808_freeze_gate_v1_3.json",
+  "phase29_phase_d_causal_order_independent_rebind.json",
+  "phase29_phase_d_numeric_semantics_unchanged.json",
+  "phase29_phase_d_preexecution_final_check_v1_1.json",
+  "phase29_phase_d_preexecution_terminal_v1_1.json"
+ ],
+ "preserved_evidence_dir": "reports/audits/provenance_pre_repair_phase29_phase_d_read_counter/",
+ "model_forwards_during_repair": 0,
+ "val808_images_read_during_repair": 0,
+ "scientific_artifacts_changed": [],
+ "stop_after": "PHASE_D_PREEXECUTION_RECONCILED_V1_1",
+ "blocked_terminals_not_used": [
+  "PHASE29_PHASE_D_BLOCKED__POST_SAFETY_CAUSAL_ORDER_UNRESOLVED",
+  "PHASE29_PHASE_D_BLOCKED__EXISTING_VAL808_CACHE_PROVENANCE_UNRESOLVED",
+  "PHASE29_PHASE_D_BLOCKED__NONCANONICAL_CACHE_REUSE_RISK",
+  "PHASE29_PHASE_D_BLOCKED__COMPONENT_NUMERIC_SEMANTICS_DRIFT",
+  "PHASE29_PHASE_D_BLOCKED__PREMATURE_VAL808_ACCESS"
+ ],
+ "all_pass": true
+}

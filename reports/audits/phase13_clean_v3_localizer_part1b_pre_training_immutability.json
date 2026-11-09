@@ -1,0 +1,150 @@
+{
+  "document_type": "PHASE13_PART1B_PRE_TRAINING_IMMUTABILITY_VERIFICATION",
+  "generated_utc": "2026-09-21T04:52:39.172700Z",
+  "status": "PASS",
+  "artifacts_checked": 17,
+  "mismatches": 0,
+  "cuda_initialized": false,
+  "model_constructed": false,
+  "optimizer_created": false,
+  "training_epochs": 0,
+  "test_content_reads": 0,
+  "artifacts": [
+    {
+      "artifact": "R2_PROTOCOL_JSON",
+      "path": "reports/audits/phase13_clean_v3_localizer_protocol_frozen_r2.json",
+      "sha256": "ab451e03366c589fae5c303ebf1382e086f4f115b97768eb36d491256a3b5e53",
+      "expected": "ab451e03366c589fae5c303ebf1382e086f4f115b97768eb36d491256a3b5e53",
+      "expected_prefix": false,
+      "match": true
+    },
+    {
+      "artifact": "R2_PROTOCOL_MD",
+      "path": "reports/audits/phase13_clean_v3_localizer_protocol_frozen_r2.md",
+      "sha256": "b9bad4e583a6a46d4482ed5aa7bf30fd93c2299858183e46c61e3c7c4b18ff89",
+      "expected": "b9bad4e583a6a46d4482ed5aa7bf30fd93c2299858183e46c61e3c7c4b18ff89",
+      "expected_prefix": false,
+      "match": true
+    },
+    {
+      "artifact": "R2_NOTEBOOK",
+      "path": "notebooks/phasewise/phase_13_predicted_roi_localization/phase13_clean_v3_localizer_checkpoint_selection_r2.ipynb",
+      "sha256": "47ff06a11116c9d43554121a2114a96b1bb7729a290f2524ed496d992610918e",
+      "expected": "47ff06a11116c9d43554121a2114a96b1bb7729a290f2524ed496d992610918e",
+      "expected_prefix": false,
+      "match": true
+    },
+    {
+      "artifact": "R1_PROTOCOL_JSON",
+      "path": "reports/audits/phase13_clean_v3_localizer_protocol_frozen.json",
+      "sha256": "999144bbad4af4e1d2dc006279aef1a5fb93f450006ae2c5db159c791c913703",
+      "expected": "999144bbad4af4e1d2dc006279aef1a5fb93f450006ae2c5db159c791c913703",
+      "expected_prefix": false,
+      "match": true
+    },
+    {
+      "artifact": "R1_NOTEBOOK",
+      "path": "notebooks/phasewise/phase_13_predicted_roi_localization/phase13_clean_v3_localizer_supervisor_freeze_amendment.ipynb",
+      "sha256": "6a08d6bd43e173f4b8b646d130fdabca0e95f3466b5caf0a91323cc52d34a622",
+      "expected": "6a08d6bd43e173f4",
+      "expected_prefix": true,
+      "match": true
+    },
+    {
+      "artifact": "PART1A_NOTEBOOK",
+      "path": "notebooks/phasewise/phase_13_predicted_roi_localization/phase13_clean_v3_localizer_protocol_freeze.ipynb",
+      "sha256": "68f787e1f70fcf706442b342e62cc615eeb347653e753149987becf793ac2bd0",
+      "expected": "68f787e1f70fcf706442b342e62cc615eeb347653e753149987becf793ac2bd0",
+      "expected_prefix": false,
+      "match": true
+    },
+    {
+      "artifact": "HARD_TINY_SET",
+      "path": "reports/tables/phase13_clean_v3_hard_tiny_replication_set.csv",
+      "sha256": "2f9828d77c008e7c90cd69e82d0af3568902ca9d508fdfcb9d8ccf8abd569538",
+      "expected": "2f9828d77c008e7c90cd69e82d0af3568902ca9d508fdfcb9d8ccf8abd569538",
+      "expected_prefix": false,
+      "match": true
+    },
+    {
+      "artifact": "GLOBAL_EMPTY_SET",
+      "path": "reports/tables/phase13_clean_v3_global_empty_replication_set.csv",
+      "sha256": "a0b332cad6bca4466ccc528cbe18cc527ef6503603ab69c55b9d699d7979f0ea",
+      "expected": "a0b332cad6bca4466ccc528cbe18cc527ef6503603ab69c55b9d699d7979f0ea",
+      "expected_prefix": false,
+      "match": true
+    },
+    {
+      "artifact": "HISTORICAL_TRAINER",
+      "path": "scripts/training/train_phase13b_localizer.py",
+      "sha256": "5985b9eb2fe43018babbd88004bf7e5b99d2783dcfa78c7404591a02bdcb555a",
+      "expected": "5985b9eb2fe43018babbd88004bf7e5b99d2783dcfa78c7404591a02bdcb555a",
+      "expected_prefix": false,
+      "match": true
+    },
+    {
+      "artifact": "HISTORICAL_BEST_PT",
+      "path": "checkpoints/phase13b_kub_localizer_r512_h128_sigmaeq075_centernetfocal_seed42_v1/best.pt",
+      "sha256": "ece906df6c73f2e93c3f873661490bf3cb1a6b82be2d2d93b58c25bc967cbace",
+      "expected": "ece906df6c73f2e93c3f873661490bf3cb1a6b82be2d2d93b58c25bc967cbace",
+      "expected_prefix": false,
+      "match": true
+    },
+    {
+      "artifact": "HISTORICAL_LATEST_PT",
+      "path": "checkpoints/phase13b_kub_localizer_r512_h128_sigmaeq075_centernetfocal_seed42_v1/latest.pt",
+      "sha256": "a1461df2e8d6784984337c79b87c65833c39fed16382579088d97d7c60ba78f4",
+      "expected": "a1461df2e8d6784984337c79b87c65833c39fed16382579088d97d7c60ba78f4",
+      "expected_prefix": false,
+      "match": true
+    },
+    {
+      "artifact": "HISTORICAL_HISTORY_CSV",
+      "path": "experiments/phase13b_kub_localizer_r512_h128_sigmaeq075_centernetfocal_seed42_v1/history.csv",
+      "sha256": "dcdb4369d0c3a087fd0bd2611db0aac3ff0afd48db8c1f9a9bb5e79b834fdb76",
+      "expected": "dcdb4369d0c3a087fd0bd2611db0aac3ff0afd48db8c1f9a9bb5e79b834fdb76",
+      "expected_prefix": false,
+      "match": true
+    },
+    {
+      "artifact": "PHASE12_COMPONENT_SOURCE",
+      "path": "reports/tables/phase12_clean_v3_oracle_geometry.csv",
+      "sha256": "29326d5b9a3bf71add74d8743750511f146d8c4dfbd1dc5b04a5e1b647c37cc0",
+      "expected": "29326d5b9a3bf71add74d8743750511f146d8c4dfbd1dc5b04a5e1b647c37cc0",
+      "expected_prefix": false,
+      "match": true
+    },
+    {
+      "artifact": "PHASE12_CASE_METRICS",
+      "path": "reports/tables/phase12_clean_v3_oracle_case_metrics.csv",
+      "sha256": "080f158fb8b3e3552ac7854c6d9a116e11564bcefa9efdcdbb3511dba090b436",
+      "expected": null,
+      "expected_prefix": false,
+      "match": true
+    },
+    {
+      "artifact": "PHASE12_COMPONENT_METRICS",
+      "path": "reports/tables/phase12_clean_v3_oracle_component_metrics.csv",
+      "sha256": "d66933a3c2821d3ab9375eadb5c0540fea145edcf49b648064fe9aa4c460c753",
+      "expected": null,
+      "expected_prefix": false,
+      "match": true
+    },
+    {
+      "artifact": "PHASE12_ANALYSIS_NOTEBOOK",
+      "path": "notebooks/phasewise/phase_12_oracle_roi/phase12_clean_v3_oracle_regional_analysis.ipynb",
+      "sha256": "7ebad54f1a7d45681138db298efff9e1af1567fac4051b27d325794be9e777a8",
+      "expected": null,
+      "expected_prefix": false,
+      "match": true
+    },
+    {
+      "artifact": "STAGE4D_NOTEBOOK",
+      "path": "notebooks/phasewise/phase_13_predicted_roi_localization/phase13_stage4d_localizer_final_visual_analysis.ipynb",
+      "sha256": "561fd5d63d7fa0ea7de9155b055ce08035928d065054bb94b8a707ce83b969d0",
+      "expected": "561fd5d63d7fa0ea",
+      "expected_prefix": true,
+      "match": true
+    }
+  ]
+}

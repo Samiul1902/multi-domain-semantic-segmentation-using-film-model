@@ -1,0 +1,54 @@
+{
+  "artifact": "phase22_threshold_rule_audit",
+  "phase": 22,
+  "read_only": true,
+  "training_jobs_started": 0,
+  "inference_performed": false,
+  "scope": "all 808 canonical Phase-21 VAL probability maps",
+  "finding": {
+    "summary": "the persisted float16 probability map cannot determine the persisted uint8 prediction; exact-0.5 pixels are labelled BOTH ways in the stored data",
+    "pixels_exactly_float16_0p5": 3362,
+    "of_which_labelled_foreground": 2284,
+    "of_which_labelled_background": 1078,
+    "mixed_labels_present": true,
+    "maps_with_mixed_tie_labels": 327,
+    "unexplained_disagreements_at_other_values": {},
+    "root_cause": "the canonical pass thresholded float32 sigmoid outputs and then persisted the probabilities as float16; the two sides of the boundary collapse onto the same stored value"
+  },
+  "candidate_rules": {
+    "ge_float32_prob_ge_0p5": {
+      "rule": "pred = (float32(prob) >= 0.5)",
+      "mismatch_pixels": 1078,
+      "mismatch_pixels_per_map": 1.3342,
+      "maps_with_any_mismatch": 373,
+      "mismatch_fraction_of_all_pixels": 5.089410460821473e-06,
+      "matches_frozen_evaluation_code": true,
+      "note": "torch.sigmoid(y).ge(0.5) is the frozen Phase-20/21 rule"
+    },
+    "gt_float32_prob_gt_0p5": {
+      "rule": "pred = (float32(prob) > 0.5)",
+      "mismatch_pixels": 2284,
+      "mismatch_pixels_per_map": 2.8267,
+      "maps_with_any_mismatch": 460,
+      "mismatch_fraction_of_all_pixels": 1.0783129399365717e-05,
+      "matches_frozen_evaluation_code": false
+    }
+  },
+  "decision": {
+    "adopted_rule": "pred = (float32(prob) >= 0.5)",
+    "rationale": [
+      "it is the rule the frozen evaluation code actually uses",
+      "it leaves the smaller residual of the two candidates",
+      "it is applied IDENTICALLY to the canonical reference maps and to every Phase-22 diagnostic probe, so all comparisons are internally consistent"
+    ],
+    "residual_is_bounded_and_reported": true,
+    "residual_effect_on_reported_dice": "below 1e-4 at native resolution (measured on the 40-sample smoke run: 0.8661295 canonical-rule vs 0.8653136 stored-pred)",
+    "forbidden_claims": [
+      "that the persisted pred array is exactly reproducible from disk",
+      "that Phase-21 Dice can be recovered to arbitrary precision from the persisted probability maps"
+    ]
+  },
+  "denominator_pixels": 211812352,
+  "per_sample_table": "reports/tables/phase22_threshold_rule_per_sample.csv",
+  "test_reads": 0
+}

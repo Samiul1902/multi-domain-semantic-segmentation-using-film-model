@@ -1,0 +1,48 @@
+{
+ "artifact": "phase36_v1_19_prelaunch_authority_bundle",
+ "phase": 36,
+ "revision": "ra_medfilm_barr_phase36_robustness_v1_19",
+ "type": "FINAL_PRELAUNCH_AUTHORITY_BUNDLE",
+ "mode": "STATIC_NON_CONSUMING_GOVERNANCE_ONLY",
+ "generated_utc": "2026-10-10T00:00:00Z",
+ "authority_order": "ACYCLIC (A->B->C->D->E)",
+ "supersedes_revision": "v1.18",
+ "supervisor_sha256_present": false,
+ "count_semantics": {
+  "table_figure_target_count": 16,
+  "total_reachable_write_target_count": 23,
+  "unclassified_write_target_count": 0,
+  "namespace_overlap_count": 0
+ },
+ "v1_18_consumed_state": {
+  "classification": "CONSUMED_PRE_START_RUNTIME_FAILURE",
+  "defect": "D92",
+  "attempt_consumed": true,
+  "retry_permitted": false
+ },
+ "binds": {
+  "v1_19_execution_source": {
+   "path": "scripts/analysis/phase36_robustness_execution_v1_19.py",
+   "sha256": "3ec5ea920af2b6d66864b3bbc7e5362f0756777512c29be70d3e5453e18693cd"
+  },
+  "v1_19_launcher": {
+   "path": "scripts/analysis/launch_phase36_v1_19.py",
+   "sha256": "c2b81f8d7d65dc44fba6ee58ba74ea59815d46c415a052ea4aff86005167c9c5",
+   "role": "PINNED_BY_DEDICATED_LAUNCH_AUTHORITY_FILE"
+  },
+  "v1_19_runtime_manifest": {
+   "path": "reports/audits/phase36_v1_19_runtime_source_integrity_manifest.json",
+   "sha256": "06f7d0368b1f1f7e02ca950fe54c375d8d2d7e0f97800c8318d4451f408a1301"
+  },
+  "v1_18_consumed_adjudication": {
+   "path": "reports/audits/phase36_v1_18_consumed_prestart_failure_adjudication_v1_0.json",
+   "sha256": "41c6d79790f302e0863b0646b659729594cdc15834b3697169d5503907d809f9"
+  }
+ },
+ "acyclicity": {
+  "bundle_contains_supervisor_sha256": false,
+  "bundle_contains_launch_authority_file_sha256": false,
+  "note": "The bundle binds exec/manifest/governance. It NEVER carries the supervisor SHA (acyclic by construction). The launcher's expected SHAs are read from a SEPARATELY-FROZEN launch-authority constant file whose OWN raw bytes are pinned by the supervisor."
+ },
+ "terminal": "PHASE36_V1_19_PRELAUNCH_AUTHORITY_BUNDLE_WRITTEN"
+}

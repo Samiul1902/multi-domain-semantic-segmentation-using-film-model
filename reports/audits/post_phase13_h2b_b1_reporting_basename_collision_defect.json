@@ -1,0 +1,52 @@
+{
+  "artifact": "POST_PHASE13_H2B_B1_REPORTING_BASENAME_COLLISION_DEFECT",
+  "status": "DISCOVERED_AND_CONTAINED",
+  "created_utc": "2026-09-23T09:12:00Z",
+  "classification": "NONBLOCKING_REPORTING_ARTIFACT_NAMING_DEFECT__INHERITED_FROM_H2A_LINEAGE",
+  "scientific_impact": "NONE",
+  "gradient_update_impact": "NONE",
+
+  "defect": {
+    "description": "The H2B runner was derived from the H2A runner, which in turn inherited the Phase-13 basename constants TRAINING_START_BASENAME / TRAINING_COMPLETION_BASENAME. These names do not include the experiment id, so each successive run in the lineage overwrites the same two audit files.",
+    "colliding_basenames_inherited": [
+      "phase13_clean_v3_localizer_training_start",
+      "phase13_clean_v3_localizer_training_completion"
+    ],
+    "affected_paths": [
+      "reports/audits/phase13_clean_v3_localizer_training_start.json",
+      "reports/audits/phase13_clean_v3_localizer_training_start.md"
+    ],
+    "observed": "After the H2B run started, phase13_clean_v3_localizer_training_start.json contained H2B experiment content (experiment_id = post_phase13_h2b_...).",
+    "pre_existing": "YES — the H2A run used the same basename, so the Phase-13 content of this artifact had already been displaced before H2B. This is an inherited lineage defect, not introduced by the H2B scientific change.",
+    "recoverable": "NO — the file is untracked by git; no original copy is available."
+  },
+
+  "containment": {
+    "action": "The two basename constants in the H2B runner were changed to experiment-specific names so H2B can never overwrite a Phase13- or H2A-named artifact again.",
+    "new_basenames": [
+      "post_phase13_h2b_b1_training_start",
+      "post_phase13_h2b_b1_training_completion"
+    ],
+    "h2b_start_audit_preserved_under_correct_name": [
+      "reports/audits/post_phase13_h2b_b1_training_start.json",
+      "reports/audits/post_phase13_h2b_b1_training_start.md"
+    ],
+    "mislabeled_phase13_named_file_deleted": "NO — deliberately left in place rather than silently repaired, per project rule 'do not silently repair data; report rather than patch'.",
+    "mislabeled_file_current_content": "H2B experiment content (displaced Phase-13 content is unrecoverable)",
+    "training_restarted_from_scratch": "YES — the run was stopped at ~2 aborted epochs and relaunched clean with the corrected basenames (approximately 12 minutes of compute lost; no scientific state was produced by the aborted run)."
+  },
+
+  "not_a_scientific_change": {
+    "loss_objective": "UNCHANGED (SoftTargetFocalBCE gamma=2.0)",
+    "architecture": "UNCHANGED",
+    "target": "UNCHANGED",
+    "checkpoint_selection": "UNCHANGED",
+    "proposal_config": "UNCHANGED",
+    "data_split": "UNCHANGED"
+  },
+
+  "check_required": "NO",
+  "rationale_for_not_check_required": "The defect affects only the filename of a training-start reporting audit. No scientific measurement, checkpoint, history row, selection decision or downstream artifact is affected. It was detected, contained, and disclosed before any B1 result was produced.",
+
+  "recommendation_for_future_phases": "Every runner derived from the Phase-13 lineage must rename TRAINING_START_BASENAME / TRAINING_COMPLETION_BASENAME to include its own experiment identity, or parameterise them from EXPERIMENT_ID."
+}

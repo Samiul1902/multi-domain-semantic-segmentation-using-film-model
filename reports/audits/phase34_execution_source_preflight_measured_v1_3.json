@@ -1,0 +1,133 @@
+{
+ "artifact": "phase34_execution_source_preflight_measured_v1_3",
+ "phase": 34,
+ "section": "\u00a7D",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase34_efficiency_profiling_v1_3",
+ "additive_filename": true,
+ "original_frozen_preflight": {
+  "path": "reports/audits/phase34_execution_source_preflight_v1_3.json",
+  "sha256": "ec062e4df588377c1e83f2971d7e646f834eb0dbc6d127a6625a961efd72bd6b",
+  "unchanged": true
+ },
+ "smoke_authority_bindings": [
+  {
+   "path": "reports/audits/phase34_smoke_execution_terminal_v1_3.json",
+   "expected_sha256": "4336b7b96d1b3874745feb52af6738e52174be644673f63642cd2feb6e542511",
+   "observed_sha256": "4336b7b96d1b3874745feb52af6738e52174be644673f63642cd2feb6e542511",
+   "match": true
+  },
+  {
+   "path": "reports/audits/phase34_model_identity_and_smoke_gate_v1_3.json",
+   "expected_sha256": "8e398f9c405e4a9bcdfb52ed60fdadd03c8d348807b87fab1801839fe45873c6",
+   "observed_sha256": "8e398f9c405e4a9bcdfb52ed60fdadd03c8d348807b87fab1801839fe45873c6",
+   "match": true
+  },
+  {
+   "path": "reports/audits/phase34_smoke_final_check_v1_3.json",
+   "expected_sha256": "ffe0231067f821f1f41f05be962a7d0e619f88404bb5e49f98dd951bed73266a",
+   "observed_sha256": "ffe0231067f821f1f41f05be962a7d0e619f88404bb5e49f98dd951bed73266a",
+   "match": true
+  },
+  {
+   "path": "reports/audits/phase34_smoke_execution_provenance_v1_3.json",
+   "expected_sha256": "f23e7f5c4d2d0d090a9e9bfd1588db0db174d98f48ed49bea2322c2f8a32064b",
+   "observed_sha256": "f23e7f5c4d2d0d090a9e9bfd1588db0db174d98f48ed49bea2322c2f8a32064b",
+   "match": true
+  },
+  {
+   "path": "reports/audits/phase34_preexecution_source_freeze_v1_3.json",
+   "expected_sha256": "c7ee684c24d3ddaf4af3eeca6eed3bd44c856c9152b6eccaec0443e6df14c742",
+   "observed_sha256": "c7ee684c24d3ddaf4af3eeca6eed3bd44c856c9152b6eccaec0443e6df14c742",
+   "match": true
+  },
+  {
+   "path": "reports/audits/phase34_execution_source_preflight_v1_3.json",
+   "expected_sha256": "ec062e4df588377c1e83f2971d7e646f834eb0dbc6d127a6625a961efd72bd6b",
+   "observed_sha256": "ec062e4df588377c1e83f2971d7e646f834eb0dbc6d127a6625a961efd72bd6b",
+   "match": true
+  },
+  {
+   "path": "reports/audits/phase34_timed_operation_registry_v1_2.json",
+   "expected_sha256": "435e497c5cc359d9ea434bd52a00c1ad3c9fcedc2d23a59e46c376c53e6a1b7c",
+   "observed_sha256": "435e497c5cc359d9ea434bd52a00c1ad3c9fcedc2d23a59e46c376c53e6a1b7c",
+   "match": true
+  }
+ ],
+ "smoke_authority_all_match": true,
+ "smoke_authority_consistent": true,
+ "measurement_orchestration_source": "scripts/analysis/phase34_efficiency_profiling_execution_v1_3.py",
+ "measurement_worker": "scripts/analysis/phase34_efficiency_profiling_worker_v1_3.py",
+ "source_verification": [
+  {
+   "key": "common",
+   "path": "scripts/analysis/phase34_v1_2_common.py",
+   "expected_sha256": "ca74fe88a8314b6099b2455f3450ea6f075dcd3cf69208cdd8a784ad24e9a0f9",
+   "observed_sha256": "ca74fe88a8314b6099b2455f3450ea6f075dcd3cf69208cdd8a784ad24e9a0f9",
+   "match": true
+  },
+  {
+   "key": "worker",
+   "path": "scripts/analysis/phase34_efficiency_profiling_worker_v1_3.py",
+   "expected_sha256": "295c64d94358aed7f243b4036a75a5fa78288585f7bf17d3a764fb64291e59f7",
+   "observed_sha256": "295c64d94358aed7f243b4036a75a5fa78288585f7bf17d3a764fb64291e59f7",
+   "match": true
+  },
+  {
+   "key": "harness",
+   "path": "scripts/analysis/phase34_efficiency_profiling_execution_v1_3.py",
+   "expected_sha256": "3244c2f95fbd1381bf553e18d11175e45b56da6247bceb371616ca64d440f237",
+   "observed_sha256": "3244c2f95fbd1381bf553e18d11175e45b56da6247bceb371616ca64d440f237",
+   "match": true
+  },
+  {
+   "key": "preflight",
+   "path": "scripts/analysis/phase34_execution_preflight_v1_3.py",
+   "expected_sha256": "494925ecbc9a13eb498764f55bb8eef43fa2eac85ec96b20b23394636047c46d",
+   "observed_sha256": "494925ecbc9a13eb498764f55bb8eef43fa2eac85ec96b20b23394636047c46d",
+   "match": true
+  },
+  {
+   "key": "model_G",
+   "path": "src/models/film/global_medfilm.py",
+   "expected_sha256": "a04ff3e61b4d900ff47c2f390da4a999e73bd6047b28a19e41b05115e431d11f",
+   "observed_sha256": "a04ff3e61b4d900ff47c2f390da4a999e73bd6047b28a19e41b05115e431d11f",
+   "match": true
+  },
+  {
+   "key": "model_R_psi",
+   "path": "src/models/barr/regional_refiner.py",
+   "expected_sha256": "4fe0abde3ec3a183d930f676c4400b4d9ba778793ea64abf1755c5b8dabf947a",
+   "observed_sha256": "4fe0abde3ec3a183d930f676c4400b4d9ba778793ea64abf1755c5b8dabf947a",
+   "match": true
+  },
+  {
+   "key": "model_B_phi_authority",
+   "path": "scripts/analysis/train_phase25d_router.py",
+   "expected_sha256": "fc7c1bdf263ae4551dcb8f170d3203adb8540fbc189846265b74f6eca1541e91",
+   "observed_sha256": "fc7c1bdf263ae4551dcb8f170d3203adb8540fbc189846265b74f6eca1541e91",
+   "match": true
+  },
+  {
+   "key": "model_S_omega_authority",
+   "path": "scripts/analysis/phase25f_execution_common.py",
+   "expected_sha256": "98cf958a377e2de30e0b67e63fd56bafea418b2b061a362ee7284e852012cd2e",
+   "observed_sha256": "98cf958a377e2de30e0b67e63fd56bafea418b2b061a362ee7284e852012cd2e",
+   "match": true
+  },
+  {
+   "key": "domain_task_registry",
+   "path": "src/analysis/multidomain_harmonization.py",
+   "expected_sha256": "3f009d994ed24d9c2edf8e48646e93700ab4e54dea786fb4bd03180c825cbf92",
+   "observed_sha256": "3f009d994ed24d9c2edf8e48646e93700ab4e54dea786fb4bd03180c825cbf92",
+   "match": true
+  }
+ ],
+ "all_sources_match": true,
+ "smoke_only_driver_used_for_measurement": false,
+ "new_source_authored_for_timing": false,
+ "model_constructed": false,
+ "checkpoint_deserialized": false,
+ "generated_utc": "2026-10-04T13:34:18+00:00",
+ "all_pass": true
+}

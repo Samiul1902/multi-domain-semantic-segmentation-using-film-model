@@ -1,0 +1,49 @@
+{
+  "artifact": "phase36_v1_6_source_repair_no_execution_audit",
+  "section": "§Q",
+  "phase": 36,
+  "method": "RA-MedFiLM-BARR",
+  "revision": "ra_medfilm_barr_phase36_robustness_v1_6",
+  "type": "ZERO_EXECUTION_AUDIT",
+  "counters": {
+    "model_constructions": 0,
+    "checkpoint_deserializations": 0,
+    "checkpoint_loads": 0,
+    "forwards": 0,
+    "autograd": 0,
+    "raw_val_image_reads": 0,
+    "val_gt_reads": 0,
+    "val808_scientific_cache_reads": 0,
+    "router_holdout_identity_file_reads": 0,
+    "router_holdout_raw_reads": 0,
+    "test_manifest_identity_file_reads": 0,
+    "test_raw_reads": 0,
+    "smoke_runs": 0,
+    "science_runs": 0,
+    "training": 0,
+    "optimizer_steps": 0
+  },
+  "all_zero": true,
+  "proof_method": "SOURCE_AND_AST_REASONING_ONLY__NO_PROTECTED_ARTIFACT_CONTENT_INSPECTED",
+  "protected_artifact_contents_inspected": false,
+  "evidence": {
+    "smoke_output_absent": true,
+    "science_output_absent": true,
+    "unit_model_free": true,
+    "unit_torch_imported": false,
+    "unit_protected_population_read": false,
+    "preflight_torch_imported": false,
+    "negative_controls_model_free": true,
+    "negative_controls_torch_imported": false,
+    "negative_controls_protected_population_read": false,
+    "negative_controls_mutants_in_memory_only": true,
+    "direct_byte_audit_torch_imported": false,
+    "direct_byte_audit_protected_content_inspected": false
+  },
+  "gate_env": {
+    "PHASE36_EXECUTE": "<unset>",
+    "PHASE36_SMOKE_EXECUTE": "<unset>"
+  },
+  "verdict": "PASS__ZERO_MODEL_AND_PROTECTED_DATA_EXECUTION",
+  "generated_utc": "2026-10-06T09:10:15Z"
+}

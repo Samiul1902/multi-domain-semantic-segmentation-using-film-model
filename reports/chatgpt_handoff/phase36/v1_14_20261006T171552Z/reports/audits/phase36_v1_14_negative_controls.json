@@ -1,0 +1,249 @@
+{
+ "artifact": "phase36_v1_14_negative_controls",
+ "phase": 36,
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase36_robustness_v1_14",
+ "type": "NEGATIVE_CONTROL_REPORT",
+ "controls_range": "NC115..NC138",
+ "model_free": true,
+ "checkpoint_read": false,
+ "protected_population_read": false,
+ "no_canonical_file_modified": true,
+ "canonical_anchor_ok": true,
+ "canonical_interpreter_ok": true,
+ "canonical_cuda_readiness_ok": true,
+ "science_release_canonical_state": "RELEASED",
+ "declared_smoke_check_count": 53,
+ "controls_total": 25,
+ "controls_passed": 25,
+ "controls_failed": 0,
+ "all_pass": true,
+ "failed_controls": [],
+ "controls": [
+  {
+   "control": "NC115_no_attestation_not_released",
+   "mutation_changed_input": true,
+   "detector_canonical": true,
+   "detector_mutant": true,
+   "mutant_rejected": true,
+   "passed": true,
+   "note": "absent release attestation -> NOT_RELEASED"
+  },
+  {
+   "control": "NC116_malformed_attestation_not_released",
+   "mutation_changed_input": true,
+   "detector_canonical": true,
+   "detector_mutant": true,
+   "mutant_rejected": true,
+   "passed": true,
+   "note": null
+  },
+  {
+   "control": "NC117_revision_mismatch_not_released",
+   "mutation_changed_input": true,
+   "detector_canonical": true,
+   "detector_mutant": true,
+   "mutant_rejected": true,
+   "passed": true,
+   "note": null
+  },
+  {
+   "control": "NC118_source_sha_mismatch_not_released",
+   "mutation_changed_input": true,
+   "detector_canonical": true,
+   "detector_mutant": true,
+   "mutant_rejected": true,
+   "passed": true,
+   "note": "attestation must bind THIS source's bytes"
+  },
+  {
+   "control": "NC119_smoke_artifact_missing_not_released",
+   "mutation_changed_input": true,
+   "detector_canonical": true,
+   "detector_mutant": true,
+   "mutant_rejected": true,
+   "passed": true,
+   "note": null
+  },
+  {
+   "control": "NC120_smoke_artifact_sha_mismatch_not_released",
+   "mutation_changed_input": true,
+   "detector_canonical": true,
+   "detector_mutant": true,
+   "mutant_rejected": true,
+   "passed": true,
+   "note": "release is bound to a SPECIFIC frozen smoke result's bytes"
+  },
+  {
+   "control": "NC121_smoke_not_successful_not_released",
+   "mutation_changed_input": true,
+   "detector_canonical": true,
+   "detector_mutant": true,
+   "mutant_rejected": true,
+   "passed": true,
+   "note": null
+  },
+  {
+   "control": "NC122_scientific_output_not_false_not_released",
+   "mutation_changed_input": true,
+   "detector_canonical": true,
+   "detector_mutant": true,
+   "mutant_rejected": true,
+   "passed": true,
+   "note": null
+  },
+  {
+   "control": "NC123_release_gate_mismatch_not_released",
+   "mutation_changed_input": true,
+   "detector_canonical": true,
+   "detector_mutant": true,
+   "mutant_rejected": true,
+   "passed": true,
+   "note": null
+  },
+  {
+   "control": "NC124_bare_released_true_json_rejected",
+   "mutation_changed_input": true,
+   "detector_canonical": true,
+   "detector_mutant": true,
+   "mutant_rejected": true,
+   "passed": true,
+   "note": "a bare {'released': true} lacks the FULL positive chain (revision + source-SHA + smoke-artifact bytes + success flags) -> the FIRST binding check already fails"
+  },
+  {
+   "control": "NC124b_bare_released_with_revision_still_rejected",
+   "mutation_changed_input": true,
+   "detector_canonical": true,
+   "detector_mutant": true,
+   "mutant_rejected": true,
+   "passed": true,
+   "note": null
+  },
+  {
+   "control": "NC125_not_released_science_cannot_set_launch_token",
+   "mutation_changed_input": true,
+   "detector_canonical": true,
+   "detector_mutant": true,
+   "mutant_rejected": true,
+   "passed": true,
+   "note": "NOT_RELEASED returns before token assignment / exec import / marker"
+  },
+  {
+   "control": "NC126_not_released_science_cannot_create_marker_production_order",
+   "mutation_changed_input": true,
+   "detector_canonical": true,
+   "detector_mutant": true,
+   "mutant_rejected": true,
+   "passed": true,
+   "note": "production launcher source: release gate precedes token & exec import"
+  },
+  {
+   "control": "NC127_fully_bound_attestation_released",
+   "mutation_changed_input": false,
+   "detector_canonical": true,
+   "detector_mutant": true,
+   "mutant_rejected": true,
+   "passed": true,
+   "note": "revision + source-SHA + smoke bytes + success flags all bound"
+  },
+  {
+   "control": "NC128_wrong_interpreter_terminal_detector_mutation_sensitive",
+   "mutation_changed_input": true,
+   "detector_canonical": true,
+   "detector_mutant": true,
+   "mutant_rejected": true,
+   "passed": true,
+   "note": "renaming OR removing the emitted literal must fail the detector (proves D41 is a real source/AST binding, not a tautology)"
+  },
+  {
+   "control": "NC129_smoke_id_detector_rejects_removed_id",
+   "mutation_changed_input": true,
+   "detector_canonical": true,
+   "detector_mutant": true,
+   "mutant_rejected": true,
+   "passed": true,
+   "note": "remove one ID -> exact-count fails"
+  },
+  {
+   "control": "NC130_smoke_id_detector_rejects_added_id",
+   "mutation_changed_input": true,
+   "detector_canonical": true,
+   "detector_mutant": true,
+   "mutant_rejected": true,
+   "passed": true,
+   "note": "add one ID -> exact-count + set-equality fail"
+  },
+  {
+   "control": "NC131_smoke_id_detector_rejects_duplicate_id",
+   "mutation_changed_input": true,
+   "detector_canonical": true,
+   "detector_mutant": true,
+   "mutant_rejected": true,
+   "passed": true,
+   "note": "duplicate one ID -> uniqueness fails"
+  },
+  {
+   "control": "NC132_raw_byte_untransform_identity",
+   "mutation_changed_input": true,
+   "detector_canonical": true,
+   "detector_mutant": true,
+   "mutant_rejected": true,
+   "passed": true,
+   "note": "removes both additive D40 segments, applies raw-byte token untransform -> byte-identical to frozen v1.13"
+  },
+  {
+   "control": "NC133_raw_byte_untransform_mutation_sensitive",
+   "mutation_changed_input": true,
+   "detector_canonical": true,
+   "detector_mutant": true,
+   "mutant_rejected": true,
+   "passed": true,
+   "note": "corrupting a governance token breaks byte-identity with frozen v1.13"
+  },
+  {
+   "control": "NC134_raw_byte_crlf_preserved",
+   "mutation_changed_input": true,
+   "detector_canonical": true,
+   "detector_mutant": true,
+   "mutant_rejected": true,
+   "passed": true,
+   "note": "CRLF line endings survive the raw-byte transform; no newline normalization is applied"
+  },
+  {
+   "control": "NC135_source_mutation_rejected",
+   "mutation_changed_input": true,
+   "detector_canonical": true,
+   "detector_mutant": true,
+   "mutant_rejected": true,
+   "passed": true,
+   "note": null
+  },
+  {
+   "control": "NC136_manifest_mutation_rejected",
+   "mutation_changed_input": true,
+   "detector_canonical": true,
+   "detector_mutant": true,
+   "mutant_rejected": true,
+   "passed": true,
+   "note": null
+  },
+  {
+   "control": "NC137_source_and_manifest_co_edit_rejected",
+   "mutation_changed_input": true,
+   "detector_canonical": true,
+   "detector_mutant": true,
+   "mutant_rejected": true,
+   "passed": true,
+   "note": "co-edit cannot supply its own hashes; frozen constants unchanged"
+  },
+  {
+   "control": "NC138_canonical_venv_cuda_passes_readiness",
+   "mutation_changed_input": false,
+   "detector_canonical": true,
+   "detector_mutant": true,
+   "mutant_rejected": true,
+   "passed": true,
+   "note": null
+  }
+ ]
+}

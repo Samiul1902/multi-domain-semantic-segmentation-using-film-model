@@ -1,0 +1,49 @@
+{
+ "artifact": "phase29_phase_d_noncanonical_cache_isolation",
+ "phase": 29,
+ "stage": "PHASE_D_NONCANONICAL_CACHE_ISOLATION",
+ "method": "RA-MedFiLM-BARR",
+ "generated_utc": "2026-10-03T15:25:42+00:00",
+ "classification": "NONCANONICAL_PRE_RECONCILIATION_VAL808_CACHE",
+ "directory": "data_cache/phase29_val808_shared_fixed_g_v1_0",
+ "provenance_record_dir": "reports/audits/phase29_noncanonical_val808_cache_provenance/",
+ "evidence_deleted": false,
+ "files_bound": [
+  {
+   "file": "val808_global_prob_f16.npy",
+   "sha256": "f3c90a6fd65169324917671b0ca889aaba1e362ea84b258f738a21054faa304b",
+   "size_bytes": 423624832,
+   "in_place": true,
+   "isolation_kind": "PATH_DISAMBIGUATION_ONLY__EVIDENCE_NOT_DELETED"
+  },
+  {
+   "file": "val808_router_deep_features_f32.npy",
+   "sha256": "8f1a1aefa0de32640fcd773c79ae054bebe05132945146885563c40c2f25aa01",
+   "size_bytes": 620672,
+   "in_place": true,
+   "isolation_kind": "PATH_DISAMBIGUATION_ONLY__EVIDENCE_NOT_DELETED"
+  },
+  {
+   "file": "val808_router_scalars_f32.npy",
+   "sha256": "c592de635aab1379249dcdda38b0ec02572c1fae9282e9e29bbed1cbca44ff8c",
+   "size_bytes": 32448,
+   "in_place": true,
+   "isolation_kind": "PATH_DISAMBIGUATION_ONLY__EVIDENCE_NOT_DELETED"
+  },
+  {
+   "file": "val808_roi_geometry.json",
+   "sha256": "dfe48e3827405d7f9cbff7f52573a663c1141ebee8da196b3d239e0ffc63aaf7",
+   "size_bytes": 447030,
+   "in_place": true,
+   "isolation_kind": "PATH_DISAMBIGUATION_ONLY__EVIDENCE_NOT_DELETED"
+  }
+ ],
+ "rationale": "The cache was produced under the SUPERSEDED no-autocast numeric mode and diverges from the Phase27 autocast-fp16 target (max_abs 0.2001953125, 38.7% of values). It MUST NOT be reused scientifically. It is bound and flagged HERE; the underlying evidence is preserved, not deleted.",
+ "checks": {
+  "classification_assigned": true,
+  "scientifically_reusable_false": true,
+  "evidence_preserved": true,
+  "no_deletion": true
+ },
+ "all_pass": true
+}

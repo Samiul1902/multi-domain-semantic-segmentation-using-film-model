@@ -1,0 +1,97 @@
+{
+ "artifact": "phase30_statistical_analysis_plan_v1_2",
+ "phase": 30,
+ "section": "\u00a7E/\u00a7F",
+ "classification": "PRE_FIRST_OPEN_COMPARATOR_STATISTICAL_SCOPE_RECONCILIATION",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_phase30_final_dev_validation_v1_2",
+ "supersedes_by_addition": "reports/audits/phase30_statistical_analysis_plan.json",
+ "v1_0_disposition": "PRESERVED_BYTE_FOR_BYTE_AS_PROVENANCE",
+ "deprecated_phrases": [
+  {
+   "phrase": "Secondary: A8-A7 (S_omega marginal effect)",
+   "disposition": "DEPRECATED_AMBIGUOUS_COMPARATOR_SCOPE",
+   "reason": "the formal A7-vs-A8 controlled comparison is owned and COMPLETE by Phase25G on ROUTER_DEVELOPMENT; no authoritative predecessor evidence requires an inferential Phase30 A7 comparison"
+  }
+ ],
+ "inferential_scope": {
+  "CLAIM_BEARING_INFERENTIAL": "A8 vs global reference only",
+  "DESCRIPTIVE_COMPANION": "A7 reconstructed from the same router membership and same refined candidate, without additional model inference"
+ },
+ "primary_estimand": "MACRO_DOMAIN_EQUAL_WEIGHT_MEAN_DICE_DELTA (A8 final vs global reference)",
+ "primary_comparator": "GLOBAL_REFERENCE (G only)",
+ "bootstrap_type": "DOMAIN_STRATIFIED_GROUP_BOOTSTRAP",
+ "resampling_unit": "group (cluster), within domain stratum",
+ "group_unit": "phase24_router_split_manifest.csv:group_key",
+ "strata": [
+  "BUSI",
+  "ISIC",
+  "KUB",
+  "KVASIR"
+ ],
+ "n_boot": 2000,
+ "rng": "numpy.random.Generator(numpy.random.PCG64(42))",
+ "seed": 42,
+ "ci_method": "percentile",
+ "ci_percentiles": [
+  2.5,
+  97.5
+ ],
+ "paired": true,
+ "non_inferiority_margin": 0.005,
+ "claim_criterion": "non-inferiority claim iff lower 95% CI of macro DeltaDice > -0.005",
+ "harm_flags": {
+  "BENEFICIAL": "d_i >= +0.02",
+  "HARMFUL": "d_i <= -0.01",
+  "NEUTRAL": "otherwise"
+ },
+ "raw_p_value_scope": {
+  "scope": "A8_FINAL_VS_GLOBAL_REFERENCE_PRIMARY_COMPARISON_ONLY",
+  "applies_to": [
+   "A8 vs global reference (macro and per-domain)"
+  ],
+  "does_not_apply_to": [
+   "A8 minus A7"
+  ],
+  "creates_new_inferential_comparator_for_A7": false,
+  "authority": {
+   "path": "reports/audits/phase25e_evaluation_statistics_contract_v1_0.json",
+   "sha256": "fc90a1362a06eda342d987d2f6e1e12a1190ac650d7bb0db1234514a297644af",
+   "predecessor_definition": "primary = raw paired two-sided p; secondary = Holm-Bonferroni within the pre-declared C7-vs-comparator family (C1..C6, C10)",
+   "note": "the predecessor raw paired p is the PRIMARY comparison statistic; Phase30's primary comparison is A8 vs global, so the raw paired p is bound to it and NOT to A8-A7"
+  },
+  "resolved": true
+ },
+ "descriptive_uncertainty_classification": {
+  "applies_to": [
+   "A7",
+   "A8 minus A7"
+  ],
+  "classification": "DESCRIPTIVE_UNCERTAINTY_ONLY",
+  "hypothesis_adjudication": false,
+  "superiority_claim": false,
+  "preregistered_numeric_threshold": false,
+  "multiplicity_claim": false
+ },
+ "permitted_descriptive_A7_reporting": [
+  "A7 Dice point estimate",
+  "A8 Dice point estimate",
+  "A8-A7 point difference",
+  "A7 harmful-replacement count/rate",
+  "A8 harmful-replacement count/rate",
+  "absolute harmful-replacement reduction",
+  "state counts"
+ ],
+ "descriptive_values_may_not_become_success_criterion": true,
+ "bootstrap_plan": {
+  "path": "data_cache/phase30_final_dev_validation_v1_0/phase30_router_holdout_bootstrap_plan.npz",
+  "sha256": "59c97ccf6fbea823d38a1fba12d5e81b7e5fb103f31bc7fdfe443fd4971faab1",
+  "expected_sha256": "59c97ccf6fbea823d38a1fba12d5e81b7e5fb103f31bc7fdfe443fd4971faab1",
+  "regenerated": false,
+  "estimand_consumption_scope": "A8 vs global primary (claim-bearing); A7/A8-A7 descriptive-uncertainty only"
+ },
+ "statistic_invented_after_outcome": false,
+ "val808_phase27_bootstrap_copied": false,
+ "generated_utc": "2026-10-04T03:00:40+00:00",
+ "all_pass": true
+}

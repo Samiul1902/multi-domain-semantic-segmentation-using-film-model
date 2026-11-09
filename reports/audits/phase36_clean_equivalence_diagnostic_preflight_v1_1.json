@@ -1,0 +1,86 @@
+{
+ "artifact_kind": "PHASE36_CLEAN_EQUIVALENCE_DIAGNOSTIC_PREFLIGHT",
+ "revision": "ra_medfilm_barr_phase36_clean_equivalence_diagnostic_v1_1",
+ "unit_run": {
+  "returncode": 0,
+  "n_checks": 67,
+  "n_pass": 67,
+  "all_pass": true
+ },
+ "preflight_run": {
+  "returncode": 0,
+  "n_checks": 63,
+  "n_pass": 63,
+  "all_pass": true
+ },
+ "negative_controls_run": {
+  "returncode": 0,
+  "n_checks": 55,
+  "n_pass": 55,
+  "all_pass": true
+ },
+ "launcher_verify_only": {
+  "terminal": "PHASE36_CLEAN_EQ_DIAGNOSTIC_V1_1_LAUNCH_READINESS_VERIFIED__DISPATCH_SUPPRESSED_BY_VERIFY_ONLY",
+  "authorized": true,
+  "interpreter_pass": true,
+  "cuda_readiness_pass": true,
+  "prior_failure_provenance_pass": true,
+  "transitive_integrity_pass": true,
+  "n_dependencies_verified": 14,
+  "n_checkpoints_verified": 4,
+  "dispatch_suppressed": true,
+  "one_shot_gate_set_during_verify": false
+ },
+ "frozen_v1_14_anchors_intact": {
+  "v1_14_exec": true,
+  "v1_14_manifest": true
+ },
+ "prior_failure_provenance": {
+  "v1_14_science_start": {
+   "path": "reports/audits/phase36_robustness_science_start_v1_14.json",
+   "present": true,
+   "expected": "e2c42b05f4fd0450022d7bcde091c0bea13638788b4f83a123016ab894630e0a",
+   "observed": "e2c42b05f4fd0450022d7bcde091c0bea13638788b4f83a123016ab894630e0a",
+   "match": true
+  },
+  "v1_14_science_failure": {
+   "path": "reports/audits/phase36_robustness_science_failure_v1_14.json",
+   "present": true,
+   "expected": "0fcc3c211d7bcd53b4f8e53d7b09f518fd83a929e8a979c7174762958fff754b",
+   "observed": "0fcc3c211d7bcd53b4f8e53d7b09f518fd83a929e8a979c7174762958fff754b",
+   "match": true
+  },
+  "v1_14_forensic_adjudication": {
+   "path": "reports/audits/phase36_v1_14_science_failure_forensic_adjudication.json",
+   "present": true,
+   "expected": "f1d4712ae7b3f0b333a22c852f99d6b3812218ffb258f8f58ddba62c7193c17e",
+   "observed": "f1d4712ae7b3f0b333a22c852f99d6b3812218ffb258f8f58ddba62c7193c17e",
+   "match": true
+  },
+  "forensic_reconciliation_v2": {
+   "path": "reports/audits/phase36_v1_14_science_failure_forensic_reconciliation_v2.json",
+   "present": true,
+   "expected": "cc9a3b502f59e3855c395b9d6afa2f5616f513d60af4756e4477a9370889cc3c",
+   "observed": "cc9a3b502f59e3855c395b9d6afa2f5616f513d60af4756e4477a9370889cc3c",
+   "match": true
+  },
+  "targeted_static_audit": {
+   "path": "reports/audits/phase36_clean_equivalence_targeted_static_audit_v1_0.json",
+   "present": true,
+   "expected": "8def086c44a7e80461c729f41ab61c0be347ef1589c94d6884a082adbde64ed4",
+   "observed": "8def086c44a7e80461c729f41ab61c0be347ef1589c94d6884a082adbde64ed4",
+   "match": true
+  }
+ },
+ "static_audit_verdict": "STATIC_ROOT_CAUSE_NOT_ESTABLISHED",
+ "static_audit_verdict_matches_required": true,
+ "prior_diagnostic_attempt": false,
+ "v1_0_preserved": {
+  "diagnostic": true,
+  "launcher": true,
+  "unit": true,
+  "preflight": true
+ },
+ "scientific_output": false,
+ "generated_utc": "2026-10-07T03:14:50Z"
+}

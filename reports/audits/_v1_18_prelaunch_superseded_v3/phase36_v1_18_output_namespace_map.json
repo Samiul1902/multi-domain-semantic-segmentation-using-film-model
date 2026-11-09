@@ -1,0 +1,29 @@
+{
+ "artifact": "phase36_v1_18_output_namespace_map",
+ "phase": 36,
+ "revision": "ra_medfilm_barr_phase36_robustness_v1_18",
+ "type": "OUTPUT_NAMESPACE_MAP",
+ "generated_utc": "2026-10-10T14:33:11Z",
+ "v1_18_namespaces": {
+  "tables": "reports/tables/phase36_robustness_v1_18/",
+  "figures": "reports/figures/phase36_robustness_v1_18/",
+  "arrays": "reports/arrays/phase36_robustness_v1_18/"
+ },
+ "v1_18_markers": {
+  "start": "reports/audits/phase36_robustness_science_start_v1_18.json",
+  "result": "reports/audits/phase36_robustness_scientific_result_v1_18.json",
+  "failure": "reports/audits/phase36_robustness_science_failure_v1_18.json",
+  "process_exit": "reports/audits/phase36_robustness_science_process_exit_v1_18.json",
+  "journal_dir": "reports/audits/phase36_robustness_science_v1_18_journal/",
+  "stdout": "reports/audits/phase36_robustness_science_stdout_v1_18.txt",
+  "stderr": "reports/audits/phase36_robustness_science_stderr_v1_18.txt"
+ },
+ "no_v1_17_path_is_a_v1_18_write_target": true,
+ "v1_17_paths_used_by_v1_18": [],
+ "writer_semantics": {
+  "csv": "exclusive-create open(path, \"x\") + fsync (inherited D81)",
+  "figure": "exclusive-create os.open(O_CREAT|O_EXCL|O_WRONLY) via _savefig_once (new D88)",
+  "markers": "exclusive-create (write-once)"
+ },
+ "terminal": "PHASE36_V1_18_OUTPUT_NAMESPACE_MAP_WRITTEN"
+}

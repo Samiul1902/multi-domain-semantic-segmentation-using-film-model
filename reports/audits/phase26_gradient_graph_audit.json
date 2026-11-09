@@ -1,0 +1,16 @@
+{
+ "artifact": "phase26_gradient_graph_audit",
+ "phase": "26",
+ "classification": "PHASE26_PRE_EXECUTION_TRAINING_SPECIFICATION_AUDIT",
+ "method": "RA-MedFiLM-BARR",
+ "governance_only": true,
+ "gradient_flow_topology_defined": false,
+ "gradient_stop_points_defined": false,
+ "shared_trunk_gradient_path_defined": false,
+ "aux_head_gradient_path_defined": false,
+ "single_difference_identity_available": false,
+ "note": "The Phase24 specification fixes the FORWARD architecture of each component but no authoritative source defines a Phase26 gradient graph (which tensors receive gradient, where detach/stop-gradient applies, or how the four components are composed into one differentiable graph).",
+ "verdict": "GRADIENT_GRAPH_NOT_FROZEN",
+ "blocking": true,
+ "all_pass": false
+}

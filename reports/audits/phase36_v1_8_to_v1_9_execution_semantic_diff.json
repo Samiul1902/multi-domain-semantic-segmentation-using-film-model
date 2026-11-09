@@ -1,0 +1,264 @@
+{
+  "artifact": "phase36_v1_8_to_v1_9_execution_semantic_diff",
+  "phase": 36,
+  "section": "§O",
+  "method": "RA-MedFiLM-BARR",
+  "revision": "ra_medfilm_barr_phase36_robustness_v1_9",
+  "type": "TWO_SIDED_EXECUTION_SEMANTIC_DIFF",
+  "no_execution": true,
+  "torch_imported": false,
+  "protected_population_read": false,
+  "v1_8_execution_sha256": "c95ff9884ec05a859b39ce7976376bf40e4543b1a8d8a19830e5893120039f4d",
+  "v1_9_execution_sha256": "433bad87b4ef77fd6997c77f688eb295e526bfa3e88dece4ec5d3d550255cbd0",
+  "v1_8_lines": 3503,
+  "v1_9_lines": 3871,
+  "v1_8_functions": 107,
+  "v1_9_functions": 111,
+  "new_scientific_choice": false,
+  "semantic_groups": {
+    "VAL808_population": {
+      "keys": [
+        "AUTHORIZED_POPULATION_N",
+        "VAL_RUNTIME_EXPECTED_N",
+        "PROTECTED_RUNTIME_POPULATION",
+        "VAL_RUNTIME_AUTHORITY",
+        "CLEAN_EXECUTIONS_EXPECTED"
+      ],
+      "not_in_both_revisions": [],
+      "changed": [],
+      "unchanged": true
+    },
+    "perturbation_registry": {
+      "keys": [
+        "NONCLEAN_DETERMINISTIC_IMAGE_CONDITIONS",
+        "NONCLEAN_NOISE_IMAGE_CONDITIONS",
+        "NONCLEAN_PROPOSAL_CONDITIONS",
+        "PROPOSAL_CLEAN_CONDITION",
+        "NONCLEAN_IMAGE_REALIZATIONS_PER_SAMPLE",
+        "IMAGE_REALIZATIONS_PER_SAMPLE_INCL_CLEAN",
+        "NONCLEAN_PROPOSAL_CONDITIONS_PER_SAMPLE"
+      ],
+      "not_in_both_revisions": [],
+      "changed": [],
+      "unchanged": true
+    },
+    "G_numeric_semantics_phase27": {
+      "keys": [
+        "CANONICAL_G_DEVICE",
+        "CANONICAL_G_REQUIRES_CUDA",
+        "CANONICAL_G_MODEL_DTYPE",
+        "CANONICAL_G_INPUT_DTYPE",
+        "CANONICAL_G_MODEL_EVAL",
+        "CANONICAL_G_AUTOCAST_ENABLED",
+        "CANONICAL_G_AUTOCAST_DTYPE",
+        "CANONICAL_G_NO_GRAD",
+        "CANONICAL_G_INFERENCE_MODE",
+        "CANONICAL_G_BATCH_SIZE",
+        "CANONICAL_SAMPLE_ORDER",
+        "CANONICAL_BATCH_PARTITION",
+        "CANONICAL_LAST_PARTIAL_BATCH",
+        "CANONICAL_BATCH_FORWARDS_BY_DOMAIN",
+        "CANONICAL_BATCH_FORWARDS_TOTAL",
+        "CANONICAL_LAST_BATCH_SIZE_BY_DOMAIN",
+        "CANONICAL_DOMAIN_ORDER"
+      ],
+      "not_in_both_revisions": [],
+      "changed": [],
+      "unchanged": true
+    },
+    "G_probability_operator": {
+      "keys": [
+        "CANONICAL_PROBABILITY_OPERATOR",
+        "CANONICAL_PROBABILITY_COMPUTATION",
+        "CANONICAL_PROBABILITY_STORAGE_DTYPE",
+        "MANUAL_SIGMOID_FORBIDDEN"
+      ],
+      "not_in_both_revisions": [],
+      "changed": [],
+      "unchanged": true
+    },
+    "phase27_global_reproduction_authority": {
+      "keys": [
+        "PHASE27_GLOBAL_PROB_AUTHORITY",
+        "CLEAN_G_REPRODUCTION_GATE"
+      ],
+      "not_in_both_revisions": [],
+      "changed": [],
+      "unchanged": true
+    },
+    "device_contract": {
+      "keys": [
+        "CANONICAL_DEVICE_CONTRACT"
+      ],
+      "not_in_both_revisions": [],
+      "changed": [],
+      "unchanged": true
+    },
+    "component_inference_contexts": {
+      "keys": [
+        "COMPONENT_INFERENCE_CONTEXTS",
+        "COMPONENT_CONTEXTS_NOT_INTERCHANGEABLE",
+        "COMPONENT_BATCH_SIZE_ADJUDICATION"
+      ],
+      "not_in_both_revisions": [],
+      "changed": [],
+      "unchanged": true
+    },
+    "kub_reporting_only": {
+      "keys": [
+        "KUB_SUBGROUP_AUTHORITY"
+      ],
+      "not_in_both_revisions": [],
+      "changed": [],
+      "unchanged": true
+    },
+    "figure_registry_R1_R5": {
+      "keys": [
+        "FIGURE_REGISTRY"
+      ],
+      "not_in_both_revisions": [],
+      "changed": [],
+      "unchanged": true
+    },
+    "protected_population_flags": {
+      "keys": [
+        "ROUTER_HOLDOUT_RUNTIME_READS_ALLOWED",
+        "TEST_RUNTIME_READS_ALLOWED",
+        "VAL_MANIFEST_IS_ONLY_POPULATION_RUNTIME_AUTHORITY",
+        "PROTECTED_COUNTERS"
+      ],
+      "not_in_both_revisions": [],
+      "changed": [],
+      "unchanged": true
+    },
+    "route_state_machine_vocabulary": {
+      "keys": [
+        "ROUTE_STATES_FULL",
+        "ROUTER_DECISIONS"
+      ],
+      "not_in_both_revisions": [],
+      "changed": [],
+      "unchanged": true
+    },
+    "smoke_success_contract_shape": {
+      "keys": [
+        "SMOKE_CLASSIFICATION_ONLY_CHECKS",
+        "SMOKE_SUCCESS_CONTRACT"
+      ],
+      "not_in_both_revisions": [],
+      "changed": [],
+      "unchanged": true
+    },
+    "model_thresholds": {
+      "keys": [
+        "ROUTER_NUMERIC_DIM",
+        "ROUTER_SCALAR_IDX",
+        "SOMEGA_NUMERIC_DIM",
+        "SOMEGA_ACCEPT_THRESHOLD",
+        "SEGMENTATION_OUTPUT_THRESHOLD",
+        "ROI_PROPOSAL_THRESHOLD",
+        "ROI_FRACTIONAL_MARGIN",
+        "REGIONAL_INPUT_RESOLUTION",
+        "REGIONAL_CANVAS_RESOLUTION"
+      ],
+      "not_in_both_revisions": [],
+      "changed": [],
+      "unchanged": true
+    }
+  },
+  "all_semantic_groups_unchanged": true,
+  "smoke_check_ids": {
+    "v1_8_count": 47,
+    "v1_9_count": 53,
+    "removed": [],
+    "added": [
+      "metric_hd95_nonempty_prediction_empty_gt_exact",
+      "metric_hd95_empty_empty_exact",
+      "real_execute_R_psi_output_exact_shape",
+      "real_execute_R_psi_output_in_unit_interval",
+      "real_execute_final_S_omega_input_exact_dim",
+      "real_execute_final_S_omega_input_finite"
+    ],
+    "expected_added": [
+      "real_execute_R_psi_output_exact_shape",
+      "real_execute_R_psi_output_in_unit_interval",
+      "real_execute_final_S_omega_input_exact_dim",
+      "real_execute_final_S_omega_input_finite",
+      "metric_hd95_nonempty_prediction_empty_gt_exact",
+      "metric_hd95_empty_empty_exact"
+    ],
+    "added_not_expected": [],
+    "missing_expected": [],
+    "renamed": {},
+    "unexplained_removed": [],
+    "no_unexplained_removal": true,
+    "is_strict_superset": true,
+    "classification": "PERMITTED_PRE_SMOKE_VALIDATION_AND_OBSERVABILITY_GROWTH"
+  },
+  "new_functions_in_v1_9": [
+    "_create_smoke_start_marker",
+    "_gate_smoke_state",
+    "_hd95_case_exact",
+    "_write_smoke_success_artifact"
+  ],
+  "new_functions_expected": [
+    "_create_smoke_start_marker",
+    "_gate_smoke_state",
+    "_hd95_case_exact",
+    "_write_smoke_success_artifact"
+  ],
+  "new_functions_unexpected": [],
+  "removed_functions_in_v1_9": [],
+  "permitted_added_constants": {
+    "present_in_v1_9_only": [
+      "SOMEGA_ONEHOT_DIM",
+      "SOMEGA_FINAL_INPUT_DIM",
+      "TRANSITIVE_RUNTIME_CHECKPOINTS",
+      "SMOKE_V1_9_ARTIFACT",
+      "SMOKE_V1_9_START_MARKER",
+      "SMOKE_V1_9_FAILURE_ARTIFACT"
+    ],
+    "missing_expected": [],
+    "collides_with_existing_v1_8_name": [],
+    "detail": {
+      "SOMEGA_ONEHOT_DIM": {
+        "reason": "D24: frozen one-hot task width for the final S_omega input schema (4).",
+        "scientific_effect": "NONE"
+      },
+      "SOMEGA_FINAL_INPUT_DIM": {
+        "reason": "D24: derived exact final S_omega input width (= 16 numeric + 4 one-hot = 20).",
+        "scientific_effect": "NONE"
+      },
+      "TRANSITIVE_RUNTIME_CHECKPOINTS": {
+        "reason": "D23: frozen expected SHA-256 of the four canonical checkpoints.",
+        "scientific_effect": "NONE"
+      },
+      "SMOKE_V1_9_ARTIFACT": {
+        "reason": "D22: v1.9 canonical smoke artifact path.",
+        "scientific_effect": "NONE"
+      },
+      "SMOKE_V1_9_START_MARKER": {
+        "reason": "D22: exclusive-create start marker path.",
+        "scientific_effect": "NONE"
+      },
+      "SMOKE_V1_9_FAILURE_ARTIFACT": {
+        "reason": "D22: distinct failure artifact path.",
+        "scientific_effect": "NONE"
+      }
+    }
+  },
+  "permitted_differences": [
+    "pre_smoke_validation",
+    "smoke_observability",
+    "smoke_provenance",
+    "true_write_once_enforcement",
+    "authorized_attempt_ordering",
+    "numerical_input_observability",
+    "metric_reason_binding",
+    "source_integrity_completeness",
+    "check_matrix_reconciliation",
+    "associated_static_audits_and_tests"
+  ],
+  "prohibited_differences_found": [],
+  "permitted_differences_all_within_scope": true
+}

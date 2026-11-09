@@ -1,0 +1,240 @@
+{
+ "artifact_kind": "PHASE36_FINAL_PROBABILITY_AUTHORITY_DIAGNOSTIC_V1_3_TERMINAL_EVIDENCE_ANOMALY_ADJUDICATION",
+ "revision": "ra_medfilm_barr_phase36_final_probability_authority_diagnostic_v1_3",
+ "adjudication_revision": "v1_0",
+ "supersedes": null,
+ "amends": null,
+ "additive": true,
+ "mode": "STATIC_EXISTING_EVIDENCE_FORENSICS_ONLY",
+ "D67": "POST_START_TERMINAL_EVIDENCE_ANOMALY",
+ "attempt_state": "CONSUMED_TERMINAL_EVIDENCE_ANOMALY",
+ "retry_permitted": false,
+ "v1_3_retry_forbidden": true,
+ "root_cause": "UNRESOLVED",
+ "external_process_termination": "PLAUSIBLE_HYPOTHESIS_NOT_ESTABLISHED",
+ "termination_mechanism": "UNRESOLVED",
+ "child_exit_code_durably_captured": false,
+ "child_exit_code": null,
+ "host_or_tool_observed_return_status": 1,
+ "scientific_result_produced": false,
+ "repair_proof_result_produced": false,
+ "terminal_evidence": {
+  "start": {
+   "state": "PRESENT",
+   "size": 9989,
+   "sha256": "b984d09bf3a266de8d75b39b6ad2ff3236cce09915a7f2a5c874813af8c3c1c5"
+  },
+  "result": {
+   "state": "ABSENT",
+   "size": null,
+   "sha256": null
+  },
+  "failure": {
+   "state": "ABSENT",
+   "size": null,
+   "sha256": null
+  },
+  "stdout": {
+   "state": "PRESENT_EMPTY",
+   "size": 0,
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stderr": {
+   "state": "PRESENT_EMPTY",
+   "size": 0,
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "result_absent": true,
+  "failure_absent": true,
+  "stdout_state": "PRESENT_EMPTY",
+  "stderr_state": "PRESENT_EMPTY",
+  "empty_sha256_expected": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+ },
+ "execution_reach": {
+  "diagnostic_main_after_start": {
+   "value": "REACHED",
+   "basis": "START artifact written and durably completed (fsync); the START-write statement executes inside diagnostic main() after authorization. Advancement beyond the write statement is NOT proven."
+  },
+  "frozen_v1_14_import": {
+   "value": "UNKNOWN",
+   "basis": "no durable terminal artifact"
+  },
+  "gt_guard_installation": {
+   "value": "UNKNOWN",
+   "basis": "no durable terminal artifact"
+  },
+  "model_load": {
+   "value": "UNKNOWN",
+   "basis": "no durable terminal artifact"
+  },
+  "checkpoint_deserialization": {
+   "value": "UNKNOWN",
+   "basis": "no durable terminal artifact"
+  },
+  "clean_g_generation": {
+   "value": "UNKNOWN",
+   "basis": "no durable terminal artifact"
+  },
+  "phase27_global_reproduction_gate": {
+   "value": "UNKNOWN",
+   "basis": "no durable terminal artifact"
+  },
+  "clean_row_loop_started": {
+   "value": "UNKNOWN",
+   "basis": "no durable terminal artifact"
+  },
+  "final_probability_computation_started": {
+   "value": "UNKNOWN",
+   "basis": "no durable terminal artifact"
+  },
+  "finite_gate": {
+   "value": "UNKNOWN",
+   "basis": "no durable terminal artifact"
+  },
+  "final_authority_comparison": {
+   "value": "UNKNOWN",
+   "basis": "no durable terminal artifact"
+  },
+  "result_write_attempt": {
+   "value": "NOT_REACHED",
+   "basis": "reaching the result-write region must produce EITHER a RESULT artifact (success) OR a FAILURE artifact (result-write failure); both are ABSENT, so the region was not reached (source/order inference)."
+  },
+  "failure_write_attempt": {
+   "value": "NOT_REACHED",
+   "basis": "the failure path durably writes FAILURE (O_CREAT|O_EXCL + fsync); FAILURE is ABSENT and no FAILURE_ARTIFACT_WRITE_FAILED stdout diagnostic is present. Caveat: a doubly-failed failure-write cannot be excluded from terminal evidence alone, but it would still have emitted a stdout diagnostic."
+  }
+ },
+ "source_termination_forensics": {
+  "diagnostic_path": "scripts/analysis/phase36_final_probability_authority_diagnostic_v1_3.py",
+  "diagnostic_sha256": "b32a9db41a53b5007c6b9989bdbee22a0b7ea14587d222a3399980142dd9621e",
+  "launcher_path": "scripts/analysis/launch_phase36_final_probability_authority_diagnostic_v1_3.py",
+  "launcher_sha256": "d5f9cd3dff302c849d195d909f6f2c9a59fbbbaaf359d859e69442d9fe05b504",
+  "A_start_write_line": 1183,
+  "B_first_operation_after_start": {
+   "line": 1226,
+   "text": "diag = run_diagnostic(runtime_state)",
+   "region": "GUARDED_COMPUTATION_REGION (try:)"
+  },
+  "C_exception_coverage_after_start": {
+   "except_systemexit_present": true,
+   "except_baseexception_present": true,
+   "traceback_print_present": true,
+   "systemexit_writes_failure": true,
+   "baseexception_writes_failure": true,
+   "result_write_failure_writes_failure": true,
+   "keyboardinterrupt_covered": true,
+   "keyboardinterrupt_note": "KeyboardInterrupt is a BaseException subclass -> caught by `except BaseException`",
+   "os_exit_in_source": false,
+   "atexit_in_source": false
+  },
+  "D_ordinary_python_exception_expected_to_write_failure": true,
+  "E_bypass_classes_identified": [
+   {
+    "class": "external_process_termination",
+    "description": "parent/session process-tree teardown kills the child before unwinding",
+    "bypasses_failure_write": true,
+    "claimed_to_have_occurred": false
+   },
+   {
+    "class": "os_exit",
+    "description": "os._exit() terminates without unwinding except/finally blocks",
+    "present_in_source": false,
+    "bypasses_failure_write": true,
+    "claimed_to_have_occurred": false
+   },
+   {
+    "class": "fatal_interpreter_abort",
+    "description": "native fatal abort (e.g. Py_FatalError) terminates without Python unwinding",
+    "bypasses_failure_write": true,
+    "claimed_to_have_occurred": false
+   },
+   {
+    "class": "native_runtime_crash",
+    "description": "segfault / CUDA driver fatal error aborts the process",
+    "bypasses_failure_write": true,
+    "claimed_to_have_occurred": false
+   },
+   {
+    "class": "forced_process_kill",
+    "description": "TerminateProcess / SIGKILL — no cleanup handlers run",
+    "bypasses_failure_write": true,
+    "claimed_to_have_occurred": false
+   },
+   {
+    "class": "machine_or_session_termination",
+    "description": "power loss / logoff / reboot terminates the host",
+    "bypasses_failure_write": true,
+    "claimed_to_have_occurred": false
+   }
+  ],
+  "absence_of_failure_suggests_outside_normal_failure_path": true,
+  "note": "STRUCTURAL INFERENCE ONLY.  The source would durably write FAILURE for any ordinary Python exception, SystemExit, or KeyboardInterrupt.  FAILURE is ABSENT, therefore termination occurred OUTSIDE the normal failure path.  No specific bypass class is claimed to have actually happened."
+ },
+ "os_evidence": {
+  "windows_application_log_window_local": "2026-10-08 14:00:00 .. 2026-10-08 17:00:00",
+  "application_critical_or_error_count": 0,
+  "application_any_level_count": 40,
+  "application_providers_observed": [
+   "chromoting",
+   "Microsoft-Windows-Security-SPP"
+  ],
+  "system_critical_or_error_count": 0,
+  "windows_error_reporting_present": false,
+  "application_error_present": false,
+  "python_crash_record_present": false,
+  "cuda_driver_crash_log_present": false,
+  "inconclusive_context": "Information-level `chromoting` (Chrome Remote Desktop) events occur at 15:12 and 15:34 local, bracketing the execution time 15:30:52 local (09:30:52Z).  This is recorded as inconclusive context ONLY and is NOT evidence of session teardown.",
+  "termination_mechanism": "UNRESOLVED",
+  "durable_os_evidence_found": false
+ },
+ "gt_wording": {
+  "gt_static_prohibition": "PASS",
+  "gt_static_basis": "v1.3 source contains the inherited raising guards and no intended GT metric path",
+  "gt_runtime_terminal_evidence": "UNAVAILABLE",
+  "post_start_GT_read_observed": "UNKNOWN_FROM_DURABLE_TERMINAL_EVIDENCE",
+  "VAL_GT_READ_claimable": false,
+  "note": "VAL_GT_READ=0 is NOT claimed as observed runtime evidence; no durable post-START artifact contains it."
+ },
+ "preservation": {
+  "diagnostic_v1_3": "b32a9db41a53b5007c6b9989bdbee22a0b7ea14587d222a3399980142dd9621e",
+  "launcher_v1_3": "d5f9cd3dff302c849d195d909f6f2c9a59fbbbaaf359d859e69442d9fe05b504",
+  "d66_reconciliation_v1_0": "b0c01e40c4764514a01a9f082483a071634a0630d6c4c4640e1bb4ac2f829303",
+  "start_v1_3": "b984d09bf3a266de8d75b39b6ad2ff3236cce09915a7f2a5c874813af8c3c1c5",
+  "runtime_sources_unchanged": true,
+  "result_not_created_retroactively": true,
+  "failure_not_created_retroactively": true,
+  "start_not_altered": true
+ },
+ "prohibitions_observed": [
+  "no_v1_3_execution",
+  "no_v1_4_creation",
+  "no_model_run",
+  "no_checkpoint_load",
+  "no_val_image_read",
+  "no_val_gt_read",
+  "no_perturbation",
+  "no_test",
+  "no_router_holdout",
+  "no_v1_15_science",
+  "no_phase37",
+  "no_retroactive_result",
+  "no_retroactive_failure",
+  "no_start_alteration",
+  "no_source_modification",
+  "no_reproduction_triggered"
+ ],
+ "governance_state_after": {
+  "v1_0": "FROZEN_NEVER_CONSUMED_NOT_AUTHORIZED",
+  "v1_1": "CONSUMED_FAILED",
+  "v1_2_final_prob": "CONSUMED_RESULT",
+  "v1_3_final_prob": "CONSUMED_TERMINAL_EVIDENCE_ANOMALY",
+  "v1_3_retry_permitted": false,
+  "v1_14_science": "CONSUMED_FAILED",
+  "v1_15": "NOT_CREATED",
+  "phase37": "NOT_STARTED",
+  "test": "PHASE39_ONLY",
+  "router_holdout": "NOT_ACCESSED"
+ },
+ "scientific_output": false,
+ "generated_utc": "2026-10-09T06:31:40Z"
+}

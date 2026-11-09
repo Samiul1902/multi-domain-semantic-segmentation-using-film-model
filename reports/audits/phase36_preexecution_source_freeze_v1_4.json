@@ -1,0 +1,83 @@
+{
+  "artifact": "phase36_preexecution_source_freeze",
+  "section": "§Q",
+  "phase": 36,
+  "method": "RA-MedFiLM-BARR",
+  "revision": "ra_medfilm_barr_phase36_robustness_v1_4",
+  "type": "PRE_EXECUTION_SOURCE_FREEZE",
+  "frozen": true,
+  "frozen_only_after": [
+    "units PASS",
+    "preflight PASS",
+    "NC15-NC24 PASS",
+    "direct byte audit PASS"
+  ],
+  "frozen_sources": {
+    "execution": {
+      "path": "scripts/analysis/phase36_robustness_execution_v1_4.py",
+      "sha256": "96ebc36256e5d812949e1f1859d4f41f332f81607e562dbff7cfb2bce6483fbe"
+    },
+    "unit": {
+      "path": "scripts/analysis/phase36_robustness_unit_v1_4.py",
+      "sha256": "5cb3b351d95d49d2a9fe9b253972bb7631398cda5bc8da0883a4281181708725"
+    },
+    "preflight": {
+      "path": "scripts/analysis/phase36_robustness_preflight_v1_4.py",
+      "sha256": "3c558ad02cba4c55e76a8d18f3fcc8e9c71228ec508883618f89e1d3988d2b50"
+    },
+    "negative_controls": {
+      "path": "scripts/analysis/phase36_robustness_negative_controls_v1_4.py",
+      "sha256": "570f95fec571ed9180b4da90bbaebe2e1ae33143180b6fc361deca6236058688"
+    }
+  },
+  "gate_results": {
+    "unit": {
+      "artifact": "phase36_robustness_unit_v1_4.json",
+      "sha256": "7a188732e037d5cb079ef792d75467e7b6bb4d8686d5916d4cdd9cbe7657296e",
+      "passed": 75,
+      "total": 75,
+      "all_pass": true
+    },
+    "preflight": {
+      "artifact": "phase36_robustness_static_preflight_v1_4.json",
+      "sha256": "72a60ceba08ec497e9029307abba3342c21314cbbd6fb1a06fbb38bb9a8589a6",
+      "passed": 55,
+      "total": 55,
+      "all_pass": true
+    },
+    "negative_controls": {
+      "artifact": "phase36_v1_4_negative_controls.json",
+      "sha256": "14a100e4b38d80d11962ba63d90906f1be96072d81a519bf591d3db6aaa450a9",
+      "passed": 10,
+      "total": 10,
+      "all_pass": true,
+      "nc_range": "NC15-NC24"
+    },
+    "direct_byte_audit": {
+      "artifact": "phase36_v1_4_direct_source_byte_audit.json",
+      "sha256": "e6efd5fdb69e74fb32e33c15e6890047b8469b3182187e4c7630e00d8420ce45",
+      "n_items": 14,
+      "all_pass": true,
+      "verdict": "PASS"
+    }
+  },
+  "defect_record": {
+    "artifact": "phase36_v1_3_post_byte_audit_semantic_defects_v1_4.json",
+    "sha256": "de3d65f1282d71f43ab8e02891d2b2d49801b5473a43447fe4663a0328718fe0",
+    "defect_count": 10,
+    "classification": "PRE_SCIENTIFIC_SOURCE_SEMANTIC_AND_SMOKE_COVERAGE_DEFECTS__NO_SCIENTIFIC_EFFECT"
+  },
+  "preserved_history": {
+    "v1_3_execution_source_sha256": "a3290c640f9632499905b974606d4c7e7e7be89886ef1f8507a9007814da297c",
+    "v1_3_source_freeze_sha256": "9e80b62d03cb3186eec75b1ef389c000b8c1959c58ebb3099dbb2ebcadde0724",
+    "v1_3_direct_source_byte_audit_sha256": "6549f713c6e7e6ea90f77289db8634feeab4ef3ef1f824e814befda54dbf813d",
+    "v1_3a_case_b_result": "RETAINED_VERBATIM",
+    "historical_terminals_rewritten": false
+  },
+  "case_b_split_authority": "RETAINED__VAL808_ALLOWLIST_PRIMARY_PLUS_POPULATED_HOLDOUT_DENY_SET_875",
+  "phase27_numerical_semantics_restored": true,
+  "conditional_state_machine_restored": true,
+  "no_execution": true,
+  "torch_imported": false,
+  "generated_utc": "2026-10-06T08:07:15Z"
+}

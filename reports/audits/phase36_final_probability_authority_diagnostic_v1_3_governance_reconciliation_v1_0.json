@@ -1,0 +1,328 @@
+{
+ "artifact_kind": "PHASE36_FINAL_PROBABILITY_AUTHORITY_DIAGNOSTIC_V1_3_GOVERNANCE_RECONCILIATION",
+ "revision": "ra_medfilm_barr_phase36_final_probability_authority_diagnostic_v1_3",
+ "reconciliation_revision": "v1_0",
+ "supersedes": null,
+ "amends": null,
+ "additive": true,
+ "mode": "STATIC_GOVERNANCE_NON_CONSUMING_ONLY",
+ "D66": "RECONCILED",
+ "d66_classification": "V1_3_GOVERNANCE_PHASE27_SCORE_SHA_TRANSCRIPTION_ERROR_REINTRODUCED",
+ "d66_root_cause_established": true,
+ "d66_static_evidence": {
+  "classification": "V1_3_GOVERNANCE_PHASE27_SCORE_SHA_TRANSCRIPTION_ERROR_REINTRODUCED",
+  "root_cause_established": true,
+  "incorrect_transcribed_sha256": "702133930ce14ac9513c992833396e3e250d08417a17d1032cbd260a405cfb12",
+  "correct_authoritative_sha256": "702133930ce14ac9513c992833396e3e250d08417b17d1032cbd260a405cfb12",
+  "phase27_scores_csv_path": "reports/tables/phase27_val808_per_sample_scores.csv",
+  "phase27_scores_csv_raw_byte_sha256": "702133930ce14ac9513c992833396e3e250d08417b17d1032cbd260a405cfb12",
+  "phase27_scores_csv_matches_correct": true,
+  "transcription_delta": {
+   "position_from_literal_start_0_based": 41,
+   "correct_char": "b",
+   "incorrect_char": "a",
+   "note": "the ONLY delta between the two phase27 score SHAs is a single hex character at 0-based index 41 of the 64-char digest: 'b' (correct) vs 'a' (incorrect)"
+  },
+  "propagation": {
+   "frozen_v1_3_governance_builder": {
+    "path": "scripts/analysis/build_phase36_final_probability_authority_diagnostic_v1_3.py",
+    "sha256": "058371ecf367348dcb1bb9ed11e683d1c0c564da90b4aab47d976ac8ba4416fa",
+    "contains_incorrect_sha256": true,
+    "contains_correct_sha256": false,
+    "occurrences_incorrect": [
+     {
+      "line": 272,
+      "text": "\"phase27_scores_csv_sha256\": \"702133930ce14ac9513c992833396e3e250d08417a17d1032cbd260a405cfb12\","
+     }
+    ],
+    "occurrences_correct": [],
+    "source_of_error": true
+   },
+   "frozen_v1_3_contract": {
+    "path": "reports/audits/phase36_final_probability_authority_diagnostic_contract_v1_3.json",
+    "sha256": "8023962b59e6ffdeab75823315fa195025dac163777e24bff335038c3e138518",
+    "contains_incorrect_sha256": true,
+    "contains_correct_sha256": false,
+    "occurrences_incorrect": [
+     {
+      "line": 122,
+      "text": "\"phase27_scores_csv_sha256\": \"702133930ce14ac9513c992833396e3e250d08417a17d1032cbd260a405cfb12\","
+     }
+    ],
+    "occurrences_correct": [],
+    "source_of_error": false
+   },
+   "frozen_v1_3_eligibility": {
+    "path": "reports/audits/phase36_final_probability_authority_diagnostic_eligibility_v1_3.json",
+    "sha256": "30c666cfea5fb414aec5e8c003d431c9874477e1dfb83c574fa0a3ccb2e70618",
+    "contains_incorrect_sha256": true,
+    "contains_correct_sha256": false,
+    "occurrences_incorrect": [
+     {
+      "line": 58,
+      "text": "\"phase27_scores_csv_sha256\": \"702133930ce14ac9513c992833396e3e250d08417a17d1032cbd260a405cfb12\","
+     }
+    ],
+    "occurrences_correct": [],
+    "source_of_error": false
+   },
+   "runtime_launcher": {
+    "path": "scripts/analysis/launch_phase36_final_probability_authority_diagnostic_v1_3.py",
+    "sha256": "d5f9cd3dff302c849d195d909f6f2c9a59fbbbaaf359d859e69442d9fe05b504",
+    "contains_incorrect_sha256": false,
+    "contains_correct_sha256_literal": false
+   },
+   "diagnostic_source": {
+    "path": "scripts/analysis/phase36_final_probability_authority_diagnostic_v1_3.py",
+    "sha256": "b32a9db41a53b5007c6b9989bdbee22a0b7ea14587d222a3399980142dd9621e",
+    "contains_incorrect_sha256": false,
+    "contains_correct_sha256_literal": false
+   }
+  },
+  "runtime_authority": {
+   "frozen_v1_2_launcher_reused_verbatim": true,
+   "frozen_v1_2_launcher_path": "scripts/analysis/launch_phase36_final_probability_authority_diagnostic_v1_2.py",
+   "frozen_v1_2_launcher_sha256": "de916786f8237d6f04a4deebde4186a5120164bce073ffa1d0343cf6e265aaee",
+   "runtime_gate_pins_correct_sha": true,
+   "runtime_gate_contains_wrong_sha": false,
+   "runtime_launcher_uses_correct_sha": true
+  },
+  "recidivism_chain": [
+   {
+    "defect": "D55",
+    "target_family": "v1_1",
+    "reconciliation": "reports/audits/phase36_final_probability_authority_diagnostic_v1_1_governance_reconciliation_v1_0.json",
+    "reconciliation_sha256": "124327dca073afa440e187aa1999c4f463fb97a1fe62e30ce19b6bcfa8b966f4"
+   },
+   {
+    "defect": "D57",
+    "target_family": "v1_2",
+    "reconciliation": "reports/audits/phase36_final_probability_authority_diagnostic_v1_2_governance_reconciliation_v1_0.json",
+    "reconciliation_sha256": "a4f4eaff5809705b785ab0349ecb7b5e48495e748f7bf810f4d9a89dd370535b"
+   },
+   {
+    "defect": "D59",
+    "target_family": "v1_2",
+    "reconciliation": "reports/audits/phase36_final_probability_authority_diagnostic_v1_2_governance_reconciliation_v1_1.json",
+    "reconciliation_sha256": "ad426132273ee72908556cab3fd1cd15e42816fc674f28c33dd56c8b99ed4ff7"
+   },
+   {
+    "defect": "D66",
+    "target_family": "v1_3",
+    "reconciliation": "reports/audits/phase36_final_probability_authority_diagnostic_v1_3_governance_reconciliation_v1_0.json",
+    "reconciliation_sha256": "SELF"
+   }
+  ],
+  "recidivism_note": "The identical single-hex transcription error has now been re-introduced three times along the additive governance line (v1.1 builder -> v1.2 builder -> v1.3 builder), each time by a new build_...vX_Y.py that copied the previous literal. This reconciliation records the third occurrence; the remediation recommendation is that future builders derive the literal from the launcher runtime authority constant rather than retyping it.",
+  "runtime_launcher_affected": false,
+  "diagnostic_source_affected": false,
+  "scientific_path_affected": false,
+  "scientific_semantics_effect": "NONE",
+  "runtime_execution_effect": "NONE",
+  "governance_provenance_effect": "YES"
+ },
+ "incorrect_transcribed_sha256": "702133930ce14ac9513c992833396e3e250d08417a17d1032cbd260a405cfb12",
+ "correct_phase27_scores_sha256": "702133930ce14ac9513c992833396e3e250d08417b17d1032cbd260a405cfb12",
+ "phase27_scores_csv_path": "reports/tables/phase27_val808_per_sample_scores.csv",
+ "actual_phase27_scores_csv_raw_byte_sha256": "702133930ce14ac9513c992833396e3e250d08417b17d1032cbd260a405cfb12",
+ "actual_phase27_scores_sha_matches_correct": true,
+ "affected_artifacts": [
+  {
+   "path": "scripts/analysis/build_phase36_final_probability_authority_diagnostic_v1_3.py",
+   "role": "frozen_v1_3_governance_builder",
+   "sha256": "058371ecf367348dcb1bb9ed11e683d1c0c564da90b4aab47d976ac8ba4416fa",
+   "contains_incorrect_sha256": true,
+   "source_of_error": true
+  },
+  {
+   "path": "reports/audits/phase36_final_probability_authority_diagnostic_contract_v1_3.json",
+   "role": "frozen_v1_3_contract",
+   "sha256": "8023962b59e6ffdeab75823315fa195025dac163777e24bff335038c3e138518",
+   "contains_incorrect_sha256": true,
+   "source_of_error": false
+  },
+  {
+   "path": "reports/audits/phase36_final_probability_authority_diagnostic_eligibility_v1_3.json",
+   "role": "frozen_v1_3_eligibility",
+   "sha256": "30c666cfea5fb414aec5e8c003d431c9874477e1dfb83c574fa0a3ccb2e70618",
+   "contains_incorrect_sha256": true,
+   "source_of_error": false
+  }
+ ],
+ "runtime_launcher_uses_correct_sha": true,
+ "runtime_launcher_affected": false,
+ "diagnostic_source_affected": false,
+ "scientific_path_affected": false,
+ "scientific_semantics_effect": "NONE",
+ "runtime_execution_effect": "NONE",
+ "governance_provenance_effect": "YES",
+ "original_artifacts_overwritten": false,
+ "frozen_v1_3_preservation": {
+  "all_intact": true,
+  "runtime_source_sha256": {
+   "scripts/analysis/phase36_final_probability_authority_diagnostic_v1_3.py": "b32a9db41a53b5007c6b9989bdbee22a0b7ea14587d222a3399980142dd9621e",
+   "scripts/analysis/launch_phase36_final_probability_authority_diagnostic_v1_3.py": "d5f9cd3dff302c849d195d909f6f2c9a59fbbbaaf359d859e69442d9fe05b504",
+   "scripts/analysis/phase36_final_probability_authority_diagnostic_unit_v1_3.py": "f6ada4fc4fea22b5deba85fe4c5873f315fde96cb56f351e9710c6027a364ad0",
+   "scripts/analysis/phase36_final_probability_authority_diagnostic_preflight_v1_3.py": "8ce14b6dbc05829850906446a4b107f9fe060843bde0ffa21515cdb22075954b",
+   "scripts/analysis/phase36_final_probability_authority_diagnostic_negative_controls_v1_3.py": "0ebd28e8fd2f3544eee7680a290a97063f73afcadab5eea74608569a00abb265",
+   "scripts/analysis/build_phase36_final_probability_authority_diagnostic_v1_3.py": "058371ecf367348dcb1bb9ed11e683d1c0c564da90b4aab47d976ac8ba4416fa"
+  },
+  "governance_sha256": {
+   "reports/audits/phase36_final_probability_authority_diagnostic_contract_v1_3.json": "8023962b59e6ffdeab75823315fa195025dac163777e24bff335038c3e138518",
+   "reports/audits/phase36_final_probability_authority_diagnostic_source_freeze_v1_3.json": "73bf1f6e881c5df31c48ba13b6633b7c4d7b1c9a8cf86da9ada21e823a937584",
+   "reports/audits/phase36_final_probability_authority_diagnostic_preflight_v1_3.json": "a192b1af5891d962e9ecde23b1265a6c7fbc4c03732634cd390dcac1e368fa6a",
+   "reports/audits/phase36_final_probability_authority_diagnostic_negative_controls_v1_3.json": "a00b6c7abdc29460a33a442b3666a14e677df464c6e21bc336a5433fc7da7e98",
+   "reports/audits/phase36_final_probability_authority_diagnostic_eligibility_v1_3.json": "30c666cfea5fb414aec5e8c003d431c9874477e1dfb83c574fa0a3ccb2e70618",
+   "reports/audits/phase36_final_probability_authority_diagnostic_no_execution_audit_v1_3.json": "81c185dc9624c1bb27fef3d9372f5dae603ee9edc54f5541b49c322985442305",
+   "reports/audits/phase36_final_probability_authority_diagnostic_v1_2_to_v1_3_diff.json": "97d142d41add34ac2e1c5021abf032d3a537cac7ed97f34a86c7a77ffd0ff762"
+  },
+  "contract_sha256": "8023962b59e6ffdeab75823315fa195025dac163777e24bff335038c3e138518",
+  "frozen_v1_2_launcher": {
+   "path": "scripts/analysis/launch_phase36_final_probability_authority_diagnostic_v1_2.py",
+   "sha256": "de916786f8237d6f04a4deebde4186a5120164bce073ffa1d0343cf6e265aaee"
+  }
+ },
+ "pre_validator_hashes": {
+  "scripts/analysis/phase36_final_probability_authority_diagnostic_v1_3.py": "b32a9db41a53b5007c6b9989bdbee22a0b7ea14587d222a3399980142dd9621e",
+  "scripts/analysis/launch_phase36_final_probability_authority_diagnostic_v1_3.py": "d5f9cd3dff302c849d195d909f6f2c9a59fbbbaaf359d859e69442d9fe05b504",
+  "scripts/analysis/phase36_final_probability_authority_diagnostic_unit_v1_3.py": "f6ada4fc4fea22b5deba85fe4c5873f315fde96cb56f351e9710c6027a364ad0",
+  "scripts/analysis/phase36_final_probability_authority_diagnostic_preflight_v1_3.py": "8ce14b6dbc05829850906446a4b107f9fe060843bde0ffa21515cdb22075954b",
+  "scripts/analysis/phase36_final_probability_authority_diagnostic_negative_controls_v1_3.py": "0ebd28e8fd2f3544eee7680a290a97063f73afcadab5eea74608569a00abb265",
+  "scripts/analysis/build_phase36_final_probability_authority_diagnostic_v1_3.py": "058371ecf367348dcb1bb9ed11e683d1c0c564da90b4aab47d976ac8ba4416fa",
+  "reports/audits/phase36_final_probability_authority_diagnostic_contract_v1_3.json": "8023962b59e6ffdeab75823315fa195025dac163777e24bff335038c3e138518",
+  "reports/audits/phase36_final_probability_authority_diagnostic_source_freeze_v1_3.json": "73bf1f6e881c5df31c48ba13b6633b7c4d7b1c9a8cf86da9ada21e823a937584",
+  "reports/audits/phase36_final_probability_authority_diagnostic_preflight_v1_3.json": "a192b1af5891d962e9ecde23b1265a6c7fbc4c03732634cd390dcac1e368fa6a",
+  "reports/audits/phase36_final_probability_authority_diagnostic_negative_controls_v1_3.json": "a00b6c7abdc29460a33a442b3666a14e677df464c6e21bc336a5433fc7da7e98",
+  "reports/audits/phase36_final_probability_authority_diagnostic_eligibility_v1_3.json": "30c666cfea5fb414aec5e8c003d431c9874477e1dfb83c574fa0a3ccb2e70618",
+  "reports/audits/phase36_final_probability_authority_diagnostic_no_execution_audit_v1_3.json": "81c185dc9624c1bb27fef3d9372f5dae603ee9edc54f5541b49c322985442305",
+  "reports/audits/phase36_final_probability_authority_diagnostic_v1_2_to_v1_3_diff.json": "97d142d41add34ac2e1c5021abf032d3a537cac7ed97f34a86c7a77ffd0ff762"
+ },
+ "post_validator_hashes": {
+  "scripts/analysis/phase36_final_probability_authority_diagnostic_v1_3.py": "b32a9db41a53b5007c6b9989bdbee22a0b7ea14587d222a3399980142dd9621e",
+  "scripts/analysis/launch_phase36_final_probability_authority_diagnostic_v1_3.py": "d5f9cd3dff302c849d195d909f6f2c9a59fbbbaaf359d859e69442d9fe05b504",
+  "scripts/analysis/phase36_final_probability_authority_diagnostic_unit_v1_3.py": "f6ada4fc4fea22b5deba85fe4c5873f315fde96cb56f351e9710c6027a364ad0",
+  "scripts/analysis/phase36_final_probability_authority_diagnostic_preflight_v1_3.py": "8ce14b6dbc05829850906446a4b107f9fe060843bde0ffa21515cdb22075954b",
+  "scripts/analysis/phase36_final_probability_authority_diagnostic_negative_controls_v1_3.py": "0ebd28e8fd2f3544eee7680a290a97063f73afcadab5eea74608569a00abb265",
+  "scripts/analysis/build_phase36_final_probability_authority_diagnostic_v1_3.py": "058371ecf367348dcb1bb9ed11e683d1c0c564da90b4aab47d976ac8ba4416fa",
+  "reports/audits/phase36_final_probability_authority_diagnostic_contract_v1_3.json": "8023962b59e6ffdeab75823315fa195025dac163777e24bff335038c3e138518",
+  "reports/audits/phase36_final_probability_authority_diagnostic_source_freeze_v1_3.json": "73bf1f6e881c5df31c48ba13b6633b7c4d7b1c9a8cf86da9ada21e823a937584",
+  "reports/audits/phase36_final_probability_authority_diagnostic_preflight_v1_3.json": "a192b1af5891d962e9ecde23b1265a6c7fbc4c03732634cd390dcac1e368fa6a",
+  "reports/audits/phase36_final_probability_authority_diagnostic_negative_controls_v1_3.json": "a00b6c7abdc29460a33a442b3666a14e677df464c6e21bc336a5433fc7da7e98",
+  "reports/audits/phase36_final_probability_authority_diagnostic_eligibility_v1_3.json": "30c666cfea5fb414aec5e8c003d431c9874477e1dfb83c574fa0a3ccb2e70618",
+  "reports/audits/phase36_final_probability_authority_diagnostic_no_execution_audit_v1_3.json": "81c185dc9624c1bb27fef3d9372f5dae603ee9edc54f5541b49c322985442305",
+  "reports/audits/phase36_final_probability_authority_diagnostic_v1_2_to_v1_3_diff.json": "97d142d41add34ac2e1c5021abf032d3a537cac7ed97f34a86c7a77ffd0ff762"
+ },
+ "pre_equals_post": true,
+ "all_equal_frozen_pins": true,
+ "non_consuming_validation_results": {
+  "unit_run": {
+   "returncode": 0,
+   "n_checks": 42,
+   "n_pass": 42,
+   "all_pass": true
+  },
+  "preflight_run": {
+   "returncode": 0,
+   "n_checks": 47,
+   "n_pass": 47,
+   "all_pass": true
+  },
+  "negative_controls_run": {
+   "returncode": 0,
+   "n_checks": 21,
+   "n_pass": 21,
+   "all_pass": true
+  },
+  "launcher_verify_only": {
+   "returncode": 0,
+   "authorized": true,
+   "anchor_pass": true,
+   "interpreter_pass": true,
+   "cuda_readiness_pass": true,
+   "foreign_v1_14_token_absent_pass": true,
+   "prior_failure_provenance_pass": true,
+   "consumed_evidence_binding_pass": true,
+   "v1_0_preservation_pass": true,
+   "v1_1_preservation_pass": true,
+   "transitive_integrity_pass": true,
+   "source_manifest_transitive_authority_exact_match": true,
+   "n_dependencies_verified": 14,
+   "n_checkpoints_verified": 4,
+   "final_authority_preconsumption_pass": true,
+   "final_authority_sha256": "506ab6c4e715a9106889e186c146b73903493c80a63258007954cf5deb3ea9cf",
+   "final_authority_shape": [
+    808,
+    512,
+    512
+   ],
+   "final_authority_dtype": "float16",
+   "final_authority_sample_order_pass": true,
+   "v1_1_consumed_state_binding_pass": true,
+   "v1_1_result_absent": true,
+   "v1_2_consumed_state_binding_pass": true,
+   "v1_2_failure_absent": true,
+   "d61_classification_bound": "ACCEPT_FINAL_FUSION_SEMANTICS_DIVERGE_FROM_PHASE27",
+   "d60_reconciled_bound": "FINAL_AUTHORITY_MISMATCH_EXACTLY_LOCALIZED_TO_PHASE27_ACCEPT_FINAL_SOURCE",
+   "d56_module_interface_pass": true,
+   "d56_subscript_free": true,
+   "d56_load_clean_image_tensor_attribute_access": true,
+   "d56_canonical_learned_core_attribute_access": true,
+   "d61_has_fuse_full_field_call": true,
+   "d61_absent_model_fusion_call": true,
+   "diagnostic_source_observed_sha256": "b32a9db41a53b5007c6b9989bdbee22a0b7ea14587d222a3399980142dd9621e",
+   "terminal": "PHASE36_FINAL_PROB_AUTHORITY_DIAGNOSTIC_V1_3_LAUNCH_READINESS_VERIFIED__DISPATCH_SUPPRESSED_BY_VERIFY_ONLY"
+  }
+ },
+ "validator_expectations_met": {
+  "unit_exact": true,
+  "preflight_exact": true,
+  "negative_controls_exact": true,
+  "launcher_verify_only_rc0": true,
+  "launcher_verify_only_exact": true
+ },
+ "v1_3_markers_absent_after_validation": true,
+ "effective_runtime_launch_token": "PHASE36_FINAL_PROB_AUTHORITY_V1_3_LAUNCH_AUTHORITY",
+ "effective_execution_eligibility": "ELIGIBLE_NOT_STARTED",
+ "attempt_consumed": false,
+ "authorization_semantics": {
+  "one_shot_gate_env": "PHASE36_FINAL_PROB_AUTHORITY_EXECUTE=1",
+  "launch_authority_token_env": "PHASE36_FINAL_PROB_AUTHORITY_V1_3_LAUNCH_AUTHORITY=1",
+  "forbidden_foreign_token_env": "PHASE36_V1_14_LAUNCH_AUTHORITY",
+  "forbidden_v1_1_token_reuse": "PHASE36_FINAL_PROB_AUTHORITY_V1_1_LAUNCH_AUTHORITY",
+  "forbidden_v1_2_token_reuse": "PHASE36_FINAL_PROB_AUTHORITY_V1_2_LAUNCH_AUTHORITY"
+ },
+ "prohibitions_observed": [
+  "no_v1_3_diagnostic_execution",
+  "no_start_result_failure_marker",
+  "no_model_run",
+  "no_checkpoint_deserialization",
+  "no_val_image_read",
+  "no_val_gt_read",
+  "no_perturbations",
+  "no_test",
+  "no_router_holdout",
+  "no_v1_14_retry",
+  "no_clean_equivalence_retry",
+  "no_v1_15_science",
+  "no_phase37",
+  "no_runtime_source_modified",
+  "no_existing_governance_overwritten",
+  "no_v1_3_frozen_artifact_modified",
+  "no_v1_2_reconciliation_overwritten"
+ ],
+ "governance_state_after": {
+  "v1_0": "FROZEN_NEVER_CONSUMED_NOT_AUTHORIZED",
+  "v1_1": "CONSUMED_FAILED",
+  "v1_1_retry_permitted": false,
+  "v1_2_final_prob": "CONSUMED_RESULT",
+  "v1_2_retry_permitted": false,
+  "v1_3_final_prob": "ELIGIBLE_NOT_STARTED",
+  "v1_14_science": "CONSUMED_FAILED",
+  "v1_15": "NOT_CREATED",
+  "phase37": "NOT_STARTED",
+  "test": "PHASE39_ONLY",
+  "router_holdout": "NOT_ACCESSED"
+ },
+ "scientific_output": false,
+ "generated_utc": "2026-10-08T09:17:11Z"
+}

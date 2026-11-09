@@ -1,0 +1,84 @@
+{
+ "artifact": "phase29_phase_d_numeric_semantics_unchanged",
+ "phase": 29,
+ "stage": "PHASE_D_NUMERIC_SEMANTICS_UNCHANGED",
+ "method": "RA-MedFiLM-BARR",
+ "generated_utc": "2026-10-03T15:35:04+00:00",
+ "source_contract": "reports/audits/phase29_phase_d_component_inference_semantics_contract_v1_1.json",
+ "source_contract_sha256": "dc721c1143bdd03b542da95e1cfb22c638362535aea6bbcefaf28a99323c7526",
+ "expected_semantics": {
+  "G": {
+   "device": "cuda",
+   "model_eval": true,
+   "input_dtype": "float32",
+   "autocast_enabled": true,
+   "autocast_dtype": "float16",
+   "no_grad": true,
+   "inference_mode": false,
+   "batch_size": 8,
+   "order_frozen": "dataset asc, sample_id asc",
+   "contiguous_batches_of_8_within_domain": true
+  },
+  "R_psi": {
+   "device": "cuda",
+   "model_eval": true,
+   "dtype": "float32",
+   "autocast_enabled": false,
+   "inference_mode": true,
+   "batch_size": 8
+  },
+  "B_phi": {
+   "device": "cuda",
+   "model_eval": true,
+   "dtype": "float32",
+   "autocast_enabled": false,
+   "inference_mode": true,
+   "canonical_full_feature_matrix_score_path": true
+  },
+  "S_omega": {
+   "device": "cuda",
+   "model_eval": true,
+   "dtype": "float32",
+   "autocast_enabled": false,
+   "inference_mode": true,
+   "batch_size": 128
+  }
+ },
+ "live_semantics_verification": {
+  "G": {
+   "device": true,
+   "model_eval": true,
+   "input_dtype_float32": true,
+   "autocast_enabled": true,
+   "autocast_dtype_float16": true,
+   "no_grad": true,
+   "inference_mode_false": true,
+   "batch_size_8": true
+  },
+  "R_psi": {
+   "device_cuda": true,
+   "model_eval": true,
+   "input_dtype_float32": true,
+   "autocast_disabled": true,
+   "inference_mode": true,
+   "batch_size_8": true
+  },
+  "B_phi": {
+   "model_eval": true,
+   "input_dtype_float32": true,
+   "autocast_disabled": true,
+   "inference_mode": true
+  },
+  "S_omega": {
+   "model_eval": true,
+   "input_dtype_float32": true,
+   "autocast_absent_or_disabled": true,
+   "inference_mode": true,
+   "batch_size_128": true
+  }
+ },
+ "checks": {
+  "all_component_semantics_match_frozen": true
+ },
+ "all_pass": true
+}

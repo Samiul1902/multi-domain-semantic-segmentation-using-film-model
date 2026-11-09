@@ -1,0 +1,394 @@
+{
+  "artifact": "h3_proposal_supply_training_closure",
+  "supervisor_ruling": "H3_FINAL_LAUNCH_SAFETY_CHECK_PLUS_PROSPECTIVE_TRAINING_AUTHORIZATION__SECTIONS_7_8_9_11",
+  "experiment_id": "h3_kub_localizer_sigma_adaptive_sizeaware_seed42_clean_v3",
+  "checkpoint_namespace": "checkpoints/h3_kub_localizer_sigma_adaptive_sizeaware_seed42_clean_v3/",
+  "final_training_status": "TRAINED",
+  "run_state_final": "NATURALLY_COMPLETED",
+  "run_classification": "ONE_LOGICAL_RUN__TWO_PROCESS_SEGMENTS__SAME_RUN_RESUME__NO_DUPLICATES",
+  "start_state": {
+    "launch_binding_timestamp_utc": "2026-09-25T06:03:40.835284+00:00",
+    "segment_1_first_epoch_artifact_utc": "2026-09-25T06:09:10.253661+00:00",
+    "segment_2_process_start_utc": "2026-09-25T07:58:25Z"
+  },
+  "end_state": {
+    "registry_end_time_utc": "2026-09-25T13:36:16.650554+00:00",
+    "last_epoch_artifact_utc": "2026-09-25T13:36:16.650555+00:00"
+  },
+  "total_epochs": 69,
+  "final_epoch": 69,
+  "stop_reason": "EARLY_STOPPING_PATIENCE_15_FIRED",
+  "early_stopping_fired": true,
+  "max_epochs_reached": false,
+  "best_epoch": 54,
+  "best_val_localization_recall": 0.6381578947368421,
+  "best_val_loss": 1.8561325531739452,
+  "best_selection_tuple": [
+    0.6381578947368421,
+    -1.8561325531739452
+  ],
+  "final_bad_epochs": 15,
+  "patience": 15,
+  "seed": 42,
+  "train_population": {
+    "images": 770,
+    "canonical_components": 1161,
+    "orphan_excluded": true,
+    "orphan_sample_id": "ef36ad8332b2f33882dc668a5b6846e5"
+  },
+  "val_population": {
+    "images": 103,
+    "canonical_components": 152,
+    "tiny_components": 72
+  },
+  "model": {
+    "architecture": "compact_unet_heatmap",
+    "factory": "kub_localizer",
+    "in_channels": 1,
+    "out_channels": 1,
+    "base_channels": 16,
+    "resolution": 512,
+    "heatmap_resolution": 128,
+    "initialization": "random (no pretrained weights)"
+  },
+  "target_support": {
+    "formula": "sigma_i = clip(0.35 + 0.40 * sqrt(A128_i / A_ref), 0.35, 0.75)",
+    "A_ref": 13.0,
+    "sigma_min": 0.35,
+    "sigma_max": 0.75,
+    "size_adaptive_sigma": true,
+    "A_ref_source": "p75 of TRAIN-only FULL_FIELD code-exact 128-space component areas (reports/tables/h3_aref_code_exact.json)"
+  },
+  "loss": "CenterNetFocalLoss(alpha=2.0, beta=4.0, dice_weight=0.0)",
+  "optimizer": "AdamW(lr=1e-4, weight_decay=1e-4)",
+  "scheduler": "CosineAnnealingLR(T_max=100)",
+  "proposal_decode": {
+    "threshold": 0.1,
+    "margin": 0.2,
+    "top_k": 5,
+    "nms_iou": 0.3
+  },
+  "proposal_configurations_per_epoch": 1,
+  "grid_search_enabled": false,
+  "selection_rule": "MAX val_localization_recall then MIN val_loss",
+  "selection_term_names": [
+    "val_localization_recall",
+    "negative_val_loss"
+  ],
+  "interruptions": [
+    {
+      "index": 1,
+      "after_epoch": 2,
+      "time_utc": "2026-09-25T06:17:39Z",
+      "cause": "host process termination (exact cause not captured in artifacts)",
+      "evidence": {
+        "last_segment_1_artifact": "experiments/h3_kub_localizer_sigma_adaptive_sizeaware_seed42_clean_v3/h3_train_stdout.log (mtime 2026-09-25T06:17:39Z)",
+        "no_completion_markers": "registry end_time absent while RUNNING; no stop marker in training.log at interruption time",
+        "resume_source": "checkpoints/h3_kub_localizer_sigma_adaptive_sizeaware_seed42_clean_v3/latest.pt (epoch-2 full state)",
+        "full_state_restored": [
+          "model_state",
+          "optimizer_state",
+          "scheduler_state",
+          "grad_scaler_state",
+          "epoch",
+          "global_step",
+          "best_validation_score",
+          "training_history",
+          "early_stopping_state (bad_epochs)",
+          "loader_generator_states (train RNG)"
+        ],
+        "continuity_evidence": [
+          "learning_rate epoch 3 = 9.9778098e-05 = exact CosineAnnealingLR(T_max=100) value at step 2 (schedule state restored, not restarted)",
+          "history.csv appended (epochs 1-2 rows and val_search_epoch001/002.csv untouched by segment 2)",
+          "single registry row (register_experiment deduplicates by experiment_id)",
+          "launch binding preserved (reports/audits/h3_training_launch_binding.json not rewritten at resume)"
+        ]
+      }
+    }
+  ],
+  "resumes": [
+    {
+      "index": 1,
+      "resumed_from_epoch": 2,
+      "time_utc": "2026-09-25T07:58:25Z",
+      "resume_source": "checkpoints/h3_kub_localizer_sigma_adaptive_sizeaware_seed42_clean_v3/latest.pt",
+      "full_state_restored": [
+        "model_state",
+        "optimizer_state",
+        "scheduler_state",
+        "grad_scaler_state",
+        "epoch",
+        "global_step",
+        "best_validation_score",
+        "training_history",
+        "early_stopping_state (bad_epochs)",
+        "loader_generator_states (train RNG)"
+      ],
+      "continuity_evidence": [
+        "learning_rate epoch 3 = 9.9778098e-05 = exact CosineAnnealingLR(T_max=100) value at step 2 (schedule state restored, not restarted)",
+        "history.csv appended (epochs 1-2 rows and val_search_epoch001/002.csv untouched by segment 2)",
+        "single registry row (register_experiment deduplicates by experiment_id)",
+        "launch binding preserved (reports/audits/h3_training_launch_binding.json not rewritten at resume)"
+      ],
+      "scientific_effect": "none"
+    }
+  ],
+  "duplicate_runs": 0,
+  "interruption_resume_timeline": [
+    {
+      "event": "INITIAL_LAUNCH",
+      "time_utc": "2026-09-25T06:03:40.835284+00:00",
+      "epoch_range": "1-2",
+      "process_state": "launched from launch binding",
+      "trainer_sha": "9099d6de339aba43d5e92284ea741568f16c7f5c39e7c189c595301ca5cb88f9",
+      "config_sha": "320a367068b6bec4ea357ebea4bca1460db2c7f7a435f19403af64fb4a05f854",
+      "resume_source": null,
+      "full_state_restored": null,
+      "scientific_effect": "frozen H3 contract enforced by FAIL-CLOSED pre-launch safety checks"
+    },
+    {
+      "event": "INTERRUPTION",
+      "time_utc": "2026-09-25T06:17:39Z (last segment-1 artifact write)",
+      "epoch_range": "after epoch 2",
+      "process_state": "process terminated without completion markers",
+      "trainer_sha": "9099d6de339aba43d5e92284ea741568f16c7f5c39e7c189c595301ca5cb88f9",
+      "config_sha": "320a367068b6bec4ea357ebea4bca1460db2c7f7a435f19403af64fb4a05f854",
+      "resume_source": null,
+      "full_state_restored": null,
+      "scientific_effect": "none (epoch-2 full state preserved in latest.pt)"
+    },
+    {
+      "event": "SAME_RUN_RESUME",
+      "time_utc": "2026-09-25T07:58:25Z",
+      "epoch_range": "3-69",
+      "process_state": "new process, same logical run",
+      "trainer_sha": "45bef74f4eddb2e376fd768b1da2e0cba743897e30a725241ac6882d60ad3578",
+      "config_sha": "320a367068b6bec4ea357ebea4bca1460db2c7f7a435f19403af64fb4a05f854",
+      "resume_source": "checkpoints/h3_kub_localizer_sigma_adaptive_sizeaware_seed42_clean_v3/latest.pt (epoch-2 full state)",
+      "full_state_restored": [
+        "model_state",
+        "optimizer_state",
+        "scheduler_state",
+        "grad_scaler_state",
+        "epoch",
+        "global_step",
+        "best_validation_score",
+        "training_history",
+        "early_stopping_state (bad_epochs)",
+        "loader_generator_states (train RNG)"
+      ],
+      "scientific_effect": "none (all scientific module SHAs byte-identical to launch binding; FAIL-CLOSED pre-launch checks re-passed; scheduler/history/selection state continued exactly)"
+    },
+    {
+      "event": "NATURAL_COMPLETION",
+      "time_utc": "2026-09-25T13:36:16.650554+00:00",
+      "epoch_range": "final epoch 69",
+      "process_state": "registry status TRAINED",
+      "trainer_sha": "45bef74f4eddb2e376fd768b1da2e0cba743897e30a725241ac6882d60ad3578",
+      "config_sha": "320a367068b6bec4ea357ebea4bca1460db2c7f7a435f19403af64fb4a05f854",
+      "resume_source": null,
+      "full_state_restored": null,
+      "scientific_effect": "stop reason EARLY_STOPPING_PATIENCE_15_FIRED"
+    }
+  ],
+  "exact_invoked_command_segment_2": "D:/Softfors/jup/.venv/Scripts/python.exe scripts/training/train_phase13b_localizer.py --h3 --config configs/kub/phase13b_localizer_h3_size_adaptive_sigma.yaml --sigma 0.75 --size_adaptive_sigma --selection_rule max_localization_recall",
+  "command_note": "--h3 mode forces size_adaptive_sigma=True and selection_rule=max_localization_recall; the explicit flags are redundant with --h3 and do not alter the frozen scientific configuration.",
+  "implementation_shas": {
+    "trainer_current": "45bef74f4eddb2e376fd768b1da2e0cba743897e30a725241ac6882d60ad3578",
+    "trainer_lineage": {
+      "design_binding_v2": "37b64310d38222310ce060803e37d17e4b6916ce7c522d925234167dc26da366",
+      "launch_binding_segment_1_epochs_1_2": "9099d6de339aba43d5e92284ea741568f16c7f5c39e7c189c595301ca5cb88f9",
+      "segment_2_epochs_3_plus_expected": "45bef74f4eddb2e376fd768b1da2e0cba743897e30a725241ac6882d60ad3578"
+    },
+    "trainer_current_matches_segment_2_lineage": true,
+    "trainer_per_epoch_producer": {
+      "1": "9099d6de339aba43d5e92284ea741568f16c7f5c39e7c189c595301ca5cb88f9",
+      "2": "9099d6de339aba43d5e92284ea741568f16c7f5c39e7c189c595301ca5cb88f9",
+      "3": "45bef74f4eddb2e376fd768b1da2e0cba743897e30a725241ac6882d60ad3578",
+      "4": "45bef74f4eddb2e376fd768b1da2e0cba743897e30a725241ac6882d60ad3578",
+      "5": "45bef74f4eddb2e376fd768b1da2e0cba743897e30a725241ac6882d60ad3578",
+      "6": "45bef74f4eddb2e376fd768b1da2e0cba743897e30a725241ac6882d60ad3578",
+      "7": "45bef74f4eddb2e376fd768b1da2e0cba743897e30a725241ac6882d60ad3578",
+      "8": "45bef74f4eddb2e376fd768b1da2e0cba743897e30a725241ac6882d60ad3578",
+      "9": "45bef74f4eddb2e376fd768b1da2e0cba743897e30a725241ac6882d60ad3578",
+      "10": "45bef74f4eddb2e376fd768b1da2e0cba743897e30a725241ac6882d60ad3578",
+      "11": "45bef74f4eddb2e376fd768b1da2e0cba743897e30a725241ac6882d60ad3578",
+      "12": "45bef74f4eddb2e376fd768b1da2e0cba743897e30a725241ac6882d60ad3578",
+      "13": "45bef74f4eddb2e376fd768b1da2e0cba743897e30a725241ac6882d60ad3578",
+      "14": "45bef74f4eddb2e376fd768b1da2e0cba743897e30a725241ac6882d60ad3578",
+      "15": "45bef74f4eddb2e376fd768b1da2e0cba743897e30a725241ac6882d60ad3578",
+      "16": "45bef74f4eddb2e376fd768b1da2e0cba743897e30a725241ac6882d60ad3578",
+      "17": "45bef74f4eddb2e376fd768b1da2e0cba743897e30a725241ac6882d60ad3578",
+      "18": "45bef74f4eddb2e376fd768b1da2e0cba743897e30a725241ac6882d60ad3578",
+      "19": "45bef74f4eddb2e376fd768b1da2e0cba743897e30a725241ac6882d60ad3578",
+      "20": "45bef74f4eddb2e376fd768b1da2e0cba743897e30a725241ac6882d60ad3578",
+      "21": "45bef74f4eddb2e376fd768b1da2e0cba743897e30a725241ac6882d60ad3578",
+      "22": "45bef74f4eddb2e376fd768b1da2e0cba743897e30a725241ac6882d60ad3578",
+      "23": "45bef74f4eddb2e376fd768b1da2e0cba743897e30a725241ac6882d60ad3578",
+      "24": "45bef74f4eddb2e376fd768b1da2e0cba743897e30a725241ac6882d60ad3578",
+      "25": "45bef74f4eddb2e376fd768b1da2e0cba743897e30a725241ac6882d60ad3578",
+      "26": "45bef74f4eddb2e376fd768b1da2e0cba743897e30a725241ac6882d60ad3578",
+      "27": "45bef74f4eddb2e376fd768b1da2e0cba743897e30a725241ac6882d60ad3578",
+      "28": "45bef74f4eddb2e376fd768b1da2e0cba743897e30a725241ac6882d60ad3578",
+      "29": "45bef74f4eddb2e376fd768b1da2e0cba743897e30a725241ac6882d60ad3578",
+      "30": "45bef74f4eddb2e376fd768b1da2e0cba743897e30a725241ac6882d60ad3578",
+      "31": "45bef74f4eddb2e376fd768b1da2e0cba743897e30a725241ac6882d60ad3578",
+      "32": "45bef74f4eddb2e376fd768b1da2e0cba743897e30a725241ac6882d60ad3578",
+      "33": "45bef74f4eddb2e376fd768b1da2e0cba743897e30a725241ac6882d60ad3578",
+      "34": "45bef74f4eddb2e376fd768b1da2e0cba743897e30a725241ac6882d60ad3578",
+      "35": "45bef74f4eddb2e376fd768b1da2e0cba743897e30a725241ac6882d60ad3578",
+      "36": "45bef74f4eddb2e376fd768b1da2e0cba743897e30a725241ac6882d60ad3578",
+      "37": "45bef74f4eddb2e376fd768b1da2e0cba743897e30a725241ac6882d60ad3578",
+      "38": "45bef74f4eddb2e376fd768b1da2e0cba743897e30a725241ac6882d60ad3578",
+      "39": "45bef74f4eddb2e376fd768b1da2e0cba743897e30a725241ac6882d60ad3578",
+      "40": "45bef74f4eddb2e376fd768b1da2e0cba743897e30a725241ac6882d60ad3578",
+      "41": "45bef74f4eddb2e376fd768b1da2e0cba743897e30a725241ac6882d60ad3578",
+      "42": "45bef74f4eddb2e376fd768b1da2e0cba743897e30a725241ac6882d60ad3578",
+      "43": "45bef74f4eddb2e376fd768b1da2e0cba743897e30a725241ac6882d60ad3578",
+      "44": "45bef74f4eddb2e376fd768b1da2e0cba743897e30a725241ac6882d60ad3578",
+      "45": "45bef74f4eddb2e376fd768b1da2e0cba743897e30a725241ac6882d60ad3578",
+      "46": "45bef74f4eddb2e376fd768b1da2e0cba743897e30a725241ac6882d60ad3578",
+      "47": "45bef74f4eddb2e376fd768b1da2e0cba743897e30a725241ac6882d60ad3578",
+      "48": "45bef74f4eddb2e376fd768b1da2e0cba743897e30a725241ac6882d60ad3578",
+      "49": "45bef74f4eddb2e376fd768b1da2e0cba743897e30a725241ac6882d60ad3578",
+      "50": "45bef74f4eddb2e376fd768b1da2e0cba743897e30a725241ac6882d60ad3578",
+      "51": "45bef74f4eddb2e376fd768b1da2e0cba743897e30a725241ac6882d60ad3578",
+      "52": "45bef74f4eddb2e376fd768b1da2e0cba743897e30a725241ac6882d60ad3578",
+      "53": "45bef74f4eddb2e376fd768b1da2e0cba743897e30a725241ac6882d60ad3578",
+      "54": "45bef74f4eddb2e376fd768b1da2e0cba743897e30a725241ac6882d60ad3578",
+      "55": "45bef74f4eddb2e376fd768b1da2e0cba743897e30a725241ac6882d60ad3578",
+      "56": "45bef74f4eddb2e376fd768b1da2e0cba743897e30a725241ac6882d60ad3578",
+      "57": "45bef74f4eddb2e376fd768b1da2e0cba743897e30a725241ac6882d60ad3578",
+      "58": "45bef74f4eddb2e376fd768b1da2e0cba743897e30a725241ac6882d60ad3578",
+      "59": "45bef74f4eddb2e376fd768b1da2e0cba743897e30a725241ac6882d60ad3578",
+      "60": "45bef74f4eddb2e376fd768b1da2e0cba743897e30a725241ac6882d60ad3578",
+      "61": "45bef74f4eddb2e376fd768b1da2e0cba743897e30a725241ac6882d60ad3578",
+      "62": "45bef74f4eddb2e376fd768b1da2e0cba743897e30a725241ac6882d60ad3578",
+      "63": "45bef74f4eddb2e376fd768b1da2e0cba743897e30a725241ac6882d60ad3578",
+      "64": "45bef74f4eddb2e376fd768b1da2e0cba743897e30a725241ac6882d60ad3578",
+      "65": "45bef74f4eddb2e376fd768b1da2e0cba743897e30a725241ac6882d60ad3578",
+      "66": "45bef74f4eddb2e376fd768b1da2e0cba743897e30a725241ac6882d60ad3578",
+      "67": "45bef74f4eddb2e376fd768b1da2e0cba743897e30a725241ac6882d60ad3578",
+      "68": "45bef74f4eddb2e376fd768b1da2e0cba743897e30a725241ac6882d60ad3578",
+      "69": "45bef74f4eddb2e376fd768b1da2e0cba743897e30a725241ac6882d60ad3578"
+    },
+    "launch_binding_trainer_sha_epochs_1_2": "9099d6de339aba43d5e92284ea741568f16c7f5c39e7c189c595301ca5cb88f9",
+    "launch_era_trainer_bytes_recoverable_locally": false,
+    "dataset_module": "77aba36b0ba65b951c49a5caf2e1abcdc2092ca0cd3e2d50ac2a896dd4c1f384",
+    "dataset_module_lineage": {
+      "design_binding_v2": "b1c4645f8860d557ffc6cb145c224a7ddb5d804e558147fd37b8d8903feb3c5f",
+      "launch_binding_run_era": "77aba36b0ba65b951c49a5caf2e1abcdc2092ca0cd3e2d50ac2a896dd4c1f384",
+      "note": "dataset module was revised between the design-era pretraining binding and the pre-launch safety check; the LAUNCH binding is the authoritative run-era reference and current disk matches it byte-for-byte"
+    },
+    "heatmap_targets_module": "4fe01377b5fb2f15377fda37ef2114a04185fa44a6dacef4983f2c0b15122d1c",
+    "selection_helper_module": "807a70181c1f0da7481a26f1d06e1a1f2ca21dd0e93d44d987e630f38f500fbb",
+    "checkpointing_module": "08366f72f3141e5d18f008981465f5e9138c0b51336fd65cae7c619456ee1eca",
+    "config": "320a367068b6bec4ea357ebea4bca1460db2c7f7a435f19403af64fb4a05f854",
+    "train_manifest": "28702fc3a5ff8b950db372f03232d335e3a30b1fc2f21db7cd8c066055826ed6",
+    "val_manifest": "082c80b2bda63fd73f371f109c34643adf01edaead921643fb2e44993ba53315",
+    "history_csv": "93a175776e6e558bdb3dc555be863af17fc939d6ae4f355cf8bf814b9cdca321",
+    "training_log": "ebb0e1a31a499a4a4000848cb92501a79202398bb89a3f4378c8cca214ef037f",
+    "stdout_log_segment_1": "d9fdf2cde195afab454e69f26817f07ae73c5b0b8d184aebb757578cdd2f9f42",
+    "stdout_log_segment_2": null,
+    "stdout_log_segment_2_note": "segment-2 console output was not captured to a file; per-epoch authoritative records are history.csv + training.log",
+    "launch_binding": "49046f31f6a766d485a761c8827bd3ca70a400f4779b17a3d6b0159e0134f0f2",
+    "pretraining_binding_v2": "ff10d13bd151d48f3d1c6ce2528a26b0a4fe16c8f97e372ffbf3351125bf9484",
+    "best_pt": "d875cac7d09bbc3d32232191f0af2c138e5a74682fc63e4d6e01f30345eca75e",
+    "latest_pt": "01f57c32a2667eed0c50ded3e19f3f8117fda859c9a663b237dde61f2eda7992"
+  },
+  "scientific_module_shas_match_launch_binding": true,
+  "history_integrity": {
+    "status": "PASS",
+    "rows": 69,
+    "epochs_contiguous_1_to_n": true,
+    "columns": [
+      "epoch",
+      "train_loss",
+      "val_loss",
+      "val_hard_tiny_recovered90",
+      "val_global_empty_images_covered90",
+      "val_tiny_recall90",
+      "val_overall_recall90",
+      "learning_rate",
+      "epoch_seconds",
+      "peak_gpu_allocated",
+      "peak_gpu_reserved",
+      "feasible_config_count",
+      "localization_status",
+      "mean_roi_area_fraction",
+      "mean_proposals_per_image",
+      "mean_max_heatmap",
+      "median_max_heatmap",
+      "fixed_decode",
+      "val_localization_recall",
+      "per_size_recall90",
+      "any_overlap_recall",
+      "coverage50_recall",
+      "mean_coverage",
+      "zero_proposal_gt",
+      "zero_proposal_tiny",
+      "total_gt_components",
+      "total_proposals",
+      "precision",
+      "background_fraction",
+      "selection_tuple",
+      "selection_term_names"
+    ],
+    "finite_metrics_verified": true,
+    "total_gt_components_all_epochs": 152,
+    "fixed_decode_constant": true,
+    "selection_tuple_consistent": true,
+    "feasible_config_count_all_epochs": 1
+  },
+  "checkpoint_integrity": {
+    "best_pt": {
+      "path": "D:\\Softfors\\jup\\checkpoints\\h3_kub_localizer_sigma_adaptive_sizeaware_seed42_clean_v3\\best.pt",
+      "epoch": 54,
+      "sha256": "d875cac7d09bbc3d32232191f0af2c138e5a74682fc63e4d6e01f30345eca75e",
+      "selected_metric_values": {
+        "val_localization_recall": 0.6381578947368421,
+        "negative_val_loss": -1.8561325531739454
+      },
+      "producing_implementation": {
+        "trainer_sha": "45bef74f4eddb2e376fd768b1da2e0cba743897e30a725241ac6882d60ad3578",
+        "checkpointing_module_sha": "08366f72f3141e5d18f008981465f5e9138c0b51336fd65cae7c619456ee1eca"
+      },
+      "experiment_id": "h3_kub_localizer_sigma_adaptive_sizeaware_seed42_clean_v3"
+    },
+    "latest_pt": {
+      "path": "D:\\Softfors\\jup\\checkpoints\\h3_kub_localizer_sigma_adaptive_sizeaware_seed42_clean_v3\\latest.pt",
+      "epoch": 69,
+      "sha256": "01f57c32a2667eed0c50ded3e19f3f8117fda859c9a663b237dde61f2eda7992",
+      "bad_epochs": 15,
+      "stopped": true,
+      "producing_implementation": {
+        "trainer_sha": "45bef74f4eddb2e376fd768b1da2e0cba743897e30a725241ac6882d60ad3578",
+        "checkpointing_module_sha": "08366f72f3141e5d18f008981465f5e9138c0b51336fd65cae7c619456ee1eca"
+      },
+      "experiment_id": "h3_kub_localizer_sigma_adaptive_sizeaware_seed42_clean_v3"
+    },
+    "all_checks": {
+      "latest_epoch_equals_final_epoch": true,
+      "latest_history_epochs_match": true,
+      "latest_bad_epochs_match_replay": true,
+      "latest_stopped_flag_matches_replay_stop_condition": true,
+      "best_pt_epoch_matches_replay": true,
+      "best_pt_epoch_matches_history_argmax": true,
+      "best_pt_score_matches_replay": true,
+      "seed42": true
+    }
+  },
+  "checkpoint_selection_replay": {
+    "artifact": "reports/audits/h3_checkpoint_selection_replay.json",
+    "verdict": "H3_CHECKPOINT_SELECTION_REPLAY_PASS",
+    "selected_epoch": 54
+  },
+  "test_reads": 0,
+  "external_test_reads": 0,
+  "test_status": "CLOSED",
+  "phase_15_status": "NOT_STARTED_AND_NOT_AUTHORIZED",
+  "supply_axis_evaluation_status": "PENDING__REQUIRES_SEPARATE_AUTHORIZATION_AFTER_CLOSURE_AND_REPLAY_PASS",
+  "downstream_refiner_evaluation_status": "NOT_PERFORMED_IN_THIS_TASK",
+  "status": "H3_TRAINING_COMPLETE__CHECKPOINT_SELECTION_REPLAY_PASS__SUPPLY_EVALUATION_PENDING",
+  "timestamp_utc": "2026-09-25T13:39:52.248359+00:00"
+}

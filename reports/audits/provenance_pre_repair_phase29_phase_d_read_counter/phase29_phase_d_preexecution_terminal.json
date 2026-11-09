@@ -1,0 +1,53 @@
+{
+ "artifact": "phase29_phase_d_preexecution_terminal",
+ "phase": 29,
+ "stage": "PHASE_D_PREEXECUTION_TERMINAL",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_phase29_repro_v1_1",
+ "generated_utc": "2026-10-03T15:25:42+00:00",
+ "classification": "GOVERNANCE_AND_PROVENANCE_RECONCILIATION_ONLY",
+ "terminal": "PHASE29_PHASE_D_PREEXECUTION_RECONCILED__POST_SAFETY_CAUSAL_ORDER_AND_VAL808_CACHE_PROVENANCE_FROZEN__PHASE_D_EXECUTION_ELIGIBLE_NOT_STARTED",
+ "success_terminal": true,
+ "repair_scope": {
+  "A_post_safety_causal_order": "REPAIRED_IN_CONTRACT_TEXT (runtime was already correct)",
+  "B_existing_VAL808_cache_provenance": "RESOLVED__NONCANONICAL_PRE_RECONCILIATION_CACHE",
+  "C_global_reproduction_gate": "RETAINED_AND_FROZEN"
+ },
+ "required_outputs_present": {
+  "phase29_phase_d_causal_order_defect.json": true,
+  "phase29_phase_d_post_safety_causal_dependency_proof.json": true,
+  "phase29_phase_d_component_inference_semantics_contract_v1_1.json": true,
+  "phase29_phase_d_existing_val808_cache_inventory.json": true,
+  "phase29_phase_d_existing_val808_cache_provenance.json": true,
+  "phase29_phase_d_cache_root_cleanliness_gate.json": true,
+  "phase29_pre_val808_freeze_gate_v1_2.json": true,
+  "phase29_phase_d_preexecution_final_check.json": true,
+  "phase29_phase_d_preexecution_terminal.json": true
+ },
+ "all_required_outputs_present": true,
+ "frozen_state": {
+  "training_changed": false,
+  "checkpoints_changed": false,
+  "OOF_predictions_changed": false,
+  "macro_DEV_Dice_changed": false,
+  "VAL808_newly_opened": false
+ },
+ "read_counters": {
+  "new_VAL808_reads_during_reconciliation": 0,
+  "noncanonical_pre_reconciliation_VAL808_reads_on_record": 808,
+  "ROUTER_HOLDOUT_reads": 0,
+  "TEST_reads": 0,
+  "VAL808_GT_reads": 0
+ },
+ "phase_d_execution_eligible": true,
+ "phase_d_execution_started": false,
+ "stop_after": "PHASE_D_PREEXECUTION_RECONCILED",
+ "blocked_terminals_not_used": [
+  "PHASE29_PHASE_D_BLOCKED__POST_SAFETY_CAUSAL_ORDER_UNRESOLVED",
+  "PHASE29_PHASE_D_BLOCKED__EXISTING_VAL808_CACHE_PROVENANCE_UNRESOLVED",
+  "PHASE29_PHASE_D_BLOCKED__NONCANONICAL_CACHE_REUSE_RISK",
+  "PHASE29_PHASE_D_BLOCKED__COMPONENT_NUMERIC_SEMANTICS_DRIFT",
+  "PHASE29_PHASE_D_BLOCKED__PREMATURE_VAL808_ACCESS"
+ ],
+ "all_pass": true
+}

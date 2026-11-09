@@ -1,0 +1,98 @@
+{
+ "artifact": "phase29_phase_d_causal_order_defect",
+ "phase": 29,
+ "stage": "PHASE_D_CAUSAL_ORDER_DEFECT_CLASSIFICATION",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_phase29_repro_v1_1",
+ "generated_utc": "2026-10-03T15:25:42+00:00",
+ "predecessor_terminal": "PHASE29_PHASE_C_RECONCILED__ROUTER_METRIC_SEMANTICS_PHASE27_VAL808_NUMERICS_AND_ENTRYPOINT_EXCEPTION_FROZEN__PHASE_D_ELIGIBLE_NOT_STARTED",
+ "predecessor_terminal_matches": true,
+ "classification": "POST_SAFETY_CAUSAL_ORDER_SEMANTIC_DEFECT",
+ "defect_scope": "DOCUMENT_LEVEL_CONTRACT_TEXT_ONLY__RUNTIME_ORDER_CORRECT",
+ "defective_artifact": {
+  "path": "reports/audits/phase29_phase_d_component_inference_semantics_contract.json",
+  "sha256": "d886aa6ba49f49d4fabe850daf10d4bb575a1a167b8d29680803f21f8134b8b7",
+  "field": "components.R_psi.trigger",
+  "observed_incorrect_value": "executed only for routed (selected AND safety-accepted) samples",
+  "correct_value": "R_psi executes for EVERY router-selected (action-available) sample whose utility passes the frozen pre-execution threshold; it executes BEFORE any safety decision, for BOTH subsequently-ACCEPTED and subsequently-REJECTED samples."
+ },
+ "root_cause": "The inert contract text described S_omega as if it could gate R_psi execution. S_omega is a POST-REFINEMENT selector: its decision requires the regional candidate and the candidate-dependent 20-D feature vector, both of which are produced BY R_psi. A pre-refinement safety decision is causally impossible.",
+ "why_impossible": {
+  "S_omega_input_requires_refined_candidate": true,
+  "n_numeric_features_dependent_on_refined_candidate": 9,
+  "numeric_features_total": 16,
+  "dependency_list": [
+   "refined_prob_mean",
+   "mean_abs_prob_change",
+   "max_abs_prob_change",
+   "frac_abs_prob_change_ge_0p10",
+   "refined_entropy_mean",
+   "refined_foreground_fraction",
+   "binary_xor_fraction",
+   "refined_component_count",
+   "refined_boundary_fraction"
+  ],
+  "authority": "reports/audits/phase25f_feature_equation_contract_v1_0.json"
+ },
+ "invalidation_scope": {
+  "training_invalidated": false,
+  "checkpoints_invalidated": false,
+  "OOF_invalidated": false,
+  "Phase29_DEV_results_invalidated": false,
+  "Phase29_VAL808_runtime_results_invalidated": false
+ },
+ "runtime_counter_evidence": {
+  "note": "The already-executed Phase29 VAL808 runtime obeysthe CORRECT causal order. n_refiner_forwards == n_somega_forwards == n_selected on every seed, NOT n_accepted. This proves the defect is confined to the contract TEXT; the executed runtime was correct.",
+  "per_seed": {
+   "seed42": {
+    "n_selected": 279,
+    "n_refiner_forwards": 279,
+    "n_somega_forwards": 279,
+    "n_accepted": 268,
+    "n_rejected": 11,
+    "refiner_forward_equals_selected": true,
+    "refiner_forward_equals_accepted": false,
+    "somega_forward_equals_selected": true,
+    "src": "reports/audits/phase29_seed42_val808_inference.json",
+    "src_sha256": "45a78be09fef36b9c9b42abbbb519a4f980b0c8f3438bf010c1cd72c8c64340d"
+   },
+   "seed123": {
+    "n_selected": 256,
+    "n_refiner_forwards": 256,
+    "n_somega_forwards": 256,
+    "n_accepted": 231,
+    "n_rejected": 25,
+    "refiner_forward_equals_selected": true,
+    "refiner_forward_equals_accepted": false,
+    "somega_forward_equals_selected": true,
+    "src": "reports/audits/phase29_seed123_val808_inference.json",
+    "src_sha256": "77889bb3648f84721a76197f8259ae66eec1d72a086711769cd0104496787241"
+   },
+   "seed3407": {
+    "n_selected": 262,
+    "n_refiner_forwards": 262,
+    "n_somega_forwards": 262,
+    "n_accepted": 256,
+    "n_rejected": 6,
+    "refiner_forward_equals_selected": true,
+    "refiner_forward_equals_accepted": false,
+    "somega_forward_equals_selected": true,
+    "src": "reports/audits/phase29_seed3407_val808_inference.json",
+    "src_sha256": "d7f683481ef36e10f6ad4c9d009969d81864c25dc84176c38318d898ede88451"
+   }
+  },
+  "runtime_correct_on_all_seeds": true,
+  "runtime_would_contradict_the_documented_trigger": true
+ },
+ "checks": {
+  "predecessor_terminal_matches": true,
+  "defect_located_in_contract_text": true,
+  "causal_impossibility_established": true,
+  "training_not_invalidated": true,
+  "checkpoints_not_invalidated": true,
+  "oof_not_invalidated": true,
+  "dev_results_not_invalidated": true,
+  "runtime_order_correct_on_all_seeds": true
+ },
+ "all_pass": true
+}

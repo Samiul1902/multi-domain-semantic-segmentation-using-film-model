@@ -1,0 +1,31 @@
+{
+ "artifact": "phase27_blocked_conditions.json",
+ "phase": "27",
+ "classification": "PHASE27_PRE_EXECUTION_PRESERVATION_AUDIT_SPECIFICATION",
+ "method": "RA-MedFiLM-BARR",
+ "governance_only": true,
+ "no_execution": true,
+ "stage": "BLOCKED_CONDITIONS",
+ "blocked_terminals": {
+  "PHASE27_BLOCKED__PRESERVATION_AUDIT_SPEC_INCOMPLETE": "PHASE27_BLOCKED__PRESERVATION_AUDIT_SPEC_INCOMPLETE",
+  "PHASE27_BLOCKED__VAL808_POPULATION_BINDING_FAILURE": "PHASE27_BLOCKED__VAL808_POPULATION_BINDING_FAILURE",
+  "PHASE27_BLOCKED__PHASE26_BUNDLE_DRIFT": "PHASE27_BLOCKED__PHASE26_BUNDLE_DRIFT",
+  "PHASE27_BLOCKED__PHASE30_HOLDOUT_CONTAMINATION_RISK": "PHASE27_BLOCKED__PHASE30_HOLDOUT_CONTAMINATION_RISK"
+ },
+ "hard_stop_conditions": [
+  "predecessor terminal does not match",
+  "any Phase26 predecessor SHA drift",
+  "VAL808 manifest SHA drift",
+  "VAL808 domain counts differ from frozen (ISIC 357 / KUB 280 / KVASIR 87 / BUSI 84)",
+  "VAL808 group count differs from 639",
+  "group rule not reproducibly derivable from metadata",
+  "statistics contract not frozen before inference",
+  "any VAL808 inference / model construction / training performed in the spec phase",
+  "ROUTER_HOLDOUT or TEST accessed"
+ ],
+ "all_resolved_at_spec_time": true,
+ "checks": {
+  "blocked_conditions_enumerated": true
+ },
+ "all_pass": true
+}

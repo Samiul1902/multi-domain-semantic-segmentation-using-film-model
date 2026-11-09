@@ -1,0 +1,65 @@
+{
+  "artifact": "phase22_cpu_baseline",
+  "phase": 22,
+  "purpose": "measure, not model: actual CPU latency of the frozen global pass so the resource discussion is not purely analytical",
+  "measurement_only": true,
+  "no_optimisation_performed": true,
+  "checkpoint": {
+    "experiment_id": "phase21_global_medfilm_fourdomain_seed42_clean_v3",
+    "architecture_id": "global_medfilm_shared_residual_unet_film5_no_se_no_deep_supervision_v1",
+    "checkpoint_path": "checkpoints/phase21_global_medfilm_fourdomain_seed42_clean_v3/best.pt",
+    "checkpoint_sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+    "checkpoint_epoch": 66,
+    "param_count": 3523001,
+    "phase21_freeze_sha256": "aad7baab700710dcf51f0b549b52ddd340bd06d1ec50c39a86f48b00745e98af",
+    "training_performed_in_phase22": false
+  },
+  "batch_size": 1,
+  "amp": false,
+  "threads": 8,
+  "process_rss_mib_after_load": 560.7421875,
+  "rss_note": "process RSS (working set) is the metric; tracemalloc was rejected because it reports 0.0 for a torch forward pass - the tensor arena is C-allocated and invisible to it",
+  "rows": [
+    {
+      "size": 256,
+      "device": "cpu",
+      "n_iter": 3,
+      "mean_seconds": 0.09327383333311445,
+      "median_seconds": 0.0934981999998854,
+      "min_seconds": 0.08990119999998569,
+      "max_seconds": 0.09642209999947227,
+      "stdev_seconds": 0.0026668695133301177,
+      "mean_process_rss_mib": 646.0546875,
+      "max_process_rss_mib": 646.078125,
+      "analytical_macs": 7887935232
+    },
+    {
+      "size": 512,
+      "device": "cpu",
+      "n_iter": 3,
+      "mean_seconds": 0.3895396333333944,
+      "median_seconds": 0.36927060000016354,
+      "min_seconds": 0.36440459999994346,
+      "max_seconds": 0.4349437000000762,
+      "stdev_seconds": 0.032166923398680825,
+      "mean_process_rss_mib": 912.8294270833334,
+      "max_process_rss_mib": 913.1796875,
+      "analytical_macs": 31551740928
+    },
+    {
+      "size": 768,
+      "device": "cpu",
+      "n_iter": 3,
+      "mean_seconds": 0.7684024333332976,
+      "median_seconds": 0.7633851999999024,
+      "min_seconds": 0.7613398000003144,
+      "max_seconds": 0.7804822999996759,
+      "stdev_seconds": 0.008582474363402322,
+      "mean_process_rss_mib": 1322.9947916666667,
+      "max_process_rss_mib": 1323.0078125,
+      "analytical_macs": 70991417088
+    }
+  ],
+  "note": "these timings are host-specific and are reported as an absolute baseline, not as a hardware-independent quantity. CPU timings are recorded separately from the analytical MAC count, which is device-independent.",
+  "test_reads": 0
+}

@@ -1,0 +1,194 @@
+{
+  "artifact": "phase22_harm_analysis",
+  "phase": 22,
+  "variant": "oracle (GT-defined ROI)",
+  "definition": "a case is HARMED when applying the regional arm reduces Dice",
+  "n_executed": 808,
+  "n_harmed": 536,
+  "harm_rate_among_executed": 0.663366,
+  "n_harmed_intent_to_treat": 536,
+  "harm_rate_intent_to_treat": 0.663366,
+  "mean_harm": -0.09574212905848825,
+  "median_harm": -0.04009971608718095,
+  "worst_harm": -0.8334218445650708,
+  "p05_harm": -0.39277068664943154,
+  "total_harm_magnitude": -51.3177811753497,
+  "net_gain_executed": -34.32211179901265,
+  "harm_by_domain": [
+    {
+      "dataset": "ISIC",
+      "n_executed": 357,
+      "n_harmed": 244,
+      "harm_rate": 0.683473,
+      "mean_harm": -0.05230468413391348,
+      "worst_harm": -0.5025257248154807,
+      "total_harm": -12.76234292867489
+    },
+    {
+      "dataset": "BUSI",
+      "n_executed": 84,
+      "n_harmed": 68,
+      "harm_rate": 0.809524,
+      "mean_harm": -0.13295980763479015,
+      "worst_harm": -0.6605358155324268,
+      "total_harm": -9.04126691916573
+    },
+    {
+      "dataset": "KVASIR",
+      "n_executed": 87,
+      "n_harmed": 63,
+      "harm_rate": 0.724138,
+      "mean_harm": -0.09360199960473532,
+      "worst_harm": -0.3759110401921097,
+      "total_harm": -5.896925975098325
+    },
+    {
+      "dataset": "KUB",
+      "n_executed": 280,
+      "n_harmed": 161,
+      "harm_rate": 0.575,
+      "mean_harm": -0.14669096492180597,
+      "worst_harm": -0.8334218445650708,
+      "total_harm": -23.617245352410762
+    }
+  ],
+  "worst_cases": [
+    {
+      "sample_id": "540c974e29cdbbcf76969e2623907e70",
+      "dataset": "KUB",
+      "global_dice": 0.8334218445752438,
+      "oracle_dice": 1.017293997955063e-11,
+      "oracle_delta_dice": -0.8334218445650708,
+      "oracle_roi_area_fraction": 0.30650748,
+      "gt_foreground_pixels": 8002
+    },
+    {
+      "sample_id": "d853abd506163afdfbb2ee533bdc7e3d",
+      "dataset": "KUB",
+      "global_dice": 0.7667590027765441,
+      "oracle_dice": 0.0061432136750102,
+      "oracle_delta_dice": -0.7606157891015338,
+      "oracle_roi_area_fraction": 0.11276057,
+      "gt_foreground_pixels": 2222
+    },
+    {
+      "sample_id": "cf42f77785321f69cbf04efeede747dc",
+      "dataset": "KUB",
+      "global_dice": 0.7471852610160089,
+      "oracle_dice": 1.383451157254979e-12,
+      "oracle_delta_dice": -0.7471852610146255,
+      "oracle_roi_area_fraction": 0.06348038,
+      "gt_foreground_pixels": 834
+    },
+    {
+      "sample_id": "1fd51712e6a34234a5496ed5d4c26bd0",
+      "dataset": "KUB",
+      "global_dice": 0.8151467622716749,
+      "oracle_dice": 0.0897947548590394,
+      "oracle_delta_dice": -0.7253520074126355,
+      "oracle_roi_area_fraction": 0.06072246,
+      "gt_foreground_pixels": 2280
+    },
+    {
+      "sample_id": "2c260e4ef9af21a63c637d28dda8d187",
+      "dataset": "KUB",
+      "global_dice": 0.882671174979859,
+      "oracle_dice": 0.1839568004972772,
+      "oracle_delta_dice": -0.6987143744825818,
+      "oracle_roi_area_fraction": 0.01582031,
+      "gt_foreground_pixels": 5749
+    },
+    {
+      "sample_id": "0785b56594049121d6281aa40e475e26",
+      "dataset": "KUB",
+      "global_dice": 0.7814801823998078,
+      "oracle_dice": 0.0921718998730568,
+      "oracle_delta_dice": -0.6893082825267509,
+      "oracle_roi_area_fraction": 0.00811065,
+      "gt_foreground_pixels": 1280
+    },
+    {
+      "sample_id": "a20fe2c1ca04026ab0d036e8dcdd9cca",
+      "dataset": "KUB",
+      "global_dice": 0.6919069121329662,
+      "oracle_dice": 0.0038646954046317,
+      "oracle_delta_dice": -0.6880422167283344,
+      "oracle_roi_area_fraction": 0.04299683,
+      "gt_foreground_pixels": 1711
+    },
+    {
+      "sample_id": "6f1a73eb1dc3ddb7af81e8a2893a2e76",
+      "dataset": "KUB",
+      "global_dice": 0.6964285714466412,
+      "oracle_dice": 0.0125219963798264,
+      "oracle_delta_dice": -0.6839065750668147,
+      "oracle_roi_area_fraction": 0.06445855,
+      "gt_foreground_pixels": 1090
+    },
+    {
+      "sample_id": "d11b75d6a37dec38833b968724c3fe90",
+      "dataset": "KUB",
+      "global_dice": 0.7178598049069613,
+      "oracle_dice": 0.0361931448100405,
+      "oracle_delta_dice": -0.6816666600969208,
+      "oracle_roi_area_fraction": 0.64388156,
+      "gt_foreground_pixels": 32303
+    },
+    {
+      "sample_id": "abe658fa57a12b1665a96d00beeffae0",
+      "dataset": "KUB",
+      "global_dice": 0.8132923549786152,
+      "oracle_dice": 0.1407149032610657,
+      "oracle_delta_dice": -0.6725774517175495,
+      "oracle_roi_area_fraction": 0.03957299,
+      "gt_foreground_pixels": 3061
+    },
+    {
+      "sample_id": "980faa74400c37c5704a3bdc97116e4f",
+      "dataset": "BUSI",
+      "global_dice": 0.6632906364843283,
+      "oracle_dice": 0.0027548209519015,
+      "oracle_delta_dice": -0.6605358155324268,
+      "oracle_roi_area_fraction": 0.08950526,
+      "gt_foreground_pixels": 3876
+    },
+    {
+      "sample_id": "8f5ed38f0453ee55d9813e6dab414707",
+      "dataset": "KUB",
+      "global_dice": 0.5763779527725836,
+      "oracle_dice": 7.877737513723982e-12,
+      "oracle_delta_dice": -0.5763779527647059,
+      "oracle_roi_area_fraction": 0.08336904,
+      "gt_foreground_pixels": 1567
+    },
+    {
+      "sample_id": "e6db42e46d012311069580771d4bec32",
+      "dataset": "KUB",
+      "global_dice": 0.6444032158427828,
+      "oracle_dice": 0.1183345507884506,
+      "oracle_delta_dice": -0.5260686650543323,
+      "oracle_roi_area_fraction": 0.04622104,
+      "gt_foreground_pixels": 2181
+    },
+    {
+      "sample_id": "47c12baa1ab35869e3ad7df9b6e8395a",
+      "dataset": "KUB",
+      "global_dice": 0.5849000298542256,
+      "oracle_dice": 0.0611635523035684,
+      "oracle_delta_dice": -0.5237364775506572,
+      "oracle_roi_area_fraction": 0.03300781,
+      "gt_foreground_pixels": 2177
+    },
+    {
+      "sample_id": "64afdb05fe78b990a222c66dbe2baf9a",
+      "dataset": "KUB",
+      "global_dice": 0.6775754782245036,
+      "oracle_dice": 0.1595387341660463,
+      "oracle_delta_dice": -0.5180367440584572,
+      "oracle_roi_area_fraction": 0.00909689,
+      "gt_foreground_pixels": 3016
+    }
+  ],
+  "interpretation": "harm concentrates where the ROI crop removes necessary global context, or where the regional pass re-segments background as foreground",
+  "test_reads": 0
+}

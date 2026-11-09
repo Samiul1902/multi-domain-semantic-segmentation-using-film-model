@@ -1,0 +1,104 @@
+{
+  "artifact": "barr_m1_population_lineage_audit_v1_0a",
+  "revision": "RA_MEDFILM_BARR_BARR_M1_V1_0A__SCIENTIFIC_DESIGN_RECONCILIATION",
+  "generated_utc": "2026-10-27T01:38:09Z",
+  "scope": "PLANNING_CORRECTION_ONLY",
+  "populations": {
+    "ROUTER_DEVELOPMENT": {
+      "n": 4957,
+      "per_domain": {
+        "BUSI": 512,
+        "ISIC": 2173,
+        "KUB": 1680,
+        "KVASIR": 592
+      },
+      "metadata": "data_cache/phase25b_barr_pre_refinement_features_v1_2/metadata.csv",
+      "metadata_sha256": "ee8c304350d28d907c053a355da1f878ff7f9dd137761034283459aeed071093",
+      "outer_folds": {
+        "fold0": 1657,
+        "fold1": 1652,
+        "fold2": 1648
+      }
+    },
+    "VAL808": {
+      "n": 808,
+      "per_domain": {
+        "BUSI": 84,
+        "ISIC": 357,
+        "KUB": 280,
+        "KVASIR": 87
+      },
+      "manifest": "manifests/phase4_v3/val.csv",
+      "manifest_sha256": "082c80b2bda63fd73f371f109c34643adf01edaead921643fb2e44993ba53315"
+    },
+    "ROUTER_HOLDOUT": {
+      "n": 875,
+      "status": "OPENED_AND_FROZEN",
+      "consumed_by": "Phase30",
+      "accessible_to_BARR_M1": false
+    },
+    "TEST": {
+      "n": 1683,
+      "status": "LOCKED_UNTIL_PHASE39",
+      "accessible_to_BARR_M1": false
+    }
+  },
+  "overlap": {
+    "dev_intersect_val808": 0,
+    "dev_intersect_train": 4957,
+    "dev_is_subset_of_train": true,
+    "note": "ROUTER_DEVELOPMENT is drawn ENTIRELY from the TRAIN split and is disjoint from VAL808. Overlap is computed on exact sample_id equality, not on filename heuristics."
+  },
+  "component_populations": {
+    "G": {
+      "trained_on": "phase4_v3 TRAIN (n=5832)",
+      "selection_population": "VAL808 (macro-domain Dice, early stopping)",
+      "calibration_population": "N/A",
+      "dev_relation": "IN_SAMPLE — DEV ⊂ TRAIN"
+    },
+    "R_psi": {
+      "trained_on": "phase4_v3 TRAIN (n=5832), ROI-0.30 crop training",
+      "selection_population": "VAL (early stopping)",
+      "calibration_population": "N/A",
+      "dev_relation": "IN_SAMPLE — DEV ⊂ TRAIN"
+    },
+    "B_phi": {
+      "trained_on": "ROUTER_DEVELOPMENT n=4957 — 5-fold CV (FIT/EARLY_STOP/OUTER_TARGET) PLUS one all-DEV final refit",
+      "selection_population": "EARLY_STOP folds within DEV",
+      "calibration_population": "DEV score thresholds (budget 0.25)",
+      "dev_relation": "IN_SAMPLE — the final refit sees all 4957 DEV rows"
+    },
+    "S_omega": {
+      "trained_on": "ROUTER_DEVELOPMENT n=4957 — 5-fold CV OOF plus all-DEV final refit (FINAL_SAFETY_EPOCHS = 23)",
+      "selection_population": "EARLY_STOP folds within DEV",
+      "calibration_population": "DEV (accept threshold 0.50)",
+      "dev_relation": "IN_SAMPLE — the final refit sees all 4957 DEV rows"
+    }
+  },
+  "independence_classification": {
+    "ROUTER_DEVELOPMENT": "IN_SAMPLE_DEVELOPMENT — training population for B_phi and S_omega, and a subset of the TRAIN split used by G and R_psi. Selection-contaminated by construction.",
+    "VAL808": "OUT_OF_SAMPLE_BUT_CONSUMED_DEVELOPMENT_BENCHMARK — disjoint from TRAIN, so out-of-sample for all four components; but already consumed by Phase27 (preservation) and Phase29 (three-seed), so not pristine.",
+    "no_pristine_independent_population_available": true,
+    "reason": "ROUTER_HOLDOUT (875) was consumed by Phase30 and is OPENED_AND_FROZEN; TEST is locked until Phase39. No untouched independent population remains."
+  },
+  "patient_and_source_clustering": {
+    "dev_unique_patient_id": 268,
+    "kub_unique_patient_id": 267,
+    "domains_without_patient_identifier": [
+      "BUSI",
+      "ISIC",
+      "KVASIR"
+    ],
+    "case_id_available": false,
+    "note": "patient_id is 'NOT_AVAILABLE' for ISIC, BUSI and KVASIR; only KUB carries real patient identifiers (267). case_id is 'NOT_AVAILABLE' in every domain. Patient-level clustering is therefore only possible inside KUB."
+  },
+  "population_roles_declared": {
+    "primary": "ROUTER_DEVELOPMENT n=4957 — preserves the frozen Phase-28 contract held_constant population",
+    "secondary": "VAL808 n=808 — SEPARATE prospective descriptive proposal; requires its own approval and must not be pooled with the primary",
+    "pooling_permitted": false,
+    "note": "The frozen Phase-28 contract fixes population = ROUTER_DEVELOPMENT. VAL808 is outside that contract and is therefore not automatically authorised."
+  },
+  "independence_inferred_from_filenames": false,
+  "TEST_read": false,
+  "ROUTER_HOLDOUT_read": false
+}

@@ -1,0 +1,361 @@
+{
+ "artifact": "phase35_execution_source_static_preflight_v1_0d",
+ "phase": 35,
+ "section": "\u00a7P",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase35_interpretability_v1_0d",
+ "method_of_inspection": "AST_PARSE_CONTROL_FLOW_CALL_GRAPH_AND_SHA256_HASHING",
+ "effective_execution_source_set": [
+  "scripts/analysis/phase35_interpretability_execution_v1_0d.py",
+  "scripts/analysis/phase35_interpretability_execution_v1_0b.py"
+ ],
+ "sources": {
+  "common_v1_0b": "scripts/analysis/phase35_interpretability_common_v1_0b.py",
+  "execution_v1_0b": "scripts/analysis/phase35_interpretability_execution_v1_0b.py",
+  "execution_v1_0c": "scripts/analysis/phase35_interpretability_execution_v1_0c.py",
+  "execution_v1_0d": "scripts/analysis/phase35_interpretability_execution_v1_0d.py",
+  "rank_unit_v1_0d": "scripts/analysis/phase35_gradcam_target_rank_unit_v1_0d.py",
+  "preflight_v1_0d": "scripts/analysis/phase35_execution_preflight_v1_0d.py"
+ },
+ "preservation": [
+  {
+   "path": "reports/audits/phase35_specification_terminal_v1_0.json",
+   "expected_sha256": "cec3b2aadbc90a7a8ebd06e8149cd7a53122d42e3f6077c30634e7de96ac312b",
+   "observed_sha256": "cec3b2aadbc90a7a8ebd06e8149cd7a53122d42e3f6077c30634e7de96ac312b",
+   "match": true
+  },
+  {
+   "path": "docs/phase35_interpretability_spec_v1_0.md",
+   "expected_sha256": "6405ba5f7ad9f046226da916559a0d7a1166a1245bb56e8d38bc9971959acb37",
+   "observed_sha256": "6405ba5f7ad9f046226da916559a0d7a1166a1245bb56e8d38bc9971959acb37",
+   "match": true
+  },
+  {
+   "path": "reports/audits/phase35_preexecution_source_freeze_v1_0.json",
+   "expected_sha256": "582c950c96622e84b67e691db4ca02e392c68ff11885c5ddc3f3a785de87fc98",
+   "observed_sha256": "582c950c96622e84b67e691db4ca02e392c68ff11885c5ddc3f3a785de87fc98",
+   "match": true
+  },
+  {
+   "path": "reports/audits/phase35_gallery_sha_reconciliation_v1_0a.json",
+   "expected_sha256": "ef7a4c6580d06ede0cfc8ca56bba1ddfdb6fb6839b1dafdf2928e3bc38e1e72d",
+   "observed_sha256": "ef7a4c6580d06ede0cfc8ca56bba1ddfdb6fb6839b1dafdf2928e3bc38e1e72d",
+   "match": true
+  },
+  {
+   "path": "reports/audits/phase35_execution_source_static_preflight_v1_0a.json",
+   "expected_sha256": "bed25b64d83d8076f07f42569977351d0fef757faa476191acf4792d0aedd5fd",
+   "observed_sha256": "bed25b64d83d8076f07f42569977351d0fef757faa476191acf4792d0aedd5fd",
+   "match": true
+  },
+  {
+   "path": "reports/audits/phase35_preexecution_smoke_terminal_v1_0a.json",
+   "expected_sha256": "447e202196b2de79d21d88d76ebbc7be841afa00361ca613a4b7c04cade0fac9",
+   "observed_sha256": "447e202196b2de79d21d88d76ebbc7be841afa00361ca613a4b7c04cade0fac9",
+   "match": true
+  },
+  {
+   "path": "scripts/analysis/phase35_interpretability_common_v1_0.py",
+   "expected_sha256": "fce9527fbad3714e01beadf5f697646dbbad215e98fe233ddb4b9948c6071843",
+   "observed_sha256": "fce9527fbad3714e01beadf5f697646dbbad215e98fe233ddb4b9948c6071843",
+   "match": true
+  },
+  {
+   "path": "scripts/analysis/phase35_interpretability_execution_v1_0.py",
+   "expected_sha256": "a2e150d89018087112c71dbaa92137b667e4269430463fd55fc1601f9ee99d27",
+   "observed_sha256": "a2e150d89018087112c71dbaa92137b667e4269430463fd55fc1601f9ee99d27",
+   "match": true
+  },
+  {
+   "path": "scripts/analysis/phase35_interpretability_common_v1_0b.py",
+   "expected_sha256": "9963215e1431e968e11bacbcd917d96a8a985a7181000258b90f458ff0a778ac",
+   "observed_sha256": "9963215e1431e968e11bacbcd917d96a8a985a7181000258b90f458ff0a778ac",
+   "match": true
+  },
+  {
+   "path": "scripts/analysis/phase35_interpretability_execution_v1_0b.py",
+   "expected_sha256": "581926840d7717e19ed15ad77c7c5339b709efc881b938924d6eec0a2ceb1872",
+   "observed_sha256": "581926840d7717e19ed15ad77c7c5339b709efc881b938924d6eec0a2ceb1872",
+   "match": true
+  },
+  {
+   "path": "scripts/analysis/phase35_execution_preflight_v1_0b.py",
+   "expected_sha256": "498e68277168a8ee200842d799cb186bd410f09764d1fdb796ad463912704e63",
+   "observed_sha256": "498e68277168a8ee200842d799cb186bd410f09764d1fdb796ad463912704e63",
+   "match": true
+  },
+  {
+   "path": "reports/audits/phase35_v1_0_execution_source_defect_record_v1_0b.json",
+   "expected_sha256": "523d991c7c2b259a2828879c003e532f4705d6dad3322d648a66bf28c0bd8855",
+   "observed_sha256": "523d991c7c2b259a2828879c003e532f4705d6dad3322d648a66bf28c0bd8855",
+   "match": true
+  },
+  {
+   "path": "reports/audits/phase35_execution_source_static_preflight_v1_0b.json",
+   "expected_sha256": "8c026c1b01304747da0f49148a5cf9f0757313bb98870cebfd78a4f589d647df",
+   "observed_sha256": "8c026c1b01304747da0f49148a5cf9f0757313bb98870cebfd78a4f589d647df",
+   "match": true
+  },
+  {
+   "path": "reports/audits/phase35_preexecution_source_freeze_v1_0b.json",
+   "expected_sha256": "95bcd7913b4ebfdb915134ff6cace69efec1edbdcaa31d828f840548f886a06f",
+   "observed_sha256": "95bcd7913b4ebfdb915134ff6cace69efec1edbdcaa31d828f840548f886a06f",
+   "match": true
+  },
+  {
+   "path": "reports/audits/phase35_source_amendment_terminal_v1_0b.json",
+   "expected_sha256": "c1fa5d2d8b2cc70f8615fbd7dee3fcc75ac2d51dd86bf785a25bdb2c5b0f0c79",
+   "observed_sha256": "c1fa5d2d8b2cc70f8615fbd7dee3fcc75ac2d51dd86bf785a25bdb2c5b0f0c79",
+   "match": true
+  },
+  {
+   "path": "reports/audits/phase35_source_amendment_final_check_v1_0b.json",
+   "expected_sha256": "f7b99345e56ca0b32e233b7d0896a23e4d6175a26705bdf8a696d590a5972469",
+   "observed_sha256": "f7b99345e56ca0b32e233b7d0896a23e4d6175a26705bdf8a696d590a5972469",
+   "match": true
+  },
+  {
+   "path": "reports/audits/phase35_synthetic_smoke_terminal_v1_0b.json",
+   "expected_sha256": "3def25817370ce9a90942610d4a474f56384a99e86ba8ba6a2630ad8002e80ee",
+   "observed_sha256": "3def25817370ce9a90942610d4a474f56384a99e86ba8ba6a2630ad8002e80ee",
+   "match": true
+  },
+  {
+   "path": "reports/audits/phase35_synthetic_smoke_final_check_v1_0b.json",
+   "expected_sha256": "0a57dca0d13c0dd20beb1a2546fc89948b02e99f45ed6bc070189f91037b8267",
+   "observed_sha256": "0a57dca0d13c0dd20beb1a2546fc89948b02e99f45ed6bc070189f91037b8267",
+   "match": true
+  },
+  {
+   "path": "reports/audits/phase35_synthetic_interpretability_smoke_v1_0b.json",
+   "expected_sha256": "bd51d09cca091244b46db11d61988572368539fbf4d46ddbfcbc4afc93137ff2",
+   "observed_sha256": "bd51d09cca091244b46db11d61988572368539fbf4d46ddbfcbc4afc93137ff2",
+   "match": true
+  },
+  {
+   "path": "reports/audits/phase35_synthetic_smoke_provenance_v1_0b.json",
+   "expected_sha256": "f44b2b0e5c38b9a695a6fe02fbb55856af33718948ddd399838153539a30f27c",
+   "observed_sha256": "f44b2b0e5c38b9a695a6fe02fbb55856af33718948ddd399838153539a30f27c",
+   "match": true
+  },
+  {
+   "path": "docs/phase35_interpretability_source_amendment_v1_0b.md",
+   "expected_sha256": "ed42edb9059d3d78d64e730c730075b2df19798f8274af86301bb3053155b4a5",
+   "observed_sha256": "ed42edb9059d3d78d64e730c730075b2df19798f8274af86301bb3053155b4a5",
+   "match": true
+  },
+  {
+   "path": "scripts/analysis/phase35_interpretability_execution_v1_0c.py",
+   "expected_sha256": "4058fc5544e6e1af15339df20a88da4880549ea8d4dd434395df04e0fa261baa",
+   "observed_sha256": "4058fc5544e6e1af15339df20a88da4880549ea8d4dd434395df04e0fa261baa",
+   "match": true
+  },
+  {
+   "path": "reports/audits/phase35_execution_source_static_preflight_v1_0c.json",
+   "expected_sha256": "80c90c1130ae3bc22fc9cb5baf6a6bd6e6024cf97b9adc913bbe75b0598bb7bf",
+   "observed_sha256": "80c90c1130ae3bc22fc9cb5baf6a6bd6e6024cf97b9adc913bbe75b0598bb7bf",
+   "match": true
+  },
+  {
+   "path": "reports/audits/phase35_v1_0b_smoke_stub_defect_record_v1_0c.json",
+   "expected_sha256": "192b0bdc8f844e68f5270a04e15f423f9e0dbc6f3f008b45cfd4fc074e89fa27",
+   "observed_sha256": "192b0bdc8f844e68f5270a04e15f423f9e0dbc6f3f008b45cfd4fc074e89fa27",
+   "match": true
+  },
+  {
+   "path": "reports/audits/phase35_v1_0b_to_v1_0c_scientific_semantics_diff.json",
+   "expected_sha256": "1ec634bcac1c690c3c82d43b328074e2ac9af7fd59587405b62199154c5ceccf",
+   "observed_sha256": "1ec634bcac1c690c3c82d43b328074e2ac9af7fd59587405b62199154c5ceccf",
+   "match": true
+  },
+  {
+   "path": "reports/audits/phase35_preexecution_source_freeze_v1_0c.json",
+   "expected_sha256": "16961263fb2f974f61525b70ea70582e2382b86431c7f343f20ebe0948136340",
+   "observed_sha256": "16961263fb2f974f61525b70ea70582e2382b86431c7f343f20ebe0948136340",
+   "match": true
+  },
+  {
+   "path": "reports/audits/phase35_synthetic_smoke_eligibility_v1_0c.json",
+   "expected_sha256": "993ccd824d0b98c438afed05c14d2269b33ac1380bd96b10f485e855cbaf01f4",
+   "observed_sha256": "993ccd824d0b98c438afed05c14d2269b33ac1380bd96b10f485e855cbaf01f4",
+   "match": true
+  },
+  {
+   "path": "reports/audits/phase35_v1_0c_no_execution_audit.json",
+   "expected_sha256": "ed0d14cd98c469f73d6669c9dc8bac27ef98cf3d97a2e58263f9b68fc61be400",
+   "observed_sha256": "ed0d14cd98c469f73d6669c9dc8bac27ef98cf3d97a2e58263f9b68fc61be400",
+   "match": true
+  },
+  {
+   "path": "reports/audits/phase35_smoke_amendment_final_check_v1_0c.json",
+   "expected_sha256": "d6a29d55819aadcabf5f4c8199c6580aa70c93f6f1eee15a513879bfea9fe6e0",
+   "observed_sha256": "d6a29d55819aadcabf5f4c8199c6580aa70c93f6f1eee15a513879bfea9fe6e0",
+   "match": true
+  },
+  {
+   "path": "reports/audits/phase35_smoke_amendment_terminal_v1_0c.json",
+   "expected_sha256": "8aee98fc29e1aa9dffba37079e0935fb8319d096a96f9da8892aab41a503b4bb",
+   "observed_sha256": "8aee98fc29e1aa9dffba37079e0935fb8319d096a96f9da8892aab41a503b4bb",
+   "match": true
+  },
+  {
+   "path": "docs/phase35_interpretability_smoke_amendment_v1_0c.md",
+   "expected_sha256": "079303c442edd057c4f5f9d3850df191f0fc3e7daf3aa038c76bbae341ccb716",
+   "observed_sha256": "079303c442edd057c4f5f9d3850df191f0fc3e7daf3aa038c76bbae341ccb716",
+   "match": true
+  },
+  {
+   "path": "notebooks/phasewise/phase_35_interpretability/phase35_interpretability_smoke_amendment_v1_0c_review.ipynb",
+   "expected_sha256": "9479e4ae292542852e353ec4704158c3a4317b2c2ee4d5a4f238e79bfc12f212",
+   "observed_sha256": "9479e4ae292542852e353ec4704158c3a4317b2c2ee4d5a4f238e79bfc12f212",
+   "match": true
+  },
+  {
+   "path": "reports/tables/phase21_gallery_selection_64.csv",
+   "expected_sha256": "2bc7c16286999ced374840cc987dcd352c3e546668322a9ccc4d1e8e8a097fd9",
+   "observed_sha256": "2bc7c16286999ced374840cc987dcd352c3e546668322a9ccc4d1e8e8a097fd9",
+   "match": true
+  }
+ ],
+ "preservation_all_match": true,
+ "n_predecessors_preserved": 33,
+ "original_v1_0a_checks": {
+  "01_repo_imports_cwd_independent": true,
+  "02_phase34_closure_handoff_hashes_checked": true,
+  "03_canonical_gallery_sha_checked_before_raw_read": true,
+  "04_gallery_ownership_checked_before_raw_read": true,
+  "05_router_holdout_prohibited": true,
+  "06_TEST_prohibited": true,
+  "07_GT_reads_prohibited": true,
+  "08_canonical_G_checkpoint_used": true,
+  "09_canonical_B_phi_checkpoint_used": true,
+  "10_R_psi_not_executed_v1_0": true,
+  "11_S_omega_not_executed_v1_0": true,
+  "12_G_strict_loaded": true,
+  "13_B_phi_strict_loaded": true,
+  "14_G_parameter_count_verified": true,
+  "15_B_phi_parameter_count_verified": true,
+  "16_film_parameters_for_tasks_implemented": true,
+  "17_G_task_embedding_extraction_implemented": true,
+  "18_B_phi_task_embedding_extraction_implemented": true,
+  "19_gradcam_bridge_hook_exact": true,
+  "20_gradcam_decoder1_hook_exact": true,
+  "21_target_mask_from_persisted_p_global_050": true,
+  "22_target_mask_not_recomputed_from_new_forward": true,
+  "23_no_GT_in_target_selection": true,
+  "24_scalar_target_matches_frozen_definitions": true,
+  "25_gradcam_forward_semantics_exact": true,
+  "26_no_optimizer": true,
+  "27_no_parameter_update": true,
+  "28_cam_formula_exact": true,
+  "29_align_corners_false": true,
+  "30_minmax_and_zero_range_exact": true,
+  "31_no_blur_smoothing_posthoc_threshold": true,
+  "32_ROI_proposal_uses_030": true,
+  "33_segmentation_foreground_uses_050": true,
+  "34_thresholds_never_conflated": true,
+  "35_64_case_raw_read_ceiling_enforced": true,
+  "36_display_subset_frozen_without_saliency_inspection": true,
+  "37_router_uses_canonical_VAL808_artifacts": true,
+  "38_router_population_n_808": true,
+  "39_router_raw_image_reads_0": true,
+  "40_router_GT_reads_0": true,
+  "41_B_phi_receives_canonical_task_ids": true,
+  "42_B_phi_receives_canonical_normalization": true,
+  "43_router_target_raw_delta_hat": true,
+  "44_no_sigmoid_on_delta_hat": true,
+  "45_numeric_feature_gradient_enabled": true,
+  "46_attribution_x_times_grad": true,
+  "47_integer_task_ids_no_numeric_gradient": true,
+  "48_B_phi_task_embedding_static": true,
+  "49_zero_denominator_NULL_and_flag": true,
+  "50_outcome_selected_galleries_prevented": true,
+  "51_no_phase30_holdout_raw_evidence_needed": true,
+  "52_no_TEST_access": true,
+  "53_no_training_path": true,
+  "54_phase36_not_started": true
+ },
+ "original_n_checks": 54,
+ "original_n_failed": 0,
+ "original_failed": [],
+ "original_54_all_pass": true,
+ "additional_v1_0d_checks": {
+  "v1_0_chain_preserved": true,
+  "v1_0b_and_v1_0c_sources_unmodified": true,
+  "v1_0d_revision_and_classification_declared": true,
+  "film_and_router_bound_verbatim_from_v1_0b": true,
+  "gradcam_and_science_are_v1_0d_local": true,
+  "film_router_helpers_not_redefined_in_v1_0d": true,
+  "v1_0c_smoke_helpers_reused_verbatim": true,
+  "smoke_counter_store_is_the_frozen_v1_0c_store": true,
+  "smoke_gate_env_distinct_from_science_gate_env": true,
+  "smoke_requires_smoke_gate": true,
+  "scientific_requires_science_gate": true,
+  "v1_0d_zero_execution_guard_present": true,
+  "v1_0d_emits_no_scientific_output": true,
+  "smoke_mode_is_not_a_stub": true,
+  "smoke_constructs_G_and_B_phi": true,
+  "smoke_uses_no_real_data_loader": true,
+  "smoke_no_R_psi_or_S_omega_execution": true,
+  "smoke_no_optimizer_no_step_no_training_backward": true,
+  "smoke_declares_synthetic_only_and_not_scientific_result": true,
+  "claim_guard_reused": true,
+  "F8_regional_still_not_implemented": true,
+  "unit_test_source_is_model_free": true
+ },
+ "additional_n_checks": 22,
+ "additional_n_failed": 0,
+ "additional_failed": [],
+ "rank_safety_checks": {
+  "01_defective_v1_0b_logits_mask_scientific_path_unreachable": true,
+  "02_target_helper_requires_logits_rank_4": true,
+  "03_batch_dimension_exactly_1": true,
+  "04_output_channel_dimension_exactly_1": true,
+  "05_target_mask_rank_exactly_2": true,
+  "06_spatial_dimensions_exact_match": true,
+  "07_mask_boolean": true,
+  "08_target_plane_explicitly_logits_0_0": true,
+  "09_nonempty_target_selects_only_mask_pixels": true,
+  "10_empty_mask_fallback_full_plane_mean": true,
+  "11_persisted_p_global_still_sole_scientific_mask_authority": true,
+  "12_segmentation_threshold_still_0p50": true,
+  "13_ROI_threshold_still_0p30": true,
+  "14_current_forward_mask_selection_still_prohibited": true,
+  "15_standalone_gradcam_mode_reaches_repaired_helper": true,
+  "16_science_mode_reaches_repaired_helper": true,
+  "17_smoke_mode_reaches_same_repaired_helper": true,
+  "18_smoke_synthetic_mask_rank_is_2": true,
+  "19_smoke_synthetic_mask_cannot_enter_scientific_persisted_data_counters": true,
+  "20_model_free_rank_unit_tests_all_pass": true
+ },
+ "rank_safety_n_checks": 20,
+ "rank_safety_n_failed": 0,
+ "rank_safety_failed": [],
+ "call_graph_reachability": {
+  "mode_gradcam_to_gradcam_target_scalar_rank_safe": true,
+  "mode_gradcam_to_gradcam_gradient_enabled_rank_safe": true,
+  "mode_science_to_gradcam_target_scalar_rank_safe": true,
+  "mode_smoke_to_smoke_gradcam": true,
+  "smoke_gradcam_to_gradcam_target_scalar_rank_safe": true,
+  "gradcam_gradient_enabled_rank_safe_to_frozen_defective_target_scalar": false
+ },
+ "total_n_checks": 96,
+ "total_n_failed": 0,
+ "failed": [],
+ "static_source_preflight_pass": true,
+ "model_constructed": false,
+ "checkpoint_deserialized": false,
+ "forward_executed": false,
+ "backward_executed": false,
+ "gradcam_executed": false,
+ "router_attribution_executed": false,
+ "gate_env_set": false,
+ "mode_invoked": false,
+ "model_free_cpu_unit_tests_run": 11,
+ "raw_val_reads": 0,
+ "gt_reads": 0,
+ "router_holdout_reads": 0,
+ "test_reads": 0,
+ "generated_utc": "2026-10-04T16:05:14+00:00",
+ "all_pass": true
+}

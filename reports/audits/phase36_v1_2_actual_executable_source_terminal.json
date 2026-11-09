@@ -1,0 +1,58 @@
+{
+ "artifact": "phase36_v1_2_actual_executable_source_terminal",
+ "section": "§Z",
+ "phase": 36,
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase36_robustness_v1_2",
+ "classification": "ACTUAL_EXECUTABLE_FULL_PIPELINE_IMPLEMENTATION_REPAIR_COMPLETE",
+ "generated_utc": "2026-10-05T00:00:00Z",
+ "terminal": "PHASE36_V1_2_ACTUAL_EXECUTABLE_FULL_PIPELINE_IMPLEMENTATION_REPAIR_COMPLETE__STATIC_AUDITOR_FALSE_POSITIVE_CLOSED__NC1_NC6_PROVEN__EXECUTION_NOT_STARTED__SMOKE_REMAINS_PENDING__SCIENCE_REMAINS_PENDING",
+ "terminated_cleanly": true,
+ "predecessor": {
+  "v1_0_terminal": "PHASE36_EXECUTABLE_ROBUSTNESS_PROTOCOL_AND_SYNTHETIC_SMOKE_DESIGN_COMPLETE__EXECUTION_NOT_STARTED",
+  "v1_1_terminal": "PHASE36_V1_1_EXECUTABLE_ROBUSTNESS_SOURCE_COMPLETION_AND_PREEXECUTION_PROTOCOL_AMENDMENT_COMPLETE__EXECUTION_NOT_STARTED__TEST_REMAINS_PHASE39_ONLY",
+  "v1_1_status": "SUPERSEDED__STATIC_AUDITOR_FALSE_POSITIVE__PRESERVED_BYTE_FOR_BYTE"
+ },
+ "deliverables": {
+  "executable_source": "scripts/analysis/phase36_robustness_execution_v1_2.py",
+  "executable_source_sha256": "66fe435d7ec1d6e6ea10475776992b16fe049c9f3bfd7261caf78792e10bc29a",
+  "unit_tests": "scripts/analysis/phase36_robustness_unit_v1_2.py",
+  "static_preflight": "scripts/analysis/phase36_robustness_preflight_v1_2.py",
+  "negative_controls": "scripts/analysis/phase36_robustness_negative_controls_v1_2.py",
+  "artifacts": [
+   "reports/audits/phase36_v1_2_canonical_component_loader_binding.json",
+   "reports/audits/phase36_v1_2_forward_inference_signature_binding.json",
+   "reports/audits/phase36_v1_1_executability_false_positive_defect_v1_2.json",
+   "reports/audits/phase36_v1_2_metric_empty_case_authority_reconciliation.json",
+   "reports/audits/phase36_v1_2_negative_controls.json",
+   "reports/audits/phase36_robustness_unit_v1_2.json",
+   "reports/audits/phase36_robustness_static_preflight_v1_2.json",
+   "reports/audits/phase36_v1_1_to_v1_2_execution_semantic_diff.json",
+   "reports/audits/phase36_preexecution_source_freeze_v1_2.json",
+   "reports/audits/phase36_synthetic_smoke_eligibility_v1_2.json",
+   "reports/audits/phase36_v1_2_source_repair_no_execution_audit.json",
+   "reports/audits/phase36_v1_2_actual_executable_source_final_check.json"
+  ]
+ },
+ "verification_summary": {
+  "negative_controls": "6/6 valid (v1.1 rejected, v1.2 accepted)",
+  "unit_checks": "35/35 passed",
+  "static_preflight": "35/35 passed",
+  "semantic_diff": "IMPLEMENTATION_COMPLETION_OF_ALREADY_PROSPECTIVELY_FROZEN_V1_1_SCIENTIFIC_SEMANTICS",
+  "final_check": "ALL PASS",
+  "final_check_sha256": "3d716648ff09b64640626128c4219a22d165b40a121c9e6c02a52862f3bf501a"
+ },
+ "execution_state": {
+  "model_construction": 0, "checkpoint_deserialization": 0, "forward_passes": 0,
+  "autograd_backward": 0, "raw_val_reads": 0, "val_gt_reads": 0,
+  "val808_cache_reads": 0, "router_holdout_reads": 0, "test_reads": 0,
+  "training_runs": 0, "smoke_runs": 0, "science_runs": 0
+ },
+ "gate_state": {"PHASE36_EXECUTE": "UNSET", "PHASE36_SMOKE_EXECUTE": "UNSET"},
+ "stop_conditions": {
+  "do_not_run_v1_2_smoke": "HONOURED",
+  "do_not_run_phase36_science": "HONOURED"
+ },
+ "next_eligible_step": "Separately-authorized Phase36 v1.2 synthetic smoke with PHASE36_SMOKE_EXECUTE=1 against the exact frozen v1.2 bytes.",
+ "locks": {"HOLDOUT_OWNER": "PHASE30", "VAL808": "UNOPENED", "TEST": "LOCKED_UNTIL_PHASE39"}
+}

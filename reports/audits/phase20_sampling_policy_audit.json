@@ -1,0 +1,75 @@
+{
+  "artifact": "phase20_sampling_policy_audit",
+  "phase": 20,
+  "policy_id": "phase20_domain_balanced_uniform_v1",
+  "policy": "WeightedRandomSampler with per-sample weight 1/n_domain, num_samples = len(TRAIN) = 5832, replacement = True",
+  "purpose": "prevent ISIC and KUB from dominating BUSI and Kvasir",
+  "governance": {
+    "task_id_used_for_sampling_only": true,
+    "task_id_passed_to_model_forward": false,
+    "dataset_used_for_bookkeeping_only": true
+  },
+  "unbalanced_pool": {
+    "BUSI": 602,
+    "ISIC": 2556,
+    "KUB": 1978,
+    "KVASIR": 696
+  },
+  "unbalanced_pool_proportions": {
+    "BUSI": 0.103224,
+    "ISIC": 0.438272,
+    "KUB": 0.339163,
+    "KVASIR": 0.119342
+  },
+  "expected_balanced_proportions": {
+    "BUSI": {
+      "dataset_size": 602,
+      "dataset_share_of_pool": 0.103224,
+      "expected_sampling_proportion": 0.25,
+      "expected_samples_per_balanced_epoch": 1458.0
+    },
+    "ISIC": {
+      "dataset_size": 2556,
+      "dataset_share_of_pool": 0.438272,
+      "expected_sampling_proportion": 0.25,
+      "expected_samples_per_balanced_epoch": 1458.0
+    },
+    "KUB": {
+      "dataset_size": 1978,
+      "dataset_share_of_pool": 0.339163,
+      "expected_sampling_proportion": 0.25,
+      "expected_samples_per_balanced_epoch": 1458.0
+    },
+    "KVASIR": {
+      "dataset_size": 696,
+      "dataset_share_of_pool": 0.119342,
+      "expected_sampling_proportion": 0.25,
+      "expected_samples_per_balanced_epoch": 1458.0
+    }
+  },
+  "empirical_check": {
+    "seed_base": 42,
+    "epoch": 1,
+    "num_drawn": 5832,
+    "per_domain": {
+      "KVASIR": {
+        "count": 1521,
+        "proportion": 0.260802
+      },
+      "BUSI": {
+        "count": 1495,
+        "proportion": 0.256344
+      },
+      "KUB": {
+        "count": 1410,
+        "proportion": 0.24177
+      },
+      "ISIC": {
+        "count": 1406,
+        "proportion": 0.241084
+      }
+    },
+    "note": "Deterministic check of the frozen generator; not a scientific result."
+  },
+  "effect": "each domain contributes ~25% of the sampled batches instead of ISIC 43.8% / KUB 33.9% / KVASIR 11.9% / BUSI 10.3%"
+}

@@ -1,0 +1,32 @@
+{
+ "artifact": "phase33_hard_case_selection_contract",
+ "phase": 33,
+ "section": "\u00a7N",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase33_failure_boundary_v1_0",
+ "label": "DESCRIPTIVE_FAILURE_CASE_SELECTION",
+ "not_unbiased_performance_estimation": true,
+ "cases_selected_in_this_task": 0,
+ "procedure": {
+  "population": "ROUTER_HOLDOUT frozen scored table",
+  "eligible_candidates": "all 875 frozen rows",
+  "failure_strata": [
+   "low_dice bottom decile (method frozen; quantile computed at execution)",
+   "harmful activation (EXECUTE and delta_dice_a8 <= -0.01)",
+   "missed benefit (SKIP and delta_dice_a8 >= +0.02)",
+   "EXECUTE_THEN_REJECT"
+  ],
+  "target_number_per_stratum": 8,
+  "ordering": "within stratum: delta_dice_a8 ascending, then sample_id ascending",
+  "tie_break": "sample_id ascending",
+  "deduplication_across_strata": "first stratum in the declared order wins; a sample may appear in at most one panel",
+  "domain_balancing": "report realized domain composition per stratum; do not force",
+  "group_patient_balancing": "at most one sample per group_key within a panel",
+  "underfilled_stratum": "report the shortfall; do not pad with non-matching cases",
+  "selection_prediction_dependent": true,
+  "visual_attractiveness_based": false
+ },
+ "selection_requires_frozen_procedure_first": true,
+ "generated_utc": "2026-10-04T08:10:50+00:00",
+ "all_pass": true
+}

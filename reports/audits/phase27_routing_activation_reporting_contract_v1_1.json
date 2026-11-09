@@ -1,0 +1,30 @@
+{
+ "artifact": "phase27_routing_activation_reporting_contract_v1_1",
+ "phase": "27",
+ "classification": "GOVERNANCE_AND_REVIEWER_EVIDENCE_REPAIR_ONLY",
+ "governance_only": true,
+ "no_execution": true,
+ "stage": "ROUTING_ACTIVATION_REPORTING",
+ "states_to_report": [
+  "FORCED_SKIP",
+  "SKIP_GLOBAL",
+  "EXECUTE_THEN_ACCEPT",
+  "EXECUTE_THEN_REJECT"
+ ],
+ "fractions_to_report": [
+  "action_available fraction",
+  "router execute fraction",
+  "S_omega acceptance among executed",
+  "S_omega rejection among executed"
+ ],
+ "nominal_budget": 0.25,
+ "realized_val808_activation_fraction": "OBSERVED_AFTER_FIXED_THRESHOLD_APPLICATION",
+ "no_exact_25pct_forcing": true,
+ "checks": {
+  "four_states_frozen": true,
+  "four_fractions_frozen": true,
+  "nominal_budget_0p25": true,
+  "no_forcing": true
+ },
+ "all_pass": true
+}

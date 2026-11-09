@@ -1,0 +1,63 @@
+{
+  "phase": "11-R1 - Training Provenance, Manual Inference, and Auto-Domain Interface",
+  "status": "PASS",
+  "scope": "utility_presentation_interface_patch_only",
+  "history_source": "experiments\\phase10_kub_unetpp_seed42_512\\history.csv",
+  "history_sha256": "143acaeab463c7d156b612e52f09ca782dc7faa79ce59a88ea2719ff3a8760fd",
+  "epochs_completed": 92,
+  "best_epoch": 77,
+  "early_stop_epoch": 92,
+  "provenance_figures": {
+    "reports/figures/phase11_kub_failure_analysis/phase11_unetpp_training_loss_provenance.png": "ad669b1a2c9ba180a9563321cdb7f94968d1042535433b72cac1fcfd1dd381ac",
+    "reports/figures/phase11_kub_failure_analysis/phase11_unetpp_val_dice_provenance.png": "45da6bd476e13f7282933a37a46b98ea29063264782ebfc0e31d251123b121ab",
+    "reports/figures/phase11_kub_failure_analysis/phase11_unetpp_lr_provenance.png": "626e5d26ab89d4463785356efe7b05c0f65b9e82ec013dc37f152a72b3030159"
+  },
+  "manual_kub_predictor": {
+    "module": "src.inference.kub_predict",
+    "function": "predict_kub",
+    "default_model": "unetpp",
+    "default_checkpoint": "checkpoints/phase10_kub_unetpp_seed42_512/best.pt",
+    "default_threshold": 0.5,
+    "domain_behavior": "fixed_by_model_scope",
+    "domain": "KUB",
+    "task_id": 3,
+    "original_space_restoration": true,
+    "test_rejection": true,
+    "external_rejection": true
+  },
+  "auto_domain_router_interface": {
+    "module": "src.inference.predict",
+    "function": "predict",
+    "task_auto_status": "NOT_YET_IMPLEMENTED",
+    "task_auto_behavior": "raises NotImplementedError",
+    "task_ids": {
+      "0": "ISIC (dermatology / skin lesion)",
+      "1": "BUSI (breast ultrasound / breast lesion)",
+      "2": "Kvasir-SEG (gastrointestinal endoscopy / polyp)",
+      "3": "KUB-StoneX (urinary radiography / stone)"
+    },
+    "automatic_routing_training_performed": false
+  },
+  "demo_notebook": {
+    "path": "notebooks\\09b_kub_manual_prediction_demo.ipynb",
+    "sha256": "529dbc7d1564cd64f85914e06c8a2edb85dba74b0b53351d427c0cb6be862841",
+    "retraining_triggered": false,
+    "display_only": true
+  },
+  "failure_analysis_notebook": {
+    "path": "notebooks\\09_kub_failure_analysis.ipynb",
+    "sha256": "1b362ab4680205fd7b5fb66327de4844c77850c40a23de338b8e6147eb8929d3",
+    "retraining_triggered": false,
+    "display_only": true
+  },
+  "governance": {
+    "test_accessed": false,
+    "test_reads": 0,
+    "test_metrics": "NONE",
+    "external_accessed": false,
+    "experiment_a_modified": false,
+    "phase_12_executed": false,
+    "metrics_changed": false,
+    "retraining_performed": false
+  }
+}

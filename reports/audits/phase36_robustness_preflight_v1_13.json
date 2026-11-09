@@ -1,0 +1,159 @@
+{
+ "artifact": "phase36_robustness_preflight_v1_13",
+ "phase": 36,
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase36_robustness_v1_13",
+ "type": "STATIC_PREFLIGHT_REPORT",
+ "model_free": true,
+ "torch_imported": false,
+ "cuda_initialized": false,
+ "protected_population_read": false,
+ "subject_execution_sha256": "57f78447e77f2bcee07265825232cf0a8f96d1a31974d5d52c4cc82229e5d39c",
+ "subject_launcher_sha256": "5f7fc91f9f0b8689adf42fc50527e216227ce7c4b853ba82ae1bce92a4805cab",
+ "subject_manifest_sha256": "1f261eb95ab246619cf68a2340e8fc52e2887fe2d019fe9bc77ae8a9d5f5f1fe",
+ "new_scientific_choice": false,
+ "checks_total": 25,
+ "checks_passed": 25,
+ "checks_failed": 0,
+ "all_pass": true,
+ "failed_checks": [],
+ "checks": [
+  {
+   "check": "A01_untransform_equals_frozen_v1_12",
+   "passed": true,
+   "detail": {
+    "v1_13_sha": "57f78447e77f2bcee07265825232cf0a8f96d1a31974d5d52c4cc82229e5d39c",
+    "v1_12_sha": "8ed75a9b8f4ea8c204875bf1810e17df3f9c342a434f25399154f355ee888ea4"
+   }
+  },
+  {
+   "check": "A02_new_scientific_choice_false",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "A03_no_residual_v1_12_token_in_v1_13_source",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "A04_smoke_check_ids_unchanged",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "B01_order_anchor_interpreter_cuda_token_dispatch",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "B02_wrong_interp_branch_before_token",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "B03_cuda_fail_branch_before_token",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "B04_anchor_fail_branch_before_token",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "B05_verify_only_returns_zero",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "B06_three_fail_closed_terminals_present",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "B07_launcher_has_no_marker_or_file_write",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "B08_launcher_does_not_relaunch_another_interpreter",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "C01_canonical_interpreter_from_root",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "C02_identity_normalizes_realpath_normcase",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "C03_readiness_conditions_complete",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "C04_readiness_device_only",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D01_manifest_no_launcher_sha256",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D02_manifest_declares_actual_exec_sha",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D03_manifest_14_deps_4_ckpts",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D04_manifest_all_deps_match",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D05_manifest_all_ckpts_match",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "E01_all_14_dependency_bytes_intact",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "E02_all_4_checkpoint_bytes_intact",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "F01_v1_13_revision_unconsumed",
+   "passed": true,
+   "detail": {
+    "absent": [
+     "reports/audits/phase36_robustness_smoke_v1_13.json",
+     "reports/audits/phase36_robustness_smoke_start_v1_13.json",
+     "reports/audits/phase36_robustness_smoke_failure_v1_13.json",
+     "reports/audits/phase36_robustness_scientific_result_v1_13.json",
+     "reports/audits/phase36_robustness_science_start_v1_13.json",
+     "reports/audits/phase36_robustness_science_failure_v1_13.json"
+    ]
+   }
+  },
+  {
+   "check": "G01_v1_12_evidence_present",
+   "passed": true,
+   "detail": null
+  }
+ ]
+}

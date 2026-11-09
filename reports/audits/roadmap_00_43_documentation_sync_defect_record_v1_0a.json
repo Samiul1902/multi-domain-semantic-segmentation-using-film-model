@@ -1,0 +1,97 @@
+{
+  "artifact": "roadmap_00_43_documentation_sync_defect_record_v1_0a",
+  "phase": "cross-phase (documentation/governance)",
+  "revision": "RA_MEDFILM_BARR_ROADMAP_EXTENSION_V1_0A__00_TO_43_ADDITIVE_RECONCILIATION",
+  "supersedes_revision_for_repair_scope": "RA_MEDFILM_BARR_ROADMAP_EXTENSION_V1_0__00_TO_43",
+  "generated_utc": "2026-10-05T03:40:00Z",
+  "scope": "DOCUMENTATION_GOVERNANCE_ONLY",
+  "science_changed": false,
+  "model_weights_changed": false,
+  "scientific_execution_started": false,
+  "post_v1_0_sha_gate": {
+    "gate": "POST_V1_0_CANONICAL_DOCUMENT_HASH_GATE",
+    "result": "ALL_SEVEN_CANONICAL_DOCUMENTS_MATCH_EXPECTED_POST_V1_0_SHA256",
+    "verified_utc": "2026-10-05T03:37:00Z",
+    "documents": [
+      {"path": "docs/ARCHITECTURE.md", "expected_sha256": "8fffa4e214cd143fddc930086bc3e52743806910d9cd28620476472047ad6e25", "observed_sha256": "8fffa4e214cd143fddc930086bc3e52743806910d9cd28620476472047ad6e25", "match": true, "bytes": 36504},
+      {"path": "docs/DESIGN.md", "expected_sha256": "9e9f08dc54efa8858823dee30c383617f13114637cdb09c837c9a994a21a39ab", "observed_sha256": "9e9f08dc54efa8858823dee30c383617f13114637cdb09c837c9a994a21a39ab", "match": true, "bytes": 51408},
+      {"path": "docs/MEMORY.md", "expected_sha256": "bc7de701ba2417fd5103023f0fbb34e3bcde5dc0148b52828fea317ed911aadd", "observed_sha256": "bc7de701ba2417fd5103023f0fbb34e3bcde5dc0148b52828fea317ed911aadd", "match": true, "bytes": 28715},
+      {"path": "docs/PRD.md", "expected_sha256": "1489b07e88a8756ae25be28e08320a3087b07f52f47bd2b0e776f8f4bc26fc78", "observed_sha256": "1489b07e88a8756ae25be28e08320a3087b07f52f47bd2b0e776f8f4bc26fc78", "match": true, "bytes": 34194},
+      {"path": "docs/RULES.md", "expected_sha256": "f0dc805b6574d668532fa1de76ad36bad10f4f12ecf42790f5394e949bc01a71", "observed_sha256": "f0dc805b6574d668532fa1de76ad36bad10f4f12ecf42790f5394e949bc01a71", "match": true, "bytes": 34744},
+      {"path": "docs/TASKS.md", "expected_sha256": "74c1d9428ec418b3d968ec07459c0be0e176c231cbf489eb3d5ec51be22505ba", "observed_sha256": "74c1d9428ec418b3d968ec07459c0be0e176c231cbf489eb3d5ec51be22505ba", "match": true, "bytes": 143308},
+      {"path": "PROJECT_MASTER_PLAN.md", "expected_sha256": "f67b31c7acafd920414ccf6cb6c1c80e28de093b0ed998e41bdc2887fba48d14", "observed_sha256": "f67b31c7acafd920414ccf6cb6c1c80e28de093b0ed998e41bdc2887fba48d14", "match": true, "bytes": 22241}
+    ],
+    "all_seven_match": true,
+    "v1_0_governance_artifacts": [
+      {"path": "reports/audits/roadmap_00_43_documentation_sync_v1_0.json", "expected_sha256": "9cb298477acfb50653a1c625751aa2dd34f434cbb9506fe6a6bd8d422a871859", "observed_sha256": "9cb298477acfb50653a1c625751aa2dd34f434cbb9506fe6a6bd8d422a871859", "match": true},
+      {"path": "reports/audits/roadmap_00_43_documentation_sync_final_check_v1_0.json", "expected_sha256": "7a92e5f5dd252a4a0d5997eeb0f670aa3dcf2dd9e12822b1ceff197f1fa0b28e", "observed_sha256": "7a92e5f5dd252a4a0d5997eeb0f670aa3dcf2dd9e12822b1ceff197f1fa0b28e", "match": true},
+      {"path": "reports/audits/roadmap_00_43_documentation_sync_terminal_v1_0.json", "expected_sha256": "e914c6e8476bb7267b9fb9bb87e2028ac2e5e939c9fbe319c96384f6e86d0c00", "observed_sha256": "e914c6e8476bb7267b9fb9bb87e2028ac2e5e939c9fbe319c96384f6e86d0c00", "match": true},
+      {"path": "notebooks/phasewise/phase_35_interpretability/roadmap_00_43_documentation_sync_v1_0_review.ipynb", "expected_sha256": "7765bff9c26e513ca0ea7a39cab8cc17ebaf8f973b62a50e1a7c5a9af0c40313", "observed_sha256": "7765bff9c26e513ca0ea7a39cab8cc17ebaf8f973b62a50e1a7c5a9af0c40313", "match": true}
+    ],
+    "v1_0_artifacts_all_match": true
+  },
+  "defects": [
+    {
+      "id": "D1",
+      "code": "V1_0_SUCCESS_TERMINAL_CONTRACT_VARIANT",
+      "classification": "GOVERNANCE_REPORTING_ONLY",
+      "description": "The v1.0 terminal declares success while using a report-style terminal string rather than a strict contract-family terminal token. Reporting-only; no document content defect; no scientific impact.",
+      "affected_paths": ["reports/audits/roadmap_00_43_documentation_sync_terminal_v1_0.json"],
+      "science_impact": false,
+      "data_impact": false,
+      "remediation": "REPORT_ONLY__NO_DOCUMENT_EDIT_REQUIRED",
+      "repaired_in_v1_0a": false
+    },
+    {
+      "id": "D2",
+      "code": "V1_0_CROSS_DOCUMENT_STAGE_E_TITLE_CHECK_FALSE_POSITIVE",
+      "classification": "GOVERNANCE_VALIDATION_FALSE_POSITIVE",
+      "description": "The v1.0 final check reported 'phase41_title_exact', 'phase42_title_exact', 'phase43_title_exact' as PASS for all documents, but the exact Phase41/42/43 title strings are present ONLY in docs/PRD.md, docs/TASKS.md and PROJECT_MASTER_PLAN.md. docs/ARCHITECTURE.md, docs/DESIGN.md, docs/MEMORY.md and docs/RULES.md contain 0/3 exact titles. The v1.0 check was not an exact per-document substring test.",
+      "observed_exact_title_counts_pre_v1_0a": {
+        "docs/ARCHITECTURE.md": {"phase41": 0, "phase42": 0, "phase43": 0},
+        "docs/DESIGN.md": {"phase41": 0, "phase42": 0, "phase43": 0},
+        "docs/MEMORY.md": {"phase41": 0, "phase42": 0, "phase43": 0},
+        "docs/RULES.md": {"phase41": 0, "phase42": 0, "phase43": 0},
+        "docs/PRD.md": {"phase41": 1, "phase42": 1, "phase43": 1},
+        "docs/TASKS.md": {"phase41": 1, "phase42": 1, "phase43": 1},
+        "PROJECT_MASTER_PLAN.md": {"phase41": 1, "phase42": 1, "phase43": 1}
+      },
+      "affected_paths": ["docs/ARCHITECTURE.md", "docs/DESIGN.md", "docs/MEMORY.md", "docs/RULES.md"],
+      "science_impact": false,
+      "data_impact": false,
+      "remediation": "ADD_STAGE_E_RECONCILIATION_BLOCK_WITH_EXACT_PHASE41_42_43_TITLES_TO_THE_FOUR_DOCUMENTS",
+      "repaired_in_v1_0a": true
+    },
+    {
+      "id": "D3",
+      "code": "V1_0_DESIGN_STAGE_E_PROSPECTIVE_EXPERIMENT_CONTENT_INCOMPLETE",
+      "classification": "DOCUMENTATION_SCOPE_INCOMPLETE",
+      "description": "docs/DESIGN.md records the Stage E deployment topology only as a code-block sketch. It lacks explicit prospective FUTURE_EXPERIMENT design sections for Phase41 (packaging), Phase42 (end-to-end deployment validation) and Phase43 (release/monitoring/maintenance) comparable in structure to the Phase36/37/38-40 FUTURE_EXPERIMENT sections. DESIGN is the designated home for prospective experiment design; the Stage E prospective design is therefore incomplete.",
+      "affected_paths": ["docs/DESIGN.md"],
+      "science_impact": false,
+      "data_impact": false,
+      "remediation": "ADD_PROSPECTIVE_DESIGN_SECTIONS_FOR_PHASE41_PHASE42_PHASE43_TO_DESIGN_MD",
+      "repaired_in_v1_0a": true
+    }
+  ],
+  "preservation_declaration": {
+    "v1_0_artifacts_preserved_byte_for_byte": true,
+    "v1_0_documents_preserved_byte_for_byte_in_backup": true,
+    "backup_dir": "reports/audits/roadmap_00_43_pre_v1_0a_backup/",
+    "backup_files": [
+      {"path": "reports/audits/roadmap_00_43_pre_v1_0a_backup/ARCHITECTURE.md", "sha256": "8fffa4e214cd143fddc930086bc3e52743806910d9cd28620476472047ad6e25"},
+      {"path": "reports/audits/roadmap_00_43_pre_v1_0a_backup/DESIGN.md", "sha256": "9e9f08dc54efa8858823dee30c383617f13114637cdb09c837c9a994a21a39ab"},
+      {"path": "reports/audits/roadmap_00_43_pre_v1_0a_backup/MEMORY.md", "sha256": "bc7de701ba2417fd5103023f0fbb34e3bcde5dc0148b52828fea317ed911aadd"},
+      {"path": "reports/audits/roadmap_00_43_pre_v1_0a_backup/RULES.md", "sha256": "f0dc805b6574d668532fa1de76ad36bad10f4f12ecf42790f5394e949bc01a71"}
+    ],
+    "no_document_regenerated": true,
+    "no_restore_from_backup": true,
+    "additive_only": true
+  },
+  "prior_wrong_workspace_note": {
+    "event": "WRONG_WORKSPACE_DISCOVERY_ONLY",
+    "description": "An earlier attempt searched C:\\Users\\user\\WorkBuddy AI\\2026-09-21-09-37-59 and Downloads instead of the canonical repository root D:\\Softfors\\jup. No project data loss, no canonical file loss, no governance failure, no scientific failure occurred. Not recorded as a scientific defect.",
+    "scientific_defect_record_created": false
+  },
+  "all_pass": true
+}

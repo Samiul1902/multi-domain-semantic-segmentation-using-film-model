@@ -1,0 +1,191 @@
+{
+ "artifact": "phase25d_nested_cv_split_contract_v1_2_1",
+ "phase": "25D",
+ "classification": "PRE_EXECUTION_SPECIFICATION_COMPLETENESS_REPAIR",
+ "router_training_spec_revision": "ra_medfilm_barr_router_training_v1_2_1",
+ "outer_cv_name": "BARR_ROUTER_CV5_GROUP_SAFE_DOMAIN_STRATIFIED_V1",
+ "outer_cv_algorithm": "sklearn.model_selection.StratifiedGroupKFold",
+ "outer_cv_params": {
+  "n_splits": 5,
+  "shuffle": true,
+  "random_state": 42
+ },
+ "outer_cv_group_key": "canonical composite group_key from phase24_router_split_manifest.csv",
+ "outer_cv_stratification": "domain only",
+ "sort_before_split": [
+  "domain",
+  "group_key",
+  "sample_id"
+ ],
+ "inner_cv_algorithm": "sklearn.model_selection.StratifiedGroupKFold",
+ "inner_cv_params": {
+  "n_splits": 10,
+  "shuffle": true,
+  "random_state_per_fold": "4200 + outer_fold_index"
+ },
+ "inner_split_rule": "inner fold index 0 = EARLY_STOP_k; inner folds 1-9 = FIT_k",
+ "inner_fitting_fraction_approx": 0.9,
+ "inner_early_stop_fraction_approx": 0.1,
+ "population": "ROUTER_DEVELOPMENT only (n=4957)",
+ "library_versions": {
+  "python": "3.11.9",
+  "numpy": "2.4.6",
+  "scikit-learn": "1.9.1"
+ },
+ "fold_statistics": [
+  {
+   "outer_fold": 0,
+   "outer_target_n": 992,
+   "fit_n": 3569,
+   "early_stop_n": 396,
+   "source_n": 3965,
+   "outer_target_domains": {
+    "BUSI": 103,
+    "ISIC": 434,
+    "KUB": 337,
+    "KVASIR": 118
+   },
+   "fit_domains": {
+    "BUSI": 368,
+    "ISIC": 1565,
+    "KUB": 1210,
+    "KVASIR": 426
+   },
+   "early_stop_domains": {
+    "BUSI": 41,
+    "ISIC": 174,
+    "KUB": 133,
+    "KVASIR": 48
+   }
+  },
+  {
+   "outer_fold": 1,
+   "outer_target_n": 992,
+   "fit_n": 3569,
+   "early_stop_n": 396,
+   "source_n": 3965,
+   "outer_target_domains": {
+    "BUSI": 103,
+    "ISIC": 435,
+    "KUB": 335,
+    "KVASIR": 119
+   },
+   "fit_domains": {
+    "BUSI": 368,
+    "ISIC": 1564,
+    "KUB": 1212,
+    "KVASIR": 425
+   },
+   "early_stop_domains": {
+    "BUSI": 41,
+    "ISIC": 174,
+    "KUB": 133,
+    "KVASIR": 48
+   }
+  },
+  {
+   "outer_fold": 2,
+   "outer_target_n": 991,
+   "fit_n": 3570,
+   "early_stop_n": 396,
+   "source_n": 3966,
+   "outer_target_domains": {
+    "BUSI": 102,
+    "ISIC": 435,
+    "KUB": 336,
+    "KVASIR": 118
+   },
+   "fit_domains": {
+    "BUSI": 369,
+    "ISIC": 1564,
+    "KUB": 1211,
+    "KVASIR": 426
+   },
+   "early_stop_domains": {
+    "BUSI": 41,
+    "ISIC": 174,
+    "KUB": 133,
+    "KVASIR": 48
+   }
+  },
+  {
+   "outer_fold": 3,
+   "outer_target_n": 991,
+   "fit_n": 3569,
+   "early_stop_n": 397,
+   "source_n": 3966,
+   "outer_target_domains": {
+    "BUSI": 102,
+    "ISIC": 435,
+    "KUB": 336,
+    "KVASIR": 118
+   },
+   "fit_domains": {
+    "BUSI": 369,
+    "ISIC": 1564,
+    "KUB": 1209,
+    "KVASIR": 427
+   },
+   "early_stop_domains": {
+    "BUSI": 41,
+    "ISIC": 174,
+    "KUB": 135,
+    "KVASIR": 47
+   }
+  },
+  {
+   "outer_fold": 4,
+   "outer_target_n": 991,
+   "fit_n": 3569,
+   "early_stop_n": 397,
+   "source_n": 3966,
+   "outer_target_domains": {
+    "BUSI": 102,
+    "ISIC": 434,
+    "KUB": 336,
+    "KVASIR": 119
+   },
+   "fit_domains": {
+    "BUSI": 369,
+    "ISIC": 1565,
+    "KUB": 1209,
+    "KVASIR": 426
+   },
+   "early_stop_domains": {
+    "BUSI": 41,
+    "ISIC": 174,
+    "KUB": 135,
+    "KVASIR": 47
+   }
+  }
+ ],
+ "cv_manifest_path": "reports\\tables\\phase25d_cv5_manifest.csv",
+ "cv_manifest_sha256": "008b92963664f38e84f33c771cea1db90caae02a366f02b6a83635a535639707",
+ "per_fold_manifest_shas": {
+  "fold0_fit": "e78552ad7dac4108d976472903ba8d57386f26639e84f9aed0f8c09ac8eb73a3",
+  "fold0_early_stop": "a602cbe2530356da934a628764d8dfc95e2e8145a0320615be5228db0b90ec42",
+  "fold0_outer_target": "f7209b141d0b33dfe6570114d4fba4cd1503dcd07f9edc5f9bc8d808a315e7cd",
+  "fold1_fit": "d6f67df55fe67af41e637e18ae66d0e46df654771d39eae9694bffd824627a4b",
+  "fold1_early_stop": "146fe774cad99de2960a3cdc3cbdc344d75770dde6447ee8d8fc84608f168300",
+  "fold1_outer_target": "cac7971ca8b5fcd056bf2f0472426926779ff0cc198b303692afbcbabab24b03",
+  "fold2_fit": "45a3af35f7079d9edc837423719bb77b910e691b1a4d3a2a7a68a0c91dc86fc7",
+  "fold2_early_stop": "d0fc38e7efb3dcc43f2f1ec8626a9e8c3aec60d49c6438476b4d22b2133741bf",
+  "fold2_outer_target": "8205316a0db4d837518c432400e0b637b38ad4accb08d70e2d9468cd2e7acabf",
+  "fold3_fit": "409922e3959d69d1abd1d9e025169c60f336b140438d02cfbc1e98e06bf5d209",
+  "fold3_early_stop": "d22f07701e3340e3c676795561ea15a2f028443d7395f041aad0907617dd6fef",
+  "fold3_outer_target": "391897f9533075844a43483666d92f248d918804e7602e249f1db504cf5e2e52",
+  "fold4_fit": "69d5cb255b8a896c1c4528bbb00eef18d3602a7b598170e23c44d2a96a7d8546",
+  "fold4_early_stop": "acf1b139a16da6b85a082e76955c825330b71d9bef224cf784f1b7749354c37c",
+  "fold4_outer_target": "3749af0c37c17cce2f2e2828eeff5fae268d488b8ccf069f777ae4ae6932ef78"
+ },
+ "audits": {
+  "total_samples": 4957,
+  "outer_target_coverage": "all 4957 samples exactly once",
+  "outer_group_straddling": 0,
+  "inner_group_straddling": 0,
+  "fit_outer_target_overlap": 0,
+  "early_stop_outer_target_overlap": 0,
+  "fit_early_stop_overlap": 0
+ },
+ "generated_utc": "2026-10-01T02:01:22+00:00"
+}

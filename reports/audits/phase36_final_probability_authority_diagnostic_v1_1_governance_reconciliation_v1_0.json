@@ -1,0 +1,131 @@
+{
+ "artifact_kind": "PHASE36_FINAL_PROBABILITY_AUTHORITY_DIAGNOSTIC_V1_1_GOVERNANCE_RECONCILIATION",
+ "revision": "ra_medfilm_barr_phase36_final_probability_authority_diagnostic_v1_1",
+ "reconciliation_revision": "v1_0",
+ "d55_classification": "GOVERNANCE_BUILDER_PHASE27_SCORE_SHA_TRANSCRIPTION_ERROR",
+ "d55_root_cause_established": true,
+ "incorrect_transcribed_sha256": "702133930ce14ac9513c992833396e3e250d08417a17d1032cbd260a405cfb12",
+ "correct_authoritative_sha256": "702133930ce14ac9513c992833396e3e250d08417b17d1032cbd260a405cfb12",
+ "phase27_scores_csv_path": "reports/tables/phase27_val808_per_sample_scores.csv",
+ "affected_artifacts": [
+  {
+   "path": "scripts/analysis/build_phase36_final_probability_authority_diagnostic_v1_1.py",
+   "role": "frozen_v1_1_governance_builder",
+   "sha256": "498c7460c3e588317f3741da8fbcbf4886a660aec5ba0aa880422f8d7f6200f8",
+   "contains_incorrect_sha256": true,
+   "source_of_error": true
+  },
+  {
+   "path": "reports/audits/phase36_final_probability_authority_diagnostic_contract_v1_1.json",
+   "role": "frozen_v1_1_contract",
+   "sha256": "84398af09ad814c8d1d326bac20aaee9ee1400e09d1a18baf12b8448b543967c",
+   "contains_incorrect_sha256": true,
+   "source_of_error": false
+  },
+  {
+   "path": "reports/audits/phase36_final_probability_authority_diagnostic_eligibility_v1_1.json",
+   "role": "frozen_v1_1_eligibility",
+   "sha256": "bd2fd129f59848faaaed9fa7c400eca0ce693d2d3cb25beaa18d8c0488210aac",
+   "contains_incorrect_sha256": true,
+   "source_of_error": false
+  }
+ ],
+ "runtime_launcher_affected": false,
+ "diagnostic_source_affected": false,
+ "scientific_path_affected": false,
+ "scientific_semantics_effect": "NONE",
+ "runtime_execution_effect": "NONE",
+ "governance_provenance_effect": "YES",
+ "D52_runtime_gate_uses_correct_sha": true,
+ "launcher_evidence": {
+  "path": "scripts/analysis/launch_phase36_final_probability_authority_diagnostic_v1_1.py",
+  "sha256": "4c9737362fcf01f0ef8ef629f489cdff07c72e63b46f34e4ea508b7ba0df83ae",
+  "literal": "PHASE27_SCORES_CSV_SHA = \"702133930ce14ac9513c992833396e3e250d08417b17d1032cbd260a405cfb12\"",
+  "literal_present": true,
+  "uses_correct_sha": true
+ },
+ "consumed_evidence_binding": {
+  "source": "reports/audits/phase36_clean_equivalence_diagnostic_result_v1_2.json",
+  "source_sha256": "b64f7e6282f9abb864a5d5bc438a22e1096aaf56e0a4e94fe53ba7c9bab6fa4a",
+  "field_path": "reference_authority_paths_and_sha256.per_sample_scores",
+  "path": "reports/tables/phase27_val808_per_sample_scores.csv",
+  "expected_sha256": "702133930ce14ac9513c992833396e3e250d08417b17d1032cbd260a405cfb12",
+  "observed_sha256": "702133930ce14ac9513c992833396e3e250d08417b17d1032cbd260a405cfb12",
+  "expected_equals_observed": true,
+  "both_equal_correct_authoritative": true,
+  "prior_static_evidence": {
+   "path": "reports/audits/phase36_clean_equivalence_targeted_static_audit_v1_0.json",
+   "phase27_scores_sha256": "702133930ce14ac9513c992833396e3e250d08417b17d1032cbd260a405cfb12",
+   "phase27_scores_expected": "702133930ce14ac9513c992833396e3e250d08417b17d1032cbd260a405cfb12"
+  }
+ },
+ "secondary_bookkeeping_correction": {
+  "original_no_execution_field": "v1_11_artifacts_modified=false",
+  "correct_interpretation": "v1_1_artifacts_modified=false",
+  "classification": "NON_SCIENTIFIC_FIELD_NAME_TYPO",
+  "artifact": "reports/audits/phase36_final_probability_authority_diagnostic_no_execution_audit_v1_1.json",
+  "field_present_in_frozen_artifact": true,
+  "overwritten": false
+ },
+ "preservation_check": {
+  "all_pass": true,
+  "v1_1_runtime_source_sha256": {
+   "scripts/analysis/phase36_final_probability_authority_diagnostic_v1_1.py": "b9f6a449445d8ac5edd1dafe30e2f0b5005d487be314011bd2ff9162db770672",
+   "scripts/analysis/launch_phase36_final_probability_authority_diagnostic_v1_1.py": "4c9737362fcf01f0ef8ef629f489cdff07c72e63b46f34e4ea508b7ba0df83ae",
+   "scripts/analysis/phase36_final_probability_authority_diagnostic_unit_v1_1.py": "0358ed115dcedea612aae1b7f0311ea08b97ba212b893a10c51ddae606fbabea",
+   "scripts/analysis/phase36_final_probability_authority_diagnostic_preflight_v1_1.py": "7ba8899b25fbddbcebd42971eedd1bca4b2ca8d06d33629cec7a286e01227925",
+   "scripts/analysis/phase36_final_probability_authority_diagnostic_negative_controls_v1_1.py": "ef7a7d8c5b7d9699fa375b2bcfccc3c482ac9e4d1b4ce9a1c3807142100a6950",
+   "scripts/analysis/build_phase36_final_probability_authority_diagnostic_v1_1.py": "498c7460c3e588317f3741da8fbcbf4886a660aec5ba0aa880422f8d7f6200f8"
+  },
+  "frozen_v1_1_governance_sha256": {
+   "reports/audits/phase36_final_probability_authority_diagnostic_contract_v1_1.json": "84398af09ad814c8d1d326bac20aaee9ee1400e09d1a18baf12b8448b543967c",
+   "reports/audits/phase36_final_probability_authority_diagnostic_eligibility_v1_1.json": "bd2fd129f59848faaaed9fa7c400eca0ce693d2d3cb25beaa18d8c0488210aac",
+   "reports/audits/phase36_final_probability_authority_diagnostic_source_freeze_v1_1.json": "a93a9aaa7e22b96d42c80a64d08f2576fcdfcf08e947643c7272d593ab967b0b",
+   "reports/audits/phase36_final_probability_authority_diagnostic_preflight_v1_1.json": "0bfc783b342a5c9f9e1ae7473240c80b442a27e85ed4a0b61af3c80652c42819",
+   "reports/audits/phase36_final_probability_authority_diagnostic_negative_controls_v1_1.json": "a8ff8347fc0a54ebfb4ffefadfe8d94163f8026186c4c51224dee24f2aa7fb34",
+   "reports/audits/phase36_final_probability_authority_diagnostic_no_execution_audit_v1_1.json": "6394c88552ef9a1ebd57de2e023466a256596f09affd20582b95db8b119e2a29",
+   "reports/audits/phase36_final_probability_authority_diagnostic_v1_0_to_v1_1_diff.json": "3c88a2173854774f9d8bba242ce84d83d4984c66eb4f34f5ec7b26cfbfc37a17"
+  },
+  "d51_reconciliation": {
+   "path": "reports/audits/phase36_clean_equivalence_d51_reconciliation_v1_1.json",
+   "sha256": "d8e3e83e6c31004e610faef9d93c221c026eb8974c033f47fbff91106836758b"
+  },
+  "phase27_scores_csv_raw_byte_sha256": "702133930ce14ac9513c992833396e3e250d08417b17d1032cbd260a405cfb12",
+  "phase27_scores_csv_matches_correct": true,
+  "v1_1_start_marker_absent": true,
+  "v1_1_result_marker_absent": true,
+  "v1_1_failure_marker_absent": true
+ },
+ "no_execution": {
+  "model_forward": false,
+  "checkpoint_deserialization": false,
+  "val_image_read": false,
+  "val_gt_read": false,
+  "VAL_GT_READ": 0,
+  "test_accessed": false,
+  "router_holdout_accessed": false,
+  "diagnostic_attempt_consumed": false
+ },
+ "end_state": {
+  "D52": "REPAIRED / SOURCE-AUDITED PASS",
+  "D53": "REPAIRED / SOURCE-AUDITED PASS",
+  "D54": "REPAIRED / SOURCE-AUDITED PASS",
+  "D55": "RECONCILED",
+  "diagnostic_v1_0": "FROZEN_NEVER_CONSUMED_NOT_AUTHORIZED",
+  "diagnostic_v1_1": "ELIGIBLE_NOT_STARTED",
+  "v1_1_start_result_failure": "ABSENT",
+  "v1_2_clean_equivalence": "CONSUMED_RESULT__RETRY_FORBIDDEN",
+  "v1_14_science": "CONSUMED_FAILED__RETRY_FORBIDDEN",
+  "v1_15": "NOT_CREATED",
+  "phase37": "NOT_STARTED",
+  "test": "PHASE39_ONLY",
+  "router_holdout": "NOT_ACCESSED"
+ },
+ "reconciliation_builder": {
+  "path": "scripts/analysis/build_phase36_final_probability_authority_diagnostic_v1_1_governance_reconciliation_v1_0.py",
+  "sha256": "9518a0ceef65bb3a4ce97d4e2fa6fe89f881b03674e49b1ea593e429ec5d9309"
+ },
+ "original_artifacts_overwritten": false,
+ "write_semantics": "O_CREAT|O_EXCL + full-write + fsync (exclusive-create, write-once)",
+ "generated_utc": "2026-10-07T17:42:53Z"
+}

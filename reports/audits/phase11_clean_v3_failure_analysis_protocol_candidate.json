@@ -1,0 +1,101 @@
+{
+  "audit": "phase11_clean_v3_failure_analysis_protocol_candidate",
+  "created_utc": "2026-09-20T19:26:34.554019+00:00",
+  "manifest_version": "phase4_v3",
+  "taxonomy_id": "kub_size_clean_v3_v1",
+  "four_model_scope": {
+    "UNet": {
+      "best_epoch": 44,
+      "dice": 0.7406133413314819,
+      "iou": 0.6253822445869446,
+      "precision": 0.7707186937332153,
+      "recall": 0.7839437127113342
+    },
+    "Attention U-Net": {
+      "best_epoch": 54,
+      "dice": 0.7525129853960107,
+      "iou": 0.6349387691368995,
+      "precision": 0.7729140812402236,
+      "recall": 0.7922248481868364
+    },
+    "UNet++": {
+      "best_epoch": 70,
+      "dice": 0.7641595156062713,
+      "iou": 0.6525442690586191,
+      "precision": 0.7996825971468945,
+      "recall": 0.791238416956199
+    },
+    "DeepLabV3+": {
+      "best_epoch": 52,
+      "dice": 0.7509140344161673,
+      "iou": 0.6460492792430865,
+      "precision": 0.7943328495850855,
+      "recall": 0.7822983241135557
+    }
+  },
+  "reference_model_selected": false,
+  "reference_model_note": "No reference/primary model chosen. Historical was UNet++-primary; adopting that for clean-v3 would require a supervisor decision (single-seed VAL is insufficient).",
+  "invariant_contracts": {
+    "foreground_rule": "mask > 0",
+    "connectivity": 8,
+    "minimum_overlap_pixels": 1,
+    "taxonomy": "kub_size_clean_v3_v1",
+    "taxonomy_quantiles": {
+      "Q25": 0.0001497998649691358,
+      "Q50": 0.0003401438395182292,
+      "Q75": 0.0008279682677469136
+    },
+    "taxonomy_scope": "FULL_FIELD only; ROI = ROI_NOT_PRIMARY_BINNED",
+    "regime_counts": {
+      "FULL_FIELD": 103,
+      "ROI": 177
+    },
+    "category_counts": {
+      "Bladder_Stone": 144,
+      "Kidney_Stone": 112,
+      "Ureteric_Stone": 24
+    },
+    "threshold": 0.5,
+    "split": "KUB VAL, 280 cases"
+  },
+  "carried_forward_definitions": [
+    "empty_prediction",
+    "object miss (8-conn, >=1px)",
+    "multi-component COMPLETE/PARTIAL/COMPLETE_MISS",
+    "HD95 with validity flag",
+    "regime stratification",
+    "category metadata stratification",
+    "bottom-decile METHOD for low-Dice stratum (value to be recomputed, not frozen)"
+  ],
+  "proposed_extensions": [
+    "per-case TP/FP/FN decomposition (NOT historically defined)",
+    "under/over-segmentation fraction (NOT historically defined)",
+    "prediction/GT area ratio (NOT historically defined)"
+  ],
+  "candidate_scores_for_supervisor_review": {
+    "shared_failure": [
+      "mean Dice across the four models",
+      "median Dice across models",
+      "number of models below the (recomputed) low-Dice stratum"
+    ],
+    "architecture_disagreement": [
+      "max Dice - min Dice",
+      "SD of per-model Dice"
+    ],
+    "status": "CANDIDATE_FOR_SUPERVISOR_REVIEW"
+  },
+  "new_unauthorized_thresholds_introduced": 0,
+  "hard_case_selection_status": "PROCEDURE_FROZEN_NO_CASES_SELECTED",
+  "dimensions_sha": "0bbecc6bbe01672392bcc7bfc94895e92567a4068e77e43846c9b62a7e9a9ae4",
+  "hard_case_protocol_sha": "7dfd784f06c1083d498c44d9ba6a81346f479c5618b58500204ff758f5a65c5a",
+  "upstream_epoch_table_rows": {
+    "UNet": 59,
+    "Attention U-Net": 69,
+    "UNet++": 85,
+    "DeepLabV3+": 67
+  },
+  "test_reads": 0,
+  "training_epochs": 0,
+  "optimizer_steps": 0,
+  "status": "READY_FOR_SUPERVISOR_FREEZE"
+}

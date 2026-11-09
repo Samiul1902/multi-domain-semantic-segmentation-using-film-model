@@ -1,0 +1,24 @@
+{
+ "artifact": "phase25g_compute_accounting_audit",
+ "phase": "25G",
+ "stage": "ANALYTICAL_COMPUTE",
+ "accounting_label": "ANALYTICAL MAC LOWER BOUND",
+ "GLOBAL_MACS": 31551740928,
+ "ROUTER_MACS": 36160,
+ "REFINER_MACS": 3230662656,
+ "S_OMEGA_MACS": 1168,
+ "A7_average_cost": "GLOBAL + ROUTER + a * REFINER",
+ "A8_average_cost": "GLOBAL + ROUTER + a * (REFINER + S_omega)",
+ "A8_minus_A7_equals_a_times_1168": true,
+ "max_abs_mac_residual": 0.0,
+ "somega_saves_compute": false,
+ "somega_adds_small_post_refinement_cost": true,
+ "forbidden_claims": [
+  "latency",
+  "runtime",
+  "energy",
+  "memory",
+  "mobile performance"
+ ],
+ "all_pass": true
+}

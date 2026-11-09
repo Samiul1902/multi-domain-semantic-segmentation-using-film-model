@@ -1,0 +1,403 @@
+{
+  "artifact": "POST_PHASE13_REGIONAL_REVISION_R1_POLICY_FROZEN",
+  "status": "SUPERVISOR_FROZEN_R1_POLICY_READY_FOR_EXECUTION",
+  "created_utc": "2026-09-22T06:09:00Z",
+  "revision_branch": "POST_PHASE13_REGIONAL_REVISION",
+  "r1_scientific_execution_authorized": false,
+  "hypothesis": "H1_FIRST_SELECTIVE_ACCEPTANCE",
+  "bindings": {
+    "r0_failure_decomposition": {
+      "path": "reports/audits/post_phase13_regional_revision_r0_failure_decomposition.json",
+      "sha": "ecf6997170f236f7fba1d610a44132bc31401ff79be66d55f5503ba152e1add9"
+    },
+    "r0_protocol_frozen": {
+      "path": "reports/audits/post_phase13_regional_revision_r0_protocol_frozen.json",
+      "sha": "c24ed2cca28740f3d38fdbb9109cae078ef58be571d85b0f421bc47497ea5d6b"
+    },
+    "r0_interpretation_clarification": {
+      "path": "reports/audits/post_phase13_r0_interpretation_clarification.json",
+      "sha": "6ff0495978c808e30bf3f72bf99cc72c06fea73cdcaf77a483d4def17190f3e6"
+    },
+    "candidate_family_7_rows": {
+      "path": "reports/tables/post_phase13_regional_revision_r1_candidate_family.csv",
+      "sha": "4a6dca9d1333ea7efcb31c6b3b441fa23b12543c62f2992556e5d215712d4c4a",
+      "rows": 7
+    },
+    "phase13_proposal_table_494_rows": {
+      "path": "reports/tables/phase13_part1c_best_checkpoint_proposals.csv",
+      "sha": "8c3151a3f1f9a56f0692c6ff2d2171472a777a56e99fa2e474aff8a3478a564a",
+      "rows": 494
+    },
+    "frozen_membership": {
+      "path": "reports/tables/post_phase13_regional_revision_r1_frozen_membership.csv",
+      "sha": "c65e3e43038d0ebe7d12c966686e709897a43dd051d9283d099e362ca8e6aa0e",
+      "rows": 3458
+    },
+    "membership_summary": {
+      "path": "reports/tables/post_phase13_regional_revision_r1_membership_summary.csv",
+      "sha": "a4f4ecf4f592405d3e76d06a77c763f70f4ff3380cb23e06d8d3906a8a977594",
+      "rows": 7
+    }
+  },
+  "execution_semantics": {
+    "acceptance_operator": {
+      "comparator": "GREATER_THAN_OR_EQUAL",
+      "expression": "proposal_score >= score_acceptance_floor",
+      "strict_inequality_used": "NO",
+      "floor_values_are_frozen_executable_constants": "YES",
+      "floors": {
+        "R1-C0": 0.1,
+        "R1-C1": 0.11947,
+        "R1-C2": 0.11947,
+        "R1-C3": 0.124532,
+        "R1-C4": 0.124532,
+        "R1-C5": 0.125065,
+        "R1-C6": 0.125065
+      },
+      "floors_by_config": {
+        "R1-C0": 0.1,
+        "R1-C1": 0.11947,
+        "R1-C2": 0.11947,
+        "R1-C3": 0.124532,
+        "R1-C4": 0.124532,
+        "R1-C5": 0.125065,
+        "R1-C6": 0.125065
+      },
+      "quantile_recomputation_during_r1": "FORBIDDEN",
+      "floor_precision_change_after_outcomes": "FORBIDDEN"
+    },
+    "within_case_order": {
+      "sort_key": "proposal_rank",
+      "direction": "ASCENDING",
+      "source": "already-frozen Part-1C proposal_rank",
+      "retain_at_most": "max_accepted_proposals",
+      "proposal_rank_role": "DETERMINISTIC_FROZEN_ORDER_ONLY",
+      "proposal_rank_is_confidence_superiority_within_ties": "NO"
+    },
+    "tie_handling": {
+      "policy": "FROZEN_PROPOSAL_RANK",
+      "resort_by_gt": "FORBIDDEN",
+      "resort_by_proposal_area": "FORBIDDEN",
+      "resort_by_component_coverage": "FORBIDDEN",
+      "resort_by_segmentation_outcome": "FORBIDDEN",
+      "new_random_order": "FORBIDDEN",
+      "sample_specific_heuristics": "FORBIDDEN",
+      "recompute_ranking_from_floating_score": "FORBIDDEN"
+    },
+    "zero_acceptance": {
+      "accepted_proposal_count": 0,
+      "regional_intervention": "NONE",
+      "final_prediction": "GLOBAL exactly",
+      "forcing_at_least_one_proposal": "FORBIDDEN",
+      "status": "VALID_AND_EXPECTED"
+    },
+    "membership_definition": "accepted = score_passes_floor AND selected_by_rank_cap; the two columns therefore coincide by construction, and both are emitted in the frozen membership table."
+  },
+  "membership_hashes": {
+    "R1-C0": "ac5bbc02a12177cf447dab48a99bb5c44a658f653f16e9dab49247591911d327",
+    "R1-C1": "844f70d35188815bb1fc42c464ae83ee78726d78777d4c10b24de24dda709354",
+    "R1-C2": "ec8c5b9ca97734c08bfcb67985c5706c56a4ab9d39f277bb61dbe10b2a6eb21b",
+    "R1-C3": "844f70d35188815bb1fc42c464ae83ee78726d78777d4c10b24de24dda709354",
+    "R1-C4": "f58a5a945fa96437c3d4bac68640a7d3f7452b62c11e01bea06151e7b02b17cf",
+    "R1-C5": "0c424bb6d0b6b21850e95281daafea51ee17386dfe916e77b66f4d9ca23b0852",
+    "R1-C6": "5b40128e981d9114a4c622b378fbd1050d3f073c5b8ae60f0c29b7cb8d3015ad"
+  },
+  "membership_summary": [
+    {
+      "config_id": "R1-C0",
+      "role": "CONTROL_BASELINE",
+      "score_floor": 0.1,
+      "max_accepted_proposals": 5,
+      "accepted_proposals_total": 494,
+      "rejected_proposals_total": 0,
+      "cases_with_0_accepted": 0,
+      "cases_with_1_accepted": 0,
+      "cases_with_2_accepted": 1,
+      "cases_with_3_accepted": 6,
+      "cases_with_4_accepted": 6,
+      "cases_with_5_accepted": 90,
+      "mean_accepted_per_case": 4.796116504854369,
+      "median_accepted_per_case": 5.0,
+      "accepted_membership_sha256": "ac5bbc02a12177cf447dab48a99bb5c44a658f653f16e9dab49247591911d327"
+    },
+    {
+      "config_id": "R1-C1",
+      "role": "CANDIDATE",
+      "score_floor": 0.11947,
+      "max_accepted_proposals": 1,
+      "accepted_proposals_total": 103,
+      "rejected_proposals_total": 391,
+      "cases_with_0_accepted": 0,
+      "cases_with_1_accepted": 103,
+      "cases_with_2_accepted": 0,
+      "cases_with_3_accepted": 0,
+      "cases_with_4_accepted": 0,
+      "cases_with_5_accepted": 0,
+      "mean_accepted_per_case": 1.0,
+      "median_accepted_per_case": 1.0,
+      "accepted_membership_sha256": "844f70d35188815bb1fc42c464ae83ee78726d78777d4c10b24de24dda709354"
+    },
+    {
+      "config_id": "R1-C2",
+      "role": "CANDIDATE",
+      "score_floor": 0.11947,
+      "max_accepted_proposals": 5,
+      "accepted_proposals_total": 444,
+      "rejected_proposals_total": 50,
+      "cases_with_0_accepted": 0,
+      "cases_with_1_accepted": 2,
+      "cases_with_2_accepted": 9,
+      "cases_with_3_accepted": 11,
+      "cases_with_4_accepted": 14,
+      "cases_with_5_accepted": 67,
+      "mean_accepted_per_case": 4.310679611650485,
+      "median_accepted_per_case": 5.0,
+      "accepted_membership_sha256": "ec8c5b9ca97734c08bfcb67985c5706c56a4ab9d39f277bb61dbe10b2a6eb21b"
+    },
+    {
+      "config_id": "R1-C3",
+      "role": "CANDIDATE",
+      "score_floor": 0.124532,
+      "max_accepted_proposals": 1,
+      "accepted_proposals_total": 103,
+      "rejected_proposals_total": 391,
+      "cases_with_0_accepted": 0,
+      "cases_with_1_accepted": 103,
+      "cases_with_2_accepted": 0,
+      "cases_with_3_accepted": 0,
+      "cases_with_4_accepted": 0,
+      "cases_with_5_accepted": 0,
+      "mean_accepted_per_case": 1.0,
+      "median_accepted_per_case": 1.0,
+      "accepted_membership_sha256": "844f70d35188815bb1fc42c464ae83ee78726d78777d4c10b24de24dda709354"
+    },
+    {
+      "config_id": "R1-C4",
+      "role": "CANDIDATE",
+      "score_floor": 0.124532,
+      "max_accepted_proposals": 5,
+      "accepted_proposals_total": 372,
+      "rejected_proposals_total": 122,
+      "cases_with_0_accepted": 0,
+      "cases_with_1_accepted": 6,
+      "cases_with_2_accepted": 22,
+      "cases_with_3_accepted": 16,
+      "cases_with_4_accepted": 21,
+      "cases_with_5_accepted": 38,
+      "mean_accepted_per_case": 3.6116504854368934,
+      "median_accepted_per_case": 4.0,
+      "accepted_membership_sha256": "f58a5a945fa96437c3d4bac68640a7d3f7452b62c11e01bea06151e7b02b17cf"
+    },
+    {
+      "config_id": "R1-C5",
+      "role": "CANDIDATE",
+      "score_floor": 0.125065,
+      "max_accepted_proposals": 1,
+      "accepted_proposals_total": 102,
+      "rejected_proposals_total": 392,
+      "cases_with_0_accepted": 1,
+      "cases_with_1_accepted": 102,
+      "cases_with_2_accepted": 0,
+      "cases_with_3_accepted": 0,
+      "cases_with_4_accepted": 0,
+      "cases_with_5_accepted": 0,
+      "mean_accepted_per_case": 0.9902912621359223,
+      "median_accepted_per_case": 1.0,
+      "accepted_membership_sha256": "0c424bb6d0b6b21850e95281daafea51ee17386dfe916e77b66f4d9ca23b0852"
+    },
+    {
+      "config_id": "R1-C6",
+      "role": "CANDIDATE",
+      "score_floor": 0.125065,
+      "max_accepted_proposals": 5,
+      "accepted_proposals_total": 337,
+      "rejected_proposals_total": 157,
+      "cases_with_0_accepted": 1,
+      "cases_with_1_accepted": 11,
+      "cases_with_2_accepted": 24,
+      "cases_with_3_accepted": 19,
+      "cases_with_4_accepted": 19,
+      "cases_with_5_accepted": 29,
+      "mean_accepted_per_case": 3.2718446601941746,
+      "median_accepted_per_case": 3.0,
+      "accepted_membership_sha256": "5b40128e981d9114a4c622b378fbd1050d3f073c5b8ae60f0c29b7cb8d3015ad"
+    }
+  ],
+  "membership_hash_definition": "SHA-256 over the ordered tuples (sample_id, proposal_rank, accepted) as the UTF-8 lines '<sample_id>|<proposal_rank>|<1|0>\\n', ordered by sample_id lexical ascending then proposal_rank ascending, over all 494 proposals.",
+  "control_identity_gate": {
+    "config": "R1-C0",
+    "accepted_expected": 494,
+    "accepted_actual": 494,
+    "per_case_counts_match_frozen_part1c": true,
+    "result": "PASS"
+  },
+  "relationship_checks": {
+    "all_pass": true,
+    "checks": [
+      {
+        "check": "floor_monotonicity_same_cap",
+        "lower_floor_config": "R1-C1",
+        "higher_floor_config": "R1-C3",
+        "max_accepted_proposals": 1,
+        "higher_floor_subset_of_lower_floor": true,
+        "added_by_raising_floor": 0,
+        "pass": true
+      },
+      {
+        "check": "floor_monotonicity_same_cap",
+        "lower_floor_config": "R1-C3",
+        "higher_floor_config": "R1-C5",
+        "max_accepted_proposals": 1,
+        "higher_floor_subset_of_lower_floor": true,
+        "added_by_raising_floor": 0,
+        "pass": true
+      },
+      {
+        "check": "floor_monotonicity_same_cap",
+        "lower_floor_config": "R1-C0",
+        "higher_floor_config": "R1-C2",
+        "max_accepted_proposals": 5,
+        "higher_floor_subset_of_lower_floor": true,
+        "added_by_raising_floor": 0,
+        "pass": true
+      },
+      {
+        "check": "floor_monotonicity_same_cap",
+        "lower_floor_config": "R1-C2",
+        "higher_floor_config": "R1-C4",
+        "max_accepted_proposals": 5,
+        "higher_floor_subset_of_lower_floor": true,
+        "added_by_raising_floor": 0,
+        "pass": true
+      },
+      {
+        "check": "floor_monotonicity_same_cap",
+        "lower_floor_config": "R1-C4",
+        "higher_floor_config": "R1-C6",
+        "max_accepted_proposals": 5,
+        "higher_floor_subset_of_lower_floor": true,
+        "added_by_raising_floor": 0,
+        "pass": true
+      },
+      {
+        "check": "cap_subset_same_floor",
+        "smaller_cap_config": "R1-C1",
+        "larger_cap_config": "R1-C2",
+        "score_floor": 0.11947,
+        "smaller_cap_subset_of_larger_cap": true,
+        "pass": true
+      },
+      {
+        "check": "cap_subset_same_floor",
+        "smaller_cap_config": "R1-C3",
+        "larger_cap_config": "R1-C4",
+        "score_floor": 0.124532,
+        "smaller_cap_subset_of_larger_cap": true,
+        "pass": true
+      },
+      {
+        "check": "cap_subset_same_floor",
+        "smaller_cap_config": "R1-C5",
+        "larger_cap_config": "R1-C6",
+        "score_floor": 0.125065,
+        "smaller_cap_subset_of_larger_cap": true,
+        "pass": true
+      }
+    ]
+  },
+  "tie_audit": {
+    "proposal_count": 494,
+    "marginal_max_score_exact": "0.1250653713941574",
+    "count_exactly_at_max": 337,
+    "fraction_exactly_at_max": 0.6821862348178138,
+    "rank1_saturated_count": 102,
+    "rank1_count": 103,
+    "rank2_saturated_count": 91,
+    "proposals_strictly_between_stored_floor_and_exact_max": 0,
+    "stored_floor_max_config": 0.125065,
+    "passes_floor_max_config_count": 337,
+    "statement": "Because many proposals are tied at the marginal maximum, proposal_rank is used ONLY as the already-frozen deterministic ordering. R1 must NOT claim that rank 1 is necessarily more confident than rank 2 within an exact score tie."
+  },
+  "disclosed_family_redundancy": {
+    "found": "YES",
+    "identical_membership_groups": {
+      "844f70d35188815bb1fc42c464ae83ee78726d78777d4c10b24de24dda709354": [
+        "R1-C1",
+        "R1-C3"
+      ]
+    },
+    "explanation": "R1-C1 (floor 0.119470, max 1) and R1-C3 (floor 0.124532, max 1) produce IDENTICAL membership. With max_accepted_proposals = 1 the selection is the lowest-rank floor-passing proposal; every rank-1 proposal has score >= 0.124852, which is above both floors, so rank-1 always passes and the two floors never differ in effect.",
+    "distinct_memberships": 6,
+    "configs_in_family": 7,
+    "family_changed": "NO",
+    "configs_added_or_removed": "NONE",
+    "action": "DISCLOSE_ONLY__FAMILY_REMAINS_FROZEN_AS_SUPERVISOR_AUTHORED"
+  },
+  "frozen_unchanged": {
+    "training": 0,
+    "localizer_checkpoint": "UNCHANGED",
+    "proposal_geometry": "UNCHANGED",
+    "margin": 0.2,
+    "nms_iou": 0.3,
+    "segmentation_checkpoints": "UNCHANGED",
+    "regional_crop_restore": "UNCHANGED",
+    "fusion": "UNCHANGED",
+    "segmentation_threshold": 0.5,
+    "score_weighting": "NONE",
+    "new_fusion": "NONE"
+  },
+  "label_blindness": {
+    "gt_used_for_membership": "NO",
+    "segmentation_outcome_used_for_membership": "NO",
+    "component_labels_used_for_membership": "NO",
+    "proposal_hit_miss_labels_used_for_membership": "NO",
+    "membership_columns": [
+      "config_id",
+      "sample_id",
+      "proposal_rank",
+      "proposal_score",
+      "score_acceptance_floor",
+      "score_passes_floor",
+      "max_accepted_proposals",
+      "selected_by_rank_cap",
+      "accepted",
+      "accepted_order_within_case"
+    ]
+  },
+  "pass_gate": {
+    "candidate_family_rows_7": true,
+    "proposal_rows_494": true,
+    "control_accepts_exactly_494": true,
+    "all_memberships_deterministic": true,
+    "subset_monotonicity_checks_pass": true,
+    "tie_handling_explicitly_frozen": true,
+    "membership_hashes_recorded": true,
+    "no_gt_used_for_membership": true,
+    "no_segmentation_outcome_used_for_membership": true,
+    "no_model_inference": true,
+    "test_untouched": true
+  },
+  "counters": {
+    "training": 0,
+    "optimizer": 0,
+    "model_constructions": 0,
+    "cuda_requests": 0,
+    "localizer_forwards": 0,
+    "segmentation_forwards": 0,
+    "regional_crop_forwards": 0,
+    "proposal_generation": 0,
+    "checkpoint_writes": 0,
+    "test_reads": 0,
+    "external_test_reads": 0
+  },
+  "continuity": {
+    "phase13": "COMPLETE_FROZEN",
+    "regional_gate": "REVISE_LOCALIZER_FROZEN",
+    "revision_r0": "COMPLETE_PASS_FROZEN",
+    "revision_r1_policy_definition": "COMPLETE_PASS",
+    "revision_r1_scientific_execution": "ELIGIBLE_FOR_SUPERVISOR_AUTHORIZATION__NOT_AUTHORIZED",
+    "phase14": "NOT_STARTED",
+    "test": "UNTOUCHED"
+  },
+  "next_action": "WAIT_FOR_SUPERVISOR_REVISION_R1_EXECUTION_AUTHORIZATION"
+}

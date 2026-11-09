@@ -1,0 +1,29 @@
+{
+ "artifact": "phase32_gt_inference_separation_contract",
+ "phase": 32,
+ "section": "\u00a7R",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase32_external_domain_shift_v1_0",
+ "stage_a": {
+  "name": "EXTERNAL_IMAGE_ONLY_INFERENCE",
+  "read_images": true,
+  "read_gt": false,
+  "produce": [
+   "global prob",
+   "routing decision",
+   "refinement candidate",
+   "safety decision",
+   "final prediction"
+  ],
+  "freeze_and_hash_predictions": true,
+  "gt_reads_at_barrier": 0
+ },
+ "stage_b": {
+  "name": "GT_SCORING_ONLY_AFTER_BARRIER",
+  "read_gt": true
+ },
+ "threshold_or_policy_modification_after_gt": false,
+ "inference_performed_in_this_specification": false,
+ "generated_utc": "2026-10-04T07:07:24+00:00",
+ "all_pass": true
+}

@@ -1,0 +1,130 @@
+{
+ "artifact": "phase35_preexecution_source_freeze_v1_0b",
+ "phase": 35,
+ "section": "\u00a7AG",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase35_interpretability_v1_0b",
+ "frozen_sources": {
+  "common_v1_0b": {
+   "path": "scripts/analysis/phase35_interpretability_common_v1_0b.py",
+   "sha256": "9963215e1431e968e11bacbcd917d96a8a985a7181000258b90f458ff0a778ac"
+  },
+  "execution_v1_0b": {
+   "path": "scripts/analysis/phase35_interpretability_execution_v1_0b.py",
+   "sha256": "581926840d7717e19ed15ad77c7c5339b709efc881b938924d6eec0a2ceb1872"
+  },
+  "preflight_v1_0b": {
+   "path": "scripts/analysis/phase35_execution_preflight_v1_0b.py",
+   "sha256": "498e68277168a8ee200842d799cb186bd410f09764d1fdb796ad463912704e63"
+  },
+  "spec_generator_v1_0b": {
+   "path": "scripts/analysis/phase35_specification_v1_0b.py",
+   "sha256": "62904ee0d77648ab078c99b61488a06b5ed5d96aefd592953bfa64f910baa09c"
+  },
+  "notebook_builder_v1_0b": {
+   "path": "scripts/analysis/build_phase35_source_amendment_notebook_v1_0b.py",
+   "sha256": "5486c342db99242442834df8fcb44866aca3e978bb10a9a2029c4f55bd2c3f95"
+  },
+  "model_G": {
+   "path": "src/models/film/global_medfilm.py",
+   "sha256": "a04ff3e61b4d900ff47c2f390da4a999e73bd6047b28a19e41b05115e431d11f"
+  },
+  "model_B_phi_authority": {
+   "path": "scripts/analysis/train_phase25d_router.py",
+   "sha256": "fc7c1bdf263ae4551dcb8f170d3203adb8540fbc189846265b74f6eca1541e91"
+  },
+  "domain_task_registry": {
+   "path": "src/analysis/multidomain_harmonization.py",
+   "sha256": "3f009d994ed24d9c2edf8e48646e93700ab4e54dea786fb4bd03180c825cbf92"
+  }
+ },
+ "bound_authorities": {
+  "phase34_final_closure": {
+   "path": "reports/audits/phase34_final_closure.json",
+   "expected_sha256": "00f975e71a1c4cdef606ab4324e0de226d66be2daa6cebe9f063cf0f2134d6da",
+   "observed_sha256": "00f975e71a1c4cdef606ab4324e0de226d66be2daa6cebe9f063cf0f2134d6da",
+   "match": true
+  },
+  "phase34_phase35_handoff": {
+   "path": "reports/audits/phase34_phase35_handoff.json",
+   "expected_sha256": "68e10f3e7964fce079785bcecfd79c34fc2ac6e6cb3ee1047c167d0be87e7710",
+   "observed_sha256": "68e10f3e7964fce079785bcecfd79c34fc2ac6e6cb3ee1047c167d0be87e7710",
+   "match": true
+  },
+  "phase35_v1_0_specification_terminal": {
+   "path": "reports/audits/phase35_specification_terminal_v1_0.json",
+   "expected_sha256": "cec3b2aadbc90a7a8ebd06e8149cd7a53122d42e3f6077c30634e7de96ac312b",
+   "observed_sha256": "cec3b2aadbc90a7a8ebd06e8149cd7a53122d42e3f6077c30634e7de96ac312b",
+   "match": true
+  },
+  "canonical_gallery": {
+   "path": "reports/tables/phase21_gallery_selection_64.csv",
+   "expected_sha256": "2bc7c16286999ced374840cc987dcd352c3e546668322a9ccc4d1e8e8a097fd9",
+   "observed_sha256": "2bc7c16286999ced374840cc987dcd352c3e546668322a9ccc4d1e8e8a097fd9",
+   "match": true
+  },
+  "gallery_population_ownership": {
+   "path": "reports/audits/phase35_gallery_population_ownership.json",
+   "expected_sha256": "0d62fb12cfa3675a9a6ce3d801b905b2a03ac42599e8480bfbbc454cc1fb7fb0",
+   "observed_sha256": "0d62fb12cfa3675a9a6ce3d801b905b2a03ac42599e8480bfbbc454cc1fb7fb0",
+   "match": true
+  },
+  "canonical_model_binding": {
+   "path": "reports/audits/phase35_canonical_model_binding.json",
+   "expected_sha256": "7f4b23b2cd8a6295181d56d62a29ef3da5dc0dcd98d9b67966871fc0eca02c4a",
+   "observed_sha256": "7f4b23b2cd8a6295181d56d62a29ef3da5dc0dcd98d9b67966871fc0eca02c4a",
+   "match": true
+  },
+  "gradcam_layer_contract": {
+   "path": "reports/audits/phase35_gradcam_layer_contract.json",
+   "expected_sha256": "ad5e6ca5b54f278d7e06372899fef618b80889458aea52d2b0a377d0b529a196",
+   "observed_sha256": "ad5e6ca5b54f278d7e06372899fef618b80889458aea52d2b0a377d0b529a196",
+   "match": true
+  },
+  "roi_proposal_contract": {
+   "path": "reports/audits/phase35_roi_proposal_visualization_contract.json",
+   "expected_sha256": "4a72f4d55ae933aad548ace469719e19363aa0b7f69466596fb995255c833000",
+   "observed_sha256": "4a72f4d55ae933aad548ace469719e19363aa0b7f69466596fb995255c833000",
+   "match": true
+  },
+  "router_population_contract": {
+   "path": "reports/audits/phase35_router_population_contract.json",
+   "expected_sha256": "ca17139dfd5bc0d9766f449ed626d792704a7c31cadd96b2f9caf7ef558cc4ec",
+   "observed_sha256": "ca17139dfd5bc0d9766f449ed626d792704a7c31cadd96b2f9caf7ef558cc4ec",
+   "match": true
+  },
+  "phase25b_feature_schema": {
+   "path": "reports/tables/phase25b_feature_schema.csv",
+   "expected_sha256": "da76aa34f14006146f46ca799f173378274d8c9d0792dc18edb30711a2486dd4",
+   "observed_sha256": "da76aa34f14006146f46ca799f173378274d8c9d0792dc18edb30711a2486dd4",
+   "match": true
+  },
+  "router_normalization_authority": {
+   "path": "reports/tables/phase25d_final_normalization_stats.csv",
+   "expected_sha256": "ba37742e96610ec5e46fb47c093bf71ae1afd85b2a0db9696b612c873a4ba1fb",
+   "observed_sha256": "ba37742e96610ec5e46fb47c093bf71ae1afd85b2a0db9696b612c873a4ba1fb",
+   "match": true
+  },
+  "checkpoint_G": {
+   "path": "checkpoints/phase21_global_medfilm_fourdomain_seed42_clean_v3/best.pt",
+   "expected_sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+   "observed_sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+   "match": true
+  },
+  "checkpoint_B_phi": {
+   "path": "checkpoints/phase25d_barr_benefit_router_v1_2_1_seed42/final/final.pt",
+   "expected_sha256": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+   "observed_sha256": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+   "match": true
+  }
+ },
+ "v1_0_specification_preserved": true,
+ "v1_0a_block_preserved": true,
+ "v1_0_execution_source_superseded_for_future_execution": true,
+ "v1_0b_future_execution_must_use_exact_bytes": true,
+ "Phase35_scientific_output_already_produced": false,
+ "static_preflight_pass": true,
+ "static_preflight_sha256": "8c026c1b01304747da0f49148a5cf9f0757313bb98870cebfd78a4f589d647df",
+ "generated_utc": "2026-10-04T15:21:55+00:00",
+ "all_pass": true
+}

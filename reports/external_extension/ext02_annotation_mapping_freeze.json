@@ -1,0 +1,32 @@
+{
+  "classification": "EXT02_ANNOTATION_MAPPING_FREEZE",
+  "generated_utc": "2026-10-11T14:00:00Z",
+  "HAM10000": {
+    "foreground": "lesion",
+    "mask_binary": true,
+    "diagnosis_labels": "REPORTING_ONLY (MEL/NV/BCC/AKIEC/BKL/DF/VASC) - never model input"
+  },
+  "CVC-ClinicDB": {
+    "foreground": "polyp",
+    "mask_binary": true,
+    "class_dict": "background/polyp"
+  },
+  "BrEaST-Lesions_USG": {
+    "foreground": "tumour (caseXXX_tumor.png)",
+    "other_masks": "caseXXX_otherN.png REPORTING/annotation metadata ONLY - never merged into tumour foreground"
+  },
+  "Stones_where_are_you": {
+    "foreground": "category name exactly 'stone' -> 1; ALL other categories -> 0 (reporting only)",
+    "kidney_bladder_ureter": "NOT foreground",
+    "new_task_ids": "forbidden",
+    "rasterization": {
+      "library": "pycocotools/polygon rasterization at native resolution",
+      "fill_convention": "polygon fill=1",
+      "boundary_convention": "inclusive of boundary pixels",
+      "coordinate_clipping": "clip to image extents",
+      "invalid_polygon_handling": "drop polygon, record",
+      "overlapping_polygons": "logical OR (union)",
+      "empty_resulting_masks": "legitimate empty GT only if completeness established; otherwise GT_UNAVAILABLE"
+    }
+  }
+}

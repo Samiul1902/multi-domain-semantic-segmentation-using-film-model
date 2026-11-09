@@ -1,0 +1,95 @@
+{
+  "classification": "EXT03_TRAINING_PROTOCOL_RESOLVED",
+  "generated_utc": "2026-10-11T17:00:00Z",
+  "authority": "reports/external_extension/ext02_1_baseline_training_protocol_freeze.json (sha dcda271985127124a8eff8225befb28311c4a789a6fed48866f13e6ee208fb89)",
+  "config_authorities": {
+    "configs/phase09_clean_v3/phase09_unet_baseline_clean_v3.yaml": "8a45458c7c5e34062214a741550a84ff9ab56e4ad9ceef81cbcf263052b5172a",
+    "configs/phase10_clean_v3/phase10_attention_unet_clean_v3.yaml": "70e08ad5b89461db0bb9cbb8e75da8bbc9ef357af36e5d70a3c4653818260c02",
+    "configs/phase10_clean_v3/phase10_deeplabv3plus_clean_v3.yaml": "a5220e3135618513a71e0094197b2cffe0aef9334f7d53e39642c7a00ddd5b57",
+    "configs/phase10_clean_v3/phase10_unetpp_clean_v3.yaml": "e2788e504b09cd8544e45fb7aef4001b8363452963d7d793f693647b4df24f53"
+  },
+  "recipe": {
+    "input_size": 512,
+    "channels": "1->3 (frozen channel semantics)",
+    "mask_conversion": "binary (mask>0)",
+    "loss": "as frozen phase09/10 authority",
+    "optimizer": "Adam (phase09/10 authority)",
+    "max_epochs": "phase09/10 authority",
+    "early_stopping": "phase09/10 authority",
+    "checkpoint_selection": "macro-domain development-validation Dice (equal domain weighting)",
+    "resolved_from_config": {
+      "experiment_id": "phase9_kub_unet_baseline_seed42_512_clean_v3",
+      "phase": 9,
+      "dataset": "KUB",
+      "manifest_version": "phase4_v3",
+      "taxonomy_id": "kub_size_clean_v3_v1",
+      "status": "RECONSTRUCTED_AND_READY",
+      "authorization_required": "Phase-09 clean rerun authorization",
+      "model": {
+        "name": "unet",
+        "input_channels": 1,
+        "output_channels": 1,
+        "base_channels": 32
+      },
+      "input_resolution": 512,
+      "preprocessing": {
+        "strategy": "aspect_ratio_resize_symmetric_pad",
+        "image_interpolation": "bilinear",
+        "mask_interpolation": "nearest",
+        "image_scaling": [
+          0.0,
+          1.0
+        ]
+      },
+      "augmentation": {
+        "horizontal_flip_probability": 0.5,
+        "rotation_degrees": 5.0,
+        "brightness": 0.1,
+        "contrast": 0.1,
+        "vertical_flip": false
+      },
+      "loss": {
+        "name": "bce_dice",
+        "bce_weight": 0.5,
+        "dice_weight": 0.5,
+        "dice_epsilon": 1e-06
+      },
+      "optimizer": {
+        "name": "AdamW",
+        "learning_rate": 0.0001,
+        "weight_decay": 0.0001
+      },
+      "scheduler": {
+        "name": "CosineAnnealingLR",
+        "max_epochs": 100
+      },
+      "training": {
+        "max_epochs": 100,
+        "early_stopping_patience": 15,
+        "monitor": "val_macro_dice",
+        "threshold": 0.5,
+        "seed": 42,
+        "amp": true,
+        "batch_size": 4,
+        "gradient_accumulation_steps": 1,
+        "effective_batch_size": 4,
+        "num_workers": 0,
+        "pin_memory": true,
+        "persistent_workers": false
+      },
+      "device_contract": "src.utils.device.get_device(require_cuda=True)",
+      "target_contract": "src.utils.targets.binarize_mask",
+      "single_writer_lock": "src.utils.run_lock",
+      "allow_test": false
+    }
+  },
+  "prospective_choices": [
+    "SegFormer-B0 constructor/pretrained identity -> EXT-03 prospective choice PENDING (no library present)"
+  ],
+  "seed_set": [
+    42,
+    123,
+    3407
+  ],
+  "frozen_before_scientific_training": true
+}

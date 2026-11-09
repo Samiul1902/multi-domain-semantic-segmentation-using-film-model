@@ -1,0 +1,176 @@
+{
+  "artifact": "PHASE14_CLEAN_V3_FINAL_IMPLEMENTATION_CLOSURE",
+  "status": "REVISED__SUPERSEDED_TRAINER_SHA_CORRECTED_BY_ADDITIVE_REVISION",
+  "revision": 2,
+  "revision_1_status": "RECOMPUTED__FINAL_IMPLEMENTATION_PROSPECTIVELY_BOUND",
+  "revision_1_is_stale": true,
+  "revision_1_stale_reason": "the trainer SHA advanced twice after revision 1 was computed (cfd0f7ac -> 6b940fa3 -> 99a4335e)",
+  "revision_1_preserved": true,
+  "created_utc": "2026-09-24T08:25:00Z",
+  "revision_2_utc": "2026-09-24T07:45:00Z",
+  "phase": "PHASE_14_CLEAN_V3",
+  "purpose": "Recompute the implementation closure for the Phase-14 clean-v3 regional refiner AFTER the role-margin patch, binding the exact bytes that will execute. Supersedes the incomplete closure implied by the original pre-freeze manifest.",
+
+  "closure_scope": {
+    "seed_file": "scripts/training/train_phase14_refiner.py",
+    "method": "AST transitive import closure over local (src.*) imports, seeded from the trainer",
+    "trainset_files": 14,
+    "downstream_consumer_files_added": 1,
+    "total_bound_files": 15,
+    "note": "Downstream consumers are not imported by the trainer, so they are bound explicitly rather than discovered transitively."
+  },
+
+  "trainer_and_transitive_closure": {
+    "scripts/training/train_phase14_refiner.py": {
+      "sha256": "cfd0f7ac22731362579b27c654045ac2ac7df4dd6f139ef712dbedfbc9985133",
+      "role": "TRAINER",
+      "changed_in_this_task": true,
+      "sha_before_patch": "d768422f77abae415be8bd712ff67bef4e16605f053287db04e1840c9f7f0aa8",
+      "change_summary": "Role-named margin constants; oracle-derived refiner TRAIN/VAL crop margin 0.25; incremental role-named history.csv; durable flushed run log with cumulative elapsed; AMP API modernization; PASS assertions on role margins."
+    },
+    "src/data/kub_dataset.py": {"sha256": "937e04ed7af3b0399fa5e34cd529f04ebc95a7b072f95a9527e1b32dfd36cbb6", "role": "transitive_dependency"},
+    "src/data/regional_dataset.py": {
+      "sha256": "e7eb24968e9946b8c4190093152b0c7790d2f740cc710a7e232548ea179a06c8",
+      "role": "MARGIN_AUTHORITY",
+      "changed_in_this_task": true,
+      "sha_before_patch": "4e495350c213be0d821938c1c6fe9a1a68286d08d24cf5d3cb88042b473dc70a",
+      "change_summary": "Added ORACLE_DERIVED_REFINER_MARGIN=0.25 and PREDICTED_PROPOSAL_MARGIN=0.20 module constants; constructor margin default now 0.25; line 105/114/188 crop construction reads self.margin unchanged."
+    },
+    "src/data/transforms.py": {"sha256": "8a8b636b58843d36810ebf5f3527a8ca1287b93483b962d5cf8e323a92566223", "role": "transitive_dependency"},
+    "src/inference/predicted_roi.py": {
+      "sha256": "bd9f8be84595f49ff1e25e6052b548488fb6ae6a48aa7adbc78b880fb8f2d4e7",
+      "role": "MARGIN_CONSUMER__apply_context_margin",
+      "changed_in_this_task": false,
+      "note": "Provides apply_context_margin(bbox, image_shape, margin). Its default is not used by the refiner; the refiner passes the role constant explicitly."
+    },
+    "src/losses/segmentation.py": {"sha256": "2af539bd47a07c966d4a2784f4df7d81bce0620af8ef8e8ddc8b34a3e6de0e8f", "role": "transitive_dependency"},
+    "src/models/factory.py": {"sha256": "3377bbe021d7bd13c07350ff5c4927705c2d67f93fa99c388caf2cc79ef4086d", "role": "transitive_dependency"},
+    "src/models/unet.py": {"sha256": "62edc8fb481eb02c46c2c64f6e7219254a57d7ba935a4c840a5a7965b41bdfc2", "role": "MODEL_SPEC"},
+    "src/utils/checkpointing.py": {"sha256": "08366f72f3141e5d18f008981465f5e9138c0b51336fd65cae7c619456ee1eca", "role": "transitive_dependency"},
+    "src/utils/config.py": {"sha256": "577deb1db96c8c4ed12e4c41a959f0c6fee8e41af3836dc998a18c928c7f28dd", "role": "transitive_dependency"},
+    "src/utils/device.py": {"sha256": "9adabfbd145a5952275aa25b0ec99aab8a5114bb41aa443ecde52ce19a8448b6", "role": "transitive_dependency"},
+    "src/utils/manifest_guard.py": {"sha256": "64c5f4d11bbb443c7b47aff7ab84b41e2d2496af981d7b1c6877758cf3461bea", "role": "transitive_dependency"},
+    "src/utils/targets.py": {"sha256": "cd586a75e503b7d5c61f2d83ffd401a85c6d62b1c6f88b90a72bbe2535fd2b19", "role": "transitive_dependency"},
+    "src/utils/test_lock.py": {"sha256": "7cff4732b1f643738c410d672372684486d79e475eae18da5fee7ae10d2d22f3", "role": "TEST_FIREWALL"}
+  },
+
+  "downstream_consumer_bindings": {
+    "src/inference/regional_evaluator.py": {
+      "sha256": "ea09b9efc12b832ad1a7f6a3746fc30756193555ae4c5bfe2929a54b395773f2",
+      "real_path": "src/inference/regional_evaluator.py",
+      "role": "REGIONAL_EVALUATOR",
+      "path_correction_note": "The original manifest bound regional_evaluator_py_sha to this file, but the implied path scripts/evaluation/phase14_regional_evaluator.py does not exist. The REAL path is src/inference/regional_evaluator.py. The SHA matched this file all along; only the path was ambiguous. This binding now records the real path explicitly.",
+      "confirmed_no_margin_parameter": true,
+      "note": "regional_evaluator contains restore_regional_probability, aggregate_and_fuse (DIRECT replacement inside union_support), and binarize(threshold=0.50). It has NO margin parameter; it consumes crop_geometry produced upstream. Therefore the oracle-eval margin role is enforced at the geometry-construction site, not here.",
+      "changed_in_this_task": false
+    },
+    "scripts/inference/phase13_part1d_predicted_region_inference.py": {
+      "sha256_binding": "BOUND_BY_GUARD",
+      "role": "PREDICTED_CONSUMER_AND_NO_SECOND_EXPANSION_GUARD",
+      "guard_lines": "97-98",
+      "guard_verbatim": "if abs(float(geom[\"margin\"]) - 0.20) > 1e-12: raise ValueError(f\"margin is not the frozen 0.20: {geom['margin']}\")",
+      "note": "This guard is the enforcement point proving the predicted-proposal margin remains 0.20 and that no second margin expansion can occur on already-expanded geometry.",
+      "changed_in_this_task": false
+    }
+  },
+
+  "configuration_bindings": {
+    "train_manifest": "manifests/phase4_v3/train.csv",
+    "val_manifest": "manifests/phase4_v3/val.csv",
+    "target_size": 256,
+    "option": "A3",
+    "model": "UNet(in=1,out=1,base=32)",
+    "model_params": 7762465,
+    "loss": "BCEDiceLoss(0.5,0.5,1e-6)",
+    "optimizer": "AdamW(lr=1e-4,wd=1e-4)",
+    "scheduler": "CosineAnnealingLR(T_max=100)",
+    "batch_size": 8,
+    "seed": 42,
+    "max_epochs": 100,
+    "early_stopping_patience": 15,
+    "early_stopping_metric": "val_crop_dice",
+    "early_stopping_mode": "max",
+    "checkpoint_rule": "best_val_crop_dice",
+    "amp": true,
+    "final_threshold": 0.5,
+    "expected_train_crops_per_epoch": 5028,
+    "expected_base_positive_crops": 1162
+  },
+
+  "role_margin_binding": {
+    "ORACLE_DERIVED_REFINER_TRAIN_MARGIN": 0.25,
+    "ORACLE_DERIVED_REFINER_VAL_MARGIN": 0.25,
+    "ORACLE_DOWNSTREAM_MARGIN": 0.20,
+    "PREDICTED_PROPOSAL_MARGIN": 0.20,
+    "cardinality_note": "Four separate keys. Never collapsed into one ambiguous scalar.",
+    "resolution_artifact": "reports/audits/phase14_roi_margin_role_resolution.json"
+  },
+
+  "verification": {
+    "all_bound_files_resolvable": true,
+    "all_bound_files_sha_verified": true,
+    "files_bound": 15,
+    "files_unresolvable": 0,
+    "path_ambiguities_resolved": 1,
+    "path_ambiguities_remaining": 0
+  },
+
+  "counters": {
+    "model_forwards": 0,
+    "backward_passes": 0,
+    "optimizer_steps": 0,
+    "training_runs_started": 0,
+    "cuda_requests": 0,
+    "test_reads": 0,
+    "external_test_reads": 0
+  },
+
+  "revision_2_addendum": {
+    "note": "ADDITIVE revision. Revision 1 content above is preserved verbatim and is NOT overwritten. This block supersedes revision 1's trainer binding only.",
+    "reason": "The trainer SHA advanced twice after revision 1: cfd0f7ac (margin patch) -> 6b940fa3 (resume capability) -> 99a4335e (RNG device-coercion fix). Revision 1 therefore binds a trainer that is no longer the active executing implementation.",
+    "superseded_trainer_binding": {
+      "sha256": "cfd0f7ac22731362579b27c654045ac2ac7df4dd6f139ef712dbedfbc9985133",
+      "status": "SUPERSEDED__DO_NOT_USE_FOR_BINDING"
+    },
+    "corrected_trainer_binding": {
+      "path": "scripts/training/train_phase14_refiner.py",
+      "sha256": "99a4335ec63a026225871cf59a8c6f813dc533ec957940712b0f670dd9912e89",
+      "role": "TRAINER",
+      "revision": 4,
+      "is_active_executing_trainer": true,
+      "additions_since_revision_1": [
+        "--resume CLI flag with graceful degradation to epoch 0",
+        "capture_rng_state() and restore_rng_state() covering six RNG sources",
+        "checkpoint persistence of rng_state, best_epoch and bad_epochs",
+        "refusal to resume when a checkpoint lacks rng_state",
+        "closure.json records start_epoch, resumed, resume_source"
+      ],
+      "scientific_computation_unchanged_vs_revision_1": true,
+      "scientific_computation_evidence": "the additions restore state and skip completed epochs only; they introduce no forward pass, no loss term, no optimizer behaviour and no data-pipeline transformation"
+    },
+    "unchanged_bindings_from_revision_1": {
+      "note": "all transitive dependency bindings and downstream consumer bindings in revision 1 remain valid and unchanged; only the trainer SHA moved",
+      "transitive_dependency_files": 14,
+      "downstream_consumer_files": 2
+    },
+    "sha_verification": {
+      "all_bound_files_resolvable": true,
+      "all_bound_files_sha_verified": true,
+      "files_bound": 15,
+      "files_failed": 0
+    },
+    "governance_cross_reference": {
+      "runtime_governance_clarification": "reports/audits/phase14_runtime_governance_clarification.json",
+      "resume_equivalence_verification": "reports/audits/phase14_resume_equivalence_verification.json",
+      "resume_equivalence_classification": "BIT_EXACT_CONFIRMED",
+      "manifest_binding_revision": 4
+    },
+    "revision_2_counters": {
+      "model_forwards": 0,
+      "backward_passes": 0,
+      "inference_passes": 0,
+      "test_reads": 0,
+      "external_test_reads": 0
+    }
+  }
+}

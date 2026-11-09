@@ -1,0 +1,49 @@
+{
+  "artifact": "phase21_prediction_manifest",
+  "phase": 21,
+  "experiment_id": "phase21_global_medfilm_fourdomain_seed42_clean_v3",
+  "scope": "VAL only; TEST never read",
+  "samples_expected": 808,
+  "samples_evaluated": 808,
+  "canonical_val_inference_runs": 1,
+  "n_predictions": 808,
+  "per_domain_counts": {
+    "BUSI": 84,
+    "ISIC": 357,
+    "KUB": 280,
+    "KVASIR": 87
+  },
+  "storage": {
+    "format": "npz (compressed)",
+    "prob_dtype": "float16",
+    "pred_dtype": "uint8",
+    "prob_semantics": "sigmoid probability of foreground, [0,1]",
+    "pred_semantics": "binary at threshold 0.5"
+  },
+  "binding": {
+    "checkpoint_path": "checkpoints/phase21_global_medfilm_fourdomain_seed42_clean_v3/best.pt",
+    "checkpoint_sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+    "checkpoint_epoch": 66,
+    "threshold": 0.5,
+    "input_channel_policy": "RGB_3CH",
+    "input_resolution": 512,
+    "preprocessing_contract": "phase19_preprocessing_contract_v1",
+    "evaluation_contract": "phase19_evaluation_contract_v1",
+    "manifest_version": "phase4_v3",
+    "frozen_protocol_sha256": "b74f1f9f429adbce374f0306180943b9f373f872e1e69e115b7d17e81414283c",
+    "task_id_role": "FiLM conditioning only"
+  },
+  "gt_reference_scheme": "native mask path + sha256 of the native mask file bytes",
+  "manifest_csv": "reports/tables/phase21_prediction_manifest.csv",
+  "manifest_csv_sha256": "02c0b27caf99cc118cdea004888b44c1913f6000ea5e240ad53fce4c606ca2ae",
+  "per_image_table": "reports/tables/phase21_per_image_val_metrics.csv",
+  "per_image_table_sha256": "8d8dad2cc12d00bd41c89b921d97940cc2f02543a66585efb1f6c3d0c6c9cf84",
+  "prediction_root": "reports/predictions/phase21_global_medfilm_fourdomain_seed42_clean_v3/val",
+  "allows_future_phases_to_avoid_replay": true,
+  "test_reads": {
+    "test_image_reads": 0,
+    "test_mask_reads": 0,
+    "test_inference": 0,
+    "test_visualization": 0
+  }
+}

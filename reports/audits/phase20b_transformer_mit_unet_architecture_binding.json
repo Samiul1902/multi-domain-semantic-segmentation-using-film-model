@@ -1,0 +1,54 @@
+{
+  "artifact": "phase20b_architecture_binding",
+  "phase": 20,
+  "subphase": "20B",
+  "model_key": "transformer_mit_unet",
+  "model_display_name": "Transformer/MiT-style U-Net",
+  "experiment_id": "phase20b_shared_transformer_mit_unet_fourdomain_seed42_clean_v3",
+  "repository_implementation": "src/models/transformer_mit_unet.py",
+  "model_source_sha256": "46c445adf0aaa190b022a7782af3dd0646f29b1978db0cf297cc38eed3d47641",
+  "class_name": "TransformerMiTUNet",
+  "module": "src.models.transformer_mit_unet",
+  "factory_key": null,
+  "architecture_descriptor": "transformer_mit_style_unet_local_random_init",
+  "model_contract": {
+    "in_channels": 3,
+    "out_channels": 1,
+    "base_channels": 32,
+    "output": "single binary segmentation logit channel",
+    "shared_parameters_across_domains": true,
+    "forbidden_modules": [
+      "FiLM",
+      "task_embedding",
+      "domain_embedding",
+      "regional_branch",
+      "localizer",
+      "ROI_proposal",
+      "routing",
+      "dataset_specific_decoder",
+      "dataset_specific_head"
+    ],
+    "forbidden_modules_present": []
+  },
+  "n_trainable_params": 16347777,
+  "selection_basis": "LOCAL_RANDOM_INIT_IMPLEMENTATION__NO_OFFICIAL_PRETRAINED_WEIGHTS",
+  "selection_time": "PRE_TRAINING",
+  "current_phase20_results_used_for_selection": false,
+  "protocol_path": "reports/audits/phase20_shared_global_baseline_protocol.json",
+  "protocol_sha256": "b74f1f9f429adbce374f0306180943b9f373f872e1e69e115b7d17e81414283c",
+  "phase20a_reference_experiment": "phase20_shared_unetpp_fourdomain_seed42_clean_v3",
+  "immutability": {
+    "architecture_will_not_be_switched_after_training": true,
+    "no_architecture_search_in_phase20b": true,
+    "no_per_model_recipe_change": true,
+    "no_per_model_threshold_tuning": true,
+    "no_post_hoc_restart_from_epoch_1": true
+  },
+  "notes": [
+    "No official pretrained MiT / SegFormer checkpoint is available in this environment.",
+    "timm / transformers / segmentation-models-pytorch are NOT installed; the only cached torchvision",
+    "weights are resnet34-b627a593.pth, which is unrelated to MiT.",
+    "This is a LOCAL, RANDOMLY INITIALIZED MiT-style U-Net encoder+decoder, NOT official pretrained MiT-B1.",
+    "It must never be described as 'official pretrained MiT-B1'."
+  ]
+}

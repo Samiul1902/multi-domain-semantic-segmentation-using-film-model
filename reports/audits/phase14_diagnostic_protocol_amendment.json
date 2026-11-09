@@ -1,0 +1,268 @@
+﻿{
+  "phase": "14",
+  "branch_type": "PROSPECTIVE_DIAGNOSTIC_BRANCH",
+  "status": "DIAGNOSTIC_PROTOCOL_FROZEN_AWAITING_IMPLEMENTATION",
+  "original_confirmatory_gate": {
+    "status": "NOT_PASSED",
+    "historical_fact_preserved": true,
+    "path_designation": "NOT_ELIGIBLE_UNDER_ORIGINAL_GATE",
+    "criteria": {
+      "hard_tiny": {
+        "threshold": ">= 8/16",
+        "achieved": "7/16",
+        "result": "FAIL"
+      },
+      "global_empty": {
+        "threshold": ">= 4/7",
+        "achieved": "3/7",
+        "result": "FAIL"
+      },
+      "tiny_recall90": {
+        "threshold": ">= 0.85",
+        "achieved": 0.726027,
+        "result": "FAIL"
+      },
+      "overall_recall90": {
+        "threshold": ">= 0.85",
+        "achieved": 0.641026,
+        "result": "FAIL"
+      },
+      "mean_roi_area": {
+        "threshold": "<= 0.10",
+        "achieved": 0.005899,
+        "result": "PASS"
+      },
+      "mean_proposals": {
+        "threshold": "<= 5.0",
+        "achieved": 4.660377,
+        "result": "PASS"
+      }
+    }
+  },
+  "scientific_questions": {
+    "Q1": "Does regional refinement help when ROI localization is effectively ideal?",
+    "Q2": "Does the SAME regional refiner help when driven by frozen Stage-4D predicted proposals?",
+    "Q3": "What fraction of the oracle regional-refinement benefit is lost because of proposal quality?"
+  },
+  "comparison_structure": {
+    "A_global_only": {
+      "model": "UNet++",
+      "checkpoint": "checkpoints/phase10_kub_unetpp_seed42_512/best.pt",
+      "val_metrics": {
+        "macro_dice": 0.762494,
+        "full_field_dice": 0.652776,
+        "roi_crop_dice": 0.828201,
+        "tiny_recall90": 0.780822,
+        "small_recall90": 0.862069,
+        "medium_recall90": 0.888889,
+        "large_recall90": 0.944444
+      }
+    },
+    "B_oracle_regional": {
+      "description": "Regional refiner evaluated with ground-truth component ROIs (margin 0.25)",
+      "purpose": "Isolates pure regional refinement potential"
+    },
+    "C_predicted_regional": {
+      "description": "Regional refiner evaluated with frozen Stage-4D predicted proposals",
+      "proposal_source": "phase13b_kub_localizer_r512_h128_sigmaeq075_centernetfocal_seed42_v1",
+      "best_epoch": 73,
+      "proposal_config": {
+        "threshold": 0.1,
+        "margin": 0.2,
+        "top_k": 5,
+        "nms_iou": 0.3
+      },
+      "purpose": "Isolates proposal bottleneck in realistic end-to-end deployment"
+    }
+  },
+  "training_roi_design": {
+    "recommended_option": "OPTION_A3",
+    "options_evaluated": {
+      "OPTION_A1": "Strict Oracle: Pure GT crops perfectly centered.",
+      "OPTION_A2": "Jittered Oracle: GT crops with spatial and scale jitter.",
+      "OPTION_A3": "Jittered Oracle + FP Background: GT crops with jitter, plus crops of empty background areas.",
+      "OPTION_A4": "Predicted Matching: Actual Stage-4D predicted crops."
+    },
+    "rationale": "Option A3 is recommended. It cleanly separates the refiner from Stage-4D's specific error distribution, avoiding the training-domain confound of A4. Crucially, it uses jitter and empty crops to teach the single model to handle imperfect centering and suppress false-positive proposals at inference."
+  },
+  "model_specifications": {
+    "architecture": "Standard 4-stage U-Net",
+    "trainable_parameters": 7762465,
+    "crop_resolution": [
+      256,
+      256
+    ],
+    "roi_margin_rule": 0.25,
+    "loss": "0.5_BCE + 0.5_Dice",
+    "optimizer": "AdamW",
+    "learning_rate": 0.0001,
+    "weight_decay": 0.0001,
+    "scheduler": "CosineAnnealingLR",
+    "batch_size": 8,
+    "seed": 42,
+    "max_epochs": 100,
+    "early_stopping": "Patience 15 epochs on validation crop Dice",
+    "checkpoint_rule": "best_val_crop_dice",
+    "augmentation": {
+      "horizontal_flip_probability": 0.5,
+      "vertical_flip_probability": 0.5,
+      "rotation": "Uniform +/- 45 degrees",
+      "affine_scale": "None (handled by perturbation)",
+      "brightness": "Uniform +/- 0.2 factor",
+      "contrast": "Uniform +/- 0.2 factor",
+      "other_intensity_jitter": "None"
+    },
+    "AMP": "Enabled (bfloat16 or float16)",
+    "final_threshold": 0.5,
+    "checkpoint_metric": "Macro Dice per crop averaged across Oracle FULL_FIELD VAL crops. If both prediction and target empty, Dice=1.0. If prediction non-empty and target empty, Dice=0.0.",
+    "one_checkpoint": "YES. Selected purely on Oracle VAL crop performance, evaluated on both."
+  },
+  "fusion_rule": {
+    "primary_rule": "DIRECT_REPLACEMENT_IN_PROPOSAL_UNION",
+    "description": "Pixelwise replacement with restored regional prediction inside proposal ROI; global UNet++ baseline prediction retained outside ROI.",
+    "alternative_candidates": [
+      "MAX_PROBABILITY_FUSION",
+      "BLENDED_BOUNDARY_ALPHA"
+    ],
+    "equation": "P_final(x) = max_i(P_regional_i(x)) if x in union(ROIs) else P_global(x). Final mask M_final(x) = 1[P_final(x) >= 0.50].",
+    "zero_proposal_rule": "If 0 proposals, P_final = P_global everywhere. No synthetic or full-image fallback."
+  },
+  "target_metrics": [
+    "macro_dice",
+    "full_field_dice",
+    "roi_crop_dice",
+    "component_recall90",
+    "tiny_recall90",
+    "small_recall90",
+    "medium_recall90",
+    "large_recall90",
+    "hard_tiny_recovery",
+    "global_empty_recovery",
+    "fp_components_per_image",
+    "roi_area_fraction",
+    "proposals_per_image",
+    "inference_runtime_ms"
+  ],
+  "diagnostic_contrasts": {
+    "contrast_1": {
+      "comparison": "GLOBAL vs ORACLE_REGIONAL",
+      "interpretation": "Does regional refinement have potential when ROI localization is ideal?"
+    },
+    "contrast_2": {
+      "comparison": "ORACLE_REGIONAL vs PREDICTED_REGIONAL",
+      "interpretation": "How much performance is lost due to imperfect proposal localization?"
+    },
+    "contrast_3": {
+      "comparison": "GLOBAL vs PREDICTED_REGIONAL",
+      "interpretation": "Does the end-to-end predicted-ROI system improve over the global baseline?"
+    }
+  },
+  "proposed_diagnostic_gate": {
+    "Step_1_Refiner_Potential": "Contrast 1 (Oracle Regional) > Global Baseline. Tiny Recall@90 gain >= +0.05.",
+    "Step_2_Proposal_Bottleneck": "Contrast 2 (Predicted Regional) drop is < 50% of the Oracle gain from Step 1.",
+    "Step_3_Practical_Net_Benefit": "Contrast 3 (Predicted Regional) > Global Baseline. Tiny Recall@90 >= 0.78, Full Field Dice drop <= 0.02, Hard Tiny >= 2/16 recovered.",
+    "Phase_15_Reopen_Rule": "Reopen Phase 15 IF AND ONLY IF Step 1 and Step 3 are passed."
+  },
+  "phase15_reopen_condition": "Authorized ONLY if Phase 14 diagnostic achieves DIAGNOSTIC_PROMISING_SUPPORTING_REFINER.",
+  "governance_locks": {
+    "test_reads": 0,
+    "test_metrics": "NONE",
+    "external_used": false,
+    "experiment_a_modified": false,
+    "training_executed": false
+  },
+  "methodological_resolutions": {
+    "geometry_ambiguity": {
+      "phase12_margin25": "Expanded GT bbox by 0.25 of its height/width on all sides (new_min = min - round(0.25 * span)).",
+      "stage4d_margin20": "Uses identical mathematical rule (0.20 of span). Stage-4D apply_context_margin returns crop_geometry which is already expanded.",
+      "resolution": "To prevent double-margin expansion, the refiner must consume the returned crop_geometry bounds directly from Stage-4D."
+    },
+    "oracle_geometry_control": {
+      "resolution": "Oracle must be run using exactly margin=0.20 (not 0.25) to perfectly match Stage-4D context. Both use identical crop_and_preprocess(raw_image, crop_geom, target_size=256)."
+    },
+    "multiple_proposals": {
+      "top_k": 5,
+      "behavior": "Crop, bilinear resize to 256, inference, bilinear restore to original scale.",
+      "overlap_rule": "Pixel-wise MAX of the restored probability maps where proposals overlap. Thresholding occurs strictly after fusion."
+    },
+    "fusion_rule": {
+      "rule": "Probability Level MAX Fusion",
+      "formula": "P_fused = max(P_global, P_regional) for pixels inside ANY predicted proposal ROI, and P_global for pixels outside. Final threshold at 0.50."
+    },
+    "oracle_multi_component": {
+      "construction": "Generate a separate Oracle ROI for each individual GT component using margin=0.20. Run inference on each separately, then MAX-fuse the probability maps to match the predicted pipeline."
+    },
+    "crop_target": {
+      "definition": "The training target mask inside a crop contains ALL GT foreground pixels present within the crop boundary, not just the component that triggered the crop."
+    },
+    "interpolation_rules": {
+      "image_resize_256": "Bilinear",
+      "prob_restore_full": "Bilinear",
+      "mask_resize": "Nearest Neighbor",
+      "bbox_clipping": "Hard clip to [0, height] and [0, width]",
+      "rounding": "Standard python half-to-even round()"
+    },
+    "hyperparameter_provenance": {
+      "architecture": "Standard 4-stage U-Net (decoder channels [256, 128, 64, 32, 16], approx 1.9M params) to closely match Phase-10 UNet++ baseline capacity.",
+      "channels": "32 initial filters, matching Phase-10 UNet++ baseline.",
+      "crop_size": "256x256, standard medical size providing ~2x effective magnification (zoom) when applied to typical KUB calculus ROIs."
+    }
+  },
+  "implementation_plan": [
+    "Create src/data/regional_dataset.py implementing the Option A3 (Jitter + FP Background) crop generation strategy.",
+    "Create src/training/train_diagnostic_refiner.py.",
+    "Create src/inference/regional_evaluator.py implementing the TopK=5 pipeline, deterministic overlap rule, and MAX fusion."
+  ],
+  "phase14_population": {
+    "regional_refinement_scope": "FULL_FIELD",
+    "train_population": "FULL_FIELD TRAIN only (771 images)",
+    "val_population": "FULL_FIELD VAL only (106 images)",
+    "roi_crop_processing": "NONE. Regional refiner does NOT process ROI_CROP images.",
+    "roi_crop_rule": "ROI_CROP predictions remain exactly the frozen global UNet++ baseline.",
+    "hybrid_reporting": "If combined KUB metric is reported, it must be labeled HYBRID DEVELOPMENT PIPELINE METRIC."
+  },
+  "component_counts": {
+    "train_full_field_images": 771,
+    "train_full_field_components": 1162,
+    "val_full_field_images": 106,
+    "val_full_field_components": 156,
+    "max_train_components": 11,
+    "max_val_components": 2,
+    "train_images_gt_5": 15,
+    "val_images_gt_5": 0,
+    "oracle_topk_confound": "PRESENT in TRAIN (max 11). Not present in VAL (max 5), but strictly matched budget rule must be defined.",
+    "primary_oracle_budget_rule": "If >5 GT components exist in an image, Primary Oracle TopK=5 subset is chosen deterministically by taking the 5 components with the largest pixel area. ORACLE_UNBOUNDED is an optional secondary metric."
+  },
+  "training_design": {
+    "type": "A3",
+    "base_positive_crops_per_epoch": 1162,
+    "perturbed_positive_rule": {
+      "translation_jitter": "Uniform U(-0.10, 0.10) * crop_side",
+      "scale_jitter": "Uniform U(0.90, 1.10) * original_side",
+      "probability": 1.0,
+      "crops_per_component_per_epoch": 2,
+      "clipping": "[0, W] and [0, H]",
+      "minimum_crop_extent": 16,
+      "random_generator": "PyTorch default generator",
+      "seed": 42,
+      "rationale": "Simulate plausible bounding box noise (translation/scale) to teach the model to handle imperfect centering from Stage-4D without overfitting to Stage-4D exact predictions."
+    },
+    "background_negative_rule": {
+      "crops_per_image_per_epoch": 2,
+      "size_generation": "Uniform U(64, 256)",
+      "center_sampling": "Uniform random within [size//2, dimension - size//2]",
+      "maximum_retries": 10,
+      "fallback": "Skip generating negative crop for this image if valid zero-GT crop cannot be found.",
+      "target_mask": "All zeros",
+      "seed": 42,
+      "rationale": "Fixed prospective negative rate to balance training (approx 25-30% negatives) and force the model to learn to suppress false positive proposals, without mining specific errors."
+    },
+    "expected_examples_per_epoch": "1162 (base) + 2324 (perturbed) + 1542 (negatives) = 5028. Epoch definition is fixed dynamically by one pass over all components and images."
+  },
+  "diagnostic_gate_hierarchical": {
+    "step_1_potential": "G >= 0.05 AND Oracle FULL_FIELD Dice >= 0.632776",
+    "step_2_proposal_retention": "R >= 0.50",
+    "step_3_practical_signal": "Tp >= 0.780822 AND Predicted FULL_FIELD Dice >= 0.632776 AND Hard Tiny >= 2/16 AND Global-empty >= 1/7",
+    "threshold_rationale": "Descriptive development gates to control resource expenditure on ablation, not TEST statistical claims. G>=0.05 requires clinically meaningful signal. R>=0.50 prevents optimizing refiner if proposal is binding bottleneck. Dice>=-0.02 tolerance prevents regression on large stones. Hard Tiny and Global-empty require qualitative breakthrough."
+  }
+}

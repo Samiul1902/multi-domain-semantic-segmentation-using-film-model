@@ -1,0 +1,163 @@
+{
+ "artifact": "phase36_v1_22_d96_real_branch_regression_report",
+ "phase": 36,
+ "revision": "ra_medfilm_barr_phase36_robustness_v1_22",
+ "type": "DEFECT_REGRESSION_REPORT",
+ "defect": {
+  "id": "D96",
+  "code": "V1_21_REAL_DISPATCH_CALLS_UNDEFINED_V1_19_CONSUMED_HISTORY_VERIFIER",
+  "repaired_in": "v1.22"
+ },
+ "mode": "PREPARATION_ONLY_NON_CONSUMING",
+ "generated_utc": "2026-10-11T00:00:00Z",
+ "test_script": "scripts/analysis/test_phase36_v1_22_real_branch_name_resolution.py",
+ "n_pass": 25,
+ "n_fail": 0,
+ "return_code": 0,
+ "terminal": "PHASE36_V1_22_D96_REAL_BRANCH_REGRESSION_PASS",
+ "real_dispatch_branch_name_resolution_all_pass": true,
+ "checks": [
+  {
+   "check": "v1_22_launcher_import",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "1_real_branch_globals_all_resolve",
+   "pass": true,
+   "detail": "unresolved=[]"
+  },
+  {
+   "check": "2a_undefined_symbol_absent_source",
+   "pass": true,
+   "detail": "occurrences in source=0"
+  },
+  {
+   "check": "2b_undefined_symbol_not_defined",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "2c_undefined_symbol_not_called_in_branch",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "2d_undefined_symbol_not_in_namespace",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "3_defined_symbol_defined_exactly_once",
+   "pass": true,
+   "detail": "defs=1"
+  },
+  {
+   "check": "3b_defined_symbol_callable",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "4_branch_calls_defined_symbol_exactly_once",
+   "pass": true,
+   "detail": "branch_calls=1"
+  },
+  {
+   "check": "5a_mutation_applied",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "5b_mutation_detected_as_unresolved",
+   "pass": true,
+   "detail": "mut_unresolved=['verify_v1_19_consumed_history']"
+  },
+  {
+   "check": "5c_v1_21_defect_flagged",
+   "pass": true,
+   "detail": "v1_21_unresolved=['verify_v1_19_consumed_history']"
+  },
+  {
+   "check": "6a_verify_only_returns_0",
+   "pass": true,
+   "detail": "rc=0"
+  },
+  {
+   "check": "6b_verify_only_does_not_exercise_real_branch_gate",
+   "pass": true,
+   "detail": "gate_calls=0 (verify-only must NOT be treated as evidence)"
+  },
+  {
+   "check": "6c_verify_only_printed_return_before_token",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "7a_real_main_no_exception",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "7b_real_branch_gate_executed",
+   "pass": true,
+   "detail": "gate_calls=1"
+  },
+  {
+   "check": "7c_gate_returned_ok_true",
+   "pass": true,
+   "detail": "gate_ok=True"
+  },
+  {
+   "check": "7d_dispatch_reached_after_gate",
+   "pass": true,
+   "detail": "n_dispatches=1"
+  },
+  {
+   "check": "7e_dispatch_targets_v1_22_execution",
+   "pass": true,
+   "detail": "cmd=['D:\\\\Softfors\\\\jup\\\\.venv\\\\Scripts\\\\python.exe', 'D:\\\\Softfors\\\\jup\\\\scripts\\\\analysis\\\\phase36_robustness_execution_v1_22.py', '--mode', 'science']"
+  },
+  {
+   "check": "7f_dispatch_mode_science",
+   "pass": true,
+   "detail": "cmd=['D:\\\\Softfors\\\\jup\\\\.venv\\\\Scripts\\\\python.exe', 'D:\\\\Softfors\\\\jup\\\\scripts\\\\analysis\\\\phase36_robustness_execution_v1_22.py', '--mode', 'science']"
+  },
+  {
+   "check": "7g_real_main_returned_child_rc",
+   "pass": true,
+   "detail": "rc=0"
+  },
+  {
+   "check": "8_gate_binds_v1_20_adjudication_sha",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "8b_gate_ok_on_real_consumed_state",
+   "pass": true,
+   "detail": "gate={'ok': True, 'reasons': [], 'v1_20_adjudication_sha256': '31c29955380c6ec75d18f747dec4f91332177ddabeccef40cb0cafa8b37f5b72', 'terminal': 'PHASE36_V1_22_CONSUMED_HISTORY_GATE_PASS'}"
+  },
+  {
+   "check": "8c_gate_classification_bound",
+   "pass": true,
+   "detail": ""
+  }
+ ],
+ "coverage": {
+  "all_real_branch_globals_resolve": true,
+  "undefined_v1_19_symbol_absent_from_real_path": true,
+  "v1_20_verifier_defined_exactly_once": true,
+  "v1_20_verifier_called_exactly_once_in_branch": true,
+  "mutation_back_to_v1_19_detected": true,
+  "verify_only_alone_not_sufficient": true,
+  "real_main_path_executes_gate_before_dispatch": true
+ },
+ "evidence_basis": "ISOLATED_EXECUTION_OF_FROZEN_V1_22_LAUNCHER_REAL_PATH",
+ "protected_populations": {
+  "TEST": "PHASE39_ONLY_LOCKED",
+  "ROUTER_HOLDOUT": "LOCKED"
+ },
+ "write_semantics": "O_CREAT|O_EXCL + full-write + fsync",
+ "note": "No model / checkpoint / VAL image / GT / TEST / ROUTER_HOLDOUT was touched; the final subprocess dispatch was stubbed.",
+ "terminal_message": "PHASE36_V1_22_D96_REAL_BRANCH_REGRESSION_RECORDED"
+}

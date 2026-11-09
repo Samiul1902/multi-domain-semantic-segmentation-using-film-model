@@ -1,0 +1,99 @@
+{
+ "artifact": "phase32_preprocessing_compatibility_contract",
+ "phase": 32,
+ "section": "\u00a7M",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase32_external_domain_shift_v1_0",
+ "frozen_deployment_preprocessing": {
+  "input_channels": 3,
+  "color_space": "RGB",
+  "spatial_resizing": "aspect-preserving BILINEAR resize to 512 + centre pad (zero)",
+  "normalization": "/255.0 only (no dataset mean/std)",
+  "mask_binarization": "(mask > 0)",
+  "image_dtype_range": "uint8 -> float32 [0,1]",
+  "interpolation": "image BILINEAR; mask NEAREST",
+  "empty_mask_handling": "legitimate (empty GT supported)"
+ },
+ "candidate_compatibility": {
+  "EXT-01": {
+   "compatible": true,
+   "notes": "chest radiograph (bone)"
+  },
+  "EXT-02": {
+   "compatible": true,
+   "notes": "breast ultrasound"
+  },
+  "EXT-03": {
+   "compatible": true,
+   "notes": "colonoscopy polyp"
+  },
+  "EXT-04": {
+   "compatible": true,
+   "notes": "dental radiograph"
+  },
+  "EXT-05": {
+   "compatible": true,
+   "notes": "endoscopy (GERD/polyp)"
+  },
+  "EXT-06": {
+   "compatible": true,
+   "notes": "skin dermoscopy"
+  },
+  "EXT-07": {
+   "compatible": true,
+   "notes": "KUB radiograph"
+  },
+  "EXT-08": {
+   "compatible": true,
+   "notes": "skin dermoscopy"
+  },
+  "EXT-09": {
+   "compatible": true,
+   "notes": "orthopedic fracture radiograph"
+  },
+  "EXT-10": {
+   "compatible": true,
+   "notes": "colonoscopy polyp (archived)"
+  },
+  "EXT-11": {
+   "compatible": true,
+   "notes": "kidney/urinary stone"
+  },
+  "EXT-12": {
+   "compatible": true,
+   "notes": "unregistered"
+  },
+  "EXT-13": {
+   "compatible": true,
+   "notes": "colonoscopy polyp"
+  },
+  "EXT-14": {
+   "compatible": false,
+   "notes": "chest radiograph (TB)"
+  },
+  "EXT-15": {
+   "compatible": false,
+   "notes": "CT/MRI multi-organ"
+  },
+  "EXT-16": {
+   "compatible": false,
+   "notes": "kidney tumor CT"
+  },
+  "EXT-17": {
+   "compatible": false,
+   "notes": "brain MRI tumor"
+  },
+  "EXT-18": {
+   "compatible": false,
+   "notes": "brain MRI tumor (2D)"
+  },
+  "EXT-19": {
+   "compatible": true,
+   "notes": "radiograph stone (jpg+txt pairs)"
+  }
+ },
+ "dataset_specific_preprocessing_created": false,
+ "deterministic_neutral_format_conversion_only": true,
+ "generated_utc": "2026-10-04T07:07:23+00:00",
+ "all_pass": true
+}

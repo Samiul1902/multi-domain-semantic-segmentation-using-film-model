@@ -1,0 +1,98 @@
+{
+  "classification": "PHASE25E_RESOURCE_GATE_POLICY_EVALUATION",
+  "specification_revision": "ra_medfilm_barr_resource_gate_v1_0",
+  "stage": "SUCCESS_FAILURE_CRITERIA_BINDING",
+  "criteria_source": "reports/tables/phase24_success_failure_criteria.csv",
+  "criteria_source_sha256": "d78033ed9131a4689fbc301a68d5229fea2536b7d4eb60f69da3b9cae9ba6219",
+  "criteria": [
+    {
+      "id": "F1",
+      "type": "failure",
+      "name": "REFINER_FAILURE",
+      "definition": "dedicated refiner does not create enough positive action opportunity",
+      "consequence_if_triggered": "report as a failure; routing has nothing to route",
+      "frozen_before_phase25": "true"
+    },
+    {
+      "id": "F2",
+      "type": "failure",
+      "name": "ROUTER_FAILURE",
+      "definition": "learned paired gain fails to outperform simple GT-free routing signals out of sample",
+      "consequence_if_triggered": "report H1 as unsupported",
+      "frozen_before_phase25": "true"
+    },
+    {
+      "id": "F3",
+      "type": "failure",
+      "name": "PRESERVATION_FAILURE",
+      "definition": "routed system materially degrades the global reference",
+      "consequence_if_triggered": "report; non-inferiority claim NOT permitted",
+      "frozen_before_phase25": "true"
+    },
+    {
+      "id": "F4",
+      "type": "failure",
+      "name": "RESOURCE_FAILURE",
+      "definition": "router/refiner cost removes the useful compute-performance trade-off",
+      "consequence_if_triggered": "report; resource-aware claim NOT permitted",
+      "frozen_before_phase25": "true"
+    },
+    {
+      "id": "F5",
+      "type": "failure",
+      "name": "DOMAIN_COLLAPSE",
+      "definition": "benefit is concentrated in one domain while another is materially harmed",
+      "consequence_if_triggered": "report per-domain harm; macro average may not hide it",
+      "frozen_before_phase25": "true"
+    },
+    {
+      "id": "S1",
+      "type": "success",
+      "name": "H1_SUPPORTED",
+      "definition": "learned pre-execution GT-free predictor beats simple proxies at equal budget",
+      "consequence_if_triggered": "enables scoped Level-2 wording for the integrated residual",
+      "frozen_before_phase25": "true"
+    },
+    {
+      "id": "S2",
+      "type": "success",
+      "name": "PRESERVATION_SATISFIED",
+      "definition": "lower bound of Delta > -0.005 on macro-domain Dice and no domain collapse",
+      "consequence_if_triggered": "allows the phrase 'performance preserving'",
+      "frozen_before_phase25": "true"
+    },
+    {
+      "id": "S3",
+      "type": "success",
+      "name": "FRONTIER_MEASURED",
+      "definition": "a measurable accuracy-compute frontier exists across budget points",
+      "consequence_if_triggered": "supports H5",
+      "frozen_before_phase25": "true"
+    }
+  ],
+  "operationalization": {
+    "S1": "C7 precision_at_budget and/or mean_true_delta_dice_among_routed exceed every simple GT-free proxy (C3/C4/C5/C6) at equal budget; paired bootstrap supports the gap",
+    "F2": "negation of S1: C7 fails to beat simple proxies at equal budget",
+    "S2": "macro_domain_mean_true_delta_dice lower 95% CI bound > -0.005 and no domain collapse",
+    "F3": "macro-domain lower bound <= -0.005 or a routed system materially degrades the reference",
+    "S3": "a monotone-usable accuracy-compute frontier exists across the five budget points",
+    "F4": "router+refiner cost removes the useful compute-performance trade-off",
+    "F5": "benefit concentrated in one domain while another is materially harmed (domain-level routed mean <= -0.01 with a positive domain present)",
+    "F1": "refiner provides insufficient positive action opportunity (Phase25A/25C scope)"
+  },
+  "evaluated_in_phase25e": [
+    "S1",
+    "F2",
+    "S2",
+    "F3",
+    "S3",
+    "F4",
+    "F5"
+  ],
+  "deferred": {
+    "F1": "Phase25A/25C scope",
+    "S3_full": "Phase25E frontier + later phases"
+  },
+  "adjudication_rule": "criteria evaluated on frozen DEV memberships joined to frozen Phase25C outcomes; no criterion may use ROUTER_HOLDOUT/VAL808/TEST",
+  "all_pass": true
+}

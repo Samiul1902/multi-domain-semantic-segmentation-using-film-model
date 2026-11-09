@@ -1,0 +1,38 @@
+{
+  "artifact": "phase14_clean_v3_gate_algebra_freeze",
+  "status": "FROZEN_UNCHANGED_SEMANTICS",
+  "source_of_truth": "scripts/evaluation/evaluate_phase14_diagnostic.py (v2-era; adapted verbatim for clean_v3)",
+  "gate_hierarchy": {
+    "step_1_refiner_potential": {
+      "condition": "G >= 0.05 AND Do >= 0.632776",
+      "definition": "G = To - Tg  (Tg = clean_v3 GLOBAL Tiny Recall@90 reference)",
+      "semantics_unchanged": true
+    },
+    "step_2_proposal_retention": {
+      "condition": "R >= 0.50  (only evaluated if G > 0; else NOT_DEFINED)",
+      "definition": "R = (Tp - Tg) / G",
+      "semantics_unchanged": true
+    },
+    "step_3_practical_net_benefit": {
+      "condition": "Tp >= 0.780822 AND Dp >= 0.632776 AND hard_tiny_recovered >= 2/15 AND global_empty_recovered >= 1/5",
+      "note": "Denominators 15 and 5 are the clean_v3 EXECUTABLE special-set sizes (population-dependent). v2-era denominators were 16/7 (provenance-only).",
+      "semantics_unchanged_except_population_denominators": true
+    }
+  },
+  "population_dependent_items_remeasured": [
+    "Tg (clean_v3 GLOBAL Tiny Recall@90)",
+    "Dg (clean_v3 GLOBAL mean Dice)",
+    "hard_tiny_denominator (15)",
+    "global_empty_denominator (5)"
+  ],
+  "population_independent_items_frozen": [
+    "step1_delta_threshold = 0.05",
+    "step1_dice_floor = 0.632776",
+    "step2_retention = 0.50",
+    "step3_tiny_floor = 0.780822",
+    "step3_dice_floor = 0.632776",
+    "metric_definitions",
+    "fusion_semantics (MAX, threshold 0.50 strictly after fusion)"
+  ],
+  "governance_note": "Gate algebra preserved bit-for-bit except population-dependent denominators. No redefinition of thresholds, metric definitions, or fusion semantics."
+}

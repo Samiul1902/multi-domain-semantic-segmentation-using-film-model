@@ -1,0 +1,79 @@
+{
+ "artifact": "phase26_inference_state_machine_v1_1",
+ "phase": "26",
+ "classification": "PHASE26_ROUTER_SCORE_THRESHOLD_SEMANTICS_RECONCILIATION",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase26_router_threshold_reconciliation_v1_1",
+ "additive_to": "reports/audits/phase26_inference_state_machine_v1_0.json",
+ "governance_only": true,
+ "inputs": [
+  "image x",
+  "task_id t"
+ ],
+ "steps": [
+  {
+   "step": 1,
+   "action": "run frozen GlobalMedFiLM exactly once",
+   "outputs": [
+    "p_global",
+    "frozen feature taps"
+   ]
+  },
+  {
+   "step": 2,
+   "action": "construct frozen Phase25B router feature vector"
+  },
+  {
+   "step": 3,
+   "action": "normalize using frozen Phase25D FINAL normalization"
+  },
+  {
+   "step": 4,
+   "action": "run frozen FINAL B_phi",
+   "outputs": [
+    "delta_hat"
+   ]
+  },
+  {
+   "step": 5,
+   "action": "compute utility = delta_hat - 0.25 * C",
+   "score_space": "C8_RESOURCE_AWARE_UTILITY_SPACE",
+   "normalized_action_cost_exact": "1051648/10270749",
+   "lambda": 0.25
+  },
+  {
+   "step": 6,
+   "action": "EXECUTE iff utility >= tau_C8_exact ; else SKIP",
+   "tau_C8_exact": "-2326256430798223/102707490000000000",
+   "tau_C8_float": -0.022649335805969194,
+   "comparator": ">=",
+   "threshold_score_space": "C8_RESOURCE_AWARE_UTILITY_SPACE"
+  }
+ ],
+ "score_space_explicitly_named": "C8_RESOURCE_AWARE_UTILITY_SPACE",
+ "step4_outputs_raw_delta_hat": "delta_hat",
+ "step5_computes_utility": "delta_hat - 0.25*C",
+ "step6_thresholds": "utility >= tau_C8_exact -> EXECUTE else SKIP",
+ "vague_comparison_removed": true,
+ "branch_SKIP": {
+  "final": "p_global",
+  "regional_refiner_run": false,
+  "s_omega_run": false
+ },
+ "branch_EXECUTE": {
+  "steps": [
+   "construct ROI using frozen 0.30 / 1.50 geometry",
+   "run frozen regional refiner once",
+   "construct deterministic regional-fused candidate",
+   "construct frozen 20-D post-safety vector",
+   "normalize using frozen Phase25F FINAL normalization",
+   "run frozen S_omega once"
+  ],
+  "if_sigmoid_logit_ge_0p50": "final = regional-fused candidate",
+  "else": "final = p_global"
+ },
+ "final_binary_mask": "p_final >= 0.50",
+ "second_global_forward": false,
+ "gt_at_inference": false,
+ "all_pass": true
+}

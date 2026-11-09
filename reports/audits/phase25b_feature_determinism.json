@@ -1,0 +1,26 @@
+{
+ "artifact": "phase25b_feature_determinism",
+ "phase": "25B",
+ "subset_size": 64,
+ "per_domain": 16,
+ "selection_rule": "sort each domain's sample_ids lexicographically, take 16 evenly spaced indices; independent of feature values and outcomes",
+ "batching_contract": "replay the canonical contiguous batches (chunks of 8 inside a single domain, dev.sort_values(['dataset','sample_id']) order) and keep only subset rows, so each sampled row sits in the same AMP batch as in the canonical extraction",
+ "tolerance": 1e-06,
+ "reran_all_4957": false,
+ "n_forward_batches_replayed": null,
+ "run1_vs_run2": {
+  "max_abs": 0.0,
+  "mean_abs": 0.0,
+  "n_elements_exceeding_tolerance": 0,
+  "allclose": true
+ },
+ "run1_vs_frozen_cache": {
+  "max_abs": 0.0,
+  "mean_abs": 0.0,
+  "n_elements_exceeding_tolerance": 0,
+  "allclose": true
+ },
+ "verdict": "PHASE25B_FEATURE_DETERMINISM_PASS",
+ "generated_utc": "2026-09-30T16:08:54.763530+00:00",
+ "test_reads": 0
+}

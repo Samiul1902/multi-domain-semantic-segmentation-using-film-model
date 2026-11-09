@@ -1,0 +1,40 @@
+{
+  "artifact": "phase14_clean_v3_governance_timestamp_correction",
+  "task": "POST-PHASE14 PROPOSAL/LOCALIZER BOTTLENECK ROOT-CAUSE DIAGNOSTIC -- SECTION 0",
+  "nature": "REPORTING_ONLY_TIMESTAMP_CORRECTION",
+  "classification": "REPORTING_ONLY_TIMESTAMP_CORRECTION",
+  "scientific_impact": "NONE",
+  "inference_performed": false,
+  "training_performed": false,
+  "test_reads": 0,
+  "external_test_reads": 0,
+  "original_artifact": {
+    "path": "reports/audits/phase14_clean_v3_final_governance_reconciliation.json",
+    "absolute_path": "D:/Softfors/jup/reports/audits/phase14_clean_v3_final_governance_reconciliation.json",
+    "sha256": "d4ebe2b4d3e65d7ee166834ad2dbab71f2e3330a7ac7b32b1573f60ffe18b207",
+    "bytes": 14789,
+    "recorded_generated_utc": "2026-09-24T00:00:00Z",
+    "recorded_generated_utc_consistent": false,
+    "inconsistency_reason": "The internally recorded generated_utc '2026-09-24T00:00:00Z' PRE-DATES its own cited source data (phase14_clean_v3_diagnostic_evaluation.json, timestamp 2026-09-25T00:10:56Z) and the filesystem write time of this artifact, so it cannot be the true generation time."
+  },
+  "actual_timestamp_recovery": {
+    "method": "RECOVERED_FROM_FILESYSTEM_MTIME",
+    "filesystem_mtime_utc": "2026-09-25T01:30:17Z",
+    "filesystem_mtime_source": "os.path.getmtime() of the original artifact; single authoritative write, no subsequent modification",
+    "provenance_lower_bound_utc": "2026-09-25T00:10:56Z",
+    "provenance_lower_bound_source": "timestamp of cited source evaluation artifact inside the original (creation must post-date its own data source)",
+    "actual_timestamp_recoverable_with_certainty": true,
+    "actual_timestamp": "2026-09-25T01:30:17Z",
+    "note": "Actual write time recovered from filesystem mtime and bounded below by the source evaluation timestamp. The recovered actual timestamp is LATER than the internally recorded value, confirming the recorded value was a placeholder/error and not the true generation time."
+  },
+  "correction_action": "ADDITIVE_COMPANION_ONLY__ORIGINAL_ARTIFACT_NOT_REWRITTEN",
+  "authorization_constraints_honored": {
+    "no_training": true,
+    "no_new_inference": true,
+    "no_phase_15": true,
+    "no_h3": true,
+    "test_split_reads": 0,
+    "external_test_reads": 0
+  },
+  "generated_utc": "2026-09-25T01:30:17Z"
+}

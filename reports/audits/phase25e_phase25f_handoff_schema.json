@@ -1,0 +1,24 @@
+{
+  "classification": "PHASE25E_RESOURCE_GATE_POLICY_EVALUATION",
+  "specification_revision": "ra_medfilm_barr_resource_gate_v1_0",
+  "stage": "PHASE25F_HANDOFF",
+  "predecessor_terminal": "PHASE25E_RESOURCE_GATE_POLICY_EVALUATION_COMPLETE",
+  "available_inputs": {
+    "frozen_oof_memberships": "reports/tables/phase25e_policy_memberships_v1_0/",
+    "policy_evaluation_metrics": "reports/tables/phase25e_policy_evaluation_metrics.csv",
+    "compute_frontier": "reports/tables/phase25e_compute_frontier.csv",
+    "bootstrap_ci": "reports/tables/phase25e_bootstrap_ci.csv",
+    "adjudication": "reports/audits/phase25e_adjudication.json"
+  },
+  "phase25f_scope": [
+    "C9 post-safety (S_omega) comparator",
+    "preservation-aware gating"
+  ],
+  "phase25f_must_not_use": [
+    "ROUTER_HOLDOUT",
+    "VAL808",
+    "TEST"
+  ],
+  "post_safety_comparator_C9_excluded_here": true,
+  "all_pass": true
+}

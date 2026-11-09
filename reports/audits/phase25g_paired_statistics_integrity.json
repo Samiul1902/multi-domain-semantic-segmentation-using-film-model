@@ -1,0 +1,29 @@
+{
+ "artifact": "phase25g_paired_statistics_integrity",
+ "phase": "25G",
+ "stage": "PAIRED_STATISTICS",
+ "identical_bootstrap_draws_for": [
+  "A7",
+  "A8",
+  "A8-A7"
+ ],
+ "n_boot": 2000,
+ "seed": 42,
+ "rng": "numpy.random.Generator(numpy.random.PCG64(42))",
+ "ci_method": "percentile",
+ "ci_percentiles": [
+  2.5,
+  97.5
+ ],
+ "paired_two_sided_p_rule": "p_lower=(1+count(D_b<=0))/(B+1); p_upper=(1+count(D_b>=0))/(B+1); p=min(1, 2*min(p_lower,p_upper))",
+ "new_multiplicity_correction_introduced": false,
+ "forbidden_methods_not_used": [
+  "Holm",
+  "Bonferroni",
+  "FDR",
+  "permutation test",
+  "Wilcoxon"
+ ],
+ "A8mA7_identity_max_abs": 0.0,
+ "all_pass": true
+}

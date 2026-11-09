@@ -1,0 +1,285 @@
+{
+  "artifact": "phase22_benefit_proxy_feature_classification",
+  "phase": 22,
+  "classification": "GT_FREE_VS_GT_AWARE_SIGNAL_SEPARATION",
+  "problem": "the frozen Phase-22 uncertainty-benefit analysis ranked GT-derived quantities alongside deployable ones and reported `recall` as the best DEPLOYABLE signal, which is invalid: recall cannot be computed without ground truth.",
+  "deployable_definition": "a signal is deployable only if uses_GT=false and available_before_refinement=true and available_at_inference=true",
+  "signals": [
+    {
+      "signal": "entropy_proxy_mean",
+      "uses_GT": false,
+      "available_before_refinement": true,
+      "available_at_inference": true,
+      "deployable_candidate": true,
+      "reason": "binary entropy of the model's own global probability map; needs only the prediction"
+    },
+    {
+      "signal": "frac_prob_within_0p05_of_boundary",
+      "uses_GT": false,
+      "available_before_refinement": true,
+      "available_at_inference": true,
+      "deployable_candidate": true,
+      "reason": "fraction of predicted pixels within 0.05 of p=0.5; prediction-only boundary-band uncertainty"
+    },
+    {
+      "signal": "frac_prob_within_0p02_of_boundary",
+      "uses_GT": false,
+      "available_before_refinement": true,
+      "available_at_inference": true,
+      "deployable_candidate": true,
+      "reason": "fraction of predicted pixels within 0.02 of p=0.5; prediction-only boundary-band uncertainty"
+    },
+    {
+      "signal": "mean_boundary_margin",
+      "uses_GT": false,
+      "available_before_refinement": true,
+      "available_at_inference": true,
+      "deployable_candidate": true,
+      "reason": "mean |p-0.5| over predicted pixels; prediction-only confidence margin"
+    },
+    {
+      "signal": "pred_foreground_pixels",
+      "uses_GT": false,
+      "available_before_refinement": true,
+      "available_at_inference": true,
+      "deployable_candidate": true,
+      "reason": "number of foreground pixels in the model's own prediction; GT-free size proxy"
+    },
+    {
+      "signal": "pred_foreground_fraction",
+      "uses_GT": false,
+      "available_before_refinement": true,
+      "available_at_inference": true,
+      "deployable_candidate": true,
+      "reason": "predicted foreground pixels / image pixels; GT-free normalised size proxy"
+    },
+    {
+      "signal": "predicted_roi_area_fraction",
+      "uses_GT": false,
+      "available_before_refinement": true,
+      "available_at_inference": true,
+      "deployable_candidate": true,
+      "reason": "area fraction of the ROI derived from the model's own PREDICTION (predicted_roi_side/native canvas); no ground truth is consulted"
+    },
+    {
+      "signal": "pred_roi_exists",
+      "uses_GT": false,
+      "available_before_refinement": true,
+      "available_at_inference": true,
+      "deployable_candidate": true,
+      "reason": "whether the model's own prediction yields a non-empty ROI; GT-free"
+    },
+    {
+      "signal": "pred_empty",
+      "uses_GT": false,
+      "available_before_refinement": true,
+      "available_at_inference": true,
+      "deployable_candidate": true,
+      "reason": "whether the model predicted an empty mask; GT-free"
+    },
+    {
+      "signal": "task_id",
+      "uses_GT": false,
+      "available_before_refinement": true,
+      "available_at_inference": true,
+      "deployable_candidate": true,
+      "reason": "dataset/task identifier from the frozen Phase-19 metadata contract; known before inference"
+    },
+    {
+      "signal": "predicted_roi_side",
+      "uses_GT": false,
+      "available_before_refinement": true,
+      "available_at_inference": true,
+      "deployable_candidate": true,
+      "reason": "side length of the ROI derived from the model's own prediction; GT-free geometry"
+    },
+    {
+      "signal": "predicted_delta_dice",
+      "uses_GT": true,
+      "available_before_refinement": false,
+      "available_at_inference": false,
+      "deployable_candidate": false,
+      "reason": "MEASURED: predicted_delta_dice == predicted_dice - global_dice (max residual 3.1e-16) and BOTH operands are Dice against the GROUND-TRUTH mask. The quantity is therefore GT-DERIVED even though its name says 'predicted'; INVALID as a deployable routing signal"
+    },
+    {
+      "signal": "predicted_dice",
+      "uses_GT": true,
+      "available_before_refinement": false,
+      "available_at_inference": false,
+      "deployable_candidate": false,
+      "reason": "Dice of the predicted-ROI arm against ground truth; GT-derived"
+    },
+    {
+      "signal": "baseline_global_dice_predicted",
+      "uses_GT": true,
+      "available_before_refinement": false,
+      "available_at_inference": false,
+      "deployable_candidate": false,
+      "reason": "dice of the global prediction against ground truth; GT-derived. NOTE: a pseudo-Dice between two PREDICTIONS would be GT-free, but no such quantity is persisted here, so this name must not be used."
+    },
+    {
+      "signal": "recall",
+      "uses_GT": true,
+      "available_before_refinement": false,
+      "available_at_inference": false,
+      "deployable_candidate": false,
+      "reason": "sensitivity requires the ground-truth mask; INVALID as a deployable routing signal"
+    },
+    {
+      "signal": "precision",
+      "uses_GT": true,
+      "available_before_refinement": false,
+      "available_at_inference": false,
+      "deployable_candidate": false,
+      "reason": "precision requires the ground-truth mask; not computable at deployment"
+    },
+    {
+      "signal": "dice",
+      "uses_GT": true,
+      "available_before_refinement": false,
+      "available_at_inference": false,
+      "deployable_candidate": false,
+      "reason": "Dice is an overlap with ground truth; not computable at deployment"
+    },
+    {
+      "signal": "iou",
+      "uses_GT": true,
+      "available_before_refinement": false,
+      "available_at_inference": false,
+      "deployable_candidate": false,
+      "reason": "IoU is an overlap with ground truth; not computable at deployment"
+    },
+    {
+      "signal": "specificity",
+      "uses_GT": true,
+      "available_before_refinement": false,
+      "available_at_inference": false,
+      "deployable_candidate": false,
+      "reason": "specificity requires the ground-truth negatives; not computable at deployment"
+    },
+    {
+      "signal": "balanced_accuracy",
+      "uses_GT": true,
+      "available_before_refinement": false,
+      "available_at_inference": false,
+      "deployable_candidate": false,
+      "reason": "balanced accuracy requires ground-truth labels"
+    },
+    {
+      "signal": "mcc",
+      "uses_GT": true,
+      "available_before_refinement": false,
+      "available_at_inference": false,
+      "deployable_candidate": false,
+      "reason": "Matthews correlation requires all four confusion-matrix cells, hence ground truth"
+    },
+    {
+      "signal": "ece",
+      "uses_GT": true,
+      "available_before_refinement": false,
+      "available_at_inference": false,
+      "deployable_candidate": false,
+      "reason": "expected calibration error is measured against ground-truth correctness; GT-derived"
+    },
+    {
+      "signal": "brier",
+      "uses_GT": true,
+      "available_before_refinement": false,
+      "available_at_inference": false,
+      "deployable_candidate": false,
+      "reason": "Brier score is measured against ground-truth labels; GT-derived"
+    },
+    {
+      "signal": "mce",
+      "uses_GT": true,
+      "available_before_refinement": false,
+      "available_at_inference": false,
+      "deployable_candidate": false,
+      "reason": "maximum calibration error is measured against ground-truth correctness; GT-derived"
+    },
+    {
+      "signal": "oracle_roi_area_fraction",
+      "uses_GT": true,
+      "available_before_refinement": false,
+      "available_at_inference": false,
+      "deployable_candidate": false,
+      "reason": "area of the GROUND-TRUTH-derived ROI; oracle quantity, not deployable"
+    },
+    {
+      "signal": "gt_foreground_pixels",
+      "uses_GT": true,
+      "available_before_refinement": false,
+      "available_at_inference": false,
+      "deployable_candidate": false,
+      "reason": "ground-truth foreground size; oracle quantity"
+    },
+    {
+      "signal": "oracle_delta_dice",
+      "uses_GT": true,
+      "available_before_refinement": false,
+      "available_at_inference": false,
+      "deployable_candidate": false,
+      "reason": "the true oracle regional gain; this is the TARGET, never an input"
+    },
+    {
+      "signal": "gt_size_label",
+      "uses_GT": true,
+      "available_before_refinement": false,
+      "available_at_inference": false,
+      "deployable_candidate": false,
+      "reason": "any GT-derived size stratum label (e.g. KUB TINY) requires ground-truth geometry"
+    }
+  ],
+  "n_signals_classified": 28,
+  "deployable_candidates": [
+    "entropy_proxy_mean",
+    "frac_prob_within_0p02_of_boundary",
+    "frac_prob_within_0p05_of_boundary",
+    "mean_boundary_margin",
+    "pred_empty",
+    "pred_foreground_fraction",
+    "pred_foreground_pixels",
+    "pred_roi_exists",
+    "predicted_roi_area_fraction",
+    "predicted_roi_side",
+    "task_id"
+  ],
+  "gt_derived_signals": [
+    "balanced_accuracy",
+    "baseline_global_dice_predicted",
+    "brier",
+    "dice",
+    "ece",
+    "gt_foreground_pixels",
+    "gt_size_label",
+    "iou",
+    "mcc",
+    "mce",
+    "oracle_delta_dice",
+    "oracle_roi_area_fraction",
+    "precision",
+    "predicted_delta_dice",
+    "predicted_dice",
+    "recall",
+    "specificity"
+  ],
+  "fail_closed_violations": [],
+  "fail_closed_ok": true,
+  "unclassified_requested_signals": [],
+  "gt_free_signals_missing_from_persisted_table": [],
+  "predicted_delta_dice_groundtruth_evidence": {
+    "identity_checked": "predicted_delta_dice == predicted_dice - global_dice",
+    "max_abs_residual": 3.1094918306884267e-16,
+    "predicted_dice_is_a_dice_against_ground_truth": true,
+    "global_dice_is_a_dice_against_ground_truth": true,
+    "predicted_dice_range": [
+      0.0,
+      0.9919592341959472
+    ],
+    "conclusion": "predicted_delta_dice is GT-DERIVED and must NOT be used as a deployable signal, despite the name."
+  },
+  "test_reads": 0,
+  "training_performed": false,
+  "inference_performed": false,
+  "generated_utc": "2026-09-29T04:06:37.311210+00:00"
+}

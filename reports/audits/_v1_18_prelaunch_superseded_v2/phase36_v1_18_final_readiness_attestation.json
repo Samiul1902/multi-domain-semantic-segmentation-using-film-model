@@ -1,0 +1,27 @@
+{
+ "artifact": "phase36_v1_18_final_readiness_attestation",
+ "phase": 36,
+ "revision": "ra_medfilm_barr_phase36_robustness_v1_18",
+ "type": "FINAL_READINESS_ATTESTATION",
+ "generated_utc": "2026-10-10T14:32:48Z",
+ "readiness_scope": "STATIC_GOVERNANCE_READINESS_NO_SUPERVISOR_SHA_REQUIRED",
+ "state": "ELIGIBLE_NOT_STARTED",
+ "checks": {
+  "d61_pass": true,
+  "d75_pass": true,
+  "d80_d84_preserved": true,
+  "d85_d88_reconciled": true,
+  "scientific_delta_vs_v1_17": 0,
+  "table_figure_target_count": 16,
+  "total_reachable_write_target_count": 23,
+  "unclassified_write_target_count": 0,
+  "namespace_overlap_count": 0,
+  "protected_populations_locked": true,
+  "runtime_release_state": "RELEASED"
+ },
+ "post_gate_rerun": true,
+ "post_gate_rerun_declaration": "The final readiness attestation is produced AFTER the gate/validator suite; any later validator rerun is a declared post-gate rerun and is disclosed under D84-style write-history provenance, not treated as a semantic defect.",
+ "supervisor_sha_bound": false,
+ "supervisor_sha_bound_note": "Acyclic order (§11): readiness is completed BEFORE the supervisor exists; the supervisor SHA is bound only by the FINAL INDEPENDENT-AUDIT HANDOFF.",
+ "terminal": "PHASE36_V1_18_FINAL_READINESS_ATTESTATION_WRITTEN"
+}

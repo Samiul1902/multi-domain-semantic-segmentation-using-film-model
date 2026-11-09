@@ -1,0 +1,51 @@
+{
+ "artifact": "phase36_v1_21_science_release_attestation",
+ "phase": 36,
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase36_robustness_v1_21",
+ "type": "SCIENCE_RELEASE_ATTESTATION",
+ "generated_utc": "2026-10-11T00:00:00Z",
+ "execution_source_sha256": "312886c68f056375adc3f091766777da9e1caa47c1d422673de67751e8df7b97",
+ "smoke_artifact_sha256": "53543729fb0c48695c2af202c5f3d2f5ebdfc29d87c7a7f100bcde9f94882441",
+ "smoke_all_pass": true,
+ "scientific_output": false,
+ "release_gate": "POST_SMOKE_RELEASE_ADJUDICATION",
+ "smoke_artifact": "reports/audits/phase36_robustness_smoke_v1_14.json",
+ "historical_runtime_evidence": {
+  "v1_14_smoke": "reports/audits/phase36_robustness_smoke_v1_14.json",
+  "v1_14_smoke_sha256": "53543729fb0c48695c2af202c5f3d2f5ebdfc29d87c7a7f100bcde9f94882441",
+  "role": "HISTORICAL_RUNTIME_SMOKE_EVIDENCE_ONLY",
+  "v1_14_smoke_tested_d61": false,
+  "v1_14_smoke_tested_d75": false,
+  "note": "Retained as historical evidence that the v1.14 runtime environment functioned. NOT a claim about v1.21 scientific correctness."
+ },
+ "requires_v1_21_smoke": false,
+ "d61_proof": {
+  "repair": "D61_CANONICAL_PHASE27_ACCEPT_FUSION",
+  "status": "PASS"
+ },
+ "d75_provenance": {
+  "repair": "D75_POLICY_B_AUTHORITATIVE_SEGMENTATION_REPRESENTATION",
+  "status": "PASS"
+ },
+ "d93a_repair": {
+  "defect": "D93A",
+  "code": "V1_19_UNDEFINED_JOURNAL_HELPER_WRITE_ONCE_JSON",
+  "status": "REPAIRED_IN_V1_20"
+ },
+ "d95_supervisor_repair": {
+  "defect": "D95",
+  "code": "V1_20_SUPERVISOR_RETURNS_ZERO_ON_UNOBSERVED_CHILD_TERMINATION",
+  "status": "REPAIRED_IN_V1_21",
+  "scope": "SUPERVISOR_ONLY",
+  "scientific_semantics_effect": "NONE"
+ },
+ "scientific_semantics_effect_vs_v1_20": "NONE",
+ "new_scientific_choice": false,
+ "protected_populations": {
+  "TEST": "PHASE39_ONLY_LOCKED",
+  "ROUTER_HOLDOUT": "LOCKED"
+ },
+ "write_semantics": "O_CREAT|O_EXCL + full-write + fsync",
+ "terminal": "PHASE36_V1_21_RELEASE_ATTESTATION_WRITTEN"
+}

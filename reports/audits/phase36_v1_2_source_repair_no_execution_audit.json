@@ -1,0 +1,70 @@
+{
+ "artifact": "phase36_v1_2_source_repair_no_execution_audit",
+ "section": "§X",
+ "phase": 36,
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase36_robustness_v1_2",
+ "classification": "ZERO_EXECUTION_AUDIT__SOURCE_IMPLEMENTATION_REPAIR_ONLY",
+ "generated_utc": "2026-10-05T00:00:00Z",
+ "claim": "During the entire v1.2 work order NO model was constructed, NO checkpoint was deserialized, NO forward pass, NO autograd, and NO protected data access occurred.",
+ "counters": {
+  "model_construction": 0,
+  "checkpoint_deserialization": 0,
+  "forward_passes": 0,
+  "autograd_backward": 0,
+  "optimizer_steps": 0,
+  "raw_val_image_reads": 0,
+  "val_gt_reads": 0,
+  "val808_cache_reads": 0,
+  "router_holdout_reads": 0,
+  "test_reads": 0,
+  "training_runs": 0,
+  "smoke_runs": 0,
+  "science_runs": 0
+ },
+ "evidence": {
+  "gate_state": {"PHASE36_EXECUTE": "UNSET", "PHASE36_SMOKE_EXECUTE": "UNSET"},
+  "import_side_effect_check": {
+   "module": "scripts.analysis.phase36_robustness_execution_v1_2",
+   "torch_in_sys_modules_after_import": false,
+   "interpretation": "Importing the v1.2 execution source constructs no model and loads no checkpoint; torch is imported only inside _load_models/_load_router_class/_load_somega_class, none of which were invoked."
+  },
+  "analysis_performed": [
+   "AST/text static analysis of source files (no execution of the analysed code)",
+   "canonical metric empty-case probe on SYNTHETIC numpy arrays only (no model, no medical data)",
+   "SHA-256 hashing of source and artifact bytes"
+  ],
+  "prohibited_actions_not_performed": [
+   "model instantiation of G/B_phi/R_psi/S_omega",
+   "torch.load of any checkpoint",
+   "forward_inference execution",
+   "TorchScript export",
+   "VAL808 / RAW VAL / VAL GT / VAL808 cache access",
+   "ROUTER_HOLDOUT / TEST access"
+  ]
+ },
+ "files_written_in_this_work_order": [
+  "scripts/analysis/phase36_robustness_execution_v1_2.py",
+  "scripts/analysis/phase36_robustness_unit_v1_2.py",
+  "scripts/analysis/phase36_robustness_preflight_v1_2.py",
+  "scripts/analysis/phase36_robustness_negative_controls_v1_2.py",
+  "reports/audits/phase36_v1_2_canonical_component_loader_binding.json",
+  "reports/audits/phase36_v1_2_forward_inference_signature_binding.json",
+  "reports/audits/phase36_v1_1_executability_false_positive_defect_v1_2.json",
+  "reports/audits/phase36_v1_2_metric_empty_case_authority_reconciliation.json",
+  "reports/audits/phase36_v1_2_negative_controls.json",
+  "reports/audits/phase36_robustness_unit_v1_2.json",
+  "reports/audits/phase36_robustness_static_preflight_v1_2.json",
+  "reports/audits/phase36_v1_1_to_v1_2_execution_semantic_diff.json",
+  "reports/audits/phase36_preexecution_source_freeze_v1_2.json",
+  "reports/audits/phase36_synthetic_smoke_eligibility_v1_2.json",
+  "reports/audits/phase36_v1_2_source_repair_no_execution_audit.json",
+  "reports/audits/phase36_v1_2_actual_executable_source_final_check.json",
+  "reports/audits/phase36_v1_2_actual_executable_source_terminal.json"
+ ],
+ "files_not_written_in_this_work_order": [
+  "reports/audits/phase36_robustness_smoke_v1_2.json (smoke NOT run)",
+  "reports/audits/phase36_robustness_scientific_result_v1_2.json (science NOT run)"
+ ],
+ "all_pass": true
+}

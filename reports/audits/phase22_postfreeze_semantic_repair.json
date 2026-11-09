@@ -1,0 +1,191 @@
+{
+  "artifact": "phase22_postfreeze_semantic_repair",
+  "phase": 22,
+  "classification": "POST_FREEZE_SEMANTIC_REPAIR",
+  "reason": "the executed uncertainty-benefit analysis reported a GT-derived metric (`recall`) as the best DEPLOYABLE routing signal, and the rendered report repeated the claim. A deployment cannot compute recall, so the claim was semantically invalid. GT-derived and GT-free quantities are now separated into two tables and the deployable ranking is recomputed from GT-free signals only.",
+  "original_freeze_artifact": "reports/audits/phase22_final_freeze.json",
+  "original_freeze_sha256": "9a0aa2f8c1a2850770fb09f2838e95f0fe08b3b40e55ab1d10c3564841107bca",
+  "scientific_inference_rerun": false,
+  "training_rerun": false,
+  "checkpoint_changed": false,
+  "roi_protocol_changed": false,
+  "scale_protocol_changed": false,
+  "segmentation_thresholds_changed": false,
+  "gt_free_proxy_analysis_corrected": true,
+  "wording_corrected": true,
+  "new_inference_performed": false,
+  "npz_probability_maps_reread": false,
+  "router_trained": false,
+  "threshold_fitted": false,
+  "model_selected_on_val": false,
+  "invalid_claim_removed": "Best deployable uncertainty signal: recall",
+  "wording_repairs": {
+    "scale_512_optimal": {
+      "removed_claim": "512 is optimal / implied globally optimal resolution",
+      "required_replacement": "For the frozen checkpoint trained at 512, 512 had the highest observed performance among the tested diagnostic resolutions (256/512/768/1024); all tested off-canonical sizes were worse. This does not establish a globally optimal inference resolution.",
+      "applied_in": [
+        "reports/phase22_resource_gap_report.md",
+        "notebooks/phasewise/phase_22_resource_gap/phase22_resource_gap_analysis.ipynb"
+      ]
+    },
+    "kub_tiny_significance": {
+      "removed_claim": "KUB TINY improves under regional processing",
+      "required_replacement": "KUB TINY was the only frozen size stratum with a positive observed mean oracle regional gain (+0.013197 Dice), but the paired 95% CI [-0.084062, +0.105133] includes zero (p=0.763); therefore the TINY effect is descriptive and not statistically established.",
+      "preserved_finding": "regional benefit is strongly heterogeneous and always-on regional processing is harmful in aggregate",
+      "applied_in": [
+        "reports/phase22_resource_gap_report.md",
+        "notebooks/phasewise/phase_22_resource_gap/phase22_resource_gap_analysis.ipynb"
+      ]
+    },
+    "deployable_recall": {
+      "removed_claim": "Best deployable uncertainty signal: recall",
+      "replacement": "GT-derived and GT-free signals separated into two tables; no GT-derived signal is called deployable; the GT-free ranking is recomputed from prediction-only signals"
+    }
+  },
+  "gt_free_deployable_ranking": [
+    {
+      "rank": 1,
+      "signal": "predicted_roi_side",
+      "spearman_r": -0.068947494425616,
+      "pearson_r": -0.00941394581211811,
+      "abs_spearman": 0.068947494425616,
+      "roc_auc": 0.4187710871522123,
+      "pr_auc": 0.29944643188754605,
+      "n": 808
+    },
+    {
+      "rank": 2,
+      "signal": "frac_prob_within_0p02_of_boundary",
+      "spearman_r": 0.05725602225435478,
+      "pearson_r": 0.08069542090324533,
+      "abs_spearman": 0.05725602225435478,
+      "roc_auc": 0.5026386856047331,
+      "pr_auc": 0.34812053389583586,
+      "n": 808
+    },
+    {
+      "rank": 3,
+      "signal": "frac_prob_within_0p05_of_boundary",
+      "spearman_r": 0.056407170670136696,
+      "pearson_r": 0.07932140992228388,
+      "abs_spearman": 0.056407170670136696,
+      "roc_auc": 0.5026249424505418,
+      "pr_auc": 0.3467221979595888,
+      "n": 808
+    },
+    {
+      "rank": 4,
+      "signal": "predicted_roi_area_fraction",
+      "spearman_r": 0.05623237237116069,
+      "pearson_r": 0.13251924785903788,
+      "abs_spearman": 0.05623237237116069,
+      "roc_auc": 0.4946092477684554,
+      "pr_auc": 0.343328170688028,
+      "n": 808
+    },
+    {
+      "rank": 5,
+      "signal": "mean_boundary_margin",
+      "spearman_r": -0.04812272294363344,
+      "pearson_r": -0.07917550137599308,
+      "abs_spearman": 0.04812272294363344,
+      "roc_auc": 0.5025837129879679,
+      "pr_auc": 0.41040063606515864,
+      "n": 808
+    },
+    {
+      "rank": 6,
+      "signal": "entropy_proxy_mean",
+      "spearman_r": 0.04713328708767505,
+      "pearson_r": 0.08115149574502928,
+      "abs_spearman": 0.04713328708767505,
+      "roc_auc": 0.49637524308203973,
+      "pr_auc": 0.33482714592928775,
+      "n": 808
+    },
+    {
+      "rank": 7,
+      "signal": "task_id",
+      "spearman_r": -0.021310018370336286,
+      "pearson_r": -0.05666989469865143,
+      "abs_spearman": 0.021310018370336286,
+      "roc_auc": 0.5550550756904218,
+      "pr_auc": 0.380559606270885,
+      "n": 808
+    },
+    {
+      "rank": 8,
+      "signal": "pred_foreground_fraction",
+      "spearman_r": 0.020091514839548068,
+      "pearson_r": 0.07927638815277316,
+      "abs_spearman": 0.020091514839548068,
+      "roc_auc": 0.4621925828196829,
+      "pr_auc": 0.30762437038163387,
+      "n": 808
+    }
+  ],
+  "best_gt_free_signal": {
+    "signal": "predicted_roi_side",
+    "spearman_r": -0.068947494425616,
+    "pearson_r": -0.00941394581211811,
+    "roc_auc": 0.4187710871522123,
+    "pr_auc": 0.29944643188754605,
+    "n": 808
+  },
+  "best_gt_free_signal_interpretation": "these are DESCRIPTIVE post-hoc correlations on the same frozen VAL population; they are weak in magnitude and no threshold was fitted and no policy was selected. The GT-free ranking does not establish a deployable router.",
+  "routing_policy_deployability_audit": [
+    {
+      "policy": "ALWAYS_GLOBAL",
+      "deployable_shape": true,
+      "uses_ground_truth": false,
+      "consistent": true,
+      "verdict": "OK"
+    },
+    {
+      "policy": "ALWAYS_REGIONAL_ORACLE",
+      "deployable_shape": true,
+      "uses_ground_truth": false,
+      "consistent": true,
+      "verdict": "OK"
+    },
+    {
+      "policy": "ORACLE_ACCEPT_IF_BENEFICIAL",
+      "deployable_shape": false,
+      "uses_ground_truth": true,
+      "consistent": true,
+      "verdict": "OK"
+    },
+    {
+      "policy": "PRED_ROI_EXISTS",
+      "deployable_shape": true,
+      "uses_ground_truth": false,
+      "consistent": true,
+      "verdict": "OK"
+    },
+    {
+      "policy": "PRED_ROI_EXISTS_AND_BASELINE_BELOW_MEDIAN",
+      "deployable_shape": true,
+      "uses_ground_truth": false,
+      "consistent": true,
+      "verdict": "OK"
+    },
+    {
+      "policy": "PRED_ACCEPT_IF_PREDICTED_BENEFICIAL",
+      "deployable_shape": true,
+      "uses_ground_truth": false,
+      "consistent": true,
+      "verdict": "OK"
+    }
+  ],
+  "routing_policy_deployability_all_consistent": true,
+  "tables": {
+    "gt_free_proxy_vs_benefit": "reports/tables/phase22_gt_free_proxy_vs_benefit.csv",
+    "gt_aware_posthoc_associations": "reports/tables/phase22_gt_aware_posthoc_associations.csv"
+  },
+  "classification_artifact": "reports/audits/phase22_benefit_proxy_feature_classification.json",
+  "test_image_reads": 0,
+  "test_mask_reads": 0,
+  "test_inference": 0,
+  "test_visualization": 0,
+  "generated_utc": "2026-09-29T04:06:38.887082+00:00"
+}

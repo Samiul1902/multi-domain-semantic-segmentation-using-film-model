@@ -1,0 +1,954 @@
+{
+ "artifact": "phase24_router_feature_reduction_contract_v1_2",
+ "phase": "24",
+ "revision": "ra_medfilm_barr_narrowed_v1_2",
+ "resolves": "RF-1",
+ "classification": "SPECIFICATION_COMPLETENESS_ONLY",
+ "science_changed": false,
+ "reduction_operation": "DETERMINISTIC_CHANNEL_ADAPTIVE_AVG_POOL_1D_V1",
+ "output_width_K": 32,
+ "native_channel_widths": {
+  "bridge": 256,
+  "decoder2": 48,
+  "decoder1": 24
+ },
+ "native_width_source": "src/models/film/global_medfilm.py GLOBAL_MEDFILM_CHANNELS=(24,48,96,192,256)",
+ "spatial_pooling": {
+  "global": "v_global[c] = mean over all spatial positions of F[c,y,x]",
+  "roi": "v_roi[c] = mean over the mapped ROI cells of F[c,y,x]",
+  "cast": "F cast to float32 before pooling",
+  "output": "v in R^C"
+ },
+ "channel_reduction": {
+  "formula": "for j in 0..31: start_j = floor(j*C/32); end_j = ceil((j+1)*C/32); z[j] = mean(v[start_j:end_j])",
+  "semantic_equivalent": "non-trainable adaptive average pool over the channel axis",
+  "requirements": {
+   "0<=start_j<C": true,
+   "1<=end_j<=C": true,
+   "end_j>start_j": true
+  },
+  "output": "z in R^32, float32"
+ },
+ "frozen_group_order": [
+  {
+   "index_range": [
+    0,
+    32
+   ],
+   "name": "bridge_global",
+   "tap": "bridge",
+   "scope": "GLOBAL"
+  },
+  {
+   "index_range": [
+    32,
+    64
+   ],
+   "name": "bridge_roi",
+   "tap": "bridge",
+   "scope": "ROI"
+  },
+  {
+   "index_range": [
+    64,
+    96
+   ],
+   "name": "decoder2_global",
+   "tap": "decoder2",
+   "scope": "GLOBAL"
+  },
+  {
+   "index_range": [
+    96,
+    128
+   ],
+   "name": "decoder2_roi",
+   "tap": "decoder2",
+   "scope": "ROI"
+  },
+  {
+   "index_range": [
+    128,
+    160
+   ],
+   "name": "decoder1_global",
+   "tap": "decoder1",
+   "scope": "GLOBAL"
+  },
+  {
+   "index_range": [
+    160,
+    192
+   ],
+   "name": "decoder1_roi",
+   "tap": "decoder1",
+   "scope": "ROI"
+  }
+ ],
+ "deep_feature_dimensions": 192,
+ "bin_integrity": {
+  "bridge": {
+   "native_width": 256,
+   "all_32_bins_valid": true,
+   "starts_monotone_nondecreasing": true,
+   "bins_cover_0_to_C": true,
+   "bins_overlap_when_C_less_than_32": false,
+   "disjoint_partition_when_32_divides_C": true,
+   "bins_are_disjoint_partition": true,
+   "every_source_channel_used": true,
+   "span_min": 8,
+   "span_max": 8,
+   "repeats_when_C_less_than_32": false,
+   "bin_table": [
+    {
+     "j": 0,
+     "start": 0,
+     "end": 8,
+     "span": 8,
+     "valid": true
+    },
+    {
+     "j": 1,
+     "start": 8,
+     "end": 16,
+     "span": 8,
+     "valid": true
+    },
+    {
+     "j": 2,
+     "start": 16,
+     "end": 24,
+     "span": 8,
+     "valid": true
+    },
+    {
+     "j": 3,
+     "start": 24,
+     "end": 32,
+     "span": 8,
+     "valid": true
+    },
+    {
+     "j": 4,
+     "start": 32,
+     "end": 40,
+     "span": 8,
+     "valid": true
+    },
+    {
+     "j": 5,
+     "start": 40,
+     "end": 48,
+     "span": 8,
+     "valid": true
+    },
+    {
+     "j": 6,
+     "start": 48,
+     "end": 56,
+     "span": 8,
+     "valid": true
+    },
+    {
+     "j": 7,
+     "start": 56,
+     "end": 64,
+     "span": 8,
+     "valid": true
+    },
+    {
+     "j": 8,
+     "start": 64,
+     "end": 72,
+     "span": 8,
+     "valid": true
+    },
+    {
+     "j": 9,
+     "start": 72,
+     "end": 80,
+     "span": 8,
+     "valid": true
+    },
+    {
+     "j": 10,
+     "start": 80,
+     "end": 88,
+     "span": 8,
+     "valid": true
+    },
+    {
+     "j": 11,
+     "start": 88,
+     "end": 96,
+     "span": 8,
+     "valid": true
+    },
+    {
+     "j": 12,
+     "start": 96,
+     "end": 104,
+     "span": 8,
+     "valid": true
+    },
+    {
+     "j": 13,
+     "start": 104,
+     "end": 112,
+     "span": 8,
+     "valid": true
+    },
+    {
+     "j": 14,
+     "start": 112,
+     "end": 120,
+     "span": 8,
+     "valid": true
+    },
+    {
+     "j": 15,
+     "start": 120,
+     "end": 128,
+     "span": 8,
+     "valid": true
+    },
+    {
+     "j": 16,
+     "start": 128,
+     "end": 136,
+     "span": 8,
+     "valid": true
+    },
+    {
+     "j": 17,
+     "start": 136,
+     "end": 144,
+     "span": 8,
+     "valid": true
+    },
+    {
+     "j": 18,
+     "start": 144,
+     "end": 152,
+     "span": 8,
+     "valid": true
+    },
+    {
+     "j": 19,
+     "start": 152,
+     "end": 160,
+     "span": 8,
+     "valid": true
+    },
+    {
+     "j": 20,
+     "start": 160,
+     "end": 168,
+     "span": 8,
+     "valid": true
+    },
+    {
+     "j": 21,
+     "start": 168,
+     "end": 176,
+     "span": 8,
+     "valid": true
+    },
+    {
+     "j": 22,
+     "start": 176,
+     "end": 184,
+     "span": 8,
+     "valid": true
+    },
+    {
+     "j": 23,
+     "start": 184,
+     "end": 192,
+     "span": 8,
+     "valid": true
+    },
+    {
+     "j": 24,
+     "start": 192,
+     "end": 200,
+     "span": 8,
+     "valid": true
+    },
+    {
+     "j": 25,
+     "start": 200,
+     "end": 208,
+     "span": 8,
+     "valid": true
+    },
+    {
+     "j": 26,
+     "start": 208,
+     "end": 216,
+     "span": 8,
+     "valid": true
+    },
+    {
+     "j": 27,
+     "start": 216,
+     "end": 224,
+     "span": 8,
+     "valid": true
+    },
+    {
+     "j": 28,
+     "start": 224,
+     "end": 232,
+     "span": 8,
+     "valid": true
+    },
+    {
+     "j": 29,
+     "start": 232,
+     "end": 240,
+     "span": 8,
+     "valid": true
+    },
+    {
+     "j": 30,
+     "start": 240,
+     "end": 248,
+     "span": 8,
+     "valid": true
+    },
+    {
+     "j": 31,
+     "start": 248,
+     "end": 256,
+     "span": 8,
+     "valid": true
+    }
+   ]
+  },
+  "decoder2": {
+   "native_width": 48,
+   "all_32_bins_valid": true,
+   "starts_monotone_nondecreasing": true,
+   "bins_cover_0_to_C": true,
+   "bins_overlap_when_C_less_than_32": true,
+   "disjoint_partition_when_32_divides_C": false,
+   "bins_are_disjoint_partition": false,
+   "every_source_channel_used": true,
+   "span_min": 2,
+   "span_max": 2,
+   "repeats_when_C_less_than_32": false,
+   "bin_table": [
+    {
+     "j": 0,
+     "start": 0,
+     "end": 2,
+     "span": 2,
+     "valid": true
+    },
+    {
+     "j": 1,
+     "start": 1,
+     "end": 3,
+     "span": 2,
+     "valid": true
+    },
+    {
+     "j": 2,
+     "start": 3,
+     "end": 5,
+     "span": 2,
+     "valid": true
+    },
+    {
+     "j": 3,
+     "start": 4,
+     "end": 6,
+     "span": 2,
+     "valid": true
+    },
+    {
+     "j": 4,
+     "start": 6,
+     "end": 8,
+     "span": 2,
+     "valid": true
+    },
+    {
+     "j": 5,
+     "start": 7,
+     "end": 9,
+     "span": 2,
+     "valid": true
+    },
+    {
+     "j": 6,
+     "start": 9,
+     "end": 11,
+     "span": 2,
+     "valid": true
+    },
+    {
+     "j": 7,
+     "start": 10,
+     "end": 12,
+     "span": 2,
+     "valid": true
+    },
+    {
+     "j": 8,
+     "start": 12,
+     "end": 14,
+     "span": 2,
+     "valid": true
+    },
+    {
+     "j": 9,
+     "start": 13,
+     "end": 15,
+     "span": 2,
+     "valid": true
+    },
+    {
+     "j": 10,
+     "start": 15,
+     "end": 17,
+     "span": 2,
+     "valid": true
+    },
+    {
+     "j": 11,
+     "start": 16,
+     "end": 18,
+     "span": 2,
+     "valid": true
+    },
+    {
+     "j": 12,
+     "start": 18,
+     "end": 20,
+     "span": 2,
+     "valid": true
+    },
+    {
+     "j": 13,
+     "start": 19,
+     "end": 21,
+     "span": 2,
+     "valid": true
+    },
+    {
+     "j": 14,
+     "start": 21,
+     "end": 23,
+     "span": 2,
+     "valid": true
+    },
+    {
+     "j": 15,
+     "start": 22,
+     "end": 24,
+     "span": 2,
+     "valid": true
+    },
+    {
+     "j": 16,
+     "start": 24,
+     "end": 26,
+     "span": 2,
+     "valid": true
+    },
+    {
+     "j": 17,
+     "start": 25,
+     "end": 27,
+     "span": 2,
+     "valid": true
+    },
+    {
+     "j": 18,
+     "start": 27,
+     "end": 29,
+     "span": 2,
+     "valid": true
+    },
+    {
+     "j": 19,
+     "start": 28,
+     "end": 30,
+     "span": 2,
+     "valid": true
+    },
+    {
+     "j": 20,
+     "start": 30,
+     "end": 32,
+     "span": 2,
+     "valid": true
+    },
+    {
+     "j": 21,
+     "start": 31,
+     "end": 33,
+     "span": 2,
+     "valid": true
+    },
+    {
+     "j": 22,
+     "start": 33,
+     "end": 35,
+     "span": 2,
+     "valid": true
+    },
+    {
+     "j": 23,
+     "start": 34,
+     "end": 36,
+     "span": 2,
+     "valid": true
+    },
+    {
+     "j": 24,
+     "start": 36,
+     "end": 38,
+     "span": 2,
+     "valid": true
+    },
+    {
+     "j": 25,
+     "start": 37,
+     "end": 39,
+     "span": 2,
+     "valid": true
+    },
+    {
+     "j": 26,
+     "start": 39,
+     "end": 41,
+     "span": 2,
+     "valid": true
+    },
+    {
+     "j": 27,
+     "start": 40,
+     "end": 42,
+     "span": 2,
+     "valid": true
+    },
+    {
+     "j": 28,
+     "start": 42,
+     "end": 44,
+     "span": 2,
+     "valid": true
+    },
+    {
+     "j": 29,
+     "start": 43,
+     "end": 45,
+     "span": 2,
+     "valid": true
+    },
+    {
+     "j": 30,
+     "start": 45,
+     "end": 47,
+     "span": 2,
+     "valid": true
+    },
+    {
+     "j": 31,
+     "start": 46,
+     "end": 48,
+     "span": 2,
+     "valid": true
+    }
+   ]
+  },
+  "decoder1": {
+   "native_width": 24,
+   "all_32_bins_valid": true,
+   "starts_monotone_nondecreasing": true,
+   "bins_cover_0_to_C": true,
+   "bins_overlap_when_C_less_than_32": true,
+   "disjoint_partition_when_32_divides_C": false,
+   "bins_are_disjoint_partition": false,
+   "every_source_channel_used": true,
+   "span_min": 1,
+   "span_max": 2,
+   "repeats_when_C_less_than_32": true,
+   "bin_table": [
+    {
+     "j": 0,
+     "start": 0,
+     "end": 1,
+     "span": 1,
+     "valid": true
+    },
+    {
+     "j": 1,
+     "start": 0,
+     "end": 2,
+     "span": 2,
+     "valid": true
+    },
+    {
+     "j": 2,
+     "start": 1,
+     "end": 3,
+     "span": 2,
+     "valid": true
+    },
+    {
+     "j": 3,
+     "start": 2,
+     "end": 3,
+     "span": 1,
+     "valid": true
+    },
+    {
+     "j": 4,
+     "start": 3,
+     "end": 4,
+     "span": 1,
+     "valid": true
+    },
+    {
+     "j": 5,
+     "start": 3,
+     "end": 5,
+     "span": 2,
+     "valid": true
+    },
+    {
+     "j": 6,
+     "start": 4,
+     "end": 6,
+     "span": 2,
+     "valid": true
+    },
+    {
+     "j": 7,
+     "start": 5,
+     "end": 6,
+     "span": 1,
+     "valid": true
+    },
+    {
+     "j": 8,
+     "start": 6,
+     "end": 7,
+     "span": 1,
+     "valid": true
+    },
+    {
+     "j": 9,
+     "start": 6,
+     "end": 8,
+     "span": 2,
+     "valid": true
+    },
+    {
+     "j": 10,
+     "start": 7,
+     "end": 9,
+     "span": 2,
+     "valid": true
+    },
+    {
+     "j": 11,
+     "start": 8,
+     "end": 9,
+     "span": 1,
+     "valid": true
+    },
+    {
+     "j": 12,
+     "start": 9,
+     "end": 10,
+     "span": 1,
+     "valid": true
+    },
+    {
+     "j": 13,
+     "start": 9,
+     "end": 11,
+     "span": 2,
+     "valid": true
+    },
+    {
+     "j": 14,
+     "start": 10,
+     "end": 12,
+     "span": 2,
+     "valid": true
+    },
+    {
+     "j": 15,
+     "start": 11,
+     "end": 12,
+     "span": 1,
+     "valid": true
+    },
+    {
+     "j": 16,
+     "start": 12,
+     "end": 13,
+     "span": 1,
+     "valid": true
+    },
+    {
+     "j": 17,
+     "start": 12,
+     "end": 14,
+     "span": 2,
+     "valid": true
+    },
+    {
+     "j": 18,
+     "start": 13,
+     "end": 15,
+     "span": 2,
+     "valid": true
+    },
+    {
+     "j": 19,
+     "start": 14,
+     "end": 15,
+     "span": 1,
+     "valid": true
+    },
+    {
+     "j": 20,
+     "start": 15,
+     "end": 16,
+     "span": 1,
+     "valid": true
+    },
+    {
+     "j": 21,
+     "start": 15,
+     "end": 17,
+     "span": 2,
+     "valid": true
+    },
+    {
+     "j": 22,
+     "start": 16,
+     "end": 18,
+     "span": 2,
+     "valid": true
+    },
+    {
+     "j": 23,
+     "start": 17,
+     "end": 18,
+     "span": 1,
+     "valid": true
+    },
+    {
+     "j": 24,
+     "start": 18,
+     "end": 19,
+     "span": 1,
+     "valid": true
+    },
+    {
+     "j": 25,
+     "start": 18,
+     "end": 20,
+     "span": 2,
+     "valid": true
+    },
+    {
+     "j": 26,
+     "start": 19,
+     "end": 21,
+     "span": 2,
+     "valid": true
+    },
+    {
+     "j": 27,
+     "start": 20,
+     "end": 21,
+     "span": 1,
+     "valid": true
+    },
+    {
+     "j": 28,
+     "start": 21,
+     "end": 22,
+     "span": 1,
+     "valid": true
+    },
+    {
+     "j": 29,
+     "start": 21,
+     "end": 23,
+     "span": 2,
+     "valid": true
+    },
+    {
+     "j": 30,
+     "start": 22,
+     "end": 24,
+     "span": 2,
+     "valid": true
+    },
+    {
+     "j": 31,
+     "start": 23,
+     "end": 24,
+     "span": 1,
+     "valid": true
+    }
+   ]
+  }
+ },
+ "forbidden_substitutions": [
+  "learned 1x1 convolution",
+  "random projection",
+  "PCA",
+  "SVD learned from data",
+  "first-32 channels",
+  "channel selection by variance",
+  "outcome-informed reduction"
+ ],
+ "why": {
+  "uses_every_source_channel": true,
+  "trainable_parameters": 0,
+  "deterministic": true,
+  "data_independent": true,
+  "outcome_independent": true,
+  "preserves_frozen_32d_per_axis": true,
+  "preserves_frozen_router_input_218": true,
+  "claimed_optimal": false,
+  "novel_contribution": false
+ },
+ "checks": [
+  {
+   "check": "six_feature_vectors_enumerated",
+   "passed": true,
+   "detail": [
+    "bridge_global",
+    "bridge_roi",
+    "decoder2_global",
+    "decoder2_roi",
+    "decoder1_global",
+    "decoder1_roi"
+   ]
+  },
+  {
+   "check": "native_widths_recorded",
+   "passed": true,
+   "detail": {
+    "bridge": 256,
+    "decoder2": 48,
+    "decoder1": 24
+   }
+  },
+  {
+   "check": "spatial_pooling_exact",
+   "passed": true,
+   "detail": "GLOBAL = mean over all spatial; ROI = mean over mapped ROI cells; float32 before pooling"
+  },
+  {
+   "check": "c32_operation_exact",
+   "passed": true,
+   "detail": "DETERMINISTIC_CHANNEL_ADAPTIVE_AVG_POOL_1D_V1"
+  },
+  {
+   "check": "output_order_exact",
+   "passed": true,
+   "detail": {
+    "bridge_global": [
+     0,
+     32
+    ],
+    "bridge_roi": [
+     32,
+     64
+    ],
+    "decoder2_global": [
+     64,
+     96
+    ],
+    "decoder2_roi": [
+     96,
+     128
+    ],
+    "decoder1_global": [
+     128,
+     160
+    ],
+    "decoder1_roi": [
+     160,
+     192
+    ]
+   }
+  },
+  {
+   "check": "no_trainable_projection",
+   "passed": true,
+   "detail": "reduction has 0 trainable parameters"
+  },
+  {
+   "check": "no_data_derived_projection",
+   "passed": true,
+   "detail": "closed-form binning; no PCA/SVD/first-32/variance selection"
+  },
+  {
+   "check": "deep_dimensions_192",
+   "passed": true,
+   "detail": 192
+  },
+  {
+   "check": "bins_valid_bridge",
+   "passed": true,
+   "detail": {
+    "C": 256
+   }
+  },
+  {
+   "check": "every_channel_used_bridge",
+   "passed": true,
+   "detail": {
+    "C": 256
+   }
+  },
+  {
+   "check": "bins_valid_decoder2",
+   "passed": true,
+   "detail": {
+    "C": 48
+   }
+  },
+  {
+   "check": "every_channel_used_decoder2",
+   "passed": true,
+   "detail": {
+    "C": 48
+   }
+  },
+  {
+   "check": "bins_valid_decoder1",
+   "passed": true,
+   "detail": {
+    "C": 24
+   }
+  },
+  {
+   "check": "every_channel_used_decoder1",
+   "passed": true,
+   "detail": {
+    "C": 24
+   }
+  }
+ ],
+ "n_checks": 14,
+ "n_failed": 0,
+ "verdict": "RF1_RESOLVED",
+ "model_instantiations": 0,
+ "forward_passes": 0,
+ "science_execution": false
+}

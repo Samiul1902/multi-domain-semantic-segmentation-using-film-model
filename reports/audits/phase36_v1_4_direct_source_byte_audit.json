@@ -1,0 +1,130 @@
+{
+  "artifact": "phase36_v1_4_direct_source_byte_audit",
+  "section": "§O",
+  "phase": 36,
+  "method": "RA-MedFiLM-BARR",
+  "revision": "ra_medfilm_barr_phase36_robustness_v1_4",
+  "type": "READ_ONLY_DIRECT_EXECUTION_SOURCE_BYTE_AND_CALL_GRAPH_AUDIT",
+  "audited_source": "scripts/analysis/phase36_robustness_execution_v1_4.py",
+  "audited_source_sha256": "96ebc36256e5d812949e1f1859d4f41f332f81607e562dbff7cfb2bce6483fbe",
+  "audited_source_lines": 2654,
+  "audit_method": "AST_PARSE + CALL_GRAPH_REACHABILITY + SOURCE_BYTE_INSPECTION",
+  "no_execution": true,
+  "no_source_modification": true,
+  "torch_imported": false,
+  "defect_record": {
+    "artifact": "phase36_v1_3_post_byte_audit_semantic_defects_v1_4",
+    "sha256": "de3d65f1282d71f43ab8e02891d2b2d49801b5473a43447fe4663a0328718fe0",
+    "defect_count": 10
+  },
+  "checklist": [
+    {
+      "item": "real_proposal_evaluator_reachable_from_smoke",
+      "required": true,
+      "evidence": "run_smoke -> proposal_core_adapter",
+      "verdict": "PASS"
+    },
+    {
+      "item": "real_empty_proposal_evaluator_reachable_from_smoke",
+      "required": true,
+      "evidence": "smoke_empty_proposal_pipeline -> proposal_core_adapter (proposal_geometry=None)",
+      "verdict": "PASS"
+    },
+    {
+      "item": "three_branch_controls_present",
+      "required": true,
+      "evidence": "smoke_branch_controls + CONTROL_SKIP_GLOBAL/CONTROL_EXECUTE_THEN_ACCEPT/CONTROL_EXECUTE_THEN_REJECT",
+      "verdict": "PASS"
+    },
+    {
+      "item": "r_psi_unreachable_before_execute_decision",
+      "required": true,
+      "evidence": {
+        "decision_line": 1071,
+        "r_psi_line": 1088
+      },
+      "verdict": "PASS"
+    },
+    {
+      "item": "s_omega_unreachable_before_execute_decision",
+      "required": true,
+      "evidence": {
+        "decision_line": 1071,
+        "s_omega_line": 1106
+      },
+      "verdict": "PASS"
+    },
+    {
+      "item": "canonical_g_autocast_batch_contract_present",
+      "required": true,
+      "evidence": "AUTOCAST_ENABLED=True/AUTOCAST_DTYPE=float16/INFERENCE_MODE=False/BATCH_SIZE=8/canonical_batch_partition",
+      "verdict": "PASS"
+    },
+    {
+      "item": "task_ids_device_bound",
+      "required": true,
+      "evidence": {
+        "bare_unbound_sites": 0,
+        "device_bound_sites": 2
+      },
+      "verdict": "PASS"
+    },
+    {
+      "item": "exact_route_equivalence_implemented",
+      "required": true,
+      "evidence": "808 Dice + 808 exact state_machine_branch; ACCEPT/REJECT not collapsed",
+      "verdict": "PASS"
+    },
+    {
+      "item": "router_decision_separate_from_final_state",
+      "required": true,
+      "evidence": "ROUTER_DECISIONS=(\"SKIP\",\"EXECUTE\") + ROUTER_DECISION_NOT_CANONICAL",
+      "verdict": "PASS"
+    },
+    {
+      "item": "kub_subgroup_reporting_implemented",
+      "required": true,
+      "evidence": "kub_subgroup_map + kub_subgroup label + frozen category authority",
+      "verdict": "PASS"
+    },
+    {
+      "item": "r1_r5_reachable",
+      "required": true,
+      "evidence": "figure_R1..figure_R5 + generate_all_figures in run_science",
+      "verdict": "PASS"
+    },
+    {
+      "item": "no_test",
+      "required": true,
+      "evidence": {
+        "TEST_MANIFEST_referencing_functions": [
+          "load_identity_authorities"
+        ]
+      },
+      "verdict": "PASS"
+    },
+    {
+      "item": "no_router_holdout_image_mask_read",
+      "required": true,
+      "evidence": {
+        "ROUTER_HOLDOUT_MANIFEST_referencing_functions": [
+          "load_identity_authorities"
+        ],
+        "ROUTER_HOLDOUT_IDENTITY_AUTHORITY_referencing_functions": [
+          "load_identity_authorities"
+        ]
+      },
+      "verdict": "PASS"
+    },
+    {
+      "item": "no_training",
+      "required": true,
+      "evidence": "no .backward()/torch.optim/requires_grad_(True)/.train()",
+      "verdict": "PASS"
+    }
+  ],
+  "n_items": 14,
+  "all_pass": true,
+  "verdict": "PASS",
+  "generated_utc": "2026-10-06T08:07:15Z"
+}

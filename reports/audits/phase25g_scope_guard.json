@@ -1,0 +1,32 @@
+{
+ "artifact": "phase25g_scope_guard",
+ "phase": "25G",
+ "stage": "SCOPE_GUARD",
+ "mode": "ARTIFACT_LEVEL_EVALUATION_ONLY",
+ "counters": {
+  "training_runs": 0,
+  "optimizer_steps": 0,
+  "global_model_loads": 0,
+  "global_model_forwards": 0,
+  "regional_refiner_loads": 0,
+  "regional_refiner_forwards": 0,
+  "benefit_router_loads": 0,
+  "benefit_router_forwards": 0,
+  "post_safety_model_loads": 0,
+  "post_safety_forwards": 0,
+  "new_refinement_predictions": 0,
+  "new_router_predictions": 0,
+  "new_safety_predictions": 0
+ },
+ "allowed_operations": [
+  "read frozen OOF outcomes",
+  "read frozen memberships",
+  "read frozen safety decisions",
+  "join by sample_id / policy_id",
+  "calculate evaluation metrics",
+  "reuse frozen bootstrap draws",
+  "create tables / figures / notebook"
+ ],
+ "torch_imported": false,
+ "all_pass": true
+}

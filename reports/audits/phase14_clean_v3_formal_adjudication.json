@@ -1,0 +1,112 @@
+{
+  "artifact": "phase14_clean_v3_formal_adjudication",
+  "status": "ADJUDICATED_FROZEN",
+  "population": {
+    "val_samples": 103,
+    "authoritative_components": 152,
+    "size_strata": {
+      "TINY": 72,
+      "SMALL": 28,
+      "MEDIUM": 36,
+      "LARGE": 16
+    },
+    "hard_tiny_denominator": 15,
+    "global_empty_denominator": 5
+  },
+  "frozen_references": {
+    "Tg_clean_v3": 0.7916666666666666,
+    "Dg_clean_v3": 0.6359172411726776
+  },
+  "basis": "Formal adjudication uses clean-v3 population + clean-v3 references (ruling \u00a79). Each Step clause is reported individually with numerator, denominator, delta, and PASS/FAIL.",
+  "step_1_refiner_potential": {
+    "condition": "G >= 0.05 AND Do >= 0.632776",
+    "clauses": {
+      "G": {
+        "definition": "G = To - Tg (Oracle Tiny Recall minus Global Tiny Recall)",
+        "To": 1.0,
+        "To_numerator": "72/72 TINY components recovered (ORACLE_REGIONAL)",
+        "Tg": 0.7916666666666666,
+        "Tg_numerator": "57/72 TINY components recovered (GLOBAL_ONLY)",
+        "delta_G": 0.20833333333333337,
+        "threshold": 0.05,
+        "pass": true,
+        "note": "Refiner adds +0.2083 Tiny recall over the global baseline -> potential confirmed."
+      },
+      "Do": {
+        "definition": "Oracle FULL_FIELD mean Dice",
+        "value": 0.8024158112932394,
+        "threshold": 0.632776,
+        "delta_over_threshold": 0.16963981129323935,
+        "pass": true
+      }
+    },
+    "overall": "PASS"
+  },
+  "step_2_proposal_retention": {
+    "condition": "R >= 0.50 (applies because G > 0)",
+    "definition": "R = (Tp - Tg) / G",
+    "clauses": {
+      "R": {
+        "Tp": 0.7916666666666666,
+        "Tp_numerator": "57/72 TINY components recovered (PREDICTED_REGIONAL)",
+        "Tg": 0.7916666666666666,
+        "numerator_Tp_minus_Tg": 0.0,
+        "denominator_G": 0.20833333333333337,
+        "R": 0.0,
+        "threshold": 0.5,
+        "pass": false,
+        "note": "Predicted tiny recall equals global tiny recall exactly; the frozen Stage-4D proposal pipeline yields ZERO net Tiny-recall gain over the global baseline."
+      }
+    },
+    "overall": "FAIL"
+  },
+  "step_3_practical_net_benefit": {
+    "condition": "Tp >= 0.780822 AND Dp >= 0.632776 AND Hard-Tiny >= 2/15 AND Global-Empty >= 1/5",
+    "clauses": {
+      "Tp": {
+        "value": 0.7916666666666666,
+        "threshold": 0.780822,
+        "delta": 0.01084483333333337,
+        "pass": true
+      },
+      "Dp": {
+        "value": 0.41853090628184875,
+        "threshold": 0.632776,
+        "delta": -0.21424509371815126,
+        "pass": false,
+        "note": "Predicted FULL_FIELD mean Dice far below threshold."
+      },
+      "Hard-Tiny": {
+        "recovered": 0,
+        "denominator": 15,
+        "threshold": "=2",
+        "pass": false,
+        "numerator": 0,
+        "denominator_n": 15,
+        "note": "0 of 15 hard-tiny components recovered by PREDICTED_REGIONAL."
+      },
+      "Global-Empty": {
+        "recovered": 1,
+        "denominator": 5,
+        "threshold": ">=1",
+        "pass": true,
+        "numerator": 1,
+        "denominator_n": 5,
+        "note": "1 of 5 global-empty images recovered by PREDICTED_REGIONAL."
+      }
+    },
+    "overall": "FAIL"
+  },
+  "overall_outcome": {
+    "step_1": "PASS",
+    "step_2": "FAIL",
+    "step_3": "FAIL",
+    "classification_logic": "Step 1 PASS (refiner potential exists) but Step 2 FAIL (proposals do not retain the potential) -> DIAGNOSTIC_PROPOSAL_BOTTLENECK. Step 3 is also FAIL.",
+    "final_classification": "DIAGNOSTIC_PROPOSAL_BOTTLENECK",
+    "phase15_status": "NOT_AUTHORIZED",
+    "phase15_eligibility_rule": "Phase 15 requires the diagnostic gate chain to pass (classification DIAGNOSTIC_PROMISING_SUPPORTING_REFINER). It does not; therefore NOT_AUTHORIZED.",
+    "denominator_independence": "The classification does not depend on the 15/5 vs 16/7 special-set denominator choice: Step 2 fails by construction (R=0) and Step 3 fails on Dp regardless."
+  },
+  "governance_note": "This adjudication is produced from the \u00a78 frozen three-contrast run (reports/audits/phase14_clean_v3_diagnostic_evaluation.json, timestamp 2026-09-25T00:10:56Z). A single transparent governance re-run was performed after correcting two stale v2-era artifact constants (audit epoch 14->56; denominators 16/7->15/5). The numeric verdict is unchanged.",
+  "generated_utc": "2026-09-25T00:11:49Z"
+}

@@ -1,0 +1,29 @@
+{
+ "phase": "25D",
+ "classification": "PRE_EXECUTION_SPECIFICATION_COMPLETENESS_REPAIR",
+ "router_training_spec_revision": "ra_medfilm_barr_router_training_v1_2_1",
+ "method": "RA-MedFiLM-BARR",
+ "architecture_revision": "ra_medfilm_barr_narrowed_v1_2",
+ "generated_utc": "2026-10-01T02:01:22+00:00",
+ "artifact": "phase25d_checkpoint_selection_contract_v1_2_1",
+ "primary_metric": "EARLY_STOP mean Huber loss",
+ "target": "raw delta_dice",
+ "direction": "MINIMIZE",
+ "aggregate": "sample-weighted mean over every EARLY_STOP sample",
+ "current_loss_definition": "mean Huber loss across the complete EARLY_STOP population",
+ "best_checkpoint_update_rule": "current_loss < best_loss - 1e-12",
+ "tie_rule": "if abs(current_loss - best_loss) <= 1e-12, the EARLIER epoch remains selected; ties count as non-improvement for patience",
+ "initial_best": "+infinity",
+ "forbidden_metrics": [
+  "MAE",
+  "RMSE",
+  "Pearson",
+  "Spearman",
+  "R2",
+  "ROC-AUC",
+  "PR-AUC",
+  "beneficial_rate",
+  "harmful_rate",
+  "outer_target_metrics"
+ ]
+}

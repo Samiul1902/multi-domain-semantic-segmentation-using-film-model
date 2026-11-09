@@ -1,0 +1,76 @@
+{
+ "artifact": "phase35_execution_eligibility_adjudication_v1_0",
+ "phase": 35,
+ "section": "\u00a7AB",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase35_interpretability_v1_0",
+ "families": {
+  "film_parameter_analysis_eligible": {
+   "value": true,
+   "basis": "GlobalMedFiLM film_parameters_for_tasks(); G checkpoint bound"
+  },
+  "G_task_embedding_analysis_eligible": {
+   "value": true,
+   "basis": "GlobalMedFiLM task_embedding Embedding(4,32)"
+  },
+  "B_phi_task_embedding_analysis_eligible": {
+   "value": true,
+   "basis": "BARRBenefitRouterV1 Embedding(4,16)"
+  },
+  "fixed_64_VAL_gallery_raw_image_read_eligible": {
+   "value": true,
+   "basis": "gallery ownership: 64 unique, all VAL808, 0 holdout, 0 TEST"
+  },
+  "gradcam_bridge_eligible": {
+   "value": true,
+   "basis": "film_layers['bridge'] hookable; shape [1,256,32,32]"
+  },
+  "gradcam_decoder1_eligible": {
+   "value": true,
+   "basis": "film_layers['decoder1'] hookable; shape [1,24,512,512]"
+  },
+  "ROI_proposal_visualization_eligible": {
+   "value": true,
+   "basis": "frozen global probability cache + ROI-0.30 geometry"
+  },
+  "regional_existing_artifact_visualization_eligible": {
+   "value": false,
+   "basis": "no frozen regional/fused probability artifact for the gallery"
+  },
+  "new_R_psi_visualization_forward_eligible": {
+   "value": false,
+   "basis": "not authorized merely for visualization"
+  },
+  "router_VAL808_attribution_eligible": {
+   "value": true,
+   "basis": "complete VAL808 202-D cache (192 deep + 10 scalars)"
+  },
+  "router_counterfactual_task_id_eligible": {
+   "value": false,
+   "basis": "INELIGIBLE_NOT_REQUIRED"
+  },
+  "ROUTER_HOLDOUT_raw_execution_eligible": {
+   "value": false,
+   "basis": "protected"
+  },
+  "ROUTER_HOLDOUT_GT_execution_eligible": {
+   "value": false,
+   "basis": "protected"
+  },
+  "TEST_execution_eligible": {
+   "value": false,
+   "basis": "LOCKED_UNTIL_PHASE39"
+  },
+  "training_eligible": {
+   "value": false,
+   "basis": "interpretability phase only"
+  },
+  "Phase36_started": {
+   "value": false,
+   "basis": "out of scope"
+  }
+ },
+ "phase35_execution_started": false,
+ "generated_utc": "2026-10-04T14:41:26+00:00",
+ "all_pass": true
+}

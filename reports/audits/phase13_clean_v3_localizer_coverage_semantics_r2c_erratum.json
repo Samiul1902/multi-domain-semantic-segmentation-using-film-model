@@ -1,0 +1,59 @@
+{
+  "artifact": "PHASE13_CLEAN_V3_LOCALIZER_COVERAGE_SEMANTICS_R2C_ERRATUM",
+  "document_type": "PROVENANCE_REPORTING_ERRATUM",
+  "created_utc": "2026-09-22T02:20:00Z",
+  "project_root": "D:\\Softfors\\jup",
+  "experiment_id": "phase13b_kub_localizer_r512_h128_sigmaeq075_centernetfocal_seed42_clean_v3",
+
+  "classification": "R2C_MARKDOWN_RUNNER_SHA_REPORTING_ERRATUM_ONLY",
+
+  "scientific_result_changed": "NO",
+  "model_state_changed": "NO",
+  "selection_changed": "NO",
+  "threshold_changed": "NO",
+  "loss_changed": "NO",
+
+  "correct_executing_runner_sha": "00ff82447f1f83935c042ea4fa19ad4f05956c48a80c474eaa98fc643bf79913",
+  "stale_markdown_sha_value": "0d5a199d223296346f7d998551ec842f77298f0ec6e0328a1c6f007e8e751737",
+
+  "canonical_authority": [
+    "R2C JSON post_repair_runner_sha",
+    "checkpoint metadata (runner_sha in _phase13_execution_metadata)",
+    "executing runner physical SHA-256"
+  ],
+
+  "inspection_findings": {
+    "r2c_json_path": "reports/audits/phase13_clean_v3_localizer_coverage_semantics_r2c.json",
+    "r2c_json_post_repair_runner_sha": "00ff82447f1f83935c042ea4fa19ad4f05956c48a80c474eaa98fc643bf79913",
+    "r2c_json_pre_repair_runner_sha": "15a0c2f0cf02916f96f60b7cf3d148fac4d931df11d5e119eb9c76f22a0c889b",
+    "r2c_json_runner_sha_transition_post": "00ff82447f1f83935c042ea4fa19ad4f05956c48a80c474eaa98fc643bf79913",
+    "r2c_json_is_correct": true,
+    "r2c_markdown_path": "reports/audits/phase13_clean_v3_localizer_coverage_semantics_r2c.md",
+    "r2c_markdown_post_repair_runner_sha": "0d5a199d223296346f7d998551ec842f77298f0ec6e0328a1c6f007e8e751737",
+    "r2c_markdown_is_stale": true,
+    "executing_runner_sha_physical": "00ff82447f1f83935c042ea4fa19ad4f05956c48a80c474eaa98fc643bf79913",
+    "r2c_json_matches_executing_runner": true
+  },
+
+  "root_cause": "The R2C JSON was updated to the final executing runner SHA after the last runner patch, but the companion markdown table was not re-synchronised and retained the intermediate value captured before the final two runner edits.",
+
+  "authorization_identity_consistency": {
+    "authorization_is_consistent": true,
+    "reason": "The R2C JSON - which is the artifact the runner physically reads and verifies at runtime (post_repair_runner_sha must equal the executing runner SHA) - contains the correct value. The stale value exists only in the human-readable markdown summary, which carries no authorization weight."
+  },
+
+  "remediation": {
+    "r2c_json_modified": false,
+    "r2c_json_preserved_as_frozen": true,
+    "r2c_markdown_annotated_with_erratum": true,
+    "original_markdown_value_retained_visibly": true,
+    "silent_rewrite_performed": false
+  },
+
+  "disclosure": "The original markdown discrepancy is NOT hidden. The markdown table row now shows the stale value alongside the corrected value and an explicit erratum pointer to this artifact.",
+
+  "test_reads": 0,
+  "no_training": true,
+  "no_inference": true,
+  "status": "PASS"
+}

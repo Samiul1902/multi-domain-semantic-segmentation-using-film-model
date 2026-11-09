@@ -1,0 +1,95 @@
+{
+  "artifact": "phase36_v1_8_negative_controls",
+  "phase": 36,
+  "section": "§K",
+  "method": "RA-MedFiLM-BARR",
+  "revision": "ra_medfilm_barr_phase36_robustness_v1_8",
+  "type": "NEGATIVE_CONTROL_AUDIT",
+  "model_free": true,
+  "torch_imported": false,
+  "protected_population_read": false,
+  "mutants_are_in_memory_strings_only": true,
+  "canonical_source_sha256_before": "c95ff9884ec05a859b39ce7976376bf40e4543b1a8d8a19830e5893120039f4d",
+  "canonical_source_sha256_after": "c95ff9884ec05a859b39ce7976376bf40e4543b1a8d8a19830e5893120039f4d",
+  "canonical_source_unmodified": true,
+  "nc_range": "NC41-NC49",
+  "passed": 9,
+  "total": 9,
+  "all_pass": true,
+  "controls": [
+    {
+      "nc": "NC41_remove_exception_preserving_smoke_failure_handling",
+      "mutation_changed_bytes": true,
+      "detector_on_canonical": true,
+      "detector_on_mutant": false,
+      "mutant_bite": true,
+      "pass": true
+    },
+    {
+      "nc": "NC42_allow_overwrite_retry_of_existing_smoke_attempt",
+      "mutation_changed_bytes": true,
+      "detector_on_canonical": true,
+      "detector_on_mutant": false,
+      "mutant_bite": true,
+      "pass": true,
+      "note": "MUTANT_UNPARSABLE_OR_ERROR__IndentationError: expected an indented block after 'while' statement on line 3460 (<unknown>, line 3462)"
+    },
+    {
+      "nc": "NC43_remove_S_omega_logit_finite_requirement",
+      "mutation_changed_bytes": true,
+      "detector_on_canonical": true,
+      "detector_on_mutant": false,
+      "mutant_bite": true,
+      "pass": true
+    },
+    {
+      "nc": "NC44_remove_S_omega_probability_finite_range_requirement",
+      "mutation_changed_bytes": true,
+      "detector_on_canonical": true,
+      "detector_on_mutant": false,
+      "mutant_bite": true,
+      "pass": true
+    },
+    {
+      "nc": "NC45_remove_real_R_psi_output_finite_requirement",
+      "mutation_changed_bytes": true,
+      "detector_on_canonical": true,
+      "detector_on_mutant": false,
+      "mutant_bite": true,
+      "pass": true
+    },
+    {
+      "nc": "NC46_remove_post_safety_16D_dimension_finite_requirement",
+      "mutation_changed_bytes": true,
+      "detector_on_canonical": true,
+      "detector_on_mutant": false,
+      "mutant_bite": true,
+      "pass": true
+    },
+    {
+      "nc": "NC47_remove_HD95_from_smoke_all_pass",
+      "mutation_changed_bytes": true,
+      "detector_on_canonical": true,
+      "detector_on_mutant": false,
+      "mutant_bite": true,
+      "pass": true
+    },
+    {
+      "nc": "NC48_remove_transitive_runtime_source_integrity_enforcement",
+      "mutation_changed_bytes": true,
+      "detector_on_canonical": true,
+      "detector_on_mutant": false,
+      "mutant_bite": true,
+      "pass": true
+    },
+    {
+      "nc": "NC49_protected_population_reachable_mutation_detected",
+      "mutation_changed_bytes": true,
+      "detector_on_canonical": true,
+      "detector_on_mutant": false,
+      "mutant_bite": true,
+      "pass": true
+    }
+  ],
+  "generated_utc": "2026-10-06T11:36:00Z"
+}

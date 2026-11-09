@@ -1,0 +1,111 @@
+{
+ "artifact": "phase30_g_authority_rebind_v1_1",
+ "phase": 30,
+ "section": "\u00a7C",
+ "classification": "PRE_FIRST_OPEN_NUMERICAL_ORDER_SPECIFICATION_REPAIR",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_phase30_final_dev_validation_v1_1",
+ "governance_only": true,
+ "no_execution": true,
+ "G_checkpoint": "checkpoints/phase21_global_medfilm_fourdomain_seed42_clean_v3/best.pt",
+ "G_checkpoint_sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+ "G_checkpoint_sha256_expected": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+ "G_checkpoint_match": true,
+ "G_frozen_semantics": {
+  "device": "cuda",
+  "model_eval": true,
+  "model_dtype": "float32",
+  "input_dtype": "float32",
+  "autocast": "enabled",
+  "autocast_dtype": "float16",
+  "gradient_context": "torch.no_grad()",
+  "inference_mode": false,
+  "batch_size": 8,
+  "probability_computation": "sigmoid(logits.float()) -> float32",
+  "probability_persistence": "float16 (where the canonical cache/output contract requires persistence)"
+ },
+ "G_BATCH_MEMBERSHIP_SCIENTIFICALLY_MATERIAL": true,
+ "batch_membership_sensitivity": "SENSITIVE_UNDER_AUTOCAST_FP16__EXACT_PARTITION_MANDATORY",
+ "empirical_basis": "run_phase25b_determinism.py: replay achieved max_abs = 0.0 ONLY when the exact canonical batch membership was reproduced",
+ "superseded_statement": {
+  "statement": "Eval-mode batch size is not numerically load-bearing for these frozen eval-mode models.",
+  "disposition": "SUPERSEDED_SEMANTICALLY__NOT_ERASED_HISTORICALLY",
+  "applies_to_G": false,
+  "reason": "G runs under autocast(fp16); its forward numerics depend on batch membership.",
+  "preserved_in": "reports/audits/phase30_component_inference_semantics_contract.json (v1.0, byte-for-byte)"
+ },
+ "authority_artifacts": [
+  {
+   "path": "scripts/analysis/build_phase25a_global_cache.py",
+   "exists": true,
+   "sha256": "58b5586b1ef0a447f81ada61a45cbf9f467dae1a9941ce239e8b8981d3fe870e",
+   "expected_sha256": "58b5586b1ef0a447f81ada61a45cbf9f467dae1a9941ce239e8b8981d3fe870e",
+   "match": true
+  },
+  {
+   "path": "scripts/analysis/run_phase25b_determinism.py",
+   "exists": true,
+   "sha256": "4997cd6fff2c8a3f9b46c478350d1699b7de2445225acc004b0e380cd77c8557",
+   "expected_sha256": "4997cd6fff2c8a3f9b46c478350d1699b7de2445225acc004b0e380cd77c8557",
+   "match": true
+  },
+  {
+   "path": "scripts/analysis/run_phase27_exec_phaseA.py",
+   "exists": true,
+   "sha256": "ac0ffbdadbfe60349061a926f5a664716a3a3690ac3a90c21a35802263975841",
+   "expected_sha256": null,
+   "match": true
+  },
+  {
+   "path": "reports/audits/phase27_batch_semantics_audit.json",
+   "exists": true,
+   "sha256": "522c9c20d1440a20ce4fef4b306a226631a0727ef1ff65ec5eff4f433bf8fea1",
+   "expected_sha256": null,
+   "match": true
+  },
+  {
+   "path": "reports/audits/phase27_exact_batch_partition.json",
+   "exists": true,
+   "sha256": "14ab8559163ba6203cdaaa74aeff8b193580e6d442a92b25e60b79917a305eb7",
+   "expected_sha256": null,
+   "match": true
+  },
+  {
+   "path": "reports/audits/phase27_reproducibility_contract_v1_1.json",
+   "exists": true,
+   "sha256": "daf9e93b9bd23fb131b9918c3dd3b9c5620440406ca5c6eac2f4e01507b6937c",
+   "expected_sha256": null,
+   "match": true
+  },
+  {
+   "path": "reports/audits/phase27_numeric_inference_mode_provenance_audit_v1_1.json",
+   "exists": true,
+   "sha256": "89dbe93016fc7948a49597a4e0acb964909cf52d9ffda46ab99a207cd1415043",
+   "expected_sha256": null,
+   "match": true
+  },
+  {
+   "path": "reports/audits/phase29_phase_d_component_inference_semantics_contract_v1_1.json",
+   "exists": true,
+   "sha256": "dc721c1143bdd03b542da95e1cfb22c638362535aea6bbcefaf28a99323c7526",
+   "expected_sha256": "dc721c1143bdd03b542da95e1cfb22c638362535aea6bbcefaf28a99323c7526",
+   "match": true
+  },
+  {
+   "path": "reports/audits/phase29_phase_d_numeric_semantics_unchanged.json",
+   "exists": true,
+   "sha256": "eff12b9cae3efc791494c369026fd366543e3fbdc29ca9ee492c3026853cab7a",
+   "expected_sha256": "eff12b9cae3efc791494c369026fd366543e3fbdc29ca9ee492c3026853cab7a",
+   "match": true
+  },
+  {
+   "path": "artifacts/phase26_ra_medfilm_barr_bundle_v1_0/canonical_bundle_manifest.json",
+   "exists": true,
+   "sha256": "f7aebb0f646bcc8de49fa91b70a4c4cc1051c9998ab6b055a8d4d187809cb3d9",
+   "expected_sha256": "f7aebb0f646bcc8de49fa91b70a4c4cc1051c9998ab6b055a8d4d187809cb3d9",
+   "match": true
+  }
+ ],
+ "generated_utc": "2026-10-04T02:53:20+00:00",
+ "all_pass": true
+}

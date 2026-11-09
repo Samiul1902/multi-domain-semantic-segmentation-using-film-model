@@ -1,0 +1,65 @@
+{
+ "artifact": "phase36_clean_reference_inventory_v1_0",
+ "section": "§D",
+ "phase": 36,
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase36_robustness_v1_0",
+ "classification": "CLEAN_VAL808_FINAL_SYSTEM_REFERENCE_INVENTORY",
+ "no_recompute_in_this_work_order": true,
+ "population": "VAL808",
+ "population_n": 808,
+ "clean_reference_complete": true,
+ "authorities": {
+  "per_sample_scores": {
+   "path": "reports/tables/phase27_val808_per_sample_scores.csv",
+   "sha256": "702133930ce14ac9513c992833396e3e250d08417b17d1032cbd260a405cfb12",
+   "n": 808,
+   "provides": [
+    "sample_id",
+    "dataset",
+    "task_id",
+    "group_key",
+    "state_machine_branch",
+    "router_decision",
+    "global_dice",
+    "final_dice",
+    "delta_dice",
+    "gt_foreground_pixels",
+    "global_fg_pixels",
+    "final_fg_pixels"
+   ],
+   "sha256_observed": "702133930ce14ac9513c992833396e3e250d08417b17d1032cbd260a405cfb12",
+   "hash_match": true
+  },
+  "routing_state": {
+   "path": "data_cache/phase29_seed42/phase29_seed42_val808_decisions.csv",
+   "sha256": "df4a0f376a7edab221d584b2a7152bf7e8f55c00ade87e39cd94c9bb13fedea6",
+   "n": 808,
+   "provides": [
+    "sample_id",
+    "domain",
+    "task_id",
+    "router_score",
+    "router_threshold",
+    "selected",
+    "safety_score",
+    "safety_accept",
+    "final_source",
+    "roi_available"
+   ],
+   "sha256_observed": "df4a0f376a7edab221d584b2a7152bf7e8f55c00ade87e39cd94c9bb13fedea6",
+   "hash_match": true
+  }
+ },
+ "provides": {
+  "per_sample_identity": true,
+  "task_ids": true,
+  "clean_final_prediction_metric_authority": true,
+  "clean_routing_state_authority": true,
+  "clean_proposal_authority": "roi_geometry resolved from frozen VAL808 roi geometry at execution time"
+ },
+ "fallback_if_unavailable": "If the bound clean per-sample reference is unavailable at execution time, Phase36 execution generates exactly ONE clean reference pass under the frozen Phase36 source BEFORE any perturbation execution, and declares this prospectively now (never after perturbation results exist).",
+ "fallback_declared_prospectively": true,
+ "decided_after_perturbation_results": false,
+ "all_pass": true
+}

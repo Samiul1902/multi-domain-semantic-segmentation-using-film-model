@@ -1,0 +1,70 @@
+{
+ "artifact": "phase29_seed42_reuse_audit",
+ "phase": 29,
+ "classification": "PHASE29_SEED42_REUSE_AUDIT",
+ "question": "do existing canonical seed-42 artifacts qualify as the seed-42 Phase29 replicate?",
+ "reuse_requires_all_exact": [
+  "architecture",
+  "training_population",
+  "split_manifests",
+  "optimizer/loss/scheduler",
+  "augmentation",
+  "training-selection_rule",
+  "numeric_precision",
+  "Phase29_evaluation_rule"
+ ],
+ "per_component_protocol_match": {
+  "G": {
+   "architecture": "MATCH (phase21_global_medfilm_architecture_binding.json)",
+   "training_population": "MATCH (TRAIN 5832 fixed)",
+   "split_manifests": "MATCH (no folds)",
+   "optimizer_loss_scheduler": "MATCH (AdamW/CosineAnnealingLR/bce_dice)",
+   "augmentation": "MATCH (SegmentationTransform train=True)",
+   "training_selection_rule": "MATCH (early stopping patience 15)",
+   "numeric_precision": "MATCH (AMP on CUDA; determinism policy not yet frozen per-seed)",
+   "Phase29_evaluation_rule": "UNRESOLVED"
+  },
+  "R_psi": {
+   "architecture": "MATCH (BARRRegionalRefinerV1, 1,276,401 params)",
+   "training_population": "MATCH (DEV 4957)",
+   "split_manifests": "MATCH (phase25a crossfit 3-fold)",
+   "optimizer_loss_scheduler": "MATCH (AdamW/CosineAnnealingLR/0.5 BCE + 0.5 Dice)",
+   "augmentation": "MATCH (phase25a_augmentation_binding.json)",
+   "training_selection_rule": "MATCH (min EARLY_STOP total loss, patience 15)",
+   "numeric_precision": "UNRESOLVED",
+   "Phase29_evaluation_rule": "UNRESOLVED"
+  },
+  "B_phi": {
+   "architecture": "MATCH (phase25d, 36,801 params)",
+   "training_population": "MATCH (DEV 4957)",
+   "split_manifests": "MATCH (phase25d cv5)",
+   "optimizer_loss_scheduler": "MATCH (AdamW/ReduceLROnPlateau/Huber delta 0.05)",
+   "augmentation": "N/A (tabular features)",
+   "training_selection_rule": "MATCH (EARLY_STOP mean Huber, MINIMIZE)",
+   "numeric_precision": "UNRESOLVED",
+   "Phase29_evaluation_rule": "UNRESOLVED"
+  },
+  "S_omega": {
+   "architecture": "MATCH (phase25f, 1,217 params)",
+   "training_population": "MATCH (DEV 4957)",
+   "split_manifests": "MATCH (reuses phase25d manifests)",
+   "optimizer_loss_scheduler": "MATCH (BCEWithLogitsLoss; phase25f protocol)",
+   "augmentation": "N/A (tabular features)",
+   "training_selection_rule": "MATCH (phase25f checkpoint rule)",
+   "numeric_precision": "UNRESOLVED",
+   "Phase29_evaluation_rule": "UNRESOLVED"
+  }
+ },
+ "seed42_role": "UNRESOLVED",
+ "seed42_role_allowed_values": [
+  "REUSE_EXISTING_CANONICAL_REPLICATE",
+  "NEW_PHASE29_RETRAIN_REQUIRED"
+ ],
+ "seed42_role_depends_on": [
+  "training_scope (§4) being resolved first",
+  "Phase29 evaluation rule (§8) being resolved first"
+ ],
+ "does_not_silently_mix_incomparable_seed_protocols": true,
+ "all_per_component_protocol_match_exact": false,
+ "all_pass": false
+}

@@ -1,0 +1,50 @@
+{
+ "artifact": "phase25b_stage_semantics_repair_final_check",
+ "phase": "25B",
+ "repair": "POST_PHASE25B_HANDOFF_SEMANTICS_REPAIR",
+ "classification": "DOCUMENTATION_AND_GOVERNANCE_REPAIR_ONLY",
+ "method": "RA-MedFiLM-BARR",
+ "architecture_revision": "ra_medfilm_barr_narrowed_v1_2",
+ "generated_utc": "2026-09-30T16:41:00+00:00",
+ "checks": {
+  "phase25b_science_unchanged": true,
+  "feature_matrix_unchanged": true,
+  "matrix_SHA_unchanged": true,
+  "metadata_SHA_unchanged": true,
+  "schema_SHA_unchanged": true,
+  "Phase25C_role": "OOF_PAIRED_REFINEMENT_GAIN_LABEL_GENERATION",
+  "Phase25D_role": "BENEFIT_ROUTER_TRAINING",
+  "task_embedding_owner": "PHASE25D",
+  "benefit_router_owner": "PHASE25D",
+  "paired_gain_label_owner": "PHASE25C",
+  "current_stale_stage_labels": 0,
+  "phase25b_notebook_3x_deterministic": true,
+  "Phase25C_started": false,
+  "Phase25D_started": false,
+  "TEST_reads": 0
+ },
+ "frozen_hashes": {
+  "matrix_sha256": "9c241963b54f23de1c9671ff6670dde7d6f7e2510869ef5ebc1baf3f7c833e0a",
+  "metadata_sha256": "ee8c304350d28d907c053a355da1f878ff7f9dd137761034283459aeed071093",
+  "schema_sha256": "da76aa34f14006146f46ca799f173378274d8c9d0792dc18edb30711a2486dd4",
+  "post_repair_notebook_sha256": "acdfe90a5042ef364c5ab28ec67ecd3fe3146b30e1e5715a2631a36deb4dc38a",
+  "pre_repair_notebook_sha256": "11a1a62a4759eb880f4d4fe8ed48c54f42af7248342cbad48327e889aab70c6a",
+  "pre_repair_final_freeze_sha256": "4ed102e9dd53390c832d7396f42c25396093febb16925a6cb18fafbc2fb5ad01"
+ },
+ "handoff_verdict": "PHASE25B_PHASE25C_OOF_GAIN_HANDOFF_READY",
+ "repository_scan_verdict": "PHASE25B_STAGE_SEMANTICS_SCAN_CLEAN",
+ "no_execution_verdict": "PHASE25B_STAGE_SEMANTICS_REPAIR_NO_EXECUTION_CONFIRMED",
+ "all_pass": true,
+ "notebook_not_renamed": true,
+ "no_phase25c_or_25d_notebook_created": true,
+ "downstream_stage_ownership": {
+  "phase_25c": "OOF paired refinement-gain label generation",
+  "phase_25d": "benefit-router training",
+  "task_embedding_owner": "PHASE25D",
+  "benefit_router_owner": "PHASE25D",
+  "paired_gain_label_owner": "PHASE25C"
+ },
+ "verdict": "PHASE25B_HANDOFF_SEMANTICS_REPAIRED",
+ "terminal": "PHASE25B_HANDOFF_SEMANTICS_REPAIRED__PHASE25C_OOF_PAIRED_GAIN_LABEL_GENERATION_ELIGIBLE_NOT_STARTED",
+ "test_reads": 0
+}

@@ -1,0 +1,109 @@
+{
+ "artifact": "phase26_final_freeze",
+ "phase": "26",
+ "classification": "CANONICAL_PHASE26_FULL_SYSTEM_INTEGRATION",
+ "method": "RA-MedFiLM-BARR",
+ "operational_title": "Full Four-Domain RA-MedFiLM-BARR Integration & Canonical Bundle Freeze",
+ "legacy_title": "Full Four-Domain RA-MedFiLM-BARR Training",
+ "training_required": false,
+ "parameter_optimization": false,
+ "variant": "A8_C9",
+ "nominal_budget": 0.25,
+ "lambda_representative": 0.25,
+ "lambda_performance_selected": false,
+ "component_checkpoint_paths": {
+  "global_medfilm": "checkpoints/phase21_global_medfilm_fourdomain_seed42_clean_v3/best.pt",
+  "regional_refiner": "checkpoints/phase25a_barr_regional_refiner_v1_1_roi030/final/final.pt",
+  "benefit_router": "checkpoints/phase25d_barr_benefit_router_v1_2_1_seed42/final/final.pt",
+  "post_safety": "checkpoints/phase25f_barr_post_safety_v1_0_seed42/final/final.pt"
+ },
+ "component_checkpoint_shas": {
+  "global_medfilm": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+  "regional_refiner": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109",
+  "benefit_router": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+  "post_safety": "eee9b97b9921e53fc07eac9281dce64ba518c6e1659916b97b0b3bec21ec6d2e"
+ },
+ "normalization_paths": {
+  "router_normalization": "reports/tables/phase25d_final_normalization_stats.csv",
+  "post_safety_normalization": "reports/tables/phase25f_final_normalization_stats.csv"
+ },
+ "normalization_shas": {
+  "router_normalization": "ba37742e96610ec5e46fb47c093bf71ae1afd85b2a0db9696b612c873a4ba1fb",
+  "post_safety_normalization": "e112e18b134c6edcdcd0c254c362d0a954a75faffe634cc37a2a17e4fe6f4e7b"
+ },
+ "schema_paths": {
+  "router_schema": "reports/tables/phase25b_feature_schema.csv",
+  "post_safety_schema": "reports/tables/phase25f_feature_schema_v1_0.csv"
+ },
+ "schema_shas": {
+  "router_schema": "da76aa34f14006146f46ca799f173378274d8c9d0792dc18edb30711a2486dd4",
+  "post_safety_schema": "3e70e20c541b93de752980c34cdfb6fe5af17ebe4c18cbb64397c0bbae465ee5"
+ },
+ "oof_scientific_threshold_block": {
+  "block": "A_OOF_SCIENTIFIC_EVIDENCE",
+  "score_variable": "delta_hat_oof",
+  "raw_threshold_exact": "29487973/10000000000",
+  "resource_threshold_exact": "-2326256430798223/102707490000000000",
+  "role": "SCIENTIFIC_OOF_POLICY_THRESHOLD_PROVENANCE",
+  "runtime_authority": false,
+  "oof_selected_count": 1239,
+  "oof_membership_sha256": "e71e368cbb95b8d3398b47427df243bb8b387dd6d442ccf038188446677f446f"
+ },
+ "final_router_runtime_threshold_block": {
+  "block": "B_FINAL_ROUTER_RUNTIME_CALIBRATION",
+  "score_variable": "delta_hat_final",
+  "producer": "FINAL Phase25D B_phi",
+  "raw_threshold_exact": "24796109646558761/20000000000000000000",
+  "normalized_action_cost_exact": "1051648/10270749",
+  "lambda": "1/4",
+  "lambda_C_exact": "262912/10270749",
+  "resource_utility_threshold_exact": "-5003565381643716252018011/205414980000000000000000000",
+  "role": "CANONICAL_FINAL_ROUTER_RUNTIME_CALIBRATION",
+  "runtime_authority": true,
+  "dev_calibration_selected_count": 1239,
+  "final_router_calibration_membership_sha256": "10de16dec21e6750c8e9451af96bed0ca3f2686bbf0d6084a6300cf0d4adbbe5"
+ },
+ "runtime_threshold_exact": "-5003565381643716252018011/205414980000000000000000000",
+ "runtime_score": "delta_hat_final - 0.25*C",
+ "final_router_dev_calibration_selected_count": 1239,
+ "final_router_dev_calibration_membership_sha256": "10de16dec21e6750c8e9451af96bed0ca3f2686bbf0d6084a6300cf0d4adbbe5",
+ "oof_selected_count": 1239,
+ "oof_membership_sha256": "e71e368cbb95b8d3398b47427df243bb8b387dd6d442ccf038188446677f446f",
+ "future_cohort_topK": false,
+ "holdout_owner": "PHASE30",
+ "holdout_state": "RESERVED_UNOPENED_FOR_PHASE30",
+ "val808": "UNOPENED",
+ "test": "LOCKED_UNTIL_PHASE39",
+ "bundle_manifest_path": "artifacts/phase26_ra_medfilm_barr_bundle_v1_0/canonical_bundle_manifest.json",
+ "bundle_manifest_sha256": "f7aebb0f646bcc8de49fa91b70a4c4cc1051c9998ab6b055a8d4d187809cb3d9",
+ "integration_wrapper_path": "src/models/barr/ra_medfilm_barr.py",
+ "integration_wrapper_sha256": "342f2163690c2fa8d5a601ab1d18178b982d701b916935c33e0793b0801c3724",
+ "wrapper_trainable_parameters": 0,
+ "validator_path": "scripts/analysis/validate_phase26_canonical_bundle.py",
+ "validator_sha256": "912d886599adae810db14edf17331a25c37d4e92abd8fbe1fe67f94ab7810300",
+ "notebook_path": "notebooks/phasewise/phase_26_full_system_integration/phase26_canonical_integration_and_bundle_freeze.ipynb",
+ "notebook_sha256": "57552c16b5a444f1b2404077eeac0004d37fd198355d679a66eb5c24ea15b4e0",
+ "notebook_3x_deterministic": true,
+ "notebook_visual_integrity": true,
+ "scientific_model_forwards": 0,
+ "training_runs": 0,
+ "backward_passes": 0,
+ "optimizer_steps": 0,
+ "terminal": "PHASE26_CANONICAL_INTEGRATION_COMPLETE__A8_C9_25PCT_FINAL_ROUTER_RUNTIME_POLICY_AND_BUNDLE_FROZEN__PHASE27_ELIGIBLE_NOT_STARTED",
+ "all_pass": true,
+ "checks": {
+  "training_required_false": true,
+  "parameter_optimization_false": true,
+  "variant_A8_C9": true,
+  "budget_0p25": true,
+  "lambda_not_performance_selected": true,
+  "runtime_threshold_exact": true,
+  "final_router_selected_1239": true,
+  "holdout_reserved": true,
+  "val808_unopened": true,
+  "test_locked": true,
+  "notebook_3x_deterministic": true,
+  "zero_scientific_forwards": true,
+  "zero_training": true
+ }
+}

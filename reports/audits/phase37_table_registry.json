@@ -1,0 +1,151 @@
+{
+  "classification": "PHASE37_TABLE_REGISTRY",
+  "generated_utc": "2026-10-11T05:40:00Z",
+  "purpose": "registry of the 13 consolidated manuscript tables (T37-01..T37-13)",
+  "n_tables": 13,
+  "tables": [
+    {
+      "table_id": "T37-01",
+      "title": "Final architecture / component specification",
+      "source_phase": 34,
+      "artifact_path": "reports\\tables\\phase37_consolidated\\T37-01_final_architecture_component_specification.csv",
+      "artifact_sha256": null,
+      "population": "model-static (no data population)",
+      "source_artifact": "reports/tables/phase34_static_resource_profile_v1_3.csv",
+      "source_sha256": "f4c36efd4fedb07778cf8b752a1e54ec91b19b78d9d1c6f4ef300cb5bdb73343",
+      "notes": "Canonical A8/C9 bundle: G (always executed), B_phi (pre-gate, always executed), R_psi + S_omega (EXECUTE branch only)."
+    },
+    {
+      "table_id": "T37-02",
+      "title": "Multi-domain development performance summary",
+      "source_phase": "27+30",
+      "artifact_path": "reports\\tables\\phase37_consolidated\\T37-02_multidomain_development_performance_summary.csv",
+      "artifact_sha256": null,
+      "population": "VAL808 (n=808) + one-shot ROUTER_HOLDOUT (n=875)",
+      "source_artifact": "reports/audits/phase27_final_freeze.json ; reports/audits/phase30_primary_noninferiority_result.json",
+      "source_sha256": "42e51a6734c8c620bd056a829a770f23d4d354e3ba82f2272150636d96062187 ; 6548aa6ba438b1763727696b7ec1e339ec9ebf541df1d763ebc0c90922459856",
+      "notes": "PRESERVATION/NON-INFERIORITY ONLY (no superiority). Phase30 column MUST carry: ONE_SHOT_ROUTER_HOLDOUT_RESULT_WITH_DISCLOSED_POST_FIRST_OPEN_SCIENTIFIC_SOURCE_FREEZE_DEVIATION"
+    },
+    {
+      "table_id": "T37-03",
+      "title": "Ablation contribution summary (13 arms)",
+      "source_phase": 28,
+      "artifact_path": "reports\\tables\\phase37_consolidated\\T37-03_ablation_contribution_summary.csv",
+      "artifact_sha256": null,
+      "population": "ROUTER_DEVELOPMENT (n=4957), budget K=1239",
+      "source_artifact": "reports/tables/phase28_table_02_arm_primary_metrics.csv",
+      "source_sha256": "171168f973d0a210913b567c4b743f134b1918f3d22be55a6e7046890400e3fc",
+      "notes": "F1 refiner (A5) is a NEGATIVE result (negative mean true DeltaDice). No deployment winner selected."
+    },
+    {
+      "table_id": "T37-04",
+      "title": "Three-seed reproducibility summary (seeds 42/123/3407)",
+      "source_phase": 29,
+      "artifact_path": "reports\\tables\\phase37_consolidated\\T37-04_three_seed_reproducibility_summary.csv",
+      "artifact_sha256": null,
+      "population": "ROUTER_DEVELOPMENT (n=4957) + VAL808 (n=808)",
+      "source_artifact": "reports/tables/phase29_three_seed_dev_summary.csv ; reports/audits/phase29_phase_d_three_seed_descriptive_summary.json",
+      "source_sha256": "13e4097a23164918bcf35b80053ded7f5a5e5d2a1bc0c7f7da6d1eb8bbfb0a72 ; 6da8de08abd75fa7334695a84e1fa8b16b491b09a907b47adcffba0925b40e54",
+      "notes": "DESCRIPTIVE ONLY; NO_NUMERIC_REPRODUCIBILITY_PASS_FAIL_GATE; no best-seed selection; global Dice seed-invariant (range=0)."
+    },
+    {
+      "table_id": "T37-05",
+      "title": "Statistical-analysis summary",
+      "source_phase": 31,
+      "artifact_path": "reports\\tables\\phase37_consolidated\\T37-05_statistical_analysis_summary.csv",
+      "artifact_sha256": null,
+      "population": "multi-population (governance only)",
+      "source_artifact": "reports/audits/phase31_final_closure.json ; reports/tables/phase31_statistical_test_registry.csv",
+      "source_sha256": "27993a7e97c4bc583abb3337b84e012d9843bc07f378e90bc2bbf6652adfb0dd ; 2aba2cb56abfa3ccf09583231fb23fafb96d0b11b92bf1476d1c51bf3b855b1a",
+      "notes": "NO_NEW_CONFIRMATORY_SIGNIFICANCE_PROCEDURE_IS_ELIGIBLE; 0 new p-values/effect_sizes/bootstrap_computations."
+    },
+    {
+      "table_id": "T37-06",
+      "title": "External / domain-shift evidence summary",
+      "source_phase": 32,
+      "artifact_path": "reports\\tables\\phase37_consolidated\\T37-06_external_domain_shift_evidence_summary.csv",
+      "artifact_sha256": null,
+      "population": "EXTERNAL (19 candidates, metadata-only)",
+      "source_artifact": "reports/audits/phase32_final_closure.json ; reports/tables/phase32_external_dataset_discovery.csv",
+      "source_sha256": "c3ec1622e4004893d808e816bad46195e84df547fadd06a29806d283dcad6d18 ; 85bc89917d57f35eefec9f267b5fa1cba4b35464978cadb65f9fb0a3c3c4cdeb",
+      "notes": "NO_PROSPECTIVE_CLEAN_EXTERNAL_COHORT_ELIGIBLE; 0 pixels read; no cohort may be called an untouched external validation set."
+    },
+    {
+      "table_id": "T37-07",
+      "title": "Failure / limitation summary",
+      "source_phase": 33,
+      "artifact_path": "reports\\tables\\phase37_consolidated\\T37-07_failure_limitation_summary.csv",
+      "artifact_sha256": null,
+      "population": "ROUTER_HOLDOUT (n=875)",
+      "source_artifact": "reports/tables/phase33_failure_prevalence_overall_v1_2.csv ; reports/tables/phase33_failure_prevalence_by_domain_v1_2.csv",
+      "source_sha256": "11c83b2020a63992c00b362bb50f3634c3d28b0920adbb97c1223cb422668cdd ; 4d1aa028943b0716a3da466b682d66278f271178f14faed0c2d6eb4c740bcfef",
+      "notes": "DESCRIPTIVE failure characterization; ONE_SHOT_ROUTER_HOLDOUT_RESULT_WITH_DISCLOSED_POST_FIRST_OPEN_SCIENTIFIC_SOURCE_FREEZE_DEVIATION qualifier preserved."
+    },
+    {
+      "table_id": "T37-08",
+      "title": "Computational-efficiency summary",
+      "source_phase": 34,
+      "artifact_path": "reports\\tables\\phase37_consolidated\\T37-08_computational_efficiency_summary.csv",
+      "artifact_sha256": null,
+      "population": "analytical + measured synthetic batch path (RTX 3060 Ti)",
+      "source_artifact": "reports/tables/phase34_analytical_compute_summary_v1_3.csv ; reports/tables/phase34_batch1_latency_results_v1_4.csv",
+      "source_sha256": "bbe1d933c24e297454ec7afee0f64d00bc79dbcf815d747df2ec2f742c93f71f ; da5292d4551209339b3880c0e64d4152007eb42e7c262ad296bc2c2ec586ab26",
+      "notes": "Hardware-specific (RTX 3060 Ti); NOT end-to-end/real-time/mobile/energy/hardware-independent; v1.3 latency superseded by v1.4."
+    },
+    {
+      "table_id": "T37-09",
+      "title": "Interpretability / routing summary",
+      "source_phase": 35,
+      "artifact_path": "reports\\tables\\phase37_consolidated\\T37-09_interpretability_routing_summary.csv",
+      "artifact_sha256": null,
+      "population": "model-mechanism (no data population)",
+      "source_artifact": "reports/tables/phase35_router_group_attribution_v1_0.csv ; reports/tables/phase35_saliency_self_consistency_summary_v1_0.csv",
+      "source_sha256": "0de029ab758b22ca202432c91d2b50bdf92bdc33e96ba0c43ca8ddf6cf9339e3 ; 4a7a64247d4c8ae1ca4886c2f7f638f273bf201560909353bdca04631e29a6f0",
+      "notes": "DESCRIPTIVE_MODEL_MECHANISM_EVIDENCE; no causal claims; causal experiment not authorized by Phase35."
+    },
+    {
+      "table_id": "T37-10",
+      "title": "Phase36 image-robustness summary (12,928 rows)",
+      "source_phase": 36,
+      "artifact_path": "reports\\tables\\phase37_consolidated\\T37-10_phase36_image_robustness_summary.csv",
+      "artifact_sha256": null,
+      "population": "VAL808 (n=808); 12,928 image-perturbation rows",
+      "source_artifact": "reports/tables/phase36_robustness_v1_23/phase36_image_robustness_by_domain_condition.csv",
+      "source_sha256": "f00f90a92823fbd7131461ea75626a2f58771f720dc9af31bb3969d727a78e27",
+      "notes": "DEVELOPMENT_SET_SYNTHETIC_PERTURBATION_ROBUSTNESS_EVIDENCE; synthetic image perturbations only."
+    },
+    {
+      "table_id": "T37-11",
+      "title": "Phase36 proposal-robustness summary (4,848 rows)",
+      "source_phase": 36,
+      "artifact_path": "reports\\tables\\phase37_consolidated\\T37-11_phase36_proposal_robustness_summary.csv",
+      "artifact_sha256": null,
+      "population": "VAL808 (n=808); 4,848 proposal-perturbation rows",
+      "source_artifact": "reports/tables/phase36_robustness_v1_23/phase36_proposal_robustness_by_domain_condition.csv",
+      "source_sha256": "19f28b95dba3321197c4e1fcbdee92d9d57188a18887399b890f79e729cbe7b5",
+      "notes": "DEVELOPMENT_SET_SYNTHETIC_PERTURBATION_ROBUSTNESS_EVIDENCE; synthetic proposal perturbations only."
+    },
+    {
+      "table_id": "T37-12",
+      "title": "KUB reporting-only subgroup robustness summary",
+      "source_phase": 36,
+      "artifact_path": "reports\\tables\\phase37_consolidated\\T37-12_kub_reporting_only_subgroup_robustness_summary.csv",
+      "artifact_sha256": null,
+      "population": "VAL808 KUB subset (n=280); 4,480 KUB rows",
+      "source_artifact": "reports/tables/phase36_robustness_v1_23/phase36_kub_subgroup_robustness_by_subgroup.csv",
+      "source_sha256": "97cd4acdb4950eb757cd7fd26c309f48dd39d217873a5d929fc9d6e6a221b123",
+      "notes": "REPORTING-ONLY metadata; KUB subgroups are NEVER segmentation classes, task IDs, model inputs, routing inputs, or conditioning variables."
+    },
+    {
+      "table_id": "T37-13",
+      "title": "Evidence / protocol-qualification matrix",
+      "source_phase": "27-36",
+      "artifact_path": "reports\\tables\\phase37_consolidated\\T37-13_evidence_protocol_qualification_matrix.csv",
+      "artifact_sha256": null,
+      "population": "all populations",
+      "source_artifact": "reports/audits/phase37_master_evidence_inventory.json",
+      "source_sha256": null,
+      "notes": "Per-record evidence class, confirmatory/descriptive status, protected-population history, read mode, mandatory qualifier, manuscript-use status."
+    }
+  ]
+}

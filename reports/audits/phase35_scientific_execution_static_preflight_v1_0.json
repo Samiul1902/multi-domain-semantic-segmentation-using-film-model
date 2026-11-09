@@ -1,0 +1,229 @@
+{
+ "artifact": "phase35_scientific_execution_static_preflight_v1_0",
+ "section": "§E",
+ "phase": 35,
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase35_interpretability_v1_0",
+ "preflight_class": "STATIC_SOURCE_ANALYSIS__NO_MODEL_EXECUTION",
+ "no_execution": true,
+ "torch_imported": false,
+ "source_hashes": {
+  "scientific_driver": "29623dfd18803a1fa3350dc01ce3bbc19d68dab9e0c5164ced5390dc25d3ee03",
+  "preflight": "ddfd160c1e8d0da696153151ddadf6d257698957612cc79f131c71a3b1a04339",
+  "v1_0b_execution": "581926840d7717e19ed15ad77c7c5339b709efc881b938924d6eec0a2ceb1872",
+  "v1_0b_common": "9963215e1431e968e11bacbcd917d96a8a985a7181000258b90f458ff0a778ac",
+  "v1_0h_execution": "48193f09672b047757e0eba9fa674df12c5b00a41629ba9671e48b50fe81ee81",
+  "v1_0e_execution": "1ca50b773a185384b9f0a7eae47fe95c64eb84bad3826c70cbe88edefe535941",
+  "v1_0d_execution": "cccc109ade27eb5ad7883912004c1e911e9e253a659146f3d64820af92244056",
+  "spec_doc": "6405ba5f7ad9f046226da916559a0d7a1166a1245bb56e8d38bc9971959acb37",
+  "g_source": "a04ff3e61b4d900ff47c2f390da4a999e73bd6047b28a19e41b05115e431d11f",
+  "b_phi_source": "fc7c1bdf263ae4551dcb8f170d3203adb8540fbc189846265b74f6eca1541e91",
+  "domain_registry": "3f009d994ed24d9c2edf8e48646e93700ab4e54dea786fb4bd03180c825cbf92"
+ },
+ "authority_hashes": {
+  "gallery": "2bc7c16286999ced374840cc987dcd352c3e546668322a9ccc4d1e8e8a097fd9",
+  "feature_schema": "da76aa34f14006146f46ca799f173378274d8c9d0792dc18edb30711a2486dd4",
+  "normalization_authority": "ba37742e96610ec5e46fb47c093bf71ae1afd85b2a0db9696b612c873a4ba1fb",
+  "g_checkpoint": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+  "b_phi_checkpoint": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+  "router_cache_deep": "a1527411e6ae5dd41dd6db91ca018803e936724afdc297576fb14b18cd6aadc4",
+  "router_cache_scalars": "3c789c981680ae3ac80bf38c791967d6a130bc7fc20def94b0f8bcdcedd51cdb",
+  "router_cache_prob": "cc6c54af986f56b4aba9265405ffeba4f6cac582eeff00fe6b0894429e7d3f13",
+  "router_cache_geometry": "7cb4bc4a079534aafa138f7798e87e5e8d6d9d67e0f3ce611bba97e738ce81dd",
+  "val_manifest": "082c80b2bda63fd73f371f109c34643adf01edaead921643fb2e44993ba53315",
+  "split_manifest": "b5da52d6220ef9b59b4ba70d0b403b38bf5234b897615b6ad55d718114db6555"
+ },
+ "checks": [
+  {
+   "id": "01",
+   "desc": "driver classification is PHASE35_PROSPECTIVE_SCIENTIFIC_EXECUTION_ORCHESTRATOR",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "02",
+   "desc": "driver imports the frozen v1.0b commons + v1.0b execution by module name",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "03",
+   "desc": "driver calls frozen V0B scientific functions (film/gradcam/router/attribution)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "04",
+   "desc": "scientific execution gated on PHASE35_EXECUTE=1 (refuses without it)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "05",
+   "desc": "driver does NOT redefine the segmentation/ROI thresholds",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "06",
+   "desc": "driver does NOT redefine the Grad-CAM algorithm (alpha/ReLU/upsample/normalize)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "07",
+   "desc": "driver does NOT redefine router attribution mathematics (no sigmoid)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "08",
+   "desc": "driver does NOT redefine the claim boundary / forbidden-term list",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "09",
+   "desc": "family I1 implemented as its own function",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "10",
+   "desc": "family I2 implemented as its own function",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "11",
+   "desc": "family I3 implemented as its own function",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "12",
+   "desc": "family I4 implemented as its own function",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "13",
+   "desc": "driver never merges families into a single statistic",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "14",
+   "desc": "VAL allow-list enforced by sample_id + protected-path guard before every image open",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "15",
+   "desc": "persisted p_global read uses the frozen loader (prob key only)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "16",
+   "desc": "driver opens NO mask/ground-truth file",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "17",
+   "desc": "driver asserts zero GT / holdout / TEST reads in counters",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "18",
+   "desc": "Grad-CAM uses the frozen guarded implementation (V0E ..._v1_0f)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "19",
+   "desc": "Grad-CAM hook layers resolve to the frozen pair (bridge, decoder1)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "19b",
+   "desc": "driver passes the frozen hook pair explicitly to the guarded Grad-CAM call",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "20",
+   "desc": "target mask is the persisted p_global >= 0.50 via frozen build_target_mask",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "21",
+   "desc": "ROI mask is the persisted p_global >= 0.30 via frozen build_roi_mask",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "22",
+   "desc": "router attribution reuses V0B.router_gradient_x_input (raw delta_hat, no sigmoid)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "23",
+   "desc": "router group attribution reuses V0B.router_group_attribution (zero-denominator rule)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "24",
+   "desc": "router population verified before attribution (V0B.router_population_verify)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "25",
+   "desc": "R_psi / S_omega never constructed, loaded or forwarded",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "26",
+   "desc": "no optimizer / optimizer.step / training backward in the driver",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "27",
+   "desc": "parameter immutability audited before/after (state_dict_identity)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "28",
+   "desc": "v1.0b commons constants still expose the frozen thresholds",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "29",
+   "desc": "v1.0b execution still exposes the frozen scientific functions",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "30",
+   "desc": "all authority inputs exist and match their frozen SHA-256",
+   "pass": true,
+   "detail": "missing=[] sha_mismatch=[]"
+  }
+ ],
+ "total_checks": 31,
+ "passed": 31,
+ "failed": 0,
+ "generated_utc": "2026-10-05T14:10:19Z",
+ "all_pass": true
+}

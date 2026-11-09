@@ -1,0 +1,46 @@
+{
+ "artifact": "phase27_exact_batch_partition",
+ "phase": "27",
+ "classification": "PHASE27_CANONICAL_MULTIDOMAIN_PRESERVATION_EXECUTION",
+ "method": "RA-MedFiLM-BARR",
+ "execution_phase": true,
+ "canonical_sample_order": "(dataset asc, sample_id asc)",
+ "batch_size": 8,
+ "batch_construction": "contiguous chunks of 8 inside a single domain",
+ "last_partial_batch_rule": "trailing chunk of size n mod 8 (not padded)",
+ "batch_membership_sensitivity": "SENSITIVE_UNDER_AUTOCAST_FP16__EXACT_PARTITION_MANDATORY",
+ "per_domain": {
+  "BUSI": {
+   "n": 84,
+   "batches": 11,
+   "last_batch_size": 4
+  },
+  "ISIC": {
+   "n": 357,
+   "batches": 45,
+   "last_batch_size": 5
+  },
+  "KUB": {
+   "n": 280,
+   "batches": 35,
+   "last_batch_size": 8
+  },
+  "KVASIR": {
+   "n": 87,
+   "batches": 11,
+   "last_batch_size": 7
+  }
+ },
+ "total_batches": 102,
+ "total_sample_forwards": 808,
+ "checks": {
+  "S6::batch_size_8": true,
+  "S6::total_batches_102": true,
+  "S6::total_sample_forwards_808": true,
+  "S6::BUSI_batches": true,
+  "S6::ISIC_batches": true,
+  "S6::KUB_batches": true,
+  "S6::KVASIR_batches": true
+ },
+ "all_pass": true
+}

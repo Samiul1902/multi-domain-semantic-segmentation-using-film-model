@@ -1,0 +1,547 @@
+{
+  "artifact": "barr_m1_gate_validation",
+  "gate_id": "RA_MEDFILM_BARR_BARR_M1_REANALYSIS_GATE_V1_0C",
+  "mode": "VALIDATE",
+  "harness_sha256": "e82ecdb781a56355a9a0a1ebabd948932fee0e15e71d90770bbd0b8459e96c32",
+  "authorization_present": false,
+  "checks": {
+    "R1:authorization_artifact_present": {
+      "requirement": "R1",
+      "check": "authorization_artifact_present",
+      "pass": false,
+      "detail": "absent"
+    },
+    "R1:authorization_fields_populated": {
+      "requirement": "R1",
+      "check": "authorization_fields_populated",
+      "pass": false,
+      "detail": "NO AUTHORIZATION — execution must be refused (expected pre-approval)"
+    },
+    "R2:source_sha:phase25c_oof_labels": {
+      "requirement": "R2",
+      "check": "source_sha:phase25c_oof_labels",
+      "pass": true,
+      "detail": "fd6ca32c33a3bddb"
+    },
+    "R2:source_sha:phase25e_c8_membership": {
+      "requirement": "R2",
+      "check": "source_sha:phase25e_c8_membership",
+      "pass": true,
+      "detail": "4c411d589866434b"
+    },
+    "R2:source_sha:phase25f_oof_safety": {
+      "requirement": "R2",
+      "check": "source_sha:phase25f_oof_safety",
+      "pass": true,
+      "detail": "a9f63edd6d58a9a1"
+    },
+    "R2:source_sha:phase25b_dev_metadata": {
+      "requirement": "R2",
+      "check": "source_sha:phase25b_dev_metadata",
+      "pass": true,
+      "detail": "ee8c304350d28d90"
+    },
+    "R2:source_sha:phase28_table_02": {
+      "requirement": "R2",
+      "check": "source_sha:phase28_table_02",
+      "pass": true,
+      "detail": "171168f973d0a210"
+    },
+    "R2:K_matches_budget_floor": {
+      "requirement": "R2",
+      "check": "K_matches_budget_floor",
+      "pass": true,
+      "detail": "1239 vs 1239"
+    },
+    "R2:row_count_4957": {
+      "requirement": "R2",
+      "check": "row_count_4957",
+      "pass": true,
+      "detail": "4957"
+    },
+    "R2:membership_row_count": {
+      "requirement": "R2",
+      "check": "membership_row_count",
+      "pass": true,
+      "detail": "4957"
+    },
+    "R2:safety_row_count": {
+      "requirement": "R2",
+      "check": "safety_row_count",
+      "pass": true,
+      "detail": "4957"
+    },
+    "R2:dev_row_count": {
+      "requirement": "R2",
+      "check": "dev_row_count",
+      "pass": true,
+      "detail": "4957"
+    },
+    "R2:sample_id_unique:labels": {
+      "requirement": "R2",
+      "check": "sample_id_unique:labels",
+      "pass": true,
+      "detail": "4957"
+    },
+    "R2:sample_id_unique:membership": {
+      "requirement": "R2",
+      "check": "sample_id_unique:membership",
+      "pass": true,
+      "detail": "4957"
+    },
+    "R2:sample_id_unique:safety": {
+      "requirement": "R2",
+      "check": "sample_id_unique:safety",
+      "pass": true,
+      "detail": "4957"
+    },
+    "R2:id_sets_identical": {
+      "requirement": "R2",
+      "check": "id_sets_identical",
+      "pass": true,
+      "detail": "labels/membership/safety/dev"
+    },
+    "R2:positional_order_identity_is_false_so_join_must_be_keyed": {
+      "requirement": "R2",
+      "check": "positional_order_identity_is_false_so_join_must_be_keyed",
+      "pass": true,
+      "detail": "positional_equal=False (a positional zip would be WRONG)"
+    },
+    "R2:keyed_join_one_to_one": {
+      "requirement": "R2",
+      "check": "keyed_join_one_to_one",
+      "pass": true,
+      "detail": "4957"
+    },
+    "R2:keyed_join_no_missing_selection": {
+      "requirement": "R2",
+      "check": "keyed_join_no_missing_selection",
+      "pass": true,
+      "detail": "0"
+    },
+    "R3:authority_value_sum:A1": {
+      "requirement": "R3",
+      "check": "authority_value_sum:A1",
+      "pass": true,
+      "detail": "8.2191015160"
+    },
+    "R3:authority_value_n_routed:A1": {
+      "requirement": "R3",
+      "check": "authority_value_n_routed:A1",
+      "pass": true,
+      "detail": "4957"
+    },
+    "R3:authority_value_sum:A7": {
+      "requirement": "R3",
+      "check": "authority_value_sum:A7",
+      "pass": true,
+      "detail": "8.9785736244"
+    },
+    "R3:authority_value_n_routed:A7": {
+      "requirement": "R3",
+      "check": "authority_value_n_routed:A7",
+      "pass": true,
+      "detail": "1239"
+    },
+    "R3:authority_value_sum:A8": {
+      "requirement": "R3",
+      "check": "authority_value_sum:A8",
+      "pass": true,
+      "detail": "9.0564839294"
+    },
+    "R3:authority_value_n_routed:A8": {
+      "requirement": "R3",
+      "check": "authority_value_n_routed:A8",
+      "pass": true,
+      "detail": "1205"
+    },
+    "R3:safety_join_complete": {
+      "requirement": "R3",
+      "check": "safety_join_complete",
+      "pass": true,
+      "detail": "0"
+    },
+    "R3:positive_control_sum:A0": {
+      "requirement": "R3",
+      "check": "positive_control_sum:A0",
+      "pass": true,
+      "detail": 0.0
+    },
+    "R3:positive_control_n:A0": {
+      "requirement": "R3",
+      "check": "positive_control_n:A0",
+      "pass": true,
+      "detail": "0/0"
+    },
+    "R3:positive_control_sum:A1": {
+      "requirement": "R3",
+      "check": "positive_control_sum:A1",
+      "pass": true,
+      "detail": 8.219101516
+    },
+    "R3:positive_control_n:A1": {
+      "requirement": "R3",
+      "check": "positive_control_n:A1",
+      "pass": true,
+      "detail": "4957/4957"
+    },
+    "R3:positive_control_harm:A1": {
+      "requirement": "R3",
+      "check": "positive_control_harm:A1",
+      "pass": true,
+      "detail": "2115/2115"
+    },
+    "R3:positive_control_sum:A7": {
+      "requirement": "R3",
+      "check": "positive_control_sum:A7",
+      "pass": true,
+      "detail": 8.9785736244
+    },
+    "R3:positive_control_n:A7": {
+      "requirement": "R3",
+      "check": "positive_control_n:A7",
+      "pass": true,
+      "detail": "1239/1239"
+    },
+    "R3:positive_control_harm:A7": {
+      "requirement": "R3",
+      "check": "positive_control_harm:A7",
+      "pass": true,
+      "detail": "412/412"
+    },
+    "R3:positive_control_sum:A8": {
+      "requirement": "R3",
+      "check": "positive_control_sum:A8",
+      "pass": true,
+      "detail": 9.0564839294
+    },
+    "R3:positive_control_n:A8": {
+      "requirement": "R3",
+      "check": "positive_control_n:A8",
+      "pass": true,
+      "detail": "1205/1205"
+    },
+    "R3:positive_control_harm:A8": {
+      "requirement": "R3",
+      "check": "positive_control_harm:A8",
+      "pass": true,
+      "detail": "390/390"
+    },
+    "R3:selected_1239": {
+      "requirement": "R3",
+      "check": "selected_1239",
+      "pass": true,
+      "detail": "1239"
+    },
+    "R3:accepted_1205": {
+      "requirement": "R3",
+      "check": "accepted_1205",
+      "pass": true,
+      "detail": "1205"
+    },
+    "R3:rejected_34": {
+      "requirement": "R3",
+      "check": "rejected_34",
+      "pass": true,
+      "detail": "34"
+    },
+    "R3:A7_non_selected_delta_exactly_zero": {
+      "requirement": "R3",
+      "check": "A7_non_selected_delta_exactly_zero",
+      "pass": true,
+      "detail": ""
+    },
+    "R3:A8_non_accepted_delta_exactly_zero": {
+      "requirement": "R3",
+      "check": "A8_non_accepted_delta_exactly_zero",
+      "pass": true,
+      "detail": ""
+    },
+    "R3:A1_strict_2115": {
+      "requirement": "R3",
+      "check": "A1_strict_2115",
+      "pass": true,
+      "detail": "2115"
+    },
+    "R3:A1_tolerance_2107": {
+      "requirement": "R3",
+      "check": "A1_tolerance_2107",
+      "pass": true,
+      "detail": "2107"
+    },
+    "R3:tolerance_does_not_affect_A7_A8": {
+      "requirement": "R3",
+      "check": "tolerance_does_not_affect_A7_A8",
+      "pass": true,
+      "detail": "A7=412 A8=390"
+    },
+    "R3:A8_all_population_harm_within_bound": {
+      "requirement": "R3",
+      "check": "A8_all_population_harm_within_bound",
+      "pass": true,
+      "detail": "390 <= 1205"
+    },
+    "R4:harness_sha_computed": {
+      "requirement": "R4",
+      "check": "harness_sha_computed",
+      "pass": true,
+      "detail": "e82ecdb781a56355"
+    },
+    "R4:harness_sha_matches_declared": {
+      "requirement": "R4",
+      "check": "harness_sha_matches_declared",
+      "pass": true,
+      "detail": "no declaration supplied in validation mode; computed=e82ecdb781a56355"
+    },
+    "R5:torch_not_imported": {
+      "requirement": "R5",
+      "check": "torch_not_imported",
+      "pass": true,
+      "detail": "torch in sys.modules=False"
+    },
+    "R5:model_constructions_zero": {
+      "requirement": "R5",
+      "check": "model_constructions_zero",
+      "pass": true,
+      "detail": "re-analysis path builds no model"
+    },
+    "R5:checkpoint_deserializations_zero": {
+      "requirement": "R5",
+      "check": "checkpoint_deserializations_zero",
+      "pass": true,
+      "detail": "no .pt is opened"
+    },
+    "R5:no_torch_load_in_gate": {
+      "requirement": "R5",
+      "check": "no_torch_load_in_gate",
+      "pass": true,
+      "detail": ""
+    },
+    "R5:no_model_instantiation_in_gate": {
+      "requirement": "R5",
+      "check": "no_model_instantiation_in_gate",
+      "pass": true,
+      "detail": ""
+    },
+    "R6:bootstrap_replicates_2000": {
+      "requirement": "R6",
+      "check": "bootstrap_replicates_2000",
+      "pass": true,
+      "detail": "2000"
+    },
+    "R6:bootstrap_seed_42": {
+      "requirement": "R6",
+      "check": "bootstrap_seed_42",
+      "pass": true,
+      "detail": "42"
+    },
+    "R6:no_training_seed_required": {
+      "requirement": "R6",
+      "check": "no_training_seed_required",
+      "pass": true,
+      "detail": "re-analysis consumes frozen arrays; no training RNG"
+    },
+    "R6:three_seed_spread_not_used_as_uncertainty": {
+      "requirement": "R6",
+      "check": "three_seed_spread_not_used_as_uncertainty",
+      "pass": true,
+      "detail": "Phase-29 SD 0.000590 measures downstream retraining, not BARR-M1 uncertainty"
+    },
+    "R7:per_case_writer_implemented": {
+      "requirement": "R7",
+      "check": "per_case_writer_implemented",
+      "pass": true,
+      "detail": "write-once O_EXCL writer implemented; NOT invoked in validation mode"
+    },
+    "R7:per_case_outputs_written": {
+      "requirement": "R7",
+      "check": "per_case_outputs_written",
+      "pass": true,
+      "detail": "0 written (validation mode — 0 is correct; reserved for authorised execution)"
+    },
+    "R7:per_case_outputs_are_write_once": {
+      "requirement": "R7",
+      "check": "per_case_outputs_are_write_once",
+      "pass": true,
+      "detail": "O_CREAT|O_EXCL + fsync + size check"
+    },
+    "R7:resume_idempotent": {
+      "requirement": "R7",
+      "check": "resume_idempotent",
+      "pass": true,
+      "detail": "each arm writes a completion marker keyed by input SHAs"
+    },
+    "R8:NC1_shuffled_order_detected": {
+      "requirement": "R8",
+      "check": "NC1_shuffled_order_detected",
+      "pass": true,
+      "detail": ""
+    },
+    "R8:NC2_missing_case_detected": {
+      "requirement": "R8",
+      "check": "NC2_missing_case_detected",
+      "pass": true,
+      "detail": "199 vs 200"
+    },
+    "R8:NC3_duplicate_case_detected": {
+      "requirement": "R8",
+      "check": "NC3_duplicate_case_detected",
+      "pass": true,
+      "detail": "200 unique of 201"
+    },
+    "R8:NC4_wrong_membership_detected": {
+      "requirement": "R8",
+      "check": "NC4_wrong_membership_detected",
+      "pass": true,
+      "detail": ""
+    },
+    "R8:NC5_sign_corruption_detected": {
+      "requirement": "R8",
+      "check": "NC5_sign_corruption_detected",
+      "pass": true,
+      "detail": ""
+    },
+    "R8:NC6_zero_delta_violation_detected": {
+      "requirement": "R8",
+      "check": "NC6_zero_delta_violation_detected",
+      "pass": true,
+      "detail": ""
+    },
+    "R8:NC7_wrong_budget_K_detected": {
+      "requirement": "R8",
+      "check": "NC7_wrong_budget_K_detected",
+      "pass": true,
+      "detail": "K(0.25)=50 vs K(0.30)=60"
+    },
+    "R8:NC8_conditional_rate_misreported_as_unconditional_detected": {
+      "requirement": "R8",
+      "check": "NC8_conditional_rate_misreported_as_unconditional_detected",
+      "pass": true,
+      "detail": "0.3237 vs 0.0787 — the two denominators are distinguishable"
+    },
+    "R9:claim_class_DESCRIPTIVE_DEV": {
+      "requirement": "R9",
+      "check": "claim_class_DESCRIPTIVE_DEV",
+      "pass": true,
+      "detail": "declared"
+    },
+    "R9:in_sample_disclosed": {
+      "requirement": "R9",
+      "check": "in_sample_disclosed",
+      "pass": true,
+      "detail": "ROUTER_DEVELOPMENT is the training population of B_phi and S_omega"
+    },
+    "R9:prohibited_classes_enumerated": {
+      "requirement": "R9",
+      "check": "prohibited_classes_enumerated",
+      "pass": true,
+      "detail": "HELD_OUT / CONFIRMATORY / GENERALISATION / CLINICAL_SAFETY / SUPERIORITY"
+    },
+    "R9:policy_comparison_not_router_causal_ablation": {
+      "requirement": "R9",
+      "check": "policy_comparison_not_router_causal_ablation",
+      "pass": true,
+      "detail": "A8-A1 changes 4 fields"
+    },
+    "R10:no_protected_path_opened": {
+      "requirement": "R10",
+      "check": "no_protected_path_opened",
+      "pass": true,
+      "detail": "none"
+    },
+    "R10:access_statements_enumerated": {
+      "requirement": "R10",
+      "check": "access_statements_enumerated",
+      "pass": true,
+      "detail": "5 paths enumerated"
+    },
+    "R10:TEST_reads_zero": {
+      "requirement": "R10",
+      "check": "TEST_reads_zero",
+      "pass": true,
+      "detail": "0"
+    },
+    "R10:ROUTER_HOLDOUT_reads_zero": {
+      "requirement": "R10",
+      "check": "ROUTER_HOLDOUT_reads_zero",
+      "pass": true,
+      "detail": "0"
+    },
+    "R10:external_inference_zero": {
+      "requirement": "R10",
+      "check": "external_inference_zero",
+      "pass": true,
+      "detail": "0"
+    }
+  },
+  "n_checks": 78,
+  "n_failed": 2,
+  "failed": [
+    "R1:authorization_artifact_present",
+    "R1:authorization_fields_populated"
+  ],
+  "all_pass": false,
+  "validation_failures_excluding_R1": [],
+  "gate_ready": true,
+  "execution_refused": true,
+  "refusal_reason": "R1 absent — a future run must supply a signed authorization artifact",
+  "positive_controls": {
+    "A0": {
+      "sum": 0.0,
+      "sum_expected": 0.0,
+      "sum_match": true,
+      "n_executed": 0,
+      "n_executed_expected": 0,
+      "n_executed_match": true,
+      "n_executed_and_delta_zero": 0,
+      "n_harmful_strict": 0,
+      "n_harmful_expected": 0,
+      "n_harmful_match": true
+    },
+    "A1": {
+      "sum": 8.219101516,
+      "sum_expected": 8.219101516,
+      "sum_match": true,
+      "n_executed": 4957,
+      "n_executed_expected": 4957,
+      "n_executed_match": true,
+      "n_executed_and_delta_zero": 67,
+      "n_harmful_strict": 2115,
+      "n_harmful_expected": 2115,
+      "n_harmful_match": true
+    },
+    "A7": {
+      "sum": 8.9785736244,
+      "sum_expected": 8.9785736244,
+      "sum_match": true,
+      "n_executed": 1239,
+      "n_executed_expected": 1239,
+      "n_executed_match": true,
+      "n_executed_and_delta_zero": 3718,
+      "n_harmful_strict": 412,
+      "n_harmful_expected": 412,
+      "n_harmful_match": true
+    },
+    "A8": {
+      "sum": 9.0564839294,
+      "sum_expected": 9.0564839294,
+      "sum_match": true,
+      "n_executed": 1205,
+      "n_executed_expected": 1205,
+      "n_executed_match": true,
+      "n_executed_and_delta_zero": 3752,
+      "n_harmful_strict": 390,
+      "n_harmful_expected": 390,
+      "n_harmful_match": true
+    }
+  },
+  "model_constructions": 0,
+  "checkpoint_deserializations": 0,
+  "forwards": 0,
+  "autograd_calls": 0,
+  "per_case_outputs_written": 0,
+  "TEST_reads": 0,
+  "ROUTER_HOLDOUT_reads": 0,
+  "new_scientific_contrast_computed": false,
+  "note": "Positive controls reproduce FROZEN aggregates only. No A8-A0 / A8-A1 / A1-A0 paired contrast is computed by this gate in validation mode."
+}

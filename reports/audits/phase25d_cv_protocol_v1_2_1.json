@@ -1,0 +1,39 @@
+{
+ "phase": "25D",
+ "classification": "PRE_EXECUTION_SPECIFICATION_COMPLETENESS_REPAIR",
+ "router_training_spec_revision": "ra_medfilm_barr_router_training_v1_2_1",
+ "method": "RA-MedFiLM-BARR",
+ "architecture_revision": "ra_medfilm_barr_narrowed_v1_2",
+ "generated_utc": "2026-10-01T02:01:22+00:00",
+ "artifact": "phase25d_cv_protocol_v1_2_1",
+ "cv_name": "BARR_ROUTER_CV5_GROUP_SAFE_DOMAIN_STRATIFIED_V1",
+ "population": "ROUTER_DEVELOPMENT only, n=4957",
+ "outer_folds": 5,
+ "group_key": "canonical composite group_key from phase24_router_split_manifest.csv (PATIENT/ASSET/RISK/SINGLETON)",
+ "group_key_is_model_input": false,
+ "stratification_label": "domain only",
+ "sort_before_split": [
+  "domain",
+  "group_key",
+  "sample_id"
+ ],
+ "algorithm": "sklearn.model_selection.StratifiedGroupKFold(n_splits=5, shuffle=True, random_state=42)",
+ "inputs": {
+  "X": "dummy row indices",
+  "y": "domain",
+  "groups": "group_key"
+ },
+ "library_versions": {
+  "python": "3.11.9",
+  "numpy": "2.4.6",
+  "scikit-learn": "1.9.1"
+ },
+ "outer_target_reserved_for": "OOF prediction only; must not influence checkpoint, scheduler, or early stopping",
+ "requirements": {
+  "each_sample_exactly_once": true,
+  "router_cv_fold_domain": "{0,1,2,3,4}",
+  "no_group_straddles_outer_folds": true,
+  "all_four_domains_represented": "where mathematically possible",
+  "no_target_derived_assignment": true
+ }
+}

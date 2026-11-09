@@ -1,0 +1,65 @@
+{
+  "status": "PASS",
+  "phase": "8 - KUB Baseline Infrastructure",
+  "experiment_id": "phase8_unet_infrastructure_smoke_seed42",
+  "manifest_version": "phase4_v2",
+  "test_lock_valid": true,
+  "train_count": 1979,
+  "val_count": 283,
+  "test_accessed": false,
+  "device": "cuda",
+  "cuda_available": true,
+  "gpu": "NVIDIA GeForce RTX 3060 Ti",
+  "gpu_total_memory_bytes": 8589279232,
+  "pytorch": "2.6.0+cu124",
+  "cuda_runtime": "12.4",
+  "amp": true,
+  "parameter_count": 7762465,
+  "attempts": [
+    {
+      "batch_size": 4,
+      "status": "PASS",
+      "peak_allocated_bytes": 1630306816,
+      "peak_reserved_bytes": 1925185536
+    }
+  ],
+  "feasible_batch_size": 4,
+  "effective_batch_size": 4,
+  "peak_allocated_bytes": 1630306816,
+  "peak_reserved_bytes": 1925185536,
+  "forward_shape": [
+    4,
+    1,
+    512,
+    512
+  ],
+  "smoke_loss": 0.6807875633239746,
+  "val_smoke_metrics": {
+    "dice": 2.0136690925820488e-10,
+    "iou": 2.0136690925820488e-10,
+    "precision": 2.1900536939511994e-10,
+    "recall": 4.094193428727522e-09,
+    "loss": 0.7832081317901611
+  },
+  "checkpoint": "D:\\Softfors\\jup\\checkpoints\\phase8_unet_infrastructure_smoke_seed42\\latest.pt",
+  "checkpoint_output_exact": true,
+  "initialized_model_hash_run1": "e83295bf86eb42d865ea3844ca669f9cb610704fc1cb44f867fb6bb8993f6bbe",
+  "initialized_model_hash_run2": "e83295bf86eb42d865ea3844ca669f9cb610704fc1cb44f867fb6bb8993f6bbe",
+  "deterministic_init": true,
+  "deterministic_val": true,
+  "qualitative_asset": "D:\\Softfors\\jup\\reports\\qualitative\\kub_baseline_infrastructure\\kub_preprocessing_diagnostics.png",
+  "plot_assets": [
+    "D:\\Softfors\\jup\\reports\\figures\\kub_baseline_infrastructure\\smoke_training_plumbing.png",
+    "D:\\Softfors\\jup\\reports\\figures\\kub_baseline_infrastructure\\smoke_training_plumbing.svg",
+    "D:\\Softfors\\jup\\reports\\figures\\kub_baseline_infrastructure\\smoke_training_plumbing.pdf"
+  ],
+  "scientific_result": false,
+  "label": "SMOKE_ONLY \u2014 NOT A SCIENTIFIC RESULT",
+  "notebook_sha256": "f665883a420edce7ed760daacf7885e2a7c8681ad8e85504175dbfee411df5ef",
+  "jupyter_kernel": {
+    "kernel_name": "jup-venv",
+    "display_name": "jup .venv (Python 3.11)",
+    "expected_interpreter": "D:\\Softfors\\jup\\.venv\\Scripts\\python.exe",
+    "exact_match": true
+  }
+}

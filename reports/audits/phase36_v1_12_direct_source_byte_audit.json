@@ -1,0 +1,405 @@
+{
+  "artifact": "phase36_v1_12_direct_source_byte_audit",
+  "phase": 36,
+  "section": "§M",
+  "method": "RA-MedFiLM-BARR",
+  "revision": "ra_medfilm_barr_phase36_robustness_v1_12",
+  "type": "DIRECT_SOURCE_BYTE_AUDIT",
+  "read_only": true,
+  "torch_imported": false,
+  "protected_population_read": false,
+  "subject": "scripts/analysis/phase36_robustness_execution_v1_12.py",
+  "execution_sha256": "8ed75a9b8f4ea8c204875bf1810e17df3f9c342a434f25399154f355ee888ea4",
+  "items": [
+    {
+      "item": "v1_7_execution_history_byte_preserved",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "item": "v1_8_execution_history_byte_preserved",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "item": "v1_9_execution_history_byte_preserved",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "item": "v1_9_unit_history_byte_preserved",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "item": "v1_10_unit_history_byte_preserved",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "item": "v1_11_execution_history_byte_preserved",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "item": "v1_11_launcher_history_byte_preserved",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "item": "v1_11_unit_history_byte_preserved",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "item": "v1_11_manifest_history_byte_preserved",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "item": "v1_12_execution_subject_sha256",
+      "pass": true,
+      "evidence": "8ed75a9b8f4ea8c204875bf1810e17df3f9c342a434f25399154f355ee888ea4"
+    },
+    {
+      "item": "ast_parse_success",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "item": "line_count",
+      "pass": true,
+      "evidence": 4255
+    },
+    {
+      "item": "D26_provenance_is_derived_bool_call",
+      "pass": true,
+      "evidence": {
+        "observed_names": [
+          "_marker_exists",
+          "_marker_sole_and_trueseal",
+          "bool"
+        ]
+      }
+    },
+    {
+      "item": "D26_exclusive_create_open_x_present",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "item": "D26_write_once_flag_not_literal_true",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "item": "D26_binding_consumes_derived",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "item": "D27_exact_14_transitive_dependencies",
+      "pass": true,
+      "evidence": {
+        "observed": 14
+      }
+    },
+    {
+      "item": "D27_expected_14_paths_exact_match",
+      "pass": true,
+      "evidence": {
+        "observed": [
+          "experiments/phase21_global_medfilm_fourdomain_seed42_clean_v3/config.json",
+          "reports/tables/phase25d_final_normalization_stats.csv",
+          "reports/tables/phase25f_final_normalization_stats.csv",
+          "scripts/analysis/phase25f_execution_common.py",
+          "scripts/analysis/phase25f_post_safety_features.py",
+          "scripts/analysis/phase36_robustness_common_v1_1.py",
+          "scripts/analysis/train_phase25d_router.py",
+          "src/data/barr_roi.py",
+          "src/features/barr_pre_refinement_features.py",
+          "src/metrics/evaluation_metrics.py",
+          "src/models/barr/ra_medfilm_barr.py",
+          "src/models/barr/regional_refiner.py",
+          "src/models/film/global_medfilm.py",
+          "src/utils/device.py"
+        ]
+      }
+    },
+    {
+      "item": "D23_four_checkpoints",
+      "pass": true,
+      "evidence": {
+        "n": 4
+      }
+    },
+    {
+      "item": "D28_four_actual_hd95_call_sites",
+      "pass": true,
+      "evidence": {
+        "n": 4
+      }
+    },
+    {
+      "item": "D28_four_hd95_call_semantics_exact",
+      "pass": true,
+      "evidence": {
+        "observed": [
+          "('empty_empty', False, 'both_empty')",
+          "('empty_prediction_nonempty_gt', False, 'empty_prediction')",
+          "('nonempty_nonempty', True, '')",
+          "('nonempty_prediction_empty_gt', False, 'empty_ground_truth')"
+        ]
+      }
+    },
+    {
+      "item": "D30_science_integrity_gate_before_load_models",
+      "pass": true,
+      "evidence": {
+        "science_calls": [
+          "OrderedDict",
+          "_verify_transitive_source_integrity",
+          "SystemExit",
+          "_load_models",
+          "_bind_clean_reference",
+          "_generate_clean_g_reference",
+          "_phase27_global_reproduction_gate",
+          "SystemExit",
+          "_clean_row_index",
+          "_evaluate_clean_sample",
+          "_clean_equivalence_gate",
+          "SystemExit",
+          "run_image_perturbations",
+          "run_proposal_perturbations",
+          "SystemExit",
+          "SystemExit",
+          "summarize_image_per_sample",
+          "summarize_image_by_domain_condition",
+          "summarize_noise_seed",
+          "summarize_proposal_per_sample",
+          "summarize_proposal_by_domain_condition",
+          "summarize_route_stability",
+          "summarize_execution_rate",
+          "worst_case_per_sample",
+          "worst_case_by_domain",
+          "kub_subgroup_robustness",
+          "generate_all_figures",
+          "len",
+          "len",
+          "now"
+        ]
+      }
+    },
+    {
+      "item": "D30_science_fail_closed_terminal",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "item": "D30_smoke_also_gates_integrity",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "item": "D31_science_result_v1_12_path",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "item": "D31_science_start_v1_12_path",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "item": "D31_science_failure_v1_12_path",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "item": "D31_no_v1_8_science_write_target",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "item": "D31_no_v1_9_science_write_target",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "item": "D31_forbidden_sentinel_declared",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "item": "D32_science_start_marker_helper",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "item": "D32_science_start_marker_os_excl",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "item": "D32_science_attempt_existence_guard",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "item": "D32_science_durable_evidence_wrapper",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "item": "D32_wrapper_records_systemexit",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "item": "D32_wrapper_records_exception",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "item": "D32_wrapper_records_logical_failure",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "item": "D32_success_writer_exclusive_create",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "item": "D32_failure_writer_exclusive_create",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "item": "D32_main_gate_before_marker",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "item": "D33_launcher_present",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "item": "D33_launcher_freezes_exec_sha",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "item": "D33_launcher_freezes_manifest_sha",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "item": "D33_source_requires_launch_token",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "item": "D34_source_does_not_read_manifest_launcher_sha",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "item": "D34_source_fails_closed_on_unexpected_launcher_key",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "item": "D34_source_still_requires_token",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "item": "D35_launcher_no_env_read_for_authority",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "item": "D35_launcher_old_override_names_absent_in_code",
+      "pass": true,
+      "evidence": {
+        "present": []
+      }
+    },
+    {
+      "item": "D35_frozen_exec_const_literal_exact",
+      "pass": true,
+      "evidence": {
+        "const": "8ed75a9b8f4ea8c204875bf1810e17df3f9c342a434f25399154f355ee888ea4",
+        "observed": "8ed75a9b8f4ea8c204875bf1810e17df3f9c342a434f25399154f355ee888ea4"
+      }
+    },
+    {
+      "item": "D35_frozen_manifest_const_literal_exact",
+      "pass": true,
+      "evidence": {
+        "const": "f75b719e125ac85f901950034c7364bb77614831ce425660d41d2a9f432b1b35",
+        "observed": "f75b719e125ac85f901950034c7364bb77614831ce425660d41d2a9f432b1b35"
+      }
+    },
+    {
+      "item": "D36_exec_plus_launcher_plus_manifest_mutually_satisfiable",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "item": "D33_manifest_declares_exec_sha",
+      "pass": true,
+      "evidence": {
+        "declared": "8ed75a9b8f4ea8c204875bf1810e17df3f9c342a434f25399154f355ee888ea4",
+        "observed": "8ed75a9b8f4ea8c204875bf1810e17df3f9c342a434f25399154f355ee888ea4"
+      }
+    },
+    {
+      "item": "D33_manifest_no_launcher_sha_cycle",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "item": "D36_manifest_declares_exec_and_lacks_launcher_sha",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "item": "D35_co_edit_negative_control_passed",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "item": "unit_reads_v1_12_execution_source",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "item": "unit_report_exists_and_passes",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "item": "negative_controls_report_exists_and_passes",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "item": "preflight_report_exists_and_passes",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "item": "no_smoke_or_science_artifact_any_revision",
+      "pass": true,
+      "evidence": {
+        "present": []
+      }
+    }
+  ],
+  "passed": 61,
+  "total": 61,
+  "verdict": "PASS"
+}

@@ -1,0 +1,119 @@
+{
+ "artifact": "phase28_specification_final_check_v1_2",
+ "phase": 28,
+ "method": "RA-MedFiLM-BARR",
+ "governance_only": true,
+ "execution": "NONE",
+ "core_contrast_topology_unchanged": true,
+ "R1": "SEPARATELY_TRAINED_CONTROLLED_ABLATION_VARIANT",
+ "R2": "SEPARATELY_TRAINED_CONTROLLED_ABLATION_VARIANT",
+ "R3": "SEPARATELY_TRAINED_CONTROLLED_ABLATION_VARIANT",
+ "F1": "SEPARATELY_TRAINED_CONTROLLED_ABLATION_VARIANT",
+ "R1_input": "10 scalars + task embedding",
+ "R2_input": "202 numeric, no task embedding",
+ "R3_input": "10 scalars only",
+ "F1_input": "RGB crop only",
+ "router_evaluation": "OOF",
+ "router_budget": 0.25,
+ "router_K": 1239,
+ "router_scalar_tau": "NOT_APPLICABLE",
+ "F1_routing_membership": "canonical A8 OOF 25% membership",
+ "F1_p_global_still_allowed_for_ROI_proposal": true,
+ "F1_p_global_refiner_input": false,
+ "canonical_bundle_changed": false,
+ "ROUTER_HOLDOUT_reads": 0,
+ "TEST_reads": 0,
+ "training_runs_in_this_SPEC_REPAIR": 0,
+ "model_forwards_in_this_SPEC_REPAIR": 0,
+ "all_execution_critical_fields_complete": true,
+ "blocking_fields": [],
+ "router_protocol_recovered": true,
+ "f1_protocol_recovered": true,
+ "f1_integrated_post_safety_available": true,
+ "required_audits_all_present": true,
+ "artifact_inventory": [
+  {
+   "path": "reports/audits/phase28_v1_2_entry_gate.json",
+   "exists": true,
+   "sha256": "584f7b6f9881ad6c43f6fdb90f1c18425be44ded3933e94e1d7e49d636457d9d"
+  },
+  {
+   "path": "reports/audits/phase28_supervisor_operationalization_ruling_v1_2.json",
+   "exists": true,
+   "sha256": "bc69098abe263c50a5dd50fa3aa799d0f0da7da9bdcbc41609f75b35f4fef5e8"
+  },
+  {
+   "path": "reports/audits/phase28_router_variant_training_protocol_binding_v1_2.json",
+   "exists": true,
+   "sha256": "6e73aa983d4055aab1c069e1fbe59fe2ecf2fadcf8059db239747e27fa3aecc6"
+  },
+  {
+   "path": "reports/audits/phase28_router_variant_feature_schema_v1_2.json",
+   "exists": true,
+   "sha256": "77ccbec634a93a5945108006bfeaedc9cb6e4d51bbcf392b5540bddc56a6479d"
+  },
+  {
+   "path": "reports/audits/phase28_router_variant_budget_rule_v1_2.json",
+   "exists": true,
+   "sha256": "22cb13aee715f665f7c657a806a83cb67d99e65fdb093c753f6fca0205795257"
+  },
+  {
+   "path": "reports/audits/phase28_router_variant_oof_contract_v1_2.json",
+   "exists": true,
+   "sha256": "92d9d302ffa44325fba6409715b75d6527e82deedcc3ac8290559883b714046b"
+  },
+  {
+   "path": "reports/audits/phase28_f1_training_protocol_binding_v1_2.json",
+   "exists": true,
+   "sha256": "31004004cdb85b51d21adb9a63cca625348fbf3fa312c26420586995e8609b6e"
+  },
+  {
+   "path": "reports/audits/phase28_f1_input_contract_v1_2.json",
+   "exists": true,
+   "sha256": "130acff7a2fdaa0aed4e7f4efbfc212811890208064873a21bd58635a65c27e1"
+  },
+  {
+   "path": "reports/audits/phase28_f1_oof_contract_v1_2.json",
+   "exists": true,
+   "sha256": "d77a96079324808d90df86088c385a9a90b40c66864c0ac0b7f96b30eaaf04ff"
+  },
+  {
+   "path": "reports/audits/phase28_f1_membership_rule_v1_2.json",
+   "exists": true,
+   "sha256": "ba34f27fac55854e7438016ddcedac13403bc45861ca1245e2ee2d4d9a7e8498"
+  },
+  {
+   "path": "reports/audits/phase28_f1_post_safety_rule_v1_2.json",
+   "exists": true,
+   "sha256": "610de8a222c9a3bf7b0142ba42f6806dd3ca0265721f36775733b5e442645b8c"
+  },
+  {
+   "path": "reports/audits/phase28_ablation_training_artifact_contract_v1_2.json",
+   "exists": true,
+   "sha256": "1645d03af46be480942ce373ee690341f645a65cca1e79b17fd8536fc27fee72"
+  },
+  {
+   "path": "reports/audits/phase28_v1_2_no_execution_audit.json",
+   "exists": true,
+   "sha256": "1e11d90925d31324aabaa3ae2b2cf757870266ae21f0666c75433a5f5db297e4"
+  },
+  {
+   "path": "docs/phase28_ablation_execution_spec_v1_2.md",
+   "exists": true,
+   "sha256": "ce319cbb640516099270cfc0cb867b26db8d7e0234bf15bad88a9ae127b5faea"
+  },
+  {
+   "path": "reports/tables/phase28_ablation_executability_v1_2.csv",
+   "exists": true,
+   "sha256": "46b5bd845b22fc9febbc5a54402da94b8067fc5e34c610c46da285f94cf430af"
+  },
+  {
+   "path": "reports/tables/phase28_specification_completeness_v1_2.csv",
+   "exists": true,
+   "sha256": "32c45fa9f885ef7fbefbfe7a822efc41bc4fe8ce3046fd6a785d027daead19b5"
+  }
+ ],
+ "v1_1_preserved_unchanged": true,
+ "generated_utc": "2026-10-02T12:50:00Z",
+ "all_pass": true
+}

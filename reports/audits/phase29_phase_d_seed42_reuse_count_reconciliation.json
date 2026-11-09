@@ -1,0 +1,63 @@
+{
+ "artifact": "phase29_phase_d_seed42_reuse_count_reconciliation",
+ "phase": 29,
+ "phase_label": "PHASE_D",
+ "section": "§2",
+ "repair": "POST_EXECUTION_CLOSURE_RECONCILIATION",
+ "classification": "CASE_A",
+ "authority_statement": "seed42 was REUSED from Phase27 (never rerun in Phase D); the canonical authority for seed42 decisions/predictions/metrics is the frozen Phase27 Phase-A evidence.",
+ "PREEXECUTION_REBIND": {
+  "artifact": "reports/audits/phase29_phase_d_causal_order_independent_rebind.json",
+  "sha256": "17401e86606279a5a05cd0984bb8c45a354922c53890f2714c657616a91dd0d6",
+  "source_of_counts": "NONCANONICAL Phase29 Phase-D seed42 decisions CSV (data_cache/phase29_seed42/phase29_seed42_val808_decisions.csv), built under the superseded v1_0 cache",
+  "selected": 279,
+  "accepted": 268,
+  "rejected": 11
+ },
+ "FINAL_PHASE29_CONTINUITY": {
+  "artifact": "reports/audits/phase29_phase_d_val808_per_seed_continuity.json",
+  "selected": 279,
+  "accepted": 266,
+  "final_refined": 266
+ },
+ "CANONICAL_PHASE27_PRIMARY_EVIDENCE": {
+  "artifact": "reports/tables/phase27_val808_predictions.csv",
+  "sha256": "bb2a6237160b79cda644173e91e17878598d5d0b396b7db08089b05104dcc1c6",
+  "expected_sha256": "bb2a6237160b79cda644173e91e17878598d5d0b396b7db08089b05104dcc1c6",
+  "counts": {
+   "n_rows": 808,
+   "n_selected": 279,
+   "n_skip": 529,
+   "n_refiner_exec": 279,
+   "n_somega_exec": 279,
+   "n_accepted": 266,
+   "n_rejected": 13,
+   "n_final_refined": 266
+  },
+  "structural_semantics": {
+   "skip_rows_no_safety_score": true,
+   "accept_rows_populated_safety_score": true,
+   "reject_rows_populated_safety_score": true
+  },
+  "corroborating_artifact": "reports/audits/phase27_phaseA_inference_summary.json",
+  "corroborating_sha256": "d81525547b7d2e3515ad83e01d26a35ba0421c9084e7ef7c69415562ed2cd826",
+  "corroborated": true
+ },
+ "noncanonical_source_of_268": {
+  "artifact": "data_cache/phase29_seed42/phase29_seed42_val808_decisions.csv",
+  "sha256": "df4a0f376a7edab221d584b2a7152bf7e8f55c00ade87e39cd94c9bb13fedea6",
+  "selected": 279,
+  "accepted": 268,
+  "rejected": 11,
+  "status": "NONCANONICAL_EVIDENCE__NOT_THE_PHASE27_REUSE_COUNT"
+ },
+ "checks": {
+  "n_selected_eq_refiner_eq_somega": true,
+  "n_accepted_plus_rejected_eq_selected": true,
+  "final_refined_eq_accepted": true,
+  "structural_semantics_hold": true
+ },
+ "resolved": true,
+ "generated_utc": "2026-10-04T02:36:04+00:00",
+ "all_pass": true
+}

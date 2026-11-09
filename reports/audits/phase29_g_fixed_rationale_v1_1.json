@@ -1,0 +1,24 @@
+{
+ "artifact": "phase29_g_fixed_rationale_v1_1",
+ "phase": 29,
+ "revision": "ra_medfilm_barr_phase29_repro_v1_1",
+ "governance_only": true,
+ "execution": "NONE",
+ "generated_utc": "2026-10-02T15:05:09+00:00",
+ "G_treatment": "REUSE_CANONICAL_FIXED_ACROSS_ALL_SEEDS",
+ "rationale": [
+  "G is an upstream frozen reference established in Phase21.",
+  "The Phase29 scientific focus is reproducibility of the BARR conditional regional mechanism.",
+  "Faithfully retraining canonical G would require reproducing its original training population semantics, which predate the ROUTER_DEVELOPMENT / ROUTER_HOLDOUT split.",
+  "Phase29 must preserve the Phase30 one-shot ROUTER_HOLDOUT lock.",
+  "Holding G fixed isolates downstream stochastic variability instead of conflating it with global-backbone variability."
+ ],
+ "global_seed_variance_measured": false,
+ "BARR_stack_seed_variance_measured": true,
+ "scope_statement_not_weakness": true,
+ "G_checkpoint": {
+  "path": "checkpoints/phase21_global_medfilm_fourdomain_seed42_clean_v3/best.pt",
+  "sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7"
+ },
+ "all_pass": true
+}

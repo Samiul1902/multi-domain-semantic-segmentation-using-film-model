@@ -1,0 +1,35 @@
+{
+  "classification": "PHASE39_V1_2_PRODUCTION_AND_EQUIVALENCE_REGRESSION",
+  "phase": 39,
+  "checks": {
+    "old_v1_1_parser_reproduces_failure": true,
+    "v1_2_canonical_parser_passes": true,
+    "non_test_subset_built": true,
+    "canonical_models_load": true,
+    "production_inference_executes": true,
+    "records_count": true,
+    "domains_resolved": true,
+    "task_ids_resolved": true,
+    "dice_finite": true,
+    "metrics_computed": true,
+    "image_and_gt_counted": true,
+    "phase36_equivalence": true,
+    "all_four_branches_reachable": true,
+    "no_TEST_access_in_regression": true
+  },
+  "notes": [],
+  "branch_coverage": [
+    "EXECUTE_THEN_ACCEPT",
+    "SKIP_GLOBAL"
+  ],
+  "branch_control_reached": {
+    "FORCED_SKIP": "FORCED_SKIP",
+    "SKIP_GLOBAL": "SKIP_GLOBAL",
+    "EXECUTE_THEN_ACCEPT": "EXECUTE_THEN_ACCEPT",
+    "EXECUTE_THEN_REJECT": "EXECUTE_THEN_REJECT"
+  },
+  "n_pass": 14,
+  "n_total": 14,
+  "all_pass": true,
+  "test_reads": 0
+}

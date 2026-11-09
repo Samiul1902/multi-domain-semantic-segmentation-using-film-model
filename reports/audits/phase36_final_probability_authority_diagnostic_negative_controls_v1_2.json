@@ -1,0 +1,63 @@
+{
+ "artifact_kind": "PHASE36_FINAL_PROBABILITY_AUTHORITY_DIAGNOSTIC_NEGATIVE_CONTROLS",
+ "revision": "ra_medfilm_barr_phase36_final_probability_authority_diagnostic_v1_2",
+ "source": {
+  "path": "scripts/analysis/phase36_final_probability_authority_diagnostic_negative_controls_v1_2.py",
+  "sha256": "f4128b736e90b80e4565259eef4df45e7fda1aaa541e7f5d5a466adf361fe34a"
+ },
+ "headline_control": {
+  "statement": "inherited foreign v1.14 token => launcher refuses (rc 2) before dispatch; diagnostic main() refuses (rc 8); no marker; and any GT access fails closed",
+  "exit_code_expected_no_launch_authority": 5,
+  "exit_code_expected_foreign_token_present": 8
+ },
+ "d56_controls": [
+  "real types.ModuleType is NOT subscriptable (TypeError reproduced at runtime)",
+  "real v1.2 diagnostic contains NO _FROZEN_MOD[...] subscript site",
+  "_FROZEN_MOD._load_clean_image_tensor present as ATTRIBUTE access",
+  "_FROZEN_MOD.canonical_learned_core present as ATTRIBUTE access",
+  "launcher check_d56_module_interface() passes on the real diagnostic",
+  "MUTATION A: attribute -> subscript for _load_clean_image_tensor is detected (AST + launcher)",
+  "MUTATION B: attribute -> subscript for canonical_learned_core is detected (AST + launcher)"
+ ],
+ "v1_1_consumed_state_controls": [
+  "v1.1 START sha + FAILURE sha bound; v1.1 RESULT absent",
+  "v1.1 failure predicates match (EXCEPTION/TypeError/module-not-subscriptable/run_diagnostic)",
+  "D56 adjudication classification bound",
+  "wrong v1.1 START sha detected"
+ ],
+ "d52_controls": [
+  "FINAL_AUTHORITY_ABSENT",
+  "FINAL_AUTHORITY_SHA_MISMATCH",
+  "FINAL_AUTHORITY_SHAPE_MISMATCH",
+  "FINAL_AUTHORITY_DTYPE_MISMATCH",
+  "FINAL_AUTHORITY_SAMPLE_ORDER_MISMATCH (CSV order)",
+  "FINAL_AUTHORITY_SAMPLE_ORDER_MISMATCH (fg-pixel row binding)",
+  "VAL_MANIFEST_SHA_MISMATCH (reordered manifest)"
+ ],
+ "d53_controls": [
+  "single guarded callable => VAL_GT_READ == 1",
+  "four guarded callables => shared state == 4 + blocked_gt_calls recorded",
+  "temporary failure artifact records ACTUAL VAL_GT_READ (not hardcoded 0)"
+ ],
+ "d54_controls": [
+  "synthetic completed comparison + forced result-write failure => rc 3",
+  "failure artifact preserves final_authority_computed / comparison / classification",
+  "result_write_attempted == true, result_write_completed == false",
+  "terminal == TERMINAL_EVIDENCE_ANOMALY__RESULT_WRITE_FAILED_AFTER_COMPUTATION",
+  "no partial RESULT file deleted/created"
+ ],
+ "finite_controls": [
+  "NaN rejected",
+  "+inf rejected",
+  "-inf rejected",
+  "non-finite sample ids + element counts preserved"
+ ],
+ "run": {
+  "returncode": 0,
+  "n_checks": 143,
+  "n_pass": 143,
+  "all_pass": true
+ },
+ "scientific_output": false,
+ "generated_utc": "2026-10-08T03:48:05Z"
+}

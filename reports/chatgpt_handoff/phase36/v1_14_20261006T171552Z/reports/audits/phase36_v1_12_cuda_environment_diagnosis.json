@@ -1,0 +1,138 @@
+{
+ "artifact": "phase36_v1_12_cuda_environment_diagnosis",
+ "phase": 36,
+ "revision": "ra_medfilm_barr_phase36_robustness_v1_12",
+ "type": "CUDA_ENVIRONMENT_READINESS_DIAGNOSIS",
+ "governance": {
+  "diagnostic_only": true,
+  "torch_load": false,
+  "checkpoint_read": false,
+  "model_construction": false,
+  "forward_pass": false,
+  "val_image_read": false,
+  "gt_read": false,
+  "test_read": false,
+  "router_holdout_read": false,
+  "smoke": false,
+  "science": false,
+  "training": false,
+  "note": "Only device/environment queries. src.utils.device.get_device(require_cuda=True) is called purely as a device-resolution diagnostic."
+ },
+ "generated_utc": "2026-10-06T16:14:59Z",
+ "python_executable": "D:\\Softfors\\jup\\.venv\\Scripts\\python.exe",
+ "python_version": "3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]",
+ "python_version_info": [
+  3,
+  11,
+  9
+ ],
+ "operating_system": {
+  "platform": "Windows-10-10.0.26200-SP0",
+  "system": "Windows",
+  "release": "10",
+  "version": "10.0.26200",
+  "machine": "AMD64"
+ },
+ "virtual_env": {
+  "VIRTUAL_ENV": null,
+  "CONDA_PREFIX": null,
+  "sys_prefix": "D:\\Softfors\\jup\\.venv",
+  "sys_base_prefix": "C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python311",
+  "in_venv": true,
+  "repo_venv_expected": "D:\\Softfors\\jup\\.venv\\Scripts\\python.exe"
+ },
+ "nvidia_smi_list_rc": 0,
+ "nvidia_smi_list_stdout": "GPU 0: NVIDIA GeForce RTX 3060 Ti (UUID: GPU-e6810120-ecbb-f9ad-b96b-288ab56902d9)",
+ "nvidia_smi_list_stderr": "",
+ "nvidia_driver_available": true,
+ "nvidia_smi_summary_rc": 0,
+ "nvidia_smi_summary_stdout": "Tue Oct  6 22:15:00 2026       \n+-----------------------------------------------------------------------------------------+\n| NVIDIA-SMI 596.36                 Driver Version: 596.36         CUDA Version: 13.2     |\n+-----------------------------------------+------------------------+----------------------+\n| GPU  Name                  Driver-Model | Bus-Id          Disp.A | Volatile Uncorr. ECC |\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\n|                                         |                        |               MIG M. |\n|=========================================+========================+======================|\n|   0  NVIDIA GeForce RTX 3060 Ti   WDDM  |   00000000:0A:00.0  On |                  N/A |\n| 41%   46C    P8             15W /  265W |     936MiB /   8192MiB |     34%      Default |\n|                                         |                        |                  N/A |\n+-----------------------------------------+------------------------+----------------------+\n\n+-----------------------------------------------------------------------------------------+\n| Processes:                                                                              |\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\n|        ID   ID                                                               Usage      |\n|=========================================================================================|\n|    0   N/A  N/A            2144    C+G   ...indows\\System32\\ShellHost.exe      N/A      |\n|    0   N/A  N/A            4456    C+G   ...8bbwe\\PhoneExperienceHost.exe      N/A      |\n|    0   N/A  N/A            5292    C+G   ...2txyewy\\CrossDeviceResume.exe      N/A      |\n|    0   N/A  N/A            5676    C+G   ....0.4258.53\\msedgewebview2.exe      N/A      |\n|    0   N/A  N/A            8984    C+G   C:\\Windows\\explorer.exe               N/A      |\n|    0   N/A  N/A            9712    C+G   ...em32\\ApplicationFrameHost.exe      N/A      |\n|    0   N/A  N/A           12004    C+G   ...ms\\Microsoft VS Code\\Code.exe      N/A      |\n|    0   N/A  N/A           13284    C+G   ..._cw5n1h2txyewy\\SearchHost.exe      N/A      |\n|    0   N/A  N/A           13308    C+G   ...y\\StartMenuExperienceHost.exe      N/A      |\n|    0   N/A  N/A           13940    C+G   ...IA app\\CEF\\NVIDIA Overlay.exe      N/A      |\n|    0   N/A  N/A           13988    C+G   ....0.4258.53\\msedgewebview2.exe      N/A      |\n|    0   N/A  N/A           14432    C+G   ...yb3d8bbwe\\WindowsTerminal.exe      N/A      |\n|    0   N/A  N/A           15272    C+G   ...gram Files\\Parsec\\parsecd.exe      N/A      |\n|    0   N/A  N/A           15364    C+G   ...IA app\\CEF\\NVIDIA Overlay.exe      N/A      |\n|    0   N/A  N/A           15840    C+G   ....0.4258.53\\msedgewebview2.exe      N/A      |\n|    0   N/A  N/A           16664    C+G   ...5n1h2txyewy\\TextInputHost.exe      N/A      |\n|    0   N/A  N/A           19652    C+G   ...Chrome\\Application\\chrome.exe      N/A      |\n|    0   N/A  N/A           21432    C+G   ...xyewy\\ShellExperienceHost.exe      N/A      |\n|    0   N/A  N/A           21600    C+G   ...roadcast\\NVIDIA Broadcast.exe      N/A      |\n|    0   N/A  N/A           23240    C+G   ....0.4258.53\\msedgewebview2.exe      N/A      |\n|    0   N/A  N/A           23440    C+G   ...s\\WorkBuddyAI\\WorkBuddyAI.exe      N/A      |\n|    0   N/A  N/A           27244    C+G   ...t\\Edge\\Application\\msedge.exe      N/A      |\n|    0   N/A  N/A           28560    C+G   ...ntrolPanel\\SystemSettings.exe      N/A      |\n+-----------------------------------------------------------------------------------------+",
+ "nvidia_smi_summary_stderr": "",
+ "torch_imported": true,
+ "torch_version": "2.6.0+cu124",
+ "torch_version_cuda": "12.4",
+ "torch_cuda_is_available": true,
+ "torch_cuda_device_count": 1,
+ "torch_cuda_current_device": 0,
+ "torch_cuda_device_name_0": "NVIDIA GeForce RTX 3060 Ti",
+ "torch_backends_cudnn_version": 90100,
+ "torch_cuda_capability_0": [
+  8,
+  6
+ ],
+ "torch_is_cpu_only_build": false,
+ "torch_cuda_compiled": true,
+ "CUDA_VISIBLE_DEVICES": null,
+ "CUDA_VISIBLE_DEVICES_effect": "UNSET",
+ "env_CUDA_HOME": null,
+ "env_CUDA_PATH": null,
+ "env_CUDA_ROOT": null,
+ "env_TORCH_CUDA_ARCH_LIST": null,
+ "env_NVIDIA_VISIBLE_DEVICES": null,
+ "get_device_require_cuda_success": true,
+ "get_device_resolved": "cuda:0",
+ "get_device_error": null,
+ "src_device_report": {
+  "cuda_available": true,
+  "cuda_device_count": 1,
+  "cuda_device": "NVIDIA GeForce RTX 3060 Ti",
+  "pytorch_version": "2.6.0+cu124",
+  "cuda_runtime_version": "12.4",
+  "cudnn_version": 90100,
+  "cuda_capability": [
+   8,
+   6
+  ],
+  "canonical_requires_cuda": true
+ },
+ "failed_smoke_grounding": {
+  "smoke_failure_artifact": "reports/audits/phase36_robustness_smoke_failure_v1_12.json",
+  "smoke_failure_sha256": "40f0a3abbbb5857f5b096e12cd6c7976205a1bcfbb3f469589a472e526885669",
+  "exception_type": "CudaUnavailableError",
+  "failing_stage": "run_smoke_exception (pre-model CUDA device resolution)"
+ },
+ "root_cause_candidates": [
+  "B_CPU_ONLY_PYTORCH_BUILD (in the interpreter used for the smoke)",
+  "E_WRONG_PYTHON_OR_VENV_INTERPRETER"
+ ],
+ "root_cause_primary": "B_CPU_ONLY_PYTORCH_BUILD",
+ "interpreter_census": [
+  {
+   "label": "PROJECT_VENV",
+   "exe": "D:/Softfors/jup/.venv/Scripts/python.exe",
+   "exists": true,
+   "torch_version": "2.6.0+cu124",
+   "torch_version_cuda": "12.4",
+   "cuda_is_available": true
+  },
+  {
+   "label": "SYSTEM_BASE_PYTHON_311",
+   "exe": "C:/Users/user/AppData/Local/Programs/Python/Python311/python.exe",
+   "exists": true,
+   "torch_version": "2.10.0+cpu",
+   "torch_version_cuda": null,
+   "cuda_is_available": false
+  },
+  {
+   "label": "MANAGED_PYTHON_313",
+   "exe": "C:/Users/user/.workbuddy-ai/binaries/python/versions/3.13.12/python.exe",
+   "exists": true,
+   "error": "import torch failed",
+   "stderr": "ModuleNotFoundError: No module named 'torch'"
+  }
+ ],
+ "reproduction": {
+  "method": "Ran src.utils.device.get_device(require_cuda=True) under each interpreter",
+  "project_venv_result": "SUCCESS (CUDA available; resolves cuda:0)",
+  "system_base_python_311_result": "CudaUnavailableError REPRODUCED verbatim (torch 2.10.0+cpu, torch.version.cuda=None)",
+  "conclusion": "The failed smoke used an interpreter whose torch build has NO CUDA (the bare system Python 3.11), not the project venv."
+ },
+ "pyvenv_cfg": {
+  "include_system_site_packages": false,
+  "home": "C:/Users/user/AppData/Local/Programs/Python/Python311",
+  "note": "The project venv is created from the system Python 3.11 but isolates site-packages, so the venv has torch 2.6.0+cu124 while the system base has torch 2.10.0+cpu."
+ },
+ "root_cause_explanation": "The canonical smoke must run under the project venv D:/Softfors/jup/.venv/Scripts/python.exe (torch 2.6.0+cu124). At smoke time the process resolved torch 2.10.0+cpu (CPU-only build, torch.version.cuda=None), so torch.cuda.is_available() returned False and src.utils.device.get_device(require_cuda=True) raised CudaUnavailableError before any canonical model construction. This is an INTERPRETER/BUILD selection defect (B), triggered by invoking the bare system Python 3.11 instead of the venv (E). The GPU, driver, and the venv itself are healthy.",
+ "gpu_environment_healthy": true,
+ "venv_torch_healthy": true
+}

@@ -1,0 +1,7742 @@
+{
+  "audit": "phase06_kub_v3_characterization_audit",
+  "phase": "06 \u2014 KUB Dataset Characterization (Part 1A)",
+  "model": "Gemini 3.8 Flash Medium",
+  "generated_at": "2026-09-20T03:09:35.810503+00:00",
+  "manifest_version": "phase4_v3",
+  "historical_manifest_version": "phase4_v2",
+  "manifest_hashes": {
+    "all_paired": "eb3062fa0e84f9952f994df79ed4d767417a912e18dce86560f6e2edcdd02ded",
+    "train": "28702fc3a5ff8b950db372f03232d335e3a30b1fc2f21db7cd8c066055826ed6",
+    "val": "082c80b2bda63fd73f371f109c34643adf01edaead921643fb2e44993ba53315",
+    "test": "9361eba61c91c034a9aa4988a4df229bba591a5cbd553c98689ac7915da29727",
+    "quarantined": "a4ec1a8c46692f3c2d55d03c73569ce7b44aeeef734abd41e31bf5bf3e60059c"
+  },
+  "test_sha": "9361eba61c91c034a9aa4988a4df229bba591a5cbd553c98689ac7915da29727",
+  "kub_counts": {
+    "TRAIN": 1978,
+    "VAL": 280,
+    "TEST": 558,
+    "QUARANTINED": 4
+  },
+  "patient_counts": {
+    "TRAIN": 318,
+    "VAL": 111,
+    "train_val_overlap": 0
+  },
+  "integrity_gates": {
+    "train_count": 1978,
+    "val_count": 280,
+    "train_count_ok": true,
+    "val_count_ok": true,
+    "train_ids_unique": true,
+    "val_ids_unique": true,
+    "train_val_sample_overlap": 0,
+    "train_val_patient_overlap": 0,
+    "train_patients": 318,
+    "val_patients": 111,
+    "quarantined_active_overlap": 0,
+    "train_duplicate_rows": 0,
+    "val_duplicate_rows": 0,
+    "test_count": 558,
+    "test_count_ok": true,
+    "test_metadata_only": true,
+    "quarantined_count": 4,
+    "quarantined_count_ok": true,
+    "missing_images": 0,
+    "missing_masks": 0,
+    "missing_image_ids": [],
+    "missing_mask_ids": [],
+    "unreadable_pairs": 0,
+    "dimension_mismatch": 0,
+    "invalid_masks": 0,
+    "empty_masks": 0,
+    "empty_mask_ids": [],
+    "invalid_mask_ids": [],
+    "pairs_checked": 2258,
+    "mask_label_vocabulary": {
+      "0|1": 465,
+      "0|1|2": 3,
+      "0|2": 304,
+      "0|3": 101,
+      "0|255": 1385
+    },
+    "mask_label_union": [
+      0,
+      1,
+      2,
+      3,
+      255
+    ],
+    "mask_foreground_semantics": "binary: foreground = (mask > 0)",
+    "all_gates_pass": true
+  },
+  "images_read_from_train": 1978,
+  "images_read_from_val": 280,
+  "images_read_total": 2258,
+  "test_content_reads": 0,
+  "test_visualizations": 0,
+  "test_metrics": 0,
+  "test_metadata_only": true,
+  "sample_selection_sha": "7324b7cc91f4c39b76bfd80e78d14154d0e91ec165f727d4c43dfb82fac1d485",
+  "table_hashes": {
+    "phase06_kub_v3_population_summary.csv": "afcca4cdc621bcb114c00844b22a9479be529889ef7e73c4a6e55129b4b44147",
+    "phase06_kub_v3_patient_summary.csv": "93dc43eb8778d4a83602af07c041e4a419b798fe0c13f9e608cdb3029f3536ce",
+    "phase06_kub_v3_image_geometry_summary.csv": "d579a76ae90fc1ed02a346c8e932bced44ef2daaa71992e41a8120d20b8e4f63",
+    "phase06_kub_v3_mask_geometry_summary.csv": "cb09860332da254960c13f6ada453a4537caf86d4691bd9fc84a53a59cad35d2",
+    "phase06_kub_v3_category_summary.csv": "512c18282dbbcf9802074c76ddcf8e7b468c0233a1dc36e9060c90839673a7f5",
+    "phase06_kub_v3_acquisition_summary.csv": "19a95de00785fb7325d9fcebaccd183a36a3bd9a8f8ff2930c7788f0f0416c63",
+    "phase06_kub_v3_geometry_quantiles.csv": "3f5b3fb6c9b87cd78675cf26b1e3a88819d9cf93dfa440d4e340045727f6b6ca",
+    "phase06_kub_v3_quarantined_metadata.csv": "cc97693f8b305116d682084deeb69a97eb98ce508c8c5e10ad64a686af504cb5",
+    "phase06_kub_v3_sample_selection.csv": "f187e17702f857be4ac70c118e7ff35e1217c30afed74f8a24283855c91d514b",
+    "phase06_kub_v3_mask_label_vocabulary.csv": "07480745ecea3f37c5ece3259a0aeb2dd4491361a4ccbb2fcde5363f92012e51",
+    "phase06_kub_v3_acquisition_regime_geometry.csv": "523a82bf4636e678ec143d6f8200a552b71de469a13b9654f2767f1dc795e295",
+    "phase06_kub_v3_stratified_geometry_summary.csv": "bffb72858cdb042f1c4f5b0b9b0987c49a84434df0ad99cc9427ea14b00957fa"
+  },
+  "table_count": 12,
+  "mask_foreground_rule": "mask > 0",
+  "mask_label_vocabulary_table": "reports/tables/phase06_kub_v3_mask_label_vocabulary.csv",
+  "mask_label_vocabulary_sha": "07480745ecea3f37c5ece3259a0aeb2dd4491361a4ccbb2fcde5363f92012e51",
+  "acquisition_regime_table": "reports/tables/phase06_kub_v3_acquisition_regime_geometry.csv",
+  "acquisition_regime_sha": "523a82bf4636e678ec143d6f8200a552b71de469a13b9654f2767f1dc795e295",
+  "stratified_geometry_table": "reports/tables/phase06_kub_v3_stratified_geometry_summary.csv",
+  "stratified_geometry_sha": "bffb72858cdb042f1c4f5b0b9b0987c49a84434df0ad99cc9427ea14b00957fa",
+  "max_category_pp_difference": 19.37599306658963,
+  "max_acquisition_pp_difference": 2.1424960277336424,
+  "multi_component_train_pct": 10.717896865520729,
+  "multi_component_val_pct": 17.5,
+  "category_pp_table": [
+    {
+      "level": "Bladder_Stone",
+      "train_cases": 634,
+      "val_cases": 144,
+      "train_pct": 32.0525783619818,
+      "val_pct": 51.42857142857143,
+      "abs_diff_pp": 19.37599306658963,
+      "signed_diff_pp": 19.37599306658963
+    },
+    {
+      "level": "Kidney_Stone",
+      "train_cases": 1133,
+      "val_cases": 112,
+      "train_pct": 57.28008088978766,
+      "val_pct": 40.0,
+      "abs_diff_pp": 17.280080889787662,
+      "signed_diff_pp": -17.280080889787662
+    },
+    {
+      "level": "Ureteric_Stone",
+      "train_cases": 211,
+      "val_cases": 24,
+      "train_pct": 10.667340748230536,
+      "val_pct": 8.571428571428571,
+      "abs_diff_pp": 2.0959121768019653,
+      "signed_diff_pp": -2.0959121768019653
+    }
+  ],
+  "acquisition_pp_table": [
+    {
+      "level": "FULL_FIELD",
+      "train_cases": 770,
+      "val_cases": 103,
+      "train_pct": 38.92821031344793,
+      "val_pct": 36.785714285714285,
+      "abs_diff_pp": 2.1424960277336424,
+      "signed_diff_pp": -2.1424960277336424
+    },
+    {
+      "level": "ROI",
+      "train_cases": 1208,
+      "val_cases": 177,
+      "train_pct": 61.07178968655207,
+      "val_pct": 63.214285714285715,
+      "abs_diff_pp": 2.1424960277336424,
+      "signed_diff_pp": 2.1424960277336424
+    }
+  ],
+  "figures": [
+    "phase06_kub_v3_acquisition_distribution.png",
+    "phase06_kub_v3_bbox_size_distribution.png",
+    "phase06_kub_v3_category_distribution.png",
+    "phase06_kub_v3_category_normalized.png",
+    "phase06_kub_v3_component_count_distribution.png",
+    "phase06_kub_v3_fg_fraction_distribution.png",
+    "phase06_kub_v3_largest_component_distribution.png",
+    "phase06_kub_v3_medical_gallery_page01.png",
+    "phase06_kub_v3_medical_gallery_page02.png",
+    "phase06_kub_v3_medical_gallery_page03.png",
+    "phase06_kub_v3_medical_gallery_page04.png",
+    "phase06_kub_v3_native_resolution.png",
+    "phase06_kub_v3_population_composition.png",
+    "phase06_kub_v3_stratified_acquisition_fg.png",
+    "phase06_kub_v3_stratified_category_fg.png",
+    "phase06_kub_v3_train_val_geometry_comparison.png"
+  ],
+  "figure_count": 16,
+  "tiny_threshold_defined": false,
+  "phase07_started": false,
+  "phase07_governance_rule": "Phase 07 must NOT choose a tiny-object threshold by optimizing against VAL. The prospective tiny-object definition must be frozen using TRAIN-only empirical geometry and/or predeclared domain/geometric rationale before examining VAL prevalence/results under that threshold. VAL may then be used for evaluation/characterization after freeze.",
+  "notebook_execution_state": "RUN_ALL_CLEAN",
+  "summary": {
+    "ff": {
+      "P01": 6.517763033352464e-05,
+      "P05": 0.00011602448828426408,
+      "P10": 0.0001858342672593178,
+      "P25": 0.0006589159553433641,
+      "P50": 0.20805095988022818,
+      "P75": 0.3213391897619715,
+      "P90": 0.41030506700190233,
+      "P95": 0.4576822781310726,
+      "P99": 0.542583044366869
+    },
+    "lc": {
+      "P01": 378.14,
+      "P05": 540.0,
+      "P10": 691.1,
+      "P25": 1115.5,
+      "P50": 2317.0,
+      "P75": 5666.5,
+      "P90": 16630.1,
+      "P95": 27611.650000000027,
+      "P99": 81011.79999999904
+    },
+    "bb": {
+      "P01": 0.0001023265697337963,
+      "P05": 0.00017399540653935186,
+      "P10": 0.0003043469087577161,
+      "P25": 0.0017677589699074073,
+      "P50": 0.3095485853030078,
+      "P75": 0.49978723912997497,
+      "P90": 0.6560226858560088,
+      "P95": 0.7478780655413821,
+      "P99": 0.8516984443861392
+    },
+    "resolutions": [
+      {
+        "native_resolution": "2304x2880",
+        "TRAIN": 590,
+        "VAL": 48,
+        "total": 638
+      },
+      {
+        "native_resolution": "3072x3072",
+        "TRAIN": 82,
+        "VAL": 31,
+        "total": 113
+      },
+      {
+        "native_resolution": "3024x3528",
+        "TRAIN": 47,
+        "VAL": 4,
+        "total": 51
+      },
+      {
+        "native_resolution": "2536x3440",
+        "TRAIN": 26,
+        "VAL": 11,
+        "total": 37
+      },
+      {
+        "native_resolution": "69x67",
+        "TRAIN": 4,
+        "VAL": 0,
+        "total": 4
+      },
+      {
+        "native_resolution": "71x77",
+        "TRAIN": 4,
+        "VAL": 0,
+        "total": 4
+      },
+      {
+        "native_resolution": "63x65",
+        "TRAIN": 3,
+        "VAL": 1,
+        "total": 4
+      },
+      {
+        "native_resolution": "64x64",
+        "TRAIN": 3,
+        "VAL": 1,
+        "total": 4
+      },
+      {
+        "native_resolution": "53x55",
+        "TRAIN": 4,
+        "VAL": 0,
+        "total": 4
+      },
+      {
+        "native_resolution": "69x68",
+        "TRAIN": 2,
+        "VAL": 1,
+        "total": 3
+      },
+      {
+        "native_resolution": "68x71",
+        "TRAIN": 3,
+        "VAL": 0,
+        "total": 3
+      },
+      {
+        "native_resolution": "65x65",
+        "TRAIN": 2,
+        "VAL": 1,
+        "total": 3
+      },
+      {
+        "native_resolution": "59x56",
+        "TRAIN": 3,
+        "VAL": 0,
+        "total": 3
+      },
+      {
+        "native_resolution": "70x71",
+        "TRAIN": 3,
+        "VAL": 0,
+        "total": 3
+      },
+      {
+        "native_resolution": "70x70",
+        "TRAIN": 2,
+        "VAL": 1,
+        "total": 3
+      },
+      {
+        "native_resolution": "71x69",
+        "TRAIN": 2,
+        "VAL": 1,
+        "total": 3
+      },
+      {
+        "native_resolution": "72x72",
+        "TRAIN": 2,
+        "VAL": 1,
+        "total": 3
+      },
+      {
+        "native_resolution": "72x90",
+        "TRAIN": 3,
+        "VAL": 0,
+        "total": 3
+      },
+      {
+        "native_resolution": "73x75",
+        "TRAIN": 3,
+        "VAL": 0,
+        "total": 3
+      },
+      {
+        "native_resolution": "69x69",
+        "TRAIN": 3,
+        "VAL": 0,
+        "total": 3
+      },
+      {
+        "native_resolution": "67x64",
+        "TRAIN": 3,
+        "VAL": 0,
+        "total": 3
+      },
+      {
+        "native_resolution": "59x57",
+        "TRAIN": 3,
+        "VAL": 0,
+        "total": 3
+      },
+      {
+        "native_resolution": "56x57",
+        "TRAIN": 2,
+        "VAL": 1,
+        "total": 3
+      },
+      {
+        "native_resolution": "54x62",
+        "TRAIN": 3,
+        "VAL": 0,
+        "total": 3
+      },
+      {
+        "native_resolution": "56x61",
+        "TRAIN": 2,
+        "VAL": 1,
+        "total": 3
+      },
+      {
+        "native_resolution": "60x61",
+        "TRAIN": 2,
+        "VAL": 1,
+        "total": 3
+      },
+      {
+        "native_resolution": "67x71",
+        "TRAIN": 3,
+        "VAL": 0,
+        "total": 3
+      },
+      {
+        "native_resolution": "65x69",
+        "TRAIN": 3,
+        "VAL": 0,
+        "total": 3
+      },
+      {
+        "native_resolution": "64x62",
+        "TRAIN": 1,
+        "VAL": 2,
+        "total": 3
+      },
+      {
+        "native_resolution": "65x76",
+        "TRAIN": 2,
+        "VAL": 1,
+        "total": 3
+      },
+      {
+        "native_resolution": "53x60",
+        "TRAIN": 2,
+        "VAL": 1,
+        "total": 3
+      },
+      {
+        "native_resolution": "57x58",
+        "TRAIN": 3,
+        "VAL": 0,
+        "total": 3
+      },
+      {
+        "native_resolution": "72x75",
+        "TRAIN": 2,
+        "VAL": 1,
+        "total": 3
+      },
+      {
+        "native_resolution": "71x67",
+        "TRAIN": 3,
+        "VAL": 0,
+        "total": 3
+      },
+      {
+        "native_resolution": "80x75",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "80x68",
+        "TRAIN": 1,
+        "VAL": 1,
+        "total": 2
+      },
+      {
+        "native_resolution": "78x82",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "80x78",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "80x82",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "82x70",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "83x94",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "84x88",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "84x86",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "84x76",
+        "TRAIN": 1,
+        "VAL": 1,
+        "total": 2
+      },
+      {
+        "native_resolution": "79x93",
+        "TRAIN": 1,
+        "VAL": 1,
+        "total": 2
+      },
+      {
+        "native_resolution": "80x91",
+        "TRAIN": 1,
+        "VAL": 1,
+        "total": 2
+      },
+      {
+        "native_resolution": "87x105",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "86x99",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "86x85",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "88x107",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "87x79",
+        "TRAIN": 1,
+        "VAL": 1,
+        "total": 2
+      },
+      {
+        "native_resolution": "89x104",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "88x99",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "91x115",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "91x106",
+        "TRAIN": 1,
+        "VAL": 1,
+        "total": 2
+      },
+      {
+        "native_resolution": "94x89",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "103x98",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "103x117",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "103x102",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "98x91",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "84x71",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "87x71",
+        "TRAIN": 1,
+        "VAL": 1,
+        "total": 2
+      },
+      {
+        "native_resolution": "78x86",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "78x83",
+        "TRAIN": 1,
+        "VAL": 1,
+        "total": 2
+      },
+      {
+        "native_resolution": "70x66",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "71x68",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "73x73",
+        "TRAIN": 1,
+        "VAL": 1,
+        "total": 2
+      },
+      {
+        "native_resolution": "109x100",
+        "TRAIN": 1,
+        "VAL": 1,
+        "total": 2
+      },
+      {
+        "native_resolution": "72x65",
+        "TRAIN": 1,
+        "VAL": 1,
+        "total": 2
+      },
+      {
+        "native_resolution": "72x70",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "73x84",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "75x72",
+        "TRAIN": 1,
+        "VAL": 1,
+        "total": 2
+      },
+      {
+        "native_resolution": "75x79",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "75x78",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "69x77",
+        "TRAIN": 1,
+        "VAL": 1,
+        "total": 2
+      },
+      {
+        "native_resolution": "69x70",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "69x74",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "69x71",
+        "TRAIN": 1,
+        "VAL": 1,
+        "total": 2
+      },
+      {
+        "native_resolution": "68x68",
+        "TRAIN": 1,
+        "VAL": 1,
+        "total": 2
+      },
+      {
+        "native_resolution": "68x67",
+        "TRAIN": 1,
+        "VAL": 1,
+        "total": 2
+      },
+      {
+        "native_resolution": "71x66",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "72x82",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "73x78",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "74x95",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "74x74",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "74x73",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "76x78",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "77x62",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "77x79",
+        "TRAIN": 1,
+        "VAL": 1,
+        "total": 2
+      },
+      {
+        "native_resolution": "77x69",
+        "TRAIN": 1,
+        "VAL": 1,
+        "total": 2
+      },
+      {
+        "native_resolution": "107x124",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "76x72",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "76x76",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "106x107",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "64x63",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "64x60",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "65x68",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "65x74",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "67x72",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "66x61",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "66x68",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "65x63",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "67x70",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "69x89",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "70x58",
+        "TRAIN": 1,
+        "VAL": 1,
+        "total": 2
+      },
+      {
+        "native_resolution": "68x85",
+        "TRAIN": 1,
+        "VAL": 1,
+        "total": 2
+      },
+      {
+        "native_resolution": "67x77",
+        "TRAIN": 1,
+        "VAL": 1,
+        "total": 2
+      },
+      {
+        "native_resolution": "67x78",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "65x56",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "64x68",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "61x65",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "62x71",
+        "TRAIN": 1,
+        "VAL": 1,
+        "total": 2
+      },
+      {
+        "native_resolution": "62x70",
+        "TRAIN": 1,
+        "VAL": 1,
+        "total": 2
+      },
+      {
+        "native_resolution": "62x65",
+        "TRAIN": 1,
+        "VAL": 1,
+        "total": 2
+      },
+      {
+        "native_resolution": "60x69",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "60x62",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "59x54",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "64x70",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "63x68",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "63x69",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "64x58",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "62x62",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "63x58",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "63x63",
+        "TRAIN": 1,
+        "VAL": 1,
+        "total": 2
+      },
+      {
+        "native_resolution": "63x66",
+        "TRAIN": 1,
+        "VAL": 1,
+        "total": 2
+      },
+      {
+        "native_resolution": "63x67",
+        "TRAIN": 1,
+        "VAL": 1,
+        "total": 2
+      },
+      {
+        "native_resolution": "57x53",
+        "TRAIN": 1,
+        "VAL": 1,
+        "total": 2
+      },
+      {
+        "native_resolution": "58x67",
+        "TRAIN": 1,
+        "VAL": 1,
+        "total": 2
+      },
+      {
+        "native_resolution": "58x56",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "58x55",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "59x67",
+        "TRAIN": 1,
+        "VAL": 1,
+        "total": 2
+      },
+      {
+        "native_resolution": "59x79",
+        "TRAIN": 1,
+        "VAL": 1,
+        "total": 2
+      },
+      {
+        "native_resolution": "59x66",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "59x62",
+        "TRAIN": 1,
+        "VAL": 1,
+        "total": 2
+      },
+      {
+        "native_resolution": "60x55",
+        "TRAIN": 1,
+        "VAL": 1,
+        "total": 2
+      },
+      {
+        "native_resolution": "56x59",
+        "TRAIN": 1,
+        "VAL": 1,
+        "total": 2
+      },
+      {
+        "native_resolution": "55x60",
+        "TRAIN": 1,
+        "VAL": 1,
+        "total": 2
+      },
+      {
+        "native_resolution": "54x56",
+        "TRAIN": 1,
+        "VAL": 1,
+        "total": 2
+      },
+      {
+        "native_resolution": "56x60",
+        "TRAIN": 1,
+        "VAL": 1,
+        "total": 2
+      },
+      {
+        "native_resolution": "117x107",
+        "TRAIN": 1,
+        "VAL": 1,
+        "total": 2
+      },
+      {
+        "native_resolution": "57x59",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "57x61",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "53x63",
+        "TRAIN": 1,
+        "VAL": 1,
+        "total": 2
+      },
+      {
+        "native_resolution": "53x57",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "53x56",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "55x58",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "51x53",
+        "TRAIN": 1,
+        "VAL": 1,
+        "total": 2
+      },
+      {
+        "native_resolution": "54x52",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "54x49",
+        "TRAIN": 1,
+        "VAL": 1,
+        "total": 2
+      },
+      {
+        "native_resolution": "53x65",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "48x51",
+        "TRAIN": 1,
+        "VAL": 1,
+        "total": 2
+      },
+      {
+        "native_resolution": "2540x3440",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "2324x3408",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "1476x3252",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "126x157",
+        "TRAIN": 2,
+        "VAL": 0,
+        "total": 2
+      },
+      {
+        "native_resolution": "127x139",
+        "TRAIN": 1,
+        "VAL": 1,
+        "total": 2
+      },
+      {
+        "native_resolution": "101x134",
+        "TRAIN": 1,
+        "VAL": 1,
+        "total": 2
+      },
+      {
+        "native_resolution": "100x108",
+        "TRAIN": 0,
+        "VAL": 2,
+        "total": 2
+      },
+      {
+        "native_resolution": "100x114",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "99x87",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "98x112",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "98x105",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "94x79",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "102x93",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "102x94",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "102x96",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "103x100",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "103x103",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "103x112",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "103x114",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "103x121",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "103x124",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "103x125",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "103x97",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "96x86",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "96x87",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "94x80",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "94x87",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "128x91",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "128x99",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "129x151",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "129x167",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "122x126",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "122x127",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "100x141",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "100x149",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "100x84",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "100x92",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "100x95",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "101x120",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "101x146",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "101x67",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "101x87",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "102x118",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "131x155",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "132x133",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "132x155",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "132x193",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "133x106",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "133x178",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "126x117",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "126x155",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "126x94",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "127x105",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "127x116",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "127x125",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "127x140",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "128x110",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "128x193",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "128x205",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "136x102",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "136x121",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "136x123",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "136x141",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "136x152",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "136x175",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "129x206",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "129x207",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "130x101",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "130x117",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "130x135",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "130x137",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "131x125",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "131x136",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "131x144",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "131x150",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "140x275",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "141x128",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "141x145",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "141x146",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "141x153",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "141x219",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "134x120",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "134x133",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "134x176",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "134x186",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "134x194",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "134x209",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "135x130",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "135x135",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "135x151",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "135x173",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "145x120",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "145x146",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "146x112",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "146x131",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "146x134",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "146x153",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "136x207",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "137x110",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "137x113",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "137x116",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "137x175",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "138x147",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "139x137",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "139x145",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "140x121",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "140x220",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "151x121",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "151x156",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "152x221",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "153x115",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "153x133",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "153x169",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "141x222",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "141x225",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "142x113",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "142x132",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "142x165",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "142x169",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "142x185",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "143x143",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "144x131",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "144x192",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "156x299",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "157x113",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "157x139",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "157x190",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "157x217",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "158x138",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "158x201",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "146x163",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "146x167",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "146x179",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "146x199",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "148x121",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "148x97",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "149x128",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "149x152",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "150x121",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "165x175",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "165x188",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "165x267",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "166x227",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "167x110",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "167x156",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "169x182",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "153x177",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "153x180",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "153x242",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "1540x3264",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "154x110",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "154x168",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "155x155",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "155x237",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "156x141",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "174x289",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "175x143",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "175x145",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "176x147",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "176x229",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "176x274",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "176x284",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "158x207",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "159x128",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "159x170",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "160x116",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "161x140",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "161x255",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "161x287",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "162x104",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "162x176",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "184x181",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "184x219",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "185x187",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "185x202",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "185x214",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "185x220",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "186x191",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "170x243",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "170x269",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "171x239",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "172x270",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "173x166",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "173x173",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "174x226",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "174x231",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "174x273",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "190x183",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "191x216",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "191x280",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "192x135",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "192x175",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "193x155",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "193x216",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "177x241",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "177x279",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "178x232",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "179x191",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "180x185",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "180x186",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "180x251",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "180x267",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "182x224",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "201x141",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "201x156",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "202x190",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "202x244",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "2036x3360",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "203x129",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "205x185",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "186x212",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "186x214",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "186x221",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "187x130",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "187x232",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "188x139",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "188x158",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "190x135",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "190x140",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "211x265",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "212x477",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "213x199",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "214x303",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "215x239",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "215x337",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "2164x3384",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "194x186",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "195x243",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "1960x3332",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "196x195",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "198x199",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "199x149",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "199x242",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "200x230",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "200x241",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "222x233",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "2232x3392",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "223x197",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "223x212",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "223x271",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "2248x3392",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "225x199",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "205x196",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "2068x3280",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "206x317",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "2076x3368",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "207x186",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "207x443",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "208x116",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "210x201",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "211x187",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "2288x3288",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "229x234",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "229x263",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "231x210",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "2332x3220",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "234x267",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "234x362",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "2168x3384",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "216x280",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "2176x3272",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "2188x3184",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "218x207",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "218x245",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "218x247",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "2212x3392",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "221x194",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "2392x3416",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "239x392",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "240x189",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "240x355",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "241x313",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "2428x3344",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "242x419",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "243x220",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "2448x3364",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "225x204",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "225x267",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "226x182",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "226x212",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "226x223",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "227x216",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "227x247",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "248x149",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "248x297",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "249x187",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "249x229",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "2504x3440",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "251x322",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "2528x3440",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "254x272",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "2556x3448",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "2360x3416",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "2364x3416",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "2376x3316",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "237x199",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "2384x3416",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "238x251",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "238x270",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "2636x3456",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "265x412",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "266x232",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "269x263",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "274x166",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "274x245",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "274x341",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "279x170",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "279x227",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "280x247",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "280x561",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "246x251",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "247x192",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "247x267",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "247x297",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "2484x2520",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "293x360",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "294x402",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "296x297",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "300x348",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "302x511",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "302x613",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "306x305",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "3096x3097",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "310x319",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "318x403",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "320x450",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "255x179",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "256x386",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "2576x3448",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "258x295",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "260x280",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "333x467",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "334x479",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "338x586",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "340x517",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "348x343",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "349x309",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "351x489",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "370x269",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "371x385",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "385x416",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "394x486",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "397x509",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "401x236",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "285x280",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "293x226",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "293x275",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "423x380",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "426x649",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "435x611",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "441x398",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "442x668",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "451x386",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "45x51",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "47x51",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "47x62",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "48x56",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "48x60",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "490x329",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "495x345",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "329x317",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "329x427",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "332x292",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "119x124",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "51x45",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "51x50",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "51x56",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "51x57",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "51x60",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "51x61",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "51x70",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "52x55",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "52x58",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "52x60",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "52x62",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "52x72",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "53x101",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "410x361",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "41x61",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "49x58",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "122x80",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "123x101",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "123x115",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "123x170",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "124x107",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "124x110",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "124x115",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "124x128",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "125x109",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "125x143",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "125x161",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "125x185",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "125x95",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "126x113",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "119x110",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "54x64",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "54x68",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "55x50",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "55x53",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "55x55",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "55x56",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "55x57",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "53x49",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "53x54",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "53x58",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "53x61",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "53x64",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "53x75",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "54x102",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "54x51",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "49x55",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "55x61",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "55x62",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "55x82",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "56x103",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "56x49",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "56x53",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "56x54",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "56x55",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "56x56",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "56x58",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "54x53",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "54x54",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "54x55",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "54x58",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "54x60",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "54x61",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "55x59",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "119x125",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "119x145",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "119x94",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "120x102",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "120x113",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "120x175",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "120x91",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "121x116",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "121x121",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "121x156",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "122x101",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "122x103",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "122x107",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "122x124",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "117x106",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "58x71",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "58x73",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "58x75",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "58x77",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "56x62",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "56x64",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "56x65",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "56x67",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "56x75",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "56x77",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "56x87",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "57x106",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "57x56",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "57x57",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "57x62",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "57x64",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "59x58",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "59x61",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "59x64",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "59x65",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "59x68",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "59x69",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "59x75",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "57x65",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "58x50",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "58x54",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "58x58",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "58x59",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "58x60",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "58x61",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "58x62",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "58x63",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "117x154",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "117x174",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "118x104",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "118x121",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "118x124",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "118x135",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "118x138",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "118x152",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "118x162",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "118x176",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "118x202",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "118x87",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "118x91",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "119x108",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "114x114",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "114x154",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "61x96",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "62x51",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "60x53",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "60x54",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "60x57",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "60x59",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "60x60",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "60x63",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "60x64",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "60x65",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "60x67",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "60x74",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "60x83",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "61x56",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "58x81",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "59x53",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "63x54",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "63x55",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "63x56",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "61x57",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "61x58",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "61x59",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "61x60",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "61x61",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "61x63",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "61x64",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "61x66",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "61x69",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "61x70",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "61x71",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "61x74",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "61x82",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "63x70",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "63x72",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "63x74",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "63x85",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "64x53",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "64x56",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "64x57",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "62x58",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "62x60",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "62x61",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "62x63",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "62x67",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "62x68",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "62x73",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "62x75",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "63x100",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "114x87",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "115x105",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "115x107",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "115x136",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "115x98",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "116x100",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "116x107",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "116x121",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "116x152",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "116x212",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "116x232",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "116x90",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "116x95",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "116x98",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "112x123",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "112x130",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "65x75",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "65x78",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "65x79",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "65x83",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "65x98",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "66x58",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "64x59",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "64x65",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "64x67",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "64x71",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "64x72",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "64x74",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "64x83",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "64x85",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "65x53",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "63x59",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "66x62",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "66x63",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "66x64",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "66x65",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "66x67",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "66x70",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "66x72",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "66x78",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "66x81",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "66x83",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "66x87",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "66x94",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "65x61",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "65x64",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "65x66",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "65x73",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "112x136",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "112x146",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "112x88",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "112x96",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "113x107",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "113x120",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "113x125",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "113x131",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "113x150",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "113x71",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "113x94",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "114x101",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "114x109",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "114x113",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "110x126",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "110x130",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "68x64",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "68x65",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "66x96",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "66x97",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "67x107",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "67x56",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "67x57",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "67x58",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "67x60",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "67x61",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "67x66",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "67x67",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "67x68",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "67x74",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "66x59",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "66x60",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "68x95",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "69x108",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "69x109",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "69x55",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "69x58",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "69x63",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "67x80",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "67x85",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "67x94",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "68x107",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "68x108",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "68x53",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "68x55",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "68x56",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "68x60",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "68x61",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "107x95",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "69x72",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "69x73",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "69x78",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "69x79",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "69x98",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "70x107",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "70x64",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "68x69",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "68x70",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "68x72",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "68x74",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "68x76",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "68x82",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "68x89",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "68x92",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "70x83",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "110x132",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "110x150",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "110x156",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "110x203",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "111x107",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "111x109",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "111x111",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "111x112",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "111x136",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "111x87",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "111x93",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "111x98",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "112x102",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "112x119",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "107x147",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "71x62",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "71x71",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "71x72",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "71x74",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "70x65",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "70x67",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "70x68",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "70x69",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "70x72",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "70x75",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "70x76",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "70x77",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "70x79",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "70x80",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "70x81",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "70x82",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "71x89",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "71x95",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "72x106",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "72x120",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "72x54",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "72x62",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "72x68",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "72x71",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "72x73",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "70x85",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "70x90",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "70x97",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "71x103",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "71x107",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "71x126",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "71x61",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "108x124",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "108x128",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "108x134",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "108x148",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "108x152",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "108x85",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "109x128",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "109x176",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "109x89",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "110x112",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "110x121",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "110x122",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "105x134",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "105x140",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "71x83",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "71x85",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "74x71",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "72x74",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "72x78",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "72x80",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "72x81",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "73x105",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "73x107",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "73x109",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "73x111",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "73x64",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "73x65",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "73x68",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "73x69",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "71x78",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "71x82",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "108x101",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "75x111",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "75x63",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "75x64",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "75x66",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "73x74",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "73x76",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "73x81",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "73x87",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "73x88",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "73x92",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "74x102",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "74x103",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "74x133",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "74x60",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "74x66",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "74x69",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "75x86",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "75x89",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "75x90",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "75x97",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "76x118",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "76x62",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "76x63",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "74x72",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "74x75",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "74x76",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "74x79",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "74x80",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "74x84",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "74x88",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "74x91",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "75x110",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "76x80",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "76x81",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "76x83",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "76x85",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "76x88",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "76x89",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "76x90",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "76x92",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "76x98",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "77x102",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "75x68",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "75x69",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "75x73",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "75x76",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "75x77",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "75x82",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "76x71",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "105x142",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "105x146",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "105x90",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "105x91",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "106x102",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "106x117",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "106x130",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "107x101",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "107x108",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "107x113",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "107x114",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "107x126",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "104x101",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "104x102",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "76x75",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "78x81",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "78x87",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "77x116",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "77x122",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "77x63",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "77x66",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "77x67",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "77x70",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "77x71",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "77x72",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "77x73",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "77x76",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "77x77",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "77x78",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "77x81",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "76x70",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "79x76",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "79x77",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "79x80",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "79x82",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "79x83",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "77x86",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "78x120",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "78x124",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "78x59",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "78x61",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "78x65",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "78x71",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "78x72",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "78x73",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "78x78",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "78x80",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "80x65",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "80x72",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "80x73",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "80x76",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "80x77",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "78x90",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "78x94",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "78x99",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "79x110",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "79x123",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "79x132",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "79x134",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "79x141",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "79x154",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "79x60",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "79x64",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "80x95",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "81x129",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "81x130",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "81x65",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "81x70",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "81x71",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "81x72",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "81x75",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "81x76",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "79x84",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "79x98",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "80x101",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "80x105",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "80x119",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "80x131",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "80x62",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "82x114",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "82x137",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "82x71",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "82x73",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "82x74",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "82x75",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "82x77",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "82x78",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "82x82",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "82x85",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "82x91",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "80x80",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "80x87",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "80x88",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "80x90",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "80x92",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "83x112",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "83x115",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "83x131",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "83x75",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "83x76",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "83x80",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "83x81",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "83x82",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "83x85",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "83x86",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "83x92",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "83x95",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "81x77",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "81x87",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "82x103",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "82x112",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "104x107",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "104x110",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "104x111",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "104x117",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "104x142",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "104x146",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "104x80",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "104x83",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "105x103",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "105x105",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "105x117",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "105x123",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "105x130",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "102x173",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "102x78",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "82x94",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "86x77",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "83x98",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "84x105",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "84x106",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "84x109",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "84x69",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "84x72",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "84x85",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "84x87",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "84x93",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "84x94",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "84x97",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "84x98",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "82x92",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "82x93",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "104x103",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "87x68",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "85x109",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "85x115",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "85x131",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "85x70",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "85x75",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "85x76",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "85x88",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "85x91",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "85x95",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "85x97",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "85x99",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "86x111",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "86x118",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "86x145",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "86x150",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "88x70",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "88x71",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "88x78",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "88x82",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "88x88",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "86x80",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "86x82",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "86x84",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "86x95",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "87x100",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "87x111",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "87x126",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "87x127",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "87x138",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "87x147",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "87x154",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "89x70",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "89x76",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "89x80",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "89x85",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "89x89",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "89x93",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "89x97",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "87x75",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "87x78",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "87x85",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "87x95",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "88x104",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "88x108",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "88x109",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "88x120",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "88x135",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "90x125",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "90x133",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "90x144",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "90x70",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "90x77",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "90x81",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "90x87",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "90x90",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "90x95",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "88x91",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "88x94",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "88x97",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "89x103",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "89x115",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "89x116",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "89x66",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "91x71",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "91x75",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "91x82",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "91x84",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "91x86",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "91x87",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "91x89",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "91x90",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "91x91",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "89x98",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "89x99",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "90x102",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "90x105",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "90x113",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "90x114",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "90x115",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "92x122",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "92x123",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "92x134",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "92x144",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "92x78",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "92x82",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "92x87",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "92x88",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "92x89",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "92x90",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "92x93",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "91x108",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "91x128",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "91x129",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "91x130",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "91x144",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "93x118",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "93x129",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "93x66",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "93x72",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "93x79",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "93x87",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "93x96",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "94x101",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "94x121",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "94x126",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "94x128",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "91x96",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "92x103",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "92x104",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "92x105",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "92x113",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "95x117",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "95x118",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "95x173",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "95x68",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "95x87",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "95x93",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "96x110",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "96x112",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "96x119",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "96x134",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "96x75",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "92x97",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "92x98",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "93x106",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "93x107",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "93x109",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "97x97",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "100x119",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "98x125",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "98x129",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "98x82",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "98x84",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "99x101",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "99x109",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "99x111",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "99x117",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "99x125",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "99x130",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "99x73",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "99x83",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "100x110",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "94x75",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "102x132",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "102x139",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "102x168",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "98x117",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "98x121",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "96x93",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "96x94",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "96x99",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "97x100",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "97x119",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "97x122",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "97x138",
+        "TRAIN": 0,
+        "VAL": 1,
+        "total": 1
+      },
+      {
+        "native_resolution": "97x157",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "97x80",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "97x91",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      },
+      {
+        "native_resolution": "97x92",
+        "TRAIN": 1,
+        "VAL": 0,
+        "total": 1
+      }
+    ],
+    "components": [
+      {
+        "split": "TRAIN",
+        "cases": 1978,
+        "empty_masks": 0,
+        "empty_pct": 0.0,
+        "single_component": 1766,
+        "single_pct": 89.28210313447927,
+        "multi_component": 212,
+        "multi_pct": 10.717896865520729,
+        "total_components": 2383,
+        "max_components_in_case": 12
+      },
+      {
+        "split": "VAL",
+        "cases": 280,
+        "empty_masks": 0,
+        "empty_pct": 0.0,
+        "single_component": 231,
+        "single_pct": 82.5,
+        "multi_component": 49,
+        "multi_pct": 17.5,
+        "total_components": 329,
+        "max_components_in_case": 2
+      }
+    ],
+    "cat": [
+      {
+        "category": "Bladder_Stone",
+        "TRAIN_cases": 634,
+        "TRAIN_pct": 32.0525783619818,
+        "VAL_cases": 144,
+        "VAL_pct": 51.42857142857142
+      },
+      {
+        "category": "Kidney_Stone",
+        "TRAIN_cases": 1133,
+        "TRAIN_pct": 57.28008088978767,
+        "VAL_cases": 112,
+        "VAL_pct": 40.0
+      },
+      {
+        "category": "Ureteric_Stone",
+        "TRAIN_cases": 211,
+        "TRAIN_pct": 10.667340748230536,
+        "VAL_cases": 24,
+        "VAL_pct": 8.571428571428571
+      }
+    ],
+    "acq": [
+      {
+        "acquisition_type": "FULL_FIELD",
+        "TRAIN_cases": 770,
+        "TRAIN_pct": 38.92821031344793,
+        "VAL_cases": 103,
+        "VAL_pct": 36.78571428571429
+      },
+      {
+        "acquisition_type": "ROI",
+        "TRAIN_cases": 1208,
+        "TRAIN_pct": 61.071789686552066,
+        "VAL_cases": 177,
+        "VAL_pct": 63.21428571428571
+      }
+    ]
+  },
+  "notebook": {
+    "path": "notebooks/phasewise/phase_06_kub_characterization/phase06_kub_dataset_characterization_clean_v3.ipynb",
+    "sha256": "c2164345d80843c6116093cc5c58bebfa3792b8becce0d887e6c379ab8069888",
+    "sha_stable_3x": true,
+    "total_cells": 77,
+    "code_cells": 36,
+    "executed_cells": 36,
+    "unexecuted_cells": 0,
+    "errors": 0,
+    "embedded_png": 16,
+    "tiny_threshold_defined": false,
+    "phase07_started": false
+  },
+  "generated_at_final": "2026-09-20T03:12:34.179859+00:00",
+  "repair": {
+    "part": "1A-R1",
+    "scope": "distribution-interpretation + stratification + reviewer-visualization repair",
+    "population_changed": false,
+    "split_membership_changed": false,
+    "pre_repair_notebook_sha": "488af85c93ba6c986a13b57def06db94adfac7e0f26c965e2ace42f63edfe7d2"
+  },
+  "final_table_count": 12,
+  "all_tables_hashed": true,
+  "gallery": {
+    "cases": 16,
+    "sample_ids_changed": false,
+    "sample_selection_sha": "7324b7cc91f4c39b76bfd80e78d14154d0e91ec165f727d4c43dfb82fac1d485",
+    "pages": 4,
+    "panels_per_case": 3,
+    "shows_original": true,
+    "shows_binary_gt": true,
+    "shows_gt_overlay": true,
+    "pagination": "4 pages x 4 cases (3 panels each)"
+  },
+  "old_no_material_anomaly_claim_removed": true,
+  "scientific_gate": {
+    "gates": {
+      "canonical_phase4_v3_verified": true,
+      "kub_train_1978": true,
+      "kub_val_280": true,
+      "patient_overlap_zero": true,
+      "all_pairs_valid": true,
+      "no_manifest_integrity_failure": true,
+      "statistics_from_clean_v3": true,
+      "gallery_16_cases_3_panels": true,
+      "sample_selection_sha_unchanged": true,
+      "stratified_geometry_present": true,
+      "final_table_count_12": true,
+      "all_tables_hashed": true,
+      "no_test_medical_access": true,
+      "no_tiny_threshold": true,
+      "notebook_run_all_clean": true
+    },
+    "status": "PASS"
+  },
+  "status": "PASS"
+}

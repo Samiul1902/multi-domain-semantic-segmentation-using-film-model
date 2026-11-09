@@ -1,0 +1,51 @@
+{
+ "artifact": "phase29_reproducibility_estimands_and_statistics",
+ "phase": 29,
+ "classification": "PHASE29_REPRODUCIBILITY_ESTIMANDS_AND_STATISTICS",
+ "estimands_frozen_before_training": true,
+ "primary_estimands": [
+  "per-seed macro-domain Dice",
+  "per-domain Dice",
+  "per-seed routed DeltaDice",
+  "activation fraction",
+  "S_omega accept/reject fractions"
+ ],
+ "across_seed_summary": [
+  "mean",
+  "standard_deviation",
+  "minimum",
+  "maximum",
+  "range"
+ ],
+ "n_seeds": 3,
+ "inferential_significance_claim_forbidden": true,
+ "formal_hypothesis_testing_owner": "PHASE31",
+ "primary_reproducibility_question": "Does the direction and practical magnitude of the canonical RA-MedFiLM-BARR development result remain reasonably stable across the three pre-registered training seeds?",
+ "reproducibility_is_not": "all seeds must be numerically identical",
+ "seed_variation_expected": true,
+ "search_for_preregistered_numeric_criterion": {
+  "searched": true,
+  "found": false
+ },
+ "numeric_success_gate": null,
+ "frozen_criterion_if_none_registered": "DESCRIPTIVE_REPRODUCIBILITY_STUDY__NO_NUMERIC_PASS_FAIL_GATE",
+ "preservation_criterion": {
+  "phase27_criterion": "lower 95% CI > -0.005",
+  "applied_separately_per_seed_on_VAL808": "UNRESOLVED",
+  "adopted": false,
+  "must_be_bound_before_execution_if_adopted": true,
+  "alternative": "report seed variation only"
+ },
+ "statistics_scope": {
+  "seed_wise_point_estimates": true,
+  "across_seed_mean_std_range": true,
+  "per_seed_frozen_bootstrap_ci": "OPTIONAL (if population sampling uncertainty is reported)",
+  "forbidden": [
+   "post-hoc seed significance tests",
+   "multiple-comparison fishing",
+   "winner tests"
+  ]
+ },
+ "phase31_owns_formal_testing": true,
+ "all_pass": true
+}

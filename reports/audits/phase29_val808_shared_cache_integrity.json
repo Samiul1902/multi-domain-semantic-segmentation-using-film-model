@@ -1,0 +1,127 @@
+{
+ "artifact": "phase29_val808_shared_cache_integrity",
+ "phase": 29,
+ "stage": "SHARED_CACHE_INTEGRITY_AUDIT",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_phase29_repro_v1_1",
+ "generated_utc": "2026-10-03T14:17:18+00:00",
+ "cache_dir": "data_cache/phase29_val808_shared_fixed_g_v1_0",
+ "population": "VAL808",
+ "population_n": 808,
+ "files": {
+  "global_prob": {
+   "path": "D:\\Softfors\\jup\\data_cache\\phase29_val808_shared_fixed_g_v1_0\\val808_global_prob_f16.npy",
+   "sha256": "f3c90a6fd65169324917671b0ca889aaba1e362ea84b258f738a21054faa304b",
+   "size_bytes": 423624832
+  },
+  "router_deep_features": {
+   "path": "D:\\Softfors\\jup\\data_cache\\phase29_val808_shared_fixed_g_v1_0\\val808_router_deep_features_f32.npy",
+   "sha256": "8f1a1aefa0de32640fcd773c79ae054bebe05132945146885563c40c2f25aa01",
+   "size_bytes": 620672
+  },
+  "router_scalars": {
+   "path": "D:\\Softfors\\jup\\data_cache\\phase29_val808_shared_fixed_g_v1_0\\val808_router_scalars_f32.npy",
+   "sha256": "c592de635aab1379249dcdda38b0ec02572c1fae9282e9e29bbed1cbca44ff8c",
+   "size_bytes": 32448
+  },
+  "roi_geometry": {
+   "path": "D:\\Softfors\\jup\\data_cache\\phase29_val808_shared_fixed_g_v1_0\\val808_roi_geometry.json",
+   "sha256": "dfe48e3827405d7f9cbff7f52573a663c1141ebee8da196b3d239e0ffc63aaf7",
+   "size_bytes": 447030
+  }
+ },
+ "shapes": {
+  "global_prob": [
+   808,
+   512,
+   512
+  ],
+  "router_deep_features": [
+   808,
+   192
+  ],
+  "router_scalars": [
+   808,
+   10
+  ]
+ },
+ "dtypes": {
+  "global_prob": "float16",
+  "router_deep_features": "float32",
+  "router_scalars": "float32"
+ },
+ "order_sha256": "2718af4ca6beb98cbb0598734951d355404b88e8b0eec1575518f4aef5a357ee",
+ "code_sha256": {
+  "pre_refinement_features": "f0323e78caa7a3f8c1d24cf68d4321972d86f95d36913a7af795b15acdb26f6a",
+  "barr_roi": "4b1015275e4e31f9cc2b662a290c18f988eaea65cec64082cea217fad9aba9d6",
+  "regional_refiner": "4fe0abde3ec3a183d930f676c4400b4d9ba778793ea64abf1755c5b8dabf947a",
+  "global_medfilm": "a04ff3e61b4d900ff47c2f390da4a999e73bd6047b28a19e41b05115e431d11f",
+  "phase25f_execution_common": "98cf958a377e2de30e0b67e63fd56bafea418b2b061a362ee7284e852012cd2e",
+  "phase25f_post_safety_features": "4f4763fa67eea833643dc1870206d5c0b49890fe974122249711e259cddc8bec",
+  "train_phase25d_router": "fc7c1bdf263ae4551dcb8f170d3203adb8540fbc189846265b74f6eca1541e91",
+  "phase27_model_import_shim": "b716fe34e06d48d0e0ddb0e2fe8225105e26b5c9cd7ff6054043ad505a64b886",
+  "phase29_phase_d_common": "be4e443b181178c7fb7727e3bd1141e7564c0fc4201aaf577e30982cf921d721",
+  "phase29_phase_d_cache": "ec1811a9996603f7344112263b963ba059a1a61141a24903156668b9f47c6540"
+ },
+ "G_checkpoint_sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+ "phase27_reference_sha256": "cc6c54af986f56b4aba9265405ffeba4f6cac582eeff00fe6b0894429e7d3f13",
+ "shared_global_prob_identical_to_phase27": false,
+ "shared_global_prob_max_abs_diff": 0.2001953125,
+ "shared_global_prob_mean_abs_diff": 0.00011778233601944521,
+ "shared_global_prob_field_corr": 0.9999981591079333,
+ "shared_global_prob_frac_pixels_diff": 0.3873171003738252,
+ "phase27_numeric_mode": "AMP autocast float16 (phase27 CASE_A)",
+ "phase29_numeric_mode": "FP32 eval, torch.inference_mode(), no autocast",
+ "cross_freeze_note": "Phase27 and Phase29 shared global probabilities are the SAME fixed-G field evaluated under DIFFERENT frozen numeric modes (AMP-fp16 vs FP32/no-autocast). They are not byte-identical; the residual is fp16-quantization noise confined to a small pixel fraction. Phase D §8 uses the Phase D artifact produced exactly once under the §7 mode.",
+ "gt_derived_information_persisted": false,
+ "val808_gt_reads": 0,
+ "shared_G_logical_passes": 1,
+ "shared_G_samples": 808,
+ "runs_once_not_per_seed": true,
+ "G_retrained": false,
+ "checks": {
+  "S10::global_prob_exists": true,
+  "S10::router_deep_features_exists": true,
+  "S10::router_scalars_exists": true,
+  "S10::roi_geometry_exists": true,
+  "S10::global_prob_shape": true,
+  "S10::global_prob_dtype": true,
+  "S10::deep_shape": true,
+  "S10::deep_dtype": true,
+  "S10::scalars_shape": true,
+  "S10::scalars_dtype": true,
+  "S10::global_prob_size_bytes": true,
+  "S10::deep_size_bytes": true,
+  "S10::scalars_size_bytes": true,
+  "S10::global_prob_no_nan": true,
+  "S10::global_prob_in_0_1": true,
+  "S10::deep_all_finite": true,
+  "S10::scalars_all_finite": true,
+  "S10::order_sha_stable": true,
+  "S10::sample_ids_unique": true,
+  "S10::roi_geometry_population_n_808": true,
+  "S10::roi_geometry_order_matches_canonical": true,
+  "S10::roi_geometry_not_gt": true,
+  "S10::roi_geometry_n_no_roi_zero": true,
+  "S10::roi_geometry_covers_all_samples": true,
+  "S10::roi_geometry_ids_match_order": true,
+  "S10::phase27_reference_shape": true,
+  "S10::shared_global_prob_same_fixed_G_field": true,
+  "S10::shared_global_prob_diff_within_fp16_quantization_envelope": true,
+  "S10::shared_global_prob_numeric_mode_is_fp32_no_autocast": true,
+  "S10::code_sources_present": true,
+  "S10::G_checkpoint_sha": true,
+  "S10::build_summary_shared_G_logical_passes_1": true,
+  "S10::build_summary_shared_G_samples_808": true,
+  "S10::build_summary_runs_once_not_per_seed": true,
+  "S10::build_summary_G_retrained_false": true,
+  "S10::build_summary_gt_reads_zero": true,
+  "S10::build_summary_global_forward_count_808": true,
+  "S10::build_summary_gt_derived_false": true
+ },
+ "n_checks": 38,
+ "n_failed": 0,
+ "failed": [],
+ "all_pass": true,
+ "blocked_terminal_if_fail": "PHASE29_PHASE_D_BLOCKED__VAL808_CACHE_INTEGRITY_FAILURE"
+}

@@ -1,0 +1,48 @@
+{
+  "classification": "CONSUMED_PRE_INFERENCE_TECHNICAL_FAILURE__NO_TEST_OUTCOME_OBSERVED",
+  "defect_id": "D98_PHASE39_V1_0_MODEL_LOAD_FEATURE_DIM_DEPENDENCY_UNRESOLVED",
+  "generated_utc": "2026-10-11T07:30:00Z",
+  "phase": 39,
+  "revision": "ra_medfilm_barr_phase39_final_test_v1_0",
+  "v1_0_executed": true,
+  "attempt_consumed": true,
+  "same_version_rerun_permitted": false,
+  "automatic_retry": false,
+  "state": {
+    "START": "absent",
+    "RESULT": "absent",
+    "FAILURE": "present",
+    "PROCESS_EXIT": "present"
+  },
+  "failure_stage": "MODEL_LOAD",
+  "exception_type": "NameError",
+  "exception": "name 'FEATURE_DIM' is not defined",
+  "test_membership_accessed": true,
+  "test_image_reads": 0,
+  "test_gt_reads": 0,
+  "model_forwards": 0,
+  "metric_evaluations": 0,
+  "scientific_outcome_observed": false,
+  "scientific_result_produced": false,
+  "training": 0,
+  "optimizer_steps": 0,
+  "parameter_mutations": 0,
+  "root_cause_deferred_to_d98_report": true,
+  "bound_hashes": {
+    "execution_source": "0f2fcad3fc2de19cd24b86777a48fe7fe30349cef5fef9467b84a3faf274c7df",
+    "launcher": "bd06c74e977a5c3a9cf4a1246c616d5a18c4f9b10c6c4483ddc2000247d6f1ac",
+    "supervisor": "5e4e24fec2c0614363b15f0ccea976cb13d08b9b0d13ce5e80a0e8ba32a2f485",
+    "phase38_authority_bundle": "ffe5e14717a6117df16df6a80ab2ac3ea801d9c5bce6f12c50b7c4fc56c38ca1",
+    "phase38_manifest": "ebb61b9ffabe9ee46203d4007b94d845e06506a32647a18a82ec7ac647d15c58",
+    "FAILURE": "19e8d3f545c3c977fb273c16d21c383276b25fb85227be1048eaa19a8e5134ff",
+    "PROCESS_EXIT": "3924c407919147ac556cfa0721a9d95b17eff4c19bf722953368a27375845e8a",
+    "journal": "65c051135c4ecc04c95930f66a3f0f898e93e2636f1da67ccc1faf2c8244cb43"
+  },
+  "hash_verification": {
+    "FAILURE_matches": true,
+    "PROCESS_EXIT_matches": true,
+    "journal_matches": true,
+    "v1_0_RESULT_absent": true
+  },
+  "epistemic_label": "TEST_MEMBERSHIP_ACCESSED_ON_CONSUMED_V1_0_PREINFERENCE_ATTEMPT__NO_TEST_IMAGE_OR_GT_PIXELS_ACCESSED__NO_TEST_OUTCOME_OBSERVED"
+}

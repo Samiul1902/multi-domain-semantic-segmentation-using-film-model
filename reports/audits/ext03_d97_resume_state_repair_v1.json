@@ -1,0 +1,90 @@
+{
+  "classification": "EXT03_D97_RESUME_STATE_REPAIR",
+  "schema_version": "v1",
+  "work_order": "EXT-03 SAFE TRAINING RECOVERY AND RESUME",
+  "defect": {
+    "id": "D97",
+    "code": "LATEST_PT_SELECTION_METADATA_LAGS_ONE_EPOCH",
+    "location": "scripts/training/run_ext03_baseline_matrix.py :: run_one()",
+    "description": "latest.pt was written BEFORE best/best_epoch/bad were updated, so the resume checkpoint's selection metadata always described the previous epoch.",
+    "observed": "unetpp_seed42 latest.pt had best=0.5753722339294982 @ ep25, bad=3 while the true post-epoch-29 state was best=0.5817102846133125 @ ep29, bad=0 (best.pt + registry agree).",
+    "resume_consequences": [
+      "best restored 0.5817102846133125 -> 0.5753722339294982 (understated by 0.0063380513)",
+      "any future epoch with macro in (0.5753722339294982, 0.5817102846133125) satisfies macro > best and would overwrite best.pt with a WORSE model, irreversibly destroying the genuine epoch-29 checkpoint",
+      "bad restored 0 -> 3, firing patience-15 early stopping 3 epochs early"
+    ],
+    "classification_reason": "silent scientific error in model selection and early stopping -> protocol-invalidating",
+    "repaired": true
+  },
+  "repair": {
+    "class": "PURE_PERSISTENCE_REORDER",
+    "change": "selection update (best/best_epoch/bad + best.pt save) moved BEFORE the latest.pt write",
+    "scientific_constants_touched": false,
+    "forward_backward_loss_optimizer_metric_selection_logic_changed": false,
+    "runner_sha_before": "bcdbada2becd23f915af7422a9e569942994951fb27c79d0212ad05818e67965",
+    "runner_sha_after": "46d5841dc58b102a6b336265e75b9bd65dab0701c4dae5a249435f2f302a3fd0",
+    "pure_reorder_proof": "reverse-substituting the new block with the old block reproduces bcdbada2becd23f915af7422a9e569942994951fb27c79d0212ad05818e67965 exactly",
+    "pure_reorder_proven": true,
+    "scientific_ops_preserved": {
+      "binary_cross_entropy_with_logits": 1,
+      "scaler.scale(loss).backward()": 1,
+      "scaler.step(opt)": 1,
+      "sched.step()": 1,
+      "eval_val(model, val_rows, device)": 1,
+      "Adam(...lr=LR, weight_decay=WD)": 1,
+      "CosineAnnealingLR(opt, T_max=max_epochs)": 1,
+      "bad >= PATIENCE": 1,
+      "macro > best": 1
+    },
+    "approval": "explicit user approval obtained before editing the runner"
+  },
+  "checkpoint_reconciliation": {
+    "target": "reports/baselines/runs/unetpp_seed42/latest.pt",
+    "method": "restore the three selection fields from evidence already on disk (best.pt + registry); no value invented, no tensor modified",
+    "before": {
+      "epoch": 29,
+      "best": 0.5753722339294982,
+      "best_epoch": 25,
+      "bad": 3
+    },
+    "after": {
+      "epoch": 29,
+      "best": 0.5817102846133125,
+      "best_epoch": 29,
+      "bad": 0
+    },
+    "sha_before": "5bf5a986bdd0594b71b6c227c3cb8c581e917fbe4d1bc64eb60c762373bcb491",
+    "sha_after": "7f2b581b93d4a0a73c2c23dbafa08f771a956cd688239e928c0abdd8b2f7ead3",
+    "bytes_before": 110097402,
+    "bytes_after": 110091002,
+    "model_optimizer_scheduler_scaler_tensors_unchanged": true,
+    "rng_state_unchanged": true,
+    "evidence_copies": {
+      "reports/baselines/recovery_evidence/unetpp_seed42_latest_ep29_prereconcile.pt": "5bf5a986bdd0594b71b6c227c3cb8c581e917fbe4d1bc64eb60c762373bcb491",
+      "reports/baselines/recovery_evidence/unetpp_seed42_best_ep29.pt": "e21ceb03f770f1c67991e28891ca2c798811b8f56c7f4f425c4d69f185d9a1a1"
+    },
+    "builder": "scripts/training/reconcile_ext03_unetpp_seed42_latest.py"
+  },
+  "provenance_split": {
+    "epochs_1_to_29_trained_under_runner": "bcdbada2becd23f915af7422a9e569942994951fb27c79d0212ad05818e67965",
+    "epochs_30_onward_trained_under_runner": "46d5841dc58b102a6b336265e75b9bd65dab0701c4dae5a249435f2f302a3fd0",
+    "note": "the diff is a persistence reorder only; no epoch's scientific computation is affected"
+  },
+  "preserved_invariants": {
+    "completed_runs_unchanged": 6,
+    "completed_best_pt_hashes_match_registry": true,
+    "train_rows": 5832,
+    "val_rows": 808,
+    "batch_size": 4,
+    "seed_order": [
+      42,
+      123,
+      3407
+    ],
+    "test_accessed": false,
+    "router_holdout_accessed": false,
+    "teacher_student_touched": false,
+    "no_run_restarted_from_epoch_1": true,
+    "no_two_simultaneous_processes": true
+  }
+}

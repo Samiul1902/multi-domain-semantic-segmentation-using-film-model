@@ -1,0 +1,28 @@
+{
+ "artifact": "phase29_dependency_chain_v1_1",
+ "phase": 29,
+ "revision": "ra_medfilm_barr_phase29_repro_v1_1",
+ "classification": "SUPERVISOR_PROSPECTIVE_REPRODUCIBILITY_SPECIFICATION_REPAIR",
+ "governance_only": true,
+ "execution": "NONE",
+ "generated_utc": "2026-10-02T15:05:09+00:00",
+ "model_classification": "MODULEWISE_DOWNSTREAM_REPRODUCIBILITY_WITH_CANONICAL_FIXED_GLOBAL",
+ "per_seed_definition": {
+  "G": "canonical fixed G",
+  "phase25b_features": "canonical fixed feature matrix",
+  "R_psi_s": "trained with seed s",
+  "DeltaDice_s": "generated from R_psi_s OOF",
+  "B_phi_s": "trained using fixed features + DeltaDice_s",
+  "S_omega_features_s": "generated from R_psi_s OOF candidates",
+  "S_omega_target_s": "1 iff DeltaDice_s > 0",
+  "S_omega_s": "trained on those seed-specific features/targets",
+  "final_system_s": "G_fixed + R_psi_s + B_phi_s + S_omega_s + fixed wrapper/fusion"
+ },
+ "cross_seed_mixing_permitted": false,
+ "forbidden_examples": [
+  "seed123 B_phi using seed3407 targets",
+  "seed123 S_omega using seed42 candidate features"
+ ],
+ "dependency_chain_resolved": true,
+ "all_pass": true
+}

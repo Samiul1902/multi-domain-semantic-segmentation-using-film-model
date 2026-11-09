@@ -1,0 +1,340 @@
+{
+  "artifact": "POST_PHASE13_REGIONAL_REVISION_R1_H1_ADJUDICATION",
+  "status": "PASS",
+  "created_utc": "2026-09-22T07:15:00Z",
+  "hypothesis": "H1_FIRST_SELECTIVE_ACCEPTANCE",
+  "h1_question": "Is selective proposal acceptance / abstention, with all other scientific axes frozen, sufficient to make the current GT-free regional path a credible standalone revision?",
+  "h1_question_clarification": "H1 does NOT ask whether selectivity helps at all; it asks whether selectivity ALONE adequately resolves the Phase 13 deployable failure while retaining meaningful regional utility.",
+  "integrity": {
+    "result": "PASS",
+    "checks": {
+      "r1_evaluation_status_pass": true,
+      "r1_integrity_failures_empty": true,
+      "c0_reproduction_pass": true,
+      "c1_membership_eq_c3": true,
+      "c1_output_eq_c3": true,
+      "summary_rows_28": true,
+      "intervention_rows_7": true,
+      "cross_arch_rows_7": true,
+      "r0_clarification_canonical_scope_intact": true
+    }
+  },
+  "bindings": {
+    "r1_evaluation": {
+      "path": "reports/audits/post_phase13_regional_revision_r1_evaluation.json",
+      "sha": "061bba3750be9a25c937c0fd3e6e6b924f297eb55b7e2dfeb03d053e455c9551"
+    },
+    "r1_control_verification": {
+      "path": "reports/audits/post_phase13_r1_control_and_duplicate_verification.json",
+      "sha": "cb677a632a38edcd8c3579f0ff3a63ec68f6e235386db384ebcc9d6754bf0e7d"
+    },
+    "r0_interpretation_clarification": {
+      "path": "reports/audits/post_phase13_r0_interpretation_clarification.json",
+      "sha": "6ff0495978c808e30bf3f72bf99cc72c06fea73cdcaf77a483d4def17190f3e6"
+    },
+    "r1_policy": {
+      "path": "reports/audits/post_phase13_regional_revision_r1_policy_frozen.json",
+      "sha": "13d9d95c3bc03776003a3b824eeaf52f2dc8b158ad47e65d238895ce50ba118b"
+    },
+    "summary_28": {
+      "path": "reports/tables/post_phase13_r1_model_policy_summary.csv",
+      "sha": "a5e03deef4c56e5278facb94b6a20762c22776cc91b5c91e5414fd880904cc29"
+    },
+    "intervention_7": {
+      "path": "reports/tables/post_phase13_r1_policy_intervention_summary.csv",
+      "sha": "861a0ba472091d8421cd0a6999b5386431cb326e33eb7ef09f02046fba295873"
+    },
+    "cross_arch_7": {
+      "path": "reports/tables/post_phase13_r1_cross_architecture_policy_summary.csv",
+      "sha": "272ec8b2564d3ca1a5130081b955c9c39fcda48fab66a3bfd23a2a31433fd7c4"
+    },
+    "case_model_policy_2884": {
+      "path": "reports/tables/post_phase13_r1_case_model_policy_metrics.csv",
+      "sha": "9708e38ff2f4061e73befde3011df5d59b8bc480864bdec2b7a46e6bdd54f3ef"
+    }
+  },
+  "dimensions": {
+    "A": {
+      "name": "GLOBAL_PRESERVATION",
+      "question": "Does selective abstention remove the catastrophic FP / precision cost and restore acceptable global preservation?",
+      "finding": "NO. Every one of the 28 config/model combinations has policy macro Dice BELOW GLOBAL (28/28). The most aggressive policy (R1-C5) still trails GLOBAL by -0.131136 (UNet), -0.143855 (Attention U-Net), -0.157948 (UNet++) and -0.133755 (DeepLabV3+). Selectivity sharply reduces the FP burden (mean FP delta falls from +7778 to about +2049, a 74% reduction) and roughly halves the Dice deficit, but the burden remains POSITIVE for every policy and the deficit is never closed. Case worsening is essentially unchanged: 93.0-94.5 of 103 cases worsen under every policy.",
+      "adjudicated_state": "NOT_RESTORED__MATERIALLY_IMPROVED_BUT_STILL_DEFICIENT",
+      "supports_h1": false,
+      "per_model_c5": [
+        {
+          "model": "unet",
+          "model_display": "UNet",
+          "global_macro_dice": 0.5941796681946068,
+          "c5_policy_macro_dice": 0.463043924936621,
+          "c5_delta_vs_global": -0.1311357432579857,
+          "c5_mean_fp_delta": 1769.6504854368932,
+          "c5_mean_fn_delta": -107.00970873786407,
+          "c5_cases_worse": 93
+        },
+        {
+          "model": "attention_unet",
+          "model_display": "Attention U-Net",
+          "global_macro_dice": 0.6298049685888003,
+          "c5_policy_macro_dice": 0.48595009298961,
+          "c5_delta_vs_global": -0.1438548755991902,
+          "c5_mean_fp_delta": 1974.3398058252428,
+          "c5_mean_fn_delta": 65.1747572815534,
+          "c5_cases_worse": 93
+        },
+        {
+          "model": "unetpp",
+          "model_display": "UNet++",
+          "global_macro_dice": 0.6405155030126883,
+          "c5_policy_macro_dice": 0.4825671934698121,
+          "c5_delta_vs_global": -0.1579483095428762,
+          "c5_mean_fp_delta": 2176.514563106796,
+          "c5_mean_fn_delta": -167.2233009708738,
+          "c5_cases_worse": 92
+        },
+        {
+          "model": "deeplabv3plus",
+          "model_display": "DeepLabV3+",
+          "global_macro_dice": 0.5602505353552288,
+          "c5_policy_macro_dice": 0.4264952468844498,
+          "c5_delta_vs_global": -0.133755288470779,
+          "c5_mean_fp_delta": 2274.4174757281558,
+          "c5_mean_fn_delta": -341.33009708737865,
+          "c5_cases_worse": 94
+        }
+      ]
+    },
+    "B": {
+      "name": "REGIONAL_UTILITY_RETENTION",
+      "question": "Does any selective policy retain genuine component / empty recovery benefit beyond GLOBAL?",
+      "finding": "PARTIALLY, AND NOT SUFFICIENTLY. Component losses are 0 for every policy and every architecture, and empty recoveries are largely retained (C0 8/3/5/11 vs C5 8/3/5/10). But component recoveries collapse under aggressive selectivity: 16/9/14/16 at C0 (55 total) down to 2/1/3/4 at C1 and C5 (10 total) - an 82% loss of the recovery signal. RETENTION_DICE is negative for ALL 28 config/model combinations, so no policy converts the oracle mechanism into positive deployable benefit.",
+      "adjudicated_state": "PARTIAL__RECOVERY_SIGNAL_LOST_UNDER_AGGRESSIVE_SELECTIVITY",
+      "supports_h1": false,
+      "component_recoveries_by_config": {
+        "R1-C0": [
+          16,
+          9,
+          14,
+          16
+        ],
+        "R1-C1": [
+          2,
+          1,
+          3,
+          4
+        ],
+        "R1-C2": [
+          16,
+          9,
+          14,
+          16
+        ],
+        "R1-C3": [
+          2,
+          1,
+          3,
+          4
+        ],
+        "R1-C4": [
+          15,
+          8,
+          13,
+          16
+        ],
+        "R1-C5": [
+          2,
+          1,
+          3,
+          4
+        ],
+        "R1-C6": [
+          13,
+          5,
+          10,
+          13
+        ]
+      },
+      "component_losses_by_config": {
+        "R1-C0": 0,
+        "R1-C1": 0,
+        "R1-C2": 0,
+        "R1-C3": 0,
+        "R1-C4": 0,
+        "R1-C5": 0,
+        "R1-C6": 0
+      },
+      "empty_recoveries_c0": [
+        8,
+        3,
+        5,
+        11
+      ],
+      "empty_recoveries_c5": [
+        8,
+        3,
+        5,
+        10
+      ],
+      "retention_negative_count": "28/28",
+      "retention_note": "never clipped; negative values preserved as measured"
+    },
+    "C": {
+      "name": "INTERVENTION_SELECTIVITY",
+      "question": "Does the policy reduce off-target proposal intervention?",
+      "finding": "YES - this is the dimension H1 clearly improves. Accepted proposals fall 494 -> 102 (C0 -> C5), GT-miss accepted proposals fall 372 -> 68, mean accepted proposals per image fall 4.796 -> 0.990, and mean intervention union area falls 0.004846 -> 0.001486. Mean policy precision rises from 0.2342 to 0.4259 while mean recall is essentially unchanged (0.6664 -> 0.6502). Selectivity therefore does improve intervention precision. However the accepted GT-miss FRACTION remains 0.666667 (68/102) versus 0.753036 (372/494) at C0 - a real improvement, but two thirds of the surviving interventions are still off-target.",
+      "adjudicated_state": "IMPROVED__BUT_OFF_TARGET_FRACTION_REMAINS_HIGH",
+      "supports_h1": true,
+      "c0": {
+        "accepted": 494,
+        "gt_miss_accepted": 372,
+        "accepted_gt_miss_fraction": 0.7530364372469636,
+        "mean_accepted_per_image": 4.796116504854369
+      },
+      "c5": {
+        "accepted": 102,
+        "gt_miss_accepted": 68,
+        "accepted_gt_miss_fraction": 0.6666666666666666,
+        "mean_accepted_per_image": 0.9902912621359224
+      },
+      "membership_label_blind": "YES - GT fields are post-freeze descriptive evaluation only"
+    },
+    "D": {
+      "name": "CROSS_ARCHITECTURE_CONSISTENCY",
+      "question": "Does the behaviour generalize across all four architectures?",
+      "finding": "GENERAL, NOT ARCHITECTURE-SPECIFIC. The negative Dice-vs-GLOBAL behaviour holds in all four architectures for every policy (28/28 below GLOBAL). At R1-C5, cases worse in all four = 84 of 103, components recovered by >=1 architecture = 6, recovered by all four = 1, and components lost by >=1 architecture = 0. The mitigation is also consistent: every architecture improves under aggressive selectivity and loses recovery at the same time. No architecture is a winner, no ranking is made.",
+      "adjudicated_state": "CONSISTENT_ACROSS_ARCHITECTURES__NEGATIVE_RESULT_IS_GENERAL",
+      "supports_h1": false,
+      "c5_cross_architecture": {
+        "cases_improved_all_four": 3,
+        "cases_nonworse_all_four": 4,
+        "cases_worse_all_four": 84,
+        "components_recovered_by_at_least_one": 6,
+        "components_recovered_by_all_four": 1,
+        "components_lost_by_at_least_one": 0,
+        "components_lost_by_all_four": 0
+      }
+    }
+  },
+  "trade_off_adjudication": {
+    "pattern_tested": "MILD selectivity preserves recovery but barely relieves the global Dice / FP failure; AGGRESSIVE selectivity substantially relieves FP but removes most component-recovery benefit and still remains below GLOBAL.",
+    "pattern_supported": "YES__EXACTLY_REPRODUCED_IN_THE_FROZEN_TABLES",
+    "mild": {
+      "R1-C2": {
+        "mean_accepted_per_image": 4.310679611650485,
+        "mean_macro_dice": 0.30537051324157566,
+        "mean_delta_vs_global": -0.30081715554625543,
+        "mean_retention": -2.9843015551965193,
+        "mean_fp_delta": 7598.3956310679605,
+        "total_component_recoveries": 55,
+        "total_component_losses": 0
+      },
+      "R1-C4": {
+        "mean_accepted_per_image": 3.611650485436893,
+        "mean_macro_dice": 0.3218557909555874,
+        "mean_delta_vs_global": -0.2843318778322436,
+        "mean_retention": -2.822570630737166,
+        "mean_fp_delta": 7118.058252427185,
+        "total_component_recoveries": 52,
+        "total_component_losses": 0
+      },
+      "R1-C6": {
+        "mean_accepted_per_image": 3.271844660194174,
+        "mean_macro_dice": 0.33141493714207143,
+        "mean_delta_vs_global": -0.27477273164575966,
+        "mean_retention": -2.7280101782623705,
+        "mean_fp_delta": 6829.320388349514,
+        "total_component_recoveries": 41,
+        "total_component_losses": 0
+      }
+    },
+    "aggressive": {
+      "R1-C1": {
+        "mean_accepted_per_image": 1.0,
+        "mean_macro_dice": 0.4608002237000494,
+        "mean_delta_vs_global": -0.14538744508778162,
+        "mean_retention": -1.4421906883951685,
+        "mean_fp_delta": 2074.9271844660193,
+        "total_component_recoveries": 10,
+        "total_component_losses": 0
+      },
+      "R1-C5": {
+        "mean_accepted_per_image": 0.9902912621359224,
+        "mean_macro_dice": 0.46451411457012326,
+        "mean_delta_vs_global": -0.14167355421770778,
+        "mean_retention": -1.4006140053698617,
+        "mean_fp_delta": 2048.730582524272,
+        "total_component_recoveries": 10,
+        "total_component_losses": 0
+      }
+    },
+    "mild_evidence": "C2 reproduces the C0 recovery profile exactly (16/9/14/16) while relieving only 2% of the FP burden (+7778 -> +7598); C4 keeps 52 of 55 recoveries and relieves 8%; C6 keeps 41 of 55 and relieves 12%. Mean macro Dice moves only 0.2999 -> 0.3054 / 0.3219 / 0.3314.",
+    "aggressive_evidence": "C1 and C5 relieve 73-74% of the FP burden (+7778 -> +2075 / +2049) and lift mean macro Dice to 0.4608 / 0.4645, but total component recoveries fall 55 -> 10 (an 82% loss) and all four architectures remain below GLOBAL.",
+    "eighth_policy_searched": "NO",
+    "interpolated_threshold_created": "NO",
+    "best_policy_declared": "NO"
+  },
+  "h1_outcome": "H1_PARTIAL_MITIGATION_INSUFFICIENT_AS_STANDALONE_REVISION",
+  "reasoning": "Dimension C is clearly positive: selective acceptance does improve intervention precision (accepted 494 -> 102; GT-miss accepted 372 -> 68; mean precision 0.2342 -> 0.4259; FP burden reduced 74%). Dimensions A and B are materially improved but NOT resolved: every one of the 28 config/model combinations still has policy macro Dice below GLOBAL, the most aggressive policy still trails GLOBAL by 0.131-0.158, the FP burden remains positive for every policy, and RETENTION_DICE is negative in all 28 combinations. The trade-off is strict: mild selectivity preserves the recovery profile (C2 identical to C0) but relieves almost none of the FP burden, while aggressive selectivity relieves 74% of the FP burden but destroys 82% of the component recoveries. No frozen policy jointly restores global preservation AND retains enough regional utility. Selective acceptance alone is therefore a real but PARTIAL mitigation, insufficient as a standalone revision. This does NOT establish a representation failure: H1 isolated the acceptance-only axis, and its insufficiency leaves localizer representation, heatmap confidence calibration, proposal ranking, training objective, checkpoint-selection semantics and precision/recall balance as open contributors for H2 protocol design.",
+  "h1_proves_representation_failure": "NO",
+  "h2_eligibility": {
+    "h2_localizer_retraining_or_selection_redesign": "ELIGIBLE_FOR_PROTOCOL_DESIGN",
+    "authorized_for_training": "NO",
+    "reason": "H1 has isolated the acceptance-only axis and shown it is not sufficient by itself; this does NOT prove representation failure.",
+    "open_h2_issues_unchanged_in_this_task": [
+      "localizer representation",
+      "heatmap confidence calibration",
+      "proposal ranking",
+      "training objective",
+      "checkpoint-selection semantics",
+      "proposal precision / recall balance"
+    ]
+  },
+  "bounded_search_closure": {
+    "r1_candidate_family": "CLOSED",
+    "post_hoc_r1_expansion": "FORBIDDEN",
+    "forbidden": [
+      "R1-C7",
+      "new floor",
+      "new max-proposal count",
+      "interpolated threshold",
+      "outcome-driven candidate"
+    ],
+    "without_new_supervisor_approved_protocol": "NO_FURTHER_R1_CANDIDATES"
+  },
+  "claim_limits": {
+    "new_numerical_thresholds": 0,
+    "new_configs": 0,
+    "new_subgroup": 0,
+    "winner": "NONE",
+    "selected_threshold": "NONE",
+    "weighted_score": "NONE",
+    "optimization_after_seeing_results": "NONE",
+    "go_no_go_gate_created": "NO"
+  },
+  "counters": {
+    "training": 0,
+    "optimizer": 0,
+    "model_constructions": 0,
+    "cuda_requests": 0,
+    "global_forwards": 0,
+    "regional_forwards": 0,
+    "localizer_forwards": 0,
+    "proposal_generation": 0,
+    "oracle_reruns": 0,
+    "test_reads": 0,
+    "external_test_reads": 0
+  },
+  "continuity": {
+    "phase13": "COMPLETE_FROZEN",
+    "original_regional_gate": "REVISE_LOCALIZER_FROZEN",
+    "revision_r0": "COMPLETE_PASS_FROZEN",
+    "revision_r1_policy": "COMPLETE_PASS_FROZEN",
+    "revision_r1_execution": "COMPLETE_PASS_FROZEN",
+    "h1_adjudication": "COMPLETE_PASS",
+    "h1": "CLOSED__PARTIAL_MITIGATION_INSUFFICIENT",
+    "h2_protocol_design": "ELIGIBLE_FOR_SUPERVISOR_AUTHORIZATION__NOT_AUTHORIZED",
+    "h2_training": "NOT_AUTHORIZED",
+    "phase14": "NOT_STARTED",
+    "test": "UNTOUCHED"
+  },
+  "next_action": "WAIT_FOR_SUPERVISOR_H2_PROTOCOL_DESIGN_AUTHORIZATION"
+}

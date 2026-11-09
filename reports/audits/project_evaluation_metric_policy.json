@@ -1,0 +1,52 @@
+{
+  "artifact": "project_evaluation_metric_policy",
+  "status": "FROZEN_POLICY__DESCRIPTIVE_AUGMENTATION_ALLOWED",
+  "generated_utc": "2026-09-25T14:49:05Z",
+  "governance_principle": "Newly added metrics are DESCRIPTIVE and are NOT promoted into frozen prospective success/failure gates. Formal H3 adjudication continues to use the previously frozen criteria.",
+  "policies": {
+    "segmentation": {
+      "confusion_matrix": "YES",
+      "form": "2x2 pixel confusion matrix (Background / Foreground) in BOTH raw counts and row-normalized form",
+      "source_requirement": "actual pixel predictions versus actual GT masks only; never derived from aggregated Dice",
+      "recommended_primary": [
+        "dice",
+        "iou",
+        "precision",
+        "recall",
+        "boundary metrics",
+        "PR-based metrics"
+      ],
+      "explicit_caveat": "accuracy, specificity and ROC-AUC must NOT be presented alone as evidence of segmentation quality under class imbalance"
+    },
+    "image_level_binary_classification": {
+      "confusion_matrix": "YES",
+      "form": "standard 2x2 confusion matrix"
+    },
+    "component_detection": {
+      "confusion_matrix": "NO_CONVENTIONAL_TN",
+      "form": "TP / FP / FN summary + PR / FROC",
+      "reason": "conventional TN is undefined without a defensible negative-unit definition"
+    },
+    "proposal_localization": {
+      "confusion_matrix": "NO_FORCED_TN",
+      "form": "matched / unmatched proposal and GT accounting"
+    },
+    "multi_class_segmentation_future": {
+      "confusion_matrix": "YES",
+      "form": "CxC confusion matrix + per-class metrics"
+    }
+  },
+  "metric_domain_labels_required": [
+    "PIXEL_SEGMENTATION",
+    "PIXEL_SEGMENTATION_POOLED",
+    "COMPONENT_DETECTION",
+    "PROPOSAL_COVERAGE",
+    "DOWNSTREAM_COMPONENT_DETECTION",
+    "BOUNDARY_DISTANCE",
+    "PROBABILITY_CALIBRATION",
+    "TRAINING_OPTIMIZATION",
+    "SYSTEM_PERFORMANCE"
+  ],
+  "label_rule": "Never use the same short label (e.g. 'Recall') across domains without explicit qualification.",
+  "distance_unit_rule": "No pixel-spacing metadata exists in this repository; boundary distances are reported in PIXELS, never mm."
+}

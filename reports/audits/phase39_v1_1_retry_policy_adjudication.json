@@ -1,0 +1,49 @@
+{
+  "classification": "PHASE39_V1_1_RETRY_POLICY_ADJUDICATION",
+  "generated_utc": "2026-10-11T08:00:00Z",
+  "phase": 39,
+  "policy_artifact": "reports/audits/phase38_phase39_retry_failure_policy.json",
+  "policy_sha256": "7e216683df0e07c13260e9c36ada3aa7617e9a9a08f24552b507a1bddcad4a1c",
+  "literal_policy_quotation": {
+    "new_revision_may_be_considered_only_if": [
+      "checkpoint SHA mismatch (byte-level corruption)",
+      "runtime source SHA mismatch (byte-level corruption)",
+      "authority-bundle SHA mismatch",
+      "wrong interpreter / incompatible runtime",
+      "pre-inference fail-closed gate triggered before any TEST inference"
+    ],
+    "conditions_that_do_not_qualify": [
+      "unfavorable scientific outcome",
+      "non-significant result",
+      "any outcome-dependent reason"
+    ]
+  },
+  "policy_not_modified_after_failure": true,
+  "boundary_analysis": {
+    "Q1_how_policy_defines_pre_inference": "The policy phrase is 'pre-inference fail-closed gate triggered before any TEST inference'. By design the v1.1 'pre-inference fail-closed gates' are v1_0_history_gate() and preflight_static(), both of which run BEFORE any TEST access and BEFORE START. BOTH PASSED. The D99 failure was NOT one of those gates; it was a data-contract assertion inside run_science (stage SCIENCE_LOOP), AFTER the TEST manifest was opened and AFTER START was written. Therefore the policy's 'pre-inference fail-closed gate' clause is NOT satisfied.",
+    "Q2_does_durable_test_inference_started_independently_bar_revision": "The durable FAILURE field test_inference_started=true (stage-derived) directly contradicts the policy condition's requirement 'before any TEST inference'. Taken literally, the durable field asserts inference started, so the condition is not met.",
+    "Q3_does_absence_of_actual_ops_keep_the_clause_available": "The proven absence of actual inference operations (0 image/GT reads, 0 forwards, 0 metrics) could be argued to satisfy the clause OPERATIONALLY, but that requires reinterpreting 'pre-inference fail-closed gate' (a gate that runs pre-inference BY DESIGN) as 'any fail-closed check that happens to fire before inference'. That is a favorable reinterpretation, which the task forbids."
+  },
+  "conditions_evaluated": {
+    "checkpoint_SHA_mismatch": false,
+    "runtime_source_SHA_mismatch": false,
+    "authority_bundle_SHA_mismatch": false,
+    "wrong_interpreter_or_incompatible_runtime": false,
+    "pre_inference_fail_closed_gate_before_any_test_inference": false
+  },
+  "conditions_that_do_not_qualify_check": {
+    "unfavorable_scientific_outcome": false,
+    "non_significant_result": false,
+    "outcome_dependent_reason": false,
+    "note": "D99 is a technical defect, not an unfavorable outcome — but that alone does not create eligibility."
+  },
+  "unambiguous": false,
+  "explicitly_permitted": false,
+  "decision": "STOP_CHECK_REQUIRED__NON_REVISABLE",
+  "rationale": "No enumerated technical-failure condition unambiguously applies. The gate that fired (D99 manifest domain-schema contract assertion) was NOT a pre-inference fail-closed gate (both frozen pre-inference gates passed), it fired at stage SCIENCE_LOOP after TEST membership access and after START, and the durable FAILURE field asserts test_inference_started=true. The frozen policy therefore does NOT unambiguously or explicitly permit a new technical revision for this exact v1.1 state.",
+  "actions": {
+    "v1_2_created": false,
+    "test_reopened": false,
+    "policy_modified": false
+  }
+}

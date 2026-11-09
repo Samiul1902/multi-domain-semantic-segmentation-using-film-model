@@ -1,0 +1,153 @@
+{
+ "artifact": "phase36_preexecution_source_freeze_v1_0",
+ "section": "§S",
+ "phase": 36,
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase36_robustness_v1_0",
+ "classification": "PHASE36_PREEXECUTION_SOURCE_FREEZE",
+ "frozen_sources": {
+  "phase36_spec": {
+   "path": "docs/phase36_robustness_spec_v1_0.md",
+   "sha256": "abe62cd3ddc2ea22ac7bb4bfe473a3f87399e07b24dc9771283723a18af8d6a8",
+   "exists": true,
+   "section": "§P"
+  },
+  "phase36_common": {
+   "path": "scripts/analysis/phase36_robustness_common_v1_0.py",
+   "sha256": "6ab108fe1aee7e89c66cdf90e0ce6f339dd203c0f40e61c805e3fff2713b527d",
+   "exists": true,
+   "section": "§P"
+  },
+  "phase36_execution": {
+   "path": "scripts/analysis/phase36_robustness_execution_v1_0.py",
+   "sha256": "9032ae17ce17c2dddb0a2280520d10f4ff5cf673c526ef14cae5a34d84a7fc02",
+   "exists": true,
+   "section": "§P"
+  },
+  "phase36_preflight": {
+   "path": "scripts/analysis/phase36_robustness_preflight_v1_0.py",
+   "sha256": "d7c65971428baa5879b7afa43a459e881d2d3f7821e0e08a650def132324995e",
+   "exists": true,
+   "section": "§P"
+  },
+  "phase36_unit": {
+   "path": "scripts/analysis/phase36_robustness_unit_v1_0.py",
+   "sha256": "ef2197cbe2c879cef545bf73e5fbae2c8905ec78efd3d53df407449105e2e412",
+   "exists": true,
+   "section": "§P"
+  },
+  "G_source": {
+   "path": "src/models/film/global_medfilm.py",
+   "sha256": "a04ff3e61b4d900ff47c2f390da4a999e73bd6047b28a19e41b05115e431d11f",
+   "exists": true,
+   "section": "§E"
+  },
+  "G_checkpoint": {
+   "path": "checkpoints/phase21_global_medfilm_fourdomain_seed42_clean_v3/best.pt",
+   "sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+   "exists": true,
+   "section": "§E"
+  },
+  "B_phi_source": {
+   "path": "scripts/analysis/train_phase25d_router.py",
+   "sha256": "fc7c1bdf263ae4551dcb8f170d3203adb8540fbc189846265b74f6eca1541e91",
+   "exists": true,
+   "section": "§E"
+  },
+  "B_phi_checkpoint": {
+   "path": "checkpoints/phase25d_barr_benefit_router_v1_2_1_seed42/final/final.pt",
+   "sha256": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+   "exists": true,
+   "section": "§E"
+  },
+  "R_psi_source": {
+   "path": "src/models/barr/regional_refiner.py",
+   "sha256": "4fe0abde3ec3a183d930f676c4400b4d9ba778793ea64abf1755c5b8dabf947a",
+   "exists": true,
+   "section": "§E"
+  },
+  "R_psi_checkpoint": {
+   "path": "checkpoints/phase25a_barr_regional_refiner_v1_1_roi030/final/final.pt",
+   "sha256": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109",
+   "exists": true,
+   "section": "§E"
+  },
+  "S_omega_source": {
+   "path": "scripts/analysis/phase25f_execution_common.py",
+   "sha256": "98cf958a377e2de30e0b67e63fd56bafea418b2b061a362ee7284e852012cd2e",
+   "exists": true,
+   "section": "§E"
+  },
+  "S_omega_checkpoint": {
+   "path": "checkpoints/phase25f_barr_post_safety_v1_0_seed42/final/final.pt",
+   "sha256": "eee9b97b9921e53fc07eac9281dce64ba518c6e1659916b97b0b3bec21ec6d2e",
+   "exists": true,
+   "section": "§E"
+  },
+  "a8_c9_policy_bundle_manifest": {
+   "path": "artifacts/phase26_ra_medfilm_barr_bundle_v1_0/canonical_bundle_manifest.json",
+   "sha256": "f7aebb0f646bcc8de49fa91b70a4c4cc1051c9998ab6b055a8d4d187809cb3d9",
+   "exists": true,
+   "section": "§G"
+  },
+  "a8_c9_router_threshold_binding": {
+   "path": "reports/audits/phase26_canonical_router_threshold_binding_v1_0.json",
+   "sha256": "c49a1e53fd3e85ff793cc4ce41fd3f20210f33e6b1880ea0f55bd2b788fbbb37",
+   "exists": true,
+   "section": "§G"
+  },
+  "dataset_domain_registry": {
+   "path": "manifests/phase4_v3/val.csv",
+   "sha256": "082c80b2bda63fd73f371f109c34643adf01edaead921643fb2e44993ba53315",
+   "exists": true,
+   "section": "§C"
+  },
+  "val808_manifest_authority": {
+   "path": "manifests/phase4_v3/val.csv",
+   "sha256": "082c80b2bda63fd73f371f109c34643adf01edaead921643fb2e44993ba53315",
+   "exists": true,
+   "section": "§C"
+  },
+  "clean_reference_per_sample": {
+   "path": "reports/tables/phase27_val808_per_sample_scores.csv",
+   "sha256": "702133930ce14ac9513c992833396e3e250d08417b17d1032cbd260a405cfb12",
+   "exists": true,
+   "section": "§D"
+  },
+  "clean_reference_routing_state": {
+   "path": "data_cache/phase29_seed42/phase29_seed42_val808_decisions.csv",
+   "sha256": "df4a0f376a7edab221d584b2a7152bf7e8f55c00ade87e39cd94c9bb13fedea6",
+   "exists": true,
+   "section": "§D"
+  },
+  "metric_implementation_authority": {
+   "path": "src/metrics/evaluation_metrics.py",
+   "sha256": "6c515f6f1a495315c79238292c385a082ae8347489130ad5bff34d74c4f181f6",
+   "exists": true,
+   "section": "§H"
+  },
+  "empty_mask_policy_authority": {
+   "path": "reports/audits/evaluation_empty_mask_policy.json",
+   "sha256": "16e702fd83b65e872acdab4cee06e0dd7c816f2659379ddc704c39c2efdac5f0",
+   "exists": true,
+   "section": "§H"
+  },
+  "kub_subgroup_metadata_authority": {
+   "path": "manifests/phase4_v3/val.csv",
+   "sha256": "082c80b2bda63fd73f371f109c34643adf01edaead921643fb2e44993ba53315",
+   "exists": true,
+   "section": "§K"
+  }
+ },
+ "n_frozen_sources": 22,
+ "missing_sources": [],
+ "component_source_and_checkpoint_hashes_match_binding": true,
+ "unit_tests_all_pass": true,
+ "static_preflight_all_pass": true,
+ "unit_artifact_sha256": "d978f4d72b29503c6a532d59a47235cac2ace60b59a1462d8c05000c2645c223",
+ "static_preflight_sha256": "c42ccf950a1297f9e9700e519d7f57cc26ddf13fbfe10bbfa1b3ac60efae1a2f",
+ "phase35_closure_authority_sha256": "6e343b7f433bbc8a43b3d746b2affd2bbc15ecdaeb9491cdc83e4d02f3d4047d",
+ "phase36_execute_env_set_at_freeze": false,
+ "source_freeze_utc": "2026-10-05T14:41:45Z",
+ "all_pass": true
+}

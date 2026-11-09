@@ -1,0 +1,62 @@
+{
+ "artifact": "phase25f_oof_refinement_source_promotion",
+ "phase": "25F",
+ "stage": "OOF_REFINEMENT_SOURCE_PROMOTION",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_post_safety_v1_0",
+ "canonical_cache": "data_cache/phase25f_barr_post_safety_v1_0",
+ "canonical_shape": [
+  4957,
+  256,
+  256
+ ],
+ "canonical_dtype": "float32",
+ "canonical_ordering": "feature_row_index ascending 0..4956",
+ "originals_unaltered": true,
+ "originals_deleted": false,
+ "scientific_inference_performed": false,
+ "provenance_safe_reindexing": true,
+ "artifacts": {
+  "oof_refined_crop_prob.npy": {
+   "path": "data_cache/phase25f_barr_post_safety_v1_0/oof_refined_crop_prob.npy",
+   "exists": true,
+   "sha256": "4c574e3baff158111eb3d609a445e8c43aa359c96cc89aa3ef154cc4af273b87"
+  },
+  "oof_refined_crop_prob_metadata.csv": {
+   "path": "data_cache/phase25f_barr_post_safety_v1_0/oof_refined_crop_prob_metadata.csv",
+   "exists": true,
+   "sha256": "4180d651bc460294db316ef06825efc08a4c172e76574cec971d78bbae5d8218"
+  },
+  "oof_refined_crop_prob_source_manifest.json": {
+   "path": "data_cache/phase25f_barr_post_safety_v1_0/oof_refined_crop_prob_source_manifest.json",
+   "exists": true,
+   "sha256": "fc4b0912c270539b16017c9a4ffe4db59c8f20a3ff5e515485382d4cd1625b75"
+  },
+  "oof_global_crop_prob.npy": {
+   "path": "data_cache/phase25f_barr_post_safety_v1_0/oof_global_crop_prob.npy",
+   "exists": true,
+   "sha256": "214c83b5754ccaed9f7b504313c93d3297bdb53ca66d7f033b502d54aa6eec64"
+  }
+ },
+ "promoted_verification": {
+  "refined_shape": [
+   4957,
+   256,
+   256
+  ],
+  "refined_dtype": "float32",
+  "global_shape": [
+   4957,
+   256,
+   256
+  ],
+  "global_dtype": "float32"
+ },
+ "promoted_finite_subsample": true,
+ "promoted_range_ok_subsample": true,
+ "rows": 4957,
+ "global_model_forwards": 0,
+ "refiner_forwards": 0,
+ "test_reads": 0,
+ "all_pass": true
+}

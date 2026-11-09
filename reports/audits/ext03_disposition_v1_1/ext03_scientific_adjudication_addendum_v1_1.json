@@ -1,0 +1,175 @@
+{
+  "artifact": "ext03_scientific_adjudication_addendum",
+  "version": "1.1",
+  "classification": "EXT03_SCIENTIFIC_ADJUDICATION_ADDENDUM",
+  "generated_local": "2026-10-26T21:50:00+06:00",
+  "mode": "STRICT_READ_ONLY_ADDITIVE",
+  "additive_to": {
+    "markdown": "reports/audits/ext03_scientific_acceptance_and_protocol_adjudication_v1_0.md",
+    "json": "reports/audits/ext03_scientific_acceptance_and_protocol_adjudication_v1_0.json",
+    "sha256_md": "7ad12fdb170ca7a4759e3ec7942dbb67180852afc9d97c7f0078e753fa969af2",
+    "sha256_json": "5e4f88d8d16e152eb4799c1c4e7701f58a562ff14370a65d805603fee5b14995",
+    "relationship": "ADDITIVE; v1.0 retained byte-identical and remains the primary record"
+  },
+  "terminal_state": "EXT03_COMPLETE__PROTOCOL_DIVERGENT__AS08_PRIMARY_EVIDENCE_NOT_ESTABLISHED",
+
+  "point_1_D1_to_D5_frozen_vs_executed": {
+    "summary": "Five recipe parameters differ from the frozen phase09/10 authority. All five predate the first run (2026-10-16T07:18) and were never separately authorized as scientific protocol changes.",
+    "divergences": [
+      {"id": "D1", "parameter": "optimizer_class", "frozen": "AdamW", "executed": "Adam", "line": "L137", "evidence_class": "static_source"},
+      {"id": "D2", "parameter": "learning_rate", "frozen": "1e-4", "executed": "1e-3", "applies_to": ["unet", "attention_unet", "unetpp", "deeplabv3plus"], "line": "L50, L136-137", "evidence_class": "static_source"},
+      {"id": "D3", "parameter": "loss", "frozen": "bce_dice bce=0.5 dice=0.5 eps=1e-6", "executed": "binary_cross_entropy_with_logits only", "line": "L190", "evidence_class": "static_source"},
+      {"id": "D4", "parameter": "augmentation", "frozen": "mirror 0.5 / rot +-5 / brightness +-0.1 / contrast +-0.1", "executed": "none", "line": "L84-98", "evidence_class": "static_source"},
+      {"id": "D5", "parameter": "input_channels", "frozen": "1", "executed": "3", "line": "L43-45", "evidence_class": "static_source_plus_parameter_delta", "note": "only divergence documented prospectively, but documented inside a defective instrument and never carried into parameter verification"}
+    ],
+    "authorization_status": "GATED_BUT_NOT_AUTHORIZED - the Stage B gate passed 2026-10-11T19:00Z before any run, but could not see these divergences (see point 3)",
+    "frozen_authority_evidence": {
+      "executed_historical_authority": "scripts/training/train_phase10_baselines.py L46, L89: AdamW(lr=1e-4, weight_decay=1e-4) with BCEDiceLoss(); SegmentationTransform(train=True) for augmentation",
+      "declarative_authority": "configs/phase09_clean_v3 + configs/phase10_clean_v3, four YAML files, identical values",
+      "loss_definition": "src/losses/segmentation.py L17-23 BCEDiceLoss(bce_weight=0.5, dice_weight=0.5, epsilon=1e-6)",
+      "augmentation_definition": "src/data/transforms.py L18-41 SegmentationTransform"
+    }
+  },
+
+  "point_2_D6_post_outcome_repair_and_cross_family_confound": {
+    "not_a_value_mismatch": "SegFormer-B0 executed at 1e-4; the frozen authority LR is 1e-4. D6 AGREES with the authority on the LR axis.",
+    "is_post_outcome": true,
+    "chronology": "introduced 2026-10-25 after observing NaN by epoch 5 of segformer_b0_seed42 at 1e-3",
+    "authorization_class": "RETROACTIVE_BY_CONSTRUCTION - the decision could not have preceded the outcome that motivated it",
+    "is_cross_family_confound": true,
+    "confound_statement": "After the repair the matrix compares four architectures at 1e-3 and one at 1e-4. It is not five architectures at one learning rate.",
+    "correct_characterisation": "a partial, post-hoc, architecture-specific return to authority that improves comparability with the frozen protocol while destroying LR-comparability within the matrix",
+    "both_consequences_disclosed": true
+  },
+
+  "point_3_why_not_AS08_primary_evidence": {
+    "as08_assignment": "reports/planning/ext02_1a_advanced_study_program_freeze.json assigns AS-08 and AS-27 (baseline reproducibility) to EXT-03; same freeze binds ext03_may_not_tune=true",
+    "reasons": [
+      {"reason": "self_referential_certification", "detail": "ext03_stageb_prelaunch_acceptance.training_protocol_sha = 1d456f9f equals the SHA-256 of ext03_training_protocol_resolved.json. The gate compared harness to resolved protocol and never resolved protocol to the phase09/10 authority.", "evidence": "SHA equality verified twice (v1.0 and v1.1)"},
+      {"reason": "prior_stop_gate_overridden", "detail": "ext03_pretraining_acceptance.json returned all_pass=false with 'training recipe resolved: PARTIAL', 'effective batch policy: PENDING', decision 'EXT-03 CANNOT COMPLETE; STOP'. Training began 2026-10-16T07:18.", "evidence": "artifact on disk"},
+      {"reason": "reproducibility_unestablished", "detail": "AS-27 cannot be answered because five protocol differences are unaudited and 12 of 15 runs have no recorded executed learning rate", "evidence": "registry lr_used null for 12 runs"}
+    ],
+    "consequence": "EXT-03 may not supply AS-08 primary evidence. AS-08 status = UNRESOLVED.",
+    "prohibited_sentence": "any claim that baselines were trained under the same protocol as the proposed model"
+  },
+
+  "point_4_ordering_is_descriptive_not_fully_controlled": {
+    "supported_claim": "all five families shared the same executed recipe, so the ordering is a fair internal comparison under a common reduced protocol",
+    "ordering": [
+      {"rank": 1, "architecture": "deeplabv3plus", "mean": 0.665696},
+      {"rank": 2, "architecture": "unetpp", "mean": 0.640910},
+      {"rank": 3, "architecture": "attention_unet", "mean": 0.624859},
+      {"rank": 4, "architecture": "segformer_b0", "mean": 0.590421},
+      {"rank": 5, "architecture": "unet", "mean": 0.542060}
+    ],
+    "why_not_fully_controlled": [
+      "the ordering is not protocol-invariant: D4 (no augmentation) inflates seed variance, demonstrated by UNet SD 0.1572; UNet++ and Attention-UNet are separated by only 0.0160, inside the range a protocol change of this magnitude can move",
+      "SegFormer-B0 is not LR-comparable to the other four (point 2)",
+      "three seeds give a sample SD with 2 degrees of freedom; there is no confidence interval, no significance test, no confirmatory comparison",
+      "no_best_seed_headline=true: report per-seed values and family spread, never a best-seed table"
+    ],
+    "permitted_formulation": "under a common reduced protocol, DeepLabV3+ achieved the highest mean equal-domain macro Dice on the development-validation split, and UNet the lowest with the widest seed spread",
+    "forbidden_formulation": "DeepLabV3+ is the best baseline"
+  },
+
+  "point_5_unet_seed123_does_not_isolate_loss_effect": {
+    "observation": "unet_seed123 reached 0.3606, converged degenerate, patience stop at epoch 31 (best ep16, resume_count 0, technical_failure_reason null)",
+    "why_not_isolating": [
+      {"reason": "four_confounds_move_together", "detail": "optimizer class, 10x learning rate, loss and augmentation all differ from authority simultaneously; a 10x LR increase alone is a sufficient explanation"},
+      {"reason": "no_bce_dice_control_exists", "detail": "no run in EXT-03 uses bce_dice; the single-factor loss comparison was never run"},
+      {"reason": "effect_is_seed_conditional", "detail": "unet_seed42 0.6279 and unet_seed3407 0.6376 under the identical BCE-only protocol; a loss-based account must explain why the loss is catastrophic for one seed in three"},
+      {"reason": "n_equals_one", "detail": "one seed, one architecture, one observed collapse"}
+    ],
+    "permitted": "consistent with the class-imbalance failure mode bce_dice is designed to prevent; a hypothesis-generating observation arguing for a controlled loss ablation",
+    "forbidden": "that EXT-03 demonstrates BCE-only causes collapse, or that bce_dice would have prevented it",
+    "retained": true,
+    "retention_rule": "negative_results_retained=true; a low score is a datum, not a defect"
+  },
+
+  "point_6_D97_and_missing_epoch_histories": {
+    "d97_exposure_now_measured": true,
+    "forensic_method": "latest.pt['bad'] must equal current_epoch - best_epoch under correct ordering; the D97 lag makes it exactly one lower",
+    "lag_runs": [
+      {"run": "unet_seed42", "expected": 15, "observed": 14, "completed": "2026-10-16T20:18"},
+      {"run": "unet_seed123", "expected": 15, "observed": 14, "completed": "2026-10-17T01:33"},
+      {"run": "unet_seed3407", "expected": 7, "observed": 6, "completed": "2026-10-18T13:54"},
+      {"run": "attention_unet_seed42", "expected": 15, "observed": 14, "completed": "2026-10-19T08:13"},
+      {"run": "attention_unet_seed123", "expected": 15, "observed": 14, "completed": "2026-10-20T01:53"},
+      {"run": "attention_unet_seed3407", "expected": 15, "observed": 14, "completed": "2026-10-20T11:01"}
+    ],
+    "exact_runs": ["unetpp_seed42", "unetpp_seed123", "unetpp_seed3407", "deeplabv3plus_seed42", "deeplabv3plus_seed123", "deeplabv3plus_seed3407", "segformer_b0_seed42", "segformer_b0_seed123", "segformer_b0_seed3407"],
+    "split_property": "all six lagging runs completed before the repair, all nine exact runs after it; the split follows completion timestamps without exception",
+    "repair_boundary_dated": "2026-10-20T11:01 -> 2026-10-21T17:12",
+    "error_direction": "CONSERVATIVE_UNDERSTATES_ONLY_NEVER_INFLATES",
+    "irreducible_uncertainties": [
+      "whether any exposed run had best.pt overwritten by a worse model (no epoch histories for the six affected runs)",
+      "the true per-epoch curve for unet x3 and attention_unet x3 (no epoch log exists anywhere; permanently MISSING_FROM_AVAILABLE_ARTIFACTS)",
+      "the executed learning rate as a runtime fact for 12 runs (lr_used present only for the three SegFormer runs)",
+      "resume instants (last_resume_time overwritten every epoch; equals completion_time for all 15)"
+    ],
+    "no_rerun_permitted": "RETRY_FOR_BETTER_SCORE is a forbidden state; repetition would replace a disclosed uncertainty with an undisclosed selection"
+  },
+
+  "point_7_sha_agreement_is_consistency_not_correctness": {
+    "proves": "the checkpoint on disk is the one the registry describes; the reported number is the one the checkpoint carries; the run stopped where the stated rule says",
+    "does_not_prove": "that the process producing that record followed the frozen recipe",
+    "statement": "A perfectly consistent record of a divergent protocol is still a divergent protocol. SHA-256 has no opinion about whether the optimizer was AdamW.",
+    "illustrations": [
+      {"artifact": "ext03r_param_verification.json", "claim": "all_match=true, implementation_drift=[]", "reality": "records 1-channel counts (unet 7762465) while executed models are 3-channel (7763041); model sources are byte-identical to frozen identities so the whole discrepancy is D5", "verdict": "internally consistent, cryptographically unremarkable, certifies a configuration that never ran"},
+      {"artifact": "ext03r_run_harness_freeze.json", "claim": "harness_sha 7c7287d7", "reality": "the harness that executed the first runs was bcdbada2", "verdict": "a true statement about a file that never ran"}
+    ],
+    "runtime_guard_note": "the harness PARAMS guard is the only correct parameter record, and it is correct precisely because it was re-baselined to the drifted values, which means it could never have detected the drift"
+  },
+
+  "point_8_global_medfilm_comparison_cannot_isolate_film": {
+    "reference": {"model": "GlobalMedFiLM", "phase": 21, "checkpoint_sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7", "best_macro_domain_dice": 0.8350791259413984, "best_epoch": 66, "n_seeds": 1},
+    "gap_to_best_family": 0.169383,
+    "bundled_factors": [
+      {"factor": "task_conditioning", "detail": "GlobalMedFiLM receives task_id and applies FiLM at five sites; the baselines receive no task signal and cannot know which modality they are segmenting"},
+      {"factor": "protocol", "detail": "GlobalMedFiLM used bce_dice + full augmentation + AdamW 1e-4; the baselines used BCE-only + no augmentation + Adam 1e-3"},
+      {"factor": "architecture", "detail": "custom residual UNet with GroupNorm and five FiLM sites is not any of the five baselines"},
+      {"factor": "seed_treatment", "detail": "GlobalMedFiLM is a single seed (42); the baselines are three-seed means"}
+    ],
+    "decisive_fact": "no FiLM-off control exists anywhere in the repository. Pattern search across src/, scripts/, reports/ returns zero hits. In the 13-arm one-factor contract every arm holds the Phase-21 global frozen; R2 removes task_id from the ROUTER, not from GlobalMedFiLM.",
+    "verdict": "FiLM attribution: NOT_ESTABLISHED",
+    "existing_prohibition": "the Phase-21 report's interpretation guard already forbids 'FiLM caused +X'",
+    "feasible_unexecuted_control": "zero-init output projection means freezing film_layers and task_embedding at initialisation yields an architecture-identical exact-identity plain residual UNet, roughly 10-11 hours for one seed under the Phase-21 protocol; NOT authorized, NOT executed"
+  },
+
+  "retained_unfavorable_results": [
+    {"item": "unet_seed123", "value": 0.360634, "status": "degenerate convergence, retained, NOT a defect"},
+    {"item": "unet_family_sd_sample", "value": 0.157195, "status": "widest instability in the matrix"},
+    {"item": "unet_family_spread", "value": 0.276989, "status": "retained"},
+    {"item": "segformer_b0_mean", "value": 0.590421, "status": "rank 4 of 5, below all three modern CNNs"},
+    {"item": "all_family_means_below_global_medfilm", "value": "0.542060-0.665696 vs 0.835079", "status": "retained"},
+    {"item": "gap_to_global_medfilm", "value": 0.169383, "status": "NOT attributable to FiLM"},
+    {"item": "integrated_model_vs_backbone", "value": "0.8379 vs 0.8351 = +0.0028", "status": "the R+B+S stack adds almost nothing"},
+    {"item": "AS-08", "value": null, "status": "UNRESOLVED"},
+    {"item": "FiLM attribution", "value": null, "status": "NOT ESTABLISHED"},
+    {"item": "confirmatory_tests", "value": 0, "status": "exploratory only"},
+    {"item": "TEST_evaluation", "value": 0, "status": "locked, never read"},
+    {"item": "per_domain_metrics", "value": null, "status": "computed then discarded at runtime"},
+    {"item": "iou_precision_recall_hd95", "value": null, "status": "never computed"},
+    {"item": "epoch_logs_6_of_15", "value": null, "status": "MISSING_FROM_AVAILABLE_ARTIFACTS"}
+  ],
+
+  "permitted_uses": [
+    "common-protocol architecture ranking, explicitly labelled reduced-protocol and exploratory",
+    "negative-results and failure-mode record (unet_seed123 collapse; SegFormer from-scratch instability)",
+    "motivation that task-conditioned multi-domain segmentation requires conditioning, stated as motivation not measured effect"
+  ],
+  "prohibited_uses": [
+    "AS-08 primary evidence",
+    "protocol-faithful baseline comparison",
+    "comparator against RA-MedFiLM-BARR",
+    "any causal claim about FiLM, bce_dice or augmentation"
+  ],
+
+  "authorization_state": {
+    "ext04_authorized": false,
+    "film_control_authorized": false,
+    "new_training_authorized": false,
+    "supervisor_decision_required": true,
+    "decision_document": "reports/audits/ext03_disposition_v1_1/ext03_supervisor_decision_memorandum_v1_1.md"
+  }
+}

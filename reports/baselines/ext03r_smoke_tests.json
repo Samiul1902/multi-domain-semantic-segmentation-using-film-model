@@ -1,0 +1,147 @@
+{
+  "classification": "EXT03R_SMOKE_TESTS",
+  "generated_utc": "2026-10-11T18:00:00Z",
+  "evidence_class": "TECHNICAL_ONLY__NOT_SCIENTIFIC",
+  "note": "synthetic random tensors only; no TRAIN/VAL/external images; 3-channel same-protocol construction",
+  "construction": {
+    "unet": {
+      "in_channels": 3,
+      "out_channels": 1
+    },
+    "attention_unet": {
+      "in_channels": 3,
+      "out_channels": 1
+    },
+    "unetpp": {
+      "in_channels": 3,
+      "out_channels": 1
+    },
+    "deeplabv3plus": {
+      "in_channels": 3,
+      "out_channels": 1
+    },
+    "segformer_b0": {}
+  },
+  "results": {
+    "unet": {
+      "instantiate": "PASS",
+      "forward": "PASS",
+      "loss_finite": true,
+      "backward": "PASS",
+      "grad_finite": true,
+      "optimizer_step": "PASS",
+      "checkpoint_roundtrip": "PASS",
+      "kwargs": {
+        "in_channels": 3,
+        "out_channels": 1
+      },
+      "output_shape": [
+        2,
+        1,
+        512,
+        512
+      ],
+      "finite_logits": true
+    },
+    "attention_unet": {
+      "instantiate": "PASS",
+      "forward": "PASS",
+      "loss_finite": true,
+      "backward": "PASS",
+      "grad_finite": true,
+      "optimizer_step": "PASS",
+      "checkpoint_roundtrip": "PASS",
+      "kwargs": {
+        "in_channels": 3,
+        "out_channels": 1
+      },
+      "output_shape": [
+        2,
+        1,
+        512,
+        512
+      ],
+      "finite_logits": true
+    },
+    "unetpp": {
+      "instantiate": "PASS",
+      "forward": "PASS",
+      "loss_finite": true,
+      "backward": "PASS",
+      "grad_finite": true,
+      "optimizer_step": "PASS",
+      "checkpoint_roundtrip": "PASS",
+      "kwargs": {
+        "in_channels": 3,
+        "out_channels": 1
+      },
+      "output_shape": [
+        2,
+        1,
+        512,
+        512
+      ],
+      "finite_logits": true
+    },
+    "deeplabv3plus": {
+      "instantiate": "PASS",
+      "forward": "PASS",
+      "loss_finite": true,
+      "backward": "PASS",
+      "grad_finite": true,
+      "optimizer_step": "PASS",
+      "checkpoint_roundtrip": "PASS",
+      "kwargs": {
+        "in_channels": 3,
+        "out_channels": 1
+      },
+      "output_shape": [
+        2,
+        1,
+        512,
+        512
+      ],
+      "finite_logits": true
+    },
+    "segformer_b0": {
+      "instantiate": "PASS",
+      "forward": "PASS",
+      "loss_finite": true,
+      "backward": "PASS",
+      "grad_finite": true,
+      "optimizer_step": "PASS",
+      "checkpoint_roundtrip": "PASS",
+      "kwargs": {},
+      "output_shape": [
+        2,
+        1,
+        512,
+        512
+      ],
+      "finite_logits": true
+    }
+  },
+  "parameter_counts_3ch": {
+    "unet": {
+      "total": 7763041,
+      "trainable": 7763041
+    },
+    "attention_unet": {
+      "total": 7851285,
+      "trainable": 7851285
+    },
+    "unetpp": {
+      "total": 9159681,
+      "trainable": 9159681
+    },
+    "deeplabv3plus": {
+      "total": 40347041,
+      "trainable": 40347041
+    },
+    "segformer_b0": {
+      "total": 3714401,
+      "trainable": 3714401
+    }
+  },
+  "all_pass": true
+}

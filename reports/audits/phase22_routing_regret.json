@@ -1,0 +1,87 @@
+{
+  "artifact": "phase22_routing_regret",
+  "phase": 22,
+  "regret_definition": "oracle_accept_if_beneficial pooled Dice minus policy pooled Dice",
+  "oracle_ceiling_pooled_dice": 0.8600744777001257,
+  "policies": [
+    {
+      "policy": "ALWAYS_GLOBAL",
+      "uses_ground_truth": false,
+      "deployable_shape": true,
+      "n_routed_to_regional": 0,
+      "fraction_routed_to_regional": 0.0,
+      "macroR_dice_pooled": 0.8390402334224809,
+      "mean_dice_executed_only": NaN,
+      "improvement_over_always_global": 0.0,
+      "change_vs_always_regional": 0.042477861137391826,
+      "regret_vs_oracle_ceiling": 0.02103424
+    },
+    {
+      "policy": "ALWAYS_REGIONAL_ORACLE",
+      "uses_ground_truth": false,
+      "deployable_shape": true,
+      "n_routed_to_regional": 808,
+      "fraction_routed_to_regional": 1.0,
+      "macroR_dice_pooled": 0.7965623722850891,
+      "mean_dice_executed_only": 0.7965623722850891,
+      "improvement_over_always_global": -0.042477861137391826,
+      "change_vs_always_regional": 0.0,
+      "regret_vs_oracle_ceiling": 0.06351211
+    },
+    {
+      "policy": "ORACLE_ACCEPT_IF_BENEFICIAL",
+      "uses_ground_truth": true,
+      "deployable_shape": false,
+      "n_routed_to_regional": 271,
+      "fraction_routed_to_regional": 0.335396,
+      "macroR_dice_pooled": 0.8600744777001257,
+      "mean_dice_executed_only": 0.8378141634763528,
+      "improvement_over_always_global": 0.021034244277644776,
+      "change_vs_always_regional": 0.0635121054150366,
+      "regret_vs_oracle_ceiling": 0.0
+    },
+    {
+      "policy": "PRED_ROI_EXISTS",
+      "uses_ground_truth": false,
+      "deployable_shape": true,
+      "n_routed_to_regional": 808,
+      "fraction_routed_to_regional": 1.0,
+      "macroR_dice_pooled": 0.7965623722850891,
+      "mean_dice_executed_only": 0.7965623722850891,
+      "improvement_over_always_global": -0.042477861137391826,
+      "change_vs_always_regional": 0.0,
+      "regret_vs_oracle_ceiling": 0.06351211
+    },
+    {
+      "policy": "PRED_ROI_EXISTS_AND_BASELINE_BELOW_MEDIAN",
+      "uses_ground_truth": false,
+      "deployable_shape": true,
+      "n_routed_to_regional": 404,
+      "fraction_routed_to_regional": 0.5,
+      "macroR_dice_pooled": 0.816364108319666,
+      "mean_dice_executed_only": 0.6936024187253371,
+      "improvement_over_always_global": -0.022676125102814915,
+      "change_vs_always_regional": 0.01980173603457691,
+      "regret_vs_oracle_ceiling": 0.04371037
+    },
+    {
+      "policy": "PRED_ACCEPT_IF_PREDICTED_BENEFICIAL",
+      "uses_ground_truth": false,
+      "deployable_shape": true,
+      "n_routed_to_regional": 236,
+      "fraction_routed_to_regional": 0.292079,
+      "macroR_dice_pooled": 0.8518041101592042,
+      "mean_dice_executed_only": 0.8303729794215092,
+      "improvement_over_always_global": 0.0127638767367233,
+      "change_vs_always_regional": 0.05524173787411513,
+      "regret_vs_oracle_ceiling": 0.00827037
+    }
+  ],
+  "notes": [
+    "policies flagged deployable_shape use ONLY predicted information, never the ground truth",
+    "no selector was TRAINED; these are fixed rules evaluated offline",
+    "the predicted-beneficial rule inherits the global model's errors, which is exactly why its regret is informative",
+    "CRITICAL CAVEAT: every policy here, including PRED_ACCEPT_IF_PREDICTED_BENEFICIAL, is EVALUATED ON THE SAME VAL POPULATION IT WAS INSPECTED ON. Its regret is therefore a POST-HOC, optimistically-biased quantity, NOT an out-of-sample estimate. No policy may be reported as a generalisable achieved result; establishing that would require a held-out protocol and training, both of which Phase 22 forbids."
+  ],
+  "test_reads": 0
+}

@@ -1,0 +1,30 @@
+{
+ "artifact": "phase29_phase_d_causal_order_rebind_seed42_count_addendum",
+ "phase": 29,
+ "phase_label": "PHASE_D",
+ "section": "§3",
+ "addendum_to": "reports/audits/phase29_phase_d_causal_order_independent_rebind.json",
+ "addendum_to_sha256": "17401e86606279a5a05cd0984bb8c45a354922c53890f2714c657616a91dd0d6",
+ "original_artifact_preserved": true,
+ "original_artifact_edited_in_place": false,
+ "classification": "NONCANONICAL_OR_MISBOUND_PREEXECUTION_RUNTIME_COUNT_EVIDENCE",
+ "detail": "The seed42 runtime_physical_evidence block in the pre-execution causal rebind (n_accepted=268, n_rejected=11) was read from the NONCANONICAL Phase29 Phase-D seed42 decisions CSV produced under the superseded v1_0 cache. It is NOT the canonical Phase27 reuse count.",
+ "corrected_seed42_counts": {
+  "authority": "reports/tables/phase27_val808_predictions.csv",
+  "authority_sha256": "bb2a6237160b79cda644173e91e17878598d5d0b396b7db08089b05104dcc1c6",
+  "selected": 279,
+  "accepted": 266,
+  "rejected": 13,
+  "final_refined": 266
+ },
+ "causal_order_conclusion_preserved": {
+  "R_psi_exec_equals_router_execute": true,
+  "S_omega_exec_equals_R_psi_exec": true,
+  "EXECUTE_THEN_REJECT_incurs_R_psi_compute": true,
+  "S_omega_saves_compute": false,
+  "runtime_counts_match_expected_after_correction": true
+ },
+ "seed42_count_no_longer_presented_as_canonical_runtime_evidence": true,
+ "generated_utc": "2026-10-04T02:36:04+00:00",
+ "all_pass": true
+}

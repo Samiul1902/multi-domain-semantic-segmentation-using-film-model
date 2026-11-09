@@ -1,0 +1,352 @@
+{
+ "artifact_kind": "PHASE36_CLEAN_EQUIVALENCE_DIAGNOSTIC_NEGATIVE_CONTROLS",
+ "revision": "ra_medfilm_barr_phase36_clean_equivalence_diagnostic_v1_1",
+ "source": {
+  "path": "scripts\\analysis\\phase36_clean_equivalence_diagnostic_negative_controls_v1_1.py",
+  "sha256": "b43649898d5be2fb96737f683aa208ea84d55a66ab807ac0d06e0fba4a7b3ee1"
+ },
+ "headline_control": {
+  "statement": "direct invocation with PHASE36_CLEAN_EQ_DIAGNOSTIC_EXECUTE=1 but WITHOUT the launch-authority token fails CLOSED and creates NO start marker",
+  "exit_code_expected": 5,
+  "control_names": [
+   "HEADLINE_execute_gate_without_launch_authority_fails_closed",
+   "HEADLINE_no_start_marker_created_without_launch_authority",
+   "HEADLINE_no_result_marker_created_without_launch_authority",
+   "HEADLINE_no_failure_marker_created_without_launch_authority"
+  ]
+ },
+ "mutation_sensitive_controls": [
+  "D45_d_mutant_detector_flags_violation",
+  "D46_b_mutant_with_empty_fallback_detected",
+  "D47_a_mutant_result_outside_guarded_detected",
+  "D47_b_mutant_missing_failure_write_detected",
+  "D48_b_mutated_manifest_bytes_rejected",
+  "D48_b_corrupted_dep_sha_detected",
+  "D48_a_dropped_checkpoint_detected",
+  "D48_c_injected_launcher_sha_rejected",
+  "D48_d_detector_flags_injected_torch_load"
+ ],
+ "n_checks": 55,
+ "n_pass": 55,
+ "all_pass": true,
+ "results": [
+  {
+   "name": "HEADLINE_execute_gate_without_launch_authority_fails_closed",
+   "ok": true,
+   "detail": {
+    "rc": 5
+   }
+  },
+  {
+   "name": "HEADLINE_no_start_marker_created_without_launch_authority",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "name": "HEADLINE_no_result_marker_created_without_launch_authority",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "name": "HEADLINE_no_failure_marker_created_without_launch_authority",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "name": "D45_a_execute_without_authority_rc5",
+   "ok": true,
+   "detail": {
+    "rc": 5
+   }
+  },
+  {
+   "name": "D45_a_execute_without_authority_no_marker",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "name": "D45_b_authority_without_execute_gate_rc3",
+   "ok": true,
+   "detail": {
+    "rc": 3
+   }
+  },
+  {
+   "name": "D45_b_authority_without_execute_gate_no_marker",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "name": "D45_c_mutated_provenance_rc6",
+   "ok": true,
+   "detail": {
+    "rc": 6
+   }
+  },
+  {
+   "name": "D45_c_mutated_provenance_no_marker",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "name": "D45_d_real_source_authority_precedes_marker",
+   "ok": true,
+   "detail": {
+    "authority_line": 431,
+    "marker_line": 468
+   }
+  },
+  {
+   "name": "D45_d_mutant_source_built",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "name": "D45_d_mutant_detector_flags_violation",
+   "ok": true,
+   "detail": {
+    "mutant_authority_line": 432,
+    "mutant_marker_line": 413
+   }
+  },
+  {
+   "name": "D46_a_builder_reads_mod_C",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "name": "D46_a_no_alternate_common_module_authority",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "name": "D46_c_fail_closed_no_C_attribute",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "name": "D46_c_fail_closed_empty_required",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "name": "D46_a_real_authority_key_counts",
+   "ok": true,
+   "detail": {
+    "required_n": 11,
+    "forever_zero_n": 5
+   }
+  },
+  {
+   "name": "D46_a_real_authority_all_required_present",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "name": "D46_a_real_authority_forever_zero_are_zero",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "name": "D46_b_no_empty_dict_fallback_in_source",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "name": "D46_b_mutant_with_empty_fallback_detected",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "name": "D47_a_real_source_result_inside_guarded_try",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "name": "D47_a_mutant_built",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "name": "D47_a_mutant_result_outside_guarded_detected",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "name": "D47_b_real_all_terminal_handlers_write_failure",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "name": "D47_b_mutant_built",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "name": "D47_b_mutant_missing_failure_write_detected",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "name": "D47_c_O_EXCL_present",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "name": "D47_c_full_write_loop_present",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "name": "D47_c_fsync_present",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "name": "D47_c_loud_short_write_present",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "name": "D47_c_exclusive_create_refuses_overwrite",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "name": "D47_c_first_write_intact",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "name": "D48_a_real_tree_transitive_ok",
+   "ok": true,
+   "detail": {
+    "n_deps": 14,
+    "n_ckpts": 4
+   }
+  },
+  {
+   "name": "D48_a_real_tree_is_14_4",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "name": "D48_a_no_torch_load_flag",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "name": "D48_a_no_deserialization_flag",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "name": "D48_a_no_model_construction_flag",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "name": "D48_a_no_val_or_gt_read_flag",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "name": "D48_b_mutated_manifest_bytes_rejected",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "name": "D48_b_corrupted_dep_sha_detected",
+   "ok": true,
+   "detail": {
+    "reason": "TRANSITIVE_BYTE_MISMATCH"
+   }
+  },
+  {
+   "name": "D48_a_dropped_checkpoint_detected",
+   "ok": true,
+   "detail": {
+    "reason": "TRANSITIVE_BYTE_MISMATCH"
+   }
+  },
+  {
+   "name": "D48_c_real_manifest_launcher_sha_absent",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "name": "D48_c_manifest_declares_launcher_sha256_absent_by_design",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "name": "D48_c_injected_launcher_sha_rejected",
+   "ok": true,
+   "detail": {
+    "launcher_sha256_absent": false
+   }
+  },
+  {
+   "name": "D48_d_no_torch_load_call_in_launcher",
+   "ok": true,
+   "detail": {
+    "lines": []
+   }
+  },
+  {
+   "name": "D48_d_no_load_state_dict_in_launcher",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "name": "D48_d_no_model_forward_in_launcher",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "name": "D48_d_detector_flags_injected_torch_load",
+   "ok": true,
+   "detail": {
+    "injected_lines": [
+     170
+    ]
+   }
+  },
+  {
+   "name": "D48_e_transitive_before_token",
+   "ok": true,
+   "detail": {
+    "transitive_pos": 14885,
+    "token_pos": 15940
+   }
+  },
+  {
+   "name": "D48_e_provenance_before_token",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "name": "D48_e_verify_only_returns_before_token",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "name": "D49_a_only_own_write_targets",
+   "ok": true,
+   "detail": {
+    "write_targets": [
+     "DIAGNOSTIC_FAILURE",
+     "DIAGNOSTIC_RESULT",
+     "DIAGNOSTIC_START"
+    ]
+   }
+  },
+  {
+   "name": "D49_a_never_writes_v1_14_science_result",
+   "ok": true,
+   "detail": null
+  }
+ ],
+ "scientific_output": false,
+ "generated_utc": "2026-10-07T03:14:50Z"
+}

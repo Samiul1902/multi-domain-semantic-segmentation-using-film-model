@@ -1,0 +1,115 @@
+{
+  "phase": "13B",
+  "notebook_path": "notebooks/11b_kub_learned_localizer.ipynb",
+  "created_from_scratch": true,
+  "run_all_status": "PASS",
+  "python_executable": "D:\\Softfors\\jup\\.venv\\Scripts\\python.exe",
+  "sha256": "3b978fa99ea8797dfadda3c3d7927615edfabe180efdf581ae4fe4689730d01b",
+  "cells": {
+    "total": 30,
+    "code": 14,
+    "markdown": 16,
+    "executed": 14,
+    "errors": 0
+  },
+  "source_artifacts": {
+    "clean_v3_experiment": "phase13b_kub_localizer_r512_s3_centernetfocal_seed42_v3",
+    "clean_v3_history": "experiments/phase13b_kub_localizer_r512_s3_centernetfocal_seed42_v3/history.csv",
+    "clean_v3_best_search": "experiments/phase13b_kub_localizer_r512_s3_centernetfocal_seed42_v3/val_search_epoch097.csv",
+    "clean_v3_checkpoint": "checkpoints/phase13b_kub_localizer_r512_s3_centernetfocal_seed42_v3/best.pt",
+    "baseline_config": "reports/tables/phase13_predicted_roi_selected_config.csv",
+    "stage4b_audit": "reports/audits/phase13b_stage4b_feasible_selection.json",
+    "stage4c_r3_mapping": "reports/audits/phase13b_stage4c_r3_component_mapping.json",
+    "stage4c_r3_init": "reports/tables/phase13b_stage4c_r3_initialization_diagnostic.csv",
+    "val_per_component": "reports/tables/phase13b_centernet_v3_best_val_per_component.csv",
+    "val_per_image": "reports/tables/phase13b_centernet_v3_best_val_per_image.csv"
+  },
+  "invalid_runs_registered": {
+    "provisional": {
+      "id": "phase13b_kub_localizer_r512_s3_seed42",
+      "status": "INVALID_FOR_FINAL_SELECTION",
+      "reason": "unapproved positive/negative balancing, invalid checkpoint selection"
+    },
+    "stage4a": {
+      "id": "phase13b_kub_localizer_r512_s3_seed42_v2",
+      "status": "INVALID_FOR_FINAL_SELECTION",
+      "reason": "Stage-4A degenerate full-image ROIs (mean area=1.0)"
+    },
+    "stage4b": {
+      "id": "phase13b_kub_localizer_r512_s3_seed42_v3",
+      "status": "TRAINED",
+      "reason": "Stage-4B feasibility pilot (Focal+Dice); revealed poor compact localization"
+    },
+    "stage4c_v1": {
+      "id": "phase13b_kub_localizer_r512_s3_centernetfocal_seed42_v1",
+      "status": "DIAGNOSTIC_ONLY",
+      "reason": "component count discrepancy and extreme initial scale"
+    },
+    "stage4c_v2": {
+      "id": "phase13b_kub_localizer_r512_s3_centernetfocal_seed42_v2",
+      "status": "ABORTED",
+      "reason": "evaluation parser crash and restart provenance contamination"
+    }
+  },
+  "clean_v3_best_metrics": {
+    "best_epoch": 97,
+    "train_loss": 2.046753,
+    "val_loss": 2.399564,
+    "tiny_recall90": 0.465753,
+    "small_recall90": 0.275862,
+    "medium_recall90": 0.055556,
+    "large_recall90": 0.0,
+    "overall_recall90": 0.282051,
+    "overall_recall50": 0.564103,
+    "any_overlap_recall": 0.769231,
+    "hard_tiny_recovered90": "1 / 16",
+    "global_empty_covered90": "1 / 7",
+    "multi_component_recall90": 0.23,
+    "mean_proposals_per_image": 3.179245,
+    "zero_proposal_images": 2,
+    "mean_roi_area_fraction": 0.000863,
+    "median_roi_area_fraction": 0.000601,
+    "p90_roi_area_fraction": 0.001591,
+    "max_roi_area_fraction": 0.004439,
+    "mean_max_heatmap_probability": 0.100299,
+    "median_max_heatmap_probability": 0.100342
+  },
+  "stage_4c_gate": {
+    "criterion_a": {
+      "name": "Tiny Recall@90 >= 0.50",
+      "value": 0.465753,
+      "passed": false
+    },
+    "criterion_b": {
+      "name": "Overall Recall@90 >= 0.50",
+      "value": 0.282051,
+      "passed": false
+    },
+    "criterion_c": {
+      "name": "Hard Tiny Recovered@90 >= 2/16",
+      "value": "1 / 16",
+      "passed": false
+    },
+    "criterion_d": {
+      "name": "Mean Union ROI Area <= 0.10",
+      "value": 0.000863,
+      "passed": true
+    },
+    "criterion_e": {
+      "name": "Mean Proposals/Image <= 5.0",
+      "value": 3.179245,
+      "passed": true
+    },
+    "gate_status": "NOT_PROMISING"
+  },
+  "safety_audit": {
+    "training_triggered": false,
+    "test_content_reads": 0,
+    "test_metrics_calculated": false,
+    "external_data_accessed": false,
+    "experiment_a_modified": false,
+    "phase14_executed": false,
+    "prohibited_code_calls_found": 0
+  }
+}
+

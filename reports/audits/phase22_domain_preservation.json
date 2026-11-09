@@ -1,0 +1,73 @@
+{
+  "artifact": "phase22_domain_preservation",
+  "phase": 22,
+  "question": "does Phase 22 degrade any domain?",
+  "answer_summary": "The reference model is FROZEN and unchanged, so no per-domain property of the reference can change in Phase 22. Domain preservation is therefore a statement about the DIAGNOSTIC arms only.",
+  "reference_unchanged": {
+    "checkpoint_sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+    "frozen_mean_dice": {
+      "ISIC": 0.8971891751747457,
+      "BUSI": 0.8588228931389639,
+      "KVASIR": 0.8202473579060531,
+      "KUB": 0.7640582416103505
+    },
+    "matches_frozen_phase21_values": true,
+    "note": "frozen Phase-21 per-domain macro Dice: ISIC 0.8971891751747457 / BUSI 0.8588228931389639 / KVASIR 0.8202473579060531 / KUB 0.7640582416103505"
+  },
+  "per_domain": [
+    {
+      "dataset": "ISIC",
+      "n": 357,
+      "frozen_mean_dice": 0.8971891751747457,
+      "n_oracle_executed": 357,
+      "mean_oracle_delta_dice_itt": -0.025320844598570303,
+      "mean_oracle_delta_dice_executed": -0.025320844598570303,
+      "mean_predicted_delta_dice_itt": -0.030623437006334575,
+      "n_oracle_improved": 112,
+      "n_oracle_harmed": 244,
+      "max_domain_degradation_under_any_policy": -0.5025257248154807
+    },
+    {
+      "dataset": "BUSI",
+      "n": 84,
+      "frozen_mean_dice": 0.8588228931389639,
+      "n_oracle_executed": 84,
+      "mean_oracle_delta_dice_itt": -0.09337708755848126,
+      "mean_oracle_delta_dice_executed": -0.09337708755848126,
+      "mean_predicted_delta_dice_itt": -0.10655895090074693,
+      "n_oracle_improved": 16,
+      "n_oracle_harmed": 68,
+      "max_domain_degradation_under_any_policy": -0.6605358155324268
+    },
+    {
+      "dataset": "KVASIR",
+      "n": 87,
+      "frozen_mean_dice": 0.8202473579060531,
+      "n_oracle_executed": 87,
+      "mean_oracle_delta_dice_itt": -0.05077252859482929,
+      "mean_oracle_delta_dice_executed": -0.05077252859482929,
+      "mean_predicted_delta_dice_itt": -0.0587243816723383,
+      "n_oracle_improved": 24,
+      "n_oracle_harmed": 63,
+      "max_domain_degradation_under_any_policy": -0.3759110401921097
+    },
+    {
+      "dataset": "KUB",
+      "n": 280,
+      "frozen_mean_dice": 0.7640582416103505,
+      "n_oracle_executed": 280,
+      "mean_oracle_delta_dice_itt": -0.04650601762378742,
+      "mean_oracle_delta_dice_executed": -0.04650601762378742,
+      "mean_predicted_delta_dice_itt": -0.08451183090489625,
+      "n_oracle_improved": 119,
+      "n_oracle_harmed": 161,
+      "max_domain_degradation_under_any_policy": -0.8334218445650708
+    }
+  ],
+  "cross_domain_effect": {
+    "max_abs_spearman_gain_vs_domain": -0.021310018370336286,
+    "note": "the regional arm is applied per image and never changes another image's result, so there is no cross-image pathway by which one domain could be traded against another inside the diagnostic"
+  },
+  "table": "reports/tables/phase22_domain_preservation.csv",
+  "test_reads": 0
+}

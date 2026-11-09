@@ -1,0 +1,22 @@
+{
+  "artifact": "phase21_paired_bootstrap",
+  "phase": 21,
+  "experiment_id": "phase21_global_medfilm_fourdomain_seed42_clean_v3",
+  "n_boot": 2000,
+  "seed": 42,
+  "alpha": 0.05,
+  "resampling_unit": "domain_stratified_paired_image",
+  "val_population": 808,
+  "baselines": [
+    "unet",
+    "attention_unet",
+    "unetpp",
+    "deeplabv3plus",
+    "transformer_mit_unet"
+  ],
+  "table": "reports/tables/phase21_paired_bootstrap_vs_baselines.csv",
+  "significance_rule": "95% percentile CI of the paired macro-Dice difference excludes zero",
+  "no_retraining": true,
+  "interpretation_guard": "Phase 21 has NO architecture-matched control (no identical plain model trained under the same Phase-21 run). Therefore the ONLY permitted phrasing is 'Global MedFiLM achieved X compared with baseline Y'. It is FORBIDDEN to claim 'FiLM caused +X'. Where a CI overlaps zero the models are NOT distinguishable.",
+  "test_reads": 0
+}

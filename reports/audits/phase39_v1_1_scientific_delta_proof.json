@@ -1,0 +1,42 @@
+{
+  "classification": "PHASE39_V1_1_SCIENTIFIC_DELTA_PROOF",
+  "generated_utc": "2026-10-11T07:45:00Z",
+  "phase": 39,
+  "scientific_delta_v1_0_to_v1_1": 0,
+  "unchanged": {
+    "checkpoints": true,
+    "architecture_semantics": true,
+    "weights": true,
+    "comparators": true,
+    "metrics": true,
+    "thresholds": true,
+    "D61_fusion": true,
+    "D75_POLICY_B": true,
+    "task_ids": true,
+    "population": true,
+    "sample_inclusion": true,
+    "statistical_method": true,
+    "manuscript_claim_policy": true,
+    "result_shells": true,
+    "output_interpretation": true,
+    "subgroup_rules": true
+  },
+  "changed": {
+    "dependency_resolution": "v1_1 loader injects frozen module globals FEATURE_DIM/HIDDEN (and NUMERIC_IDX/ONEHOT_IDX) for extracted classes — restores the class's frozen closure",
+    "operational_ordering": "model construction / strict load / device / metric / comparator binding / output-absence now precede first TEST-manifest access",
+    "namespace": "v1_1 output namespace (distinct, write-once)",
+    "history_gate": "v1_0 consumed-history gate fails closed on drift"
+  },
+  "evidence": {
+    "param_counts_exact": {
+      "G": 3523001,
+      "B_phi": 36801,
+      "R_psi": 1276401,
+      "S_omega": 1217,
+      "total": 4837420
+    },
+    "strict_load_identity": "zero missing/unexpected keys for all four components",
+    "model_load_regression": "reports/audits/phase39_v1_1_model_load_regression_report.json"
+  },
+  "no_test_derived_decision_influenced_the_repair": true
+}

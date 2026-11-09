@@ -1,0 +1,131 @@
+{
+ "artifact": "phase33_tier0_tier1_preflight",
+ "phase": 33,
+ "section": "\u00a7A-\u00a7D",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase33_failure_boundary_v1_1",
+ "authority_bindings": [
+  {
+   "path": "reports/audits/phase33_specification_terminal_v1_1.json",
+   "expected_sha256": "20c9b738782090c11774acd4e2b1f5dc096183881bb1c759de47f11c4348394b",
+   "observed_sha256": "20c9b738782090c11774acd4e2b1f5dc096183881bb1c759de47f11c4348394b",
+   "match": true
+  },
+  {
+   "path": "reports/audits/phase33_specification_final_check_v1_1.json",
+   "expected_sha256": "b929defad97ed0cae14f01be532a088a9a2012283cbaf8dc3fba1a2bf86fee02",
+   "observed_sha256": "b929defad97ed0cae14f01be532a088a9a2012283cbaf8dc3fba1a2bf86fee02",
+   "match": true
+  },
+  {
+   "path": "reports/audits/phase33_execution_eligibility_adjudication_v1_1.json",
+   "expected_sha256": "d404a5947e3f358785646e395c46942d49d8d562eff4cea26e3a880d50ed5584",
+   "observed_sha256": "d404a5947e3f358785646e395c46942d49d8d562eff4cea26e3a880d50ed5584",
+   "match": true
+  },
+  {
+   "path": "reports/audits/phase33_failure_taxonomy_contract_v1_1.json",
+   "expected_sha256": "522452cbf6e419f919deb9dadb8aba9734205c5afea9d2d0b16103c265cf4ae8",
+   "observed_sha256": "522452cbf6e419f919deb9dadb8aba9734205c5afea9d2d0b16103c265cf4ae8",
+   "match": true
+  },
+  {
+   "path": "reports/audits/phase33_failure_taxonomy_v1_1_reconciliation.json",
+   "expected_sha256": "d8171e5e4e8c1406ab7e70e6471c0ee8377a7ef5799961deecc6bcf5ea83041d",
+   "observed_sha256": "d8171e5e4e8c1406ab7e70e6471c0ee8377a7ef5799961deecc6bcf5ea83041d",
+   "match": true
+  },
+  {
+   "path": "reports/audits/phase33_failure_threshold_provenance_contract.json",
+   "expected_sha256": "ff82a125af42b2977bad7d07449fbc7bf7e5bec445ef8b8d6207541376439d70",
+   "observed_sha256": "ff82a125af42b2977bad7d07449fbc7bf7e5bec445ef8b8d6207541376439d70",
+   "match": true
+  }
+ ],
+ "all_authority_match": true,
+ "final_check_v1_1": {
+  "n_checks": 47,
+  "n_failed": 0
+ },
+ "execution_eligibility": {
+  "table_only_execution_eligible": true,
+  "derived_nonpixel_execution_eligible": true,
+  "prediction_pixel_execution_eligible": false,
+  "raw_image_execution_eligible": false,
+  "raw_GT_execution_eligible": false,
+  "qualitative_gallery_eligible": false,
+  "boundary_metric_execution_eligible": false,
+  "component_metric_execution_eligible": false,
+  "model_rerun_eligible": false
+ },
+ "data_source": {
+  "path": "reports/tables/phase30_router_holdout_scored_results.csv",
+  "sha256": "dbc9f5f3867f0607cfc0a778736a92b9d6de6e27811fa382ad6d1cb0b2a04568",
+  "expected": "dbc9f5f3867f0607cfc0a778736a92b9d6de6e27811fa382ad6d1cb0b2a04568",
+  "read_only": true,
+  "modified": false
+ },
+ "metadata_manifest": {
+  "path": "reports/audits/phase24_router_split_manifest.csv",
+  "sha256": "b5da52d6220ef9b59b4ba70d0b403b38bf5234b897615b6ad55d718114db6555",
+  "expected": "b5da52d6220ef9b59b4ba70d0b403b38bf5234b897615b6ad55d718114db6555",
+  "read_only": true,
+  "modified": false
+ },
+ "population": {
+  "n": 875,
+  "domain_counts": {
+   "BUSI": 90,
+   "ISIC": 383,
+   "KUB": 298,
+   "KVASIR": 104
+  },
+  "domain_counts_expected": {
+   "BUSI": 90,
+   "ISIC": 383,
+   "KUB": 298,
+   "KVASIR": 104
+  },
+  "total_groups": 628,
+  "groups_expected": 628,
+  "duplicate_sample_ids": 0,
+  "unmatched_metadata_rows": 0
+ },
+ "structural_integrity": {
+  "columns": [
+   "canonical_order_index",
+   "sample_id",
+   "dataset",
+   "global_dice",
+   "a8_dice",
+   "delta_dice_a8",
+   "a7_dice",
+   "delta_dice_a7",
+   "router_decision",
+   "somega_accept"
+  ],
+  "missing_required_fields": [],
+  "non_finite_a8_dice_rows": 0,
+  "non_finite_global_dice_rows": 0
+ },
+ "checks": {
+  "all_authority_shas_match": true,
+  "scored_results_sha_match": true,
+  "split_manifest_sha_match": true,
+  "n_875": true,
+  "no_duplicate_sample_identity": true,
+  "every_sample_maps_exactly_once": true,
+  "domain_membership_matches": true,
+  "required_frozen_fields_exist": true,
+  "total_groups_628": true,
+  "taxonomy_partition_7_6_disjoint": true,
+  "no_requested_calculation_requires_forbidden_field": true
+ },
+ "n_checks": 11,
+ "n_failed": 0,
+ "image_paths_opened": 0,
+ "mask_paths_opened": 0,
+ "test_metadata_joined": false,
+ "generated_utc": "2026-10-04T08:41:35+00:00",
+ "all_pass": true
+}

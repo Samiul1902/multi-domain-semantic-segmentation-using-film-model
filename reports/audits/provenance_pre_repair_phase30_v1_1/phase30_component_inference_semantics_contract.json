@@ -1,0 +1,63 @@
+{
+ "artifact": "phase30_component_inference_semantics_contract",
+ "phase": 30,
+ "section": "\u00a79",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_phase30_final_dev_validation_v1_0",
+ "authority": "reports/audits/phase29_phase_d_component_inference_semantics_contract_v1_1.json",
+ "authority_sha256": "dc721c1143bdd03b542da95e1cfb22c638362535aea6bbcefaf28a99323c7526",
+ "G": {
+  "device": "cuda",
+  "model_dtype": "float32",
+  "input_dtype": "float32",
+  "eval_state": "eval()",
+  "autocast_enabled": true,
+  "autocast_dtype": "float16",
+  "grad_context": "torch.no_grad()",
+  "inference_mode": false,
+  "batch_size": 8,
+  "sample_ordering": "(dataset asc, sample_id asc)",
+  "domain_batching": "contiguous chunks of 8 inside a single domain",
+  "probability_computation": "torch.sigmoid(logits.float())",
+  "probability_persistence": "float16 (decision taken in float32 first)"
+ },
+ "R_psi": {
+  "device": "cuda",
+  "model_dtype": "float32",
+  "input_dtype": "float32",
+  "eval_state": "eval()",
+  "autocast_enabled": false,
+  "inference_mode": true,
+  "batch_size": 8,
+  "probability_computation": "torch.sigmoid(model(x).float())[:, 0]",
+  "fusion": "fuse_full_field(p512, refined, geom)"
+ },
+ "B_phi": {
+  "device": "cuda",
+  "model_dtype": "float32",
+  "input_dtype": "float32",
+  "eval_state": "eval()",
+  "autocast_enabled": false,
+  "inference_mode": true,
+  "batch_size": "FULL_MATRIX_SINGLE_FORWARD",
+  "score": "raw logit delta_hat (no sigmoid)",
+  "normalization": "frozen router normalizer on scalar indices"
+ },
+ "S_omega": {
+  "device": "cuda",
+  "model_dtype": "float32",
+  "input_dtype": "float32",
+  "eval_state": "eval()",
+  "autocast_enabled": false,
+  "inference_mode": true,
+  "batch_size": 128,
+  "features": "20-D",
+  "accept_threshold": 0.5,
+  "decision": "ACCEPT iff p_accept >= 0.50",
+  "normalization": "frozen post-safety normalizer on 16 numeric indices"
+ },
+ "note": "G is the ONLY component running under autocast(fp16); R_psi/B_phi/S_omega run without autocast. Eval-mode batch size is not numerically load-bearing for these frozen eval-mode models (no batch-dependent state).",
+ "conflicting_contracts_resolved": true,
+ "generated_utc": "2026-10-04T02:46:58+00:00",
+ "all_pass": true
+}

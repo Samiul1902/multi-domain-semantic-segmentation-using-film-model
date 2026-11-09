@@ -1,0 +1,46 @@
+{
+  "artifact": "phase14_clean_v3_integrity_verification",
+  "status": "PASS",
+  "generated_utc": "2026-09-25T00:14:57Z",
+  "checks_total": 24,
+  "checks_failed": 0,
+  "population": {
+    "val_samples": 103,
+    "components": 152,
+    "strata": {
+      "TINY": 72,
+      "SMALL": 28,
+      "MEDIUM": 36,
+      "LARGE": 16
+    },
+    "hard_tiny_components": 15,
+    "hard_tiny_unique_images": 13,
+    "global_empty_images": 5,
+    "v2_preserved": {
+      "val_samples": 106,
+      "components": 156,
+      "hard_tiny": 16,
+      "global_empty": 7
+    }
+  },
+  "checkpoint_shas": {
+    "GLOBAL": "ec7eb13f...",
+    "REGIONAL_epoch56": "2e09e3a9...",
+    "LOCALIZER": "7673c34a..."
+  },
+  "frozen_references": {
+    "Tg_clean_v3": 0.7916666666666666,
+    "Dg_clean_v3": 0.6359172411726776
+  },
+  "evaluator_sha": "53958eb1601a15f29b6dc1635f802f87af88f2eef3b3268320ad471b92ef1a38",
+  "verdict": {
+    "final_classification": "DIAGNOSTIC_PROPOSAL_BOTTLENECK",
+    "phase15_status": "NOT_AUTHORIZED"
+  },
+  "governance_locks": {
+    "TEST_CLOSED": true,
+    "external_TEST_CLOSED": true,
+    "training_executed": false
+  },
+  "note": "All clean-v3 artifacts (\u00a72 population, \u00a73 checkpoint binding, \u00a74 gate algebra, \u00a75 reference procedure, \u00a76 global reference freeze, \u00a77 evaluator binding, \u00a78 evaluation, \u00a79 adjudication, \u00a710 descriptive) agree on population, checkpoint SHAs, epoch, references, denominators, and verdict. Evaluator binding SHA and \u00a76 recorded evaluator SHA both match the live file. TEST/external TEST remain CLOSED."
+}

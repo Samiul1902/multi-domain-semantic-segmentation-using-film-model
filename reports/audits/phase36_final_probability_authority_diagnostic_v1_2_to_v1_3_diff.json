@@ -1,0 +1,71 @@
+{
+ "artifact_kind": "PHASE36_FINAL_PROBABILITY_AUTHORITY_DIAGNOSTIC_V1_2_TO_V1_3_DIFF",
+ "revision": "ra_medfilm_barr_phase36_final_probability_authority_diagnostic_v1_3",
+ "from_revision": "ra_medfilm_barr_phase36_final_probability_authority_diagnostic_v1_2",
+ "to_revision": "ra_medfilm_barr_phase36_final_probability_authority_diagnostic_v1_3",
+ "additive": true,
+ "v1_0_state": "FROZEN_NEVER_CONSUMED_NOT_AUTHORIZED",
+ "v1_0_modified": false,
+ "v1_1_state": "CONSUMED_FAILED",
+ "v1_1_modified": false,
+ "v1_2_state": "CONSUMED_RESULT",
+ "v1_2_modified": false,
+ "scientific_path_changed": "ONLY_D61_ACCEPT_FINAL_FUSION",
+ "scientific_path_identical_except_d61": true,
+ "changes": {
+  "D61": {
+   "v1_2": "Executed the frozen v1.14 ``canonical_learned_core`` verbatim: on ACCEPT, system._fuse_global_with_regional(p_global, refined, window) -> PAD-UNAWARE resize refined256 to the clipped window via torch interpolate (no pad offset).",
+   "v1_3": "Executes a diagnostic-local ``_repaired_canonical_learned_core`` that is byte-for-byte identical to the frozen v1.14 core EXCEPT the ACCEPT branch, which calls _FROZEN_MOD.fuse_full_field(p_global, refined, geom) -> PAD-AWARE (canonical Phase27).  Same ``geom`` from the canonical ROI path; NO approximation; NO alternate resize; NO torch interpolation."
+  },
+  "ACCEPT_ACCEPT_FUSION_CALL": {
+   "v1_2": "system._fuse_global_with_regional(p_global, refined, window)",
+   "v1_3": "fuse_full_field(p_global, refined, geom)"
+  },
+  "AUTHORITY_TOKEN": {
+   "v1_2": "PHASE36_FINAL_PROB_AUTHORITY_V1_2_LAUNCH_AUTHORITY",
+   "v1_3": "PHASE36_FINAL_PROB_AUTHORITY_V1_3_LAUNCH_AUTHORITY"
+  },
+  "MARKERS": {
+   "v1_2": [
+    "..._start_v1_2.json",
+    "..._result_v1_2.json",
+    "..._failure_v1_2.json"
+   ],
+   "v1_3": [
+    "..._start_v1_3.json",
+    "..._result_v1_3.json",
+    "..._failure_v1_3.json"
+   ]
+  },
+  "NEW_PRECONSUMPTION_GATE": {
+   "v1_2": "none (v1.2 was the first post-D56 family)",
+   "v1_3": "v1.2 consumed-state binding (v1.2 START sha + RESULT sha + RESULT present + result adjudication/reconciliation/D63 addenda) ordered AFTER the v1.1 consumed-state gate and BEFORE the verify-only STOP / token set"
+  },
+  "GATE_REUSE": {
+   "v1_2": "n/a",
+   "v1_3": "the v1.3 launcher imports the FROZEN v1.2 launcher module by path (pinned SHA) and reuses ~12 shared gate functions VERBATIM, so gate semantics cannot drift."
+  }
+ },
+ "preserved_unchanged": [
+  "frozen v1.14 exec + manifest",
+  "v1.2 clean-equivalence consumed evidence (start/result + D51 adjudication/reconciliation)",
+  "v1.2 final-probability authority consumed evidence (start/result + adjudication/reconciliation)",
+  "prior-failure provenance",
+  "one-shot env gate PHASE36_FINAL_PROB_AUTHORITY_EXECUTE",
+  "forbidden foreign token PHASE36_V1_14_LAUNCH_AUTHORITY",
+  "the D52 final-authority pre-consumption gate",
+  "the D53 shared GT runtime-evidence state",
+  "the D54 computed-evidence preservation on result-write failure",
+  "the D56 module-interface AST control",
+  "the finite-probability fail-closed hardening",
+  "G / router / ROI / rf202 / R_psi / S_omega / task IDs / sample order / final threshold (scientific path EXCEPT the single D61 ACCEPT fusion)"
+ ],
+ "source_sha256": {
+  "v1_2_diagnostic": "981f772fd42e35ac8e3acde17344e9bcd3fb48c39aba191200a0d811f76f29f9",
+  "v1_3_diagnostic": "b32a9db41a53b5007c6b9989bdbee22a0b7ea14587d222a3399980142dd9621e",
+  "v1_2_launcher": "de916786f8237d6f04a4deebde4186a5120164bce073ffa1d0343cf6e265aaee",
+  "v1_3_launcher": "d5f9cd3dff302c849d195d909f6f2c9a59fbbbaaf359d859e69442d9fe05b504"
+ },
+ "scientific_output": false,
+ "generated_utc": "2026-10-08T08:40:49Z"
+}

@@ -1,0 +1,50 @@
+{
+ "artifact_kind": "PHASE36_CLEAN_EQUIVALENCE_DIAGNOSTIC_CONTRACT",
+ "revision": "ra_medfilm_barr_phase36_clean_equivalence_diagnostic_v1_0",
+ "purpose": "Durable clean-equivalence diagnostic (D44 repair). Reproduces the frozen v1.14 CLEAN sequence (steps 1-7) only, and durably writes the FULL eq object; never executes perturbations; never touches v1.14 science markers.",
+ "one_shot_gate_env": "PHASE36_CLEAN_EQ_DIAGNOSTIC_EXECUTE=1",
+ "execution_scope": "CLEAN_ONLY__STEPS_1_THROUGH_7__NO_PERTURBATION",
+ "diagnostic_steps": [
+  "STEP1 _verify_transitive_source_integrity (fail closed)",
+  "STEP2 _load_models (CUDA fail-closed, no CPU fallback)",
+  "STEP3 _bind_clean_reference (authority bind)",
+  "STEP4 _generate_clean_g_reference (canonical batched CLEAN G pass)",
+  "STEP5 _phase27_global_reproduction_gate (STOP on fail)",
+  "STEP6 808 x _evaluate_clean_sample (clean system eval)",
+  "STEP7 eq = _clean_equivalence_gate (DURABLE full-eq write)",
+  "STEP8 write result artifact (write-once)",
+  "STEP9 terminate (no perturbation)"
+ ],
+ "imports_frozen_callables_from": "scripts/analysis/phase36_robustness_execution_v1_14.py",
+ "frozen_v1_14_exec_source_sha256": "ac09ff8ded3610244920e66612145b246b33127140d344a9730d454bab27cff5",
+ "frozen_v1_14_runtime_manifest_sha256": "b4c358dfcb5e7b59beb6ae1ba2cffc64677d10049e12568b4c8eea8e79bb911e",
+ "artifacts_written": [
+  "reports/audits/phase36_clean_equivalence_diagnostic_start_v1_0.json",
+  "reports/audits/phase36_clean_equivalence_diagnostic_result_v1_0.json",
+  "reports/audits/phase36_clean_equivalence_diagnostic_failure_v1_0.json"
+ ],
+ "artifacts_never_written": [
+  "reports/audits/phase36_robustness_science_start_v1_14.json",
+  "reports/audits/phase36_robustness_scientific_result_v1_14.json",
+  "reports/audits/phase36_robustness_science_failure_v1_14.json"
+ ],
+ "prohibitions": [
+  "no v1.15",
+  "no v1.14 modification",
+  "no Phase37",
+  "no TEST",
+  "no ROUTER_HOLDOUT",
+  "no VAL808 re-consumption beyond the diagnostic's frozen clean reproduction",
+  "no perturbation execution",
+  "no automatic retry",
+  "scientific_output=false"
+ ],
+ "source_sha256": {
+  "diagnostic": "7cc51cceacfa314d7f84acb8a6dc482a2b46ea81de0ec695c0c8f0ca8b0b50f7",
+  "launcher": "a34923faf6c27dd741ee1a1a1b4d1cbef1233664c2b02825e53b42c22c75b228",
+  "unit": "33e72386699aa0100c314846ffe2592f740ca7fb76e926a704cf4d46fbf78bf5",
+  "preflight": "92c2d855e931d037e965d862a2ce0feb091d53e1bff0f91020f85729842e6653"
+ },
+ "scientific_output": false,
+ "generated_utc": "2026-10-07T02:57:48Z"
+}

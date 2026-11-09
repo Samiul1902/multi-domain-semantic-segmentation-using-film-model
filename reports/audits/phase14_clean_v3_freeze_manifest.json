@@ -1,0 +1,357 @@
+{
+  "phase": 14,
+  "phase_name": "Regional Refiner Diagnostic \u2014 Clean-v3 Revalidation",
+  "status": "FROZEN_AWAITING_EXECUTION__FINAL_IMPLEMENTATION_PROSPECTIVELY_BOUND",
+  "authorization": {
+    "granted": true,
+    "source": "USER_SUPERVISOR_FINAL_RESOLUTION_EPOCH0_RESTART",
+    "timestamp_utc": "2026-09-24T08:30:00Z"
+  },
+  "protocol_bindings": {
+    "phase14_protocol_path": "reports/audits/phase14_diagnostic_protocol_amendment.json",
+    "phase14_protocol_sha": "a65025ba4861a575d1cada7983e75c7ebf852c33d4da24f54abaff7115fb09a9",
+    "phase14_protocol_md_sha": "7b9bfead2de762f084fa9a6fb285c06f8af169ecfa1ba828a96ba445c7fc72f4",
+    "authorization_source": "USER_SUPERVISOR_POST_H2C_CHAIN_CLOSURE",
+    "parent_chain_closure_sha": "22b1c49b5f688608d4be4e8077a95c1f67d22832c0ba8c3ae1a972b9d00555f7",
+    "parent_h2c_adjudication_sha": "b1d19ba8032520d98f3f2b25132795142c9bb4f98e565d9431b1795c23fe48fe",
+    "h2c_protocol_sha": "91166259c10a84e9526eda43e83b227cc760a37b8834a4d4a65fe3e5a90ba4b6",
+    "TRAINER_train_phase14_refiner_py": "scripts/training/train_phase14_refiner.py",
+    "TRAINER_train_phase14_refiner_py_sha": "99a4335ec63a026225871cf59a8c6f813dc533ec957940712b0f670dd9912e89",
+    "TRAINER_train_phase14_refiner_py_sha_superseded_rng_device_bug": "6b940fa30b1cea949ce599d87542af0af35a0724e1fcf7024aee3eb9c400573a",
+    "TRAINER_train_phase14_refiner_py_sha_superseded_no_rng_persistence": "cfd0f7ac22731362579b27c654045ac2ac7df4dd6f139ef712dbedfbc9985133",
+    "TRAINER_train_phase14_refiner_py_sha_superseded_pre_margin_patch": "d768422f77abae415be8bd712ff67bef4e16605f053287db04e1840c9f7f0aa8",
+    "regional_dataset_py_sha": "e7eb24968e9946b8c4190093152b0c7790d2f740cc710a7e232548ea179a06c8",
+    "regional_dataset_py_sha_superseded": "4e495350c213be0d821938c1c6fe9a1a68286d08d24cf5d3cb88042b473dc70a",
+    "utils_targets_py_sha": "cd586a75e503b7d5c61f2d83ffd401a85c6d62b1c6f88b90a72bbe2535fd2b19",
+    "unet_model_py_sha": "62edc8fb481eb02c46c2c64f6e7219254a57d7ba935a4c840a5a7965b41bdfc2",
+    "segmentation_loss_py_sha": "2af539bd47a07c966d4a2784f4df7d81bce0620af8ef8e8ddc8b34a3e6de0e8f",
+    "regional_evaluator_py_path": "src/inference/regional_evaluator.py",
+    "regional_evaluator_py_sha": "ea09b9efc12b832ad1a7f6a3746fc30756193555ae4c5bfe2929a54b395773f2",
+    "utils_device_py_sha": "9adabfbd145a5952275aa25b0ec99aab8a5114bb41aa443ecde52ce19a8448b6",
+    "utils_config_py_sha": "577deb1db96c8c4ed12e4c41a959f0c6fee8e41af3836dc998a18c928c7f28dd",
+    "inference_predicted_roi_py_sha": "bd9f8be84595f49ff1e25e6052b548488fb6ae6a48aa7adbc78b880fb8f2d4e7",
+    "data_kub_dataset_py_sha": "937e04ed7af3b0399fa5e34cd529f04ebc95a7b072f95a9527e1b32dfd36cbb6",
+    "data_transforms_py_sha": "8a8b636b58843d36810ebf5f3527a8ca1287b93483b962d5cf8e323a92566223",
+    "models_factory_py_sha": "3377bbe021d7bd13c07350ff5c4927705c2d67f93fa99c388caf2cc79ef4086d",
+    "utils_checkpointing_py_sha": "08366f72f3141e5d18f008981465f5e9138c0b51336fd65cae7c619456ee1eca",
+    "utils_manifest_guard_py_sha": "64c5f4d11bbb443c7b47aff7ab84b41e2d2496af981d7b1c6877758cf3461bea",
+    "utils_test_lock_py_sha": "7cff4732b1f643738c410d672372684486d79e475eae18da5fee7ae10d2d22f3",
+    "phase13b_clean_v3_best_pt_sha": "7673c34a2f2c86eca2e45c1bc6abe77842d17cd09f122f2da0f2d414ca492273",
+    "phase13b_clean_v3_latest_pt_sha": "791abe027cb63ea81d9fcaea1e7081536d80382553e1e5129d7f80e89eae307c",
+    "global_baseline_unetpp_clean_v3_sha": "ec7eb13f32e43af27eab7fc617bd1a2a8fcce1d6651a1b4a3653f3e4d1283269",
+    "train_manifest_sha": "28702fc3a5ff8b950db372f03232d335e3a30b1fc2f21db7cd8c066055826ed6",
+    "val_manifest_sha": "082c80b2bda63fd73f371f109c34643adf01edaead921643fb2e44993ba53315",
+    "view_type_inventory_sha": "e9fa31fd84b366239e981e803283beccf3812c4941bafc9bb3c21d1e4bafac61"
+  },
+  "scientific_design": {
+    "scientific_question": "Does regional refinement help when ROI localization is ideal? Does the SAME refiner help with frozen predicted proposals? What fraction of oracle benefit is lost to proposal quality?",
+    "hypothesis": "Regional refinement has potential but proposal quality is the binding bottleneck.",
+    "changed_axis": "Regional refiner training (OPTION_A3: jittered oracle + FP background)",
+    "frozen_axes": [
+      "Localizer architecture (Phase 13B clean-v3)",
+      "Localizer checkpoint (epoch 53)",
+      "Proposal policy (threshold=0.1, margin=0.2, top_k=5, nms_iou=0.3)",
+      "Global baseline (UNet++ clean-v3 epoch 70)",
+      "Fusion rule (MAX probability replacement in proposal union)",
+      "Segmentation architecture for refiner (4-stage U-Net, base=32)",
+      "Loss (0.5 BCE + 0.5 Dice)",
+      "Optimizer (AdamW lr=1e-4 wd=1e-4)",
+      "Scheduler (CosineAnnealingLR)",
+      "Data augmentation (H/V flip, rot \u00b145\u00b0, brightness/contrast \u00b10.2)",
+      "Crop resolution (256\u00d7256)",
+      "ROI margin (role-resolved: ORACLE_DERIVED_REFINER_TRAIN 0.25, ORACLE_DERIVED_REFINER_VAL 0.25, ORACLE_DOWNSTREAM 0.20, PREDICTED_PROPOSAL 0.20)",
+      "Seed (42)"
+    ]
+  },
+  "training_config": {
+    "experiment_id": "phase14_kub_refiner_unet_a3_256_seed42_clean_v3",
+    "model": "UNet(in_channels=1, out_channels=1, base_channels=32)",
+    "trainable_parameters": 7762465,
+    "crop_resolution": [
+      256,
+      256
+    ],
+    "roi_margin_rule": 0.25,
+    "roi_margin_role_binding": {
+      "ORACLE_DERIVED_REFINER_TRAIN_MARGIN": 0.25,
+      "ORACLE_DERIVED_REFINER_VAL_MARGIN": 0.25,
+      "ORACLE_DOWNSTREAM_MARGIN": 0.20,
+      "PREDICTED_PROPOSAL_MARGIN": 0.20,
+      "_cardinality_note": "Four separate keys. These roles are semantically distinct and MUST NEVER be collapsed into one scalar. Trainer crop construction uses ORACLE_DERIVED_REFINER_*; evaluation-time oracle ROI geometry uses ORACLE_DOWNSTREAM_MARGIN; the downstream predicted proposal contract uses PREDICTED_PROPOSAL_MARGIN.",
+      "_resolution_artifact": "reports/audits/phase14_roi_margin_role_resolution.json",
+      "_roi_margin_rule_note": "The bare roi_margin_rule=0.25 above is retained only as the historical Phase-12-convention record. It is NOT the operative binding; the four role keys are."
+    },
+    "loss": "BCEDiceLoss(bce_weight=0.5, dice_weight=0.5, epsilon=1e-6)",
+    "optimizer": "AdamW(lr=0.0001, weight_decay=0.0001)",
+    "scheduler": "CosineAnnealingLR(T_max=100)",
+    "batch_size": 8,
+    "seed": 42,
+    "max_epochs": 100,
+    "early_stopping": {
+      "patience": 15,
+      "metric": "val_crop_dice",
+      "mode": "max"
+    },
+    "checkpoint_rule": "best_val_crop_dice",
+    "one_checkpoint": true,
+    "augmentation": {
+      "horizontal_flip_probability": 0.5,
+      "vertical_flip_probability": 0.5,
+      "rotation": "Uniform +/- 45 degrees",
+      "affine_scale": "None (handled by perturbation)",
+      "brightness": "Uniform +/- 0.2 factor",
+      "contrast": "Uniform +/- 0.2 factor",
+      "other_intensity_jitter": "None"
+    },
+    "amp": true,
+    "final_threshold": 0.5
+  },
+  "datasets": {
+    "train_manifest": "manifests/phase4_v3/train.csv",
+    "val_manifest": "manifests/phase4_v3/val.csv",
+    "train_population": {
+      "images": 770,
+      "components": 1161,
+      "full_field_only": true
+    },
+    "val_population": {
+      "images": 103,
+      "components": 152,
+      "full_field_only": true
+    },
+    "test_permission": false
+  },
+  "proposal_source": {
+    "checkpoint": "checkpoints/phase13b_kub_localizer_r512_h128_sigmaeq075_centernetfocal_seed42_clean_v3/best.pt",
+    "epoch": 53,
+    "threshold": 0.1,
+    "margin": 0.2,
+    "top_k": 5,
+    "nms_iou": 0.3
+  },
+  "global_baseline": {
+    "model": "UNet++",
+    "checkpoint": "checkpoints/phase10_kub_unetpp_seed42_512_clean_v3/best.pt",
+    "epoch": 70
+  },
+  "diagnostic_contrasts": {
+    "contrast_1": {
+      "comparison": "GLOBAL vs ORACLE_REGIONAL",
+      "interpretation": "Does regional refinement have potential when ROI localization is ideal?"
+    },
+    "contrast_2": {
+      "comparison": "ORACLE_REGIONAL vs PREDICTED_REGIONAL",
+      "interpretation": "How much performance is lost due to imperfect proposal localization?"
+    },
+    "contrast_3": {
+      "comparison": "GLOBAL vs PREDICTED_REGIONAL",
+      "interpretation": "Does the end-to-end predicted-ROI system improve over the global baseline?"
+    }
+  },
+  "diagnostic_gate": {
+    "Step_1_Refiner_Potential": "Contrast 1 (Oracle Regional) > Global Baseline. Tiny Recall@90 gain >= +0.05.",
+    "Step_2_Proposal_Bottleneck": "Contrast 2 (Predicted Regional) drop is < 50% of the Oracle gain from Step 1.",
+    "Step_3_Practical_Net_Benefit": "Contrast 3 (Predicted Regional) > Global Baseline. Tiny Recall@90 >= 0.78, Full Field Dice drop <= 0.02, Hard Tiny >= 2/16 recovered.",
+    "Phase_15_Reopen_Rule": "Reopen Phase 15 IF AND ONLY IF Step 1 and Step 3 are passed."
+  },
+  "phase15_reopen_condition": "Authorized ONLY if Phase 14 diagnostic achieves DIAGNOSTIC_PROMISING_SUPPORTING_REFINER.",
+  "counters_before_execution": {
+    "logical_training_experiments": 0,
+    "phase14_training_experiments": 0,
+    "downstream_segmentation_forwards": 0,
+    "test_reads": 0,
+    "external_test_reads": 0,
+    "proposal_grid": 0,
+    "threshold_searches": 0,
+    "oracle_reruns": 0,
+    "hyperparameter_sweeps": 0
+  },
+  "governance_assertions": {
+    "no_scientific_parameter_selected_using_b2_results": true,
+    "phase14_is_evaluation_and_training_only": true,
+    "test_untouched": true,
+    "h2c_chain_closed": true
+  },
+  "superseded_pre_freeze_manifest": {
+    "artifact": "PHASE14_CLEAN_V3_PRE_FREEZE_MANIFEST_SUPERSEDED",
+    "status": "SUPERSEDED__INVALID_PRE_FREEZE_IMPLEMENTATION_BINDING",
+    "original_status": "FROZEN_AWAITING_EXECUTION",
+    "original_created_timestamp_utc": "2026-09-23T05:23:21+06:00",
+    "original_protocol_bindings": {
+      "phase14_protocol_path": "reports/audits/phase14_diagnostic_protocol_amendment.json",
+      "phase14_protocol_sha": "a65025ba4861a575d1cada7983e75c7ebf852c33d4da24f54abaff7115fb09a9",
+      "phase14_protocol_md_sha": "7b9bfead2de762f084fa9a6fb285c06f8af169ecfa1ba828a96ba445c7fc72f4",
+      "authorization_source": "USER_SUPERVISOR_POST_H2C_CHAIN_CLOSURE",
+      "parent_chain_closure_sha": "22b1c49b5f688608d4be4e8077a95c1f67d22832c0ba8c3ae1a972b9d00555f7",
+      "parent_h2c_adjudication_sha": "b1d19ba8032520d98f3f2b25132795142c9bb4f98e565d9431b1795c23fe48fe",
+      "h2c_protocol_sha": "91166259c10a84e9526eda43e83b227cc760a37b8834a4d4a65fe3e5a90ba4b6",
+      "phase13b_clean_v3_best_pt_sha": "7673c34a2f2c86eca2e45c1bc6abe77842d17cd09f122f2da0f2d414ca492273",
+      "phase13b_clean_v3_latest_pt_sha": "791abe027cb63ea81d9fcaea1e7081536d80382553e1e5129d7f80e89eae307c",
+      "global_baseline_unetpp_clean_v3_sha": "ec7eb13f32e43af27eab7fc617bd1a2a8fcce1d6651a1b4a3653f3e4d1283269",
+      "train_manifest_sha": "28702fc3a5ff8b950db372f03232d335e3a30b1fc2f21db7cd8c066055826ed6",
+      "val_manifest_sha": "082c80b2bda63fd73f371f109c34643adf01edaead921643fb2e44993ba53315",
+      "view_type_inventory_sha": "e9fa31fd84b366239e981e803283beccf3812c4941bafc9bb3c21d1e4bafac61",
+      "regional_dataset_py_sha": "4e495350c213be0d821938c1c6fe9a1a68286d08d24cf5d3cb88042b473dc70a",
+      "regional_evaluator_py_sha": "ea09b9efc12b832ad1a7f6a3746fc30756193555ae4c5bfe2929a54b395773f2",
+      "unet_model_py_sha": "62edc8fb481eb02c46c2c64f6e7219254a57d7ba935a4c840a5a7965b41bdfc2",
+      "segmentation_loss_py_sha": "2af539bd47a07c966d4a2784f4df7d81bce0620af8ef8e8ddc8b34a3e6de0e8f"
+    },
+    "why_superseded": "did not prospectively bind the executed trainer; trainer file created 71s AFTER the freeze",
+    "incident_report": "reports/audits/phase14_clean_v3_invalid_pre_freeze_implementation_binding.json"
+  },
+  "implementation_binding": {
+    "status": "FINAL_IMPLEMENTATION_PROSPECTIVELY_BOUND",
+    "bound_at_utc": "2026-09-24T01:45:00Z",
+    "bound_at_local_bst": "2026-09-24T09:45:00+06:00",
+    "binding_revision": 4,
+    "rebind_history": [
+      {"revision": 1, "reason": "initial pre-freeze manifest; did not bind the trainer", "outcome": "INVALID_PRE_FREEZE_IMPLEMENTATION_BINDING"},
+      {"revision": 2, "reason": "prospective re-bind after Case-B incident; trainer SHA d768422f (margin 0.20)", "outcome": "SUPERSEDED_BY_MARGIN_PATCH"},
+      {"revision": 3, "reason": "margin role patch (SHA cfd0f7ac) then resume-capability addition (SHA 6b940fa3) after first operational interruption", "outcome": "SUPERSEDED_BY_RNG_DEVICE_FIX"},
+      {"revision": 4, "reason": "fix RNG-state device coercion on resume (SHA 6b940fa3 -> 99a4335e); the restore path rejected CUDA-mapped ByteTensors. The defect fired BEFORE the training loop, so it produced zero epochs and affected no training result.", "outcome": "CURRENT"}
+    ],
+    "binding_method": "every file the trainer touches, directly or transitively, is hashed and listed above; the downstream evaluator is bound explicitly by its real path",
+    "bindings_count": 31,
+    "bindings_sha_verified": 31,
+    "bindings_failed": 0,
+    "pre_execution_implementation_binding": "PASS",
+    "closure_artifact": "reports/audits/phase14_clean_v3_final_implementation_closure.json",
+    "evaluator_path_correction": {
+      "previously_implied_path": "scripts/evaluation/phase14_regional_evaluator.py",
+      "real_path": "src/inference/regional_evaluator.py",
+      "sha256": "ea09b9efc12b832ad1a7f6a3746fc30756193555ae4c5bfe2929a54b395773f2",
+      "note": "The implied path does not exist on disk. The SHA in the original manifest matched the real file all along; only the path label was wrong. The real path is now bound explicitly.",
+      "resolved": true
+    },
+    "invalid_predecessor_attempt": {
+      "classification": "INVALID_PRE_FREEZE_IMPLEMENTATION_BINDING",
+      "incident_report_json": "reports/audits/phase14_clean_v3_invalid_pre_freeze_implementation_binding.json",
+      "incident_report_md": "reports/audits/phase14_clean_v3_invalid_pre_freeze_implementation_binding.md",
+      "completed_epochs_before_termination": 1,
+      "invalid_checkpoint_latest_sha": "82d80ad4bde7f7a5533434bd9f6f58afa8ed69093d7eb33ff6a4ba1ed9957993",
+      "invalid_checkpoint_best_sha": "824a43a3d8744cef53d84284dd8d0fa412d9ded3c6fcabeccf677aea175903f0",
+      "invalid_checkpoints_disposition": "PRESERVED_AUDIT_SAFE_IN_QUARANTINE__NOT_RESUMED",
+      "quarantine_directory": "checkpoints/_INVALID_PRE_FREEZE_IMPL_BINDING/phase14_kub_refiner_unet_a3_256_seed42_clean_v3/",
+      "preservation_record": "reports/audits/phase14_invalid_predecessor_checkpoint_preservation.json",
+      "active_directory_cleared": true,
+      "termination_cause": "EXTERNAL_PROCESS_LIFETIME_LOSS__operational_only",
+      "termination_forensics_summary": "No Python crash, no application crash or hang, no resource exhaustion, no reboot, no WHEA, and no TDR were recorded in the fatal window. The single in-window Windows Error Reporting event was a RADAR_PRE_LEAK_64 memory warning for NVIDIA Broadcast.exe, not a crash. The run ended with its parent process lifetime.",
+      "scientific_parameters_changed": false,
+      "restart_from_epoch": 0
+    }
+  },
+  "restart_requirement": {
+    "restart_from_epoch": 0,
+    "resume_forbidden": true,
+    "resume_forbidden_reason": "the predecessor attempt was not bound to the executed implementation, so its checkpoints cannot carry provenance for a bound run",
+    "authorized": true
+  },
+  "pre_execution_check": {
+    "artifact": "reports/audits/phase14_final_pre_execution_check.json",
+    "FINAL_IMPLEMENTATION_BINDING": "PASS",
+    "ROI_MARGIN_ROLE_TRACE": "PASS",
+    "INVALID_PREDECESSOR_ISOLATED": "PASS",
+    "TEST_READS": 0,
+    "EXTERNAL_TEST_READS": 0
+  },
+  "runtime_robustness": {
+    "history_written_incrementally": true,
+    "logs_flushed_per_line": true,
+    "cumulative_elapsed_recorded": true,
+    "run_log_path": "logs/phase14_kub_refiner_unet_a3_256_seed42_clean_v3.run.log",
+    "closure_artifact_written": true,
+    "amp_api_modernized": true,
+    "reference_median_epoch_seconds": 683.4,
+    "resume_capability": {
+      "cli_flag": "--resume",
+      "degrades_gracefully": true,
+      "restores": [
+        "model_state",
+        "optimizer_state",
+        "scheduler_state",
+        "grad_scaler_state",
+        "best_val_crop_dice",
+        "best_epoch",
+        "bad_epochs",
+        "history_rows",
+        "rng_state (global random, global numpy, global torch CPU, torch CUDA, dataset TRAIN rng, dataset VAL rng)"
+      ],
+      "refuses_without_rng_state": true,
+      "scientific_computation_unchanged": true,
+      "why_added": "The host terminates long-running child processes when the launching session's process tree is torn down. This is an operational constraint, not a scientific one. Without resume the run cannot converge because a restart-from-zero run needs about 4.5 hours while the observed process-lifetime ceiling is about 2 hours.",
+      "rng_round_trip_verified_bit_exact": true,
+      "rng_device_coercion_fix": "Checkpoints are loaded with map_location=<cuda device>, which relocates the saved RNG ByteTensors to CUDA. torch.set_rng_state requires a CPU ByteTensor, so the restore path now coerces device and dtype explicitly via _as_cpu_byte_tensor(). Verified against the real epoch-10 checkpoint before relaunch.",
+      "launcher": "scripts/run_phase14_clean_v3.bat"
+    }
+  },
+  "interruption_and_recovery_log": [
+    {
+      "attempt": 2,
+      "label": "first VALID authorized run",
+      "started_local": "2026-09-24T06:33:42+06:00",
+      "last_epoch_completed": 12,
+      "last_epoch_completed_local": "2026-09-24T08:50:17+06:00",
+      "wall_clock_human": "2h17m35s",
+      "best_epoch_reached": 9,
+      "best_val_crop_dice_reached": 0.8380951787296095,
+      "implementation_sha_at_the_time": "cfd0f7ac22731362579b27c654045ac2ac7df4dd6f139ef712dbedfbc9985133",
+      "resumable": false,
+      "disposition": "PRESERVED_TO_QUARANTINE__RESTARTED_FROM_EPOCH_0"
+    },
+    {
+      "attempt": 3,
+      "label": "epoch-0 restart under resume-capable implementation",
+      "started_local": "2026-09-24T09:43:29+06:00",
+      "last_epoch_completed": 10,
+      "last_epoch_completed_local": "2026-09-24T11:44:26+06:00",
+      "wall_clock_human": "2h00m57s",
+      "best_epoch_reached": 9,
+      "best_val_crop_dice_reached": 0.8380951787296095,
+      "implementation_sha_at_the_time": "6b940fa30b1cea949ce599d87542af0af35a0724e1fcf7024aee3eb9c400573a",
+      "resumable": true,
+      "rng_state_present": true,
+      "disposition": "RESUMED_FROM_EPOCH_10",
+      "determinism_confirmation": "This attempt's per-epoch metrics are BIT-IDENTICAL to attempt 2 (epoch 1 val_dice=0.816662, epoch 9 val_dice=0.838095, and every intermediate value). This independently confirms that the restart-from-epoch-0 policy reproduces the same trajectory, so a restart is scientifically equivalent to an uninterrupted run."
+    },
+    {
+      "attempt": 4,
+      "label": "resume from epoch 10",
+      "started_local": "2026-09-24T11:51:00+06:00",
+      "first_resume_attempt": "FAILED before the training loop: torch.set_rng_state rejected a CUDA-mapped ByteTensor. Zero epochs executed, so no training result was affected.",
+      "fix": "Coerce RNG state to a CPU ByteTensor in restore_rng_state(); re-bound at SHA 99a4335e.",
+      "disposition": "RELAUNCHED_AFTER_FIX"
+    }
+  ],
+  "interrupted_valid_attempt": {
+    "classification": "OPERATIONAL_INTERRUPTION__NOT_SCIENTIFIC",
+    "attempt_started_local": "2026-09-24T06:33:42+06:00",
+    "last_epoch_completed": 12,
+    "last_epoch_completed_local": "2026-09-24T08:50:17+06:00",
+    "wall_clock_survived": "2h17m",
+    "best_epoch_reached": 9,
+    "best_val_crop_dice_reached": 0.8380951787296095,
+    "implementation_sha_at_the_time": "cfd0f7ac22731362579b27c654045ac2ac7df4dd6f139ef712dbedfbc9985133",
+    "checkpoints_preserved": "checkpoints/_INTERRUPTED_VALID_ATTEMPT_20260924/phase14_kub_refiner_unet_a3_256_seed42_clean_v3/",
+    "best_pt_sha": "95c4b1dd6f8899ec928922f93f4936e1e34306b9fbce43dca7b9ed2e77f5fbf5",
+    "latest_pt_sha": "994d613e3fbbab214e9279a594c44c114d2f6ea5aaf7f6d27f128762ff19e483",
+    "resumable": false,
+    "resumable_reason": "that attempt's checkpoints predate RNG-state persistence, so a bit-exact continuation is impossible; the run therefore restarts from epoch 0 under the newly bound implementation",
+    "termination_forensics": {
+      "python_crash_report": "none (0 of 504 archived WER reports mention Python)",
+      "application_error_or_hang_events": "none (newest Event 1000/1002 is 2026-09-02)",
+      "resource_exhaustion": "none",
+      "reboot_whea_tdr": "none",
+      "host_sleep_resume": "none (no Kernel-Power 42/107 events)",
+      "unexpected_shutdown": "none (newest Event 41 is 2026-09-19)",
+      "conclusion": "EXTERNAL_PROCESS_TREE_TEARDOWN__operational_only"
+    },
+    "launcher_mechanisms_tested_and_rejected": {
+      "nohup_background": "died within ~45 s",
+      "cmd_start_B": "spawned an interactive shell, no detachment",
+      "Start_Process_hidden": "wrote one tick then was killed",
+      "setsid": "not present in PortableGit",
+      "schtasks": "blocked by security policy",
+      "managed_background_task": "survived 2 h 17 m then was torn down; the only usable mechanism"
+    }
+  }
+}

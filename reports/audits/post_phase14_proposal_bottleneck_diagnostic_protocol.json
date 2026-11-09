@@ -1,0 +1,138 @@
+{
+  "artifact": "post_phase14_proposal_bottleneck_diagnostic_protocol",
+  "task": "POST-PHASE14 PROPOSAL/LOCALIZER BOTTLENECK ROOT-CAUSE DIAGNOSTIC",
+  "status": "FROZEN_AWAITING_EXECUTION",
+  "authorization_context": {
+    "phase14_outcome": "PHASE14_CLEAN_V3_COMPLETE__DIAGNOSTIC_PROPOSAL_BOTTLENECK__PHASE15_NOT_AUTHORIZED",
+    "phase15_status": "NOT_STARTED_AND_NOT_AUTHORIZED",
+    "h3_status": "NOT_STARTED",
+    "h3_training_authorized": false,
+    "task_type": "DIAGNOSTIC__CAUSAL_DECOMPOSITION_ONLY"
+  },
+  "population": {
+    "manifest_version": "phase4_v3",
+    "view_type": "FULL_FIELD",
+    "split": "VAL (frozen clean-v3)",
+    "n_images": 103,
+    "n_components": 152,
+    "size_strata": {
+      "TINY": 72,
+      "SMALL": 28,
+      "MEDIUM": 36,
+      "LARGE": 16
+    },
+    "hard_tiny_denominator": 15,
+    "global_empty_denominator": 5,
+    "test_split": "EXCLUDED (0 reads)",
+    "external_data": "EXCLUDED",
+    "source_tables": [
+      "reports/tables/kub_val_samples_sized_clean_v3.csv",
+      "reports/tables/kub_val_components_sized_clean_v3.csv",
+      "reports/tables/phase13_clean_v3_hard_tiny_replication_set.csv",
+      "reports/tables/phase13_clean_v3_global_empty_replication_set.csv"
+    ]
+  },
+  "frozen_checkpoints": {
+    "global_unetpp_clean_v3": {
+      "path": "checkpoints/phase10_kub_unetpp_seed42_512_clean_v3/best.pt",
+      "sha256": "ec7eb13f32e43af27eab7fc617bd1a2a8fcce1d6651a1b4a3653f3e4d1283269",
+      "epoch": "best",
+      "role": "GLOBAL_ONLY baseline (Phase-10 clean-v3)"
+    },
+    "regional_refiner_clean_v3": {
+      "path": "checkpoints/phase14_kub_refiner_unet_a3_256_seed42_clean_v3/best.pt",
+      "sha256": "2e09e3a9c39c731687db1a9fef0c80881ed6235e4cda070bb4b8b382caa45daa",
+      "epoch": 56,
+      "role": "Stage-4D regional refiner (UNet a3, 256 crop)"
+    },
+    "stage4d_localizer_clean_v3": {
+      "path": "checkpoints/phase13b_kub_localizer_r512_h128_sigmaeq075_centernetfocal_seed42_clean_v3/best.pt",
+      "sha256": "7673c34a2f2c86eca2e45c1bc6abe77842d17cd09f122f2da0f2d414ca492273",
+      "epoch": 53,
+      "role": "Stage-4D proposal localizer (Centernet-Focal, 512)"
+    }
+  },
+  "frozen_proposal_policy": {
+    "threshold": 0.1,
+    "margin": 0.2,
+    "top_k": 5,
+    "nms_iou": 0.3,
+    "note": "Stage-4D localizer contract; identical to Phase-14 clean-v3 evaluator. NO change permitted.",
+    "binding_source": "scripts/evaluation/evaluate_phase14_clean_v3_diagnostic.py L251-253"
+  },
+  "frozen_downstream_behavior": {
+    "refiner": "SAME frozen regional refiner (epoch 56) as Phase-14; no parameter change",
+    "regional_preprocessing": "crop_and_preprocess(raw_image, raw_mask, geom, target_size=256) -- 256x256 refiner crops",
+    "fusion_rule": "P_final(x) = max_i(P_regional_i(x)) if x in union(ROIs) else P_global(x); MAX/DIRECT replacement in proposal union",
+    "segmentation_threshold": 0.5,
+    "proposal_union_handling": "union of all top_k predicted ROI supports; global retained outside union",
+    "zero_proposal_rule": "if no predicted proposals, fall back to GLOBAL everywhere (regional union empty)",
+    "oracle_reference_margin": 0.2,
+    "binding_source": "scripts/evaluation/evaluate_phase14_clean_v3_diagnostic.py L240-292"
+  },
+  "frozen_references": {
+    "Dg_clean_v3": 0.6359172411726776,
+    "Tg_clean_v3": 0.7916666666666666,
+    "source": "reports/audits/phase14_clean_v3_global_reference_freeze.json",
+    "reference_freeze_sha256": "8cbf1907532b6663c6cb87848ac813ebaf082ac0f0471e6cf1106dcc826f0cee"
+  },
+  "scientific_question": {
+    "primary": "Why does the frozen Stage-4D predicted-proposal pipeline fail to transfer the strong Oracle-refiner potential (Do=0.8024) into practical performance (Dp=0.4185, R=0, Tp==Tg)?",
+    "candidate_mechanisms": {
+      "A_PROPOSAL_SUPPLY_RECALL_LIMITATION": "Localizer supplies too few / zero proposals to cover GT components (esp. tiny).",
+      "B_PROPOSAL_GEOMETRY_LIMITATION": "Proposals geometrically miss the lesion (low coverage / poor crop context).",
+      "C_PROPOSAL_CONTAMINATION_LIMITATION": "Proposals cover background / multiple lesions, contaminating the refiner crop.",
+      "D_PROPOSAL_RANKING_LIMITATION": "An adequate proposal exists but is not top-ranked, so fusion/selection underuses it.",
+      "E_REFINER_DOMAIN_SHIFT_ON_PREDICTED_CROPS": "Refiner trained on GT/Oracle crops degrades on predicted-crop distribution.",
+      "F_MIXED_BOTTLENECK": "No single dominant mechanism; multiple co-occur."
+    },
+    "instruction": "Do NOT assume. Classify via prospectively-defined evidence rules (see failure_attribution)."
+  },
+  "no_search_no_tuning": {
+    "threshold_sweep": false,
+    "top_k_sweep": false,
+    "nms_sweep": false,
+    "margin_sweep": false,
+    "proposal_grid": false,
+    "checkpoint_comparison": false,
+    "architecture_comparison": false,
+    "retraining": false,
+    "fine_tuning": false,
+    "loss_augmentation_redesign": false,
+    "h3": false,
+    "test_split": false,
+    "counters": {
+      "search_sweeps": 0,
+      "tuning_runs": 0,
+      "checkpoint_comparisons": 0,
+      "retraining": 0,
+      "h3_training": 0,
+      "test_reads": 0,
+      "external_test_reads": 0
+    }
+  },
+  "allowed_counterfactuals": {
+    "A_BEST_CANDIDATE_ORACLE_SELECTION": "Select best-existing candidate per component among already-generated frozen proposals (GT-assisted). Label ORACLE_SELECTION_WITHIN_FROZEN_CANDIDATE_SET__DIAGNOSTIC_ONLY. Non-deployable.",
+    "B_GT_ASSISTED_FP_REMOVAL": "Remove confirmed-background proposals (overlap no GT). Label GT_ASSISTED_FALSE_POSITIVE_DECOMPOSITION__NON_DEPLOYABLE. Non-deployable.",
+    "constraint": "Must NOT choose thresholds; descriptive causal probes only."
+  },
+  "implementation_binding": {
+    "diagnostic_evaluator": "scripts/evaluation/diagnose_phase14_proposal_bottleneck.py",
+    "diagnostic_evaluator_sha256": "951c627efc721b9ae14edf5cddf15d7af46a3326e779c2216c58c2e8d4d3904b",
+    "reuses_frozen_pipeline_from": "scripts/evaluation/evaluate_phase14_clean_v3_diagnostic.py",
+    "companion_timestamp_correction_sha256": "fb2247fd7ae64a945cebea43b58446b6919a9ebbff11dab52385fd9f988eba5a"
+  },
+  "required_artifacts": [
+    "reports/audits/post_phase14_proposal_bottleneck_diagnostic_protocol.json (this)",
+    "reports/audits/post_phase14_proposal_bottleneck_diagnostic_protocol.md",
+    "reports/tables/phase14_diag_proposal_level.csv",
+    "reports/tables/phase14_diag_component_level.csv",
+    "reports/tables/phase14_diag_geometry_bridge.csv",
+    "reports/tables/phase14_diag_conditional_refiner.csv",
+    "reports/tables/phase14_diag_image_summary.csv (counterfactual layers)",
+    "reports/audits/phase14_diag_execution_state.json",
+    "reports/audits/phase14_diag_root_cause.json",
+    "reports/audits/phase14_diag_root_cause.md"
+  ],
+  "generated_utc": "2026-09-25T07:49:00Z"
+}

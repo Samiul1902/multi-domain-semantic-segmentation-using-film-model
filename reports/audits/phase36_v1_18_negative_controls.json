@@ -1,0 +1,364 @@
+{
+ "artifact": "phase36_robustness_negative_controls_v1_18",
+ "phase": 36,
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase36_robustness_v1_18",
+ "type": "NEGATIVE_CONTROL_REPORT",
+ "defects_repaired": [
+  "D85",
+  "D86",
+  "D87",
+  "D88"
+ ],
+ "in_memory_mutants_only": true,
+ "canonical_files_modified": false,
+ "torch_imported": false,
+ "protected_population_read": false,
+ "subject_execution_sha256": "2259ce22e75ba9a3a8943769dc1e0ed5724f94902f5e8955976cd6ebeb8ce63e",
+ "subject_launcher_sha256": "727a3bdd47f626826575de286a2a382dd63eb899c244af9da6e1d9d078944f3e",
+ "subject_supervisor_sha256": "2528e0601fd3fd1231bc11e8258a9fb0ae9f1df8303fe2237d32385701cbc5d4",
+ "controls_total": 47,
+ "controls_passed": 47,
+ "controls_failed": 0,
+ "all_pass": true,
+ "records": [
+  {
+   "id": "NC_SRC_v1_17",
+   "control": "v1_17_source_sha_frozen",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": {
+    "sha256": "81d78460b2f20f176bc697cba662c43bc7c7443ea555ba95a30609faf0ccbe31"
+   }
+  },
+  {
+   "id": "NC_SRC_v1_18",
+   "control": "v1_18_source_sha_frozen",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": {
+    "sha256": "2259ce22e75ba9a3a8943769dc1e0ed5724f94902f5e8955976cd6ebeb8ce63e"
+   }
+  },
+  {
+   "id": "NC_D61_1",
+   "control": "restore_old_pad_unaware_fusion_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "old call restored -> detector returns False (rejected)"
+  },
+  {
+   "id": "NC_D61_2",
+   "control": "change_fusion_geom_source_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "geom replaced by window -> detector returns False (rejected)"
+  },
+  {
+   "id": "NC_D75_1",
+   "control": "helper_thresholds_live_f32_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "no f16 round-trip -> rejected"
+  },
+  {
+   "id": "NC_D75_2",
+   "control": "helper_drops_f16_cast_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "f16 cast removed -> rejected"
+  },
+  {
+   "id": "NC_D75_3",
+   "control": "helper_drops_cast_back_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "f16->f32 cast-back removed -> rejected"
+  },
+  {
+   "id": "NC_D75_4",
+   "control": "helper_threshold_change_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "threshold 0.51 -> rejected"
+  },
+  {
+   "id": "NC_D75_5",
+   "control": "helper_omitted_from_core_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "core wiring removed -> rejected"
+  },
+  {
+   "id": "NC_D75_6",
+   "control": "helper_omitted_from_clean_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "clean wiring removed -> rejected"
+  },
+  {
+   "id": "NC_G_1",
+   "control": "downstream_G_quantization_introduced_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "f16 cast injected -> rejected"
+  },
+  {
+   "id": "NC_D80_A",
+   "control": "launcher_dispatch_mode_science_omitted_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "mode args emptied -> rejected"
+  },
+  {
+   "id": "NC_D80_B",
+   "control": "execution_science_namespace_v1_17_reverted_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "start marker namespace reverted -> rejected"
+  },
+  {
+   "id": "NC_D80_C",
+   "control": "launch_authority_token_v1_17_reverted_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "authority token reverted -> rejected"
+  },
+  {
+   "id": "NC_D80_D",
+   "control": "operator_gate_v1_17_reverted_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "science gate reverted -> rejected"
+  },
+  {
+   "id": "NC_D80_E",
+   "control": "runtime_manifest_v1_17_reverted_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "manifest path reverted -> rejected"
+  },
+  {
+   "id": "NC_D80_F",
+   "control": "release_revision_v1_17_reverted_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "release revision reverted -> rejected"
+  },
+  {
+   "id": "NC_D80_G",
+   "control": "stage_journal_module_removed_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "journal module removed -> rejected"
+  },
+  {
+   "id": "NC_D80_H_launcher",
+   "control": "launcher_exact_sha_pin_removed_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "launcher pin mismatched -> rejected"
+  },
+  {
+   "id": "NC_D80_H_supervisor",
+   "control": "supervisor_launcher_pin_enforcement_removed_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "supervisor literal launcher pin removed -> rejected"
+  },
+  {
+   "id": "NC_D81_1",
+   "control": "omitted_table_target_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "remove the worst_case_by_domain table row -> detector returns False (rejected)"
+  },
+  {
+   "id": "NC_D81_2",
+   "control": "generic_nonversioned_table_target_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "add an unversioned reports/tables/phase36_*.csv -> detector returns False (rejected)"
+  },
+  {
+   "id": "NC_D81_3",
+   "control": "generic_inherited_figure_dir_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "an inherited reports/figures/phase36_robustness/ path -> detector returns False (rejected)"
+  },
+  {
+   "id": "NC_D81_4",
+   "control": "csv_writer_open_w_overwrite_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "restore path.open(w) overwrite semantics -> detector returns False (rejected)"
+  },
+  {
+   "id": "NC_D82_1",
+   "control": "gate_requiring_v1_18_smoke_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "gate re-requires a v1.18 smoke -> detector returns False (rejected)"
+  },
+  {
+   "id": "NC_D82_2",
+   "control": "attestation_missing_d40_field_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "drop the 'release_gate' field -> detector returns False (rejected)"
+  },
+  {
+   "id": "NC_D83_1",
+   "control": "validator_revision_string_only_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "a revision-string-only validator -> detector returns False (rejected)"
+  },
+  {
+   "id": "NC_D83_2",
+   "control": "gate_not_released_while_eligible_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "ELIGIBLE revision with NOT_RELEASED gate -> detector returns False (rejected)"
+  },
+  {
+   "id": "NC_D85_0",
+   "control": "supervisor_immutable_root_control",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "canonical: literal launcher SHA + no env + no CLI override + json not trusted"
+  },
+  {
+   "id": "NC_D85_1",
+   "control": "env_launcher_sha_override_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "env-var launcher-SHA override accepted -> detector returns False (rejected)"
+  },
+  {
+   "id": "NC_D85_2",
+   "control": "mutable_authority_file_pin_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "trust an unpinned JSON field for the expected launcher SHA -> detector fails (rejected)"
+  },
+  {
+   "id": "NC_D85_3",
+   "control": "cli_launcher_sha_override_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "add a --launcher-sha CLI override -> detector returns False (rejected)"
+  },
+  {
+   "id": "NC_D86_0",
+   "control": "exclusive_writer_control",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "canonical: O_CREAT|O_EXCL|O_WRONLY, no O_TRUNC, real calls routed"
+  },
+  {
+   "id": "NC_D86_1",
+   "control": "stdout_stderr_o_trunc_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "switch the exclusive writer to O_TRUNC -> detector returns False (rejected)"
+  },
+  {
+   "id": "NC_D86_2",
+   "control": "stdout_stderr_exclusive_false_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "drop O_EXCL (exclusive=False semantics) -> detector returns False (rejected)"
+  },
+  {
+   "id": "NC_D86_3",
+   "control": "existing_stdout_but_dispatch_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "stdout pre-exists and dispatch occurs -> absence gate must FAIL (rejected)"
+  },
+  {
+   "id": "NC_D87_0",
+   "control": "supervisor_binds_final_bundle_control",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "canonical: literal final bundle SHA + verify_immutable_pins"
+  },
+  {
+   "id": "NC_D87_1",
+   "control": "final_governance_bundle_not_checked_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "remove the final bundle verification -> detector returns False (rejected)"
+  },
+  {
+   "id": "NC_D87_2",
+   "control": "wrong_bundle_sha_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "verify against a wrong bundle SHA -> detector returns False (rejected)"
+  },
+  {
+   "id": "NC_D87_3",
+   "control": "bundle_embedding_supervisor_sha_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "embed the supervisor SHA in the bundle (cycle) -> acyclicity detector fails (rejected)"
+  },
+  {
+   "id": "NC_D88_0",
+   "control": "inventory_complete_control",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": {
+    "n_targets": 23
+   }
+  },
+  {
+   "id": "NC_D88_1",
+   "control": "omitted_reachable_write_target_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "omit one reachable target from the inventory -> detector returns False (rejected)"
+  },
+  {
+   "id": "NC_D88_2",
+   "control": "existing_target_but_dispatch_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "one target pre-exists -> absence gate must FAIL (rejected)"
+  },
+  {
+   "id": "NC_D88_3",
+   "control": "plain_savefig_restored_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "restore fig.savefig(path) -> fail-closed figure detector fails (rejected)"
+  },
+  {
+   "id": "NC_D88_4",
+   "control": "underreported_reachable_count_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": {
+    "complete_total": 23,
+    "detail": "report 16 when the complete inventory is 23 -> detector fails (rejected)"
+   }
+  },
+  {
+   "id": "NC_D88_5",
+   "control": "unclassified_write_target_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "leave 1 write target unclassified -> detector fails (rejected)"
+  },
+  {
+   "id": "NC_D88_6",
+   "control": "namespace_overlap_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "a v1.18 target overlapping a v1.17 path -> detector fails (rejected)"
+  }
+ ]
+}

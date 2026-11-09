@@ -1,0 +1,126 @@
+{
+  "artifact": "phase19_multidomain_harmonization_protocol",
+  "phase_id": "19",
+  "stage": "Stage B: Multi-Domain Scaling",
+  "title": "Multi-Domain Dataset Harmonization (ISIC, BUSI, Kvasir, KUB)",
+  "status": "PROTOCOL_FROZEN__PHASE19_HARMONIZATION_PREPARATION_COMPLETE",
+  "primary_question": "Can ISIC, BUSI, Kvasir and KUB be represented under one clean, deployment-valid, leakage-safe task/data contract suitable for later shared multi-domain training?",
+  "is_model_training_phase": false,
+  "manifest_version": "phase4_v3",
+  "manifest_dir": "manifests/phase4_v3",
+  "datasets": [
+    {
+      "dataset": "ISIC",
+      "task_id": 0,
+      "canonical_name": "ISIC 2018 Task 1",
+      "modality": "dermoscopy",
+      "n_train": 2556,
+      "n_val": 357,
+      "n_test_locked": 735
+    },
+    {
+      "dataset": "BUSI",
+      "task_id": 1,
+      "canonical_name": "BUSI (WHU Breast Ultrasound)",
+      "modality": "ultrasound",
+      "n_train": 602,
+      "n_val": 84,
+      "n_test_locked": 174
+    },
+    {
+      "dataset": "KVASIR",
+      "task_id": 2,
+      "canonical_name": "Kvasir-SEG",
+      "modality": "endoscopy",
+      "n_train": 696,
+      "n_val": 87,
+      "n_test_locked": 216
+    },
+    {
+      "dataset": "KUB",
+      "task_id": 3,
+      "canonical_name": "KUB-Stone (Kidney-Ureter-Bladder radiograph)",
+      "modality": "radiograph",
+      "n_train": 1978,
+      "n_val": 280,
+      "n_test_locked": 558
+    }
+  ],
+  "totals": {
+    "n_train": 5832,
+    "n_val": 808,
+    "n_development": 6640,
+    "n_test_locked": 1683
+  },
+  "task_id_registry_frozen": true,
+  "preprocessing_contract_id": "phase19_preprocessing_contract_v1",
+  "evaluation_contract_id": "phase19_evaluation_contract_v1",
+  "metadata_policy": {
+    "conditioning_allowed": [
+      "dataset",
+      "task_id"
+    ],
+    "reporting_only": [
+      "split",
+      "sample_id",
+      "category",
+      "image_path",
+      "width",
+      "height"
+    ],
+    "forbidden_as_input": [
+      "patient_id",
+      "case_id",
+      "mask_path",
+      "fg_fraction"
+    ],
+    "kub_category_rule": "KUB Kidney/Bladder/Ureteric category labels are REPORTING_ONLY. They are annotation-derived ground truth and are NOT legitimately available at inference time unless a later supervisor-approved protocol proves availability."
+  },
+  "governance": {
+    "test_image_reads": 0,
+    "test_mask_reads": 0,
+    "test_inference": 0,
+    "test_visualization": 0,
+    "training_performed": false,
+    "inference_performed": false,
+    "checkpoints_created": 0,
+    "thresholds_changed": 0,
+    "phase_20_started": false
+  },
+  "unresolved_issues": [
+    "Model-input channel policy (1-ch grayscale vs 3-ch RGB) is frozen as TWO deterministic converters; the single final selection is deferred to Phase 24 (architecture).",
+    "KUB native masks carry heterogeneous nonzero label vocabularies; the canonical >0 rule handles them, but per-category label semantics remain REPORTING_ONLY.",
+    "Cross-domain near-duplicate detection beyond the phase4_v3 remediation is not yet established for the newly combined four-domain pool.",
+    "BUSI/KUB acquisition-regime stratification is available via path only; it is not a model input."
+  ],
+  "artifacts": {
+    "phase19_image_measurements.csv": "4879967cb6e3c67eddf51098f92cc9ae5481b58dd40c20361f938daca608cfe9",
+    "phase19_mask_measurements.csv": "fc095e73d5f0b01bd8823978a6f4a880dffd3f358fe8a9790fdad8a9f99efbf5",
+    "phase19_dataset_inventory.csv": "56188f9a7647d77d761eb5f6eac20ec5700024be9684591f2d3d24d1719ea71c",
+    "phase19_task_id_registry.csv": "d1fed41c5b38c8e08798ac5adbfa427c45bf74c5c5a3a858c9dc4a3ce750e888",
+    "phase19_metadata_governance.csv": "269445e1d0ded5cdc55fa67162ffd76e64e29f4193e1e472ec73ef378677b013",
+    "phase19_harmonized_schema.csv": "c64d4c434c4692214da87aaf7bb4803c49dc2f47e84c0c2c8e8966cefc02341a",
+    "phase19_phase20_entry_criteria.csv": "5d37811ce4d9392b37d516368e5a289c46b46e4afa0ce93e34f348926db7d0e7",
+    "phase19_group_key_availability.csv": "87b9c5d5c68332c8e9012c8639ef708acae2d2b76a1cd1e59a98bcfc51304d3f",
+    "phase19_preprocessing_contract.json": "a1db4b083611bc5a6ec4928427c77fcc49a949481aabfadaa5277735bf53fdf0",
+    "phase19_evaluation_contract.json": "7f7f18fc17e1f377ef8fefcd9f4c9280cd46443b1b1f500071037525f3d32355",
+    "phase19_legacy_evidence_reuse_map.json": "415eeedea6f9f7f1590dcf3e9dbaf4eea3783624793bf071637f9675295985a1",
+    "phase19_leakage_safeguards.json": "b41307eb5c36401e7882f217e953163fb02d8c1a47fe4865cb651bee8b36245f",
+    "phase19_loader_smoke_test.json": "225bcde30e4ac259d4a072c88b6ef75f9633e0d41e31ca9aa8eb0207065e957b"
+  },
+  "figures": {
+    "fig01_dataset_population": "884c4f110a29539445c5038e7286f0f962c7b40013087a86a7a8b1cc02daf7e7",
+    "fig02_resolution_distributions": "f70162b1bc36ca2c2e44d53e3b909fbb41bd33340a3a121ccf1bc260919a3347",
+    "fig03_aspect_ratio_distributions": "b15b97d7dc4ecaad7e3f7ec9b2cdb5e8be4f520cc63c2893d617c71d689e80c2",
+    "fig04_foreground_fraction": "d748b0b1bae7bd3b503c20bd52ce29d094bc903db298e09e50f79fee74b66be3",
+    "fig05_modality_composition": "ee46fc657a2ef1d152de92c45e651480def9027bcf9d6e89e0e25567e0cd0a70",
+    "fig06_size_scatter": "7be50bbd74a3cdacce802848827df852c4be7fbab3333727ce5e6752253a8973",
+    "fig07_representative_pairs": "98de1059f3eba9016aa83ae0de3eabe6b13928e6cd37ca2446574496c6ea8990",
+    "fig08_domain_summary": "82944b9f9f33b371fd263bf42106988e58fc62db45df73706bdfc1bfd741f312"
+  },
+  "loader_smoke_test_summary": {
+    "all_checks_passed": true,
+    "test_rejected_by_dataset": true,
+    "test_rejected_by_loader": true
+  }
+}

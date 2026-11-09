@@ -1,0 +1,85 @@
+{
+  "artifact": "phase36_v1_7_pre_smoke_contract_defects",
+  "phase": 36,
+  "section": "§B",
+  "method": "RA-MedFiLM-BARR",
+  "revision": "ra_medfilm_barr_phase36_robustness_v1_8",
+  "type": "PRE_SMOKE_CONTRACT_AND_GOVERNANCE_DEFECT_RECORD",
+  "generated_utc": "2026-10-06T10:48:58Z",
+  "subject": "scripts/analysis/phase36_robustness_execution_v1_7.py",
+  "subject_sha256": "87062d2b38232c73b8ce620d7bfafb389658c4b877d9196a26b8b01d09daf192",
+  "discovery_basis": "DIRECT_INDEPENDENT_AST_AND_SOURCE_BYTE_INSPECTION_OF_THE_FROZEN_V1_7_BYTES",
+  "no_source_modification": true,
+  "no_execution": true,
+  "torch_imported": false,
+  "defects": [
+    {
+      "id": "D19_EXCEPTION_PATH_FIRST_SMOKE_EVIDENCE_NOT_FAIL_CLOSED_PRESERVED",
+      "exact_v1_7_evidence": {
+        "main_definition_line": 3227,
+        "run_smoke_call_lines": [
+          3243
+        ],
+        "artifact_write_lines": [
+          3244,
+          3251
+        ],
+        "try_block_lines": [],
+        "code_flow": "main() -> res = run_smoke() -> THEN write artifact",
+        "consequence": "If run_smoke() raises (CUDA failure, checkpoint load failure, 202-D violation, non-finite vector, R_psi failure, S_omega failure, metric failure), the first attempt terminates WITHOUT producing durable evidence. Path.write_text() also permits overwrite on manual re-run."
+      },
+      "classification": "PRE_SCIENTIFIC_SMOKE_PROVENANCE_AND_FAIL_CLOSED_GOVERNANCE_DEFECT",
+      "scientific_effect": "NONE",
+      "reason": "v1.7 smoke NOT_STARTED; Phase36 science NOT_STARTED"
+    },
+    {
+      "id": "D20_REAL_EXECUTE_NUMERICAL_FINITE_PROPERTIES_NOT_BOUND_TO_SMOKE_ALL_PASS",
+      "exact_v1_7_evidence": {
+        "real_execute_probe_definition_line": 2774,
+        "smoke_all_pass_computation_line": 3180,
+        "v1_7_smoke_checks_bound_only": "actual forward counts (real_R_psi_forward_proven, real_S_omega_forward_proven)",
+        "missing_bounds": [
+          "router_decision == EXECUTE",
+          "R_psi output finite / correct shape",
+          "post-safety 16-D feature dimension correct",
+          "post-safety 16-D features finite",
+          "S_omega logit finite",
+          "S_omega accept probability finite",
+          "S_omega accept probability in [0,1]",
+          "observed state in {EXECUTE_THEN_ACCEPT, EXECUTE_THEN_REJECT}",
+          "final_probability shape [512,512]",
+          "final_probability finite",
+          "router_vector_dim == 202",
+          "router_vector_finite"
+        ],
+        "consequence": "A non-finite S_omega output could pass smoke merely because the invocation count equals 1."
+      },
+      "classification": "PRE_SCIENTIFIC_SMOKE_NUMERICAL_VALIDATION_DEFECT",
+      "scientific_effect": "NONE"
+    },
+    {
+      "id": "D21_HD95_EXECUTED_BUT_NOT_BOUND_TO_SMOKE_SUCCESS_CONTRACT",
+      "exact_v1_7_evidence": {
+        "hd95_evaluation_lines": [
+          3105,
+          3106
+        ],
+        "metric_plumbing_check_lines": [
+          436,
+          3166
+        ],
+        "v1_7_behavior": "HD95 nonempty and empty-mask cases are evaluated during smoke but NOT included in smoke_all_pass",
+        "consequence": "The frozen canonical metric authority requires Dice/IoU/HD95 plumbing; HD95 validity is not an authoritative smoke success condition."
+      },
+      "classification": "PRE_SCIENTIFIC_SMOKE_METRIC_VALIDATION_DEFECT",
+      "scientific_effect": "NONE"
+    }
+  ],
+  "defect_count": 3,
+  "preserved_history": {
+    "v1_7_execution_source_sha256": "87062d2b38232c73b8ce620d7bfafb389658c4b877d9196a26b8b01d09daf192",
+    "v1_7_direct_source_byte_audit_sha256": "3a7a11d13b683b223c967ee86ddb1e5df6e5f90469d4a1e112cee1b774bca43e",
+    "v1_7_source_freeze_sha256": "e4e86cd9a3e297d8b4f0a52591be6b88d27cef9897b933d427aa9c15f15fa62f",
+    "historical_terminals_rewritten": false
+  }
+}

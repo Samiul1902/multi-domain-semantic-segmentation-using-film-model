@@ -1,0 +1,51 @@
+{
+ "artifact": "phase29_val808_shared_cache_build_summary",
+ "phase": "29",
+ "phase_label": "PHASE_D",
+ "cache_version": "v1_1_canonical",
+ "canonical_root": "data_cache/phase29_val808_shared_fixed_g_v1_1_canonical",
+ "noncanonical_root_preserved": "data_cache/phase29_val808_shared_fixed_g_v1_0",
+ "logical_g_passes": 1,
+ "g_samples": 808,
+ "batch_forwards": 102,
+ "batch_forwards_by_domain": {
+  "BUSI": 11,
+  "ISIC": 45,
+  "KUB": 35,
+  "KVASIR": 11
+ },
+ "expected_batch_forwards": 102,
+ "batch_size": 8,
+ "device": "cuda",
+ "torch_version": "2.6.0+cu124",
+ "cuda_version": "12.4",
+ "gpu": "NVIDIA GeForce RTX 3060 Ti",
+ "autocast_enabled": true,
+ "autocast_dtype": "float16",
+ "inference_mode": false,
+ "grad_context": "torch.no_grad()",
+ "input_dtype": "float32",
+ "model_dtype": "float32",
+ "prob_casting": "sigmoid(logits.float()) -> float32 -> float16 storage",
+ "g_params": 3523001,
+ "g_checkpoint_sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+ "val808_images_read": 808,
+ "val808_gt_reads": 0,
+ "deep_feature_dim": 192,
+ "scalar_dim": 10,
+ "domain_order": [
+  "BUSI",
+  "ISIC",
+  "KUB",
+  "KVASIR"
+ ],
+ "cache_file_shas": {
+  "val808_global_prob_f16.npy": "cc6c54af986f56b4aba9265405ffeba4f6cac582eeff00fe6b0894429e7d3f13",
+  "val808_router_deep_features_f32.npy": "a1527411e6ae5dd41dd6db91ca018803e936724afdc297576fb14b18cd6aadc4",
+  "val808_router_scalars_f32.npy": "3c789c981680ae3ac80bf38c791967d6a130bc7fc20def94b0f8bcdcedd51cdb",
+  "val808_roi_geometry.json": "7cb4bc4a079534aafa138f7798e87e5e8d6d9d67e0f3ce611bba97e738ce81dd"
+ },
+ "generated_utc": "2026-10-03T15:50:04+00:00",
+ "elapsed_seconds": 88.9,
+ "all_pass": true
+}

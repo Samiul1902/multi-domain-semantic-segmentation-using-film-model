@@ -1,0 +1,65 @@
+{
+ "artifact": "phase24_phase25_module_plan",
+ "phase": 24,
+ "status": "PRE_REGISTERED_NOT_STARTED",
+ "phase25_started": false,
+ "modules": [
+  {
+   "id": "25A",
+   "name": "Dedicated crop-trained regional refiner",
+   "deliverable": "R_psi trained on TRAIN crops within ROUTER_DEVELOPMENT folds",
+   "starts_after": []
+  },
+  {
+   "id": "25B",
+   "name": "GT-free feature extraction / ROI pipeline",
+   "deliverable": "frozen ROI rule + reusable global feature pooling",
+   "starts_after": []
+  },
+  {
+   "id": "25C",
+   "name": "Out-of-fold paired-gain label generation",
+   "deliverable": "concatenated OOF DeltaDice target table",
+   "starts_after": [
+    "25A",
+    "25B"
+   ]
+  },
+  {
+   "id": "25D",
+   "name": "Lightweight paired-gain benefit router",
+   "deliverable": "B_phi fitted on OOF labels",
+   "starts_after": [
+    "25C"
+   ]
+  },
+  {
+   "id": "25E",
+   "name": "Resource-aware pre-execution gate",
+   "deliverable": "U_hat = Delta_hat - lambda*C, budget sweep calibration",
+   "starts_after": [
+    "25D"
+   ]
+  },
+  {
+   "id": "25F",
+   "name": "Post-refinement preservation selector + fusion",
+   "deliverable": "S_omega + ROI-weighted fusion",
+   "starts_after": [
+    "25A"
+   ]
+  },
+  {
+   "id": "25G",
+   "name": "Integrated controlled development evaluation / freeze",
+   "deliverable": "comparator + ablation evaluation report and freeze",
+   "starts_after": [
+    "25E",
+    "25F"
+   ]
+  }
+ ],
+ "no_module_started": true,
+ "generated_utc": "2026-09-29T14:45:29.300871+00:00",
+ "test_reads": 0
+}

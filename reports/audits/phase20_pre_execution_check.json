@@ -1,0 +1,207 @@
+{
+  "artifact": "phase20_pre_execution_check",
+  "phase": 20,
+  "experiment_id": "phase20_shared_unetpp_fourdomain_seed42_clean_v3",
+  "protocol_path": "reports/audits/phase20_shared_global_baseline_protocol.json",
+  "protocol_sha256": "b74f1f9f429adbce374f0306180943b9f373f872e1e69e115b7d17e81414283c",
+  "checks": {
+    "phase20_entry_gate_pass": {
+      "expected": "PASS",
+      "observed": "PASS",
+      "pass": true
+    },
+    "duplicate_audit_pass": {
+      "expected": "PHASE20_DUPLICATE_AUDIT_PASS__NO_TRAIN_VAL_LEAKAGE",
+      "observed": "verdict=PHASE20_DUPLICATE_AUDIT_PASS__NO_TRAIN_VAL_LEAKAGE blocking=0",
+      "pass": true
+    },
+    "phase19_authority_bound": {
+      "expected": true,
+      "observed": true,
+      "pass": true
+    },
+    "train_population_5832": {
+      "expected": 5832,
+      "observed": 5832,
+      "pass": true
+    },
+    "val_population_808": {
+      "expected": 808,
+      "observed": 808,
+      "pass": true
+    },
+    "four_domains_present": {
+      "expected": [
+        "BUSI",
+        "ISIC",
+        "KUB",
+        "KVASIR"
+      ],
+      "observed": "TRAIN=['BUSI', 'ISIC', 'KUB', 'KVASIR'] VAL=['BUSI', 'ISIC', 'KUB', 'KVASIR']",
+      "pass": true
+    },
+    "task_ids_match_phase19": {
+      "expected": {
+        "ISIC": 0,
+        "BUSI": 1,
+        "KVASIR": 2,
+        "KUB": 3
+      },
+      "observed": {
+        "BUSI": 1,
+        "ISIC": 0,
+        "KUB": 3,
+        "KVASIR": 2
+      },
+      "pass": true
+    },
+    "test_lock_verified": {
+      "expected": 1683,
+      "observed": "count=1683",
+      "pass": true
+    },
+    "test_rejected_by_dataset": {
+      "expected": true,
+      "observed": true,
+      "pass": true
+    },
+    "test_rejected_by_loader": {
+      "expected": true,
+      "observed": true,
+      "pass": true
+    },
+    "no_forbidden_modules": {
+      "expected": [],
+      "observed": [],
+      "pass": true
+    },
+    "single_output_head": {
+      "expected": 1,
+      "observed": "head.out_channels=1",
+      "pass": true
+    },
+    "input_shape_BxCxHxW": {
+      "expected": [
+        2,
+        3,
+        512,
+        512
+      ],
+      "observed": [
+        2,
+        3,
+        512,
+        512
+      ],
+      "pass": true
+    },
+    "mask_shape_Bx1xHxW": {
+      "expected": [
+        2,
+        1,
+        512,
+        512
+      ],
+      "observed": [
+        2,
+        1,
+        512,
+        512
+      ],
+      "pass": true
+    },
+    "output_shape_Bx1xHxW": {
+      "expected": [
+        2,
+        1,
+        512,
+        512
+      ],
+      "observed": [
+        2,
+        1,
+        512,
+        512
+      ],
+      "pass": true
+    },
+    "task_id_not_a_model_input": {
+      "expected": "forward(image) only",
+      "observed": "forward signature is forward(x); batch['task_id'] is never passed; head in_channels=32 (no conditioning channel)",
+      "pass": true
+    },
+    "sampler_balances_domains": {
+      "expected": "all == 0.25",
+      "observed": {
+        "BUSI": 0.25,
+        "ISIC": 0.25,
+        "KUB": 0.25,
+        "KVASIR": 0.25
+      },
+      "pass": true
+    },
+    "sampler_policy_frozen": {
+      "expected": "phase20_domain_balanced_uniform_v1",
+      "observed": "phase20_domain_balanced_uniform_v1",
+      "pass": true
+    },
+    "sampler_num_samples_equals_train_size": {
+      "expected": 5832,
+      "observed": 5832,
+      "pass": true
+    },
+    "loss_finite": {
+      "expected": "finite > 0",
+      "observed": 0.8708496689796448,
+      "pass": true
+    },
+    "one_optimizer": {
+      "expected": "AdamW",
+      "observed": {
+        "name": "AdamW",
+        "learning_rate": 0.0001,
+        "weight_decay": 0.0001
+      },
+      "pass": true
+    },
+    "one_scheduler": {
+      "expected": "CosineAnnealingLR",
+      "observed": {
+        "name": "CosineAnnealingLR",
+        "T_max": 100,
+        "step": "per_epoch_after_train_and_val"
+      },
+      "pass": true
+    },
+    "one_seed": {
+      "expected": 42,
+      "observed": 42,
+      "pass": true
+    },
+    "output_directories_clean": {
+      "expected": [],
+      "observed": [],
+      "pass": true
+    },
+    "resume_mechanism_safe": {
+      "expected": "deterministic per-epoch seed",
+      "observed": "derive_epoch_seed(42,5)=42039721 stable; epoch 6 differs",
+      "pass": true
+    },
+    "configuration_sha_bound": {
+      "expected": "bound",
+      "observed": "protocol sha256=b74f1f9f429adbce code_shas=15",
+      "pass": true
+    }
+  },
+  "n_checks": 26,
+  "n_passed": 26,
+  "failed_checks": [],
+  "all_checks_passed": true,
+  "training_authorized": true,
+  "fail_closed": true,
+  "test_reads_during_check": {
+    "test_image_reads": 0,
+    "test_mask_reads": 0
+  }
+}

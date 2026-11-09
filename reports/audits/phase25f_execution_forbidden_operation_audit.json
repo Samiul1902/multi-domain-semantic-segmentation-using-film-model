@@ -1,0 +1,31 @@
+{
+ "artifact": "phase25f_execution_forbidden_operation_audit",
+ "phase": "25F",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_post_safety_v1_0",
+ "operations": {
+  "a7_a8_segmentation_comparison_performed": false,
+  "c8_c9_system_performance_comparison_performed": false,
+  "preservation_adjudication_performed": false,
+  "new_budget_selected": false,
+  "new_lambda_selected": false,
+  "somega_threshold_tuned": false,
+  "new_refinement_generated": false,
+  "new_delta_dice_generated": false,
+  "global_model_forwards": 0,
+  "regional_refiner_forwards": 0,
+  "benefit_router_forwards": 0,
+  "phase25g_started": false,
+  "c9_performance_evaluated": false
+ },
+ "violations": {},
+ "allowed_and_used": [
+  "construct BARRPostSafetyV1",
+  "train five CV logical runs",
+  "train one final refit",
+  "produce 4957 OOF safety predictions",
+  "compute classifier-level metrics for S_omega",
+  "construct C9 state/decision artifacts on ROUTER_DEVELOPMENT"
+ ],
+ "all_pass": true
+}

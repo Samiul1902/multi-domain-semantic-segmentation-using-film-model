@@ -1,0 +1,132 @@
+{
+ "artifact": "phase29_router_metric_reconciliation",
+ "phase": 29,
+ "stage": "ROUTER_METRIC_RECONCILIATION",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_phase29_repro_v1_1",
+ "generated_utc": "2026-10-03T15:07:55+00:00",
+ "classification": "ARTIFACT_LEVEL_METRIC_AND_EXECUTION_CONTRACT_REPAIR_ONLY",
+ "binding": "FROZEN_PHASE25E_ROUTER_METRIC_CONTRACT_APPLIED_VERBATIM",
+ "frozen_equations_applied": {
+  "precision_at_budget": "|S∩B|/K",
+  "benefit_capture_at_budget": "sum(max(d_i,0) for i in S)/sum(max(d_i,0) for i in E)",
+  "mean_true_delta_dice_among_routed": "sum(d_i for i in S)/K",
+  "harmful_activation_rate": "|S∩H|/K",
+  "beneficial_activation_rate": "|S∩B|/|B|",
+  "missed_benefit_rate": "|B−S|/|B|"
+ },
+ "membership_immutability": {
+  "reranking_performed": false,
+  "threshold_changed": false,
+  "router_inference_performed": false,
+  "new_model_forward_performed": false,
+  "memberships_unchanged": true,
+  "seed42_membership_source": "reports/tables/phase25e_policy_memberships_v1_0/C7_budget0.25.csv (policy-OOF space, selected=1)",
+  "seed42_membership_sha256_sorted": "e71e368cbb95b8d3398b47427df243bb8b387dd6d442ccf038188446677f446f",
+  "seed123_membership_sha256_sorted": "425681d9f78742010d858f72fa6794dab93c90f1777726b687f9cd0209c9aa36",
+  "seed3407_membership_sha256_sorted": "539d32df73c4eac2acca0a5c93ed8c3dd8e8ab1ae99e22afa8ee9e6b94881533"
+ },
+ "safety_fraction_contract": {
+  "definition": "safety_accept_fraction = n_accepted/n_selected; safety_reject_fraction = (n_selected−n_accepted)/n_selected",
+  "sum_equals_one_all_seeds": true,
+  "fractions_over_N_4957_used": false
+ },
+ "per_seed": {
+  "42": {
+   "macro_domain_final_dice": 0.930490176018447,
+   "macro_domain_delta_dice": 0.0013053960890669677,
+   "routed_candidate_mean_delta_dice": 0.007246629236765162,
+   "precision_at_25pct": 0.1807909604519774,
+   "benefit_capture": 0.6021987299959678,
+   "harmful_activation_share": 0.10815173527037934,
+   "beneficial_coverage": 0.7943262411347518,
+   "missed_benefit_rate": 0.20567375886524822,
+   "safety_accept_fraction": 0.9725585149313963,
+   "safety_reject_fraction": 0.02744148506860371,
+   "n_selected": 1239,
+   "n_accepted": 1205,
+   "n_total": 4957,
+   "_meta": {
+    "membership_source": "reports/tables/phase25e_policy_memberships_v1_0/C7_budget0.25.csv (policy-OOF space, selected=1)",
+    "membership_sha256_sorted": "e71e368cbb95b8d3398b47427df243bb8b387dd6d442ccf038188446677f446f",
+    "K": 1239,
+    "n_eligible": 4957,
+    "n_BENEFICIAL_total": 282,
+    "n_HARMFUL_total": 335,
+    "n_BENEFICIAL_routed": 224,
+    "n_HARMFUL_routed": 134,
+    "safety_fraction_sum": 1.0
+   }
+  },
+  "123": {
+   "macro_domain_final_dice": 0.9303465582984086,
+   "macro_domain_delta_dice": 0.0011617783690286148,
+   "routed_candidate_mean_delta_dice": 0.006587838823025936,
+   "precision_at_25pct": 0.2066182405165456,
+   "benefit_capture": 0.5603838550778453,
+   "harmful_activation_share": 0.12429378531073447,
+   "beneficial_coverage": 0.7252124645892352,
+   "missed_benefit_rate": 0.2747875354107649,
+   "safety_accept_fraction": 0.8555286521388217,
+   "safety_reject_fraction": 0.14447134786117838,
+   "n_selected": 1239,
+   "n_accepted": 1060,
+   "n_total": 4957,
+   "_meta": {
+    "membership_source": "data_cache/phase29_seed123/phase29_seed123_bphi_oof_membership.csv (selected=True)",
+    "membership_sha256_sorted": "425681d9f78742010d858f72fa6794dab93c90f1777726b687f9cd0209c9aa36",
+    "K": 1239,
+    "n_eligible": 4957,
+    "n_BENEFICIAL_total": 353,
+    "n_HARMFUL_total": 415,
+    "n_BENEFICIAL_routed": 256,
+    "n_HARMFUL_routed": 154,
+    "safety_fraction_sum": 1.0
+   }
+  },
+  "3407": {
+   "macro_domain_final_dice": 0.930362095462106,
+   "macro_domain_delta_dice": 0.001177315532725942,
+   "routed_candidate_mean_delta_dice": 0.006623227488185624,
+   "precision_at_25pct": 0.19289749798224373,
+   "benefit_capture": 0.5869805242739916,
+   "harmful_activation_share": 0.1420500403551251,
+   "beneficial_coverage": 0.7155688622754491,
+   "missed_benefit_rate": 0.2844311377245509,
+   "safety_accept_fraction": 0.9539951573849879,
+   "safety_reject_fraction": 0.04600484261501211,
+   "n_selected": 1239,
+   "n_accepted": 1182,
+   "n_total": 4957,
+   "_meta": {
+    "membership_source": "data_cache/phase29_seed3407/phase29_seed3407_bphi_oof_membership.csv (selected=True)",
+    "membership_sha256_sorted": "539d32df73c4eac2acca0a5c93ed8c3dd8e8ab1ae99e22afa8ee9e6b94881533",
+    "K": 1239,
+    "n_eligible": 4957,
+    "n_BENEFICIAL_total": 334,
+    "n_HARMFUL_total": 446,
+    "n_BENEFICIAL_routed": 239,
+    "n_HARMFUL_routed": 176,
+    "safety_fraction_sum": 1.0
+   }
+  }
+ },
+ "macro_DEV_result_unchanged": true,
+ "macro_DEV_reproduction": {
+  "42": 0.0013053960890669677,
+  "123": 0.0011617783690286148,
+  "3407": 0.001177315532725942
+ },
+ "macro_DEV_classification": "MACRO_DEV_RESULT_UNCHANGED_BY_ROUTER_METRIC_REPAIR",
+ "checks": {
+  "all_three_seeds_K_1239": true,
+  "no_reranking": true,
+  "no_threshold_change": true,
+  "no_router_inference": true,
+  "safety_fraction_sum_one": true,
+  "corrected_precision_below_mathematical_max": true,
+  "VAL808_reads_zero": true,
+  "TEST_reads_zero": true
+ },
+ "all_pass": true
+}

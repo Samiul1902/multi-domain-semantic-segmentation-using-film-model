@@ -1,0 +1,49 @@
+{
+ "artifact": "phase27_phaseB_scoring_summary",
+ "phase": "27",
+ "classification": "PHASE27_CANONICAL_MULTIDOMAIN_PRESERVATION_EXECUTION",
+ "method": "RA-MedFiLM-BARR",
+ "execution_phase": "PHASE_B",
+ "evidence_class": "CONTINUITY_DEVELOPMENT_EVIDENCE",
+ "canonical_scorer": "src.metrics.evaluation_metrics.dice(binary_confusion_counts)",
+ "canonical_scorer_eps": 1e-07,
+ "gt_construction": "full_field_gt: NEAREST resize to 512 + centre pad, binary = (arr > 0)",
+ "population_n": 808,
+ "val808_gt_reads": 808,
+ "val808_images_read": 0,
+ "prediction_artifact_sha256": "bb2a6237160b79cda644173e91e17878598d5d0b396b7db08089b05104dcc1c6",
+ "prediction_artifact_verified": true,
+ "estimand": "MACRO_DOMAIN_EQUAL_WEIGHT_MEAN_DICE_DELTA",
+ "macro_point": 0.0022101452700813433,
+ "macro_ci_lower": 0.001133428168276068,
+ "macro_ci_upper": 0.003298131445733337,
+ "margin": 0.005,
+ "preservation_asserted": true,
+ "per_domain_harm": {
+  "BUSI": false,
+  "ISIC": false,
+  "KUB": false,
+  "KVASIR": false
+ },
+ "activation": {
+  "nominal_budget": 0.25,
+  "action_available_fraction": 1.0,
+  "router_execute_fraction": 0.34529702970297027,
+  "realized_activation_fraction": 0.34529702970297027,
+  "somega_accept_among_executed": 0.953405017921147,
+  "somega_reject_among_executed": 0.04659498207885305,
+  "state_counts": {
+   "FORCED_SKIP": 0,
+   "SKIP_GLOBAL": 529,
+   "EXECUTE_THEN_ACCEPT": 266,
+   "EXECUTE_THEN_REJECT": 13
+  }
+ },
+ "device_note": "scoring is CPU artifact-level only (no model forward)",
+ "bootstrap_plan_sha256": "8d32bd3c9b18f03c39128593f287bd21d716d26e11eb90d80f6f9c0d0b450a93",
+ "bootstrap_replayed_frozen_plan": true,
+ "secondary_metrics": "NOT_REPORTED__SEMANTICS_NOT_FROZEN (IoU/precision/recall withheld; Dice is primary)",
+ "compute_label": "ANALYTICAL MAC LOWER BOUND",
+ "elapsed_seconds": 10.8,
+ "all_pass": true
+}

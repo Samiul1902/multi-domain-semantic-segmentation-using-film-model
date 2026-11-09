@@ -1,0 +1,208 @@
+{
+  "artifact": "phase22_entry_gate",
+  "phase": 22,
+  "generated_utc": "2026-09-29T02:35:27.700816+00:00",
+  "supervisor_authorization": "Phase 22 explicitly AUTHORIZED by the current instruction; predecessor terminal state PHASE21_GLOBAL_MEDFILM_REFERENCE_COMPLETE__PHASE22_ELIGIBLE_NOT_STARTED.",
+  "verdict": "PHASE22_ENTRY_GATE_PASS",
+  "n_checks": 22,
+  "n_passed": 22,
+  "n_failed": 0,
+  "checks": [
+    {
+      "check": "phase21_final_freeze_exists",
+      "pass": true,
+      "expected": true,
+      "observed": true,
+      "note": ""
+    },
+    {
+      "check": "phase21_freeze_verified",
+      "pass": true,
+      "expected": true,
+      "observed": true,
+      "note": ""
+    },
+    {
+      "check": "phase21_validation_problems_empty",
+      "pass": true,
+      "expected": [],
+      "observed": [],
+      "note": ""
+    },
+    {
+      "check": "phase21_terminal_state",
+      "pass": true,
+      "expected": "PHASE21_GLOBAL_MEDFILM_REFERENCE_COMPLETE__PHASE22_ELIGIBLE_NOT_STARTED",
+      "observed": "PHASE21_GLOBAL_MEDFILM_REFERENCE_COMPLETE__PHASE22_ELIGIBLE_NOT_STARTED",
+      "note": ""
+    },
+    {
+      "check": "phase22_eligible",
+      "pass": true,
+      "expected": true,
+      "observed": true,
+      "note": ""
+    },
+    {
+      "check": "phase22_started_before_authorization",
+      "pass": true,
+      "expected": false,
+      "observed": false,
+      "note": "must be false BEFORE this authorization; Phase-22 artifacts must not pre-exist"
+    },
+    {
+      "check": "no_preexisting_phase22_audits",
+      "pass": true,
+      "expected": [],
+      "observed": [],
+      "note": ""
+    },
+    {
+      "check": "phase21_checkpoint_sha_matches_freeze",
+      "pass": true,
+      "expected": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+      "observed": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+      "note": "bound via phase21_final_freeze.json :: training.best_checkpoint_sha256"
+    },
+    {
+      "check": "phase21_canonical_val_inference_runs_1",
+      "pass": true,
+      "expected": 1,
+      "observed": 1,
+      "note": ""
+    },
+    {
+      "check": "phase21_canonical_val_samples_808",
+      "pass": true,
+      "expected": "808/808",
+      "observed": "808/808",
+      "note": ""
+    },
+    {
+      "check": "phase21_prediction_maps_808",
+      "pass": true,
+      "expected": 808,
+      "observed": 808,
+      "note": "per-domain: {'BUSI': 84, 'ISIC': 357, 'KUB': 280, 'KVASIR': 87}"
+    },
+    {
+      "check": "phase21_per_image_metrics_table_exists",
+      "pass": true,
+      "expected": true,
+      "observed": true,
+      "note": ""
+    },
+    {
+      "check": "phase21_prediction_manifest_exists",
+      "pass": true,
+      "expected": true,
+      "observed": true,
+      "note": ""
+    },
+    {
+      "check": "frozen_protocol_sha_matches",
+      "pass": true,
+      "expected": "b74f1f9f429adbce374f0306180943b9f373f872e1e69e115b7d17e81414283c",
+      "observed": "b74f1f9f429adbce374f0306180943b9f373f872e1e69e115b7d17e81414283c",
+      "note": ""
+    },
+    {
+      "check": "freeze_protocol_sha_matches",
+      "pass": true,
+      "expected": "b74f1f9f429adbce374f0306180943b9f373f872e1e69e115b7d17e81414283c",
+      "observed": "b74f1f9f429adbce374f0306180943b9f373f872e1e69e115b7d17e81414283c",
+      "note": ""
+    },
+    {
+      "check": "architecture_binding_sha_matches",
+      "pass": true,
+      "expected": "21e2c195c8da33da761965817bab99f0eeec5fa84a846d05ae765b9567017e78",
+      "observed": "21e2c195c8da33da761965817bab99f0eeec5fa84a846d05ae765b9567017e78",
+      "note": ""
+    },
+    {
+      "check": "train_population_5832",
+      "pass": true,
+      "expected": 5832,
+      "observed": 5832,
+      "note": ""
+    },
+    {
+      "check": "val_population_808",
+      "pass": true,
+      "expected": 808,
+      "observed": 808,
+      "note": ""
+    },
+    {
+      "check": "manifest_version_phase4_v3",
+      "pass": true,
+      "expected": "phase4_v3",
+      "observed": "phase4_v3",
+      "note": ""
+    },
+    {
+      "check": "test_locked_all_zero",
+      "pass": true,
+      "expected": "all 0",
+      "observed": {
+        "test_image_reads": 0,
+        "test_mask_reads": 0,
+        "test_inference": 0,
+        "test_visualization": 0
+      },
+      "note": ""
+    },
+    {
+      "check": "test_reads_total_zero",
+      "pass": true,
+      "expected": 0,
+      "observed": 0,
+      "note": ""
+    },
+    {
+      "check": "test_lock_clean",
+      "pass": true,
+      "expected": true,
+      "observed": true,
+      "note": ""
+    }
+  ],
+  "bindings": {
+    "phase21_experiment_id": "phase21_global_medfilm_fourdomain_seed42_clean_v3",
+    "phase21_checkpoint_sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+    "phase21_protocol_sha256": "b74f1f9f429adbce374f0306180943b9f373f872e1e69e115b7d17e81414283c",
+    "phase21_architecture_binding_sha256": "21e2c195c8da33da761965817bab99f0eeec5fa84a846d05ae765b9567017e78",
+    "phase21_reference_macro_dice": null,
+    "persisted_prediction_dir": "reports/predictions/phase21_global_medfilm_fourdomain_seed42_clean_v3/val",
+    "persisted_prediction_counts": {
+      "BUSI": 84,
+      "ISIC": 357,
+      "KUB": 280,
+      "KVASIR": 87
+    }
+  },
+  "state_transition": {
+    "phase21": "COMPLETE_FROZEN",
+    "phase22": "AUTHORIZED_IN_PROGRESS",
+    "phase23": "NOT_STARTED"
+  },
+  "hard_boundaries": [
+    "no model training",
+    "no fine-tuning",
+    "no architecture modification",
+    "no benefit-predictor training",
+    "no localizer/refiner/router training",
+    "no pruning/quantization/distillation/NAS",
+    "no TEST access",
+    "no external-dataset evaluation",
+    "no Phase-23 literature search",
+    "Phase-21 canonical VAL pass must NOT be rerun or replaced"
+  ],
+  "test_reads": {
+    "test_image_reads": 0,
+    "test_mask_reads": 0,
+    "test_inference": 0,
+    "test_visualization": 0
+  }
+}

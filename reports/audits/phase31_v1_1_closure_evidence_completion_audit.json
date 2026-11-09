@@ -1,0 +1,150 @@
+{
+ "artifact": "phase31_v1_1_closure_evidence_completion_audit",
+ "phase": 31,
+ "classification": "EVIDENCE_PACKAGE_COMPLETION_ONLY",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_phase31_statistics_v1_1",
+ "mode": "READ_ONLY_VERIFICATION",
+ "artifacts_regenerated": false,
+ "existing_artifact_hashes": [
+  {
+   "path": "reports/audits/phase31_specification_terminal_v1_1.json",
+   "expected_sha256": "7c2ce43cc913c496b0f35dc47523a8d477178f5e37707f3997a027a2f1de540b",
+   "observed_sha256": "7c2ce43cc913c496b0f35dc47523a8d477178f5e37707f3997a027a2f1de540b",
+   "match": true
+  },
+  {
+   "path": "reports/audits/phase31_specification_final_check_v1_1.json",
+   "expected_sha256": "64e575ce9a78cfa8f41ba945ba1d94ec513d824e4a1eae72c2ae2db68908cdd3",
+   "observed_sha256": "64e575ce9a78cfa8f41ba945ba1d94ec513d824e4a1eae72c2ae2db68908cdd3",
+   "match": true
+  },
+  {
+   "path": "docs/phase31_statistical_significance_hypothesis_testing_spec_v1_1.md",
+   "expected_sha256": "51a4f44ec4f64f30ef248c7590024811931d037907a7a2875e26e41663c7a212",
+   "observed_sha256": "51a4f44ec4f64f30ef248c7590024811931d037907a7a2875e26e41663c7a212",
+   "match": true
+  },
+  {
+   "path": "reports/audits/phase31_execution_eligibility_adjudication_v1_1.json",
+   "expected_sha256": "abbedaff9619e4cd955f2098766b2d882ebaf60b7703090b5e20aada6bac7638",
+   "observed_sha256": "abbedaff9619e4cd955f2098766b2d882ebaf60b7703090b5e20aada6bac7638",
+   "match": true
+  },
+  {
+   "path": "reports/tables/phase31_statistical_test_registry_v1_1.csv",
+   "expected_sha256": "063b10d5734a6e791474aff74e244f031faea47fbeb1cc3130db7816907d4ab1",
+   "observed_sha256": "063b10d5734a6e791474aff74e244f031faea47fbeb1cc3130db7816907d4ab1",
+   "match": true
+  },
+  {
+   "path": "reports/tables/phase31_specification_completeness_v1_1.csv",
+   "expected_sha256": "cc61580fe9fb8c29f79587882f427543e025834d3631c5fc8a86d43bfbb76975",
+   "observed_sha256": "cc61580fe9fb8c29f79587882f427543e025834d3631c5fc8a86d43bfbb76975",
+   "match": true
+  },
+  {
+   "path": "reports/tables/phase31_hypothesis_provenance_matrix_v1_1.csv",
+   "expected_sha256": "a590423f4db31845c20bb5170cba5b5b5795b641a061f3f1b31de11f4e63f3a9",
+   "observed_sha256": "a590423f4db31845c20bb5170cba5b5b5795b641a061f3f1b31de11f4e63f3a9",
+   "match": true
+  },
+  {
+   "path": "reports/audits/phase31_hypothesis_matrix_v1_1_reconciliation.json",
+   "expected_sha256": "bf35cff4fc9875652d77ec03bc2b280cfca1365229659230d73f8cd68b6db631",
+   "observed_sha256": "bf35cff4fc9875652d77ec03bc2b280cfca1365229659230d73f8cd68b6db631",
+   "match": true
+  },
+  {
+   "path": "reports/audits/phase31_v1_0_preservation_manifest.json",
+   "expected_sha256": "a8ed880f121185bbfa903e0b223d3ecf0b1c7bc29fef9f47cf4b81371dc83fd6",
+   "observed_sha256": "a8ed880f121185bbfa903e0b223d3ecf0b1c7bc29fef9f47cf4b81371dc83fd6",
+   "match": true
+  }
+ ],
+ "all_hashes_match": true,
+ "matrix": {
+  "path": "reports/tables/phase31_hypothesis_provenance_matrix_v1_1.csv",
+  "sha256": "a590423f4db31845c20bb5170cba5b5b5795b641a061f3f1b31de11f4e63f3a9",
+  "rows": 10,
+  "columns": 14,
+  "column_names": [
+   "hypothesis_id",
+   "scientific_statement",
+   "population",
+   "system_A",
+   "system_B",
+   "metric",
+   "estimand",
+   "authority_artifact",
+   "authority_sha",
+   "authority_order",
+   "method_frozen_before_outcome",
+   "exact_method_complete",
+   "multiplicity_family_frozen",
+   "current_Phase31_status"
+  ],
+  "hypothesis_ids": [
+   "H1",
+   "H2",
+   "H3",
+   "H4",
+   "H5",
+   "H6",
+   "P30-PRIMARY",
+   "P30-A8VSRANDOM-P",
+   "P30-A7-COMPANION",
+   "C11-JFS"
+  ],
+  "duplicate_ids": 0,
+  "missing_ids": [],
+  "extra_ids": [],
+  "rows_with_nonnull_status": 10,
+  "rows_with_valid_enumeration": 10,
+  "status_map_matches_required": true,
+  "status_counts": {
+   "PREOUTCOME_HYPOTHESIS_METHOD_INCOMPLETE": 1,
+   "FORBIDDEN_OR_OUT_OF_SCOPE": 1,
+   "POST_HOC_EXPLORATORY_ONLY": 1,
+   "ALREADY_ADJUDICATED_BY_PREDECESSOR_PHASE": 5,
+   "DESCRIPTIVE_ONLY_BY_PREDECESSOR_AUTHORITY": 2,
+   "CONFIRMATORY_PREOUTCOME_EXACT_METHOD_FROZEN": 0
+  },
+  "expected_status_counts": {
+   "CONFIRMATORY_PREOUTCOME_EXACT_METHOD_FROZEN": 0,
+   "PREOUTCOME_HYPOTHESIS_METHOD_INCOMPLETE": 1,
+   "ALREADY_ADJUDICATED_BY_PREDECESSOR_PHASE": 5,
+   "DESCRIPTIVE_ONLY_BY_PREDECESSOR_AUTHORITY": 2,
+   "POST_HOC_EXPLORATORY_ONLY": 1,
+   "FORBIDDEN_OR_OUT_OF_SCOPE": 1
+  },
+  "counts_reconcile_to_10": true
+ },
+ "matrix_reconciliation_record": {
+  "path": "reports/audits/phase31_hypothesis_matrix_v1_1_reconciliation.json",
+  "sha256": "bf35cff4fc9875652d77ec03bc2b280cfca1365229659230d73f8cd68b6db631",
+  "all_pass": true,
+  "verified": true
+ },
+ "v1_0_preservation_manifest": {
+  "path": "reports/audits/phase31_v1_0_preservation_manifest.json",
+  "sha256": "a8ed880f121185bbfa903e0b223d3ecf0b1c7bc29fef9f47cf4b81371dc83fd6",
+  "preserved_byte_for_byte": true
+ },
+ "zero_action_counters": {
+  "new_p_values": 0,
+  "new_effect_sizes": 0,
+  "new_bootstrap_computations": 0,
+  "raw_ROUTER_HOLDOUT_image_reads": 0,
+  "raw_ROUTER_HOLDOUT_GT_reads": 0,
+  "model_forwards": 0,
+  "training_steps": 0,
+  "TEST_reads": 0,
+  "Phase32_started": false
+ },
+ "new_terminal_created": false,
+ "phase31_closure_performed": false,
+ "specification_or_scientific_change": false,
+ "generated_utc": "2026-10-04T06:14:55+00:00",
+ "all_pass": true
+}

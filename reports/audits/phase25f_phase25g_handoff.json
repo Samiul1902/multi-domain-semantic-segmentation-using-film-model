@@ -1,0 +1,38 @@
+{
+ "artifact": "phase25f_phase25g_handoff",
+ "phase": "25F",
+ "stage": "PHASE25G_HANDOFF",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_post_safety_v1_0",
+ "deliverables": {
+  "oof_predictions_csv": "data_cache/phase25f_barr_post_safety_v1_0/phase25f_oof_safety_predictions.csv",
+  "oof_rows": 4957,
+  "final_checkpoint": "checkpoints/phase25f_barr_post_safety_v1_0_seed42/final/final.pt",
+  "final_normalization": "reports/tables/phase25f_final_normalization_stats.csv",
+  "c9_decision_manifest": "reports/tables/phase25f_c9_decision_manifest.csv",
+  "c9_decision_summary": "reports/tables/phase25f_c9_decision_summary.csv",
+  "fusion_fallback": "phase25f_execution_common.fuse_prediction",
+  "cv_best_checkpoints": [
+   "checkpoints/phase25f_barr_post_safety_v1_0_seed42/cv_fold0/best.pt",
+   "checkpoints/phase25f_barr_post_safety_v1_0_seed42/cv_fold1/best.pt",
+   "checkpoints/phase25f_barr_post_safety_v1_0_seed42/cv_fold2/best.pt",
+   "checkpoints/phase25f_barr_post_safety_v1_0_seed42/cv_fold3/best.pt",
+   "checkpoints/phase25f_barr_post_safety_v1_0_seed42/cv_fold4/best.pt"
+  ],
+  "classifier_metrics": "reports/audits/phase25f_classifier_metrics.json"
+ },
+ "phase25g_owns": [
+  "A7 vs A8",
+  "C8 vs C9",
+  "segmentation preservation",
+  "post-safety rejection of harmful refinements",
+  "domain preservation",
+  "integrated resource/preservation tradeoff",
+  "controlled development freeze"
+ ],
+ "phase25f_performed_comparison": false,
+ "oof_classification": "META_LEVEL_OOF_DEVELOPMENT_PREDICTIONS",
+ "somega_overall_roc_auc": 0.5944726302838127,
+ "somega_overall_pr_auc": 0.655337484053522,
+ "all_pass": true
+}

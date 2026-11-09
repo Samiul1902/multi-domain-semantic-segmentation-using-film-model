@@ -1,0 +1,301 @@
+{
+  "artifact": "phase36_robustness_unit_v1_3",
+  "revision": "ra_medfilm_barr_phase36_robustness_v1_3",
+  "model_free": true,
+  "torch_imported": false,
+  "checks": [
+    {
+      "check": "01_v1_2_execution_preserved",
+      "passed": true,
+      "detail": "66fe435d7ec1d6e6ea10475776992b16fe049c9f3bfd7261caf78792e10bc29a"
+    },
+    {
+      "check": "02_v1_2_unit_preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "03_v1_2_preflight_preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "04_v1_2_negative_controls_preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "05_v1_2a_audit_preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "06_val_manifest_sha",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "07_image_plan_len_16_nonclean",
+      "passed": true,
+      "detail": 16
+    },
+    {
+      "check": "08_image_plan_no_clean",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "09_image_plan_10_deterministic",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "10_image_plan_6_noise",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "11_noise_seeds_42_123_3407",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "12_deterministic_seed_then_null",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "13_noise_seed_populated",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "14_nonclean_image_exec_12928",
+      "passed": true,
+      "detail": 12928
+    },
+    {
+      "check": "15_clean_exec_808",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "16_logical_rows_13736",
+      "passed": true,
+      "detail": 13736
+    },
+    {
+      "check": "17_proposal_plan_len_6",
+      "passed": true,
+      "detail": 6
+    },
+    {
+      "check": "18_proposal_plan_no_clean",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "19_proposal_nonclean_max_4848",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "20_population_808",
+      "passed": true,
+      "detail": 808
+    },
+    {
+      "check": "21_authorized_training_231",
+      "passed": true,
+      "detail": 231
+    },
+    {
+      "check": "22_authorized_test_112",
+      "passed": true,
+      "detail": 112
+    },
+    {
+      "check": "23_accepted_training_231",
+      "passed": true,
+      "detail": 231
+    },
+    {
+      "check": "24_accepted_test_112",
+      "passed": true,
+      "detail": 112
+    },
+    {
+      "check": "25_false_reject_zero",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "26_path_mismatch_rejected",
+      "passed": true,
+      "detail": 2
+    },
+    {
+      "check": "27_not_in_manifest_rejected",
+      "passed": true,
+      "detail": "NOT_IN_VAL808_MANIFEST: NOT_A_REAL_SAMPLE_ID"
+    },
+    {
+      "check": "28_no_vendor_substring_split_inference",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "29_no_protected_row_tokens",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "30_vendor_metadata_never_split_label",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "31_holdout_identity_denied",
+      "passed": true,
+      "detail": "ROUTER_HOLDOUT_IDENTITY_REJECTED: SYNTH_DENY_ID_FOR_UNIT"
+    },
+    {
+      "check": "32_test_identity_denied",
+      "passed": true,
+      "detail": "TEST_IDENTITY_REJECTED: SYNTH_DENY_ID_FOR_UNIT"
+    },
+    {
+      "check": "33_missing_sample_id_raises",
+      "passed": true,
+      "detail": "SCIENCE_ROW_SCHEMA_LOSS: missing sample_id"
+    },
+    {
+      "check": "34_missing_domain_raises",
+      "passed": true,
+      "detail": "SCIENCE_ROW_SCHEMA_LOSS: missing domain"
+    },
+    {
+      "check": "35_row_paired_delta_computed",
+      "passed": true,
+      "detail": -0.09999999999999998
+    },
+    {
+      "check": "36_row_has_all_required",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "37_row_route_state_changed_flag",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "38_row_router_decision_changed_flag",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "39_NC7_anonymous_image_rows_absent",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "40_NC8_anonymous_proposal_rows_absent",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "41_NC9_silent_missing_sample_continue_absent",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "42_NC10_perturbation_evaluators_reachable_in_science",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "43_NC11_schema_loss_guard_present",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "44_NC12_fixed_and_worstcase_reachable",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "45_NC13_test_substring_would_reject_112",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "46_NC14_identity_authority_accepts_808",
+      "passed": true,
+      "detail": 808
+    },
+    {
+      "check": "47_real_model_loader_retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "48_real_clean_generator_retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "49_strict_gate_retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "50_real_image_evaluator_retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "51_real_proposal_evaluator_retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "52_smoke_call_graph_retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "53_geometry_dims_98",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "54_global_dims_104",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "55_metric_authority_bound",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "56_empty_proposal_contract",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "57_torch_not_imported_on_import",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "58_import_safe_no_execution",
+      "passed": true,
+      "detail": null
+    }
+  ],
+  "passed": 58,
+  "total": 58,
+  "all_pass": true
+}

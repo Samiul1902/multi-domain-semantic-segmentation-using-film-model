@@ -1,0 +1,89 @@
+{
+  "artifact": "phase36_preexecution_source_freeze_v1_10",
+  "phase": 36,
+  "method": "RA-MedFiLM-BARR",
+  "revision": "ra_medfilm_barr_phase36_robustness_v1_10",
+  "type": "PREEXECUTION_SOURCE_FREEZE",
+  "section": "§R",
+  "execution_subject": "scripts/analysis/phase36_robustness_execution_v1_9.py",
+  "execution_subject_sha256": "433bad87b4ef77fd6997c77f688eb295e526bfa3e88dece4ec5d3d550255cbd0",
+  "execution_subject_is_v1_9_bytes_unchanged_from_v1_9": true,
+  "frozen_sources": {
+    "scripts/analysis/phase36_robustness_execution_v1_9.py": "433bad87b4ef77fd6997c77f688eb295e526bfa3e88dece4ec5d3d550255cbd0",
+    "scripts/analysis/phase36_robustness_unit_v1_9.py": "c39edd7764a0e9733cc5905e5e54935b1bcd9cc62c345189f618b0c6f4ea690e",
+    "scripts/analysis/phase36_robustness_unit_v1_10.py": "9b880c92469e7daca8f6563e64bf2e2e712d4eb8ac304298fbb52f89ab87c329",
+    "scripts/analysis/phase36_robustness_preflight_v1_10.py": "8e1c96abc8938013509d62d5d1204143c2121988c1b15775b236b75d96ca18fe",
+    "scripts/analysis/phase36_robustness_negative_controls_v1_10.py": "e4b59847fd2e96f2de6811d30d46f7f9c83cbb16a4f2e2b2afb9f660f1bd16d2"
+  },
+  "frozen_audits_and_reports": {
+    "reports/audits/phase36_robustness_unit_v1_10.json": "9695695afac6e9af0e01d86a0d0b089b271e5600627354e0d78a3b997bc3aa25",
+    "reports/audits/phase36_robustness_preflight_v1_10.json": "479c82985f33d01b2c45c39881f92b5d0d9d7930c835fa408b3b20021e77c733",
+    "reports/audits/phase36_v1_10_negative_controls.json": "2bd65eb8b6be20285c2c76ac9ad9478ce103c9d4869551919976d1134c618df5",
+    "reports/audits/phase36_v1_9_to_v1_10_semantic_diff.json": "b76a568e36d10d7e7c5bd4eba4d98cb26ca29e352c7c10dc2fc03166bfb3fc31",
+    "reports/audits/phase36_v1_10_direct_source_byte_audit.json": "0f874139bd660b3c5b2bfce6dc08c568a05ef4057bcf5cafdc45ae30c724ac5c",
+    "reports/audits/phase36_v1_10_source_repair_no_execution_audit.json": "17d397a4e00b8d4e19f7de8501bb06f0f528edfd5c5145d22b956c9c5068b40c",
+    "reports/audits/phase36_robustness_unit_v1_9.json": "75a15d3126d3b982b744e7f8e206b5e393ac8efee0941230f0c0c2c4f987c03d",
+    "reports/audits/phase36_robustness_preflight_v1_9.json": "af22f75e9d509f1181e83e581b18001f02c23b0ab30fe64190814ca937366b81",
+    "reports/audits/phase36_v1_9_negative_controls.json": "64b524bffacfa2e30f8e1a79802fde7ec288c4b60f5543250159f78794716759",
+    "reports/audits/phase36_v1_9_direct_source_byte_audit.json": "2b512059008d2935099187dda40ce249927bc331f49ef10df424db1af55942bf",
+    "reports/audits/phase36_v1_9_source_repair_no_execution_audit.json": "134cdb9b0e613355772108ac485193fccb835c67cde66704dfda9bc630b278d6"
+  },
+  "supporting_generators": {
+    "scripts/analysis/build_phase36_v1_10_semantic_diff.py": "03c68ac94182045bc02227c97d0a29a450c9ac0557c93cb5e00cd7ed61bc9388",
+    "scripts/analysis/audit_phase36_v1_10_direct_source_bytes.py": "ea93f114be9259e50c6dcc868536ca7aa5fb5f89510fe8ed35a052de815be1c8",
+    "scripts/analysis/audit_phase36_v1_10_no_execution.py": "e351e4f4782e1d75dbeed9ebbbb8213f9ebfd1eb50ce7730dd25fcfbc864507a",
+    "scripts/analysis/build_phase36_v1_10_freeze_and_eligibility.py": "8ffdff675ca258f9de23f9c5c488d117778fee938dc08b30c7884dc85dadb8a7"
+  },
+  "v1_9_history_preserved": {
+    "scripts/analysis/phase36_robustness_execution_v1_9.py": "433bad87b4ef77fd6997c77f688eb295e526bfa3e88dece4ec5d3d550255cbd0",
+    "scripts/analysis/phase36_robustness_unit_v1_9.py": "c39edd7764a0e9733cc5905e5e54935b1bcd9cc62c345189f618b0c6f4ea690e",
+    "byte_preserved": true
+  },
+  "canonical_component_sources": {
+    "src/models/film/global_medfilm.py": "a04ff3e61b4d900ff47c2f390da4a999e73bd6047b28a19e41b05115e431d11f",
+    "scripts/analysis/train_phase25d_router.py": "fc7c1bdf263ae4551dcb8f170d3203adb8540fbc189846265b74f6eca1541e91",
+    "src/models/barr/regional_refiner.py": "4fe0abde3ec3a183d930f676c4400b4d9ba778793ea64abf1755c5b8dabf947a",
+    "scripts/analysis/phase25f_execution_common.py": "98cf958a377e2de30e0b67e63fd56bafea418b2b061a362ee7284e852012cd2e"
+  },
+  "n_transitive_dependencies": 14,
+  "n_transitive_checkpoints": 4,
+  "all_dependencies_match": true,
+  "all_checkpoints_match": true,
+  "gate_results": {
+    "unit": {
+      "passed": 67,
+      "total": 67,
+      "all_pass": true
+    },
+    "preflight": {
+      "passed": 26,
+      "total": 26,
+      "all_pass": true
+    },
+    "negative_controls_NC63_NC70": {
+      "passed": 8,
+      "total": 8,
+      "all_pass": true
+    },
+    "direct_source_byte_audit": {
+      "passed": 18,
+      "total": 18,
+      "verdict": "PASS"
+    },
+    "semantic_diff_execution_subject_byte_identical": true,
+    "semantic_diff_new_scientific_choice": false,
+    "semantic_diff_all_semantic_groups_unchanged": true,
+    "zero_execution_audit_all_counters_zero": true,
+    "zero_execution_audit_all_generators_clean": true
+  },
+  "gate_artifacts_byte_deterministic_across_reruns": true,
+  "future_phase36_smoke_must_use_exact_v1_9_bytes": true,
+  "future_phase36_science_must_use_exact_v1_9_bytes": true,
+  "source_freeze_complete": true,
+  "smoke_started": false,
+  "science_started": false,
+  "protected_population_read": false,
+  "test_read": false,
+  "router_holdout_read": false,
+  "terminal": "PHASE36_V1_10_SOURCE_FREEZE_COMPLETE__SMOKE_AND_SCIENCE_NOT_STARTED"
+}

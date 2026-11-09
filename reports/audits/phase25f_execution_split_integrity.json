@@ -1,0 +1,64 @@
+{
+ "artifact": "phase25f_execution_split_integrity",
+ "phase": "25F",
+ "stage": "SPLIT_INTEGRITY",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_post_safety_v1_0",
+ "manifest_source": "reports/tables/phase25d_cv5_manifest.csv (reused, not reinvented)",
+ "outer_manifest_sha256": "008b92963664f38e84f33c771cea1db90caae02a366f02b6a83635a535639707",
+ "per_fold_sizes": {
+  "0": {
+   "fit": 3569,
+   "early_stop": 396,
+   "outer_target": 992,
+   "union": 4957
+  },
+  "1": {
+   "fit": 3569,
+   "early_stop": 396,
+   "outer_target": 992,
+   "union": 4957
+  },
+  "2": {
+   "fit": 3570,
+   "early_stop": 396,
+   "outer_target": 991,
+   "union": 4957
+  },
+  "3": {
+   "fit": 3569,
+   "early_stop": 397,
+   "outer_target": 991,
+   "union": 4957
+  },
+  "4": {
+   "fit": 3569,
+   "early_stop": 397,
+   "outer_target": 991,
+   "union": 4957
+  }
+ },
+ "checks": {
+  "fold0_disjoint": true,
+  "fold0_union_4957": true,
+  "fold0_ids_exist_in_metadata": true,
+  "fold1_disjoint": true,
+  "fold1_union_4957": true,
+  "fold1_ids_exist_in_metadata": true,
+  "fold2_disjoint": true,
+  "fold2_union_4957": true,
+  "fold2_ids_exist_in_metadata": true,
+  "fold3_disjoint": true,
+  "fold3_union_4957": true,
+  "fold3_ids_exist_in_metadata": true,
+  "fold4_disjoint": true,
+  "fold4_union_4957": true,
+  "fold4_ids_exist_in_metadata": true,
+  "outer_target_covers_4957_once": true,
+  "all_five_folds_present": true,
+  "no_outer_target_used_for_fitting": true
+ },
+ "group_leakage": 0,
+ "new_split_invented": false,
+ "all_pass": true
+}

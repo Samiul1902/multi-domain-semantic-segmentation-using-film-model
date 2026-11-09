@@ -1,0 +1,138 @@
+{
+  "classification": "EXT03R_RUN_HARNESS_FREEZE",
+  "generated_utc": "2026-10-11T18:30:00Z",
+  "harness": "scripts/training/run_ext03_baseline_matrix.py",
+  "harness_sha": "7c7287d73cfa30de3b81d64169d085a474b511132879e9e193f0986386d9c5e5",
+  "launcher": "scripts/training/run_ext03_baseline_matrix.ps1",
+  "launcher_sha": "7e81001f7c067d6703c488fc2cdb1557286c5047289f42edc31b1320adf7491c",
+  "resume_command": ".venv\\Scripts\\python.exe scripts\\training\\run_ext03_baseline_matrix.py --resume",
+  "run_matrix": [
+    {
+      "run_id": "unet_seed42",
+      "architecture": "unet",
+      "seed": 42,
+      "order": 1
+    },
+    {
+      "run_id": "unet_seed123",
+      "architecture": "unet",
+      "seed": 123,
+      "order": 2
+    },
+    {
+      "run_id": "unet_seed3407",
+      "architecture": "unet",
+      "seed": 3407,
+      "order": 3
+    },
+    {
+      "run_id": "attention_unet_seed42",
+      "architecture": "attention_unet",
+      "seed": 42,
+      "order": 4
+    },
+    {
+      "run_id": "attention_unet_seed123",
+      "architecture": "attention_unet",
+      "seed": 123,
+      "order": 5
+    },
+    {
+      "run_id": "attention_unet_seed3407",
+      "architecture": "attention_unet",
+      "seed": 3407,
+      "order": 6
+    },
+    {
+      "run_id": "unetpp_seed42",
+      "architecture": "unetpp",
+      "seed": 42,
+      "order": 7
+    },
+    {
+      "run_id": "unetpp_seed123",
+      "architecture": "unetpp",
+      "seed": 123,
+      "order": 8
+    },
+    {
+      "run_id": "unetpp_seed3407",
+      "architecture": "unetpp",
+      "seed": 3407,
+      "order": 9
+    },
+    {
+      "run_id": "deeplabv3plus_seed42",
+      "architecture": "deeplabv3plus",
+      "seed": 42,
+      "order": 10
+    },
+    {
+      "run_id": "deeplabv3plus_seed123",
+      "architecture": "deeplabv3plus",
+      "seed": 123,
+      "order": 11
+    },
+    {
+      "run_id": "deeplabv3plus_seed3407",
+      "architecture": "deeplabv3plus",
+      "seed": 3407,
+      "order": 12
+    },
+    {
+      "run_id": "segformer_b0_seed42",
+      "architecture": "segformer_b0",
+      "seed": 42,
+      "order": 13
+    },
+    {
+      "run_id": "segformer_b0_seed123",
+      "architecture": "segformer_b0",
+      "seed": 123,
+      "order": 14
+    },
+    {
+      "run_id": "segformer_b0_seed3407",
+      "architecture": "segformer_b0",
+      "seed": 3407,
+      "order": 15
+    }
+  ],
+  "states": [
+    "NOT_STARTED",
+    "RUNNING",
+    "INTERRUPTED_RESUMABLE",
+    "COMPLETE",
+    "TECHNICAL_FAILURE"
+  ],
+  "forbidden_states": [
+    "BAD_RESULT",
+    "LOW_SCORE",
+    "RETRY_FOR_BETTER_SCORE"
+  ],
+  "resume_safety_contract": [
+    "model.state_dict",
+    "optimizer.state_dict",
+    "scheduler.state_dict",
+    "grad_scaler.state_dict",
+    "epoch",
+    "best_metric",
+    "best_epoch",
+    "python_rng",
+    "numpy_rng",
+    "torch_cpu_rng",
+    "torch_cuda_rng"
+  ],
+  "guarantees": [
+    "sequential by default",
+    "skip only verified COMPLETE",
+    "resume interrupted",
+    "never overwrite successful runs",
+    "atomic registry writes",
+    "per-run stdout/stderr log",
+    "wall-clock + gpu-mem tracking",
+    "disk preflight"
+  ],
+  "session_independent": true,
+  "background_process_started": false
+}

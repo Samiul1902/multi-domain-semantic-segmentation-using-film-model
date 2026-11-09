@@ -1,0 +1,140 @@
+{
+  "audit": "phase11_historical_failure_protocol_reconstruction",
+  "created_utc": "2026-09-20T19:26:34.554019+00:00",
+  "source_precedence_used": [
+    "1. executing analysis code",
+    "2. persisted audit/table definitions",
+    "3. executed historical notebook",
+    "4. frozen report/README",
+    "5. project prose"
+  ],
+  "historical_phase11_found": true,
+  "historical_model_scope": {
+    "primary_model": "UNet++",
+    "primary_experiment": "phase10_kub_unetpp_seed42_512",
+    "secondary_comparator": "DeepLabV3+",
+    "note": "historical analysis was UNet++-primary with DeepLabV3+ comparator; cross-model tables also include UNet and Attention U-Net low-flags"
+  },
+  "historical_split": "VAL_ONLY (283 KUB VAL cases, manifest phase4_v2)",
+  "historical_threshold": 0.5,
+  "historical_failure_units": [
+    "case-level (per_image)",
+    "component/object-level (per_component)",
+    "patient-level"
+  ],
+  "historical_failure_definitions": {
+    "labels": [
+      "EMPTY_PREDICTION",
+      "LOW_DICE_DECILE",
+      "HIGH_HD95_DECILE",
+      "HIGH_FP_DECILE",
+      "MISSED_TINY_COMPONENT",
+      "MISSED_SMALL_COMPONENT",
+      "PARTIAL_MULTI_COMPONENT_DETECTION",
+      "COMPLETE_MULTI_COMPONENT_MISS"
+    ]
+  },
+  "historical_numeric_thresholds": {
+    "low_dice_decile": {
+      "cutoff": 0.5461063385009766,
+      "comparison": "dice <= cutoff",
+      "n": 29
+    },
+    "high_hd95_decile": {
+      "cutoff": 83.07246563841615,
+      "comparison": "valid hd95 >= cutoff",
+      "n": 28
+    },
+    "high_fp_decile": {
+      "cutoff": 4.0,
+      "comparison": "fp evaluation components >= cutoff",
+      "n": 39
+    },
+    "caveat": "descriptive failure-analysis strata; NOT tuning/deployment thresholds"
+  },
+  "historical_object_connectivity": {
+    "connectivity": 8,
+    "minimum_overlap_pixels": 1,
+    "source": "src/metrics/object_metrics.py",
+    "component_space": "original_space = identity/kub_size_v1/single-multi; evaluation_512_space = prediction components, object recall, FP components"
+  },
+  "historical_size_taxonomy": "kub_size_v1 (HISTORICAL; clean-v3 must use kub_size_clean_v3_v1)",
+  "historical_regime_stratification": {
+    "column": "FOV",
+    "ROI_CROP": 177,
+    "FULL_FIELD": 106
+  },
+  "historical_category_stratification": {
+    "Bladder_Stone": 145,
+    "Kidney_Stone": 114,
+    "Ureteric_Stone": 24,
+    "note": "subgroup metadata, not pixel classes"
+  },
+  "historical_multicomponent_analysis": {
+    "analysed": true,
+    "n": 50,
+    "classes": {
+      "COMPLETE_DETECTION": 36,
+      "PARTIAL_DETECTION": 10,
+      "COMPLETE_MISS": 4
+    }
+  },
+  "historical_boundary_analysis": {
+    "metric": "HD95",
+    "validity_flag": "hd95_valid",
+    "valid": 275,
+    "invalid": 8,
+    "handling": "invalid/empty handled via flag; not silently dropped"
+  },
+  "historical_hard_case_selection": {
+    "cohort_size": 16,
+    "strata": 4,
+    "per_stratum": 4,
+    "strata_rules": [
+      "empty_prediction==True",
+      "missed_eval_components>0",
+      "fp_eval_components>=4",
+      "low_dice_decile==True"
+    ],
+    "tie_break": "sort by sample_id; low-dice stratum sorts by ascending dice",
+    "exclusion": "later strata exclude earlier-selected samples",
+    "prediction_dependent": true,
+    "artifacts": [
+      "reports/tables/phase11_failure_16_selection.csv",
+      "reports/qualitative/phase11_kub_failure_analysis/phase11_unetpp_failure_selection.json"
+    ]
+  },
+  "historical_phase11_to_phase12_rationale": "Observed FULL_FIELD, small-object, and multi-component failures motivate testing whether increased effective local resolution can recover missed targets; no claim that ROI will solve them.",
+  "discrepancies_recorded": [
+    {
+      "item": "fp stratum",
+      "detail": "code uses fp_eval_components >= 4 but inline comment says \">=5\"",
+      "severity": "minor",
+      "disposition": "recorded; use code value"
+    },
+    {
+      "item": "low-dice label",
+      "detail": "cohort label says \"Low Dice Decile (<0.30)\" but actual cutoff is 0.5461",
+      "severity": "minor",
+      "disposition": "recorded; cutoff is bottom decile, not 0.30"
+    },
+    {
+      "item": "size taxonomy",
+      "detail": "historical used kub_size_v1; clean-v3 requires kub_size_clean_v3_v1",
+      "severity": "material-for-clean-v3",
+      "disposition": "clean-v3 uses the clean taxonomy; historical retained for provenance"
+    },
+    {
+      "item": "primary model",
+      "detail": "historical was UNet++-primary; clean-v3 must not adopt a reference from single-seed VAL",
+      "severity": "governance",
+      "disposition": "recorded; reference-model decision deferred to supervisor"
+    }
+  ],
+  "source_inventory_sha": "fc10b15e03e04a7674619858392c863628c945b568f3b99241f7652e9fc8bdcd",
+  "failure_matrix_sha": "dc4fbf3a8601ab018076a83bbb2f5be3d5f4f11c11ba356d94f76ad52b6ffe4a",
+  "phase12_bridge_sha": "d27988f6d5b75cd0e4b82187282c4a3d8da5fd6d2199b6b73bc8d49dc59c66dc",
+  "test_reads": 0,
+  "training_performed": false,
+  "status": "RECONSTRUCTED"
+}

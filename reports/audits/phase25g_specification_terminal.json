@@ -1,0 +1,30 @@
+{
+ "artifact": "phase25g_specification_terminal",
+ "phase": "25G",
+ "classification": "PHASE25G_PRE_EXECUTION_INTEGRATED_EVALUATION_SPECIFICATION_AUDIT",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_integrated_evaluation_v1_0",
+ "governance_only": true,
+ "no_execution": true,
+ "stage": "TERMINAL",
+ "phase25g_spec": "INCOMPLETE__HOLDOUT_OWNERSHIP_UNRESOLVED",
+ "phase25g_status": "BLOCKED_PRE_EXECUTION",
+ "holdout_ownership_classification": "ONE_SHOT_HOLDOUT_PHASE_OWNERSHIP_NOT_EXPLICIT",
+ "blocking_fields": [
+  "ROUTER_HOLDOUT ownership"
+ ],
+ "hard_stop_unresolved": [
+  "ROUTER_HOLDOUT phase ownership",
+  "holdout threshold semantics if holdout belongs Phase25G"
+ ],
+ "required_audits_all_present": true,
+ "terminal": "PHASE25G_BLOCKED__ONE_SHOT_HOLDOUT_OWNERSHIP_UNRESOLVED",
+ "next_action": "STOP. Resolve one-shot ROUTER_HOLDOUT phase ownership (no authoritative source assigns it) before any Phase25G execution.",
+ "do_not": [
+  "RUN PHASE25G SCIENCE",
+  "OPEN ROUTER_HOLDOUT",
+  "OPEN VAL808",
+  "OPEN TEST"
+ ],
+ "all_pass": true
+}

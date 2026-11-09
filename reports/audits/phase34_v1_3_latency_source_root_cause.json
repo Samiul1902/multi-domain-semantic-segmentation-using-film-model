@@ -1,0 +1,32 @@
+{
+ "artifact": "phase34_v1_3_latency_source_root_cause",
+ "phase": 34,
+ "section": "\u00a7F",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase34_efficiency_profiling_v1_4",
+ "source": "scripts/analysis/phase34_efficiency_profiling_worker_v1_3.py",
+ "source_sha256": "295c64d94358aed7f243b4036a75a5fa78288585f7bf17d3a764fb64291e59f7",
+ "function": "time_latency",
+ "line_span": "278-311",
+ "evidence_lines": [
+  "L280-281: for k in range(C.WARMUP_ITERATIONS): fn(k % C.TASK_COUNT)  [warmup = 50]",
+  "L284: for _ in range(C.MEASUREMENT_BLOCKS):  [5 blocks]",
+  "L285-286: start = torch.cuda.Event(enable_timing=True); end = ...  [ONE event pair per BLOCK]",
+  "L287: _sync()",
+  "L289: start.record()   [before the 200-iteration loop]",
+  "L290-291: for k in range(C.MEASURED_ITERATIONS_PER_BLOCK): fn(k % C.TASK_COUNT)",
+  "L292: end.record()     [after the 200-iteration loop]",
+  "L293-294: _sync(); end.synchronize()",
+  "L295: per_block_ms.append(start.elapsed_time(end))  [5 block totals]",
+  "L297: ms = sorted(per_block_ms)  [5 values]",
+  "L298: n_observations = C.TOTAL_MEASURED_ITERATIONS  [MISLABELED as 1000]",
+  "L302: mean_ms = sum(ms)/len(ms)  [mean of 5 block totals]",
+  "L304-306: p90/p95/p99 = ms[int(0.9*5)]/ms[int(0.95*5)]/ms[int(0.99*5)] = ms[4] [hence p90 == p95 == p99 == max]",
+  "no std_ms computed anywhere  [hence NaN]"
+ ],
+ "timing_captures": "A. ONE_CUDA_EVENT_PAIR_PER_200_ITERATION_BLOCK",
+ "not": "B. ONE_CUDA_EVENT_PAIR_PER_INDIVIDUAL_ITERATION",
+ "conclusion": "CONFIRMED_FROM_SOURCE (not inferred from result magnitude)",
+ "generated_utc": "2026-10-04T14:00:23+00:00",
+ "all_pass": true
+}

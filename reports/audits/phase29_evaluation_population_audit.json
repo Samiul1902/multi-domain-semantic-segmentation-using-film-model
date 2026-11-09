@@ -1,0 +1,75 @@
+{
+ "artifact": "phase29_evaluation_population_audit",
+ "phase": 29,
+ "classification": "PHASE29_EVALUATION_POPULATION_AUDIT",
+ "hard_blocker": true,
+ "question": "exactly where is three-seed reproducibility evaluated?",
+ "candidate_populations": [
+  "ROUTER_DEVELOPMENT",
+  "VAL808"
+ ],
+ "forbidden_populations": [
+  "ROUTER_HOLDOUT",
+  "TEST"
+ ],
+ "population_records": {
+  "ROUTER_DEVELOPMENT": {
+   "n": 4957,
+   "purpose": "canonical development population for all Phase25x/Phase27/Phase28 DEV evidence",
+   "new_inference_required": "UNRESOLVED",
+   "metrics": "UNRESOLVED",
+   "grouping": "canonical composite group_key (PATIENT/ASSET/RISK/SINGLETON)",
+   "gt_previously_opened": true,
+   "gt_opening_phases": [
+    "Phase25C",
+    "Phase25F",
+    "Phase28"
+   ],
+   "evidence_class": "DEVELOPMENT_EVIDENCE",
+   "authority_binding_population": true
+  },
+  "VAL808": {
+   "n": 808,
+   "purpose": "already-opened development evidence from Phase27",
+   "new_inference_required": "UNRESOLVED",
+   "metrics": "UNRESOLVED",
+   "grouping": "domain-stratified group bootstrap (B=2000, seed 42)",
+   "gt_previously_opened": true,
+   "gt_opening_phases": [
+    "Phase21 (VAL scoring)",
+    "Phase27"
+   ],
+   "evidence_class": "MULTI_SEED_CONTINUITY_DEVELOPMENT_EVIDENCE",
+   "forbidden_labels": [
+    "holdout",
+    "independent validation",
+    "external validation"
+   ],
+   "authority_binding_population": false
+  }
+ },
+ "bound_population_by_authority": "ROUTER_DEVELOPMENT",
+ "bound_population_evidence": [
+  {
+   "path": "reports/audits/phase26_downstream_phase_boundary_audit.json",
+   "sha256": "9703974040e67487deabf067e2492872b9c5e8b9c64de349a1e8497663d1c4fe",
+   "value": "phase29.population = ROUTER_DEVELOPMENT (DEV)"
+  },
+  {
+   "path": "reports/audits/phase28_phase29_boundary_audit.json",
+   "sha256": "77bf3647b1fa4139fbb112dfc4abfe1446378203856d91c7d8fc9f525ac7e485",
+   "value": "phase29.population = ROUTER_DEVELOPMENT (DEV)"
+  },
+  {
+   "path": "notebooks/phasewise/phase_29_3seed_reproducibility/README.md",
+   "sha256": "01878d1f1507e4ef936bd8afe6574818710aafb37b57fafdee10d520ab35b3f6",
+   "value": "Dataset Cohorts: TRAIN and VAL only (TEST strictly locked)"
+  }
+ ],
+ "evaluation_population_resolved": false,
+ "evaluation_population_conflict": true,
+ "conflict_description": "Authoritative boundary audits bind the Phase29 POPULATION to ROUTER_DEVELOPMENT (DEV). The Phase29 README simultaneously states 'Dataset Cohorts: TRAIN and VAL only'. Whether Phase29 evaluation additionally reports VAL808 is therefore NOT explicit. Under the work order §8 the exact evaluation population must be explicit; it is not.",
+ "population_and_reporting_population_must_be_distinguished": true,
+ "blocked_terminal_if_unresolved": "PHASE29_BLOCKED__REPRODUCIBILITY_EVALUATION_POPULATION_UNRESOLVED",
+ "all_pass": false
+}

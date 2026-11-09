@@ -1,0 +1,39 @@
+{
+  "artifact": "phase22_future_benefit_label_contract",
+  "phase": 22,
+  "status": "CONTRACT_PROPOSED_NOT_IMPLEMENTED",
+  "is_a_training_artifact": false,
+  "purpose": "define, BEFORE any benefit predictor exists, exactly how a benefit label would have to be constructed, so a future phase cannot define it post hoc to fit its own results",
+  "label_definition": {
+    "quantity": "delta_dice = dice(regional_fused) - dice(global)",
+    "sign_convention": "positive = regional arm helps",
+    "geometry_source_required_for_a_DEPLOYABLE_label": "PREDICTED (the model's own prediction), never the ground truth",
+    "geometry_source_used_by_phase22_for_the_UPPER_BOUND": "ORACLE (ground truth)",
+    "why_the_distinction_is_mandatory": "an oracle-geometry label would teach a predictor to reproduce ground-truth localisation, which is not available at deployment. Phase 22's oracle numbers exist to bound the problem, not to train on.",
+    "decision_rule": "pred = (float32(prob) >= 0.5), identical on both arms",
+    "empty_roi_handling": {
+      "status": "NO_PREDICTED_ROI",
+      "label_value": 0.0,
+      "rationale": "no regional pass is executed, so the fused map equals the global map and the gain is exactly zero"
+    },
+    "weak_label_option": {
+      "definition": "sign(delta_dice) with a dead-band |delta| <= epsilon",
+      "epsilon_not_yet_chosen": true,
+      "warning": "epsilon must be declared before training and must not be tuned on the evaluation population"
+    }
+  },
+  "required_before_any_training": [
+    "the label geometry source is fixed to PREDICTED",
+    "the dead-band epsilon (if used) is declared in advance",
+    "the TRAIN/VAL split for label construction is fixed",
+    "no TEST data participates in label construction",
+    "the label is computed with the frozen Phase-22 decision rule"
+  ],
+  "known_limitations_of_the_label": [
+    "it inherits every error of the global model that defines the ROI",
+    "it is not identifiable where the global prediction is empty",
+    "it is defined only for the ROI rule frozen in the Phase-22 protocol",
+    "a change to the ROI rule changes the label, so the rule must be frozen alongside the predictor"
+  ],
+  "test_reads": 0
+}

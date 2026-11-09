@@ -1,0 +1,26 @@
+{
+ "artifact": "phase27_hard_blocker_resolution",
+ "phase": "27",
+ "classification": "PHASE27_PRE_EXECUTION_PRESERVATION_AUDIT_SPECIFICATION",
+ "method": "RA-MedFiLM-BARR",
+ "governance_only": true,
+ "no_execution": true,
+ "stage": "HARD_BLOCKER_RESOLUTION",
+ "hard_blockers": {
+  "PREDECESSOR_INTEGRITY": "RESOLVED - Phase26 terminal + 3 SHAs verified; 0 drift",
+  "VAL808_POPULATION_BINDING": "RESOLVED - manifest SHA, 808 rows, four-domain counts, 639 groups",
+  "PHASE26_BUNDLE_DRIFT": "RESOLVED - bundle/wrapper/notebook SHAs match freeze",
+  "PHASE30_HOLDOUT_CONTAMINATION_RISK": "RESOLVED - ROUTER_HOLDOUT RESERVED_UNOPENED; VAL808 not a holdout substitute",
+  "STATISTICS_FREEZE_ORDER": "RESOLVED - statistics contract + bootstrap plan frozen before inference"
+ },
+ "checks": {
+  "predecessor_bound": true,
+  "population_bound": true,
+  "bundle_bound": true,
+  "holdout_locked": true,
+  "val808_domain_counts_correct": true,
+  "val808_groups_correct": true,
+  "no_holdout_contamination": true
+ },
+ "all_pass": true
+}

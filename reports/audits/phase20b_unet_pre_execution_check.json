@@ -1,0 +1,245 @@
+{
+  "artifact": "phase20b_pre_execution_check",
+  "phase": 20,
+  "subphase": "20B",
+  "model_key": "unet",
+  "model_display_name": "U-Net",
+  "experiment_id": "phase20b_shared_unet_fourdomain_seed42_clean_v3",
+  "protocol_path": "reports/audits/phase20_shared_global_baseline_protocol.json",
+  "protocol_sha256": "b74f1f9f429adbce374f0306180943b9f373f872e1e69e115b7d17e81414283c",
+  "architecture_binding_path": "reports/audits/phase20b_unet_architecture_binding.json",
+  "checks": {
+    "phase20_protocol_sha256_unchanged": {
+      "expected": "b74f1f9f429adbce374f0306180943b9f373f872e1e69e115b7d17e81414283c",
+      "observed": "b74f1f9f429adbce374f0306180943b9f373f872e1e69e115b7d17e81414283c",
+      "pass": true
+    },
+    "model_source_exists": {
+      "expected": true,
+      "observed": true,
+      "pass": true
+    },
+    "model_constructs": {
+      "expected": true,
+      "observed": "UNet params=7,763,041",
+      "pass": true
+    },
+    "trainable_param_count_positive": {
+      "expected": "> 0",
+      "observed": 7763041,
+      "pass": true
+    },
+    "no_forbidden_modules": {
+      "expected": [],
+      "observed": [],
+      "pass": true
+    },
+    "no_film_module": {
+      "expected": [],
+      "observed": [],
+      "pass": true
+    },
+    "input_shape_BxCxHxW": {
+      "expected": [
+        2,
+        3,
+        512,
+        512
+      ],
+      "observed": [
+        2,
+        3,
+        512,
+        512
+      ],
+      "pass": true
+    },
+    "output_shape_Bx1xHxW": {
+      "expected": [
+        2,
+        1,
+        512,
+        512
+      ],
+      "observed": [
+        2,
+        1,
+        512,
+        512
+      ],
+      "pass": true
+    },
+    "single_output_head": {
+      "expected": 1,
+      "observed": "head.out_channels=1",
+      "pass": true
+    },
+    "task_id_not_a_model_input": {
+      "expected": "forward(x) only",
+      "observed": "forward(x)",
+      "pass": true
+    },
+    "loss_finite_positive": {
+      "expected": "finite > 0",
+      "observed": 0.6531702876091003,
+      "pass": true
+    },
+    "train_population_5832": {
+      "expected": 5832,
+      "observed": 5832,
+      "pass": true
+    },
+    "val_population_808": {
+      "expected": 808,
+      "observed": 808,
+      "pass": true
+    },
+    "four_domains_present": {
+      "expected": [
+        "BUSI",
+        "ISIC",
+        "KUB",
+        "KVASIR"
+      ],
+      "observed": "TRAIN=['BUSI', 'ISIC', 'KUB', 'KVASIR'] VAL=['BUSI', 'ISIC', 'KUB', 'KVASIR']",
+      "pass": true
+    },
+    "channel_policy_frozen": {
+      "expected": "RGB_3CH",
+      "observed": "RGB_3CH",
+      "pass": true
+    },
+    "resolution_frozen": {
+      "expected": 512,
+      "observed": 512,
+      "pass": true
+    },
+    "test_lock_verified": {
+      "expected": 1683,
+      "observed": "count=1683",
+      "pass": true
+    },
+    "sampler_balances_domains": {
+      "expected": "all == 0.25",
+      "observed": {
+        "BUSI": 0.25,
+        "ISIC": 0.25,
+        "KUB": 0.25,
+        "KVASIR": 0.25
+      },
+      "pass": true
+    },
+    "sampler_policy_frozen": {
+      "expected": "phase20_domain_balanced_uniform_v1",
+      "observed": "phase20_domain_balanced_uniform_v1",
+      "pass": true
+    },
+    "sampler_num_samples_equals_train_size": {
+      "expected": 5832,
+      "observed": 5832,
+      "pass": true
+    },
+    "frozen_batch_size": {
+      "expected": 4,
+      "observed": 4,
+      "pass": true
+    },
+    "frozen_eval_batch_size": {
+      "expected": 8,
+      "observed": 8,
+      "pass": true
+    },
+    "frozen_num_workers": {
+      "expected": 4,
+      "observed": 4,
+      "pass": true
+    },
+    "frozen_amp": {
+      "expected": true,
+      "observed": true,
+      "pass": true
+    },
+    "frozen_seed": {
+      "expected": 42,
+      "observed": 42,
+      "pass": true
+    },
+    "frozen_max_epochs": {
+      "expected": 100,
+      "observed": 100,
+      "pass": true
+    },
+    "frozen_patience": {
+      "expected": 15,
+      "observed": 15,
+      "pass": true
+    },
+    "frozen_threshold": {
+      "expected": 0.5,
+      "observed": 0.5,
+      "pass": true
+    },
+    "frozen_loss": {
+      "expected": {
+        "bce": 0.5,
+        "dice": 0.5,
+        "eps": 1e-06
+      },
+      "observed": {
+        "name": "bce_dice",
+        "bce_weight": 0.5,
+        "dice_weight": 0.5,
+        "dice_epsilon": 1e-06
+      },
+      "pass": true
+    },
+    "frozen_optimizer": {
+      "expected": {
+        "AdamW": 0.0001,
+        "wd": 0.0001
+      },
+      "observed": {
+        "name": "AdamW",
+        "learning_rate": 0.0001,
+        "weight_decay": 0.0001
+      },
+      "pass": true
+    },
+    "frozen_scheduler": {
+      "expected": {
+        "CosineAnnealingLR": 100
+      },
+      "observed": {
+        "name": "CosineAnnealingLR",
+        "T_max": 100,
+        "step": "per_epoch_after_train_and_val"
+      },
+      "pass": true
+    },
+    "frozen_selection_rule": {
+      "expected": "phase20_macro_domain_mean_dice_v1",
+      "observed": "phase20_macro_domain_mean_dice_v1",
+      "pass": true
+    },
+    "resume_mechanism_safe": {
+      "expected": "deterministic per-epoch seed",
+      "observed": "derive_epoch_seed(42,5)=42039721 stable; epoch 6 differs",
+      "pass": true
+    },
+    "output_directories_pre_run": {
+      "expected": "no history.csv / latest.pt",
+      "observed": "history=False latest=False",
+      "pass": true
+    }
+  },
+  "n_checks": 34,
+  "n_passed": 34,
+  "failed_checks": [],
+  "all_checks_passed": true,
+  "training_authorized": true,
+  "fail_closed": true,
+  "test_reads_during_check": {
+    "test_image_reads": 0,
+    "test_mask_reads": 0
+  }
+}

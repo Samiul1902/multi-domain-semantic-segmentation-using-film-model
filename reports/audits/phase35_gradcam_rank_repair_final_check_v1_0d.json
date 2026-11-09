@@ -1,0 +1,98 @@
+{
+ "artifact": "phase35_gradcam_rank_repair_final_check_v1_0d",
+ "phase": 35,
+ "section": "\u00a7U",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase35_interpretability_v1_0d",
+ "checks": {
+  "01_all_predecessor_hashes_exact": true,
+  "02_v1_0c_final_check_40_of_40_bound": true,
+  "03_defect_B_reproduced_and_documented": true,
+  "04_scientific_specification_unchanged": true,
+  "05_canonical_logits_contract_1_1_H_W": true,
+  "06_canonical_mask_contract_H_W": true,
+  "07_rank_safe_target_helper_implemented": true,
+  "08_rank2_nonempty_unit_test_exact": true,
+  "09_rank2_empty_fallback_unit_test_exact": true,
+  "10_spatial_mismatch_rejected": true,
+  "11_rank4_mask_rejected": true,
+  "12_nonboolean_mask_rejected": true,
+  "13_old_defective_target_path_unreachable": true,
+  "14_standalone_gradcam_uses_repaired_helper": true,
+  "15_science_composition_uses_repaired_helper": true,
+  "16_smoke_uses_repaired_helper": true,
+  "17_smoke_mask_rank2": true,
+  "18_persisted_p_global_remains_scientific_mask_source": true,
+  "19_current_forward_mask_remains_prohibited": true,
+  "20_segmentation_threshold_0p50": true,
+  "21_ROI_threshold_0p30": true,
+  "22_empty_fallback_unchanged": true,
+  "23_gradcam_hooks_unchanged": true,
+  "24_CAM_algorithm_unchanged": true,
+  "25_precision_semantics_unchanged": true,
+  "26_router_implementation_unchanged": true,
+  "27_FiLM_implementation_unchanged": true,
+  "28_protected_data_guards_unchanged": true,
+  "29_v1_0d_source_freeze_complete": true,
+  "30_synthetic_smoke_not_yet_executed": true,
+  "31_model_constructions_0": true,
+  "32_checkpoint_loads_0": true,
+  "33_forwards_0": true,
+  "34_model_autograd_0": true,
+  "35_raw_VAL_0": true,
+  "36_real_p_global_0": true,
+  "37_GT_0": true,
+  "38_HOLDOUT_0": true,
+  "39_TEST_0": true,
+  "40_training_0": true,
+  "41_phase35_scientific_execution_false": true,
+  "42_phase36_false": true,
+  "43_static_preflight_pass": true,
+  "44_model_free_unit_tests_all_pass": true,
+  "45_semantic_change_class_implementation_only": true,
+  "46_terminal_matches_contract": true
+ },
+ "n_checks": 46,
+ "n_failed": 0,
+ "failed": [],
+ "predecessors_verified": 34,
+ "static_preflight": {
+  "n_checks": 96,
+  "n_failed": 0
+ },
+ "model_free_unit_tests": {
+  "n_tests": 11,
+  "n_failed": 0
+ },
+ "artifacts": [
+  {
+   "path": "reports/audits/phase35_gradcam_target_rank_defect_v1_0d.json",
+   "sha256": "413840cc768cc84d66ef4aac93d1ec9383424f02938bc1f0cded88a7cff9b297"
+  },
+  {
+   "path": "reports/audits/phase35_v1_0c_to_v1_0d_semantic_diff.json",
+   "sha256": "2542371b8916c2dbf178feb58a216c2fa2b6e39f8a1d801ee6d3ebe650d2e189"
+  },
+  {
+   "path": "reports/audits/phase35_execution_eligibility_adjudication_v1_0d.json",
+   "sha256": "0bed46a1c1e3c7f87759d5bb67ef0c02af42f32ad11f55bbda66a114babe3f70"
+  },
+  {
+   "path": "reports/audits/phase35_preexecution_source_freeze_v1_0d.json",
+   "sha256": "d349dccfa949ab9e31ff24e49377e6fb237b6f787846c3820c8dff1c211b5b53"
+  },
+  {
+   "path": "docs/phase35_gradcam_target_rank_repair_v1_0d.md",
+   "sha256": "501baf00917ca001b9f516ca9bba171eb6d2d7bcfcc618fae44e7ba627fa56e8"
+  },
+  {
+   "path": "reports/audits/phase35_v1_0d_no_model_execution_audit.json",
+   "sha256": "3c74903e40895e9ebb05c963313c419fe0e0fac74277bde768e238fe28b89ec5"
+  }
+ ],
+ "defect": "PHASE35_V1_0B_GRADCAM_TARGET_MASK_RANK_INCOMPATIBILITY",
+ "defect_status": "REPAIRED_IN_V1_0D",
+ "terminal": "PHASE35_PREEXECUTION_GRADCAM_RANK_REPAIR_V1_0D_COMPLETE__DISCLOSED_V1_0B_TARGET_MASK_RANK_INCOMPATIBILITY_REPAIRED_WITH_EXPLICIT_BATCH1_CHANNEL1_RANK2_MASK_CONTRACT__PERSISTED_PGLOBAL050_TARGET_AND_EMPTY_MASK_FALLBACK_PRESERVED__STANDALONE_AND_SCIENCE_GRADCAM_PATHS_BOUND_TO_RANK_SAFE_TARGET__V1_0D_SMOKE_BOUND_TO_SAME_SCIENTIFIC_TARGET_HELPER__NO_SCIENTIFIC_PROTOCOL_CHANGE__V1_0D_SOURCE_FREEZE_COMPLETE__SYNTHETIC_SMOKE_ELIGIBLE_NOT_STARTED",
+ "generated_utc": "2026-10-04T16:06:06+00:00",
+ "all_pass": true
+}

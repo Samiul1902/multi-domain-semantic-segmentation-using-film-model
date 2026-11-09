@@ -1,0 +1,335 @@
+{
+ "artifact": "phase36_v1_12_to_v1_13_semantic_diff",
+ "phase": 36,
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase36_robustness_v1_13",
+ "type": "EXECUTION_SEMANTIC_DIFF",
+ "from_revision": "ra_medfilm_barr_phase36_robustness_v1_12",
+ "to_revision": "ra_medfilm_barr_phase36_robustness_v1_13",
+ "execution_source_v1_12_sha256": "8ed75a9b8f4ea8c204875bf1810e17df3f9c342a434f25399154f355ee888ea4",
+ "execution_source_v1_13_sha256": "57f78447e77f2bcee07265825232cf0a8f96d1a31974d5d52c4cc82229e5d39c",
+ "launcher_v1_12_sha256": "b3ffe88c44f084f9f03700419cd717afb0be8b103afad43d458ece3a42b4ad9d",
+ "launcher_v1_13_sha256": "5f7fc91f9f0b8689adf42fc50527e216227ce7c4b853ba82ae1bce92a4805cab",
+ "untransform_identity": true,
+ "untransformed_sha256": "cdd90385ff6ed2404e2d0f8e26bf30105a725769cf209e1277a557f54cba28eb",
+ "line_count_equal": true,
+ "n_execution_lines_changed": 54,
+ "n_permitted_governance_changes": 54,
+ "n_unexpected_changes": 0,
+ "unexpected_changes": [],
+ "line_level_changes": [
+  {
+   "line": 3,
+   "v1_12": "\"\"\"Phase 36 v1.12 \u2014 LAUNCH-ANCHOR CONTRACT CONVERGENCE:",
+   "v1_13": "\"\"\"Phase 36 v1.13 \u2014 LAUNCH-ANCHOR CONTRACT CONVERGENCE:"
+  },
+  {
+   "line": 9,
+   "v1_12": "v1.12 is a NEW artifact.  NO scientific semantics changed",
+   "v1_13": "v1.13 is a NEW artifact.  NO scientific semantics changed"
+  },
+  {
+   "line": 12,
+   "v1_12": "REVISION: ra_medfilm_barr_phase36_robustness_v1_12",
+   "v1_13": "REVISION: ra_medfilm_barr_phase36_robustness_v1_13"
+  },
+  {
+   "line": 16,
+   "v1_12": "DEFECTS REPAIRED IN V1.12 (proven from the frozen v1.11 bytes)             #",
+   "v1_13": "DEFECTS REPAIRED IN V1.13 (proven from the frozen v1.11 bytes)             #"
+  },
+  {
+   "line": 30,
+   "v1_12": "      NEVER pass its own runtime integrity gate.  v1.12 removes the",
+   "v1_13": "      NEVER pass its own runtime integrity gate.  v1.13 removes the"
+  },
+  {
+   "line": 34,
+   "v1_12": "      external launcher, NOT by a manifest-declared launcher hash.  v1.12",
+   "v1_13": "      external launcher, NOT by a manifest-declared launcher hash.  v1.13"
+  },
+  {
+   "line": 42,
+   "v1_12": "      through those variables.  The v1.12 launcher",
+   "v1_13": "      through those variables.  The v1.13 launcher"
+  },
+  {
+   "line": 43,
+   "v1_12": "      (``scripts/analysis/launch_phase36_v1_12.py``) uses LITERAL frozen",
+   "v1_13": "      (``scripts/analysis/launch_phase36_v1_13.py``) uses LITERAL frozen"
+  },
+  {
+   "line": 51,
+   "v1_12": "      REQUIRED one from the manifest.  v1.12 validates the launch-anchor",
+   "v1_13": "      REQUIRED one from the manifest.  v1.13 validates the launch-anchor"
+  },
+  {
+   "line": 54,
+   "v1_12": "      isolation.  Enforced by the v1.12 unit / preflight suites and proven",
+   "v1_13": "      isolation.  Enforced by the v1.13 unit / preflight suites and proven"
+  },
+  {
+   "line": 436,
+   "v1_12": "SMOKE_V1_12_ARTIFACT = \"reports/audits/phase36_robustness_smoke_v1_12.json\"",
+   "v1_13": "SMOKE_V1_13_ARTIFACT = \"reports/audits/phase36_robustness_smoke_v1_13.json\""
+  },
+  {
+   "line": 437,
+   "v1_12": "SMOKE_V1_12_START_MARKER = \"reports/audits/phase36_robustness_smoke_start_v1_12.json\"",
+   "v1_13": "SMOKE_V1_13_START_MARKER = \"reports/audits/phase36_robustness_smoke_start_v1_13.json\""
+  },
+  {
+   "line": 438,
+   "v1_12": "SMOKE_V1_12_FAILURE_ARTIFACT = \"reports/audits/phase36_robustness_smoke_failure_v1_12.json\"",
+   "v1_13": "SMOKE_V1_13_FAILURE_ARTIFACT = \"reports/audits/phase36_robustness_smoke_failure_v1_13.json\""
+  },
+  {
+   "line": 444,
+   "v1_12": "SCIENCE_V1_12_ARTIFACT = \"reports/audits/phase36_robustness_scientific_result_v1_12.json\"",
+   "v1_13": "SCIENCE_V1_13_ARTIFACT = \"reports/audits/phase36_robustness_scientific_result_v1_13.json\""
+  },
+  {
+   "line": 445,
+   "v1_12": "SCIENCE_V1_12_START_MARKER = \"reports/audits/phase36_robustness_science_start_v1_12.json\"",
+   "v1_13": "SCIENCE_V1_13_START_MARKER = \"reports/audits/phase36_robustness_science_start_v1_13.json\""
+  },
+  {
+   "line": 446,
+   "v1_12": "SCIENCE_V1_12_FAILURE_ARTIFACT = \"reports/audits/phase36_robustness_science_failure_v1_12.json\"",
+   "v1_13": "SCIENCE_V1_13_FAILURE_ARTIFACT = \"reports/audits/phase36_robustness_science_failure_v1_13.json\""
+  },
+  {
+   "line": 452,
+   "v1_12": "# \u00a7D34 EXTERNAL NON-CIRCULAR LAUNCH ANCHOR (v1.12 contract).",
+   "v1_13": "# \u00a7D34 EXTERNAL NON-CIRCULAR LAUNCH ANCHOR (v1.13 contract)."
+  },
+  {
+   "line": 454,
+   "v1_12": "# (scripts/analysis/launch_phase36_v1_12.py), which verifies them BEFORE",
+   "v1_13": "# (scripts/analysis/launch_phase36_v1_13.py), which verifies them BEFORE"
+  },
+  {
+   "line": 457,
+   "v1_12": "# launcher SHA \u2014 that omission is REQUIRED (the no-cycle invariant): v1.12",
+   "v1_13": "# launcher SHA \u2014 that omission is REQUIRED (the no-cycle invariant): v1.13"
+  },
+  {
+   "line": 459,
+   "v1_12": "# The launcher SHA is bound by the v1.11/v1.12 source freeze and pinned",
+   "v1_13": "# The launcher SHA is bound by the v1.11/v1.13 source freeze and pinned"
+  },
+  {
+   "line": 463,
+   "v1_12": "V1_12_RUNTIME_MANIFEST = \"reports/audits/phase36_v1_12_runtime_source_integrity_manifest.json\"",
+   "v1_13": "V1_13_RUNTIME_MANIFEST = \"reports/audits/phase36_v1_13_runtime_source_integrity_manifest.json\""
+  },
+  {
+   "line": 464,
+   "v1_12": "LAUNCH_AUTHORITY_TOKEN = \"PHASE36_V1_12_LAUNCH_AUTHORITY\"",
+   "v1_13": "LAUNCH_AUTHORITY_TOKEN = \"PHASE36_V1_13_LAUNCH_AUTHORITY\""
+  },
+  {
+   "line": 817,
+   "v1_12": "    manifest_path = AUD / \"phase36_v1_12_runtime_source_integrity_manifest.json\"",
+   "v1_13": "    manifest_path = AUD / \"phase36_v1_13_runtime_source_integrity_manifest.json\""
+  },
+  {
+   "line": 849,
+   "v1_12": "    # \u00a7D34 (v1.12): the v1.11 contract was MUTUALLY UNSATISFIABLE.  It required",
+   "v1_13": "    # \u00a7D34 (v1.13): the v1.11 contract was MUTUALLY UNSATISFIABLE.  It required"
+  },
+  {
+   "line": 852,
+   "v1_12": "    # suite required it to be absent.  v1.12 REMOVES the manifest-declared",
+   "v1_13": "    # suite required it to be absent.  v1.13 REMOVES the manifest-declared"
+  },
+  {
+   "line": 855,
+   "v1_12": "    # (scripts/analysis/launch_phase36_v1_12.py), which pins the exact frozen",
+   "v1_13": "    # (scripts/analysis/launch_phase36_v1_13.py), which pins the exact frozen"
+  },
+  {
+   "line": 3496,
+   "v1_12": "    start_marker_path = ROOT / SMOKE_V1_12_START_MARKER",
+   "v1_13": "    start_marker_path = ROOT / SMOKE_V1_13_START_MARKER"
+  },
+  {
+   "line": 3509,
+   "v1_12": "        \"start_marker\": SMOKE_V1_12_START_MARKER,",
+   "v1_13": "        \"start_marker\": SMOKE_V1_13_START_MARKER,"
+  },
+  {
+   "line": 3877,
+   "v1_12": "    return ((ROOT / SMOKE_V1_12_ARTIFACT).exists()",
+   "v1_13": "    return ((ROOT / SMOKE_V1_13_ARTIFACT).exists()"
+  },
+  {
+   "line": 3878,
+   "v1_12": "            or (ROOT / SMOKE_V1_12_START_MARKER).exists())",
+   "v1_13": "            or (ROOT / SMOKE_V1_13_START_MARKER).exists())"
+  },
+  {
+   "line": 3890,
+   "v1_12": "    path = ROOT / SMOKE_V1_12_START_MARKER",
+   "v1_13": "    path = ROOT / SMOKE_V1_13_START_MARKER"
+  },
+  {
+   "line": 3894,
+   "v1_12": "        \"revision\": \"ra_medfilm_barr_phase36_robustness_v1_12\",",
+   "v1_13": "        \"revision\": \"ra_medfilm_barr_phase36_robustness_v1_13\","
+  },
+  {
+   "line": 3933,
+   "v1_12": "        \"revision\": \"ra_medfilm_barr_phase36_robustness_v1_12\",",
+   "v1_13": "        \"revision\": \"ra_medfilm_barr_phase36_robustness_v1_13\","
+  },
+  {
+   "line": 3951,
+   "v1_12": "        \"terminal\": \"PHASE36_V1_12_SMOKE_FIRST_ATTEMPT_FAILED__ARTIFACT_PRESERVED__NO_RETRY\",",
+   "v1_13": "        \"terminal\": \"PHASE36_V1_13_SMOKE_FIRST_ATTEMPT_FAILED__ARTIFACT_PRESERVED__NO_RETRY\","
+  },
+  {
+   "line": 3953,
+   "v1_12": "    path = ROOT / SMOKE_V1_12_FAILURE_ARTIFACT",
+   "v1_13": "    path = ROOT / SMOKE_V1_13_FAILURE_ARTIFACT"
+  },
+  {
+   "line": 3965,
+   "v1_12": "    path = ROOT / SMOKE_V1_12_ARTIFACT",
+   "v1_13": "    path = ROOT / SMOKE_V1_13_ARTIFACT"
+  },
+  {
+   "line": 3985,
+   "v1_12": "    return ((ROOT / SCIENCE_V1_12_ARTIFACT).exists()",
+   "v1_13": "    return ((ROOT / SCIENCE_V1_13_ARTIFACT).exists()"
+  },
+  {
+   "line": 3986,
+   "v1_12": "            or (ROOT / SCIENCE_V1_12_START_MARKER).exists()",
+   "v1_13": "            or (ROOT / SCIENCE_V1_13_START_MARKER).exists()"
+  },
+  {
+   "line": 3987,
+   "v1_12": "            or (ROOT / SCIENCE_V1_12_FAILURE_ARTIFACT).exists())",
+   "v1_13": "            or (ROOT / SCIENCE_V1_13_FAILURE_ARTIFACT).exists())"
+  },
+  {
+   "line": 3997,
+   "v1_12": "    path = ROOT / SCIENCE_V1_12_START_MARKER",
+   "v1_13": "    path = ROOT / SCIENCE_V1_13_START_MARKER"
+  },
+  {
+   "line": 4001,
+   "v1_12": "        \"revision\": \"ra_medfilm_barr_phase36_robustness_v1_12\",",
+   "v1_13": "        \"revision\": \"ra_medfilm_barr_phase36_robustness_v1_13\","
+  },
+  {
+   "line": 4038,
+   "v1_12": "        \"revision\": \"ra_medfilm_barr_phase36_robustness_v1_12\",",
+   "v1_13": "        \"revision\": \"ra_medfilm_barr_phase36_robustness_v1_13\","
+  },
+  {
+   "line": 4056,
+   "v1_12": "        \"terminal\": \"PHASE36_V1_12_SCIENCE_FIRST_ATTEMPT_FAILED__ARTIFACT_PRESERVED__NO_RETRY\",",
+   "v1_13": "        \"terminal\": \"PHASE36_V1_13_SCIENCE_FIRST_ATTEMPT_FAILED__ARTIFACT_PRESERVED__NO_RETRY\","
+  },
+  {
+   "line": 4058,
+   "v1_12": "    path = ROOT / SCIENCE_V1_12_FAILURE_ARTIFACT",
+   "v1_13": "    path = ROOT / SCIENCE_V1_13_FAILURE_ARTIFACT"
+  },
+  {
+   "line": 4070,
+   "v1_12": "    path = ROOT / SCIENCE_V1_12_ARTIFACT",
+   "v1_13": "    path = ROOT / SCIENCE_V1_13_ARTIFACT"
+  },
+  {
+   "line": 4141,
+   "v1_12": "                \"terminal\": \"PHASE36_V1_12_SCIENCE_NOT_AUTHORIZED__NO_MARKER_CREATED\",",
+   "v1_13": "                \"terminal\": \"PHASE36_V1_13_SCIENCE_NOT_AUTHORIZED__NO_MARKER_CREATED\","
+  },
+  {
+   "line": 4150,
+   "v1_12": "                \"terminal\": \"PHASE36_V1_12_SCIENCE_REEXECUTION_FORBIDDEN__FIRST_ATTEMPT_ALREADY_EXISTS\",",
+   "v1_13": "                \"terminal\": \"PHASE36_V1_13_SCIENCE_REEXECUTION_FORBIDDEN__FIRST_ATTEMPT_ALREADY_EXISTS\","
+  },
+  {
+   "line": 4162,
+   "v1_12": "                \"terminal\": \"PHASE36_V1_12_SCIENCE_START_MARKER_ALREADY_EXISTS__NO_RETRY\",",
+   "v1_13": "                \"terminal\": \"PHASE36_V1_13_SCIENCE_START_MARKER_ALREADY_EXISTS__NO_RETRY\","
+  },
+  {
+   "line": 4180,
+   "v1_12": "                \"terminal\": \"PHASE36_V1_12_SMOKE_NOT_AUTHORIZED__NO_MARKER_CREATED\",",
+   "v1_13": "                \"terminal\": \"PHASE36_V1_13_SMOKE_NOT_AUTHORIZED__NO_MARKER_CREATED\","
+  },
+  {
+   "line": 4191,
+   "v1_12": "                \"terminal\": \"PHASE36_V1_12_SMOKE_REEXECUTION_FORBIDDEN__FIRST_ATTEMPT_ALREADY_EXISTS\",",
+   "v1_13": "                \"terminal\": \"PHASE36_V1_13_SMOKE_REEXECUTION_FORBIDDEN__FIRST_ATTEMPT_ALREADY_EXISTS\","
+  },
+  {
+   "line": 4205,
+   "v1_12": "                \"terminal\": \"PHASE36_V1_12_SMOKE_START_MARKER_ALREADY_EXISTS__NO_RETRY\",",
+   "v1_13": "                \"terminal\": \"PHASE36_V1_13_SMOKE_START_MARKER_ALREADY_EXISTS__NO_RETRY\","
+  },
+  {
+   "line": 4227,
+   "v1_12": "                \"terminal\": \"PHASE36_V1_12_SMOKE_EXCEPTION__ARTIFACT_PRESERVED__NO_RETRY\",",
+   "v1_13": "                \"terminal\": \"PHASE36_V1_13_SMOKE_EXCEPTION__ARTIFACT_PRESERVED__NO_RETRY\","
+  },
+  {
+   "line": 4244,
+   "v1_12": "                \"artifact_preserved\": SMOKE_V1_12_FAILURE_ARTIFACT,",
+   "v1_13": "                \"artifact_preserved\": SMOKE_V1_13_FAILURE_ARTIFACT,"
+  },
+  {
+   "line": 4246,
+   "v1_12": "                \"terminal\": \"PHASE36_V1_12_SMOKE_FAILED__ARTIFACT_PRESERVED__NO_RETRY\",",
+   "v1_13": "                \"terminal\": \"PHASE36_V1_13_SMOKE_FAILED__ARTIFACT_PRESERVED__NO_RETRY\","
+  }
+ ],
+ "PERMITTED_GOVERNANCE_DIFFERENCES": {
+  "revision_identifier_update": "v1.12 -> v1.13",
+  "smoke_artifact_path_updates": true,
+  "science_artifact_path_updates": true,
+  "launch_authority_token_update": "PHASE36_V1_12_LAUNCH_AUTHORITY -> PHASE36_V1_13_LAUNCH_AUTHORITY",
+  "runtime_manifest_path_update": true,
+  "launcher_layer_new_gates": [
+   "D37 exact project interpreter pre-dispatch gate",
+   "D38 CUDA readiness pre-dispatch gate (device-only)",
+   "D39 pre-consumption order proof"
+  ]
+ },
+ "SCIENTIFIC_SEMANTICS": {
+  "new_scientific_choice": false,
+  "all_scientific_semantic_groups_unchanged": true,
+  "groups": {
+   "val808_population": "VAL808 (ISIC 357 / BUSI 84 / KVASIR 87 / KUB 280)",
+   "sample_ordering": "(dataset ascending, sample_id ascending)",
+   "domain_local_G_batch_size": 8,
+   "phase27_G_numerics": "float32 model/input; no_grad; autocast fp16; inference_mode false; sigmoid(logits.float())",
+   "segmentation_threshold": 0.5,
+   "proposal_threshold": 0.3,
+   "roi_margin": 0.25,
+   "image_perturbation_registry": "R1-R5",
+   "noise_seeds": [
+    42,
+    123,
+    3407
+   ],
+   "B_phi_202d_features": "202-D pre-refinement -> 218-D B_phi",
+   "R_psi": "4x256x256 -> 1x256x256",
+   "post_safety_16d_plus_4d_onehot": "20-D S_omega input; threshold 0.50",
+   "conditional_state_machine": "FORCED_SKIP/SKIP_GLOBAL/EXECUTE_THEN_ACCEPT/EXECUTE_THEN_REJECT",
+   "metrics": "Dice/IoU/HD95",
+   "kub_reporting_only": true,
+   "checkpoint_bytes": 4,
+   "dependency_bytes": 14
+  },
+  "evidence": "untransform_identity == True (v1.13 differs from v1.12 ONLY by the four governance token families)"
+ },
+ "smoke_check_ids_changed": false,
+ "smoke_check_ids_note": "D37-D39 belong to the external launcher/readiness layer; the execution smoke-check matrix (53) is unchanged.",
+ "terminal": "PHASE36_V1_12_TO_V1_13_SEMANTIC_DIFF__GOVERNANCE_ONLY__NEW_SCIENTIFIC_CHOICE_FALSE"
+}

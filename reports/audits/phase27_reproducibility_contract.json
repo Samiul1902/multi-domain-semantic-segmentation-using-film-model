@@ -1,0 +1,24 @@
+{
+ "artifact": "phase27_reproducibility_contract.json",
+ "phase": "27",
+ "classification": "PHASE27_PRE_EXECUTION_PRESERVATION_AUDIT_SPECIFICATION",
+ "method": "RA-MedFiLM-BARR",
+ "governance_only": true,
+ "no_execution": true,
+ "stage": "REPRODUCIBILITY_CONTRACT",
+ "master_seed": 42,
+ "bootstrap_seed": 42,
+ "amp_batch_membership_rule": "Under autocast the forward depends on batch MEMBERSHIP. Any determinism replay must reuse the CANONICAL batch partition: contiguous chunks of 8 per domain after dev.sort_values(['dataset','sample_id']). VAL808 inference replay uses 8-chunks of the canonically sorted VAL808 rows.",
+ "inference_replay_unit": "VAL808 sorted by (dataset, sample_id), contiguous chunks of 8",
+ "determinism_requirement": "second full replay must match max abs 0.0",
+ "notebook_determinism_requirement": "3x byte-identical (spec excluded; execution phase)",
+ "checks": {
+  "seed_42": true,
+  "master_seed_42": true,
+  "amp_batch_membership_rule_bound": true,
+  "determinism_replay_planned": true,
+  "inference_replay_planned": true,
+  "cpu_fallback_documented": true
+ },
+ "all_pass": true
+}

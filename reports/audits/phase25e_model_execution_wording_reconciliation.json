@@ -1,0 +1,61 @@
+{
+  "classification": "PHASE25E_RESOURCE_GATE_POLICY_EVALUATION",
+  "specification_revision": "ra_medfilm_barr_resource_gate_v1_0",
+  "stage": "MODEL_EXECUTION_WORDING_RECONCILIATION",
+  "defect": "Six project-control documents and the phasewise index state \"No models were loaded or run in this evaluation\". That sentence is FALSE for the Phase25E EVALUATION phase: the frozen final Phase25D router checkpoint was loaded and run ONCE, outcome-blind, over the 4957 ROUTER_DEVELOPMENT feature rows to derive the DEV deployment-score ranking and the per-budget rank boundaries/tau. The sentence is only true of the earlier Phase25E SPECIFICATION-FREEZE phase.",
+  "execution_inventory_frozen": {
+    "router_model_loads": 1,
+    "router_forwards": 1,
+    "router_forward_scope": "ROUTER_DEVELOPMENT (4957 rows), outcome-blind",
+    "global_model_forwards": 0,
+    "regional_refiner_forwards": 0,
+    "training_runs": 0,
+    "optimizer_steps": 0,
+    "new_bootstrap_replicates": 0,
+    "new_membership_generation": 0,
+    "outcome_recomputation": 0,
+    "lambda_selected": 0,
+    "C9_post_safety_evaluated": false
+  },
+  "evidence": {
+    "phase25e_final_router_dev_calibration.json": {
+      "sha256": "9696f5d665913bcecf1f2343bfc4b7a9e2b81815117e4d151ad319643306f0e5",
+      "checkpoint_sha256": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+      "checkpoint_epoch": 80,
+      "parameter_count": 36801,
+      "population": "ROUTER_DEVELOPMENT only (4957)",
+      "outcome_access": false,
+      "dev_scores_sha256": "2d23e11090a5b3164d5b125c633bbccfbe307ecdc717d0f5689bf401bd849f9d",
+      "role": "This artifact RECORDS the single frozen-router DEV forward."
+    },
+    "phase25e_no_execution_audit.json": {
+      "sha256": "1b166966d7e7a6da59c5ac9f4a06c077d569416618a1a4ba3e809e783e975271",
+      "classification": "PHASE25E_PRE_EXECUTION_RESOURCE_GATE_SPECIFICATION_FREEZE",
+      "router_model_loads": 0,
+      "router_forwards": 0,
+      "model_inference_required": false,
+      "role": "This artifact is scoped to the Phase25E SPECIFICATION-FREEZE phase ONLY (classification PHASE25E_PRE_EXECUTION_RESOURCE_GATE_SPECIFICATION_FREEZE). Its zero-forward counts describe the spec phase, NOT the later policy evaluation."
+    }
+  },
+  "scope_disambiguation": {
+    "phase25e_specification_freeze": "no model load / no forward (design + membership freeze only)",
+    "phase25e_policy_evaluation": "exactly one frozen-router forward over the 4957 DEV rows; no global forward; no refiner forward; no training"
+  },
+  "reconciled_wording": "Phase25E loaded the frozen final benefit-router checkpoint once and ran a single outcome-blind forward pass over the 4,957 ROUTER_DEVELOPMENT feature rows to fix the DEV deployment-score ranking and per-budget rank boundaries. No global segmentation model was re-run, no regional refiner was run, no model was trained, no lambda was selected, and the C9 post-safety comparator was not evaluated. ROUTER_HOLDOUT, VAL808 and TEST were never read.",
+  "stale_sentence_removed": "No models were loaded or run in this evaluation",
+  "documents_to_repair": [
+    "docs/RULES.md",
+    "docs/TASKS.md",
+    "docs/MEMORY.md",
+    "docs/ARCHITECTURE.md",
+    "docs/DESIGN.md",
+    "docs/PRD.md",
+    "notebooks/phasewise/PHASE_INDEX.md"
+  ],
+  "raw_scientific_values_changed": false,
+  "router_holdout_reads": 0,
+  "VAL808_reads": 0,
+  "TEST_reads": 0,
+  "failures": [],
+  "all_pass": true
+}

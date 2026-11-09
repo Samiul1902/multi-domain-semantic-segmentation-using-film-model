@@ -1,0 +1,186 @@
+{
+  "artifact": "post_phase14_h3_axis_priority_diagnostic",
+  "task": "POST-PHASE14 H3 SINGLE-AXIS PRIORITY DIAGNOSTIC",
+  "nature": "CAUSAL_PRIORITY_DECOMPOSITION__NO_TRAINING__NO_H3",
+  "population": {
+    "val_full_field_images": 103,
+    "components": 152,
+    "strata": {
+      "TINY": 72,
+      "SMALL": 28,
+      "MEDIUM": 36,
+      "LARGE": 16
+    },
+    "hard_tiny_denominator": 15,
+    "global_empty_denominator": 5
+  },
+  "frozen_references": {
+    "Tg": 0.7916666666666666,
+    "G": 0.20833333333333337,
+    "Dg": 0.6359172411726776,
+    "Dice_gate_Dg_minus_0.02": 0.6159172411726777
+  },
+  "conditions": {
+    "GLOBAL": {
+      "dice_mean": 0.6359172411726776,
+      "fp_components_per_image": 0.4854368932038835,
+      "recall_overall": 0.8223684210526315,
+      "recall_TINY": 0.7916666666666666,
+      "recall_SMALL": 0.8214285714285714,
+      "recall_MEDIUM": 0.8611111111111112,
+      "recall_LARGE": 0.875,
+      "recall_hard_tiny": 0.0,
+      "global_empty_recovered": 0.0
+    },
+    "PREDICTED": {
+      "dice_mean": 0.41853090628184875,
+      "fp_components_per_image": 7.776699029126213,
+      "recall_overall": 0.875,
+      "recall_TINY": 0.7916666666666666,
+      "recall_SMALL": 0.8928571428571429,
+      "recall_MEDIUM": 1.0,
+      "recall_LARGE": 0.9375,
+      "recall_hard_tiny": 0.0,
+      "global_empty_recovered": 0.2
+    },
+    "A_ONLY": {
+      "dice_mean": 0.47803905483831005,
+      "fp_components_per_image": 7.805825242718447,
+      "recall_overall": 1.0,
+      "recall_TINY": 1.0,
+      "recall_SMALL": 1.0,
+      "recall_MEDIUM": 1.0,
+      "recall_LARGE": 1.0,
+      "recall_hard_tiny": 1.0,
+      "global_empty_recovered": 1.0
+    },
+    "C_ONLY": {
+      "dice_mean": 0.6287526178117451,
+      "fp_components_per_image": 0.6893203883495146,
+      "recall_overall": 0.875,
+      "recall_TINY": 0.7916666666666666,
+      "recall_SMALL": 0.8928571428571429,
+      "recall_MEDIUM": 1.0,
+      "recall_LARGE": 0.9375,
+      "recall_hard_tiny": 0.0,
+      "global_empty_recovered": 0.2
+    },
+    "A_PLUS_C": {
+      "dice_mean": 0.7371658850329051,
+      "fp_components_per_image": 0.7184466019417476,
+      "recall_overall": 1.0,
+      "recall_TINY": 1.0,
+      "recall_SMALL": 1.0,
+      "recall_MEDIUM": 1.0,
+      "recall_LARGE": 1.0,
+      "recall_hard_tiny": 1.0,
+      "global_empty_recovered": 1.0
+    },
+    "ORACLE_REGIONAL": {
+      "dice_mean": 0.8024158112932394,
+      "fp_components_per_image": 0.6310679611650486,
+      "recall_overall": 1.0,
+      "recall_TINY": 1.0,
+      "recall_SMALL": 1.0,
+      "recall_MEDIUM": 1.0,
+      "recall_LARGE": 1.0,
+      "recall_hard_tiny": 1.0,
+      "global_empty_recovered": 1.0
+    }
+  },
+  "zero_proposal_components": {
+    "gt_components": 79,
+    "tiny_components": 57
+  },
+  "a_only_intervention": {
+    "label": "GT_ASSISTED_MISSING_PROPOSAL_SUPPLY_COMPLETION__NON_DEPLOYABLE",
+    "n_injected_rois": 79,
+    "n_injected_tiny": 57,
+    "n_injected_recall90_success": 79,
+    "n_injected_recall90_failure": 0,
+    "dice_delta_vs_predicted": 0.059508148556461304
+  },
+  "causal_quantities": {
+    "Tp_PREDICTED_tiny_recall": 0.7916666666666666,
+    "Tp_A_only": 1.0,
+    "Tp_C_only": 0.7916666666666666,
+    "Tp_A_plus_C": 1.0,
+    "R_A": 1.0,
+    "R_C": 0.0,
+    "R_AC": 1.0,
+    "A_lift_over_predicted": 0.20833333333333337,
+    "C_lift_over_predicted": 0.0,
+    "material_lift_threshold": 0.1
+  },
+  "priority_rule": {
+    "rule_fired": "A_PRIORITY",
+    "outcome": "H3_DESIGN_ELIGIBLE__AXIS_PROPOSAL_SUPPLY_RECALL",
+    "eligible_axis": "A_PROPOSAL_SUPPLY_RECALL_LIMITATION",
+    "a_material": true,
+    "c_material": false,
+    "R_A_ge_0_50": true
+  },
+  "causal_necessity": {
+    "A_supply": "causally NECESSARY for the regional Tiny-recall signal: supplying one GT-assisted ROI per zero-proposal component restores ~all missing-tiny detection (R_A>=0.50).",
+    "C_contamination": "NOT necessary for the Tiny-recall failure: removing FP proposals leaves Tiny Recall unchanged (R_C=0)."
+  },
+  "causal_sufficiency": {
+    "A_supply": "NOT sufficient alone: A-only keeps all background FPs, so FP burden / Dice remain at the PREDICTED failure level (contamination residual).",
+    "C_contamination": "NOT sufficient alone: C-only leaves the regional recall contribution at zero (supply/recall residual)."
+  },
+  "residual_failure": {
+    "after_A_only": "Contamination residual: FP burden and Dice remain at/near PREDICTED level; Dice gate not reached. Tiny recall restored.",
+    "after_C_only": "Supply/recall residual: regional Tiny-recall contribution remains zero; Tiny Recall unchanged vs PREDICTED. Dice gate reached but recall signal absent."
+  },
+  "h3_readiness": {
+    "status": "H3_DESIGN_ELIGIBLE",
+    "outcome": "H3_DESIGN_ELIGIBLE__AXIS_PROPOSAL_SUPPLY_RECALL",
+    "eligible_axis": "A_PROPOSAL_SUPPLY_RECALL_LIMITATION",
+    "phase15_status": "NOT_STARTED_AND_NOT_AUTHORIZED",
+    "h3_training": "NOT_STARTED"
+  },
+  "counters": {
+    "search_sweeps": 0,
+    "tuning_runs": 0,
+    "checkpoint_comparisons": 0,
+    "retraining": 0,
+    "h3_training": 0,
+    "test_reads": 0,
+    "external_test_reads": 0
+  },
+  "governance": {
+    "no_training": true,
+    "no_h3": true,
+    "no_threshold_search": true,
+    "no_proposal_search": true,
+    "no_checkpoint_change": true,
+    "external_data_used": false,
+    "test_split_reads": 0,
+    "phase14_outcome": "F_MIXED_BOTTLENECK",
+    "phase15_status": "NOT_STARTED_AND_NOT_AUTHORIZED"
+  },
+  "generated_utc": "2026-09-25T03:23:56Z",
+  "artifact_inventory_sha256": {
+    "protocol_json": "92395315b0fd660a39264a53b642839a7efe6f56072e066ec85796b660e35c61",
+    "protocol_md": "a5ab4f66249a183779ec261448c0db8103ee9ab5c12f922ee8ae2369f859dd1e",
+    "evaluator_py": "5029c4bf1666756e9c31b8c4fa82b74680036e1c50ec4f010e6828d8a637b680",
+    "results_json_canonical": "144205e70310df7c7f98440992dd41f9ebfb84e2bc9054ec7196c09521d1ce31",
+    "report_md": "ba97b0665d9cfd8d7a589aeb99219308b2cb9536f0278b360f9ae5d1752b8229",
+    "execution_audit_json": "5de15be85b60d9372997e2825214d22f7b26b2992c283b97273654efd3960403",
+    "table_component_level": "a8fff9e299a8e1132770e4aa0681590941feade5c1a4e6ddfee36b4f6bd3d939",
+    "table_image_summary": "cd4ce090dde1ab01d1ce2f5ccaa110af5db9729429b97f2f6019af4cf5d1dc61",
+    "table_aonly_injected": "8aa8c2f77cb5f7783efe69bd529e846c50ed678671d2a9d461b06894df7cc3da",
+    "table_ac_component_level": "6225f24dabdb0f6efd106af5c32ee9608840966089c49bf0e6b7a260791870c4",
+    "bound_phase14_root_cause_json": "dd9b5b86ab1933e766ad01c33f672d096a33471078138204884b03f7ec0442ea",
+    "bound_phase14_component_table": "59605f3b05c34031cadcfc8b39160a330d4b6e70fe87abafe72a6cc555e9acb7",
+    "bound_phase14_proposal_table": "7632a261f647d016feafde80b887769aa631bc3a9358468ab2a465742f22c26c",
+    "bound_phase14_image_table": "d446828877cb18f51794686c7f38ca7b44026c5d3ed22b6ad23e4a8dab00b6be",
+    "bound_phase14_governance_reconciliation": "d4ebe2b4d3e65d7ee166834ad2dbab71f2e3330a7ac7b32b1573f60ffe18b207",
+    "frozen_checkpoints": {
+      "global_unetpp_phase10": "ec7eb13f32e43af27eab7fc617bd1a2a8fcce1d6651a1b4a3653f3e4d1283269",
+      "regional_refiner_phase14_epoch56": "2e09e3a9c39c731687db1a9fef0c80881ed6235e4cda070bb4b8b382caa45daa",
+      "stage4d_localizer_phase13b_epoch53": "7673c34a2f2c86eca2e45c1bc6abe77842d17cd09f122f2da0f2d414ca492273"
+    }
+  },
+  "execution_audit_sha256": "5de15be85b60d9372997e2825214d22f7b26b2992c283b97273654efd3960403"
+}

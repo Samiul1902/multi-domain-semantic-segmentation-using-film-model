@@ -1,0 +1,918 @@
+{
+ "artifact": "phase36_v1_15_to_v1_16_semantic_diff",
+ "from_revision": "ra_medfilm_barr_phase36_robustness_v1_15",
+ "to_revision": "ra_medfilm_barr_phase36_robustness_v1_16",
+ "from_sha256": "b194ad28345ea8b268748be383ca98b936cb051d85854666e3141250f3eae002",
+ "to_sha256": "a96b74caa4587aa9d2f83b79ed39c13075a88086109e31d991695a75ec4abab9",
+ "hunk_count": 64,
+ "scientific_delta_count": 0,
+ "scientific_deltas": [],
+ "unclassified_delta_count": 0,
+ "classification_counts": {
+  "SCIENTIFIC_DELTA": 0,
+  "OPERATIONAL_GOVERNANCE": 64,
+  "UNCLASSIFIED": 0
+ },
+ "hunks": [
+  {
+   "tag": "replace",
+   "a_span": [
+    2,
+    3
+   ],
+   "b_span": [
+    2,
+    3
+   ],
+   "classification": "OPERATIONAL_GOVERNANCE",
+   "a_preview": "\"\"\"Phase 36 v1.14 — LAUNCH-ANCHOR CONTRACT CONVERGENCE:\n",
+   "b_preview": "\"\"\"Phase 36 v1.16 — LAUNCH-ANCHOR CONTRACT CONVERGENCE:\n"
+  },
+  {
+   "tag": "replace",
+   "a_span": [
+    8,
+    9
+   ],
+   "b_span": [
+    8,
+    9
+   ],
+   "classification": "OPERATIONAL_GOVERNANCE",
+   "a_preview": "v1.14 is a NEW artifact.  NO scientific semantics changed\n",
+   "b_preview": "v1.16 is a NEW artifact.  NO scientific semantics changed\n"
+  },
+  {
+   "tag": "replace",
+   "a_span": [
+    11,
+    12
+   ],
+   "b_span": [
+    11,
+    15
+   ],
+   "classification": "OPERATIONAL_GOVERNANCE",
+   "a_preview": "REVISION: ra_medfilm_barr_phase36_robustness_v1_14\n",
+   "b_preview": "REVISION: ra_medfilm_barr_phase36_robustness_v1_16\n#   v1.16 OPERATIONAL/GOVERNANCE REBASE over frozen v1.15 (D80-A..H).\n#   Scientific computation is IDENTICAL to v1.15 (D61 canonical fusion +\n#   D75 POLICY_B).  NO new scientific choice.\n"
+  },
+  {
+   "tag": "replace",
+   "a_span": [
+    15,
+    16
+   ],
+   "b_span": [
+    18,
+    19
+   ],
+   "classification": "OPERATIONAL_GOVERNANCE",
+   "a_preview": "DEFECTS REPAIRED IN V1.14 (proven from the frozen v1.11 bytes)             #\n",
+   "b_preview": "DEFECTS REPAIRED IN V1.16 (proven from the frozen v1.11 bytes)             #\n"
+  },
+  {
+   "tag": "replace",
+   "a_span": [
+    29,
+    30
+   ],
+   "b_span": [
+    32,
+    33
+   ],
+   "classification": "OPERATIONAL_GOVERNANCE",
+   "a_preview": "      NEVER pass its own runtime integrity gate.  v1.14 removes the\n",
+   "b_preview": "      NEVER pass its own runtime integrity gate.  v1.16 removes the\n"
+  },
+  {
+   "tag": "replace",
+   "a_span": [
+    33,
+    34
+   ],
+   "b_span": [
+    36,
+    37
+   ],
+   "classification": "OPERATIONAL_GOVERNANCE",
+   "a_preview": "      external launcher, NOT by a manifest-declared launcher hash.  v1.14\n",
+   "b_preview": "      external launcher, NOT by a manifest-declared launcher hash.  v1.16\n"
+  },
+  {
+   "tag": "replace",
+   "a_span": [
+    41,
+    43
+   ],
+   "b_span": [
+    44,
+    46
+   ],
+   "classification": "OPERATIONAL_GOVERNANCE",
+   "a_preview": "      through those variables.  The v1.14 launcher\n      (``scripts/analysis/launch_phase36_v1_14.py``) uses LITERAL frozen\n",
+   "b_preview": "      through those variables.  The v1.16 launcher\n      (``scripts/analysis/launch_phase36_v1_16.py``) uses LITERAL frozen\n"
+  },
+  {
+   "tag": "replace",
+   "a_span": [
+    50,
+    51
+   ],
+   "b_span": [
+    53,
+    54
+   ],
+   "classification": "OPERATIONAL_GOVERNANCE",
+   "a_preview": "      REQUIRED one from the manifest.  v1.14 validates the launch-anchor\n",
+   "b_preview": "      REQUIRED one from the manifest.  v1.16 validates the launch-anchor\n"
+  },
+  {
+   "tag": "replace",
+   "a_span": [
+    53,
+    54
+   ],
+   "b_span": [
+    56,
+    57
+   ],
+   "classification": "OPERATIONAL_GOVERNANCE",
+   "a_preview": "      isolation.  Enforced by the v1.14 unit / preflight suites and proven\n",
+   "b_preview": "      isolation.  Enforced by the v1.16 unit / preflight suites and proven\n"
+  },
+  {
+   "tag": "replace",
+   "a_span": [
+    378,
+    379
+   ],
+   "b_span": [
+    381,
+    382
+   ],
+   "classification": "OPERATIONAL_GOVERNANCE",
+   "a_preview": "# representation recast up to float32 (f16 -> f32 -> >= 0.50).  v1.14 clean scoring\n",
+   "b_preview": "# representation recast up to float32 (f16 -> f32 -> >= 0.50).  v1.16 clean scoring\n"
+  },
+  {
+   "tag": "replace",
+   "a_span": [
+    460,
+    463
+   ],
+   "b_span": [
+    463,
+    466
+   ],
+   "classification": "OPERATIONAL_GOVERNANCE",
+   "a_preview": "SMOKE_V1_14_ARTIFACT = \"reports/audits/phase36_robustness_smoke_v1_14.json\"\nSMOKE_V1_14_START_MARKER = \"reports/audits/phase36_robustness_smoke_start_v1_14.json\"\nSMOKE_V1_14_FAILURE_ARTIFACT = \"reports/audits/phase36_robustness_smoke_failure_v1_14.json\"\n",
+   "b_preview": "SMOKE_V1_16_ARTIFACT = \"reports/audits/phase36_robustness_smoke_v1_16.json\"\nSMOKE_V1_16_START_MARKER = \"reports/audits/phase36_robustness_smoke_start_v1_16.json\"\nSMOKE_V1_16_FAILURE_ARTIFACT = \"reports/audits/phase36_robustness_smoke_failure_v1_16.json\"\n"
+  },
+  {
+   "tag": "replace",
+   "a_span": [
+    468,
+    471
+   ],
+   "b_span": [
+    471,
+    474
+   ],
+   "classification": "OPERATIONAL_GOVERNANCE",
+   "a_preview": "SCIENCE_V1_14_ARTIFACT = \"reports/audits/phase36_robustness_scientific_result_v1_14.json\"\nSCIENCE_V1_14_START_MARKER = \"reports/audits/phase36_robustness_science_start_v1_14.json\"\nSCIENCE_V1_14_FAILURE_ARTIFACT = \"reports/audits/phase36_robustness_science_failure_v1_14.json\"\n",
+   "b_preview": "SCIENCE_V1_16_ARTIFACT = \"reports/audits/phase36_robustness_scientific_result_v1_16.json\"\nSCIENCE_V1_16_START_MARKER = \"reports/audits/phase36_robustness_science_start_v1_16.json\"\nSCIENCE_V1_16_FAILURE_ARTIFACT = \"reports/audits/phase36_robustness_science_failure_v1_16.json\"\n"
+  },
+  {
+   "tag": "replace",
+   "a_span": [
+    476,
+    477
+   ],
+   "b_span": [
+    479,
+    480
+   ],
+   "classification": "OPERATIONAL_GOVERNANCE",
+   "a_preview": "# §D34 EXTERNAL NON-CIRCULAR LAUNCH ANCHOR (v1.14 contract).\n",
+   "b_preview": "# §D34 EXTERNAL NON-CIRCULAR LAUNCH ANCHOR (v1.16 contract).\n"
+  },
+  {
+   "tag": "replace",
+   "a_span": [
+    478,
+    479
+   ],
+   "b_span": [
+    481,
+    482
+   ],
+   "classification": "OPERATIONAL_GOVERNANCE",
+   "a_preview": "# (scripts/analysis/launch_phase36_v1_14.py), which verifies them BEFORE\n",
+   "b_preview": "# (scripts/analysis/launch_phase36_v1_16.py), which verifies them BEFORE\n"
+  },
+  {
+   "tag": "replace",
+   "a_span": [
+    481,
+    482
+   ],
+   "b_span": [
+    484,
+    485
+   ],
+   "classification": "OPERATIONAL_GOVERNANCE",
+   "a_preview": "# launcher SHA — that omission is REQUIRED (the no-cycle invariant): v1.14\n",
+   "b_preview": "# launcher SHA — that omission is REQUIRED (the no-cycle invariant): v1.16\n"
+  },
+  {
+   "tag": "replace",
+   "a_span": [
+    483,
+    484
+   ],
+   "b_span": [
+    486,
+    487
+   ],
+   "classification": "OPERATIONAL_GOVERNANCE",
+   "a_preview": "# The launcher SHA is bound by the v1.11/v1.14 source freeze and pinned\n",
+   "b_preview": "# The launcher SHA is bound by the v1.11/v1.16 source freeze and pinned\n"
+  },
+  {
+   "tag": "replace",
+   "a_span": [
+    487,
+    489
+   ],
+   "b_span": [
+    490,
+    591
+   ],
+   "classification": "OPERATIONAL_GOVERNANCE",
+   "a_preview": "V1_14_RUNTIME_MANIFEST = \"reports/audits/phase36_v1_14_runtime_source_integrity_manifest.json\"\nLAUNCH_AUTHORITY_TOKEN = \"PHASE36_V1_14_LAUNCH_AUTHORITY\"\n",
+   "b_preview": "V1_16_RUNTIME_MANIFEST = \"reports/audits/phase36_v1_16_runtime_source_integrity_manifest.json\"\nLAUNCH_AUTHORITY_TOKEN = \"PHASE36_V1_16_LAUNCH_AUTHORITY\"\n# v1.16 EXPLICIT OPERATOR GATES (D80-D): execution + launcher bind the SAME literals.\nV1_16_SCIENCE_GATE_ENV = \"PHASE36_V1_16_EXECUTE\"\nV1_16_SMOKE_"
+  },
+  {
+   "tag": "replace",
+   "a_span": [
+    841,
+    842
+   ],
+   "b_span": [
+    943,
+    944
+   ],
+   "classification": "OPERATIONAL_GOVERNANCE",
+   "a_preview": "    manifest_path = AUD / \"phase36_v1_14_runtime_source_integrity_manifest.json\"\n",
+   "b_preview": "    manifest_path = AUD / \"phase36_v1_16_runtime_source_integrity_manifest.json\"\n"
+  },
+  {
+   "tag": "replace",
+   "a_span": [
+    873,
+    874
+   ],
+   "b_span": [
+    975,
+    976
+   ],
+   "classification": "OPERATIONAL_GOVERNANCE",
+   "a_preview": "    # §D34 (v1.14): the v1.11 contract was MUTUALLY UNSATISFIABLE.  It required\n",
+   "b_preview": "    # §D34 (v1.16): the v1.11 contract was MUTUALLY UNSATISFIABLE.  It required\n"
+  },
+  {
+   "tag": "replace",
+   "a_span": [
+    876,
+    877
+   ],
+   "b_span": [
+    978,
+    979
+   ],
+   "classification": "OPERATIONAL_GOVERNANCE",
+   "a_preview": "    # suite required it to be absent.  v1.14 REMOVES the manifest-declared\n",
+   "b_preview": "    # suite required it to be absent.  v1.16 REMOVES the manifest-declared\n"
+  },
+  {
+   "tag": "replace",
+   "a_span": [
+    879,
+    880
+   ],
+   "b_span": [
+    981,
+    982
+   ],
+   "classification": "OPERATIONAL_GOVERNANCE",
+   "a_preview": "    # (scripts/analysis/launch_phase36_v1_14.py), which pins the exact frozen\n",
+   "b_preview": "    # (scripts/analysis/launch_phase36_v1_16.py), which pins the exact frozen\n"
+  },
+  {
+   "tag": "replace",
+   "a_span": [
+    959,
+    960
+   ],
+   "b_span": [
+    1061,
+    1062
+   ],
+   "classification": "OPERATIONAL_GOVERNANCE",
+   "a_preview": "    if os.environ.get(C.GATE_ENV) != \"1\":\n",
+   "b_preview": "    if os.environ.get(V1_16_SCIENCE_GATE_ENV) != \"1\":\n"
+  },
+  {
+   "tag": "replace",
+   "a_span": [
+    961,
+    962
+   ],
+   "b_span": [
+    1063,
+    1064
+   ],
+   "classification": "OPERATIONAL_GOVERNANCE",
+   "a_preview": "                          \"reason\": f\"{C.GATE_ENV} != '1'\",\n",
+   "b_preview": "                          \"reason\": f\"{V1_16_SCIENCE_GATE_ENV} != '1'\",\n"
+  },
+  {
+   "tag": "replace",
+   "a_span": [
+    968,
+    969
+   ],
+   "b_span": [
+    1070,
+    1071
+   ],
+   "classification": "OPERATIONAL_GOVERNANCE",
+   "a_preview": "    if os.environ.get(C.SMOKE_GATE_ENV) != \"1\":\n",
+   "b_preview": "    if os.environ.get(V1_16_SMOKE_GATE_ENV) != \"1\":\n"
+  },
+  {
+   "tag": "replace",
+   "a_span": [
+    970,
+    971
+   ],
+   "b_span": [
+    1072,
+    1073
+   ],
+   "classification": "OPERATIONAL_GOVERNANCE",
+   "a_preview": "                          \"reason\": f\"{C.SMOKE_GATE_ENV} != '1'\",\n",
+   "b_preview": "                          \"reason\": f\"{V1_16_SMOKE_GATE_ENV} != '1'\",\n"
+  },
+  {
+   "tag": "replace",
+   "a_span": [
+    983,
+    984
+   ],
+   "b_span": [
+    1085,
+    1086
+   ],
+   "classification": "OPERATIONAL_GOVERNANCE",
+   "a_preview": "    return \"AUTHORIZED\" if os.environ.get(C.SMOKE_GATE_ENV) == \"1\" else \"NOT_AUTHORIZED\"\n",
+   "b_preview": "    return \"AUTHORIZED\" if os.environ.get(V1_16_SMOKE_GATE_ENV) == \"1\" else \"NOT_AUTHORIZED\"\n"
+  },
+  {
+   "tag": "replace",
+   "a_span": [
+    993,
+    994
+   ],
+   "b_span": [
+    1095,
+    1096
+   ],
+   "classification": "OPERATIONAL_GOVERNANCE",
+   "a_preview": "    return \"AUTHORIZED\" if os.environ.get(C.GATE_ENV) == \"1\" else \"NOT_AUTHORIZED\"\n",
+   "b_preview": "    return \"AUTHORIZED\" if os.environ.get(V1_16_SCIENCE_GATE_ENV) == \"1\" else \"NOT_AUTHORIZED\"\n"
+  },
+  {
+   "tag": "replace",
+   "a_span": [
+    3521,
+    3522
+   ],
+   "b_span": [
+    3623,
+    3624
+   ],
+   "classification": "OPERATIONAL_GOVERNANCE",
+   "a_preview": "    start_marker_path = ROOT / SMOKE_V1_14_START_MARKER\n",
+   "b_preview": "    start_marker_path = ROOT / SMOKE_V1_16_START_MARKER\n"
+  },
+  {
+   "tag": "replace",
+   "a_span": [
+    3534,
+    3535
+   ],
+   "b_span": [
+    3636,
+    3637
+   ],
+   "classification": "OPERATIONAL_GOVERNANCE",
+   "a_preview": "        \"start_marker\": SMOKE_V1_14_START_MARKER,\n",
+   "b_preview": "        \"start_marker\": SMOKE_V1_16_START_MARKER,\n"
+  },
+  {
+   "tag": "replace",
+   "a_span": [
+    3902,
+    3904
+   ],
+   "b_span": [
+    4004,
+    4006
+   ],
+   "classification": "OPERATIONAL_GOVERNANCE",
+   "a_preview": "    return ((ROOT / SMOKE_V1_14_ARTIFACT).exists()\n            or (ROOT / SMOKE_V1_14_START_MARKER).exists())\n",
+   "b_preview": "    return ((ROOT / SMOKE_V1_16_ARTIFACT).exists()\n            or (ROOT / SMOKE_V1_16_START_MARKER).exists())\n"
+  },
+  {
+   "tag": "replace",
+   "a_span": [
+    3915,
+    3916
+   ],
+   "b_span": [
+    4017,
+    4018
+   ],
+   "classification": "OPERATIONAL_GOVERNANCE",
+   "a_preview": "    path = ROOT / SMOKE_V1_14_START_MARKER\n",
+   "b_preview": "    path = ROOT / SMOKE_V1_16_START_MARKER\n"
+  },
+  {
+   "tag": "replace",
+   "a_span": [
+    3919,
+    3920
+   ],
+   "b_span": [
+    4021,
+    4022
+   ],
+   "classification": "OPERATIONAL_GOVERNANCE",
+   "a_preview": "        \"revision\": \"ra_medfilm_barr_phase36_robustness_v1_14\",\n",
+   "b_preview": "        \"revision\": \"ra_medfilm_barr_phase36_robustness_v1_16\",\n"
+  },
+  {
+   "tag": "replace",
+   "a_span": [
+    3958,
+    3959
+   ],
+   "b_span": [
+    4060,
+    4061
+   ],
+   "classification": "OPERATIONAL_GOVERNANCE",
+   "a_preview": "        \"revision\": \"ra_medfilm_barr_phase36_robustness_v1_14\",\n",
+   "b_preview": "        \"revision\": \"ra_medfilm_barr_phase36_robustness_v1_16\",\n"
+  },
+  {
+   "tag": "replace",
+   "a_span": [
+    3976,
+    3977
+   ],
+   "b_span": [
+    4078,
+    4079
+   ],
+   "classification": "OPERATIONAL_GOVERNANCE",
+   "a_preview": "        \"terminal\": \"PHASE36_V1_14_SMOKE_FIRST_ATTEMPT_FAILED__ARTIFACT_PRESERVED__NO_RETRY\",\n",
+   "b_preview": "        \"terminal\": \"PHASE36_V1_16_SMOKE_FIRST_ATTEMPT_FAILED__ARTIFACT_PRESERVED__NO_RETRY\",\n"
+  },
+  {
+   "tag": "replace",
+   "a_span": [
+    3978,
+    3979
+   ],
+   "b_span": [
+    4080,
+    4081
+   ],
+   "classification": "OPERATIONAL_GOVERNANCE",
+   "a_preview": "    path = ROOT / SMOKE_V1_14_FAILURE_ARTIFACT\n",
+   "b_preview": "    path = ROOT / SMOKE_V1_16_FAILURE_ARTIFACT\n"
+  },
+  {
+   "tag": "replace",
+   "a_span": [
+    3990,
+    3991
+   ],
+   "b_span": [
+    4092,
+    4093
+   ],
+   "classification": "OPERATIONAL_GOVERNANCE",
+   "a_preview": "    path = ROOT / SMOKE_V1_14_ARTIFACT\n",
+   "b_preview": "    path = ROOT / SMOKE_V1_16_ARTIFACT\n"
+  },
+  {
+   "tag": "replace",
+   "a_span": [
+    4010,
+    4013
+   ],
+   "b_span": [
+    4112,
+    4115
+   ],
+   "classification": "OPERATIONAL_GOVERNANCE",
+   "a_preview": "    return ((ROOT / SCIENCE_V1_14_ARTIFACT).exists()\n            or (ROOT / SCIENCE_V1_14_START_MARKER).exists()\n            or (ROOT / SCIENCE_V1_14_FAILURE_ARTIFACT).exists())\n",
+   "b_preview": "    return ((ROOT / SCIENCE_V1_16_ARTIFACT).exists()\n            or (ROOT / SCIENCE_V1_16_START_MARKER).exists()\n            or (ROOT / SCIENCE_V1_16_FAILURE_ARTIFACT).exists())\n"
+  },
+  {
+   "tag": "replace",
+   "a_span": [
+    4022,
+    4023
+   ],
+   "b_span": [
+    4124,
+    4125
+   ],
+   "classification": "OPERATIONAL_GOVERNANCE",
+   "a_preview": "    path = ROOT / SCIENCE_V1_14_START_MARKER\n",
+   "b_preview": "    path = ROOT / SCIENCE_V1_16_START_MARKER\n"
+  },
+  {
+   "tag": "replace",
+   "a_span": [
+    4026,
+    4027
+   ],
+   "b_span": [
+    4128,
+    4129
+   ],
+   "classification": "OPERATIONAL_GOVERNANCE",
+   "a_preview": "        \"revision\": \"ra_medfilm_barr_phase36_robustness_v1_14\",\n",
+   "b_preview": "        \"revision\": \"ra_medfilm_barr_phase36_robustness_v1_16\",\n"
+  },
+  {
+   "tag": "replace",
+   "a_span": [
+    4063,
+    4064
+   ],
+   "b_span": [
+    4165,
+    4166
+   ],
+   "classification": "OPERATIONAL_GOVERNANCE",
+   "a_preview": "        \"revision\": \"ra_medfilm_barr_phase36_robustness_v1_14\",\n",
+   "b_preview": "        \"revision\": \"ra_medfilm_barr_phase36_robustness_v1_16\",\n"
+  },
+  {
+   "tag": "replace",
+   "a_span": [
+    4081,
+    4082
+   ],
+   "b_span": [
+    4183,
+    4184
+   ],
+   "classification": "OPERATIONAL_GOVERNANCE",
+   "a_preview": "        \"terminal\": \"PHASE36_V1_14_SCIENCE_FIRST_ATTEMPT_FAILED__ARTIFACT_PRESERVED__NO_RETRY\",\n",
+   "b_preview": "        \"terminal\": \"PHASE36_V1_16_SCIENCE_FIRST_ATTEMPT_FAILED__ARTIFACT_PRESERVED__NO_RETRY\",\n"
+  },
+  {
+   "tag": "replace",
+   "a_span": [
+    4083,
+    4084
+   ],
+   "b_span": [
+    4185,
+    4186
+   ],
+   "classification": "OPERATIONAL_GOVERNANCE",
+   "a_preview": "    path = ROOT / SCIENCE_V1_14_FAILURE_ARTIFACT\n",
+   "b_preview": "    path = ROOT / SCIENCE_V1_16_FAILURE_ARTIFACT\n"
+  },
+  {
+   "tag": "replace",
+   "a_span": [
+    4095,
+    4096
+   ],
+   "b_span": [
+    4197,
+    4198
+   ],
+   "classification": "OPERATIONAL_GOVERNANCE",
+   "a_preview": "    path = ROOT / SCIENCE_V1_14_ARTIFACT\n",
+   "b_preview": "    path = ROOT / SCIENCE_V1_16_ARTIFACT\n"
+  },
+  {
+   "tag": "replace",
+   "a_span": [
+    4105,
+    4106
+   ],
+   "b_span": [
+    4207,
+    4212
+   ],
+   "classification": "OPERATIONAL_GOVERNANCE",
+   "a_preview": "def _run_science_with_durable_evidence() -> int:\n",
+   "b_preview": "def _run_science_with_durable_evidence(journal=None) -> int:\n    \"\"\"v1.16 science driver with crash-survivable stage journal.\"\"\"\n    _j = journal\n    if _j is not None:\n        _j.begin(\"START\")\n"
+  },
+  {
+   "tag": "replace",
+   "a_span": [
+    4153,
+    4155
+   ],
+   "b_span": [
+    4259,
+    4261
+   ],
+   "classification": "OPERATIONAL_GOVERNANCE",
+   "a_preview": "        # §D40 (v1.14) SCIENCE RELEASE GATE — MACHINE ENFORCED, FAIL CLOSED.\n        #   A successful v1.14 SMOKE is an EXECUTABLE PREREQUISITE for science.\n",
+   "b_preview": "        # §D40 (v1.16) SCIENCE RELEASE GATE — MACHINE ENFORCED, FAIL CLOSED.\n        #   A successful v1.16 SMOKE is an EXECUTABLE PREREQUISITE for science.\n"
+  },
+  {
+   "tag": "replace",
+   "a_span": [
+    4158,
+    4159
+   ],
+   "b_span": [
+    4264,
+    4265
+   ],
+   "classification": "OPERATIONAL_GOVERNANCE",
+   "a_preview": "        #   PHASE36_V1_14_SCIENCE_NOT_RELEASED__SUCCESSFUL_SMOKE_REQUIRED__NO_ATTEMPT_CONSUMED\n",
+   "b_preview": "        #   PHASE36_V1_16_SCIENCE_NOT_RELEASED__SUCCESSFUL_SMOKE_REQUIRED__NO_ATTEMPT_CONSUMED\n"
+  },
+  {
+   "tag": "replace",
+   "a_span": [
+    4165,
+    4166
+   ],
+   "b_span": [
+    4271,
+    4272
+   ],
+   "classification": "OPERATIONAL_GOVERNANCE",
+   "a_preview": "                \"terminal\": (\"PHASE36_V1_14_SCIENCE_NOT_RELEASED__SUCCESSFUL_SMOKE_REQUIRED\"\n",
+   "b_preview": "                \"terminal\": (\"PHASE36_V1_16_SCIENCE_NOT_RELEASED__SUCCESSFUL_SMOKE_REQUIRED\"\n"
+  },
+  {
+   "tag": "replace",
+   "a_span": [
+    4185,
+    4186
+   ],
+   "b_span": [
+    4291,
+    4292
+   ],
+   "classification": "OPERATIONAL_GOVERNANCE",
+   "a_preview": "                \"terminal\": \"PHASE36_V1_14_SCIENCE_NOT_AUTHORIZED__NO_MARKER_CREATED\",\n",
+   "b_preview": "                \"terminal\": \"PHASE36_V1_16_SCIENCE_NOT_AUTHORIZED__NO_MARKER_CREATED\",\n"
+  },
+  {
+   "tag": "replace",
+   "a_span": [
+    4194,
+    4195
+   ],
+   "b_span": [
+    4300,
+    4301
+   ],
+   "classification": "OPERATIONAL_GOVERNANCE",
+   "a_preview": "                \"terminal\": \"PHASE36_V1_14_SCIENCE_REEXECUTION_FORBIDDEN__FIRST_ATTEMPT_ALREADY_EXISTS\",\n",
+   "b_preview": "                \"terminal\": \"PHASE36_V1_16_SCIENCE_REEXECUTION_FORBIDDEN__FIRST_ATTEMPT_ALREADY_EXISTS\",\n"
+  },
+  {
+   "tag": "replace",
+   "a_span": [
+    4206,
+    4207
+   ],
+   "b_span": [
+    4312,
+    4313
+   ],
+   "classification": "OPERATIONAL_GOVERNANCE",
+   "a_preview": "                \"terminal\": \"PHASE36_V1_14_SCIENCE_START_MARKER_ALREADY_EXISTS__NO_RETRY\",\n",
+   "b_preview": "                \"terminal\": \"PHASE36_V1_16_SCIENCE_START_MARKER_ALREADY_EXISTS__NO_RETRY\",\n"
+  },
+  {
+   "tag": "replace",
+   "a_span": [
+    4211,
+    4212
+   ],
+   "b_span": [
+    4317,
+    4319
+   ],
+   "classification": "OPERATIONAL_GOVERNANCE",
+   "a_preview": "        return _run_science_with_durable_evidence()\n",
+   "b_preview": "        return _run_science_with_durable_evidence(journal=_ScienceJournal(\n        attempt_id=f\"v1_16_{os.getpid()}_{now()}\", enabled=_journal_enabled()))\n"
+  },
+  {
+   "tag": "replace",
+   "a_span": [
+    4224,
+    4225
+   ],
+   "b_span": [
+    4331,
+    4332
+   ],
+   "classification": "OPERATIONAL_GOVERNANCE",
+   "a_preview": "                \"terminal\": \"PHASE36_V1_14_SMOKE_NOT_AUTHORIZED__NO_MARKER_CREATED\",\n",
+   "b_preview": "                \"terminal\": \"PHASE36_V1_16_SMOKE_NOT_AUTHORIZED__NO_MARKER_CREATED\",\n"
+  },
+  {
+   "tag": "replace",
+   "a_span": [
+    4235,
+    4236
+   ],
+   "b_span": [
+    4342,
+    4343
+   ],
+   "classification": "OPERATIONAL_GOVERNANCE",
+   "a_preview": "                \"terminal\": \"PHASE36_V1_14_SMOKE_REEXECUTION_FORBIDDEN__FIRST_ATTEMPT_ALREADY_EXISTS\",\n",
+   "b_preview": "                \"terminal\": \"PHASE36_V1_16_SMOKE_REEXECUTION_FORBIDDEN__FIRST_ATTEMPT_ALREADY_EXISTS\",\n"
+  },
+  {
+   "tag": "replace",
+   "a_span": [
+    4249,
+    4250
+   ],
+   "b_span": [
+    4356,
+    4357
+   ],
+   "classification": "OPERATIONAL_GOVERNANCE",
+   "a_preview": "                \"terminal\": \"PHASE36_V1_14_SMOKE_START_MARKER_ALREADY_EXISTS__NO_RETRY\",\n",
+   "b_preview": "                \"terminal\": \"PHASE36_V1_16_SMOKE_START_MARKER_ALREADY_EXISTS__NO_RETRY\",\n"
+  },
+  {
+   "tag": "replace",
+   "a_span": [
+    4271,
+    4272
+   ],
+   "b_span": [
+    4378,
+    4379
+   ],
+   "classification": "OPERATIONAL_GOVERNANCE",
+   "a_preview": "                \"terminal\": \"PHASE36_V1_14_SMOKE_EXCEPTION__ARTIFACT_PRESERVED__NO_RETRY\",\n",
+   "b_preview": "                \"terminal\": \"PHASE36_V1_16_SMOKE_EXCEPTION__ARTIFACT_PRESERVED__NO_RETRY\",\n"
+  },
+  {
+   "tag": "replace",
+   "a_span": [
+    4288,
+    4289
+   ],
+   "b_span": [
+    4395,
+    4396
+   ],
+   "classification": "OPERATIONAL_GOVERNANCE",
+   "a_preview": "                \"artifact_preserved\": SMOKE_V1_14_FAILURE_ARTIFACT,\n",
+   "b_preview": "                \"artifact_preserved\": SMOKE_V1_16_FAILURE_ARTIFACT,\n"
+  },
+  {
+   "tag": "replace",
+   "a_span": [
+    4290,
+    4291
+   ],
+   "b_span": [
+    4397,
+    4398
+   ],
+   "classification": "OPERATIONAL_GOVERNANCE",
+   "a_preview": "                \"terminal\": \"PHASE36_V1_14_SMOKE_FAILED__ARTIFACT_PRESERVED__NO_RETRY\",\n",
+   "b_preview": "                \"terminal\": \"PHASE36_V1_16_SMOKE_FAILED__ARTIFACT_PRESERVED__NO_RETRY\",\n"
+  },
+  {
+   "tag": "replace",
+   "a_span": [
+    4299,
+    4300
+   ],
+   "b_span": [
+    4406,
+    4407
+   ],
+   "classification": "OPERATIONAL_GOVERNANCE",
+   "a_preview": "# §D40 (v1.14) — MACHINE-ENFORCED SCIENCE ELIGIBILITY                       #\n",
+   "b_preview": "# §D40 (v1.16) — MACHINE-ENFORCED SCIENCE ELIGIBILITY                       #\n"
+  },
+  {
+   "tag": "replace",
+   "a_span": [
+    4309,
+    4310
+   ],
+   "b_span": [
+    4416,
+    4417
+   ],
+   "classification": "OPERATIONAL_GOVERNANCE",
+   "a_preview": "# REPAIR (v1.14): science is RELEASED only when a SUCCESSFUL-SMOKE RELEASE\n",
+   "b_preview": "# REPAIR (v1.16): science is RELEASED only when a SUCCESSFUL-SMOKE RELEASE\n"
+  },
+  {
+   "tag": "replace",
+   "a_span": [
+    4311,
+    4312
+   ],
+   "b_span": [
+    4418,
+    4419
+   ],
+   "classification": "OPERATIONAL_GOVERNANCE",
+   "a_preview": "#   v1.14 execution source.  The attestation:\n",
+   "b_preview": "#   v1.16 execution source.  The attestation:\n"
+  },
+  {
+   "tag": "replace",
+   "a_span": [
+    4327,
+    4328
+   ],
+   "b_span": [
+    4434,
+    4435
+   ],
+   "classification": "OPERATIONAL_GOVERNANCE",
+   "a_preview": "    \"reports/audits/phase36_v1_14_science_release_attestation.json\"\n",
+   "b_preview": "    \"reports/audits/phase36_v1_16_science_release_attestation.json\"\n"
+  },
+  {
+   "tag": "replace",
+   "a_span": [
+    4329,
+    4330
+   ],
+   "b_span": [
+    4436,
+    4437
+   ],
+   "classification": "OPERATIONAL_GOVERNANCE",
+   "a_preview": "_SCIENCE_RELEASE_REVISION = \"ra_medfilm_barr_phase36_robustness_v1_14\"\n",
+   "b_preview": "_SCIENCE_RELEASE_REVISION = \"ra_medfilm_barr_phase36_robustness_v1_16\"\n"
+  },
+  {
+   "tag": "replace",
+   "a_span": [
+    4369,
+    4370
+   ],
+   "b_span": [
+    4476,
+    4477
+   ],
+   "classification": "OPERATIONAL_GOVERNANCE",
+   "a_preview": "    smoke_path = ROOT / SMOKE_V1_14_ARTIFACT\n",
+   "b_preview": "    smoke_path = ROOT / SMOKE_V1_16_ARTIFACT\n"
+  },
+  {
+   "tag": "replace",
+   "a_span": [
+    4372,
+    4373
+   ],
+   "b_span": [
+    4479,
+    4480
+   ],
+   "classification": "OPERATIONAL_GOVERNANCE",
+   "a_preview": "        ev[\"smoke_artifact\"] = SMOKE_V1_14_ARTIFACT\n",
+   "b_preview": "        ev[\"smoke_artifact\"] = SMOKE_V1_16_ARTIFACT\n"
+  }
+ ],
+ "note": "v1.16 is a PURE operational/governance/observability/namespace rebase of v1.15.  The scientific computation is IDENTICAL.  Every hunk is classified as operational/governance; scientific_delta_count MUST be 0; any UNCLASSIFIED hunk fails closed.",
+ "scientific_semantics_effect": "NONE",
+ "model_free": true,
+ "new_scientific_choice": false
+}

@@ -1,0 +1,84 @@
+{
+ "artifact": "phase36_phase25b_feature_extractor_binding_v1_1",
+ "section": "§I",
+ "phase": 36,
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase36_robustness_v1_1",
+ "classification": "CANONICAL_PHASE25B_202D_FEATURE_EXTRACTOR_AUTHORITY_BINDING",
+ "authority": {
+  "path": "src/features/barr_pre_refinement_features.py",
+  "sha256": "f0323e78caa7a3f8c1d24cf68d4321972d86f95d36913a7af795b15acdb26f6a",
+  "spec_revision": "ra_medfilm_barr_narrowed_v1_2",
+  "cache_dir": "data_cache/phase25b_barr_pre_refinement_features_v1_2"
+ },
+ "callables": {
+  "channel_bins": {"kind": "RF-1 bin edges", "signature": "channel_bins(C, K=32)"},
+  "adaptive_channel_reduce": {"kind": "C->32 reduction", "signature": "adaptive_channel_reduce(v, K=32)"},
+  "map_roi_to_grid": {"kind": "ROI->feature-grid mapping", "signature": "map_roi_to_grid(x0, y0, x1, y1, S)"},
+  "pool_global": {"kind": "global pooling", "signature": "pool_global(F)"},
+  "pool_roi": {"kind": "ROI pooling (GEOMETRY-DEPENDENT)", "signature": "pool_roi(F, roi)"},
+  "extract_tap_features": {"kind": "six 32-D groups", "signature": "extract_tap_features(cmaps, roi)"},
+  "scalar_block": {"kind": "ten scalars", "signature": "scalar_block(P, roi_row)"},
+  "build_feature_vector": {"kind": "FULL 202-D entry point", "signature": "build_feature_vector(cmaps, P, roi_row)"}
+ },
+ "numeric_dim": 202,
+ "deep_dim": 192,
+ "scalar_dim": 10,
+ "reduction": {
+  "op": "DETERMINISTIC_CHANNEL_ADAPTIVE_AVG_POOL_1D_V1",
+  "K": 32,
+  "bin_rule": "start_j = floor(j*C/32), end_j = ceil((j+1)*C/32); z[j] = mean(v[start_j:end_j])"
+ },
+ "six_groups_32d": [
+  {"name": "bridge_global",   "tap": "bridge",   "scope": "GLOBAL", "start": 0,   "stop": 32,  "native_channels": 256, "feature_grid": 32},
+  {"name": "bridge_roi",      "tap": "bridge",   "scope": "ROI",    "start": 32,  "stop": 64,  "native_channels": 256, "feature_grid": 32},
+  {"name": "decoder2_global", "tap": "decoder2", "scope": "GLOBAL", "start": 64,  "stop": 96,  "native_channels": 48,  "feature_grid": 256},
+  {"name": "decoder2_roi",    "tap": "decoder2", "scope": "ROI",    "start": 96,  "stop": 128, "native_channels": 48,  "feature_grid": 256},
+  {"name": "decoder1_global", "tap": "decoder1", "scope": "GLOBAL", "start": 128, "stop": 160, "native_channels": 24,  "feature_grid": 512},
+  {"name": "decoder1_roi",    "tap": "decoder1", "scope": "ROI",    "start": 160, "stop": 192, "native_channels": 24,  "feature_grid": 512}
+ ],
+ "ten_scalar_positions": [
+  {"index": 192, "name": "entropy_proxy_mean",                  "roi_dependent": false, "threshold_role": "THRESHOLD_FREE"},
+  {"index": 193, "name": "frac_prob_within_0p05_of_boundary",   "roi_dependent": false, "threshold_role": "SEGMENTATION_OUTPUT_PROBABILITY_BOUNDARY", "threshold_value": 0.50},
+  {"index": 194, "name": "frac_prob_within_0p02_of_boundary",   "roi_dependent": false, "threshold_role": "SEGMENTATION_OUTPUT_PROBABILITY_BOUNDARY", "threshold_value": 0.50},
+  {"index": 195, "name": "mean_boundary_margin",                "roi_dependent": false, "threshold_role": "SEGMENTATION_OUTPUT_PROBABILITY_BOUNDARY", "threshold_value": 0.50},
+  {"index": 196, "name": "pred_foreground_fraction",            "roi_dependent": false, "threshold_role": "ROI_PROPOSAL", "threshold_value": 0.30},
+  {"index": 197, "name": "pred_foreground_pixels",              "roi_dependent": false, "threshold_role": "ROI_PROPOSAL", "threshold_value": 0.30},
+  {"index": 198, "name": "pred_roi_exists",                     "roi_dependent": false, "threshold_role": "ROI_PROPOSAL", "threshold_value": 0.30},
+  {"index": 199, "name": "pred_empty",                          "roi_dependent": false, "threshold_role": "ROI_PROPOSAL", "threshold_value": 0.30},
+  {"index": 200, "name": "predicted_roi_area_fraction",         "roi_dependent": true,  "threshold_role": "ROI_PROPOSAL", "threshold_value": 0.30,
+   "formula": "w_in = max(0, min(512,x1)-max(0,x0)); h_in = max(0, min(512,y1)-max(0,y0)); = w_in*h_in/512^2",
+   "input_source": "stored canonical ROI030 crop metadata (clip_x1, clip_x2, clip_y1, clip_y2)"},
+  {"index": 201, "name": "predicted_roi_side",                  "roi_dependent": true,  "threshold_role": "ROI_PROPOSAL", "threshold_value": 0.30,
+   "formula": "float(roi_row['crop_side_pixels'])",
+   "input_source": "stored canonical ROI030 crop metadata (crop_side_pixels)"}
+ ],
+ "normalization_boundary": {
+  "note": "The 202-D vector is GT-free and pre-refinement. Feature EXTRACTION and NORMALIZATION are separate stages.",
+  "extractor_boundary": "the extractor emits raw float32[202]; no normalization inside the extractor",
+  "router_normalization": "applied downstream in RAMedFiLMBARR.forward_inference via _apply_norm(router_features_202, router_normalization) with frozen mu/sigma[202] and zero_sigma_rule"
+ },
+ "proposal_roi_dependent_fields": {
+  "groups": ["bridge_roi", "decoder2_roi", "decoder1_roi"],
+  "scalars": ["predicted_roi_area_fraction", "predicted_roi_side"],
+  "total_dependent_dims": 98,
+  "mechanism": "ROI groups derive from pool_roi(F, roi) -> map_roi_to_grid(x0,y0,x1,y1,S) over the canonical half-open image-space ROI bounds"
+ },
+ "global_only_fields": {
+  "groups": ["bridge_global", "decoder2_global", "decoder1_global"],
+  "scalars": ["entropy_proxy_mean", "frac_prob_within_0p05_of_boundary", "frac_prob_within_0p02_of_boundary", "mean_boundary_margin", "pred_foreground_fraction", "pred_foreground_pixels", "pred_roi_exists", "pred_empty"],
+  "total_dims": 104,
+  "note": "All eight global-only scalars are closed-form functions of P (the 512x512 global probability map) alone"
+ },
+ "roi_geometry_field_binding": {
+  "extractor_consumes": ["clip_x1", "clip_y1", "clip_x2", "clip_y2", "crop_side_pixels"],
+  "producer": "scripts/analysis/build_phase25a_roi030_cache.py",
+  "producer_sha256": "dbd27c0a95957d61f652865ca0dad570a8ecdd060970733190cb8e905603c37a",
+  "geometry_keys_canonical": ["y1", "y2", "x1", "x2", "clip_y1", "clip_y2", "clip_x1", "clip_x2", "pad_top", "pad_bottom", "pad_left", "pad_right", "crop_side_pixels"],
+  "note": "The extractor reads the CLIP fields + crop_side_pixels. A v1.1 proposal perturbation must supply perturbed values for exactly these fields so the canonical extractor is reused VERBATIM."
+ },
+ "canonical_feature_extractor_reused_or_exactly_factored": true,
+ "hand_coded_new_202d_interpretation": false,
+ "generated_utc": "2026-10-05T15:16:00Z",
+ "all_pass": true
+}

@@ -1,0 +1,21 @@
+{
+ "artifact": "phase26_future_cohort_rule_v1_2",
+ "phase": "26",
+ "classification": "ROUTER_CALIBRATION_ROLE_RECONCILIATION",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase26_deployment_semantics_v1_2",
+ "governance_only": true,
+ "applies_to": [
+  "ROUTER_HOLDOUT",
+  "PHASE30"
+ ],
+ "force_exact_25pct": false,
+ "apply_fixed_dev_calibrated_threshold_per_sample": true,
+ "realized_activation_fraction_may_differ_from_0p25": true,
+ "report_nominal_calibration_budget": 0.25,
+ "report_realized_holdout_activation_fraction": true,
+ "holdout_ranking": false,
+ "holdout_topK": false,
+ "threshold_recalibration": false,
+ "all_pass": true
+}

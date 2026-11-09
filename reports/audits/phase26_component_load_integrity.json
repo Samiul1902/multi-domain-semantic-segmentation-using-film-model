@@ -1,0 +1,65 @@
+{
+ "artifact": "phase26_component_load_integrity",
+ "phase": "26",
+ "classification": "CANONICAL_FULL_SYSTEM_INTEGRATION_AND_CONFIGURATION_FREEZE",
+ "method": "RA-MedFiLM-BARR",
+ "integration_validation_not_training": true,
+ "components": {
+  "G": {
+   "model_class": "GlobalMedFiLM",
+   "checkpoint": "checkpoints/phase21_global_medfilm_fourdomain_seed42_clean_v3/best.pt",
+   "strict_load_ok": true,
+   "missing_keys": [],
+   "unexpected_keys": [],
+   "parameter_count": 3523001,
+   "all_weights_finite": true,
+   "eval_mode": true,
+   "requires_grad_false": true
+  },
+  "R_psi": {
+   "model_class": "BARRRegionalRefinerV1",
+   "checkpoint": "checkpoints/phase25a_barr_regional_refiner_v1_1_roi030/final/final.pt",
+   "strict_load_ok": true,
+   "missing_keys": [],
+   "unexpected_keys": [],
+   "parameter_count": 1276401,
+   "all_weights_finite": true,
+   "eval_mode": true,
+   "requires_grad_false": true
+  },
+  "B_phi": {
+   "model_class": "BARRBenefitRouterV1",
+   "checkpoint": "checkpoints/phase25d_barr_benefit_router_v1_2_1_seed42/final/final.pt",
+   "strict_load_ok": true,
+   "missing_keys": [],
+   "unexpected_keys": [],
+   "parameter_count": 36801,
+   "all_weights_finite": true,
+   "eval_mode": true,
+   "requires_grad_false": true
+  },
+  "S_omega": {
+   "model_class": "BARRPostSafetyV1",
+   "checkpoint": "checkpoints/phase25f_barr_post_safety_v1_0_seed42/final/final.pt",
+   "strict_load_ok": true,
+   "missing_keys": [],
+   "unexpected_keys": [],
+   "parameter_count": 1217,
+   "all_weights_finite": true,
+   "eval_mode": true,
+   "requires_grad_false": true
+  }
+ },
+ "checks": {
+  "G_parameters": true,
+  "R_psi_parameters_1276401": true,
+  "B_phi_parameters_36801": true,
+  "S_omega_parameters_1217": true,
+  "all_strict_load_ok": true,
+  "zero_missing_keys": true,
+  "zero_unexpected_keys": true,
+  "all_weights_finite": true
+ },
+ "all_pass": true,
+ "terminal_on_failure": "PHASE26_BLOCKED__CANONICAL_COMPONENT_LOAD_FAILURE"
+}

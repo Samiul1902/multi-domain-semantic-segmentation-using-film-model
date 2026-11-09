@@ -1,0 +1,19 @@
+{
+ "phase": "25D",
+ "classification": "PRE_EXECUTION_SPECIFICATION_COMPLETENESS_REPAIR",
+ "router_training_spec_revision": "ra_medfilm_barr_router_training_v1_2_1",
+ "method": "RA-MedFiLM-BARR",
+ "architecture_revision": "ra_medfilm_barr_narrowed_v1_2",
+ "generated_utc": "2026-10-01T02:01:22+00:00",
+ "artifact": "phase25d_final_refit_epoch_contract_v1_2_1",
+ "rule_name": "exact_median_of_five",
+ "description": "After five outer CV runs, collect best_epoch_0..best_epoch_4 (selected by lowest EARLY_STOP Huber). Sort. Take sorted_epochs[2] = exact integer median of five values.",
+ "forbidden": [
+  "mean_epoch",
+  "maximum_epoch",
+  "minimum_epoch",
+  "performance_weighted_epoch",
+  "post_hoc_chosen_epoch"
+ ],
+ "persist_before_final_training": true
+}

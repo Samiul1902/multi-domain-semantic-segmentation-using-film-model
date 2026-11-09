@@ -1,0 +1,85 @@
+{
+ "artifact": "phase29_phase_d_global_reproduction_gate",
+ "phase": 29,
+ "stage": "PHASE_D_GLOBAL_REPRODUCTION_GATE_RETAINED",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_phase29_repro_v1_1",
+ "generated_utc": "2026-10-03T15:25:42+00:00",
+ "classification": "FUTURE_PHASE_D_GLOBAL_REPRODUCTION_GATE",
+ "gate_definition": {
+  "requirement": "The Phase-D shared G pass MUST reproduce the existing Phase27 frozen global probability cache. Newly extracted stored f16 global probabilities are compared against the Phase27 frozen cache. Preferred outcome: bit-identical.",
+  "on_non_identical": "report max_abs, mismatch count, and affected sample IDs; then STOP before seed123/3407 downstream VAL808 inference unless already authorized.",
+  "silent_acceptance_of_changed_G_numeric_path": "FORBIDDEN"
+ },
+ "reference_target": {
+  "path": "data_cache/phase27_barr_preservation_v1_0/phase27_val808_global_prob_f16.npy",
+  "sha256": "cc6c54af986f56b4aba9265405ffeba4f6cac582eeff00fe6b0894429e7d3f13",
+  "shape": [
+   808,
+   512,
+   512
+  ],
+  "dtype": "float16",
+  "role": "Phase27 frozen global probability cache (authoritative reproduction target)"
+ },
+ "existing_phase_d_candidate_cache": {
+  "path": "data_cache/phase29_val808_shared_fixed_g_v1_0/val808_global_prob_f16.npy",
+  "sha256": "f3c90a6fd65169324917671b0ca889aaba1e362ea84b258f738a21054faa304b",
+  "shape": [
+   808,
+   512,
+   512
+  ],
+  "dtype": "float16",
+  "produced_under": "phase29_val808_shared_global_cache_contract_v1_1 (FP32 eval, inference_mode, NO autocast)",
+  "contract_status": "SUPERSEDED_BY_V1_2__CONTRADICTS_PHASE27_AUTOCAST_SEMANTICS",
+  "disposition": "NOT_reusable_as_phase_d_global_source_without_gate_re_pass"
+ },
+ "observed_divergence_audit": {
+  "performed_during_repair": true,
+  "note": "Disclosed for governance completeness. This comparison reads ONLY already-persisted cache files; it performs no model inference and no VAL808 population access beyond the frozen cached arrays. It is reported because the divergence directly motivates the gate.",
+  "max_abs_difference": 0.2001953125,
+  "bitwise_mismatch_count": 82038546,
+  "total_elements": 211812352,
+  "bitwise_mismatch_fraction": 0.3873171003738252,
+  "sample_rows_with_max_abs_gt_1e-3": 807,
+  "of_n_samples": 808,
+  "interpretation": "The v1.1 (FP32/no-autocast) cache differs from the Phase27 autocast-fp16 cache across 38.7% of stored f16 values. This is consistent with fp16 autocast quantization drift and confirms that reproducing Phase27 requires the v1.2 autocast-fp16 semantics."
+ },
+ "gate_state": "DEFINED_NOT_YET_EXERCISED",
+ "VAL808_reads_during_repair": 0,
+ "model_forwards_during_repair": 0,
+ "checks": {
+  "reference_target_exists": true,
+  "reference_target_shape_808_512_512": true,
+  "reference_target_dtype_f16": true,
+  "gate_defined": true,
+  "stop_on_non_identical_defined": true,
+  "silent_acceptance_forbidden": true
+ },
+ "all_pass": true,
+ "retained_unchanged": true,
+ "required_phase_d_global_extraction_semantics": {
+  "device": "cuda",
+  "model_eval": true,
+  "autocast_enabled": true,
+  "autocast_dtype": "float16",
+  "torch_no_grad": true,
+  "torch_inference_mode": false,
+  "batch_size": 8,
+  "sample_order": "(dataset asc, sample_id asc)",
+  "batch_partition": "contiguous chunks of 8 inside a single domain",
+  "within_domain_membership_exact": true,
+  "preprocessing_identical_to_phase27": true
+ },
+ "reproduction_requirement": "The newly extracted and stored f16 global probability MUST reproduce phase27_val808_global_prob_f16.npy. PRIMARY requirement: bit-identical.",
+ "on_non_identity": "STOP before any downstream (seed123/3407) VAL808 inference. Record max_abs, number mismatched, affected sample IDs, and batch IDs.",
+ "retention_checks": {
+  "gate_definition_retained": true,
+  "reference_target_hash_bound": true,
+  "bit_identical_primary_requirement": true,
+  "stop_before_downstream_on_mismatch": true,
+  "phase27_semantics_frozen": true,
+  "silent_acceptance_forbidden": true
+ }
+}

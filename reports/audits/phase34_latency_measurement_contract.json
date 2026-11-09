@@ -1,0 +1,32 @@
+{
+ "artifact": "phase34_latency_measurement_contract",
+ "phase": 34,
+ "section": "\u00a7Q",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase34_efficiency_profiling_v1_0",
+ "primary_batch_size": 1,
+ "warmup_iterations": 50,
+ "measurement_blocks": 5,
+ "measured_iterations_per_block": 200,
+ "total_measured_iterations": 1000,
+ "synchronize_before_timed_region": true,
+ "timer_implementation": "torch.cuda.Event(enable_timing=True) primary; synchronized perf_counter wall-clock cross-check; torch.cuda.synchronize() before and after each block",
+ "asynchronous_unsynchronized_timing_permitted": false,
+ "reported_statistics": [
+  "n observations",
+  "mean latency ms",
+  "std latency ms",
+  "median/p50",
+  "p90",
+  "p95",
+  "p99",
+  "min",
+  "max"
+ ],
+ "p_values_reported": false,
+ "significance_test_reported": false,
+ "change_after_viewing_results": false,
+ "specification_blocker_if_technically_impossible": true,
+ "generated_utc": "2026-10-04T09:50:07+00:00",
+ "all_pass": true
+}

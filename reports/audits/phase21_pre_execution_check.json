@@ -1,0 +1,234 @@
+{
+  "artifact": "phase21_pre_execution_check",
+  "phase": 21,
+  "generated_utc": "2026-09-28T11:27:37.651470+00:00",
+  "experiment_id": "phase21_global_medfilm_fourdomain_seed42_clean_v3",
+  "fail_closed": true,
+  "checks": {
+    "architecture_binding_present": {
+      "passed": true,
+      "detail": {
+        "verdict": "PHASE21_ARCHITECTURE_FROZEN"
+      }
+    },
+    "model_file_sha_matches_binding": {
+      "passed": true,
+      "detail": {
+        "repo": "a04ff3e61b4d900ff47c2f390da4a999e73bd6047b28a19e41b05115e431d11f",
+        "binding": "a04ff3e61b4d900ff47c2f390da4a999e73bd6047b28a19e41b05115e431d11f"
+      }
+    },
+    "parameter_count_matches_binding": {
+      "passed": true,
+      "detail": {
+        "measured": 3523001,
+        "binding": 3523001
+      }
+    },
+    "forward_shape": {
+      "passed": true,
+      "detail": {
+        "out_shape": [
+          2,
+          1,
+          512,
+          512
+        ]
+      }
+    },
+    "output_spatial_matches_input": {
+      "passed": true,
+      "detail": {
+        "in": [
+          512,
+          512
+        ],
+        "out": [
+          512,
+          512
+        ]
+      }
+    },
+    "single_output_channel": {
+      "passed": true,
+      "detail": {
+        "out_channels": 1
+      }
+    },
+    "unknown_task_id_rejected": {
+      "passed": true,
+      "detail": {
+        "attempted": [
+          0,
+          4
+        ],
+        "task_count": 4
+      }
+    },
+    "task_id_shape_enforced": {
+      "passed": true,
+      "detail": {
+        "attempted": "[1] for batch 2"
+      }
+    },
+    "all_four_task_ids_accepted": {
+      "passed": true,
+      "detail": {
+        "task_ids": [
+          0,
+          1,
+          2,
+          3
+        ]
+      }
+    },
+    "film_identity_at_init": {
+      "passed": true,
+      "detail": {
+        "max_abs_output_diff_across_tasks": 0.0,
+        "meaning": "zero-initialised FiLM output projection -> exact identity before training"
+      }
+    },
+    "film_parameters_zero_at_init": {
+      "passed": true,
+      "detail": {
+        "max_abs_gamma": 0.0,
+        "max_abs_beta": 0.0,
+        "sites": [
+          "bridge",
+          "decoder4",
+          "decoder3",
+          "decoder2",
+          "decoder1"
+        ]
+      }
+    },
+    "conditioning_path_wired": {
+      "passed": true,
+      "detail": {
+        "max_abs_output_diff_after_film_perturbation": 0.08887243270874023,
+        "meaning": "task embedding -> FiLM -> features is a live, non-degenerate path"
+      }
+    },
+    "film_output_projection_receives_gradient_at_init": {
+      "passed": true,
+      "detail": {
+        "bridge_output_grad_norm": 0.011237830854952335
+      }
+    },
+    "task_embedding_gradient_zero_at_init_by_construction": {
+      "passed": true,
+      "detail": {
+        "embedding_grad_norm_at_step0": 0.0,
+        "meaning": "zero-initialised FiLM output projection => exact identity => no gradient reaches the embedding before the first step; conditioning is LEARNED"
+      }
+    },
+    "task_embedding_receives_gradient_after_one_step": {
+      "passed": true,
+      "detail": {
+        "embedding_grad_norm_after_step1": 0.0035784945357590914,
+        "meaning": "the conditioning path is trainable end-to-end"
+      }
+    },
+    "determinism_same_seed": {
+      "passed": true,
+      "detail": {
+        "max_abs_diff": 0.0
+      }
+    },
+    "no_forbidden_modules": {
+      "passed": true,
+      "detail": {
+        "hits": {}
+      }
+    },
+    "forward_accepts_only_image_and_task_id": {
+      "passed": true,
+      "detail": {
+        "signature": [
+          "self",
+          "images",
+          "task_ids"
+        ],
+        "meaning": "no mask-derived metadata, no ROI coordinates, no category can enter the model"
+      }
+    },
+    "dataset_exposes_task_id_separately": {
+      "passed": true,
+      "detail": {
+        "task_id": 1,
+        "dataset": "BUSI"
+      }
+    },
+    "collate_returns_task_id_and_image_separately": {
+      "passed": true,
+      "detail": {
+        "keys": [
+          "dataset",
+          "image",
+          "mask",
+          "sample_id",
+          "split",
+          "task_id"
+        ]
+      }
+    },
+    "image_channels_3": {
+      "passed": true,
+      "detail": {
+        "shape": [
+          2,
+          3,
+          512,
+          512
+        ]
+      }
+    },
+    "test_split_rejected_by_dataset": {
+      "passed": true,
+      "detail": {
+        "attempted_split": "TEST"
+      }
+    },
+    "test_lock_verified": {
+      "passed": true,
+      "detail": {
+        "detail": "manifests/test.csv sha256 matches the frozen lock"
+      }
+    },
+    "no_checkpoints_before_training": {
+      "passed": true,
+      "detail": {
+        "checkpoint_dir": "checkpoints\\phase21_global_medfilm_fourdomain_seed42_clean_v3"
+      }
+    },
+    "train_population_5832": {
+      "passed": true,
+      "detail": {
+        "n": 5832
+      }
+    },
+    "val_population_808": {
+      "passed": true,
+      "detail": {
+        "n": 808
+      }
+    },
+    "four_domains_present": {
+      "passed": true,
+      "detail": {
+        "distribution": {
+          "ISIC": 2556,
+          "KUB": 1978,
+          "KVASIR": 696,
+          "BUSI": 602
+        }
+      }
+    }
+  },
+  "n_checks": 27,
+  "n_passed": 27,
+  "verdict": "PHASE21_PRE_EXECUTION_CHECK_PASS",
+  "training_may_start": true,
+  "test_reads": 0
+}

@@ -1,0 +1,290 @@
+{
+ "artifact": "phase29_seed42_reuse_execution_binding",
+ "phase": 29,
+ "classification": "CANONICAL_PHASE29_THREE_SEED_DOWNSTREAM_BARR_REPRODUCIBILITY",
+ "method": "RA-MedFiLM-BARR",
+ "governance_only": false,
+ "execution_stage": "PHASE_A_SEED42_REUSE_BINDING",
+ "generated_utc": "2026-10-02T15:23:19+00:00",
+ "seed42_role": "REUSE_EXISTING_CANONICAL_REPLICATE",
+ "seed42_retrained": false,
+ "seed42_scientific_replay_for_branding": false,
+ "bound_components": [
+  "R_psi",
+  "DeltaDice_target",
+  "B_phi_OOF",
+  "B_phi_final",
+  "B_phi_final_calibration",
+  "S_omega_OOF",
+  "S_omega_final",
+  "OOF_integrated_system",
+  "VAL808_Phase27_result"
+ ],
+ "reuse_eligibility_rows": [
+  {
+   "component": "G",
+   "role": "FIXED_REFERENCE_NOT_A_SEED_REPLICATE",
+   "path": "checkpoints/phase21_global_medfilm_fourdomain_seed42_clean_v3/best.pt",
+   "sha256_expected": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+   "sha256_observed": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+   "reusable": "true",
+   "physical_binding_ok": true
+  },
+  {
+   "component": "R_psi",
+   "role": "SEED42_REPLICATE",
+   "path": "checkpoints/phase25a_barr_regional_refiner_v1_1_roi030/final/final.pt",
+   "sha256_expected": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109",
+   "sha256_observed": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109",
+   "reusable": "true",
+   "physical_binding_ok": true
+  },
+  {
+   "component": "B_phi",
+   "role": "SEED42_REPLICATE",
+   "path": "checkpoints/phase25d_barr_benefit_router_v1_2_1_seed42/final/final.pt",
+   "sha256_expected": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+   "sha256_observed": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+   "reusable": "true",
+   "physical_binding_ok": true
+  },
+  {
+   "component": "S_omega",
+   "role": "SEED42_REPLICATE",
+   "path": "checkpoints/phase25f_barr_post_safety_v1_0_seed42/final/final.pt",
+   "sha256_expected": "eee9b97b9921e53fc07eac9281dce64ba518c6e1659916b97b0b3bec21ec6d2e",
+   "sha256_observed": "eee9b97b9921e53fc07eac9281dce64ba518c6e1659916b97b0b3bec21ec6d2e",
+   "reusable": "true",
+   "physical_binding_ok": true
+  },
+  {
+   "component": "phase25b_features",
+   "role": "FIXED_FEATURE_MATRIX",
+   "path": "data_cache/phase25b_barr_pre_refinement_features_v1_2/features.npy",
+   "sha256_expected": "9c241963b54f23de1c9671ff6670dde7d6f7e2510869ef5ebc1baf3f7c833e0a",
+   "sha256_observed": "9c241963b54f23de1c9671ff6670dde7d6f7e2510869ef5ebc1baf3f7c833e0a",
+   "reusable": "true",
+   "physical_binding_ok": true
+  },
+  {
+   "component": "phase25c_paired_outcomes",
+   "role": "SEED42_REPLICATE",
+   "path": "reports/tables/phase25c_gain_summary_by_domain.csv",
+   "sha256_expected": null,
+   "sha256_observed": "ce5a6fa6b7e6acadebd1fe52a4d759de9b1cc8a2cf067ffabec64b63403b5016",
+   "reusable": "true",
+   "physical_binding_ok": true
+  },
+  {
+   "component": "phase25g_integrated_dev",
+   "role": "SEED42_REPLICATE",
+   "path": "reports/tables/phase25g_integrated_results_by_domain.csv",
+   "sha256_expected": null,
+   "sha256_observed": "856584286a218f5383ecebba4e061943d49378b38970d49228726c4b823747fd",
+   "reusable": "true",
+   "physical_binding_ok": true
+  },
+  {
+   "component": "phase27_val808_evidence",
+   "role": "SEED42_CONTINUITY_EVIDENCE",
+   "path": "reports/tables/phase27_val808_per_sample_scores.csv",
+   "sha256_expected": "702133930ce14ac9513c992833396e3e250d08417b17d1032cbd260a405cfb12",
+   "sha256_observed": "702133930ce14ac9513c992833396e3e250d08417b17d1032cbd260a405cfb12",
+   "reusable": "true",
+   "physical_binding_ok": true
+  }
+ ],
+ "n_rows": 8,
+ "n_physical_binding_failures": 0,
+ "physical_binding_failures": [],
+ "seed42_fold_checkpoint_inventory": [
+  {
+   "component": "R_psi",
+   "path": "checkpoints/phase25a_barr_regional_refiner_v1_1_roi030/final/final.pt",
+   "sha256": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109",
+   "size_bytes": 15425424
+  },
+  {
+   "component": "R_psi",
+   "path": "checkpoints/phase25a_barr_regional_refiner_v1_1_roi030/final/latest.pt",
+   "sha256": "56f7a86801da5e4685822b09d395bca469ca88777a2e4657481b41c0bb768ce2",
+   "size_bytes": 15425722
+  },
+  {
+   "component": "R_psi",
+   "path": "checkpoints/phase25a_barr_regional_refiner_v1_1_roi030/fold0/best.pt",
+   "sha256": "40b7573a4a15483f895fece8b9624f4f23b1ee040e294b7594ed3cdf8438fc1c",
+   "size_bytes": 15424934
+  },
+  {
+   "component": "R_psi",
+   "path": "checkpoints/phase25a_barr_regional_refiner_v1_1_roi030/fold0/latest.pt",
+   "sha256": "e5bfc5b4a8c1de91f1e2c45da09efc997a646b30d7f662c43ab7dba13c07847b",
+   "size_bytes": 15428346
+  },
+  {
+   "component": "R_psi",
+   "path": "checkpoints/phase25a_barr_regional_refiner_v1_1_roi030/fold1/best.pt",
+   "sha256": "512cc116b2a1baa5368711f438dfd0b2aabff1448d02fbc0c369b91da8ffc1ce",
+   "size_bytes": 15424102
+  },
+  {
+   "component": "R_psi",
+   "path": "checkpoints/phase25a_barr_regional_refiner_v1_1_roi030/fold1/latest.pt",
+   "sha256": "ca6b9f6b204e26cedcfeaf763df0dc80d7bf2d4b51e80e398ed24865ff3c3aad",
+   "size_bytes": 15427514
+  },
+  {
+   "component": "R_psi",
+   "path": "checkpoints/phase25a_barr_regional_refiner_v1_1_roi030/fold2/best.pt",
+   "sha256": "1259e2d938a7e6e81ad9ddce4bfc25189e20858e8f201d167663c26c72c269ec",
+   "size_bytes": 15424934
+  },
+  {
+   "component": "R_psi",
+   "path": "checkpoints/phase25a_barr_regional_refiner_v1_1_roi030/fold2/latest.pt",
+   "sha256": "2786d5450728a7104582ddf629c8383b7c505d044e46a57ca22d7942193d1fa0",
+   "size_bytes": 15428346
+  },
+  {
+   "component": "B_phi",
+   "path": "checkpoints/phase25d_barr_benefit_router_v1_2_1_seed42/final/final.pt",
+   "sha256": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+   "size_bytes": 455682
+  },
+  {
+   "component": "B_phi",
+   "path": "checkpoints/phase25d_barr_benefit_router_v1_2_1_seed42/fold0/best.pt",
+   "sha256": "feb768d710be38d1f5ed94593a1fb90fc8d8f75cd952fd0f3629cdefb1df1ee6",
+   "size_bytes": 455186
+  },
+  {
+   "component": "B_phi",
+   "path": "checkpoints/phase25d_barr_benefit_router_v1_2_1_seed42/fold0/latest.pt",
+   "sha256": "c64df243fad38b6e6c12c2f7b3f99692ea8fe042642f78f46e11843cbcd95672",
+   "size_bytes": 455730
+  },
+  {
+   "component": "B_phi",
+   "path": "checkpoints/phase25d_barr_benefit_router_v1_2_1_seed42/fold1/best.pt",
+   "sha256": "4f1bfdff74b932d05c3ca8f1db6e8d3a51c935a871735e2aa8b5757ab74191f6",
+   "size_bytes": 455186
+  },
+  {
+   "component": "B_phi",
+   "path": "checkpoints/phase25d_barr_benefit_router_v1_2_1_seed42/fold1/latest.pt",
+   "sha256": "04beb0ffa97671626a60b3035e45557107053033589729e3cf95c66b4cfd0566",
+   "size_bytes": 455730
+  },
+  {
+   "component": "B_phi",
+   "path": "checkpoints/phase25d_barr_benefit_router_v1_2_1_seed42/fold2/best.pt",
+   "sha256": "e44347c57c86ae2e421055d402e5f101ff3a0580edef06865c0f426e83f1ccb1",
+   "size_bytes": 455186
+  },
+  {
+   "component": "B_phi",
+   "path": "checkpoints/phase25d_barr_benefit_router_v1_2_1_seed42/fold2/latest.pt",
+   "sha256": "a567b3ee58c76146484543e8f9470344fcce80afaeeb2e3768bd514cd459f494",
+   "size_bytes": 455730
+  },
+  {
+   "component": "B_phi",
+   "path": "checkpoints/phase25d_barr_benefit_router_v1_2_1_seed42/fold3/best.pt",
+   "sha256": "2ff73143741ad9bb8e9b1295c1cba920d820e5206cdaf4e0a93f3881b6b0cc7b",
+   "size_bytes": 455186
+  },
+  {
+   "component": "B_phi",
+   "path": "checkpoints/phase25d_barr_benefit_router_v1_2_1_seed42/fold3/latest.pt",
+   "sha256": "905db5f586d484c1928bb7101c322286901d09544b970870dbb8a5d4f8b641a8",
+   "size_bytes": 455730
+  },
+  {
+   "component": "B_phi",
+   "path": "checkpoints/phase25d_barr_benefit_router_v1_2_1_seed42/fold4/best.pt",
+   "sha256": "02754705941c2de3b2a5bdcf322fae2c7c2bd2ba179701d524bcebbd098549a3",
+   "size_bytes": 455186
+  },
+  {
+   "component": "B_phi",
+   "path": "checkpoints/phase25d_barr_benefit_router_v1_2_1_seed42/fold4/latest.pt",
+   "sha256": "dbfcacc398fc8c28f76149f35354deaa4f7d10d23f652391c097d52e225faab2",
+   "size_bytes": 455730
+  },
+  {
+   "component": "S_omega",
+   "path": "checkpoints/phase25f_barr_post_safety_v1_0_seed42/cv_fold0/best.pt",
+   "sha256": "930a73207aaed2a5745a990d803df13925f4697689debb6e5bdb60270ac99871",
+   "size_bytes": 7368
+  },
+  {
+   "component": "S_omega",
+   "path": "checkpoints/phase25f_barr_post_safety_v1_0_seed42/cv_fold0/state.pt",
+   "sha256": "bb720ed685e04537300455346150866ea3416960a86bad1632c4533e2d542314",
+   "size_bytes": 44357
+  },
+  {
+   "component": "S_omega",
+   "path": "checkpoints/phase25f_barr_post_safety_v1_0_seed42/cv_fold1/best.pt",
+   "sha256": "249f55897a5fa5258bfc5babd050c4448d501a94632c78d0ee6a31a52ef3819c",
+   "size_bytes": 7368
+  },
+  {
+   "component": "S_omega",
+   "path": "checkpoints/phase25f_barr_post_safety_v1_0_seed42/cv_fold1/state.pt",
+   "sha256": "617c5aa4c3dc841d5b87bf81ad9afb7b951e1156dd1b9f5ad64732293c519a3d",
+   "size_bytes": 43525
+  },
+  {
+   "component": "S_omega",
+   "path": "checkpoints/phase25f_barr_post_safety_v1_0_seed42/cv_fold2/best.pt",
+   "sha256": "b78dbd6969e92fb1caf859b3290a042face1933208f7dc3b881036c3b630ff15",
+   "size_bytes": 7368
+  },
+  {
+   "component": "S_omega",
+   "path": "checkpoints/phase25f_barr_post_safety_v1_0_seed42/cv_fold2/state.pt",
+   "sha256": "0231355424b36d19066c3e5a6daed5ba3a408e9c1ebc41ea5eeb21a092e94bb5",
+   "size_bytes": 48709
+  },
+  {
+   "component": "S_omega",
+   "path": "checkpoints/phase25f_barr_post_safety_v1_0_seed42/cv_fold3/best.pt",
+   "sha256": "0d7bec864bcf7bbf2fcfc967351100be758fa9e770c3070407e2ec96e0620004",
+   "size_bytes": 7368
+  },
+  {
+   "component": "S_omega",
+   "path": "checkpoints/phase25f_barr_post_safety_v1_0_seed42/cv_fold3/state.pt",
+   "sha256": "fc130000c0e8e3d90edd405822c4e8af0482c2e3f447b81df7ff8db4d3309d94",
+   "size_bytes": 45957
+  },
+  {
+   "component": "S_omega",
+   "path": "checkpoints/phase25f_barr_post_safety_v1_0_seed42/cv_fold4/best.pt",
+   "sha256": "75e15712381275e2f31052bd729344eb7e01b6d03c43f7e3f595407420b4fb22",
+   "size_bytes": 7368
+  },
+  {
+   "component": "S_omega",
+   "path": "checkpoints/phase25f_barr_post_safety_v1_0_seed42/cv_fold4/state.pt",
+   "sha256": "31e9d33d21fe87ecdb57670324474a51f25e8123c4ac8eb467e73b52e0d807db",
+   "size_bytes": 44933
+  },
+  {
+   "component": "S_omega",
+   "path": "checkpoints/phase25f_barr_post_safety_v1_0_seed42/final/final.pt",
+   "sha256": "eee9b97b9921e53fc07eac9281dce64ba518c6e1659916b97b0b3bec21ec6d2e",
+   "size_bytes": 7816
+  },
+  {
+   "component": "S_omega",
+   "path": "checkpoints/phase25f_barr_post_safety_v1_0_seed42/final/state.pt",
+   "sha256": "30b1f850dd3a4443bd807914c82a70938396e39bc118f27d232912746a6eb663",
+   "size_bytes": 43013
+  }
+ ],
+ "n_seed42_checkpoint_files": 31,
+ "all_pass": true
+}

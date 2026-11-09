@@ -1,0 +1,396 @@
+{
+ "artifact": "phase24_exact_implementation_spec",
+ "phase": 24,
+ "repair": "POST_PHASE24_SPECIFICATION_COMPLETENESS_REPAIR",
+ "spec_version": "ra_medfilm_barr_narrowed_v1_1",
+ "supersedes_only_incompleteness": true,
+ "science_changed": false,
+ "method_name": "RA-MedFiLM-BARR",
+ "architecture_id": "ra_medfilm_barr_narrowed_v1_1",
+ "supersedes_architecture_id": "ra_medfilm_barr_narrowed_v1",
+ "purpose": "freeze every remaining implementation degree of freedom BEFORE Phase 25 so Phase 25 cannot silently choose architecture or protocol based on observed performance",
+ "classification": "SPECIFICATION_COMPLETENESS_REPAIR",
+ "not_architecture_search": true,
+ "not_phase25_implementation": true,
+ "split_seed": 42,
+ "split_algorithm_ref": "phase24_benefit_data_protocol_exact.json",
+ "split_manifest_shas": {
+  "phase24_router_split_manifest.csv": "b5da52d6220ef9b59b4ba70d0b403b38bf5234b897615b6ad55d718114db6555",
+  "phase4_v3/train.csv": "28702fc3a5ff8b950db372f03232d335e3a30b1fc2f21db7cd8c066055826ed6",
+  "phase4_v3/val.csv": "082c80b2bda63fd73f371f109c34643adf01edaead921643fb2e44993ba53315",
+  "phase4_v3/test.csv": "9361eba61c91c034a9aa4988a4df229bba591a5cbd553c98689ac7915da29727"
+ },
+ "split_development_n": 4957,
+ "split_holdout_n": 875,
+ "split_zero_overlap": true,
+ "split_val_overlap_zero": true,
+ "split_test_overlap_zero": true,
+ "roi": {
+  "predicted_foreground_threshold": 0.3,
+  "expansion_factor": 1.5,
+  "fractional_margin_equivalent": 0.25,
+  "margin_constant_name": "ORACLE_DERIVED_REFINER_MARGIN",
+  "margin_constant_value": 0.25,
+  "margin_constant_source": "src/data/regional_dataset.py:22",
+  "context_expansion_inherited_from": "Phase-22 regional geometry",
+  "input_resolution": 256,
+  "roi_rule": "predicted foreground -> tight bbox -> center-preserving 1.50x expansion -> clip -> square pad -> resize to 256x256",
+  "resize_modes": {
+   "image": "bilinear",
+   "probability_map": "bilinear",
+   "gt_mask_training_target_only": "nearest"
+  },
+  "empty_prediction_behavior": "FORCED_SKIP",
+  "gt_rescue": false,
+  "train_val_sweep_over_roi_scale_in_primary": false,
+  "reason_256": "dedicated regional crop provides zoom; substantially lower incremental compute than another full 512 pass; consistent with the resource-aware goal; selected prospectively, NOT from performance. This is a DESIGN CHOICE, not a claim that 256 is optimal.",
+  "resolution_ablation_status": "NOT_PART_OF_PRIMARY; must be pre-registered separately"
+ },
+ "refiner": {
+  "name": "BARRRegionalRefinerV1",
+  "input_channels": 4,
+  "input_channel_names": [
+   "R",
+   "G",
+   "B",
+   "p_global_crop"
+  ],
+  "output_channels": 1,
+  "output_kind": "logits",
+  "input_resolution": 256,
+  "encoder_bridge_channels_declared": [
+   16,
+   32,
+   64,
+   128,
+   192
+  ],
+  "encoder_bridge_channels_active": [
+   16,
+   32,
+   64,
+   96,
+   128
+  ],
+  "architecture": {
+   "encoder_resolution_transitions": 4,
+   "bridge": true,
+   "downsample": "max-pool 2x2 between encoder stages",
+   "residual_block_per_encoder_stage": true,
+   "residual_block_at_bridge": true,
+   "decoder_upsample": "bilinear x2",
+   "decoder_skip": "concatenate corresponding encoder skip",
+   "residual_block_after_each_concatenation": true,
+   "decoder_extra_second_residual_block": false,
+   "head": "final 1x1 Conv2d to 1 logit channel (with bias)"
+  },
+  "residual_block_spec": "Conv3x3 -> GroupNorm -> SiLU -> Conv3x3 -> GroupNorm -> residual addition -> SiLU",
+  "conv_bias": "bias=False for convolutions followed by GroupNorm",
+  "projection_shortcut": "1x1 Conv when input/output channels differ (bias=False)",
+  "groupnorm_groups": "prefer 8 groups where channel count permits, otherwise the largest divisor <= 8 chosen deterministically",
+  "groupnorm_group_table": {
+   "32": 8,
+   "64": 8,
+   "96": 8,
+   "128": 8,
+   "16": 8
+  },
+  "dropout": false,
+  "attention": false,
+  "se_blocks": false,
+  "transformer": false,
+  "deep_supervision": false,
+  "pretrained_weights": false,
+  "foundation_model_component": false,
+  "task_conditioning_film": false,
+  "task_conditioning_reason": "the refiner is not the novelty-bearing component and task_id already enters the benefit router; keeping R_psi simple reduces degrees of freedom. A task-conditioned refiner is a future controlled ablation only.",
+  "loss": "0.5 * BCEWithLogits + 0.5 * soft Dice",
+  "optimizer": "AdamW",
+  "lr": 0.0001,
+  "weight_decay": 0.0001,
+  "scheduler": "cosine annealing",
+  "max_epochs": 100,
+  "early_stopping_patience": 15,
+  "batch_size": 8,
+  "amp": "enabled when supported by the training device",
+  "seed": 42,
+  "checkpoint_selection": "lowest validation loss (primary); Dice recorded as secondary diagnostic only",
+  "augmentation": "inherited SegmentationTransform(train=True) constants (see augmentation block)",
+  "expected_parameter_count_closed_form": 1276401,
+  "expected_parameter_count_declared_channels": 2317553,
+  "parameter_count_method": "closed-form architecture arithmetic; no module instantiated",
+  "hard_ceiling": 2000000,
+  "recommended_envelope": [
+   500000,
+   1500000
+  ],
+  "envelope_within_ceiling": true,
+  "envelope_within_recommended": true,
+  "envelope_reduction_applied": true,
+  "envelope_reduction_rule": "declared channels [16,32,64,128,192] with one residual block per stage compute to 2,317,553 params, which EXCEEDS the 2,000,000 hard ceiling. Before any training, and without consulting any outcome, the pre-declared deterministic reduction [16,32,64,96,128] (one residual block per stage) is adopted, giving 1,276,401 params - inside the recommended 0.5M-1.5M envelope. Channels may NOT be changed after observing performance.",
+  "envelope_reduction_alternatives_considered": {
+   "[16,32,64,128,192] one_block": 2317553,
+   "[16,32,64,128,192] two_block": 2710193,
+   "[16,32,64,96,128] one_block": 1276401,
+   "[16,32,64,96,128] two_block": 1539889
+  }
+ },
+ "crossfit": {
+  "outer_folds": 3,
+  "within": "ROUTER_DEVELOPMENT",
+  "assignment": "deterministic, group-safe, domain-stratified, seed 42",
+  "inner_fitting_fraction": 0.9,
+  "inner_early_stop_fraction": 0.1,
+  "inner_split_rules": [
+   "group-safe",
+   "domain-stratified",
+   "seed 42"
+  ],
+  "inner_split_purpose": "the held-out OOF fold may be used only for OOF prediction/label creation, never checkpoint selection; a nested TRAIN-INTERNAL 90/10 fitting/early-stop split is created inside each refiner-training portion so early stopping never touches the OOF target fold",
+  "oof_fold_role": "UNTOUCHED until prediction, then used only for OOF gain labels",
+  "oof_target_fold_never_used_for_checkpoint_selection": true,
+  "infer_once_per_fold": true,
+  "persist_provenance_and_checkpoint_sha": true,
+  "no_training_on_fold_before_oof_produced": true,
+  "executed_in_phase24": false
+ },
+ "final_refiner": {
+  "name": "R_psi_final",
+  "refit_rule": "after the three OOF refiner runs have produced gain labels, train ONE final regional refiner on ALL executable-action ROUTER_DEVELOPMENT samples",
+  "data_allowed": "all executable-action ROUTER_DEVELOPMENT samples",
+  "holdout_forbidden": true,
+  "holdout_for_checkpoint_selection": false,
+  "holdout_use": "integrated evaluation ONLY",
+  "epoch_rule": "reinitialize BARRRegionalRefinerV1 from seed 42 and train for exactly the median integer best epoch of the three OOF refiner runs (prospectively determined)",
+  "early_stopping_on_holdout": false,
+  "sole_regional_refiner_for": [
+   "ROUTER_HOLDOUT integrated evaluation",
+   "later continuity VAL evaluation",
+   "future Phase 26+ development unless explicitly superseded"
+  ],
+  "arbitrary_fold_refiner_selection_forbidden": true
+ },
+ "router": {
+  "name": "BARRBenefitRouterV1",
+  "feature_taps": [
+   "bridge",
+   "decoder2",
+   "decoder1"
+  ],
+  "tap_spec": [
+   "bridge global average pool",
+   "bridge ROI-aware average pool",
+   "decoder2 global average pool",
+   "decoder2 ROI-aware average pool",
+   "decoder1 global average pool",
+   "decoder1 ROI-aware average pool"
+  ],
+  "pool_width_per_axis": 32,
+  "roi_pool_mapping": "ROI-aware average pool mapped to that feature grid",
+  "second_global_forward": false,
+  "trainable_conv_projection_before_pooling": false,
+  "scalar_descriptors": [
+   "entropy_proxy_mean",
+   "frac_prob_within_0p05_of_boundary",
+   "frac_prob_within_0p02_of_boundary",
+   "mean_boundary_margin",
+   "pred_foreground_fraction",
+   "pred_foreground_pixels",
+   "pred_roi_exists",
+   "pred_empty",
+   "predicted_roi_area_fraction",
+   "predicted_roi_side"
+  ],
+  "n_scalar_descriptors": 10,
+  "task_conditioning": {
+   "n_tasks": 4,
+   "embedding_dim": 16,
+   "task_id_mapping": {
+    "ISIC": 0,
+    "BUSI": 1,
+    "KVASIR": 2,
+    "KUB": 3
+   }
+  },
+  "normalization": "mean/std computed on ROUTER_DEVELOPMENT only for scalar continuous descriptors",
+  "normalization_stats_source": "ROUTER_DEVELOPMENT only",
+  "normalization_from_holdout_val_test": "FORBIDDEN",
+  "input_dim_closed_form": 218,
+  "input_dim_breakdown": {
+   "tap_axes": 6,
+   "tap_axes_x_width": 192,
+   "scalars": 10,
+   "task_embedding": 16
+  },
+  "hidden_dimensions_declared": [
+   128,
+   64
+  ],
+  "hidden_dimensions_active": [
+   128,
+   64
+  ],
+  "architecture": "Linear(input_dim,128) -> LayerNorm(128) -> SiLU -> Dropout(0.10) -> Linear(128,64) -> LayerNorm(64) -> SiLU -> Dropout(0.10) -> Linear(64,1)",
+  "activation": "SiLU",
+  "dropout": 0.1,
+  "output": "Delta_hat_Dice (single continuous scalar)",
+  "harm_head": "NOT part of the primary router; pre-registered extension only",
+  "loss": "Huber loss, delta = 0.05",
+  "loss_reason": "paired gain can contain extreme harmed/improved cases; Huber is robust while preserving continuous-gain supervision",
+  "optimizer": "AdamW",
+  "lr": 0.001,
+  "weight_decay": 0.0001,
+  "batch_size": 128,
+  "max_epochs": 200,
+  "early_stopping_patience": 20,
+  "scheduler": "ReduceLROnPlateau(factor=0.5, patience=8, min_lr=1e-6)",
+  "seed": 42,
+  "epoch_selection": "deterministic 5-fold group-safe cross-validation inside ROUTER_DEVELOPMENT OOF gain rows",
+  "final_training": "B_phi_final trained on all eligible ROUTER_DEVELOPMENT gain rows for the median selected epoch count",
+  "holdout_for_fitting_or_epoch_selection": false,
+  "expected_parameter_count_closed_form": 36353,
+  "expected_parameter_count_declared_hidden": 36353,
+  "parameter_count_method": "closed-form architecture arithmetic; no module instantiated",
+  "max_parameters": 250000,
+  "max_analytical_macs_fraction": 0.02,
+  "preferred_analytical_macs_fraction": 0.01,
+  "envelope_within_ceiling": true,
+  "envelope_reduction_applied": false,
+  "envelope_reduction_rule": "if the fixed feature dimensionality causes >250k params, hidden dimensions are reduced deterministically 128->96 and 64->48 and documented before training; features are NEVER reduced based on outcome performance",
+  "resource_cost_enters_delta_hat": false,
+  "resource_cost_enters_utility_separately": true
+ },
+ "routing": {
+  "score": "score_i = Delta_hat_Dice_i",
+  "budgets": [
+   "0%",
+   "10%",
+   "25%",
+   "50%",
+   "100%"
+  ],
+  "zero_percent": "global only",
+  "hundred_percent": "all ACTION-AVAILABLE samples refine",
+  "fixed_budget_routing": "thresholds from ROUTER_DEVELOPMENT score quantiles only",
+  "threshold_source": "ROUTER_DEVELOPMENT quantiles only",
+  "holdout_outcome_determines_threshold": false,
+  "utility": "U_hat_i = Delta_hat_i - lambda * C_i",
+  "lambda_grid": [
+   0.0,
+   0.25,
+   0.5,
+   1.0
+  ],
+  "lambda_searched_on_holdout_outcomes": false,
+  "cost_definition": "normalized incremental analytical MAC cost",
+  "cost_scale_derivation": "architecture arithmetic only, never outcome metrics",
+  "single_universal_lambda_forbidden": true
+ },
+ "post_safety": {
+  "name": "BARRPostSafetyV1",
+  "extension_status": "CONTROLLED_CORE_EXTENSION",
+  "primary_evaluation_excludes_it": true,
+  "primary_evaluation": "A7 / benefit + resource gate WITHOUT post-safety",
+  "included_in": "A8",
+  "saves_compute": false,
+  "jfs_differentiation_required": true,
+  "second_image_encoder": false,
+  "inputs_from": "already-computed post-refinement quantities only",
+  "feature_family_examples": [
+   "global/refined probability summary difference",
+   "foreground-area change",
+   "component-count change",
+   "mean probability change",
+   "boundary-size change",
+   "ROI geometry",
+   "task_id"
+  ],
+  "gt_at_inference": false,
+  "target": "ACCEPT iff DeltaDice > 0",
+  "target_source": "OOF refinement predictions from ROUTER_DEVELOPMENT only",
+  "architecture": "input -> 32 -> 16 -> 1 (sigmoid/logit)",
+  "loss": "binary cross entropy",
+  "holdout_training": false,
+  "executed_in_phase24": false
+ },
+ "fusion": {
+  "rule": "outside frozen ROI: p_final_candidate = p_global; inside frozen ROI: p_final_candidate = resized p_refined",
+  "alpha_blending": false,
+  "learned_fusion": false,
+  "segmentation_threshold": 0.5,
+  "segmentation_threshold_source": "INHERITED",
+  "threshold_tuning": false
+ },
+ "action_availability": {
+  "definition": "action_available_i = predicted ROI exists",
+  "global_empty_action_available": false,
+  "global_empty_pre_gate": "FORCED_SKIP",
+  "global_empty_final": "global",
+  "global_empty_included_in_integrated_evaluation": true,
+  "global_empty_synthetic_gt_roi": false,
+  "global_empty_fabricated_gain_target": false,
+  "global_empty_excluded_from_regression_training_rows": true,
+  "global_empty_report_label": "ACTION_UNAVAILABLE_GLOBAL_EMPTY",
+  "purpose": "distinguish 'predicted negative benefit' from 'no legal refinement action exists'"
+ },
+ "augmentation": {
+  "inherited_from": "src.data.transforms.SegmentationTransform(train=True)",
+  "inherited_source_artifact": "src/data/transforms.py",
+  "applied_consistently_to": [
+   "RGB crop",
+   "p_global crop",
+   "GT mask geometry"
+  ],
+  "inherited_constants": {
+   "flip_probability": 0.5,
+   "flip_axis": "horizontal (ImageOps.mirror)",
+   "rotation_degrees": 5.0,
+   "rotation_range": "continuous uniform(-5.0, +5.0)",
+   "rotation_image_resample": "bilinear",
+   "rotation_mask_resample": "nearest",
+   "brightness": 0.1,
+   "brightness_range": "uniform(1-0.1, 1+0.1)",
+   "contrast": 0.1,
+   "contrast_range": "uniform(1-0.1, 1+0.1)"
+  },
+  "additional_requested_operations": {
+   "vertical_flip": "NOT_INHERITED (the inherited pipeline defines no vertical flip)",
+   "90_degree_rotation_set": "NOT_INHERITED (the inherited pipeline uses continuous +/-5 degree rotation, not a {0,90,180,270} set)"
+  },
+  "inheritance_decision": "Per the repair instruction, existing frozen Phase-20/21 augmentation constants are inherited EXACTLY rather than replaced with new invented operations. The inherited pipeline does not define vertical flip or 90-degree rotation, so those two operations are recorded as NOT_INHERITED and are NOT added to the primary refiner.",
+  "p_global_crop_consistency": "the p_global crop is transformed with the SAME geometric operations as the RGB crop (nearest resample for any mask-like/probability array)",
+  "forbidden_for_primary": [
+   "elastic deformation",
+   "CutMix",
+   "MixUp",
+   "aggressive domain-specific augmentation"
+  ]
+ },
+ "run_policy": {
+  "one_authorized_primary_logical_run_per_fold_or_configuration": true,
+  "seed": 42,
+  "resume_counts_as_same_logical_run": true,
+  "architecture_sweep": false,
+  "lr_sweep": false,
+  "hidden_size_sweep": false,
+  "loss_sweep": false,
+  "future_ablation_is_separate_named_experiment": true
+ },
+ "forbidden_tuning_sources": [
+  "ROUTER_HOLDOUT outcomes",
+  "Phase-22 VAL outcomes",
+  "TEST",
+  "any outcome-driven feature selection",
+  "any outcome-driven architecture or channel change",
+  "any outcome-driven lambda or threshold selection"
+ ],
+ "no_architecture_search_allowed": true,
+ "holdout_outcomes_read_in_phase24": 0,
+ "val_outcome_reads_in_phase24": 0,
+ "test_reads": 0,
+ "training_runs": 0,
+ "module_instantiations": 0,
+ "forward_passes": 0,
+ "phase25_started": false,
+ "generated_utc": "2026-09-29T15:08:54.731245+00:00"
+}

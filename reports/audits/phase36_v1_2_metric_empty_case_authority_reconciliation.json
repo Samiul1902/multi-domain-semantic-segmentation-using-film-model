@@ -1,0 +1,66 @@
+{
+ "artifact": "phase36_v1_2_metric_empty_case_authority_reconciliation",
+ "section": "§Q",
+ "phase": 36,
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase36_robustness_v1_2",
+ "status": "PROSPECTIVE_AUTHORITY_RECONCILIATION__PRE_SCIENTIFIC",
+ "generated_utc": "2026-10-05T00:00:00Z",
+ "no_execution": true,
+ "torch_imported": false,
+ "purpose": "Reconcile the frozen empty-mask POLICY document against the CANONICAL executable metric implementation, and prospectively fix which one Phase36 treats as authority for Dice/IoU on empty cases.",
+ "conflict": {
+  "policy_document": {
+   "path": "reports/audits/evaluation_empty_mask_policy.json",
+   "sha256": "16e702fd83b65e872acdab4cee06e0dd7c816f2659379ddc704c39c2efdac5f0",
+   "status": "FROZEN_POLICY",
+   "one_empty_dice": 0.0,
+   "one_empty_iou": 0.0,
+   "both_empty_dice": 1.0,
+   "both_empty_iou": 1.0,
+   "hd95_empty": "NaN (invalid)"
+  },
+  "canonical_code": {
+   "path": "src/metrics/evaluation_metrics.py",
+   "sha256": "6c515f6f1a495315c79238292c385a082ae8347489130ad5bff34d74c4f181f6",
+   "dice_definition": "dice(c, eps=1e-7) = (2*tp + eps) / (2*tp + fp + fn + eps)",
+   "iou_definition": "iou(c, eps=1e-7) = (tp + eps) / (tp + fp + fn + eps)",
+   "one_empty_dice_observed": 2.4999999993749995e-10,
+   "one_empty_iou_observed": 2.4999999993749995e-10,
+   "both_empty_dice_observed": 1.0,
+   "both_empty_iou_observed": 1.0,
+   "hd95_empty_observed": {"hd95": "NaN", "valid": false, "reason": "empty_ground_truth"}
+  },
+  "observed_difference": "For a one-empty case (e.g. N foreground pixels on one side only) the policy document states Dice = 0.0 and IoU = 0.0 (absolutely), whereas the canonical executable metric returns eps/(N+eps) = 2.5e-10 (a positive value that is ABOVE 0.0 but far below any reporting precision). Both agree that BOTH-EMPTY = 1.0 and that HD95 = NaN."
+ },
+ "authority_ruling": {
+  "authority": "CANONICAL_EXECUTABLE_METRIC_IMPLEMENTATION",
+  "authority_path": "src/metrics/evaluation_metrics.py",
+  "authority_sha256": "6c515f6f1a495315c79238292c385a082ae8347489130ad5bff34d74c4f181f6",
+  "ruling": "Phase36 v1.2 uses the canonical executable implementation (eps=1e-7) as the metric VALUE authority. The policy document is a rounded/idealised summary and is superseded for the exact numeric value only; its qualitative statements (both-empty = 1.0, one-empty ~ 0, HD95 empty = NaN+invalid) remain consistent with the code.",
+  "why_not_the_policy_document": [
+   "The canonical executable metric is the same implementation used by Phase27/Phase29 clean-reference generation, so the clean-equivalence gate is only self-consistent if Phase36 evaluates Dice with the same function.",
+   "Substituting 0.0 for eps/(N+eps) would introduce a ~2.5e-10 systematic deviation that would break the isclose(atol=1e-7) clean-equivalence gate on legitimate empty-case samples.",
+   "The policy document already carries status FROZEN_POLICY for REPORTING semantics; it is not an executable spec."
+  ],
+  "difference_is_below_reporting_precision": true,
+  "absolute_difference_bound": 2.4999999993749995e-10,
+  "worst_case_effect_on_gate": "NONE — difference (2.5e-10) is below the gate atol (1e-7) by 3 orders of magnitude."
+ },
+ "phase36_v1_2_binding": {
+  "dice_fn": "src.metrics.evaluation_metrics.dice(eps=1e-7)",
+  "iou_fn": "src.metrics.evaluation_metrics.iou(eps=1e-7)",
+  "confusion_fn": "src.metrics.evaluation_metrics.binary_confusion_counts",
+  "hd95_fn": "src.metrics.evaluation_metrics.hd95",
+  "both_empty_value": 1.0,
+  "one_empty_value": "eps/(N+eps) (NOT bitwise 0.0; ~2.5e-10 for N=20000)",
+  "hd95_empty_value": "NaN with valid=False (never substituted, never zeroed)",
+  "implementation": "phase36_robustness_execution_v1_2._dice/_iou/_hd95 delegate directly to the canonical module (no re-implementation)."
+ },
+ "historical_note": "This reconciliation is PROSPECTIVE relative to any Phase36 science: it is recorded BEFORE the v1.2 smoke/science gates are opened. No observation of Phase36 perturbation results informed it.",
+ "prior_status": {
+  "v1_1_behavior": "v1.1 unit test 11/12 already asserted the canonical eps semantics but did not record the policy-document conflict; this reconciliation closes that gap.",
+  "v1_0_behavior": "v1.0 published EMPTY_MASK_POLICY = reports/audits/evaluation_empty_mask_policy.json without reconciling the one-empty numeric value."
+ },
+ "all_pass": true
+}

@@ -1,0 +1,33 @@
+{
+  "artifact": "phase21_task_conditioning_diagnostic",
+  "phase": 21,
+  "experiment_id": "phase21_global_medfilm_fourdomain_seed42_clean_v3",
+  "checkpoint_sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+  "checkpoint_epoch": 66,
+  "scope": "frozen 64-case gallery (16 per domain), reused UNCHANGED",
+  "n_cases": 64,
+  "design": "Per-case inference with the CORRECT task ID vs each INCORRECT task ID. The canonical VAL result is NOT recomputed and NOT replaced; this is a diagnostic only.",
+  "threshold_frozen_before_reading": 0.005,
+  "mean_abs_delta_dice_wrong_task": 0.18419164050715645,
+  "max_abs_delta_dice_wrong_task": 0.9270517063993946,
+  "mean_dice_correct_task": 0.859145553979417,
+  "flag": "CONDITIONING_EFFECT_PRESENT",
+  "flag_rule": "CONDITIONING_EFFECT_WEAK when mean|delta Dice| < 0.005",
+  "honesty_note": "A weak effect is a legitimate scientific finding about this reference model and is reported as-is. It is NOT evidence that task conditioning is useless in general, and a strong effect here would NOT by itself prove that FiLM caused the benchmark gap (no architecture-matched control exists).",
+  "film_parameter_summary": {
+    "rows": 40,
+    "tasks": 4,
+    "sites": 5,
+    "parameters": [
+      "gamma",
+      "beta"
+    ],
+    "table": "reports/tables/phase21_film_parameter_summary.csv"
+  },
+  "test_reads": {
+    "test_image_reads": 0,
+    "test_mask_reads": 0,
+    "test_inference": 0,
+    "test_visualization": 0
+  }
+}

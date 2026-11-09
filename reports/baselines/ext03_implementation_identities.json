@@ -1,0 +1,37 @@
+{
+  "classification": "EXT03_IMPLEMENTATION_IDENTITIES",
+  "generated_utc": "2026-10-11T17:00:00Z",
+  "output_channels": 1,
+  "logit_behavior": "raw logits (no sigmoid inside training model)",
+  "task": "binary foreground/background",
+  "models": {
+    "unet": {
+      "implementation_source": "src/models/unet.py",
+      "sha": "62edc8fb481eb02c46c2c64f6e7219254a57d7ba935a4c840a5a7965b41bdfc2",
+      "factory_key": "unet"
+    },
+    "attention_unet": {
+      "implementation_source": "src/models/attention_unet.py",
+      "sha": "834c02170aafc1093de9edb2afad99f76a200ae1eb5ecae16ad57eb7c2e21690",
+      "factory_key": "attention_unet"
+    },
+    "unetpp": {
+      "implementation_source": "src/models/unetpp.py",
+      "sha": "87adb3f39d72fc4220445eb8a29f4f9a2c1930f98563b012edb7bd7847425db2",
+      "factory_key": "unetpp"
+    },
+    "deeplabv3plus": {
+      "implementation_source": "src/models/deeplabv3plus.py",
+      "sha": "751a1ead9aca93c7372750924f7483b3de3ad3f5f40edd3a648e9e39bdd77406",
+      "factory_key": "deeplabv3plus"
+    },
+    "segformer_b0": {
+      "implementation_source": null,
+      "status": "BLOCKED__NO_LIBRARY_OR_SOURCE"
+    }
+  },
+  "factory": {
+    "source": "src/models/factory.py",
+    "sha": "f97f97a5632675ae54e4c42a629d06d1b5e265f73c85ba6d0a2077b9147afdde"
+  }
+}

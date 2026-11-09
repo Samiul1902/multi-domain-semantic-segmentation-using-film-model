@@ -1,0 +1,119 @@
+{
+ "artifact": "phase35_gradcam_numerical_guard_unit_v1_0e",
+ "phase": 35,
+ "section": "\u00a7R",
+ "revision": "ra_medfilm_barr_phase35_interpretability_v1_0e",
+ "classification": "PRE_EXECUTION_GRADCAM_NUMERICAL_OBSERVABILITY_AND_FAIL_CLOSED_FINITE_GUARD_AMENDMENT__NO_SCIENTIFIC_PROTOCOL_CHANGE",
+ "device": "cpu",
+ "model_free": true,
+ "test_source": {
+  "path": "scripts\\analysis\\phase35_gradcam_numerical_guard_unit_v1_0e.py",
+  "sha256": "b1f8c5280221b8230d85b1d9f49a000d6dd395945b75f57b58208339041b78b1"
+ },
+ "guarded_module": {
+  "path": "scripts/analysis/phase35_interpretability_execution_v1_0e.py",
+  "sha256": "e36f2ede4e9cb0ca71c2b69a7431a519a3b5228cbb1d6c68bcecd0091f69dbdd"
+ },
+ "n_tests": 12,
+ "n_pass": 12,
+ "all_pass": true,
+ "results": {
+  "T1_finite_tensor_passes": {
+   "same_object": true,
+   "exact_equal": true,
+   "pass": true
+  },
+  "T2_nan_tensor_fails_closed": {
+   "raised_RuntimeError": true,
+   "exc": "RuntimeError",
+   "pass": true
+  },
+  "T3_posinf_tensor_fails_closed": {
+   "raised_RuntimeError": true,
+   "exc": "RuntimeError",
+   "pass": true
+  },
+  "T4_neginf_tensor_fails_closed": {
+   "raised_RuntimeError": true,
+   "exc": "RuntimeError",
+   "pass": true
+  },
+  "T5a_finite_scalar_passes": {
+   "value": 2.5,
+   "pass": true
+  },
+  "T5b_nonfinite_scalar_fails_closed": {
+   "nan_raised": true,
+   "inf_raised": true,
+   "nan_exc": "RuntimeError",
+   "inf_exc": "RuntimeError",
+   "pass": true
+  },
+  "T6_finite_positive_range_matches_frozen": {
+   "got_min": 0.0,
+   "got_max": 1.0,
+   "exact_equal_to_frozen": true,
+   "pass": true
+  },
+  "T7_finite_zero_range_uses_zeros_fallback": {
+   "all_zero": true,
+   "exact_equal_to_frozen": true,
+   "pass": true
+  },
+  "T8_nonfinite_cam_fails_closed_never_zero_fallback": {
+   "raised_RuntimeError": true,
+   "exc": "RuntimeError",
+   "frozen_would_return_all_zero": true,
+   "guarded_never_returned_zero_fallback": true,
+   "pass": true
+  },
+  "T9_extreme_finite_range_normalizes_finite": {
+   "finite": true,
+   "min": 0.0,
+   "max": 0.0,
+   "pass": true
+  },
+  "T10_tensor_stats_fields": {
+   "stats": {
+    "shape": [
+     1,
+     1,
+     2,
+     2
+    ],
+    "dtype": "torch.float32",
+    "finite": true,
+    "min": -3.0,
+    "max": 4.0,
+    "abs_max": 4.0
+   },
+   "pass": true
+  },
+  "D1_frozen_zero_range_can_mask_nonfinite": {
+   "frozen_returns_all_zero": true,
+   "guarded_raises": true,
+   "note": "frozen zero-range fallback cannot distinguish finite-zero from non-finite input",
+   "pass": true
+  }
+ },
+ "model_free_import_audit": {
+  "top_level_executed_calls": [
+   "insert"
+  ],
+  "forbidden_top_level_calls": [],
+  "model_free": true
+ },
+ "counters": {
+  "model_constructions": 0,
+  "checkpoint_deserializations": 0,
+  "forwards": 0,
+  "autograd_calls": 0,
+  "gradcam_executions": 0,
+  "raw_val_reads": 0,
+  "gt_reads": 0,
+  "router_holdout_reads": 0,
+  "test_reads": 0,
+  "training_steps": 0
+ },
+ "generated_utc": "2026-10-05T02:07:43Z"
+}

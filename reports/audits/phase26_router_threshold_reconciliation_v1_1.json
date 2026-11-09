@@ -1,0 +1,47 @@
+{
+ "artifact": "phase26_router_threshold_reconciliation_v1_1",
+ "phase": "26",
+ "classification": "PHASE26_ROUTER_SCORE_THRESHOLD_SEMANTICS_RECONCILIATION",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase26_router_threshold_reconciliation_v1_1",
+ "governance_only": true,
+ "canonical_operational_representation": {
+  "score_name": "C8_RESOURCE_AWARE_UTILITY",
+  "score_formula": "delta_hat - lambda*C",
+  "score_variable": "delta_hat_oof",
+  "canonical_lambda": 0.25,
+  "canonical_lambda_exact": "1/4",
+  "normalized_action_cost_exact": "1051648/10270749",
+  "lambda_C_exact": "262912/10270749",
+  "canonical_threshold": "-2326256430798223/102707490000000000",
+  "canonical_threshold_float": -0.022649335805969194,
+  "threshold_score_space": "C8_RESOURCE_AWARE_UTILITY_SPACE",
+  "canonical_budget": 0.25,
+  "expected_DEV_selected_count": 1239,
+  "membership_identity": "EXACT_PHASE25E_FROZEN_25PCT_C8_MEMBERSHIP",
+  "membership_selected_ids_sha256": "e71e368cbb95b8d3398b47427df243bb8b387dd6d442ccf038188446677f446f",
+  "comparison_operator": "utility >= tau_C8 -> EXECUTE else SKIP",
+  "preserves_nonzero_resource_term": true
+ },
+ "raw_gain_threshold_provenance": {
+  "tau_C7_exact": "29487973/10000000000",
+  "tau_C7_float": 0.0029487973,
+  "tau_C7_space": "C7_RAW_DELTA_HAT_SPACE",
+  "classification": "EQUIVALENT_RAW_GAIN_THRESHOLD_PROVENANCE",
+  "retained": true,
+  "deleted": false,
+  "equivalence": "delta_hat >= tau_C7  iff  delta_hat - lambda*C >= tau_C8",
+  "equivalence_basis": "frozen constant action cost (unique_eligible_costs = 1)",
+  "algebra": "tau_C8 = tau_C7 - lambda*C"
+ },
+ "checks": {
+  "score_name_C8_utility": true,
+  "threshold_space_named": true,
+  "canonical_lambda_0p25": true,
+  "canonical_budget_0p25": true,
+  "expected_count_1239": true,
+  "c7_provenance_retained": true,
+  "equivalence_stated": true
+ },
+ "all_pass": true
+}

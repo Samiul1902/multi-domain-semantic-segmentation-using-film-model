@@ -1,0 +1,62 @@
+{
+  "artifact": "phase20b_training_closure",
+  "phase": 20,
+  "subphase": "20B",
+  "model_key": "transformer_mit_unet",
+  "experiment_id": "phase20b_shared_transformer_mit_unet_fourdomain_seed42_clean_v3",
+  "manifest_version": "phase4_v3",
+  "selection_rule_id": "phase20_macro_domain_mean_dice_v1",
+  "best_epoch": 74,
+  "best_macro_domain_dice": 0.8223808915834625,
+  "per_domain_dice_at_best": {
+    "ISIC": 0.8870889668872043,
+    "BUSI": 0.8639802347338391,
+    "KVASIR": 0.8132754249562769,
+    "KUB": 0.7251789397565297
+  },
+  "per_domain_iou_at_best": {
+    "ISIC": 0.816691875958643,
+    "BUSI": 0.7798321678172031,
+    "KVASIR": 0.7291663912735401,
+    "KUB": 0.6206925360657456
+  },
+  "best_val_loss": 0.1607891579370687,
+  "final_epoch": 89,
+  "total_completed_epochs": 89,
+  "stop_reason": "EARLY_STOPPING_PATIENCE",
+  "early_stopping_patience": 15,
+  "history_path": "experiments/phase20b_shared_transformer_mit_unet_fourdomain_seed42_clean_v3/history.csv",
+  "history_sha256": "2fcfa684b5d7a242a473ede510199d0b4f622d14f605e96cb5d6a41e93298075",
+  "best_checkpoint_path": "checkpoints/phase20b_shared_transformer_mit_unet_fourdomain_seed42_clean_v3/best.pt",
+  "best_checkpoint_sha256": "e2c1fca196348d57e4bc8d8ae0f17d82ff0252142e8d94631f7e0ba7d69149e2",
+  "latest_checkpoint_path": "checkpoints/phase20b_shared_transformer_mit_unet_fourdomain_seed42_clean_v3/latest.pt",
+  "latest_checkpoint_sha256": "1677a209210e424dee4bfdd620fa6f6153d39f39104b9ba1b6b26ebc7c39e6b4",
+  "latest_checkpoint_epoch": 89,
+  "config_sha256": "ea031aa9fb76f1a31e81470882e7dd07b3877d76c579875b50af5ae5864661ff",
+  "trainer_path": "scripts/training/train_phase20b_shared_baseline.py",
+  "trainer_sha256": "43d3c0e4470d56e462c05b0367630b9d480880befbd77c42e829543a2e36bb70",
+  "model_params": 16347777,
+  "resume_events": [],
+  "resume_count": 0,
+  "history_integrity": {
+    "n_rows": 89,
+    "epochs_contiguous_from_1": true,
+    "missing_epochs": [],
+    "duplicate_epochs": [],
+    "monotonic_epochs": true,
+    "required_columns_present": true,
+    "history_sha256": "2fcfa684b5d7a242a473ede510199d0b4f622d14f605e96cb5d6a41e93298075"
+  },
+  "training_runs": 1,
+  "logical_runs": 1,
+  "independent_duplicate_runs": 0,
+  "test_reads": {
+    "test_image_reads": 0,
+    "test_mask_reads": 0,
+    "test_inference": 0,
+    "test_visualization": 0
+  },
+  "total_elapsed_seconds": 42331.81869292259,
+  "natural_termination": true,
+  "manually_stopped_early": false
+}

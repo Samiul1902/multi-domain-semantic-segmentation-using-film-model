@@ -1,0 +1,59 @@
+{
+  "artifact": "phase36_v1_5_direct_source_byte_audit",
+  "section": "§N",
+  "phase": 36,
+  "method": "RA-MedFiLM-BARR",
+  "revision": "ra_medfilm_barr_phase36_robustness_v1_5",
+  "type": "READ_ONLY_DIRECT_EXECUTION_SOURCE_BYTE_AUDIT",
+  "audited_source": "scripts/analysis/phase36_robustness_execution_v1_5.py",
+  "execution_source_sha256": "f219d06cb83c43b24be446205df2223b964c417e9547d5a657799aa3218f9876",
+  "audited_source_lines": 2892,
+  "audit_method": "AST_PARSE + CALL_GRAPH_REACHABILITY + SOURCE_BYTE_INSPECTION",
+  "no_execution": true,
+  "no_source_modification": true,
+  "torch_imported": false,
+  "torch_sigmoid_float32_present": true,
+  "manual_numpy_sigmoid_present": false,
+  "duplicate_probability_operator_present": false,
+  "cuda_fail_closed": true,
+  "explicit_G_to_cuda": true,
+  "explicit_B_phi_to_cuda": true,
+  "explicit_R_psi_to_cuda": true,
+  "explicit_S_omega_to_cuda": true,
+  "G_no_grad_autocast_fp16": true,
+  "G_inference_mode_false": true,
+  "B_phi_inference_mode": true,
+  "R_psi_inference_mode": true,
+  "S_omega_inference_mode": true,
+  "B_phi_autocast_disabled": true,
+  "R_psi_autocast_disabled": true,
+  "S_omega_autocast_disabled": true,
+  "v1_4_conditional_execution_repairs_preserved": true,
+  "manual_sigmoid_site_lines": [],
+  "canonical_sigmoid_site_lines": [
+    1086
+  ],
+  "G_context_evidence": {
+    "forward_line": 1115,
+    "context_line": 1114,
+    "context": "with torch.no_grad(), canonical_autocast(ctx[\"device\"]), TapRecorder(ctx[\"g\"]) as rec:"
+  },
+  "B_phi_context_evidence": {
+    "forward_line": 1294,
+    "context_line": 1291,
+    "context": "with component_inference_context(\"B_phi\"), component_autocast_disabled(\"B_phi\"):"
+  },
+  "R_psi_context_evidence": {
+    "forward_line": 1315,
+    "context_line": 1313,
+    "context": "with component_inference_context(\"R_psi\"), component_autocast_disabled(\"R_psi\"):"
+  },
+  "S_omega_context_evidence": {
+    "forward_line": 1334,
+    "context_line": 1333,
+    "context": "with component_inference_context(\"S_omega\"), component_autocast_disabled(\"S_omega\"):"
+  },
+  "all_pass": true,
+  "verdict": "PASS",
+  "generated_utc": "2026-10-06T08:42:40Z"
+}

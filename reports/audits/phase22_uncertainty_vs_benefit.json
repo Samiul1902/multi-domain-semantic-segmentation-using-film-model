@@ -1,0 +1,177 @@
+{
+  "artifact": "phase22_uncertainty_vs_benefit",
+  "phase": 22,
+  "question": "does a cheap, DEPLOYABLE, prediction-only signal predict where the regional arm helps?",
+  "source": "frozen Phase-21 probability maps + per-image metrics (NO new inference)",
+  "n": 808,
+  "new_inference_performed": false,
+  "signals": [
+    {
+      "signal": "dice",
+      "n": 808,
+      "pearson_r_with_oracle_gain": -0.2205189428414319,
+      "spearman_r_with_oracle_gain": -0.11925509926297748
+    },
+    {
+      "signal": "iou",
+      "n": 808,
+      "pearson_r_with_oracle_gain": -0.16045880714119073,
+      "spearman_r_with_oracle_gain": -0.11925509926297748
+    },
+    {
+      "signal": "precision",
+      "n": 808,
+      "pearson_r_with_oracle_gain": -0.2573417897640178,
+      "spearman_r_with_oracle_gain": -0.125546743901346
+    },
+    {
+      "signal": "recall",
+      "n": 808,
+      "pearson_r_with_oracle_gain": -0.10046076044835645,
+      "spearman_r_with_oracle_gain": 0.14090221683273388
+    },
+    {
+      "signal": "mean_boundary_margin",
+      "n": 808,
+      "pearson_r_with_oracle_gain": -0.07917550137599313,
+      "spearman_r_with_oracle_gain": -0.04812272294363344
+    },
+    {
+      "signal": "frac_prob_within_0p05_of_boundary",
+      "n": 808,
+      "pearson_r_with_oracle_gain": 0.0793214099222843,
+      "spearman_r_with_oracle_gain": 0.056407170670136696
+    },
+    {
+      "signal": "frac_prob_within_0p02_of_boundary",
+      "n": 808,
+      "pearson_r_with_oracle_gain": 0.08069542090324588,
+      "spearman_r_with_oracle_gain": 0.05725602225435478
+    },
+    {
+      "signal": "entropy_proxy_mean",
+      "n": 808,
+      "pearson_r_with_oracle_gain": 0.08115149574502932,
+      "spearman_r_with_oracle_gain": 0.04713328708767505
+    },
+    {
+      "signal": "brier",
+      "n": 808,
+      "pearson_r_with_oracle_gain": 0.10530326375246536,
+      "spearman_r_with_oracle_gain": 0.08535074216820131
+    },
+    {
+      "signal": "ece",
+      "n": 808,
+      "pearson_r_with_oracle_gain": 0.10934086194015001,
+      "spearman_r_with_oracle_gain": 0.11890976687101716
+    },
+    {
+      "signal": "pred_foreground_pixels",
+      "n": 808,
+      "pearson_r_with_oracle_gain": 0.07927638815277316,
+      "spearman_r_with_oracle_gain": 0.020091514839548068
+    },
+    {
+      "signal": "gt_foreground_pixels",
+      "n": 808,
+      "pearson_r_with_oracle_gain": 0.04462704093370485,
+      "spearman_r_with_oracle_gain": -0.015672790955202107
+    },
+    {
+      "signal": "oracle_roi_area_fraction",
+      "n": 808,
+      "pearson_r_with_oracle_gain": 0.14525406370401153,
+      "spearman_r_with_oracle_gain": 0.06277271913341648
+    }
+  ],
+  "best_deployable_signal": {
+    "signal": "recall",
+    "n": 808,
+    "pearson_r_with_oracle_gain": -0.10046076044835645,
+    "spearman_r_with_oracle_gain": 0.14090221683273388
+  },
+  "interpretation": "a useful router needs a signal that correlates with benefit. These correlations are computed post hoc on VAL and are DESCRIPTIVE ONLY: no threshold was fitted, no policy was selected, and no training occurred.",
+  "ranked_abs_spearman": [
+    {
+      "signal": "recall",
+      "n": 808,
+      "pearson_r_with_oracle_gain": -0.10046076044835645,
+      "spearman_r_with_oracle_gain": 0.14090221683273388
+    },
+    {
+      "signal": "precision",
+      "n": 808,
+      "pearson_r_with_oracle_gain": -0.2573417897640178,
+      "spearman_r_with_oracle_gain": -0.125546743901346
+    },
+    {
+      "signal": "dice",
+      "n": 808,
+      "pearson_r_with_oracle_gain": -0.2205189428414319,
+      "spearman_r_with_oracle_gain": -0.11925509926297748
+    },
+    {
+      "signal": "iou",
+      "n": 808,
+      "pearson_r_with_oracle_gain": -0.16045880714119073,
+      "spearman_r_with_oracle_gain": -0.11925509926297748
+    },
+    {
+      "signal": "ece",
+      "n": 808,
+      "pearson_r_with_oracle_gain": 0.10934086194015001,
+      "spearman_r_with_oracle_gain": 0.11890976687101716
+    },
+    {
+      "signal": "brier",
+      "n": 808,
+      "pearson_r_with_oracle_gain": 0.10530326375246536,
+      "spearman_r_with_oracle_gain": 0.08535074216820131
+    },
+    {
+      "signal": "oracle_roi_area_fraction",
+      "n": 808,
+      "pearson_r_with_oracle_gain": 0.14525406370401153,
+      "spearman_r_with_oracle_gain": 0.06277271913341648
+    },
+    {
+      "signal": "frac_prob_within_0p02_of_boundary",
+      "n": 808,
+      "pearson_r_with_oracle_gain": 0.08069542090324588,
+      "spearman_r_with_oracle_gain": 0.05725602225435478
+    },
+    {
+      "signal": "frac_prob_within_0p05_of_boundary",
+      "n": 808,
+      "pearson_r_with_oracle_gain": 0.0793214099222843,
+      "spearman_r_with_oracle_gain": 0.056407170670136696
+    },
+    {
+      "signal": "mean_boundary_margin",
+      "n": 808,
+      "pearson_r_with_oracle_gain": -0.07917550137599313,
+      "spearman_r_with_oracle_gain": -0.04812272294363344
+    },
+    {
+      "signal": "entropy_proxy_mean",
+      "n": 808,
+      "pearson_r_with_oracle_gain": 0.08115149574502932,
+      "spearman_r_with_oracle_gain": 0.04713328708767505
+    },
+    {
+      "signal": "pred_foreground_pixels",
+      "n": 808,
+      "pearson_r_with_oracle_gain": 0.07927638815277316,
+      "spearman_r_with_oracle_gain": 0.020091514839548068
+    },
+    {
+      "signal": "gt_foreground_pixels",
+      "n": 808,
+      "pearson_r_with_oracle_gain": 0.04462704093370485,
+      "spearman_r_with_oracle_gain": -0.015672790955202107
+    }
+  ],
+  "table": "reports/tables/phase22_uncertainty_vs_benefit.csv",
+  "test_reads": 0
+}

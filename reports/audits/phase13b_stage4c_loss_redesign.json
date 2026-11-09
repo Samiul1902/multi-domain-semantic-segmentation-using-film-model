@@ -1,0 +1,21 @@
+{
+  "phase": "13B",
+  "stage": "4C",
+  "objective": "Center-Heatmap Loss Redesign Pilot",
+  "status": "CHECK_REQUIRED",
+  "target_audit": {
+    "train_images_scanned": 771,
+    "target_peaks_exactly_1": false,
+    "issue": "Gaussian targets do not reach exactly 1.0 due to sub-pixel center truncation during downscaling. This breaks CenterNet loss which requires target == 1.0 to identify positive centers."
+  },
+  "gradient_audit": {
+    "old_loss_value": 0.4343,
+    "old_loss_grad_norm": 1.8933,
+    "new_loss_value": 343782.6250,
+    "new_loss_grad_norm": 3529166.1411,
+    "new_loss_positive_contribution": 0.0,
+    "new_loss_negative_contribution": 343782.6250,
+    "finite": true
+  }
+}
+

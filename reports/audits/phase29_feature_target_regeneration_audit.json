@@ -1,0 +1,42 @@
+{
+ "artifact": "phase29_feature_target_regeneration_audit",
+ "phase": 29,
+ "classification": "PHASE29_FEATURE_TARGET_REGENERATION_AUDIT",
+ "feature_cache_question": {
+  "question": "if G is retrained, must the Phase25B 202-D feature cache be regenerated per seed?",
+  "phase25b_cache": {
+   "dir": "data_cache/phase25b_barr_pre_refinement_features_v1_2",
+   "features_shape": [
+    4957,
+    202
+   ],
+   "features_dtype": "float32",
+   "features_sha256": "9c241963b54f23de1c9671ff6670dde7d6f7e2510869ef5ebc1baf3f7c833e0a",
+   "gt_free": true,
+   "source_binding": "reports/audits/phase25b_phase25c_handoff_schema.json",
+   "source_binding_sha256": "0f79346b06ce74fb538f66e5f5e4aae6b57f0c8c115b2cff0d7e4fc3e6510332"
+  },
+  "regenerate_per_seed": "UNRESOLVED",
+  "if_no_reuse_seed42_features_must_be_justified": true,
+  "gt_free_feature_extraction_semantics_frozen": true
+ },
+ "paired_gain_target_question": {
+  "question": "if R_psi changes by seed and B_phi is also retrained, does each seed need its own DeltaDice target / Phase25C-style cross-fitted candidate outcomes?",
+  "risk": "using seed-42 DeltaDice to train a router for a different-seed refiner may not represent that seed's actual intervention benefit",
+  "regenerate_per_seed": "UNRESOLVED",
+  "correct_dependency_frozen": false,
+  "blocked_terminal_if_unresolved": "PHASE29_BLOCKED__SEED_SPECIFIC_ROUTER_TARGET_DEPENDENCY_UNRESOLVED"
+ },
+ "post_safety_target_question": {
+  "question": "if seed-specific refiner candidates change, must S_omega labels/features be regenerated for each seed?",
+  "regenerate_per_seed": "UNRESOLVED",
+  "seed_specific_target_dependency": "UNRESOLVED",
+  "oof_leakage_safe_generation": "REQUIRED_IF_REGENERATED",
+  "feature_equations": "frozen (phase25f_feature_equation_contract_v1_0)",
+  "normalization_ownership": "FIT-only, ddof=0",
+  "reuse_seed42_safety_targets_without_justification_forbidden": true
+ },
+ "any_regeneration_resolved": false,
+ "blocked_terminal_if_unresolved": "PHASE29_BLOCKED__SEED_SPECIFIC_DEPENDENCY_CHAIN_UNRESOLVED",
+ "all_pass": false
+}

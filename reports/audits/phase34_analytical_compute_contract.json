@@ -1,0 +1,35 @@
+{
+ "artifact": "phase34_analytical_compute_contract",
+ "phase": 34,
+ "section": "\u00a7P",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase34_efficiency_profiling_v1_0",
+ "label": "ANALYTICAL MAC LOWER BOUND",
+ "historical_lower_bound_semantics": "exact for Conv2d and Linear; lower bound overall",
+ "component_macs": {
+  "G": 31551740928,
+  "B_phi": 36160,
+  "R_psi": 3230662656,
+  "S_omega": 1168
+ },
+ "path_macs": {
+  "SKIP_GLOBAL": 31551777088,
+  "EXECUTE_THEN_ACCEPT": 34782440912,
+  "EXECUTE_THEN_REJECT": 34782440912
+ },
+ "accept_reject_differ": false,
+ "accept_reject_basis": "Phase26 state_machine_contract: both EXECUTE states run refiner=1 and s_omega=1",
+ "expected_conditional_mac_formula": "E[MAC] = MAC(G) + MAC(B_phi) + p_activate * (MAC(R_psi) + MAC(S_omega))",
+ "p_activate_from_frozen_phase30_frequencies": 0.2742857142857143,
+ "absolute_expected_macs": 32437902022.582855,
+ "global_only_macs": 31551740928,
+ "always_refine_macs": 34782440912,
+ "relative_expected_vs_global_only": 1.0280859651011032,
+ "relative_expected_vs_always_refine": 0.9325941817784192,
+ "absolute_analytical_saving_vs_always_refine_macs": 2344538889.417145,
+ "relative_analytical_saving_vs_always_refine": 0.06740581822158076,
+ "numeric_preview_note": "PREVIEW_ONLY_FROZEN_CONSTANT_ARITHMETIC__NO_PROFILER_NO_MODEL__the numeric values are arithmetic over frozen authority constants and frozen Phase30 frequencies; they are analytical compute results, NOT measured runtime.",
+ "phase30_qualifier": "ONE_SHOT_ROUTER_HOLDOUT_RESULT_WITH_DISCLOSED_POST_FIRST_OPEN_SCIENTIFIC_SOURCE_FREEZE_DEVIATION",
+ "generated_utc": "2026-10-04T09:50:07+00:00",
+ "all_pass": true
+}

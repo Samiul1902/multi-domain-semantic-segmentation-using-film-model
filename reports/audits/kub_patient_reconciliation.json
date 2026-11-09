@@ -1,0 +1,20 @@
+{
+  "phase": "4-R6",
+  "patient_id_extraction_rule": {
+    "source": "filename prefix",
+    "regex": "^(\\d+)-",
+    "normalization": "patient- + zero-padded 5 digit ID",
+    "missing_count": 0,
+    "ambiguous_count": 0
+  },
+  "kub_paired_rows": 2820,
+  "kub_unique_patients": 711,
+  "explanation_1146": "Unvalidated ratio estimate prior to file-level regex extraction. Actual file-level extraction on 2820 paired rows yields exactly 711 unique patient IDs.",
+  "explanation_r4_v5_diff": "In R4, folder-level path parsing failed on flat folder structures, resulting in missing patient IDs. In R5/R6, filename regex extraction correctly grouped all 2820 samples across 711 unique patients.",
+  "hashes": {
+    "all_paired": "66350d465209e4bf0948a16f0da213abb9f8f87c0b222ead7632d2350463f7cc",
+    "train": "d67b549a6cc80b579dfaf4976b9b51630f6d703d8c6bfb33188355cfa6056bc3",
+    "val": "46079b594ed9535c2de953bb976684b8b0bab30c27c6e6e4f2b9f9314b4cc5f4",
+    "test": "9361eba61c91c034a9aa4988a4df229bba591a5cbd553c98689ac7915da29727"
+  }
+}

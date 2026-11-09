@@ -1,0 +1,60 @@
+{
+ "artifact": "phase29_cross_seed_dependency_isolation",
+ "phase": 29,
+ "stage": "CROSS_SEED_DEPENDENCY_ISOLATION",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_phase29_repro_v1_1",
+ "generated_utc": "2026-10-02T20:20:16+00:00",
+ "rule": "each seed's R_psi -> ONLY that seed's DeltaDice/B_phi/S_omega",
+ "allowed_shared_inputs": [
+  "canonical fixed global representation (G, seed 42)",
+  "fixed Phase25B 202-D feature matrix",
+  "fixed CV fold manifests (optimization randomness only)"
+ ],
+ "forbidden_examples_checked": [
+  "B_phi_123 <- DeltaDice_42",
+  "B_phi_3407 <- DeltaDice_123",
+  "S_omega_123 <- candidate_3407",
+  "S_omega_3407 <- target_42"
+ ],
+ "detail": {
+  "seed123_fold_ckpt_shas": [
+   "17717c72079b2f2f58895425242c1defac654d3a27a818a08ee0931ca33f6de9",
+   "1f0379952da9b26c0f0e23403a4b7dcfaacffd90debda88070a066e89c538ceb",
+   "bc711606acecc87f77e976417b6d96ed27385e84245cc2ae84a23cc607ef61ec"
+  ],
+  "seed3407_fold_ckpt_shas": [
+   "000f00b54286f46b36117fbf79e5479a370c0314ef2227cf70f93e5b1e2b3c4e",
+   "40d1a89298552397fa0a97d50ba253bd467cc7b9c786a8a3e9d19180373e22f5",
+   "5d610f64bb47f982854b8c0b89810f3264771b47102b50253ef300d996fda7b3"
+  ]
+ },
+ "checks": {
+  "seed123_deltadice_from_own_rpsi_ckpts": true,
+  "seed3407_deltadice_from_own_rpsi_ckpts": true,
+  "no_shared_rpsi_fold_ckpts_across_seeds": true,
+  "seed123_membership_rows_4957": true,
+  "seed123_membership_selected_1239": true,
+  "seed3407_membership_rows_4957": true,
+  "seed3407_membership_selected_1239": true,
+  "seed123_BUSI_refined_own": true,
+  "seed123_ISIC_refined_own": true,
+  "seed123_KUB_refined_own": true,
+  "seed123_KVASIR_refined_own": true,
+  "seed3407_BUSI_refined_own": true,
+  "seed3407_ISIC_refined_own": true,
+  "seed3407_KUB_refined_own": true,
+  "seed3407_KVASIR_refined_own": true,
+  "seed123_deltadice_path_differs_from_3407": true,
+  "seed123_features_path_differs_from_3407": true,
+  "seed3407_deltadice_path_differs_from_123": true,
+  "seed3407_features_path_differs_from_123": true,
+  "shared_global_representation_is_seed42_fixed": true,
+  "shared_phase25b_features_are_fixed": true
+ },
+ "n_checks": 21,
+ "n_failed": 0,
+ "failed": [],
+ "blocked_terminal_if_fail": "PHASE29_PHASE_C_BLOCKED__CROSS_SEED_DEPENDENCY_FAILURE",
+ "all_pass": true
+}

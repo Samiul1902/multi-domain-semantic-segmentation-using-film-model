@@ -1,0 +1,47 @@
+{
+ "artifact": "phase29_evaluation_population_ruling_v1_1",
+ "phase": 29,
+ "revision": "ra_medfilm_barr_phase29_repro_v1_1",
+ "classification": "SUPERVISOR_PROSPECTIVE_REPRODUCIBILITY_SPECIFICATION_REPAIR",
+ "governance_only": true,
+ "execution": "NONE",
+ "generated_utc": "2026-10-02T15:05:09+00:00",
+ "primary": {
+  "population": "ROUTER_DEVELOPMENT",
+  "n": 4957,
+  "role": "PRIMARY_MULTI_SEED_REPRODUCIBILITY_DEVELOPMENT_EVIDENCE",
+  "uses_leakage_safe_oof_for": [
+   "R_psi",
+   "B_phi",
+   "S_omega"
+  ],
+  "preserves_phase30_holdout_independence": true
+ },
+ "secondary": {
+  "population": "VAL808",
+  "n": 808,
+  "role": "SECONDARY_MULTI_SEED_CONTINUITY_DEVELOPMENT_EVIDENCE",
+  "opened_in_phase": 27,
+  "is_untouched_holdout": false,
+  "is_routing_holdout": false,
+  "is_external_validation": false,
+  "is_test": false,
+  "new_inference_only_after_seed_training_and_dev_calibration_frozen": true,
+  "seed42_reuses_phase27_evidence_when_pipeline_identical": true
+ },
+ "excluded": [
+  "ROUTER_HOLDOUT",
+  "TEST"
+ ],
+ "readme_train_val_supersession": {
+  "historical_wording_deleted": false,
+  "superseded_operationally_by": {
+   "PRIMARY": "ROUTER_DEVELOPMENT OOF",
+   "SECONDARY": "VAL808 continuity"
+  },
+  "router_holdout_still_excluded": true,
+  "additive_clarification": true
+ },
+ "evaluation_population_resolved": true,
+ "all_pass": true
+}

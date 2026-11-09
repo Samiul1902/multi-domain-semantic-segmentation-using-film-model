@@ -1,0 +1,80 @@
+{
+ "artifact": "phase35_synthetic_smoke_eligibility_v1_0c",
+ "phase": 35,
+ "section": "\u00a7X",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase35_interpretability_v1_0c",
+ "classification": "PRE_SCIENTIFIC_SYNTHETIC_INTERFACE_VALIDATION",
+ "not": "PHASE35_SCIENTIFIC_INTERPRETABILITY_RESULT",
+ "frozen_smoke_entry_point": {
+  "path": "scripts/analysis/phase35_interpretability_execution_v1_0c.py",
+  "sha256": "4058fc5544e6e1af15339df20a88da4880549ea8d4dd434395df04e0fa261baa",
+  "function": "mode_smoke"
+ },
+ "gate": {
+  "env": "PHASE35_SMOKE_EXECUTE",
+  "required_value": "1",
+  "distinct_from_scientific_gate": "PHASE35_EXECUTE"
+ },
+ "smoke_will_exercise": [
+  "authority gate SHA verification (Phase34 closure/check/handoff, Phase35 v1.0 terminal, canonical gallery)",
+  "environment compatibility check (RTX 3060 Ti, torch 2.6.0+cu124, CUDA available)",
+  "checkpoint file SHA-256 verification for G and B_phi BEFORE deserialization",
+  "construction + strict load + parameter-count/dtype verification of G (3,523,001) and B_phi (36,801)",
+  "FiLM accessor validation for all 4 tasks x 5 sites (channel counts, finiteness)",
+  "task-embedding shape validation (G [4,32], B_phi [4,16])",
+  "ONE synthetic gradient-enabled G forward through the canonical bridge/decoder1 Grad-CAM path (autocast fp16, no no_grad/inference_mode)",
+  "ONE synthetic B_phi forward + ONE numeric-input gradient + Gradient x Input (raw delta_hat, no sigmoid)",
+  "zero-denominator aggregation policy unit test (NULL share + ZERO_ROUTER_GRAD_ATTRIBUTION, no epsilon, no renormalization)",
+  "parameter-immutability proof (state_dict identity before vs after)"
+ ],
+ "smoke_will_not_read": [
+  "raw VAL images",
+  "VAL ground truth",
+  "ROUTER_HOLDOUT",
+  "TEST",
+  "TRAIN raw",
+  "the persisted Phase21 npz `gt` key"
+ ],
+ "expected_counts": {
+  "G_model_constructions": 1,
+  "B_phi_model_constructions": 1,
+  "checkpoint_deserializations": 2,
+  "strict_loads": 2,
+  "G_synthetic_forwards": 1,
+  "B_phi_synthetic_forwards": 1,
+  "total_model_forwards": 2,
+  "G_gradcam_autograd_calls": 1,
+  "router_numeric_input_autograd_calls": 1,
+  "total_autograd_calls": 2,
+  "synthetic_CAM_maps": 2,
+  "synthetic_router_attribution_rows": 4,
+  "synthetic_smoke_target_masks": 1,
+  "R_psi_model_constructions": 0,
+  "R_psi_checkpoint_loads": 0,
+  "R_psi_forwards": 0,
+  "S_omega_model_constructions": 0,
+  "S_omega_checkpoint_loads": 0,
+  "S_omega_forwards": 0,
+  "optimizer_constructions": 0,
+  "optimizer_step_calls": 0,
+  "training_backward_calls": 0,
+  "parameter_mutations": 0
+ },
+ "synthetic_smoke_reexecution_eligible": true,
+ "synthetic_smoke_reexecution_started": false,
+ "synthetic_smoke_executed_in_v1_0c": false,
+ "disclosed_condition": {
+  "id": "PHASE35_V1_0B_GRADCAM_TARGET_MASK_RANK_INCOMPATIBILITY",
+  "affects_smoke": false,
+  "affects_scientific_gradcam": true,
+  "note": "The smoke uses a rank-compatible synthetic target mask and therefore does not itself trigger the defect. Scientific Grad-CAM execution remains blocked until a v1.0d rank-safety repair is applied to the frozen target scalar."
+ },
+ "model_constructed": false,
+ "checkpoint_deserialized": false,
+ "forward_executed": false,
+ "gate_env_set": false,
+ "mode_invoked": false,
+ "generated_utc": "2026-10-04T15:46:25+00:00",
+ "all_pass": true
+}

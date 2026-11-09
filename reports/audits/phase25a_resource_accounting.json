@@ -1,0 +1,513 @@
+{
+ "artifact": "phase25a_resource_accounting",
+ "phase": "25A",
+ "purpose": "measure the regional refiner's trainable parameters and analytical MACs",
+ "model": "BARRRegionalRefinerV1",
+ "architecture_id": "barr_regional_refiner_v1_narrowed_channels",
+ "source_file": "src/models/barr/regional_refiner.py",
+ "source_sha256": "4fe0abde3ec3a183d930f676c4400b4d9ba778793ea64abf1755c5b8dabf947a",
+ "trainable_parameters": 1276401,
+ "expected_parameters": 1276401,
+ "parameters_match": true,
+ "input_shape": [
+  1,
+  4,
+  256,
+  256
+ ],
+ "output_shape": [
+  1,
+  1,
+  256,
+  256
+ ],
+ "analytical_macs": 3230662656,
+ "analytical_gmacs": 3.230663,
+ "analytical_flops": 6461325312,
+ "analytical_gflops": 6.461325,
+ "macs_by_layer_type": {
+  "conv2d": 3230662656
+ },
+ "macs_definition": "multiply-accumulate operations; FLOPs = 2 x MACs",
+ "macs_are_analytical": true,
+ "macs_measured_by": "forward hooks on every Conv2d / Linear at input 1x4x256x256",
+ "reported_separately": {
+  "macs": "analytical, reported above",
+  "latency": "HOST-SPECIFIC, reported below; NOT a deployment claim",
+  "memory": "NOT measured in Phase 25A",
+  "energy": "NOT measured in Phase 25A"
+ },
+ "host_specific_forward_latency_seconds": 0.005808933999996952,
+ "host_latency_label": "HOST_SPECIFIC",
+ "host_device": "cuda:0",
+ "host_platform": "Windows-10-10.0.26200-SP0",
+ "claims_not_made": [
+  "mobile ready",
+  "real-time",
+  "CPU ready"
+ ],
+ "context_vs_global": {
+  "global_model": "Phase-21 Global MedFiLM",
+  "global_parameters": 3523001,
+  "global_gmacs_at_1x3x512x512": 31.5517,
+  "refiner_gmacs_at_1x4x256x256": 3.230663,
+  "refiner_over_global_macs_ratio": 0.102393,
+  "refiner_over_global_params_ratio": 0.362305,
+  "note": "the refiner is an ADDITIONAL action; the integrated system cost is global + refiner when the router elects to refine (Phase 25D measures the budget)"
+ },
+ "per_layer_macs": [
+  {
+   "layer": "stem.0",
+   "type": "conv2d",
+   "kernel": [
+    3,
+    3
+   ],
+   "in_channels": 4,
+   "out_channels": 16,
+   "out_hw": [
+    256,
+    256
+   ],
+   "macs": 37748736
+  },
+  {
+   "layer": "encoder1.conv1",
+   "type": "conv2d",
+   "kernel": [
+    3,
+    3
+   ],
+   "in_channels": 16,
+   "out_channels": 16,
+   "out_hw": [
+    256,
+    256
+   ],
+   "macs": 150994944
+  },
+  {
+   "layer": "encoder1.conv2",
+   "type": "conv2d",
+   "kernel": [
+    3,
+    3
+   ],
+   "in_channels": 16,
+   "out_channels": 16,
+   "out_hw": [
+    256,
+    256
+   ],
+   "macs": 150994944
+  },
+  {
+   "layer": "encoder2.skip",
+   "type": "conv2d",
+   "kernel": [
+    1,
+    1
+   ],
+   "in_channels": 16,
+   "out_channels": 32,
+   "out_hw": [
+    128,
+    128
+   ],
+   "macs": 8388608
+  },
+  {
+   "layer": "encoder2.conv1",
+   "type": "conv2d",
+   "kernel": [
+    3,
+    3
+   ],
+   "in_channels": 16,
+   "out_channels": 32,
+   "out_hw": [
+    128,
+    128
+   ],
+   "macs": 75497472
+  },
+  {
+   "layer": "encoder2.conv2",
+   "type": "conv2d",
+   "kernel": [
+    3,
+    3
+   ],
+   "in_channels": 32,
+   "out_channels": 32,
+   "out_hw": [
+    128,
+    128
+   ],
+   "macs": 150994944
+  },
+  {
+   "layer": "encoder3.skip",
+   "type": "conv2d",
+   "kernel": [
+    1,
+    1
+   ],
+   "in_channels": 32,
+   "out_channels": 64,
+   "out_hw": [
+    64,
+    64
+   ],
+   "macs": 8388608
+  },
+  {
+   "layer": "encoder3.conv1",
+   "type": "conv2d",
+   "kernel": [
+    3,
+    3
+   ],
+   "in_channels": 32,
+   "out_channels": 64,
+   "out_hw": [
+    64,
+    64
+   ],
+   "macs": 75497472
+  },
+  {
+   "layer": "encoder3.conv2",
+   "type": "conv2d",
+   "kernel": [
+    3,
+    3
+   ],
+   "in_channels": 64,
+   "out_channels": 64,
+   "out_hw": [
+    64,
+    64
+   ],
+   "macs": 150994944
+  },
+  {
+   "layer": "encoder4.skip",
+   "type": "conv2d",
+   "kernel": [
+    1,
+    1
+   ],
+   "in_channels": 64,
+   "out_channels": 96,
+   "out_hw": [
+    32,
+    32
+   ],
+   "macs": 6291456
+  },
+  {
+   "layer": "encoder4.conv1",
+   "type": "conv2d",
+   "kernel": [
+    3,
+    3
+   ],
+   "in_channels": 64,
+   "out_channels": 96,
+   "out_hw": [
+    32,
+    32
+   ],
+   "macs": 56623104
+  },
+  {
+   "layer": "encoder4.conv2",
+   "type": "conv2d",
+   "kernel": [
+    3,
+    3
+   ],
+   "in_channels": 96,
+   "out_channels": 96,
+   "out_hw": [
+    32,
+    32
+   ],
+   "macs": 84934656
+  },
+  {
+   "layer": "encoder5.skip",
+   "type": "conv2d",
+   "kernel": [
+    1,
+    1
+   ],
+   "in_channels": 96,
+   "out_channels": 128,
+   "out_hw": [
+    16,
+    16
+   ],
+   "macs": 3145728
+  },
+  {
+   "layer": "encoder5.conv1",
+   "type": "conv2d",
+   "kernel": [
+    3,
+    3
+   ],
+   "in_channels": 96,
+   "out_channels": 128,
+   "out_hw": [
+    16,
+    16
+   ],
+   "macs": 28311552
+  },
+  {
+   "layer": "encoder5.conv2",
+   "type": "conv2d",
+   "kernel": [
+    3,
+    3
+   ],
+   "in_channels": 128,
+   "out_channels": 128,
+   "out_hw": [
+    16,
+    16
+   ],
+   "macs": 37748736
+  },
+  {
+   "layer": "bridge.conv1",
+   "type": "conv2d",
+   "kernel": [
+    3,
+    3
+   ],
+   "in_channels": 128,
+   "out_channels": 128,
+   "out_hw": [
+    8,
+    8
+   ],
+   "macs": 9437184
+  },
+  {
+   "layer": "bridge.conv2",
+   "type": "conv2d",
+   "kernel": [
+    3,
+    3
+   ],
+   "in_channels": 128,
+   "out_channels": 128,
+   "out_hw": [
+    8,
+    8
+   ],
+   "macs": 9437184
+  },
+  {
+   "layer": "decoder4.skip",
+   "type": "conv2d",
+   "kernel": [
+    1,
+    1
+   ],
+   "in_channels": 224,
+   "out_channels": 96,
+   "out_hw": [
+    32,
+    32
+   ],
+   "macs": 22020096
+  },
+  {
+   "layer": "decoder4.conv1",
+   "type": "conv2d",
+   "kernel": [
+    3,
+    3
+   ],
+   "in_channels": 224,
+   "out_channels": 96,
+   "out_hw": [
+    32,
+    32
+   ],
+   "macs": 198180864
+  },
+  {
+   "layer": "decoder4.conv2",
+   "type": "conv2d",
+   "kernel": [
+    3,
+    3
+   ],
+   "in_channels": 96,
+   "out_channels": 96,
+   "out_hw": [
+    32,
+    32
+   ],
+   "macs": 84934656
+  },
+  {
+   "layer": "decoder3.skip",
+   "type": "conv2d",
+   "kernel": [
+    1,
+    1
+   ],
+   "in_channels": 160,
+   "out_channels": 64,
+   "out_hw": [
+    64,
+    64
+   ],
+   "macs": 41943040
+  },
+  {
+   "layer": "decoder3.conv1",
+   "type": "conv2d",
+   "kernel": [
+    3,
+    3
+   ],
+   "in_channels": 160,
+   "out_channels": 64,
+   "out_hw": [
+    64,
+    64
+   ],
+   "macs": 377487360
+  },
+  {
+   "layer": "decoder3.conv2",
+   "type": "conv2d",
+   "kernel": [
+    3,
+    3
+   ],
+   "in_channels": 64,
+   "out_channels": 64,
+   "out_hw": [
+    64,
+    64
+   ],
+   "macs": 150994944
+  },
+  {
+   "layer": "decoder2.skip",
+   "type": "conv2d",
+   "kernel": [
+    1,
+    1
+   ],
+   "in_channels": 96,
+   "out_channels": 32,
+   "out_hw": [
+    128,
+    128
+   ],
+   "macs": 50331648
+  },
+  {
+   "layer": "decoder2.conv1",
+   "type": "conv2d",
+   "kernel": [
+    3,
+    3
+   ],
+   "in_channels": 96,
+   "out_channels": 32,
+   "out_hw": [
+    128,
+    128
+   ],
+   "macs": 452984832
+  },
+  {
+   "layer": "decoder2.conv2",
+   "type": "conv2d",
+   "kernel": [
+    3,
+    3
+   ],
+   "in_channels": 32,
+   "out_channels": 32,
+   "out_hw": [
+    128,
+    128
+   ],
+   "macs": 150994944
+  },
+  {
+   "layer": "decoder1.skip",
+   "type": "conv2d",
+   "kernel": [
+    1,
+    1
+   ],
+   "in_channels": 48,
+   "out_channels": 16,
+   "out_hw": [
+    256,
+    256
+   ],
+   "macs": 50331648
+  },
+  {
+   "layer": "decoder1.conv1",
+   "type": "conv2d",
+   "kernel": [
+    3,
+    3
+   ],
+   "in_channels": 48,
+   "out_channels": 16,
+   "out_hw": [
+    256,
+    256
+   ],
+   "macs": 452984832
+  },
+  {
+   "layer": "decoder1.conv2",
+   "type": "conv2d",
+   "kernel": [
+    3,
+    3
+   ],
+   "in_channels": 16,
+   "out_channels": 16,
+   "out_hw": [
+    256,
+    256
+   ],
+   "macs": 150994944
+  },
+  {
+   "layer": "head",
+   "type": "conv2d",
+   "kernel": [
+    1,
+    1
+   ],
+   "in_channels": 16,
+   "out_channels": 1,
+   "out_hw": [
+    256,
+    256
+   ],
+   "macs": 1048576
+  }
+ ],
+ "verdict": "PHASE25A_RESOURCE_ACCOUNTING_COMPLETE",
+ "generated_utc": "2026-09-30T04:33:32.528956+00:00",
+ "test_reads": 0
+}

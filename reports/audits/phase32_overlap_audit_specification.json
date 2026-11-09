@@ -1,0 +1,33 @@
+{
+ "artifact": "phase32_overlap_audit_specification",
+ "phase": 32,
+ "section": "\u00a7H",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase32_external_domain_shift_v1_0",
+ "purpose": "detect overlap between any future external cohort and ALL development populations",
+ "against": [
+  "Phase26 training/development data",
+  "VAL808",
+  "ROUTER_DEVELOPMENT",
+  "ROUTER_HOLDOUT",
+  "TEST metadata only where governance permits"
+ ],
+ "detection_targets": [
+  "exact duplicate images",
+  "exact duplicate masks (metadata-hashable)",
+  "same patient/case IDs",
+  "filename lineage",
+  "source-dataset overlap",
+  "known derivative/resized copies",
+  "near-duplicate risk"
+ ],
+ "known_immediate_overlap_findings": [
+  "EXT-07 legacy external KUB-Stone is the same source family as the internal KUB domain -> INELIGIBLE_OVERLAP_RISK",
+  "EXT-13 legacy medfilm_seg/data_external/CVC_ClinicDB duplicates EXT-03 -> INELIGIBLE_OVERLAP_RISK"
+ ],
+ "test_image_or_mask_read_authorized": false,
+ "test_metadata_precomputed_hashes_only": true,
+ "pixel_level_overlap_check_executed_now": false,
+ "generated_utc": "2026-10-04T07:07:23+00:00",
+ "all_pass": true
+}

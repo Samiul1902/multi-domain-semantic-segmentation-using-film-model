@@ -1,0 +1,219 @@
+{
+  "artifact": "PHASE13_PART1D_PREDICTED_REGION_PROTOCOL_FROZEN",
+  "status": "SUPERVISOR_FROZEN_PART1D_READY_FOR_INFERENCE",
+  "created_utc": "2026-09-22T03:52:00Z",
+  "scientific_question": "Can frozen GT-free predicted proposals preserve useful Phase-12 oracle regional-resolution benefit while preserving global segmentation quality?",
+  "primary_variant": "PREDICTED_REGION_FLOAT_GLOBAL_RETAINED",
+  "comparison": "GLOBAL_NATIVE vs ORACLE_FLOAT_GLOBAL_RETAINED vs PREDICTED_REGION_FLOAT_GLOBAL_RETAINED",
+  "models": [
+    "unet",
+    "attention_unet",
+    "unetpp",
+    "deeplabv3plus"
+  ],
+  "reference_model": null,
+  "winner": null,
+  "ranking": null,
+  "population": {
+    "cases": 103,
+    "components": 152,
+    "strata": {
+      "TINY": 72,
+      "SMALL": 28,
+      "MEDIUM": 36,
+      "LARGE": 16
+    },
+    "roi": "EXCLUDED"
+  },
+  "manifest": "phase4_v3",
+  "taxonomy": "kub_size_clean_v3_v1",
+  "test": "LOCKED",
+  "frozen_proposals": {
+    "cases": 103,
+    "total_proposals": 494,
+    "threshold": 0.1,
+    "margin": 0.2,
+    "top_k": 5,
+    "nms_iou": 0.3,
+    "margin_already_applied": "YES",
+    "second_margin_applied": "NO",
+    "localizer_rerun": "FORBIDDEN",
+    "gt_filtering_of_proposals": "FORBIDDEN"
+  },
+  "oracle": {
+    "margin": 0.25,
+    "margin_change": "FORBIDDEN",
+    "primary": "ORACLE_FLOAT_GLOBAL_RETAINED",
+    "label": "PRACTICAL_GT_FREE_ORACLE_BENEFIT_RETENTION",
+    "rerun_in_part1d": "NOT_AUTHORIZED"
+  },
+  "fusion": {
+    "inside_support": "REGIONAL_REPLACEMENT",
+    "outside_support": "GLOBAL_RETAINED",
+    "formula": "P(x) = R(x) if U_pred(x) else G(x)",
+    "overlap": "MAX among regional crops only",
+    "max_G_R_inside_support": "FORBIDDEN",
+    "threshold": 0.5,
+    "threshold_timing": "AFTER_COMPLETE_NATIVE_FUSION",
+    "zero_proposal_image": "P = G exactly"
+  },
+  "proposal_support": {
+    "definition": "union of clipped frozen Part-1C proposal crop rectangles",
+    "derived_from_gt": "NO",
+    "derived_from_heatmap_threshold": "NO",
+    "derived_from_regional_output": "NO",
+    "derived_from_component_bbox": "NO"
+  },
+  "regional_mapback": {
+    "mode": "FLOAT_BILINEAR",
+    "align_corners": false,
+    "uint8_quantisation": "FORBIDDEN",
+    "legacy_pil_restore": "FORBIDDEN",
+    "regional_resolution": 512,
+    "image_interpolation": "BILINEAR",
+    "input_scaling": "[0,1]"
+  },
+  "global_native_contract": {
+    "preprocessing": "canonical 512 evaluation",
+    "mapback": "FLOAT_BILINEAR",
+    "align_corners": false,
+    "threshold": 0.5,
+    "global_cache_available": "NO",
+    "cache_note": "data_cache/global is empty; the only populated cache (data_cache/phase13_predicted_roi) is a HISTORICAL_v2 run with a different checkpoint and 106 images",
+    "global_reinference_required_in_part1d_b": "YES",
+    "global_passes_required": 4,
+    "phase12_global_reproduction_tolerance_max_abs_dice": 0.0001
+  },
+  "retention": {
+    "label": "PRACTICAL_GT_FREE_ORACLE_BENEFIT_RETENTION",
+    "formula": "(D_pred - D_global) / (D_oracle - D_global)",
+    "valid_only_if": "delta_oracle > 0",
+    "clipped": "NO",
+    "negative_and_above_one_preserved": "YES",
+    "additional": "IoU gain retention; object-recall gain retention; FN-reduction retention; N/A when denominator invalid",
+    "new_gate_threshold": "NO"
+  },
+  "component_metrics": {
+    "connectivity": 8,
+    "foreground": "mask > 0",
+    "detected_iff": "predicted binary overlaps component by >=1 native pixel",
+    "recovery_event": "GLOBAL missed AND PREDICTED detected",
+    "lost_event": "GLOBAL detected AND PREDICTED missed",
+    "alternate_threshold": "FORBIDDEN"
+  },
+  "table_contracts": {
+    "case_model_rows": 412,
+    "component_model_rows": 608,
+    "model_summary_rows": 4
+  },
+  "gallery": {
+    "source": "reports/tables/phase13_part1c_gallery_selection.csv",
+    "cases": 16,
+    "label": "DETERMINISTIC_PREDICTION_INDEPENDENT_GALLERY_ONLY",
+    "new_selection": "FORBIDDEN"
+  },
+  "gate_boundary": {
+    "GO": "FORBIDDEN",
+    "REVISE_LOCALIZER": "FORBIDDEN",
+    "NO_GO": "FORBIDDEN",
+    "REGIONAL_INTEGRATION_GATE_AFTER_PHASE13": "NOT_DECIDED",
+    "gate_part": "PART_1E_SUPERVISOR_REVIEWED",
+    "retrofit_criteria_after_results": "FORBIDDEN"
+  },
+  "bindings": {
+    "part1c_case_proposals": {
+      "path": "reports/tables/phase13_part1c_best_checkpoint_case_proposals.csv",
+      "sha": "d25c44ec1361365e261d36458e86e707ad3bcb58cf000763a732605db0f856ed"
+    },
+    "part1c_proposals": {
+      "path": "reports/tables/phase13_part1c_best_checkpoint_proposals.csv",
+      "sha": "8c3151a3f1f9a56f0692c6ff2d2171472a777a56e99fa2e474aff8a3478a564a"
+    },
+    "part1c_component_coverage": {
+      "path": "reports/tables/phase13_part1c_best_checkpoint_component_coverage.csv",
+      "sha": "2a3623fecbc1fc5dd5a2c2a12fbd6d5e78fe2e123a9c45431ba53ca14e4e4b87"
+    },
+    "part1c_size_stratified": {
+      "path": "reports/tables/phase13_part1c_size_stratified_coverage.csv",
+      "sha": "147d3947d53fce5102ad290d8caa5f19ccb3eebcc61f75634fcb261780c792f9"
+    },
+    "gallery_selection": {
+      "path": "reports/tables/phase13_part1c_gallery_selection.csv",
+      "sha": "1fcbc0ae93e1b63ef3b7c3f045af740e9c353cb7635fd5c98e61d31e177d49d3"
+    },
+    "phase12_oracle_case_metrics": {
+      "path": "reports/tables/phase12_clean_v3_oracle_case_metrics.csv",
+      "sha": "080f158fb8b3e3552ac7854c6d9a116e11564bcefa9efdcdbb3511dba090b436"
+    },
+    "phase12_oracle_component_metrics": {
+      "path": "reports/tables/phase12_clean_v3_oracle_component_metrics.csv",
+      "sha": "d66933a3c2821d3ab9375eadb5c0540fea145edcf49b648064fe9aa4c460c753"
+    },
+    "phase12_oracle_geometry": {
+      "path": "reports/tables/phase12_clean_v3_oracle_geometry.csv",
+      "sha": "29326d5b9a3bf71add74d8743750511f146d8c4dfbd1dc5b04a5e1b647c37cc0"
+    },
+    "phase12_oracle_protocol_frozen": {
+      "path": "reports/audits/phase12_clean_v3_oracle_protocol_frozen.json",
+      "sha": "f5227bdd67ec780ccd4c520a9bf1576601164939d2ff4132680885bc35124a48"
+    },
+    "phase12_global_reproduction_gate": {
+      "path": "reports/tables/phase12_clean_v3_global_reproduction_gate.csv",
+      "sha": "7654d5b3eb4d18a62562453ccc3b8d9868b6d2b0ade871716163c59403dc91d8"
+    },
+    "part1b_final_best_integrity": {
+      "path": "reports/audits/phase13_clean_v3_localizer_final_best_checkpoint_integrity.json",
+      "sha": "6a4c5748ccded2758e6d7c530758d5fb2382de4c71fa7e7cd57e393f4ec6507e"
+    },
+    "part1c_evaluation_audit": {
+      "path": "reports/audits/phase13_part1c_best_checkpoint_proposal_evaluation.json",
+      "sha": "1c67ee6550f55bace37c31b7d532832cc4f5779bc81faad7c3a9c5d8f7ea0565"
+    },
+    "segmentation_checkpoints": {
+      "unet": {
+        "path": "checkpoints/phase9_kub_unet_baseline_seed42_512_clean_v3/best.pt",
+        "sha": "7b955ba86464a2fec2d569ecb6124de1fa9a4e66d0b5d58b267be9a280b4c2c0"
+      },
+      "attention_unet": {
+        "path": "checkpoints/phase10_kub_attention_unet_seed42_512_clean_v3/best.pt",
+        "sha": "a49b19d66e43b57ed082ea6efc0ac10bccf444277abd3540dc68612bf30b88b3"
+      },
+      "unetpp": {
+        "path": "checkpoints/phase10_kub_unetpp_seed42_512_clean_v3/best.pt",
+        "sha": "ec7eb13f32e43af27eab7fc617bd1a2a8fcce1d6651a1b4a3653f3e4d1283269"
+      },
+      "deeplabv3plus": {
+        "path": "checkpoints/phase10_kub_deeplabv3plus_seed42_512_clean_v3/best.pt",
+        "sha": "f519027ba1a3a4d6212d83fecd4379f61f71bc05b0751924b9660da08d597dad"
+      }
+    }
+  },
+  "phase12_oracle_dice_gains": {
+    "unet": 0.130542,
+    "attention_unet": 0.06979,
+    "unetpp": 0.086164,
+    "deeplabv3plus": 0.190121,
+    "all_positive": true,
+    "note": "computed from the frozen Phase-12 authoritative case table (GLOBAL_NATIVE vs ORACLE_FLOAT_GLOBAL_RETAINED mean Dice)"
+  },
+  "static_preflight": {
+    "module": "scripts/inference/phase13_part1d_predicted_region_inference.py",
+    "tests": "tests/test_phase13_part1d_a_static.py",
+    "tests_passed": 19,
+    "tests_failed": 0,
+    "model_construction": "NOT_PERFORMED",
+    "cuda_request": "NOT_PERFORMED",
+    "inference": "NOT_PERFORMED"
+  },
+  "counters": {
+    "training": 0,
+    "optimizer_creations": 0,
+    "model_constructions": 0,
+    "cuda_requests": 0,
+    "real_segmentation_forwards": 0,
+    "localizer_forwards": 0,
+    "proposal_generation": 0,
+    "regional_crop_inference": 0,
+    "test_reads": 0
+  }
+}

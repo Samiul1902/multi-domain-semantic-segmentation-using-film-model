@@ -1,0 +1,64 @@
+{
+  "audit": "phase12_clean_v3_oracle_protocol_candidate",
+  "created_utc": "2026-09-21T00:02:00.193786+00:00",
+  "manifest": "phase4_v3",
+  "taxonomy": "kub_size_clean_v3_v1",
+  "primary_population": "KUB FULL_FIELD VAL 103",
+  "model_scope": [
+    "UNet",
+    "Attention U-Net",
+    "UNet++",
+    "DeepLabV3+"
+  ],
+  "reference_model_selected": false,
+  "reference_model_note": "No sole reference model. UNet++ remains historical provenance only.",
+  "oracle_unit_candidate": "PER_COMPONENT_BBOX (carried forward from historical design)",
+  "connectivity": 8,
+  "bbox_space": "ORIGINAL_NATIVE",
+  "crop_margin_candidate": "round(margin * bbox_dim); primary 0.25 predeclared",
+  "crop_shape": "SQUARE",
+  "regional_resolution": 512,
+  "map_back_candidate": "restore in FLOAT (no uint8 quantisation); strip pad; place at clip coords",
+  "fusion_candidate": "pixelwise MAX of restored component probabilities, threshold after",
+  "global_outside_crop_candidate": "retain global outside crop; report crop-only AND global-retained",
+  "multi_component_candidate": "one square crop per native GT component",
+  "component_correspondence": "DEFINED",
+  "phase11_all_four_low_bridge": true,
+  "phase11_hard_case_bridge": true,
+  "regional_integration_gate_candidate": "CREATED",
+  "new_post_hoc_thresholds": 0,
+  "supervisor_decisions_required": [
+    {
+      "field": "mapping_back_rule",
+      "historical_v2": "restore prob to (side,side) bilinear; strip pad; place at clip coords",
+      "proposed_clean_v3": "restore prob to (side,side) bilinear in FLOAT (no uint8 quantisation); strip pad; place at clip coords",
+      "change_reason": "removes an undocumented precision loss; improves reproducibility"
+    },
+    {
+      "field": "global_outside_crop_rule",
+      "historical_v2": "zeros outside crop (global prediction NOT retained)",
+      "proposed_clean_v3": "PROPOSE: retain global prediction outside crop (regional-only inside), reported BOTH ways",
+      "change_reason": "historical zeros outside crop makes oracle mask crop-only; clean-v3 should separate the regional effect from the global baseline it is compared against"
+    },
+    {
+      "field": "model_scope",
+      "historical_v2": "UNet++ only",
+      "proposed_clean_v3": "ALL FOUR clean-v3 baselines",
+      "change_reason": "SR-1 requires architecture-general test"
+    }
+  ],
+  "protocol_diff_sha": "a89a2c07a00c01034fdc8fca5fb4b7fd8f5ff6b7e6e06cb3bb4787830216df4f",
+  "candidate_protocol_sha": "1697c04ee57967b2854c6d0709f9963261c6fc5a3148011c1ab27a9a110ee04f",
+  "correspondence_sha": "b20f33acdab8c1e63aacdbd01df9d32ab336b94e5fc9860be1cc6dd95665c0ad",
+  "metric_contract_sha": "91a310923589f8197df6c18112625939c1ae4c5058ca5218799ab5ca35c68e4d",
+  "viz_protocol_sha": "d599f482296f6bc80768c595c73c9bf0c11de50b41c44f3c84b5d4ee145296ff",
+  "gate_candidate_sha": "7e0a51fd355743381046967bfd2169bb97e3119f3520fe3998e2e53aa2cdec6f",
+  "cohort_bridge_sha": "f932b42b938ded723ff604d1c1c4e6924db2f577c76279a48723a33a5f8e5000",
+  "clean_oracle_inference_passes": 0,
+  "training_epochs": 0,
+  "optimizer_steps": 0,
+  "test_reads": 0,
+  "phase13_started": false,
+  "ra_medfilm_implemented": false,
+  "status": "READY_FOR_SUPERVISOR_ORACLE_PROTOCOL_FREEZE"
+}

@@ -1,0 +1,23 @@
+{
+  "artifact": "H3_PROPOSAL_SUPPLY_UNCHANGED_AXES_MATRIX",
+  "generated_utc": "2026-09-25T09:30:00Z",
+  "intervention": "A_TARGET_SUPPORT_REDESIGN",
+  "ONLY_CHANGED_AXIS": "localizer training-target support (size-adaptive sigma in make_gaussian_heatmap)",
+  "matrix": [
+    {"axis": "dataset", "value": "phase4_v3 FULL_FIELD (train 770 / val 103)", "state": "UNCHANGED", "bound_sha": {"train.csv": "28702fc3a5ff8b950db372f03232d335e3a30b1fc2f21db7cd8c066055826ed6", "val.csv": "082c80b2bda63fd73f371f109c34643adf01edaead921643fb2e44993ba53315"}},
+    {"axis": "view_type_inventory", "value": "reports/tables/kub_view_type_inventory.csv", "state": "UNCHANGED", "bound_sha": "e9fa31fd84b366239e981e803283beccf3812c4941bafc9bb3c21d1e4bafac61"},
+    {"axis": "localizer_input", "value": "resolution 512, heatmap_resolution 128, convert('L'), 1ch", "state": "UNCHANGED", "bound_sha": {"transforms.py": "8a8b636b58843d36810ebf5f3527a8ca1287b93483b962d5cf8e323a92566223"}},
+    {"axis": "localizer_architecture", "value": "KUBLocalizer base_channels=16, heatmap_resolution=128, CenterNetFocalLoss(alpha=2.0,beta=4.0)", "state": "UNCHANGED", "bound_sha": {"factory.py": "3377bbe021d7bd13c07350ff5c4927705c2d67f93fa99c388caf2cc79ef4086d", "config": "922ff26916c1f7ebea0ea526fbaa6adbb9a7419f1f08b16d33ed5df049c4c8bf"}},
+    {"axis": "training_script", "value": "scripts/training/train_phase13b_localizer.py", "state": "UNCHANGED (reused)", "bound_sha": "5985b9eb2fe43018babbd88004bf7e5b99d2783dcfa78c7404591a02bdcb555a"},
+    {"axis": "optimizer_scheduler_seed", "value": "same as Phase-13B (Adam/AdamW + scheduler, seed 42)", "state": "UNCHANGED"},
+    {"axis": "proposal_extraction", "value": "threshold=0.10, margin=0.20, top_k=5, nms_iou=0.30", "state": "UNCHANGED", "bound_sha": {"predicted_roi.py": "bd9f8be84595f49ff1e25e6052b548488fb6ae6a48aa7adbc78b880fb8f2d4e7", "learned_roi_clean_v3.py": "613e03d6e4dccccce2b743974dfaccd8a29a2c0932048f0af3d37a6d2a0241bf"}},
+    {"axis": "fusion_rule", "value": "MAX probability replacement in proposal union", "state": "UNCHANGED"},
+    {"axis": "downstream_refiner", "value": "Phase-14 regional refiner epoch 56", "state": "UNCHANGED", "bound_sha": "2e09e3a9c39c731687db1a9fef0c80881ed6235e4cda070bb4b8b382caa45daa"},
+    {"axis": "global_baseline", "value": "Phase-10 UNet++ epoch 70", "state": "UNCHANGED", "bound_sha": "ec7eb13f32e43af27eab7fc617bd1a2a8fcce1d6651a1b4a3653f3e4d1283269"},
+    {"axis": "downstream_eval", "value": "scripts/evaluation/evaluate_phase14_clean_v3_diagnostic.py", "state": "UNCHANGED", "bound_sha": "53958eb1601a15f29b6dc1635f802f87af88f2eef3b3268320ad471b92ef1a38"},
+    {"axis": "test_split", "value": "CLOSED", "state": "UNCHANGED (0 reads)"},
+    {"axis": "external_data", "value": "CLOSED", "state": "UNCHANGED (0 reads)"},
+    {"axis": "phase15", "value": "NOT_STARTED_AND_NOT_AUTHORIZED", "state": "UNCHANGED"}
+  ],
+  "note": "Exactly ONE scientific axis changes (localizer target support). Every other axis is frozen and SHA-bound to preserve single-axis isolation."
+}

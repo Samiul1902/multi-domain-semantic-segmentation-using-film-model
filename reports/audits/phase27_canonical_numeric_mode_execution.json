@@ -1,0 +1,50 @@
+{
+ "artifact": "phase27_canonical_numeric_mode_execution",
+ "phase": "27",
+ "classification": "PHASE27_CANONICAL_MULTIDOMAIN_PRESERVATION_EXECUTION",
+ "method": "RA-MedFiLM-BARR",
+ "execution_phase": true,
+ "device": "cuda",
+ "canonical_requires_cuda": true,
+ "autocast_enabled": true,
+ "autocast_dtype": "float16",
+ "torch_no_grad": true,
+ "model_eval": true,
+ "input_dtype": "float32",
+ "parameter_dtype": "float32",
+ "probability_output_dtype": "float32",
+ "probability_storage_dtype": "float16",
+ "batch_size": 8,
+ "sample_ordering": "(dataset asc, sample_id asc)",
+ "provenance_audit": {
+  "path": "reports/audits/phase27_numeric_inference_mode_provenance_audit_v1_1.json",
+  "exists": true,
+  "sha256": "89dbe93016fc7948a49597a4e0acb964909cf52d9ffda46ab99a207cd1415043",
+  "expected_sha256": null,
+  "match": true
+ },
+ "autocast_rule": {
+  "path": "reports/audits/phase27_autocast_rule_resolution.json",
+  "exists": true,
+  "sha256": "d0e35d183fb4f1a340863d29ca17d457a5f49f272824c636ea90be7fcbfac68a",
+  "expected_sha256": null,
+  "match": true
+ },
+ "reproducibility_contract": {
+  "path": "reports/audits/phase27_reproducibility_contract_v1_1.json",
+  "exists": true,
+  "sha256": "daf9e93b9bd23fb131b9918c3dd3b9c5620440406ca5c6eac2f4e01507b6937c",
+  "expected_sha256": null,
+  "match": true
+ },
+ "checks": {
+  "S5::autocast_case_a": true,
+  "S5::autocast_enabled_frozen": true,
+  "S5::autocast_dtype_fp16": true,
+  "S5::device_cuda": true,
+  "S5::batch_size_8": true,
+  "S5::storage_fp16": true
+ },
+ "all_pass": true,
+ "terminal_on_failure": "PHASE27_EXECUTION_BLOCKED__NUMERIC_MODE_UNDEFINED"
+}

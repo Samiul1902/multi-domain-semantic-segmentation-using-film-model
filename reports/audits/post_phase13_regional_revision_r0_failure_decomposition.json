@@ -1,0 +1,400 @@
+{
+  "artifact": "POST_PHASE13_REGIONAL_REVISION_R0_FAILURE_DECOMPOSITION",
+  "status": "PASS",
+  "created_utc": "2026-09-22T05:52:00Z",
+  "branch": "SEPARATE_POST_PHASE13_REVISION_BRANCH",
+  "phase13_evidence_reopened_or_rewritten": "NO",
+  "analysis_only": "YES",
+  "bindings": {
+    "final_gate": {
+      "path": "reports/audits/phase13_regional_integration_gate_after_phase13.json",
+      "sha": "4436e6a5e13b99d422cfab1668c3f3f2d43993b4c43b19786308d106185a6c75",
+      "expected": "4436e6a5e13b99d422cfab1668c3f3f2d43993b4c43b19786308d106185a6c75",
+      "match": true
+    },
+    "part1d_b_evaluation": {
+      "path": "reports/audits/phase13_part1d_b_predicted_region_evaluation.json",
+      "sha": "9a9838ac64af5109c13e0625066e6b891068c93ef5b726f89f03a65e4828ad28",
+      "expected": "9a9838ac64af5109c13e0625066e6b891068c93ef5b726f89f03a65e4828ad28",
+      "match": true
+    },
+    "part1c_proposals": {
+      "path": "reports/tables/phase13_part1c_best_checkpoint_proposals.csv",
+      "sha": "8c3151a3f1f9a56f0692c6ff2d2171472a777a56e99fa2e474aff8a3478a564a",
+      "expected": "8c3151a3f1f9a56f0692c6ff2d2171472a777a56e99fa2e474aff8a3478a564a",
+      "match": true
+    },
+    "part1c_case_proposals": {
+      "path": "reports/tables/phase13_part1c_best_checkpoint_case_proposals.csv",
+      "sha": "d25c44ec1361365e261d36458e86e707ad3bcb58cf000763a732605db0f856ed",
+      "expected": "d25c44ec1361365e261d36458e86e707ad3bcb58cf000763a732605db0f856ed",
+      "match": true
+    },
+    "part1c_component_coverage": {
+      "path": "reports/tables/phase13_part1c_best_checkpoint_component_coverage.csv",
+      "sha": "2a3623fecbc1fc5dd5a2c2a12fbd6d5e78fe2e123a9c45431ba53ca14e4e4b87",
+      "expected": "2a3623fecbc1fc5dd5a2c2a12fbd6d5e78fe2e123a9c45431ba53ca14e4e4b87",
+      "match": true
+    },
+    "part1d_b_case_model": {
+      "path": "reports/tables/phase13_part1d_predicted_region_case_model_metrics.csv",
+      "sha": "53e93982c0235e32568e01fbddbdd858d205077e3e0a50fd69bef992454f2658",
+      "expected": "53e93982c0235e32568e01fbddbdd858d205077e3e0a50fd69bef992454f2658",
+      "match": true
+    },
+    "part1d_b_component_model": {
+      "path": "reports/tables/phase13_part1d_predicted_region_component_model_metrics.csv",
+      "sha": "f82e0632898467d32916eb0b71a9fff75818548665477052e2db9b365d313c9d",
+      "expected": "f82e0632898467d32916eb0b71a9fff75818548665477052e2db9b365d313c9d",
+      "match": true
+    }
+  },
+  "inputs": {
+    "proposals_analyzed": 494,
+    "cases": 103,
+    "case_model_rows": 412,
+    "component_model_rows": 608,
+    "components": 152
+  },
+  "s5_proposal_score_rank_diagnostics": {
+    "table": "reports/tables/post_phase13_r0_proposal_score_rank_diagnostics.csv",
+    "per_rank": [
+      {
+        "proposal_rank": 1,
+        "proposal_count": 103,
+        "bbox_any_hit_count": 35,
+        "bbox_any_hit_rate": 0.33980582524271846,
+        "pixel_any_hit_count": 35,
+        "pixel_any_hit_rate": 0.33980582524271846,
+        "score_mean": 0.12506329810735092,
+        "score_median": 0.1250653713941574,
+        "score_q25": 0.1250653713941574,
+        "score_q75": 0.1250653713941574,
+        "score_min": 0.1248518228530883,
+        "score_max": 0.1250653713941574,
+        "hit_proposal_score_mean": 0.1250592700072697,
+        "hit_proposal_score_median": 0.1250653713941574,
+        "miss_proposal_score_mean": 0.1250653713941574,
+        "miss_proposal_score_median": 0.1250653713941574,
+        "saturated_count": 102,
+        "saturated_fraction": 0.9902912621359223,
+        "mean_proposal_area_fraction": 0.0014960415675863933
+      },
+      {
+        "proposal_rank": 2,
+        "proposal_count": 103,
+        "bbox_any_hit_count": 41,
+        "bbox_any_hit_rate": 0.39805825242718446,
+        "pixel_any_hit_count": 41,
+        "pixel_any_hit_rate": 0.39805825242718446,
+        "score_mean": 0.12465546569488581,
+        "score_median": 0.1250653713941574,
+        "score_q25": 0.1250653713941574,
+        "score_q75": 0.1250653713941574,
+        "score_min": 0.1021254807710647,
+        "score_max": 0.1250653713941574,
+        "hit_proposal_score_mean": 0.12506016289315572,
+        "hit_proposal_score_median": 0.1250653713941574,
+        "miss_proposal_score_mean": 0.12438784335409442,
+        "miss_proposal_score_median": 0.1250653713941574,
+        "saturated_count": 91,
+        "saturated_fraction": 0.883495145631068,
+        "mean_proposal_area_fraction": 0.0012600363827801895
+      },
+      {
+        "proposal_rank": 3,
+        "proposal_count": 102,
+        "bbox_any_hit_count": 18,
+        "bbox_any_hit_rate": 0.17647058823529413,
+        "pixel_any_hit_count": 18,
+        "pixel_any_hit_rate": 0.17647058823529413,
+        "score_mean": 0.12304318002333828,
+        "score_median": 0.1250653713941574,
+        "score_q25": 0.12415993399918072,
+        "score_q75": 0.1250653713941574,
+        "score_min": 0.100524865090847,
+        "score_max": 0.1250653713941574,
+        "hit_proposal_score_mean": 0.1250121183693409,
+        "hit_proposal_score_median": 0.1250653713941574,
+        "miss_proposal_score_mean": 0.12262126466348058,
+        "miss_proposal_score_median": 0.1250653713941574,
+        "saturated_count": 67,
+        "saturated_fraction": 0.6568627450980392,
+        "mean_proposal_area_fraction": 0.0010672757894789147
+      },
+      {
+        "proposal_rank": 4,
+        "proposal_count": 96,
+        "bbox_any_hit_count": 15,
+        "bbox_any_hit_rate": 0.15625,
+        "pixel_any_hit_count": 14,
+        "pixel_any_hit_rate": 0.14583333333333334,
+        "score_mean": 0.1222301605157554,
+        "score_median": 0.12501196563243866,
+        "score_q25": 0.1227597054094076,
+        "score_q75": 0.1250653713941574,
+        "score_min": 0.1017678454518318,
+        "score_max": 0.1250653713941574,
+        "hit_proposal_score_mean": 0.1245762040572507,
+        "hit_proposal_score_median": 0.1250653713941574,
+        "miss_proposal_score_mean": 0.12182961649647571,
+        "miss_proposal_score_median": 0.1248518228530883,
+        "saturated_count": 48,
+        "saturated_fraction": 0.5,
+        "mean_proposal_area_fraction": 0.0006192010594272584
+      },
+      {
+        "proposal_rank": 5,
+        "proposal_count": 90,
+        "bbox_any_hit_count": 14,
+        "bbox_any_hit_rate": 0.15555555555555556,
+        "pixel_any_hit_count": 14,
+        "pixel_any_hit_rate": 0.15555555555555556,
+        "score_mean": 0.12071983441710472,
+        "score_median": 0.1233656257390976,
+        "score_q25": 0.11899846605956547,
+        "score_q75": 0.1250653713941574,
+        "score_min": 0.1003484055399894,
+        "score_max": 0.1250653713941574,
+        "hit_proposal_score_mean": 0.12497418001294136,
+        "hit_proposal_score_median": 0.1250653713941574,
+        "miss_proposal_score_mean": 0.11993613917576634,
+        "miss_proposal_score_median": 0.1225757263600826,
+        "saturated_count": 29,
+        "saturated_fraction": 0.32222222222222224,
+        "mean_proposal_area_fraction": 0.00054906172708129
+      }
+    ],
+    "gt_hit_proposals": 122,
+    "gt_miss_proposals": 372,
+    "gt_miss_fraction": 0.7530364372469636,
+    "note": "no threshold tuned here; no threshold called optimal"
+  },
+  "s6_score_separability": {
+    "roc_auc_score_to_pixel_hit": 0.6706107879428873,
+    "pr_auc_score_to_pixel_hit": 0.3058191581393755,
+    "base_rate": 0.24696356275303644,
+    "pr_auc_lift_over_base_rate": 1.238316919023373,
+    "roc_auc_rank_to_pixel_hit": 0.6344306363476115,
+    "hit_score_mean": 0.1249874150533168,
+    "miss_score_mean": 0.12263938952838221,
+    "hit_score_median": 0.1250653713941574,
+    "miss_score_median": 0.1250653713941574,
+    "score_min": 0.1003484055399894,
+    "score_max": 0.1250653713941574,
+    "score_range": 0.024716965854168008,
+    "score_iqr": 0.0005333125591278076,
+    "unique_score_values": 76,
+    "saturated_count": 337,
+    "saturated_fraction": 0.6821862348178138,
+    "saturated_pixel_hit_rate": 0.3353115727002967,
+    "below_max_pixel_hit_rate": 0.05732484076433121,
+    "interpretation": "DIAGNOSTIC_ONLY__NOT_A_DEPLOYMENT_PERFORMANCE_CLAIM",
+    "threshold_chosen_from_labels": "NO",
+    "rank_conditional_pixel_hit_rates": {
+      "1": 0.33980582524271846,
+      "2": 0.39805825242718446,
+      "3": 0.17647058823529413,
+      "4": 0.14583333333333334,
+      "5": 0.15555555555555556
+    },
+    "score_saturation_finding": "The proposal score is near-degenerate: 337/494 (68.22%) sit exactly at the maximum 0.125065, the full range is only 0.024717 and the IQR is 0.000533. The score is therefore saturated, yet still informative: the saturated group hits GT at 0.3353 versus 0.0573 for the below-maximum group (5.85x). ROC-AUC 0.670611 and PR-AUC 0.305819 against a 0.246964 base rate (lift 1.24x). Reported strictly as diagnostics, not as deployment-performance claims; no threshold was chosen from labels here.",
+    "rank_ordering_caveat": "Because 102/103 rank-1 and 91/103 rank-2 proposals are saturated, ordering WITHIN the saturated group is effectively a tie-break. Rank-2 has a higher hit rate (0.398058) than rank-1 (0.339806), which is consistent with arbitrary tie ordering rather than a meaningful confidence ordering."
+  },
+  "s6_floor_tradeoff_label_blind": {
+    "table_note": "floors q10/q25/max are MARGINAL score quantiles computed WITHOUT GT labels",
+    "floors": [
+      {
+        "floor_label": "baseline_0.10",
+        "floor_value": 0.1,
+        "accepted": 494,
+        "accepted_hits": 122,
+        "accepted_off_target": 372,
+        "rejected": 0,
+        "hits_lost": 0,
+        "off_target_removed": 0,
+        "hits_lost_fraction_of_all_hits": 0.0,
+        "off_target_removed_fraction": 0.0,
+        "floor_derivation": "FROZEN_PROPOSAL_THRESHOLD"
+      },
+      {
+        "floor_label": "q10",
+        "floor_value": 0.11947,
+        "accepted": 444,
+        "accepted_hits": 122,
+        "accepted_off_target": 322,
+        "rejected": 50,
+        "hits_lost": 0,
+        "off_target_removed": 50,
+        "hits_lost_fraction_of_all_hits": 0.0,
+        "off_target_removed_fraction": 0.13440860215053763,
+        "floor_derivation": "MARGINAL_SCORE_QUANTILE_WITHOUT_GT_LABELS"
+      },
+      {
+        "floor_label": "q25",
+        "floor_value": 0.124532,
+        "accepted": 372,
+        "accepted_hits": 118,
+        "accepted_off_target": 254,
+        "rejected": 122,
+        "hits_lost": 4,
+        "off_target_removed": 118,
+        "hits_lost_fraction_of_all_hits": 0.03278688524590164,
+        "off_target_removed_fraction": 0.3172043010752688,
+        "floor_derivation": "MARGINAL_SCORE_QUANTILE_WITHOUT_GT_LABELS"
+      },
+      {
+        "floor_label": "max",
+        "floor_value": 0.125065,
+        "accepted": 337,
+        "accepted_hits": 113,
+        "accepted_off_target": 224,
+        "rejected": 157,
+        "hits_lost": 9,
+        "off_target_removed": 148,
+        "hits_lost_fraction_of_all_hits": 0.07377049180327869,
+        "off_target_removed_fraction": 0.3978494623655914,
+        "floor_derivation": "MARGINAL_SCORE_QUANTILE_WITHOUT_GT_LABELS"
+      }
+    ],
+    "finding": "Every marginal-derived floor removes far more off-target proposals than GT-hit proposals: q10 (0.119470) rejects 50 off-target proposals and 0 hits; q25 (0.124532) rejects 118 off-target and 4 hits (3.28% of all hits); the marginal maximum (0.125065) rejects 148 off-target (39.78% of all off-target) and 9 hits (7.38%). This is the strongest proposal-level evidence that selective acceptance can reduce off-target intervention at low hit cost.",
+    "gt_labels_used_to_change_the_family": "NO"
+  },
+  "s7_case_off_target_burden": {
+    "table": "reports/tables/post_phase13_r0_case_proposal_burden.csv",
+    "rows": 103,
+    "summary": {
+      "proposal_count_mean": 4.796116504854369,
+      "gt_hit_proposal_count_mean": 1.1844660194174756,
+      "gt_miss_proposal_count_mean": 3.6116504854368934,
+      "fraction_proposals_off_target_mean": 0.7495145631067959,
+      "proposal_union_area_fraction_mean": 0.004846047236646169,
+      "off_target_proposal_union_area_fraction_mean": 0.00241339410761197,
+      "off_target_share_of_union_area_mean": 0.572406295392623,
+      "top_proposal_score_mean": 0.12506329810735092,
+      "minimum_accepted_score_under_old_policy": 0.1
+    },
+    "new_inference": "NONE",
+    "off_target_union_area_derivation": "DETERMINISTIC from frozen clip geometry + frozen GT-hit flags"
+  },
+  "s8_proposal_to_segmentation_linkage": {
+    "table": "reports/tables/post_phase13_r0_proposal_to_segmentation_linkage.csv",
+    "scatter_table": "reports/tables/post_phase13_r0_proposal_to_segmentation_scatter.csv",
+    "spearman_rho": {
+      "off_target_support_fraction__vs__fp_pixel_delta": {
+        "unet": 0.6281777845115156,
+        "attention_unet": 0.6372084987142619,
+        "unetpp": 0.6080421735486347,
+        "deeplabv3plus": 0.5917909019081158
+      },
+      "gt_miss_proposal_count__vs__fp_pixel_delta": {
+        "unet": 0.22075163616950616,
+        "attention_unet": 0.19043004713361208,
+        "unetpp": 0.09595320043272175,
+        "deeplabv3plus": 0.1534738920076316
+      },
+      "gt_miss_proposal_count__vs__predicted_minus_global_dice": {
+        "unet": -0.009822716190604309,
+        "attention_unet": -0.06343031077023853,
+        "unetpp": -0.09212425511027969,
+        "deeplabv3plus": 0.08138217139444641
+      },
+      "off_target_support_fraction__vs__predicted_minus_global_dice": {
+        "unet": -0.06866191530700594,
+        "attention_unet": -0.17284391751029277,
+        "unetpp": -0.16559929177715615,
+        "deeplabv3plus": -0.05061900739695758
+      },
+      "total_proposal_count__vs__fp_pixel_delta": {
+        "unet": 0.2509106720825387,
+        "attention_unet": 0.2520337307600661,
+        "unetpp": 0.2613101275770592,
+        "deeplabv3plus": 0.25589066108154074
+      },
+      "top_proposal_score__vs__predicted_minus_global_dice": {
+        "unet": 0.1165579299854731,
+        "attention_unet": 0.10656725027243254,
+        "unetpp": 0.12321838312750011,
+        "deeplabv3plus": -0.10323702370141903
+      }
+    },
+    "dominant_association": "off_target_support_fraction is the strongest descriptor of the FP burden, rho = 0.5918 to 0.6372, positive and consistent across all four architectures. Total proposal count is a weak positive descriptor (0.2509 to 0.2613). GT-miss COUNT is only weakly associated with FP delta (0.0960 to 0.2208) and essentially unassociated with Dice delta (-0.0921 to 0.0814). Top proposal score is unassociated with Dice delta (-0.1032 to 0.1232).",
+    "interpretation_language": "ASSOCIATION__DESCRIPTIVE_LINKAGE",
+    "causal_claim": "NONE",
+    "p_value_claimed": "NO"
+  },
+  "s9_improved_vs_worsened_context": {
+    "table": "reports/tables/post_phase13_r0_improved_vs_worsened_context.csv",
+    "findings": "Improved cases carry MORE GT-hit proposals than worsened cases (1.60/2.20/1.75/1.73 vs 1.14/1.13/1.14/1.12) and a LARGER proposal union area (0.00718/0.00810/0.00709/0.00663 vs 0.00460/0.00468/0.00466/0.00463), while the GT-miss proposal count is similar (3.40/2.80/3.25/3.27 vs 3.63/3.65/3.64/3.65). Improved cases have LOWER Part-1C bbox_covered90 fraction (0.450/0.200/0.250/0.318 vs 0.629/0.633/0.642/0.647), i.e. improvement concentrates where the GLOBAL path was already struggling. FP delta is higher in improved cases.",
+    "interpretation": "DIAGNOSTIC_ONLY__NO_NEW_GATE_SUBGROUP__NO_CLASSIFIER_DEFINED",
+    "implication_for_revision": "Improvement and FP burden both scale with intervention coverage, so a policy that reduces accepted proposals trades recovery against FP cost. This is precisely the trade-off the bounded R1 policy ablation must measure."
+  },
+  "s10_component_recovery_context": {
+    "table": "reports/tables/post_phase13_r0_component_recovery_context.csv",
+    "component_losses_in_frozen_phase13": {
+      "unet": 0,
+      "attention_unet": 0,
+      "unetpp": 0,
+      "deeplabv3plus": 0
+    },
+    "recovered_components_bbox_any_overlap_rate": {
+      "unet": 1.0,
+      "attention_unet": 1.0,
+      "unetpp": 1.0,
+      "deeplabv3plus": 1.0
+    },
+    "finding": "Every recovered component (16/9/14/16) had bbox_any_overlap_rate 1.000, i.e. component recovery requires at least one proposal to overlap the component. Component losses are 0 for all four architectures and must NOT be erased by the FP failure. TINY recoveries 9/4/5/8; SMALL 4/2/3/3; MEDIUM 2/3/5/4; LARGE 1/0/1/1.",
+    "favourable_evidence_preserved": "YES"
+  },
+  "s11_hypothesis_hierarchy": {
+    "H1_SELECTIVE_PROPOSAL_ACCEPTANCE_ABSTENTION": {
+      "rank": 1,
+      "status": "SELECTED_AS_FIRST_REVISION",
+      "changed_axis": "WHICH_ALREADY_PRODUCED_PROPOSALS_ARE_ACCEPTED_FOR_REGIONAL_INTERVENTION",
+      "held_constant": [
+        "localizer weights",
+        "segmentation checkpoints",
+        "proposal geometry generation",
+        "margin 0.20",
+        "NMS 0.30",
+        "regional crop/restore",
+        "regional replacement fusion",
+        "segmentation threshold 0.5"
+      ],
+      "zero_acceptance_allowed": "YES"
+    },
+    "H2_LOCALIZER_RETRAINING_SELECTION_REDESIGN": {
+      "rank": 2,
+      "status": "NOT_SELECTED__CONDITIONAL_ON_H1",
+      "motivation": "the existing localizer was selected primarily for recall and intervention area rather than deployable proposal precision",
+      "new_loss_designed": "NO"
+    },
+    "H3_FUSION_ROUTING_REDESIGN": {
+      "rank": 3,
+      "status": "NOT_SELECTED__CONDITIONAL_ON_H1_H2",
+      "concept": "adaptive / confidence-aware regional routing",
+      "implemented_or_frozen": "NO"
+    },
+    "simultaneous_change": "FORBIDDEN"
+  },
+  "s18_conclusion": {
+    "choice": "H1_FIRST_SELECTIVE_ACCEPTANCE",
+    "why_minimum_justified_change": "H1 is the only axis that is simultaneously (a) directly implicated by the evidence, (b) achievable with ZERO training, ZERO checkpoint change, ZERO geometry change and ZERO fusion change, and (c) reversible. The frozen evidence shows the failure is an intervention-precision failure, not a representation failure: 122 GT-hit proposals already exist and 27 components are recovered with 0 losses, so the localizer does produce usable targets. What is missing is a mechanism to decline the 372 off-target proposals, and the off-target support fraction is the strongest descriptor of the FP burden (rho 0.5918-0.6372, consistent across all four architectures). The score, although saturated, retains moderate discriminative information (ROC-AUC 0.670611), and every label-blind marginal floor removes strictly more off-target than GT-hit proposals (q10 removes 50 off-target and 0 hits). H2 would change the model weights before establishing whether the existing weights are the limiting factor, and H3 would confound the analysis by changing the fusion rule while the accept/reject policy is still untested. H1 is therefore the lowest-complexity intervention capable of testing a credible explanation of the Phase-13 failure.",
+    "this_is_a_revision_development_ordering_decision": "YES",
+    "is_go_no_go_or_promotion": "NO"
+  },
+  "counters": {
+    "training": 0,
+    "optimizer": 0,
+    "model_constructions": 0,
+    "cuda_requests": 0,
+    "localizer_forwards": 0,
+    "segmentation_forwards": 0,
+    "regional_crop_forwards": 0,
+    "proposal_regeneration": 0,
+    "checkpoint_writes": 0,
+    "test_reads": 0,
+    "external_test_reads": 0
+  },
+  "next_action": "WAIT_FOR_SUPERVISOR_REVISION_R1_AUTHORIZATION"
+}

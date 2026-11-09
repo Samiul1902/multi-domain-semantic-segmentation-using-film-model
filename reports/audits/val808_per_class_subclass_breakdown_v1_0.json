@@ -1,0 +1,158 @@
+{
+ "artifact": "val808_per_class_subclass_breakdown",
+ "schema_version": "1.0",
+ "classification": "DERIVED_READONLY_ANALYSIS__NOT_A_NEW_SCIENTIFIC_ENDPOINT",
+ "method": "RA-MedFiLM-BARR",
+ "split": "VAL_DEVELOPMENT_808",
+ "test_accessed": false,
+ "router_holdout_accessed": false,
+ "training_performed": false,
+ "inference_performed": false,
+ "source": "data_cache\\phase29_phase_d_canonical\\phase29_phase_d_three_seed_val808_delta_dice.npz",
+ "source_sha256": "1bcc4b65165fcc233ca3eec81610ce4c99cd6bbb6b3953cc41b544c028776542",
+ "dice_semantics": "per-sample binary Dice at threshold 0.50; macro = unweighted mean over the 4 domains",
+ "fidelity_checks": {
+  "ISIC": {
+   "n": 357,
+   "global_recomputed": 0.8971889499163059,
+   "global_frozen": 0.8971889499163059,
+   "global_abs_diff": 0.0,
+   "seed42_final_recomputed": 0.8980801299180301,
+   "seed42_final_frozen": 0.8980801299180301,
+   "seed42_final_abs_diff": 0.0
+  },
+  "BUSI": {
+   "n": 84,
+   "global_recomputed": 0.8588214375680574,
+   "global_frozen": 0.8588214375680574,
+   "global_abs_diff": 0.0,
+   "seed42_final_recomputed": 0.8589126018391846,
+   "seed42_final_frozen": 0.8589126018391846,
+   "seed42_final_abs_diff": 0.0
+  },
+  "KVASIR": {
+   "n": 87,
+   "global_recomputed": 0.8202466114984852,
+   "global_frozen": 0.8202466114984852,
+   "global_abs_diff": 0.0,
+   "seed42_final_recomputed": 0.8206507619743234,
+   "seed42_final_frozen": 0.8206507619743234,
+   "seed42_final_abs_diff": 0.0
+  },
+  "KUB": {
+   "n": 280,
+   "global_recomputed": 0.7640588414471431,
+   "global_frozen": 0.7640588414471431,
+   "global_abs_diff": 0.0,
+   "seed42_final_recomputed": 0.771512927778779,
+   "seed42_final_frozen": 0.771512927778779,
+   "seed42_final_abs_diff": 0.0
+  }
+ },
+ "class": {
+  "ISIC": {
+   "n": 357,
+   "dice_global": 0.8971889499163059,
+   "dice_seed42": 0.8980801299180301,
+   "dice_seed123": 0.8985104339508915,
+   "dice_seed3407": 0.8980236516519491,
+   "dice_final_mean": 0.8982047385069568,
+   "seed_spread": 0.0004867822989423898,
+   "delta_mean": 0.001015788590650879
+  },
+  "BUSI": {
+   "n": 84,
+   "dice_global": 0.8588214375680574,
+   "dice_seed42": 0.8589126018391846,
+   "dice_seed123": 0.8589452875239157,
+   "dice_seed3407": 0.8589864936739456,
+   "dice_final_mean": 0.8589481276790153,
+   "seed_spread": 7.389183476103067e-05,
+   "delta_mean": 0.0001266901109578944
+  },
+  "KVASIR": {
+   "n": 87,
+   "dice_global": 0.8202466114984852,
+   "dice_seed42": 0.8206507619743234,
+   "dice_seed123": 0.8223929055346757,
+   "dice_seed3407": 0.8199829527763677,
+   "dice_final_mean": 0.8210088734284556,
+   "seed_spread": 0.0024099527583080205,
+   "delta_mean": 0.0007622619299704203
+  },
+  "KUB": {
+   "n": 280,
+   "dice_global": 0.7640588414471431,
+   "dice_seed42": 0.771512927778779,
+   "dice_seed123": 0.774018975654302,
+   "dice_seed3407": 0.7747979474075282,
+   "dice_final_mean": 0.7734432836135364,
+   "seed_spread": 0.003285019628749164,
+   "delta_mean": 0.009384442166393336
+  },
+  "MACRO": {
+   "n": 808,
+   "dice_seed42": 0.8372891053775793,
+   "dice_seed123": 0.8384669006659462,
+   "dice_seed3407": 0.8379477613774475,
+   "dice_final_mean": 0.837901255806991,
+   "seed_spread": 0.001177795288366923,
+   "dice_global": 0.8350789601074978,
+   "delta_mean": 0.002822295699493216
+  }
+ },
+ "subclass": {
+  "ISIC": {
+   "subclass_available": false,
+   "note": "phase4_v3 manifest carries category=NOT_AVAILABLE for this domain"
+  },
+  "BUSI": {
+   "subclass_available": false,
+   "note": "phase4_v3 manifest carries category=NOT_AVAILABLE for this domain"
+  },
+  "KVASIR": {
+   "subclass_available": false,
+   "note": "phase4_v3 manifest carries category=NOT_AVAILABLE for this domain"
+  },
+  "KUB": {
+   "subclass_available": true,
+   "subclasses": {
+    "Bladder_Stone": {
+     "n": 144,
+     "dice_global": 0.7339426565891879,
+     "dice_seed42": 0.7450420364283916,
+     "dice_seed123": 0.7502060937690923,
+     "dice_seed3407": 0.750454534255438,
+     "dice_final_mean": 0.7485675548176407,
+     "seed_spread": 0.005412497827046336,
+     "delta_mean": 0.01462489822845281
+    },
+    "Kidney_Stone": {
+     "n": 112,
+     "dice_global": 0.7963816679907387,
+     "dice_seed42": 0.7987129237905924,
+     "dice_seed123": 0.797952438908405,
+     "dice_seed3407": 0.799641819146036,
+     "dice_final_mean": 0.7987690606150112,
+     "seed_spread": 0.0016893802376310996,
+     "delta_mean": 0.0023873926242724552
+    },
+    "Ureteric_Stone": {
+     "n": 24,
+     "dice_global": 0.793916093391427,
+     "dice_seed42": 0.8034049611593068,
+     "dice_seed123": 0.8052067717797463,
+     "dice_seed3407": 0.8049203582070309,
+     "dice_final_mean": 0.8045106970486947,
+     "seed_spread": 0.0018018106204394924,
+     "delta_mean": 0.01059460365726772
+    }
+   }
+  }
+ },
+ "notes": [
+  "seed42 == the canonical Phase-27 preservation execution; seeds 123/3407 == Phase-29 three-seed replication.",
+  "Only KUB carries a subclass label in phase4_v3; ISIC/BUSI/KVASIR have category=NOT_AVAILABLE.",
+  "delta = final policy (A8/C9) minus its own GlobalMedFiLM global reference; NOT a delta against external baselines."
+ ]
+}

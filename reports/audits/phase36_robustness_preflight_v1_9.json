@@ -1,0 +1,569 @@
+{
+  "artifact": "phase36_robustness_preflight_v1_9",
+  "phase": 36,
+  "section": "§N",
+  "method": "RA-MedFiLM-BARR",
+  "revision": "ra_medfilm_barr_phase36_robustness_v1_9",
+  "type": "PREFLIGHT_CHECK_REPORT",
+  "static_only": true,
+  "model_free": true,
+  "torch_imported": false,
+  "protected_population_read": false,
+  "subject": "scripts/analysis/phase36_robustness_execution_v1_9.py",
+  "subject_sha256": "433bad87b4ef77fd6997c77f688eb295e526bfa3e88dece4ec5d3d550255cbd0",
+  "v1_8_preserved": {
+    "execution_sha256": "c95ff9884ec05a859b39ce7976376bf40e4543b1a8d8a19830e5893120039f4d",
+    "all_unchanged": true
+  },
+  "v1_7_preserved": {
+    "execution_sha256": "87062d2b38232c73b8ce620d7bfafb389658c4b877d9196a26b8b01d09daf192",
+    "direct_byte_audit_sha256": "3a7a11d13b683b223c967ee86ddb1e5df6e5f90469d4a1e112cee1b774bca43e",
+    "source_freeze_sha256": "e4e86cd9a3e297d8b4f0a52591be6b88d27cef9897b933d427aa9c15f15fa62f",
+    "all_unchanged": true
+  },
+  "n_declared_check_ids": 53,
+  "passed": 103,
+  "total": 103,
+  "all_pass": true,
+  "checks": [
+    {
+      "check": "A01_v1_8_execution_bytes_unchanged",
+      "passed": true,
+      "detail": {
+        "observed": "c95ff9884ec05a859b39ce7976376bf40e4543b1a8d8a19830e5893120039f4d",
+        "expected": "c95ff9884ec05a859b39ce7976376bf40e4543b1a8d8a19830e5893120039f4d"
+      }
+    },
+    {
+      "check": "A02_v1_7_execution_bytes_unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "A03_v1_7_direct_byte_audit_unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "A04_v1_7_source_freeze_unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "A05_v1_8_history_sha_quoted_in_v1_9_docstring",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "A06_v1_7_history_sha_quoted_in_v1_9_docstring",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "B01_v1_9_paths_declared",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "B02_no_v1_8_residual_paths",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "B03_gate_state_pure_helper",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "B04_start_marker_exclusive_create_helper",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "B05_start_marker_os_excl",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "B06_gate_before_marker_in_main",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "B07_unauthorized_path_returns_before_marker",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "B08_second_attempt_refused",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "B09_failure_artifact_exclusive_create",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "B10_failure_artifact_no_write_text",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "B11_success_artifact_exclusive_create",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "B12_failure_artifact_marked_incomplete",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "B13_failure_artifact_records_exception_fields",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "B14_failure_artifact_no_retry_no_overwrite_flags",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "B15_provenance_derived_in_run_smoke",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "B16_write_once_check_derived_not_literal",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "B17_run_smoke_provenance_fail_closed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "B18_run_smoke_exclusive_recreate_probe",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "B19_no_loop_in_main",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "B20_run_smoke_single_call_site_in_main",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "B21_no_unlink_or_os_remove_overwrite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "C01_transitive_deps_dict_present",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "C02_transitive_checkpoints_dict_present",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "C03_integrity_function_present",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "C04_integrity_hashes_checkpoints",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "C05_four_checkpoints_declared",
+      "passed": true,
+      "detail": {
+        "n": 4
+      }
+    },
+    {
+      "check": "C06_integrity_gate_before_load_models_in_run_smoke",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "C07_integrity_fails_closed_on_mismatch",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "C08_manifest_missing_fails_closed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "C09_no_self_check_skipped_bypass_token",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "C10_manifest_malformed_fails_closed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "C11_manifest_missing_field_fails_closed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "C12_integrity_verifies_self_via_external_manifest",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "C13_integrity_covers_common_authority",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "C14_integrity_covers_v1_9_load_bearing_sources",
+      "passed": true,
+      "detail": {
+        "missing": []
+      }
+    },
+    {
+      "check": "C15_integrity_covers_g_and_system",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "C16_integrity_covers_device_and_metrics",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "C17_all_four_checkpoints_bound",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "D01_smoke_check_ids_declared",
+      "passed": true,
+      "detail": {
+        "n": 53
+      }
+    },
+    {
+      "check": "D02_smoke_all_pass_derives_from_all_checks",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "D03_set_equality_guard_present",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "D04_count_equality_guard_present",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "D05_declared_ids_equal_dict_keys",
+      "passed": true,
+      "detail": {
+        "declared": 53,
+        "dict": 53,
+        "missing": [],
+        "extra": []
+      }
+    },
+    {
+      "check": "D06_no_duplicate_ids",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "E01_all_d20_ids_declared",
+      "passed": true,
+      "detail": {
+        "missing": []
+      }
+    },
+    {
+      "check": "E02_d20_ids_bound_in_smoke_checks_mapping",
+      "passed": true,
+      "detail": {
+        "unbound": []
+      }
+    },
+    {
+      "check": "E03_real_execute_probe_leaves_somega_logit_none",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "E04_real_execute_probe_forces_router_execute",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "E05_real_R_psi_forward_count_bound_to_1",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "E06_real_S_omega_forward_count_bound_to_1",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "E07_real_execute_valid_states_restricted",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "F01_somega_final_input_dim_derived",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "F02_somega_final_input_dim_asserted_20",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "F03_core_result_exposes_final_input",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "F04_core_result_exposes_refined_range",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "F05_core_captures_actual_final_input",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "F06_core_capture_only_on_real_branch",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "F07_probe_surfaces_d24_fields",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "F08_all_d24_ids_declared_and_bound",
+      "passed": true,
+      "detail": {
+        "missing": []
+      }
+    },
+    {
+      "check": "F09_refined_sigmoid_probability_in_source",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "F10_final_input_schema_20_matches_frozen",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "G01_hd95_case_exact_predicate",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "G02_hd95_four_cases_bound",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "G03_hd95_exact_reason_empty_prediction",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "G04_hd95_exact_reason_empty_ground_truth",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "G05_hd95_exact_reason_both_empty",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "G06_hd95_metric_domain_bound",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "G07_hd95_unit_bound",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "G08_hd95_nonempty_requires_valid_true_and_finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "G09_hd95_empty_requires_nonfinite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "G10_no_tautological_none_acceptance",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "G11_metric_authority_bound_to_frozen_module",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "G12_all_d25_ids_declared_and_bound",
+      "passed": true,
+      "detail": {
+        "missing": []
+      }
+    },
+    {
+      "check": "G13_dice_iou_bound_in_contract",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "H01_canonical_sigmoid_operator_preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "H02_cuda_fail_closed_preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "H03_val808_only_preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "H04_g_context_preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "H05_component_contexts_preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "H06_router_vector_dim_202",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "H07_conditional_execution_order_preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "H08_thresholds_030_and_050_preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "H09_kub_subgroup_reporting_only_preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "H10_figure_registry_preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "I01_no_protected_symbol_reachable",
+      "passed": true,
+      "detail": {
+        "hits": []
+      }
+    },
+    {
+      "check": "I02_protected_counters_forever_zero_preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "I03_static_protected_io_detector_present",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "I04_val_manifest_is_only_runtime_authority",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "I05_test_runtime_reads_disallowed_flag",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "I06_holdout_runtime_reads_disallowed_flag",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "J01_smoke_gate_separate_from_science_gate",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "J02_no_v1_9_smoke_artifact_exists_yet",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "J03_no_v1_9_start_marker_exists_yet",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "J04_no_v1_9_failure_artifact_exists_yet",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "J05_no_v1_9_science_output_exists",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "J06_ast_parse_ok",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "J07_entrypoint_guarded_by_main_guard",
+      "passed": true,
+      "detail": null
+    }
+  ]
+}

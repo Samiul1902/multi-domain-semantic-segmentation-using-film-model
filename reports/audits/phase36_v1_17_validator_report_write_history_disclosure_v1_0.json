@@ -1,0 +1,99 @@
+{
+ "artifact": "phase36_v1_17_validator_report_write_history_disclosure_v1_0",
+ "phase": 36,
+ "revision": "ra_medfilm_barr_phase36_robustness_v1_17",
+ "type": "VALIDATOR_REPORT_WRITE_HISTORY_DISCLOSURE",
+ "D84": "V1_17_VALIDATOR_REPORT_WRITE_ONCE_HISTORY_VIOLATED_BY_POST_GOVERNANCE_RERUN",
+ "D84_status": "DISCLOSED_AND_RECONCILED",
+ "scientific_semantics_effect": "NONE",
+ "runtime_semantics_effect": "NONE",
+ "current_final_bytes_effect": "NONE_IF_BYTE_IDENTICAL",
+ "governance_provenance_effect": "YES",
+ "investigation_method": "MTIME_ORDERING + CONTROLLED_DETERMINISM_RERUN",
+ "evidence": {
+  "governance_artifacts_written_utc_local": "19:46:07",
+  "validator_reports_rewritten_utc_local": "19:46:12 - 19:46:21",
+  "determinism_check": "a controlled rerun of unit/preflight/negative-controls/science-repair produced BYTE-IDENTICAL reports (cmp -s identical), proving the rewrite did not change current final bytes",
+  "governance_artifacts_bind_validator_report_sha_directly": false,
+  "governance_artifacts_bind_validator_pass_fail_states": true,
+  "first_write_hashes_durably_known": false,
+  "write_journal_for_report_paths_exists": false
+ },
+ "affected_reports": [
+  {
+   "report": "unit_report",
+   "path": "reports/audits/phase36_robustness_unit_v1_17.json",
+   "current_sha256": "d07cc4adb2f40844e63c3d4c52e6c364a6937ab5f4b2d9698c645be1c8bd9594",
+   "first_write_sha256": "NOT_DURABLY_RECOVERED",
+   "post_rerun_sha256": "d07cc4adb2f40844e63c3d4c52e6c364a6937ab5f4b2d9698c645be1c8bd9594",
+   "current_bytes_equal_frozen_governance_binding": true,
+   "deterministic_output_verified": true,
+   "overwrite_rewrite_history": "WRITTEN_DURING_WO_17C; REWRITTEN_BY_WO_17C_FINAL_SUITE_RERUN_AFTER_GOVERNANCE_ARTIFACT_CREATION; CURRENT_BYTES_DETERMINISTIC_AND_UNCHANGED"
+  },
+  {
+   "report": "preflight_report",
+   "path": "reports/audits/phase36_robustness_preflight_v1_17.json",
+   "current_sha256": "2aad90684da2d22beb7fc2e00e9b6450bd104c3f20712400446e16be477e322c",
+   "first_write_sha256": "NOT_DURABLY_RECOVERED",
+   "post_rerun_sha256": "2aad90684da2d22beb7fc2e00e9b6450bd104c3f20712400446e16be477e322c",
+   "current_bytes_equal_frozen_governance_binding": true,
+   "deterministic_output_verified": true,
+   "overwrite_rewrite_history": "WRITTEN_DURING_WO_17C; REWRITTEN_BY_WO_17C_FINAL_SUITE_RERUN_AFTER_GOVERNANCE_ARTIFACT_CREATION; CURRENT_BYTES_DETERMINISTIC_AND_UNCHANGED"
+  },
+  {
+   "report": "negative_controls_report",
+   "path": "reports/audits/phase36_v1_17_negative_controls.json",
+   "current_sha256": "fc3921d0888a7df278ca9c2f9c62843f1a598bfb054ae40608f8780fdd213a57",
+   "first_write_sha256": "NOT_DURABLY_RECOVERED",
+   "post_rerun_sha256": "fc3921d0888a7df278ca9c2f9c62843f1a598bfb054ae40608f8780fdd213a57",
+   "current_bytes_equal_frozen_governance_binding": true,
+   "deterministic_output_verified": true,
+   "overwrite_rewrite_history": "WRITTEN_DURING_WO_17C; REWRITTEN_BY_WO_17C_FINAL_SUITE_RERUN_AFTER_GOVERNANCE_ARTIFACT_CREATION; CURRENT_BYTES_DETERMINISTIC_AND_UNCHANGED"
+  },
+  {
+   "report": "xcontract_report",
+   "path": "reports/audits/phase36_v1_17_operational_cross_contract.json",
+   "current_sha256": "8f598318f809660238c87104e1841145bdaf8fd55b79f5ae6f6a9ef49d5eb454",
+   "first_write_sha256": "NOT_DURABLY_RECOVERED",
+   "post_rerun_sha256": "8f598318f809660238c87104e1841145bdaf8fd55b79f5ae6f6a9ef49d5eb454",
+   "current_bytes_equal_frozen_governance_binding": true,
+   "deterministic_output_verified": true,
+   "overwrite_rewrite_history": "WRITTEN_DURING_WO_17C; REWRITTEN_BY_WO_17C_FINAL_SUITE_RERUN_AFTER_GOVERNANCE_ARTIFACT_CREATION; CURRENT_BYTES_DETERMINISTIC_AND_UNCHANGED"
+  },
+  {
+   "report": "science_validator_report",
+   "path": "reports/audits/phase36_v1_17_science_repair_validation.json",
+   "current_sha256": "974603fe96dc21448c9ca77721a41fec88a2cb883b5ef6964a20bde546d332d2",
+   "first_write_sha256": "NOT_DURABLY_RECOVERED",
+   "post_rerun_sha256": "974603fe96dc21448c9ca77721a41fec88a2cb883b5ef6964a20bde546d332d2",
+   "current_bytes_equal_frozen_governance_binding": true,
+   "deterministic_output_verified": true,
+   "overwrite_rewrite_history": "WRITTEN_DURING_WO_17C; REWRITTEN_BY_WO_17C_FINAL_SUITE_RERUN_AFTER_GOVERNANCE_ARTIFACT_CREATION; CURRENT_BYTES_DETERMINISTIC_AND_UNCHANGED"
+  },
+  {
+   "report": "reachable_write_target_inventory",
+   "path": "reports/audits/phase36_v1_17_reachable_write_target_inventory.json",
+   "current_sha256": "a6b01afbb6137f87873ad06942c602cbe691766abca52b8f13785c6fb082c3f2",
+   "first_write_sha256": "NOT_DURABLY_RECOVERED",
+   "post_rerun_sha256": "a6b01afbb6137f87873ad06942c602cbe691766abca52b8f13785c6fb082c3f2",
+   "current_bytes_equal_frozen_governance_binding": true,
+   "deterministic_output_verified": true,
+   "overwrite_rewrite_history": "WRITTEN_DURING_WO_17C; REWRITTEN_BY_WO_17C_FINAL_SUITE_RERUN_AFTER_GOVERNANCE_ARTIFACT_CREATION; CURRENT_BYTES_DETERMINISTIC_AND_UNCHANGED"
+  },
+  {
+   "report": "output_namespace_map",
+   "path": "reports/audits/phase36_v1_17_output_namespace_map.json",
+   "current_sha256": "54d7ea6fbcf02a5b72ed0a360e57ba6509a59d70098f6d04d9b6bf8311aa1c14",
+   "first_write_sha256": "NOT_DURABLY_RECOVERED",
+   "post_rerun_sha256": "54d7ea6fbcf02a5b72ed0a360e57ba6509a59d70098f6d04d9b6bf8311aa1c14",
+   "current_bytes_equal_frozen_governance_binding": true,
+   "deterministic_output_verified": true,
+   "overwrite_rewrite_history": "WRITTEN_DURING_WO_17C; REWRITTEN_BY_WO_17C_FINAL_SUITE_RERUN_AFTER_GOVERNANCE_ARTIFACT_CREATION; CURRENT_BYTES_DETERMINISTIC_AND_UNCHANGED"
+  }
+ ],
+ "not_dur_durably_recovered_reason": "The v1.17 validator scripts write their reports with a plain write (not O_EXCL) and keep no write journal, so pre-rerun bytes were never durably captured.",
+ "reconciliation": "The current final bytes are authoritative.  They are deterministic functions of the frozen v1.17 sources and all currently pass.  No governance artifact directly binds a pre-rerun validator report SHA (they bind boolean pass/fail states), so NO governance hash binding is broken by this history.",
+ "model_free": true,
+ "torch_imported": false,
+ "generated_utc": "2026-10-10T13:57:20Z"
+}

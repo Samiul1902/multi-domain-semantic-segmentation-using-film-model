@@ -1,0 +1,89 @@
+{
+  "artifact": "POST_PHASE13_H2B_SOFT_TARGET_FOCAL_LOSS_UNIT_AUDIT",
+  "status": "PASS",
+  "execution": "CPU_ONLY_SYNTHETIC",
+  "model_constructions": 0,
+  "cuda_requests": 0,
+  "project_images_or_masks_used": 0,
+  "loss_module": {
+    "path": "src/losses/soft_target_focal_bce.py",
+    "sha256": "40d359e36a5579ea7544a1f0079aa999e024b8b144956493c184388766c27b75",
+    "class": "SoftTargetFocalBCE",
+    "gamma": 2.0,
+    "gamma_fixed_prospectively": true,
+    "gamma_tuned_on_h2b_val": false
+  },
+  "formula": "L = mean( |sigmoid(z) - y|^gamma * BCEWithLogits(z, y) ), gamma = 2.0",
+  "modulation_detached": "NO",
+  "gradient_flows_through_bce_term": true,
+  "gradient_flows_through_modulation_term": true,
+  "gradient_norm_loss_path": 0.22356361150741577,
+  "gradient_norm_detached_variant": 0.06399998813867569,
+  "target_grid": [
+    0.0,
+    0.25,
+    0.5,
+    0.75,
+    1.0
+  ],
+  "probability_grid": [
+    0.01,
+    0.1,
+    0.25,
+    0.5,
+    0.75,
+    0.9,
+    0.99
+  ],
+  "checks": {
+    "all_losses_and_gradients_finite": true,
+    "no_nan_no_inf": true,
+    "y0_loss_increases_with_p": true,
+    "y1_loss_increases_as_p_to_0": true,
+    "soft_target_minimised_near_p_equals_y": true,
+    "symmetry_L_y0_q_equals_L_y1_1mq": true,
+    "modulation_not_detached": true,
+    "all_rows_expected_direction_pass": true,
+    "target_out_of_range_rejected": true,
+    "target_nonfinite_rejected": true
+  },
+  "soft_target_argmin": {
+    "0.25": {
+      "argmin_probability": 0.25,
+      "target": 0.25,
+      "abs_gap": 0.0,
+      "ok": true
+    },
+    "0.5": {
+      "argmin_probability": 0.5,
+      "target": 0.5,
+      "abs_gap": 0.0,
+      "ok": true
+    },
+    "0.75": {
+      "argmin_probability": 0.75,
+      "target": 0.75,
+      "abs_gap": 0.0,
+      "ok": true
+    }
+  },
+  "symmetry_max_abs_diff": 4.76837158203125e-07,
+  "table": {
+    "path": "reports/tables/post_phase13_h2b_soft_target_focal_gradient_sanity.csv",
+    "sha256": "cec71e9ef274111d87bc20944d5c58c718bb760140272fcefdb481787c4d231f",
+    "rows": 35,
+    "columns": [
+      "target",
+      "probability",
+      "logit",
+      "loss",
+      "gradient_dL_dlogit",
+      "finite",
+      "expected_direction_pass"
+    ]
+  },
+  "hyperparameter_grid": 0,
+  "alpha_sweep": 0,
+  "beta_sweep": 0,
+  "coefficient_search": 0
+}

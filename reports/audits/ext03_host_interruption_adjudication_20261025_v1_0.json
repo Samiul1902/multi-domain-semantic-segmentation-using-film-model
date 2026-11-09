@@ -1,0 +1,127 @@
+{
+ "classification": "EXT03_HOST_INTERRUPTION_ADJUDICATION",
+ "schema_version": "1.0",
+ "sequence": 2,
+ "generated_local": "2026-10-25T19:20:00",
+ "scope": "EXT-03 baseline matrix, interrupted run deeplabv3plus_seed3407",
+ "prior_incident": {
+  "artifact": "reports/audits/ext03_host_interruption_adjudication_20261022_v1_0.json",
+  "date": "2026-10-22",
+  "interrupted_run": "unetpp_seed123",
+  "last_completed_epoch": 52,
+  "same_cause_class": true
+ },
+ "interrupted_run": {
+  "run_id": "deeplabv3plus_seed3407",
+  "last_completed_epoch": 98,
+  "last_completed_epoch_walltime": "2026-10-25T12:19:48",
+  "best_metric_at_interruption": 0.6661508291131208,
+  "best_epoch": 85,
+  "bad_epochs": 13,
+  "max_epochs": 100,
+  "epochs_remaining_to_ceiling": 2,
+  "process_state_after_interruption": "ABSENT (zero python.exe processes)",
+  "gpu_state_after_interruption": "IDLE (559 MiB, 14% util, no trainer CUDA context)"
+ },
+ "evidence": {
+  "host_last_boot_up_time": "2026-10-25T19:10:46",
+  "host_uptime_at_inspection": "00:05:05",
+  "system_log_silence_window": [
+   "2026-10-25T12:20:46",
+   "2026-10-25T19:11:17"
+  ],
+  "system_log_silence_duration_hours": 6.84,
+  "system_log_events_in_silence_window": 1,
+  "system_log_event_in_silence_window_detail": "single 7040 Service Control Manager at 12:20:46, immediately after trainer death; nothing thereafter",
+  "clean_shutdown_event_1074_present": false,
+  "event_log_stopped_6006_present": false,
+  "unexpected_shutdown_41_6008_present": false,
+  "boot_events_at_1911": [
+   "Kernel-General 1 (x3)",
+   "Kernel-General 24 (x3)",
+   "Time-Service 35",
+   "Time-Service 52",
+   "EventLog 6013",
+   "Service Control Manager 7040",
+   "DistributedCOM 10016"
+  ],
+  "application_crash_events_1000_1001": 0,
+  "wer_python_reports_found": 0,
+  "runner_traceback_lines_in_log": 0,
+  "partial_tmp_artifacts_found": 0,
+  "windows_update_activity_same_day": [
+   {
+    "time": "2026-10-25T10:58:31",
+    "id": 43,
+    "update": "Security Intelligence Update for Microsoft Defender Antivirus - KB2267602"
+   },
+   {
+    "time": "2026-10-25T12:02:18",
+    "id": 44,
+    "update": "Windows Update started downloading an update"
+   },
+   {
+    "time": "2026-10-25T12:02:41",
+    "id": 43,
+    "update": "9PKDZBMV1H3T-Microsoft.GetHelp"
+   },
+   {
+    "time": "2026-10-25T12:02:42",
+    "id": 19,
+    "update": "9PKDZBMV1H3T-Microsoft.GetHelp"
+   }
+  ],
+  "windows_update_reboot_required_pending": false,
+  "windows_update_assessment": "Both updates installed are non-reboot-requiring (Defender signature + GetHelp app). No RebootRequired key present. Windows Update is NOT the mechanism."
+ },
+ "checkpoint_integrity_at_recovery": {
+  "path": "reports/baselines/runs/deeplabv3plus_seed3407/latest.pt",
+  "size_bytes": 484692346,
+  "loads_cleanly": true,
+  "epoch": 98,
+  "best": 0.6661508291131208,
+  "best_epoch": 85,
+  "bad": 13,
+  "model_tensors": 374,
+  "optimizer_state_entries": 188,
+  "optimizer_param_groups": 1,
+  "rng_state_complete": true,
+  "cuda_rng_entries": 1,
+  "best_pt": {
+   "epoch": 85,
+   "macro": 0.6661508291131208
+  },
+  "best_pt_consistent": true,
+  "tmp_residue": false
+ },
+ "adjudication": {
+  "cause_class": "HOST_LEVEL_TERMINATION__NOT_A_TRAINER_DEFECT",
+  "is_scientific_failure": false,
+  "is_technical_failure_of_runner": false,
+  "origin_claimed": false,
+  "origin_note": "A clean shutdown would have logged 1074 and 6006; neither exists, and the System log stops dead at 12:20:46 for 6.84 h. That is consistent with an abrupt loss of power or a hard power-off, but the proximate event is NOT claimed.",
+  "rerun_from_scratch_required": false,
+  "disposition": "RESUME",
+  "resume_rationale": "Checkpoint carries complete model/optimizer/scheduler/scaler/RNG state with no partial-write residue; only 2 epochs remain to the 100-epoch ceiling. Resume preserves all 98 completed epochs.",
+  "recurrence_note": "SECOND host-level termination in 4 days (2026-10-22 unetpp_seed123 ep52; 2026-10-25 deeplabv3plus_seed3407 ep98). Both interrupted a healthy process with an intact checkpoint. This is now a PATTERN, not a one-off."
+ },
+ "resume_execution": {
+  "command": "python -u scripts/training/run_ext03_baseline_matrix.py --resume",
+  "interpreter": "D:/Softfors/jup/.venv/Scripts/python.exe",
+  "launched_local": "2026-10-25T19:16:30",
+  "expected_next_epoch": 99,
+  "expected_completion": "2026-10-25T19:40 approx (ep99+ep100), then segformer_b0 x3 begins"
+ },
+ "matrix_state_at_record": {
+  "COMPLETE": 11,
+  "RUNNING": 1,
+  "NOT_STARTED": 3,
+  "note": "deeplabv3plus_seed42 0.6591 / seed123 0.6719 COMPLETE; seed3407 at ep98 best 0.6662. DeepLabV3+ family mean will be ~0.6657."
+ },
+ "outstanding_defects_referenced": [
+  "D97 (repaired)",
+  "D98 (non-gating, cuda_rng restore coercion)"
+ ],
+ "test_accessed": false,
+ "router_holdout_accessed": false
+}

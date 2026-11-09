@@ -1,0 +1,104 @@
+{
+ "artifact": "phase26_predecessor_immutability_gate",
+ "phase": "26",
+ "classification": "CANONICAL_FULL_SYSTEM_INTEGRATION_AND_CONFIGURATION_FREEZE",
+ "method": "RA-MedFiLM-BARR",
+ "authority": "physical frozen artifacts",
+ "components": {
+  "phase21_global_medfilm_checkpoint": {
+   "path": "checkpoints/phase21_global_medfilm_fourdomain_seed42_clean_v3/best.pt",
+   "exists": true,
+   "sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+   "expected_sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+   "match": true
+  },
+  "phase25a_final_regional_refiner_checkpoint": {
+   "path": "checkpoints/phase25a_barr_regional_refiner_v1_1_roi030/final/final.pt",
+   "exists": true,
+   "sha256": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109",
+   "expected_sha256": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109",
+   "match": true
+  },
+  "phase25d_final_benefit_router_checkpoint": {
+   "path": "checkpoints/phase25d_barr_benefit_router_v1_2_1_seed42/final/final.pt",
+   "exists": true,
+   "sha256": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+   "expected_sha256": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+   "match": true
+  },
+  "phase25d_final_normalization": {
+   "path": "reports/tables/phase25d_final_normalization_stats.csv",
+   "exists": true,
+   "sha256": "ba37742e96610ec5e46fb47c093bf71ae1afd85b2a0db9696b612c873a4ba1fb",
+   "expected_sha256": "ba37742e96610ec5e46fb47c093bf71ae1afd85b2a0db9696b612c873a4ba1fb",
+   "match": true
+  },
+  "phase25b_router_feature_schema": {
+   "path": "reports/tables/phase25b_feature_schema.csv",
+   "exists": true,
+   "sha256": "da76aa34f14006146f46ca799f173378274d8c9d0792dc18edb30711a2486dd4",
+   "expected_sha256": "da76aa34f14006146f46ca799f173378274d8c9d0792dc18edb30711a2486dd4",
+   "match": true
+  },
+  "phase25f_final_somega_checkpoint": {
+   "path": "checkpoints/phase25f_barr_post_safety_v1_0_seed42/final/final.pt",
+   "exists": true,
+   "sha256": "eee9b97b9921e53fc07eac9281dce64ba518c6e1659916b97b0b3bec21ec6d2e",
+   "expected_sha256": "eee9b97b9921e53fc07eac9281dce64ba518c6e1659916b97b0b3bec21ec6d2e",
+   "match": true
+  },
+  "phase25f_final_normalization": {
+   "path": "reports/audits/phase25f_final_normalization.json",
+   "exists": true,
+   "sha256": "e009403ee677a7189b30d54572d25f26d591e0df937128bc86ed07c771a66558",
+   "expected_sha256": null,
+   "match": true
+  },
+  "phase25f_20d_feature_schema": {
+   "path": "reports/tables/phase25f_feature_schema_v1_0.csv",
+   "exists": true,
+   "sha256": "3e70e20c541b93de752980c34cdfb6fe5af17ebe4c18cbb64397c0bbae465ee5",
+   "expected_sha256": null,
+   "match": true
+  },
+  "phase25a_roi_geometry_contract": {
+   "path": "reports/audits/phase24_roi_feature_mapping_contract_v1_2.json",
+   "exists": true,
+   "sha256": "64af69764507e712b4500c31dc741b977d773e6734810f1f4f28e3af7ca213a4",
+   "expected_sha256": null,
+   "match": true
+  },
+  "phase25f_fusion_fallback_contract": {
+   "path": "reports/audits/phase25f_fusion_fallback_contract_audit.json",
+   "exists": true,
+   "sha256": "4f6549beb82ef291f460c3b5dc49c48430c0498b44adac0f9aa7aa0afcc5de65",
+   "expected_sha256": null,
+   "match": true
+  },
+  "phase26_training_integration_spec": {
+   "path": "docs/phase26_training_spec.md",
+   "exists": true,
+   "sha256": "902ddc81e471c5d0b76914fbdb7d986070144c0bcb06ebd10fd5450a2544c111",
+   "expected_sha256": null,
+   "match": true
+  },
+  "phase26_v1_1_score_space_reconciliation": {
+   "path": "reports/audits/phase26_router_threshold_reconciliation_terminal_v1_1.json",
+   "exists": true,
+   "sha256": "c2904384086bbd17a925041df361c127730d501004cae9c02517e47ce7cd8059",
+   "expected_sha256": null,
+   "match": true
+  },
+  "phase26_v1_2_deployment_semantics_reconciliation": {
+   "path": "reports/audits/phase26_router_deployment_semantics_terminal_v1_2.json",
+   "exists": true,
+   "sha256": "d558d1b4128e407a7dda90de057fdaf4172235e314d147e7b3cdeb8df8ad2bae",
+   "expected_sha256": null,
+   "match": true
+  }
+ },
+ "drift_paths": [],
+ "drift_count": 0,
+ "all_pass": true,
+ "terminal_on_failure": "PHASE26_BLOCKED__PREDECESSOR_ARTIFACT_DRIFT"
+}

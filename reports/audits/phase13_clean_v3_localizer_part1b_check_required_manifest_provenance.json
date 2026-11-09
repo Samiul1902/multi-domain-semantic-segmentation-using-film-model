@@ -1,0 +1,91 @@
+{
+  "artifact": "PHASE13_CLEAN_V3_LOCALIZER_PART1B_CHECK_REQUIRED",
+  "document_type": "TRAINING_BLOCKED_PRE_EPOCH_1",
+  "created_utc": "2026-09-21T04:55:46.439044+00:00",
+  "experiment_id": "phase13b_kub_localizer_r512_h128_sigmaeq075_centernetfocal_seed42_clean_v3",
+  "status": "CHECK_REQUIRED",
+  "blocking_gate": "\u00a74b/\u00a713 manifest provenance binding: compute_manifest_hashes() line 328-330",
+  "checkpoint_selection_label": "EXECUTING_HISTORICAL_4TERM_FIXED_CONFIG_SELECTION",
+  "failure": {
+    "exception": "ValueError",
+    "message": "manifest hash 'train_table_sha256' resolved empty; refusing empty hashes",
+    "raised_at": "scripts/training/train_phase13_clean_v3_localizer.py:330",
+    "called_from": "scripts/training/train_phase13_clean_v3_localizer.py:978 (main)",
+    "stdout_log": "reports/audits/phase13_clean_v3_localizer_training_stdout.log",
+    "stdout_log_sha": "632f03e558424291e4c83b1c99c48f617025958e55fc3b5d252e8f6eb9e8f8a2"
+  },
+  "root_cause": {
+    "description": "compute_manifest_hashes() attempts to build an authoritative per-sample provenance digest from a column literally named 'image_sha256' on the filtered TRAIN and VAL frames. _shas_of() returns \"\" when the column is absent (line 303-304), and the non-empty guard (line 328-330) then fails loudly.",
+    "column_present_in_sample_tables": false,
+    "sample_tables_inspected": [
+      "reports/tables/kub_train_samples_sized.csv",
+      "reports/tables/kub_val_samples_sized.csv"
+    ],
+    "columns_available_in_sample_tables": [
+      "sample_id",
+      "patient_id",
+      "category",
+      "image_path",
+      "mask_path",
+      "width",
+      "height",
+      "aspect_ratio",
+      "foreground_pixels",
+      "foreground_ratio",
+      "bbox_*",
+      "component_count",
+      "largest/smallest/median_component_*",
+      "view_type",
+      "contains_*_object",
+      "dominant_object_stratum",
+      "threshold_source"
+    ],
+    "no_image_sha256_column_anywhere": "Repo-wide search of reports/tables and manifests found no 'image_sha256' column; the token appears only in the runner, in tests/test_phase13_part1b_r0r1_gates.py (synthetic a*64/b*64 fixture), and in an unrelated phase9 key name.",
+    "why_unit_test_did_not_catch_it": "Gate test N (tests/test_phase13_part1b_r0r1_gates.py) constructs a synthetic DataFrame that DOES contain an 'image_sha256' column, so _shas_of() returns a non-empty digest and the test passes. The real sample tables carry no such column, so the real call site fails. The tested input shape does not match the production input shape."
+  },
+  "why_stop_and_not_repair": [
+    "The blocker is in executable provenance code (a scientific-artifact guard), not in a docs/state file.",
+    "There is no authorized source for an 'image_sha256' value for the 770 TRAIN / 103 VAL KUB samples; fabricating per-sample digests would create non-physical provenance.",
+    "Substituting a different column (e.g. a path or sample_id digest) would silently change the meaning of 'train_table_sha256', i.e. a scientific/provenance contract change that the task specification does not authorize.",
+    "Part 1B \u00a70 authorizes proceeding only when the two pre-CUDA gates pass; an unrelated executable blocker discovered during training must be escalated, not worked around.",
+    "The run console shows an unrelated safe-delete FAIL_CLOSED warning for the (already released) lock path; it did not affect the failure and no lock file remains."
+  ],
+  "side_effects_and_state": {
+    "cuda_initialized": true,
+    "model_constructed": false,
+    "optimizer_created": false,
+    "forward_passes": 0,
+    "backward_passes": 0,
+    "optimizer_steps": 0,
+    "training_epochs": 0,
+    "history_rows_written": 0,
+    "best_pt_written": false,
+    "latest_pt_written": false,
+    "training_start_audit_written": false,
+    "training_completion_audit_written": false,
+    "proposals_generated": 0,
+    "grid_configurations_evaluated": 0,
+    "test_content_reads": 0,
+    "experiment_dir_exists_now": true,
+    "experiment_dir_contents": [],
+    "checkpoint_dir_exists_now": true,
+    "checkpoint_dir_contents": [],
+    "lock_file_present": false,
+    "historical_artifacts_modified": false
+  },
+  "gates_completed_before_blocker": {
+    "pre_cuda_gate_A_r2a_sha_provenance": "PASS",
+    "pre_cuda_gate_B_synthetic_metric_contract": "PASS (45/45 combined suite)",
+    "section_4_immutability": "PASS (17/17)",
+    "section_5_population": "PASS (770/1161 TRAIN, 103/152 VAL, overlap 0, ROI excluded)",
+    "section_6_val_component_source": "PASS (103 cases / 152 components; strata 72/28/36/16)",
+    "section_7_loss": "PASS (CenterNetFocalLoss alpha=2.0 beta=4.0, no Dice)",
+    "section_8_heatmap_contract": "PASS (512->128, explicit, fail-loud)",
+    "section_9_training_core": "PASS (AdamW 1e-4/1e-4, CosineAnnealingLR T_max=100, seed 42, batch 4, accum 1, AMP, 100 epochs, patience 15)",
+    "section_10_proposal_config": "PASS (exactly one: 0.10/0.20/5/0.30, grid disabled)",
+    "section_11_checkpoint_selection": "PASS (4-term strict lexicographic, ties=BAD_EPOCH, patience 15)",
+    "section_12_device_and_lock": "PASS (RTX 3060 Ti, sm_86, 8.59 GB, CUDA required enforced, no concurrent lock)"
+  },
+  "requested_decision": "Supervisor must either (a) authorize adding/producing an authoritative per-sample image-provenance column ('image_sha256' or an explicitly named equivalent) for the 770 TRAIN / 103 VAL KUB samples, or (b) authorize an amendment to compute_manifest_hashes() that binds provenance to sources that actually exist (e.g. the phase4_v3 manifest file SHAs, which already compute successfully, plus the sample-table file SHA), with the change recorded as a provenance-binding amendment. Neither is authorized by the current task text.",
+  "recommended_option": "(b) provenance-binding amendment \u2014 the manifest file SHAs and sample-table file SHAs already resolve non-empty; only the per-sample rolling digest lacks a source."
+}

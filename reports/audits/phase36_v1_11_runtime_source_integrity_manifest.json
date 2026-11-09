@@ -1,0 +1,138 @@
+{
+  "artifact": "phase36_v1_11_runtime_source_integrity_manifest",
+  "phase": 36,
+  "method": "RA-MedFiLM-BARR",
+  "revision": "ra_medfilm_barr_phase36_robustness_v1_11",
+  "type": "RUNTIME_SOURCE_INTEGRITY_MANIFEST",
+  "execution_source": "scripts/analysis/phase36_robustness_execution_v1_11.py",
+  "execution_source_sha256": "dc4928417444304ad637907c53089e512577254b368e438d0098ade6202083f0",
+  "history_preserved_sha256": {
+    "v1_9_execution": "433bad87b4ef77fd6997c77f688eb295e526bfa3e88dece4ec5d3d550255cbd0",
+    "v1_8_execution": "c95ff9884ec05a859b39ce7976376bf40e4543b1a8d8a19830e5893120039f4d",
+    "v1_7_execution": "87062d2b38232c73b8ce620d7bfafb389658c4b877d9196a26b8b01d09daf192"
+  },
+  "dependencies": {
+    "scripts/analysis/phase36_robustness_common_v1_1.py": "edcdd33d22ae996b2f7ef60e8242a89f3cebab8c6992406508fec23cb068710c",
+    "scripts/analysis/train_phase25d_router.py": "fc7c1bdf263ae4551dcb8f170d3203adb8540fbc189846265b74f6eca1541e91",
+    "scripts/analysis/phase25f_execution_common.py": "98cf958a377e2de30e0b67e63fd56bafea418b2b061a362ee7284e852012cd2e",
+    "scripts/analysis/phase25f_post_safety_features.py": "4f4763fa67eea833643dc1870206d5c0b49890fe974122249711e259cddc8bec",
+    "src/features/barr_pre_refinement_features.py": "f0323e78caa7a3f8c1d24cf68d4321972d86f95d36913a7af795b15acdb26f6a",
+    "src/data/barr_roi.py": "4b1015275e4e31f9cc2b662a290c18f988eaea65cec64082cea217fad9aba9d6",
+    "src/models/film/global_medfilm.py": "a04ff3e61b4d900ff47c2f390da4a999e73bd6047b28a19e41b05115e431d11f",
+    "src/models/barr/regional_refiner.py": "4fe0abde3ec3a183d930f676c4400b4d9ba778793ea64abf1755c5b8dabf947a",
+    "src/models/barr/ra_medfilm_barr.py": "342f2163690c2fa8d5a601ab1d18178b982d701b916935c33e0793b0801c3724",
+    "src/utils/device.py": "9adabfbd145a5952275aa25b0ec99aab8a5114bb41aa443ecde52ce19a8448b6",
+    "src/metrics/evaluation_metrics.py": "6c515f6f1a495315c79238292c385a082ae8347489130ad5bff34d74c4f181f6",
+    "experiments/phase21_global_medfilm_fourdomain_seed42_clean_v3/config.json": "66ec701aeac503cbeceff75aa070e30b46146c9069e46594cbd484f6816260f5",
+    "reports/tables/phase25d_final_normalization_stats.csv": "ba37742e96610ec5e46fb47c093bf71ae1afd85b2a0db9696b612c873a4ba1fb",
+    "reports/tables/phase25f_final_normalization_stats.csv": "e112e18b134c6edcdcd0c254c362d0a954a75faffe634cc37a2a17e4fe6f4e7b"
+  },
+  "checkpoints": {
+    "checkpoints/phase21_global_medfilm_fourdomain_seed42_clean_v3/best.pt": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+    "checkpoints/phase25d_barr_benefit_router_v1_2_1_seed42/final/final.pt": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+    "checkpoints/phase25a_barr_regional_refiner_v1_1_roi030/final/final.pt": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109",
+    "checkpoints/phase25f_barr_post_safety_v1_0_seed42/final/final.pt": "eee9b97b9921e53fc07eac9281dce64ba518c6e1659916b97b0b3bec21ec6d2e"
+  },
+  "n_dependencies": 14,
+  "n_checkpoints": 4,
+  "dependency_verification": {
+    "scripts/analysis/phase36_robustness_common_v1_1.py": {
+      "expected": "edcdd33d22ae996b2f7ef60e8242a89f3cebab8c6992406508fec23cb068710c",
+      "observed": "edcdd33d22ae996b2f7ef60e8242a89f3cebab8c6992406508fec23cb068710c",
+      "match": true
+    },
+    "scripts/analysis/train_phase25d_router.py": {
+      "expected": "fc7c1bdf263ae4551dcb8f170d3203adb8540fbc189846265b74f6eca1541e91",
+      "observed": "fc7c1bdf263ae4551dcb8f170d3203adb8540fbc189846265b74f6eca1541e91",
+      "match": true
+    },
+    "scripts/analysis/phase25f_execution_common.py": {
+      "expected": "98cf958a377e2de30e0b67e63fd56bafea418b2b061a362ee7284e852012cd2e",
+      "observed": "98cf958a377e2de30e0b67e63fd56bafea418b2b061a362ee7284e852012cd2e",
+      "match": true
+    },
+    "scripts/analysis/phase25f_post_safety_features.py": {
+      "expected": "4f4763fa67eea833643dc1870206d5c0b49890fe974122249711e259cddc8bec",
+      "observed": "4f4763fa67eea833643dc1870206d5c0b49890fe974122249711e259cddc8bec",
+      "match": true
+    },
+    "src/features/barr_pre_refinement_features.py": {
+      "expected": "f0323e78caa7a3f8c1d24cf68d4321972d86f95d36913a7af795b15acdb26f6a",
+      "observed": "f0323e78caa7a3f8c1d24cf68d4321972d86f95d36913a7af795b15acdb26f6a",
+      "match": true
+    },
+    "src/data/barr_roi.py": {
+      "expected": "4b1015275e4e31f9cc2b662a290c18f988eaea65cec64082cea217fad9aba9d6",
+      "observed": "4b1015275e4e31f9cc2b662a290c18f988eaea65cec64082cea217fad9aba9d6",
+      "match": true
+    },
+    "src/models/film/global_medfilm.py": {
+      "expected": "a04ff3e61b4d900ff47c2f390da4a999e73bd6047b28a19e41b05115e431d11f",
+      "observed": "a04ff3e61b4d900ff47c2f390da4a999e73bd6047b28a19e41b05115e431d11f",
+      "match": true
+    },
+    "src/models/barr/regional_refiner.py": {
+      "expected": "4fe0abde3ec3a183d930f676c4400b4d9ba778793ea64abf1755c5b8dabf947a",
+      "observed": "4fe0abde3ec3a183d930f676c4400b4d9ba778793ea64abf1755c5b8dabf947a",
+      "match": true
+    },
+    "src/models/barr/ra_medfilm_barr.py": {
+      "expected": "342f2163690c2fa8d5a601ab1d18178b982d701b916935c33e0793b0801c3724",
+      "observed": "342f2163690c2fa8d5a601ab1d18178b982d701b916935c33e0793b0801c3724",
+      "match": true
+    },
+    "src/utils/device.py": {
+      "expected": "9adabfbd145a5952275aa25b0ec99aab8a5114bb41aa443ecde52ce19a8448b6",
+      "observed": "9adabfbd145a5952275aa25b0ec99aab8a5114bb41aa443ecde52ce19a8448b6",
+      "match": true
+    },
+    "src/metrics/evaluation_metrics.py": {
+      "expected": "6c515f6f1a495315c79238292c385a082ae8347489130ad5bff34d74c4f181f6",
+      "observed": "6c515f6f1a495315c79238292c385a082ae8347489130ad5bff34d74c4f181f6",
+      "match": true
+    },
+    "experiments/phase21_global_medfilm_fourdomain_seed42_clean_v3/config.json": {
+      "expected": "66ec701aeac503cbeceff75aa070e30b46146c9069e46594cbd484f6816260f5",
+      "observed": "66ec701aeac503cbeceff75aa070e30b46146c9069e46594cbd484f6816260f5",
+      "match": true
+    },
+    "reports/tables/phase25d_final_normalization_stats.csv": {
+      "expected": "ba37742e96610ec5e46fb47c093bf71ae1afd85b2a0db9696b612c873a4ba1fb",
+      "observed": "ba37742e96610ec5e46fb47c093bf71ae1afd85b2a0db9696b612c873a4ba1fb",
+      "match": true
+    },
+    "reports/tables/phase25f_final_normalization_stats.csv": {
+      "expected": "e112e18b134c6edcdcd0c254c362d0a954a75faffe634cc37a2a17e4fe6f4e7b",
+      "observed": "e112e18b134c6edcdcd0c254c362d0a954a75faffe634cc37a2a17e4fe6f4e7b",
+      "match": true
+    }
+  },
+  "checkpoint_verification": {
+    "checkpoints/phase21_global_medfilm_fourdomain_seed42_clean_v3/best.pt": {
+      "expected": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+      "observed": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+      "match": true
+    },
+    "checkpoints/phase25d_barr_benefit_router_v1_2_1_seed42/final/final.pt": {
+      "expected": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+      "observed": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+      "match": true
+    },
+    "checkpoints/phase25a_barr_regional_refiner_v1_1_roi030/final/final.pt": {
+      "expected": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109",
+      "observed": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109",
+      "match": true
+    },
+    "checkpoints/phase25f_barr_post_safety_v1_0_seed42/final/final.pt": {
+      "expected": "eee9b97b9921e53fc07eac9281dce64ba518c6e1659916b97b0b3bec21ec6d2e",
+      "observed": "eee9b97b9921e53fc07eac9281dce64ba518c6e1659916b97b0b3bec21ec6d2e",
+      "match": true
+    }
+  },
+  "all_dependencies_match": true,
+  "all_checkpoints_match": true,
+  "gate_position": "BEFORE_MODEL_CONSTRUCTION__BEFORE_torch.load",
+  "fail_closed_semantics": "MANIFEST_NOT_FOUND / MALFORMED / MISSING_EXECUTION_SOURCE_SHA256 / ANY_DEP_OR_CKPT_MISMATCH / LATEST_LAUNCH_AUTHORITY_TOKEN_ABSENT -> all_match=false -> STOP before model construction",
+  "self_hash_pattern": "execution_source_sha256 is the source's own SHA; the external launcher independently verifies it.",
+  "verified_by": "external_launcher_launch_phase36_v1_11.py"
+}

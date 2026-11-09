@@ -1,0 +1,334 @@
+{
+ "artifact": "phase25a_implementation_test_suite",
+ "phase": "25A",
+ "purpose": "assert the Phase-25A implementation matches the frozen v1.1 spec",
+ "n_checks": 38,
+ "n_passed": 38,
+ "n_failed": 0,
+ "by_group": {
+  "A_parameter_identity": {
+   "n": 3,
+   "failed": 0
+  },
+  "B_projection": {
+   "n": 4,
+   "failed": 0
+  },
+  "C_normalisation": {
+   "n": 2,
+   "failed": 0
+  },
+  "D_initialisation": {
+   "n": 1,
+   "failed": 0
+  },
+  "E_constraints": {
+   "n": 2,
+   "failed": 0
+  },
+  "F_roi": {
+   "n": 10,
+   "failed": 0
+  },
+  "G_augmentation": {
+   "n": 5,
+   "failed": 0
+  },
+  "H_split": {
+   "n": 4,
+   "failed": 0
+  },
+  "I_dataset": {
+   "n": 5,
+   "failed": 0
+  },
+  "J_scope": {
+   "n": 2,
+   "failed": 0
+  }
+ },
+ "verdict": "PHASE25A_IMPLEMENTATION_TEST_SUITE_PASS",
+ "tests": [
+  {
+   "group": "A_parameter_identity",
+   "test": "closed_form_matches_measured",
+   "pass": true,
+   "detail": {
+    "closed_form": 1276401,
+    "measured": 1276401,
+    "expected": 1276401
+   }
+  },
+  {
+   "group": "A_parameter_identity",
+   "test": "under_hard_ceiling",
+   "pass": true,
+   "detail": {
+    "measured": 1276401,
+    "ceiling": 2000000
+   }
+  },
+  {
+   "group": "A_parameter_identity",
+   "test": "rejected_envelope_is_larger",
+   "pass": true,
+   "detail": 2317553
+  },
+  {
+   "group": "B_projection",
+   "test": "output_shape_batch1",
+   "pass": true,
+   "detail": [
+    1,
+    1,
+    256,
+    256
+   ]
+  },
+  {
+   "group": "B_projection",
+   "test": "output_shape_batch3",
+   "pass": true,
+   "detail": [
+    3,
+    1,
+    256,
+    256
+   ]
+  },
+  {
+   "group": "B_projection",
+   "test": "input_channels_4",
+   "pass": true,
+   "detail": null
+  },
+  {
+   "group": "B_projection",
+   "test": "output_is_logits_not_probability",
+   "pass": true,
+   "detail": "raw logits; sigmoid applied only at fusion (Phase 25C)"
+  },
+  {
+   "group": "C_normalisation",
+   "test": "groupnorm_8_all_stages",
+   "pass": true,
+   "detail": {
+    "16": 8,
+    "32": 8,
+    "64": 8,
+    "96": 8,
+    "128": 8
+   }
+  },
+  {
+   "group": "C_normalisation",
+   "test": "groupnorm_largest_divisor_le_8",
+   "pass": true,
+   "detail": {
+    "g(12)": 6,
+    "g(7)": 7,
+    "g(16)": 8
+   }
+  },
+  {
+   "group": "D_initialisation",
+   "test": "seed42_init_deterministic",
+   "pass": true,
+   "detail": null
+  },
+  {
+   "group": "E_constraints",
+   "test": "no_forbidden_modules",
+   "pass": true,
+   "detail": null
+  },
+  {
+   "group": "E_constraints",
+   "test": "forward_has_no_task_id",
+   "pass": true,
+   "detail": [
+    "self",
+    "inputs"
+   ]
+  },
+  {
+   "group": "F_roi",
+   "test": "roi_proposal_threshold_0_3",
+   "pass": true,
+   "detail": 0.3
+  },
+  {
+   "group": "F_roi",
+   "test": "segmentation_output_threshold_0_5",
+   "pass": true,
+   "detail": 0.5
+  },
+  {
+   "group": "F_roi",
+   "test": "backward_alias_points_at_roi_proposal",
+   "pass": true,
+   "detail": 0.3
+  },
+  {
+   "group": "F_roi",
+   "test": "semantic_roles_declared",
+   "pass": true,
+   "detail": [
+    "roi_proposal_threshold",
+    "segmentation_output_threshold"
+   ]
+  },
+  {
+   "group": "F_roi",
+   "test": "expansion_1_5_equals_margin_0_25",
+   "pass": true,
+   "detail": null
+  },
+  {
+   "group": "F_roi",
+   "test": "resolution_256",
+   "pass": true,
+   "detail": null
+  },
+  {
+   "group": "F_roi",
+   "test": "bbox_is_tuple_on_nonempty",
+   "pass": true,
+   "detail": [
+    0,
+    0,
+    511,
+    511
+   ]
+  },
+  {
+   "group": "F_roi",
+   "test": "bbox_none_on_empty",
+   "pass": true,
+   "detail": null
+  },
+  {
+   "group": "F_roi",
+   "test": "roi_geometry_none_on_empty",
+   "pass": true,
+   "detail": null
+  },
+  {
+   "group": "F_roi",
+   "test": "gt_independence_proven",
+   "pass": true,
+   "detail": {
+    "geometry_identical": true,
+    "rgb_crop_identical": true,
+    "prob_crop_identical": true,
+    "gt_crop_differs": true,
+    "gt_crop_differs_is_permitted": true,
+    "passed": true
+   }
+  },
+  {
+   "group": "G_augmentation",
+   "test": "flip_probability_0_5",
+   "pass": true,
+   "detail": null
+  },
+  {
+   "group": "G_augmentation",
+   "test": "rotation_5_deg",
+   "pass": true,
+   "detail": null
+  },
+  {
+   "group": "G_augmentation",
+   "test": "brightness_0_1",
+   "pass": true,
+   "detail": null
+  },
+  {
+   "group": "G_augmentation",
+   "test": "contrast_0_1",
+   "pass": true,
+   "detail": null
+  },
+  {
+   "group": "G_augmentation",
+   "test": "sample_seed_deterministic",
+   "pass": true,
+   "detail": {
+    "same": true,
+    "epoch_sensitive": true
+   }
+  },
+  {
+   "group": "H_split",
+   "test": "fold0_partitions_disjoint",
+   "pass": true,
+   "detail": null
+  },
+  {
+   "group": "H_split",
+   "test": "fold0_union_is_development",
+   "pass": true,
+   "detail": {
+    "n_union": 4957,
+    "n_dev": 4957
+   }
+  },
+  {
+   "group": "H_split",
+   "test": "no_holdout_in_fold0",
+   "pass": true,
+   "detail": 0
+  },
+  {
+   "group": "H_split",
+   "test": "fold0_groups_disjoint",
+   "pass": true,
+   "detail": null
+  },
+  {
+   "group": "I_dataset",
+   "test": "dataset_input_shape",
+   "pass": true,
+   "detail": null
+  },
+  {
+   "group": "I_dataset",
+   "test": "dataset_input_contiguous",
+   "pass": true,
+   "detail": null
+  },
+  {
+   "group": "I_dataset",
+   "test": "dataset_target_binary",
+   "pass": true,
+   "detail": null
+  },
+  {
+   "group": "I_dataset",
+   "test": "augmentation_reproducible",
+   "pass": true,
+   "detail": null
+  },
+  {
+   "group": "I_dataset",
+   "test": "collate_shapes",
+   "pass": true,
+   "detail": null
+  },
+  {
+   "group": "J_scope",
+   "test": "scope_guard_present",
+   "pass": true,
+   "detail": null
+  },
+  {
+   "group": "J_scope",
+   "test": "phase25b_not_started",
+   "pass": true,
+   "detail": null
+  }
+ ],
+ "generated_utc": "2026-09-30T13:39:45.066485+00:00",
+ "test_reads": 0
+}

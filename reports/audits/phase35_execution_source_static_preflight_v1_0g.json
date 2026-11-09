@@ -1,0 +1,173 @@
+{
+ "artifact": "phase35_execution_source_static_preflight_v1_0g",
+ "phase": 35,
+ "section": "\u00a7G",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase35_interpretability_v1_0g",
+ "method_of_inspection": "AST_PARSE_CONTROL_FLOW_CALL_GRAPH_AND_SHA256_HASHING",
+ "effective_execution_source_set": [
+  "scripts/analysis/phase35_interpretability_execution_v1_0g.py",
+  "scripts/analysis/phase35_interpretability_execution_v1_0b.py"
+ ],
+ "preservation": [
+  {
+   "path": "reports/audits/phase35_synthetic_interpretability_smoke_v1_0f.json",
+   "expected_sha256": "05c02a34d61df1c6d3e53e2dd127f889501a5f5e99247aa8ef96fb947bc1d0fb",
+   "observed_sha256": "05c02a34d61df1c6d3e53e2dd127f889501a5f5e99247aa8ef96fb947bc1d0fb",
+   "match": true
+  },
+  {
+   "path": "reports/audits/phase35_synthetic_smoke_provenance_v1_0f.json",
+   "expected_sha256": "5e7cb9956e56dddf6951562e36047361311e69dc687d976362e90749ad75d866",
+   "observed_sha256": "5e7cb9956e56dddf6951562e36047361311e69dc687d976362e90749ad75d866",
+   "match": true
+  },
+  {
+   "path": "reports/audits/phase35_synthetic_smoke_final_check_v1_0f.json",
+   "expected_sha256": "040fc28379700e207ed324067594259c0c9e4ecaa2f9a6e2388824fbd0b29b7f",
+   "observed_sha256": "040fc28379700e207ed324067594259c0c9e4ecaa2f9a6e2388824fbd0b29b7f",
+   "match": true
+  },
+  {
+   "path": "reports/audits/phase35_synthetic_smoke_terminal_v1_0f.json",
+   "expected_sha256": "728d1535c39c27109aeea7fcfaf0cda5577734bc0327833c35efed5e7599b8b0",
+   "observed_sha256": "728d1535c39c27109aeea7fcfaf0cda5577734bc0327833c35efed5e7599b8b0",
+   "match": true
+  }
+ ],
+ "preservation_all_match": true,
+ "n_v1_0f_artifacts_preserved": 4,
+ "inherited_authorities": [
+  {
+   "path": "scripts/analysis/phase35_interpretability_execution_v1_0f.py",
+   "expected_sha256": "6a6097f4a3c346df38ab5ec452dc97717cdb65d789bf8bde8031442cb236e3e5",
+   "observed_sha256": "6a6097f4a3c346df38ab5ec452dc97717cdb65d789bf8bde8031442cb236e3e5",
+   "match": true
+  },
+  {
+   "path": "scripts/analysis/phase35_execution_preflight_v1_0f.py",
+   "expected_sha256": "7d535fcc22283b868616ef1e2259d6a7e4ed3d1e76747d5f31ba35e23ea8b552",
+   "observed_sha256": "7d535fcc22283b868616ef1e2259d6a7e4ed3d1e76747d5f31ba35e23ea8b552",
+   "match": true
+  },
+  {
+   "path": "scripts/analysis/phase35_interpretability_common_v1_0b.py",
+   "expected_sha256": "9963215e1431e968e11bacbcd917d96a8a985a7181000258b90f458ff0a778ac",
+   "observed_sha256": "9963215e1431e968e11bacbcd917d96a8a985a7181000258b90f458ff0a778ac",
+   "match": true
+  },
+  {
+   "path": "scripts/analysis/phase35_interpretability_execution_v1_0b.py",
+   "expected_sha256": "581926840d7717e19ed15ad77c7c5339b709efc881b938924d6eec0a2ceb1872",
+   "observed_sha256": "581926840d7717e19ed15ad77c7c5339b709efc881b938924d6eec0a2ceb1872",
+   "match": true
+  },
+  {
+   "path": "scripts/analysis/phase35_interpretability_execution_v1_0d.py",
+   "expected_sha256": "cccc109ade27eb5ad7883912004c1e911e9e253a659146f3d64820af92244056",
+   "observed_sha256": "cccc109ade27eb5ad7883912004c1e911e9e253a659146f3d64820af92244056",
+   "match": true
+  },
+  {
+   "path": "scripts/analysis/phase35_interpretability_execution_v1_0e.py",
+   "expected_sha256": "1ca50b773a185384b9f0a7eae47fe95c64eb84bad3826c70cbe88edefe535941",
+   "observed_sha256": "1ca50b773a185384b9f0a7eae47fe95c64eb84bad3826c70cbe88edefe535941",
+   "match": true
+  }
+ ],
+ "inherited_all_match": true,
+ "n_inherited_authorities": 6,
+ "checks": {
+  "01_primary_counter_declared": true,
+  "02_alias_counter_declared": true,
+  "03_empty_observability_counter_declared": true,
+  "04_primary_counter_initialized_zero": true,
+  "05_empty_counter_initialized_zero": true,
+  "06_primary_increments_primary_counter": true,
+  "07_primary_increments_alias_via_frozen_v0d": true,
+  "08_primary_helper_no_empty_counter_increment": true,
+  "09_empty_helper_increments_empty_counter_once": true,
+  "10_empty_helper_does_not_increment_primary_counter": true,
+  "11_empty_helper_does_not_increment_alias_counter": true,
+  "12_no_literal_primary_counter_increment_in_helper": true,
+  "13_expected_primary_equals_1": true,
+  "14_expected_alias_equals_1": true,
+  "15_expected_empty_helper_equals_1": true,
+  "16_expected_additional_forward_equals_0": true,
+  "17_expected_additional_autograd_equals_0": true,
+  "18_expected_store_not_mutating_v1_0c": true,
+  "19_mode_smoke_uses_v1_0g_expected": true,
+  "20_mode_smoke_exposes_counter_contract": true,
+  "21_counter_contract_gates_all_pass": true,
+  "22_empty_helper_counts_as_primary_false": true,
+  "23_empty_helper_counter_category": true,
+  "24_gradcam_path_no_primary_counter_change": true,
+  "25_gradcam_eight_finite_guards_preserved": true,
+  "26_gradcam_enable_grad_preserved": true,
+  "27_gradcam_autocast_preserved": true,
+  "28_gradcam_single_autograd_grad_preserved": true,
+  "29_gradcam_rank_safe_target_preserved": true,
+  "30_gradcam_bilinear_align_corners_preserved": true,
+  "31_gradcam_cam_normalize_guarded_preserved": true,
+  "32_empty_helper_atol_rtol_preserved": true,
+  "33_empty_helper_uses_actual_logits": true,
+  "34_empty_helper_rejects_non_tensor": true,
+  "35_empty_helper_no_forward": true,
+  "36_empty_helper_no_autograd": true,
+  "37_empty_helper_no_second_forward_flag_false": true,
+  "38_empty_helper_no_second_autograd_flag_false": true,
+  "39_empty_helper_additional_counts_zero": true,
+  "40_mode_smoke_reaches_gradcam_guarded": true,
+  "41_smoke_gradcam_reaches_empty_helper": true,
+  "42_mode_smoke_reaches_empty_helper": true,
+  "43_mode_smoke_reaches_primary_mask": true,
+  "44_surrogate_zero_plane_unreachable": true,
+  "45_gradcam_guarded_reaches_empty_helper": true,
+  "46_parameter_grad_audit_reused": true,
+  "47_finite_guards_reused_from_v1_0e": true,
+  "48_router_film_delegated_to_v1_0b": true,
+  "49_r_psi_s_omega_excluded": true,
+  "50_gate_envs_unchanged": true,
+  "51_classification_v1_0g": true,
+  "52_only_change_token": true,
+  "53_counter_unit_tests_pass": true,
+  "54_v1_0f_actual_logits_unit_still_pass": true,
+  "55_v1_0e_numerical_guard_unit_still_pass": true
+ },
+ "n_checks": 55,
+ "n_failed": 0,
+ "failed": [],
+ "call_graph_reachability": {
+  "mode_smoke_to_gradcam_guarded": true,
+  "mode_smoke_to_empty_helper": true,
+  "mode_smoke_to_primary_mask": true,
+  "mode_smoke_to_surrogate_zero_plane": false
+ },
+ "counter_contract": {
+  "primary_target_mask_counter": "primary_synthetic_target_masks",
+  "primary_target_mask_alias_counter": "synthetic_smoke_target_masks",
+  "empty_mask_observability_counter": "actual_logits_empty_mask_helper_checks",
+  "primary_expected": 1,
+  "alias_expected": 1,
+  "empty_helper_expected": 1,
+  "additional_G_forwards_for_empty_mask": 0,
+  "additional_autograd_calls_for_empty_mask": 0
+ },
+ "static_source_preflight_pass": true,
+ "zero_logit_surrogate_unreachable_from_v1_0g_smoke": true,
+ "actual_logits_check_reachable_from_v1_0g_smoke": true,
+ "model_constructed": false,
+ "checkpoint_deserialized": false,
+ "forward_executed": false,
+ "backward_executed": false,
+ "gradcam_executed": false,
+ "router_attribution_executed": false,
+ "gate_env_set": false,
+ "mode_invoked": false,
+ "raw_val_reads": 0,
+ "gt_reads": 0,
+ "router_holdout_reads": 0,
+ "test_reads": 0,
+ "generated_utc": "2026-10-05T05:07:19Z",
+ "all_pass": true
+}

@@ -1,0 +1,39 @@
+{
+ "artifact": "phase25g_specification_repair_addendum",
+ "phase": "25G",
+ "classification": "PHASE25G_PRE_EXECUTION_INTEGRATED_EVALUATION_SPECIFICATION_AUDIT",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_integrated_evaluation_v1_0",
+ "governance_only": true,
+ "no_execution": true,
+ "stage": "SPEC_REPAIR_ADDENDUM",
+ "classification_ruling": "SUPERVISOR_GOVERNANCE_RULING__HOLDOUT_PHASE_OWNERSHIP",
+ "additive_only": true,
+ "science_changed": false,
+ "blocked_artifacts_preserved": [
+  "phase25g_router_holdout_ownership_audit.json",
+  "phase25g_specification_completeness.csv",
+  "phase25g_specification_terminal.json",
+  "phase25g_specification_final_check.json"
+ ],
+ "created": [
+  "reports/audits/phase25g_router_holdout_ownership_supervisor_ruling_v1_0.json",
+  "reports/audits/phase25g_holdout_reservation_for_phase30.json",
+  "reports/audits/phase25g_execution_population_freeze_v1_1.json",
+  "reports/audits/phase25g_preserved_contracts_v1_1.json",
+  "reports/audits/phase25g_specification_completeness_v1_1_summary.json",
+  "reports/audits/phase30_router_holdout_deferred_contract_stub.json"
+ ],
+ "repaired_table": "reports/tables/phase25g_specification_completeness_v1_1.csv",
+ "blocking_fields_before": [
+  "ROUTER_HOLDOUT ownership"
+ ],
+ "blocking_fields_after": [],
+ "hard_stop_conditions_after": [],
+ "checks": {
+  "no_blocked_artifact_deleted": true,
+  "no_v1_0_overwrite": true,
+  "blocking_fields_now_empty": true
+ },
+ "all_pass": true
+}

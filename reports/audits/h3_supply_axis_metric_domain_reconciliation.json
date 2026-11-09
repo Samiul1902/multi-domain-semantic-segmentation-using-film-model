@@ -1,0 +1,124 @@
+{
+  "artifact": "h3_supply_axis_metric_domain_reconciliation",
+  "status": "H3_SUPPLY_METRIC_DOMAIN_RECONCILED__DOWNSTREAM_R_H3_PENDING",
+  "task": "H3 METRIC-DOMAIN RECONCILIATION + FROZEN DOWNSTREAM EVALUATION + NOTEBOOK 06",
+  "generated_utc": "2026-09-25T14:20:00Z",
+  "nature": "ADDITIVE_GOVERNANCE_RECONCILIATION__NO_NEW_INFERENCE__NO_HISTORY_REWRITE",
+
+  "problem_statement": {
+    "summary": "Notebook 05 (H3 supply-axis evaluation) correctly measured LOCALIZER/PROPOSAL supply but also substituted the proposal-level TINY coverage90 value into the formal downstream R_H3 formula and displayed the result as though it were the adjudicative downstream R_H3. The frozen prospective H3 design does NOT define formal R_H3 at the localizer-only proposal level.",
+    "frozen_design_defines_formal_R_H3_as": [
+      "H3 localizer",
+      "-> frozen Stage-4D proposal policy",
+      "-> frozen Phase-14 regional refiner epoch 56",
+      "-> segmentation",
+      "-> downstream TINY Recall",
+      "-> formal R_H3 = (TinyRecall_H3 - Tg) / G"
+    ]
+  },
+
+  "original_artifact": {
+    "supply_artifact_path": "reports/audits/h3_supply_axis_evaluation.json",
+    "supply_artifact_sha256": "00e6f41351d725817810eba13b738b2631c5b0cc023af192b1479af7321b9687",
+    "supply_artifact_status": "H3_SUPPLY_AXIS_EVALUATION_COMPLETE__FORMAL_ADJUDICATION_PENDING",
+    "notebook_05_path": "notebooks/phasewise/post_phase14_h3_proposal_supply/05_h3_supply_axis_evaluation.ipynb",
+    "notebook_05_sha256_pre_reconciliation": "fe69339ceddca6cd7d4a949f81d59154ccd19057b4d9bd24158d8ff825e9b1b0",
+    "notebook_05_sha256_post_reconciliation": "34f57624497b6132433f36f0243fec5b6295037ee2766f60f06d983184f3bb34",
+    "notebook_05_cells_post_reconciliation": 67,
+    "notebook_05_execution_post_reconciliation": "zero_tracebacks__monotonic_exec_counts_1_to_30",
+    "per_component_table_path": "reports/tables/h3_supply_eval_per_component.csv",
+    "per_component_table_sha256": "659064d0917fe3b2a91351aff140221ca02dee059d1e7e52c53c4b372dc11c04",
+    "per_image_table_path": "reports/tables/h3_supply_eval_per_image.csv",
+    "per_image_table_sha256": "5f109765718d41ae4374dd23886650c88010367dfa7b027e90c6927f2c138dd3"
+  },
+
+  "misused_quantity": {
+    "original_term_in_notebook_05": "R_H3",
+    "corrected_proposal_domain_term": "H3_PROPOSAL_TINY_COVERAGE90",
+    "proposal_level_value": 0.6666666666666666,
+    "definition": "Fraction of the 72 canonical clean-v3 FULL_FIELD VAL TINY GT components whose best proposal ROI covers >= 90% of the component, under the frozen decode (threshold=0.10, margin=0.20, top_k=5, nms_iou=0.30). This is a PROPOSAL/LOCALIZER metric, not a downstream segmentation recall.",
+    "previously_reported_proxy_R_H3": -0.5999999999999999,
+    "proxy_formula_used": "R_H3_proxy = (H3_PROPOSAL_TINY_COVERAGE90 - Tg) / G = (0.6666666666666666 - 0.7916666666666666) / 0.20833333333333337",
+    "proxy_interpretation_band_previously_displayed": "insufficient",
+    "formal_use_status": "INVALID_FOR_FORMAL_ADJUDICATION__PROPOSAL_DOMAIN_ONLY",
+    "reason_formal_use_is_invalid": "The frozen prospective design defines TinyRecall_H3 for the formal R_H3 as the DOWNSTREAM TINY Recall@0.90 obtained after the frozen Stage-4D proposal policy AND the frozen Phase-14 regional refiner AND fusion. A localizer/proposal coverage fraction is a strictly upstream quantity and is not the downstream segmentation recall. Substituting it changes the metric domain and yields a number that is not the prospective R_H3."
+  },
+
+  "preserved_supply_results": {
+    "note": "Unchanged. These LOCALIZER/PROPOSAL SUPPLY results remain valid and are NOT reinterpreted or tuned.",
+    "pre_h3_zero_proposal_gt": "79/152",
+    "pre_h3_zero_proposal_tiny": "57/72",
+    "h3_zero_proposal_gt": "27/152",
+    "h3_zero_proposal_tiny": "22/72",
+    "gt_supply_recovered": 52,
+    "tiny_supply_recovered": 35,
+    "primary_supply_criterion_A": {
+      "rule": "zero_proposal_TINY <= 20/72",
+      "value": 22,
+      "result": "FAIL"
+    },
+    "primary_supply_criterion_B": {
+      "rule": "zero_proposal_GT <= 35/152",
+      "value": 27,
+      "result": "PASS"
+    },
+    "combined_primary_supply_criteria": "FAIL"
+  },
+
+  "prospective_protocol_evidence": {
+    "design_protocol": "reports/audits/h3_proposal_supply_design_protocol.json",
+    "design_protocol_downstream_eval_plan": "H3 localizer -> heatmap (128) -> generate_predicted_rois(threshold=0.10, margin=0.20, top_k=5, nms_iou=0.30) -> proposal union (MAX-prob replacement) -> Phase-14 refiner epoch56 -> segmentation -> per-size recall",
+    "design_protocol_primary_metric": "Tiny Recall (size stratum TINY, 72 components)",
+    "design_protocol_R_H3_formula": "R_H3 = (TinyRecall_H3 - Tg) / G  with Tg=0.7916666666666666, G=0.20833333333333337",
+    "checkpoint_selection_rule": "reports/audits/h3_proposal_supply_checkpoint_selection_rule.json",
+    "checkpoint_selection_rule_downstream_metric": "Tiny Recall -> R_H3 = (TinyRecall_H3 - Tg)/G",
+    "success_failure_criteria": "reports/audits/h3_proposal_supply_success_failure_criteria.json",
+    "success_failure_criteria_R_H3_formula": "R_H3 = (TinyRecall_H3 - Tg) / G",
+    "conclusion": "The frozen prospective design binds TinyRecall_H3 to the downstream pipeline (post-refiner segmentation recall), not to the localizer-only proposal coverage. The proposal-domain substitution in Notebook 05 is therefore a metric-domain mismatch, now reconciled additively."
+  },
+
+  "corrected_terminology": {
+    "H3_PROPOSAL_TINY_COVERAGE90": {
+      "value": 0.6666666666666666,
+      "domain": "PROPOSAL_LOCALIZER",
+      "role": "Supply-axis diagnostic only; NOT the formal downstream TinyRecall_H3.",
+      "source_artifact": "reports/audits/h3_supply_axis_evaluation.json"
+    },
+    "H3_PROPOSAL_TINY_ANY_OVERLAP_RECALL": {
+      "value": 0.6944444444444444,
+      "domain": "PROPOSAL_LOCALIZER",
+      "role": "Supply-axis diagnostic only."
+    },
+    "H3_DOWNSTREAM_TINY_RECALL90": {
+      "value": null,
+      "domain": "DOWNSTREAM_SEGMENTATION",
+      "role": "The formal TinyRecall_H3 used in the prospective R_H3. Computed by the frozen downstream evaluation (this task). See reports/audits/h3_downstream_evaluation.json.",
+      "status": "COMPUTED_IN_THIS_TASK"
+    },
+    "FORMAL_DOWNSTREAM_R_H3": {
+      "value": null,
+      "domain": "DOWNSTREAM_SEGMENTATION",
+      "role": "The formal prospective R_H3 = (H3_DOWNSTREAM_TINY_RECALL90 - Tg) / G.",
+      "status": "COMPUTED_IN_THIS_TASK"
+    }
+  },
+
+  "reconciliation_actions": {
+    "no_new_inference_for_correction": true,
+    "original_supply_counts_unchanged": true,
+    "original_artifact_preserved_not_overwritten": true,
+    "notebook_05_updated_additively": true,
+    "notebook_05_original_measurements_preserved": true,
+    "proxy_relabelled": "LOCALIZER-ONLY PROXY — NOT FORMAL DOWNSTREAM R_H3",
+    "formal_downstream_R_H3_status": "PENDING_AT_RECONCILIATION_TIME"
+  },
+
+  "governance": {
+    "test_reads": 0,
+    "external_test_reads": 0,
+    "training_executed": false,
+    "checkpoint_selection_changed": false,
+    "supply_thresholds_changed": false,
+    "phase15_status": "NOT_STARTED_AND_NOT_AUTHORIZED"
+  }
+}

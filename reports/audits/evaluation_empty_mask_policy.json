@@ -1,0 +1,64 @@
+{
+  "artifact": "evaluation_empty_mask_policy",
+  "status": "FROZEN_POLICY",
+  "generated_utc": "2026-09-25T14:49:05Z",
+  "principle": "Undefined metrics return NaN together with an explicit validity flag. They are NEVER silently zeroed.",
+  "cases": {
+    "gt_empty_pred_empty": {
+      "dice": 1.0,
+      "iou": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "specificity": 1.0,
+      "npv": 1.0,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0,
+      "mcc": 1.0,
+      "cohen_kappa": 1.0,
+      "hd95": "NaN (invalid: both_empty)",
+      "assd": "NaN (invalid)",
+      "surface_dice": "NaN (invalid)",
+      "rationale": "Perfect agreement on an empty foreground; boundary distances are undefined."
+    },
+    "gt_empty_pred_nonempty": {
+      "dice": 0.0,
+      "iou": 0.0,
+      "precision": 0.0,
+      "recall": "NaN (undefined: no positives)",
+      "specificity": 1.0,
+      "npv": "NaN",
+      "accuracy": "NaN",
+      "balanced_accuracy": "NaN",
+      "mcc": "NaN",
+      "cohen_kappa": "NaN",
+      "hd95": "NaN (invalid)",
+      "assd": "NaN (invalid)",
+      "surface_dice": "NaN (invalid)",
+      "rationale": "False-positive-only case."
+    },
+    "gt_nonempty_pred_empty": {
+      "dice": 0.0,
+      "iou": 0.0,
+      "precision": "NaN (undefined: no predicted positives)",
+      "recall": 0.0,
+      "specificity": 1.0,
+      "npv": 0.0,
+      "accuracy": "NaN",
+      "balanced_accuracy": "NaN",
+      "mcc": "NaN",
+      "cohen_kappa": "NaN",
+      "hd95": "NaN (invalid: empty_prediction)",
+      "assd": "NaN (invalid)",
+      "surface_dice": "NaN (invalid)",
+      "rationale": "False-negative-only case; boundary distances require both masks non-empty."
+    },
+    "both_nonempty": {
+      "note": "All metrics defined by their standard formulas."
+    }
+  },
+  "component_detection": {
+    "note": "Empty predictions simply yield zero detected components; component recall is 0 and FP components is 0.",
+    "tn": "not defined"
+  },
+  "aggregation_rule": "NaN-valued images are excluded from image-level means but remain visible in the per-image table; pooled pixel metrics always include them via their raw counts."
+}

@@ -1,0 +1,386 @@
+{
+ "artifact": "phase24_roi_feature_mapping_contract_v1_2",
+ "phase": "24",
+ "revision": "ra_medfilm_barr_narrowed_v1_2",
+ "resolves": "RF-2",
+ "classification": "SPECIFICATION_COMPLETENESS_ONLY",
+ "science_changed": false,
+ "canvas_resolution": 512,
+ "roi_proposal_threshold": 0.3,
+ "roi_source": {
+  "cache_root": "data_cache/phase25a_barr_roi030_cache",
+  "cache_manifest_sha256": "cad302059231d70cbd1c9dd8058c9f0e6b121a3f87ac9c4d120707ed0244b0d8",
+  "metadata_fields_bound": [
+   "clip_y1",
+   "clip_y2",
+   "clip_x1",
+   "clip_x2",
+   "pad_top",
+   "pad_bottom",
+   "pad_left",
+   "pad_right",
+   "crop_side_pixels",
+   "bbox_min_y",
+   "bbox_min_x",
+   "bbox_max_y",
+   "bbox_max_x"
+  ],
+  "rows_verified": 4957
+ },
+ "coordinate_convention": {
+  "canonical": "HALF_OPEN",
+  "fields": "clip_y1/clip_y2/clip_x1/clip_x2 are half-open [y0,y1), [x0,x1)",
+  "empirical_identity": "(clip_y2-clip_y1)+pad_top+pad_bottom == crop_side_pixels",
+  "empirical_violations": 0,
+  "inclusive_to_halfopen_conversion_applied": false,
+  "reason_no_conversion": "the canonical cache already stores half-open bounds; applying +1 would double-count by one pixel"
+ },
+ "image_to_feature_rule": {
+  "scale_denominator": 512,
+  "start_rule": "floor",
+  "end_rule": "ceil",
+  "formulas": [
+   "fx0=floor(x0*Wf/512)",
+   "fy0=floor(y0*Hf/512)",
+   "fx1=ceil(x1*Wf/512)",
+   "fy1=ceil(y1*Hf/512)"
+  ],
+  "clip": [
+   "fx0=clip(fx0,0,Wf-1)",
+   "fy0=clip(fy0,0,Hf-1)",
+   "fx1=clip(fx1,fx0+1,Wf)",
+   "fy1=clip(fy1,fy0+1,Hf)"
+  ],
+  "slice": "F[:, fy0:fy1, fx0:fx1]",
+  "applied_independently_per_tap": true
+ },
+ "feature_grids": {
+  "bridge": {
+   "size": 32
+  },
+  "decoder2": {
+   "size": 256
+  },
+  "decoder1": {
+   "size": 512
+  }
+ },
+ "padding_semantics": {
+  "canvas_only": true,
+  "external_crop_padding_contributes_no_cells": true,
+  "note": "ROI components that fall outside the 512x512 canvas (pad_* > 0) are clipped away; no synthetic feature values are invented"
+ },
+ "defensive_empty_behaviour": {
+  "action_available_false": "bypass routing; final FORCED_SKIP; 32 zeros per ROI tap for fixed-shape compatibility; action_available=0 metadata; router MUST NOT execute",
+  "action_available_true_but_empty_mapped_roi": "FAIL CLOSED"
+ },
+ "synthetic_unit_tests": [
+  {
+   "roi": [
+    0,
+    0,
+    512,
+    512
+   ],
+   "grid": 32,
+   "expect": [
+    0,
+    0,
+    32,
+    32
+   ],
+   "why": "full canvas",
+   "got": [
+    0,
+    0,
+    32,
+    32
+   ],
+   "ok": true
+  },
+  {
+   "roi": [
+    0,
+    0,
+    1,
+    1
+   ],
+   "grid": 32,
+   "expect": [
+    0,
+    0,
+    1,
+    1
+   ],
+   "why": "1px corner",
+   "got": [
+    0,
+    0,
+    1,
+    1
+   ],
+   "ok": true
+  },
+  {
+   "roi": [
+    511,
+    511,
+    512,
+    512
+   ],
+   "grid": 32,
+   "expect": [
+    31,
+    31,
+    32,
+    32
+   ],
+   "why": "far corner clips to exactly one cell",
+   "got": [
+    31,
+    31,
+    32,
+    32
+   ],
+   "ok": true
+  },
+  {
+   "roi": [
+    0,
+    0,
+    512,
+    512
+   ],
+   "grid": 512,
+   "expect": [
+    0,
+    0,
+    512,
+    512
+   ],
+   "why": "identity grid",
+   "got": [
+    0,
+    0,
+    512,
+    512
+   ],
+   "ok": true
+  }
+ ],
+ "checks": [
+  {
+   "check": "roi_source_exact",
+   "passed": true,
+   "detail": {
+    "rows": 4957,
+    "cache": "data_cache\\phase25a_barr_roi030_cache"
+   }
+  },
+  {
+   "check": "coordinate_fields_present",
+   "passed": true,
+   "detail": [
+    "action_available",
+    "action_unavailable_reason",
+    "bbox_max_x",
+    "bbox_max_y",
+    "bbox_min_x",
+    "bbox_min_y",
+    "canvas_resolution",
+    "clip_x1",
+    "clip_x2",
+    "clip_y1",
+    "clip_y2",
+    "crop_side_pixels",
+    "dataset",
+    "effective_magnification",
+    "global_checkpoint_sha256",
+    "group_key",
+    "margin",
+    "pad_bottom",
+    "pad_left",
+    "pad_right",
+    "pad_top",
+    "predicted_foreground_pixels",
+    "regional_input_resolution",
+    "roi_proposal_threshold",
+    "sample_id",
+    "segmentation_output_threshold",
+    "task_id",
+    "x1",
+    "x2",
+    "y1",
+    "y2"
+   ]
+  },
+  {
+   "check": "half_open_semantics_exact",
+   "passed": true,
+   "detail": {
+    "violations": 0,
+    "n": 4957
+   }
+  },
+  {
+   "check": "inclusive_to_halfopen_conversion_not_required",
+   "passed": true,
+   "detail": "clip_* fields are ALREADY half-open; no +1 conversion is applied"
+  },
+  {
+   "check": "floor_start_rule_exact",
+   "passed": true,
+   "detail": {
+    "violations": 0
+   }
+  },
+  {
+   "check": "ceil_end_rule_exact",
+   "passed": true,
+   "detail": "fx1=ceil(x1*Wf/512) then clip to [fx0+1, Wf]"
+  },
+  {
+   "check": "clipping_exact",
+   "passed": true,
+   "detail": {
+    "violations": 0
+   }
+  },
+  {
+   "check": "action_available_roi_nonempty",
+   "passed": true,
+   "detail": {
+    "violations": 0,
+    "note": "all canonical DEV rows are action_available"
+   }
+  },
+  {
+   "check": "feature_map_specific_scaling_exact",
+   "passed": true,
+   "detail": {
+    "bridge": 32,
+    "decoder2": 256,
+    "decoder1": 512
+   }
+  },
+  {
+   "check": "padding_behaviour_exact",
+   "passed": true,
+   "detail": "only F[:, fy0:fy1, fx0:fx1] of the real 512 canvas is pooled; external crop padding contributes no feature-map cells"
+  },
+  {
+   "check": "empty_defensive_behaviour_exact",
+   "passed": true,
+   "detail": "action_available=0 -> FORCED_SKIP, routing bypassed; fixed-shape cache materialises 32 zeros per ROI tap and flags action_available=0; router MUST NOT run such a row; action_available=1 => mapped ROI must have >=1 cell else FAIL CLOSED"
+  },
+  {
+   "check": "fail_closed_on_empty_mapped_roi",
+   "passed": true,
+   "detail": "a zero-cell mapped ROI for action_available=1 raises (fail closed)"
+  },
+  {
+   "check": "synthetic_mapping_tests_pass",
+   "passed": true,
+   "detail": [
+    {
+     "roi": [
+      0,
+      0,
+      512,
+      512
+     ],
+     "grid": 32,
+     "expect": [
+      0,
+      0,
+      32,
+      32
+     ],
+     "why": "full canvas",
+     "got": [
+      0,
+      0,
+      32,
+      32
+     ],
+     "ok": true
+    },
+    {
+     "roi": [
+      0,
+      0,
+      1,
+      1
+     ],
+     "grid": 32,
+     "expect": [
+      0,
+      0,
+      1,
+      1
+     ],
+     "why": "1px corner",
+     "got": [
+      0,
+      0,
+      1,
+      1
+     ],
+     "ok": true
+    },
+    {
+     "roi": [
+      511,
+      511,
+      512,
+      512
+     ],
+     "grid": 32,
+     "expect": [
+      31,
+      31,
+      32,
+      32
+     ],
+     "why": "far corner clips to exactly one cell",
+     "got": [
+      31,
+      31,
+      32,
+      32
+     ],
+     "ok": true
+    },
+    {
+     "roi": [
+      0,
+      0,
+      512,
+      512
+     ],
+     "grid": 512,
+     "expect": [
+      0,
+      0,
+      512,
+      512
+     ],
+     "why": "identity grid",
+     "got": [
+      0,
+      0,
+      512,
+      512
+     ],
+     "ok": true
+    }
+   ]
+  }
+ ],
+ "n_checks": 13,
+ "n_failed": 0,
+ "verdict": "RF2_RESOLVED",
+ "model_instantiations": 0,
+ "forward_passes": 0,
+ "science_execution": false
+}

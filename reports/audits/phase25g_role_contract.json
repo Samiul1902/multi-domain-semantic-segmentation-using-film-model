@@ -1,0 +1,53 @@
+{
+ "artifact": "phase25g_role_contract",
+ "phase": "25G",
+ "classification": "PHASE25G_PRE_EXECUTION_INTEGRATED_EVALUATION_SPECIFICATION_AUDIT",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_integrated_evaluation_v1_0",
+ "governance_only": true,
+ "no_execution": true,
+ "stage": "ROLE_FREEZE",
+ "phase25g_name": "Integrated controlled development evaluation / freeze",
+ "phase25g_deliverable": "comparator + ablation evaluation report and freeze",
+ "phase25g_starts_after": [
+  "25E",
+  "25F"
+ ],
+ "phase25g_owns": {
+  "A7_vs_A8": "controlled DEV comparison isolating S_omega (always-accept vs post-safety accept)",
+  "C8_vs_C9": "system-level comparison of resource-gated routing vs post-safety-gated routing",
+  "integrated_segmentation_preservation": "A8 non-inferiority vs the global reference",
+  "post_safety_effect": "the marginal effect of S_omega on the executed-refinement set",
+  "domain_level_integrated_effect": "per-domain reporting (macro average may not hide domain harm)",
+  "controlled_comparator_ablation_report": "comparator + ablation evaluation report and freeze"
+ },
+ "phase25g_does_not": {
+  "train_any_model": true,
+  "tune_any_model": true,
+  "select_lambda_from_results": true,
+  "select_budget_from_results": true,
+  "change_S_omega_threshold": true,
+  "change_router_threshold": true,
+  "change_ROI_threshold": true,
+  "change_segmentation_threshold": true
+ },
+ "phase25f_ownership_ruling": "F1",
+ "phase25f_phase25g_handoff_deliverables": [
+  "A7 vs A8",
+  "C8 vs C9",
+  "segmentation preservation",
+  "post-safety rejection of harmful refinements",
+  "domain preservation",
+  "integrated resource/preservation tradeoff",
+  "controlled development freeze"
+ ],
+ "role_frozen": true,
+ "checks": {
+  "name_is_integrated_controlled_development_evaluation_freeze": true,
+  "deliverable_is_comparator_ablation_report_and_freeze": true,
+  "starts_after_25E_and_25F": true,
+  "no_training_or_tuning_in_role": true,
+  "a7_a8_owner_is_phase25g": true
+ },
+ "all_pass": true
+}

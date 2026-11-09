@@ -1,0 +1,84 @@
+{
+ "artifact": "phase34_execution_eligibility_adjudication_v1_2",
+ "phase": 34,
+ "section": "\u00a7Y",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase34_efficiency_profiling_v1_2",
+ "families": {
+  "G_component_runtime_eligible": {
+   "value": true,
+   "basis": "v1.2 worker G_COMPONENT"
+  },
+  "R_psi_component_runtime_eligible": {
+   "value": true,
+   "basis": "v1.2 worker R_PSI_COMPONENT"
+  },
+  "B_phi_component_runtime_eligible": {
+   "value": true,
+   "basis": "v1.2 worker B_PHI_COMPONENT"
+  },
+  "S_omega_component_runtime_eligible": {
+   "value": true,
+   "basis": "v1.2 worker S_OMEGA_COMPONENT"
+  },
+  "GLOBAL_ONLY_C1_runtime_eligible": {
+   "value": true,
+   "basis": "v1.1 arm registry GLOBAL_ONLY_C1"
+  },
+  "FINAL_ROUTED_A8_C9_controlled_path_runtime_eligible": {
+   "value": true,
+   "basis": "v1.1 arm registry FINAL_ROUTED_A8_C9 (EXECUTE graph)"
+  },
+  "SKIP_controlled_path_runtime_eligible": {
+   "value": true,
+   "basis": "controlled module-compute decomposition (G + B_phi) of the authorized FINAL_ROUTED_A8_C9 graph; registry_authorization=DERIVED_DISCLOSED",
+   "registry_authorization": "DERIVED_DISCLOSED",
+   "requires_supervisor_confirmation": true
+  },
+  "batch1_latency_eligible": {
+   "value": true,
+   "basis": "v1.1 latency contract"
+  },
+  "batch8_throughput_eligible": {
+   "value": true,
+   "basis": "v1.1 throughput contract"
+  },
+  "GPU_memory_eligible": {
+   "value": true,
+   "basis": "v1.1 memory contract"
+  },
+  "conditional_weighted_runtime_eligible": {
+   "value": true,
+   "basis": "requires BOTH SKIP and EXECUTE measured path latencies at execution time (v1.2 harness fails closed otherwise)"
+  },
+  "synthetic_natural_route_replay_eligible": {
+   "value": false,
+   "basis": "no pre-frozen route harness"
+  },
+  "new_MAC_FLOP_profiler_eligible": {
+   "value": false,
+   "basis": "no profiler installed"
+  },
+  "raw_ROUTER_HOLDOUT_execution_eligible": {
+   "value": false,
+   "basis": "data access"
+  },
+  "raw_GT_execution_eligible": {
+   "value": false,
+   "basis": "data access"
+  },
+  "TEST_execution_eligible": {
+   "value": false,
+   "basis": "TEST LOCKED_UNTIL_PHASE39"
+  },
+  "training_eligible": {
+   "value": false,
+   "basis": "profiling phase only"
+  }
+ },
+ "supersedes": "phase34_execution_eligibility_adjudication_v1_1.json",
+ "v1_1_eligibility_preserved": true,
+ "first_measured_execution_started": false,
+ "generated_utc": "2026-10-04T11:08:33+00:00",
+ "all_pass": true
+}

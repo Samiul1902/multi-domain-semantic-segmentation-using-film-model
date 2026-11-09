@@ -1,0 +1,122 @@
+{
+ "artifact": "phase35_synthetic_smoke_terminal_v1_0f",
+ "phase": 35,
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase35_interpretability_v1_0f",
+ "classification": "PRE_SCIENTIFIC_SYNTHETIC_NUMERICAL_SAFETY_AND_INTERFACE_VALIDATION",
+ "not": "NOT_PHASE35_SCIENTIFIC_INTERPRETABILITY_RESULT",
+ "terminal": "PHASE35_SYNTHETIC_SMOKE_V1_0F_BLOCKED__CANONICAL_MODEL_OR_NUMERICAL_INTERPRETABILITY_INTERFACE_CHECK_FAILED__ZERO_PROTECTED_DATA_OR_SCIENTIFIC_OUTPUT_ACCESS",
+ "first_valid_attempt_preserved": true,
+ "patch_and_retry_in_same_work_order": false,
+ "retries_performed": 0,
+ "invocation_count": 1,
+ "blocking_failures": {
+  "harness_all_pass": {
+   "value": false,
+   "required": true,
+   "check": "105_harness_all_pass_TRUE"
+  },
+  "counts_match_expected": {
+   "value": false,
+   "required": true,
+   "check": "106_counts_match_expected_TRUE"
+  }
+ },
+ "blocking_root_cause": {
+  "counter": "synthetic_smoke_target_masks",
+  "observed": 2,
+  "expected": 1,
+  "mechanism": "DOUBLE_INCREMENT of the frozen v1.0c counter store: (a) V0D.smoke_synthetic_target_mask_rank2() increments ONCE for the primary centered-square target mask; (b) v1.0f empty_mask_helper_check_insession_actual_logits() increments AGAIN for the all-False empty variant derived from the SAME primary mask (line 176 of scripts/analysis/phase35_interpretability_execution_v1_0f.py). The v1.0f in-scope ACTUAL-LOGITS observability change introduced increment (b) WITHOUT updating SMOKE_EXPECTED_COUNTERS (still imported VERBATIM from v1.0c).",
+  "classification": "INTERNAL_EXECUTION_COUNT_INTEGRITY_MISMATCH__not_a_model_numerical_or_interface_defect__not_a_protected_data_or_scientific_output_defect",
+  "scientific_effect": "NONE",
+  "protected_data_effect": "NONE",
+  "workspace_effect": "NONE"
+ },
+ "all_scientific_and_interface_checks_pass": true,
+ "final_check_n_checks": 106,
+ "final_check_n_failed": 2,
+ "final_check_failed": [
+  "105_harness_all_pass_TRUE",
+  "106_counts_match_expected_TRUE"
+ ],
+ "contract_attestation_despite_block": {
+  "canonical_G_and_B_phi_strict_load": true,
+  "state_identity_preserved": true,
+  "target_gradient_alpha_raw_and_prenormalization_cam_numerics_finite": true,
+  "actual_same_forward_G_logits_empty_mask_fallback_pass": true,
+  "direct_parameter_grad_audit_0_0": true,
+  "router_raw_delta_hat_gradient_x_input_finite": true,
+  "zero_protected_data_access": true,
+  "zero_scientific_output": true
+ },
+ "protected_data_counters": {
+  "raw_VAL_image_reads": 0,
+  "real_persisted_VAL_probability_reads": 0,
+  "VAL_GT_reads": 0,
+  "router_feature_cache_rows_read": 0,
+  "ROUTER_HOLDOUT_reads": 0,
+  "TEST_reads": 0,
+  "TRAIN_raw_reads": 0
+ },
+ "scientific_output_counters": {
+  "scientific_outputs": 0,
+  "scientific_figures": 0,
+  "scientific_tables": 0,
+  "scientific_gradcam_outputs": 0,
+  "scientific_router_attribution_outputs": 0,
+  "scientific_film_outputs": 0
+ },
+ "counters_all_protected_zero": true,
+ "execution_counters": {
+  "G_model_constructions": 1,
+  "B_phi_model_constructions": 1,
+  "checkpoint_deserializations": 2,
+  "strict_loads": 2,
+  "G_synthetic_forwards": 1,
+  "B_phi_synthetic_forwards": 1,
+  "total_model_forwards": 2,
+  "G_gradcam_autograd_calls": 1,
+  "router_numeric_input_autograd_calls": 1,
+  "total_autograd_calls": 2,
+  "synthetic_CAM_maps": 2,
+  "synthetic_router_attribution_rows": 4,
+  "synthetic_smoke_target_masks": 2,
+  "R_psi_model_constructions": 0,
+  "R_psi_checkpoint_loads": 0,
+  "R_psi_forwards": 0,
+  "S_omega_model_constructions": 0,
+  "S_omega_checkpoint_loads": 0,
+  "S_omega_forwards": 0,
+  "optimizer_constructions": 0,
+  "optimizer_step_calls": 0,
+  "training_backward_calls": 0,
+  "parameter_mutations": 0,
+  "raw_VAL_image_reads": 0,
+  "real_persisted_VAL_probability_reads": 0,
+  "VAL_GT_reads": 0,
+  "router_feature_cache_rows_read": 0,
+  "ROUTER_HOLDOUT_reads": 0,
+  "TEST_reads": 0,
+  "TRAIN_raw_reads": 0,
+  "scientific_outputs": 0
+ },
+ "artifacts": {
+  "smoke": {
+   "path": "reports/audits/phase35_synthetic_interpretability_smoke_v1_0f.json",
+   "sha256": "05c02a34d61df1c6d3e53e2dd127f889501a5f5e99247aa8ef96fb947bc1d0fb"
+  },
+  "provenance": {
+   "path": "reports/audits/phase35_synthetic_smoke_provenance_v1_0f.json",
+   "sha256": "5e7cb9956e56dddf6951562e36047361311e69dc687d976362e90749ad75d866"
+  },
+  "final_check": {
+   "path": "reports/audits/phase35_synthetic_smoke_final_check_v1_0f.json",
+   "sha256": "040fc28379700e207ed324067594259c0c9e4ecaa2f9a6e2388824fbd0b29b7f"
+  }
+ },
+ "phase35_scientific_execution_started": false,
+ "phase36_started": false,
+ "TEST": "LOCKED_UNTIL_PHASE39",
+ "ROUTER_HOLDOUT": "OPENED_AND_FROZEN",
+ "generated_utc": "2026-10-05T04:24:12Z"
+}

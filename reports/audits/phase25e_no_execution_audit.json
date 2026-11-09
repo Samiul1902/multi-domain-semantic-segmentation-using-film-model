@@ -1,0 +1,51 @@
+{
+  "classification": "PHASE25E_PRE_EXECUTION_RESOURCE_GATE_SPECIFICATION_FREEZE",
+  "specification_revision": "ra_medfilm_barr_resource_gate_v1_0",
+  "science_results_changed": false,
+  "router_changed": false,
+  "refiner_changed": false,
+  "features_changed": false,
+  "labels_changed": false,
+  "training_required": false,
+  "model_inference_required": false,
+  "holdout_outcomes_required": false,
+  "router_model_loads": 0,
+  "router_forwards": 0,
+  "refiner_forwards": 0,
+  "global_forwards": 0,
+  "training_runs": 0,
+  "optimizer_steps": 0,
+  "DeltaDice_outcomes_read": 0,
+  "DeltaDice_outcome_joins": 0,
+  "routing_metric_calculations": 0,
+  "segmentation_metric_calculations": 0,
+  "router_holdout_reads": 0,
+  "router_holdout_feature_inference": 0,
+  "VAL808_reads": 0,
+  "TEST_reads": 0,
+  "Phase25F_started": false,
+  "Phase25G_started": false,
+  "policy_outcome_evaluation_started": false,
+  "outcome_access_semantics": "Raw file bytes streamed only for required SHA verification; no outcome column parsed, materialized, inspected, joined or evaluated. OOF parser usecols is exactly sample_id and delta_hat_oof. Phase25C label CSV hash-only.",
+  "parsed_metadata_columns": [
+    "sample_id",
+    "feature_row_index",
+    "action_available"
+  ],
+  "parsed_oof_columns": [
+    "sample_id",
+    "delta_hat_oof"
+  ],
+  "feature_columns": [
+    "entropy_proxy_mean",
+    "mean_boundary_margin",
+    "predicted_roi_area_fraction"
+  ],
+  "random_priority_frozen_before_oof_projection": true,
+  "random_priority_sha256": "2cfbf22449a91e95d3e82416993bd4d6dfb8e49eacde961e431f4c833f5a5768",
+  "membership_policy_count": 45,
+  "membership_row_count": 223065,
+  "scientific_artifacts_byte_identical": true,
+  "script_sha256": "bbc26b74d5aed3e185529299078cb0be562180ecbe4444a9bacf4c81d83f53e0",
+  "all_pass": true
+}

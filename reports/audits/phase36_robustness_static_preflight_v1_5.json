@@ -1,0 +1,265 @@
+{
+  "artifact": "phase36_robustness_static_preflight_v1_5",
+  "revision": "ra_medfilm_barr_phase36_robustness_v1_5",
+  "method": "AST_CALL_GRAPH_AND_BYTE_PREFLIGHT",
+  "audited_source": "scripts/analysis/phase36_robustness_execution_v1_5.py",
+  "torch_imported": false,
+  "checks": [
+    {
+      "check": "01_canonical_operator_expression_frozen",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "02_central_operator_function_present",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "03_central_operator_uses_torch_sigmoid_float",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "04_no_executable_manual_numpy_sigmoid",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "05_exactly_one_g_probability_operator",
+      "passed": true,
+      "detail": [
+        [
+          1086,
+          "torch.sigmoid(t.float())"
+        ]
+      ]
+    },
+    {
+      "check": "06_g_forward_returns_logits_and_probability",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "07_probability_computed_inside_g_context",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "08_float32_then_float16_persistence",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "09_clean_g_cache_consumes_canonical_probability",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "10_shared_core_consumes_canonical_probability",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "11_image_perturbation_consumes_canonical_probability",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "12_smoke_consumes_canonical_probability",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "13_proposal_path_consumes_canonical_probability",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "14_cuda_require_true_literal",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "15_device_type_must_be_cuda",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "16_fail_closed_terminal_present",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "17_no_executable_cpu_fallback",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "18_cpu_fallback_flag_false",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "19_device_contract_recorded_in_source",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "20_explicit_G_to_device",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "21_explicit_B_phi_to_device",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "22_explicit_R_psi_to_device",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "23_explicit_S_omega_to_device",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "24_binding_verified_not_assumed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "25_binding_precedes_system_composition",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "26_G_no_grad_autocast_fp16",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "27_G_inference_mode_false",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "28_B_phi_inference_mode_autocast_disabled",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "29_R_psi_inference_mode_autocast_disabled",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "30_S_omega_inference_mode_autocast_disabled",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "31_component_context_helper_used",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "32_autocast_disabled_helper_used",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "33_nonG_not_wrapped_in_G_autocast",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "34_conditional_execution_order_retained",
+      "passed": true,
+      "detail": {
+        "decision": 1297,
+        "r_psi": 1315,
+        "s_omega": 1334
+      }
+    },
+    {
+      "check": "35_proposal_smoke_retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "36_empty_proposal_smoke_retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "37_three_branch_controls_retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "38_kub_subgroup_reporting_retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "39_r1_r5_retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "40_router_decision_separate_from_final_state",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "41_test_inaccessible",
+      "passed": true,
+      "detail": [
+        "load_identity_authorities"
+      ]
+    },
+    {
+      "check": "42_holdout_inaccessible",
+      "passed": true,
+      "detail": [
+        "load_identity_authorities"
+      ]
+    },
+    {
+      "check": "43_no_training",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "44_no_vendor_substring_split",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "45_phase27_authority_unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "46_torch_not_imported_by_preflight",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "47_no_module_level_execution",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "48_gate_names_unchanged",
+      "passed": true,
+      "detail": null
+    }
+  ],
+  "passed": 48,
+  "total": 48,
+  "all_pass": true
+}

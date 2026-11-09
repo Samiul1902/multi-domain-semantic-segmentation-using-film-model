@@ -1,0 +1,28 @@
+{
+ "artifact": "phase36_v1_15_science_release_attestation_contract",
+ "phase": 36,
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase36_robustness_v1_15",
+ "type": "SCIENCE_RELEASE_ATTESTATION_CONTRACT",
+ "execution_source": "scripts\\analysis\\phase36_robustness_execution_v1_15.py",
+ "execution_source_sha256": "b194ad28345ea8b268748be383ca98b936cb051d85854666e3141250f3eae002",
+ "launcher": "scripts\\analysis\\launch_phase36_v1_15.py",
+ "launcher_sha256": "2ad201fde72845891571cb1a53a675f6d7075dde23383da3eaa0b13b15d10c1c",
+ "supervisor": "scripts\\analysis\\supervise_phase36_v1_15.py",
+ "supervisor_sha256": "446b707c879781c0927a5fafec13c95082f0eabc732952988d2df47a2cfdcfc8",
+ "operator_gate": "PHASE36_V1_15_EXECUTE=1",
+ "launch_authority_token": "PHASE36_V1_15_LAUNCH_AUTHORITY",
+ "launch_authority": "OPERATOR_ONLY__SINGLE_DISPATCH__NO_AUTOMATIC_RETRY",
+ "scientific_repairs": [
+  "D61_CANONICAL_PHASE27_ACCEPT_FUSION",
+  "D75_POLICY_B_AUTHORITATIVE_SEGMENTATION_REPRESENTATION"
+ ],
+ "policy_b_representation": "live_f32 -> f16 -> f32 -> >= 0.50",
+ "segmentation_threshold": 0.5,
+ "downstream_G_quantization_added": false,
+ "clean_equivalence_atol": 1e-07,
+ "clean_equivalence_rtol": 0.0,
+ "attempt_state": "ELIGIBLE_NOT_STARTED",
+ "new_scientific_choice": false,
+ "terminal": "PHASE36_V1_15_SCIENCE_RELEASE_ATTESTATION_CONTRACT_COMPLETE"
+}

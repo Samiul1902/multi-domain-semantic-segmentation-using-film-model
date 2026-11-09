@@ -1,0 +1,96 @@
+{
+ "phase": 28,
+ "method": "RA-MedFiLM-BARR",
+ "governance_only": true,
+ "execution": "NONE",
+ "generated_utc": "2026-10-02T12:35:00Z",
+ "artifact": "phase28_router_variant_feature_schema_v1_2",
+ "classification": "ROUTER_ABLATION_INPUT_SEMANTICS_FREEZE",
+ "canonical_router_input": {
+  "deep_global_features": 192,
+  "scalar_features": 10,
+  "task_embedding": "Embedding(4,16)",
+  "effective_first_layer_width": 218,
+  "total_numeric_features": 202
+ },
+ "scalar_feature_names": [
+  "entropy_proxy_mean",
+  "frac_prob_within_0p05_of_boundary",
+  "frac_prob_within_0p02_of_boundary",
+  "mean_boundary_margin",
+  "pred_foreground_fraction",
+  "pred_foreground_pixels",
+  "predicted_roi_area_fraction",
+  "predicted_roi_side",
+  "pred_roi_exists",
+  "pred_empty"
+ ],
+ "standardized_scalar_subset": [
+  "entropy_proxy_mean",
+  "frac_prob_within_0p05_of_boundary",
+  "frac_prob_within_0p02_of_boundary",
+  "mean_boundary_margin",
+  "pred_foreground_fraction",
+  "pred_foreground_pixels",
+  "predicted_roi_area_fraction",
+  "predicted_roi_side"
+ ],
+ "non_standardized_scalars": [
+  "pred_roi_exists",
+  "pred_empty"
+ ],
+ "scalar_normalize_indices": [
+  192,
+  193,
+  194,
+  195,
+  196,
+  197,
+  200,
+  201
+ ],
+ "variants": {
+  "R1": {
+   "removes": [
+    "all 192 deep global features"
+   ],
+   "retains": [
+    "all 10 scalar features",
+    "task_id conditioning"
+   ],
+   "task_embedding": "Embedding(4,16) present",
+   "effective_first_layer_width": 26,
+   "architecture_after_input": "Linear(26,128) -> LN(128) -> SiLU -> Dropout(0.10) -> Linear(128,64) -> LN(64) -> SiLU -> Dropout(0.10) -> Linear(64,1)",
+   "normalization": "Phase25D scalar semantics; FIT-only; 8-col subset; ddof=0; constant->0"
+  },
+  "R2": {
+   "removes": [
+    "task embedding",
+    "task_id input"
+   ],
+   "retains": [
+    "all canonical 202 numeric features"
+   ],
+   "task_embedding": "ABSENT (no zero vector, module does not exist)",
+   "effective_first_layer_width": 202,
+   "architecture_after_input": "Linear(202,128) -> LN(128) -> SiLU -> Dropout(0.10) -> Linear(128,64) -> LN(64) -> SiLU -> Dropout(0.10) -> Linear(64,1)",
+   "normalization": "identical to Phase25D"
+  },
+  "R3": {
+   "removes": [
+    "192 deep global features",
+    "task_id",
+    "task embedding"
+   ],
+   "retains": [
+    "only the 10 frozen scalar router features"
+   ],
+   "task_embedding": "ABSENT",
+   "effective_first_layer_width": 10,
+   "architecture_after_input": "Linear(10,128) -> LN(128) -> SiLU -> Dropout(0.10) -> Linear(128,64) -> LN(64) -> SiLU -> Dropout(0.10) -> Linear(64,1)",
+   "normalization": "Phase25D scalar semantics on the 8-col subset",
+   "classification_warning": "FEATURE-SET CONTROL — NOT a single-input-variable causal isolation"
+  }
+ },
+ "only_input_dimensionality_changes": true
+}

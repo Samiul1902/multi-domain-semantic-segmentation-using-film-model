@@ -1,0 +1,138 @@
+{
+  "classification": "PHASE25E_PRE_EXECUTION_RESOURCE_GATE_SPECIFICATION_FREEZE",
+  "specification_revision": "ra_medfilm_barr_resource_gate_v1_0",
+  "cost_classification": "CONSTANT_INCREMENTAL_ACTION_COST",
+  "redundancy_classification": "STRUCTURAL_POLICY_REDUNDANCY_UNDER_CONSTANT_ACTION_COST",
+  "unique_eligible_costs": 1,
+  "cost_exact_ratio": "1051648/10270749",
+  "eligible_rows": 4957,
+  "same_membership": true,
+  "comparisons": [
+    {
+      "lambda_value": "0.00",
+      "budget": "0.00",
+      "same_membership": true,
+      "selected_count": 0
+    },
+    {
+      "lambda_value": "0.00",
+      "budget": "0.10",
+      "same_membership": true,
+      "selected_count": 495
+    },
+    {
+      "lambda_value": "0.00",
+      "budget": "0.25",
+      "same_membership": true,
+      "selected_count": 1239
+    },
+    {
+      "lambda_value": "0.00",
+      "budget": "0.50",
+      "same_membership": true,
+      "selected_count": 2478
+    },
+    {
+      "lambda_value": "0.00",
+      "budget": "1.00",
+      "same_membership": true,
+      "selected_count": 4957
+    },
+    {
+      "lambda_value": "0.25",
+      "budget": "0.00",
+      "same_membership": true,
+      "selected_count": 0
+    },
+    {
+      "lambda_value": "0.25",
+      "budget": "0.10",
+      "same_membership": true,
+      "selected_count": 495
+    },
+    {
+      "lambda_value": "0.25",
+      "budget": "0.25",
+      "same_membership": true,
+      "selected_count": 1239
+    },
+    {
+      "lambda_value": "0.25",
+      "budget": "0.50",
+      "same_membership": true,
+      "selected_count": 2478
+    },
+    {
+      "lambda_value": "0.25",
+      "budget": "1.00",
+      "same_membership": true,
+      "selected_count": 4957
+    },
+    {
+      "lambda_value": "0.50",
+      "budget": "0.00",
+      "same_membership": true,
+      "selected_count": 0
+    },
+    {
+      "lambda_value": "0.50",
+      "budget": "0.10",
+      "same_membership": true,
+      "selected_count": 495
+    },
+    {
+      "lambda_value": "0.50",
+      "budget": "0.25",
+      "same_membership": true,
+      "selected_count": 1239
+    },
+    {
+      "lambda_value": "0.50",
+      "budget": "0.50",
+      "same_membership": true,
+      "selected_count": 2478
+    },
+    {
+      "lambda_value": "0.50",
+      "budget": "1.00",
+      "same_membership": true,
+      "selected_count": 4957
+    },
+    {
+      "lambda_value": "1.00",
+      "budget": "0.00",
+      "same_membership": true,
+      "selected_count": 0
+    },
+    {
+      "lambda_value": "1.00",
+      "budget": "0.10",
+      "same_membership": true,
+      "selected_count": 495
+    },
+    {
+      "lambda_value": "1.00",
+      "budget": "0.25",
+      "same_membership": true,
+      "selected_count": 1239
+    },
+    {
+      "lambda_value": "1.00",
+      "budget": "0.50",
+      "same_membership": true,
+      "selected_count": 2478
+    },
+    {
+      "lambda_value": "1.00",
+      "budget": "1.00",
+      "same_membership": true,
+      "selected_count": 4957
+    }
+  ],
+  "reason": "CONSTANT_NORMALIZED_INCREMENTAL_MAC_COST",
+  "proof": "For eligible i,j, U_i(lambda)-U_j(lambda) = Delta_hat_i-Delta_hat_j. Subtracting the same constant preserves strict ordering and ties; identical sample_id tie breaking therefore preserves every top-K set.",
+  "full_rank_orders_equal": true,
+  "independent_statistical_evidence": false,
+  "retained_role": "C8 remains the explicit resource-utility formulation; lambda changes absolute utility values, not fixed-budget rankings.",
+  "outcome_evaluation_performed": false
+}

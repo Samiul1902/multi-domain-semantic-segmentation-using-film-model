@@ -1,0 +1,26 @@
+{
+  "taxonomy": "EXT02_METRIC_EDGE_CASES",
+  "generated_utc": "2026-10-11T14:00:00Z",
+  "method": "synthetic arrays only; no external predictions",
+  "cases": {
+    "GT_empty__pred_empty": {
+      "dice": 1.0,
+      "iou": 1.0
+    },
+    "GT_empty__pred_nonempty": {
+      "dice": 0.0,
+      "iou": 0.0
+    },
+    "GT_nonempty__pred_empty": {
+      "dice": 0.0,
+      "iou": 0.0
+    }
+  },
+  "precision_recall": {
+    "precision_when_no_positive_pred": 0.0,
+    "recall_when_GT_positive_and_no_pred": 0.0
+  },
+  "hd95": "defined only when both masks non-empty; otherwise UNDEFINED (nan), never silently replaced",
+  "convention_frozen": true,
+  "note": "Exact frozen implementations (src/metrics/segmentation.py = hd95/binary_metrics; src/metrics/evaluation_metrics.py = dice) remain the authority."
+}

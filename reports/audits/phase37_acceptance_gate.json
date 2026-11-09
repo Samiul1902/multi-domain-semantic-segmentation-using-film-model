@@ -1,0 +1,40 @@
+{
+  "classification": "PHASE37_ACCEPTANCE_GATE",
+  "generated_utc": "2026-10-11T06:10:00Z",
+  "purpose": "Phase37 acceptance gate: complete only if every criterion holds. This gate is itself a Phase37 artifact and is covered by the terminal SHA-256 manifest (phase37_sha256_manifest.json).",
+  "checks": {
+    "every_manuscript_ready_claim_has_frozen_evidence_provenance": true,
+    "all_numeric_statements_traceable": true,
+    "all_inventory_records_provenanced": true,
+    "all_phase27_36_evidence_populations_correctly_labelled": true,
+    "all_known_protocol_qualifiers_preserved": true,
+    "no_unresolved_material_contradiction": true,
+    "no_TEST_access": true,
+    "no_raw_ROUTER_HOLDOUT_access": true,
+    "no_training": true,
+    "no_inference": true,
+    "no_checkpoint_or_threshold_selection": true,
+    "no_scientific_semantics_changed": true,
+    "phase36_v1_23_result_correctly_bound": true,
+    "all_phase37_artifact_hashes_frozen": true,
+    "phase38_not_started": true
+  },
+  "n_checks": 15,
+  "n_pass": 15,
+  "n_fail": 0,
+  "all_pass": true,
+  "acceptance": "PHASE37_COMPLETE",
+  "phase36_v1_23_binding_verification": {
+    "scientific_result_sha256": "6c092fbd5354b3efcd55a2f5d13d3529c80dae1e699a9df3c88441a377eb5b1f",
+    "scientific_result_expected": "6c092fbd5354b3efcd55a2f5d13d3529c80dae1e699a9df3c88441a377eb5b1f",
+    "scientific_result_match": true,
+    "process_exit_sha256": "9395eefee0142fad07ac1495e9c2bcf4322bfa21953f555ce9bb7e9f7cfeb233",
+    "process_exit_expected": "9395eefee0142fad07ac1495e9c2bcf4322bfa21953f555ce9bb7e9f7cfeb233",
+    "process_exit_match": true,
+    "execution_source_sha256": "2287cc78ba60d715ff371ba58f0ea90f772219b510e198bea6053a7043159396",
+    "binding_ok": true
+  },
+  "n_evidence_artifacts": 27,
+  "next_phase": "PHASE38_MANUSCRIPT_PROTOCOL_AND_CHECKPOINT_FREEZE",
+  "next_phase_state": "ELIGIBLE_NOT_STARTED"
+}

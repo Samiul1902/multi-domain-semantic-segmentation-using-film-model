@@ -1,0 +1,15 @@
+{
+ "artifact": "phase26_notebook_terminal_staleness",
+ "phase": "26",
+ "classification": "EXPECTED_FINAL_FREEZE_ORDERING_STALENESS",
+ "governance_only": true,
+ "no_execution": true,
+ "stage": "TERMINAL_DISPLAY_STALENESS",
+ "cell_id": "p-078",
+ "notebook_rendered_terminal": "(pending)",
+ "canonical_final_terminal": "PHASE26_CANONICAL_INTEGRATION_COMPLETE__A8_C9_25PCT_FINAL_ROUTER_RUNTIME_POLICY_AND_BUNDLE_FROZEN__PHASE27_ELIGIBLE_NOT_STARTED",
+ "final_freeze_terminal_key_present": true,
+ "final_freeze_terminal": "PHASE26_CANONICAL_INTEGRATION_COMPLETE__A8_C9_25PCT_FINAL_ROUTER_RUNTIME_POLICY_AND_BUNDLE_FROZEN__PHASE27_ELIGIBLE_NOT_STARTED",
+ "cause": "Cell p-078 reads the 'terminal' key of phase26_final_freeze.json. The notebook was executed BEFORE the final freeze terminal key was written by the finalize step, so it rendered the get() default '(pending)'. Not a scientific failure.",
+ "all_pass": true
+}

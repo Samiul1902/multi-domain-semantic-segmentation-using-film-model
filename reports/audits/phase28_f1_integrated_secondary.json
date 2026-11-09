@@ -1,0 +1,29 @@
+{
+ "artifact": "phase28_f1_integrated_secondary",
+ "phase": 28,
+ "classification": "F1_INTEGRATED_SECONDARY_ANALYSIS",
+ "routing_membership": "EXACT_CANONICAL_A8_25PCT_OOF",
+ "post_safety": "recompute 20-D S_omega from F1 candidate; FROZEN Phase25F OOF fold model per router_cv_fold; NO retrain",
+ "n_A8_membership": 1205,
+ "n_A7_execute": 1239,
+ "n_integrated_rows": 1239,
+ "n_skipped": 0,
+ "n_f1_accept": 1109,
+ "n_f1_fallback": 130,
+ "f1_integrated_mean_delta_dice": -0.032585339606785245,
+ "f1_integrated_sum_delta_dice": -40.37323577280692,
+ "canonical_A8_mean_delta_dice": 0.007515754298,
+ "paired_mean_difference_f1_minus_canonical": -0.039894850436574175,
+ "paired_bootstrap_ci95": [
+  -0.04289571750842172,
+  -0.03719430144120569
+ ],
+ "bootstrap_replicates": 2000,
+ "bootstrap_seed": 42,
+ "accept_logit_threshold": 0.0,
+ "segmentation_threshold": 0.5,
+ "roi_proposal_threshold": 0.3,
+ "frozen_model_checkpoint": "checkpoints/phase25f_barr_post_safety_v1_0_seed42/cv_fold{k}/best.pt",
+ "s_omega_retrained": false,
+ "all_pass": true
+}

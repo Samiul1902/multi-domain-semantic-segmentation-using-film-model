@@ -1,0 +1,102 @@
+{
+  "audit": "phase11_clean_v3_failure_protocol_frozen",
+  "created_utc": "2026-09-20T19:45:26.487487+00:00",
+  "recorded_before_current_failure_inspection": true,
+  "authority": "supervisor freeze decision (Phase 11 Part 1B authorization)",
+  "frozen_protocol": {
+    "1A_low_dice_stratum": {
+      "method": "bottom decile of Dice, computed per model from all 280 clean-v3 KUB VAL cases",
+      "quantile_implementation": "np.quantile(values, 0.10) default 'linear' interpolation, float64 (matches historical method)",
+      "definition": "low_dice_model = dice <= model_specific_clean_v3_q10",
+      "ties": "ties at cutoff remain INCLUDED",
+      "historical_cutoff_reused": false,
+      "historical_v2_value_provenance_only": 0.5461063385009766,
+      "note": "do NOT force exactly 28 cases if ties produce more"
+    },
+    "1B_historical_replication_anchor": {
+      "anchor_model": "UNet++",
+      "anchor_role": "HISTORICAL_REPLICATION_ANALYSIS_ANCHOR",
+      "is_not": [
+        "winner",
+        "best model",
+        "superiority claim",
+        "Phase-12 reference-model decision"
+      ],
+      "scope": "replication of historical single-model failure strata ONLY",
+      "main_analysis": "all four models remain in the main clean-v3 failure analysis"
+    },
+    "1C_shared_failure": {
+      "primary_definition": "ALL_FOUR_LOW",
+      "rule": "UNet low AND Attention U-Net low AND UNet++ low AND DeepLabV3+ low (each by its own clean-v3 bottom-decile flag)",
+      "also_compute": "low_model_count (0..4) descriptive",
+      "forbidden_as_primary": [
+        "mean Dice",
+        "median Dice"
+      ],
+      "mean_median_dice": "may be reported descriptively only"
+    },
+    "1D_architecture_disagreement": {
+      "measure": "dice_range = max(model Dice) - min(model Dice) on the same case",
+      "continuous": true,
+      "threshold": "NONE frozen",
+      "forbidden": [
+        "dice_range > 0.1 binary flag",
+        "top-decile = failure label"
+      ],
+      "authorized_qualitative": "deterministic top-4 by dice_range desc then sample_id asc (diagnostic view only)",
+      "also_report": "dice_sd descriptively"
+    },
+    "1E_hd95_stratum": {
+      "applies_to": "UNet++ historical replication anchor",
+      "method": "Q90 computed using ONLY hd95_valid == true cases",
+      "definition": "HIGH_HD95_DECILE = valid hd95 >= clean-v3 Q90",
+      "historical_v2_value_provenance_only": 83.07246563841615,
+      "invalid_handling": "invalid HD95 cases explicitly flagged; never silently dropped from population accounting"
+    },
+    "1F_fp_burden": {
+      "concept": "high FP-component burden in evaluation-512 component space",
+      "method": "recompute clean-v3 Q90 of UNet++ fp_eval_components (historical decile method)",
+      "definition": "HIGH_FP_DECILE = fp_eval_components >= clean-v3 Q90",
+      "historical_integer_4": "v2 provenance only; NOT automatically frozen",
+      "old_comment_ge_5": "superseded prose, not canonical"
+    },
+    "1G_pixel_error_extension": {
+      "status": "AUTHORIZED as CLEAN_V3_DESCRIPTIVE_EXTENSION",
+      "quantities": [
+        "TP pixels",
+        "FP pixels",
+        "FN pixels",
+        "FP fraction",
+        "FN fraction",
+        "prediction/GT area ratio",
+        "under-segmentation burden",
+        "over-segmentation burden"
+      ],
+      "constraint": "descriptive only; do NOT redefine historical Phase-11 failure strata; no deployment/tuning thresholds"
+    },
+    "1H_multicomponent": {
+      "status": "AUTHORIZED",
+      "connectivity": 8,
+      "classes": [
+        "COMPLETE_DETECTION",
+        "PARTIAL_DETECTION",
+        "COMPLETE_MISS"
+      ],
+      "requirement": "declare component space explicitly"
+    },
+    "1I_phase12_reference_model": {
+      "selected": false,
+      "decision": "SUPERVISOR_DECISION_REQUIRED",
+      "note": "UNet++ anchor does NOT imply Phase-12 reference selection; Part 1B returns evidence only"
+    }
+  },
+  "quantile_method_used_for_clean_v3": "np.quantile(..., q) default linear, float64",
+  "manifest": "phase4_v3",
+  "taxonomy": "kub_size_clean_v3_v1",
+  "kub_val_cases": 280,
+  "prediction_threshold": 0.5,
+  "test_reads": 0,
+  "training": false,
+  "optimizer_steps": 0,
+  "status": "SUPERVISOR_FROZEN"
+}

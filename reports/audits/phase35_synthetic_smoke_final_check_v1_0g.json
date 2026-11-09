@@ -1,0 +1,401 @@
+{
+ "artifact": "phase35_synthetic_smoke_final_check_v1_0g",
+ "section": "§O",
+ "phase": 35,
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase35_interpretability_v1_0g",
+ "purpose": "Independent invariant audit of the single v1.0g synthetic smoke result before terminal emission.",
+ "checks": [
+  {
+   "n": 1,
+   "id": "FC001",
+   "pass": true,
+   "detail": "revision exact"
+  },
+  {
+   "n": 2,
+   "id": "FC002",
+   "pass": true,
+   "detail": "mode smoke"
+  },
+  {
+   "n": 3,
+   "id": "FC003",
+   "pass": true,
+   "detail": "not scientific"
+  },
+  {
+   "n": 4,
+   "id": "FC004",
+   "pass": true,
+   "detail": "5 authority gates match"
+  },
+  {
+   "n": 5,
+   "id": "FC005",
+   "pass": true,
+   "detail": "transitive binding all match"
+  },
+  {
+   "n": 6,
+   "id": "FC006",
+   "pass": true,
+   "detail": "scientific semantics unchanged"
+  },
+  {
+   "n": 7,
+   "id": "FC007",
+   "pass": true,
+   "detail": "py/torch/cuda"
+  },
+  {
+   "n": 8,
+   "id": "FC008",
+   "pass": true,
+   "detail": "cudnn/cc/vram"
+  },
+  {
+   "n": 9,
+   "id": "FC009",
+   "pass": true,
+   "detail": "gpu/driver"
+  },
+  {
+   "n": 10,
+   "id": "FC010",
+   "pass": true,
+   "detail": "compatible"
+  },
+  {
+   "n": 11,
+   "id": "FC011",
+   "pass": true,
+   "detail": "invocation_count=1 (declared)"
+  },
+  {
+   "n": 12,
+   "id": "FC012",
+   "pass": true,
+   "detail": "one construction each"
+  },
+  {
+   "n": 13,
+   "id": "FC013",
+   "pass": true,
+   "detail": "2 deserializations / 2 strict loads"
+  },
+  {
+   "n": 14,
+   "id": "FC014",
+   "pass": true,
+   "detail": "R_psi/S_omega not constructed"
+  },
+  {
+   "n": 15,
+   "id": "FC015",
+   "pass": true,
+   "detail": "R_psi/S_omega not forwarded"
+  },
+  {
+   "n": 16,
+   "id": "FC016",
+   "pass": true,
+   "detail": "G params 3523001"
+  },
+  {
+   "n": 17,
+   "id": "FC017",
+   "pass": true,
+   "detail": "G strict load exact"
+  },
+  {
+   "n": 18,
+   "id": "FC018",
+   "pass": true,
+   "detail": "B_phi params 36801"
+  },
+  {
+   "n": 19,
+   "id": "FC019",
+   "pass": true,
+   "detail": "B_phi task embedding [4,16]"
+  },
+  {
+   "n": 20,
+   "id": "FC020",
+   "pass": true,
+   "detail": "ckpt sha both match"
+  },
+  {
+   "n": 21,
+   "id": "FC021",
+   "pass": true,
+   "detail": "FiLM 20 sites all_pass"
+  },
+  {
+   "n": 22,
+   "id": "FC022",
+   "pass": true,
+   "detail": "all FiLM finite+exact"
+  },
+  {
+   "n": 23,
+   "id": "FC023",
+   "pass": true,
+   "detail": "task embeddings shapes"
+  },
+  {
+   "n": 24,
+   "id": "FC024",
+   "pass": true,
+   "detail": "embeddings finite"
+  },
+  {
+   "n": 25,
+   "id": "FC025",
+   "pass": true,
+   "detail": "no scientific embedding tables"
+  },
+  {
+   "n": 26,
+   "id": "FC026",
+   "pass": true,
+   "detail": "1 target eval / 1 autograd"
+  },
+  {
+   "n": 27,
+   "id": "FC027",
+   "pass": true,
+   "detail": "target scalar finite"
+  },
+  {
+   "n": 28,
+   "id": "FC028",
+   "pass": true,
+   "detail": "8 finite guards applied"
+  },
+  {
+   "n": 29,
+   "id": "FC029",
+   "pass": true,
+   "detail": "all gradients finite"
+  },
+  {
+   "n": 30,
+   "id": "FC030",
+   "pass": true,
+   "detail": "grad shapes match activations"
+  },
+  {
+   "n": 31,
+   "id": "FC031",
+   "pass": true,
+   "detail": "CAMs finite"
+  },
+  {
+   "n": 32,
+   "id": "FC032",
+   "pass": true,
+   "detail": "2 synthetic CAM maps"
+  },
+  {
+   "n": 33,
+   "id": "FC033",
+   "pass": true,
+   "detail": "no scientific target / no rank4 workaround"
+  },
+  {
+   "n": 34,
+   "id": "FC034",
+   "pass": true,
+   "detail": "same actual G logits used"
+  },
+  {
+   "n": 35,
+   "id": "FC035",
+   "pass": true,
+   "detail": "no surrogate zero logits"
+  },
+  {
+   "n": 36,
+   "id": "FC036",
+   "pass": true,
+   "detail": "fallback selected + finite"
+  },
+  {
+   "n": 37,
+   "id": "FC037",
+   "pass": true,
+   "detail": "comparison pass"
+  },
+  {
+   "n": 38,
+   "id": "FC038",
+   "pass": true,
+   "detail": "atol/rtol contract"
+  },
+  {
+   "n": 39,
+   "id": "FC039",
+   "pass": true,
+   "detail": "no extra forward/autograd"
+  },
+  {
+   "n": 40,
+   "id": "FC040",
+   "pass": true,
+   "detail": "G 86 param tensors"
+  },
+  {
+   "n": 41,
+   "id": "FC041",
+   "pass": true,
+   "detail": "B_phi 11 param tensors"
+  },
+  {
+   "n": 42,
+   "id": "FC042",
+   "pass": true,
+   "detail": "0 non-null grads"
+  },
+  {
+   "n": 43,
+   "id": "FC043",
+   "pass": true,
+   "detail": "router raw input [4,202]"
+  },
+  {
+   "n": 44,
+   "id": "FC044",
+   "pass": true,
+   "detail": "router grad + GxI finite"
+  },
+  {
+   "n": 45,
+   "id": "FC045",
+   "pass": true,
+   "detail": "task ids no grad"
+  },
+  {
+   "n": 46,
+   "id": "FC046",
+   "pass": true,
+   "detail": "zero-denom policy"
+  },
+  {
+   "n": 47,
+   "id": "FC047",
+   "pass": true,
+   "detail": "null shares"
+  },
+  {
+   "n": 48,
+   "id": "FC048",
+   "pass": true,
+   "detail": "no epsilon / no renormalization"
+  },
+  {
+   "n": 49,
+   "id": "FC049",
+   "pass": true,
+   "detail": "PRIMARY==1"
+  },
+  {
+   "n": 50,
+   "id": "FC050",
+   "pass": true,
+   "detail": "EMPTY_MASK_OBSERVABILITY==1"
+  },
+  {
+   "n": 51,
+   "id": "FC051",
+   "pass": false,
+   "detail": "alias_equals_primary"
+  },
+  {
+   "n": 52,
+   "id": "FC052",
+   "pass": true,
+   "detail": "empty mask not counted as primary"
+  },
+  {
+   "n": 53,
+   "id": "FC053",
+   "pass": true,
+   "detail": "no extra G forward/autograd for empty mask"
+  },
+  {
+   "n": 54,
+   "id": "FC054",
+   "pass": false,
+   "detail": "counter_contract_ok"
+  },
+  {
+   "n": 55,
+   "id": "FC055",
+   "pass": true,
+   "detail": "all protected-data counters 0"
+  },
+  {
+   "n": 56,
+   "id": "FC056",
+   "pass": true,
+   "detail": "scientific_outputs 0"
+  },
+  {
+   "n": 57,
+   "id": "FC057",
+   "pass": true,
+   "detail": "no optimizer/training"
+  },
+  {
+   "n": 58,
+   "id": "FC058",
+   "pass": true,
+   "detail": "reports/audits/phase35_synthetic_interpretability_smoke_v1_0g.json"
+  },
+  {
+   "n": 59,
+   "id": "FC059",
+   "pass": true,
+   "detail": "reports/audits/phase35_synthetic_smoke_provenance_v1_0g.json"
+  },
+  {
+   "n": 60,
+   "id": "FC060",
+   "pass": true,
+   "detail": "harness all_pass False (BLOCKED preserved)"
+  },
+  {
+   "n": 61,
+   "id": "FC061",
+   "pass": true,
+   "detail": "counts_match_expected False (defect)"
+  },
+  {
+   "n": 62,
+   "id": "FC062",
+   "pass": true,
+   "detail": "model params unchanged"
+  },
+  {
+   "n": 63,
+   "id": "FC063",
+   "pass": true,
+   "detail": "first valid attempt preserved; no retry"
+  }
+ ],
+ "total_checks": 63,
+ "passed": 61,
+ "failed": 2,
+ "scientific_and_interface_checks_passed": true,
+ "blocking_defect": "EXPECTED_COUNTER_TABLE_PARTIAL_AND_ALIAS_STALE",
+ "blocking_defect_scope": "BOOKKEEPING_VALIDATION_ONLY",
+ "counter_contract_ok": false,
+ "all_harness_checks_pass": false,
+ "terminal_state": "BLOCKED",
+ "success": false,
+ "first_phase35_scientific_execution_eligible_for_supervisor_review": false,
+ "generated_utc": "2026-10-05T05:33:02Z",
+ "all_pass": false
+}

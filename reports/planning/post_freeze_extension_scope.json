@@ -1,0 +1,215 @@
+{
+  "classification": "POST_FREEZE_EXTENSION_SCOPE",
+  "generated_utc": "2026-10-11",
+  "revision_id": "RA_MEDFILM_BARR_POST_FREEZE_EXTENSION_V1_0",
+  "scientific_delta": 0,
+  "original_study_status": {
+    "study": "RA-MedFiLM-BARR V1",
+    "phases": "00-40 plus manuscript release",
+    "status": "COMPLETE_FROZEN_IMMUTABLE",
+    "final_scope": "MANUSCRIPT_ASSEMBLY_WITH_DESCRIPTIVE_PHASE39_TEST_ONLY",
+    "phase30_qualifier": "ONE_SHOT_ROUTER_HOLDOUT_RESULT_WITH_DISCLOSED_POST_FIRST_OPEN_SCIENTIFIC_SOURCE_FREEZE_DEVIATION",
+    "phase39_evidence_class": "POST_PROTOCOL_TECHNICAL_RECOVERY_TEST_RESULT_WITH_TWO_DISCLOSED_PREOUTCOME_TECHNICAL_FAILURES"
+  },
+  "external_dataset_inventory_paths": [
+    {
+      "path": "D:\\Softfors\\final\\external_test_ds\\HAM10000",
+      "candidate_task": 0,
+      "candidate_domain": "ISIC"
+    },
+    {
+      "path": "D:\\Softfors\\final\\external_test_ds\\Stones_where_are_you-.v3i.coco-segmentation",
+      "candidate_task": 3,
+      "candidate_domain": "KUB"
+    },
+    {
+      "path": "D:\\Softfors\\final\\external_test_ds\\CVC-ClinicDB",
+      "candidate_task": 2,
+      "candidate_domain": "KVASIR"
+    },
+    {
+      "path": "D:\\Softfors\\final\\external_test_ds\\BrEaST-Lesions_USG-images_and_masks",
+      "candidate_task": 1,
+      "candidate_domain": "BUSI"
+    }
+  ],
+  "prior_use_status": {
+    "HAM10000": "PRIOR_RESEARCH_PROGRAM_USE__MEDFILM_SEG",
+    "CVC-ClinicDB": "PRIOR_RESEARCH_PROGRAM_USE__MEDFILM_SEG",
+    "BrEaST-Lesions_USG": "PRIOR_RESEARCH_PROGRAM_USE__MEDFILM_SEG",
+    "Stones_where_are_you": "NO_PRIOR_USE_IDENTIFIED__INDEPENDENCE_NOT_PROVEN"
+  },
+  "evidence_classes": {
+    "HAM10000": "EXTERNALLY_SOURCED_WITH_PRIOR_RESEARCH_PROGRAM_USE",
+    "CVC-ClinicDB": "EXTERNALLY_SOURCED_WITH_PRIOR_RESEARCH_PROGRAM_USE",
+    "BrEaST-Lesions_USG": "EXTERNALLY_SOURCED_WITH_PRIOR_RESEARCH_PROGRAM_USE",
+    "Stones_where_are_you": "ELIGIBILITY_PENDING"
+  },
+  "planned_extension_phases": [
+    {
+      "id": "EXT-01",
+      "title": "External Dataset Audit & Eligibility",
+      "status": "NOT_STARTED",
+      "depends_on": []
+    },
+    {
+      "id": "EXT-02",
+      "title": "External Evaluation Protocol Freeze",
+      "status": "NOT_STARTED",
+      "depends_on": [
+        "EXT-01 PASS"
+      ]
+    },
+    {
+      "id": "EXT-03",
+      "title": "Same-Protocol Baseline Benchmark",
+      "status": "NOT_STARTED",
+      "depends_on": [
+        "EXT-02 PASS"
+      ]
+    },
+    {
+      "id": "EXT-04",
+      "title": "Four-Domain Progression Study",
+      "status": "NOT_STARTED",
+      "depends_on": [
+        "EXT-02 PASS"
+      ]
+    },
+    {
+      "id": "EXT-05",
+      "title": "Multi-Domain Generalization / Leave-One-Domain-Out",
+      "status": "NOT_STARTED",
+      "depends_on": [
+        "EXT-04 design frozen"
+      ]
+    },
+    {
+      "id": "EXT-06",
+      "title": "External Validation",
+      "status": "NOT_STARTED",
+      "depends_on": [
+        "EXT-01 PASS",
+        "EXT-02 PASS",
+        "frozen identities"
+      ]
+    },
+    {
+      "id": "EXT-07",
+      "title": "Calibration / Uncertainty Analysis",
+      "status": "NOT_STARTED",
+      "depends_on": [
+        "EXT-06"
+      ]
+    },
+    {
+      "id": "EXT-08",
+      "title": "Precision / Recall / Error Characterization",
+      "status": "NOT_STARTED",
+      "depends_on": [
+        "EXT-06"
+      ]
+    },
+    {
+      "id": "EXT-09",
+      "title": "Error / Failure Stratification",
+      "status": "NOT_STARTED",
+      "depends_on": [
+        "EXT-08"
+      ]
+    },
+    {
+      "id": "EXT-10",
+      "title": "Extended Evidence Consolidation",
+      "status": "NOT_STARTED",
+      "depends_on": [
+        "EXT-03",
+        "EXT-04",
+        "EXT-05",
+        "EXT-06",
+        "EXT-07",
+        "EXT-08",
+        "EXT-09"
+      ]
+    },
+    {
+      "id": "EXT-11",
+      "title": "Manuscript V2 / Supervisor Report V2",
+      "status": "NOT_STARTED",
+      "depends_on": [
+        "EXT-10"
+      ]
+    }
+  ],
+  "progression_study_design": {
+    "primary_progression": [
+      "P1 ISIC",
+      "P2 ISIC+BUSI",
+      "P3 ISIC+BUSI+KVASIR",
+      "P4 ISIC+BUSI+KVASIR+KUB"
+    ],
+    "robustness_option_preferred": "LEAVE_ONE_DOMAIN_OUT",
+    "report_metrics": [
+      "Dice",
+      "IoU",
+      "Precision",
+      "Recall",
+      "HD95"
+    ],
+    "report_rates": [
+      "execute_rate",
+      "accept_rate",
+      "reject_rate",
+      "FORCED_SKIP_rate"
+    ],
+    "report_extras": [
+      "Global->Final DeltaDice",
+      "compute/MAC estimate"
+    ]
+  },
+  "baseline_study_design": {
+    "families": [
+      "U-Net",
+      "Attention U-Net",
+      "UNet++",
+      "DeepLabV3+",
+      "optional_modern_transformer_or_hybrid"
+    ],
+    "comparison_axis": [
+      "STANDARD_BASELINES",
+      "GLOBALMEDFILM",
+      "RA_MEDFILM_BARR"
+    ],
+    "label_rule": "SAME_PROTOCOL or CONTEXTUAL_ONLY",
+    "protocol": "same training population / resolution / preprocessing / task / metric impl / split / binary scoring semantics"
+  },
+  "v1_v2_separation": {
+    "v1": "FROZEN_IMMUTABLE",
+    "v2": "OPTIONAL_NEW_NAMESPACE_DEVELOPMENT_BRANCH",
+    "v2_tuning_populations": [
+      "TRAIN",
+      "development-validation"
+    ],
+    "v2_forbidden_populations": [
+      "original-TEST outcomes",
+      "opened external outcomes"
+    ],
+    "v1_results_replaceable": false
+  },
+  "immutable_boundaries": [
+    "Phases 0-40 results never rewritten",
+    "no external inference before protocol freeze",
+    "no tuning on external/TEST outcomes",
+    "prior-use external datasets carry disclosure",
+    "no 'untouched' claim without proof",
+    "negative results preserved",
+    "no best-seed selection",
+    "V2 never replaces V1"
+  ],
+  "immutable_phases_gate": {
+    "first_authorized_phase": "EXT-01",
+    "authorized": false,
+    "state": "ELIGIBLE_NOT_STARTED"
+  },
+  "next_phase": "EXT-01"
+}

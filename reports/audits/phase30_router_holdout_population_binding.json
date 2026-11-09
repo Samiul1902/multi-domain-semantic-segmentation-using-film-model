@@ -1,0 +1,64 @@
+{
+ "artifact": "phase30_router_holdout_population_binding",
+ "phase": 30,
+ "section": "\u00a72",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_phase30_final_dev_validation_v1_0",
+ "metadata_only": true,
+ "images_read": 0,
+ "masks_read": 0,
+ "population": "ROUTER_HOLDOUT",
+ "n": 875,
+ "n_groups": 628,
+ "sample_ids_sha256": "631db917a000c58bdb39fe563be3a375be176b2b1988b4b5596576e660d50a5c",
+ "domain_counts": {
+  "BUSI": 90,
+  "ISIC": 383,
+  "KUB": 298,
+  "KVASIR": 104
+ },
+ "domain_group_counts": {
+  "BUSI": 90,
+  "ISIC": 383,
+  "KUB": 51,
+  "KVASIR": 104
+ },
+ "task_id_mapping": {
+  "BUSI": 1,
+  "ISIC": 0,
+  "KUB": 3,
+  "KVASIR": 2
+ },
+ "split_provenance": {
+  "manifest": "reports/audits/phase24_router_split_manifest.csv",
+  "manifest_sha256": "b5da52d6220ef9b59b4ba70d0b403b38bf5234b897615b6ad55d718114db6555",
+  "expected_sha256": "b5da52d6220ef9b59b4ba70d0b403b38bf5234b897615b6ad55d718114db6555",
+  "protocol": "reports/audits/phase24_benefit_data_protocol_exact.json",
+  "split_seed": 42,
+  "split_algorithm": "Per domain: group rows by the composite group key; sort groups by sha256('42::<group_key>'); greedily assign whole groups to ROUTER_HOLDOUT until the domain holdout target round(0.15 * n_domain) is reached or exceeded by one group; assign the remainder to ROUTER_DEVELOPMENT. Groups are never split.",
+  "holdout_fraction_realized": 0.150034,
+  "source_train_manifest_sha256": "28702fc3a5ff8b950db372f03232d335e3a30b1fc2f21db7cd8c066055826ed6"
+ },
+ "overlap": {
+  "with_dev": 0,
+  "with_val808": 0,
+  "with_test": 0,
+  "holdout_in_source_train": 875
+ },
+ "checks": {
+  "manifest_sha_matches": true,
+  "total_5832": true,
+  "dev_4957": true,
+  "holdout_875": true,
+  "holdout_groups_628": true,
+  "domain_counts_match": true,
+  "task_ids_match": true,
+  "zero_overlap_with_dev": true,
+  "zero_group_overlap_with_dev": true,
+  "zero_overlap_with_val808": true,
+  "zero_overlap_with_test": true,
+  "holdout_subset_of_source_train": true,
+  "group_integrity_no_straddle": true
+ },
+ "all_pass": true
+}

@@ -1,0 +1,62 @@
+{
+ "artifact": "phase25d_blocked_spec_incomplete",
+ "phase": "25D",
+ "classification": "BLOCKED__FROZEN_SPEC_INCOMPLETE",
+ "method": "RA-MedFiLM-BARR",
+ "architecture_revision": "ra_medfilm_barr_narrowed_v1_2",
+ "terminal": "PHASE25D_BLOCKED__ROUTER_TRAINING_SPEC_INCOMPLETE",
+ "stop_point": "BEFORE_MODEL_CONSTRUCTION",
+ "reason": "the authoritative frozen Phase24 router-training contract does not specify several fields that materially affect optimization; the work order \u00a72 forbids inventing them",
+ "hard_blocking_fields": [
+  "cv_fold_assignment_algorithm",
+  "cv_inner_split_rule",
+  "checkpoint_selection_rule",
+  "target_scaling_semantics",
+  "final_refit_scheduler_semantics"
+ ],
+ "note_only_fields": [
+  "cv_fold_count_explicit",
+  "checkpoint_tie_rule",
+  "final_refit_seed_policy",
+  "median_epoch_rule_exact"
+ ],
+ "evidence": {
+  "entry_gate": "reports/audits/phase25d_entry_gate.json",
+  "frozen_spec_binding": "reports/audits/phase25d_frozen_training_spec_binding.json",
+  "document_header_sync": "reports/audits/phase25d_document_header_sync.json"
+ },
+ "authoritative_source_of_recovered_fields": "reports/audits/phase24_exact_implementation_spec.json#router",
+ "action_taken": "STOPPED; reported exact missing fields; no guessing; no training",
+ "checks": {
+  "entry_gate_pass": true,
+  "frozen_spec_complete_is_false": true,
+  "spec_audit_terminal_is_blocked": true,
+  "no_router_instantiated": true,
+  "no_model_constructed": true,
+  "no_training_run": true,
+  "no_phase25d_checkpoint_tree": true,
+  "no_phase25d_notebook": true,
+  "header_sync_pass": true,
+  "header_sync_scientific_change_false": true,
+  "hard_blocking_fields_present": true,
+  "missing_field_report_present": true,
+  "no_data_written_outside_reports": true,
+  "test_reads_zero": true,
+  "phase25e_not_started": true
+ },
+ "failed_checks": [],
+ "all_pass": true,
+ "counters": {
+  "model_forwards": 0,
+  "training_runs": 0,
+  "router_instantiated": false,
+  "task_embedding_instantiated": false,
+  "router_holdout_reads": 0,
+  "val808_reads": 0,
+  "test_reads": 0
+ },
+ "phase25d_complete": false,
+ "phase25e_started": false,
+ "test_reads": 0,
+ "generated_utc": "2026-09-30T17:52:29.858820+00:00"
+}

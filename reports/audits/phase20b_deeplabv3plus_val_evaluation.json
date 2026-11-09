@@ -1,0 +1,32 @@
+{
+  "artifact": "phase20b_val_evaluation",
+  "phase": 20,
+  "subphase": "20B",
+  "model_key": "deeplabv3plus",
+  "experiment_id": "phase20b_shared_deeplabv3plus_fourdomain_seed42_clean_v3",
+  "canonical_val_inference_runs": 1,
+  "val_population": 808,
+  "samples_evaluated": 808,
+  "domains_evaluated": [
+    "BUSI",
+    "ISIC",
+    "KUB",
+    "KVASIR"
+  ],
+  "checkpoint_path": "checkpoints/phase20b_shared_deeplabv3plus_fourdomain_seed42_clean_v3/best.pt",
+  "checkpoint_sha256": "0bd9548f141174f05f842d2015dceda6db4587921d241590b63e9ae0099d3ff8",
+  "threshold": 0.5,
+  "per_image_table": "reports/tables/phase20b_deeplabv3plus_per_image_val_metrics.csv",
+  "per_image_table_sha256": "c2e7a7d841a15dd05071b05ae63fe61f33ab31d2709b049be591d5b5450b3ca8",
+  "prediction_manifest": "reports/audits/phase20b_deeplabv3plus_prediction_manifest.json",
+  "prob_maps_persisted": 808,
+  "binary_predictions_persisted": 808,
+  "test_reads": {
+    "test_image_reads": 0,
+    "test_mask_reads": 0,
+    "test_inference": 0,
+    "test_visualization": 0
+  },
+  "elapsed_seconds": 92.5,
+  "partial_mode": false
+}

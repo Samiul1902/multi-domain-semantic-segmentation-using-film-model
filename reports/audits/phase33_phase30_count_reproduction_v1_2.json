@@ -1,0 +1,40 @@
+{
+ "artifact": "phase33_phase30_count_reproduction_v1_2",
+ "phase": 33,
+ "section": "\u00a7J",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase33_failure_boundary_v1_2",
+ "purpose": "verification anchors reproduced from the frozen scored/prediction tables before broader analysis",
+ "observed": {
+  "execute": 240,
+  "skip": 635,
+  "execute_then_accept": 236,
+  "execute_then_reject": 4,
+  "forced_skip": 0,
+  "harmful_activated": 31,
+  "missed_benefit": 0
+ },
+ "frozen_authority": {
+  "execute": 240,
+  "skip": 635,
+  "execute_then_accept": 236,
+  "execute_then_reject": 4,
+  "forced_skip": 0,
+  "harmful_activated": 31,
+  "missed_benefit": 0
+ },
+ "reproduced": true,
+ "forced_skip_provenance": "no forced_skip category exists in the frozen state machine (SKIP / EXECUTE_THEN_ACCEPT / EXECUTE_THEN_REJECT); count = 0",
+ "anchors_forced": false,
+ "fail_closed_on_mismatch": true,
+ "source_scored_table": {
+  "path": "reports/tables/phase30_router_holdout_scored_results.csv",
+  "sha256": "dbc9f5f3867f0607cfc0a778736a92b9d6de6e27811fa382ad6d1cb0b2a04568"
+ },
+ "source_predictions_table": {
+  "path": "reports/tables/phase30_router_holdout_predictions.csv",
+  "sha256": "513ccf2905cbc6f544337b9d157f38dc34d835e2cb56c25cabbe95f5046a3147"
+ },
+ "generated_utc": "2026-10-04T09:05:05+00:00",
+ "all_pass": true
+}

@@ -1,0 +1,115 @@
+{
+ "artifact": "phase34_efficiency_result_v1_3",
+ "phase": 34,
+ "section": "\u00a7U",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase34_efficiency_profiling_v1_3",
+ "HISTORICAL_ANALYTICAL_COMPUTE": {
+  "C1": 31551740928,
+  "C2": 34782403584,
+  "A8_C9_expected": 32437902022.582855,
+  "gated_C9": 34782440912,
+  "label": "ANALYTICAL_MAC_LOWER_BOUND"
+ },
+ "STATIC_MODEL_RESOURCE_PROFILE": {
+  "component_parameters": {
+   "G": 3523001,
+   "R_psi": 1276401,
+   "B_phi": 36801,
+   "S_omega": 1217
+  },
+  "total_resident_parameters": 4837420,
+  "conditional_execution_reduces_resident_parameters": false
+ },
+ "MEASURED_HARDWARE_SPECIFIC_RUNTIME_PROFILE": {
+  "batch1_latency_ms": {
+   "GLOBAL_ONLY_C1": 3120.52431640625,
+   "R_PSI_COMPONENT": 937.51787109375,
+   "B_PHI_COMPONENT": 76.90975189208984,
+   "S_OMEGA_COMPONENT": 45.09717712402344,
+   "SKIP_CONTROLLED_PATH": 3143.79365234375,
+   "EXECUTE_CONTROLLED_PATH": 3740.71328125
+  },
+  "batch8_fps": {
+   "GLOBAL_ONLY_C1": 93.66100492292452,
+   "R_PSI_COMPONENT": 600.5210676264255,
+   "B_PHI_COMPONENT": 20721.04577066513,
+   "S_OMEGA_COMPONENT": 34532.62253695135,
+   "SKIP_CONTROLLED_PATH": 93.17560442781323,
+   "EXECUTE_CONTROLLED_PATH": 80.26287810203608
+  },
+  "gpu_memory": {
+   "GLOBAL_ONLY_C1": {
+    "baseline_gpu_allocated_after_model_load": 26690560,
+    "baseline_gpu_reserved_after_model_load": 48234496,
+    "peak_gpu_allocated_during_inference": 336083968,
+    "peak_gpu_reserved_during_inference": 411041792,
+    "incremental_peak_allocated_over_loaded_baseline": 309393408,
+    "reserved_memory_labeled_model_memory": false
+   },
+   "R_PSI_COMPONENT": {
+    "baseline_gpu_allocated_after_model_load": 9311744,
+    "baseline_gpu_reserved_after_model_load": 10485760,
+    "peak_gpu_allocated_during_inference": 48668160,
+    "peak_gpu_reserved_during_inference": 73400320,
+    "incremental_peak_allocated_over_loaded_baseline": 39356416,
+    "reserved_memory_labeled_model_memory": false
+   },
+   "B_PHI_COMPONENT": {
+    "baseline_gpu_allocated_after_model_load": 155136,
+    "baseline_gpu_reserved_after_model_load": 2097152,
+    "peak_gpu_allocated_during_inference": 9725952,
+    "peak_gpu_reserved_during_inference": 23068672,
+    "incremental_peak_allocated_over_loaded_baseline": 9570816,
+    "reserved_memory_labeled_model_memory": false
+   },
+   "S_OMEGA_COMPONENT": {
+    "baseline_gpu_allocated_after_model_load": 8704,
+    "baseline_gpu_reserved_after_model_load": 2097152,
+    "peak_gpu_allocated_during_inference": 9577984,
+    "peak_gpu_reserved_during_inference": 23068672,
+    "incremental_peak_allocated_over_loaded_baseline": 9569280,
+    "reserved_memory_labeled_model_memory": false
+   },
+   "SKIP_CONTROLLED_PATH": {
+    "baseline_gpu_allocated_after_model_load": 26845696,
+    "baseline_gpu_reserved_after_model_load": 48234496,
+    "peak_gpu_allocated_during_inference": 336239104,
+    "peak_gpu_reserved_during_inference": 411041792,
+    "incremental_peak_allocated_over_loaded_baseline": 309393408,
+    "reserved_memory_labeled_model_memory": false
+   },
+   "EXECUTE_CONTROLLED_PATH": {
+    "baseline_gpu_allocated_after_model_load": 36166144,
+    "baseline_gpu_reserved_after_model_load": 56623104,
+    "peak_gpu_allocated_during_inference": 345559552,
+    "peak_gpu_reserved_during_inference": 423624704,
+    "incremental_peak_allocated_over_loaded_baseline": 309393408,
+    "reserved_memory_labeled_model_memory": false
+   }
+  },
+  "hardware": "NVIDIA GeForce RTX 3060 Ti (cc 8.6, 8,589,279,232 B VRAM)",
+  "timing_scope": "MODEL_COMPUTE_PATH_RUNTIME / SYNTHETIC_COMPONENT_RUNTIME"
+ },
+ "CONDITIONAL_COMPUTATION_PROFILE": {
+  "L_SKIP_mean_ms": 3143.79365234375,
+  "L_EXECUTE_mean_ms": 3740.71328125,
+  "L_weighted_ms": 3307.520179129465,
+  "formula": "L_weighted = (635/875)*L_SKIP + (240/875)*L_EXECUTE",
+  "classification": "WEIGHTED_HARDWARE_SPECIFIC_RUNTIME_ESTIMATE",
+  "NOT_DIRECT_HOLDOUT_RUNTIME": true,
+  "NOT_END_TO_END_PIPELINE_LATENCY": true,
+  "phase30_qualifier": "ONE_SHOT_ROUTER_HOLDOUT_RESULT_WITH_DISCLOSED_POST_FIRST_OPEN_SCIENTIFIC_SOURCE_FREEZE_DEVIATION"
+ },
+ "scope_limitations": "timed region covers module forwards (and sigmoid where frozen); preprocessing, host-device transfer, ROI generation, crop/resizing, fusion and decision logic are excluded per the frozen timed-operation registry",
+ "claims_not_made": [
+  "real-time capability",
+  "mobile suitability",
+  "energy efficiency",
+  "hardware-independent speed",
+  "clinical deployment readiness",
+  "causal efficiency superiority"
+ ],
+ "generated_utc": "2026-10-04T13:47:38+00:00",
+ "all_pass": true
+}

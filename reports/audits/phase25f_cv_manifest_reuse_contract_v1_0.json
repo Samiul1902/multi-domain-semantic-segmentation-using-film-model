@@ -1,0 +1,128 @@
+{
+ "artifact": "phase25f_cv_manifest_reuse_contract_v1_0",
+ "phase": "25F",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_post_safety_v1_0",
+ "stage": "SUPERVISOR_RULING_F7_REUSE_PHASE25D_CV",
+ "ruling_id": "F7",
+ "invent_new_split": false,
+ "outer_manifest": "reports/tables/phase25d_cv5_manifest.csv",
+ "outer_manifest_binding": {
+  "path": "reports/tables/phase25d_cv5_manifest.csv",
+  "exists": true,
+  "sha256": "008b92963664f38e84f33c771cea1db90caae02a366f02b6a83635a535639707"
+ },
+ "per_fold_role_manifests": {
+  "fold0_fit": {
+   "path": "reports/tables/phase25d_cv_fold0_fit_ids.csv",
+   "exists": true,
+   "sha256": "e78552ad7dac4108d976472903ba8d57386f26639e84f9aed0f8c09ac8eb73a3"
+  },
+  "fold0_early_stop": {
+   "path": "reports/tables/phase25d_cv_fold0_early_stop_ids.csv",
+   "exists": true,
+   "sha256": "a602cbe2530356da934a628764d8dfc95e2e8145a0320615be5228db0b90ec42"
+  },
+  "fold0_outer_target": {
+   "path": "reports/tables/phase25d_cv_fold0_outer_target_ids.csv",
+   "exists": true,
+   "sha256": "f7209b141d0b33dfe6570114d4fba4cd1503dcd07f9edc5f9bc8d808a315e7cd"
+  },
+  "fold1_fit": {
+   "path": "reports/tables/phase25d_cv_fold1_fit_ids.csv",
+   "exists": true,
+   "sha256": "d6f67df55fe67af41e637e18ae66d0e46df654771d39eae9694bffd824627a4b"
+  },
+  "fold1_early_stop": {
+   "path": "reports/tables/phase25d_cv_fold1_early_stop_ids.csv",
+   "exists": true,
+   "sha256": "146fe774cad99de2960a3cdc3cbdc344d75770dde6447ee8d8fc84608f168300"
+  },
+  "fold1_outer_target": {
+   "path": "reports/tables/phase25d_cv_fold1_outer_target_ids.csv",
+   "exists": true,
+   "sha256": "cac7971ca8b5fcd056bf2f0472426926779ff0cc198b303692afbcbabab24b03"
+  },
+  "fold2_fit": {
+   "path": "reports/tables/phase25d_cv_fold2_fit_ids.csv",
+   "exists": true,
+   "sha256": "45a3af35f7079d9edc837423719bb77b910e691b1a4d3a2a7a68a0c91dc86fc7"
+  },
+  "fold2_early_stop": {
+   "path": "reports/tables/phase25d_cv_fold2_early_stop_ids.csv",
+   "exists": true,
+   "sha256": "d0fc38e7efb3dcc43f2f1ec8626a9e8c3aec60d49c6438476b4d22b2133741bf"
+  },
+  "fold2_outer_target": {
+   "path": "reports/tables/phase25d_cv_fold2_outer_target_ids.csv",
+   "exists": true,
+   "sha256": "8205316a0db4d837518c432400e0b637b38ad4accb08d70e2d9468cd2e7acabf"
+  },
+  "fold3_fit": {
+   "path": "reports/tables/phase25d_cv_fold3_fit_ids.csv",
+   "exists": true,
+   "sha256": "409922e3959d69d1abd1d9e025169c60f336b140438d02cfbc1e98e06bf5d209"
+  },
+  "fold3_early_stop": {
+   "path": "reports/tables/phase25d_cv_fold3_early_stop_ids.csv",
+   "exists": true,
+   "sha256": "d22f07701e3340e3c676795561ea15a2f028443d7395f041aad0907617dd6fef"
+  },
+  "fold3_outer_target": {
+   "path": "reports/tables/phase25d_cv_fold3_outer_target_ids.csv",
+   "exists": true,
+   "sha256": "391897f9533075844a43483666d92f248d918804e7602e249f1db504cf5e2e52"
+  },
+  "fold4_fit": {
+   "path": "reports/tables/phase25d_cv_fold4_fit_ids.csv",
+   "exists": true,
+   "sha256": "69d5cb255b8a896c1c4528bbb00eef18d3602a7b598170e23c44d2a96a7d8546"
+  },
+  "fold4_early_stop": {
+   "path": "reports/tables/phase25d_cv_fold4_early_stop_ids.csv",
+   "exists": true,
+   "sha256": "acf1b139a16da6b85a082e76955c825330b71d9bef224cf784f1b7749354c37c"
+  },
+  "fold4_outer_target": {
+   "path": "reports/tables/phase25d_cv_fold4_outer_target_ids.csv",
+   "exists": true,
+   "sha256": "3749af0c37c17cce2f2e2828eeff5fae268d488b8ccf069f777ae4ae6932ef78"
+  }
+ },
+ "reused_roles": [
+  "FIT",
+  "EARLY_STOP",
+  "OUTER_TARGET"
+ ],
+ "folds": [
+  0,
+  1,
+  2,
+  3,
+  4
+ ],
+ "fold_sizes": {
+  "0": 992,
+  "1": 992,
+  "2": 991,
+  "3": 991,
+  "4": 991
+ },
+ "already_group_safe": true,
+ "already_domain_aware": true,
+ "already_seed_frozen": true,
+ "already_target_independent": true,
+ "constructed_before_somega_exists": true,
+ "outer_target_never_used_for": [
+  "fitting",
+  "normalization",
+  "scheduler monitoring",
+  "early stopping",
+  "checkpoint selection"
+ ],
+ "disjointness_verified": true,
+ "partition_union_4957_verified": true,
+ "group_leakage": 0,
+ "all_manifests_present": true,
+ "all_pass": true
+}

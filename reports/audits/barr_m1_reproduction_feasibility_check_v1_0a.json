@@ -1,0 +1,86 @@
+{
+  "artifact": "barr_m1_reproduction_feasibility_check_v1_0a",
+  "revision": "RA_MEDFILM_BARR_BARR_M1_V1_0A__SCIENTIFIC_DESIGN_RECONCILIATION",
+  "generated_utc": "2026-10-27T01:38:09Z",
+  "classification": "FROZEN_AGGREGATE_REPRODUCTION_CHECK__GATE_FEASIBILITY_ONLY",
+  "purpose": "Determine whether A0/A1/A7/A8 can be reconstructed EXACTLY from frozen per-case artifacts with ZERO model inference. This is a prelaunch-gate feasibility check, not the BARR-M1 study.",
+  "inputs": {
+    "phase25c_labels": {
+      "path": "data_cache/phase25c_barr_oof_paired_gain_labels_v1_2/phase25c_oof_paired_gain_labels.csv",
+      "sha256": "fd6ca32c33a3bddb75f986b1350d54ec35b11d3bf5cb0fdc029962a5aa94865f",
+      "rows": 4957
+    },
+    "phase25f_safety": {
+      "path": "data_cache/phase25f_barr_post_safety_v1_0/phase25f_oof_safety_predictions.csv",
+      "sha256": "a9f63edd6d58a9a1d78a052a3e4539c6e0dd4d68bfb1c09c4c36789c441ebdee",
+      "rows": 4957
+    },
+    "phase25e_membership": {
+      "path": "reports/tables/phase25e_policy_memberships_v1_0/C8_lambda0.25_budget0.25.csv",
+      "sha256": "4c411d589866434b824245d3c940bc09873f3cbc096ddc8a44776cd56273393b",
+      "rows": 4957
+    }
+  },
+  "reproduction": {
+    "A0": "global only — delta ≡ 0 by construction (0/4957 executed)",
+    "A1": "refine all — delta = phase25c delta_dice for every one of 4957 rows",
+    "A7": "C8 lambda0.25 budget0.25 membership (1239 selected) — delta = delta_dice on selected rows, 0 elsewhere",
+    "A8": "A7 membership AND p_accept_oof >= 0.50 — delta = delta_dice on accepted rows, 0 elsewhere"
+  },
+  "checks": {
+    "A0_sum_true_delta_dice": {
+      "observed": 0.0,
+      "frozen_reference": 0.0,
+      "match": true
+    },
+    "A1_sum_true_delta_dice": {
+      "observed": 8.219101516029985,
+      "frozen_reference": 8.219101516,
+      "match": true
+    },
+    "A1_n_harmful": {
+      "observed": 2115,
+      "frozen_reference": 2115,
+      "match": true
+    },
+    "A1_n_beneficial": {
+      "observed": 2775,
+      "frozen_reference": 2775,
+      "match": true
+    },
+    "A7_sum_true_delta_dice": {
+      "observed": 8.978573624352034,
+      "frozen_reference": 8.9785736244,
+      "match": true
+    },
+    "A7_n_routed": {
+      "observed": 1239,
+      "frozen_reference": 1239,
+      "match": true
+    },
+    "A8_sum_true_delta_dice": {
+      "observed": 9.056483929402674,
+      "frozen_reference": 9.0564839294,
+      "match": true
+    },
+    "A8_n_routed": {
+      "observed": 1205,
+      "frozen_reference": 1205,
+      "match": true
+    },
+    "A8_n_harmful": {
+      "observed": 390,
+      "frozen_reference": 390,
+      "match": true
+    }
+  },
+  "all_checks_pass": true,
+  "exact_match_tolerance": 1e-09,
+  "model_constructions": 0,
+  "checkpoint_deserializations": 0,
+  "forwards": 0,
+  "autograd_calls": 0,
+  "gpu_time_seconds": 0,
+  "new_contrast_computed": false,
+  "note": "Only the four arm AGGREGATES were reproduced, to prove the design is executable without inference. The BARR-M1 paired contrasts (A8-A0, A8-A1, A1-A0) were NOT computed. Reproducing an already-frozen number is a verification act, not a new scientific result."
+}

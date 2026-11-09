@@ -1,0 +1,364 @@
+{
+  "artifact": "phase22_no_new_training_audit",
+  "phase": 22,
+  "purpose": "prove that Phase 22 started zero training jobs",
+  "verdict": "PHASE22_NO_NEW_TRAINING_AUDIT_PASS",
+  "training_jobs_started": 0,
+  "optimizer_constructed": false,
+  "backward_called": false,
+  "parameters_updated": false,
+  "checkpoint_written": false,
+  "new_experiment_directory_created": false,
+  "checks": [
+    {
+      "check": "phase22_code_has_no_training_constructs",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    },
+    {
+      "check": "phase21_experiment_dir_unchanged_file_set",
+      "pass": true,
+      "observed": [
+        "closure.json",
+        "config.json",
+        "history.csv",
+        "history.json",
+        "phase21_checkpoint_selection_replay.json",
+        "phase21_training_closure.json",
+        "run_manifest.json",
+        "training_state.json"
+      ],
+      "expected": [
+        "closure.json",
+        "config.json",
+        "history.csv",
+        "history.json",
+        "phase21_checkpoint_selection_replay.json",
+        "phase21_training_closure.json",
+        "run_manifest.json",
+        "training_state.json"
+      ],
+      "unexpected_files": [],
+      "note": "subset check: Phase 22 must not ADD any run artifact to the Phase-21 experiment directory. The expected list is the Phase-21 write-set only; a missing file is reported by 'missing_files' rather than by failing this check."
+    },
+    {
+      "check": "phase21_checkpoint_dir_only_best_last_latest",
+      "pass": true,
+      "observed": [
+        "best.pt",
+        "last.pt",
+        "latest.pt"
+      ],
+      "expected": [
+        "best.pt",
+        "last.pt",
+        "latest.pt"
+      ]
+    },
+    {
+      "check": "no_phase22_run_lock_created",
+      "pass": true,
+      "observed": false,
+      "expected": false
+    },
+    {
+      "check": "checkpoint_sha_unchanged",
+      "pass": true,
+      "observed": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+      "expected": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7"
+    },
+    {
+      "check": "phase22_protocol_asserts_not_training_phase",
+      "pass": true,
+      "observed": false,
+      "expected": false
+    },
+    {
+      "check": "all_phase22_audits_declare_no_training",
+      "pass": true,
+      "observed": [],
+      "expected": []
+    },
+    {
+      "check": "test_reads_zero",
+      "pass": true,
+      "observed": {
+        "test_image_reads": 0,
+        "test_mask_reads": 0,
+        "test_inference": 0,
+        "test_visualization": 0
+      },
+      "expected": "all 0"
+    }
+  ],
+  "n_checks": 8,
+  "n_passed": 8,
+  "n_failed": 0,
+  "static_scan": {
+    "files_scanned": 12,
+    "total_forbidden_construct_hits": 0,
+    "per_file": {
+      "src/analysis/phase22_common.py": {
+        "present": true,
+        "sha256": "36035cd42a841cdf056bade125bddcb15d66c2b0d89019733c45a02044086e9a",
+        "forbidden_hits": {},
+        "n_forbidden_hits": 0
+      },
+      "src/analysis/phase22_scale.py": {
+        "present": true,
+        "sha256": "53678e1ab889a3436bfb2854329f7d553b01140e895c764692758e26d0f6b017",
+        "forbidden_hits": {},
+        "n_forbidden_hits": 0
+      },
+      "src/analysis/phase22_regional.py": {
+        "present": true,
+        "sha256": "e23c1c62a7c576db17473635a55e36f83bdfa8402310bc13a7eb9b934335bb15",
+        "forbidden_hits": {},
+        "n_forbidden_hits": 0
+      },
+      "src/analysis/phase22_failure_atlas.py": {
+        "present": true,
+        "sha256": "c3c4876a3ca937633c507a220e1c78099681df950319f3b853b4110b999ede12",
+        "forbidden_hits": {},
+        "n_forbidden_hits": 0
+      },
+      "src/analysis/phase22_benefit.py": {
+        "present": true,
+        "sha256": "d3a61a7e1ab737d641f30e1d69ae09dfe529f75bea320546d6195a9eaffd000a",
+        "forbidden_hits": {},
+        "n_forbidden_hits": 0
+      },
+      "src/analysis/phase22_resource.py": {
+        "present": true,
+        "sha256": "2c536fbfecb4ed6cbed1f19956fd2ead9f8f30ae9a8f3b7ff804c6b1f723b292",
+        "forbidden_hits": {},
+        "n_forbidden_hits": 0
+      },
+      "src/analysis/phase22_kub_domain.py": {
+        "present": true,
+        "sha256": "785d5d293fcbf3a1bbfcf93922c856c09f160e05351daf4bb74244bfcdffae53",
+        "forbidden_hits": {},
+        "n_forbidden_hits": 0
+      },
+      "src/analysis/phase22_figures.py": {
+        "present": true,
+        "sha256": "287093e578e4816cee0a8752b273ed78f4d32e271fdd0c09441114e481c4c924",
+        "forbidden_hits": {},
+        "n_forbidden_hits": 0
+      },
+      "scripts/analysis/run_phase22_freeze_protocol.py": {
+        "present": true,
+        "sha256": "8a49323416c584e90ec340f5e6930edadf8977e6c36f8a737d0acca1e3bd0fad",
+        "forbidden_hits": {},
+        "n_forbidden_hits": 0
+      },
+      "scripts/analysis/run_phase22_reference_binding.py": {
+        "present": true,
+        "sha256": "eefb30c0fa5f5badbc606b4c92d44785fb066eeed0c6e9366a5cc5a79806a82e",
+        "forbidden_hits": {},
+        "n_forbidden_hits": 0
+      },
+      "scripts/analysis/run_phase22_threshold_audit.py": {
+        "present": true,
+        "sha256": "16cd78c54a8a318c859e03c5bc00b2ce0860fcb0ff246bed57fc0b2cc7e7b856",
+        "forbidden_hits": {},
+        "n_forbidden_hits": 0
+      },
+      "scripts/analysis/run_phase22_no_training_audit.py": {
+        "present": true,
+        "sha256": "a173b55fc4be0c3205bb1787dff04763a1d50a8a7c251bacb138f991671d6673",
+        "forbidden_hits": {},
+        "n_forbidden_hits": 0
+      }
+    },
+    "patterns": [
+      "optimizer_construction",
+      "zero_grad",
+      "backward",
+      "loss_backward",
+      "training_step",
+      "parameter_update",
+      "lr_scheduler",
+      "checkpoint_write",
+      "dataloader_train"
+    ],
+    "allowlisted_contexts": [
+      "never training",
+      "no training",
+      "no optimiser",
+      "no optimizer",
+      "is_training_phase",
+      "training_jobs_started",
+      "training_performed",
+      "NOT training",
+      "does not train",
+      "training is forbidden"
+    ],
+    "pattern_definition_block_excluded_by_content": true,
+    "note": "'.train()' is deliberately NOT scanned: it appears inside 'train=False' and inside prose. The executed Phase-22 path calls model.eval() only. The nine literal source lines that define FORBIDDEN_PATTERNS are excluded by exact content match (they are audit metadata, not a code path); any other occurrence of those strings in any scanned file -- including elsewhere in this audit script -- is still reported."
+  },
+  "phase21_artifact_immutability": {
+    "experiment_dir": "experiments/phase21_global_medfilm_fourdomain_seed42_clean_v3",
+    "files": [
+      "closure.json",
+      "config.json",
+      "history.csv",
+      "history.json",
+      "phase21_checkpoint_selection_replay.json",
+      "phase21_training_closure.json",
+      "run_manifest.json",
+      "training_state.json"
+    ],
+    "checkpoint_dir": "checkpoints/phase21_global_medfilm_fourdomain_seed42_clean_v3",
+    "checkpoint_files": [
+      "best.pt",
+      "last.pt",
+      "latest.pt"
+    ],
+    "best_pt_sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+    "best_pt_mtime_utc": "2026-09-28T20:44:10.518228+00:00",
+    "run_lock_present": false
+  },
+  "declarations": [
+    {
+      "artifact": "phase22_benefit_heterogeneity.json",
+      "readable": true,
+      "training_jobs_started": 0,
+      "new_inference_performed": false
+    },
+    {
+      "artifact": "phase22_candidate_method_evidence.json",
+      "readable": true
+    },
+    {
+      "artifact": "phase22_conditional_compute_envelopes.json",
+      "readable": true
+    },
+    {
+      "artifact": "phase22_cpu_baseline.json",
+      "readable": true,
+      "measurement_only": true,
+      "checkpoint_training_performed_in_phase22": false
+    },
+    {
+      "artifact": "phase22_diagnostic_protocol.json",
+      "readable": true,
+      "is_training_phase": false
+    },
+    {
+      "artifact": "phase22_domain_preservation.json",
+      "readable": true
+    },
+    {
+      "artifact": "phase22_entry_gate.json",
+      "readable": true
+    },
+    {
+      "artifact": "phase22_final_freeze.json",
+      "readable": true
+    },
+    {
+      "artifact": "phase22_future_benefit_label_contract.json",
+      "readable": true
+    },
+    {
+      "artifact": "phase22_global_failure_atlas.json",
+      "readable": true,
+      "training_jobs_started": 0,
+      "new_inference_performed": false
+    },
+    {
+      "artifact": "phase22_governance_sync.json",
+      "readable": true
+    },
+    {
+      "artifact": "phase22_harm_analysis.json",
+      "readable": true
+    },
+    {
+      "artifact": "phase22_kub_tiny_analysis.json",
+      "readable": true
+    },
+    {
+      "artifact": "phase22_no_new_training_audit.json",
+      "readable": true,
+      "training_jobs_started": 0
+    },
+    {
+      "artifact": "phase22_notebook_determinism.json",
+      "readable": true
+    },
+    {
+      "artifact": "phase22_oracle_accept_if_beneficial.json",
+      "readable": true
+    },
+    {
+      "artifact": "phase22_oracle_regional_intervention.json",
+      "readable": true,
+      "training_jobs_started": 0,
+      "checkpoint_training_performed_in_phase22": false
+    },
+    {
+      "artifact": "phase22_phase21_reference_binding.json",
+      "readable": true,
+      "training_jobs_started": 0
+    },
+    {
+      "artifact": "phase22_prediction_derived_roi.json",
+      "readable": true
+    },
+    {
+      "artifact": "phase22_regional_fidelity.json",
+      "readable": true
+    },
+    {
+      "artifact": "phase22_resource_frontier.json",
+      "readable": true
+    },
+    {
+      "artifact": "phase22_resource_gap.json",
+      "readable": true
+    },
+    {
+      "artifact": "phase22_routing_regret.json",
+      "readable": true
+    },
+    {
+      "artifact": "phase22_scale_probe_fidelity.json",
+      "readable": true
+    },
+    {
+      "artifact": "phase22_scale_sensitivity.json",
+      "readable": true,
+      "training_jobs_started": 0,
+      "checkpoint_training_performed_in_phase22": false
+    },
+    {
+      "artifact": "phase22_scale_vs_regional.json",
+      "readable": true
+    },
+    {
+      "artifact": "phase22_statistics.json",
+      "readable": true
+    },
+    {
+      "artifact": "phase22_threshold_rule_audit.json",
+      "readable": true,
+      "training_jobs_started": 0,
+      "inference_performed": false,
+      "read_only": true
+    },
+    {
+      "artifact": "phase22_uncertainty_vs_benefit.json",
+      "readable": true,
+      "new_inference_performed": false
+    }
+  ],
+  "test_reads": {
+    "test_image_reads": 0,
+    "test_mask_reads": 0,
+    "test_inference": 0,
+    "test_visualization": 0
+  }
+}

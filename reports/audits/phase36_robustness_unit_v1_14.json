@@ -1,0 +1,241 @@
+{
+ "artifact": "phase36_robustness_unit_v1_14",
+ "phase": 36,
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase36_robustness_v1_14",
+ "type": "UNIT_CHECK_REPORT",
+ "model_free": true,
+ "torch_imported": false,
+ "protected_population_read": false,
+ "subject_execution_source": "scripts/analysis/phase36_robustness_execution_v1_14.py",
+ "subject_execution_sha256": "ac09ff8ded3610244920e66612145b246b33127140d344a9730d454bab27cff5",
+ "subject_launcher": "scripts/analysis/launch_phase36_v1_14.py",
+ "subject_launcher_sha256": "2339d6afa1507d68decd1b63b3f3250d86ecd01659580394c6f8dace4052e2c3",
+ "subject_manifest_sha256": "b4c358dfcb5e7b59beb6ae1ba2cffc64677d10049e12568b4c8eea8e79bb911e",
+ "declared_smoke_check_count": 53,
+ "repairs": {
+  "D40_MACHINE_ENFORCED_SCIENCE_ELIGIBILITY": "NEW_ENFORCED",
+  "D41_NON_TAUTOLOGICAL_TERMINAL_BINDING": "NEW_ENFORCED",
+  "D42_SMOKE_CHECK_ID_ACCOUNTING": "NEW_ENFORCED",
+  "D43_RAW_BYTE_UNTRANSFORM_PROOF": "NEW_ENFORCED",
+  "D22_D39_PRESERVED": "PRESERVED_ENFORCED"
+ },
+ "new_scientific_choice": false,
+ "checks_total": 38,
+ "checks_passed": 38,
+ "checks_failed": 0,
+ "all_pass": true,
+ "failed_checks": [],
+ "checks": [
+  {
+   "check": "D43_00_additive_segments_present",
+   "passed": true,
+   "detail": {
+    "main_insert": 211264,
+    "main_end": 212365,
+    "append_rule": 218241,
+    "append_banner": 218322
+   }
+  },
+  {
+   "check": "D43_01_raw_byte_untransform_identity",
+   "passed": true,
+   "detail": {
+    "untransformed_sha": "57f78447e77f2bcee07265825232cf0a8f96d1a31974d5d52c4cc82229e5d39c",
+    "frozen_v1_13_sha": "57f78447e77f2bcee07265825232cf0a8f96d1a31974d5d52c4cc82229e5d39c"
+   }
+  },
+  {
+   "check": "D43_02_untransformed_sha_equals_frozen_v1_13",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D43_03_new_scientific_choice_false",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D42_01_declared_count_exactly_53",
+   "passed": true,
+   "detail": {
+    "count": 53
+   }
+  },
+  {
+   "check": "D42_02_all_ids_unique",
+   "passed": true,
+   "detail": {
+    "dupes": []
+   }
+  },
+  {
+   "check": "D42_03_exact_set_equality_with_frozen_v1_13",
+   "passed": true,
+   "detail": {
+    "missing": [],
+    "unexpected": []
+   }
+  },
+  {
+   "check": "D42_04_declared_ids_identical_order",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D42_05_detector_accepts_canonical",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D42_06_detector_rejects_removed_id",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D42_07_detector_rejects_added_id",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D42_08_detector_rejects_duplicate_id",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D42_09_runtime_smoke_checks_keyset_equals_declared",
+   "passed": true,
+   "detail": {
+    "runtime_count": 53
+   }
+  },
+  {
+   "check": "D40_01_exec_gate_function_exists",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D40_02_exec_attestation_path_declared",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D40_03_exec_release_requires_bound_smoke_bytes",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D40_04_exec_gate_fails_closed_reasons",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D40_05_gate_called_before_execute_gate",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D40_06_gate_called_before_science_marker",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D40_07_exec_terminal_literal_present",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D40_08_gate_does_not_touch_model_or_data",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D40_09_launcher_release_fn_exists",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D40_10_launcher_terminal_literal_present",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D40_11_launcher_gate_after_cuda_before_token",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D40_12_launcher_gate_before_exec_import",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D40_13_launcher_gate_after_verify_only_stop",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D40_14_launcher_gate_only_for_science_mode",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D41_01_wrong_interp_terminal_bound_from_source",
+   "passed": true,
+   "detail": {
+    "observed": "PHASE36_V1_14_LAUNCH_FAIL_CLOSED__WRONG_INTERPRETER__NO_ATTEMPT_CONSUMED",
+    "required": "PHASE36_V1_14_LAUNCH_FAIL_CLOSED__WRONG_INTERPRETER__NO_ATTEMPT_CONSUMED"
+   }
+  },
+  {
+   "check": "D41_02_detector_rejects_mutated_terminal",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D41_03_terminal_not_a_self_comparison",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D22_write_once_smoke_marker",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D23_transitive_integrity_present",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D34_no_manifest_launcher_requirement",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D37_interpreter_gate_present",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D38_cuda_readiness_present",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D39_order_preserved",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D34_manifest_no_launcher_sha256",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "D34_manifest_declares_actual_exec_sha",
+   "passed": true,
+   "detail": null
+  }
+ ]
+}

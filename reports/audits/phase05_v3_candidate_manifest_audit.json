@@ -1,0 +1,37 @@
+{
+  "audit_phase": "Phase 05 Part 1D-R3",
+  "candidate_status": "CANDIDATE_ONLY_NOT_PROMOTED",
+  "scientific_gate": "CHECK_REQUIRED",
+  "total_v2_population": 8441,
+  "v3_provenance_total": 8441,
+  "active_splits": {
+    "TRAIN": 5832,
+    "VAL": 808,
+    "TEST": 1683
+  },
+  "quarantined_total": 118,
+  "quarantine_reasons": {
+    "QUARANTINED_TEST_LINKED_PATIENT_OVERLAP": 62,
+    "QUARANTINED_TEST_LINKED_PHASH_HIGH_RISK": 34,
+    "QUARANTINED_SAME_ACQUISITION": 13,
+    "QUARANTINED_BUSI_PATIENT_OVERLAP": 5,
+    "CONSERVATIVE_HIGH_RISK_GROUPING": 3,
+    "QUARANTINED_EXACT_DUPLICATE": 1
+  },
+  "test_immutability": {
+    "v2_test_count": 1683,
+    "v3_test_count": 1683,
+    "byte_identical": true,
+    "sha256": "9361eba61c91c034a9aa4988a4df229bba591a5cbd553c98689ac7915da29727",
+    "test_image_reads": 0,
+    "test_mask_reads": 0
+  },
+  "active_leakage_gates": {
+    "sample_id_disjoint": true,
+    "kub_patient_disjoint": true,
+    "busi_patient_disjoint": true,
+    "train_val_exact_duplicates": 0,
+    "d0_cross_split_active_groups": 0,
+    "d2_cross_split_active_groups": 0
+  }
+}

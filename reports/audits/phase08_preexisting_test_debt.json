@@ -1,0 +1,33 @@
+{
+  "generated_at": "2026-09-20T06:27:14.769260+00:00",
+  "note": "Unrelated Phase-13/14 test debt. Not repaired in Part 1B.",
+  "items": [
+    {
+      "test_file": "tests/test_phase14_part1.py",
+      "observed": "HANGS (never completes)",
+      "affected_phase": "Phase 14",
+      "module": "Phase-14 regional/refiner work",
+      "required_by_phase09": false,
+      "disposition": "DEFER_TO_AFFECTED_CLEAN_RERUN_PHASE",
+      "module_git_modified": null
+    },
+    {
+      "test_file": "tests/test_predicted_roi.py",
+      "observed": "3 failures",
+      "affected_phase": "Phase 13",
+      "module": "src/inference/predicted_roi.py",
+      "required_by_phase09": false,
+      "disposition": "DEFER_TO_AFFECTED_CLEAN_RERUN_PHASE",
+      "module_git_modified": false
+    },
+    {
+      "test_file": "tests/test_kub_localizer.py",
+      "observed": "1 failure",
+      "affected_phase": "Phase 13",
+      "module": "src/models/kub_localizer.py",
+      "required_by_phase09": false,
+      "disposition": "DEFER_TO_AFFECTED_CLEAN_RERUN_PHASE",
+      "module_git_modified": false
+    }
+  ]
+}

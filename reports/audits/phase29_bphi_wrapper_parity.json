@@ -1,0 +1,109 @@
+{
+ "artifact": "phase29_bphi_wrapper_parity",
+ "phase": 29,
+ "generated_utc": "2026-10-02T15:51:51+00:00",
+ "governance_only": true,
+ "execution": "NONE",
+ "retrained": false,
+ "canonical_fold_seeds": [
+  42000,
+  42001,
+  42002,
+  42003,
+  42004
+ ],
+ "wrapper_fold_seeds_seed42": [
+  42000,
+  42001,
+  42002,
+  42003,
+  42004
+ ],
+ "wrapper_final_seed_seed42": 42,
+ "fingerprint": {
+  "component": "B_phi",
+  "architecture": "BARRBenefitRouterV1",
+  "param_count": 36801,
+  "feature_dim": 202,
+  "loss": {
+   "name": "HuberLoss",
+   "delta": 0.05,
+   "reduction": "mean"
+  },
+  "optimizer": {
+   "name": "AdamW",
+   "lr": 0.001,
+   "weight_decay": 0.0001
+  },
+  "scheduler": {
+   "name": "ReduceLROnPlateau",
+   "mode": "min",
+   "factor": 0.5,
+   "patience": 10,
+   "threshold": 0.0001,
+   "threshold_mode": "rel",
+   "cooldown": 0,
+   "min_lr": 1e-06,
+   "eps": 1e-08
+  },
+  "batch_size": 128,
+  "max_epochs": 200,
+  "patience": 20,
+  "checkpoint_rule": "minimum EARLY_STOP Huber",
+  "tie_rule": "earlier epoch",
+  "fold_seed_rule": "1000*s + k",
+  "final_refit_seed_rule": "s",
+  "n_folds": 5,
+  "oof_budget_b": 0.25,
+  "oof_N": 4957,
+  "oof_K": 1239,
+  "normalization": {
+   "fit_only": true,
+   "ddof": 0,
+   "continuous_scalars": 8,
+   "binary_flags_unchanged": true,
+   "deep_features_unnormalized": true
+  }
+ },
+ "spec_fold0": {
+  "component": "B_phi",
+  "role": "fold0",
+  "is_final_refit": false,
+  "master_seed": 42,
+  "training_seed": 42000,
+  "feature_path": "D:\\Softfors\\jup\\data_cache\\phase25b_barr_pre_refinement_features_v1_2\\features.npy",
+  "metadata_path": "D:\\Softfors\\jup\\data_cache\\phase25b_barr_pre_refinement_features_v1_2\\metadata.csv",
+  "target_path": "D:\\Softfors\\jup\\data_cache\\phase25c_barr_oof_paired_gain_labels_v1_2\\phase25c_oof_paired_gain_labels.csv",
+  "cv5_manifest": "D:\\Softfors\\jup\\reports\\tables\\phase25d_cv5_manifest.csv",
+  "fold_manifests": {
+   "fit": "D:\\Softfors\\jup\\reports\\tables\\phase25d_cv_fold0_fit_ids.csv",
+   "early_stop": "D:\\Softfors\\jup\\reports\\tables\\phase25d_cv_fold0_early_stop_ids.csv",
+   "outer_target": "D:\\Softfors\\jup\\reports\\tables\\phase25d_cv_fold0_outer_target_ids.csv"
+  },
+  "checkpoint_root": "D:\\Softfors\\jup\\checkpoints\\phase29_seed42",
+  "experiment_root": "D:\\Softfors\\jup\\experiments\\phase29_seed42",
+  "run_checkpoint_dir": "D:\\Softfors\\jup\\checkpoints\\phase29_seed42\\bphi\\fold0",
+  "run_experiment_dir": "D:\\Softfors\\jup\\experiments\\phase29_seed42\\bphi\\fold0"
+ },
+ "spec_final": {
+  "component": "B_phi",
+  "role": "final",
+  "is_final_refit": true,
+  "master_seed": 42,
+  "training_seed": 42,
+  "feature_path": "D:\\Softfors\\jup\\data_cache\\phase25b_barr_pre_refinement_features_v1_2\\features.npy",
+  "metadata_path": "D:\\Softfors\\jup\\data_cache\\phase25b_barr_pre_refinement_features_v1_2\\metadata.csv",
+  "target_path": "D:\\Softfors\\jup\\data_cache\\phase25c_barr_oof_paired_gain_labels_v1_2\\phase25c_oof_paired_gain_labels.csv",
+  "cv5_manifest": "D:\\Softfors\\jup\\reports\\tables\\phase25d_cv5_manifest.csv",
+  "checkpoint_root": "D:\\Softfors\\jup\\checkpoints\\phase29_seed42",
+  "experiment_root": "D:\\Softfors\\jup\\experiments\\phase29_seed42",
+  "run_checkpoint_dir": "D:\\Softfors\\jup\\checkpoints\\phase29_seed42\\bphi\\final",
+  "run_experiment_dir": "D:\\Softfors\\jup\\experiments\\phase29_seed42\\bphi\\final_refit",
+  "final_epochs_rule": "median of five best fold epochs (Phase25D canonical)",
+  "final_epochs_resolved": null,
+  "early_stopping": false
+ },
+ "fold_seeds_match": true,
+ "scientific_config_matches": true,
+ "all_pass": true
+}

@@ -1,0 +1,40 @@
+{
+ "artifact": "phase28_one_factor_control_contract",
+ "phase": 28,
+ "classification": "PHASE28_ONE_FACTOR_AT_A_TIME_CONTROL_CONTRACT",
+ "governance_only": true,
+ "execution": "NONE",
+ "principle": "Every ablation arm must differ from the frozen canonical baseline (A8/C9, budget 0.25, lambda 0.25) in EXACTLY ONE controlled factor. All other factors MUST be held at the frozen baseline values.",
+ "held_constant": [
+  "population = ROUTER_DEVELOPMENT (n=4957)",
+  "global reference = frozen Phase21 GlobalMedFiLM (286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7)",
+  "regional refiner = frozen Phase25A final refiner (6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109)",
+  "benefit router = frozen Phase25D B_phi (8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b)",
+  "post-safety = frozen Phase25F S_omega (eee9b97b9921e53fc07eac9281dce64ba518c6e1659916b97b0b3bec21ec6d2e)",
+  "preprocessing / ROI rule (threshold 0.30, expansion 1.50, resolution 256)",
+  "fusion rule (outside ROI p_global; inside ROI p_refined; threshold 0.50)",
+  "budget = 0.25 (nominal) unless the ablation IS the budget factor",
+  "lambda = 0.25 unless the ablation IS the lambda factor",
+  "segmentation output threshold = 0.50",
+  "bootstrap plan (n_boot 2000, seed 42) unless the ablation targets statistics"
+ ],
+ "controlled_factor_per_ablation": {
+  "A0": "ROUTING_ABSENT (global only)",
+  "A1": "ROUTING_ABSENT (refine all)",
+  "A2": "ROUTING_SIGNAL=random(seeded)",
+  "A3": "ROUTING_SIGNAL=entropy",
+  "A4": "ROUTING_SIGNAL=margin",
+  "A5": "ROUTING_SIGNAL=predicted_ROI_size",
+  "A6": "ROUTING_SIGNAL=learned_paired_gain",
+  "A7": "UTILITY_RESOURCE_TERM=lambda*C present",
+  "A8": "POST_SAFETY=S_omega present (baseline)",
+  "R1": "ROUTER_FEATURE_DEPTH (deep global taps removed)",
+  "R2": "ROUTER_TASK_CONDITIONING (task_id embedding removed)",
+  "R3": "ROUTER_FEATURE_SET (scalar-only)",
+  "F1": "REFINER_INPUT_P_GLOBAL_CHANNEL (p_global channel removed)"
+ },
+ "multiple_factor_change_forbidden": true,
+ "post_hoc_factor_addition_forbidden": true,
+ "generated_utc": "2026-10-02T18:40:00Z",
+ "all_pass": true
+}

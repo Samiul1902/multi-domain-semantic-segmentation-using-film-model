@@ -1,0 +1,31 @@
+{
+ "artifact": "phase30_first_open_audit_contract",
+ "phase": 30,
+ "section": "\u00a711",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_phase30_final_dev_validation_v1_0",
+ "first_open_marker_required_before_image_access": true,
+ "marker_must_record": [
+  "timestamp",
+  "population binding SHA",
+  "manifest SHA",
+  "system contract SHA",
+  "threshold contract SHA",
+  "policy contract SHA",
+  "numeric-semantics contract SHA",
+  "pre-open holdout counters",
+  "TEST counter",
+  "execution environment",
+  "git/source state",
+  "checkpoint hashes"
+ ],
+ "distinct_counters_required": [
+  "ROUTER_HOLDOUT_image_reads",
+  "ROUTER_HOLDOUT_GT_reads"
+ ],
+ "generic_ambiguous_counters_forbidden": true,
+ "one_shot_state_after_open": "OPENED_ONCE_FROZEN",
+ "second_policy_search_forbidden": true,
+ "generated_utc": "2026-10-04T02:46:58+00:00",
+ "all_pass": true
+}

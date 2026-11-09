@@ -1,0 +1,50 @@
+{
+ "artifact": "phase36_v1_19_science_release_attestation",
+ "phase": 36,
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase36_robustness_v1_19",
+ "type": "SCIENCE_RELEASE_ATTESTATION",
+ "generated_utc": "2026-10-10T00:00:00Z",
+ "execution_source_sha256": "3ec5ea920af2b6d66864b3bbc7e5362f0756777512c29be70d3e5453e18693cd",
+ "smoke_artifact_sha256": "53543729fb0c48695c2af202c5f3d2f5ebdfc29d87c7a7f100bcde9f94882441",
+ "smoke_all_pass": true,
+ "scientific_output": false,
+ "release_gate": "POST_SMOKE_RELEASE_ADJUDICATION",
+ "smoke_artifact": "reports/audits/phase36_robustness_smoke_v1_14.json",
+ "historical_runtime_evidence": {
+  "v1_14_smoke": "reports/audits/phase36_robustness_smoke_v1_14.json",
+  "v1_14_smoke_sha256": "53543729fb0c48695c2af202c5f3d2f5ebdfc29d87c7a7f100bcde9f94882441",
+  "role": "HISTORICAL_RUNTIME_SMOKE_EVIDENCE_ONLY",
+  "v1_14_smoke_tested_d61": false,
+  "v1_14_smoke_tested_d75": false,
+  "note": "Retained as historical evidence that the v1.14 runtime environment functioned. NOT a claim about v1.19 scientific correctness."
+ },
+ "requires_v1_19_smoke": false,
+ "d61_proof": {
+  "repair": "D61_CANONICAL_PHASE27_ACCEPT_FUSION",
+  "status": "PASS"
+ },
+ "d75_provenance": {
+  "repair": "D75_POLICY_B_AUTHORITATIVE_SEGMENTATION_REPRESENTATION",
+  "status": "PASS"
+ },
+ "d85_d88_repairs": {
+  "D85": "V1_18_SUPERVISOR_IMMUTABLE_LITERAL_LAUNCHER_SHA_PIN",
+  "D86": "V1_18_SUPERVISOR_EXCLUSIVE_CREATE_STDOUT_STDERR_NO_O_TRUNC",
+  "D87": "V1_18_NON_CIRCULAR_PRELAUNCH_AUTHORITY_BUNDLE_BIND",
+  "D88": "V1_18_REAL_TIME_OUTPUT_ABSENCE_GATE__FAIL_CLOSED_FIGURE_WRITER"
+ },
+ "scientific_semantics_effect_vs_v1_17": "NONE",
+ "new_scientific_choice": false,
+ "protected_populations": {
+  "TEST": "PHASE39_ONLY_LOCKED",
+  "ROUTER_HOLDOUT": "LOCKED"
+ },
+ "write_semantics": "O_CREAT|O_EXCL + full-write + fsync",
+ "terminal": "PHASE36_V1_19_RELEASE_ATTESTATION_WRITTEN",
+ "d92_repair": {
+  "defect": "D92",
+  "code": "V1_18_REAL_EXECUTION_OUTPUT_ABSENCE_GATE_REFERENCES_UNDEFINED_JOURNAL_SYMBOL",
+  "status": "REPAIRED_IN_V1_19"
+ }
+}

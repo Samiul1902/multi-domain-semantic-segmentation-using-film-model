@@ -1,0 +1,111 @@
+{
+  "audit": "phase12_historical_oracle_protocol_reconstruction",
+  "created_utc": "2026-09-21T00:02:00.193786+00:00",
+  "source_precedence_used": [
+    "1. executing source code",
+    "2. persisted audit/table",
+    "3. executed historical notebook",
+    "4. frozen report/README",
+    "5. prose/comment"
+  ],
+  "historical_phase12_found": true,
+  "model_scope": {
+    "models": [
+      "UNet++"
+    ],
+    "experiment": "phase10_kub_unetpp_seed42_512",
+    "checkpoint_sha256": "4bffcf926227fb11029ead6bcd8e7dd8ed246e0f1678e3efb2ce4297439a3f2d",
+    "note": "single architecture historically; clean-v3 uses ALL FOUR"
+  },
+  "manifest": "phase4_v2",
+  "val_population": {
+    "split": "VAL_ONLY",
+    "FOV": "FULL_FIELD",
+    "images": 106,
+    "components": 156
+  },
+  "oracle_unit": "PER_COMPONENT_BBOX (one square crop per native GT component)",
+  "connectivity": 8,
+  "bbox_space": "ORIGINAL_NATIVE",
+  "crop_margin": {
+    "rule": "round(margin * bbox_dim) per axis",
+    "margins": [
+      0.1,
+      0.25,
+      0.5
+    ],
+    "primary": 0.25
+  },
+  "crop_shape": "SQUARE (side = max(expanded_h, expanded_w), centred)",
+  "crop_resolution": "512 x 512",
+  "boundary_handling": "clip to image + zero-pad to side",
+  "image_interpolation": "BILINEAR",
+  "mask_interpolation": "N/A (native GT evaluation; mask never resized in oracle path)",
+  "same_global_model_reused": true,
+  "separate_refiner_model": false,
+  "multi_component_rule": "one crop per native component; predictions fused across crops",
+  "map_back_rule": "restore prob to (side,side) bilinear, strip pad, place at clip coords into zero array",
+  "fusion_rule": "pixelwise MAX of restored component probabilities, threshold AFTER fusion",
+  "global_outside_crop": "NOT retained (zeros)",
+  "prediction_threshold": 0.5,
+  "metrics": [
+    "macro/micro dice/iou/precision/recall",
+    "hd95 + validity",
+    "empty prediction rate",
+    "size-stratified object recall"
+  ],
+  "object_recall_definition": "fraction of native GT components with >=1 overlapping predicted pixel",
+  "size_taxonomy_historical": "kub_size_v1",
+  "success_gate_rule": {
+    "numeric_threshold_frozen": false,
+    "phase13_gate": "YES",
+    "primary_margin_predeclared": 0.25
+  },
+  "phase12_to_phase13_rationale": "Meaningful FULL_FIELD Dice and TINY-component recovery demonstrates exploitable localization/resolution headroom; no claim that predicted ROI will reproduce the Oracle gain.",
+  "historical_metrics_provenance_only": {
+    "global_macro_dice": 0.6527764131996552,
+    "oracle25_macro_dice": 0.7757361537396281,
+    "paired_delta_mean": 0.12295974053997309,
+    "tiny_recall_global": 0.7808219178082192,
+    "tiny_recall_oracle25": 0.9863013698630136,
+    "note": "HISTORICAL_v2_PROVENANCE_ONLY - never clean-v3 evidence"
+  },
+  "fp_caveat": "Oracle-constrained FP is artificially advantaged and is not fairly comparable to deployable global inference.",
+  "ambiguities": [
+    {
+      "id": "AE",
+      "item": "prob restore uint8 quantisation",
+      "detail": "restore_crop_probability casts prob to uint8 before bilinear resize",
+      "status": "AMBIGUOUS",
+      "disposition": "clean-v3 should restore in float; flagged for supervisor"
+    },
+    {
+      "id": "AG",
+      "item": "README prose conflict",
+      "detail": "README claims \"+16.2% Dice and 100% tiny recall\"; audit gives +12.30 pp and 0.986301",
+      "status": "CONFLICT",
+      "disposition": "audit (rank 2) is authoritative over README prose (rank 4)"
+    },
+    {
+      "id": "V",
+      "item": "global prediction not retained outside crop",
+      "detail": "oracle mask is crop-only; outside-crop is zero",
+      "status": "VERIFIED_BUT_CONSEQUENTIAL",
+      "disposition": "clean-v3 should report both crop-only and global-retained variants; supervisor decision"
+    }
+  ],
+  "source_inventory_sha": "498b5731ef631fc4e353a68a439f76964b42dd99647ffc9422b0506ece957b30",
+  "protocol_matrix_sha": "4de6130c71d8bbf3bc157deb96a6a1e3edf7106548326486f99f69deeeef0d03",
+  "historical_artifact_shas": {
+    "notebook": "ba6a7e02562c17ab5be48d8291819ba5209510e4aeb016f5853d5199b9dd6d0e",
+    "module": "0d1ab96b71c8f1c7280679d0f089d19110ca681fbecdce17dfa178176545623d",
+    "driver": "c175ae9325b84946a0084d2bee487ca254a734eab26c66aa31b9d638968d2558",
+    "audit": "3073662ad772f17fb90d040dddd3be068b94966f1337eb9c6f48f440d2df91e1",
+    "summary_table": "809b2b771109b5eecae6fae4f61b30ba984248659114974a111a7f409b3d9060",
+    "geometry_table": "0ceb6bfad764fb024e84b675b8630cdcff59a0de24d92d778f3a263a5f703a4f"
+  },
+  "test_reads": 0,
+  "training_performed": false,
+  "oracle_inference_performed": false,
+  "status": "RECONSTRUCTED"
+}

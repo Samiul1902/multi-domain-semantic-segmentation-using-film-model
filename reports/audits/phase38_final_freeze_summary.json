@@ -1,0 +1,108 @@
+{
+  "classification": "PHASE38_FINAL_FREEZE_SUMMARY",
+  "generated_utc": "2026-10-11T06:50:00Z",
+  "phase": "MANUSCRIPT_PROTOCOL_AND_CHECKPOINT_FREEZE",
+  "stage": "STAGE_D_PRETEST_FINAL_LOCK",
+  "phase37_root_manifest_binding": {
+    "path": "reports/audits/phase37_sha256_manifest.json",
+    "sha256": "221a918b0c87b62ebb568020be90653218808488485c59945789e0f03e8098a6",
+    "matches_authoritative": true
+  },
+  "final_checkpoint_manifest": {
+    "path": "reports/audits/phase38_final_system_checkpoint_manifest.json",
+    "all_checkpoint_sha_match": true,
+    "total_parameters": 4837420,
+    "components": {
+      "G": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+      "B_phi": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+      "R_psi": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109",
+      "S_omega": "eee9b97b9921e53fc07eac9281dce64ba518c6e1659916b97b0b3bec21ec6d2e"
+    }
+  },
+  "inference_semantics_freeze": {
+    "path": "reports/audits/phase38_inference_semantics_freeze.json",
+    "no_inference_semantic_may_change": true
+  },
+  "phase39_population_freeze": {
+    "path": "reports/audits/phase38_phase39_population_protocol.json",
+    "population": "TEST",
+    "test_n": 1683,
+    "test_state": "LOCKED_UNTIL_PHASE39",
+    "disjointness_ok": true
+  },
+  "comparator_freeze": {
+    "path": "reports/audits/phase38_phase39_comparator_protocol.json",
+    "comparators": [
+      "C-gGLOBAL",
+      "C-A7"
+    ],
+    "authority_agreement": true,
+    "stop_check_required": false
+  },
+  "endpoint_metric_freeze": {
+    "path": "reports/audits/phase38_phase39_metric_endpoint_protocol.json",
+    "primary": "Dice",
+    "stop_check_required": false
+  },
+  "statistical_protocol_freeze": {
+    "path": "reports/audits/phase38_phase39_statistical_interpretation_protocol.json",
+    "confirmatory_significance_eligible": false
+  },
+  "manuscript_claim_policy_freeze": {
+    "path": "reports/audits/phase38_manuscript_claim_policy_freeze.json",
+    "n_claim_families": 12
+  },
+  "result_shell_freeze": {
+    "path": "reports/audits/phase38_phase39_result_shell_registry.json",
+    "n_shells": 8,
+    "no_fabricated_test_values": true
+  },
+  "retry_failure_policy_freeze": {
+    "path": "reports/audits/phase38_phase39_retry_failure_policy.json",
+    "no_automatic_retry": true,
+    "no_same_version_rerun": true
+  },
+  "phase39_execution_source_shas": {
+    "execution_source": "0f2fcad3fc2de19cd24b86777a48fe7fe30349cef5fef9467b84a3faf274c7df",
+    "launcher": "bd06c74e977a5c3a9cf4a1246c616d5a18c4f9b10c6c4483ddc2000247d6f1ac",
+    "supervisor": "5e4e24fec2c0614363b15f0ccea976cb13d08b9b0d13ce5e80a0e8ba32a2f485",
+    "common": "3e3fa76f5462b0cf85f4a6d4002da7b74e9c524845b07ba39f901438635e68b6",
+    "model_loader": "5e47ea1cc92ef86a8bcd7d28dd37a3590461609ef4ac5a2112456d3ac22ecc92",
+    "inference": "6af3adb9531decfa5896564d9e13297ca0d819dbde0faaa66ca9d9a0492654f8",
+    "authority_bundle": "ffe5e14717a6117df16df6a80ab2ac3ea801d9c5bce6f12c50b7c4fc56c38ca1"
+  },
+  "transitive_runtime_source_manifest": {
+    "path": "reports/audits/phase38_phase39_runtime_source_integrity_manifest.json",
+    "n_sources": 27
+  },
+  "output_inventory": {
+    "path": "reports/audits/phase38_phase39_output_inventory.json",
+    "n_outputs": 13,
+    "all_scientific_targets_absent_now": true
+  },
+  "regression": {
+    "path": "reports/audits/phase38_phase39_dry_regression_report.json",
+    "n_pass": 23,
+    "n_total": 23,
+    "all_pass": true,
+    "test_reads_during_regression": 0
+  },
+  "access_counts": {
+    "test_reads": 0,
+    "raw_router_holdout_reads": 0,
+    "training": 0,
+    "inference": 0,
+    "checkpoint_selection": 0,
+    "threshold_selection": 0
+  },
+  "scientific_method_delta": 0,
+  "phase39_output_absence_state": {
+    "START_absent": true,
+    "RESULT_absent": true,
+    "FAILURE_absent": true,
+    "PROCESS_EXIT_absent": true
+  },
+  "phase39_science_started": false,
+  "next_phase": "PHASE39_FINAL_TEST_EVALUATION",
+  "next_phase_state": "ELIGIBLE_NOT_STARTED"
+}

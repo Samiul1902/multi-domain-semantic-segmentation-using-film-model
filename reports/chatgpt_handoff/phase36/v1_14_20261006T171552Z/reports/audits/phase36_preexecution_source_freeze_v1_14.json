@@ -1,0 +1,56 @@
+{
+ "artifact": "phase36_preexecution_source_freeze_v1_14",
+ "phase": 36,
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase36_robustness_v1_14",
+ "type": "PREEXECUTION_SOURCE_FREEZE",
+ "execution_source": "scripts/analysis/phase36_robustness_execution_v1_14.py",
+ "execution_source_sha256": "ac09ff8ded3610244920e66612145b246b33127140d344a9730d454bab27cff5",
+ "launcher": "scripts/analysis/launch_phase36_v1_14.py",
+ "launcher_sha256": "2339d6afa1507d68decd1b63b3f3250d86ecd01659580394c6f8dace4052e2c3",
+ "runtime_manifest": "reports/audits/phase36_v1_14_runtime_source_integrity_manifest.json",
+ "runtime_manifest_sha256": "b4c358dfcb5e7b59beb6ae1ba2cffc64677d10049e12568b4c8eea8e79bb911e",
+ "launcher_anchored_exec_sha256": "ac09ff8ded3610244920e66612145b246b33127140d344a9730d454bab27cff5",
+ "history_preserved_sha256": {
+  "v1_13_execution": "57f78447e77f2bcee07265825232cf0a8f96d1a31974d5d52c4cc82229e5d39c",
+  "v1_13_launcher": "5f7fc91f9f0b8689adf42fc50527e216227ce7c4b853ba82ae1bce92a4805cab",
+  "v1_12_execution": "8ed75a9b8f4ea8c204875bf1810e17df3f9c342a434f25399154f355ee888ea4"
+ },
+ "historical_v1_12_state": {
+  "first_attempt": "CONSUMED",
+  "result": "FAILED_PRE_MODEL",
+  "retry": "FORBIDDEN",
+  "scientific_output": false,
+  "classification": "PRE_MODEL_EXECUTION_ENVIRONMENT_SELECTION_FAILURE",
+  "root_cause": "B_CPU_ONLY_PYTORCH_BUILD",
+  "failure_trigger": "WRONG_INTERPRETER (bare system Python 3.11, torch 2.10.0+cpu)"
+ },
+ "v1_13_state": {
+  "status": "FROZEN_NEVER_CONSUMED",
+  "smoke": "ELIGIBLE_NOT_STARTED (never run)",
+  "science": "INELIGIBLE_NOT_STARTED",
+  "note": "Not authorized by the independent supervisor (D40-D43 defects). Preserved byte-unchanged; superseded by v1.14."
+ },
+ "v1_12_bound_evidence_sha256": {
+  "reports/audits/phase36_robustness_smoke_start_v1_12.json": "ab6a3ff010fe7015644962b8a9295939c0430ba14ebbf53de3145bb7f6efcabd",
+  "reports/audits/phase36_robustness_smoke_failure_v1_12.json": "40f0a3abbbb5857f5b096e12cd6c7976205a1bcfbb3f469589a472e526885669",
+  "reports/audits/phase36_v1_12_smoke_console_first_attempt.txt": "d9a03637650991f27bbacfcf943f5c64eb6494d10b1b76ef154a6766ad092210",
+  "reports/audits/phase36_v1_12_cuda_environment_diagnosis.json": "a5d16219ada168868fb69e52656ebd8cc3c13c09c75c7dd1f7349ade0de59ba0",
+  "reports/audits/phase36_v1_12_failed_smoke_adjudication.json": "14f9ceb8b6a4d3beda86abdffb007e8f78a3cbb7161c4ea8a508a61a14e34a3f"
+ },
+ "v1_13_bound_evidence_sha256": {
+  "reports/audits/phase36_preexecution_source_freeze_v1_13.json": "86348c5ab5fbc4bd5408ef1d7357a2032951a86c1a7e2855cc3cd3ce2e311c26",
+  "reports/audits/phase36_synthetic_smoke_eligibility_v1_13.json": "1e964fa26bfc20f8aab0365963075e1dcf2ba083bb5646fbbf0c82fbd44c8bec",
+  "reports/audits/phase36_v1_13_runtime_source_integrity_manifest.json": "1f261eb95ab246619cf68a2340e8fc52e2887fe2d019fe9bc77ae8a9d5f5f1fe",
+  "reports/audits/phase36_v1_13_no_scientific_execution_audit.json": "8a24ca3a60bc1bc67acfbd2946689869c41a75066944492b74b7f443e75aeb5f",
+  "reports/audits/phase36_v1_12_to_v1_13_semantic_diff.json": "eabb4f93b4f6b312c11059b849ebbbdb1e6d25bb665188f44a78a9486de08841"
+ },
+ "v1_14_smoke_state": "ELIGIBLE_NOT_STARTED",
+ "v1_14_science_state": "INELIGIBLE_NOT_STARTED",
+ "science_machine_enforced": true,
+ "science_release_requires_successful_smoke": true,
+ "phase37_state": "NOT_STARTED",
+ "test_state": "REMAINS_PHASE39_ONLY",
+ "new_scientific_choice": false,
+ "terminal": "PHASE36_V1_14_PREEXECUTION_SOURCE_FREEZE_COMPLETE__SMOKE_ELIGIBLE_NOT_STARTED"
+}

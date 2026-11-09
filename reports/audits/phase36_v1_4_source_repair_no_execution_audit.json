@@ -1,0 +1,41 @@
+{
+  "artifact": "phase36_v1_4_source_repair_no_execution_audit",
+  "section": "§P",
+  "phase": 36,
+  "method": "RA-MedFiLM-BARR",
+  "revision": "ra_medfilm_barr_phase36_robustness_v1_4",
+  "type": "ZERO_EXECUTION_AUDIT",
+  "counters": {
+    "model_constructions": 0,
+    "checkpoint_loads": 0,
+    "forwards": 0,
+    "autograd": 0,
+    "val_image_reads": 0,
+    "val_gt_reads": 0,
+    "router_holdout_reads": 0,
+    "test_reads": 0,
+    "smoke_invocations": 0,
+    "science_invocations": 0,
+    "training": 0,
+    "optimizer_steps": 0,
+    "parameter_mutations": 0
+  },
+  "all_zero": true,
+  "evidence": {
+    "smoke_output_absent": true,
+    "science_output_absent": true,
+    "torch_not_imported_by_gates": true,
+    "unit_gate_model_free": true,
+    "unit_gate_torch_imported": false,
+    "preflight_torch_imported": false,
+    "negative_controls_model_free": true,
+    "negative_controls_torch_imported": false,
+    "direct_byte_audit_torch_imported": false
+  },
+  "gate_env": {
+    "PHASE36_EXECUTE": "<unset>",
+    "PHASE36_SMOKE_EXECUTE": "<unset>"
+  },
+  "verdict": "PASS__ZERO_MODEL_AND_PROTECTED_DATA_EXECUTION",
+  "generated_utc": "2026-10-06T08:07:15Z"
+}

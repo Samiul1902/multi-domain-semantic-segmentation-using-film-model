@@ -1,0 +1,1021 @@
+{
+  "artifact": "h3_checkpoint_selection_replay",
+  "supervisor_ruling": "H3_FINAL_LAUNCH_SAFETY_CHECK_PLUS_PROSPECTIVE_TRAINING_AUTHORIZATION__SECTION_10",
+  "experiment_id": "h3_kub_localizer_sigma_adaptive_sizeaware_seed42_clean_v3",
+  "replay_method": "DISK_ONLY__NO_MODEL_INSTANTIATION_NO_FORWARD_PASS_NO_TRAINING_NO_TEST",
+  "selection_rule": "MAX val_localization_recall then MIN val_loss (strict lexicographic tuple; exact ties are NOT improvements)",
+  "selection_term_names": [
+    "val_localization_recall",
+    "negative_val_loss"
+  ],
+  "frozen_decode": {
+    "threshold": 0.1,
+    "margin": 0.2,
+    "top_k": 5,
+    "nms_iou": 0.3
+  },
+  "tie_handling": "minimum val_loss only",
+  "excluded_from_replay": [
+    "tiny_recall gate",
+    "overall-recall feasibility rule",
+    "proposal area",
+    "downstream Dice",
+    "FP burden",
+    "alternate proposal thresholds"
+  ],
+  "epochs_replayed": 69,
+  "per_epoch_replay": [
+    {
+      "epoch": 1,
+      "val_localization_recall": 0.0,
+      "val_loss": 10.375060668358437,
+      "selection_tuple": [
+        0.0,
+        -10.375060668358437
+      ],
+      "is_new_best": true,
+      "bad_epochs": 0,
+      "best_epoch_so_far": 1,
+      "trainer_recorded_best_flag": true,
+      "flags_match": true
+    },
+    {
+      "epoch": 2,
+      "val_localization_recall": 0.0,
+      "val_loss": 7.605725086652315,
+      "selection_tuple": [
+        0.0,
+        -7.605725086652315
+      ],
+      "is_new_best": true,
+      "bad_epochs": 0,
+      "best_epoch_so_far": 2,
+      "trainer_recorded_best_flag": true,
+      "flags_match": true
+    },
+    {
+      "epoch": 3,
+      "val_localization_recall": 0.0,
+      "val_loss": 5.793779391508836,
+      "selection_tuple": [
+        0.0,
+        -5.793779391508836
+      ],
+      "is_new_best": true,
+      "bad_epochs": 0,
+      "best_epoch_so_far": 3,
+      "trainer_recorded_best_flag": true,
+      "flags_match": true
+    },
+    {
+      "epoch": 4,
+      "val_localization_recall": 0.0,
+      "val_loss": 4.825481809102572,
+      "selection_tuple": [
+        0.0,
+        -4.825481809102572
+      ],
+      "is_new_best": true,
+      "bad_epochs": 0,
+      "best_epoch_so_far": 4,
+      "trainer_recorded_best_flag": true,
+      "flags_match": true
+    },
+    {
+      "epoch": 5,
+      "val_localization_recall": 0.0,
+      "val_loss": 4.063767946683443,
+      "selection_tuple": [
+        0.0,
+        -4.063767946683443
+      ],
+      "is_new_best": true,
+      "bad_epochs": 0,
+      "best_epoch_so_far": 5,
+      "trainer_recorded_best_flag": true,
+      "flags_match": true
+    },
+    {
+      "epoch": 6,
+      "val_localization_recall": 0.0,
+      "val_loss": 3.664047342080337,
+      "selection_tuple": [
+        0.0,
+        -3.664047342080337
+      ],
+      "is_new_best": true,
+      "bad_epochs": 0,
+      "best_epoch_so_far": 6,
+      "trainer_recorded_best_flag": true,
+      "flags_match": true
+    },
+    {
+      "epoch": 7,
+      "val_localization_recall": 0.0,
+      "val_loss": 3.274559635382432,
+      "selection_tuple": [
+        0.0,
+        -3.274559635382432
+      ],
+      "is_new_best": true,
+      "bad_epochs": 0,
+      "best_epoch_so_far": 7,
+      "trainer_recorded_best_flag": true,
+      "flags_match": true
+    },
+    {
+      "epoch": 8,
+      "val_localization_recall": 0.0,
+      "val_loss": 3.066107676579402,
+      "selection_tuple": [
+        0.0,
+        -3.066107676579402
+      ],
+      "is_new_best": true,
+      "bad_epochs": 0,
+      "best_epoch_so_far": 8,
+      "trainer_recorded_best_flag": true,
+      "flags_match": true
+    },
+    {
+      "epoch": 9,
+      "val_localization_recall": 0.0,
+      "val_loss": 2.9566153838084293,
+      "selection_tuple": [
+        0.0,
+        -2.9566153838084293
+      ],
+      "is_new_best": true,
+      "bad_epochs": 0,
+      "best_epoch_so_far": 9,
+      "trainer_recorded_best_flag": true,
+      "flags_match": true
+    },
+    {
+      "epoch": 10,
+      "val_localization_recall": 0.0,
+      "val_loss": 2.7548945316901574,
+      "selection_tuple": [
+        0.0,
+        -2.7548945316901574
+      ],
+      "is_new_best": true,
+      "bad_epochs": 0,
+      "best_epoch_so_far": 10,
+      "trainer_recorded_best_flag": true,
+      "flags_match": true
+    },
+    {
+      "epoch": 11,
+      "val_localization_recall": 0.0,
+      "val_loss": 2.725445169668931,
+      "selection_tuple": [
+        0.0,
+        -2.725445169668931
+      ],
+      "is_new_best": true,
+      "bad_epochs": 0,
+      "best_epoch_so_far": 11,
+      "trainer_recorded_best_flag": true,
+      "flags_match": true
+    },
+    {
+      "epoch": 12,
+      "val_localization_recall": 0.0,
+      "val_loss": 2.5403779378304114,
+      "selection_tuple": [
+        0.0,
+        -2.5403779378304114
+      ],
+      "is_new_best": true,
+      "bad_epochs": 0,
+      "best_epoch_so_far": 12,
+      "trainer_recorded_best_flag": true,
+      "flags_match": true
+    },
+    {
+      "epoch": 13,
+      "val_localization_recall": 0.0,
+      "val_loss": 2.525920638671288,
+      "selection_tuple": [
+        0.0,
+        -2.525920638671288
+      ],
+      "is_new_best": true,
+      "bad_epochs": 0,
+      "best_epoch_so_far": 13,
+      "trainer_recorded_best_flag": true,
+      "flags_match": true
+    },
+    {
+      "epoch": 14,
+      "val_localization_recall": 0.0,
+      "val_loss": 2.435266623130212,
+      "selection_tuple": [
+        0.0,
+        -2.435266623130212
+      ],
+      "is_new_best": true,
+      "bad_epochs": 0,
+      "best_epoch_so_far": 14,
+      "trainer_recorded_best_flag": true,
+      "flags_match": true
+    },
+    {
+      "epoch": 15,
+      "val_localization_recall": 0.0,
+      "val_loss": 2.455441172306354,
+      "selection_tuple": [
+        0.0,
+        -2.455441172306354
+      ],
+      "is_new_best": false,
+      "bad_epochs": 1,
+      "best_epoch_so_far": 14,
+      "trainer_recorded_best_flag": false,
+      "flags_match": true
+    },
+    {
+      "epoch": 16,
+      "val_localization_recall": 0.0,
+      "val_loss": 2.3828142331196718,
+      "selection_tuple": [
+        0.0,
+        -2.3828142331196718
+      ],
+      "is_new_best": true,
+      "bad_epochs": 0,
+      "best_epoch_so_far": 16,
+      "trainer_recorded_best_flag": true,
+      "flags_match": true
+    },
+    {
+      "epoch": 17,
+      "val_localization_recall": 0.0,
+      "val_loss": 2.3247557419997,
+      "selection_tuple": [
+        0.0,
+        -2.3247557419997
+      ],
+      "is_new_best": true,
+      "bad_epochs": 0,
+      "best_epoch_so_far": 17,
+      "trainer_recorded_best_flag": true,
+      "flags_match": true
+    },
+    {
+      "epoch": 18,
+      "val_localization_recall": 0.0,
+      "val_loss": 2.293153001711919,
+      "selection_tuple": [
+        0.0,
+        -2.293153001711919
+      ],
+      "is_new_best": true,
+      "bad_epochs": 0,
+      "best_epoch_so_far": 18,
+      "trainer_recorded_best_flag": true,
+      "flags_match": true
+    },
+    {
+      "epoch": 19,
+      "val_localization_recall": 0.0,
+      "val_loss": 2.3244490806873026,
+      "selection_tuple": [
+        0.0,
+        -2.3244490806873026
+      ],
+      "is_new_best": false,
+      "bad_epochs": 1,
+      "best_epoch_so_far": 18,
+      "trainer_recorded_best_flag": false,
+      "flags_match": true
+    },
+    {
+      "epoch": 20,
+      "val_localization_recall": 0.0,
+      "val_loss": 2.2812727506344137,
+      "selection_tuple": [
+        0.0,
+        -2.2812727506344137
+      ],
+      "is_new_best": true,
+      "bad_epochs": 0,
+      "best_epoch_so_far": 20,
+      "trainer_recorded_best_flag": true,
+      "flags_match": true
+    },
+    {
+      "epoch": 21,
+      "val_localization_recall": 0.0,
+      "val_loss": 2.2602477623866157,
+      "selection_tuple": [
+        0.0,
+        -2.2602477623866157
+      ],
+      "is_new_best": true,
+      "bad_epochs": 0,
+      "best_epoch_so_far": 21,
+      "trainer_recorded_best_flag": true,
+      "flags_match": true
+    },
+    {
+      "epoch": 22,
+      "val_localization_recall": 0.0,
+      "val_loss": 2.231585227526151,
+      "selection_tuple": [
+        0.0,
+        -2.231585227526151
+      ],
+      "is_new_best": true,
+      "bad_epochs": 0,
+      "best_epoch_so_far": 22,
+      "trainer_recorded_best_flag": true,
+      "flags_match": true
+    },
+    {
+      "epoch": 23,
+      "val_localization_recall": 0.0,
+      "val_loss": 2.22266999574808,
+      "selection_tuple": [
+        0.0,
+        -2.22266999574808
+      ],
+      "is_new_best": true,
+      "bad_epochs": 0,
+      "best_epoch_so_far": 23,
+      "trainer_recorded_best_flag": true,
+      "flags_match": true
+    },
+    {
+      "epoch": 24,
+      "val_localization_recall": 0.0,
+      "val_loss": 2.231330477274381,
+      "selection_tuple": [
+        0.0,
+        -2.231330477274381
+      ],
+      "is_new_best": false,
+      "bad_epochs": 1,
+      "best_epoch_so_far": 23,
+      "trainer_recorded_best_flag": false,
+      "flags_match": true
+    },
+    {
+      "epoch": 25,
+      "val_localization_recall": 0.0,
+      "val_loss": 2.1969117109592142,
+      "selection_tuple": [
+        0.0,
+        -2.1969117109592142
+      ],
+      "is_new_best": true,
+      "bad_epochs": 0,
+      "best_epoch_so_far": 25,
+      "trainer_recorded_best_flag": true,
+      "flags_match": true
+    },
+    {
+      "epoch": 26,
+      "val_localization_recall": 0.0,
+      "val_loss": 2.1976633163598867,
+      "selection_tuple": [
+        0.0,
+        -2.1976633163598867
+      ],
+      "is_new_best": false,
+      "bad_epochs": 1,
+      "best_epoch_so_far": 25,
+      "trainer_recorded_best_flag": false,
+      "flags_match": true
+    },
+    {
+      "epoch": 27,
+      "val_localization_recall": 0.0,
+      "val_loss": 2.141144880881676,
+      "selection_tuple": [
+        0.0,
+        -2.141144880881676
+      ],
+      "is_new_best": true,
+      "bad_epochs": 0,
+      "best_epoch_so_far": 27,
+      "trainer_recorded_best_flag": true,
+      "flags_match": true
+    },
+    {
+      "epoch": 28,
+      "val_localization_recall": 0.0,
+      "val_loss": 2.1657534058277426,
+      "selection_tuple": [
+        0.0,
+        -2.1657534058277426
+      ],
+      "is_new_best": false,
+      "bad_epochs": 1,
+      "best_epoch_so_far": 27,
+      "trainer_recorded_best_flag": false,
+      "flags_match": true
+    },
+    {
+      "epoch": 29,
+      "val_localization_recall": 0.0,
+      "val_loss": 2.177888613480788,
+      "selection_tuple": [
+        0.0,
+        -2.177888613480788
+      ],
+      "is_new_best": false,
+      "bad_epochs": 2,
+      "best_epoch_so_far": 27,
+      "trainer_recorded_best_flag": false,
+      "flags_match": true
+    },
+    {
+      "epoch": 30,
+      "val_localization_recall": 0.0,
+      "val_loss": 2.179893223138956,
+      "selection_tuple": [
+        0.0,
+        -2.179893223138956
+      ],
+      "is_new_best": false,
+      "bad_epochs": 3,
+      "best_epoch_so_far": 27,
+      "trainer_recorded_best_flag": false,
+      "flags_match": true
+    },
+    {
+      "epoch": 31,
+      "val_localization_recall": 0.3355263157894737,
+      "val_loss": 2.1579400576077976,
+      "selection_tuple": [
+        0.3355263157894737,
+        -2.1579400576077976
+      ],
+      "is_new_best": true,
+      "bad_epochs": 0,
+      "best_epoch_so_far": 31,
+      "trainer_recorded_best_flag": true,
+      "flags_match": true
+    },
+    {
+      "epoch": 32,
+      "val_localization_recall": 0.3355263157894737,
+      "val_loss": 2.0694709603603068,
+      "selection_tuple": [
+        0.3355263157894737,
+        -2.0694709603603068
+      ],
+      "is_new_best": true,
+      "bad_epochs": 0,
+      "best_epoch_so_far": 32,
+      "trainer_recorded_best_flag": true,
+      "flags_match": true
+    },
+    {
+      "epoch": 33,
+      "val_localization_recall": 0.3355263157894737,
+      "val_loss": 2.118026848022754,
+      "selection_tuple": [
+        0.3355263157894737,
+        -2.118026848022754
+      ],
+      "is_new_best": false,
+      "bad_epochs": 1,
+      "best_epoch_so_far": 32,
+      "trainer_recorded_best_flag": false,
+      "flags_match": true
+    },
+    {
+      "epoch": 34,
+      "val_localization_recall": 0.4276315789473684,
+      "val_loss": 2.217394081445841,
+      "selection_tuple": [
+        0.4276315789473684,
+        -2.217394081445841
+      ],
+      "is_new_best": true,
+      "bad_epochs": 0,
+      "best_epoch_so_far": 34,
+      "trainer_recorded_best_flag": true,
+      "flags_match": true
+    },
+    {
+      "epoch": 35,
+      "val_localization_recall": 0.4144736842105263,
+      "val_loss": 2.116935895039485,
+      "selection_tuple": [
+        0.4144736842105263,
+        -2.116935895039485
+      ],
+      "is_new_best": false,
+      "bad_epochs": 1,
+      "best_epoch_so_far": 34,
+      "trainer_recorded_best_flag": false,
+      "flags_match": true
+    },
+    {
+      "epoch": 36,
+      "val_localization_recall": 0.4671052631578947,
+      "val_loss": 2.1187603290264425,
+      "selection_tuple": [
+        0.4671052631578947,
+        -2.1187603290264425
+      ],
+      "is_new_best": true,
+      "bad_epochs": 0,
+      "best_epoch_so_far": 36,
+      "trainer_recorded_best_flag": true,
+      "flags_match": true
+    },
+    {
+      "epoch": 37,
+      "val_localization_recall": 0.4539473684210526,
+      "val_loss": 2.082874765762916,
+      "selection_tuple": [
+        0.4539473684210526,
+        -2.082874765762916
+      ],
+      "is_new_best": false,
+      "bad_epochs": 1,
+      "best_epoch_so_far": 36,
+      "trainer_recorded_best_flag": false,
+      "flags_match": true
+    },
+    {
+      "epoch": 38,
+      "val_localization_recall": 0.4078947368421052,
+      "val_loss": 2.0668617532803464,
+      "selection_tuple": [
+        0.4078947368421052,
+        -2.0668617532803464
+      ],
+      "is_new_best": false,
+      "bad_epochs": 2,
+      "best_epoch_so_far": 36,
+      "trainer_recorded_best_flag": false,
+      "flags_match": true
+    },
+    {
+      "epoch": 39,
+      "val_localization_recall": 0.5197368421052632,
+      "val_loss": 2.037272980579963,
+      "selection_tuple": [
+        0.5197368421052632,
+        -2.037272980579963
+      ],
+      "is_new_best": true,
+      "bad_epochs": 0,
+      "best_epoch_so_far": 39,
+      "trainer_recorded_best_flag": true,
+      "flags_match": true
+    },
+    {
+      "epoch": 40,
+      "val_localization_recall": 0.2434210526315789,
+      "val_loss": 2.049665927886963,
+      "selection_tuple": [
+        0.2434210526315789,
+        -2.049665927886963
+      ],
+      "is_new_best": false,
+      "bad_epochs": 1,
+      "best_epoch_so_far": 39,
+      "trainer_recorded_best_flag": false,
+      "flags_match": true
+    },
+    {
+      "epoch": 41,
+      "val_localization_recall": 0.4934210526315789,
+      "val_loss": 2.0206151604652405,
+      "selection_tuple": [
+        0.4934210526315789,
+        -2.0206151604652405
+      ],
+      "is_new_best": false,
+      "bad_epochs": 2,
+      "best_epoch_so_far": 39,
+      "trainer_recorded_best_flag": false,
+      "flags_match": true
+    },
+    {
+      "epoch": 42,
+      "val_localization_recall": 0.4276315789473684,
+      "val_loss": 1.9906630699451155,
+      "selection_tuple": [
+        0.4276315789473684,
+        -1.9906630699451155
+      ],
+      "is_new_best": false,
+      "bad_epochs": 3,
+      "best_epoch_so_far": 39,
+      "trainer_recorded_best_flag": false,
+      "flags_match": true
+    },
+    {
+      "epoch": 43,
+      "val_localization_recall": 0.4539473684210526,
+      "val_loss": 2.0094559284356923,
+      "selection_tuple": [
+        0.4539473684210526,
+        -2.0094559284356923
+      ],
+      "is_new_best": false,
+      "bad_epochs": 4,
+      "best_epoch_so_far": 39,
+      "trainer_recorded_best_flag": false,
+      "flags_match": true
+    },
+    {
+      "epoch": 44,
+      "val_localization_recall": 0.3684210526315789,
+      "val_loss": 2.0145423870820265,
+      "selection_tuple": [
+        0.3684210526315789,
+        -2.0145423870820265
+      ],
+      "is_new_best": false,
+      "bad_epochs": 5,
+      "best_epoch_so_far": 39,
+      "trainer_recorded_best_flag": false,
+      "flags_match": true
+    },
+    {
+      "epoch": 45,
+      "val_localization_recall": 0.5197368421052632,
+      "val_loss": 2.0415327228032627,
+      "selection_tuple": [
+        0.5197368421052632,
+        -2.0415327228032627
+      ],
+      "is_new_best": false,
+      "bad_epochs": 6,
+      "best_epoch_so_far": 39,
+      "trainer_recorded_best_flag": false,
+      "flags_match": true
+    },
+    {
+      "epoch": 46,
+      "val_localization_recall": 0.3026315789473684,
+      "val_loss": 2.080240157934336,
+      "selection_tuple": [
+        0.3026315789473684,
+        -2.080240157934336
+      ],
+      "is_new_best": false,
+      "bad_epochs": 7,
+      "best_epoch_so_far": 39,
+      "trainer_recorded_best_flag": false,
+      "flags_match": true
+    },
+    {
+      "epoch": 47,
+      "val_localization_recall": 0.506578947368421,
+      "val_loss": 1.960274366232065,
+      "selection_tuple": [
+        0.506578947368421,
+        -1.960274366232065
+      ],
+      "is_new_best": false,
+      "bad_epochs": 8,
+      "best_epoch_so_far": 39,
+      "trainer_recorded_best_flag": false,
+      "flags_match": true
+    },
+    {
+      "epoch": 48,
+      "val_localization_recall": 0.5855263157894737,
+      "val_loss": 2.014976079647357,
+      "selection_tuple": [
+        0.5855263157894737,
+        -2.014976079647357
+      ],
+      "is_new_best": true,
+      "bad_epochs": 0,
+      "best_epoch_so_far": 48,
+      "trainer_recorded_best_flag": true,
+      "flags_match": true
+    },
+    {
+      "epoch": 49,
+      "val_localization_recall": 0.5789473684210527,
+      "val_loss": 1.9826011795264025,
+      "selection_tuple": [
+        0.5789473684210527,
+        -1.9826011795264025
+      ],
+      "is_new_best": false,
+      "bad_epochs": 1,
+      "best_epoch_so_far": 48,
+      "trainer_recorded_best_flag": false,
+      "flags_match": true
+    },
+    {
+      "epoch": 50,
+      "val_localization_recall": 0.5526315789473685,
+      "val_loss": 1.9928394556045528,
+      "selection_tuple": [
+        0.5526315789473685,
+        -1.9928394556045528
+      ],
+      "is_new_best": false,
+      "bad_epochs": 2,
+      "best_epoch_so_far": 48,
+      "trainer_recorded_best_flag": false,
+      "flags_match": true
+    },
+    {
+      "epoch": 51,
+      "val_localization_recall": 0.4276315789473684,
+      "val_loss": 1.962246069541344,
+      "selection_tuple": [
+        0.4276315789473684,
+        -1.962246069541344
+      ],
+      "is_new_best": false,
+      "bad_epochs": 3,
+      "best_epoch_so_far": 48,
+      "trainer_recorded_best_flag": false,
+      "flags_match": true
+    },
+    {
+      "epoch": 52,
+      "val_localization_recall": 0.6118421052631579,
+      "val_loss": 1.9279973002580493,
+      "selection_tuple": [
+        0.6118421052631579,
+        -1.9279973002580493
+      ],
+      "is_new_best": true,
+      "bad_epochs": 0,
+      "best_epoch_so_far": 52,
+      "trainer_recorded_best_flag": true,
+      "flags_match": true
+    },
+    {
+      "epoch": 53,
+      "val_localization_recall": 0.5789473684210527,
+      "val_loss": 1.935978522667518,
+      "selection_tuple": [
+        0.5789473684210527,
+        -1.935978522667518
+      ],
+      "is_new_best": false,
+      "bad_epochs": 1,
+      "best_epoch_so_far": 52,
+      "trainer_recorded_best_flag": false,
+      "flags_match": true
+    },
+    {
+      "epoch": 54,
+      "val_localization_recall": 0.6381578947368421,
+      "val_loss": 1.8561325531739452,
+      "selection_tuple": [
+        0.6381578947368421,
+        -1.8561325531739452
+      ],
+      "is_new_best": true,
+      "bad_epochs": 0,
+      "best_epoch_so_far": 54,
+      "trainer_recorded_best_flag": true,
+      "flags_match": true
+    },
+    {
+      "epoch": 55,
+      "val_localization_recall": 0.5394736842105263,
+      "val_loss": 1.8777917990317712,
+      "selection_tuple": [
+        0.5394736842105263,
+        -1.8777917990317712
+      ],
+      "is_new_best": false,
+      "bad_epochs": 1,
+      "best_epoch_so_far": 54,
+      "trainer_recorded_best_flag": false,
+      "flags_match": true
+    },
+    {
+      "epoch": 56,
+      "val_localization_recall": 0.5263157894736842,
+      "val_loss": 1.883247205844292,
+      "selection_tuple": [
+        0.5263157894736842,
+        -1.883247205844292
+      ],
+      "is_new_best": false,
+      "bad_epochs": 2,
+      "best_epoch_so_far": 54,
+      "trainer_recorded_best_flag": false,
+      "flags_match": true
+    },
+    {
+      "epoch": 57,
+      "val_localization_recall": 0.5921052631578947,
+      "val_loss": 1.8677774713589597,
+      "selection_tuple": [
+        0.5921052631578947,
+        -1.8677774713589597
+      ],
+      "is_new_best": false,
+      "bad_epochs": 3,
+      "best_epoch_so_far": 54,
+      "trainer_recorded_best_flag": false,
+      "flags_match": true
+    },
+    {
+      "epoch": 58,
+      "val_localization_recall": 0.6052631578947368,
+      "val_loss": 1.825335906102107,
+      "selection_tuple": [
+        0.6052631578947368,
+        -1.825335906102107
+      ],
+      "is_new_best": false,
+      "bad_epochs": 4,
+      "best_epoch_so_far": 54,
+      "trainer_recorded_best_flag": false,
+      "flags_match": true
+    },
+    {
+      "epoch": 59,
+      "val_localization_recall": 0.5789473684210527,
+      "val_loss": 1.847741159108969,
+      "selection_tuple": [
+        0.5789473684210527,
+        -1.847741159108969
+      ],
+      "is_new_best": false,
+      "bad_epochs": 5,
+      "best_epoch_so_far": 54,
+      "trainer_recorded_best_flag": false,
+      "flags_match": true
+    },
+    {
+      "epoch": 60,
+      "val_localization_recall": 0.618421052631579,
+      "val_loss": 1.8243389221338124,
+      "selection_tuple": [
+        0.618421052631579,
+        -1.8243389221338124
+      ],
+      "is_new_best": false,
+      "bad_epochs": 6,
+      "best_epoch_so_far": 54,
+      "trainer_recorded_best_flag": false,
+      "flags_match": true
+    },
+    {
+      "epoch": 61,
+      "val_localization_recall": 0.618421052631579,
+      "val_loss": 1.828485832764552,
+      "selection_tuple": [
+        0.618421052631579,
+        -1.828485832764552
+      ],
+      "is_new_best": false,
+      "bad_epochs": 7,
+      "best_epoch_so_far": 54,
+      "trainer_recorded_best_flag": false,
+      "flags_match": true
+    },
+    {
+      "epoch": 62,
+      "val_localization_recall": 0.618421052631579,
+      "val_loss": 1.8273015434925373,
+      "selection_tuple": [
+        0.618421052631579,
+        -1.8273015434925373
+      ],
+      "is_new_best": false,
+      "bad_epochs": 8,
+      "best_epoch_so_far": 54,
+      "trainer_recorded_best_flag": false,
+      "flags_match": true
+    },
+    {
+      "epoch": 63,
+      "val_localization_recall": 0.625,
+      "val_loss": 1.8322020264772267,
+      "selection_tuple": [
+        0.625,
+        -1.8322020264772267
+      ],
+      "is_new_best": false,
+      "bad_epochs": 9,
+      "best_epoch_so_far": 54,
+      "trainer_recorded_best_flag": false,
+      "flags_match": true
+    },
+    {
+      "epoch": 64,
+      "val_localization_recall": 0.5986842105263158,
+      "val_loss": 1.8547624212044933,
+      "selection_tuple": [
+        0.5986842105263158,
+        -1.8547624212044933
+      ],
+      "is_new_best": false,
+      "bad_epochs": 10,
+      "best_epoch_so_far": 54,
+      "trainer_recorded_best_flag": false,
+      "flags_match": true
+    },
+    {
+      "epoch": 65,
+      "val_localization_recall": 0.5986842105263158,
+      "val_loss": 1.86354948924138,
+      "selection_tuple": [
+        0.5986842105263158,
+        -1.86354948924138
+      ],
+      "is_new_best": false,
+      "bad_epochs": 11,
+      "best_epoch_so_far": 54,
+      "trainer_recorded_best_flag": false,
+      "flags_match": true
+    },
+    {
+      "epoch": 66,
+      "val_localization_recall": 0.5197368421052632,
+      "val_loss": 1.8133033697421732,
+      "selection_tuple": [
+        0.5197368421052632,
+        -1.8133033697421732
+      ],
+      "is_new_best": false,
+      "bad_epochs": 12,
+      "best_epoch_so_far": 54,
+      "trainer_recorded_best_flag": false,
+      "flags_match": true
+    },
+    {
+      "epoch": 67,
+      "val_localization_recall": 0.5855263157894737,
+      "val_loss": 1.8596409926047688,
+      "selection_tuple": [
+        0.5855263157894737,
+        -1.8596409926047688
+      ],
+      "is_new_best": false,
+      "bad_epochs": 13,
+      "best_epoch_so_far": 54,
+      "trainer_recorded_best_flag": false,
+      "flags_match": true
+    },
+    {
+      "epoch": 68,
+      "val_localization_recall": 0.5986842105263158,
+      "val_loss": 1.8228632578482995,
+      "selection_tuple": [
+        0.5986842105263158,
+        -1.8228632578482995
+      ],
+      "is_new_best": false,
+      "bad_epochs": 14,
+      "best_epoch_so_far": 54,
+      "trainer_recorded_best_flag": false,
+      "flags_match": true
+    },
+    {
+      "epoch": 69,
+      "val_localization_recall": 0.5986842105263158,
+      "val_loss": 1.826588933284466,
+      "selection_tuple": [
+        0.5986842105263158,
+        -1.826588933284466
+      ],
+      "is_new_best": false,
+      "bad_epochs": 15,
+      "best_epoch_so_far": 54,
+      "trainer_recorded_best_flag": false,
+      "flags_match": true
+    }
+  ],
+  "replay_selected_epoch": 54,
+  "replay_selected_score": [
+    0.6381578947368421,
+    -1.8561325531739452
+  ],
+  "replay_selected_val_localization_recall": 0.6381578947368421,
+  "replay_selected_val_loss": 1.8561325531739452,
+  "replay_stopped_epoch": 69,
+  "max_epochs_reached": false,
+  "early_stopping_fired": true,
+  "comparisons": {
+    "history_tuple_argmax_epoch": 54,
+    "best_pt_epoch": 54,
+    "best_pt_best_validation_score": [
+      0.6381578947368421,
+      -1.8561325531739454
+    ],
+    "best_pt_sha256": "d875cac7d09bbc3d32232191f0af2c138e5a74682fc63e4d6e01f30345eca75e",
+    "latest_pt_epoch": 69,
+    "latest_pt_bad_epochs": 15,
+    "latest_pt_sha256": "01f57c32a2667eed0c50ded3e19f3f8117fda859c9a663b237dde61f2eda7992",
+    "training_log_best_flags_match_replay": true,
+    "selected_epoch_all_sources_match": true
+  },
+  "verdict": "H3_CHECKPOINT_SELECTION_REPLAY_PASS",
+  "timestamp_utc": "2026-09-25T13:39:52.245299+00:00"
+}

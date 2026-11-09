@@ -1,0 +1,136 @@
+{
+ "artifact": "phase34_model_identity_and_smoke_gate_v1_2",
+ "phase": 34,
+ "section": "\u00a7G",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase34_efficiency_profiling_v1_2",
+ "PHASE34_EXECUTE_set": true,
+ "stage": "PRE_MEASUREMENT_SMOKE_STAGE",
+ "checkpoint_file_verification": [
+  {
+   "component": "G",
+   "path": "checkpoints/phase21_global_medfilm_fourdomain_seed42_clean_v3/best.pt",
+   "expected_sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+   "observed_sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+   "match": true,
+   "file_bytes": 42369710,
+   "expected_parameters": 3523001,
+   "parameter_bytes_float32": 14092004
+  },
+  {
+   "component": "R_psi",
+   "path": "checkpoints/phase25a_barr_regional_refiner_v1_1_roi030/final/final.pt",
+   "expected_sha256": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109",
+   "observed_sha256": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109",
+   "match": true,
+   "file_bytes": 15425424,
+   "expected_parameters": 1276401,
+   "parameter_bytes_float32": 5105604
+  },
+  {
+   "component": "B_phi",
+   "path": "checkpoints/phase25d_barr_benefit_router_v1_2_1_seed42/final/final.pt",
+   "expected_sha256": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+   "observed_sha256": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+   "match": true,
+   "file_bytes": 455682,
+   "expected_parameters": 36801,
+   "parameter_bytes_float32": 147204
+  },
+  {
+   "component": "S_omega",
+   "path": "checkpoints/phase25f_barr_post_safety_v1_0_seed42/final/final.pt",
+   "expected_sha256": "eee9b97b9921e53fc07eac9281dce64ba518c6e1659916b97b0b3bec21ec6d2e",
+   "observed_sha256": "eee9b97b9921e53fc07eac9281dce64ba518c6e1659916b97b0b3bec21ec6d2e",
+   "match": true,
+   "file_bytes": 7816,
+   "expected_parameters": 1217,
+   "parameter_bytes_float32": 4868
+  }
+ ],
+ "all_checkpoint_hashes_match": true,
+ "per_component": {
+  "G": {
+   "constructed": false,
+   "checkpoint_sha256_match": true,
+   "strict_load": null,
+   "parameter_count": null,
+   "eval": null,
+   "smoke_forward": false,
+   "failure": "ModuleNotFoundError: No module named 'src'",
+   "failure_site": "worker._build_G line 60 `from src.models.film import GlobalMedFiLM`"
+  },
+  "R_psi": {
+   "constructed": false,
+   "checkpoint_sha256_match": true,
+   "strict_load": null,
+   "parameter_count": null,
+   "eval": null,
+   "smoke_forward": false,
+   "failure": "ModuleNotFoundError: No module named 'src'",
+   "failure_site": "worker._build_R_psi line 73 `from src.models.barr.regional_refiner import BARRRegionalRefinerV1`"
+  },
+  "B_phi": {
+   "constructed": true,
+   "checkpoint_sha256_match": true,
+   "strict_load": {
+    "missing_keys": [],
+    "unexpected_keys": []
+   },
+   "parameter_count": 36801,
+   "parameter_dtypes": [
+    "torch.float32"
+   ],
+   "eval": true,
+   "smoke_forward": false,
+   "note": "constructed from scripts/analysis/train_phase25d_router.py (no `src` package import required)"
+  },
+  "S_omega": {
+   "constructed": true,
+   "checkpoint_sha256_match": true,
+   "strict_load": {
+    "missing_keys": [],
+    "unexpected_keys": []
+   },
+   "parameter_count": 1217,
+   "parameter_dtypes": [
+    "torch.float32"
+   ],
+   "eval": true,
+   "smoke_forward": false,
+   "note": "constructed from scripts/analysis/phase25f_execution_common.py (no `src` package import required)"
+  }
+ },
+ "components_constructed": [
+  "B_phi",
+  "S_omega"
+ ],
+ "components_not_constructed": [
+  "G",
+  "R_psi"
+ ],
+ "all_strict_loads_pass": false,
+ "all_parameter_counts_match": false,
+ "all_models_eval": false,
+ "all_smoke_forwards_pass": false,
+ "smoke_forwards_executed": 0,
+ "measurement_iterations_completed": 0,
+ "latency_statistics_collected": false,
+ "throughput_statistics_collected": false,
+ "inference_memory_statistics_collected": false,
+ "verified_parameter_counts": {
+  "B_phi": 36801,
+  "S_omega": 1217
+ },
+ "unverified_parameter_counts": {
+  "G": 3523001,
+  "R_psi": 1276401
+ },
+ "total_resident_parameters_verified": false,
+ "smoke_gate_pass": false,
+ "root_cause": "The frozen v1.2 worker inserts only its own directory on sys.path, so the `src` package (repository root) is not importable when the worker is launched as a script path. `_build_G` and `_build_R_psi` therefore raise ModuleNotFoundError: No module named 'src' before any model can be constructed. B_phi and S_omega construct successfully because their classes are sourced from scripts/analysis modules rather than the `src` package.",
+ "required_remediation": "A new ADDITIVE amendment (v1.3) that (a) makes the repository root importable in the worker (or sources G/R_psi classes without a root-relative `src` import), and (b) adds an explicit untimed smoke mode performing the minimum single forward per component, then re-freezes and re-authorizes.",
+ "source_edited_during_attempt": false,
+ "generated_utc": "2026-10-04T11:19:19+00:00",
+ "all_pass": false
+}

@@ -1,0 +1,442 @@
+{
+  "artifact": "POST_PHASE13_H2A_OUTCOME_ADJUDICATION",
+  "status": "PASS",
+  "created_utc": "2026-09-23T05:36:00Z",
+  "task": "POST-PHASE13 REGIONAL REVISION H2-A-C FORMAL H2A OUTCOME ADJUDICATION",
+  "model_attribution": "Gemini 3.1 Pro High",
+  "adjudication_authorized": "H2A_OUTCOME_ADJUDICATION_ONLY",
+  "execution_mode": "PURE_READ_AUDIT_OF_FROZEN_EVIDENCE",
+  "integrity_precondition": {
+    "status": "PASS",
+    "bind_b1_evaluation": {
+      "path": "reports/audits/post_phase13_h2a_training_evaluation.json",
+      "sha256": "7ecd3a04fd6bfa6051afa3bd4536566d61a81287c73f34fb2e4689d0e0587899",
+      "status": "PASS",
+      "best_epoch": 83,
+      "trajectory_reproduction": "PASS",
+      "selection_replay": "PASS",
+      "all_required_met": true
+    },
+    "bind_b2_integrity": {
+      "path": "reports/audits/post_phase13_h2a_downstream_integrity.json",
+      "sha256": "0c3b1175b9dd425e57ebb3770d6d37ee16be71e06fb42d24edf6ea46b8a7fec3",
+      "status": "PASS",
+      "proposal_count": 457,
+      "case_model_rows": 412,
+      "component_model_rows": 608,
+      "model_summary_rows": 4,
+      "regional_crop_evaluations": 1828,
+      "localizer_forwards": 0,
+      "proposal_regeneration": 0,
+      "new_global_forwards": 0,
+      "global_reproduction": "PASS",
+      "test_reads": 0,
+      "external_test_reads": 0,
+      "all_required_met": true
+    },
+    "material_mismatch": "NONE"
+  },
+  "binding_shas": {
+    "h2a_protocol_sha": "0fafc793b3a814e010e1fdd48f6a2333042985eaef4a44e0382b3991800da96b",
+    "b1_evaluation_sha": "7ecd3a04fd6bfa6051afa3bd4536566d61a81287c73f34fb2e4689d0e0587899",
+    "b2_integrity_sha": "c80a5b7db16013efe1dc74d42d06a26bb5b3f4003ead8564cb4bcdb0efa4bd4b",
+    "b1_proposal_table_sha": "4004e5b0b38bec11b9f63934be8efea253f20339952ac57ebf5e0b70e47e454f",
+    "b1_component_table_sha": "e93163b2b42eeadf725eb60c3c7e32c90560dc87392b94b3bc8281d045250368",
+    "b2_model_summary_sha": "60c707519b3ade980abdc6d7c2f1e71645bb5f5fc89ed32329ec0c642a550677",
+    "b2_cross_architecture_sha": "32de3a43e907af11e07634de5ba80adeda21e63dcf3d71b1ceefdb65ede7dfd8",
+    "phase13_predicted_comparator_sha": "583dce8fc1fb214ae1b7bcf207c2b55fdcdee676b7bd5fcffa009bda64225e10",
+    "phase12_oracle_comparator_sha": "7fbf42fb7d177547a0f047b28db24c830364bdf4a82c722c79aca573e033acf3",
+    "b2_reviewer_notebook_sha": "97ad366a6a2fb4f34a506829923363fb3700794b285920186f544781d6543fa7"
+  },
+  "h2a_scientific_question": {
+    "question": "Was deployment-balanced CHECKPOINT SELECTION ALONE sufficient to resolve the Phase13 GT-free regional-path failure?",
+    "not_asking": "did the localizer improve at all?",
+    "framing": "whether selection-only redesign is sufficient as the COMPLETE localizer revision",
+    "dimensions_used": [
+      "A_LOCALIZER_PROPOSAL_QUALITY",
+      "B_DOWNSTREAM_GLOBAL_PRESERVATION",
+      "C_REGIONAL_UTILITY",
+      "D_CROSS_ARCHITECTURE_GENERALITY"
+    ],
+    "new_numerical_success_threshold": "NONE",
+    "weighted_score": "NONE",
+    "post_hoc_subgroup": "NONE",
+    "winner_declared": "NONE"
+  },
+  "dimension_A_localizer_proposal_quality": {
+    "dimension_id": "A",
+    "observed_evidence": {
+      "proposal_total_count": {
+        "phase13_epoch53": 494,
+        "h2a_epoch83": 457,
+        "delta": -37
+      },
+      "proposal_pixel_any_hit_precision": {
+        "phase13": 0.24696356275303644,
+        "h2a": 0.27571115973741794,
+        "delta": 0.028747596984381507
+      },
+      "tiny_recall90": {
+        "phase13": 0.6805555555555556,
+        "h2a": 0.6944444444444444,
+        "delta": 0.01388888888888884
+      },
+      "overall_recall90": {
+        "phase13": 0.5986842105263158,
+        "h2a": 0.6381578947368421,
+        "delta": 0.03947368421052633
+      },
+      "overall_recall50": {
+        "phase13": 0.7894736842105263,
+        "h2a": 0.8223684210526315,
+        "delta": 0.0328947368421052
+      },
+      "any_overlap_recall": {
+        "phase13": 0.8486842105263158,
+        "h2a": 0.875,
+        "delta": 0.02631578947368418
+      },
+      "mean_coverage": {
+        "phase13": 0.7584022780771768,
+        "h2a": 0.7878969538240504,
+        "delta": 0.0294946757468737
+      },
+      "fraction_exactly_at_max": {
+        "phase13": 0.6821862348178138,
+        "h2a": 0.6455142231947484,
+        "delta": -0.03667201162306544
+      }
+    },
+    "adjudicated_state": "MEANINGFUL_LOCALIZER_LEVEL_IMPROVEMENT_DESCRIPTIVELY_VERIFIED",
+    "supports_h2a": "YES_LOCALIZER_LEVEL_ONLY",
+    "limitations": [
+      "DESCRIPTIVE_ONLY__NOT_STATISTICAL_SUPERIORITY",
+      "proposal_pixel_any_hit_precision remains only ~0.276, so a substantial off-target proposal burden remains",
+      "no direct model-tensor cross-check at epochs 31/53/68 (snapshots not retained)"
+    ],
+    "new_threshold": "NONE"
+  },
+  "dimension_B_downstream_global_preservation": {
+    "dimension_id": "B",
+    "observed_evidence": {
+      "UNet": {
+        "global_macro_dice": 0.59418,
+        "h2a_predicted_macro_dice": 0.313779,
+        "delta": -0.2804,
+        "global_precision": 0.693919,
+        "h2a_precision": 0.245046,
+        "global_recall": 0.653931,
+        "h2a_recall": 0.686679,
+        "mean_global_fp": 1297.252427,
+        "mean_h2a_fp": 8344.252427,
+        "mean_global_fn": 2561.621359,
+        "mean_h2a_fn": 2381.330097,
+        "cases_improved": 11,
+        "cases_same": 0,
+        "cases_worse": 92
+      },
+      "Attention U-Net": {
+        "global_macro_dice": 0.629805,
+        "h2a_predicted_macro_dice": 0.320173,
+        "delta": -0.309632,
+        "global_precision": 0.670962,
+        "h2a_precision": 0.253042,
+        "global_recall": 0.70177,
+        "h2a_recall": 0.704895,
+        "mean_global_fp": 1377.194175,
+        "mean_h2a_fp": 8683.320388,
+        "mean_global_fn": 2428.135922,
+        "mean_h2a_fn": 2441.300971,
+        "cases_improved": 8,
+        "cases_same": 1,
+        "cases_worse": 94
+      },
+      "UNet++": {
+        "global_macro_dice": 0.640516,
+        "h2a_predicted_macro_dice": 0.323046,
+        "delta": -0.31747,
+        "global_precision": 0.736065,
+        "h2a_precision": 0.254114,
+        "global_recall": 0.65833,
+        "h2a_recall": 0.698122,
+        "mean_global_fp": 888.679612,
+        "mean_h2a_fp": 8610.660194,
+        "mean_global_fn": 2569.378641,
+        "mean_h2a_fn": 2278.446602,
+        "cases_improved": 8,
+        "cases_same": 1,
+        "cases_worse": 94
+      },
+      "DeepLabV3+": {
+        "global_macro_dice": 0.560251,
+        "h2a_predicted_macro_dice": 0.288917,
+        "delta": -0.271334,
+        "global_precision": 0.708252,
+        "h2a_precision": 0.218756,
+        "global_recall": 0.585251,
+        "h2a_recall": 0.647667,
+        "mean_global_fp": 1081.563107,
+        "mean_h2a_fp": 9217.135922,
+        "mean_global_fn": 2684.252427,
+        "mean_h2a_fn": 2154.718447,
+        "cases_improved": 13,
+        "cases_same": 0,
+        "cases_worse": 90
+      },
+      "cross_case": {
+        "h2a_worse_vs_global_all_four": 83,
+        "h2a_improved_vs_global_all_four": 3,
+        "population_cases": 103
+      }
+    },
+    "adjudicated_state": "GLOBAL_PRESERVATION_NOT_RESTORED",
+    "supports_h2a": "NO",
+    "limitations": [
+      "no new cutoff introduced",
+      "precision collapses while recall slightly rises, consistent with regional probability replacing global probability over the intervention union",
+      "large FP burden increase across all four architectures"
+    ],
+    "new_cutoff": "NONE"
+  },
+  "dimension_C_regional_utility": {
+    "dimension_id": "C",
+    "observed_evidence": {
+      "oracle_benefit_retention": {
+        "UNet": -2.147969,
+        "Attention_U-Net": -4.436652,
+        "UNet++": -3.684488,
+        "DeepLabV3+": -1.427163
+      },
+      "component_recoveries_vs_global": {
+        "unet": 17,
+        "attention_unet": 11,
+        "unetpp": 14,
+        "deeplabv3plus": 17
+      },
+      "component_losses_vs_global": {
+        "unet": 0,
+        "attention_unet": 0,
+        "unetpp": 0,
+        "deeplabv3plus": 1
+      },
+      "cross_architecture_components": {
+        "recovered_vs_global_by_at_least_one": 29,
+        "recovered_vs_global_by_all_four": 5,
+        "lost_vs_global_by_at_least_one": 1,
+        "lost_vs_global_by_all_four": 0
+      }
+    },
+    "adjudicated_state": "REGIONAL_UTILITY_NOT_RETAINED",
+    "supports_h2a": "NO",
+    "limitations": [
+      "favourable component-recovery evidence preserved (29 recovered by >=1, 5 by all four, 0 lost by all four)",
+      "but recovery evidence alone does NOT determine H2A success",
+      "adjudicated jointly with negative Dice-vs-GLOBAL, negative oracle-benefit retention and large FP burden",
+      "residual off-target proposal burden is a plausible contributor and is not excluded"
+    ],
+    "score": "NONE"
+  },
+  "dimension_D_cross_architecture_generality": {
+    "dimension_id": "D",
+    "observed_evidence": {
+      "DELTA_H2A_PHASE13_DICE": {
+        "unet": 0.011466,
+        "attention_unet": 0.011554,
+        "unetpp": 0.011691,
+        "deeplabv3plus": 0.011625
+      },
+      "all_four_h2a_below_global": true
+    },
+    "adjudicated_state": "CONSISTENT_BUT_INSUFFICIENT__FAILURE_ALSO_CROSS_ARCHITECTURE",
+    "supports_h2a": "PARTIAL_LOCALIZER_LEVEL_ONLY",
+    "limitations": [
+      "small but highly consistent descriptive translation of the localizer-level improvement",
+      "effect is NOT isolated to one segmentation architecture",
+      "the remaining failure is ALSO cross-architecture general",
+      "no architecture ranking performed"
+    ],
+    "architecture_ranking": "NONE"
+  },
+  "h2a_outcome": "H2A_SELECTION_REDESIGN_PARTIAL",
+  "h2a_outcome_definition_matched": "selection-only redesign produces reproducible favourable localizer changes AND measurable downstream translation, but does NOT resolve the major global-preservation / oracle-retention failure",
+  "expected_evidence_pattern_tested": {
+    "localizer_meaningfully_improved_descriptively": "SUPPORTED",
+    "downstream_vs_phase13_small_consistent_improvement_all_four": "SUPPORTED",
+    "downstream_vs_global_still_severe_degradation_all_four": "SUPPORTED",
+    "oracle_retention_negative_all_four": "SUPPORTED",
+    "pattern_corresponds_to": "H2A_SELECTION_REDESIGN_PARTIAL",
+    "forced": "NO — pattern physically supported by frozen evidence"
+  },
+  "checkpoint_selection": {
+    "contributed": "YES",
+    "alone_sufficient": "NO"
+  },
+  "causal_language": {
+    "too_strong_statement_not_adopted": "the bottleneck is the fusion mechanism, not checkpoint selection",
+    "canonical_interpretation": "H2A shows that deployment-balanced checkpoint selection improves localizer proposal quality and yields a small, consistent downstream improvement, but selection-only redesign is insufficient to restore global preservation or oracle-benefit retention. The evidence does not isolate a sole remaining bottleneck. Residual localization / proposal quality and robustness of regional fusion to imperfect proposals remain open contributors.",
+    "contextual_evidence": "the SAME regional-replacement principle produced positive Phase12 oracle gains when localization was GT-derived (UNet +0.130542, Attention +0.069790, UNet++ +0.086164, DeepLabV3+ +0.190121)",
+    "fusion_mechanism_failure_proven": "NO",
+    "localizer_representation_failure_proven": "NO",
+    "persisted_sole_causal_wording_search": {
+      "searched": [
+        "reports/",
+        "docs/",
+        "notebooks/phasewise/phase_13_predicted_roi_localization/",
+        ".workbuddy-ai/memory/"
+      ],
+      "found": "ABSENT",
+      "b2_analysis_notebook_cell_42_states": "H2A-B2 DOES NOT adjudicate H2A. The execution returns evidence only.",
+      "classification": "NO_PERSISTED_CLARIFICATION_REQUIRED",
+      "frozen_evidence_rewritten": "NO"
+    }
+  },
+  "adaptive_development_disclosure": {
+    "h2a_nature": "adaptive VAL-development undertaken after Phase13 REVISE_LOCALIZER and H1 insufficiency",
+    "checkpoint_selection_rule_frozen_before_training": "YES",
+    "downstream_protocol_frozen_before_b2_results": "YES",
+    "val_remains_development_data": "YES",
+    "no_h2a_result_replaces_final_test": "YES",
+    "test_untouched_until_phase39": "YES"
+  },
+  "next_axis_eligibility": {
+    "outcome": "H2A_SELECTION_REDESIGN_PARTIAL",
+    "H2B_LOCALIZER_OBJECTIVE_OR_REPRESENTATION_PROTOCOL_DESIGN": "ELIGIBLE_FOR_SUPERVISOR_AUTHORIZATION",
+    "H2B_TRAINING": "NOT_AUTHORIZED",
+    "H3_FUSION_OR_ROUTING_REDESIGN": "REMAINS_ELIGIBLE_FUTURE_AXIS__NOT_AUTHORIZED",
+    "why_h2b_before_h3": [
+      "H2A still leaves substantial off-target proposal burden (pixel any-hit precision ~0.276)",
+      "the Phase12 oracle experiment showed the existing regional replacement mechanism can produce positive gains when localization is accurate",
+      "therefore a deeper localizer objective/representation test remains scientifically justified before attributing the failure solely to fusion"
+    ],
+    "h2b_will_work_asserted": "NO",
+    "h2b_started": "NO",
+    "h3_started": "NO",
+    "h2b_axis_selected": "NONE",
+    "h2b_single_new_axis_required": "YES",
+    "multiple_axis_experiment_authorized": "NO",
+    "candidate_axes_not_selected": [
+      "loss/objective redesign",
+      "target/heatmap representation redesign",
+      "localizer representation/head redesign"
+    ]
+  },
+  "stale_thread_control": {
+    "resumed_thread": "NONE",
+    "explicitly_not_resumed": "Phase13 Part1B-R0 execution-binding repair",
+    "classification_of_that_thread": "HISTORICAL_STALE",
+    "canonical_state": {
+      "phase13_part1b": "COMPLETE_PASS_FROZEN",
+      "phase13": "COMPLETE_FROZEN",
+      "original_regional_gate": "REVISE_LOCALIZER_FROZEN"
+    },
+    "phase13_artifact_reopened": "NO"
+  },
+  "zero_execution": {
+    "training": 0,
+    "optimizer": 0,
+    "model_constructions": 0,
+    "cuda": 0,
+    "localizer_forwards": 0,
+    "segmentation_forwards": 0,
+    "regional_crop_forwards": 0,
+    "proposal_generation": 0,
+    "oracle_reruns": 0,
+    "test_reads": 0,
+    "external_test_reads": 0
+  },
+  "new_numerical_thresholds": 0,
+  "new_configs": 0,
+  "new_subgroups": 0,
+  "winner": "NONE",
+  "statistical_superiority_claim": "NONE",
+  "continuity": {
+    "phase13": "COMPLETE_FROZEN",
+    "original_gate": "REVISE_LOCALIZER_FROZEN",
+    "h1": "CLOSED__PARTIAL_MITIGATION_INSUFFICIENT",
+    "h2a_b1": "COMPLETE_PASS_FROZEN",
+    "h2a_b2": "COMPLETE_PASS_FROZEN",
+    "h2a_adjudication": "COMPLETE_PASS",
+    "h2a": "CLOSED__SELECTION_REDESIGN_PARTIAL",
+    "h2b_protocol_design": "ELIGIBLE_NOT_AUTHORIZED",
+    "h2b_training": "NOT_AUTHORIZED",
+    "h3": "FUTURE_AXIS_NOT_AUTHORIZED",
+    "phase14": "NOT_STARTED",
+    "test": "UNTOUCHED"
+  },
+  "next_action": "WAIT_FOR_SUPERVISOR_H2B_PROTOCOL_DESIGN_AUTHORIZATION",
+  "stopped": "YES",
+  "binding_provenance_refresh": {
+    "reason": "The immediately-preceding authorized H2A-B2 re-verification/repair task additively updated the B2 integrity audit (added comparator SHAs, cohort labeling, section-completeness, notebook/builder/runner SHAs) and the reviewer notebook (added required sections 14/15 content, section 1 numbering, and the GLOBAL_EMPTY_COMPONENTS_WITHIN_5_FROZEN_IMAGES label). This refresh re-points the two affected provenance bindings so the adjudication binds the FINAL B1/B2 evidence.",
+    "scientific_measurements_changed": "NO",
+    "h2a_result_changed": "NO",
+    "frozen_scientific_tables_byte_identical": "YES",
+    "superseded": {
+      "b2_integrity_sha": "0c3b1175b9dd425e57ebb3770d6d37ee16be71e06fb42d24edf6ea46b8a7fec3",
+      "b2_reviewer_notebook_sha": "a6db814c781ed3d91feb5bc2b57bae7c60ebfe89e51688a4136fbe1f16fdf013"
+    },
+    "current": {
+      "b2_integrity_sha": "c80a5b7db16013efe1dc74d42d06a26bb5b3f4003ead8564cb4bcdb0efa4bd4b",
+      "b2_reviewer_notebook_sha": "97ad366a6a2fb4f34a506829923363fb3700794b285920186f544781d6543fa7"
+    },
+    "unaffected_bindings_resolve_ok": [
+      "h2a_protocol_sha",
+      "b1_evaluation_sha",
+      "b1_proposal_table_sha",
+      "b1_component_table_sha",
+      "b2_model_summary_sha",
+      "b2_cross_architecture_sha",
+      "phase13_predicted_comparator_sha",
+      "phase12_oracle_comparator_sha"
+    ]
+  },
+  "b1_checkpoint_crosscheck_limitation": {
+    "classification": "NONBLOCKING_SECONDARY_INTEGRITY_CHECK_UNAVAILABLE",
+    "artifact": "reports/audits/post_phase13_h2a_b1_checkpoint_crosscheck_limitation.json",
+    "artifact_sha": "1ec2d7cc63c97a89c47c63ca6cdaae3382a19c97d3ce34a73c1ceb61d0582a7b",
+    "requested_historical_epochs": [
+      31,
+      53,
+      68
+    ],
+    "historical_snapshots_retained": "NO",
+    "canonical_interpretation": "68 overlapping epochs reproduce the loss/LR trajectory to machine precision, strongly supporting unchanged gradient semantics. Direct model-tensor equality at epochs 31/53/68 was unavailable because those H2A epoch snapshots were not retained.",
+    "mathematical_proof_of_identical_tensors_claimed": "NO",
+    "b1_status_changed": "NO",
+    "scientific_result_changed": "NO",
+    "changes_h2a_outcome": "NO"
+  },
+  "supervisor_verification": {
+    "task": "H2-A-C SUPERVISOR ADJUDICATION VERIFICATION + CONTINUITY LOCK",
+    "model_attribution": "Gemini 3.1 Pro High",
+    "existing_h2a_c_adjudication": "VERIFIED_AND_ACCEPTED_BY_SUPERVISOR",
+    "outcome_match": "H2A_SELECTION_REDESIGN_PARTIAL",
+    "no_new_threshold": "CONFIRMED",
+    "no_winner": "CONFIRMED",
+    "no_TEST": "CONFIRMED",
+    "no_phase14_authorization": "CONFIRMED",
+    "h2b_protocol_design_eligible_only": "CONFIRMED",
+    "material_scientific_difference": "NONE",
+    "check_required": "NO",
+    "verification_execution": {
+      "training": 0,
+      "optimizer": 0,
+      "model_constructions": 0,
+      "cuda": 0,
+      "localizer_forwards": 0,
+      "segmentation_forwards": 0,
+      "proposal_generation": 0,
+      "test_reads": 0,
+      "external_test_reads": 0
+    }
+  },
+  "h2a_closure": {
+    "h2a_protocol": "COMPLETE_PASS_FROZEN",
+    "h2a_b1": "COMPLETE_PASS_FROZEN",
+    "h2a_b2": "COMPLETE_PASS_FROZEN",
+    "h2a_outcome": "H2A_SELECTION_REDESIGN_PARTIAL",
+    "h2a": "CLOSED",
+    "further_threshold_search": "NONE",
+    "alternate_checkpoint_search": "NONE",
+    "combination_with_r1_selective_acceptance": "NONE"
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "classification": "EXT01_AUDIT_SUMMARY",
+  "generated_utc": "2026-10-11T13:00:00Z",
+  "scientific_delta": 0,
+  "datasets_audited": 4,
+  "segmentation_gt": {
+    "HAM10000": "FOUND (10015 binary masks)",
+    "Stones_where_are_you": "FOUND (COCO polygons; class->binary rule not frozen)",
+    "CVC-ClinicDB": "FOUND (612 binary masks)",
+    "BrEaST-Lesions_USG": "FOUND (252 tumour masks)"
+  },
+  "eligibility": {
+    "HAM10000 (ISIC-2018 Task3 training input)": "SECONDARY_EXTERNAL_BENCHMARK_ELIGIBLE",
+    "Stones_where_are_you? v3 (Roboflow COCO-seg)": "ELIGIBILITY_PENDING",
+    "CVC-ClinicDB": "SECONDARY_EXTERNAL_BENCHMARK_ELIGIBLE",
+    "BrEaST-Lesions_USG": "SECONDARY_EXTERNAL_BENCHMARK_ELIGIBLE"
+  },
+  "study_track": {
+    "HAM10000 (ISIC-2018 Task3 training input)": "TRACK_B_PRIOR_USED_EXTERNAL_BENCHMARK",
+    "Stones_where_are_you? v3 (Roboflow COCO-seg)": "TRACK_A_CANDIDATE_INDEPENDENT_EXTERNAL_VALIDATION",
+    "CVC-ClinicDB": "TRACK_B_PRIOR_USED_EXTERNAL_BENCHMARK",
+    "BrEaST-Lesions_USG": "TRACK_B_PRIOR_USED_EXTERNAL_BENCHMARK"
+  },
+  "key_findings": [
+    "All four datasets DO contain usable segmentation ground truth (HAM10000 is the ISIC-2018 Task-3 segmentation variant, not classification-only).",
+    "No exact filename/ID overlap with frozen TRAIN/VAL808/ROUTER_DEVELOPMENT/ROUTER_HOLDOUT/TEST.",
+    "HAM10000 shares the ISIC namespace/archive lineage with frozen task 0 -> semantic-duplicate risk HIGH, CHECK_REQUIRED.",
+    "Stones_where_are_you is multi-class COCO-seg (10 categories) -> requires a frozen stone->foreground rule; Roboflow-augmented '.rf.' filenames create a duplicate-source risk.",
+    "Three datasets carry prior research-programme use (HAM10000, CVC-ClinicDB, BrEaST-Lesions_USG) -> not pristine prospective validation.",
+    "BrEaST-Lesions_USG and CVC-ClinicDB lack a local license file -> CHECK_REQUIRED.",
+    "No PRIMARY_EXTERNAL_ELIGIBLE dataset is yet confirmed; Stones_where_are_you is the Track-A candidate pending mapping/protocol freeze."
+  ],
+  "no_inference": true,
+  "no_training": true,
+  "no_metrics": true,
+  "next_phase": "EXT-02",
+  "known_administrative_manifest_discrepancy": {
+    "classification": "KNOWN_ADMINISTRATIVE_MANIFEST_DISCREPANCY",
+    "artifact": "reports/manuscript/final/final_submission_checklist.json",
+    "description": "self-referential ordering wrinkle: the submission checklist was finalized (PENDING_MANIFEST -> PASS) after the final-release manifest was written, so the manifest records a pre-finalization hash for that one administrative file.",
+    "scope": "administrative only (not scientific evidence)",
+    "scientific_evidence_affected": false,
+    "action": "recorded in extension metadata only; frozen final-release manifest NOT rewritten; frozen scientific evidence NOT modified"
+  }
+}

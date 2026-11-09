@@ -1,0 +1,35 @@
+{
+  "artifact": "phase36_methodology_diagram_evidence_package__tensor_dimension_contract",
+  "method": "RA-MedFiLM-BARR",
+  "governance_note": "Dimension-only extraction from executable source. No model execution was performed to produce this file.",
+  "dimensions": [
+    {"key": "input_image_dimensions", "value": "512x512", "meaning": "Canonical model input spatial size (default 512; allowed 256/512/768/1024).", "source_file": "src/data/transforms.py", "source_symbol": "input_size default / GLOBAL_MEDFILM input_shape 1x3x512x512"},
+    {"key": "input_channels", "value": 3, "meaning": "Model input channels under DEFAULT_CHANNEL_POLICY=RGB_3CH (grayscale replicated).", "source_file": "src/data/multidomain_dataset.py", "source_symbol": "DEFAULT_CHANNEL_POLICY"},
+    {"key": "task_id_representation_global", "value": "integer index -> nn.Embedding(4,32)", "meaning": "G task conditioning; task_id never concatenated or channelized.", "source_file": "src/models/film/global_medfilm.py", "source_symbol": "GLOBAL_MEDFILM_TASK_EMBEDDING_DIM"},
+    {"key": "task_id_representation_router", "value": "integer index -> nn.Embedding(4,16)", "meaning": "B_phi task embedding concatenated with the 202-D numeric vector.", "source_file": "scripts/analysis/train_phase25d_router.py", "source_symbol": "task_embedding = nn.Embedding(4,16)"},
+    {"key": "g_output_logit_dimensions", "value": "[B,1,H,W]", "meaning": "Single-channel foreground logits from the shared 1x1 conv head.", "source_file": "src/models/film/global_medfilm.py", "source_symbol": "self.head = nn.Conv2d(c1, out_channels=1, kernel_size=1)"},
+    {"key": "global_probability_dimensions", "value": "[H,W] (sigmoid of logits)", "meaning": "Canonical p_global in [0,1].", "source_file": "src/models/barr/ra_medfilm_barr.py", "source_symbol": "p_global"},
+    {"key": "g_feature_tap_dimensions", "value": {"bridge": 256, "decoder1": 24, "decoder2": 48}, "meaning": "G feature taps used by the BARR pre-refinement extractor (channel counts).", "source_file": "src/models/film/global_medfilm.py", "source_symbol": "GLOBAL_MEDFILM_CHANNELS (24,48,96,192,256)"},
+    {"key": "pre_refinement_feature_vector_dim", "value": 202, "meaning": "192 deep (6 groups x 32) + 10 scalars.", "source_file": "data_cache/phase25b_barr_pre_refinement_features_v1_2/feature_group_offsets.json", "source_symbol": "numeric_dim"},
+    {"key": "b_phi_input_dim", "value": 218, "meaning": "202 numeric + 16 task embedding (concatenated).", "source_file": "src/models/barr/ra_medfilm_barr.py", "source_symbol": "ROUTER_TOTAL_DIM"},
+    {"key": "b_phi_output", "value": "scalar delta_hat per sample", "meaning": "Regression output (Huber loss, delta=0.05).", "source_file": "scripts/analysis/train_phase25d_router.py", "source_symbol": "self.net(x).squeeze(-1)"},
+    {"key": "roi_canvas_dimensions", "value": 512, "meaning": "ROI canvas resolution (full-image coordinate frame).", "source_file": "scripts/analysis/phase36_robustness_execution_v1_12.py", "source_symbol": "REGIONAL_CANVAS_RESOLUTION"},
+    {"key": "r_psi_crop_resolution", "value": 256, "meaning": "Regional crop is resized to 256x256 for R_psi.", "source_file": "scripts/analysis/phase36_robustness_execution_v1_12.py", "source_symbol": "REGIONAL_INPUT_RESOLUTION"},
+    {"key": "r_psi_input_channel_count", "value": 4, "meaning": "[R,G,B,p_global_crop].", "source_file": "src/models/barr/regional_refiner.py", "source_symbol": "BARR_REFINER_INPUT_CHANNELS"},
+    {"key": "r_psi_output_dimensions", "value": "[B,1,256,256] logits", "meaning": "Single-channel raw logits, no internal sigmoid.", "source_file": "src/models/barr/regional_refiner.py", "source_symbol": "BARR_REFINER_OUTPUT_CHANNELS"},
+    {"key": "post_safety_numeric_feature_dim", "value": 16, "meaning": "16-D GT-free post-safety numeric vector.", "source_file": "reports/tables/phase25f_feature_schema_v1_0.csv", "source_symbol": "rows 0-15 (group=numeric)"},
+    {"key": "task_onehot_dim", "value": 4, "meaning": "One-hot over {ISIC=0, BUSI=1, KVASIR=2, KUB=3}.", "source_file": "reports/tables/phase25f_feature_schema_v1_0.csv", "source_symbol": "rows 16-19 (group=task_onehot)"},
+    {"key": "final_s_omega_input_dim", "value": 20, "meaning": "16 numeric + 4 task one-hot.", "source_file": "scripts/analysis/phase36_robustness_execution_v1_12.py", "source_symbol": "SOMEGA_FINAL_INPUT_DIM"},
+    {"key": "s_omega_output", "value": "scalar safety logit", "meaning": "ACCEPT iff sigmoid(logit) >= 0.50.", "source_file": "scripts/analysis/phase25f_execution_common.py", "source_symbol": "BARRPostSafetyV1.fc3"},
+    {"key": "final_probability_dimensions", "value": "[H,W]", "meaning": "Final probability map (global or refined/fused depending on state).", "source_file": "src/models/barr/ra_medfilm_barr.py", "source_symbol": "p_final"},
+    {"key": "final_binary_mask_dimensions", "value": "[H,W] uint8", "meaning": "Final mask = (p_final >= 0.50).", "source_file": "src/models/barr/ra_medfilm_barr.py", "source_symbol": "SEGMENTATION_OUTPUT_THRESHOLD"}
+  ],
+  "parameter_counts": {
+    "G_global_medfilm": 3523001,
+    "B_phi_benefit_router": 36801,
+    "R_psi_regional_refiner": 1276401,
+    "S_omega_post_safety": 1217,
+    "RAMedFiLMBARR_wrapper_trainable": 0,
+    "source": ["reports/tables/phase21_all_trained_models_comparison.csv", "scripts/analysis/train_phase25d_router.py:147", "src/models/barr/regional_refiner.py:BARR_REFINER_EXPECTED_PARAMETERS", "scripts/analysis/phase25f_execution_common.py", "src/models/barr/ra_medfilm_barr.py:85"]
+  }
+}

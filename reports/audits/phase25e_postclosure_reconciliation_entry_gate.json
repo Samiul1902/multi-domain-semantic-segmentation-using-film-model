@@ -1,0 +1,596 @@
+{
+  "classification": "PHASE25E_RESOURCE_GATE_POLICY_EVALUATION",
+  "specification_revision": "ra_medfilm_barr_resource_gate_v1_0",
+  "stage": "POSTCLOSURE_RECONCILIATION_ENTRY_GATE",
+  "purpose": "Open the post-closure statistical-adjudication + governance reconciliation work order on the FROZEN Phase25E closure; bind the reconciliation baseline; verify no science drift.",
+  "frozen_closure_terminal": "PHASE25E_RESOURCE_GATE_POLICY_EVALUATION_COMPLETE__OOF_FIXED_BUDGET_FRONTIER_AND_FINAL_DEV_THRESHOLDS_FROZEN__PHASE25F_ELIGIBLE_NOT_STARTED",
+  "frozen_closure_sha256": "e20581efab5bb81ec63d118923558df82089b2509f7d5a964da42db4252bab4e",
+  "baseline_bindings": {
+    "reports/audits/phase25e_final_freeze.json": {
+      "sha256": "e20581efab5bb81ec63d118923558df82089b2509f7d5a964da42db4252bab4e",
+      "binding_source": "frozen_closure",
+      "expected_sha256": "e20581efab5bb81ec63d118923558df82089b2509f7d5a964da42db4252bab4e",
+      "match": true
+    },
+    "notebooks/phasewise/phase_25e_resource_gate/phase25e_resource_gate.ipynb": {
+      "sha256": "e5d8f5657b43a18fd87e50bcf6f4834bcdd94dcbb2def0ef02ce720f0f1d7718",
+      "binding_source": "frozen_closure",
+      "expected_sha256": "e5d8f5657b43a18fd87e50bcf6f4834bcdd94dcbb2def0ef02ce720f0f1d7718",
+      "match": true
+    },
+    "notebooks/phasewise/phase_25e_resource_gate/phase25e_resource_gate_specification.ipynb": {
+      "sha256": "a431b3604021c0f4ffaaa6153302d674a38167b1792ab55d09a58a8ad2a5c41c",
+      "binding_source": "frozen_closure",
+      "expected_sha256": "a431b3604021c0f4ffaaa6153302d674a38167b1792ab55d09a58a8ad2a5c41c",
+      "match": true
+    },
+    "data_cache/phase25e_barr_resource_gate_v1_0/phase25e_bootstrap_plan_v1_0.npz": {
+      "sha256": "241ed5232b35709494adbf230151cec21259f86f88e1f06e5b2881a6d88f9b63",
+      "binding_source": "frozen_closure",
+      "expected_sha256": "241ed5232b35709494adbf230151cec21259f86f88e1f06e5b2881a6d88f9b63",
+      "match": true
+    },
+    "data_cache/phase25e_barr_resource_gate_v1_0/phase25e_final_router_dev_scores.csv": {
+      "sha256": "2d23e11090a5b3164d5b125c633bbccfbe307ecdc717d0f5689bf401bd849f9d",
+      "binding_source": "frozen_closure",
+      "expected_sha256": "2d23e11090a5b3164d5b125c633bbccfbe307ecdc717d0f5689bf401bd849f9d",
+      "match": true
+    },
+    "reports/tables/phase25e_analytical_compute_contract.csv": {
+      "sha256": "5078c04367082f6e94390722081685a0429cc774384cb5ed44bed65dcb8e74a8",
+      "binding_source": "reconciliation_baseline"
+    },
+    "reports/tables/phase25e_bootstrap_ci.csv": {
+      "sha256": "0d3db91879d2a4fd30b1c2523e1f131d82ccc3131a48abe316e1974660d3614c",
+      "binding_source": "reconciliation_baseline"
+    },
+    "reports/tables/phase25e_c7_c8_redundancy.csv": {
+      "sha256": "1c45d8c9305398fa3fa0a4fc32bf57619b1de1d74e4fc21f2ef5c618d634690b",
+      "binding_source": "reconciliation_baseline"
+    },
+    "reports/tables/phase25e_compute_frontier.csv": {
+      "sha256": "6062e55648d2536fbccb4d44127d820dcdc433941cbf86a906b7cc66a0c41004",
+      "binding_source": "reconciliation_baseline"
+    },
+    "reports/tables/phase25e_domain_reporting.csv": {
+      "sha256": "7130216a22cc5963cbe49d5177fecaa6a83f8a41988491d69e865d7c4f26e891",
+      "binding_source": "reconciliation_baseline"
+    },
+    "reports/tables/phase25e_equal_budget_comparison.csv": {
+      "sha256": "8cc9b05ce48c60977571f0cd76fdeab81160d918b6ce7b192bf0da39bac4449b",
+      "binding_source": "reconciliation_baseline"
+    },
+    "reports/tables/phase25e_final_router_dev_thresholds.csv": {
+      "sha256": "980e44aba6bb57bc86b2fa03060eaa181207297367fe7f7b1bbbde9c9b3bcfd1",
+      "binding_source": "reconciliation_baseline"
+    },
+    "reports/tables/phase25e_fixed_budget_cardinalities.csv": {
+      "sha256": "613ad3a945f2a1701fdaca42527414f0c484c916e74bdbe2c158d5e50d1d1b41",
+      "binding_source": "reconciliation_baseline"
+    },
+    "reports/tables/phase25e_oracle_upper_bound.csv": {
+      "sha256": "4a5e3be5c8d5caa819c6f9d2055e527a0cd8ea0ed7f7a81a9400c6ac24b268ec",
+      "binding_source": "reconciliation_baseline"
+    },
+    "reports/tables/phase25e_paired_bootstrap_tests.csv": {
+      "sha256": "53c8053cbf46d5d1740391f9ce99edb77d58270ff94b4f31ae83a83caed0aa1c",
+      "binding_source": "reconciliation_baseline"
+    },
+    "reports/tables/phase25e_policy_evaluation_metrics.csv": {
+      "sha256": "e1f28ef4181683345f7db3fabc117647c125db187d55ae8dfab85d067988de61",
+      "binding_source": "reconciliation_baseline"
+    },
+    "reports/tables/phase25e_policy_membership_manifest.csv": {
+      "sha256": "f4ff4b235c664339d237fd7ec51f948dbc233431a6fd45522bde2166327e679a",
+      "binding_source": "reconciliation_baseline"
+    },
+    "reports/tables/phase25e_random_routing_priority_seed42.csv": {
+      "sha256": "2cfbf22449a91e95d3e82416993bd4d6dfb8e49eacde961e431f4c833f5a5768",
+      "binding_source": "reconciliation_baseline"
+    },
+    "reports/tables/phase25e_size_strata_reporting.csv": {
+      "sha256": "906c65d9d73cedfea6e6a7024e8f04537eaeb94ee6319c7bc4918f4d5c78eb8e",
+      "binding_source": "reconciliation_baseline"
+    },
+    "reports/figures/p25e_benefit_capture_vs_budget.png": {
+      "sha256": "846311cceda684a23d41db07b7b922b471b56387d06eba50f599fb21fff7fce3",
+      "binding_source": "reconciliation_baseline"
+    },
+    "reports/figures/p25e_bootstrap_ci_precision.png": {
+      "sha256": "1bbc941248d2eba98878916a9fbb0bf719c2bd68182c938f34742a05f5839085",
+      "binding_source": "reconciliation_baseline"
+    },
+    "reports/figures/p25e_c7_c8_redundancy.png": {
+      "sha256": "446a6aeb48c11485fb28e6694e6a5260195f2f4f44bd0883f0fb1f087558a211",
+      "binding_source": "reconciliation_baseline"
+    },
+    "reports/figures/p25e_compute_frontier.png": {
+      "sha256": "7e1e88321463ffbdc48e163fc2139cc12ce0bff71e1faced4ec7a05ee0f8bfff",
+      "binding_source": "reconciliation_baseline"
+    },
+    "reports/figures/p25e_domain_breakdown.png": {
+      "sha256": "3cc2e0e0687ac8585b8cfc60a7adb9939571588a32de2889524940559a9bf0a1",
+      "binding_source": "reconciliation_baseline"
+    },
+    "reports/figures/p25e_harmful_rate_vs_budget.png": {
+      "sha256": "ef067f78d2e29873f24958503411b56036e402d5ba67953b205b6db7d27c1b11",
+      "binding_source": "reconciliation_baseline"
+    },
+    "reports/figures/p25e_mean_delta_vs_budget.png": {
+      "sha256": "e6d731ae42a413e8411e765b185fb1db2879a8766e61231f4f6d7f57644a8ece",
+      "binding_source": "reconciliation_baseline"
+    },
+    "reports/figures/p25e_precision_vs_budget.png": {
+      "sha256": "75c076fbafa2f1aa6f3fcbe939aacc96a99910488c19e8cc13262cd8fba27e2f",
+      "binding_source": "reconciliation_baseline"
+    },
+    "reports/figures/p25e_regret_vs_budget.png": {
+      "sha256": "b125c81d748cc3679f5d7a2e30b49c673dba102343e15609e61edac2811dce2f",
+      "binding_source": "reconciliation_baseline"
+    },
+    "reports/figures/p25e_size_strata.png": {
+      "sha256": "6a00db2157bf08fcc025000cad5cf01e5b3f6877ce758e8e6d05b58e54329f4b",
+      "binding_source": "reconciliation_baseline"
+    }
+  },
+  "baseline_binding_count": 29,
+  "closure_audit_bindings": {
+    "phase25e_policy_eval_entry_gate": {
+      "frozen_sha256": "5ba5b4666e30db6106157d6e3a143e9a0539383f21843448404f1c72f2698d61",
+      "sha256": "5ba5b4666e30db6106157d6e3a143e9a0539383f21843448404f1c72f2698d61",
+      "match": true
+    },
+    "phase25e_membership_immutability_audit": {
+      "frozen_sha256": "af9ab014b087a422be1f7c149f6f94432a6a62af570f6695b5e07f7b2e253ae0",
+      "sha256": "af9ab014b087a422be1f7c149f6f94432a6a62af570f6695b5e07f7b2e253ae0",
+      "match": true
+    },
+    "phase25e_success_failure_criteria_binding": {
+      "frozen_sha256": "e2580d9de572c41ade39ca05ad0dbf4b57a0427aea0e788f48bf707e25d37b36",
+      "sha256": "e2580d9de572c41ade39ca05ad0dbf4b57a0427aea0e788f48bf707e25d37b36",
+      "match": true
+    },
+    "phase25e_final_router_dev_calibration": {
+      "frozen_sha256": "9696f5d665913bcecf1f2343bfc4b7a9e2b81815117e4d151ad319643306f0e5",
+      "sha256": "9696f5d665913bcecf1f2343bfc4b7a9e2b81815117e4d151ad319643306f0e5",
+      "match": true
+    },
+    "phase25e_pre_outcome_freeze": {
+      "frozen_sha256": "f89b5a4954791f3eb5422ef0336077a983571571dabfc6b29921bad5afd9da95",
+      "sha256": "f89b5a4954791f3eb5422ef0336077a983571571dabfc6b29921bad5afd9da95",
+      "match": true
+    },
+    "phase25e_policy_evaluation_summary": {
+      "frozen_sha256": "5fa6e8e9648104704c59f08fee14b4e1bd6cd7a5cdfd0dcb2ded5027f34489db",
+      "sha256": "5fa6e8e9648104704c59f08fee14b4e1bd6cd7a5cdfd0dcb2ded5027f34489db",
+      "match": true
+    },
+    "phase25e_adjudication": {
+      "frozen_sha256": "c4a0ce17d8bd769c0bd2588bfcfb5b587ef20622e308b777b5757f8fa6f04a7c",
+      "sha256": "c4a0ce17d8bd769c0bd2588bfcfb5b587ef20622e308b777b5757f8fa6f04a7c",
+      "match": true
+    },
+    "phase25e_scope_lock_audit": {
+      "frozen_sha256": "d9765effa238327767d50c71ae518cb261016529e008c6eae9b5d63bc61c36fd",
+      "sha256": "d9765effa238327767d50c71ae518cb261016529e008c6eae9b5d63bc61c36fd",
+      "match": true
+    },
+    "phase25e_test_lock_audit": {
+      "frozen_sha256": "dd1cc32158fd8638ba07dae728e4438a0e86f76ff0b039d15fe567d1076989ea",
+      "sha256": "dd1cc32158fd8638ba07dae728e4438a0e86f76ff0b039d15fe567d1076989ea",
+      "match": true
+    },
+    "phase25e_table_integrity_audit": {
+      "frozen_sha256": "074b56e1dde79aa76d28449258ed27e29fbc05b8acf7aee33a0b8262ff88886a",
+      "sha256": "074b56e1dde79aa76d28449258ed27e29fbc05b8acf7aee33a0b8262ff88886a",
+      "match": true
+    },
+    "phase25e_join_integrity_audit": {
+      "frozen_sha256": "58716fb2084d265c44dbe8e6416c4a3c747be87bfc98b4b03f782b3fe71dba70",
+      "sha256": "58716fb2084d265c44dbe8e6416c4a3c747be87bfc98b4b03f782b3fe71dba70",
+      "match": true
+    },
+    "phase25e_metric_recomputation_audit": {
+      "frozen_sha256": "aefffa80489e3b491525b1ad5d7c0ad0740b1ced793a8c91ba1711108921e16f",
+      "sha256": "aefffa80489e3b491525b1ad5d7c0ad0740b1ced793a8c91ba1711108921e16f",
+      "match": true
+    },
+    "phase25e_c7_c8_binding_audit": {
+      "frozen_sha256": "efd673a061dd15634faa101f80af029ba2e3f3dca0d94d6d04ffa7946fd9bde1",
+      "sha256": "efd673a061dd15634faa101f80af029ba2e3f3dca0d94d6d04ffa7946fd9bde1",
+      "match": true
+    },
+    "phase25e_cost_binding_audit": {
+      "frozen_sha256": "c79e8f74cefeea36cdc9310da60468bd5f3c74cf936d1a409c9bd1c0645946cc",
+      "sha256": "c79e8f74cefeea36cdc9310da60468bd5f3c74cf936d1a409c9bd1c0645946cc",
+      "match": true
+    },
+    "phase25e_notebook_binding_audit": {
+      "frozen_sha256": "d0403c2077247406ded5ac059e9a5c7592202a0c0c2248d22d63cced13867da9",
+      "sha256": "d0403c2077247406ded5ac059e9a5c7592202a0c0c2248d22d63cced13867da9",
+      "match": true
+    },
+    "phase25e_criteria_adjudication_audit": {
+      "frozen_sha256": "491451929d3eae2a210deaaabb51f744a683fba6bd354e9788908359dd088abe",
+      "sha256": "491451929d3eae2a210deaaabb51f744a683fba6bd354e9788908359dd088abe",
+      "match": true
+    },
+    "phase25e_phase25f_handoff_schema": {
+      "frozen_sha256": "406ae9d72d102e542f67b04f6681175f0312bb56e3ee738e55e7fe3b2b234008",
+      "sha256": "406ae9d72d102e542f67b04f6681175f0312bb56e3ee738e55e7fe3b2b234008",
+      "match": true
+    },
+    "phase25e_policy_eval_notebook_determinism": {
+      "frozen_sha256": "d4d55b46926e681a65ad8a285e76af032144dca5ef056933b2654aa0c69ca25c",
+      "sha256": "d4d55b46926e681a65ad8a285e76af032144dca5ef056933b2654aa0c69ca25c",
+      "match": true
+    },
+    "phase25e_status_sync": {
+      "frozen_sha256": "2d1a4e1dfc73886b7cd4295c58f745d56302443f2c309f6bc8a9401dfa597c9d",
+      "sha256": "2d1a4e1dfc73886b7cd4295c58f745d56302443f2c309f6bc8a9401dfa597c9d",
+      "match": true
+    }
+  },
+  "membership_bindings": [
+    {
+      "policy_id": "C3_budget0.00",
+      "path": "reports/tables/phase25e_policy_memberships_v1_0/C3_budget0.00.csv",
+      "expected_sha256": "a43a44f661123e73d17e731d8a23fb0d3c7383e2382b814ee6b85a00b6e3bb80",
+      "sha256": "a43a44f661123e73d17e731d8a23fb0d3c7383e2382b814ee6b85a00b6e3bb80",
+      "match": true
+    },
+    {
+      "policy_id": "C3_budget0.10",
+      "path": "reports/tables/phase25e_policy_memberships_v1_0/C3_budget0.10.csv",
+      "expected_sha256": "02a67dbca49924fd79acfbefa66cde84d3223ef8a5465317c2e1a24376eacdab",
+      "sha256": "02a67dbca49924fd79acfbefa66cde84d3223ef8a5465317c2e1a24376eacdab",
+      "match": true
+    },
+    {
+      "policy_id": "C3_budget0.25",
+      "path": "reports/tables/phase25e_policy_memberships_v1_0/C3_budget0.25.csv",
+      "expected_sha256": "30bf2a34e6f6bb1420590adea89f76cd33ba5de456dcaeae391038cb2a9e0ba0",
+      "sha256": "30bf2a34e6f6bb1420590adea89f76cd33ba5de456dcaeae391038cb2a9e0ba0",
+      "match": true
+    },
+    {
+      "policy_id": "C3_budget0.50",
+      "path": "reports/tables/phase25e_policy_memberships_v1_0/C3_budget0.50.csv",
+      "expected_sha256": "a66928cf5304eb49691368dc5ef97e9a604177bebe5d20bb21d3ad36e507ba05",
+      "sha256": "a66928cf5304eb49691368dc5ef97e9a604177bebe5d20bb21d3ad36e507ba05",
+      "match": true
+    },
+    {
+      "policy_id": "C3_budget1.00",
+      "path": "reports/tables/phase25e_policy_memberships_v1_0/C3_budget1.00.csv",
+      "expected_sha256": "660ced1ac55f0c6251e1de57cc5cf9813ec1c5a4b10e4fa81179ca512762a858",
+      "sha256": "660ced1ac55f0c6251e1de57cc5cf9813ec1c5a4b10e4fa81179ca512762a858",
+      "match": true
+    },
+    {
+      "policy_id": "C4_budget0.00",
+      "path": "reports/tables/phase25e_policy_memberships_v1_0/C4_budget0.00.csv",
+      "expected_sha256": "caa7f78369f0d5be531902ea65d9a25d680d36b7204934d8ba3a8edc67ccb8dc",
+      "sha256": "caa7f78369f0d5be531902ea65d9a25d680d36b7204934d8ba3a8edc67ccb8dc",
+      "match": true
+    },
+    {
+      "policy_id": "C4_budget0.10",
+      "path": "reports/tables/phase25e_policy_memberships_v1_0/C4_budget0.10.csv",
+      "expected_sha256": "32689f3f9bb198417fb632f7e29f907c0376df09682b9386c04f15116eacb393",
+      "sha256": "32689f3f9bb198417fb632f7e29f907c0376df09682b9386c04f15116eacb393",
+      "match": true
+    },
+    {
+      "policy_id": "C4_budget0.25",
+      "path": "reports/tables/phase25e_policy_memberships_v1_0/C4_budget0.25.csv",
+      "expected_sha256": "0e6f030fe56fdfc01e4b9db40f2f837a8dbe5c22ebbfee12e11855abcd8a3a03",
+      "sha256": "0e6f030fe56fdfc01e4b9db40f2f837a8dbe5c22ebbfee12e11855abcd8a3a03",
+      "match": true
+    },
+    {
+      "policy_id": "C4_budget0.50",
+      "path": "reports/tables/phase25e_policy_memberships_v1_0/C4_budget0.50.csv",
+      "expected_sha256": "de240228b9829e4f098fd1f32b9efc5f32ea32c2cd5732acbddbc14211e9c5a6",
+      "sha256": "de240228b9829e4f098fd1f32b9efc5f32ea32c2cd5732acbddbc14211e9c5a6",
+      "match": true
+    },
+    {
+      "policy_id": "C4_budget1.00",
+      "path": "reports/tables/phase25e_policy_memberships_v1_0/C4_budget1.00.csv",
+      "expected_sha256": "c8190b436e7d5099eb2928b3c14dc147b0568ea2a8b0f2a27c2de6cf1efd6ddb",
+      "sha256": "c8190b436e7d5099eb2928b3c14dc147b0568ea2a8b0f2a27c2de6cf1efd6ddb",
+      "match": true
+    },
+    {
+      "policy_id": "C5_budget0.00",
+      "path": "reports/tables/phase25e_policy_memberships_v1_0/C5_budget0.00.csv",
+      "expected_sha256": "b3334b02203a7dd6289b3c3444b57ba9ca75afdfa22a7d62867528d182c1508e",
+      "sha256": "b3334b02203a7dd6289b3c3444b57ba9ca75afdfa22a7d62867528d182c1508e",
+      "match": true
+    },
+    {
+      "policy_id": "C5_budget0.10",
+      "path": "reports/tables/phase25e_policy_memberships_v1_0/C5_budget0.10.csv",
+      "expected_sha256": "a8700ac35d373b281ae652e2c3016a785ff6fd6fe3d6b718f8c51a5aa9b5e1c4",
+      "sha256": "a8700ac35d373b281ae652e2c3016a785ff6fd6fe3d6b718f8c51a5aa9b5e1c4",
+      "match": true
+    },
+    {
+      "policy_id": "C5_budget0.25",
+      "path": "reports/tables/phase25e_policy_memberships_v1_0/C5_budget0.25.csv",
+      "expected_sha256": "7e49f69ecf2dca41b03cba02ac73a6ef42e45f29e33230bc3dba7f3d9e1fd6f2",
+      "sha256": "7e49f69ecf2dca41b03cba02ac73a6ef42e45f29e33230bc3dba7f3d9e1fd6f2",
+      "match": true
+    },
+    {
+      "policy_id": "C5_budget0.50",
+      "path": "reports/tables/phase25e_policy_memberships_v1_0/C5_budget0.50.csv",
+      "expected_sha256": "e909d37d7c562e11699465b688cbba62f049de07264ca9006206653d6fafef65",
+      "sha256": "e909d37d7c562e11699465b688cbba62f049de07264ca9006206653d6fafef65",
+      "match": true
+    },
+    {
+      "policy_id": "C5_budget1.00",
+      "path": "reports/tables/phase25e_policy_memberships_v1_0/C5_budget1.00.csv",
+      "expected_sha256": "e47e1cf957fb5f5a7d1097490317c8b1ffbe32b26a59697f8bce72b8c7d851b5",
+      "sha256": "e47e1cf957fb5f5a7d1097490317c8b1ffbe32b26a59697f8bce72b8c7d851b5",
+      "match": true
+    },
+    {
+      "policy_id": "C6_budget0.00",
+      "path": "reports/tables/phase25e_policy_memberships_v1_0/C6_budget0.00.csv",
+      "expected_sha256": "ab39f3ab078453e1f1d9885833dc8790594a5bc238fac37a9674806e998416b9",
+      "sha256": "ab39f3ab078453e1f1d9885833dc8790594a5bc238fac37a9674806e998416b9",
+      "match": true
+    },
+    {
+      "policy_id": "C6_budget0.10",
+      "path": "reports/tables/phase25e_policy_memberships_v1_0/C6_budget0.10.csv",
+      "expected_sha256": "48ef0ad4e0157675e34f6a442870ff7361b2612023ac9e8e54a86e3e67acc1aa",
+      "sha256": "48ef0ad4e0157675e34f6a442870ff7361b2612023ac9e8e54a86e3e67acc1aa",
+      "match": true
+    },
+    {
+      "policy_id": "C6_budget0.25",
+      "path": "reports/tables/phase25e_policy_memberships_v1_0/C6_budget0.25.csv",
+      "expected_sha256": "aa9691448f71f2fdbdb086e4fabed4f73b1411471f72e51e38edf55251c8e3f4",
+      "sha256": "aa9691448f71f2fdbdb086e4fabed4f73b1411471f72e51e38edf55251c8e3f4",
+      "match": true
+    },
+    {
+      "policy_id": "C6_budget0.50",
+      "path": "reports/tables/phase25e_policy_memberships_v1_0/C6_budget0.50.csv",
+      "expected_sha256": "135806e42975f000a581a2d4866a6d592e8a7ad1ce6bad5ae18ef99cea4ca1c9",
+      "sha256": "135806e42975f000a581a2d4866a6d592e8a7ad1ce6bad5ae18ef99cea4ca1c9",
+      "match": true
+    },
+    {
+      "policy_id": "C6_budget1.00",
+      "path": "reports/tables/phase25e_policy_memberships_v1_0/C6_budget1.00.csv",
+      "expected_sha256": "b47295f043843f28f738a4875b3d8e8542560004746340192daca58243c1d8d8",
+      "sha256": "b47295f043843f28f738a4875b3d8e8542560004746340192daca58243c1d8d8",
+      "match": true
+    },
+    {
+      "policy_id": "C7_budget0.00",
+      "path": "reports/tables/phase25e_policy_memberships_v1_0/C7_budget0.00.csv",
+      "expected_sha256": "200d49bfe1ef0cd43330322e9e8244a5684d03bf641c69ccd7719ca3ec758223",
+      "sha256": "200d49bfe1ef0cd43330322e9e8244a5684d03bf641c69ccd7719ca3ec758223",
+      "match": true
+    },
+    {
+      "policy_id": "C7_budget0.10",
+      "path": "reports/tables/phase25e_policy_memberships_v1_0/C7_budget0.10.csv",
+      "expected_sha256": "bac7c5d0dabbf8171f6cf95f351f73c73368064ced52329e0cadd4afffdf6935",
+      "sha256": "bac7c5d0dabbf8171f6cf95f351f73c73368064ced52329e0cadd4afffdf6935",
+      "match": true
+    },
+    {
+      "policy_id": "C7_budget0.25",
+      "path": "reports/tables/phase25e_policy_memberships_v1_0/C7_budget0.25.csv",
+      "expected_sha256": "a3b4b2b365366c9cb2da4b734b51b48095b0d65421b52684fa9d0f5fae93c390",
+      "sha256": "a3b4b2b365366c9cb2da4b734b51b48095b0d65421b52684fa9d0f5fae93c390",
+      "match": true
+    },
+    {
+      "policy_id": "C7_budget0.50",
+      "path": "reports/tables/phase25e_policy_memberships_v1_0/C7_budget0.50.csv",
+      "expected_sha256": "376ee295a70bc81b583a34753a2ca269ca60409d0a75d37d7ba0cec6ba380db6",
+      "sha256": "376ee295a70bc81b583a34753a2ca269ca60409d0a75d37d7ba0cec6ba380db6",
+      "match": true
+    },
+    {
+      "policy_id": "C7_budget1.00",
+      "path": "reports/tables/phase25e_policy_memberships_v1_0/C7_budget1.00.csv",
+      "expected_sha256": "caa3abd47360ed2416e0f19c798f1df4b2851a12e1cc64bf665a24627626b667",
+      "sha256": "caa3abd47360ed2416e0f19c798f1df4b2851a12e1cc64bf665a24627626b667",
+      "match": true
+    },
+    {
+      "policy_id": "C8_lambda0.00_budget0.00",
+      "path": "reports/tables/phase25e_policy_memberships_v1_0/C8_lambda0.00_budget0.00.csv",
+      "expected_sha256": "bc759e6c120234261e4abf310ea86bcc048d8c920569b3d505f6bed2b01bda16",
+      "sha256": "bc759e6c120234261e4abf310ea86bcc048d8c920569b3d505f6bed2b01bda16",
+      "match": true
+    },
+    {
+      "policy_id": "C8_lambda0.00_budget0.10",
+      "path": "reports/tables/phase25e_policy_memberships_v1_0/C8_lambda0.00_budget0.10.csv",
+      "expected_sha256": "4bb1a78f551d3469d77d55d87fe27a6b4d10ae3cb17196e0cceae46f28526d9d",
+      "sha256": "4bb1a78f551d3469d77d55d87fe27a6b4d10ae3cb17196e0cceae46f28526d9d",
+      "match": true
+    },
+    {
+      "policy_id": "C8_lambda0.00_budget0.25",
+      "path": "reports/tables/phase25e_policy_memberships_v1_0/C8_lambda0.00_budget0.25.csv",
+      "expected_sha256": "9adc46163472a7c01f290dc97e4772add0e1180e2a361a263108ff8d6de86d8d",
+      "sha256": "9adc46163472a7c01f290dc97e4772add0e1180e2a361a263108ff8d6de86d8d",
+      "match": true
+    },
+    {
+      "policy_id": "C8_lambda0.00_budget0.50",
+      "path": "reports/tables/phase25e_policy_memberships_v1_0/C8_lambda0.00_budget0.50.csv",
+      "expected_sha256": "dc19041a5711a1c3dbcf3f995946e5289f779ce30931141632b61ea8bb7c934b",
+      "sha256": "dc19041a5711a1c3dbcf3f995946e5289f779ce30931141632b61ea8bb7c934b",
+      "match": true
+    },
+    {
+      "policy_id": "C8_lambda0.00_budget1.00",
+      "path": "reports/tables/phase25e_policy_memberships_v1_0/C8_lambda0.00_budget1.00.csv",
+      "expected_sha256": "dc2bd5e07b62b6c66ad64e5d6687a0b7f3a5f86e2d5c899b841b33198d417716",
+      "sha256": "dc2bd5e07b62b6c66ad64e5d6687a0b7f3a5f86e2d5c899b841b33198d417716",
+      "match": true
+    },
+    {
+      "policy_id": "C8_lambda0.25_budget0.00",
+      "path": "reports/tables/phase25e_policy_memberships_v1_0/C8_lambda0.25_budget0.00.csv",
+      "expected_sha256": "f9896e3dd65e4ff94fd957b096430ef1a99408b09e073329edf4028dce886b57",
+      "sha256": "f9896e3dd65e4ff94fd957b096430ef1a99408b09e073329edf4028dce886b57",
+      "match": true
+    },
+    {
+      "policy_id": "C8_lambda0.25_budget0.10",
+      "path": "reports/tables/phase25e_policy_memberships_v1_0/C8_lambda0.25_budget0.10.csv",
+      "expected_sha256": "9acb3ac301a0082f47b84e5a81dd838bb2a4517dd65cbbf5c1ce89a8a425e568",
+      "sha256": "9acb3ac301a0082f47b84e5a81dd838bb2a4517dd65cbbf5c1ce89a8a425e568",
+      "match": true
+    },
+    {
+      "policy_id": "C8_lambda0.25_budget0.25",
+      "path": "reports/tables/phase25e_policy_memberships_v1_0/C8_lambda0.25_budget0.25.csv",
+      "expected_sha256": "4c411d589866434b824245d3c940bc09873f3cbc096ddc8a44776cd56273393b",
+      "sha256": "4c411d589866434b824245d3c940bc09873f3cbc096ddc8a44776cd56273393b",
+      "match": true
+    },
+    {
+      "policy_id": "C8_lambda0.25_budget0.50",
+      "path": "reports/tables/phase25e_policy_memberships_v1_0/C8_lambda0.25_budget0.50.csv",
+      "expected_sha256": "f01c66beaa14d69451f8ea8a6feced98cccb2a90ab5500d03cd277e859c15164",
+      "sha256": "f01c66beaa14d69451f8ea8a6feced98cccb2a90ab5500d03cd277e859c15164",
+      "match": true
+    },
+    {
+      "policy_id": "C8_lambda0.25_budget1.00",
+      "path": "reports/tables/phase25e_policy_memberships_v1_0/C8_lambda0.25_budget1.00.csv",
+      "expected_sha256": "ac69318d196aafc4ddbfad8718262777ad972a35bc3e6cf2b0c1fc72273d1f47",
+      "sha256": "ac69318d196aafc4ddbfad8718262777ad972a35bc3e6cf2b0c1fc72273d1f47",
+      "match": true
+    },
+    {
+      "policy_id": "C8_lambda0.50_budget0.00",
+      "path": "reports/tables/phase25e_policy_memberships_v1_0/C8_lambda0.50_budget0.00.csv",
+      "expected_sha256": "4a65f619157e689071f611431221c9d9c8b83680b023f8869843dfeaf1ce4f7a",
+      "sha256": "4a65f619157e689071f611431221c9d9c8b83680b023f8869843dfeaf1ce4f7a",
+      "match": true
+    },
+    {
+      "policy_id": "C8_lambda0.50_budget0.10",
+      "path": "reports/tables/phase25e_policy_memberships_v1_0/C8_lambda0.50_budget0.10.csv",
+      "expected_sha256": "73a4baab02833cbca0d2842ae6fb4b350b5406a04b2a9e6a2238ab1b2cfb0509",
+      "sha256": "73a4baab02833cbca0d2842ae6fb4b350b5406a04b2a9e6a2238ab1b2cfb0509",
+      "match": true
+    },
+    {
+      "policy_id": "C8_lambda0.50_budget0.25",
+      "path": "reports/tables/phase25e_policy_memberships_v1_0/C8_lambda0.50_budget0.25.csv",
+      "expected_sha256": "1e5a9ab5a2600c776adfb6f9844c92fe1b6007cb26942f0696ab58e88ba42b12",
+      "sha256": "1e5a9ab5a2600c776adfb6f9844c92fe1b6007cb26942f0696ab58e88ba42b12",
+      "match": true
+    },
+    {
+      "policy_id": "C8_lambda0.50_budget0.50",
+      "path": "reports/tables/phase25e_policy_memberships_v1_0/C8_lambda0.50_budget0.50.csv",
+      "expected_sha256": "364971d3046a952f1465037b2ce5086b2aba0b3dd76a5ade7e87ce9259485d3f",
+      "sha256": "364971d3046a952f1465037b2ce5086b2aba0b3dd76a5ade7e87ce9259485d3f",
+      "match": true
+    },
+    {
+      "policy_id": "C8_lambda0.50_budget1.00",
+      "path": "reports/tables/phase25e_policy_memberships_v1_0/C8_lambda0.50_budget1.00.csv",
+      "expected_sha256": "284d7730f0171b46fe1584684e7271c0c9b3236fea21c574fa2596e61803bf1d",
+      "sha256": "284d7730f0171b46fe1584684e7271c0c9b3236fea21c574fa2596e61803bf1d",
+      "match": true
+    },
+    {
+      "policy_id": "C8_lambda1.00_budget0.00",
+      "path": "reports/tables/phase25e_policy_memberships_v1_0/C8_lambda1.00_budget0.00.csv",
+      "expected_sha256": "b322699f7da2b361596736acc6b193bfc8d4019c9fe5a34b46546d00f03542a1",
+      "sha256": "b322699f7da2b361596736acc6b193bfc8d4019c9fe5a34b46546d00f03542a1",
+      "match": true
+    },
+    {
+      "policy_id": "C8_lambda1.00_budget0.10",
+      "path": "reports/tables/phase25e_policy_memberships_v1_0/C8_lambda1.00_budget0.10.csv",
+      "expected_sha256": "46a9a13dba3ca033f9dd0a65f7a72155175d5e0478294fead842ac7b7623edc3",
+      "sha256": "46a9a13dba3ca033f9dd0a65f7a72155175d5e0478294fead842ac7b7623edc3",
+      "match": true
+    },
+    {
+      "policy_id": "C8_lambda1.00_budget0.25",
+      "path": "reports/tables/phase25e_policy_memberships_v1_0/C8_lambda1.00_budget0.25.csv",
+      "expected_sha256": "4aae0f4185e01711f63f367b2b9a8ab8afa9a33bdb163e5836d88250f1a6aece",
+      "sha256": "4aae0f4185e01711f63f367b2b9a8ab8afa9a33bdb163e5836d88250f1a6aece",
+      "match": true
+    },
+    {
+      "policy_id": "C8_lambda1.00_budget0.50",
+      "path": "reports/tables/phase25e_policy_memberships_v1_0/C8_lambda1.00_budget0.50.csv",
+      "expected_sha256": "655fb4071242e8e2f47b6f5554c2300ad20e153b7760dedb17c58e5b2627d050",
+      "sha256": "655fb4071242e8e2f47b6f5554c2300ad20e153b7760dedb17c58e5b2627d050",
+      "match": true
+    },
+    {
+      "policy_id": "C8_lambda1.00_budget1.00",
+      "path": "reports/tables/phase25e_policy_memberships_v1_0/C8_lambda1.00_budget1.00.csv",
+      "expected_sha256": "270e236929c67e7da1f15eec828c4c7d02193a22114048435c0bda908e07baa8",
+      "sha256": "270e236929c67e7da1f15eec828c4c7d02193a22114048435c0bda908e07baa8",
+      "match": true
+    }
+  ],
+  "locks": {
+    "router_holdout_reads": 0,
+    "VAL808_reads": 0,
+    "TEST_reads": 0,
+    "lambda_selected": false,
+    "phase25f_status": "NOT_STARTED",
+    "phase25g_status": "NOT_STARTED"
+  },
+  "lock_checks": {
+    "router_holdout_reads_zero": true,
+    "VAL808_reads_zero": true,
+    "TEST_reads_zero": true,
+    "lambda_not_selected": true,
+    "phase25f_not_started": true,
+    "phase25g_not_started": true,
+    "test_lock_until_phase39": true
+  },
+  "checks": {
+    "closure_sha_exact": true,
+    "closure_terminal_exact": true,
+    "closure_all_pass": true,
+    "closure_no_recorded_drift": true,
+    "all_closure_audit_shas_match": true,
+    "notebook_shas_exact": true,
+    "cache_shas_exact": true,
+    "all_45_membership_shas_match": true,
+    "ten_figures_present": true,
+    "all_phase25e_tables_bound": true,
+    "locks_zero_and_not_started": true
+  },
+  "read_only_declaration": {
+    "training": false,
+    "new_model_inference": false,
+    "new_bootstrap": false,
+    "membership_regeneration": false,
+    "outcome_recomputation": false,
+    "new_lambda_or_budget_or_threshold": false
+  },
+  "failures": [],
+  "all_pass": true,
+  "blocked_terminal": "PHASE25E_RECONCILIATION_BLOCKED__SCIENTIFIC_ARTIFACT_DRIFT",
+  "router_holdout_reads": 0,
+  "VAL808_reads": 0,
+  "TEST_reads": 0,
+  "phase25f_started": false
+}

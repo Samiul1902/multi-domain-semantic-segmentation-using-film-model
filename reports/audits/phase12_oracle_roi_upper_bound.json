@@ -1,0 +1,165 @@
+{
+  "phase": "12 - KUB Oracle ROI / Zoom Upper-Bound Study",
+  "status": "PASS",
+  "model": "UNet++",
+  "experiment": "phase10_kub_unetpp_seed42_512",
+  "checkpoint": "D:\\Softfors\\jup\\checkpoints\\phase10_kub_unetpp_seed42_512\\best.pt",
+  "checkpoint_sha256": "4bffcf926227fb11029ead6bcd8e7dd8ed246e0f1678e3efb2ce4297439a3f2d",
+  "threshold": 0.5,
+  "population": {
+    "split": "VAL_ONLY",
+    "FOV": "FULL_FIELD",
+    "images": 106,
+    "original_components": 156,
+    "size_counts": {
+      "TINY": 73,
+      "MEDIUM": 36,
+      "SMALL": 29,
+      "LARGE": 18
+    }
+  },
+  "oracle_definition": {
+    "component_wise": true,
+    "margins": [
+      0.1,
+      0.25,
+      0.5
+    ],
+    "primary_margin": 0.25,
+    "crop_input": "original grayscale image",
+    "model_input_shape": [
+      1,
+      1,
+      512,
+      512
+    ],
+    "GT_used_for": [
+      "component localization",
+      "crop coordinates",
+      "evaluation"
+    ],
+    "GT_used_as_model_input": false,
+    "restoration": "bilinear probability restoration; threshold after restoration",
+    "fusion": "pixelwise maximum of restored component probabilities"
+  },
+  "metrics": {
+    "global": {
+      "Method": "Global UNet++",
+      "FULL_FIELD_N": 106,
+      "Macro_Dice": 0.6527764131996552,
+      "Macro_IoU": 0.5377659031590323,
+      "Macro_Precision": 0.7724476308850675,
+      "Macro_Recall": 0.6719901696624615,
+      "Micro_Dice": 0.7359695674634856,
+      "Micro_IoU": 0.5822403864016348,
+      "HD95_Median": 2.871320343559643,
+      "Empty_Prediction_Rate": 0.0660377358490566,
+      "Original_Component_Recall": 0.8397435897435898,
+      "Tiny_Recall": 0.7808219178082192,
+      "Small_Recall": 0.8620689655172413,
+      "Medium_Recall": 0.8888888888888888,
+      "Large_Recall": 0.9444444444444444
+    },
+    "oracle25": {
+      "Method": "Oracle 25%",
+      "FULL_FIELD_N": 106,
+      "Macro_Dice": 0.7757361537396281,
+      "Macro_IoU": 0.6452367104092366,
+      "Macro_Precision": 0.7828282000374235,
+      "Macro_Recall": 0.8330789310112122,
+      "Micro_Dice": 0.7387254111234687,
+      "Micro_IoU": 0.5856975298150432,
+      "HD95_Median": 13.699999999999996,
+      "Empty_Prediction_Rate": 0.0,
+      "Original_Component_Recall": 0.9935897435897436,
+      "Tiny_Recall": 0.9863013698630136,
+      "Small_Recall": 1.0,
+      "Medium_Recall": 1.0,
+      "Large_Recall": 1.0
+    },
+    "paired_delta": {
+      "mean": 0.12295974053997309,
+      "median": 0.0486889990550219,
+      "q1": -0.0386651782346938,
+      "q3": 0.21008550545815732,
+      "improved": 61,
+      "unchanged": 0,
+      "worsened": 45
+    },
+    "tiny": {
+      "global_missed": 16,
+      "recovered": 15,
+      "remain_missed": 1
+    },
+    "magnification": {
+      "median_all": 7.111111111111111,
+      "median_tiny": 10.24,
+      "median_recovered_tiny": 8.677966101694915,
+      "median_unrecovered_tiny": 11.906976744186046
+    }
+  },
+  "source_hashes": {
+    "reports\\tables\\phase10_unetpp_val_per_image.csv": "a811e7977f9fc5e1c28524cd1025660f11eedc1d729d3ca1d165ba550bcac37c",
+    "reports\\tables\\phase10_unetpp_val_per_component.csv": "6c72ec18d6b4e51e23d65564bc041727fa963ca3dcf5a2502e8e437f01ac5a22",
+    "reports\\tables\\kub_val_samples_sized.csv": "84ecd5646751363844ab520d8576424ad13870befd46309951e046c17f80d425",
+    "reports\\tables\\kub_val_components_sized.csv": "79c41af43c6acb24f90055390ae374c505776c34c62d446f3faf0f44caa00efb"
+  },
+  "output_hashes": {
+    "reports\\tables\\phase12_oracle_roi_per_image.csv": "1769633be50003032d84069ef7a89cb11d767a4134bd27d74563c07c2efa0f12",
+    "reports\\tables\\phase12_oracle_roi_per_component.csv": "0cff74dd53330918255150551f4d1861abc5fb4fbd75bb1877f872236e3b70a4",
+    "reports\\tables\\phase12_oracle_roi_summary.csv": "809b2b771109b5eecae6fae4f61b30ba984248659114974a111a7f409b3d9060",
+    "reports\\tables\\phase12_oracle_roi_size_recovery.csv": "c578006c53ecbf7bb5e593b0b6202350a4e9434cc3f22546a1e7ec47ef5572e4",
+    "reports\\tables\\phase12_oracle_roi_multicomponent.csv": "9232ddedc1e22807de26a15144faebd263a276b0736bca047d88a6b7eebbcbd1",
+    "reports\\tables\\phase12_oracle_crop_geometry.csv": "0ceb6bfad764fb024e84b675b8630cdcff59a0de24d92d778f3a263a5f703a4f"
+  },
+  "cache_provenance_sha256": "4fa1366c8b39bb6c8736f5cd7b355aaa963c84c31612d3f80c0f5d241f9f7021",
+  "figure_assets": [
+    "reports\\figures\\phase12_oracle_roi\\phase12_dice_delta_distribution.pdf",
+    "reports\\figures\\phase12_oracle_roi\\phase12_dice_delta_distribution.png",
+    "reports\\figures\\phase12_oracle_roi\\phase12_dice_delta_distribution.svg",
+    "reports\\figures\\phase12_oracle_roi\\phase12_empty_prediction_recovery.pdf",
+    "reports\\figures\\phase12_oracle_roi\\phase12_empty_prediction_recovery.png",
+    "reports\\figures\\phase12_oracle_roi\\phase12_empty_prediction_recovery.svg",
+    "reports\\figures\\phase12_oracle_roi\\phase12_global_vs_oracle_dice.pdf",
+    "reports\\figures\\phase12_oracle_roi\\phase12_global_vs_oracle_dice.png",
+    "reports\\figures\\phase12_oracle_roi\\phase12_global_vs_oracle_dice.svg",
+    "reports\\figures\\phase12_oracle_roi\\phase12_magnification_vs_recovery.pdf",
+    "reports\\figures\\phase12_oracle_roi\\phase12_magnification_vs_recovery.png",
+    "reports\\figures\\phase12_oracle_roi\\phase12_magnification_vs_recovery.svg",
+    "reports\\figures\\phase12_oracle_roi\\phase12_margin_sensitivity.pdf",
+    "reports\\figures\\phase12_oracle_roi\\phase12_margin_sensitivity.png",
+    "reports\\figures\\phase12_oracle_roi\\phase12_margin_sensitivity.svg",
+    "reports\\figures\\phase12_oracle_roi\\phase12_multicomponent_recovery.pdf",
+    "reports\\figures\\phase12_oracle_roi\\phase12_multicomponent_recovery.png",
+    "reports\\figures\\phase12_oracle_roi\\phase12_multicomponent_recovery.svg",
+    "reports\\figures\\phase12_oracle_roi\\phase12_size_recall_global_vs_oracle.pdf",
+    "reports\\figures\\phase12_oracle_roi\\phase12_size_recall_global_vs_oracle.png",
+    "reports\\figures\\phase12_oracle_roi\\phase12_size_recall_global_vs_oracle.svg",
+    "reports\\figures\\phase12_oracle_roi\\phase12_tiny_recovery.pdf",
+    "reports\\figures\\phase12_oracle_roi\\phase12_tiny_recovery.png",
+    "reports\\figures\\phase12_oracle_roi\\phase12_tiny_recovery.svg",
+    "reports\\qualitative\\phase12_oracle_roi\\phase12_global_vs_oracle_panel.pdf",
+    "reports\\qualitative\\phase12_oracle_roi\\phase12_global_vs_oracle_panel.png",
+    "reports\\qualitative\\phase12_oracle_roi\\phase12_global_vs_oracle_panel.svg",
+    "reports\\qualitative\\phase12_oracle_roi\\phase12_oracle_panel_selection.json"
+  ],
+  "notebook": "notebooks\\10_kub_oracle_roi_upper_bound.ipynb",
+  "notebook_sha256": "2b0205bac81fe11ee9d33965e000b461419487aaf8147c1fa95b16ef6f6c0b42",
+  "manifest_version": "phase4_v2",
+  "manifest_hashes": {
+    "all_paired": "66350d465209e4bf0948a16f0da213abb9f8f87c0b222ead7632d2350463f7cc",
+    "train": "d67b549a6cc80b579dfaf4976b9b51630f6d703d8c6bfb33188355cfa6056bc3",
+    "val": "46079b594ed9535c2de953bb976684b8b0bab30c27c6e6e4f2b9f9314b4cc5f4",
+    "test": "9361eba61c91c034a9aa4988a4df229bba591a5cbd553c98689ac7915da29727"
+  },
+  "fp_caveat": "Oracle-constrained FP is artificially advantaged and is not fairly comparable to deployable global inference.",
+  "phase13_gate": "YES",
+  "phase13_evidence": "Meaningful FULL_FIELD Dice and TINY-component recovery demonstrates exploitable localization/resolution headroom; no claim that predicted ROI will reproduce the Oracle gain.",
+  "test_reads": 0,
+  "test_metrics": "NONE",
+  "external": false,
+  "experiment_a_modified": false,
+  "model_training": false,
+  "predicted_roi_implemented": false,
+  "phase_13_executed": false
+}

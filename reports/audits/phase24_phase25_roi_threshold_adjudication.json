@@ -1,0 +1,57 @@
+{
+ "artifact": "phase24_phase25_roi_threshold_adjudication",
+ "phase": "24/25A",
+ "purpose": "resolve the frozen Phase24-v1.1 ROI-threshold conflict by separating two distinct thresholds that carry different semantic roles, and restore the pre-registered ROI proposal threshold as canonical for Phase 25A",
+ "classification": "FROZEN_SPEC_CLARIFICATION__NOT_SCIENCE_CHANGE",
+ "phase24_exact_spec_value": 0.3,
+ "phase24_exact_spec_ref": "reports/audits/phase24_exact_implementation_spec.json",
+ "phase24_exact_spec_field": "roi.predicted_foreground_threshold",
+ "segmentation_output_threshold": 0.5,
+ "segmentation_output_threshold_field": "fusion.segmentation_threshold",
+ "segmentation_output_threshold_source": "INHERITED",
+ "roi_proposal_threshold": 0.3,
+ "phase25a_noncanonical_value": 0.5,
+ "phase25a_noncanonical_run_sha": "7dfcf50540ee531e330c0338ea9326cdb73c24c9f8254b920c022598dd74733f",
+ "resolution": "USE_0P30_FOR_ROI_PROPOSAL\nUSE_0P50_FOR_SEGMENTATION_OUTPUT",
+ "phase24_science_changed": false,
+ "phase24_exact_spec_changed": false,
+ "reason": "Phase24 v1.1 already froze 0.30; this artifact only disambiguates the different semantic roles of 0.30 and 0.50.",
+ "role_definitions": {
+  "roi_proposal_threshold": {
+   "value": 0.3,
+   "role": [
+    "determine predicted foreground for the BARR regional ROI proposal",
+    "determine bbox existence",
+    "determine bbox geometry",
+    "determine ACTION_AVAILABLE vs FORCED_SKIP"
+   ],
+   "decision_rule": "pred = float32(prob) >= 0.30 (lower-inclusive float32)",
+   "applies_to": "predicted_foreground mask used for ROI proposal ONLY",
+   "affects_dice": false,
+   "affects_roi_geometry": true
+  },
+  "segmentation_output_threshold": {
+   "value": 0.5,
+   "role": [
+    "final binary segmentation threshold",
+    "inherited frozen segmentation decision threshold",
+    "Dice/IoU mask threshold where applicable"
+   ],
+   "decision_rule": "pred = float32(prob) >= 0.50 (lower-inclusive float32)",
+   "applies_to": "segmentation output / evaluation masks ONLY",
+   "affects_dice": true,
+   "affects_roi_geometry": false
+  }
+ },
+ "must_never_be_conflated_again": true,
+ "prior_status": "REPORTED_NOT_SILENTLY_REPAIRED",
+ "prior_status_note": "The completed Phase25A run correctly REPORTED the disagreement between the v1.1 exact-spec value (0.30) and the operative instruction value (0.50), but then proceeded to train under 0.50. That violates the Phase25A fail-closed rule 'WHEN THE REPOSITORY-AUTHORITATIVE PHASE24 v1.1 EXACT SPEC DISAGREES, STOP RATHER THAN SILENTLY CHOOSE A DIFFERENT VALUE.' The 0.50 run therefore must not become the canonical Phase25A science.",
+ "fail_closed_rule_restored": true,
+ "pre_registered_before_retraining": true,
+ "threshold_selected_from_observed_performance": false,
+ "router_holdout_outcomes_read": 0,
+ "val_outcome_reads": 0,
+ "test_reads": 0,
+ "generated_utc_note": "generated_utc intentionally omitted so this file is byte-reproducible",
+ "verdict": "PHASE24_PHASE25_ROI_THRESHOLD_ADJUDICATION_FROZEN"
+}

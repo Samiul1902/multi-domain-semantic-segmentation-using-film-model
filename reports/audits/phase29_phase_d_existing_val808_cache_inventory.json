@@ -1,0 +1,107 @@
+{
+ "artifact": "phase29_phase_d_existing_val808_cache_inventory",
+ "phase": 29,
+ "stage": "PHASE_D_EXISTING_VAL808_CACHE_INVENTORY",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_phase29_repro_v1_1",
+ "generated_utc": "2026-10-03T15:25:42+00:00",
+ "scope": "Every existing Phase29 VAL808 cache/artifact on disk",
+ "files": [
+  {
+   "path": "data_cache/phase29_val808_shared_fixed_g_v1_0/val808_global_prob_f16.npy",
+   "role": "shared fixed-G full-canvas global probability (Phase D candidate source)",
+   "shape": [
+    808,
+    512,
+    512
+   ],
+   "dtype": "float16",
+   "producer": "scripts/analysis/phase29_phase_d_cache.py (shared G pass)",
+   "numeric_mode": "FP32 eval, torch.inference_mode(), NO autocast",
+   "val808_images_physically_read": true,
+   "exists": true,
+   "sha256": "f3c90a6fd65169324917671b0ca889aaba1e362ea84b258f738a21054faa304b",
+   "size_bytes": 423624832
+  },
+  {
+   "path": "data_cache/phase29_val808_shared_fixed_g_v1_0/val808_router_deep_features_f32.npy",
+   "role": "Phase25B 192-D deep feature block",
+   "shape": [
+    808,
+    192
+   ],
+   "dtype": "float32",
+   "producer": "scripts/analysis/phase29_phase_d_cache.py",
+   "numeric_mode": "deterministic (no model forward beyond G)",
+   "val808_images_physically_read": true,
+   "exists": true,
+   "sha256": "8f1a1aefa0de32640fcd773c79ae054bebe05132945146885563c40c2f25aa01",
+   "size_bytes": 620672
+  },
+  {
+   "path": "data_cache/phase29_val808_shared_fixed_g_v1_0/val808_router_scalars_f32.npy",
+   "role": "10 GT-free router scalars",
+   "shape": [
+    808,
+    10
+   ],
+   "dtype": "float32",
+   "producer": "scripts/analysis/phase29_phase_d_cache.py",
+   "numeric_mode": "deterministic",
+   "val808_images_physically_read": true,
+   "exists": true,
+   "sha256": "c592de635aab1379249dcdda38b0ec02572c1fae9282e9e29bbed1cbca44ff8c",
+   "size_bytes": 32448
+  },
+  {
+   "path": "data_cache/phase29_val808_shared_fixed_g_v1_0/val808_roi_geometry.json",
+   "role": "ROI-0.30 proposal geometry (regenerable from stored global probability)",
+   "shape": null,
+   "dtype": "json",
+   "producer": "scripts/analysis/phase29_phase_d_cache.py",
+   "numeric_mode": "derived",
+   "val808_images_physically_read": false,
+   "exists": true,
+   "sha256": "dfe48e3827405d7f9cbff7f52573a663c1141ebee8da196b3d239e0ffc63aaf7",
+   "size_bytes": 447030
+  },
+  {
+   "path": "data_cache/phase27_barr_preservation_v1_0/phase27_val808_global_prob_f16.npy",
+   "role": "Phase27 frozen global probability (authoritative reproduction target)",
+   "shape": [
+    808,
+    512,
+    512
+   ],
+   "dtype": "float16",
+   "producer": "Phase27 preservation pass",
+   "numeric_mode": "AMP autocast fp16",
+   "val808_images_physically_read": true,
+   "exists": true,
+   "sha256": "cc6c54af986f56b4aba9265405ffeba4f6cac582eeff00fe6b0894429e7d3f13",
+   "size_bytes": 423624832
+  }
+ ],
+ "divergent_cache_binding": {
+  "ref_path": "data_cache/phase27_barr_preservation_v1_0/phase27_val808_global_prob_f16.npy",
+  "cand_path": "data_cache/phase29_val808_shared_fixed_g_v1_0/val808_global_prob_f16.npy",
+  "max_abs_difference": 0.2001953125,
+  "bitwise_mismatch_count": 82038546,
+  "total_elements": 211812352,
+  "bitwise_mismatch_fraction": 0.3873171003738252,
+  "sample_rows_with_max_abs_gt_1e-3": 807,
+  "of_n_samples": 808,
+  "bit_identical": false,
+  "recomputed_cache_vs_cache_only": true,
+  "val808_images_reread": 0
+ },
+ "recomputation_note": "Divergence recomputed from persisted cache arrays ONLY. No VAL808 image was reopened; no model forward was performed.",
+ "checks": {
+  "all_inventoried_files_hash_bound": true,
+  "shapes_bound": true,
+  "divergent_cache_identified": true,
+  "divergence_recomputed_cache_vs_cache": true,
+  "no_val808_image_reread": true
+ },
+ "all_pass": true
+}

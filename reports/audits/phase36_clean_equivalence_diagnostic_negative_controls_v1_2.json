@@ -1,0 +1,307 @@
+{
+ "artifact_kind": "PHASE36_CLEAN_EQUIVALENCE_DIAGNOSTIC_NEGATIVE_CONTROLS",
+ "revision": "ra_medfilm_barr_phase36_clean_equivalence_diagnostic_v1_2",
+ "source": {
+  "path": "scripts\\analysis\\phase36_clean_equivalence_diagnostic_negative_controls_v1_2.py",
+  "sha256": "3551847a6a8b6d5b8ef5a0cfd0831eb4e0cf59385b146d6eb2af51981297fbbb"
+ },
+ "headline_control": {
+  "statement": "direct invocation with PHASE36_CLEAN_EQ_DIAGNOSTIC_EXECUTE=1 but WITHOUT the diagnostic-native v1.2 launch-authority token fails CLOSED; and PRESENCE of the foreign PHASE36_V1_14_LAUNCH_AUTHORITY token also fails CLOSED without consuming the attempt",
+  "exit_code_expected_no_launch_authority": 5,
+  "exit_code_expected_foreign_token_present": 8,
+  "control_names": [
+   "HEADLINE_launcher_foreign_gate_refuses",
+   "HEADLINE_launcher_refuses_with_foreign_token",
+   "HEADLINE_launcher_terminal_foreign_fail_closed",
+   "HEADLINE_no_marker_after_launcher_foreign_refusal",
+   "HEADLINE_diagnostic_refuses_with_foreign_token",
+   "HEADLINE_no_marker_after_diagnostic_foreign_refusal"
+  ]
+ },
+ "d50_mutation_sensitive_controls": [
+  "REQ1_no_forbidden_gate_call_diag",
+  "REQ1_no_forbidden_gate_call_launch",
+  "REQ2_diag_no_foreign_token_write",
+  "REQ2_launch_no_foreign_token_write",
+  "REQ2_mutant_foreign_token_write_detected",
+  "REQ3_gate_ok_when_absent",
+  "REQ3_gate_refuses_when_present",
+  "REQ4_exact_authority_match",
+  "REQ4_set_equal_deps",
+  "REQ4_set_equal_ckpts",
+  "REQ5_dep_removal_detected",
+  "REQ6_ckpt_removal_detected",
+  "REQ7_dep_sha_mutation_detected",
+  "REQ8_ckpt_sha_mutation_detected",
+  "REQ9_launcher_sha_key_detected",
+  "REQ10_source_mutation_detected",
+  "REQ10a_source_map_tamper_detected_via_exact_match",
+  "REQ11_v1_1_binding_ok_on_real_tree",
+  "REQ11_v1_1_failure_mutation_detected",
+  "REQ11_prior_failure_mutation_detected",
+  "REQ12_no_execute_gate_rc3",
+  "REQ12_no_launch_authority_rc5",
+  "REQ12_no_marker_after_refusals",
+  "REQ13_result_write_guarded",
+  "REQ14_full_eq_written"
+ ],
+ "n_checks": 45,
+ "n_pass": 45,
+ "all_pass": true,
+ "results": [
+  {
+   "name": "HEADLINE_launcher_foreign_gate_refuses",
+   "ok": true,
+   "detail": {
+    "foreign_token_present": true
+   }
+  },
+  {
+   "name": "HEADLINE_launcher_refuses_with_foreign_token",
+   "ok": true,
+   "detail": {
+    "rc": 2
+   }
+  },
+  {
+   "name": "HEADLINE_launcher_terminal_foreign_fail_closed",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "name": "HEADLINE_no_marker_after_launcher_foreign_refusal",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "name": "HEADLINE_diagnostic_refuses_with_foreign_token",
+   "ok": true,
+   "detail": {
+    "rc": 8
+   }
+  },
+  {
+   "name": "HEADLINE_no_marker_after_diagnostic_foreign_refusal",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "name": "REQ1_no_forbidden_gate_call_diag",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "name": "REQ1_no_forbidden_gate_call_launch",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "name": "REQ2_diag_no_foreign_token_write",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "name": "REQ2_launch_no_foreign_token_write",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "name": "REQ2_mutant_foreign_token_write_detected",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "name": "REQ3_gate_ok_when_absent",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "name": "REQ3_gate_refuses_when_present",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "name": "REQ4_real_tree_ok",
+   "ok": true,
+   "detail": {
+    "reason": null
+   }
+  },
+  {
+   "name": "REQ4_exact_authority_match",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "name": "REQ4_set_equal_deps",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "name": "REQ4_set_equal_ckpts",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "name": "REQ4_sha_equal_deps",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "name": "REQ4_sha_equal_ckpts",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "name": "REQ5_dep_removal_detected",
+   "ok": true,
+   "detail": {
+    "reason": "SOURCE_MANIFEST_TRANSITIVE_AUTHORITY_MISMATCH"
+   }
+  },
+  {
+   "name": "REQ6_ckpt_removal_detected",
+   "ok": true,
+   "detail": {
+    "reason": "SOURCE_MANIFEST_TRANSITIVE_AUTHORITY_MISMATCH"
+   }
+  },
+  {
+   "name": "REQ7_dep_sha_mutation_detected",
+   "ok": true,
+   "detail": {
+    "reason": "SOURCE_MANIFEST_TRANSITIVE_AUTHORITY_MISMATCH"
+   }
+  },
+  {
+   "name": "REQ8_ckpt_sha_mutation_detected",
+   "ok": true,
+   "detail": {
+    "reason": "SOURCE_MANIFEST_TRANSITIVE_AUTHORITY_MISMATCH"
+   }
+  },
+  {
+   "name": "REQ9_launcher_sha_key_detected",
+   "ok": true,
+   "detail": {
+    "launcher_sha256_absent": false
+   }
+  },
+  {
+   "name": "REQ10_source_mutation_detected",
+   "ok": true,
+   "detail": {
+    "reason": "FROZEN_V1_14_SOURCE_SHA_MISMATCH"
+   }
+  },
+  {
+   "name": "REQ10a_source_map_tamper_detected_via_exact_match",
+   "ok": true,
+   "detail": {
+    "reason": "SOURCE_MANIFEST_TRANSITIVE_AUTHORITY_MISMATCH",
+    "exact_match": false
+   }
+  },
+  {
+   "name": "REQ11_v1_1_binding_ok_on_real_tree",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "name": "REQ11_v1_1_failure_mutation_detected",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "name": "REQ11_prior_failure_mutation_detected",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "name": "REQ12_no_execute_gate_rc3",
+   "ok": true,
+   "detail": {
+    "rc": 3
+   }
+  },
+  {
+   "name": "REQ12_no_launch_authority_rc5",
+   "ok": true,
+   "detail": {
+    "rc": 5
+   }
+  },
+  {
+   "name": "REQ12_no_marker_after_refusals",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "name": "REQ13_result_write_guarded",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "name": "REQ14_full_eq_written",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "name": "REQ15_no_reach::run_image_perturbations",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "name": "REQ15_no_reach::run_proposal_perturbations",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "name": "REQ15_no_reach::run_science",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "name": "REQ15_no_reach::run_smoke",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "name": "REQ16_preserved::phase36_clean_equivalence_diagnostic_v1_0.py",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "name": "REQ16_preserved::launch_phase36_clean_equivalence_diagnostic_v1_0.py",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "name": "REQ16_preserved::phase36_clean_equivalence_diagnostic_v1_1.py",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "name": "REQ16_preserved::launch_phase36_clean_equivalence_diagnostic_v1_1.py",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "name": "REQ16_preserved::phase36_clean_equivalence_diagnostic_start_v1_1.json",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "name": "REQ16_preserved::phase36_clean_equivalence_diagnostic_failure_v1_1.json",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "name": "REQ16_preserved::phase36_clean_equivalence_diagnostic_v1_1_post_run_evidence.json",
+   "ok": true,
+   "detail": null
+  }
+ ],
+ "scientific_output": false,
+ "generated_utc": "2026-10-07T04:03:48Z"
+}

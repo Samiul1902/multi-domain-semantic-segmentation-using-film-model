@@ -1,0 +1,44 @@
+{
+ "artifact": "phase25g_holdout_conditional_spec_note",
+ "phase": "25G",
+ "classification": "PHASE25G_PRE_EXECUTION_INTEGRATED_EVALUATION_SPECIFICATION_AUDIT",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_integrated_evaluation_v1_0",
+ "governance_only": true,
+ "no_execution": true,
+ "stage": "CONDITIONAL_HOLDOUT_SPEC",
+ "status": "NOT_FROZEN__OWNERSHIP_UNRESOLVED",
+ "ownership_classification": "ONE_SHOT_HOLDOUT_PHASE_OWNERSHIP_NOT_EXPLICIT",
+ "resolved_to_phase25g": false,
+ "holdout_execution_contract_created": false,
+ "reason": "§24 authorises phase25g_holdout_execution_contract.json ONLY if ownership resolves to Phase25G. It does not, so the one-shot contract is not frozen and no holdout content is opened.",
+ "conditional_contract_spec_not_activated": {
+  "end_to_end_order_per_holdout_sample": [
+   "1. run frozen Phase21 GlobalMedFiLM once",
+   "2. produce p_global + required frozen feature taps",
+   "3. compute Phase25B router features using frozen v1.2 rules",
+   "4. apply Phase25D FINAL benefit router",
+   "5. apply frozen Phase25E DEV-calibrated policy threshold",
+   "6. if SKIP: final A7 = global, final A8 = global; do not run refiner; do not run S_omega",
+   "7. if EXECUTE: run frozen Phase25A FINAL regional refiner",
+   "8. construct candidate fused output",
+   "9. A7: final = candidate",
+   "10. compute frozen Phase25F 20-D post-safety feature vector",
+   "11. apply Phase25F FINAL S_omega",
+   "12. A8: if p_accept >= 0.50: final = candidate else final = global",
+   "13. only after predictions are frozen: open GT masks for evaluation"
+  ],
+  "forbidden": [
+   "holdout threshold fitting",
+   "holdout top-K recalibration",
+   "holdout normalization fitting",
+   "holdout lambda selection",
+   "holdout budget selection"
+  ],
+  "membership_rule": "membership MUST use frozen DEV-calibrated thresholds; do NOT force exact 10/25/50% top-K on holdout; report both nominal DEV-calibration budget and realized holdout activation fraction; verify C8 membership equivalence across lambda after lambda-shifted DEV thresholds",
+  "statistics": "group-aware paired bootstrap frozen BEFORE opening outcomes; holdout is ONE-SHOT; after the first authorized outcome evaluation holdout_state = OPENED_ONCE_FROZEN; no second policy search; record exact first-open timestamp and every holdout artifact written"
+ },
+ "holdout_opened": false,
+ "holdout_outcome_reads": 0,
+ "all_pass": true
+}

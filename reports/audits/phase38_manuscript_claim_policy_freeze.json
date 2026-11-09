@@ -1,0 +1,136 @@
+{
+  "classification": "PHASE38_MANUSCRIPT_CLAIM_POLICY_FREEZE",
+  "generated_utc": "2026-10-11T06:30:00Z",
+  "phase": 38,
+  "consumes": "reports/audits/phase37_claim_evidence_matrix.json",
+  "claim_policy": [
+    {
+      "claim_family": "A",
+      "pre_test_wording": "preserved / non-inferior (development + one-shot holdout)",
+      "allowed_phase39_update": "may add TEST confirmation of preservation/non-inferiority",
+      "disallowed_wording": "improved / superior / enhanced / outperforms",
+      "test_confirmation_required": true,
+      "main_text_location": "main_text",
+      "abstract_use": "allowed",
+      "required_limitation": "Phase30 one-shot holdout retains protocol-deviation qualifier; TEST is a separate population."
+    },
+    {
+      "claim_family": "B",
+      "pre_test_wording": "router/post-safety contribute; F1 refiner did not improve (negative)",
+      "allowed_phase39_update": "may add TEST-based module contribution evidence",
+      "disallowed_wording": "optimal / best / SOTA",
+      "test_confirmation_required": false,
+      "main_text_location": "main_text",
+      "abstract_use": "limited",
+      "required_limitation": "ablation on ROUTER_DEVELOPMENT only."
+    },
+    {
+      "claim_family": "C",
+      "pre_test_wording": "reproduced across three seeds (descriptive)",
+      "allowed_phase39_update": "TEST reproducibility of the frozen system",
+      "disallowed_wording": "statistically confirmed",
+      "test_confirmation_required": false,
+      "main_text_location": "main_text",
+      "abstract_use": "allowed",
+      "required_limitation": "NO_NUMERIC_REPRODUCIBILITY_PASS_FAIL_GATE."
+    },
+    {
+      "claim_family": "D",
+      "pre_test_wording": "one-shot non-inferiority with disclosed deviation",
+      "allowed_phase39_update": "TEST is a SEPARATE one-shot; never rewrites Phase30 history",
+      "disallowed_wording": "confirmatory / no protocol deviations",
+      "test_confirmation_required": true,
+      "main_text_location": "main_text",
+      "abstract_use": "with qualifier",
+      "required_limitation": "ONE_SHOT_ROUTER_HOLDOUT_RESULT_WITH_DISCLOSED_POST_FIRST_OPEN_SCIENTIFIC_SOURCE_FREEZE_DEVIATION"
+    },
+    {
+      "claim_family": "E",
+      "pre_test_wording": "no new confirmatory significance procedure eligible",
+      "allowed_phase39_update": "descriptive CIs only",
+      "disallowed_wording": "any confirmatory significance / p-value claim",
+      "test_confirmation_required": false,
+      "main_text_location": "supplement",
+      "abstract_use": "not allowed",
+      "required_limitation": "NO_NEW_CONFIRMATORY_SIGNIFICANCE_PROCEDURE_IS_ELIGIBLE."
+    },
+    {
+      "claim_family": "F",
+      "pre_test_wording": "no eligible external cohort; external validation not performed",
+      "allowed_phase39_update": "none under prior authority",
+      "disallowed_wording": "generalizes to external domains",
+      "test_confirmation_required": false,
+      "main_text_location": "limitation",
+      "abstract_use": "not allowed",
+      "required_limitation": "NO_PROSPECTIVE_CLEAN_EXTERNAL_COHORT_ELIGIBLE."
+    },
+    {
+      "claim_family": "G",
+      "pre_test_wording": "descriptive failure characterization",
+      "allowed_phase39_update": "TEST failure prevalence (descriptive)",
+      "disallowed_wording": "rare / negligible / clinically safe",
+      "test_confirmation_required": false,
+      "main_text_location": "limitation",
+      "abstract_use": "not allowed",
+      "required_limitation": "ONE_SHOT_ROUTER_HOLDOUT_RESULT_WITH_DISCLOSED_POST_FIRST_OPEN_SCIENTIFIC_SOURCE_FREEZE_DEVIATION qualifier preserved for holdout-derived failure evidence."
+    },
+    {
+      "claim_family": "H",
+      "pre_test_wording": "hardware-specific descriptive efficiency",
+      "allowed_phase39_update": "TEST-conditional compute reporting",
+      "disallowed_wording": "end-to-end / real-time / mobile / energy / hardware-independent",
+      "test_confirmation_required": false,
+      "main_text_location": "main_text",
+      "abstract_use": "limited",
+      "required_limitation": "WEIGHTED_HARDWARE_SPECIFIC_RUNTIME_ESTIMATE; NOT end-to-end pipeline latency."
+    },
+    {
+      "claim_family": "I",
+      "pre_test_wording": "descriptive model-mechanism evidence",
+      "allowed_phase39_update": "TEST-conditional mechanism description",
+      "disallowed_wording": "causes / proves / explains why",
+      "test_confirmation_required": false,
+      "main_text_location": "supplement",
+      "abstract_use": "not allowed",
+      "required_limitation": "DESCRIPTIVE_MODEL_MECHANISM_EVIDENCE; no causal claims."
+    },
+    {
+      "claim_family": "J",
+      "pre_test_wording": "development-set synthetic image-perturbation robustness",
+      "allowed_phase39_update": "TEST image robustness (synthetic)",
+      "disallowed_wording": "real-world acquisition shift / clinically robust",
+      "test_confirmation_required": false,
+      "main_text_location": "main_text",
+      "abstract_use": "limited",
+      "required_limitation": "DEVELOPMENT_SET_SYNTHETIC_PERTURBATION_ROBUSTNESS_EVIDENCE."
+    },
+    {
+      "claim_family": "K",
+      "pre_test_wording": "development-set synthetic proposal-perturbation robustness",
+      "allowed_phase39_update": "TEST proposal robustness (synthetic)",
+      "disallowed_wording": "proposal-algorithm variation / proposal-independent",
+      "test_confirmation_required": false,
+      "main_text_location": "main_text",
+      "abstract_use": "limited",
+      "required_limitation": "DEVELOPMENT_SET_SYNTHETIC_PERTURBATION_ROBUSTNESS_EVIDENCE."
+    },
+    {
+      "claim_family": "L",
+      "pre_test_wording": "KUB subgroups reporting-only observations",
+      "allowed_phase39_update": "TEST KUB reporting-only subgroup reporting (if authorized)",
+      "disallowed_wording": "any use as class/task_id/model_input/routing/conditioning",
+      "test_confirmation_required": false,
+      "main_text_location": "supplement_reporting_only",
+      "abstract_use": "not allowed",
+      "required_limitation": "KUB subgroups REPORTING-ONLY metadata."
+    }
+  ],
+  "no_post_test_invention_of": [
+    "new_claims",
+    "new_subgroups",
+    "new_endpoints",
+    "new_comparators",
+    "best_case_result_framing"
+  ],
+  "no_outcome_dependent_claim_strength_rewriting": true
+}

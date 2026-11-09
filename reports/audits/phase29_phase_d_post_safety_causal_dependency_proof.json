@@ -1,0 +1,175 @@
+{
+ "artifact": "phase29_phase_d_post_safety_causal_dependency_proof",
+ "phase": 29,
+ "stage": "PHASE_D_POST_SAFETY_CAUSAL_DEPENDENCY_PROOF",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_phase29_repro_v1_1",
+ "generated_utc": "2026-10-03T15:25:42+00:00",
+ "classification": "POST_REFINEMENT_SAFETY_SELECTOR_CAUSAL_PROOF",
+ "canonical_high_level_order": [
+  "G executes exactly once over the (shared) population",
+  "construct pre-refinement B_phi features (202-D: 192 deep + 10 GT-free scalars)",
+  "run B_phi over the normalised pre-refinement feature matrix",
+  "apply the fixed pre-execution router threshold (EXECUTE iff utility >= tau)",
+  "SKIP branch: final = p_global; R_psi NOT run; S_omega NOT run",
+  "EXECUTE branch: construct ROI -> run R_psi -> construct regional-fused candidate -> construct candidate-dependent 20-D S_omega vector -> run S_omega -> ACCEPT or FALLBACK",
+  "threshold final probability at 0.50"
+ ],
+ "formal_execution_relations": {
+  "R_psi_exec": "router_execute",
+  "R_psi_exec_expression": "R_psi_exec = router_execute  (NOT router_execute AND safety_accept)",
+  "S_omega_exec": "R_psi_exec",
+  "S_omega_exec_expression": "S_omega_exec = R_psi_exec"
+ },
+ "numeric_feature_dependency": {
+  "input_dimension": 20,
+  "numeric_dim": 16,
+  "onehot_dim": 4,
+  "numeric_features_sourced_from_refined_candidate": 9,
+  "numeric_features_source_P_g": 7,
+  "dependency_established": true,
+  "authority": "reports/audits/phase25f_feature_equation_contract_v1_0.json"
+ },
+ "four_state_freeze": {
+  "STATE_A_FORCED_SKIP": {
+   "condition": "forced skip (no action available / utility below frozen threshold)",
+   "rpsi_executed": false,
+   "rpsi_execution_flag": 0,
+   "roi_constructed": false,
+   "candidate_constructed": false,
+   "somega_executed": false,
+   "somega_execution_flag": 0,
+   "final_source": "GLOBAL",
+   "final": "p_global",
+   "incurs_refiner_compute": false
+  },
+  "STATE_B_SKIP_GLOBAL": {
+   "condition": "router SKIP (utility < frozen pre-execution threshold)",
+   "rpsi_executed": false,
+   "rpsi_execution_flag": 0,
+   "roi_constructed": false,
+   "candidate_constructed": false,
+   "somega_executed": false,
+   "somega_execution_flag": 0,
+   "final_source": "GLOBAL",
+   "final": "p_global",
+   "incurs_refiner_compute": false
+  },
+  "STATE_C_EXECUTE_THEN_ACCEPT": {
+   "condition": "router EXECUTE and S_omega ACCEPT (p_accept >= 0.50)",
+   "router_selected": true,
+   "rpsi_executed": true,
+   "rpsi_execution_flag": 1,
+   "roi_constructed": true,
+   "candidate_constructed": true,
+   "somega_executed": true,
+   "somega_execution_flag": 1,
+   "final_source": "REFINED",
+   "final": "candidate",
+   "incurs_refiner_compute": true
+  },
+  "STATE_D_EXECUTE_THEN_REJECT": {
+   "condition": "router EXECUTE and S_omega REJECT (p_accept < 0.50)",
+   "router_selected": true,
+   "rpsi_executed": true,
+   "rpsi_execution_flag": 1,
+   "roi_constructed": true,
+   "candidate_constructed": true,
+   "somega_executed": true,
+   "somega_execution_flag": 1,
+   "final_source": "GLOBAL",
+   "final": "p_global",
+   "incurs_refiner_compute": true,
+   "critical_note": "STATE D STILL PAYS THE R_PSI COMPUTE. A rejected refinement does not refund the refiner forward."
+  }
+ },
+ "role_artifact_binding": {
+  "reports/audits/phase26_inference_state_machine_v1_1.json": {
+   "exists": true,
+   "sha256": "bd9fcd9aaa90d7b42715371bd6746ffda9b49b22e5c62f47e2227d43f0476045",
+   "all_pass": true,
+   "artifact": "phase26_inference_state_machine_v1_1"
+  },
+  "reports/audits/phase26_inference_state_machine_v1_2.json": {
+   "exists": true,
+   "sha256": "2dd1ae946286464cfe369fda594dfe898d77d944f8aa0c97b1385d6d6f967413",
+   "all_pass": true,
+   "artifact": "phase26_inference_state_machine_v1_2"
+  },
+  "reports/audits/phase25f_role_and_novelty_boundary.json": {
+   "exists": true,
+   "sha256": "04760fcc6d994677383a5bbd1922d6e0976c7566d6aac7740745dad6c70a4b19",
+   "all_pass": true,
+   "artifact": null
+  },
+  "reports/audits/phase25f_state_machine_contract_v1_0.json": {
+   "exists": true,
+   "sha256": "a2f807e63160cfffd42edb5db6660ffbc236335b98c6102e43823bf50b5dc409",
+   "all_pass": true,
+   "artifact": "phase25f_state_machine_contract_v1_0"
+  },
+  "reports/audits/phase25f_feature_equation_contract_v1_0.json": {
+   "exists": true,
+   "sha256": "a8ac5c04d5d4f91d6bf16a89115846b30c4399705f1380b95757cc0bb1e4271e",
+   "all_pass": true,
+   "artifact": "phase25f_feature_equation_contract_v1_0"
+  }
+ },
+ "runtime_corroboration": {
+  "per_seed": {
+   "seed42": {
+    "n_selected": 279,
+    "n_refiner_forwards": 279,
+    "n_somega_forwards": 279,
+    "n_accepted": 268,
+    "n_rejected": 11,
+    "refiner_forward_equals_selected": true,
+    "refiner_forward_equals_accepted": false,
+    "somega_forward_equals_selected": true,
+    "src": "reports/audits/phase29_seed42_val808_inference.json",
+    "src_sha256": "45a78be09fef36b9c9b42abbbb519a4f980b0c8f3438bf010c1cd72c8c64340d"
+   },
+   "seed123": {
+    "n_selected": 256,
+    "n_refiner_forwards": 256,
+    "n_somega_forwards": 256,
+    "n_accepted": 231,
+    "n_rejected": 25,
+    "refiner_forward_equals_selected": true,
+    "refiner_forward_equals_accepted": false,
+    "somega_forward_equals_selected": true,
+    "src": "reports/audits/phase29_seed123_val808_inference.json",
+    "src_sha256": "77889bb3648f84721a76197f8259ae66eec1d72a086711769cd0104496787241"
+   },
+   "seed3407": {
+    "n_selected": 262,
+    "n_refiner_forwards": 262,
+    "n_somega_forwards": 262,
+    "n_accepted": 256,
+    "n_rejected": 6,
+    "refiner_forward_equals_selected": true,
+    "refiner_forward_equals_accepted": false,
+    "somega_forward_equals_selected": true,
+    "src": "reports/audits/phase29_seed3407_val808_inference.json",
+    "src_sha256": "d7f683481ef36e10f6ad4c9d009969d81864c25dc84176c38318d898ede88451"
+   }
+  },
+  "skips_have_no_safety_score": true,
+  "every_selected_row_has_safety_decision": true,
+  "note": "decisions.csv: SKIP rows carry an EMPTY safety_score; every SELECTED row (ACCEPT and REJECT alike) carries a non-empty safety_score. This is direct physical evidence that S_omega ran only AFTER R_psi, on every routed sample."
+ },
+ "checks": {
+  "G_once": true,
+  "B_phi_pre_refinement": true,
+  "router_before_refiner": true,
+  "refiner_before_safety": true,
+  "safety_after_candidate": true,
+  "S_omega_input_requires_candidate": true,
+  "four_states_frozen": true,
+  "STATE_D_incurs_refiner_compute": true,
+  "safety_before_candidate_impossible": true,
+  "R_psi_exec_condition_is_router_execute": true,
+  "S_omega_exec_condition_is_router_execute_after_Rpsi": true
+ },
+ "all_pass": true
+}

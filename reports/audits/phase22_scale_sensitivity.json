@@ -1,0 +1,116 @@
+{
+  "artifact": "phase22_scale_sensitivity",
+  "phase": 22,
+  "protocol_id": "phase22_diagnostic_protocol_v1",
+  "sizes_probed": [
+    256,
+    512,
+    768,
+    1024
+  ],
+  "canonical_reference_size": 512,
+  "canonical_reference_source": "persisted Phase-21 canonical VAL predictions (NPZ)",
+  "comparison_space": "NATIVE_IMAGE",
+  "why_native_space": "the persisted canonical maps are square 512x512 with centred padding; comparing a 256/768/1024 map to them without returning to native space would conflate the padding region with real image content",
+  "inference_only": true,
+  "training_jobs_started": 0,
+  "threshold": 0.5,
+  "no_tta": true,
+  "no_threshold_tuning": true,
+  "no_morphology": true,
+  "checkpoint": {
+    "experiment_id": "phase21_global_medfilm_fourdomain_seed42_clean_v3",
+    "architecture_id": "global_medfilm_shared_residual_unet_film5_no_se_no_deep_supervision_v1",
+    "checkpoint_path": "checkpoints/phase21_global_medfilm_fourdomain_seed42_clean_v3/best.pt",
+    "checkpoint_sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+    "checkpoint_epoch": 66,
+    "param_count": 3523001,
+    "phase21_freeze_sha256": "aad7baab700710dcf51f0b549b52ddd340bd06d1ec50c39a86f48b00745e98af",
+    "training_performed_in_phase22": false
+  },
+  "fidelity": {
+    "verdict": "PHASE22_SCALE_PROBE_FIDELITY_PASS",
+    "gate_A_pipeline_fidelity_pixels": 2884,
+    "gate_A_samples_with_disagreement": 553,
+    "gate_B_max_abs_probability_difference_square": 0.009233653545379639,
+    "gate_C_pixels_vs_stored_pred": 2680,
+    "artifact": "reports/audits/phase22_scale_probe_fidelity.json"
+  },
+  "decision_rule": {
+    "rule": "pred = (float32(prob) >= 0.5)",
+    "applied_identically_to": "canonical reference maps and every probe size",
+    "float16_tie_audit": "exactly-0.5 pixels in the persisted maps are MIXED (2284 foreground / 1078 background), so the stored uint8 pred is NOT a function of the stored float16 prob; see phase22_threshold_rule_audit.json"
+  },
+  "summary": [
+    {
+      "probe_size": 256,
+      "is_canonical_reference": false,
+      "n": 808,
+      "macro_domain_dice_native": 0.6884987673610603,
+      "macro_domain_dice_delta_vs_512": -0.13823991783628448,
+      "delta_ci_low": -0.1552532908820662,
+      "delta_ci_high": -0.12217223483435337,
+      "delta_p_value": 0.0,
+      "delta_separable_from_512": true,
+      "dice_ISIC": 0.8078811283950837,
+      "dice_BUSI": 0.6532656862185053,
+      "dice_KVASIR": 0.720407962892929,
+      "dice_KUB": 0.5724402919377233
+    },
+    {
+      "probe_size": 512,
+      "is_canonical_reference": true,
+      "n": 808,
+      "macro_domain_dice_native": 0.8353433576469,
+      "macro_domain_dice_delta_vs_512": 0.0,
+      "delta_ci_low": 0.0,
+      "delta_ci_high": 0.0,
+      "delta_p_value": 1.0,
+      "delta_separable_from_512": false,
+      "dice_ISIC": 0.8971816155115423,
+      "dice_BUSI": 0.8591869183150126,
+      "dice_KVASIR": 0.820323317947201,
+      "dice_KUB": 0.7646815788138442
+    },
+    {
+      "probe_size": 768,
+      "is_canonical_reference": false,
+      "n": 808,
+      "macro_domain_dice_native": 0.776819081711754,
+      "macro_domain_dice_delta_vs_512": -0.03688789010381927,
+      "delta_ci_low": -0.04463243450248566,
+      "delta_ci_high": -0.02915998185469751,
+      "delta_p_value": 0.0,
+      "delta_separable_from_512": true,
+      "dice_ISIC": 0.8822940042571304,
+      "dice_BUSI": 0.7428757914325047,
+      "dice_KVASIR": 0.747312234832715,
+      "dice_KUB": 0.7347942963246656
+    },
+    {
+      "probe_size": 1024,
+      "is_canonical_reference": false,
+      "n": 808,
+      "macro_domain_dice_native": 0.6825608407149975,
+      "macro_domain_dice_delta_vs_512": -0.10041294963314609,
+      "delta_ci_low": -0.11064502494972948,
+      "delta_ci_high": -0.09044540222448447,
+      "delta_p_value": 0.0,
+      "delta_separable_from_512": true,
+      "dice_ISIC": 0.8599241696175102,
+      "dice_BUSI": 0.5482153911313868,
+      "dice_KVASIR": 0.6550323352218201,
+      "dice_KUB": 0.6670714668892732
+    }
+  ],
+  "per_image_table": "reports/tables/phase22_scale_sensitivity_per_image.csv",
+  "by_domain_table": "reports/tables/phase22_scale_sensitivity_by_domain.csv",
+  "interpretation_guard": "Scale probes quantify sensitivity to input resolution for a model trained at 512. They do NOT establish an optimal resolution and are NOT a resolution search.",
+  "elapsed_seconds": 736.6,
+  "test_reads": {
+    "test_image_reads": 0,
+    "test_mask_reads": 0,
+    "test_inference": 0,
+    "test_visualization": 0
+  }
+}

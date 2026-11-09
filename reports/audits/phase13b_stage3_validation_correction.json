@@ -1,0 +1,58 @@
+{
+    "status": "PASS",
+    "phase": "13B Stage-3 Validation / Checkpoint-Selection Correction",
+    "provisional_run": {
+        "experiment_id": "phase13b_kub_localizer_r512_s3_seed42",
+        "epoch_reached": 19,
+        "checkpoint": "checkpoints/phase13b_kub_localizer_r512_s3_seed42/best.pt",
+        "preserved": true,
+        "valid_for_resume": false,
+        "valid_for_final_selection": false
+    },
+    "grid_audit": {
+        "erroneous_grid_found": false,
+        "source_of_error": null,
+        "correct_phase13b_grid_count": 20,
+        "corrected": true
+    },
+    "loss_audit": {
+        "exact_implemented_formula": "0.75 * Focal + 0.25 * SoftDice",
+        "focal_gamma": 2,
+        "focal_alpha": 0.25,
+        "extra_balancing_introduced": false,
+        "protocol_compliant": true
+    },
+    "validation": {
+        "val_population": "106 KUB FULL_FIELD VAL images",
+        "inference_passes_per_epoch": 1,
+        "proposal_configs": 20,
+        "gt_used_during_proposal_generation": false
+    },
+    "checkpoint_selection": {
+        "primary": "VAL Tiny recall90",
+        "tie_1": "VAL overall component recall90",
+        "tie_2": "lower VAL localization loss",
+        "implemented_correctly": true
+    },
+    "early_stopping": {
+        "metric": "Checkpoint Selection Objective",
+        "protocol_compliant": true
+    },
+    "restart_required": {
+        "required": true,
+        "reason": "Previous provisional run used unapproved loss normalization and checkpoint selection metrics. Stage-3 correction requires clean replacement from epoch 0.",
+        "recommended_replacement_experiment_id": "phase13b_kub_localizer_r512_s3_seed42_v2"
+    },
+    "tests_and_static_analysis": {
+        "pytest": "pass",
+        "compileall": "pass"
+    },
+    "governance": {
+        "test_reads": 0,
+        "test_metrics": "NONE",
+        "external_data_accessed": false,
+        "experiment_a_modified": false,
+        "phase_14_executed": false
+    }
+}
+

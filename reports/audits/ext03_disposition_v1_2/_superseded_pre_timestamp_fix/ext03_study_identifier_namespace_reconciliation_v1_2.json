@@ -1,0 +1,152 @@
+{
+  "artifact": "ext03_study_identifier_namespace_reconciliation",
+  "version": "1.2",
+  "classification": "EXT03_STUDY_IDENTIFIER_NAMESPACE_RECONCILIATION",
+  "generated_local": "2026-10-26T22:27:11+06:00",
+  "mode": "READ_ONLY",
+  "frozen_artifacts_modified": false,
+  "study_reserved": false,
+  "study_started": false,
+  "authorization_granted": false,
+  "companion_markdown": {
+    "path": "reports/audits/ext03_disposition_v1_2/ext03_study_identifier_namespace_reconciliation_v1_2.md",
+    "sha256": "2234166554ba22478e945f2214d65d8a1738eac46ee155dfe903aff495238a6b",
+    "bytes": 7350
+  },
+  "collision": {
+    "colliding_identifier": "EXT-04",
+    "offending_usage": "prospective protocol-faithful baseline study (Option B)",
+    "offending_artifacts": [
+      "reports/audits/ext03_disposition_v1_1/ext03_supervisor_decision_memorandum_v1_1.md",
+      "reports/audits/ext03_disposition_v1_1/ext03_supervisor_decision_memorandum_v1_1.json"
+    ],
+    "scope": "CONFINED_TO_V1_1_MEMORANDUM"
+  },
+  "frozen_EXT04_meaning": {
+    "authority_registry": "reports/planning/advanced_study_registry.json",
+    "revision_id": "RA_MEDFILM_BARR_EXT02_1A_ADVANCED_STUDY_PROGRAM_V1_0",
+    "n_studies": 32,
+    "all_status": "NOT_STARTED",
+    "authority_doc": "docs/ADVANCED_STUDY_REGISTRY.md",
+    "assigned_studies": [
+      {
+        "id": "AS-01",
+        "tier": "TIER 1",
+        "name": "Four-Domain Dataset Progression",
+        "class": "PROGRESSION"
+      },
+      {
+        "id": "AS-02",
+        "tier": "TIER 2",
+        "name": "Fixed-N Domain-Diversity Progression",
+        "class": "PROGRESSION"
+      },
+      {
+        "id": "AS-03",
+        "tier": "TIER 1",
+        "name": "Training Data-Volume / Learning-Curve Study",
+        "class": "SCALING"
+      },
+      {
+        "id": "AS-04",
+        "tier": "TIER 1",
+        "name": "Single-Domain vs Shared Multi-Domain",
+        "class": "PROGRESSION"
+      },
+      {
+        "id": "AS-05",
+        "tier": "TIER 1",
+        "name": "Negative Transfer / Domain Retention",
+        "class": "PROGRESSION_CONSEQUENCE"
+      },
+      {
+        "id": "AS-07",
+        "tier": "TIER 3",
+        "name": "Domain-Order Sensitivity",
+        "class": "PROGRESSION_ORDERING",
+        "optional": true
+      }
+    ],
+    "semantic_identity": "PROGRESSION_SCALING_AND_TRANSFER_STUDIES",
+    "roadmap_line": "EXT-03: AS-08, AS-27 (baseline reproducibility) / EXT-04: AS-01, AS-02, AS-03, AS-04, AS-05, AS-07 (optional)"
+  },
+  "why_it_matters": [
+    "ROADMAP_INTEGRITY: a reader tracing EXT-03 -> EXT-04 -> EXT-05 finds a progression slot occupied by a benchmark study",
+    "AUTHORIZATION_LAUNDERING: a new study inherits credibility from an already-frozen identifier",
+    "PREREGISTRATION_SEMANTICS: AS-01..05 and AS-07 are preregistered; reusing their container blurs preregistered vs post-hoc",
+    "PROVENANCE: a future audit asking 'what was EXT-04?' would find two incompatible answers in one repository"
+  ],
+  "recommendation": {
+    "identifier": "EXT-03B",
+    "status": "PROVISIONAL__SUBJECT_TO_SUPERVISOR_AUTHORIZATION",
+    "rationale": [
+      "Correct parent: the study repairs AS-08, an EXT-03 assignment",
+      "Established convention: the programme already uses sub-letters (EXT-05B, EXT-05C, EXT-09B)",
+      "Consumes no roadmap slot: EXT-04..EXT-11 remain untouched and in frozen order",
+      "Self-documenting: reads as the second study in the EXT-03 baseline family",
+      "Reversible: a provisional label can be ratified or replaced without touching a frozen artifact"
+    ],
+    "does_not_reserve_identifier": true,
+    "does_not_register_study": true,
+    "does_not_authorize_execution": true
+  },
+  "alternatives": [
+    {
+      "candidate": "EXT-03B",
+      "verdict": "RECOMMENDED",
+      "reason": "correct parent; matches sub-letter convention; no slot consumed"
+    },
+    {
+      "candidate": "EXT-03R",
+      "verdict": "VIABLE_FALLBACK",
+      "reason": "explicit repair semantics but breaks the letter-sequence convention"
+    },
+    {
+      "candidate": "EXT-04B",
+      "verdict": "REJECTED",
+      "reason": "anchors to the wrong parent; still implies a non-existent EXT-04 relationship"
+    },
+    {
+      "candidate": "EXT-12",
+      "verdict": "REJECTED",
+      "reason": "appends after EXT-11 (manuscript V2, terminal slot); implies an unreached stage"
+    },
+    {
+      "candidate": "EXT-04 baseline sub-study",
+      "verdict": "REJECTED",
+      "reason": "a sub-label still occupies the EXT-04 namespace and still misleads"
+    }
+  ],
+  "option_C_naming": {
+    "is_an_EXT_study": false,
+    "recommended_container": "phase28_one_factor_control_contract.json",
+    "recommended_container_class": "13-arm one-factor ablation family",
+    "recommended_identifier": null,
+    "fallback_if_supervisor_requires_EXT_label": "EXT-03C",
+    "forbidden": [
+      "EXT-04",
+      "any number >= EXT-04"
+    ],
+    "rationale": "Giving a Phase-21 one-factor ablation an EXT programme number would repeat the exact class of error this document corrects."
+  },
+  "correction_mechanism": {
+    "superseded": [
+      "the string 'EXT-04' wherever it names the prospective protocol-faithful baseline study in the v1.1 memorandum"
+    ],
+    "retained": [
+      "every other statement in that memorandum, including the A/B/C analysis, the Option C recommendation, and the explicit non-authorisation"
+    ],
+    "not_superseded": [
+      "the frozen EXT-04 progression/scaling study set, which remains NOT_STARTED"
+    ],
+    "bytes_modified": 0,
+    "files_deleted": 0,
+    "files_moved": 0,
+    "files_overwritten": 0
+  },
+  "uncertainty_labels": [
+    "ASSERTS_LABEL_COLLISION_ONLY__NOT_THAT_ANY_STUDY_WAS_REGISTERED_OR_STARTED",
+    "RECOMMENDATION_IS_A_NAMING_PROPOSAL__CONFERS_NO_SCIENTIFIC_AUTHORITY",
+    "NO_ROADMAP_OR_REGISTRY_ARTIFACT_WAS_MODIFIED"
+  ]
+}

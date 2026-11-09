@@ -1,0 +1,36 @@
+﻿{
+  "status": "PASS",
+  "implementation": {
+    "regional_dataset": "src/data/regional_dataset.py",
+    "regional_evaluator": "src/inference/regional_evaluator.py",
+    "tests": "tests/test_phase14_part1.py",
+    "preflight": "scripts/phase14_preflight.py",
+    "notebook": "notebooks/13_phase14_regional_refiner_diagnostic.ipynb"
+  },
+  "dataset_composition": {
+    "total_examples": 5028,
+    "base_positives": 1162,
+    "perturbed_positives": 2324,
+    "background_negatives": 1542
+  },
+  "cuda_preflight": {
+    "pytorch_version": "2.6.0+cu124",
+    "cuda_available": true,
+    "gpu_name": "NVIDIA GeForce RTX 3060 Ti",
+    "batch_8_amp_pass": true,
+    "peak_vram_mb": 765.49
+  },
+  "unit_tests": {
+    "passed": 7,
+    "failed": 0,
+    "skipped": 0
+  },
+  "part1b_fixes": {
+    "original_notebook_pytest_failure": "Acknowledged. Initial run of pytest in the notebook failed due to missing PYTHONPATH and used global python.",
+    "wrong_notebook_kernel": "Acknowledged. Original notebook used global python environment lacking project context.",
+    "cpu_only_pytorch": "Acknowledged. Original notebook output showed PyTorch 2.10.0+cpu instead of project PyTorch 2.6.0+cu124.",
+    "synthetic_mini_pipeline": "Acknowledged. Original pipeline used np.ones arrays instead of full model forward with frozen Stage-4D checkpoints.",
+    "subsequent_repairs": "Created a dedicated jup-venv kernel, used sys.executable for all tests, ran real Oracle and Predicted mini-pipelines using frozen checkpoints.",
+    "final_clean_validation": "Notebook regenerated with correct project environment, tests passed cleanly, and real proposal pipeline executed successfully."
+  }
+}

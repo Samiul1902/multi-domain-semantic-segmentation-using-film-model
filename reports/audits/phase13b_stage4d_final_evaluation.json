@@ -1,0 +1,97 @@
+{
+  "experiment_id": "phase13b_kub_localizer_r512_h128_sigmaeq075_centernetfocal_seed42_v1",
+  "phase": "13B",
+  "stage": "Stage-4D-R2",
+  "best_epoch": 73,
+  "total_epochs": 88,
+  "checkpoint_sha256": "ece906df6c73f2e93c3f873661490bf3cb1a6b82be2d2d93b58c25bc967cbace",
+  "latest_sha256": "a1461df2e8d6784984337c79b87c65833c39fed16382579088d97d7c60ba78f4",
+  "selected_configuration": {
+    "threshold": 0.1,
+    "margin": 0.2,
+    "top_k": 5,
+    "nms_iou": 0.3
+  },
+  "gate_evaluation": {
+    "all_passed": true,
+    "status": "FINAL_LOCALIZER_REDESIGN_PROMISING",
+    "tiny_recall90": 0.726027397260274,
+    "tiny_numerator": 53,
+    "tiny_denominator": 73,
+    "overall_recall90": 0.6410256410256411,
+    "overall_numerator": 100,
+    "overall_denominator": 156,
+    "hard_tiny_recovered90": 7,
+    "global_empty_images_covered90": 3,
+    "mean_roi_area_fraction": 0.005898906179948982,
+    "median_roi_area_fraction": 0.00393046701726229,
+    "p90_roi_area_fraction": 0.010288478710033275,
+    "p95_roi_area_fraction": 0.012781756657618663,
+    "max_roi_area_fraction": 0.0785058292341821,
+    "mean_proposals_per_image": 4.660377358490566,
+    "zero_proposal_images": 0,
+    "mean_max_heatmap_prob": 0.13878703567216982,
+    "median_max_heatmap_prob": 0.1387939453125
+  },
+  "size_summary": [
+    {
+      "Size": "TINY",
+      "GT": 73,
+      "covered90": 53,
+      "missed": 20,
+      "recall90": 0.726027397260274,
+      "covered50": 56,
+      "recall50": 0.7671232876712328,
+      "any_overlap_recall": 0.7808219178082192,
+      "mean_coverage": 0.7611717452442406
+    },
+    {
+      "Size": "SMALL",
+      "GT": 29,
+      "covered90": 21,
+      "missed": 8,
+      "recall90": 0.7241379310344828,
+      "covered50": 26,
+      "recall50": 0.896551724137931,
+      "any_overlap_recall": 1.0,
+      "mean_coverage": 0.885880031871019
+    },
+    {
+      "Size": "MEDIUM",
+      "GT": 36,
+      "covered90": 19,
+      "missed": 17,
+      "recall90": 0.5277777777777778,
+      "covered50": 26,
+      "recall50": 0.7222222222222222,
+      "any_overlap_recall": 0.9166666666666666,
+      "mean_coverage": 0.7573388790341097
+    },
+    {
+      "Size": "LARGE",
+      "GT": 18,
+      "covered90": 7,
+      "missed": 11,
+      "recall90": 0.3888888888888889,
+      "covered50": 15,
+      "recall50": 0.8333333333333334,
+      "any_overlap_recall": 0.8888888888888888,
+      "mean_coverage": 0.7498327055061513
+    },
+    {
+      "Size": "ALL",
+      "GT": 156,
+      "covered90": 100,
+      "missed": 56,
+      "recall90": 0.6410256410256411,
+      "covered50": 123,
+      "recall50": 0.7884615384615384,
+      "any_overlap_recall": 0.8653846153846154,
+      "mean_coverage": 0.7821618376373576
+    }
+  ],
+  "runtime": {
+    "mean_epoch_seconds": 279.0486615625002,
+    "total_training_seconds": 24556.282217500015
+  }
+}

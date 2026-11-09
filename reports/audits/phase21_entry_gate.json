@@ -1,0 +1,140 @@
+{
+  "artifact": "phase21_entry_gate",
+  "phase": 21,
+  "verdict": "PHASE21_ENTRY_GATE_PASS",
+  "training_may_start": true,
+  "fail_closed": true,
+  "checks": {
+    "phase19_complete": {
+      "passed": true,
+      "detail": {
+        "phase_id": "19",
+        "status": "COMPLETE"
+      }
+    },
+    "phase20a_complete": {
+      "passed": true,
+      "detail": {
+        "phase_id": "20",
+        "status": "COMPLETE"
+      }
+    },
+    "phase20b_complete": {
+      "passed": true,
+      "detail": {
+        "phase_id": "20B",
+        "status": "COMPLETE"
+      }
+    },
+    "five_model_scientific_freeze_exists": {
+      "passed": true,
+      "detail": {
+        "path": "reports/audits/phase20_five_model_baseline_benchmark_freeze.json",
+        "terminal_state": "PHASE20_FIVE_MODEL_BASELINE_BENCHMARK_COMPLETE__PHASE21_ELIGIBLE_NOT_STARTED"
+      }
+    },
+    "protocol_sha_matches_frozen_phase20": {
+      "passed": true,
+      "detail": {
+        "repo_protocol_sha256": "b74f1f9f429adbce374f0306180943b9f373f872e1e69e115b7d17e81414283c",
+        "freeze_protocol_sha256": "b74f1f9f429adbce374f0306180943b9f373f872e1e69e115b7d17e81414283c"
+      }
+    },
+    "train_population_5832": {
+      "passed": true,
+      "detail": {
+        "rows": 5832
+      }
+    },
+    "val_population_808": {
+      "passed": true,
+      "detail": {
+        "rows": 808
+      }
+    },
+    "test_remains_locked": {
+      "passed": true,
+      "detail": {
+        "manifest_version": "phase4_v2",
+        "test_sample_count": 1683,
+        "full_test_sha256": "9361eba61c91c034a9aa4988a4df229bba591a5cbd553c98689ac7915da29727",
+        "freeze_timestamp": "2026-09-13T17:52:32.196141",
+        "protocol_statement": "The test set is frozen and must not be used for hyperparameter tuning, model selection, threshold tuning, architecture selection, loss selection, checkpoint selection, or other development decisions.",
+        "external_locking": "External datasets remain development-locked."
+      }
+    },
+    "test_reads_zero": {
+      "passed": true,
+      "detail": {
+        "test_image_reads": 0,
+        "test_mask_reads": 0,
+        "test_inference": 0,
+        "test_visualization": 0
+      }
+    },
+    "four_task_ids_frozen": {
+      "passed": true,
+      "detail": {
+        "manifest_mapping": {
+          "KUB": 3,
+          "KVASIR": 2,
+          "ISIC": 0,
+          "BUSI": 1
+        },
+        "expected": {
+          "ISIC": 0,
+          "BUSI": 1,
+          "KVASIR": 2,
+          "KUB": 3
+        }
+      }
+    },
+    "phase20b_canonical_notebook_exists": {
+      "passed": true,
+      "detail": {
+        "path": "notebooks/phasewise/phase_20b_five_model_baselines/phase20b_five_model_conventional_baselines.ipynb"
+      }
+    },
+    "phase20b_reviewer_package_audit_pass": {
+      "passed": true,
+      "detail": {
+        "coverage": 1.0,
+        "all_visualized": true,
+        "zero_tracebacks": true,
+        "deterministic_3_builds": true
+      }
+    },
+    "no_unresolved_leakage_blocker": {
+      "passed": true,
+      "detail": {
+        "phase19": "REMEDIATED",
+        "phase20_duplicate": "PHASE20_DUPLICATE_AUDIT_PASS__NO_TRAIN_VAL_LEAKAGE",
+        "phase05_promotion": "PASS"
+      }
+    },
+    "phase21_previously_not_started": {
+      "passed": true,
+      "detail": {
+        "map_status": "ELIGIBLE_NOT_STARTED",
+        "experiment_dir_exists": false,
+        "checkpoint_dir_exists": false
+      }
+    },
+    "supervisor_authorization_present": {
+      "passed": true,
+      "detail": "Explicit Phase-21 AUTHORIZATION in the supervisor instruction for this task"
+    }
+  },
+  "n_checks": 15,
+  "n_passed": 15,
+  "protocol_sha256": "b74f1f9f429adbce374f0306180943b9f373f872e1e69e115b7d17e81414283c",
+  "manifest_version": "phase4_v3",
+  "train_population": 5832,
+  "val_population": 808,
+  "task_ids": {
+    "ISIC": 0,
+    "BUSI": 1,
+    "KVASIR": 2,
+    "KUB": 3
+  }
+}

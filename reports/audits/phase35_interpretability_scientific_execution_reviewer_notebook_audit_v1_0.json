@@ -1,0 +1,89 @@
+{
+ "artifact": "phase35_interpretability_scientific_execution_reviewer_notebook_audit_v1_0",
+ "section": "§X",
+ "phase": 35,
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase35_interpretability_v1_0",
+ "notebook_path": "notebooks/phasewise/phase_35_interpretability/phase35_interpretability_scientific_execution_v1_0_review.ipynb",
+ "notebook_sha256": "eea2e19d13a963ef2d4aac34bf2cd7e41c67dc81b4b724dbade093226bb71fe0",
+ "classification": "READ_ONLY_REVIEWER_NOTEBOOK_AUDIT",
+ "checks": [
+  {
+   "id": "01",
+   "desc": "reviewer notebook exists",
+   "pass": true,
+   "detail": "notebooks/phasewise/phase_35_interpretability/phase35_interpretability_scientific_execution_v1_0_review.ipynb"
+  },
+  {
+   "id": "02",
+   "desc": "notebook contains code and markdown cells",
+   "pass": true,
+   "detail": "code=11 md=12"
+  },
+  {
+   "id": "03",
+   "desc": "every code cell executed (execution_count populated)",
+   "pass": true,
+   "detail": "11/11"
+  },
+  {
+   "id": "04",
+   "desc": "zero cell errors",
+   "pass": true,
+   "detail": "errors=0"
+  },
+  {
+   "id": "05",
+   "desc": "import surface limited to hashlib/json/pathlib",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "06",
+   "desc": "no model construction / checkpoint load / forward / autograd CALL in CODE cells",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "07",
+   "desc": "no Grad-CAM / router attribution / training in CODE cells",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "08",
+   "desc": "no protected-data access in CODE cells",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "09",
+   "desc": "notebook reads only the six v1.0 scientific/governance artifacts",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "10",
+   "desc": "notebook states the descriptive claim boundary",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "11",
+   "desc": "notebook is classified READ_ONLY",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "12",
+   "desc": "notebook kernel metadata is jup-venv",
+   "pass": true,
+   "detail": ""
+  }
+ ],
+ "total_checks": 12,
+ "passed": 12,
+ "failed": 0,
+ "generated_utc": "2026-10-05T14:13:12Z",
+ "all_pass": true
+}

@@ -1,0 +1,239 @@
+{
+ "artifact": "phase36_robustness_static_preflight_v1_0",
+ "section": "§R",
+ "phase": 36,
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase36_robustness_v1_0",
+ "preflight_class": "STATIC_NO_EXECUTION",
+ "no_execution": true,
+ "torch_imported": false,
+ "source_hashes": {
+  "common": "6ab108fe1aee7e89c66cdf90e0ce6f339dd203c0f40e61c805e3fff2713b527d",
+  "execution": "9032ae17ce17c2dddb0a2280520d10f4ff5cf673c526ef14cae5a34d84a7fc02",
+  "preflight": "d7c65971428baa5879b7afa43a459e881d2d3f7821e0e08a650def132324995e",
+  "unit": "ef2197cbe2c879cef545bf73e5fbae2c8905ec78efd3d53df407449105e2e412"
+ },
+ "checks": [
+  {
+   "id": "01",
+   "desc": "Phase35 canonical closure hashes exact (3/3)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "02",
+   "desc": "Phase35 == COMPLETE_CANONICAL",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "03",
+   "desc": "Phase36 == ELIGIBLE_NOT_STARTED at entry",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "04",
+   "desc": "TEST == LOCKED_UNTIL_PHASE39 at entry",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "05",
+   "desc": "Phase36 not previously started (no prior execution/smoke artifacts)",
+   "pass": true,
+   "detail": "prior=[]"
+  },
+  {
+   "id": "06",
+   "desc": "TEST and ROUTER_HOLDOUT in MUST_NOT_READ; zero declared rows",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "07",
+   "desc": "execution source performs no training / no optimizer step",
+   "pass": true,
+   "detail": "found=[]"
+  },
+  {
+   "id": "08",
+   "desc": "all four components have frozen source+checkpoint hashes",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "09",
+   "desc": "all four component checkpoints present and hash-match",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "10",
+   "desc": "A8/C9 policy bound, budget 0.25, no retraining/threshold change",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "11",
+   "desc": "canonical thresholds unchanged (0.50 seg / 0.30 roi)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "12",
+   "desc": "image perturbation registry exact (13 conditions)",
+   "pass": true,
+   "detail": "got=['CLEAN', 'BRIGHTNESS_NEG', 'BRIGHTNESS_POS', 'CONTRAST_LOW', 'CONTRAST_HIGH', 'GAMMA_LOW', 'GAMMA_HIGH', 'GAUSSIAN_NOISE_LOW', 'GAUSSIAN_NOISE_HIGH', 'GAUSSIAN_BLUR_LOW', 'GAUSSIAN_BLUR_HIGH', 'RESOLUTION_075', 'RESOLUTION_050']"
+  },
+  {
+   "id": "13",
+   "desc": "image registry unique & no chaining",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "14",
+   "desc": "no jpeg/color-space/rotation/crop/random augmentation/adversarial",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "15",
+   "desc": "proposal perturbation registry exact (7 conditions)",
+   "pass": true,
+   "detail": "got=['PROPOSAL_CLEAN', 'SHIFT_LEFT_10', 'SHIFT_RIGHT_10', 'SHIFT_UP_10', 'SHIFT_DOWN_10', 'SCALE_085', 'SCALE_115']"
+  },
+  {
+   "id": "16",
+   "desc": "empty proposal handled as NOT_APPLICABLE_EMPTY_PROPOSAL; no outcome replacement",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "17",
+   "desc": "metric contract exact (paired_delta_Dice primary; Dice bound)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "18",
+   "desc": "IoU and HD95 bound before execution",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "19",
+   "desc": "Dice impl + empty-mask policy bound with exact hashes",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "20",
+   "desc": "noise seeds exactly {42,123,3407}",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "21",
+   "desc": "noise seed derivation rule exact",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "22",
+   "desc": "no best-seed selection; per-seed then arithmetic mean",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "23",
+   "desc": "no outcome-selected perturbation (frozen before execution)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "24",
+   "desc": "claim boundary exact (evidence class + NOT list)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "25",
+   "desc": "science gate fail-closed unless PHASE36_EXECUTE == '1'",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "26",
+   "desc": "smoke gate separate (PHASE36_SMOKE_EXECUTE)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "271_0",
+   "desc": "phase36_robustness_common_v1_0.py: no import-time torch / model execution",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "271_0",
+   "desc": "phase36_robustness_execution_v1_0.py: no import-time torch / model execution",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "271_0",
+   "desc": "phase36_robustness_preflight_v1_0.py: no import-time torch / model execution",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "31",
+   "desc": "KUB subgroup metadata is REPORTING_ONLY (never classes/task ids)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "32",
+   "desc": "population VAL808 only; 808 rows; four domains; 0 holdout/test",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "33",
+   "desc": "VAL manifest authority hash exact",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "34",
+   "desc": "clean reference authority present and hash-exact",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "35",
+   "desc": "figure contract R1-R5 frozen",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "36",
+   "desc": "table contract frozen (9 tables incl. KUB conditional)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "37",
+   "desc": "frozen state machine exact",
+   "pass": true,
+   "detail": ""
+  }
+ ],
+ "total_checks": 36,
+ "passed": 36,
+ "failed": 0,
+ "all_pass": true,
+ "generated_utc": "2026-10-05T14:41:25Z"
+}

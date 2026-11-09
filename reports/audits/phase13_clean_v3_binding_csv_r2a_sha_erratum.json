@@ -1,0 +1,47 @@
+{
+  "artifact": "PHASE13_CLEAN_V3_BINDING_CSV_R2A_SHA_ERRATUM",
+  "phase": 13,
+  "part": "1B",
+  "document_type": "PROVENANCE_METADATA_CORRECTION_ONLY",
+  "created_utc": "2026-09-21T04:48:45.788953Z",
+  "file": "reports/tables/phase13_clean_v3_executable_config_binding.csv",
+  "csv_sha_before_repair": "1dfbe95bd85a3ad6b6991ef30987f70f08f9cefcef45fbc1779abb65f75a4862",
+  "csv_sha_after_repair": "1dfbe95bd85a3ad6b6991ef30987f70f08f9cefcef45fbc1779abb65f75a4862",
+  "defect": {
+    "id": "BINDING_CSV_R2A_SHA_PROVENANCE_MISMATCH",
+    "description": "Ten R2A-linked rows carried a malformed R2A SHA that did not match the physical on-disk R2A amendment.",
+    "wrong_r2a_sha": "f3aececfbe683fa7c60ea75820d2ef3de3ab0d4fc29c9a3e02d2ce5bd4a1f4d1",
+    "wrong_r2a_sha_occurrences_before": 10,
+    "wrong_r2a_sha_occurrences_before_observed_in_current_file": 0,
+    "wrong_r2a_sha_occurrences_after": 0
+  },
+  "correction": {
+    "method": "deterministic rebuild with a real CSV writer using the physical R2A SHA",
+    "physical_r2a_sha_computed_from_disk": "f3aececfbe683fa7c60ea758b7b7d6446e3cc6584e86e8faa2c7eb4f14029667",
+    "canonical_r2a_sha_expected": "f3aececfbe683fa7c60ea758b7b7d6446e3cc6584e86e8faa2c7eb4f14029667",
+    "physical_matches_canonical": true,
+    "canonical_r2a_sha_occurrences_after": 10,
+    "r2a_sourced_rows": 10,
+    "all_r2a_sourced_rows_canonical": true,
+    "scientific_values_edited": false
+  },
+  "preservation": {
+    "superseded_prior_check_required_rows": 10,
+    "all_preserved": true
+  },
+  "validation": {
+    "pandas_read_csv_plain": true,
+    "shape": [
+      130,
+      6
+    ],
+    "expected_shape": [
+      130,
+      6
+    ],
+    "shape_matches_expected": true
+  },
+  "scientific_changes": 0,
+  "material_changes": 0,
+  "status": "PASS"
+}

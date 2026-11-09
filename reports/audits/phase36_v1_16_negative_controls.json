@@ -1,0 +1,155 @@
+{
+ "artifact": "phase36_robustness_negative_controls_v1_16",
+ "phase": 36,
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase36_robustness_v1_16",
+ "type": "NEGATIVE_CONTROL_REPORT",
+ "in_memory_mutants_only": true,
+ "canonical_files_modified": false,
+ "torch_imported": false,
+ "protected_population_read": false,
+ "subject_execution_sha256": "a96b74caa4587aa9d2f83b79ed39c13075a88086109e31d991695a75ec4abab9",
+ "subject_launcher_sha256": "a069345a8d332c549fc25799fc8d9e5e1b4b46e6b878e23f0e83d7a4c011e16c",
+ "subject_supervisor_sha256": "ffab12252ba334a54482136b1e4e80351c90adb50c44df6430ce4275dc6a9754",
+ "controls_total": 19,
+ "controls_passed": 19,
+ "controls_failed": 0,
+ "all_pass": true,
+ "records": [
+  {
+   "id": "NC_SRC",
+   "control": "v1_16_source_sha_frozen",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": {
+    "sha256": "a96b74caa4587aa9d2f83b79ed39c13075a88086109e31d991695a75ec4abab9"
+   }
+  },
+  {
+   "id": "NC_D61_1",
+   "control": "restore_old_pad_unaware_fusion_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "old call restored -> detector returns False (rejected)"
+  },
+  {
+   "id": "NC_D61_2",
+   "control": "change_fusion_geom_source_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "geom replaced by window -> detector returns False (rejected)"
+  },
+  {
+   "id": "NC_D75_1",
+   "control": "helper_thresholds_live_f32_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "no f16 round-trip -> rejected"
+  },
+  {
+   "id": "NC_D75_2",
+   "control": "helper_drops_f16_cast_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "f16 cast removed -> rejected"
+  },
+  {
+   "id": "NC_D75_3",
+   "control": "helper_drops_cast_back_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "f16->f32 cast-back removed -> rejected"
+  },
+  {
+   "id": "NC_D75_4",
+   "control": "helper_threshold_change_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "threshold 0.51 -> rejected"
+  },
+  {
+   "id": "NC_D75_5",
+   "control": "helper_omitted_from_core_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "core wiring removed -> rejected"
+  },
+  {
+   "id": "NC_D75_6",
+   "control": "helper_omitted_from_clean_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "clean wiring removed -> rejected"
+  },
+  {
+   "id": "NC_G_1",
+   "control": "downstream_G_quantization_introduced_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "f16 cast injected -> rejected"
+  },
+  {
+   "id": "NC_D80_A",
+   "control": "launcher_dispatch_mode_science_omitted_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "mode args emptied -> detector returns False (rejected)"
+  },
+  {
+   "id": "NC_D80_B",
+   "control": "execution_science_namespace_v1_14_reverted_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "start marker namespace reverted -> detector returns False (rejected)"
+  },
+  {
+   "id": "NC_D80_C",
+   "control": "launch_authority_token_v1_14_reverted_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "authority token reverted -> detector returns False (rejected)"
+  },
+  {
+   "id": "NC_D80_D",
+   "control": "operator_gate_v1_14_reverted_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "science gate reverted -> detector returns False (rejected)"
+  },
+  {
+   "id": "NC_D80_E",
+   "control": "runtime_manifest_v1_14_reverted_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "manifest path reverted -> detector returns False (rejected)"
+  },
+  {
+   "id": "NC_D80_F",
+   "control": "release_revision_v1_14_reverted_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "release revision reverted -> detector returns False (rejected)"
+  },
+  {
+   "id": "NC_D80_G",
+   "control": "stage_journal_module_removed_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "journal module removed -> detector returns False (rejected)"
+  },
+  {
+   "id": "NC_D80_H_launcher",
+   "control": "launcher_exact_sha_pin_removed_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "launcher pin mismatched -> detector returns False (rejected)"
+  },
+  {
+   "id": "NC_D80_H_supervisor",
+   "control": "supervisor_launcher_pin_enforcement_removed_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "supervisor fail-closed pin removed -> detector returns False (rejected)"
+  }
+ ]
+}

@@ -1,0 +1,138 @@
+{
+  "artifact": "phase21_efficiency_accounting",
+  "phase": 21,
+  "experiment_id": "phase21_global_medfilm_fourdomain_seed42_clean_v3",
+  "purpose": "MEASUREMENT ONLY. No optimization, pruning, quantization or compression.",
+  "parameter_count": 3523001,
+  "checkpoint_bytes": 42369710,
+  "gpu": {
+    "batch_1": {
+      "median_ms": 15.24125000105414,
+      "mean_ms": 15.365329999743457,
+      "p05_ms": 14.104099998803576,
+      "p95_ms": 17.1373000011954,
+      "stdev_ms": 0.8620649720615361,
+      "repeats": 30,
+      "warmup": 5,
+      "peak_memory_bytes": 313084416,
+      "peak_memory_reserved_bytes": 377487360
+    },
+    "batch_8": {
+      "median_ms": 87.45389999967301,
+      "mean_ms": 87.38868999971601,
+      "p05_ms": 86.15850000205683,
+      "p95_ms": 88.57960000023013,
+      "stdev_ms": 0.6102741112958809,
+      "repeats": 30,
+      "warmup": 5,
+      "peak_memory_bytes": 2346275840,
+      "peak_memory_reserved_bytes": 2615148544
+    }
+  },
+  "cpu": {
+    "batch_1": {
+      "median_ms": 310.23840000125347,
+      "mean_ms": 311.640140000236,
+      "p05_ms": 308.14269999973476,
+      "p95_ms": 317.11920000088867,
+      "stdev_ms": 3.0994131914167324,
+      "repeats": 5,
+      "warmup": 2,
+      "batch_size": 1,
+      "input_size": [
+        512,
+        512
+      ]
+    },
+    "batch_4": {
+      "median_ms": 1291.1260000000766,
+      "mean_ms": 1295.0855200004298,
+      "p05_ms": 1279.1293000009318,
+      "p95_ms": 1315.714399999706,
+      "stdev_ms": 12.699395233292458,
+      "repeats": 5,
+      "warmup": 2,
+      "batch_size": 4,
+      "input_size": [
+        512,
+        512
+      ]
+    }
+  },
+  "macs": 31551740928,
+  "gmacs": 31.5517,
+  "gflops_2x": 63.1035,
+  "macs_method": "analytical closed-form Conv2d/Linear count; LOWER BOUND on total arithmetic (excludes GroupNorm, SiLU, pooling, interpolation and the FiLM elementwise modulation). No third-party FLOP library was used.",
+  "macs_by_block": {
+    "decoder3": {
+      "macs": 5888802816,
+      "gmacs": 5.8888
+    },
+    "decoder2": {
+      "macs": 5888802816,
+      "gmacs": 5.8888
+    },
+    "decoder1": {
+      "macs": 5888802816,
+      "gmacs": 5.8888
+    },
+    "decoder4": {
+      "macs": 4882169856,
+      "gmacs": 4.8822
+    },
+    "encoder2": {
+      "macs": 2113929216,
+      "gmacs": 2.1139
+    },
+    "encoder3": {
+      "macs": 2113929216,
+      "gmacs": 2.1139
+    },
+    "encoder4": {
+      "macs": 2113929216,
+      "gmacs": 2.1139
+    },
+    "encoder1": {
+      "macs": 1547698176,
+      "gmacs": 1.5477
+    },
+    "bridge": {
+      "macs": 1107296256,
+      "gmacs": 1.1073
+    },
+    "head": {
+      "macs": 6291456,
+      "gmacs": 0.0063
+    },
+    "film_layers": {
+      "macs": 89088,
+      "gmacs": 0.0001
+    }
+  },
+  "six_model_compute_table": "reports/tables/phase21_six_model_compute.csv",
+  "macs_reason": "no third-party FLOP-counting library is installed (thop/fvcore/ptflops/torchinfo all absent); the analytical count above is used instead and is exact for conv/linear layers",
+  "cpu_benchmark": {
+    "source": "SYNTHETIC random input (never TEST, never required VAL)",
+    "warmup": 2,
+    "repeats": 5,
+    "cpu_name": "AMD64 Family 25 Model 33 Stepping 2, AuthenticAMD",
+    "logical_cores": 16,
+    "torch_threads": 8,
+    "batch_sizes": [
+      1,
+      4
+    ],
+    "input_size": [
+      512,
+      512
+    ],
+    "dispersion": "median plus p05/p95 and population stdev are reported"
+  },
+  "caveat": "GPU latency is a forward-only micro-benchmark without AMP and is NOT the training throughput; per-epoch training time is reported separately from history.csv. The CPU benchmark ran while no training job was active.",
+  "test_reads": {
+    "test_image_reads": 0,
+    "test_mask_reads": 0,
+    "test_inference": 0,
+    "test_visualization": 0
+  }
+}

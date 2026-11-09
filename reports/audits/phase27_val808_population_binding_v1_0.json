@@ -1,0 +1,64 @@
+{
+ "artifact": "phase27_val808_population_binding_v1_0",
+ "phase": "27",
+ "classification": "PHASE27_PRE_EXECUTION_PRESERVATION_AUDIT_SPECIFICATION",
+ "method": "RA-MedFiLM-BARR",
+ "governance_only": true,
+ "no_execution": true,
+ "metadata_only": true,
+ "stage": "VAL808_POPULATION_BINDING",
+ "manifest_path": "manifests/phase4_v3/val.csv",
+ "manifest_sha256": "082c80b2bda63fd73f371f109c34643adf01edaead921643fb2e44993ba53315",
+ "n": 808,
+ "role": "SECONDARY / CONTINUITY DEVELOPMENT BENCHMARK",
+ "domain_counts": {
+  "BUSI": 84,
+  "ISIC": 357,
+  "KUB": 280,
+  "KVASIR": 87
+ },
+ "domain_task_ids": {
+  "BUSI": 1,
+  "ISIC": 0,
+  "KUB": 3,
+  "KVASIR": 2
+ },
+ "domain_expected_groups": {
+  "ISIC": 357,
+  "BUSI": 84,
+  "KVASIR": 87,
+  "KUB": 111
+ },
+ "domain_actual_groups": {
+  "BUSI": 84,
+  "ISIC": 357,
+  "KUB": 111,
+  "KVASIR": 87
+ },
+ "total_groups": 639,
+ "group_size_distribution": {
+  "3": 61,
+  "2": 47,
+  "1": 531
+ },
+ "group_rule": "METADATA_ONLY_COMPOSITE_PATIENT_SINGLETON",
+ "group_rule_detail": "KUB -> PATIENT::<patient_id>; ISIC/BUSI/KVASIR -> SINGLETON::<dataset>::<sample_id>",
+ "group_ids_sha256": "5d7db45c324098a14199f1d453541373078ef5748f255021a132558a62e19dd0",
+ "sample_ids_sha256": "0d23039808badf5630f8af38fcf6fda8c94fcfddb2cc55707551e32830df6b88",
+ "checks": {
+  "n_is_808": true,
+  "sha_matches": true,
+  "all_four_domains_present": true,
+  "domain_counts_match": true,
+  "task_id_mapping_matches": true,
+  "single_val_split": true,
+  "sample_ids_unique": true,
+  "gt_mask_path_present_in_metadata": true,
+  "group_counts_match_rule": true,
+  "total_groups_639": true,
+  "group_size_distribution_matches": true,
+  "no_image_bytes_read": true,
+  "no_mask_bytes_read": true
+ },
+ "all_pass": true
+}

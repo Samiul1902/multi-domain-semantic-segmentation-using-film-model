@@ -1,0 +1,95 @@
+{
+  "artifact": "POST_PHASE13_H2B_B1_TRAINING_COMPLETION",
+  "experiment_id": "post_phase13_h2b_kub_localizer_r512_h128_sigmaeq075_softtargetfocalgamma2_deploymentbalance_seed42_clean_v3",
+  "created_utc": "2026-09-23T08:14:09.579971Z",
+  "protocol_identity": "H2B_OBJECTIVE_ONLY__H2A_DEPLOYMENT_BALANCED_SELECTION_CARRY_FORWARD",
+  "h2b_protocol_sha": "22d4e363a9375bc12828c944b1583921efa77d45b6df7d6387738d13d950949e",
+  "h2b_loss_module_sha": "40d359e36a5579ea7544a1f0079aa999e024b8b144956493c184388766c27b75",
+  "objective_change_id": "H2B_OBJECTIVE_ONLY_SOFT_TARGET_FOCAL_BCE_GAMMA2",
+  "parent_provenance": {
+    "r2_protocol_sha": "ab451e03366c589fae5c303ebf1382e086f4f115b97768eb36d491256a3b5e53",
+    "r2a_loss_binding_sha": "f3aececfbe683fa7c60ea758b7b7d6446e3cc6584e86e8faa2c7eb4f14029667",
+    "role": "PARENT_PROVENANCE_ONLY__NOT_ACTIVE_H2B_OBJECTIVE"
+  },
+  "best_epoch": 31,
+  "final_epoch": 46,
+  "termination_reason": "EARLY_STOPPING_PATIENCE",
+  "best_selection_tuple": [
+    0.3762759719105191,
+    0.6111111111111112,
+    0.5921052631578947,
+    0.2151639344262295,
+    -0.005777940678754472,
+    -0.000277110381060853
+  ],
+  "selection_term_names": [
+    "tiny_recall90",
+    "overall_recall90",
+    "negative_mean_roi_area_fraction",
+    "negative_val_loss"
+  ],
+  "best_fixed_config_metrics": null,
+  "best_secondary_diagnostics": null,
+  "best_epoch_row": null,
+  "history_path": "D:\\Softfors\\jup\\experiments\\post_phase13_h2b_kub_localizer_r512_h128_sigmaeq075_softtargetfocalgamma2_deploymentbalance_seed42_clean_v3\\history.csv",
+  "history_sha": "ce8512ffbbcd8912d6cee2d29e5f2d6b9f210efb66e260847bbc2379bb5325a6",
+  "best_checkpoint_path": "D:\\Softfors\\jup\\checkpoints\\post_phase13_h2b_kub_localizer_r512_h128_sigmaeq075_softtargetfocalgamma2_deploymentbalance_seed42_clean_v3\\best.pt",
+  "best_checkpoint_sha": "a9147ad7d1835a6e4ef8d66cc04c063db85b2f9a65585a4a34ae2acfef05f028",
+  "latest_checkpoint_path": "D:\\Softfors\\jup\\checkpoints\\post_phase13_h2b_kub_localizer_r512_h128_sigmaeq075_softtargetfocalgamma2_deploymentbalance_seed42_clean_v3\\latest.pt",
+  "latest_checkpoint_sha": "87052ffdde672483ad7201231d0342deba846c28b1ad84080b6b554a2f343198",
+  "config_path": "D:\\Softfors\\jup\\configs\\phase13_clean_v3\\post_phase13_h2b_kub_localizer_r512_h128_sigmaeq075_softtargetfocalgamma2_deploymentbalance_seed42_clean_v3.yaml",
+  "config_sha": "0ee34404c67e36aa27ef880c59295208f662908af996cf634f6a922875340f12",
+  "runner_path": "D:\\Softfors\\jup\\scripts\\training\\post_phase13_h2b_localizer_train.py",
+  "runner_sha": "444f0ea7b5f6ce76c3d0955febfc67ebd0c36a80913604384ded054c443f7ddd",
+  "provenance_amendment_path": "D:\\Softfors\\jup\\reports\\audits\\phase13_clean_v3_localizer_manifest_provenance_binding.json",
+  "provenance_amendment_sha": "436831dbaf3305e632e6b4a34adb0eb1b4b1edf962e74354d337ec1328bfdd5a",
+  "provenance_amendment_type": "NON_SCIENTIFIC_PROVENANCE_BINDING",
+  "r2_protocol_sha": "ab451e03366c589fae5c303ebf1382e086f4f115b97768eb36d491256a3b5e53",
+  "r2a_loss_sha": "f3aececfbe683fa7c60ea758b7b7d6446e3cc6584e86e8faa2c7eb4f14029667",
+  "manifest_version": "phase4_v3",
+  "manifest_hashes": {
+    "manifest_version": "phase4_v3",
+    "train_manifest_file_sha256": "28702fc3a5ff8b950db372f03232d335e3a30b1fc2f21db7cd8c066055826ed6",
+    "val_manifest_file_sha256": "082c80b2bda63fd73f371f109c34643adf01edaead921643fb2e44993ba53315",
+    "train_sample_table_file_sha256": "3901e9825c8bad89da8291c0b504197c600d6ecca1d39ddba2b2050d650962cc",
+    "val_sample_table_file_sha256": "84ecd5646751363844ab520d8576424ad13870befd46309951e046c17f80d425",
+    "train_filtered_sample_ids_sha256": "848be16d996007afb28351ba5126f5eda343dd2bf289c1a987174a453283b0fa",
+    "val_filtered_sample_ids_sha256": "234e48b20119f1d041cbd53228f45d1a0eb0459d49ff123948a51048fa1d2aaf",
+    "train_filtered_sample_count": 770,
+    "val_filtered_sample_count": 103,
+    "train_manifest_path": "D:\\Softfors\\jup\\manifests\\phase4_v3\\train.csv",
+    "val_manifest_path": "D:\\Softfors\\jup\\manifests\\phase4_v3\\val.csv",
+    "train_sample_table_path": "D:\\Softfors\\jup\\reports\\tables\\kub_train_samples_sized.csv",
+    "val_sample_table_path": "D:\\Softfors\\jup\\reports\\tables\\kub_val_samples_sized.csv"
+  },
+  "taxonomy_id": "kub_size_clean_v3_v1",
+  "heatmap_resolution": 128,
+  "proposal_configuration_count": 1,
+  "proposal_config": {
+    "threshold": 0.1,
+    "margin": 0.2,
+    "top_k": 5,
+    "nms_iou": 0.3
+  },
+  "loss": {
+    "loss_class": "src.losses.soft_target_focal_bce.SoftTargetFocalBCE",
+    "gamma": 2.0,
+    "label": "H2B_SOFT_TARGET_FOCAL_BCE_GAMMA2"
+  },
+  "seed": 42,
+  "resume_events": [
+    {
+      "resumed_at": "2026-09-23T07:57:52.092656Z",
+      "from_epoch": 43,
+      "to_epoch": 44
+    }
+  ],
+  "nan_inf_events": [],
+  "grid_configurations_evaluated": 0,
+  "test_reads": 0,
+  "scientific_changes": 1,
+  "scientific_parameter_changes": 1,
+  "scientific_change_register": {
+    "CHANGE_H2B_001": "loss/objective semantics only"
+  }
+}

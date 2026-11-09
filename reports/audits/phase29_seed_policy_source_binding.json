@@ -1,0 +1,106 @@
+{
+ "artifact": "phase29_seed_policy_source_binding",
+ "phase": 29,
+ "classification": "PHASE29_SEED_POLICY_SOURCE_BINDING",
+ "seeds": [
+  42,
+  123,
+  3407
+ ],
+ "seeds_frozen": true,
+ "seed_set_authoritatively_frozen": true,
+ "primary_binding_source": "configs/research_protocol.json",
+ "primary_binding_key": "policies.multi_seed",
+ "primary_binding_value": [
+  42,
+  123,
+  3407
+ ],
+ "seed_policy_legacy_note": 42,
+ "sources_searched": [
+  "configs/research_protocol.json",
+  "reports/audits/research_protocol.md",
+  "notebooks/phasewise/phase_00_governance/phase00_governance_reproducibility_and_protocol.ipynb",
+  "PROJECT_MASTER_PLAN.md",
+  "docs/RULES.md",
+  "docs/DESIGN.md",
+  "docs/PRD.md",
+  "docs/TASKS.md",
+  "docs/MEMORY.md",
+  "docs/ARCHITECTURE.md",
+  "docs/phase26_training_spec.md",
+  "docs/phase27_preservation_spec.md",
+  "docs/phase28_ablation_execution_spec_v1_2.md",
+  "reports/audits/phase21_final_freeze.json",
+  "reports/audits/phase21_protocol_binding.json",
+  "reports/audits/phase25a_crossfit_protocol.json",
+  "reports/audits/phase25d_frozen_training_spec_binding_v1_2_1.json",
+  "reports/audits/phase25f_cv_manifest_reuse_contract_v1_0.json",
+  "reports/audits/phase26_final_freeze.json",
+  "reports/audits/phase28_final_freeze.json",
+  "notebooks/phasewise/phase_29_3seed_reproducibility/README.md"
+ ],
+ "sources_binding_seed_set": [
+  {
+   "path": "configs/research_protocol.json",
+   "sha256": "df4b137f613f0f30a2efd244f096934e75e0898a9f4f43df08e5c0554b711212",
+   "binds_seeds": [
+    42,
+    123,
+    3407
+   ],
+   "role": "AUTHORITATIVE_MACHINE_READABLE",
+   "binding_level": "PRIMARY"
+  },
+  {
+   "path": "reports/audits/research_protocol.md",
+   "sha256": "f0dc4cd03df7d01fd237331b6c798330847fc85c8c2f09b8dee3368dbdbd64f4",
+   "binds_seeds": "Seeds: 42, 123, 3407",
+   "role": "AUTHORITATIVE_HUMAN_READABLE",
+   "binding_level": "PRIMARY"
+  },
+  {
+   "path": "notebooks/phasewise/phase_00_governance/phase00_governance_reproducibility_and_protocol.ipynb",
+   "sha256": "60e0bc1745482e244dacfbe376526158fb4ead8ced8c4dc264e615e6e6e1afa0",
+   "binds_seeds": "Random Seeds | NO | Supervisor Authorization Required | Deterministic multi-seed evaluation",
+   "role": "GOVERNANCE_POLICY",
+   "binding_level": "SUPPORTING"
+  },
+  {
+   "path": "reports/audits/phase20_shared_global_baseline_protocol.json",
+   "sha256": "b74f1f9f429adbce374f0306180943b9f373f872e1e69e115b7d17e81414283c",
+   "binds_seeds": {
+    "seed": 42,
+    "second_seed_belongs_to_phase_29": true
+   },
+   "role": "PHASE_OWNERSHIP_OF_SECOND_SEED",
+   "binding_level": "SUPPORTING"
+  },
+  {
+   "path": "reports/audits/phase21_global_medfilm_architecture_binding.json",
+   "sha256": "21e2c195c8da33da761965817bab99f0eeec5fa84a846d05ae765b9567017e78",
+   "binds_seeds": {
+    "seed": 42,
+    "second_seed_belongs_to_later_phase": true,
+    "logical_runs_authorized": 1
+   },
+   "role": "PHASE_OWNERSHIP_OF_SECOND_SEED",
+   "binding_level": "SUPPORTING"
+  },
+  {
+   "path": "docs/DESIGN.md",
+   "sha256": "971c9e66d4a8b6f5d889153d4e412cad16ed2c91121835f5133d9bfab1c2b5d2",
+   "binds_seeds": "Still NOT performed: Phase 29 three-seed reproducibility",
+   "role": "PROJECT_STATE",
+   "binding_level": "SUPPORTING"
+  }
+ ],
+ "chat_text_used_as_authority": false,
+ "missing_canonical_spec_doc": {
+  "declared_by_readme": "docs/phase29_repro_spec.md",
+  "exists": false,
+  "note": "The Phase29 README declares docs/phase29_repro_spec.md as its canonical provenance source; that document does NOT physically exist. The seed set is nonetheless authoritatively frozen by configs/research_protocol.json."
+ },
+ "blocked_terminal_if_unresolved": "PHASE29_BLOCKED__THREE_SEED_SET_NOT_AUTHORITATIVELY_FROZEN",
+ "all_pass": true
+}

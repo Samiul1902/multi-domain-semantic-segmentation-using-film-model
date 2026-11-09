@@ -1,0 +1,294 @@
+{
+ "artifact": "phase34_model_identity_and_smoke_gate_v1_3",
+ "phase": 34,
+ "section": "\u00a7O",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase34_efficiency_profiling_v1_3",
+ "PHASE34_EXECUTE_set": true,
+ "execution_mode": "smoke_only",
+ "orchestration_harness_used": false,
+ "orchestration_harness_not_used_reason": "the v1.3 harness auto-transitions from smoke into timing; per \u00a7F the worker --mode smoke route (which terminates after smoke validation) was invoked directly",
+ "checkpoint_file_gate": [
+  {
+   "component": "G",
+   "path": "checkpoints/phase21_global_medfilm_fourdomain_seed42_clean_v3/best.pt",
+   "expected_sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+   "observed_sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+   "match": true,
+   "file_bytes": 42369710,
+   "expected_parameters": 3523001
+  },
+  {
+   "component": "R_psi",
+   "path": "checkpoints/phase25a_barr_regional_refiner_v1_1_roi030/final/final.pt",
+   "expected_sha256": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109",
+   "observed_sha256": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109",
+   "match": true,
+   "file_bytes": 15425424,
+   "expected_parameters": 1276401
+  },
+  {
+   "component": "B_phi",
+   "path": "checkpoints/phase25d_barr_benefit_router_v1_2_1_seed42/final/final.pt",
+   "expected_sha256": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+   "observed_sha256": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+   "match": true,
+   "file_bytes": 455682,
+   "expected_parameters": 36801
+  },
+  {
+   "component": "S_omega",
+   "path": "checkpoints/phase25f_barr_post_safety_v1_0_seed42/final/final.pt",
+   "expected_sha256": "eee9b97b9921e53fc07eac9281dce64ba518c6e1659916b97b0b3bec21ec6d2e",
+   "observed_sha256": "eee9b97b9921e53fc07eac9281dce64ba518c6e1659916b97b0b3bec21ec6d2e",
+   "match": true,
+   "file_bytes": 7816,
+   "expected_parameters": 1217
+  }
+ ],
+ "all_checkpoint_hashes_match": true,
+ "per_component": {
+  "G": {
+   "checkpoint_sha256_match": true,
+   "constructed": true,
+   "strict_load": {
+    "missing_keys": [],
+    "unexpected_keys": []
+   },
+   "missing_keys": [],
+   "unexpected_keys": [],
+   "parameter_count": 3523001,
+   "parameter_dtypes": [
+    "torch.float32"
+   ],
+   "eval": true,
+   "smoke_forward_completed": true,
+   "output_type": "torch.Tensor",
+   "output_dtype": "torch.float32",
+   "output_device": "cuda (implied by construction; not separately emitted by the frozen worker)",
+   "output_shape": [
+    1,
+    1,
+    512,
+    512
+   ],
+   "all_finite": true,
+   "precision_context": "eval + float32 + autocast(float16) + torch.no_grad() + inference_mode false",
+   "task_conditioning": "task_ids [0] int64"
+  },
+  "R_psi": {
+   "checkpoint_sha256_match": true,
+   "constructed": true,
+   "strict_load": {
+    "missing_keys": [],
+    "unexpected_keys": []
+   },
+   "missing_keys": [],
+   "unexpected_keys": [],
+   "parameter_count": 1276401,
+   "parameter_dtypes": [
+    "torch.float32"
+   ],
+   "eval": true,
+   "smoke_forward_completed": true,
+   "output_type": "torch.Tensor",
+   "output_dtype": "torch.float32",
+   "output_device": "cuda (implied by construction; not separately emitted by the frozen worker)",
+   "output_shape": [
+    1,
+    1,
+    256,
+    256
+   ],
+   "all_finite": true,
+   "precision_context": "eval + float32 + autocast disabled + torch.inference_mode()",
+   "task_conditioning": "NONE"
+  },
+  "B_phi": {
+   "checkpoint_sha256_match": true,
+   "constructed": true,
+   "strict_load": {
+    "missing_keys": [],
+    "unexpected_keys": []
+   },
+   "missing_keys": [],
+   "unexpected_keys": [],
+   "parameter_count": 36801,
+   "parameter_dtypes": [
+    "torch.float32"
+   ],
+   "eval": true,
+   "smoke_forward_completed": true,
+   "output_type": "torch.Tensor",
+   "output_dtype": "torch.float32",
+   "output_device": "cuda (implied by construction; not separately emitted by the frozen worker)",
+   "output_shape": [
+    1
+   ],
+   "all_finite": true,
+   "precision_context": "eval + float32 + autocast disabled + torch.inference_mode()",
+   "task_conditioning": "task_ids [0] int64"
+  },
+  "S_omega": {
+   "checkpoint_sha256_match": true,
+   "constructed": true,
+   "strict_load": {
+    "missing_keys": [],
+    "unexpected_keys": []
+   },
+   "missing_keys": [],
+   "unexpected_keys": [],
+   "parameter_count": 1217,
+   "parameter_dtypes": [
+    "torch.float32"
+   ],
+   "eval": true,
+   "smoke_forward_completed": true,
+   "output_type": "torch.Tensor",
+   "output_dtype": "torch.float32",
+   "output_device": "cuda (implied by construction; not separately emitted by the frozen worker)",
+   "output_shape": [
+    1
+   ],
+   "all_finite": true,
+   "precision_context": "eval + float32 + autocast disabled + torch.inference_mode()",
+   "task_conditioning": "one-hot [1,0,0,0]"
+  }
+ },
+ "SMOKE_TASK_ID": 0,
+ "SMOKE_DOMAIN": "ISIC",
+ "individual_smoke_forwards": 4,
+ "SKIP_smoke": {
+  "arm": "SKIP_CONTROLLED_PATH",
+  "batch_size": 1,
+  "revision": "ra_medfilm_barr_phase34_efficiency_profiling_v1_3",
+  "repo_root": "D:\\Softfors\\jup",
+  "repo_root_resolution": "FILE_RELATIVE",
+  "runtime_profile": "COMPONENT_SPECIFIC_CANONICAL_PRECISION_SEMANTICS",
+  "batch1_label": "CANONICAL_GRAPH_HARDWARE_MICROBENCHMARK__BATCH1_NOT_CANONICAL_G_NUMERICAL_REPRODUCTION",
+  "batch8_label": "SYNTHETIC_HARDWARE_THROUGHPUT_BENCHMARK",
+  "canonical_numerical_reproduction": false,
+  "timing_scope": "MODEL_COMPUTE_PATH_RUNTIME",
+  "generator": "PYTORCH_CUDA_GENERATOR_SEED_42",
+  "started_utc": "2026-10-04T13:22:55Z",
+  "mode": "smoke",
+  "scope": "CONTROLLED_PATH",
+  "path": {
+   "arm": "SKIP_CONTROLLED_PATH",
+   "components": [
+    "G",
+    "B_phi"
+   ],
+   "forward_calls": 2,
+   "timed": false,
+   "route_forced": true,
+   "natural_route_replay": false,
+   "b_phi_output_used_to_choose_route": false,
+   "outputs": {
+    "G": {
+     "output_shape": [
+      1,
+      1,
+      512,
+      512
+     ],
+     "output_dtype": "torch.float32",
+     "finite": true
+    },
+    "B_phi": {
+     "output_shape": [
+      1
+     ],
+     "output_dtype": "torch.float32",
+     "finite": true
+    }
+   }
+  },
+  "individual_component_smoke_model_forward_calls": 0,
+  "controlled_path_smoke_model_forward_calls": 2,
+  "total_smoke_model_forward_calls": 2
+ },
+ "SKIP_smoke_forwards": 2,
+ "EXECUTE_smoke": {
+  "arm": "EXECUTE_CONTROLLED_PATH",
+  "batch_size": 1,
+  "revision": "ra_medfilm_barr_phase34_efficiency_profiling_v1_3",
+  "repo_root": "D:\\Softfors\\jup",
+  "repo_root_resolution": "FILE_RELATIVE",
+  "runtime_profile": "COMPONENT_SPECIFIC_CANONICAL_PRECISION_SEMANTICS",
+  "batch1_label": "CANONICAL_GRAPH_HARDWARE_MICROBENCHMARK__BATCH1_NOT_CANONICAL_G_NUMERICAL_REPRODUCTION",
+  "batch8_label": "SYNTHETIC_HARDWARE_THROUGHPUT_BENCHMARK",
+  "canonical_numerical_reproduction": false,
+  "timing_scope": "MODEL_COMPUTE_PATH_RUNTIME",
+  "generator": "PYTORCH_CUDA_GENERATOR_SEED_42",
+  "started_utc": "2026-10-04T13:22:59Z",
+  "mode": "smoke",
+  "scope": "CONTROLLED_PATH",
+  "path": {
+   "arm": "EXECUTE_CONTROLLED_PATH",
+   "components": [
+    "G",
+    "B_phi",
+    "R_psi",
+    "S_omega"
+   ],
+   "forward_calls": 4,
+   "timed": false,
+   "route_forced": true,
+   "natural_route_replay": false,
+   "b_phi_output_used_to_choose_route": false,
+   "outputs": {
+    "G": {
+     "output_shape": [
+      1,
+      1,
+      512,
+      512
+     ],
+     "output_dtype": "torch.float32",
+     "finite": true
+    },
+    "B_phi": {
+     "output_shape": [
+      1
+     ],
+     "output_dtype": "torch.float32",
+     "finite": true
+    },
+    "R_psi": {
+     "output_shape": [
+      1,
+      1,
+      256,
+      256
+     ],
+     "output_dtype": "torch.float32",
+     "finite": true
+    },
+    "S_omega": {
+     "output_shape": [
+      1
+     ],
+     "output_dtype": "torch.float32",
+     "finite": true
+    }
+   }
+  },
+  "individual_component_smoke_model_forward_calls": 0,
+  "controlled_path_smoke_model_forward_calls": 4,
+  "total_smoke_model_forward_calls": 4
+ },
+ "EXECUTE_smoke_forwards": 4,
+ "total_smoke_model_forward_calls": 10,
+ "smoke_failures": [],
+ "all_smoke_outputs_finite": true,
+ "cuda_synchronization_note": "the frozen worker surfaces asynchronous CUDA errors via the blocking torch.isfinite(out).all().item() device->host transfer in validate_output; it does NOT create CUDA timing events and produces NO timing statistics",
+ "latency_measurements": 0,
+ "throughput_measurements": 0,
+ "memory_measurements": 0,
+ "mac_flop_profiler_executions": 0,
+ "smoke_gate_pass": true,
+ "terminal": "PHASE34_V1_3_SMOKE_GATE_COMPLETE__ALL_FOUR_CANONICAL_COMPONENTS_STRICT_LOADED_PARAMETER_VERIFIED_AND_UNTIMED_FORWARDS_PASS__CONTROLLED_SKIP_AND_EXECUTE_SMOKES_PASS__TOTAL_SMOKE_FORWARD_CALLS_10__ZERO_LATENCY_THROUGHPUT_MEMORY_OR_PROFILER_MEASUREMENTS__FIRST_MEASURED_PROFILING_EXECUTION_ELIGIBLE_NOT_STARTED",
+ "generated_utc": "2026-10-04T13:22:34+00:00",
+ "all_pass": true
+}

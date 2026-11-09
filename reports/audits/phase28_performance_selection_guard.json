@@ -1,0 +1,31 @@
+{
+ "phase": 28,
+ "governance_only": true,
+ "execution": "NONE",
+ "method": "RA-MedFiLM-BARR",
+ "population": "ROUTER_DEVELOPMENT (n=4957)",
+ "artifact": "phase28_performance_selection_guard",
+ "classification": "PHASE28_NO_PERFORMANCE_SELECTION_GUARD",
+ "no_policy_tuning": true,
+ "no_threshold_change": true,
+ "no_budget_change": true,
+ "no_lambda_change": true,
+ "no_architecture_change_post_hoc": true,
+ "no_feature_selection_from_outcomes": true,
+ "frozen_before_execution": true,
+ "forbidden": [
+  "selecting lambda",
+  "selecting budget",
+  "selecting threshold",
+  "selecting a routing policy",
+  "adding an ablation not present in phase24_ablation_plan.csv",
+  "dropping an ablation because it performed poorly",
+  "changing channels/features based on observed performance"
+ ],
+ "opportunistic_expansion_forbidden": true,
+ "source": [
+  "reports/audits/phase24_exact_implementation_spec.json",
+  "reports/audits/phase25g_ablation_scope_audit.json"
+ ],
+ "all_pass": true
+}

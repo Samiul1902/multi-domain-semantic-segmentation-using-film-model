@@ -1,0 +1,389 @@
+{
+  "artifact": "phase14_diag_root_cause",
+  "task": "POST-PHASE14 PROPOSAL/LOCALIZER BOTTLENECK ROOT-CAUSE DIAGNOSTIC",
+  "nature": "CAUSAL_DECOMPOSITION__NO_TRAINING__NO_H3",
+  "population": {
+    "val_images": 103,
+    "components": 152,
+    "strata": {
+      "TINY": 72,
+      "SMALL": 28,
+      "MEDIUM": 36,
+      "LARGE": 16
+    }
+  },
+  "section5_proposal_supply": {
+    "overall": {
+      "n_proposals_total": 514,
+      "proposals_per_image_mean": 4.9903,
+      "proposals_per_image_median": 5.0,
+      "proposals_per_image_p90": 5.0,
+      "zero_proposal_images": 0,
+      "proposal_precision_TP_fraction": 14.4,
+      "background_proposal_fraction": 85.6,
+      "duplicate_proposal_rate": 1.17,
+      "n_tp_proposals": 74,
+      "n_fp_background_proposals": 440,
+      "n_duplicate_proposals": 6
+    },
+    "by_stratum": {
+      "TINY": {
+        "n_components": 72,
+        "zero_proposal_components": 57,
+        "zero_proposal_rate": 79.17,
+        "proposal_recall_any_overlap": 20.83,
+        "proposal_recall_cov_ge_0.50": 20.83,
+        "proposal_recall_cov_ge_0.90": 20.83,
+        "best_proposal_coverage_mean": 0.2079,
+        "best_proposal_coverage_median": 0.0,
+        "best_proposal_coverage_p10": 0.0,
+        "best_proposal_coverage_p90": 1.0,
+        "best_proposal_bbox_iou_mean": 0.0463,
+        "best_proposal_bbox_iou_median": 0.0,
+        "good_proposal_exists_not_top_rank_rate": 20.83,
+        "rank_distribution_of_best": {
+          "-1": 57,
+          "2": 4,
+          "3": 2,
+          "4": 3,
+          "5": 6
+        }
+      },
+      "SMALL": {
+        "n_components": 28,
+        "zero_proposal_components": 13,
+        "zero_proposal_rate": 46.43,
+        "proposal_recall_any_overlap": 53.57,
+        "proposal_recall_cov_ge_0.50": 53.57,
+        "proposal_recall_cov_ge_0.90": 46.43,
+        "best_proposal_coverage_mean": 0.5189,
+        "best_proposal_coverage_median": 0.7679,
+        "best_proposal_coverage_p10": 0.0,
+        "best_proposal_coverage_p90": 1.0,
+        "best_proposal_bbox_iou_mean": 0.162,
+        "best_proposal_bbox_iou_median": 0.096,
+        "good_proposal_exists_not_top_rank_rate": 39.29,
+        "rank_distribution_of_best": {
+          "-1": 13,
+          "1": 4,
+          "2": 5,
+          "3": 1,
+          "4": 2,
+          "5": 3
+        }
+      },
+      "MEDIUM": {
+        "n_components": 36,
+        "zero_proposal_components": 6,
+        "zero_proposal_rate": 16.67,
+        "proposal_recall_any_overlap": 83.33,
+        "proposal_recall_cov_ge_0.50": 83.33,
+        "proposal_recall_cov_ge_0.90": 66.67,
+        "best_proposal_coverage_mean": 0.7904,
+        "best_proposal_coverage_median": 1.0,
+        "best_proposal_coverage_p10": 0.0,
+        "best_proposal_coverage_p90": 1.0,
+        "best_proposal_bbox_iou_mean": 0.3858,
+        "best_proposal_bbox_iou_median": 0.4348,
+        "good_proposal_exists_not_top_rank_rate": 83.33,
+        "rank_distribution_of_best": {
+          "-1": 6,
+          "2": 11,
+          "3": 11,
+          "4": 3,
+          "5": 5
+        }
+      },
+      "LARGE": {
+        "n_components": 16,
+        "zero_proposal_components": 3,
+        "zero_proposal_rate": 18.75,
+        "proposal_recall_any_overlap": 81.25,
+        "proposal_recall_cov_ge_0.50": 75.0,
+        "proposal_recall_cov_ge_0.90": 50.0,
+        "best_proposal_coverage_mean": 0.7006,
+        "best_proposal_coverage_median": 0.9206,
+        "best_proposal_coverage_p10": 0.0,
+        "best_proposal_coverage_p90": 1.0,
+        "best_proposal_bbox_iou_mean": 0.3732,
+        "best_proposal_bbox_iou_median": 0.4516,
+        "good_proposal_exists_not_top_rank_rate": 62.5,
+        "rank_distribution_of_best": {
+          "-1": 3,
+          "1": 3,
+          "2": 4,
+          "3": 3,
+          "4": 2,
+          "5": 1
+        }
+      }
+    },
+    "tiny_emphasis": {
+      "n_components": 72,
+      "zero_proposal_components": 57,
+      "zero_proposal_rate": 79.17,
+      "proposal_recall_any_overlap": 20.83,
+      "proposal_recall_cov_ge_0.50": 20.83,
+      "proposal_recall_cov_ge_0.90": 20.83,
+      "best_proposal_coverage_mean": 0.2079,
+      "best_proposal_coverage_median": 0.0,
+      "best_proposal_coverage_p10": 0.0,
+      "best_proposal_coverage_p90": 1.0,
+      "best_proposal_bbox_iou_mean": 0.0463,
+      "best_proposal_bbox_iou_median": 0.0,
+      "good_proposal_exists_not_top_rank_rate": 20.83,
+      "rank_distribution_of_best": {
+        "-1": 57,
+        "2": 4,
+        "3": 2,
+        "4": 3,
+        "5": 6
+      }
+    }
+  },
+  "section6_geometry_bridge": {
+    "n_components_with_proposal": 73,
+    "center_displacement_px_mean": 27.753,
+    "center_displacement_px_median": 21.225,
+    "width_ratio_pred_over_oracle_mean": 1.3874,
+    "height_ratio_pred_over_oracle_mean": 1.3874,
+    "area_ratio_pred_over_oracle_mean": 2.538,
+    "gt_coverage_in_predicted_roi_mean": 0.9474,
+    "gt_coverage_in_predicted_roi_median": 1.0,
+    "fraction_predicted_roi_contains_enough_context_ge_0.90": 82.19,
+    "excess_background_area_fraction_mean": 0.002585,
+    "excess_background_area_fraction_median": 0.001493,
+    "roi_box_iou_mean": 0.4497,
+    "roi_box_iou_median": 0.4814
+  },
+  "section7_conditional_refiner": {
+    "by_coverage_stratum": {
+      "COV_GE_0.90": {
+        "n_components": 60,
+        "mean_best_proposal_coverage": 0.9955,
+        "predicted_cov90_rate": 53.33,
+        "mean_predicted_coverage_ratio": 0.8631,
+        "mean_refiner_crop_iou": 0.5518,
+        "mean_refiner_crop_coverage": 0.8621,
+        "refiner_improves_global_rate": 55.0,
+        "mean_oracle_sel_coverage_ratio": 0.8631,
+        "mean_fp_removed_coverage_ratio": 0.8631
+      },
+      "COV_0.50_0.90": {
+        "n_components": 12,
+        "mean_best_proposal_coverage": 0.776,
+        "predicted_cov90_rate": 0.0,
+        "mean_predicted_coverage_ratio": 0.4651,
+        "mean_refiner_crop_iou": 0.3561,
+        "mean_refiner_crop_coverage": 0.391,
+        "refiner_improves_global_rate": 66.67,
+        "mean_oracle_sel_coverage_ratio": 0.4731,
+        "mean_fp_removed_coverage_ratio": 0.4651
+      },
+      "COV_LT_0.50": {
+        "n_components": 1,
+        "mean_best_proposal_coverage": 0.1175,
+        "predicted_cov90_rate": 0.0,
+        "mean_predicted_coverage_ratio": 0.0559,
+        "mean_refiner_crop_iou": 0.0245,
+        "mean_refiner_crop_coverage": 0.0245,
+        "refiner_improves_global_rate": 100.0,
+        "mean_oracle_sel_coverage_ratio": 0.0245,
+        "mean_fp_removed_coverage_ratio": 0.0559
+      },
+      "NO_MATCHED_PROPOSAL": {
+        "n_components": 79,
+        "mean_best_proposal_coverage": 0.0,
+        "predicted_cov90_rate": 15.19,
+        "mean_predicted_coverage_ratio": 0.575,
+        "mean_refiner_crop_iou": 0.0,
+        "mean_refiner_crop_coverage": 0.0,
+        "refiner_improves_global_rate": 35.44,
+        "mean_oracle_sel_coverage_ratio": 0.575,
+        "mean_fp_removed_coverage_ratio": 0.575
+      }
+    },
+    "by_proposal_type": {
+      "TP_BEST": {
+        "n_components": 73,
+        "mean_best_proposal_coverage": 0.9474,
+        "predicted_cov90_rate": 43.84,
+        "mean_predicted_coverage_ratio": 0.7866,
+        "mean_refiner_crop_iou": 0.5124,
+        "mean_refiner_crop_coverage": 0.7732,
+        "refiner_improves_global_rate": 57.53,
+        "mean_oracle_sel_coverage_ratio": 0.7875,
+        "mean_fp_removed_coverage_ratio": 0.7866
+      },
+      "NO_MATCHED_PROPOSAL": {
+        "n_components": 79,
+        "mean_best_proposal_coverage": 0.0,
+        "predicted_cov90_rate": 15.19,
+        "mean_predicted_coverage_ratio": 0.575,
+        "mean_refiner_crop_iou": 0.0,
+        "mean_refiner_crop_coverage": 0.0,
+        "refiner_improves_global_rate": 35.44,
+        "mean_oracle_sel_coverage_ratio": 0.575,
+        "mean_fp_removed_coverage_ratio": 0.575
+      }
+    },
+    "image_dice_contribution": {
+      "images_with_adequate_proposal": 49,
+      "mean_global_dice_those_images": 0.5848,
+      "mean_predicted_dice_those_images": 0.3054,
+      "mean_oracle_sel_dice_those_images": 0.6698,
+      "images_without_adequate_proposal": 54
+    }
+  },
+  "section8_counterfactuals": {
+    "image_dice": {
+      "GLOBAL_ONLY_mean": 0.6359,
+      "PREDICTED_mean": 0.4185,
+      "ORACLE_SEL_mean": 0.6304,
+      "FP_REMOVED_mean": 0.6288
+    },
+    "component_recall90": {
+      "GLOBAL": {
+        "overall": 82.24,
+        "TINY": 79.17,
+        "SMALL": 82.14,
+        "MEDIUM": 86.11,
+        "LARGE": 87.5,
+        "hard_tiny_recovered": 0,
+        "hard_tiny_total": 15
+      },
+      "PREDICTED": {
+        "overall": 87.5,
+        "TINY": 79.17,
+        "SMALL": 89.29,
+        "MEDIUM": 100.0,
+        "LARGE": 93.75,
+        "hard_tiny_recovered": 0,
+        "hard_tiny_total": 15
+      },
+      "ORACLE_SEL": {
+        "overall": 87.5,
+        "TINY": 79.17,
+        "SMALL": 89.29,
+        "MEDIUM": 100.0,
+        "LARGE": 93.75,
+        "hard_tiny_recovered": 0,
+        "hard_tiny_total": 15
+      },
+      "FP_REMOVED": {
+        "overall": 87.5,
+        "TINY": 79.17,
+        "SMALL": 89.29,
+        "MEDIUM": 100.0,
+        "LARGE": 93.75,
+        "hard_tiny_recovered": 0,
+        "hard_tiny_total": 15
+      }
+    },
+    "global_empty_recovered": {
+      "PREDICTED": 1,
+      "ORACLE_SEL": 1,
+      "FP_REMOVED": 1,
+      "total": 5
+    },
+    "fp_burden": {
+      "PREDICTED_mean": 7.7767,
+      "ORACLE_SEL_mean": 0.6796,
+      "FP_REMOVED_mean": 0.6893
+    },
+    "labels": {
+      "A": "ORACLE_SELECTION_WITHIN_FROZEN_CANDIDATE_SET__DIAGNOSTIC_ONLY",
+      "B": "GT_ASSISTED_FALSE_POSITIVE_DECOMPOSITION__NON_DEPLOYABLE"
+    },
+    "tiny_recall": {
+      "GLOBAL": 79.17,
+      "PREDICTED": 79.17,
+      "ORACLE_SEL": 79.17
+    }
+  },
+  "section9_failure_attribution": {
+    "evidence": {
+      "A_supply_zero_proposal_rate": 0.5197,
+      "A_tiny_zero_proposal_rate": 0.7917000000000001,
+      "B_geometry_cov90_rate_among_covered": 0.8219,
+      "B_fraction_predicted_roi_enough_context": 0.8219,
+      "C_excess_background_mean": 0.002585,
+      "C_background_proposal_fraction": 0.856,
+      "C_fp_burden_per_image_predicted": 7.7767,
+      "D_good_not_top_rank_rate": 0.43420000000000003,
+      "D_oracle_sel_tiny_recall_lift_over_predicted": 0.0,
+      "D_oracle_sel_dice_lift_over_predicted": 0.2119,
+      "D_fp_removed_dice_lift_over_predicted": 0.2103,
+      "E_refiner_crop_coverage_in_adequate_stratum": 0.8621,
+      "E_predicted_cov90_rate_in_adequate_stratum": 0.5333,
+      "E_n_components_adequate_stratum": 60
+    },
+    "mechanism_scores": {
+      "A_PROPOSAL_SUPPLY_RECALL_LIMITATION": 0.5197,
+      "B_PROPOSAL_GEOMETRY_LIMITATION": 0.0855,
+      "C_PROPOSAL_CONTAMINATION_LIMITATION": 0.856,
+      "D_PROPOSAL_RANKING_LIMITATION": 0.0,
+      "E_REFINER_DOMAIN_SHIFT_ON_PREDICTED_CROPS": 0.0
+    },
+    "dominant_mechanism": "F_MIXED_BOTTLENECK",
+    "primary_mechanism": "A_PROPOSAL_SUPPLY_RECALL_LIMITATION",
+    "secondary_mechanism": "C_PROPOSAL_CONTAMINATION_LIMITATION",
+    "refuted_mechanisms": [
+      "B_PROPOSAL_GEOMETRY_LIMITATION",
+      "D_PROPOSAL_RANKING_LIMITATION",
+      "E_REFINER_DOMAIN_SHIFT_ON_PREDICTED_CROPS"
+    ],
+    "rule_note": "A_score = zero-proposal-component rate (supply/recall). C_score = background-proposal fraction (precision/FP-contamination). B_score = (1 - fraction predicted ROI contains >=0.90 GT context) among covered components (geometry). D_score = oracle-selection tiny-recall lift over PREDICTED (ranking). E_score = max(0, 0.85 - refiner-crop coverage) in COV_GE_0.90 stratum (domain shift). MIXED declared when A>=0.30 AND C>=0.30 (two-face localizer failure); recall (A) is primary per Phase-14 Step-2 (R=0), precision (C) secondary per Dice collapse."
+  },
+  "section10_h3_readiness": {
+    "status": "H3_NOT_READY__CAUSE_UNRESOLVED",
+    "eligible_axis": null,
+    "constraint": "If eligible, specify EXACTLY ONE scientific axis. Do NOT combine axes. Do NOT train H3 now.",
+    "phase15_status": "NOT_STARTED_AND_NOT_AUTHORIZED",
+    "h3_training": "NOT_STARTED"
+  },
+  "counters": {
+    "search_sweeps": 0,
+    "tuning_runs": 0,
+    "checkpoint_comparisons": 0,
+    "retraining": 0,
+    "h3_training": 0,
+    "test_reads": 0,
+    "external_test_reads": 0
+  },
+  "governance": {
+    "no_training": true,
+    "no_h3": true,
+    "no_threshold_search": true,
+    "no_proposal_search": true,
+    "no_checkpoint_change": true,
+    "external_data_used": false,
+    "test_split_reads": 0,
+    "phase15_status": "NOT_STARTED_AND_NOT_AUTHORIZED"
+  },
+  "generated_utc": "2026-09-25T08:05:00Z",
+  "artifact_inventory_sha256": {
+    "section0_timestamp_correction": "fb2247fd7ae64a945cebea43b58446b6919a9ebbff11dab52385fd9f988eba5a",
+    "section1_protocol_json": "305fc457141944b6d1184a2785c8bea319eebd7f08bfb9e46c944aa0325842ee",
+    "section1_protocol_md": "75177982c709289b8801ed205b7d78eecdf835e6d52ab2486f2dfe454799bb03",
+    "diagnostic_evaluator_py": "951c627efc721b9ae14edf5cddf15d7af46a3326e779c2216c58c2e8d4d3904b",
+    "table_proposal_level": "7632a261f647d016feafde80b887769aa631bc3a9358468ab2a465742f22c26c",
+    "table_component_level": "59605f3b05c34031cadcfc8b39160a330d4b6e70fe87abafe72a6cc555e9acb7",
+    "table_geometry_bridge": "2327a109a46f5c9ebc9edbed1609e669ed8a0baca35353a84fb5e59d8f484d07",
+    "table_conditional_refiner": "149e54a2524b2f86553c67e8eba82b884087555543f81eb789daa2884c67b0dd",
+    "table_image_summary": "d446828877cb18f51794686c7f38ca7b44026c5d3ed22b6ad23e4a8dab00b6be",
+    "execution_state_json": "d440bdf9d96f774c2f1cb2cd5216501e58b10fbe35bdcbd72d384cfb4e1bb0d7",
+    "root_cause_json": "5b80256b9d866b922b2d865cbca74cec8fe8e39066be6870a2ad6e6db6afd9d4",
+    "root_cause_json_note": "SHA-256 of phase14_diag_root_cause.json with the artifact_inventory_sha256 block removed (additive-only appendix); json.dumps(indent=2, ensure_ascii=False, default=str).",
+    "root_cause_md": "cb821a8230ba0fb77e593d58e45598d576441f30031fac698ff107281a10fba9",
+    "summary_proposal_supply_by_stratum": "a8ae0afe0611f2f19bd0824b53f878a3f83a889916ae5346a2a59663bcbefd07",
+    "summary_geometry_bridge": "f399b856d652bf108c84377af12b2727d7ba0e5f5f60ae44723fdedfa90d4cce",
+    "summary_conditional_refiner_by_coverage": "1b8226fe59d034f9843618be3fc94ab4553f614b73c746318d0543d7ff82ca91",
+    "summary_counterfactual": "07394bde4ca3c66d6deba3fc6b491cc806fbc05f9cfaa94e3b593bed8c7358e8",
+    "frozen_checkpoints": {
+      "global_unetpp_phase10": "ec7eb13f32e43af27eab7fc617bd1a2a8fcce1d6651a1b4a3653f3e4d1283269",
+      "regional_refiner_phase14_epoch56": "2e09e3a9c39c731687db1a9fef0c80881ed6235e4cda070bb4b8b382caa45daa",
+      "stage4d_localizer_phase13b_epoch53": "7673c34a2f2c86eca2e45c1bc6abe77842d17cd09f122f2da0f2d414ca492273"
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+ "artifact": "phase25a_final_refit_epoch_rule",
+ "phase": "25A",
+ "purpose": "persist the median-of-folds refit epoch rule BEFORE the final refit so the final epoch count cannot be selected from observed performance",
+ "rule": "FINAL_REFIT_EPOCHS = integer median of the three fold best epochs",
+ "fold_best_epochs": {
+  "fold0": 34,
+  "fold1": 27,
+  "fold2": 18
+ },
+ "sorted_best_epochs": [
+  18,
+  27,
+  34
+ ],
+ "median_index_used": 1,
+ "final_refit_epochs": 27,
+ "median_derivation": "sorted [18, 27, 34] -> middle element 27",
+ "no_early_stopping_in_final_refit": true,
+ "final_refit_population": "ALL action-available ROUTER_DEVELOPMENT samples",
+ "final_refit_uses_holdout": false,
+ "final_refit_uses_val": false,
+ "final_refit_uses_test": false,
+ "persisted_before_final_refit": true,
+ "fold_run_sha256": {
+  "fold0": "f6a2d08e6e91282c10c451484dd5c76856ddb2068178c7a8d31654b22e1c7190",
+  "fold1": "b520969a05b7d51993d4a09edaa9ca5e16826a82e934382c27074c98b58a837a",
+  "fold2": "0a5b8cc470aaf7c3417c80c631f8dcf7e553166535414b11dde42cd956600a21"
+ },
+ "verdict": "PHASE25A_FINAL_REFIT_EPOCH_RULE_FROZEN",
+ "generated_utc": "2026-09-30T07:28:54.166836+00:00",
+ "test_reads": 0
+}

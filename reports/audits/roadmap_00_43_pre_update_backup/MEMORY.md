@@ -1,0 +1,270 @@
+# MEMORY — Operational Continuity Handoff
+
+## Phase25E policy evaluation complete — current state (2026-10-01)
+
+Phase25D: **COMPLETE_CANONICAL / TRAINED / FROZEN**. Phase25E resource-gate specification: **COMPLETE_FROZEN** (`ra_medfilm_barr_resource_gate_v1_0`). Phase25E scientific policy evaluation: **COMPLETE_FROZEN**. Phase25F post-safety specification v1.0 (`ra_medfilm_barr_post_safety_v1_0`): **COMPLETE_FROZEN** (execution **COMPLETE_CANONICAL**). Phase25G specification v1.1: **COMPLETE_FROZEN**; Phase25G: **COMPLETE_CANONICAL** (ROUTER_DEVELOPMENT only; ROUTER_HOLDOUT RESERVED_UNOPENED_FOR_PHASE30). **Phase25 = COMPLETE_CANONICAL**; Phase26 = **ELIGIBLE_NOT_STARTED**.
+
+The normalized incremental action cost is exactly `3,230,662,656 / 31,551,740,928` (`1051648/10270749`, approximately `0.10239253242387678`) for available actions; unavailable actions cost zero and are FORCED_SKIP. Pre-gate router overhead is `36,160` Conv/Linear MACs, separate from action cost. All compute is **ANALYTICAL MAC LOWER BOUND**, never measured latency.
+
+Lambdas `{0.00, 0.25, 0.50, 1.00}` and budgets `{0%, 10%, 25%, 50%, 100%}` are frozen. All 4,957 DEV rows are action-available; exact top-K counts are `{0, 495, 1239, 2478, 4957}`. Rank by score descending, sample_id ascending. Random priorities (PCG64 seed 42) and 45 label-blind memberships were frozen before outcomes. Under constant action cost, C7 and C8 have **identical membership at every fixed budget and lambda**; they are not independent evidence.
+
+The 45 frozen OOF memberships were joined to the frozen Phase25C paired-gain outcomes on ROUTER_DEVELOPMENT only (4957). Statistics (domain-stratified group bootstrap, 2000 replicates, seed 42) and final-router DEV thresholds were frozen **before** the outcome join. Result: under the frozen PRIMARY statistic (raw paired two-sided p), C7 **significantly beats every simple GT-free proxy on precision@budget at the 10% and 25% budgets**, the advantage shrinking to non-significance at 50% (Holm-Bonferroni retained only as a secondary sensitivity: 10%); preservation holds (macro-domain lower 95% CI bound > -0.005, no domain collapse); a usable accuracy-compute frontier exists. **H1 is scoped to the tight and medium budgets (10%/25%).**
+
+The frozen final benefit-router checkpoint was loaded once and run in a single outcome-blind forward pass over the 4,957 ROUTER_DEVELOPMENT feature rows (no global-model forward, no regional-refiner forward, no training); no lambda was selected; the gate was not calibrated for deployment beyond the frozen DEV-score thresholds; C9 post-safety was not evaluated. ROUTER_HOLDOUT and VAL808 remain untouched; TEST remains locked until Phase39.
+
+Executed scientific notebook: `notebooks/phasewise/phase_25e_resource_gate/phase25e_resource_gate.ipynb`; SHA-256 `b587cc925fa178f1a0eaaa986caa3cb77dbc71ecd9fd520312af7f2097091797` (3× byte-identical; post-reconciliation rebuild superseding the archived pre-reconciliation build SHA `e5d8f5657b43a18fd87e50bcf6f4834bcdd94dcbb2def0ef02ce720f0f1d7718`). Evidence: `reports/audits/phase25e_policy_evaluation_summary.json`, `reports/audits/phase25e_adjudication.json` (original closure), `reports/audits/phase25e_adjudication_reconciled.json` (PRIMARY adjudication, raw paired p), `reports/audits/phase25e_multiplicity_provenance_audit.json`, `reports/audits/phase25e_final_freeze.json`.
+
+Terminal: `PHASE25E_RESOURCE_GATE_POLICY_EVALUATION_COMPLETE__OOF_FIXED_BUDGET_FRONTIER_AND_FINAL_DEV_THRESHOLDS_FROZEN__PHASE25F_ELIGIBLE_NOT_STARTED`.
+
+## Phase25F post-safety specification v1.0 — COMPLETE_FROZEN (2026-10-01)
+
+Phase25F post-safety specification (`ra_medfilm_barr_post_safety_v1_0`): **COMPLETE_FROZEN**; Phase25F execution: **EXECUTION_ELIGIBLE_NOT_STARTED**. The first blocked Phase25F attempt (`PHASE25F_BLOCKED__POST_SAFETY_EXECUTION_SPEC_INCOMPLETE`; 54 blocking fields, 12 hard-stop conditions) is preserved verbatim as **BLOCKED_ATTEMPT_PROVENANCE** (no audit overwritten or deleted).
+
+The repair prospectively froze the exact S_omega input vector (20-D = 16 numeric + 4 one-hot task), the leakage-safe OOF post-refinement source (Phase25C fold-specific `_tmp_refined_crop_prob_<DOMAIN>.npy`, provenance-proven and promoted to `data_cache/phase25f_barr_post_safety_v1_0/oof_refined_crop_prob.npy`), `BARRPostSafetyV1` (`Linear(20,32)->SiLU->Linear(32,16)->SiLU->Linear(16,1)`, **1,217** trainable parameters, raw logit output), the training objective (`BCEWithLogitsLoss`, mean reduction, no class weighting / pos_weight / label smoothing), the reused Phase25D five-fold CV identity manifests (FIT / EARLY_STOP / OUTER_TARGET), FIT-only ddof=0 normalization of the 16 numeric features, the fixed ACCEPT/FALLBACK threshold (`sigmoid >= 0.50` / `logit >= 0.0`; distinct from the 0.30 ROI-proposal and 0.50 segmentation-output thresholds), the Phase25E SKIP interaction state machine, the final-refit rule (exact median of the five best epochs, seed 42, LAST_FIXED_EPOCH checkpoint), and A7/A8 ownership (Phase25F constructs the C9 artifact on ROUTER_DEVELOPMENT; Phase25G owns the integrated A7-vs-A8 / C8-vs-C9 evaluation).
+
+All 73 specification fields are now complete; `blocking_fields = []` and `hard_stop_conditions_triggered = []`. **No model was constructed, no training ran, no forward pass occurred, no refinement or DeltaDice was regenerated, and no threshold was tuned.** ROUTER_HOLDOUT, VAL808 and TEST remain closed; Phase25G is NOT_STARTED.
+
+Evidence: `reports/audits/phase25f_post_safety_spec_completion_v1_0.json`, `phase25f_oof_refinement_source_contract_v1_0.json`, `phase25f_oof_refinement_source_promotion.json`, `phase25f_feature_equation_contract_v1_0.json`, `phase25f_feature_cache_determinism.json`, `phase25f_target_contract_v1_0.json`, `phase25f_architecture_contract_v1_0.json`, `phase25f_training_contract_v1_0.json`, `phase25f_decision_threshold_contract_v1_0.json`, `phase25f_state_machine_contract_v1_0.json`, `phase25f_final_refit_contract_v1_0.json`, `phase25f_a7_a8_ownership_ruling_v1_0.json`, `phase25f_spec_repair_no_execution.json`, `phase25f_spec_repair_final_check.json`.
+
+Terminal: `PHASE25F_POST_SAFETY_SPEC_V1_0_COMPLETE__OOF_FEATURE_SOURCE_ARCHITECTURE_TRAINING_THRESHOLD_AND_OWNERSHIP_FROZEN__PHASE25F_EXECUTION_ELIGIBLE_NOT_STARTED`.
+
+## Phase25F post-safety execution — COMPLETE_CANONICAL (2026-10-01)
+
+`BARRPostSafetyV1` (`Linear(20,32)->SiLU->Linear(32,16)->SiLU->Linear(16,1)`, **1,217** trainable parameters, raw logit) was constructed and trained for exactly **five frozen CV logical runs** (seeds 54000–54004; reused Phase25D FIT/EARLY_STOP/OUTER_TARGET manifests) plus **one all-DEV final refit** (`FINAL_SAFETY_EPOCHS = 23` = exact integer median of the five selected epochs; seed 42; LAST_FIXED_EPOCH checkpoint). **4,957 OOF safety logits / probabilities / decisions** were produced on ROUTER_DEVELOPMENT and are bit-reproducible (3x replay, max abs difference 0.0). The **C9 post-safety state/decision artifact** (20 frozen C8 lambda×budget policies × 4,957 rows) was constructed. Classifier-level metrics describe S_omega itself at the fixed 0.50 threshold; they are **not** segmentation results and **not** a preservation proof.
+
+**Scope**: no A7-vs-A8 segmentation comparison, no C8-vs-C9 system-performance comparison, no preservation adjudication, no new budget/lambda selection, no threshold tuning. ROUTER_HOLDOUT, VAL808 and TEST were never read; TEST stays locked until Phase39. Phase25G owns the integrated controlled development evaluation and is **ELIGIBLE_NOT_STARTED**.
+
+Executed notebook: `notebooks/phasewise/phase_25f_post_safety/phase25f_post_safety_execution.ipynb` (41 sections; 9 figures; 3x byte-identical SHA-256 `1ba9c08bee97e95926994b11268017e8d6b45150929ebe6edfca4dfe95715c90`).
+
+Terminal: `PHASE25F_POST_SAFETY_EXECUTION_COMPLETE__OOF_SAFETY_PREDICTIONS_FINAL_CHECKPOINT_AND_C9_ARTIFACTS_FROZEN__PHASE25G_ELIGIBLE_NOT_STARTED`.
+
+## Phase25G specification v1.1 — COMPLETE_FROZEN (2026-10-01)
+
+Phase25F execution: **COMPLETE_CANONICAL**. Phase25G specification v1.1 (`ra_medfilm_barr_integrated_evaluation_v1_0`): **COMPLETE_FROZEN**; Phase25G: **COMPLETE_CANONICAL** (ROUTER_DEVELOPMENT only).
+
+**SUPERVISOR RULING (G1)**: ROUTER_HOLDOUT phase ownership = **Phase30** (Final Development Validation Benchmark), one-shot clean out-of-sample development validation. ROUTER_HOLDOUT = **RESERVED_UNOPENED_FOR_PHASE30**; it MUST NOT be opened by Phase25G, Phase26, Phase27, Phase28 or Phase29. Phase30 is the first eligible owner, subject to a separate pre-execution one-shot protocol freeze. The ruling is additive / prospective / pre-outcome (`science_changed = false`) and resolves the single Phase25G governance blocker.
+
+Phase25G population = **ROUTER_DEVELOPMENT (4957)**; evaluation sources: Phase25C OOF delta_dice, Phase25E frozen prospective C8 memberships, Phase25F OOF S_omega probabilities/decisions and the Phase25F C9 manifest (no new model inference). The repaired completeness matrix (`phase25g_specification_completeness_v1_1.csv`) has 28 rows, `blocking_fields = []`, `hard_stop_conditions = []`; the five conditional holdout-execution fields are marked `NOT_APPLICABLE_TO_PHASE25G__HOLDOUT_RESERVED_FOR_PHASE30`.
+
+**Blocked provenance preserved**: the pre-ruling state `PHASE25G_BLOCKED__ONE_SHOT_HOLDOUT_OWNERSHIP_UNRESOLVED` (spec `INCOMPLETE__HOLDOUT_OWNERSHIP_UNRESOLVED`, blocking field `ROUTER_HOLDOUT ownership`) and its artifacts remain verbatim (no audit or table overwritten).
+
+Current state: **Phase25 = COMPLETE_CANONICAL (25A-25G)**; Phase26 = ELIGIBLE_NOT_STARTED; ROUTER_HOLDOUT = RESERVED_UNOPENED_FOR_PHASE30; Phase30 = NOT_STARTED; VAL808 = UNOPENED / continuity benchmark; TEST = LOCKED UNTIL PHASE39.
+
+Evidence: `reports/audits/phase25g_router_holdout_ownership_supervisor_ruling_v1_0.json`, `phase25g_holdout_reservation_for_phase30.json`, `phase25g_specification_repair_addendum.json`, `phase25g_specification_final_check_v1_1.json`, `phase25g_specification_governance_v1_1.json`, `phase25g_holdout_ownership_repair_final_check.json`, `phase30_router_holdout_deferred_contract_stub.json`.
+
+Terminal: `PHASE25G_SPEC_V1_1_COMPLETE__ROUTER_HOLDOUT_RESERVED_FOR_PHASE30__DEV_ONLY_INTEGRATED_EVALUATION_FROZEN__PHASE25G_EXECUTION_ELIGIBLE_NOT_STARTED`.
+
+## Phase25G integrated controlled development evaluation — COMPLETE_CANONICAL (2026-10-01)
+
+Phase25G (`CANONICAL_PHASE25G_INTEGRATED_CONTROLLED_DEVELOPMENT_EVALUATION`, spec `ra_medfilm_barr_integrated_evaluation_v1_0`, repair v1.1) evaluated **A7 (C8: learned-gain + resource gate, always accept)** against **A8 (C9: same membership + S_omega post-safety)** over the complete frozen 20-policy grid (lambda {0.00,0.25,0.50,1.00} x budget {0,10,25,50,100%}) on **ROUTER_DEVELOPMENT (n=4957)**, reconstructed entirely from the frozen Phase25C OOF `delta_dice`, the Phase25E prospective C8 memberships and the Phase25F C9 decision manifest.
+
+**No model was constructed, no training ran, no forward pass occurred, no refinement or DeltaDice was regenerated, and no threshold was tuned.** Evidence class = `CONTROLLED_META_LEVEL_OOF_DEVELOPMENT_EVIDENCE`.
+
+**Lambda redundancy**: because the action cost is constant, C8 membership is structurally identical across lambda for a fixed budget — the four lambda replicas are **DUPLICATE MEMBERSHIP**, so only **5 unique membership sets** carry inferential weight.
+
+**Results (5 unique budgets)**: post-safety (A8) weakly improves the macro-domain Dice delta at every informative budget and **reduces harmful replacements** (delta_dice < 0) monotonically with budget; preservation holds for every frozen policy (macro-domain lower 95% CI > -0.005). H3 is reported **descriptively only** — no numeric success threshold was pre-registered (`H3_NUMERICAL_SUCCESS_THRESHOLD_NOT_PRE_REGISTERED = true`). S_omega adds an analytical `a * 1168` MAC increment and **saves no compute**.
+
+**No policy selected**: `lambda_selected = false`, `best_budget_selected = false`, `policy_selected = false`. R1/R2/R3/F1 belong to Phase28; C11 = `C11_NOT_EXECUTED`.
+
+Notebook: `notebooks/phasewise/phase_25g_controlled_validation/phase25g_integrated_controlled_evaluation.ipynb` (SHA-256 `5f6b6642fe013d9ad69cac8a0e319d5f86362d8457febdab42fde6cbe14c4487`, 41 sections, 9 figures, 3x byte-identical).
+
+Evidence: `reports/audits/phase25g_final_freeze.json`, `phase25g_reconstruction_integrity.json`, `phase25g_a7_a8_identity_control_audit.json`, `phase25g_preservation_adjudication.json`, `phase25g_h3_result.json`, `phase25g_compute_accounting_audit.json`, `phase25g_notebook_determinism.json`, `reports/tables/phase25g_c8_c9_comparison.csv`.
+
+Current state: **Phase25 = COMPLETE_CANONICAL (25A-25G)**; Phase26 = ELIGIBLE_NOT_STARTED; ROUTER_HOLDOUT = RESERVED_UNOPENED_FOR_PHASE30; Phase30 = NOT_STARTED; VAL808 = UNOPENED; TEST = LOCKED UNTIL PHASE39.
+
+Terminal: `PHASE25G_INTEGRATED_CONTROLLED_DEVELOPMENT_EVALUATION_COMPLETE__A7_A8_C8_C9_PRESERVATION_AND_H3_FROZEN__PHASE25_COMPLETE__PHASE26_ELIGIBLE_NOT_STARTED`.
+
+
+
+
+
+**Resume-in-5-minutes page.** Full detail: [MEMORY_ARCHIVE_pre_2026_09_30.md](MEMORY_ARCHIVE_pre_2026_09_30.md),
+`.workbuddy-ai/memory/` (dated logs + `NOTES_ARCHIVE.md`), [ARCHITECTURE.md](ARCHITECTURE.md),
+[DESIGN.md](DESIGN.md), [RULES.md](RULES.md), [PRD.md](PRD.md), [TASKS.md](TASKS.md).
+
+**Last verified:** 2026-10-01 — Phase25G integrated controlled development evaluation COMPLETE_CANONICAL (A7 vs A8 / C8 vs C9 / preservation / H3 frozen; Phase25 = COMPLETE_CANONICAL; Phase26 ELIGIBLE_NOT_STARTED; ROUTER_HOLDOUT RESERVED_UNOPENED_FOR_PHASE30; TEST LOCKED UNTIL PHASE39)
+**Method:** **RA-MedFiLM-BARR** (v1.1 architecture)
+
+## STATUS
+
+Phase 00–23 COMPLETE · **Phase 24 COMPLETE** · Phase 24 v1.1 historical · **Phase 24 v1.2
+(router feature spec) COMPLETE** (D1+D2 adjudicated) · **Phase 25A COMPLETE canonical** ·
+Phase 25A ROI-0.50 NONCANONICAL_PROTOCOL_DEVIATION (preserved only) · Phase 25B blocked
+attempt BLOCKED_ATTEMPT_PROVENANCE · **Phase 25B COMPLETE canonical (202-D GT-free feature
+cache frozen; handoff semantics repaired)** · **Phase 25C COMPLETE canonical (4957 OOF paired
+refinement-gain labels frozen)** · **Phase 25D blocked attempt BLOCKED_ATTEMPT_PROVENANCE**
+· **Phase 25D router training spec v1.2.1 COMPLETE frozen** · **Phase 25D
+COMPLETE canonical** (5 CV folds + final refit + 4957 OOF predictions + notebook) · **Phase25E specification COMPLETE_FROZEN** · **Phase25E scientific policy evaluation COMPLETE_FROZEN** · Phase 25F post-safety specification COMPLETE_FROZEN (execution EXECUTION_ELIGIBLE_NOT_STARTED); Phase 25G NOT_STARTED · Phase 26+ roadmap
+retained · **TEST CLOSED until Phase 39.**
+
+## TERMINAL
+
+Scientific terminal (Phase 25C):
+
+```
+PHASE25C_OOF_PAIRED_REFINEMENT_GAIN_LABELS_COMPLETE__PHASE25D_BENEFIT_ROUTER_ELIGIBLE_NOT_STARTED
+```
+
+Historical Phase25C governance terminal (superseded):
+
+```
+PHASE25C_GOVERNANCE_CLEANUP_COMPLETE__PHASE25D_BENEFIT_ROUTER_ELIGIBLE_NOT_STARTED
+```
+
+Historical Phase25D spec-repair terminal (before accepted training):
+
+```
+PHASE25D_ROUTER_TRAINING_SPEC_V1_2_1_COMPLETE__CV_CHECKPOINT_TARGET_NORMALIZATION_AND_FINAL_REFIT_RULES_FROZEN__PHASE25D_REENTRY_ELIGIBLE_NOT_STARTED
+```
+
+Phase 25D completion terminal:
+
+```
+PHASE25D_BENEFIT_ROUTER_COMPLETE__OOF_DELTA_PREDICTIONS_AND_FINAL_ROUTER_FROZEN__PHASE25E_ELIGIBLE_NOT_STARTED
+```
+
+**Phase 25D is `COMPLETE canonical`.** 5 CV folds trained (best epochs: 37/34/139/199/80),
+FINAL_ROUTER_EPOCHS = 80, 4957 OOF Delta_hat predictions frozen, final checkpoint saved.
+OOF metrics: Huber 7.11e-05, MAE 0.00664, Pearson 0.300, R2 = 0.087657630443573 (≈0.088 to 3 decimals). Notebook 3x deterministic.
+Blocked attempt preserved.
+
+Phase 25E policy-evaluation terminal:
+
+```
+PHASE25E_RESOURCE_GATE_POLICY_EVALUATION_COMPLETE__OOF_FIXED_BUDGET_FRONTIER_AND_FINAL_DEV_THRESHOLDS_FROZEN__PHASE25F_ELIGIBLE_NOT_STARTED
+```
+
+**Phase 25E scientific policy evaluation is `COMPLETE_FROZEN`.** 45 frozen OOF memberships joined to
+frozen Phase25C outcomes on ROUTER_DEVELOPMENT only. S1/H1 = **PARTIAL** (significant vs all simple
+GT-free proxies at 10% and 25% budgets under the frozen primary raw paired p; non-significant at 50%); S2 preservation satisfied; S3 frontier
+measured; no domain collapse. No lambda selected; exactly one outcome-blind forward pass of the frozen final router over the DEV rows (no global-model or refiner forward, no training); holdout/VAL808/TEST untouched.
+Phase 25F post-safety specification v1.0 is `COMPLETE_FROZEN`; Phase 25F execution is `COMPLETE_CANONICAL`.
+
+(Superseded: `PHASE25B_HANDOFF_SEMANTICS_REPAIRED__PHASE25C_OOF_PAIRED_GAIN_LABEL_GENERATION_ELIGIBLE_NOT_STARTED`.)
+
+## DOWNSTREAM STAGE OWNERSHIP (verified 2026-10-01; Phase25D COMPLETE canonical)
+
+- **Phase 25C = OOF paired refinement-gain label generation — COMPLETE canonical.** Used
+  fold-specific canonical ROI-0.30 refiners on untouched outer folds to compute leakage-safe OOF
+  `Dice_global`, `Dice_candidate_refined`, `DeltaDice = Dice_cand - Dice_global`, and
+  beneficial/harmful/neutral categories. GT used only for label creation. Did **NOT** train the
+  router and did **NOT** train the task embedding. `global_model_forward_passes = 0` (Phase-25B
+  global cache reused).
+- **Phase 25D = benefit-router training.** Joined Phase-25B 202-D features + Phase-25C labels by
+  `sample_id` and trained `BARRBenefitRouterV1` including its learned `Embedding(4,16)`
+  (202 numeric + 16 task-embedding = 218 router input dims). The **16-D task embedding belongs
+  to Phase 25D only.** Phase25D is **COMPLETE canonical**. It trained BARRBenefitRouterV1 and its learned Embedding(4,16).
+- Phase 25C classification: `PHASE25C_EXECUTED_EVIDENCE`. Documentation/governance repair of
+  Phase 25B was separately governed: `science_changed = false`, `feature_cache_changed = false`.
+- **Interpretation discipline (Phase 25C).** Phase25C shows **strongly heterogeneous paired
+  refinement gain**. Most samples are neutral under the pre-registered thresholds, while both
+  beneficial and harmful cases exist. This heterogeneity motivates benefit-aware selective routing.
+  Aggregate behaviour of earlier regional procedures belongs to prior Phase22 evidence and must not
+  be conflated with the Phase25C OOF dedicated-refiner result.
+
+## CANONICAL SHAs
+
+- Phase25D canonical notebook: `733ff56a2b67e1427772ed49badc713c75ac309c2e8af27cbce2f604b6acfc63`
+- Phase25D final checkpoint: `8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b`
+- Phase25D OOF predictions: `837be08e569053676b71d1ab216ff604184b2b61df567cca45e6f8a5546d4441`
+- Phase25D final history: `a5f1c8bc95da53fc8ba3cca794339a380c9354c3e4095f8fcd69a503edb39247`
+- Phase25E scientific policy-evaluation notebook: `b587cc925fa178f1a0eaaa986caa3cb77dbc71ecd9fd520312af7f2097091797` (3× byte-identical; 8/8 embedded PNG valid)
+- Phase25E bootstrap plan: `data_cache/phase25e_barr_resource_gate_v1_0/phase25e_bootstrap_plan_v1_0.npz` (plan SHA `918e971cfe5ac20a0c2306548604938a1a31e4cab210cff255141d7e65f39861`)
+- Phase25E final-router DEV thresholds: `reports/tables/phase25e_final_router_dev_thresholds.csv`
+- PRE_NOTEBOOK_COMPLIANCE_REPAIR_PROVENANCE = `29518fc13f3de60113e1110a12a3f38bac5f54c246751503fe29e595f6dbe997`
+
+- Phase-25A notebook `fd2bab0168eb3477125c655ada1bd5eb4b060f41a5b354fdbaaf6fd621dfb2dd`
+- Phase-25A final refiner checkpoint `6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109`
+- Phase-21 global checkpoint `286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7`
+- Phase-25B notebook: `acdfe90a5042ef364c5ab28ec67ecd3fe3146b30e1e5715a2631a36deb4dc38a` (3× byte-identical; pre-repair `11a1a62a…` retained as provenance)
+- Phase-25B feature cache: `data_cache/phase25b_barr_pre_refinement_features_v1_2/` (4957 × 202)
+- Phase-25C OOF label table: `data_cache/phase25c_barr_oof_paired_gain_labels_v1_2/phase25c_oof_paired_gain_labels.csv` `fd6ca32c33a3bddb75f986b1350d54ec35b11d3bf5cb0fdc029962a5aa94865f` (4957 rows)
+- Phase-25C notebook: `564105eabfdb4cfb12613ca65cab7dc0c4410bea667239e5c1302e15060db613` (3× byte-identical; 8/8 embedded PNG valid)
+- Phase-24 v1.1 provenance notebook `612d71700c1c1a45b94b8fcb8a3ff427bf32f6f6453130febeec49c6ec78caef`
+- Phase-24 v1.2 notebook: `reports/audits/phase24_v1_2_notebook_determinism.json`
+
+Costs: Global MedFiLM **3,523,001** params · BARRRegionalRefinerV1 **1,276,401** params /
+**3.230663** GMAC · BARRBenefitRouterV1 **218** input dims / **36,801** trainable
+params (linear core 36,353 = bookkeeping only); **TRAINED / FROZEN in Phase25D**.
+
+## THRESHOLD SEMANTICS
+
+```
+ROI proposal        = 0.30  (bbox -> action_available / FORCED_SKIP)
+segmentation output = 0.50  (final mask / Dice / IoU)
+```
+
+## HARD RULES
+
+1. **TEST CLOSED** until Phase 39; metadata only; `test_reads = 0`.
+2. **ROUTER_HOLDOUT outcomes CLOSED** until the designated one-shot evaluation.
+3. **VAL808 continuity/development only** — not router training data.
+4. **Never silently resolve a frozen-value conflict** — report `CHECK_REQUIRED`.
+5. **Additive provenance only**; never rename/delete a frozen artifact without a migration record.
+6. ROI 0.30 ≠ segmentation 0.50.
+7. Router features are **pre-refinement + GT-free**; no refined features enter the router.
+8. No architecture/hyperparameter change based on holdout outcomes.
+9. **Blocked phase ⇒ no fake completion notebook.**
+10. Completed scientific phase ⇒ **real executed notebook** (full epoch tables).
+11. Incomplete specification ⇒ **STOP before execution**.
+12. `RA-MedFiLM-BARR`; max novelty **Level 2**, scoped to the integrated GT-free paired-gain
+    router. Forbidden: counterfactual / certified / causal / guaranteed.
+13. Phase-21/22 baselines **TIED**; never write "FiLM caused +X".
+
+## GOTCHAS
+
+- **pandas object-dtype bool inversion** — cast to `bool` before `~` in fail-closed checks.
+- **Assert artifact existence after builders** — exit code ≠ file on disk.
+- **No notebook circular freeze dependency.**
+- **Atomic checkpoint writes** (temp-then-rename).
+- **Restore RNG on legitimate resume.**
+- **Deterministic notebooks:** merge consecutive same-name `stream` outputs *before*
+  normalising; also normalise `metadata.execution` + `0x…` addresses; fix Styler UUIDs.
+  Never normalise scientific numeric content.
+- **Harness tears down the process tree every ~2–3.5 h** — a clean log with no traceback is
+  external teardown, not a crash. `tasklist` is not a liveness check.
+
+## SEE ALSO
+
+`reports/audits/antigravity_current_state.json` · `PROJECT_MASTER_PLAN.md` §7 ·
+`notebooks/phasewise/PHASE_INDEX.md`.
+
+**Cross-links:** [PRD.md](PRD.md) · [ARCHITECTURE.md](ARCHITECTURE.md) ·
+[RULES.md](RULES.md) · [DESIGN.md](DESIGN.md) · [TASKS.md](TASKS.md)
+
+<!-- PHASE26_SPEC_V1_0_REPAIR -->
+## Phase26 specification repair — COMPLETE_FROZEN (2026-10-02)
+
+**SUPERVISOR SPECIFICATION REPAIR** — `SUPERVISOR_SPECIFICATION_REPAIR__PHASE26_OPERATIONAL_REDEFINITION`
+(revision `ra_medfilm_barr_phase26_integration_v1_0`; `science_changed = false`, `model_weights_changed = false`).
+
+- Phase26 legacy roadmap title **"Full Four-Domain RA-MedFiLM-BARR Training"** =
+  **PRESERVED_PROVENANCE** (`LEGACY_ROADMAP_TITLE`).
+- Canonical Phase26 operational title = **Full Four-Domain RA-MedFiLM-BARR Integration & Canonical Bundle Freeze**.
+- `phase26_training_required = false` · `phase26_training_mode = ASSEMBLY_ONLY__NO_PARAMETER_OPTIMIZATION`.
+  Phase26 performs **NO new parameter optimization** (no training / no fine-tuning / no backward /
+  no optimizer / no model forward). Canonical spec: [`docs/phase26_training_spec.md`](../docs/phase26_training_spec.md).
+- All four learned components **FROZEN_NO_GRAD**: G (Phase21), R_psi (Phase25A ROI-0.30), B_phi (Phase25D),
+  S_omega (Phase25F); fusion = deterministic. `trainable_parameter_set = EMPTY`.
+- `training_population = NONE` (n=0) → **holdout contamination risk RESOLVED**.
+- Canonical system variant = **A8/C9** · canonical budget = **25%** (= 0.25, DEV count 1239) ·
+  canonical lambda representative = **0.25** (`MEMBERSHIP_EQUIVALENT__NOT_PERFORMANCE_SELECTED`).
+- Exact final-router threshold bound (DEV-calibrated, budget 0.25 / lambda 0.25) in
+  `reports/audits/phase26_canonical_router_threshold_binding_v1_0.json`.
+- Completeness matrix repaired: `phase26_specification_completeness_v1_0.csv` = **49/49 defined, 0 blocking**.
+- **Phase26 spec = COMPLETE_FROZEN** · **Phase26 = EXECUTION_ELIGIBLE_NOT_STARTED**.
+- ROUTER_HOLDOUT = **RESERVED_UNOPENED_FOR_PHASE30** · VAL808 = UNOPENED · TEST = LOCKED UNTIL PHASE39 ·
+  Phase30 = NOT_STARTED.
+
+Terminal: `PHASE26_SPEC_V1_0_COMPLETE__MODULAR_INTEGRATION_NO_RETRAINING_AND_CANONICAL_25PCT_A8_POLICY_FROZEN__PHASE26_EXECUTION_ELIGIBLE_NOT_STARTED`.
+
+<!-- PHASE29_SPEC_V1_1 -->
+## Phase 29 specification — v1.1 (additive)
+
+* Phase29 specification = `COMPLETE_FROZEN_V1_1`
+* Phase29 = `EXECUTION_ELIGIBLE_NOT_STARTED`
+* GlobalMedFiLM fixed across seeds
+* BARR downstream stack seeds = 42 / 123 / 3407
+* `ROUTER_HOLDOUT` remains Phase30 only
+* TEST remains Phase39 only
+* Original blocked terminal `PHASE29_BLOCKED__REPRODUCIBILITY_TRAINING_SCOPE_UNRESOLVED` preserved as provenance.

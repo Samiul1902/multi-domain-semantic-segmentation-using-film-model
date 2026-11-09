@@ -1,0 +1,32 @@
+{
+ "artifact": "phase29_seed3407_somega_feature_contract",
+ "phase": 29,
+ "stage": "SEED_SPECIFIC_SOMEGA_FEATURES",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_phase29_repro_v1_1",
+ "generated_utc": "2026-10-02T20:19:34+00:00",
+ "master_seed": 3407,
+ "features_path": "data_cache\\phase29_seed3407\\phase29_seed3407_somega_features.npy",
+ "features_sha256": "e65a650d75b7eb1f4b7c89975af81a7f94047eab405e2f5a34781dc636556836",
+ "shape": [
+  4957,
+  20
+ ],
+ "dtype": "float32",
+ "nan_count": 0,
+ "inf_count": 0,
+ "P_g_source": "phase25f_barr_post_safety_v1_0/oof_global_crop_prob.npy (canonical fixed G)",
+ "P_r_source": "phase29_seed3407 R_psi OOF candidates",
+ "builder": "phase25f_post_safety_features.build_input_vector (frozen)",
+ "checks": {
+  "shape_4957_20": true,
+  "dtype_float32": true,
+  "finite": true,
+  "onehot_sums_to_one": true,
+  "feature_order_is_canonical": true,
+  "gt_derived_input": false
+ },
+ "n_failed": 1,
+ "blocked_terminal_if_fail": "PHASE29_PHASE_C_BLOCKED__SOMEGA_TRAINING_OR_OOF_FAILURE",
+ "all_pass": false
+}

@@ -1,0 +1,48 @@
+{
+ "artifact": "phase27_bootstrap_plan_freeze_v1_0",
+ "phase": "27",
+ "classification": "PHASE27_PRE_EXECUTION_PRESERVATION_AUDIT_SPECIFICATION",
+ "method": "RA-MedFiLM-BARR",
+ "governance_only": true,
+ "no_execution": true,
+ "stage": "BOOTSTRAP_PLAN_FREEZE",
+ "authorized_because": "Section 15 of the work order permits freezing the bootstrap draw plan BEFORE inference when group identifiers are obtainable from manifest metadata. Group identifiers ARE obtainable (KUB patient_id + declared grouping policy).",
+ "group_rule": "METADATA_ONLY_COMPOSITE_PATIENT_SINGLETON",
+ "group_rule_detail": "KUB -> PATIENT::<patient_id>; ISIC/BUSI/KVASIR -> SINGLETON::<dataset>::<sample_id>",
+ "group_rule_equivalence_evidence": "Metadata-only rule reproduces the canonical Phase24 group_key exactly on all 5832 TRAIN rows (4172 groups): all 16 RISK:: pHash groups are singletons, so pHash relabelling never merges rows and cannot affect group counts or bootstrap resampling.",
+ "plan_file": "data_cache/phase27_barr_preservation_v1_0/phase27_val808_bootstrap_plan_v1_0.npz",
+ "plan_file_sha256": "8d32bd3c9b18f03c39128593f287bd21d716d26e11eb90d80f6f9c0d0b450a93",
+ "group_manifest_file": "data_cache/phase27_barr_preservation_v1_0/phase27_val808_group_manifest_v1_0.csv",
+ "group_manifest_sha256": "481e705e53efa6cf1289f6da2a212fe2946c3d389390bcecdd28d5f08d9bd8bb",
+ "n_boot": 2000,
+ "seed": 42,
+ "rng": "numpy.random.Generator(numpy.random.PCG64(42))",
+ "draw_convention": "for rep in 0..1999: for stratum in [BUSI,ISIC,KUB,KVASIR]: draw len(groups_in_stratum) integer indices in [0,g) WITH REPLACEMENT (single PCG64(42) stream, stratum-sequential)",
+ "strata": [
+  "BUSI",
+  "ISIC",
+  "KUB",
+  "KVASIR"
+ ],
+ "strata_group_counts": {
+  "BUSI": 84,
+  "ISIC": 357,
+  "KUB": 111,
+  "KVASIR": 87
+ },
+ "total_groups": 639,
+ "n_new_bootstrap_samples": 0,
+ "bootstrap_plan_frozen_before_inference": true,
+ "checks": {
+  "plan_written": true,
+  "group_manifest_written": true,
+  "n_boot_2000": true,
+  "total_groups_639": true,
+  "strata_group_counts_match": true,
+  "rebuild_deterministic": true,
+  "metadata_only_no_image_read": true,
+  "no_model_constructed": true,
+  "frozen_before_inference": true
+ },
+ "all_pass": true
+}

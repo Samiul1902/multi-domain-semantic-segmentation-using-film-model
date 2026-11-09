@@ -1,0 +1,57 @@
+{
+ "artifact": "phase29_split_fold_stability_audit",
+ "phase": 29,
+ "classification": "PHASE29_SPLIT_FOLD_STABILITY_AUDIT",
+ "hard_blocker": true,
+ "question": "does Phase29 change ONLY optimization randomness, keeping data membership fixed?",
+ "preferred_scientific_interpretation": "FIX_DATA_PARTITIONS__CHANGE_TRAINING_RANDOMNESS_ONLY",
+ "preferred_interpretation_adopted": false,
+ "adoption_requires_authority": true,
+ "partitions_requiring_explicit_classification": {
+  "TRAIN_VAL_split": {
+   "status": "UNRESOLVED",
+   "authority_found": false
+  },
+  "ROUTER_DEVELOPMENT_ROUTER_HOLDOUT_split": {
+   "status": "FIXED_BY_GOVERNANCE",
+   "note": "ROUTER_HOLDOUT is never touched by Phase29; split is not regenerated",
+   "authority": "reports/audits/phase26_downstream_phase_boundary_audit.json"
+  },
+  "Phase25A_crossfit_folds": {
+   "status": "UNRESOLVED",
+   "canonical_derivation": "sha256('42::<group_key>') ordering with crossfit_seed=42",
+   "source": "reports/audits/phase25a_crossfit_protocol.json",
+   "source_sha256": "6868b5562fe02929e13d63905ca74a759e20dec3c01b14eef331e4cb948f55ce"
+  },
+  "Phase25D_outer_folds": {
+   "status": "UNRESOLVED",
+   "canonical_derivation": "StratifiedGroupKFold(n_splits=5, random_state=42)",
+   "source": "reports/audits/phase25d_cv_protocol_v1_2_1.json",
+   "source_sha256": "276e45f42fa00d74a5338dbef15ed990f548d1a992223e2afb2623c7fe08471e"
+  },
+  "Phase25D_FIT_EARLYSTOP_inner_roles": {
+   "status": "UNRESOLVED",
+   "canonical_derivation": "StratifiedGroupKFold(n_splits=10, random_state=4200+k)",
+   "source": "reports/audits/phase25d_frozen_training_spec_binding_v1_2_1.json",
+   "source_sha256": "f590b7170dad0a149d5b9c69a00dd88e76504466318599d2bbd8b3daf86ca6c6"
+  },
+  "Phase25F_folds": {
+   "status": "FIXED_BY_GOVERNANCE",
+   "canonical_derivation": "REUSE_EXACT Phase25D FIT/EARLY_STOP/OUTER_TARGET manifests",
+   "source": "reports/audits/phase25f_cv_manifest_reuse_contract_v1_0.json",
+   "source_sha256": "731376fd19d2fc922f5209fdf891a12f9db5ed0ddafc04f697fe5364e1d02533",
+   "invent_new_split": false
+  }
+ },
+ "if_folds_regenerated_per_seed_then": {
+  "mixes": [
+   "optimization_variance",
+   "partition_variance"
+  ],
+  "must_be_recorded": true,
+  "interpretation_must_be_frozen_explicitly": true
+ },
+ "split_fold_rule_resolved": false,
+ "blocked_terminal_if_unresolved": "PHASE29_BLOCKED__MULTISEED_SPLIT_OR_FOLD_RULE_UNRESOLVED",
+ "all_pass": false
+}

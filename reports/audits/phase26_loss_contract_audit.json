@@ -1,0 +1,21 @@
+{
+ "artifact": "phase26_loss_contract_audit",
+ "phase": "26",
+ "classification": "PHASE26_PRE_EXECUTION_TRAINING_SPECIFICATION_AUDIT",
+ "method": "RA-MedFiLM-BARR",
+ "governance_only": true,
+ "per_module_losses_frozen": {
+  "R_psi": "0.5 * BCEWithLogits + 0.5 * soft Dice",
+  "B_phi": "Huber loss, delta = 0.05",
+  "S_omega": "binary cross entropy"
+ },
+ "phase26_joint_objective_defined": false,
+ "phase26_loss_function_defined": false,
+ "loss_weighting_scheme_defined": false,
+ "loss_aggregation_rule_defined": false,
+ "multi_task_balancing_defined": false,
+ "note": "Per-component losses are frozen from prior phases, but no authoritative source defines a Phase26 objective (a joint loss, a multi-task weighting, or an aggregation rule over the four domains).",
+ "verdict": "PHASE26_OBJECTIVE_NOT_DEFINED",
+ "blocking": true,
+ "all_pass": false
+}

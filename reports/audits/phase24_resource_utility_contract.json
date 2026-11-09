@@ -1,0 +1,45 @@
+{
+ "artifact": "phase24_resource_utility_contract",
+ "phase": 24,
+ "utility": "U_hat_i = Delta_hat_i - lambda * C_i",
+ "terms": {
+  "Delta_hat_i": "predicted Dice improvement from the benefit router",
+  "C_i": "explicit incremental resource cost of running the refinement",
+  "lambda": "resource trade-off coefficient"
+ },
+ "decision_rule": {
+  "if": "U_hat_i > tau",
+  "then": "EXECUTE",
+  "else": "SKIP"
+ },
+ "single_universal_lambda_forbidden": true,
+ "lambda_policy": "Pre-register a small SET of lambda values and the fixed-budget sweep. Do not select one arbitrary universal lambda and report it as THE result.",
+ "fixed_budget_evaluation": {
+  "points": [
+   "0%",
+   "10%",
+   "25%",
+   "50%",
+   "100%"
+  ],
+  "0_percent": "global-only",
+  "100_percent": "always-refine",
+  "intermediate_thresholds": "calibrated on TRAIN development only"
+ },
+ "cost_proxy": {
+  "primary_for_phase25": "normalized analytical incremental MACs",
+  "terminology_kept_separate": [
+   "ANALYTICAL MACs",
+   "MEASURED latency",
+   "MEASURED memory",
+   "MEASURED energy"
+  ],
+  "analytical_macs_is_not_latency": true,
+  "device_measurement_phase": 34,
+  "note": "Analytical MACs MUST NOT be described as CPU/mobile latency. Actual device measurement belongs primarily to Phase 34."
+ },
+ "cost_term_required_by": "Phase-23 constraint C6",
+ "measured_in_phase24": false,
+ "generated_utc": "2026-09-29T14:45:29.300871+00:00",
+ "test_reads": 0
+}

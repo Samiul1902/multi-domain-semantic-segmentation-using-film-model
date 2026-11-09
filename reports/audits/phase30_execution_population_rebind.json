@@ -1,0 +1,47 @@
+{
+ "artifact": "phase30_execution_population_rebind",
+ "phase": 30,
+ "stage": "POPULATION_REBIND",
+ "specification_revision": "ra_medfilm_barr_phase30_final_dev_validation_v1_3",
+ "population": "ROUTER_HOLDOUT",
+ "n": 875,
+ "groups": 628,
+ "domain_counts": {
+  "BUSI": 90,
+  "ISIC": 383,
+  "KUB": 298,
+  "KVASIR": 104
+ },
+ "split_manifest": {
+  "path": "reports/audits/phase24_router_split_manifest.csv",
+  "exists": true,
+  "sha256": "b5da52d6220ef9b59b4ba70d0b403b38bf5234b897615b6ad55d718114db6555",
+  "expected_sha256": "b5da52d6220ef9b59b4ba70d0b403b38bf5234b897615b6ad55d718114db6555",
+  "match": true
+ },
+ "g_batch_manifest": {
+  "path": "reports/tables/phase30_router_holdout_g_batch_manifest.csv",
+  "exists": true,
+  "sha256": "fc4c785770c45523fdfd440a464820f78caa6bcedeaa1cbe264e10ce5c4e0088",
+  "expected_sha256": "fc4c785770c45523fdfd440a464820f78caa6bcedeaa1cbe264e10ce5c4e0088",
+  "match": true
+ },
+ "bootstrap_plan": {
+  "path": "data_cache/phase30_final_dev_validation_v1_0/phase30_router_holdout_bootstrap_plan.npz",
+  "exists": true,
+  "sha256": "59c97ccf6fbea823d38a1fba12d5e81b7e5fb103f31bc7fdfe443fd4971faab1",
+  "expected_sha256": "59c97ccf6fbea823d38a1fba12d5e81b7e5fb103f31bc7fdfe443fd4971faab1",
+  "match": true
+ },
+ "bootstrap_plan_keys": [
+  "draws_BUSI",
+  "group_keys_BUSI",
+  "draws_ISIC",
+  "group_keys_ISIC",
+  "draws_KUB",
+  "group_keys_KUB"
+ ],
+ "regenerated": false,
+ "generated_utc": "2026-10-04T03:15:34+00:00",
+ "all_pass": true
+}

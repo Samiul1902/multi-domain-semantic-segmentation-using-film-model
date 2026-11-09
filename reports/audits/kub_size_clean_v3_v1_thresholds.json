@@ -1,0 +1,49 @@
+{
+  "taxonomy_id": "kub_size_clean_v3_v1",
+  "status": "FROZEN",
+  "manifest_version": "phase4_v3",
+  "derivation_split": "TRAIN",
+  "dataset": "KUB",
+  "acquisition_scope": "FULL_FIELD",
+  "foreground_rule": "mask > 0",
+  "connectivity": 8,
+  "unit": "connected_component",
+  "metric": "component_ratio",
+  "metric_definition": "component_pixels / (native_height * native_width)",
+  "coordinate_system": "native mask geometry normalized by native full-image area",
+  "quantile_algorithm": "numpy.quantile",
+  "quantile_method": "default 'linear' interpolation",
+  "quantile_call": "np.quantile(values, [0.25, 0.50, 0.75])",
+  "quantile_precision": "float64",
+  "derivation_cases": 770,
+  "derivation_objects": 1161,
+  "Q25": 0.0001497998649691358,
+  "Q50": 0.0003401438395182292,
+  "Q75": 0.0008279682677469136,
+  "boundary_semantics": {
+    "TINY": "x <= Q25",
+    "SMALL": "Q25 < x <= Q50",
+    "MEDIUM": "Q50 < x <= Q75",
+    "LARGE": "x > Q75",
+    "rounding": "no rounding applied before classification",
+    "boundary_value_goes_to": "lower bin"
+  },
+  "roi_handling": "ROI_NOT_PRIMARY_BINNED",
+  "derivation_timestamp": "2026-09-20T04:22:30.624050+00:00",
+  "source_manifest_sha": "28702fc3a5ff8b950db372f03232d335e3a30b1fc2f21db7cd8c066055826ed6",
+  "object_table_sha": "5c270dd4cb09e5697fdd5d7eb2ae4465f82489bb71ccead019a558934f5d1a08",
+  "historical_taxonomy_reference": {
+    "taxonomy_id": "kub_size_v1",
+    "thresholds": {
+      "Q25": 0.0001499766777599,
+      "Q50": 0.00033976472454305,
+      "Q75": 0.0008266496069636999
+    },
+    "status": "HISTORICAL_v2_IMMUTABLE",
+    "reproduced_exactly": true
+  },
+  "supervisor_authorized": true,
+  "threshold_frozen": true,
+  "val_content_reads_before_freeze": 0,
+  "test_content_reads": 0
+}

@@ -1,0 +1,152 @@
+{
+  "artifact": "POST_PHASE13_H2C_B2_OUTCOME_ADJUDICATION",
+  "status": "PASS",
+  "created_utc": "2026-09-24T00:29:00Z",
+  "execution_mode": "PURE_READ_AUDIT_OF_FROZEN_EVIDENCE",
+  "frozen_rule_source": "reports/audits/post_phase13_h2c_protocol_frozen.json :: prospective_outcome_definitions",
+  "frozen_rule_sha": "91166259c10a84e9526eda43e83b227cc760a37b8834a4d4a65fe3e5a90ba4b6",
+  "new_criterion_invented": "NO",
+  "dimension_A_localizer_proposal_quality": {
+    "favourable_vs_h2a": {
+      "tiny_recall90": {
+        "h2c": 0.75,
+        "h2a": 0.6944444444444444,
+        "delta": 0.05555555555555558
+      },
+      "overall_recall90": {
+        "h2c": 0.6973684210526315,
+        "h2a": 0.6381578947368421,
+        "delta": 0.05921052631578938
+      },
+      "mean_coverage": {
+        "h2c": 0.8084159294904666,
+        "h2a": 0.7878969538240504,
+        "delta": 0.02051897566641614
+      },
+      "score_iqr": {
+        "h2c": 0.004663035273551941,
+        "h2a": 0.0016540437936782837,
+        "delta": 0.0030089914798736572
+      },
+      "fraction_at_max": {
+        "h2c": 0.5497835497835498,
+        "h2a": 0.6455142231947484,
+        "delta": -0.09573067341119856
+      },
+      "roc_auc": {
+        "h2c": 0.7564213252751997,
+        "h2a": 0.7011101520164964,
+        "delta": 0.05531117325870327
+      },
+      "pr_auc": {
+        "h2c": 0.412665101791798,
+        "h2a": 0.3729361181989911,
+        "delta": 0.03972898359280691
+      }
+    },
+    "unfavourable_vs_h2a": {
+      "pixel_any_hit_precision": {
+        "h2c": 0.2662337662337662,
+        "h2a": 0.27571115973741794,
+        "delta": -0.009477393503651732
+      },
+      "bbox_any_hit_precision": {
+        "h2c": 0.26406926406926406,
+        "h2a": 0.2735229759299781,
+        "delta": -0.009453711860714031
+      }
+    },
+    "verdict": "REPRODUCIBLY_FAVOURABLE_VS_H2A",
+    "note": "8 of 10 tracked localizer metrics moved favourably vs H2A, including the saturation/dispersion metrics the redesign targeted. Precision regressed slightly (~-0.0095)."
+  },
+  "dimension_B_downstream_global_preservation": {
+    "per_model": {
+      "unet": {
+        "h2c": 0.3002298677803521,
+        "global": 0.5941796681946068,
+        "delta": -0.2939498004142546
+      },
+      "attention_unet": {
+        "h2c": 0.3010887538924692,
+        "global": 0.6298049685888003,
+        "delta": -0.3287162146963311
+      },
+      "unetpp": {
+        "h2c": 0.304041605567754,
+        "global": 0.6405155030126884,
+        "delta": -0.3364738974449344
+      },
+      "deeplabv3plus": {
+        "h2c": 0.2823565835523283,
+        "global": 0.5602505353552288,
+        "delta": -0.2778939518029005
+      }
+    },
+    "h2c_below_global_all_four": true,
+    "verdict": "GLOBAL_PRESERVATION_NOT_RESOLVED"
+  },
+  "dimension_C_regional_utility": {
+    "oracle_benefit_retention_all_negative": true,
+    "component_losses_vs_global_all_zero": true,
+    "components_recovered_vs_global_by_at_least_one": 33,
+    "components_lost_vs_global_by_at_least_one": 0,
+    "verdict": "RECOVERY_SIGNAL_PRESENT__NET_UTILITY_NOT_ACHIEVED"
+  },
+  "dimension_D_cross_architecture_generality": {
+    "cross_architecture": {
+      "cases_h2c_improved_vs_global_all4": 3,
+      "cases_h2c_nonworse_vs_global_all4": 3,
+      "cases_h2c_worse_vs_global_all4": 82,
+      "cases_h2c_improved_vs_phase13_all4": 44,
+      "cases_h2c_worse_vs_phase13_all4": 36,
+      "components_recovered_vs_global_by_at_least_one": 33,
+      "components_recovered_vs_global_by_all4": 5,
+      "components_lost_vs_global_by_at_least_one": 0,
+      "components_lost_vs_global_by_all4": 0,
+      "cases_h2c_improved_vs_h2a_all4": 38,
+      "cases_h2c_worse_vs_h2a_all4": 45
+    },
+    "verdict": "CONSISTENTLY_BELOW_GLOBAL_ACROSS_ALL_FOUR"
+  },
+  "h2c_outcome": "H2C_HEAD_REDESIGN_INSUFFICIENT",
+  "outcome_clause_applied": "H2C_HEAD_REDESIGN_INSUFFICIENT clause (b): 'favourable localizer changes do not translate into meaningful downstream improvement and the major deployable failure remains'.",
+  "reasoning": "The localizer changes ARE reproducibly favourable vs H2A (8/10 metrics, including the targeted saturation/dispersion metrics), so clause (a) does not apply. However the frozen PARTIAL definition additionally requires 'at least some corresponding downstream improvement', measured against the protocol-designated PRIMARY downstream comparator (H2A predicted-region). H2C macro Dice is BELOW H2A on ALL FOUR architectures (-0.013550, -0.019084, -0.019004, -0.006560), so the favourable localizer changes did NOT translate into downstream improvement against the primary comparator. The major deployable failure also remains (H2C is far below GLOBAL on all four; oracle-benefit retention negative on all four). Clause (b) therefore applies.",
+  "countervailing_evidence_disclosed": {
+    "h2c_minus_phase13_dice": {
+      "unet": -0.0020839589505221,
+      "attention_unet": -0.0075299017983538,
+      "unetpp": -0.0073132703836263,
+      "deeplabv3plus": 0.0050647191103552
+    },
+    "deeplabv3plus_improved_vs_phase13": true,
+    "cases_improved_vs_h2a_all4": 38,
+    "cases_worse_vs_h2a_all4": 45,
+    "cases_improved_vs_phase13_all4": 44,
+    "components_recovered_vs_global_by_at_least_one_h2a": 22,
+    "components_recovered_vs_global_by_at_least_one_h2c": 33,
+    "component_losses_vs_global_h2c": 0,
+    "note": "This is a CLOSE CALL and is disclosed as such. H2C is roughly at Phase13 level downstream and improves the recovery signal (22 -> 33 components recovered by >=1 architecture, zero losses) and 38/103 cases improve in all four architectures vs H2A. A reader who measures 'downstream improvement' against Phase13 or at case level rather than against the primary comparator H2A could reasonably argue for PARTIAL. The label applied follows the protocol's designated primary downstream comparator."
+  },
+  "h2c_proves_sole_cause": "NO",
+  "winner": "NONE",
+  "new_numerical_thresholds": 0,
+  "new_configs": 0,
+  "new_subgroups": 0,
+  "statistical_claim": "NONE",
+  "descriptive_single_seed": true,
+  "phase14_eligibility": {
+    "status": "ELIGIBLE_NOT_STARTED",
+    "basis": "H2C protocol if_h2c_insufficient: FURTHER_REVISION = REQUIRES_SUPERVISOR_DECISION; H3 NOT_AUTOMATICALLY_AUTHORIZED. Phase 14 requires separate supervisor authorization.",
+    "phase14_started": "NO"
+  },
+  "counters": {
+    "scientific_axes_changed_during_b2": 0,
+    "proposal_grid": 0,
+    "threshold_searches": 0,
+    "oracle_reruns": 0,
+    "downstream_segmentation_forwards": 1848,
+    "checkpoint_candidates_evaluated_downstream": 1,
+    "test_reads": 0,
+    "external_test_reads": 0
+  }
+}

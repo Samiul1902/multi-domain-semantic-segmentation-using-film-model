@@ -1,0 +1,35 @@
+{
+ "artifact": "phase29_phase_d_cache_root_cleanliness_gate",
+ "phase": 29,
+ "stage": "PHASE_D_CACHE_ROOT_CLEANLINESS_GATE",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_phase29_repro_v1_1",
+ "generated_utc": "2026-10-03T15:25:42+00:00",
+ "rule": "Before Phase-D execution, the canonical future cache root MUST contain no scientifically consumable stale no-autocast cache, and accidental reuse MUST be impossible.",
+ "stale_cache_root": {
+  "path": "data_cache/phase29_val808_shared_fixed_g_v1_0",
+  "classification": "NONCANONICAL_PRE_RECONCILIATION_VAL808_CACHE",
+  "contains_scientifically_consumable_stale_cache": true,
+  "reuse_prevented_by": "explicit classification + provenance binding + distinct canonical root name"
+ },
+ "canonical_future_cache_root": {
+  "path": "data_cache/phase29_val808_shared_fixed_g_v1_1_canonical",
+  "exists": false,
+  "to_be_created_by_authorized_execution": true,
+  "must_be_built_under": "EXACT_PHASE27_AUTOCAST_FP16_SEMANTICS (see global reproduction gate)"
+ },
+ "accidental_reuse_possible": false,
+ "reuse_prevention_mechanisms": [
+  "the noncanonical root is explicitly classified NONCANONICAL",
+  "the future canonical root has a DISTINCT path (\u2026_v1_1_canonical)",
+  "the global reproduction gate requires bit-identical reproduction of the Phase27 target",
+  "the pre-VAL808 freeze gate v1.2 records the isolation as a hard check"
+ ],
+ "checks": {
+  "canonical_future_root_differs_from_stale_root": true,
+  "stale_cache_classified_noncanonical": true,
+  "accidental_reuse_possible_false": true,
+  "reuse_prevention_documented": true
+ },
+ "all_pass": true
+}

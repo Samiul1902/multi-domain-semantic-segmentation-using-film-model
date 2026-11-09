@@ -1,0 +1,69 @@
+{
+ "artifact": "phase26_router_threshold_membership_equivalence",
+ "phase": "26",
+ "classification": "PHASE26_ROUTER_SCORE_THRESHOLD_SEMANTICS_RECONCILIATION",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase26_router_threshold_reconciliation_v1_1",
+ "governance_only": true,
+ "no_model_forward": true,
+ "replay_source": "FROZEN_PHASE25E_SCORE_CACHES_ONLY",
+ "space_A_final_router_dev_calibration": {
+  "n_rows": 4957,
+  "tau_C7_exact": "24796109646558761/20000000000000000000",
+  "tau_C8_exact": "-5003565381643716252018011/205414980000000000000000000",
+  "selected_count_C7": 1239,
+  "selected_count_C8": 1239,
+  "C7_C8_membership_equal": true,
+  "matches_canonical_frozen_membership": false,
+  "mismatch_count_vs_canonical": 306
+ },
+ "space_B_canonical_policy_oof": {
+  "n_rows": 4957,
+  "tau_C7_exact": "29487973/10000000000",
+  "tau_C8_exact": "-2326256430798223/102707490000000000",
+  "selected_count_C7": 1239,
+  "selected_count_C8": 1239,
+  "C7_C8_membership_equal": true,
+  "matches_canonical_frozen_membership": true,
+  "mismatch_count_vs_canonical": 0
+ },
+ "canonical_frozen_membership": {
+  "source": "reports/tables/phase25f_c9_decision_manifest.csv",
+  "policy_id": "C8_lambda0.25_budget0.25",
+  "count": 1239,
+  "selected_ids_sha256": "e71e368cbb95b8d3398b47427df243bb8b387dd6d442ccf038188446677f446f",
+  "expected_selected_ids_sha256": "e71e368cbb95b8d3398b47427df243bb8b387dd6d442ccf038188446677f446f"
+ },
+ "score_space_disposition": {
+  "resolution": "CANONICAL_MEMBERSHIP_LIVES_IN_POLICY_OOF_SPACE",
+  "policy_oof_space_reproduces_canonical": true,
+  "final_router_dev_space_reproduces_canonical": false,
+  "final_router_dev_space_overlap_with_canonical": 1086,
+  "final_router_dev_space_is_not_the_membership_authority": true,
+  "work_order_reported_tau_C7_space": "FINAL_ROUTER_DEV_CALIBRATION_SPACE",
+  "canonical_operational_tau_C7_space": "POLICY_OOF_SPACE",
+  "ambiguity_resolved": true
+ },
+ "selected_count_C7": 1239,
+ "selected_count_C8": 1239,
+ "mismatch_count": 0,
+ "membership_matches_frozen_phase25e": true,
+ "canonical_membership_space": "POLICY_OOF_SPACE",
+ "checks": {
+  "dev_row_count_4957": true,
+  "oof_row_count_4957": true,
+  "selected_count_C7_dev_1239": true,
+  "selected_count_C8_dev_1239": true,
+  "selected_count_C7_pol_1239": true,
+  "selected_count_C8_pol_1239": true,
+  "C7_eq_C8_membership_dev": true,
+  "C7_eq_C8_membership_pol": true,
+  "canonical_membership_sha_matches": true,
+  "policy_space_C7_eq_canonical": true,
+  "policy_space_C8_eq_canonical": true,
+  "frozen_csv_C7_eq_canonical": true,
+  "frozen_csv_C8_eq_canonical": true
+ },
+ "all_pass": true,
+ "terminal_on_failure": "PHASE26_SPEC_REPAIR_BLOCKED__ROUTER_THRESHOLD_MEMBERSHIP_MISMATCH"
+}

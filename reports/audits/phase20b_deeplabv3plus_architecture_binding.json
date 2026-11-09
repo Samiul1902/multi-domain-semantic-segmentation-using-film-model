@@ -1,0 +1,53 @@
+{
+  "artifact": "phase20b_architecture_binding",
+  "phase": 20,
+  "subphase": "20B",
+  "model_key": "deeplabv3plus",
+  "model_display_name": "DeepLabV3+",
+  "experiment_id": "phase20b_shared_deeplabv3plus_fourdomain_seed42_clean_v3",
+  "repository_implementation": "src/models/deeplabv3plus.py",
+  "model_source_sha256": "751a1ead9aca93c7372750924f7483b3de3ad3f5f40edd3a648e9e39bdd77406",
+  "class_name": "DeepLabV3Plus",
+  "module": "src.models.deeplabv3plus",
+  "factory_key": null,
+  "architecture_descriptor": "deeplabv3plus_resnet50_os16_random_init_no_pretrained_aspp_rates_6_12_18",
+  "model_contract": {
+    "in_channels": 3,
+    "out_channels": 1,
+    "base_channels": 32,
+    "output": "single binary segmentation logit channel",
+    "shared_parameters_across_domains": true,
+    "forbidden_modules": [
+      "FiLM",
+      "task_embedding",
+      "domain_embedding",
+      "regional_branch",
+      "localizer",
+      "ROI_proposal",
+      "routing",
+      "dataset_specific_decoder",
+      "dataset_specific_head"
+    ],
+    "forbidden_modules_present": []
+  },
+  "n_trainable_params": 40347041,
+  "selection_basis": "LEGACY_TESTED_PROJECT_PRIOR_EVIDENCE",
+  "selection_time": "PRE_TRAINING",
+  "current_phase20_results_used_for_selection": false,
+  "protocol_path": "reports/audits/phase20_shared_global_baseline_protocol.json",
+  "protocol_sha256": "b74f1f9f429adbce374f0306180943b9f373f872e1e69e115b7d17e81414283c",
+  "phase20a_reference_experiment": "phase20_shared_unetpp_fourdomain_seed42_clean_v3",
+  "immutability": {
+    "architecture_will_not_be_switched_after_training": true,
+    "no_architecture_search_in_phase20b": true,
+    "no_per_model_recipe_change": true,
+    "no_per_model_threshold_tuning": true,
+    "no_post_hoc_restart_from_epoch_1": true
+  },
+  "notes": [
+    "Already implemented and tested in this repository (src/models/deeplabv3plus.py, Phase-10 clean-v3).",
+    "ResNet-50 output-stride-16 backbone, canonical ASPP rates (6,12,18), canonical decoder width 256.",
+    "Backbone is RANDOMLY INITIALIZED: torchvision weights=None. No pretrained weights are loaded.",
+    "base_channels=32 is accepted for a uniform factory signature and deliberately unused (canonical width)."
+  ]
+}

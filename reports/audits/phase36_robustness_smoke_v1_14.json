@@ -1,0 +1,802 @@
+{
+ "mode": "smoke",
+ "classification": "PRE_SCIENTIFIC_SYNTHETIC_FULL_PIPELINE_ROBUSTNESS_VALIDATION",
+ "not_phase36_scientific_robustness_result": true,
+ "synthetic_only": true,
+ "scientific_output": false,
+ "four_real_components_loaded": true,
+ "shared_core": "canonical_learned_core",
+ "shared_core_used_by_science_and_smoke": true,
+ "component_load_audit": {
+  "components": {
+   "G": {
+    "class": "GlobalMedFiLM",
+    "checkpoint": "checkpoints/phase21_global_medfilm_fourdomain_seed42_clean_v3/best.pt",
+    "checkpoint_sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+    "checkpoint_sha256_expected": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+    "parameter_count": 3523001,
+    "parameter_count_expected": 3523001,
+    "missing_keys": [],
+    "unexpected_keys": [],
+    "strict_load_ok": true,
+    "all_weights_finite": true,
+    "eval_mode": true,
+    "requires_grad_false": true
+   },
+   "R_psi": {
+    "class": "BARRRegionalRefinerV1",
+    "checkpoint": "checkpoints/phase25a_barr_regional_refiner_v1_1_roi030/final/final.pt",
+    "checkpoint_sha256": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109",
+    "checkpoint_sha256_expected": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109",
+    "parameter_count": 1276401,
+    "parameter_count_expected": 1276401,
+    "missing_keys": [],
+    "unexpected_keys": [],
+    "strict_load_ok": true,
+    "all_weights_finite": true,
+    "eval_mode": true,
+    "requires_grad_false": true
+   },
+   "B_phi": {
+    "class": "BARRBenefitRouterV1",
+    "checkpoint": "checkpoints/phase25d_barr_benefit_router_v1_2_1_seed42/final/final.pt",
+    "checkpoint_sha256": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+    "checkpoint_sha256_expected": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+    "parameter_count": 36801,
+    "parameter_count_expected": 36801,
+    "missing_keys": [],
+    "unexpected_keys": [],
+    "strict_load_ok": true,
+    "all_weights_finite": true,
+    "eval_mode": true,
+    "requires_grad_false": true
+   },
+   "S_omega": {
+    "class": "BARRPostSafetyV1",
+    "checkpoint": "checkpoints/phase25f_barr_post_safety_v1_0_seed42/final/final.pt",
+    "checkpoint_sha256": "eee9b97b9921e53fc07eac9281dce64ba518c6e1659916b97b0b3bec21ec6d2e",
+    "checkpoint_sha256_expected": "eee9b97b9921e53fc07eac9281dce64ba518c6e1659916b97b0b3bec21ec6d2e",
+    "parameter_count": 1217,
+    "parameter_count_expected": 1217,
+    "missing_keys": [],
+    "unexpected_keys": [],
+    "strict_load_ok": true,
+    "all_weights_finite": true,
+    "eval_mode": true,
+    "requires_grad_false": true
+   }
+  },
+  "checks": {
+   "G_params_3523001": true,
+   "R_psi_params_1276401": true,
+   "B_phi_params_36801": true,
+   "S_omega_params_1217": true,
+   "all_strict_load_ok": true,
+   "zero_missing_keys": true,
+   "zero_unexpected_keys": true,
+   "all_weights_finite": true,
+   "all_eval_mode": true,
+   "all_requires_grad_false": true,
+   "all_checkpoint_sha_match": true
+  },
+  "device_contract": {
+   "call": "get_device(require_cuda=True)",
+   "resolved_device": "cuda:0",
+   "resolved_device_type": "cuda",
+   "cpu_scientific_fallback_permitted": false,
+   "fail_closed": true
+  },
+  "component_device_binding": {
+   "G": {
+    "explicit_to_device_call": true,
+    "parameter_device": "cuda:0",
+    "on_canonical_device": true
+   },
+   "B_phi": {
+    "explicit_to_device_call": true,
+    "parameter_device": "cuda:0",
+    "on_canonical_device": true
+   },
+   "R_psi": {
+    "explicit_to_device_call": true,
+    "parameter_device": "cuda:0",
+    "on_canonical_device": true
+   },
+   "S_omega": {
+    "explicit_to_device_call": true,
+    "parameter_device": "cuda:0",
+    "on_canonical_device": true
+   }
+  },
+  "component_inference_contexts": {
+   "G": {
+    "eval": true,
+    "model_dtype": "float32",
+    "input_dtype": "float32",
+    "autocast_enabled": true,
+    "autocast_dtype": "float16",
+    "grad_context": "torch.no_grad()",
+    "inference_mode": false,
+    "batch_size": 8,
+    "probability_computation": "torch.sigmoid(logits.float()).cpu().numpy()"
+   },
+   "B_phi": {
+    "eval": true,
+    "model_dtype": "float32",
+    "input_dtype": "float32",
+    "autocast_enabled": false,
+    "grad_context": "torch.inference_mode()",
+    "inference_mode": true,
+    "batch_size": "PER_SAMPLE_SINGLE_FORWARD",
+    "score": "raw logit delta_hat (no sigmoid)"
+   },
+   "R_psi": {
+    "eval": true,
+    "model_dtype": "float32",
+    "input_dtype": "float32",
+    "autocast_enabled": false,
+    "grad_context": "torch.inference_mode()",
+    "inference_mode": true,
+    "batch_size": "PER_SAMPLE_SINGLE_FORWARD",
+    "probability_computation": "torch.sigmoid(model(x).float())[:, 0]"
+   },
+   "S_omega": {
+    "eval": true,
+    "model_dtype": "float32",
+    "input_dtype": "float32",
+    "autocast_enabled": false,
+    "grad_context": "torch.inference_mode()",
+    "inference_mode": true,
+    "batch_size": "PER_SAMPLE_SINGLE_FORWARD",
+    "accept_threshold": 0.5
+   }
+  },
+  "component_contexts_not_interchangeable": true,
+  "canonical_probability_operator": "torch.sigmoid(logits.float()).cpu().numpy()"
+ },
+ "g_forward_audit": {
+  "batch_size": 1,
+  "device": "cuda:0",
+  "autocast_enabled": true,
+  "autocast_dtype": "float16",
+  "inference_mode": false,
+  "probability_operator": "CANONICAL_G_LOGITS_TO_PROBABILITY_V1_5",
+  "probability_dtype": "float32"
+ },
+ "synthetic_sample_ids": [
+  "SYNTH_PHASE36_TASK0",
+  "SYNTH_PHASE36_TASK1",
+  "SYNTH_PHASE36_TASK2",
+  "SYNTH_PHASE36_TASK3"
+ ],
+ "image_registry": [
+  {
+   "condition": "CLEAN",
+   "base_seed": null,
+   "shape": [
+    512,
+    512
+   ],
+   "dtype": "float32",
+   "finite": true,
+   "min": 3.4570693969726562e-06,
+   "max": 0.9999967217445374,
+   "generated_from_original_clean": true
+  },
+  {
+   "condition": "BRIGHTNESS_NEG",
+   "base_seed": null,
+   "shape": [
+    512,
+    512
+   ],
+   "dtype": "float32",
+   "finite": true,
+   "min": 0.0,
+   "max": 0.8999966979026794,
+   "generated_from_original_clean": true
+  },
+  {
+   "condition": "BRIGHTNESS_POS",
+   "base_seed": null,
+   "shape": [
+    512,
+    512
+   ],
+   "dtype": "float32",
+   "finite": true,
+   "min": 0.10000345855951309,
+   "max": 1.0,
+   "generated_from_original_clean": true
+  },
+  {
+   "condition": "CONTRAST_LOW",
+   "base_seed": null,
+   "shape": [
+    512,
+    512
+   ],
+   "dtype": "float32",
+   "finite": true,
+   "min": 0.10002091526985168,
+   "max": 0.9000155329704285,
+   "generated_from_original_clean": true
+  },
+  {
+   "condition": "CONTRAST_HIGH",
+   "base_seed": null,
+   "shape": [
+    512,
+    512
+   ],
+   "dtype": "float32",
+   "finite": true,
+   "min": 0.0,
+   "max": 1.0,
+   "generated_from_original_clean": true
+  },
+  {
+   "condition": "GAMMA_LOW",
+   "base_seed": null,
+   "shape": [
+    512,
+    512
+   ],
+   "dtype": "float32",
+   "finite": true,
+   "min": 4.275298124412075e-05,
+   "max": 0.9999973773956299,
+   "generated_from_original_clean": true
+  },
+  {
+   "condition": "GAMMA_HIGH",
+   "base_seed": null,
+   "shape": [
+    512,
+    512
+   ],
+   "dtype": "float32",
+   "finite": true,
+   "min": 2.7954354209214216e-07,
+   "max": 0.9999960660934448,
+   "generated_from_original_clean": true
+  },
+  {
+   "condition": "GAUSSIAN_NOISE_LOW",
+   "base_seed": 42,
+   "shape": [
+    512,
+    512
+   ],
+   "dtype": "float32",
+   "finite": true,
+   "min": 0.0,
+   "max": 1.0,
+   "generated_from_original_clean": true
+  },
+  {
+   "condition": "GAUSSIAN_NOISE_LOW",
+   "base_seed": 123,
+   "shape": [
+    512,
+    512
+   ],
+   "dtype": "float32",
+   "finite": true,
+   "min": 0.0,
+   "max": 1.0,
+   "generated_from_original_clean": true
+  },
+  {
+   "condition": "GAUSSIAN_NOISE_LOW",
+   "base_seed": 3407,
+   "shape": [
+    512,
+    512
+   ],
+   "dtype": "float32",
+   "finite": true,
+   "min": 0.0,
+   "max": 1.0,
+   "generated_from_original_clean": true
+  },
+  {
+   "condition": "GAUSSIAN_NOISE_HIGH",
+   "base_seed": 42,
+   "shape": [
+    512,
+    512
+   ],
+   "dtype": "float32",
+   "finite": true,
+   "min": 0.0,
+   "max": 1.0,
+   "generated_from_original_clean": true
+  },
+  {
+   "condition": "GAUSSIAN_NOISE_HIGH",
+   "base_seed": 123,
+   "shape": [
+    512,
+    512
+   ],
+   "dtype": "float32",
+   "finite": true,
+   "min": 0.0,
+   "max": 1.0,
+   "generated_from_original_clean": true
+  },
+  {
+   "condition": "GAUSSIAN_NOISE_HIGH",
+   "base_seed": 3407,
+   "shape": [
+    512,
+    512
+   ],
+   "dtype": "float32",
+   "finite": true,
+   "min": 0.0,
+   "max": 1.0,
+   "generated_from_original_clean": true
+  },
+  {
+   "condition": "GAUSSIAN_BLUR_LOW",
+   "base_seed": null,
+   "shape": [
+    512,
+    512
+   ],
+   "dtype": "float32",
+   "finite": true,
+   "min": 0.0458233542740345,
+   "max": 0.9663448929786682,
+   "generated_from_original_clean": true
+  },
+  {
+   "condition": "GAUSSIAN_BLUR_HIGH",
+   "base_seed": null,
+   "shape": [
+    512,
+    512
+   ],
+   "dtype": "float32",
+   "finite": true,
+   "min": 0.2005314826965332,
+   "max": 0.8348712921142578,
+   "generated_from_original_clean": true
+  },
+  {
+   "condition": "RESOLUTION_075",
+   "base_seed": null,
+   "shape": [
+    512,
+    512
+   ],
+   "dtype": "float32",
+   "finite": true,
+   "min": 0.08134174346923828,
+   "max": 0.9461193084716797,
+   "generated_from_original_clean": true
+  },
+  {
+   "condition": "RESOLUTION_050",
+   "base_seed": null,
+   "shape": [
+    512,
+    512
+   ],
+   "dtype": "float32",
+   "finite": true,
+   "min": 0.16394896805286407,
+   "max": 0.8701432347297668,
+   "generated_from_original_clean": true
+  }
+ ],
+ "clean_bitwise_identity": true,
+ "determinism": {
+  "same_inputs_identical": true,
+  "different_base_seed_differs": true,
+  "different_sample_id_differs": true
+ },
+ "clean_pipeline_check": {
+  "shared_core_called": true,
+  "rf202_dim": 202,
+  "rf202_shape": [
+   202
+  ],
+  "rf202_finite": true,
+  "rf202_min": -0.16076751053333282,
+  "rf202_max": 512.0,
+  "p_global_shape": [
+   512,
+   512
+  ],
+  "p_global_finite": true,
+  "geometry_available": false,
+  "state": "FORCED_SKIP",
+  "router_decision": "SKIP",
+  "router_decision_is_not_final_state": true,
+  "final_probability_shape": [
+   512,
+   512
+  ],
+  "final_probability_finite": true,
+  "global_forward_count": 0,
+  "actual_R_psi_forward_count": 0,
+  "actual_S_omega_forward_count": 0
+ },
+ "image_pipeline_check": {
+  "shared_core_called": true,
+  "state": "EXECUTE_THEN_REJECT",
+  "router_decision": "EXECUTE",
+  "final_finite": true,
+  "actual_R_psi_forward_count": 1,
+  "actual_S_omega_forward_count": 1
+ },
+ "real_execute_component_probe": {
+  "probe": "smoke_real_execute_component_probe",
+  "policy_control": true,
+  "forced_router_score": true,
+  "forced_safety_logit": false,
+  "control_router_score": 50.0,
+  "control_utility": 49.974401866894034,
+  "threshold_C8": -0.024358327623641256,
+  "router_decision": "EXECUTE",
+  "observed_state": "EXECUTE_THEN_ACCEPT",
+  "outcome_selected": false,
+  "actual_R_psi_forward_count": 1,
+  "actual_S_omega_forward_count": 1,
+  "post_safety_logit": 0.08668690919876099,
+  "post_safety_logit_finite": true,
+  "post_safety_accept_probability": 0.521658182144165,
+  "post_safety_accept_probability_finite": true,
+  "post_safety_accept_probability_in_unit_interval": true,
+  "final_probability_finite": true,
+  "final_probability_shape": [
+   512,
+   512
+  ],
+  "router_vector_dim": 202,
+  "router_vector_finite": true,
+  "refined_output_finite": true,
+  "refined_output_shape": [
+   256,
+   256
+  ],
+  "refined_output_is_probability": true,
+  "refined_output_in_unit_interval": true,
+  "post_safety_feature_dim": 16,
+  "post_safety_features_finite": true,
+  "final_s_omega_input_dim": 20,
+  "final_s_omega_input_finite": true,
+  "post_safety_numeric_normalized_dim": 16,
+  "post_safety_numeric_normalized_finite": true,
+  "synthetic_only": true,
+  "scientific_output": false
+ },
+ "proposal_pipeline_check": {
+  "proposal_adapter_called": true,
+  "proposal_condition": "SHIFT_LEFT_10",
+  "base_crop_side": 384,
+  "perturbed_crop_side": 384,
+  "geometry_changed": true,
+  "router_vector_dim": 202,
+  "router_vector_shape": [
+   202
+  ],
+  "router_vector_finite": true,
+  "router_score_finite": true,
+  "final_probability_finite": true,
+  "final_probability_shape": [
+   512,
+   512
+  ],
+  "state": "EXECUTE_THEN_ACCEPT",
+  "router_decision": "EXECUTE",
+  "forced_router_score": false,
+  "actual_B_phi_forward_count": 1,
+  "real_B_phi_forward_proven": true,
+  "actual_R_psi_forward_count": 1,
+  "actual_S_omega_forward_count": 1,
+  "g_forwards_during_proposal": 0,
+  "g_reused_from_clean": true,
+  "geometry_only_apply_counts_as_proposal_smoke": false
+ },
+ "empty_proposal_check": {
+  "empty_proposal_adapter_called": true,
+  "state": "NOT_APPLICABLE_EMPTY_PROPOSAL",
+  "status_is_not_applicable_empty_proposal": true,
+  "handling": "NOT_APPLICABLE_EMPTY_PROPOSAL",
+  "actual_R_psi_forward_count": 0,
+  "actual_S_omega_forward_count": 0,
+  "no_R_psi_forward": true,
+  "no_S_omega_forward": true,
+  "no_replacement_geometry_generated": true,
+  "no_geometry_returned": true,
+  "not_applicable": true,
+  "delta_counters": {
+   "g_forwards": 0,
+   "b_phi_forwards": 0,
+   "empty_proposal_not_applicable": 1,
+   "r_psi_forwards": 0,
+   "s_omega_forwards": 0
+  }
+ },
+ "state_machine": {
+  "cases": [
+   {
+    "case": "CONTROL_SKIP_GLOBAL",
+    "policy_control": true,
+    "forced_router_score": true,
+    "forced_safety_logit": false,
+    "expected_state": "SKIP_GLOBAL",
+    "observed_state": "SKIP_GLOBAL",
+    "comparison_pass": true,
+    "expected_final_source": "GLOBAL",
+    "observed_final_source": "GLOBAL",
+    "final_source_comparison_pass": true,
+    "actual_R_psi_forward_count": 0,
+    "expected_actual_R_psi_forward_count": 0,
+    "R_psi_forward_count_pass": true,
+    "actual_S_omega_forward_count": 0,
+    "expected_actual_S_omega_forward_count": 0,
+    "S_omega_forward_count_pass": true,
+    "claims_real_S_omega_forward": false,
+    "router_decision": "SKIP",
+    "router_decision_is_not_final_state": true,
+    "utility": -50.025598133105966,
+    "threshold_C8": -0.024358327623641256,
+    "threshold_C7": 0.001239805482327938,
+    "forced_control_score": true
+   },
+   {
+    "case": "CONTROL_EXECUTE_THEN_ACCEPT",
+    "policy_control": true,
+    "forced_router_score": true,
+    "forced_safety_logit": true,
+    "expected_state": "EXECUTE_THEN_ACCEPT",
+    "observed_state": "EXECUTE_THEN_ACCEPT",
+    "comparison_pass": true,
+    "expected_final_source": "REFINED",
+    "observed_final_source": "REFINED",
+    "final_source_comparison_pass": true,
+    "actual_R_psi_forward_count": 1,
+    "expected_actual_R_psi_forward_count": 1,
+    "R_psi_forward_count_pass": true,
+    "actual_S_omega_forward_count": 0,
+    "expected_actual_S_omega_forward_count": 0,
+    "S_omega_forward_count_pass": true,
+    "claims_real_S_omega_forward": false,
+    "router_decision": "EXECUTE",
+    "router_decision_is_not_final_state": true,
+    "utility": 49.974401866894034,
+    "threshold_C8": -0.024358327623641256,
+    "threshold_C7": 0.001239805482327938,
+    "forced_control_score": true
+   },
+   {
+    "case": "CONTROL_EXECUTE_THEN_REJECT",
+    "policy_control": true,
+    "forced_router_score": true,
+    "forced_safety_logit": true,
+    "expected_state": "EXECUTE_THEN_REJECT",
+    "observed_state": "EXECUTE_THEN_REJECT",
+    "comparison_pass": true,
+    "expected_final_source": "GLOBAL",
+    "observed_final_source": "GLOBAL",
+    "final_source_comparison_pass": true,
+    "actual_R_psi_forward_count": 1,
+    "expected_actual_R_psi_forward_count": 1,
+    "R_psi_forward_count_pass": true,
+    "actual_S_omega_forward_count": 0,
+    "expected_actual_S_omega_forward_count": 0,
+    "S_omega_forward_count_pass": true,
+    "claims_real_S_omega_forward": false,
+    "router_decision": "EXECUTE",
+    "router_decision_is_not_final_state": true,
+    "utility": 49.974401866894034,
+    "threshold_C8": -0.024358327623641256,
+    "threshold_C7": 0.001239805482327938,
+    "forced_control_score": true
+   }
+  ],
+  "policy_controls_not_scientific_outcomes": true,
+  "policy_tests_not_scientific_outcomes": true,
+  "forced_safety_controls_report_zero_actual_somega": true,
+  "three_branches_covered": [
+   "EXECUTE_THEN_ACCEPT",
+   "EXECUTE_THEN_REJECT",
+   "SKIP_GLOBAL"
+  ],
+  "all_pass": true,
+  "threshold_C7": 0.001239805482327938,
+  "threshold_C8": -0.024358327623641256
+ },
+ "metrics": {
+  "nonempty_nonempty": {
+   "dice": 0.8100000000002375,
+   "iou": 0.6806722689082338
+  },
+  "empty_empty": {
+   "dice": 1.0,
+   "iou": 1.0
+  },
+  "empty_nonempty": {
+   "dice": 2.49999999999375e-12,
+   "iou": 2.49999999999375e-12
+  }
+ },
+ "prediction_consistency_dice_smoke": 0.9025000000001219,
+ "hd95_hd": {
+  "hd95": 20.0,
+  "valid": true,
+  "reason": "",
+  "unit": "pixel",
+  "metric_domain": "BOUNDARY_DISTANCE"
+ },
+ "hd95_hd_empty_case": {
+  "hd95": NaN,
+  "valid": false,
+  "reason": "empty_prediction",
+  "unit": "pixel",
+  "metric_domain": "BOUNDARY_DISTANCE"
+ },
+ "hd95_summary": {
+  "n_total": 2,
+  "n_finite": 1,
+  "n_nan": 1,
+  "mean": 20.0,
+  "median": 20.0
+ },
+ "seed_conversion": {
+  "seed_text": "phase36|gaussian_noise|42|SYNTH_PHASE36_TASK0",
+  "v1_1_hex_prefix": "196e5ed3",
+  "v1_1_seed": 426663635,
+  "v1_0_seed_8_bytes_big": 1832506359868494990,
+  "rules_differ": true,
+  "v1_1_in_uint32_range": true
+ },
+ "smoke_success_contract": {
+  "ids": [
+   "transitive_runtime_source_integrity_pass",
+   "four_component_checkpoint_loads_strict",
+   "four_parameter_counts_exact",
+   "all_component_weights_finite",
+   "four_components_on_canonical_cuda_device",
+   "canonical_G_probability_dtype_float32",
+   "canonical_G_output_finite",
+   "router_vector_dim_exactly_202",
+   "router_vector_finite",
+   "real_B_phi_forward_proven",
+   "real_R_psi_forward_proven",
+   "real_S_omega_forward_proven",
+   "real_execute_router_decision_is_execute",
+   "real_execute_R_psi_output_finite",
+   "real_execute_R_psi_output_shape_valid",
+   "real_execute_post_safety_feature_dim_16",
+   "real_execute_post_safety_features_finite",
+   "real_execute_S_omega_logit_finite",
+   "real_execute_S_omega_probability_finite",
+   "real_execute_S_omega_probability_in_unit_interval",
+   "real_execute_final_state_valid",
+   "real_execute_final_probability_shape_512x512",
+   "real_execute_final_probability_finite",
+   "clean_synthetic_final_probability_finite",
+   "image_synthetic_final_probability_finite",
+   "nonempty_proposal_adapter_called",
+   "empty_proposal_adapter_called",
+   "empty_proposal_R_psi_zero",
+   "empty_proposal_S_omega_zero",
+   "empty_proposal_no_replacement_geometry",
+   "skip_policy_control_exact",
+   "accept_policy_control_exact",
+   "reject_policy_control_exact",
+   "forced_control_counts_reported_honestly",
+   "perturbation_registry_outputs_finite",
+   "clean_perturbation_bitwise_identity",
+   "gaussian_noise_same_input_determinism",
+   "different_seed_changes_realization",
+   "different_synthetic_sample_id_changes_realization",
+   "metric_dice_iou_plumbing_valid",
+   "metric_hd95_nonempty_plumbing_valid",
+   "metric_hd95_empty_mask_semantics_valid",
+   "metric_hd95_nonempty_prediction_empty_gt_exact",
+   "metric_hd95_empty_empty_exact",
+   "real_execute_R_psi_output_exact_shape",
+   "real_execute_R_psi_output_in_unit_interval",
+   "real_execute_final_S_omega_input_exact_dim",
+   "real_execute_final_S_omega_input_finite",
+   "prediction_consistency_metric_finite",
+   "protected_test_holdout_runtime_io_statically_unreachable",
+   "smoke_attempt_is_first_write_once",
+   "scientific_output_false",
+   "synthetic_only_true"
+  ],
+  "n_checks": 53,
+  "aggregation": "smoke_all_pass = all(smoke_checks.values())",
+  "declared_before_execution": true,
+  "classification_only_ids": [
+   "scientific_output_false",
+   "synthetic_only_true"
+  ],
+  "artifact_written_even_when_failed": true,
+  "automatic_retry": false,
+  "exit_nonzero_when_failed": true
+ },
+ "smoke_checks": {
+  "transitive_runtime_source_integrity_pass": true,
+  "four_component_checkpoint_loads_strict": true,
+  "four_parameter_counts_exact": true,
+  "all_component_weights_finite": true,
+  "four_components_on_canonical_cuda_device": true,
+  "canonical_G_probability_dtype_float32": true,
+  "canonical_G_output_finite": true,
+  "router_vector_dim_exactly_202": true,
+  "router_vector_finite": true,
+  "real_B_phi_forward_proven": true,
+  "real_R_psi_forward_proven": true,
+  "real_S_omega_forward_proven": true,
+  "real_execute_router_decision_is_execute": true,
+  "real_execute_R_psi_output_finite": true,
+  "real_execute_R_psi_output_shape_valid": true,
+  "real_execute_post_safety_feature_dim_16": true,
+  "real_execute_post_safety_features_finite": true,
+  "real_execute_S_omega_logit_finite": true,
+  "real_execute_S_omega_probability_finite": true,
+  "real_execute_S_omega_probability_in_unit_interval": true,
+  "real_execute_final_state_valid": true,
+  "real_execute_final_probability_shape_512x512": true,
+  "real_execute_final_probability_finite": true,
+  "clean_synthetic_final_probability_finite": true,
+  "image_synthetic_final_probability_finite": true,
+  "nonempty_proposal_adapter_called": true,
+  "empty_proposal_adapter_called": true,
+  "empty_proposal_R_psi_zero": true,
+  "empty_proposal_S_omega_zero": true,
+  "empty_proposal_no_replacement_geometry": true,
+  "skip_policy_control_exact": true,
+  "accept_policy_control_exact": true,
+  "reject_policy_control_exact": true,
+  "forced_control_counts_reported_honestly": true,
+  "perturbation_registry_outputs_finite": true,
+  "clean_perturbation_bitwise_identity": true,
+  "gaussian_noise_same_input_determinism": true,
+  "different_seed_changes_realization": true,
+  "different_synthetic_sample_id_changes_realization": true,
+  "metric_dice_iou_plumbing_valid": true,
+  "metric_hd95_nonempty_plumbing_valid": true,
+  "metric_hd95_empty_mask_semantics_valid": true,
+  "metric_hd95_nonempty_prediction_empty_gt_exact": true,
+  "metric_hd95_empty_empty_exact": true,
+  "real_execute_R_psi_output_exact_shape": true,
+  "real_execute_R_psi_output_in_unit_interval": true,
+  "real_execute_final_S_omega_input_exact_dim": true,
+  "real_execute_final_S_omega_input_finite": true,
+  "prediction_consistency_metric_finite": true,
+  "protected_test_holdout_runtime_io_statically_unreachable": true,
+  "smoke_attempt_is_first_write_once": true,
+  "scientific_output_false": true,
+  "synthetic_only_true": true
+ },
+ "smoke_all_pass": true,
+ "n_smoke_checks": 53,
+ "failed_smoke_checks": [],
+ "pipeline_covered": [
+  "four_component_strict_load",
+  "canonical_batched_G_autocast_fp16",
+  "clean_pipeline_via_shared_core",
+  "image_perturbation_via_shared_core",
+  "real_execute_component_probe",
+  "nonempty_proposal_via_shared_core",
+  "empty_proposal_via_shared_core",
+  "state_machine_branch_controls",
+  "prediction_consistency_metric",
+  "metric_plumbing",
+  "route_state_plumbing",
+  "router_decision_separation",
+  "actual_forward_count_accounting"
+ ],
+ "generated_utc": "2026-10-06T17:27:04Z",
+ "source_sha256": "ac09ff8ded3610244920e66612145b246b33127140d344a9730d454bab27cff5",
+ "write_semantics": "open(x) (exclusive-create, write-once)"
+}

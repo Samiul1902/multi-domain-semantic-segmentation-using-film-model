@@ -1,0 +1,52 @@
+{
+ "artifact": "phase26_state_machine_test_audit",
+ "phase": "26",
+ "classification": "CANONICAL_FULL_SYSTEM_INTEGRATION_AND_CONFIGURATION_FREEZE",
+ "method": "RA-MedFiLM-BARR",
+ "mock_outputs": true,
+ "real_model_scores_used": false,
+ "cases": [
+  {
+   "case": "A_action_unavailable",
+   "expected_state": "FORCED_SKIP",
+   "actual_state": "FORCED_SKIP",
+   "global": 1,
+   "refiner": 0,
+   "s_omega": 0,
+   "pass": true
+  },
+  {
+   "case": "B_router_skip",
+   "expected_state": "SKIP_GLOBAL",
+   "actual_state": "SKIP_GLOBAL",
+   "global": 1,
+   "refiner": 0,
+   "s_omega": 0,
+   "pass": true
+  },
+  {
+   "case": "C_execute_accept",
+   "expected_state": "EXECUTE_THEN_ACCEPT",
+   "actual_state": "EXECUTE_THEN_ACCEPT",
+   "global": 1,
+   "refiner": 1,
+   "s_omega": 1,
+   "pass": true
+  },
+  {
+   "case": "D_execute_reject",
+   "expected_state": "EXECUTE_THEN_REJECT",
+   "actual_state": "EXECUTE_THEN_REJECT",
+   "global": 1,
+   "refiner": 1,
+   "s_omega": 1,
+   "pass": true
+  }
+ ],
+ "global_forward_exactly_once": true,
+ "all_case_counters_correct": true,
+ "n_cases": 4,
+ "n_pass": 4,
+ "all_pass": true,
+ "terminal_on_failure": "PHASE26_BLOCKED__INTEGRATION_STATE_MACHINE_FAILURE"
+}

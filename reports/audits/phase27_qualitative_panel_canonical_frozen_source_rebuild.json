@@ -1,0 +1,94 @@
+{
+  "artifact": "phase27_qualitative_panel_canonical_frozen_source_rebuild",
+  "phase": "27",
+  "method": "RA-MedFiLM-BARR",
+  "classification": "PHASE27_REVIEWER_VISUAL_CANONICAL_REBUILD__FROZEN_REVIEWER_ARTIFACTS_ONLY",
+  "SOURCE_LIMITATION": "RELAYOUT_FROM_FROZEN_REVIEWER_RASTER",
+  "canonical_rebuild_script": "scripts/analysis/build_phase27_qualitative_canonical.py",
+  "canonical_rebuild_script_sha256": "5408f8b6aad129a78d2fdefd8db5a37ae69a8b36e20fe0fd9ec471969c6fb736",
+  "frozen_panel_extractor_script": "scripts/analysis/build_phase27_frozen_panels.py",
+  "frozen_panel_extractor_script_sha256": "1bfec7264b9c1cced7de54cd16d65b9035234aadc3529e8dfb083ef34558783d",
+  "raw_VAL808_RGB_reads": 0,
+  "raw_VAL808_GT_reads": 0,
+  "raw_VAL808_dataset_loader_access": 0,
+  "model_forwards": 0,
+  "metrics_recomputed": false,
+  "bootstrap_recomputed": false,
+  "training_runs": 0,
+  "sample_ids_unchanged": true,
+  "sample_ids": [
+    "BUSI:07451d37507d75a0456b73bc793517cc",
+    "BUSI:62af79098f1f7dee30a63ddd21d31e0e",
+    "BUSI:a13b0c0594c828628f0e9ee8330c4d67",
+    "BUSI:f8413aaf21bf71a6038113596d528b3a",
+    "ISIC:0012a4db87568a44b326db45138d2147",
+    "ISIC:525ff93bf03f89e5b7c496ab8447f540",
+    "ISIC:a3a91493d848559a664810a5c91e1398",
+    "ISIC:fdea707cd246f0b1b3746a0109d91060",
+    "KUB:00849cbfea1e926cc0bf0443c9a57ac0",
+    "KUB:55b2ac0f66b66b7edce518521ba4bd08",
+    "KUB:a11e1e220d9c02d30b380cf32516f482",
+    "KUB:fd8f2744680aa3a805f47a8151ef9761",
+    "KVASIR:0d740cab6154fe94c64c37dc141c59a1",
+    "KVASIR:6586737a42031c2ad8fbdaa4cad1bd7d",
+    "KVASIR:b6509a881e9bf51dcb2ce5882909bc05",
+    "KVASIR:fdbeb34770c72001be03e981a4ca1ca9"
+  ],
+  "layout": "2X2_GROUP_LAYOUT",
+  "layout_detail": {
+    "groups": [
+      [
+        "BUSI",
+        "ISIC"
+      ],
+      [
+        "KUB",
+        "KVASIR"
+      ]
+    ],
+    "rows_per_domain": 4,
+    "columns_per_sample": 5,
+    "column_order": [
+      "RGB",
+      "Global",
+      "Final A8",
+      "GT",
+      "TP/FN/FP"
+    ],
+    "interpolation": "nearest",
+    "aspect": "equal",
+    "legend": "TP green / FN blue / FP red (compact)",
+    "TP_FN_FP_semantics_unchanged": true
+  },
+  "frozen_sources_used": [
+    "reports/figures/phase27_preservation/masks/<sid>_global.png",
+    "reports/figures/phase27_preservation/masks/<sid>_final.png",
+    "reports/figures/phase27_preservation/frozen_reviewer_panels/<sid>_rgb.png",
+    "reports/figures/phase27_preservation/frozen_reviewer_panels/<sid>_gt.png",
+    "reports/tables/phase27_qualitative_gallery_selection.csv",
+    "reports/figures/phase27_preservation/p27_qualitative_panels.png (frozen reviewer raster, noncanonical-scope, used as raster source only)"
+  ],
+  "outputs": {
+    "p27_qualitative_panels.png": {
+      "path": "reports/figures/phase27_preservation/p27_qualitative_panels.png",
+      "sha256": "2876f5697f52fc402b3099aa976c0f3e7e856cd731963dcaefa17ed01a704450",
+      "dimensions": [
+        4783,
+        3233
+      ]
+    },
+    "p27_qualitative_panels.pdf": {
+      "path": "reports/figures/phase27_preservation/p27_qualitative_panels.pdf",
+      "sha256": "8821435f0aeffab736c7d52906260fa84a1c33259204ea34240e043a4dd502d1"
+    }
+  },
+  "notebook_3x_deterministic": true,
+  "figure_3x_deterministic": true,
+  "figure_build_shas": [
+    "2876f5697f52fc402b3099aa976c0f3e7e856cd731963dcaefa17ed01a704450",
+    "2876f5697f52fc402b3099aa976c0f3e7e856cd731963dcaefa17ed01a704450",
+    "2876f5697f52fc402b3099aa976c0f3e7e856cd731963dcaefa17ed01a704450"
+  ],
+  "generated_utc": "2026-10-02T12:07:48Z",
+  "all_pass": true
+}

@@ -1,0 +1,283 @@
+{
+  "artifact": "phasewise_evaluation_visualization_sha_updates",
+  "status": "PHASEWISE_EVALUATION_VISUALIZATION_SYNC_RECORDED",
+  "note": "Additive evaluation/visualization synchronization across completed phasewise notebooks.",
+  "governance": {
+    "training_performed": false,
+    "inference_performed": false,
+    "test_reads": 0,
+    "external_test_reads": 0,
+    "thresholds_changed": false,
+    "checkpoints_changed": false,
+    "frozen_metrics_changed": false,
+    "h3_adjudication": "NOT_PERFORMED"
+  },
+  "transitions": [
+    {
+      "phase": "Phase 09",
+      "notebook": "notebooks/phasewise/phase_09_baseline_training/phase09_clean_v3_unet_training_review.ipynb",
+      "old_sha": "2e99b115afeaa8f51c8a978840be99925fab3123ee2bbbbd8db03b8445e186ea",
+      "new_sha": "60466fa12170f6acdc826d3a4d114041eaf0a7428494ece10aa13f1377c96a60",
+      "sections_added": [
+        "Descriptive Evaluation and Visual Evidence \u2014 Phase 09 (UNet, clean-v3)"
+      ],
+      "tables_added": [
+        "Phase-09 best-epoch aggregate metrics",
+        "descriptive-metric availability matrix"
+      ],
+      "figures_added": [
+        "phase09_loss_and_dice.png",
+        "phase09_gallery_dice_hist.png"
+      ],
+      "code_cells": 18,
+      "tracebacks": 0,
+      "monotonic_execution": true,
+      "inference_performed": false,
+      "training_performed": false,
+      "frozen_metrics_changed": false
+    },
+    {
+      "phase": "Phase 10",
+      "notebook": "notebooks/phasewise/phase_10_baseline_comparison/phase10_clean_v3_final_baseline_comparison.ipynb",
+      "old_sha": "b9f5812eaef5b538dbd9b2640c974212a6e1dac0858fc13a882a4ff68971a06e",
+      "new_sha": "a29649dcb9b396c0edffc0e5b7cb4952cab579684197fabcc1c5fae014feb6a7",
+      "sections_added": [
+        "Descriptive Evaluation and Visual Evidence \u2014 Phase 10 (four-model comparison)"
+      ],
+      "tables_added": [
+        "UNet++ (GLOBAL arm) descriptive pixel/boundary/calibration metrics",
+        "clean-v3 four-model per-image Dice/IoU/precision/recall",
+        "per-model descriptive-metric availability"
+      ],
+      "figures_added": [
+        "phase10_unetpp_confusion.png",
+        "phase10_per_image_dice_by_model.png"
+      ],
+      "code_cells": 24,
+      "tracebacks": 0,
+      "monotonic_execution": true,
+      "inference_performed": false,
+      "training_performed": false,
+      "frozen_metrics_changed": false
+    },
+    {
+      "phase": "Phase 11",
+      "notebook": "notebooks/phasewise/phase_11_failure_analysis/phase11_clean_v3_baseline_failure_analysis.ipynb",
+      "old_sha": "4c78815dc16554ecfe67c29ed16f2c9857cc09ad2d7552aae190025c3b825716",
+      "new_sha": "4a423fd4cf90a8fb27f202e4dbdc0e62ce6640ed2d0168783714982c0f9d8506",
+      "sections_added": [
+        "Descriptive Evaluation and Visual Evidence \u2014 Phase 11 (baseline failure analysis)"
+      ],
+      "tables_added": [
+        "GLOBAL-arm component detection recall by size",
+        "GLOBAL-arm coverage sensitivity",
+        "GLOBAL-arm component TP/FN summary"
+      ],
+      "figures_added": [
+        "phase11_recall_by_size.png",
+        "phase11_boundary_and_dice.png"
+      ],
+      "code_cells": 30,
+      "tracebacks": 0,
+      "monotonic_execution": true,
+      "inference_performed": false,
+      "training_performed": false,
+      "frozen_metrics_changed": false
+    },
+    {
+      "phase": "Phase 12",
+      "notebook": "notebooks/phasewise/phase_12_oracle_roi/phase12_clean_v3_oracle_regional_analysis.ipynb",
+      "old_sha": "7ebad54f1a7d45681138db298efff9e1af1567fac4051b27d325794be9e777a8",
+      "new_sha": "910881ab447014c71f39eb7f6e6c251c03d1a3fa09825c3338442a3f212b067f",
+      "sections_added": [
+        "Descriptive Evaluation and Visual Evidence \u2014 Phase 12 (oracle ROI upper bound)"
+      ],
+      "tables_added": [
+        "GLOBAL vs ORACLE_REGIONAL descriptive metrics",
+        "component recall by size (GLOBAL/ORACLE)",
+        "paired GLOBAL\u2192ORACLE Dice difference"
+      ],
+      "figures_added": [
+        "phase12_confusion_global_vs_oracle.png",
+        "phase12_paired_oracle_benefit.png"
+      ],
+      "code_cells": 40,
+      "tracebacks": 0,
+      "monotonic_execution": true,
+      "inference_performed": false,
+      "training_performed": false,
+      "frozen_metrics_changed": false
+    },
+    {
+      "phase": "Phase 13",
+      "notebook": "notebooks/phasewise/phase_13_predicted_roi_localization/phase13_clean_v3_best_checkpoint_proposal_analysis.ipynb",
+      "old_sha": "0a631e3881592af96bed2729529bb49938e111c6f48bc67456a96be40dded1d1",
+      "new_sha": "3ca14d002011a1e91341e6a0440c03bdfd3c7a198bee8b1579d5db7c45fe6a9d",
+      "sections_added": [
+        "Descriptive Evaluation and Visual Evidence \u2014 Phase 13 (proposal / localizer)"
+      ],
+      "tables_added": [
+        "Phase-13B proposal metrics summary",
+        "Phase-13B size-stratified coverage"
+      ],
+      "figures_added": [
+        "phase13_pr_froc.png"
+      ],
+      "code_cells": 20,
+      "tracebacks": 0,
+      "monotonic_execution": true,
+      "inference_performed": false,
+      "training_performed": false,
+      "frozen_metrics_changed": false
+    },
+    {
+      "phase": "Phase 14",
+      "notebook": "notebooks/phasewise/phase_14_regional_refiner/phase_14_regional_refiner_pipeline.ipynb",
+      "old_sha": "909efd4b6d6218b378fcb253dfd5fa7f7e0544fdb8104e263327a56b3b405a2a",
+      "new_sha": "45751a9ad65dfd161c3e596d1851acb919225a40a955961886f707f2fe5690e8",
+      "sections_added": [
+        "Supplementary \u2014 confusion matrices and paired comparisons (Phase 14)"
+      ],
+      "tables_added": [
+        "Phase-14 paired per-image Dice comparisons"
+      ],
+      "figures_added": [
+        "phase14_confusion_matrices.png",
+        "phase14_paired_predicted_vs_global.png"
+      ],
+      "code_cells": 22,
+      "tracebacks": 0,
+      "monotonic_execution": true,
+      "inference_performed": false,
+      "training_performed": false,
+      "frozen_metrics_changed": false
+    },
+    {
+      "phase": "H3-01",
+      "notebook": "notebooks/phasewise/post_phase14_h3_proposal_supply/01_proposal_root_cause_diagnostic.ipynb",
+      "old_sha": "b492853bb1abd3a79e3116f817309da6898c7f230d17516c683045a78175b1a8",
+      "new_sha": "a9fd0dd734f9311655677eadc3e8d1710d9725c01681c36973ab4852d8583232",
+      "sections_added": [
+        "Descriptive Evaluation and Visual Evidence \u2014 H3 proposal root cause"
+      ],
+      "tables_added": [
+        "proposal metrics summary (all arms)",
+        "H3 any-overlap proposal recall by size"
+      ],
+      "figures_added": [
+        "h3_01_proposal_recall_by_size.png"
+      ],
+      "code_cells": 9,
+      "tracebacks": 0,
+      "monotonic_execution": true,
+      "inference_performed": false,
+      "training_performed": false,
+      "frozen_metrics_changed": false
+    },
+    {
+      "phase": "H3-02",
+      "notebook": "notebooks/phasewise/post_phase14_h3_proposal_supply/02_h3_axis_priority_diagnostic.ipynb",
+      "old_sha": "2ecddfe781b621fd3f807c30afb76563b92328645ed3170a747bb2fdaa0e45f7",
+      "new_sha": "ee8787c6d76acd6fe0208a694104d8d4b9b65e6fc3ea905ece4b541c340c83eb",
+      "sections_added": [
+        "Descriptive Evaluation and Visual Evidence \u2014 H3 axis priority (A-only vs C-only)"
+      ],
+      "tables_added": [
+        "H3 proposal metrics",
+        "H3 component outcome decomposition"
+      ],
+      "figures_added": [
+        "h3_02_component_outcomes.png"
+      ],
+      "code_cells": 7,
+      "tracebacks": 0,
+      "monotonic_execution": true,
+      "inference_performed": false,
+      "training_performed": false,
+      "frozen_metrics_changed": false
+    },
+    {
+      "phase": "H3-05",
+      "notebook": "notebooks/phasewise/post_phase14_h3_proposal_supply/05_h3_supply_axis_evaluation.ipynb",
+      "old_sha": "34f57624497b6132433f36f0243fec5b6295037ee2766f60f06d983184f3bb34",
+      "new_sha": "e3771f0a33cf8e69b0fe734001494d2974d1d896e540ced958b730bca39a3198",
+      "sections_added": [
+        "Descriptive Evaluation and Visual Evidence \u2014 H3 supply axis (proposal/localizer)"
+      ],
+      "tables_added": [
+        "H3 proposal metrics",
+        "H3 supply coverage by size stratum"
+      ],
+      "figures_added": [
+        "h3_05_supply_coverage_by_size.png"
+      ],
+      "code_cells": 31,
+      "tracebacks": 0,
+      "monotonic_execution": true,
+      "inference_performed": false,
+      "training_performed": false,
+      "frozen_metrics_changed": false
+    },
+    {
+      "phase": "H3-06",
+      "notebook": "notebooks/phasewise/post_phase14_h3_proposal_supply/06_h3_downstream_evaluation.ipynb",
+      "old_sha": "5deec5ec4c5a842a5222bdc266bba11f782b1482c9cfaeba33fcff101117bfa3",
+      "new_sha": "557b8185edf2ab12e1332afdc3d346d8a4678346f3a9a16c501754ce839fa3ab",
+      "sections_added": [
+        "Supplementary \u2014 confusion matrices and paired comparisons (H3 downstream)"
+      ],
+      "tables_added": [
+        "H3 downstream paired per-image Dice comparisons"
+      ],
+      "figures_added": [
+        "h3_06_confusion.png",
+        "h3_06_paired_vs_global.png"
+      ],
+      "code_cells": 40,
+      "tracebacks": 0,
+      "monotonic_execution": true,
+      "inference_performed": false,
+      "training_performed": false,
+      "frozen_metrics_changed": false
+    },
+    {
+      "phase": "H3-04",
+      "notebook": "notebooks/phasewise/post_phase14_h3_proposal_supply/04_h3_training.ipynb",
+      "old_sha": "21d3d3661962c88d8f3795e1f111f2c28022237c355490cc26baf372a51c7ce2",
+      "new_sha": "83aabc82f682d6c5685812f815077bf83b068e84ce7311c51366d67883ed350d",
+      "sections_added": [
+        "Descriptive Evaluation and Visual Evidence \u2014 H3 training (optimization metrics)"
+      ],
+      "tables_added": [
+        "H3 best-epoch optimization summary"
+      ],
+      "figures_added": [
+        "h3_04_training_curves.png"
+      ],
+      "code_cells": 25,
+      "tracebacks": 0,
+      "monotonic_execution": true,
+      "inference_performed": false,
+      "training_performed": false,
+      "frozen_metrics_changed": false
+    }
+  ],
+  "coverage_matrix": {
+    "path": "reports/tables/phasewise_evaluation_visualization_coverage.csv",
+    "sha256": "d81823d26a3cf87a89ea44c2934a74533d1812545588013fb4dde1615802cac3",
+    "rows": 14
+  },
+  "phasewise_readme": {
+    "path": "notebooks/phasewise/README.md",
+    "old_sha256": "73e93707323effa20ae7170d3379a3aae0e680aeef651857f55d232d73c60e83",
+    "new_sha256": "7680ba1bbf8ffcb4cb5507f4ac6507bb612c8f53165a2c1c282d36af4bba406a"
+  },
+  "master_phasewise_index": {
+    "path": "notebooks/phasewise/00_PHASEWISE_PROJECT_INDEX.ipynb",
+    "old_sha256": "20155c4ecf4e030f8ac5c95f92684dabe5cebc444555cf647a0cea3c66a59bd1",
+    "new_sha256": "e3ebebf37cdbec807c2aaffd63ccd6781dd83416b9a4156f28bb132297d2f5a7",
+    "code_cells": 4,
+    "tracebacks": 0,
+    "monotonic_execution": true
+  }
+}

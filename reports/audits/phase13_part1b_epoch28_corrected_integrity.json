@@ -1,0 +1,71 @@
+{
+  "artifact": "PHASE13_PART1B_EPOCH28_CORRECTED_INTEGRITY",
+  "document_type": "METRIC_REPAIR_INTEGRITY_CHECK",
+  "created_utc": "2026-09-21T14:25:22.301811Z",
+  "experiment_id": "phase13b_kub_localizer_r512_h128_sigmaeq075_centernetfocal_seed42_clean_v3",
+  "checkpoint": "D:\\Softfors\\jup\\checkpoints\\phase13b_kub_localizer_r512_h128_sigmaeq075_centernetfocal_seed42_clean_v3\\latest.pt",
+  "checkpoint_epoch": 28,
+  "val_cases": 103,
+  "val_components": 152,
+  "proposal_config": {
+    "threshold": 0.1,
+    "margin": 0.2,
+    "top_k": 5,
+    "nms_iou": 0.3
+  },
+  "grid_configurations_evaluated": 0,
+  "corrected_metrics": {
+    "tiny_recall90": 0.0,
+    "overall_recall90": 0.0,
+    "mean_roi_area_fraction": 0.0,
+    "hard_tiny_recovered90": 0,
+    "hard_tiny_total": 15,
+    "global_empty_images_covered90": 0,
+    "global_empty_total": 5,
+    "multi_component_recall90": 0.0,
+    "mean_proposals_per_image": 0.0,
+    "overall_recall50": 0.0,
+    "any_overlap_recall": 0.0,
+    "mean_coverage": 0.0,
+    "zero_denominator": false,
+    "covered_samples": 0
+  },
+  "component_contract": {
+    "cases": 103,
+    "components": 152,
+    "unique_identities": 152,
+    "strata": {
+      "TINY": 72,
+      "LARGE": 16,
+      "MEDIUM": 36,
+      "SMALL": 28
+    },
+    "hard_tiny_components": 15,
+    "global_empty_images": 5
+  },
+  "val_loss_corrected": 2.2075677880874047,
+  "val_loss_history_epoch28": 2.2075677880874047,
+  "val_loss_abs_diff": 0.0,
+  "val_loss_tolerance": 1e-06,
+  "val_loss_within_tolerance": true,
+  "primary_tuple_history_epoch28": [
+    0.0,
+    0.0,
+    -0.0,
+    -2.2075677880874047
+  ],
+  "primary_tuple_corrected": [
+    0.0,
+    0.0,
+    -0.0,
+    -2.2075677880874047
+  ],
+  "primary_tuple_equal": true,
+  "expected_zero_proposals": true,
+  "mean_proposals_per_image": 0.0,
+  "no_grid": true,
+  "no_tuning": true,
+  "not_standalone_proposal_analysis": true,
+  "test_reads": 0,
+  "status": "PASS"
+}

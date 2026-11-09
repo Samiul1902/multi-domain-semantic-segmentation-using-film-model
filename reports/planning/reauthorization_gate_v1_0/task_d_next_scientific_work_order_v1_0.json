@@ -1,0 +1,138 @@
+{
+  "version": "1.0",
+  "mode": "READ_ONLY_DECISION_SUPPORT",
+  "training_performed": false,
+  "inference_performed": false,
+  "frozen_artifacts_modified": false,
+  "test_accessed": false,
+  "router_holdout_accessed": false,
+  "authorization_granted": false,
+  "generated_local": "2026-10-26T22:47:47+06:00",
+  "generated_utc": "2026-10-26T16:47:47+00:00",
+  "timestamp_provenance": "COMPUTED_AT_WRITE_BY_SCRIPT",
+  "clock_uncertainty": "HOST_CLOCK_NOT_SYNCHRONIZED__ABSOLUTE_UTC_CORRESPONDENCE_UNVERIFIED",
+  "artifact": "next_scientific_work_order",
+  "classification": "RA_MEDFILM_BARR_NEXT_SCIENTIFIC_WORK_ORDER",
+  "companion_markdown": {
+    "path": "reports/planning/reauthorization_gate_v1_0/task_d_next_scientific_work_order_v1_0.md",
+    "sha256": "e18b0282a3bc3535fa630838d106d1911fce0080674632cef77c11e9c179613a",
+    "bytes": 11228
+  },
+  "recommended_study": {
+    "identifier": "BARR-M1",
+    "provisional": true,
+    "is_EXT_study": false,
+    "title": "Benefit-router mechanism ablation, phase 1",
+    "source_option": "C2a"
+  },
+  "recommendation_reasons": [
+    "only path needing no training -> immune to 87 unexpected shutdowns and dead RTC",
+    "2-6 GPU-hours vs ~57.6 h (C1) and ~250 h (C3) - two orders of magnitude cheaper",
+    "decomposes the undecomposed +0.00282 joint delta into a mechanism claim",
+    "supports a defensible harm-avoidance claim rather than superiority"
+  ],
+  "arms": {
+    "A0": "ROUTING_ABSENT (global only)",
+    "A1": "ROUTING_ABSENT (refine all)",
+    "A8": "POST_SAFETY = S_omega present (baseline)"
+  },
+  "authorization_distinction": "executing frozen arms A0/A1/A8 is NOT adding a factor; authorisation is required because the contract declares execution NONE, not because anything would be added",
+  "excluded": [
+    "C2b / any S_omega-absent arm",
+    "any Phase-28 arm outside A0/A1/A8",
+    "any new factor added to Phase-28",
+    "C1 FiLM-off control",
+    "C3 / EXT-03B",
+    "EXT-04",
+    "TEST",
+    "ROUTER_HOLDOUT",
+    "external inference",
+    "any training"
+  ],
+  "population": {
+    "primary": "ROUTER_DEVELOPMENT n=4957 (contract held_constant)",
+    "secondary": "VAL808 n=808 descriptive continuity only",
+    "conflict": "Phase-22/29 used VAL808; contract states ROUTER_DEVELOPMENT - must be resolved and frozen before launch",
+    "status": "UNRESOLVED_REQUIRES_SUPERVISOR_DECISION"
+  },
+  "held_constant": {
+    "roi_rule": "threshold 0.30, expansion 1.50, resolution 256",
+    "fusion_rule": "outside ROI p_global; inside ROI p_refined; threshold 0.50",
+    "budget": 0.25,
+    "lambda": 0.25,
+    "bootstrap": "n_boot 2000, seed 42",
+    "segmentation_threshold": 0.5
+  },
+  "primary_endpoint": "macro-domain equal-weight mean Dice delta, paired per case, bootstrap CI (n_boot 2000, seed 42) for A8-A0, A8-A1, A1-A0",
+  "secondary_endpoints": [
+    "harm rate and mean harm per arm using the Phase-22 definition verbatim",
+    "n_selected and selected_fraction",
+    "per-domain breakdown"
+  ],
+  "expected_compute": "2-6 GPU-hours, restartable per arm, no long unattended window",
+  "claim_boundary": {
+    "class": "DESCRIPTIVE_DEV",
+    "population_is_selection_set": true,
+    "permitted": "routing changed macro Dice by X and reduced harmed-case rate from Y to Z on the development population",
+    "prohibited": [
+      "held-out performance",
+      "confirmatory inference",
+      "clinical safety",
+      "generalisation",
+      "BARR superiority"
+    ]
+  },
+  "prerequisites": [
+    {
+      "n": 1,
+      "item": "four frozen components present with matching digests",
+      "met": true
+    },
+    {
+      "n": 2,
+      "item": "frozen Phase-28 contract intact",
+      "met": true
+    },
+    {
+      "n": 3,
+      "item": "population resolved and frozen",
+      "met": false
+    },
+    {
+      "n": 4,
+      "item": "authorization to execute a contract declared execution NONE",
+      "met": false
+    },
+    {
+      "n": 5,
+      "item": "R1-R10 satisfied for an inference-only study",
+      "met": false
+    },
+    {
+      "n": 6,
+      "item": "negative-control battery demonstrating the gate can fail",
+      "met": false
+    },
+    {
+      "n": 7,
+      "item": "claim-boundary block frozen pre-launch",
+      "met": false
+    },
+    {
+      "n": 8,
+      "item": "host remediation P1-P3",
+      "met": false,
+      "required_for_this_study": false
+    }
+  ],
+  "non_claims": [
+    "does not upgrade C1/C2/C3",
+    "does not resolve AS-08",
+    "does not establish FiLM attribution",
+    "does not establish safety",
+    "does not assert BARR superiority",
+    "does not reuse EXT-04",
+    "does not authorise EXT-03B"
+  ],
+  "terminal_state": "RA_MEDFILM_BARR_NEXT_SCIENTIFIC_WORK_ORDER_READY__AWAITING_SUPERVISOR_APPROVAL"
+}

@@ -1,0 +1,102 @@
+{
+  "artifact": "PHASE13_CLEAN_V3_LOCALIZER_TRAINING_COMPLETION_R2C_ADDENDUM",
+  "document_type": "PROVENANCE_SYNTHESIS_ADDENDUM",
+  "created_utc": "2026-09-22T02:30:00Z",
+  "project_root": "D:\\Softfors\\jup",
+  "experiment_id": "phase13b_kub_localizer_r512_h128_sigmaeq075_centernetfocal_seed42_clean_v3",
+
+  "addendum_nature": "PROVENANCE_SYNTHESIS_ONLY",
+  "original_completion_audit_overwritten": false,
+  "original_completion_audit_path": "reports/audits/phase13_clean_v3_localizer_training_completion.json",
+  "original_completion_audit_sha": "4e48afe5e9c4f81db975d31ba60bcf130a48d016073766f56241973b77eabcd8",
+  "original_completion_audit_reported_protocol": "R2 + R2A_LOSS_BINDING",
+
+  "final_effective_protocol_lineage": [
+    "R2",
+    "R2A_LOSS_BINDING",
+    "NON_SCIENTIFIC_PROVENANCE_BINDING",
+    "R2B (provenance; superseded for primary selection)",
+    "R2C_HISTORICAL_EXECUTING_COVERAGE_ARBITRATION"
+  ],
+  "canonical_for_primary_selection": "R2C_HISTORICAL_EXECUTING_COVERAGE_ARBITRATION",
+  "primary_coverage_semantics": "HISTORICAL_EXECUTING_BBOX_COVERAGE",
+  "pixel_coverage_role": "SECONDARY_COVERAGE_SENSITIVITY_ONLY",
+
+  "training_outcome": {
+    "best_epoch": 53,
+    "final_epoch": 68,
+    "early_stop_patience": 15,
+    "termination_reason": "EARLY_STOPPING_PATIENCE",
+    "final_bad_epochs": 15,
+    "canonical_best_tuple": [
+      0.6805555555555556,
+      0.5986842105263158,
+      -0.004846047236646169,
+      -1.9175469095890338
+    ],
+    "best_canonical_bbox_metrics": {
+      "tiny_recall90": 0.6805555555555556,
+      "overall_recall90": 0.5986842105263158,
+      "mean_roi_area_fraction": 0.004846047236646169,
+      "val_loss": 1.9175469095890338
+    },
+    "canonical_secondary_bbox_diagnostics": {
+      "hard_tiny_recovered90": 4,
+      "hard_tiny_total": 15,
+      "global_empty_images_covered90": 1,
+      "global_empty_total": 5,
+      "multi_component_recall90": 0.5714285714285714,
+      "mean_proposals_per_image": 4.796116504854369
+    },
+    "pixel_sensitivity": {
+      "tiny_recall90": 0.6944444444444444,
+      "overall_recall90": 0.6644736842105263,
+      "role": "NEVER_SELECTION_METRICS"
+    }
+  },
+
+  "artifact_bindings": {
+    "canonical_selection_sidecar_path": "reports/tables/phase13_part1b_canonical_selection_history.csv",
+    "canonical_selection_sidecar_sha": "77449ec3c49264c1f76958efc3eae95c343727f856399ad86cf07f7d5552266e",
+    "best_epoch_verification_path": "reports/audits/phase13_clean_v3_localizer_best_epoch_verification.json",
+    "best_epoch_verification_sha": "c48592f5013b5b84b7524535fd4ccd55bd9690ab56bf51c07aed345f2e975db5",
+    "canonical_replay_verification_path": "reports/audits/phase13_part1b_canonical_selection_replay_verification.json",
+    "canonical_replay_verification_sha": "c4b13aaf9909edb08e3e29bee8fba00f276dbc2111a9703044fe24367b65172c",
+    "final_best_integrity_path": "reports/audits/phase13_clean_v3_localizer_final_best_checkpoint_integrity.json",
+    "final_best_integrity_sha": "6a4c5748ccded2758e6d7c530758d5fb2382de4c71fa7e7cd57e393f4ec6507e",
+    "executing_runner_path": "scripts/training/train_phase13_clean_v3_localizer.py",
+    "executing_runner_sha": "00ff82447f1f83935c042ea4fa19ad4f05956c48a80c474eaa98fc643bf79913",
+    "best_checkpoint_path": "checkpoints/phase13b_kub_localizer_r512_h128_sigmaeq075_centernetfocal_seed42_clean_v3/best.pt",
+    "best_checkpoint_sha": "7673c34a2f2c86eca2e45c1bc6abe77842d17cd09f122f2da0f2d414ca492273",
+    "latest_checkpoint_path": "checkpoints/phase13b_kub_localizer_r512_h128_sigmaeq075_centernetfocal_seed42_clean_v3/latest.pt",
+    "latest_checkpoint_sha": "791abe027cb63ea81d9fcaea1e7081536d80382553e1e5129d7f80e89eae307c",
+    "history_path": "experiments/phase13b_kub_localizer_r512_h128_sigmaeq075_centernetfocal_seed42_clean_v3/history.csv",
+    "history_sha": "344cfc016fd88e7e697c6afa0ffbf839b3d3b3c16b54024dc3537586528d4c5b",
+    "config_path": "configs/phase13_clean_v3/phase13b_kub_localizer_r512_h128_sigmaeq075_centernetfocal_seed42_clean_v3.yaml",
+    "config_sha": "922ff26916c1f7ebea0ea526fbaa6adbb9a7419f1f08b16d33ed5df049c4c8bf",
+    "r2_protocol_sha": "ab451e03366c589fae5c303ebf1382e086f4f115b97768eb36d491256a3b5e53",
+    "r2a_loss_sha": "f3aececfbe683fa7c60ea758b7b7d6446e3cc6584e86e8faa2c7eb4f14029667",
+    "provenance_amendment_sha": "436831dbaf3305e632e6b4a34adb0eb1b4b1edf962e74354d337ec1328bfdd5a",
+    "r2b_sha": "5574cd60a0bb69f392e818b96915fc522f4b706e9958d2d39a22911fe8424497",
+    "r2c_sha": "aa0f1baf3b978075f50f6bac23b3381a134718abb77da226fa6885cad9e0b367",
+    "r2c_erratum_path": "reports/audits/phase13_clean_v3_localizer_coverage_semantics_r2c_erratum.json"
+  },
+
+  "side_effect_counts": {
+    "grid_configurations_evaluated": 0,
+    "test_reads": 0,
+    "scientific_hyperparameter_changes_during_training": 0
+  },
+
+  "history_governance": {
+    "rows_1_31_preserved_unmodified": true,
+    "row_31_legacy_primary_fields_are_pixel_based": true,
+    "row_31_raw_values_retained": true,
+    "authoritative_selection_source": "reports/tables/phase13_part1b_canonical_selection_history.csv"
+  },
+
+  "no_training": true,
+  "no_inference": true,
+  "no_proposal_generation": true,
+  "status": "PASS"
+}

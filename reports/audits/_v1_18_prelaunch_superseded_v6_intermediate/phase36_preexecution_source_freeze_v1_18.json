@@ -1,0 +1,18 @@
+{
+ "artifact": "phase36_preexecution_source_freeze_v1_18",
+ "phase": 36,
+ "revision": "ra_medfilm_barr_phase36_robustness_v1_18",
+ "type": "PREEXECUTION_SOURCE_FREEZE",
+ "generated_utc": "2026-10-10T14:50:45Z",
+ "frozen_sources": {
+  "scripts/analysis/phase36_robustness_execution_v1_18.py": "2259ce22e75ba9a3a8943769dc1e0ed5724f94902f5e8955976cd6ebeb8ce63e",
+  "scripts/analysis/build_phase36_robustness_execution_v1_18.py": "0eac6a6fad4fc960f9425e2c5deb57aadbe6e65a6893b69dec51fa5caa077560",
+  "reports/audits/phase36_v1_18_runtime_source_integrity_manifest.json": "0a19c405641f0825a9869e6dd9f151ee4e5c5c83f0648a9a7844bf17b59f0a5d"
+ },
+ "launcher_deferred": true,
+ "launcher_deferred_reason": "ACYCLIC ORDER (§11): the launcher SHA is bound by the dedicated phase36_v1_18_launch_authority_sha.json constant file (whose own bytes are pinned by the supervisor), NOT by this freeze — otherwise the freeze would bind the launcher while the launcher binds the freeze.",
+ "launcher_path": "scripts\\analysis\\launch_phase36_v1_18.py",
+ "supervisor_deferred": true,
+ "supervisor_deferred_reason": "ACYCLIC ORDER (§11): the supervisor is built LAST and pins the prelaunch authority bundle SHA; the freeze therefore cannot (and does not) contain a supervisor SHA.",
+ "terminal": "PHASE36_V1_18_SOURCE_FREEZE_WRITTEN"
+}

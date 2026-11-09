@@ -1,0 +1,45 @@
+{
+  "classification": "EXT03R_SEGFORMER_IDENTITY",
+  "generated_utc": "2026-10-11T18:00:00Z",
+  "implementation_library": "transformers",
+  "library_version": "5.19.0",
+  "class": "SegformerForSemanticSegmentation",
+  "wrapper_source": "src/models/segformer_b0.py",
+  "wrapper_sha256": "187010455c842cc254146d3e68915d5198009af4869286b78c6ba6abee7e65fb",
+  "factory_source": "src/models/factory.py",
+  "factory_sha256": "46a34068ba13826863a5f5dd8fb4350b4fd7c99b184f93dbf07c71138cdf162e",
+  "config": {
+    "hidden_sizes": [
+      32,
+      64,
+      160,
+      256
+    ],
+    "depths": [
+      2,
+      2,
+      2,
+      2
+    ],
+    "num_attention_heads": [
+      1,
+      2,
+      5,
+      8
+    ],
+    "sr_ratios": [
+      8,
+      4,
+      2,
+      1
+    ],
+    "decoder_hidden_size": 256,
+    "num_labels": 1
+  },
+  "input_channels": 3,
+  "output_channels": 1,
+  "logit_behavior": "raw logits (no sigmoid)",
+  "output_interpolation": "bilinear to [B,1,512,512] when native < 512",
+  "initialization": "CONFIG_ONLY__NO_PRETRAINED_WEIGHTS (no from_pretrained, no download)",
+  "parameter_count": 3714401
+}

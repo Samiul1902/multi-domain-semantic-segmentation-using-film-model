@@ -1,0 +1,45 @@
+{
+ "artifact": "phase34_latency_execution_environment_v1_4",
+ "phase": 34,
+ "section": "\u00a7G",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase34_efficiency_profiling_v1_4",
+ "observed_environment": {
+  "os": "Windows-10-10.0.26200-SP0",
+  "python_version": "3.11.9",
+  "torch_version": "2.6.0+cu124",
+  "cuda_runtime": "12.4",
+  "cuda_driver_version": "596.36",
+  "cudnn_version": 90100,
+  "cuda_available": true,
+  "gpu_model": "NVIDIA GeForce RTX 3060 Ti",
+  "gpu_compute_capability": "8.6",
+  "gpu_total_vram_bytes": 8589279232,
+  "cpu_logical_cores": 16,
+  "cpu_torch_threads": 8,
+  "system_ram_bytes": 34281005056
+ },
+ "expected_frozen_environment": {
+  "gpu_model": "NVIDIA GeForce RTX 3060 Ti",
+  "gpu_compute_capability": "8.6",
+  "gpu_total_vram_bytes": 8589279232,
+  "python_version": "3.11.9",
+  "torch_version": "2.6.0+cu124",
+  "cuda_runtime": "12.4",
+  "cuda_driver_version": "596.36",
+  "cudnn_version": 90100
+ },
+ "environment_checks": {
+  "gpu_model": true,
+  "gpu_compute_capability": true,
+  "gpu_total_vram_bytes": true,
+  "python_version": true,
+  "torch_version": true,
+  "cuda_runtime": true,
+  "cuda_driver_version": true,
+  "cudnn_version": true
+ },
+ "environment_gate_pass": true,
+ "generated_utc": "2026-10-04T14:10:09+00:00",
+ "all_pass": true
+}

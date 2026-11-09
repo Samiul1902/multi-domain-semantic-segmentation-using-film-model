@@ -1,0 +1,53 @@
+{
+ "artifact": "phase25f_training_health",
+ "phase": "25F",
+ "stage": "TRAINING_HEALTH",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_post_safety_v1_0",
+ "checks": {
+  "fold0_history_nonempty": true,
+  "fold0_finite_losses": true,
+  "fold0_best_epoch_in_range": true,
+  "fold0_train_bce_decreased": true,
+  "fold0_epochs_monotone": true,
+  "fold1_history_nonempty": true,
+  "fold1_finite_losses": true,
+  "fold1_best_epoch_in_range": true,
+  "fold1_train_bce_decreased": true,
+  "fold1_epochs_monotone": true,
+  "fold2_history_nonempty": true,
+  "fold2_finite_losses": true,
+  "fold2_best_epoch_in_range": true,
+  "fold2_train_bce_decreased": true,
+  "fold2_epochs_monotone": true,
+  "fold3_history_nonempty": true,
+  "fold3_finite_losses": true,
+  "fold3_best_epoch_in_range": true,
+  "fold3_train_bce_decreased": true,
+  "fold3_epochs_monotone": true,
+  "fold4_history_nonempty": true,
+  "fold4_finite_losses": true,
+  "fold4_best_epoch_in_range": true,
+  "fold4_train_bce_decreased": true,
+  "fold4_epochs_monotone": true,
+  "five_histories_present": true,
+  "five_best_checkpoints_present": true,
+  "no_run_collapsed_to_zero_epochs": true
+ },
+ "best_epochs": [
+  16,
+  7,
+  66,
+  35,
+  23
+ ],
+ "terminations": [
+  "early_stop",
+  "early_stop",
+  "early_stop",
+  "early_stop",
+  "early_stop"
+ ],
+ "host_teardown_resumable": true,
+ "all_pass": true
+}

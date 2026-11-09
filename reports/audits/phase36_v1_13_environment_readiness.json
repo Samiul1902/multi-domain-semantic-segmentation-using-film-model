@@ -1,0 +1,61 @@
+{
+ "artifact": "phase36_v1_13_environment_readiness",
+ "phase": 36,
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase36_robustness_v1_13",
+ "type": "ENVIRONMENT_READINESS_EVIDENCE",
+ "governance": {
+  "device_environment_only": true,
+  "torch_load": false,
+  "checkpoint_read": false,
+  "model_construction": false,
+  "model_forward": false,
+  "smoke": false,
+  "science": false,
+  "val_image_read": false,
+  "gt_read": false,
+  "test_read": false,
+  "router_holdout_read": false,
+  "training": false
+ },
+ "python_executable": "D:\\Softfors\\jup\\.venv\\Scripts\\python.exe",
+ "canonical_interpreter": "D:\\Softfors\\jup\\.venv\\Scripts\\python.exe",
+ "interpreter_exact_match": true,
+ "interpreter_evidence": {
+  "ok": true,
+  "expected_interpreter": "D:\\Softfors\\jup\\.venv\\Scripts\\python.exe",
+  "expected_interpreter_normalized": "d:\\softfors\\jup\\.venv\\scripts\\python.exe",
+  "observed_executable": "D:\\Softfors\\jup\\.venv\\Scripts\\python.exe",
+  "observed_executable_normalized": "d:\\softfors\\jup\\.venv\\scripts\\python.exe",
+  "observed_exists": true,
+  "sys_prefix": "D:\\Softfors\\jup\\.venv",
+  "sys_prefix_is_project_venv": true,
+  "note": "D37_EXACT_INTERPRETER_IDENTITY__NO_AUTO_RELAUNCH"
+ },
+ "python_version": "3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]",
+ "python_version_info": [
+  3,
+  11,
+  9
+ ],
+ "platform": "Windows-10-10.0.26200-SP0",
+ "torch_version": "2.6.0+cu124",
+ "torch_version_cuda": "12.4",
+ "cuda_is_available": true,
+ "cuda_device_count": 1,
+ "current_device": 0,
+ "device_name": "NVIDIA GeForce RTX 3060 Ti",
+ "get_device_require_cuda_success": true,
+ "get_device_resolved": "cuda:0",
+ "readiness_conditions": {
+  "torch_version_cuda_not_none": true,
+  "cuda_is_available_true": true,
+  "device_count_ge_1": true,
+  "get_device_require_cuda_ok": true,
+  "resolved_device_type_is_cuda": true
+ },
+ "ready_for_dispatch": true,
+ "launcher_sha256": "5f7fc91f9f0b8689adf42fc50527e216227ce7c4b853ba82ae1bce92a4805cab",
+ "new_scientific_choice": false,
+ "note": "DEVICE/ENVIRONMENT EVIDENCE ONLY \u2014 no model/checkpoint/data execution."
+}

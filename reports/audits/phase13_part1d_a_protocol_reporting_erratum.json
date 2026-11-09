@@ -1,0 +1,116 @@
+{
+  "artifact": "PHASE13_PART1D_A_PROTOCOL_REPORTING_ERRATUM",
+  "classification": "PART1D_A_CHECKPOINT_EXPERIMENT_ID_REPORTING_ERROR_ONLY",
+  "created_utc": "2026-09-22T04:09:42Z",
+  "phase": "PHASE_13_PART_1D_A_R1",
+  "scope": "REPORTING_ONLY__NO_SCIENTIFIC_EXECUTION",
+  "defect": {
+    "summary": "The Part-1D-A frozen protocol MARKDOWN table 'Four frozen segmentation checkpoints' rendered the literal model-name tuple in the 'experiment' column on every row, instead of each model's own experiment id.",
+    "affected_artifact": "reports/audits/phase13_part1d_predicted_region_protocol_frozen.md",
+    "affected_section": "### Four frozen segmentation checkpoints",
+    "erroneous_cell_value_verbatim": "['unet', 'attention_unet', 'unetpp', 'deeplabv3plus']",
+    "erroneous_cell_repeated_on_rows": 4,
+    "root_cause": "the markdown renderer iterated the MODEL name list for the experiment column instead of MODEL_CHECKPOINTS (the model -> experiment-id mapping)",
+    "defect_origin": "PART_1D_A_ARTIFACT_RENDERING_STEP"
+  },
+  "not_affected": {
+    "machine_readable_json": "reports/audits/phase13_part1d_predicted_region_protocol_frozen.json",
+    "json_block": "bindings.segmentation_checkpoints",
+    "json_was_always_correct": true,
+    "checkpoint_paths": "UNCHANGED",
+    "checkpoint_sha256_bindings": "UNCHANGED",
+    "protocol_semantics": "UNCHANGED",
+    "population": "UNCHANGED",
+    "frozen_proposals": "UNCHANGED",
+    "fusion_semantics": "UNCHANGED",
+    "retention_formula": "UNCHANGED",
+    "table_contracts": "UNCHANGED",
+    "gate_boundary": "UNCHANGED",
+    "scientific_value_affected": "NONE",
+    "measurement_affected": "NONE",
+    "inference_affected": "NONE"
+  },
+  "correct_experiment_ids": {
+    "unet": "phase9_kub_unet_baseline_seed42_512_clean_v3",
+    "attention_unet": "phase10_kub_attention_unet_seed42_512_clean_v3",
+    "unetpp": "phase10_kub_unetpp_seed42_512_clean_v3",
+    "deeplabv3plus": "phase10_kub_deeplabv3plus_seed42_512_clean_v3"
+  },
+  "correct_ids_verified_against": {
+    "source": "reports/audits/phase13_part1d_predicted_region_protocol_frozen.json -> bindings.segmentation_checkpoints[<model>].path",
+    "on_disk_confirmation": "checkpoints/<experiment_id>/best.pt exists for all four models",
+    "all_four_exist_on_disk": true
+  },
+  "repair": {
+    "action": "MARKDOWN_EXPERIMENT_COLUMN_CORRECTED_IN_PLACE_WITH_VISIBLE_ERRATUM_NOTE",
+    "erroneous_rendering_hidden": "NO",
+    "erroneous_rendering_retained_in_this_erratum": "YES",
+    "json_modified": "NO",
+    "pre_repair_md_sha256": "13d9408d5eccb042cf7fc95ac4c8b540c2460ab8ccb3a951baf88a753cb51e89",
+    "post_repair_md_sha256": "9e54fb41cd390a79209951cbad120b201670ba9aa9ac989a6f0c4f55a9e2322e",
+    "json_sha256_before_and_after": "8a7a163b061607dbc3187b0588b3f354e2ee8dd18ea3f34930153d594e75bf78"
+  },
+  "search_for_propagation": {
+    "token": "['unet', 'attention_unet', 'unetpp', 'deeplabv3plus']",
+    "searched_roots": [
+      "reports/",
+      "docs/",
+      "notebooks/phasewise/",
+      "scripts/",
+      "src/",
+      "tests/",
+      "manifests/",
+      "configs/"
+    ],
+    "raw_textual_matches": 9,
+    "matches_that_are_reporting_defects": 0,
+    "match_classification": [
+      {
+        "kind": "LEGITIMATE_MODEL_LIST_DEFINITION",
+        "files": [
+          "notebooks/phasewise/phase_10_baseline_comparison/build_final_comparison_notebook.py:187",
+          "notebooks/phasewise/phase_10_baseline_comparison/code/phase10_final_comparison.py:110",
+          "notebooks/phasewise/phase_11_failure_analysis/code/phase11_failure_analysis.py:49",
+          "notebooks/phasewise/phase_11_failure_analysis/code/phase11_failure_protocol.py:40",
+          "notebooks/phasewise/phase_12_oracle_roi/code/phase12_oracle_analysis.py:37",
+          "notebooks/phasewise/phase_12_oracle_roi/code/phase12_oracle_inference.py:45",
+          "notebooks/phasewise/phase_12_oracle_roi/code/phase12_oracle_protocol.py:54"
+        ],
+        "note": "these are genuine MODELS / MODEL_ORDER / CLEAN_V3_MODELS list constants; the token is correct and expected there"
+      },
+      {
+        "kind": "SELF_REFERENCE_IN_THIS_ERRATUM",
+        "files": [
+          "reports/audits/phase13_part1d_a_protocol_reporting_erratum.json:11",
+          "reports/audits/phase13_part1d_a_protocol_reporting_erratum.json:54"
+        ],
+        "note": "verbatim quotation of the defect, intentionally retained"
+      },
+      {
+        "kind": "ERRATUM_NOTE_PROSE_IN_REPAIRED_MD",
+        "files": [
+          "reports/audits/phase13_part1d_predicted_region_protocol_frozen.md:82"
+        ],
+        "note": "prose quotation inside the visible erratum note, not a table cell"
+      }
+    ],
+    "erroneous_experiment_id_renderings_elsewhere": "NONE",
+    "conclusion": "the defect was confined to one rendered markdown table; no other artifact rendered a model list in an experiment-id field"
+  },
+  "withdrawn_claims": [],
+  "counters": {
+    "training": 0,
+    "optimizer_creations": 0,
+    "model_constructions": 0,
+    "cuda_requests": 0,
+    "real_segmentation_forwards": 0,
+    "localizer_forwards": 0,
+    "proposal_generation": 0,
+    "regional_crop_inference": 0,
+    "test_reads": 0,
+    "checkpoint_writes": 0,
+    "cache_writes": 0
+  },
+  "status": "PART1D_A_PROTOCOL_REPORTING_ERRATUM_COMPLETE",
+  "next_action": "SEE_PART1D_A_CROP_RESTORE_SEMANTICS_REPAIR_AND_PART1D_FROZEN_R1"
+}

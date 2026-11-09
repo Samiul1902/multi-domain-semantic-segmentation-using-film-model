@@ -1,0 +1,77 @@
+{
+  "classification": "CONSUMED_SCIENCE_LOOP_STAGE_MANIFEST_CONTRACT_FAILURE__NO_TEST_INFERENCE_OPERATION_EXECUTED",
+  "defect_id": "D99_PHASE39_V1_1_TEST_MANIFEST_DOMAIN_SCHEMA_CONTRACT_MISMATCH",
+  "generated_utc": "2026-10-11T08:00:00Z",
+  "phase": 39,
+  "revision": "ra_medfilm_barr_phase39_final_test_v1_1",
+  "v1_1_executed": true,
+  "v1_1_consumed": true,
+  "same_version_rerun": "forbidden",
+  "automatic_retry": false,
+  "state": {
+    "START": "present",
+    "RESULT": "absent",
+    "FAILURE": "present",
+    "PROCESS_EXIT": "present"
+  },
+  "exact_hashes": {
+    "START": "77486cdff23329bfa2fe368583702de94762d580f3bf197fafe6f0f15a348d08",
+    "FAILURE": "e0a1ebe35031f675b3fdcd6ce8323d1e2f013d47a2b6d0e1e5c4f97e4ba207eb",
+    "PROCESS_EXIT": "4c616957c6f8c98856ac5ef94611871439bfa3e351d2af686db4aa1a4a91af4d",
+    "journal": "3690d1b7b0e4b8429323f6bfd0322150732b7e67e4b5d5e8d0a8d4784d2c0fea"
+  },
+  "hash_verification": {
+    "START_matches": true,
+    "FAILURE_matches": true,
+    "PROCESS_EXIT_matches": true,
+    "journal_matches": true
+  },
+  "failure_stage": "SCIENCE_LOOP",
+  "exception_type": "PreflightFailure",
+  "exception": "PHASE39_UNEXPECTED_TASK_DOMAIN: /3",
+  "A_DURABLE_STAGE_LABEL": {
+    "test_inference_started": true,
+    "note": "stage-derived: the execution stage had already been set to SCIENCE_LOOP. NEVER rewritten to false."
+  },
+  "B_ACTUAL_EXECUTED_INFERENCE_OPERATIONS": {
+    "test_image_reads": 0,
+    "test_gt_reads": 0,
+    "model_forwards": 0,
+    "metric_evaluations": 0,
+    "note": "the first row's domain/task validation failed BEFORE evaluate_sample() was called."
+  },
+  "test_membership_accessed": true,
+  "test_population_cardinality_asserted": 1683,
+  "test_image_gt_access": 0,
+  "forwards": 0,
+  "metrics": 0,
+  "training": 0,
+  "optimizer_steps": 0,
+  "parameter_mutations": 0,
+  "scientific_outcome_observed": false,
+  "scientific_result": "none",
+  "d99_root_cause": {
+    "proven": true,
+    "statement": "the v1.1 run_science read the domain via r.get('domain','') but the canonical Phase4 v3 manifest column is 'dataset'; the first TEST row therefore yielded dataset-derived-domain='' while task_id parsed as 3.",
+    "canonical_manifest_schema": "dataset,task_id,image_path,mask_path,patient_id,case_id,category,sample_id,split",
+    "canonical_manifest_schema_authorities": [
+      {
+        "path": "manifests/phase4_v3/val.csv",
+        "header": "dataset,task_id,image_path,mask_path,patient_id,case_id,category,sample_id,split",
+        "sha256": "082c80b2bda63fd73f371f109c34643adf01edaead921643fb2e44993ba53315"
+      },
+      {
+        "path": "manifests/phase4_v3/train.csv",
+        "header": "dataset,task_id,image_path,mask_path,patient_id,case_id,category,sample_id,split",
+        "sha256": "28702fc3a5ff8b950db372f03232d335e3a30b1fc2f21db7cd8c066055826ed6"
+      },
+      {
+        "path": "manifests/phase4_v3/README.md",
+        "sha256": "dc5443683f5865399bc994313ad42f32ab91c24e92b7811707c1d8d8058005d1"
+      }
+    ],
+    "domain_field": "dataset (e.g. 'KUB'); task_id=3",
+    "no_test_rows_inspected_for_schema": true
+  },
+  "retry_policy_adjudication": "reports/audits/phase39_v1_1_retry_policy_adjudication.json"
+}

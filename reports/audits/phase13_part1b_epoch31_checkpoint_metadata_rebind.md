@@ -1,0 +1,10 @@
+# PHASE-13 PART-1B — EPOCH-31 CHECKPOINT METADATA REBIND
+
+- status: **PASS_MODEL_AND_TRAINING_STATE_UNCHANGED**
+- canonical bbox tuple: `[0.3888888888888889, 0.3881578947368421, -0.003918121982149612, -2.178007864035093]`
+- runner SHA: `00ff82447f1f83935c042ea4fa19ad4f05956c48a80c474eaa98fc643bf79913`
+- R2C SHA: `aa0f1baf3b978075f50f6bac23b3381a134718abb77da226fa6885cad9e0b367`
+
+- `latest.pt`: state identical = True (diffs: 0)
+
+- `best.pt`: state identical = True (diffs: 0)

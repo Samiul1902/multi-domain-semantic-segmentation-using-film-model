@@ -1,0 +1,44 @@
+{
+ "artifact": "phase25f_target_contract_v1_0",
+ "phase": "25F",
+ "stage": "SUPERVISOR_RULING_F4_TRAINING_TARGET",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_post_safety_v1_0",
+ "ruling_id": "F4",
+ "frozen_target": "ACCEPT iff DeltaDice > 0",
+ "definition": "y_i = 1.0 if delta_dice_i > 0.0 else 0.0",
+ "boundary_rule": "DeltaDice == 0 -> FALLBACK class -> y = 0",
+ "class_names": {
+  "0": "FALLBACK_GLOBAL",
+  "1": "ACCEPT_REFINEMENT"
+ },
+ "target_dtype": "float32",
+ "target_source": "canonical Phase25C OOF delta_dice (data_cache/phase25c_barr_oof_paired_gain_labels_v1_2/phase25c_oof_paired_gain_labels.csv)",
+ "not_used": [
+  "BENEFICIAL >= +0.02",
+  "HARMFUL <= -0.01",
+  "NEUTRAL"
+ ],
+ "reporting_labels_only": true,
+ "rows": 4957,
+ "positive_count": 2775,
+ "negative_count": 2182,
+ "delta_dice_zero_count": 67,
+ "all_zero_delta_are_fallback": true,
+ "supervision_only": true,
+ "delta_dice_forbidden_from_model_input": true,
+ "targets_csv": {
+  "path": "data_cache/phase25f_barr_post_safety_v1_0/targets.csv",
+  "exists": true,
+  "sha256": "a4656b34b9726a32530a9d3d91c91b587e9d878d969f3e0a7cf831e524247382"
+ },
+ "phase25c_label_csv": {
+  "path": "data_cache/phase25c_barr_oof_paired_gain_labels_v1_2/phase25c_oof_paired_gain_labels.csv",
+  "exists": true,
+  "sha256": "fd6ca32c33a3bddb75f986b1350d54ec35b11d3bf5cb0fdc029962a5aa94865f"
+ },
+ "model_forwards": 0,
+ "new_delta_dice_generated": false,
+ "test_reads": 0,
+ "all_pass": true
+}

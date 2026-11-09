@@ -1,0 +1,76 @@
+{
+ "artifact": "phase28_a6_a8_prior_evidence_binding",
+ "phase": 28,
+ "classification": "PHASE28_A6_A7_A8_PRIOR_CANONICAL_EVIDENCE_BINDING",
+ "rule": "A6-A8 reuse prior canonical evidence where EXACT; no new A0-A8 model training or inference (spec v1.2 §27)",
+ "canonical_bundle_sha256": "f7aebb0f646bcc8de49fa91b70a4c4cc1051c9998ab6b055a8d4d187809cb3d9",
+ "representative_lambda": 0.25,
+ "representative_budget": 0.25,
+ "A6_learned_router_C7": {
+  "policy_id": "C7_budget0.25",
+  "membership": "reports/tables/phase25e_policy_memberships_v1_0/C7_budget0.25.csv",
+  "membership_sha256": "a3b4b2b365366c9cb2da4b734b51b48095b0d65421b52684fa9d0f5fae93c390",
+  "frozen_result_source": "reports/audits/phase25g_final_freeze.json",
+  "source_sha256": "48fb05f88fdc88fa33f25342be64bf1f8cc1e62ba7a36eb0e6484c9208c6d276",
+  "stats": {
+   "n": 1239,
+   "sum_true_delta": 8.978573624352036,
+   "mean_true_delta": 0.007246629236765162,
+   "n_beneficial": 827,
+   "n_harmful": 412,
+   "harmful_share": 0.33252623083131555
+  },
+  "status": "SATISFIED_BY_PRIOR_CANONICAL_EVIDENCE"
+ },
+ "A7_C8_plus_resource": {
+  "policy_id": "C8_lambda0.25_budget0.25",
+  "membership": "reports/tables/phase25e_policy_memberships_v1_0/C8_lambda0.25_budget0.25.csv",
+  "membership_sha256": "4c411d589866434b824245d3c940bc09873f3cbc096ddc8a44776cd56273393b",
+  "definition": "C8 routing + always accept the executed regional candidate",
+  "stats": {
+   "n": 1239,
+   "sum_true_delta": 8.978573624352036,
+   "mean_true_delta": 0.007246629236765162,
+   "n_beneficial": 827,
+   "n_harmful": 412,
+   "harmful_share": 0.33252623083131555
+  },
+  "status": "SATISFIED_BY_PRIOR_CANONICAL_EVIDENCE"
+ },
+ "A8_C9_plus_post_safety": {
+  "policy_id": "C8_lambda0.25_budget0.25__gated_by_S_omega",
+  "decision_manifest": "reports/tables/phase25f_c9_decision_manifest.csv",
+  "decision_manifest_sha256": "cde91c474bf19bb36368357ce4b38dd1cc7dad1b37d900fcec7cde6b9e72dbd1",
+  "decision_artifact": "reports/audits/phase25f_c9_decision_artifact.json",
+  "decision_artifact_sha256": "d08390f2a42c1bbf55f502a78d71f6eec1474e151c76245ff71ed4ea96f0c1da",
+  "definition": "C9 = each frozen C8 policy gated by S_omega ACCEPT_REFINEMENT / FALLBACK_GLOBAL at p_accept >= 0.50",
+  "n_execute": 1239,
+  "n_accept_refinement": 1205,
+  "n_fallback_global": 34,
+  "accepted_stats": {
+   "n": 1205,
+   "sum_true_delta": 9.056483929402674,
+   "mean_true_delta": 0.007515754298259481,
+   "n_beneficial": 815,
+   "n_harmful": 390,
+   "harmful_share": 0.3236514522821577
+  },
+  "fallback_stats": {
+   "n": 34,
+   "sum_true_delta": -0.0779103050506384,
+   "mean_true_delta": -0.002291479560312894,
+   "n_beneficial": 12,
+   "n_harmful": 22,
+   "harmful_share": 0.6470588235294118
+  },
+  "status": "SATISFIED_BY_PRIOR_CANONICAL_EVIDENCE"
+ },
+ "A7_A8_matched_isolation": {
+  "note": "A7-vs-A8 remains the already-frozen matched post-safety isolation (spec v1.2 §26); do NOT redefine as direct A8 one-factor",
+  "A7_membership_equals_C8_execute": true,
+  "A8_gate_is_single_difference": "S_omega ACCEPT/FALLBACK applied to a fixed C8 membership",
+  "source": "reports/audits/phase25g_a7_a8_identity_control_audit.json",
+  "source_sha256": "49246e3b32b669b04e5b339b177e82783089266d5ab8cf825d89c89443a5e1c3"
+ },
+ "all_pass": true
+}

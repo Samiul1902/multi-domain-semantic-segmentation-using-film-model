@@ -1,0 +1,111 @@
+{
+ "artifact": "phase35_empty_mask_actual_logits_unit_v1_0f",
+ "phase": 35,
+ "section": "\u00a7L",
+ "revision": "ra_medfilm_barr_phase35_interpretability_v1_0f",
+ "classification": "PRE_EXECUTION_ACTUAL_LOGITS_EMPTY_MASK_OBSERVABILITY_IMPLEMENTATION_AMENDMENT__NO_SCIENTIFIC_PROTOCOL_CHANGE",
+ "device": "cpu",
+ "model_free": true,
+ "test_source": {
+  "path": "scripts\\analysis\\phase35_empty_mask_actual_logits_unit_v1_0f.py",
+  "sha256": "d7267d26cfac19876c42fd4eac2863feb05a1f3f81ed34e422433abeba6e511b"
+ },
+ "guarded_module": {
+  "path": "scripts/analysis/phase35_interpretability_execution_v1_0f.py",
+  "sha256": "6a6097f4a3c346df38ab5ec452dc97717cdb65d789bf8bde8031442cb236e3e5"
+ },
+ "n_tests": 7,
+ "n_pass": 7,
+ "n_fail": 0,
+ "all_pass": true,
+ "results": {
+  "T1_actual_logits_empty_mask_full_field_mean": {
+   "helper_return": 7.5,
+   "expected_full_plane_mean": 7.5,
+   "difference": 0.0,
+   "comparison_pass": true,
+   "finite": true,
+   "same_actual_G_logits_used": true,
+   "surrogate_zero_logits_used": false,
+   "pass": true
+  },
+  "T2_non_empty_mask_rank_safe_unchanged": {
+   "direct_helper": 2.5,
+   "expected_selected_mean": 2.5,
+   "pass": true
+  },
+  "T3_fixed_atol_rtol_contract": {
+   "declared_atol": 1e-07,
+   "declared_rtol": 0.0,
+   "close_within_atol": true,
+   "close_outside_atol": false,
+   "pass": true
+  },
+  "T4_surrogate_zero_logits_not_required": {
+   "helper_return": 107.5,
+   "surrogate_would_be": 0.0,
+   "not_zero_surrogate": true,
+   "matches_actual": true,
+   "pass": true
+  },
+  "T5_no_additional_forward_or_autograd": {
+   "helper_calls": [
+    "OrderedDict",
+    "TypeError",
+    "_require_finite_scalar",
+    "abs",
+    "all",
+    "any",
+    "as_tensor",
+    "bool",
+    "float",
+    "gradcam_target_scalar_rank_safe",
+    "int",
+    "is_tensor",
+    "isclose",
+    "isfinite",
+    "list",
+    "mean",
+    "sum",
+    "type",
+    "zeros_like"
+   ],
+   "forbidden_calls_leaked": [],
+   "additional_G_forwards": 0,
+   "additional_autograd_calls": 0,
+   "pass": true
+  },
+  "T6_nan_actual_logits_fail_closed": {
+   "raised_RuntimeError": true,
+   "exc": "RuntimeError",
+   "pass": true
+  },
+  "T7_helper_input_type_and_rank_fail_closed": {
+   "nontensor_raised": true,
+   "nontensor_exc": "TypeError",
+   "badrank_raised": true,
+   "badrank_exc": "RuntimeError",
+   "pass": true
+  }
+ },
+ "model_free_import_audit": {
+  "top_level_executed_calls": [
+   "insert"
+  ],
+  "forbidden_top_level_calls": [],
+  "model_free": true
+ },
+ "counters": {
+  "model_constructions": 0,
+  "checkpoint_deserializations": 0,
+  "forwards": 0,
+  "autograd_calls": 0,
+  "gradcam_executions": 0,
+  "raw_val_reads": 0,
+  "gt_reads": 0,
+  "router_holdout_reads": 0,
+  "test_reads": 0,
+  "training_steps": 0
+ },
+ "generated_utc": "2026-10-05T02:45:01Z"
+}

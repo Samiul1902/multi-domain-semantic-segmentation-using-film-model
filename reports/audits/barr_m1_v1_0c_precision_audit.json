@@ -1,0 +1,71 @@
+{
+  "artifact": "barr_m1_v1_0c_precision_audit",
+  "revision": "RA_MEDFILM_BARR_BARR_M1_V1_0C__FINAL_APPROVAL_PACKAGE",
+  "generated_utc": "2026-10-27T02:07:53Z",
+  "measured_values_changed": false,
+  "clarifications": {
+    "1_A1_strict_vs_tolerance": {
+      "strict_numerator": 2115,
+      "strict_denominator": 4957,
+      "strict_rate": 0.4266693564656042,
+      "tolerance": 1e-09,
+      "tolerance_numerator": 2107,
+      "tolerance_rate": 0.42505547710308655,
+      "difference_cases": 8,
+      "difference_pp": 0.1613879362517652,
+      "interpretation": "8 cases have -1e-9 <= delta < 0. They are floating-point-scale negatives, not scientifically meaningful harm. BOTH rates must be reported; neither replaces the other, and the choice must be declared in the table caption.",
+      "which_is_primary": "BOTH — strict and tolerance-adjusted reported side by side"
+    },
+    "2_A7_A8_all_population_harm": {
+      "A7_harmed": 412,
+      "A7_denominator": 4957,
+      "A7_rate": 0.08311478716965907,
+      "A8_harmed": 390,
+      "A8_denominator": 4957,
+      "A8_rate": 0.07867661892273553,
+      "note": "Both are ALL-POPULATION counts over 4957, so they are directly comparable to A1's 2115/4957."
+    },
+    "3_A8_selection_and_acceptance": {
+      "selected": 1239,
+      "selected_fraction": 0.24994956626992132,
+      "accepted": 1205,
+      "accepted_fraction_of_population": 0.24309057897922132,
+      "accepted_fraction_of_selected": 0.9725585149313963,
+      "rejected": 34,
+      "rejected_fraction_of_selected": 0.02744148506860371,
+      "identity": "selected = accepted + rejected  (1239 = 1205 + 34)"
+    },
+    "4_execution_vs_acceptance": {
+      "candidate_refinement_execution": "R_psi actually ran on the case (the crop was refined). Determined by the router membership only.",
+      "post_safety_acceptance": "S_omega allowed the refined mask to REPLACE the global mask. Determined only by the safety decision, evaluated only where execution occurred.",
+      "A7": "executes 1239, accepts 1239 (no safety)",
+      "A8": "executes the SAME 1239, accepts 1205, rejects 34",
+      "key_point": "A case can be EXECUTED and then REJECTED. Its delta is then exactly 0.0, so it is neither helped nor harmed — it is not a 'harm' and must not be counted as one.",
+      "consequence": "n_executed and n_accepted are different quantities and must never be used interchangeably as a denominator."
+    },
+    "5_pooled_vs_macro": {
+      "pooled_definition": "sum(delta) / n_executed  — weights domains by case count",
+      "frozen_table02_field": "mean_true_delta_dice_routed",
+      "frozen_pooled_values": {
+        "A1": 0.001658079789,
+        "A7": 0.007246629237,
+        "A8": 0.007515754298
+      },
+      "macro_definition": "macro = (1/4) * sum_over_4_domains( mean_over_cases_in_domain( delta ) ) — equal domain weight",
+      "are_they_equal": false,
+      "why_it_matters": "DEV is unbalanced (ISIC 2173, KUB 1680, KVASIR 592, BUSI 512), so pooled and macro differ. The frozen Phase-28 arm table reports POOLED means; BARR-M1 declares an equal-domain MACRO endpoint. They are different statistics.",
+      "reproduction_gate_consequence": "The positive control therefore compares SUMS and COUNTS (definition-free), never the pooled mean against a macro mean.",
+      "reporting_rule": "Label every mean explicitly as POOLED or MACRO. Never mix them in one table without a column label."
+    },
+    "6_keyed_join": {
+      "label_row_order_equals_membership_row_order": false,
+      "positional_mismatches": 4955,
+      "n_rows": 4957,
+      "id_sets_identical": true,
+      "join_key": "sample_id",
+      "join_validation": "one_to_one",
+      "why": "The Phase-25C label file and the Phase-25E membership file are in DIFFERENT row orders (4955 of 4957 positions differ). A positional zip would silently mis-assign the selection flag to almost every case and would still 'run'.",
+      "required_control": "R2 asserts positional equality is FALSE and that the keyed join is one-to-one with zero missing selections."
+    }
+  }
+}

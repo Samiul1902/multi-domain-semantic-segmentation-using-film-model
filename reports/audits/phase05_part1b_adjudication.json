@@ -1,0 +1,72 @@
+{
+  "execution_status": "PASS",
+  "scientific_leakage_gate": "CHECK_REQUIRED",
+  "kub_exact_collision": {
+    "train_sample": "4739fd78796d5555ae7ab82719910576",
+    "val_sample": "a62708e2834fab0c56d4f575f49f7c61",
+    "train_patient": "patient-00273",
+    "val_patient": "patient-00320",
+    "raw_sha256": "5c303baf998c78160b5975d64c3ee1090269428e58b10ea3d2627ca1745c4853",
+    "image_bytes_identical": true,
+    "masks_identical": false,
+    "mask_dice": 0.910754,
+    "mask_iou": 0.836133
+  },
+  "downstream_sensitivity": {
+    "Phase 09 UNet Baseline": {
+      "used": true,
+      "val_score": 0.9237813353538512,
+      "mean_with": 0.7455439340960021,
+      "mean_without": 0.7449118865738111,
+      "delta": -0.0006320475221909261
+    },
+    "Phase 10 UNet++ Benchmark": {
+      "used": true,
+      "val_score": 0.927100419998169,
+      "mean_with": 0.762494429987936,
+      "mean_without": 0.7619107208035026,
+      "delta": -0.0005837091844334008
+    },
+    "Phase 10 DeepLabV3+ Bench": {
+      "used": true,
+      "val_score": 0.9014332294464112,
+      "mean_with": 0.748787275862818,
+      "mean_without": 0.7482459781550748,
+      "delta": -0.000541297707743249
+    },
+    "Phase 10 AttnUNet Bench": {
+      "used": true,
+      "val_score": 0.923035442829132,
+      "mean_with": 0.7530135094743481,
+      "mean_without": 0.7524105948170616,
+      "delta": -0.0006029146572864574
+    },
+    "Phase 12 Oracle ROI Study": {
+      "used": true,
+      "val_score": 0.927100419998169,
+      "mean_with": 0.6527764131996552,
+      "mean_without": 0.6501638036110978,
+      "delta": -0.0026126095885573575
+    },
+    "Phase 14 Regional Refiner": {
+      "used": true,
+      "val_score": 0.9272132812748204,
+      "mean_with": 0.6469072521993927,
+      "mean_without": 0.644237670970103,
+      "delta": -0.0026695812292897303
+    }
+  },
+  "adjudication_counts": {
+    "LIKELY_FALSE_POSITIVE": 46,
+    "LIKELY_SAME_ACQUISITION": 13,
+    "UNRESOLVED_NEAR_DUPLICATE": 4,
+    "CONFIRMED_EXACT_DUPLICATE": 1
+  },
+  "test_governance": {
+    "test_image_reads": 0,
+    "test_mask_reads": 0,
+    "test_visualizations": 0,
+    "training_run": false,
+    "inference_run": false
+  }
+}

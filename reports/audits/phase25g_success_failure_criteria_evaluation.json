@@ -1,0 +1,98 @@
+{
+ "artifact": "phase25g_success_failure_criteria_evaluation",
+ "phase": "25G",
+ "stage": "SUCCESS_FAILURE_CRITERIA_EVALUATION",
+ "source": "reports/tables/phase24_success_failure_criteria.csv",
+ "row_count": 8,
+ "allowed_verdicts": [
+  "PASS",
+  "FAIL",
+  "DESCRIPTIVE_ONLY_NO_NUMERIC_THRESHOLD",
+  "NOT_APPLICABLE"
+ ],
+ "h3_got_no_invented_threshold": true,
+ "reinterpretation": false,
+ "rows": [
+  {
+   "criterion_id": "F1",
+   "type": "failure",
+   "name": "REFINER_FAILURE",
+   "exact_frozen_wording": "dedicated refiner does not create enough positive action opportunity",
+   "phase25g_applicability": "NOT_APPLICABLE",
+   "observed_evidence": "refiner action-opportunity owned by Phase25A/25C",
+   "verdict": "NOT_APPLICABLE",
+   "frozen_before_phase25": "true"
+  },
+  {
+   "criterion_id": "F2",
+   "type": "failure",
+   "name": "ROUTER_FAILURE",
+   "exact_frozen_wording": "learned paired gain fails to outperform simple GT-free routing signals out of sample",
+   "phase25g_applicability": "NOT_APPLICABLE",
+   "observed_evidence": "router-vs-proxy H1 owned by Phase25D/25E",
+   "verdict": "NOT_APPLICABLE",
+   "frozen_before_phase25": "true"
+  },
+  {
+   "criterion_id": "F3",
+   "type": "failure",
+   "name": "PRESERVATION_FAILURE",
+   "exact_frozen_wording": "routed system materially degrades the global reference",
+   "phase25g_applicability": "APPLICABLE",
+   "observed_evidence": "A8 macro-domain lower 95% CI min = 0.000000 > -0.005 for every frozen policy; domain_collapse = False",
+   "verdict": "PASS",
+   "frozen_before_phase25": "true"
+  },
+  {
+   "criterion_id": "F4",
+   "type": "failure",
+   "name": "RESOURCE_FAILURE",
+   "exact_frozen_wording": "router/refiner cost removes the useful compute-performance trade-off",
+   "phase25g_applicability": "APPLICABLE",
+   "observed_evidence": "analytical MAC ratio vs global ranges 1.000001-1.102394; no frozen numeric rule for 'removes the useful trade-off'",
+   "verdict": "DESCRIPTIVE_ONLY_NO_NUMERIC_THRESHOLD",
+   "frozen_before_phase25": "true"
+  },
+  {
+   "criterion_id": "F5",
+   "type": "failure",
+   "name": "DOMAIN_COLLAPSE",
+   "exact_frozen_wording": "benefit is concentrated in one domain while another is materially harmed",
+   "phase25g_applicability": "APPLICABLE",
+   "observed_evidence": "no domain with A8 mean <= -0.01 while another > 0 (collapse = False)",
+   "verdict": "PASS",
+   "frozen_before_phase25": "true"
+  },
+  {
+   "criterion_id": "S1",
+   "type": "success",
+   "name": "H1_SUPPORTED",
+   "exact_frozen_wording": "learned pre-execution GT-free predictor beats simple proxies at equal budget",
+   "phase25g_applicability": "NOT_APPLICABLE",
+   "observed_evidence": "H1 owned by Phase25D/25E",
+   "verdict": "NOT_APPLICABLE",
+   "frozen_before_phase25": "true"
+  },
+  {
+   "criterion_id": "S2",
+   "type": "success",
+   "name": "PRESERVATION_SATISFIED",
+   "exact_frozen_wording": "lower bound of Delta > -0.005 on macro-domain Dice and no domain collapse",
+   "phase25g_applicability": "APPLICABLE",
+   "observed_evidence": "lower bound of Delta > -0.005 on macro-domain Dice (A8) and no domain collapse",
+   "verdict": "PASS",
+   "frozen_before_phase25": "true"
+  },
+  {
+   "criterion_id": "S3",
+   "type": "success",
+   "name": "FRONTIER_MEASURED",
+   "exact_frozen_wording": "a measurable accuracy-compute frontier exists across budget points",
+   "phase25g_applicability": "PARTIAL",
+   "observed_evidence": "accuracy-compute frontier re-reported across the 5 budget points (Phase25E measured it)",
+   "verdict": "PASS",
+   "frozen_before_phase25": "true"
+  }
+ ],
+ "all_pass": true
+}

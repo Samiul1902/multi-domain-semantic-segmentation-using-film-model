@@ -1,0 +1,29 @@
+{
+ "artifact": "phase25b_global_feature_hook_audit",
+ "phase": "25B",
+ "taps": {
+  "bridge": {
+   "module": "bridge",
+   "native_channels": 256,
+   "feature_grid": 32
+  },
+  "decoder2": {
+   "module": "decoder2",
+   "native_channels": 48,
+   "feature_grid": 256
+  },
+  "decoder1": {
+   "module": "decoder1",
+   "native_channels": 24,
+   "feature_grid": 512
+  }
+ },
+ "hook_type": "register_forward_hook (output reader only)",
+ "hook_modifies_graph": false,
+ "hook_lifecycle": "registered per batch, removed in a finally block",
+ "leaked_handles": 0,
+ "probability_output_unchanged_by_hooks": true,
+ "evidence": "reports/audits/phase25b_global_forward_equivalence.json",
+ "verdict": "PHASE25B_GLOBAL_FEATURE_HOOK_AUDIT_PASS",
+ "generated_utc": "2026-09-30T15:55:52.086198+00:00"
+}

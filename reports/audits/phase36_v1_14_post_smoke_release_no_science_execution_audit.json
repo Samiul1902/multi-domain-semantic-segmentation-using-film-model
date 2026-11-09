@@ -1,0 +1,50 @@
+{
+ "artifact": "phase36_v1_14_post_smoke_release_no_science_execution_audit",
+ "phase": 36,
+ "revision": "ra_medfilm_barr_phase36_robustness_v1_14",
+ "type": "POST_SMOKE_RELEASE_NO_SCIENCE_EXECUTION_AUDIT",
+ "generated_utc": "2026-10-06T17:33:43Z",
+ "scope": "Post-smoke adjudication + science-release attestation ONLY. No smoke rerun, no science dispatch, no model/checkpoint execution, no TEST/ROUTER_HOLDOUT access, no execution-source modification, no v1.15 creation.",
+ "artifact_shas": {
+  "execution_source": "ac09ff8ded3610244920e66612145b246b33127140d344a9730d454bab27cff5",
+  "smoke_start_marker": "e7c685e37eb23de0105b6d487be88437cf60c4c3ffc970668207db120cfbfca1",
+  "smoke_result": "53543729fb0c48695c2af202c5f3d2f5ebdfc29d87c7a7f100bcde9f94882441",
+  "post_smoke_adjudication": "ee52a9cc32d8c71effb6d867ce0675eb1cfb956966cebe5e045a01197393e079",
+  "science_release_attestation": "1045123ad03f953aca5da530c1de303b4db32c4412c5ea92749f11d6f1bb5682",
+  "post_smoke_science_eligibility": "d4c8b4200772a5acad57295ff36d2f52488cdf9b353af2dfc0d3aee6edce77d1"
+ },
+ "verification": {
+  "all_target_shas_match_frozen": true,
+  "no_failure_artifact_present": true,
+  "science_start_marker_absent": true,
+  "science_result_absent": true
+ },
+ "d40_gate": {
+  "non_dispatch_launcher_state": "RELEASED",
+  "non_dispatch_launcher_reason": "SUCCESSFUL_SMOKE_BOUND",
+  "non_dispatch_exec_source_state": "RELEASED",
+  "non_dispatch_exec_source_reason": "SUCCESSFUL_SMOKE_BOUND",
+  "phase36_execute_env_set": false,
+  "main_dispatched": false,
+  "science_start_marker_created": false
+ },
+ "prohibitions_observed": {
+  "smoke_rerun": false,
+  "science_executed": false,
+  "execution_source_modified": false,
+  "phase37_started": false,
+  "v1_15_created": false,
+  "test_accessed": false,
+  "router_holdout_accessed": false,
+  "val_gt_read": false,
+  "model_checkpoint_modified": false
+ },
+ "smoke_consumed": true,
+ "smoke_attempt_count": 1,
+ "smoke_retry_forbidden": true,
+ "science_state": "ELIGIBLE_NOT_STARTED",
+ "release_gate_state": "RELEASED",
+ "phase37_state": "NOT_STARTED",
+ "test_state": "REMAINS_PHASE39_ONLY",
+ "terminal": "PHASE36_V1_14_POST_SMOKE_RELEASE_COMPLETE__SCIENCE_ELIGIBLE_NOT_STARTED__NO_SCIENCE_EXECUTED"
+}

@@ -1,0 +1,193 @@
+{
+ "artifact_kind": "PHASE36_FINAL_PROBABILITY_AUTHORITY_DIAGNOSTIC_V1_3_TERMINAL_EVIDENCE_ANOMALY_ADJUDICATION_RECONCILIATION",
+ "revision": "ra_medfilm_barr_phase36_final_probability_authority_diagnostic_v1_3",
+ "reconciliation_revision": "v1_1",
+ "supersedes": null,
+ "amends": "phase36_final_probability_authority_diagnostic_v1_3_terminal_evidence_anomaly_adjudication_v1_0.json",
+ "amends_sha256": "3d3f943c19d5b419fb00bcf19748c0dd41ff8002ef26a4a3c51ad32ef6afecd5",
+ "additive": true,
+ "mode": "STATIC_EXISTING_EVIDENCE_ONLY",
+ "D67": "PRESERVED",
+ "D68": "RECONCILED",
+ "d68_classification": "D67_TERMINAL_WRITE_REACH_OVERCLAIM",
+ "d68_root_cause_established": true,
+ "result_write_attempt_corrected": "UNKNOWN",
+ "failure_write_attempt_corrected": "UNKNOWN",
+ "d67_core_classification_unchanged": true,
+ "retry_policy_unchanged": true,
+ "scientific_result_status_unchanged": true,
+ "d67_preserved_fields": {
+  "D67": "POST_START_TERMINAL_EVIDENCE_ANOMALY",
+  "attempt_state": "CONSUMED_TERMINAL_EVIDENCE_ANOMALY",
+  "retry_permitted": false,
+  "root_cause": "UNRESOLVED",
+  "termination_mechanism": "UNRESOLVED",
+  "external_process_termination": "PLAUSIBLE_HYPOTHESIS_NOT_ESTABLISHED",
+  "child_exit_code_durably_captured": false,
+  "child_exit_code": null,
+  "host_or_tool_observed_return_status": 1,
+  "scientific_result_produced": false,
+  "repair_proof_result_produced": false,
+  "START": "PRESENT",
+  "RESULT": "ABSENT",
+  "FAILURE": "ABSENT",
+  "STDOUT": "PRESENT_EMPTY",
+  "STDERR": "PRESENT_EMPTY"
+ },
+ "d68_correction": {
+  "overclaimed_states": {
+   "result_write_attempt": "NOT_REACHED",
+   "failure_write_attempt": "NOT_REACHED"
+  },
+  "corrected_states": {
+   "result_write_attempt": "UNKNOWN",
+   "failure_write_attempt": "UNKNOWN"
+  },
+  "rationale": "D67 leaves hard termination / forced kill / native abort UNRESOLVED.  Such a termination can occur after entering (or during) a write region but before any durable artifact/stdout appears; therefore absence of RESULT/FAILURE/stdout does NOT prove the write regions were never entered.",
+  "enumeration_of_unexcluded_scenarios": [
+   "termination after entering the result-write region but before durable RESULT creation",
+   "termination during the RESULT write before a FAILURE handler completes",
+   "termination after entering the FAILURE-write path but before durable FAILURE creation",
+   "termination during the FAILURE write before any stdout diagnostic is emitted"
+  ],
+  "only_durably_established_fact": "START completion (after authorization)"
+ },
+ "execution_reach_corrected": {
+  "diagnostic_main_after_start": {
+   "value": "REACHED",
+   "preserved_from": "D67",
+   "basis": "START artifact durably written (fsync, O_CREAT|O_EXCL); only established fact."
+  },
+  "frozen_v1_14_import": {
+   "value": "UNKNOWN",
+   "basis": "durable evidence does not establish reach; a hard termination before a terminal artifact cannot be excluded"
+  },
+  "gt_guard_installation": {
+   "value": "UNKNOWN",
+   "basis": "durable evidence does not establish reach; a hard termination before a terminal artifact cannot be excluded"
+  },
+  "model_load": {
+   "value": "UNKNOWN",
+   "basis": "durable evidence does not establish reach; a hard termination before a terminal artifact cannot be excluded"
+  },
+  "checkpoint_deserialization": {
+   "value": "UNKNOWN",
+   "basis": "durable evidence does not establish reach; a hard termination before a terminal artifact cannot be excluded"
+  },
+  "clean_g_generation": {
+   "value": "UNKNOWN",
+   "basis": "durable evidence does not establish reach; a hard termination before a terminal artifact cannot be excluded"
+  },
+  "phase27_global_reproduction_gate": {
+   "value": "UNKNOWN",
+   "basis": "durable evidence does not establish reach; a hard termination before a terminal artifact cannot be excluded"
+  },
+  "clean_row_loop_started": {
+   "value": "UNKNOWN",
+   "basis": "durable evidence does not establish reach; a hard termination before a terminal artifact cannot be excluded"
+  },
+  "final_probability_computation_started": {
+   "value": "UNKNOWN",
+   "basis": "durable evidence does not establish reach; a hard termination before a terminal artifact cannot be excluded"
+  },
+  "finite_gate": {
+   "value": "UNKNOWN",
+   "basis": "durable evidence does not establish reach; a hard termination before a terminal artifact cannot be excluded"
+  },
+  "final_authority_comparison": {
+   "value": "UNKNOWN",
+   "basis": "durable evidence does not establish reach; a hard termination before a terminal artifact cannot be excluded"
+  },
+  "result_write_attempt": {
+   "value": "UNKNOWN",
+   "basis": "durable evidence does not establish reach; a hard termination before a terminal artifact cannot be excluded",
+   "corrected_from": "NOT_REACHED (D67 overclaim)",
+   "d68_rationale": "A hard termination could occur AFTER entering the result-write region but BEFORE durable RESULT creation, or DURING the RESULT write before a FAILURE handler completes; absence of RESULT/FAILURE/stdout does NOT prove the region was never entered."
+  },
+  "failure_write_attempt": {
+   "value": "UNKNOWN",
+   "basis": "durable evidence does not establish reach; a hard termination before a terminal artifact cannot be excluded",
+   "corrected_from": "NOT_REACHED (D67 overclaim)",
+   "d68_rationale": "A hard termination could occur AFTER entering the FAILURE-write path but BEFORE durable FAILURE creation, or DURING the FAILURE write before any stdout diagnostic is emitted; absence of FAILURE/stdout does NOT prove the path was never entered."
+  }
+ },
+ "scope_correction": {
+  "note": "D67 `prohibitions_observed` applies to the STATIC D67 ADJUDICATION OPERATION and must NOT be read as proof that the consumed v1.3 attempt avoided models / checkpoints / VAL images / intermediate stages.",
+  "d67_prohibitions_scope": "STATIC_D67_ADJUDICATION_OPERATION_ONLY",
+  "consumed_v1_3_attempt": {
+   "model_run_observed": "UNKNOWN_FROM_DURABLE_TERMINAL_EVIDENCE",
+   "checkpoint_deserialization_observed": "UNKNOWN_FROM_DURABLE_TERMINAL_EVIDENCE",
+   "val_image_read_observed": "UNKNOWN_FROM_DURABLE_TERMINAL_EVIDENCE",
+   "post_start_gt_read_observed": "UNKNOWN_FROM_DURABLE_TERMINAL_EVIDENCE",
+   "val_gt_read_claimable": false
+  },
+  "gt_static_prohibition": "PASS",
+  "val_gt_read_basis_unchanged": "D67 gt_runtime_terminal_evidence = UNAVAILABLE (VAL_GT_READ=0 NOT claimed)"
+ },
+ "scientific_semantics_effect": "NONE",
+ "runtime_execution_effect": "NONE",
+ "forensic_precision_effect": "YES",
+ "root_cause": "UNRESOLVED",
+ "termination_mechanism": "UNRESOLVED",
+ "v1_3_retry_permitted": false,
+ "v1_3_attempt_state": "CONSUMED_TERMINAL_EVIDENCE_ANOMALY",
+ "scientific_result_produced": false,
+ "repair_proof_result_produced": false,
+ "ancestor_binding": {
+  "d67_adjudication_v1_0": {
+   "path": "reports/audits/phase36_final_probability_authority_diagnostic_v1_3_terminal_evidence_anomaly_adjudication_v1_0.json",
+   "sha256": "3d3f943c19d5b419fb00bcf19748c0dd41ff8002ef26a4a3c51ad32ef6afecd5"
+  },
+  "d67_builder": {
+   "path": "scripts/analysis/build_phase36_final_probability_authority_diagnostic_v1_3_terminal_evidence_anomaly_adjudication_v1_0.py",
+   "sha256": "05e7b90baab29f60888843f194895401708bac1e706cb922515ac05c2d6df89b"
+  },
+  "start_v1_3": {
+   "path": "reports/audits/phase36_final_probability_authority_diagnostic_start_v1_3.json",
+   "sha256": "b984d09bf3a266de8d75b39b6ad2ff3236cce09915a7f2a5c874813af8c3c1c5"
+  },
+  "diagnostic_v1_3": {
+   "path": "scripts/analysis/phase36_final_probability_authority_diagnostic_v1_3.py",
+   "sha256": "b32a9db41a53b5007c6b9989bdbee22a0b7ea14587d222a3399980142dd9621e"
+  },
+  "launcher_v1_3": {
+   "path": "scripts/analysis/launch_phase36_final_probability_authority_diagnostic_v1_3.py",
+   "sha256": "d5f9cd3dff302c849d195d909f6f2c9a59fbbbaaf359d859e69442d9fe05b504"
+  },
+  "d66_reconciliation_v1_0": {
+   "path": "reports/audits/phase36_final_probability_authority_diagnostic_v1_3_governance_reconciliation_v1_0.json",
+   "sha256": "b0c01e40c4764514a01a9f082483a071634a0630d6c4c4640e1bb4ac2f829303"
+  }
+ },
+ "ancestors_modified": false,
+ "d67_adjudication_not_overwritten": true,
+ "d67_builder_not_overwritten": true,
+ "prohibitions_observed": [
+  "no_v1_3_execution",
+  "no_model_execution",
+  "no_checkpoint_deserialization",
+  "no_val_image_read",
+  "no_val_gt_read",
+  "no_test",
+  "no_router_holdout",
+  "no_perturbations",
+  "no_v1_4_creation",
+  "no_v1_15_science",
+  "no_phase37",
+  "no_ancestor_modification"
+ ],
+ "governance_state_after": {
+  "v1_0": "FROZEN_NEVER_CONSUMED_NOT_AUTHORIZED",
+  "v1_1": "CONSUMED_FAILED",
+  "v1_2_final_prob": "CONSUMED_RESULT",
+  "v1_3_final_prob": "CONSUMED_TERMINAL_EVIDENCE_ANOMALY",
+  "v1_3_retry_permitted": false,
+  "v1_14_science": "CONSUMED_FAILED",
+  "v1_15": "NOT_CREATED",
+  "phase37": "NOT_STARTED",
+  "test": "PHASE39_ONLY",
+  "router_holdout": "NOT_ACCESSED"
+ },
+ "scientific_output": false,
+ "generated_utc": "2026-10-10T02:53:19Z"
+}

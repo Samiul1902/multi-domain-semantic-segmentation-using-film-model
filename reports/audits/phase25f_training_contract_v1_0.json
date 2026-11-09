@@ -1,0 +1,162 @@
+{
+ "artifact": "phase25f_training_contract_v1_0",
+ "phase": "25F",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_post_safety_v1_0",
+ "stage": "SUPERVISOR_RULINGS_F8_F9_F10_TRAINING",
+ "ruling_ids": [
+  "F8",
+  "F9",
+  "F10"
+ ],
+ "seeds": {
+  "scientific_master_seed": 42,
+  "somega_cv_execution_seeds": {
+   "0": 54000,
+   "1": 54001,
+   "2": 54002,
+   "3": 54003,
+   "4": 54004
+  },
+  "final_refit_seed": 42,
+  "derived_fold_seeds_are_execution_seeds_only": true
+ },
+ "loss": {
+  "class": "BCEWithLogitsLoss",
+  "ruling": "F8",
+  "target_dtype": "float32",
+  "target_values": [
+   0,
+   1
+  ],
+  "reduction": "mean",
+  "class_weighting": "NONE",
+  "pos_weight": "NONE",
+  "label_smoothing": "NONE",
+  "focal_loss": false,
+  "balanced_bce": false,
+  "class_oversampling": false,
+  "minority_retuning_allowed": false
+ },
+ "optimizer": {
+  "name": "AdamW",
+  "ruling": "F9",
+  "lr": 0.001,
+  "weight_decay": 0.0001,
+  "batch_size": 128,
+  "max_epochs": 200,
+  "early_stopping_patience": 20,
+  "amp": false,
+  "training_dtype": "float32",
+  "hyperparameter_sweep": false
+ },
+ "scheduler": {
+  "class": "ReduceLROnPlateau",
+  "ruling": "F10",
+  "constructor": {
+   "mode": "min",
+   "factor": 0.5,
+   "patience": 8,
+   "threshold": 0.0001,
+   "threshold_mode": "rel",
+   "cooldown": 0,
+   "min_lr": 1e-06,
+   "eps": 1e-08
+  },
+  "per_cv_epoch_order": [
+   "train FIT",
+   "evaluate complete EARLY_STOP",
+   "compute mean EARLY_STOP BCE",
+   "checkpoint decision",
+   "atomically persist history/checkpoint state",
+   "scheduler.step(early_stop_bce)",
+   "update early-stop patience"
+  ],
+  "outer_target_monitoring": false,
+  "controls": "LR only"
+ },
+ "oof_predictions": {
+  "ruling": "F12",
+  "rule": "after each fold's best checkpoint is frozen, predict exactly once on that fold's OUTER_TARGET",
+  "persisted": [
+   "p_accept_oof",
+   "safety_logit_oof"
+  ],
+  "mode": "model.eval() + torch.inference_mode()",
+  "only_eligible_for": "Phase25G development A7/A8 evaluation",
+  "final_model_in_sample_for_development_claims": false
+ },
+ "training_health_resume": {
+  "atomic_checkpoint_writes": true,
+  "atomic_history_writes": true,
+  "full_rng_state_persistence": true,
+  "full_rng_restoration": true,
+  "optimizer_state_restoration": true,
+  "scheduler_state_restoration": true,
+  "dataloader_generator_state_restoration": true,
+  "host_interruption_may_resume_same_logical_run": true,
+  "forbidden_retry_names": [
+   "_retry",
+   "_v2",
+   "_fix",
+   "_new"
+  ]
+ },
+ "classifier_reporting": {
+  "ruling": "classifier-level only",
+  "metrics": [
+   "BCE",
+   "ROC-AUC",
+   "PR-AUC",
+   "balanced accuracy",
+   "accuracy",
+   "precision",
+   "recall/sensitivity",
+   "specificity",
+   "F1",
+   "Brier score"
+  ],
+  "at_fixed_threshold": "p_accept >= 0.50",
+  "breakdowns": [
+   "overall",
+   "by domain",
+   "by CV fold"
+  ],
+  "metric_class": "POST_SAFETY_TARGET_PREDICTION_METRICS",
+  "not": [
+   "A7-vs-A8 segmentation results",
+   "preservation proof",
+   "final system validation"
+  ],
+  "threshold_tuning_follows": false
+ },
+ "phase25g_handoff": {
+  "deliverables": [
+   "five OOF safety prediction folds",
+   "4957 merged OOF p_accept",
+   "fixed 0.50 safety decisions",
+   "final S_omega checkpoint",
+   "final all-DEV normalization",
+   "fusion/fallback implementation",
+   "Phase25E frozen memberships / thresholds",
+   "Phase25A final refiner",
+   "global fallback contract"
+  ],
+  "phase25g_owns_first_integrated_evaluation": [
+   "A7 vs A8",
+   "C8 vs C9",
+   "segmentation preservation",
+   "post-safety rejection of harmful refinements",
+   "domain preservation",
+   "integrated resource/preservation tradeoff"
+  ],
+  "phase25f_performs_comparison": false
+ },
+ "somega_training_example_construction": "one example per ROUTER_DEVELOPMENT sample (4957 rows); input = the frozen 20-D GT-free vector; label = safety_target from the canonical Phase25C OOF delta_dice; CV membership = the frozen Phase25D five-fold identity manifests",
+ "post_refinement_feature_availability": "all 16 numeric features derive from already-computed post-refinement quantities (P_g global crop, P_r OOF refined crop) plus two frozen Phase25B pre-refinement ROI-geometry scalars; no GT and no refiner hidden feature maps",
+ "model_constructed": false,
+ "training_runs": 0,
+ "forward_passes": 0,
+ "test_reads": 0,
+ "all_pass": true
+}

@@ -1,0 +1,28 @@
+{
+  "artifact": "phase22_prediction_derived_roi",
+  "phase": 22,
+  "definition": "ROI = tight bounding box of the FROZEN MODEL'S OWN thresholded prediction, expanded by the same frozen 1.5x rule",
+  "deployable_shape": true,
+  "uses_ground_truth_for_roi": false,
+  "no_learned_proposal": true,
+  "n_total": 808,
+  "n_predicted_roi_ok": 808,
+  "n_no_predicted_roi": 0,
+  "no_predicted_roi_rate": 0.0,
+  "no_predicted_roi_by_domain": {},
+  "empty_case_structure": {
+    "n_gt_empty": 0,
+    "n_global_pred_empty": 0,
+    "note": "a NO_PREDICTED_ROI arises when the global prediction is empty. On this VAL population that coincides exactly with a total miss, so the deployable path fails precisely where recovery is most needed."
+  },
+  "mean_predicted_delta_dice_intent_to_treat": -0.06021763953686703,
+  "mean_predicted_delta_dice_on_executed": -0.06021763953686703,
+  "n_predicted_improved": 236,
+  "n_predicted_harmed": 571,
+  "correlation_predicted_vs_oracle_gain": 0.68391404684425,
+  "mean_roi_area_fraction_predicted": 0.5223239343688119,
+  "mean_roi_area_fraction_oracle": 0.49175394690594065,
+  "interpretation_guard": "this is a diagnostic of what a TRIVIAL, UNTRAINED prediction-derived ROI achieves. It is not a benefit predictor, not a router, and not a proposed method. Any stronger claim would require training, which Phase 22 forbids.",
+  "table": "reports/tables/phase22_prediction_derived_roi.csv",
+  "test_reads": 0
+}

@@ -1,0 +1,44 @@
+{
+ "artifact": "phase29_router_calibration_rule_v1_1",
+ "phase": 29,
+ "revision": "ra_medfilm_barr_phase29_repro_v1_1",
+ "classification": "SUPERVISOR_PROSPECTIVE_REPRODUCIBILITY_SPECIFICATION_REPAIR",
+ "governance_only": true,
+ "execution": "NONE",
+ "generated_utc": "2026-10-02T15:05:09+00:00",
+ "previous_ambiguity": [
+  "A",
+  "B",
+  "C"
+ ],
+ "selected_rule": "B",
+ "selected_rule_label": "PER_SEED_DEV_CALIBRATION_TO_THE_SAME_FROZEN_NOMINAL_25%_RULE",
+ "procedure": [
+  "score all 4957 ROUTER_DEVELOPMENT rows",
+  "rank final delta_hat descending",
+  "sample_id ascending tie break",
+  "K = 1239",
+  "derive exact boundary threshold tau_C7_final_s",
+  "derive tau_C8_final_s = tau_C7_final_s - 0.25*C"
+ ],
+ "C_exact": "1051648/10270749",
+ "lambda_exact": "1/4",
+ "lambda_C_exact": "262912/10270749",
+ "K_final": 1239,
+ "budget_final": 0.25,
+ "calibration_not_performance_selection": true,
+ "threshold_frozen_before_val808_opened": true,
+ "force_25pct_on_val808": false,
+ "seed42_reference": {
+  "tau_C7_final_exact": "24796109646558761/20000000000000000000",
+  "tau_C7_final_float": 0.001239805482327938,
+  "tau_C8_final_exact": "-5003565381643716252018011/205414980000000000000000000",
+  "tau_C8_final_float": -0.024358327623641256
+ },
+ "source_artifacts": {
+  "transform": "reports/audits/phase26_router_threshold_exact_transform.json",
+  "calibration": "reports/audits/phase26_final_router_calibration_binding_v1_2.json"
+ },
+ "router_calibration_rule_resolved": true,
+ "all_pass": true
+}

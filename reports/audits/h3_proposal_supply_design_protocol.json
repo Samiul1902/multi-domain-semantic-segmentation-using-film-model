@@ -1,0 +1,223 @@
+{
+  "artifact": "H3_PROPOSAL_SUPPLY_DESIGN_PROTOCOL",
+  "design_status": "H3_DESIGN_FROZEN__READY_FOR_PROSPECTIVE_TRAINING_AUTHORIZATION",
+  "task_type": "H3_SINGLE_AXIS_DESIGN__NO_TRAINING",
+  "authorization_scope": "DESIGN_ONLY__TRAINING_NOT_AUTHORIZED",
+  "generated_utc": "2026-09-25T09:30:00Z",
+
+  "selected_axis": "A_PROPOSAL_SUPPLY_RECALL_LIMITATION",
+  "axis_priority_rule_fired": "A_PRIORITY",
+  "axis_priority_source": {
+    "protocol": "reports/audits/post_phase14_h3_axis_priority_protocol.json",
+    "protocol_sha256": "92395315b0fd660a39264a53b642839a7efe6f56072e066ec85796b660e35c61",
+    "results": "reports/audits/post_phase14_h3_axis_priority_results.json",
+    "results_sha256": "144205e70310df7c7f98440992dd41f9ebfb84e2bc9054ec7196c09521d1ce31",
+    "outcome": "H3_DESIGN_ELIGIBLE__AXIS_PROPOSAL_SUPPLY_RECALL",
+    "R_A": 1.0,
+    "R_C": 0.0,
+    "A_lift_over_predicted": 0.20833333333333337,
+    "C_lift_over_predicted": 0.0
+  },
+
+  "frozen_context_references": {
+    "Tg_tiny_recall_gate": 0.7916666666666666,
+    "G_gap_to_oracle": 0.20833333333333337,
+    "Dg_dice_predicted": 0.6359172411726776,
+    "Dice_gate_Dg_minus_0_02": 0.6159172411726777,
+    "zero_proposal_gt_components": 79,
+    "zero_proposal_tiny_components": 57,
+    "val_components_total": 152,
+    "val_tiny_total": 72,
+    "conditions_recall_tiny": {
+      "GLOBAL": 0.7916666666666666,
+      "PREDICTED": 0.7916666666666666,
+      "A_ONLY_GT_ASSISTED_SUPPLY": 1.0,
+      "C_ONLY_FP_REMOVAL": 0.7916666666666666,
+      "A_PLUS_C": 1.0,
+      "ORACLE_REGIONAL": 1.0
+    },
+    "conditions_dice_mean": {
+      "GLOBAL": 0.6359172411726776,
+      "PREDICTED": 0.41853090628184875,
+      "A_ONLY_GT_ASSISTED_SUPPLY": 0.47803905483831005,
+      "C_ONLY_FP_REMOVAL": 0.6287526178117451,
+      "A_PLUS_C": 0.7371658850329051,
+      "ORACLE_REGIONAL": 0.8024158112932394
+    }
+  },
+
+  "root_cause_static_analysis": {
+    "summary": "Under the frozen Stage-4D policy, 79 GT components (57 of them TINY) receive NO matched predicted proposal. The GT-assisted supply-only intervention (A-only) restores Tiny Recall to 1.0 (R_A=1.0), while the contamination-only intervention (C-only) leaves Tiny Recall unchanged (R_C=0.0). Therefore missing PROPOSAL SUPPLY is the causally NECESSARY and uniquely-selectable bottleneck for the regional Tiny-recall signal.",
+    "proposal_pipeline_trace": [
+      "image -> KUBLocalizer(Phase-13B, heatmap_res 128) -> sigmoid prob map",
+      "extract_predicted_components: prob>=0.10, 8-connected label, sort by max_prob, keep top 100",
+      "non_max_suppression(iou=0.30)[:top_k=5]",
+      "apply_context_margin(margin=0.20) -> proposals"
+    ],
+    "mechanism_of_loss": "make_gaussian_heatmap applies a SINGLE FIXED sigma=0.75 to every component regardless of size. Tiny components therefore receive a diffuse, low-contrast positive target. The localizer (trained on many such peaks weighted toward larger components) learns to emit smoothed blobs; the tiny-component center peak is suppressed below the 0.10 decode threshold or merged into a neighboring larger peak, so no component and hence no proposal is emitted for it.",
+    "evidence": "57/72 TINY and 79/152 total GT components are zero-proposal under frozen policy; supplying one GT-assisted ROI per zero-proposal component restores 100% of them (A-only recall_TINY=1.0, R_A=1.0)."
+  },
+
+  "intervention": {
+    "selected_option": "A_TARGET_SUPPORT_REDESIGN",
+    "definition": "Make the localizer training target size-adaptive: replace the single fixed sigma=0.75 in make_gaussian_heatmap with a per-component sigma derived from the component's area in heatmap space (smaller sigma for tiny components -> sharper, higher-contrast peak; capped at the historical 0.75 for large components). Canonical center pixel stays 1.0; pixelwise-max fusion unchanged.",
+    "why_selected": "It is the most directly-matched single-axis intervention to the identified mechanistic root cause (diffuse low-density tiny targets), it touches only the target-generation code (1 source file, backward-compatible), leaves architecture, loss, optimizer, proposal policy, refiner, and downstream eval completely frozen, and it is the minimal-blast-radius lever that can make the SAME localizer architecture supply tiny proposals without GT assistance.",
+    "rejected_options": [
+      {
+        "option": "B_POSITIVE_OBJECTIVE_REWEIGHTING",
+        "reason_rejected": "Reweights the loss toward tiny components but does not change the target geometry; it acts on the same diffuse targets and is less directly matched to the root cause. Rejected to keep a single clean axis (target support)."
+      },
+      {
+        "option": "C_RECALL_ORIENTED_OUTPUT_HEAD",
+        "reason_rejected": "Changes localizer architecture/head, the largest blast radius of the three, and conflates an architecture change with the target-support hypothesis. Rejected to preserve single-axis isolation."
+      }
+    ],
+    "selection_rule": "Pick the intervention that most directly targets the identified mechanistic root cause with the smallest blast radius (fewest frozen axes changed). Target-support redesign satisfies both: mechanism-matched (diffuse tiny targets -> sharper tiny targets) and minimal (1 module, backward-compatible default)."
+  },
+
+  "freeze_non_h3_axes": {
+    "dataset": "phase4_v3 FULL_FIELD (train 770 / val 103) — UNCHANGED",
+    "localizer_input": "resolution 512, heatmap_resolution 128, convert('L'), 1ch — UNCHANGED",
+    "localizer_architecture": "KUBLocalizer base_channels=16, heatmap_resolution=128, CenterNetFocalLoss(alpha=2.0, beta=4.0) — UNCHANGED (only TARGET support changes)",
+    "training_script": "scripts/training/train_phase13b_localizer.py — UNCHANGED (reused)",
+    "config": "configs/phase13_clean_v3/phase13b_kub_localizer_r512_h128_sigmaeq075_centernetfocal_seed42_clean_v3.yaml — UNCHANGED (reused)",
+    "optimizer_scheduler_seed": "same as Phase-13B (Adam/AdamW + scheduler, seed 42) — UNCHANGED",
+    "proposal_extraction": "threshold=0.10, margin=0.20, top_k=5, nms_iou=0.30 — UNCHANGED",
+    "fusion_rule": "MAX probability replacement in proposal union — UNCHANGED",
+    "downstream_refiner": "checkpoints/phase14_kub_refiner_unet_a3_256_seed42_clean_v3/best.pt (epoch 56) — UNCHANGED",
+    "global_baseline": "checkpoints/phase10_kub_unetpp_seed42_512_clean_v3/best.pt (epoch 70) — UNCHANGED",
+    "downstream_eval": "scripts/evaluation/evaluate_phase14_clean_v3_diagnostic.py — UNCHANGED",
+    "test_split": "CLOSED (0 reads)",
+    "external_data": "CLOSED"
+  },
+
+  "bound_parent_localizer": {
+    "path": "checkpoints/phase13b_kub_localizer_r512_h128_sigmaeq075_centernetfocal_seed42_clean_v3/best.pt",
+    "epoch": 53,
+    "sha256": "7673c34a2f2c86eca2e45c1bc6abe77842d17cd09f122f2da0f2d414ca492273",
+    "target_sigma": 0.75,
+    "loss": "CenterNetFocalLoss(alpha=2.0, beta=4.0)",
+    "role": "PARENT localizer whose target-generation code is redesigned for H3; NOT fine-tuned, NOT re-evaluated here"
+  },
+
+  "bound_downstream_checkpoints": {
+    "regional_refiner_phase14_epoch56": {
+      "path": "checkpoints/phase14_kub_refiner_unet_a3_256_seed42_clean_v3/best.pt",
+      "sha256": "2e09e3a9c39c731687db1a9fef0c80881ed6235e4cda070bb4b8b382caa45daa",
+      "role": "Stage-4D regional refiner used in downstream eval"
+    },
+    "global_baseline_phase10_epoch70": {
+      "path": "checkpoints/phase10_kub_unetpp_seed42_512_clean_v3/best.pt",
+      "sha256": "ec7eb13f32e43af27eab7fc617bd1a2a8fcce1d6651a1b4a3653f3e4d1283269",
+      "role": "GLOBAL_ONLY baseline for contrast"
+    }
+  },
+
+  "proposed_experiment": {
+    "experiment_id": "h3_kub_localizer_sigma_adaptive_sizeaware_seed42_clean_v3",
+    "description": "Retrain the Phase-13B localizer with IDENTICAL architecture, data, seed, optimizer, and proposal policy, changing ONLY the training-target support (size-adaptive sigma). Produces a new deployable localizer checkpoint.",
+    "changed_axis_only": "localizer training target support (make_gaussian_heatmap size-adaptive sigma, opt-in flag size_adaptive_sigma=True in kub_localizer_dataset.py)",
+    "unchanged": "architecture, loss, optimizer, scheduler, seed, data, proposal policy, refiner, downstream eval",
+    "expected_output": "checkpoints/h3_kub_localizer_sigma_adaptive_sizeaware_seed42_clean_v3/best.pt (selected by supply-aware VAL rule, see checkpoint_selection_rule artifact)"
+  },
+
+  "primary_supply_criteria_prospective": {
+    "zero_proposal_tiny_target_max": "20/72 (recover >= 37 of 57)",
+    "zero_proposal_gt_target_max": "35/152 (recover >= 44 of 79)",
+    "note": "Primary (supply) criteria are necessary but not sufficient; downstream R_H3 is the adjudication gate."
+  },
+
+  "min_meaningful_improvement": {
+    "R_H3_min": 0.30,
+    "R_H3_formula": "R_H3 = (TinyRecall_H3 - Tg) / G",
+    "R_H3_threshold_equivalent_tiny_recall": 0.8541666666666666,
+    "note": "R_H3>=0.30 means H3 closes at least 30% of the [Tg, 1.0] Tiny-recall gap left by the frozen PREDICTED system."
+  },
+
+  "failure_boundary": {
+    "label": "H3_SUPPLY_REDESIGN_INSUFFICIENT",
+    "fires_if_any": [
+      "zero_proposal_tiny after H3 >= 45/72 (recovers < 12 of 57)",
+      "R_H3 < 0.15  (i.e., TinyRecall_H3 < 0.8229166666666666)"
+    ],
+    "consequence": "Target-support redesign declared insufficient for the supply axis. H3 is NOT closed. Phase-15 remains NOT_STARTED_AND_NOT_AUTHORIZED. Reconsider Option B (positive-objective reweighting) or Option C (recall-oriented head) under fresh authorization; do NOT promote this checkpoint to downstream."
+  },
+
+  "contamination_treatment": {
+    "policy": "OBSERVATIONAL_ONLY",
+    "rationale": "C-only did not move Tiny Recall (R_C=0.0), so contamination is not the recall bottleneck. FP burden / Dice are tracked for reporting but are NOT gates for H3 success or failure.",
+    "tracked_metrics": ["fp_components_per_image", "dice_mean"]
+  },
+
+  "downstream_eval_plan": {
+    "pipeline": "H3 localizer -> heatmap (128) -> generate_predicted_rois(threshold=0.10, margin=0.20, top_k=5, nms_iou=0.30) -> proposal union (MAX-prob replacement) -> Phase-14 refiner epoch56 -> segmentation -> per-size recall",
+    "primary_metric": "Tiny Recall (size stratum TINY, 72 components)",
+    "R_H3_formula": "R_H3 = (TinyRecall_H3 - Tg) / G  with Tg=0.7916666666666666, G=0.20833333333333337",
+    "contrast_set": ["GLOBAL (Phase-10 UNet++)", "PREDICTED (Phase-13B + Phase-14 refiner)", "H3 (adaptive-sigma localizer + Phase-14 refiner)", "ORACLE_REGIONAL (upper bound)"],
+    "secondary_metrics": ["recall_SMALL/MEDIUM/LARGE", "hard_tiny_recall", "global_empty_recovered", "dice_mean", "fp_components_per_image"]
+  },
+
+  "checkpoint_selection_rule_ref": "reports/audits/h3_proposal_supply_checkpoint_selection_rule.json",
+  "pre_execution_checklist_ref": "reports/audits/h3_proposal_supply_pre_execution_checklist.json",
+  "static_baseline_trace_ref": "reports/audits/h3_proposal_supply_static_baseline_trace.json",
+  "code_change_spec_ref": "reports/audits/h3_proposal_supply_code_change_spec.json",
+  "changed_files_ref": "reports/audits/h3_proposal_supply_changed_files.json",
+  "unchanged_axes_matrix_ref": "reports/audits/h3_proposal_supply_unchanged_axes_matrix.json",
+  "success_failure_criteria_ref": "reports/audits/h3_proposal_supply_success_failure_criteria.json",
+
+  "implementation_bindings": {
+    "to_be_changed": {
+      "src/inference/heatmap_targets.py": "6bbfdb09fe955b7b2d9626a1b80be3d09734926ea1265dd7a760292f304b7de1",
+      "src/data/kub_localizer_dataset.py": "bad9bb31aa4ef88d2ebeee98b65015f7dc7743474a3d7f82b932601fc6f7ba41"
+    },
+    "frozen_bound": {
+      "src/inference/learned_roi_clean_v3.py": "613e03d6e4dccccce2b743974dfaccd8a29a2c0932048f0af3d37a6d2a0241bf",
+      "src/inference/predicted_roi.py": "bd9f8be84595f49ff1e25e6052b548488fb6ae6a48aa7adbc78b880fb8f2d4e7",
+      "src/data/transforms.py": "8a8b636b58843d36810ebf5f3527a8ca1287b93483b962d5cf8e323a92566223",
+      "src/models/factory.py": "3377bbe021d7bd13c07350ff5c4927705c2d67f93fa99c388caf2cc79ef4086d",
+      "scripts/training/train_phase13b_localizer.py": "5985b9eb2fe43018babbd88004bf7e5b99d2783dcfa78c7404591a02bdcb555a",
+      "configs/phase13_clean_v3/phase13b_kub_localizer_r512_h128_sigmaeq075_centernetfocal_seed42_clean_v3.yaml": "922ff26916c1f7ebea0ea526fbaa6adbb9a7419f1f08b16d33ed5df049c4c8bf",
+      "scripts/evaluation/evaluate_phase14_clean_v3_diagnostic.py": "53958eb1601a15f29b6dc1635f802f87af88f2eef3b3268320ad471b92ef1a38",
+      "manifests/phase4_v3/train.csv": "28702fc3a5ff8b950db372f03232d335e3a30b1fc2f21db7cd8c066055826ed6",
+      "manifests/phase4_v3/val.csv": "082c80b2bda63fd73f371f109c34643adf01edaead921643fb2e44993ba53315",
+      "reports/tables/kub_view_type_inventory.csv": "e9fa31fd84b366239e981e803283beccf3812c4941bafc9bb3c21d1e4bafac61"
+    },
+    "bound_checkpoints": {
+      "phase13b_localizer_epoch53": "7673c34a2f2c86eca2e45c1bc6abe77842d17cd09f122f2da0f2d414ca492273",
+      "phase14_refiner_epoch56": "2e09e3a9c39c731687db1a9fef0c80881ed6235e4cda070bb4b8b382caa45daa",
+      "phase10_unetpp_epoch70": "ec7eb13f32e43af27eab7fc617bd1a2a8fcce1d6651a1b4a3653f3e4d1283269"
+    }
+  },
+
+  "artifact_inventory_sha256": {
+    "_note": "self-referential SHA omitted; this protocol document's own SHA is the container of this inventory",
+    "h3_proposal_supply_design_protocol.md": "5cb2a20178e0d2ef1c94d29702a016b4735f49df8f144b9fc541f05c0a69f5be",
+    "h3_proposal_supply_static_baseline_trace.json": "06bb2436352a7fc873e8896276c00c613bcdc04afaf2ad43ef616533cd0fb5c3",
+    "h3_proposal_supply_code_change_spec.json": "0e94d95653e2f492293b43d20bff4511a41d52c4a3ed9072e01eb72cd3b0c6b4",
+    "h3_proposal_supply_changed_files.json": "73e23a59f9a56cd96184aab393d4e3f419bac46919bb87c723fe152ee5f5508a",
+    "h3_proposal_supply_unchanged_axes_matrix.json": "077495e6c087bb808b2020d162b7e42c4ccfd08f18df2b62bc11905e7791b7f1",
+    "h3_proposal_supply_success_failure_criteria.json": "9bfc361ddaee939d7cc0bd3f120e5ff4a504c403877a2cb1350ca00804074489",
+    "h3_proposal_supply_checkpoint_selection_rule.json": "e796196bf14636d09f20c2b4104e6ae232a0eaf208ae633cb7fc27e93dd62d5f",
+    "h3_proposal_supply_pre_execution_checklist.json": "6ebed102521dae7c69c58c7aa8fb597cba60ead04c5fb3a91485c14505997101"
+  },
+
+  "governance": {
+    "no_training_performed": true,
+    "no_h3_checkpoint_created": true,
+    "no_scientific_parameter_selected_using_b2_or_h2c_results": true,
+    "test_reads": 0,
+    "external_test_reads": 0,
+    "phase15_status": "NOT_STARTED_AND_NOT_AUTHORIZED",
+    "single_intervention_only": true
+  },
+
+  "counters": {
+    "search_sweeps": 0,
+    "tuning_runs": 0,
+    "checkpoint_comparisons": 0,
+    "retraining": 0,
+    "h3_training": 0,
+    "test_reads": 0,
+    "external_test_reads": 0
+  }
+}

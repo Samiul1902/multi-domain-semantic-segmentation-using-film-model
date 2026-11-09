@@ -1,0 +1,72 @@
+{
+  "artifact": "phase36_v1_6_direct_source_byte_audit",
+  "section": "§M",
+  "phase": 36,
+  "method": "RA-MedFiLM-BARR",
+  "revision": "ra_medfilm_barr_phase36_robustness_v1_6",
+  "type": "READ_ONLY_DIRECT_FINAL_SOURCE_BYTE_AUDIT",
+  "audited_source": "scripts/analysis/phase36_robustness_execution_v1_6.py",
+  "execution_source_sha256": "d2c4dfd8ab37bf6f4153cf42c2b0f45664b431af6ec626d3bdfbc4038fcfdc2b",
+  "audited_source_lines": 2911,
+  "audit_method": "AST_PARSE + CALL_GRAPH_REACHABILITY_FROM_BOTH_ENTRYPOINTS + SOURCE_BYTE_INSPECTION",
+  "no_execution": true,
+  "no_source_modification": true,
+  "torch_imported": false,
+  "protected_population_content_inspected": false,
+  "TEST_MANIFEST_runtime_IO_reachable": false,
+  "ROUTER_HOLDOUT_runtime_IO_reachable": false,
+  "PHASE24_ROUTER_SPLIT_MANIFEST_runtime_IO_reachable": false,
+  "run_science_protected_IO_reachable": false,
+  "run_smoke_protected_IO_reachable": false,
+  "protected_counter_force_zero_assignments": 0,
+  "VAL_manifest_is_only_population_runtime_authority": true,
+  "VAL_manifest_SHA_guard": true,
+  "VAL_expected_n_808": true,
+  "VAL_split_guard": true,
+  "manual_numpy_G_sigmoid_present": false,
+  "canonical_G_torch_sigmoid_present": true,
+  "canonical_G_sigmoid_site_count": 1,
+  "cuda_fail_closed": true,
+  "explicit_four_component_device_binding": true,
+  "G_context_correct": true,
+  "B_phi_context_correct": true,
+  "R_psi_context_correct": true,
+  "S_omega_context_correct": true,
+  "conditional_execution_preserved": true,
+  "proposal_paths_preserved": true,
+  "branch_controls_preserved": true,
+  "evidence": {
+    "run_science_reachable_functions": 77,
+    "run_smoke_reachable_functions": 41,
+    "run_science_protected_sites": [],
+    "run_smoke_protected_sites": [],
+    "protected_counter_force_zero_sites": [],
+    "manual_sigmoid_site_lines": [],
+    "canonical_sigmoid_site_lines": [
+      1097
+    ],
+    "G_context_evidence": {
+      "forward_line": 1126,
+      "context_line": 1125,
+      "context": "with torch.no_grad(), canonical_autocast(ctx[\"device\"]), TapRecorder(ctx[\"g\"]) as rec:"
+    },
+    "B_phi_context_evidence": {
+      "forward_line": 1305,
+      "context_line": 1302,
+      "context": "with component_inference_context(\"B_phi\"), component_autocast_disabled(\"B_phi\"):"
+    },
+    "R_psi_context_evidence": {
+      "forward_line": 1326,
+      "context_line": 1324,
+      "context": "with component_inference_context(\"R_psi\"), component_autocast_disabled(\"R_psi\"):"
+    },
+    "S_omega_context_evidence": {
+      "forward_line": 1345,
+      "context_line": 1344,
+      "context": "with component_inference_context(\"S_omega\"), component_autocast_disabled(\"S_omega\"):"
+    }
+  },
+  "generated_utc": "2026-10-06T09:10:15Z",
+  "all_pass": true,
+  "verdict": "PASS"
+}

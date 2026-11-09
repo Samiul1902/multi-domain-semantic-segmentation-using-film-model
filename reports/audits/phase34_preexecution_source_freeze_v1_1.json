@@ -1,0 +1,67 @@
+{
+ "artifact": "phase34_preexecution_source_freeze_v1_1",
+ "phase": 34,
+ "section": "\u00a7M",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase34_efficiency_profiling_v1_1",
+ "frozen_sources": [
+  {
+   "path": "scripts/analysis/phase34_efficiency_profiling_execution_v1_1.py",
+   "sha256": "e6effd91ef847d2735648a2abd3fd254d09b015b336554005f94866168afda59",
+   "role": "V1_1_FUTURE_EXECUTION_HARNESS",
+   "exists": true
+  },
+  {
+   "path": "scripts/analysis/phase34_efficiency_profiling_worker_v1_1.py",
+   "sha256": "bd2cd11a744891282e976185ff1c77883f0c1e5da97792932b70b0fc55a31463",
+   "role": "V1_1_ISOLATED_PER_ARM_WORKER",
+   "exists": true
+  },
+  {
+   "path": "scripts/analysis/phase34_specification_v1_1.py",
+   "sha256": "c03a1da7ecd7b3c9ed3532bb93ef7dd960eddf02b921cb0e95fef1fc33a0ff64",
+   "role": "V1_1_SPECIFICATION_GENERATOR",
+   "exists": true
+  },
+  {
+   "path": "scripts/analysis/build_phase34_spec_v1_1_reviewer_notebook.py",
+   "sha256": "5fbb48e8ad3621530bf222d5d157168ba4f8dce25fb656061f3d10eabcbdbe3f",
+   "role": "V1_1_REVIEWER_NOTEBOOK_BUILDER__REPORTING_ONLY",
+   "exists": true
+  },
+  {
+   "path": "src/models/barr/ra_medfilm_barr.py",
+   "sha256": "342f2163690c2fa8d5a601ab1d18178b982d701b916935c33e0793b0801c3724",
+   "role": "CANONICAL_WRAPPER_SOURCE",
+   "exists": true
+  },
+  {
+   "path": "src/models/barr/regional_refiner.py",
+   "sha256": "4fe0abde3ec3a183d930f676c4400b4d9ba778793ea64abf1755c5b8dabf947a",
+   "role": "R_psi_SOURCE",
+   "exists": true
+  },
+  {
+   "path": "src/models/barr/router_variants.py",
+   "sha256": "f8dab77d2dc01bd84d7569ee1ca839607be55e852fa462f5212c229097de0ad0",
+   "role": "B_phi_SOURCE",
+   "exists": true
+  },
+  {
+   "path": "src/models/film/global_medfilm.py",
+   "sha256": "a04ff3e61b4d900ff47c2f390da4a999e73bd6047b28a19e41b05115e431d11f",
+   "role": "G_SOURCE",
+   "exists": true
+  }
+ ],
+ "v1_0_source_freeze": {
+  "path": "reports/audits/phase34_preexecution_source_freeze.json",
+  "sha256": "2427a3d6efb73a258e54ce6fb8a5744ff3562dffcfcfa7274032bb8266e486d2"
+ },
+ "v1_0_source_freeze_preserved": true,
+ "v1_1_supersedes_v1_0_for_future_measurement": true,
+ "no_v1_0_measurement_was_executed": true,
+ "future_execution_must_use_v1_1_exact_frozen_bytes": true,
+ "generated_utc": "2026-10-04T10:35:59+00:00",
+ "all_pass": true
+}

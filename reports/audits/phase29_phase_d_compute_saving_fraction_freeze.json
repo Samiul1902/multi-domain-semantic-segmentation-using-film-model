@@ -1,0 +1,65 @@
+{
+ "artifact": "phase29_phase_d_compute_saving_fraction_freeze",
+ "phase": 29,
+ "stage": "PHASE_D_COMPUTE_SAVING_FRACTION_FREEZE",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_phase29_repro_v1_1",
+ "generated_utc": "2026-10-03T15:25:42+00:00",
+ "somega_saves_compute": false,
+ "compute_savings_source": "PRE_EXECUTION_RESOURCE_GATE (B_phi/C8), never S_omega",
+ "fraction_freeze": {
+  "definition": "router activation fraction == R_psi execution fraction == S_omega execution fraction. This is the SELECTED (EXECUTE) fraction, NOT the safety-ACCEPT fraction.",
+  "counting_rule": "R_psi is counted for BOTH ACCEPT and REJECT outcomes. A rejected refinement still incurs the refiner compute.",
+  "per_seed": {
+   "seed42": {
+    "n_population": 808,
+    "n_router_execute": 279,
+    "n_Rpsi_execute": 279,
+    "n_Somega_execute": 279,
+    "n_accept": 268,
+    "n_reject": 11,
+    "router_activation_fraction": 0.34529702970297027,
+    "Rpsi_execution_fraction": 0.34529702970297027,
+    "Somega_execution_fraction": 0.34529702970297027,
+    "three_fractions_equal": true,
+    "accept_plus_reject_equals_router_execute": true
+   },
+   "seed123": {
+    "n_population": 808,
+    "n_router_execute": 256,
+    "n_Rpsi_execute": 256,
+    "n_Somega_execute": 256,
+    "n_accept": 231,
+    "n_reject": 25,
+    "router_activation_fraction": 0.31683168316831684,
+    "Rpsi_execution_fraction": 0.31683168316831684,
+    "Somega_execution_fraction": 0.31683168316831684,
+    "three_fractions_equal": true,
+    "accept_plus_reject_equals_router_execute": true
+   },
+   "seed3407": {
+    "n_population": 808,
+    "n_router_execute": 262,
+    "n_Rpsi_execute": 262,
+    "n_Somega_execute": 262,
+    "n_accept": 256,
+    "n_reject": 6,
+    "router_activation_fraction": 0.32425742574257427,
+    "Rpsi_execution_fraction": 0.32425742574257427,
+    "Somega_execution_fraction": 0.32425742574257427,
+    "three_fractions_equal": true,
+    "accept_plus_reject_equals_router_execute": true
+   }
+  },
+  "all_seeds_three_fractions_equal": true,
+  "all_seeds_accept_plus_reject_balanced": true
+ },
+ "checks": {
+  "router_execute_equals_Rpsi_execute": true,
+  "Rpsi_execute_equals_Somega_execute": true,
+  "accept_plus_reject_equals_router_execute": true,
+  "rejected_refinements_counted_in_Rpsi_compute": true,
+  "somega_saves_compute_false": true
+ },
+ "all_pass": true
+}

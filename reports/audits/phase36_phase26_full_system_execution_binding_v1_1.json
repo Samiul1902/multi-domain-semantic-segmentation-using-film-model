@@ -1,0 +1,102 @@
+{
+ "artifact": "phase36_phase26_full_system_execution_binding_v1_1",
+ "section": "§K",
+ "phase": 36,
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase36_robustness_v1_1",
+ "classification": "CANONICAL_PHASE26_FULL_STATE_MACHINE_EXECUTION_BINDING",
+ "authority": {
+  "path": "src/models/barr/ra_medfilm_barr.py",
+  "sha256": "342f2163690c2fa8d5a601ab1d18178b982d701b916935c33e0793b0801c3724",
+  "phase26_revision": "ra_medfilm_barr_phase26_integration_v1_0",
+  "router_semantics_revision": "phase26_v1_2",
+  "operational_meaning": "ASSEMBLY_ONLY__NO_PARAMETER_OPTIMIZATION",
+  "composition": "composes four frozen components; introduces 0 trainable parameters"
+ },
+ "bound_callables": {
+  "G": {
+   "module": "src/models/film/global_medfilm.py",
+   "sha256": "a04ff3e61b4d900ff47c2f390da4a999e73bd6047b28a19e41b05115e431d11f",
+   "checkpoint": "checkpoints/phase21_global_medfilm_fourdomain_seed42_clean_v3/best.pt",
+   "checkpoint_sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+   "entry": "RAMedFiLMBARR.forward_inference -> self.global_model(image, task_ids=...)"
+  },
+  "B_phi_feature_preparation": {
+   "extractor": "src/features/barr_pre_refinement_features.py",
+   "extractor_sha256": "f0323e78caa7a3f8c1d24cf68d4321972d86f95d36913a7af795b15acdb26f6a",
+   "entry": "build_feature_vector(cmaps, P, roi_row) -> float32[202]",
+   "normalization": "RAMedFiLMBARR._apply_norm(rf, self.router_normalization), zero_sigma_rule frozen"
+  },
+  "B_phi_inference": {
+   "module": "src/models/barr/router_variants.py",
+   "sha256": "f8dab77d2dc01bd84d7569ee1ca839607be55e852fa462f5212c229097de0ad0",
+   "checkpoint": "checkpoints/phase25d_barr_benefit_router_v1_2_1_seed42/final/final.pt",
+   "checkpoint_sha256": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+   "entry": "self.benefit_router(x_num, t_ids) -> delta_hat_final (float)",
+   "numeric_dim": 202,
+   "task_embed_dim": 16,
+   "total_dim": 218
+  },
+  "A8_C9_policy": {
+   "bundle_manifest": "artifacts/phase26_ra_medfilm_barr_bundle_v1_0/canonical_bundle_manifest.json",
+   "bundle_sha256": "f7aebb0f646bcc8de49fa91b70a4c4cc1051c9998ab6b055a8d4d187809cb3d9",
+   "threshold_binding": "reports/audits/phase26_canonical_router_threshold_binding_v1_0.json",
+   "threshold_binding_sha256": "c49a1e53fd3e85ff793cc4ce41fd3f20210f33e6b1880ea0f55bd2b788fbbb37",
+   "canonical_variant": "A8_C9",
+   "nominal_budget": 0.25,
+   "action_cost_C": "1051648/10270749",
+   "lambda_C": "262912/10270749",
+   "tau_C7_final": "24796109646558761/20000000000000000000",
+   "tau_C8_final": "-5003565381643716252018011/205414980000000000000000000",
+   "utility": "U = delta_hat_final - (1/4)*C_ACTION",
+   "execute_iff": "U >= TAU_C8_FINAL_FLOAT",
+   "callable": "canonical_utility(delta_hat_final) / router_decision(delta_hat_final)"
+  },
+  "R_psi_crop_and_inference": {
+   "module": "src/models/barr/regional_refiner.py",
+   "sha256": "4fe0abde3ec3a183d930f676c4400b4d9ba778793ea64abf1755c5b8dabf947a",
+   "checkpoint": "checkpoints/phase25a_barr_regional_refiner_v1_1_roi030/final/final.pt",
+   "checkpoint_sha256": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109",
+   "crop_geometry_source": "RAMedFiLMBARR._roi_window_from_probability(p_global, 0.30, 1.50) -> (y0,y1,x0,x1) or None",
+   "crop_side_rule": "centre-preserving expansion of the >=0.30 foreground bbox by factor ROI_EXPANSION=1.50",
+   "entry": "regional_refiner over the frozen crop geometry -> oof_refined_crop_prob (256x256)",
+   "fusion": "RAMedFiLMBARR._fuse_global_with_regional(p_global, p_refined_crop, window): outside ROI retain p_global; inside ROI REPLACE with resized refined crop (NO alpha blending)"
+  },
+  "S_omega_safety_and_fusion": {
+   "module": "scripts/analysis/phase25f_execution_common.py",
+   "sha256": "98cf958a377e2de30e0b67e63fd56bafea418b2b061a362ee7284e852012cd2e",
+   "feature_module": "scripts/analysis/phase25f_post_safety_features.py",
+   "checkpoint": "checkpoints/phase25f_barr_post_safety_v1_0_seed42/final/final.pt",
+   "checkpoint_sha256": "eee9b97b9921e53fc07eac9281dce64ba518c6e1659916b97b0b3bec21ec6d2e",
+   "numeric_dim": 16,
+   "total_dim": 20,
+   "entry": "self.post_safety(concat(sf_norm, onehot_task)) -> logit; accept_prob = sigmoid(logit)",
+   "accept_rule": "ACCEPT iff sigmoid(logit) >= SOMEGA_ACCEPT_THRESHOLD (0.50)"
+  },
+  "final_state_selection": {
+   "states": ["FORCED_SKIP", "SKIP_GLOBAL", "EXECUTE_THEN_ACCEPT", "EXECUTE_THEN_REJECT"],
+   "FORCED_SKIP": "action unavailable -> p_global",
+   "SKIP_GLOBAL": "U < tau_C8_final -> p_global",
+   "EXECUTE_THEN_ACCEPT": "U >= tau_C8_final and accept -> regional fused candidate",
+   "EXECUTE_THEN_REJECT": "U >= tau_C8_final and reject -> p_global",
+   "segmentation_output_threshold": 0.50
+  }
+ },
+ "load_bearing_discovery": {
+  "statement": "_roi_window_from_probability (the ROI proposal / crop geometry) is used ONLY at the fusion step and at the refiner crop step; it is NOT consumed by the 202-D feature extractor. forward_inference takes router_features_202 and roi_window as INDEPENDENT arguments.",
+  "consequence_for_proposal_perturbation": "The canonical executable allows a perturbed roi_window WITHOUT any change to router_features_202. Therefore 'B_phi decision recomputed under proposal perturbation' is NOT implemented by passing a perturbed window alone; it requires REASSEMBLING the 202-D vector through build_feature_vector with perturbed clip_*/crop_side_pixels.",
+  "conflict_with_v1_1_work_order_stated_contract": "The v1.1 work order §H asserts R_psi crop uses perturbed geometry AND that B_phi is recomputed. Under the canonical architecture, the perturbed ROI affects R_psi crop/fusion directly, and affects the extractor ONLY IF the extractor's roi_row is also perturbed. Both are achievable by driving v1.1 with a perturbed roi_row feeding build_feature_vector AND a perturbed roi_window feeding fusion.",
+  "resolution": "V1.1_FREEZES_THE_CANONICAL_EXECUTABLE_TRUTH: perturbed geometry feeds BOTH build_feature_vector(roi_row with clip_*/crop_side_pixels) AND roi_window for refiner crop + fusion. No prose contract overrides bound code.",
+  "canonical_executable_reused": true,
+  "reconstructed_from_prose": false
+ },
+ "state_machine_test_authority": {
+  "path": "scripts/analysis/run_phase26_exec_tests.py",
+  "sha256": "050bacf8b5d87eb30f7e965ef7451c8286b492d083dc0a2b5bdca08185444484",
+  "section": "18",
+  "cases": ["FORCED_SKIP", "SKIP_GLOBAL", "EXECUTE_THEN_ACCEPT", "EXECUTE_THEN_REJECT"],
+  "method": "injected mock outputs; global_forward exactly once"
+ },
+ "generated_utc": "2026-10-05T15:16:00Z",
+ "all_pass": true
+}

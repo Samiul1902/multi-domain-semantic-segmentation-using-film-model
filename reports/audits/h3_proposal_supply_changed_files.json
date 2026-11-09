@@ -1,0 +1,32 @@
+{
+  "artifact": "H3_PROPOSAL_SUPPLY_CHANGED_FILES",
+  "generated_utc": "2026-09-25T09:30:00Z",
+  "intervention": "A_TARGET_SUPPORT_REDESIGN",
+  "changed_files": [
+    {
+      "path": "src/inference/heatmap_targets.py",
+      "current_sha256": "6bbfdb09fe955b7b2d9626a1b80be3d09734926ea1265dd7a760292f304b7de1",
+      "change": "make_gaussian_heatmap gains optional component_areas (size-adaptive sigma); backward-compatible default preserves original fixed-sigma behavior.",
+      "blast_radius": "localizer training target generation only; 1 call site (kub_localizer_dataset.py:91)."
+    },
+    {
+      "path": "src/data/kub_localizer_dataset.py",
+      "current_sha256": "bad9bb31aa4ef88d2ebeee98b65015f7dc7743474a3d7f82b932601fc6f7ba41",
+      "change": "Add opt-in size_adaptive_sigma flag; compute per-component area in localizer space; pass to make_gaussian_heatmap when enabled. Default False = byte-identical to Phase-13B.",
+      "blast_radius": "localizer training dataset only; no effect on inference/decode."
+    }
+  ],
+  "new_artifacts_produced_by_this_design": [
+    "checkpoints/h3_kub_localizer_sigma_adaptive_sizeaware_seed42_clean_v3/best.pt (post-training, NOT created now)",
+    "reports/audits/h3_proposal_supply_design_protocol.json",
+    "reports/audits/h3_proposal_supply_design_protocol.md",
+    "reports/audits/h3_proposal_supply_static_baseline_trace.json",
+    "reports/audits/h3_proposal_supply_code_change_spec.json",
+    "reports/audits/h3_proposal_supply_changed_files.json",
+    "reports/audits/h3_proposal_supply_unchanged_axes_matrix.json",
+    "reports/audits/h3_proposal_supply_success_failure_criteria.json",
+    "reports/audits/h3_proposal_supply_checkpoint_selection_rule.json",
+    "reports/audits/h3_proposal_supply_pre_execution_checklist.json"
+  ],
+  "unchanged_files_summary": "All other source, config, checkpoint, manifest, and evaluation files are FROZEN (see h3_proposal_supply_unchanged_axes_matrix.json and the implementation_bindings block of h3_proposal_supply_design_protocol.json)."
+}

@@ -1,0 +1,41 @@
+{
+ "artifact": "phase25g_a7_a8_controlled_comparison_contract",
+ "phase": "25G",
+ "classification": "PHASE25G_PRE_EXECUTION_INTEGRATED_EVALUATION_SPECIFICATION_AUDIT",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_integrated_evaluation_v1_0",
+ "governance_only": true,
+ "no_execution": true,
+ "stage": "A7_A8_CONTROLLED_COMPARISON",
+ "A7": {
+  "definition": "Phase25E C8 routing policy + always accept the executed regional candidate",
+  "comparator_equivalent": "C8 (LEARNED_GAIN_PLUS_RESOURCE_COST)",
+  "ablation_plan": "A6 + resource cost",
+  "purpose": "H5 test"
+ },
+ "A8": {
+  "definition": "the exact same Phase25E routing membership + Phase25F S_omega safety decision",
+  "comparator_equivalent": "C9 (LEARNED_GAIN_PLUS_RESOURCE_COST_PLUS_POST_SAFETY)",
+  "ablation_plan": "A7 + post-safety",
+  "purpose": "H3 test; isolates S_omega"
+ },
+ "shared_controls": {
+  "same_sample_population": "ROUTER_DEVELOPMENT (4957)",
+  "same_routing_membership": "frozen Phase25E C8 memberships, reused verbatim",
+  "same_lambda": "frozen lambda grid (0.00/0.25/0.50/1.00)",
+  "same_budget": "frozen budget grid (0/10/25/50/100%)",
+  "same_candidate_regional_output": "frozen Phase25A final regional refiner output",
+  "same_global_output": "frozen Phase21 GlobalMedFiLM output",
+  "same_segmentation_threshold": 0.5
+ },
+ "only_difference": "S_omega accept/reject applied AFTER refinement (A8); A7 always accepts",
+ "isolation": "controlled isolation of S_omega",
+ "c8_membership_manifest_sha256": "f4ff4b235c664339d237fd7ec51f948dbc233431a6fd45522bde2166327e679a",
+ "checks": {
+  "A7_equals_C8": true,
+  "A8_equals_C9": true,
+  "single_difference_is_S_omega": true,
+  "no_new_threshold_introduced": true
+ },
+ "all_pass": true
+}

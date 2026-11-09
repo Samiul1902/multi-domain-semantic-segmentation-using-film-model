@@ -1,0 +1,227 @@
+{
+  "artifact": "POST_PHASE13_REGIONAL_REVISION_R0_PROTOCOL_FROZEN",
+  "status": "REVISION_PROTOCOL_FROZEN_BEFORE_R1_EXECUTION",
+  "created_utc": "2026-09-22T05:52:00Z",
+  "revision_branch": "POST_PHASE13_REGIONAL_REVISION",
+  "phase13_evidence_reopened": "NO",
+  "phase13_gate_verdict": "REVISE_LOCALIZER",
+  "oracle_mechanism_value": "SUPPORTED_DESCRIPTIVE_EVIDENCE",
+  "revision_question": "Which single failure axis should be tested FIRST: proposal acceptance/abstention, localizer representation/training/selection, or regional fusion/gating? The future experiment must change only ONE primary scientific axis at a time.",
+  "selected_first_axis": "H1_SELECTIVE_PROPOSAL_ACCEPTANCE_ABSTENTION",
+  "hypothesis_under_test": "SELECTIVE_REGIONAL_INTERVENTION_WITH_ABSTENTION",
+  "hypothesis_promoted": "NO__UNDER_TEST_IN_R1",
+  "safety_property_relied_upon": {
+    "statement": "if no predicted proposal is accepted then PREDICTED output == GLOBAL output exactly",
+    "source": "frozen Part-1D-B fusion semantics (P(x) = R(x) if U_pred(x) else G(x))",
+    "consequence": "maximum proposal recall is not required; abstention is a legitimate outcome"
+  },
+  "selective_abstention_principle_assessment": {
+    "verdict": "SUPPORTED",
+    "supporting_evidence": [
+      "score retains moderate discriminative information despite saturation (ROC-AUC 0.670611, PR-AUC 0.305819 vs 0.246964 base rate)",
+      "saturated proposals hit GT at 0.3353 vs 0.0573 below maximum (5.85x)",
+      "every label-blind marginal floor removes more off-target than GT-hit proposals (q10: 50 off-target, 0 hits)",
+      "off-target support fraction is the strongest descriptor of FP burden (rho 0.5918-0.6372, all four architectures)",
+      "the fusion rule already provides exact GLOBAL fallback when nothing is accepted"
+    ],
+    "counter_evidence_recorded": [
+      "proposal scores are near-degenerate: 337/494 saturated at 0.125065, range 0.024717, IQR 0.000533",
+      "rank ordering within the saturated group is effectively a tie-break",
+      "improved cases carry MORE GT-hit proposals and LARGER intervention area, so reducing intervention may cost recovery"
+    ]
+  },
+  "r1_candidate_family": {
+    "table": "reports/tables/post_phase13_regional_revision_r1_candidate_family.csv",
+    "config_count": 7,
+    "maximum_allowed": 8,
+    "configs": [
+      {
+        "config_id": "R1-C0",
+        "role": "CONTROL_BASELINE",
+        "score_acceptance_floor": 0.1,
+        "max_accepted_proposals": 5,
+        "floor_label": "frozen_part1c_threshold",
+        "zero_acceptance_allowed": "YES",
+        "changed_from_phase13": "NONE__PHASE13_CONTROL"
+      },
+      {
+        "config_id": "R1-C1",
+        "role": "CANDIDATE",
+        "score_acceptance_floor": 0.11947,
+        "max_accepted_proposals": 1,
+        "floor_label": "marginal_score_q10",
+        "zero_acceptance_allowed": "YES",
+        "changed_from_phase13": "SCORE_ACCEPTANCE_FLOOR+MAX_ACCEPTED_PROPOSALS"
+      },
+      {
+        "config_id": "R1-C2",
+        "role": "CANDIDATE",
+        "score_acceptance_floor": 0.11947,
+        "max_accepted_proposals": 5,
+        "floor_label": "marginal_score_q10",
+        "zero_acceptance_allowed": "YES",
+        "changed_from_phase13": "SCORE_ACCEPTANCE_FLOOR+MAX_ACCEPTED_PROPOSALS"
+      },
+      {
+        "config_id": "R1-C3",
+        "role": "CANDIDATE",
+        "score_acceptance_floor": 0.124532,
+        "max_accepted_proposals": 1,
+        "floor_label": "marginal_score_q25",
+        "zero_acceptance_allowed": "YES",
+        "changed_from_phase13": "SCORE_ACCEPTANCE_FLOOR+MAX_ACCEPTED_PROPOSALS"
+      },
+      {
+        "config_id": "R1-C4",
+        "role": "CANDIDATE",
+        "score_acceptance_floor": 0.124532,
+        "max_accepted_proposals": 5,
+        "floor_label": "marginal_score_q25",
+        "zero_acceptance_allowed": "YES",
+        "changed_from_phase13": "SCORE_ACCEPTANCE_FLOOR+MAX_ACCEPTED_PROPOSALS"
+      },
+      {
+        "config_id": "R1-C5",
+        "role": "CANDIDATE",
+        "score_acceptance_floor": 0.125065,
+        "max_accepted_proposals": 1,
+        "floor_label": "marginal_score_max",
+        "zero_acceptance_allowed": "YES",
+        "changed_from_phase13": "SCORE_ACCEPTANCE_FLOOR+MAX_ACCEPTED_PROPOSALS"
+      },
+      {
+        "config_id": "R1-C6",
+        "role": "CANDIDATE",
+        "score_acceptance_floor": 0.125065,
+        "max_accepted_proposals": 5,
+        "floor_label": "marginal_score_max",
+        "zero_acceptance_allowed": "YES",
+        "changed_from_phase13": "SCORE_ACCEPTANCE_FLOOR+MAX_ACCEPTED_PROPOSALS"
+      }
+    ],
+    "allowed_changed_fields": [
+      "proposal score acceptance floor",
+      "maximum accepted proposals per image"
+    ],
+    "frozen_fields": [
+      "localizer checkpoint",
+      "proposal coordinates",
+      "proposal margin 0.20",
+      "NMS 0.30",
+      "regional crop/restore",
+      "segmentation checkpoints",
+      "fusion rule",
+      "segmentation threshold 0.5"
+    ],
+    "zero_acceptance_allowed": "YES",
+    "localizer_retraining_in_r1": "NO",
+    "score_weighting": "NONE",
+    "new_fusion": "NONE",
+    "control_present": "YES (R1-C0 = frozen Phase-13 policy, floor 0.10, max 5)"
+  },
+  "anti_overfitting_rule": {
+    "family_constructed_from_part1d_b_dice_outcomes": "NO",
+    "floors_derived_from": "MARGINAL_PROPOSAL_SCORE_DISTRIBUTION_WITHOUT_GT_LABELS",
+    "max_accepted_candidates": [
+      1,
+      5
+    ],
+    "max_accepted_allowed_set": [
+      1,
+      2,
+      3,
+      5
+    ],
+    "baseline_appears_as_control": "YES",
+    "family_frozen_before_any_candidate_specific_segmentation_inference": "YES",
+    "gt_labels_may_describe_but_not_change_the_family": "YES"
+  },
+  "r1_evidence_dimensions": {
+    "note": "letters are R1-local and MUST NOT be confused with the Part-1E-B gate dimensions A-D",
+    "R1_A_GLOBAL_PRESERVATION": {
+      "question": "Does selective abstention remove the catastrophic FP / precision cost?",
+      "fields": [
+        "mean Dice delta vs GLOBAL",
+        "mean IoU delta",
+        "mean precision delta",
+        "mean recall delta",
+        "mean FP pixel delta",
+        "mean FN pixel delta",
+        "cases improved/unchanged/worsened",
+        "max improvement/worsening",
+        "new empty predictions"
+      ]
+    },
+    "R1_B_REGIONAL_UTILITY_RETENTION": {
+      "question": "Does any selective policy retain genuine component / empty recovery benefit beyond GLOBAL?",
+      "fields": [
+        "component recoveries",
+        "component losses",
+        "empty recoveries",
+        "new empty predictions",
+        "PREDICTED minus GLOBAL Dice",
+        "object recall"
+      ]
+    },
+    "R1_C_INTERVENTION_SELECTIVITY": {
+      "question": "Does the policy reduce off-target proposal intervention?",
+      "fields": [
+        "accepted proposal count",
+        "accepted off-target count",
+        "accepted support area fraction",
+        "cases with zero accepted proposals"
+      ]
+    },
+    "R1_D_CROSS_ARCHITECTURE_CONSISTENCY": {
+      "question": "Does the behavior generalize across all four architectures?",
+      "fields": [
+        "per-architecture direction and magnitude",
+        "heterogeneity report",
+        "no winner",
+        "no rank"
+      ]
+    },
+    "new_numerical_go_threshold": "NONE",
+    "weighted_score": "NONE",
+    "automatic_winner": "NONE",
+    "verdict_issuer": "SUPERVISOR"
+  },
+  "bounded_revision_budget": {
+    "r1_scope": "ONE_BOUNDED_POLICY_ABLATION_ROUND",
+    "candidate_family_expansion_after_results": "FORBIDDEN_WITHOUT_SUPERVISOR_APPROVAL",
+    "if_h1_fails": "STOP__DO_NOT_AUTOMATICALLY_MOVE_TO_RETRAINING",
+    "h2_requires_supervisor_decision": "YES",
+    "open_ended_val_search": "FORBIDDEN"
+  },
+  "publication_validation_discipline": {
+    "nature": "ADAPTIVE_DEVELOPMENT_REVISION_INFORMED_BY_PHASE13_VAL_FAILURE_EVIDENCE",
+    "val_role": "DEVELOPMENT_DATA",
+    "test_untouched_until": "PHASE_39",
+    "revision_val_results_substitute_for_test": "NO",
+    "external_test_tuning": "FORBIDDEN",
+    "hidden_candidate_search": "FORBIDDEN"
+  },
+  "counters": {
+    "training": 0,
+    "optimizer": 0,
+    "model_constructions": 0,
+    "cuda_requests": 0,
+    "localizer_forwards": 0,
+    "segmentation_forwards": 0,
+    "regional_crop_forwards": 0,
+    "proposal_regeneration": 0,
+    "checkpoint_writes": 0,
+    "test_reads": 0,
+    "external_test_reads": 0
+  },
+  "continuity": {
+    "phase13": "COMPLETE_FROZEN",
+    "original_gate": "REVISE_LOCALIZER_FROZEN",
+    "regional_mechanism_promoted": "NO",
+    "phase14": "NOT_STARTED",
+    "post_phase13_revision_r0": "COMPLETE_PASS",
+    "revision_r1": "ELIGIBLE_AFTER_SUPERVISOR_REVIEW__NOT_AUTHORIZED",
+    "test": "UNTOUCHED"
+  },
+  "next_action": "WAIT_FOR_SUPERVISOR_REVISION_R1_AUTHORIZATION"
+}

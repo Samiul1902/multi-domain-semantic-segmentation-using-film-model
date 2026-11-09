@@ -1,0 +1,30 @@
+{
+ "artifact": "phase29_phase30_holdout_lock",
+ "phase": 29,
+ "classification": "PHASE29_PHASE30_HOLDOUT_LOCK",
+ "router_holdout_owner": "PHASE30",
+ "router_holdout_state": "RESERVED_UNOPENED_FOR_PHASE30",
+ "router_holdout_n": 875,
+ "phase29_must_not": [
+  "train on its routing outcomes",
+  "calibrate on its outcomes",
+  "evaluate on it",
+  "inspect its metrics"
+ ],
+ "ROUTER_HOLDOUT_reads": 0,
+ "router_holdout_reads_required_zero": true,
+ "test_state": "LOCKED_UNTIL_PHASE39",
+ "phase30_started": false,
+ "authority": [
+  {
+   "path": "reports/audits/phase26_downstream_phase_boundary_audit.json",
+   "sha256": "9703974040e67487deabf067e2492872b9c5e8b9c64de349a1e8497663d1c4fe",
+   "binds": "phase30.state = RESERVED_UNOPENED_FOR_PHASE30; one_shot = true"
+  },
+  {
+   "path": "reports/audits/phase28_phase29_boundary_audit.json",
+   "sha256": "77bf3647b1fa4139fbb112dfc4abfe1446378203856d91c7d8fc9f525ac7e485"
+  }
+ ],
+ "all_pass": true
+}

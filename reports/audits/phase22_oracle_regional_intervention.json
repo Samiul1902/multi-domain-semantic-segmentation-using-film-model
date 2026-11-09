@@ -1,0 +1,104 @@
+{
+  "artifact": "phase22_oracle_regional_intervention",
+  "phase": 22,
+  "protocol_id": "phase22_diagnostic_protocol_v1",
+  "inference_only": true,
+  "training_jobs_started": 0,
+  "checkpoint": {
+    "experiment_id": "phase21_global_medfilm_fourdomain_seed42_clean_v3",
+    "architecture_id": "global_medfilm_shared_residual_unet_film5_no_se_no_deep_supervision_v1",
+    "checkpoint_path": "checkpoints/phase21_global_medfilm_fourdomain_seed42_clean_v3/best.pt",
+    "checkpoint_sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+    "checkpoint_epoch": 66,
+    "param_count": 3523001,
+    "phase21_freeze_sha256": "aad7baab700710dcf51f0b549b52ddd340bd06d1ec50c39a86f48b00745e98af",
+    "training_performed_in_phase22": false
+  },
+  "roi_rule": {
+    "margin": 0.25,
+    "expansion": "centre-preserving, margin on each side along each axis",
+    "expanded_extent_factor": 1.5,
+    "clip_to_source_boundary": true,
+    "recentre_after_clip": false,
+    "square_pad_about_box_centre": true,
+    "crop_resample": "aspect-preserving resize + centre pad to 512 (crop is square)",
+    "reprojection": "paste regional probability over the ROI footprint only",
+    "outside_roi": "original recomputed global probability, unchanged",
+    "declared_prospectively": true
+  },
+  "variants": {
+    "oracle": "tight GT foreground bounding box. UPPER BOUND / diagnostic only. NOT deployable: it uses the ground truth.",
+    "predicted": "tight bounding box of the frozen model's own thresholded prediction. Deployable in principle; inherits global failures, and yields NO_PREDICTED_ROI on a total miss."
+  },
+  "global_baseline": "recomputed in the SAME run through the same code path, so the regional comparison is not contaminated by comparing across different inference implementations",
+  "decision_rule": "pred = (float32(prob) >= 0.5), applied to every arm",
+  "summaries": {
+    "oracle": {
+      "variant": "oracle",
+      "n_total": 808,
+      "n_ok": 808,
+      "n_no_roi": 0,
+      "no_roi_reason": {},
+      "mean_global_dice_on_ok": 0.8390402334224809,
+      "mean_regional_dice_on_ok": 0.796562372285089,
+      "mean_delta_dice_on_ok": -0.04247786113739191,
+      "mean_delta_iou_on_ok": -0.0526052917222156,
+      "n_improved_on_ok": 271,
+      "n_worsened_on_ok": 536,
+      "n_unchanged_on_ok": 1,
+      "median_delta_dice_on_ok": -0.013680136565675627,
+      "p05_delta_dice_on_ok": -0.30159923499591623,
+      "p95_delta_dice_on_ok": 0.11483966404441583,
+      "max_delta_dice_on_ok": 0.7207486152602737,
+      "min_delta_dice_on_ok": -0.8334218445650708,
+      "mean_roi_area_fraction": 0.49175394690594065,
+      "median_roi_area_fraction": 0.608363455,
+      "mean_effective_magnification": 2.9935991633663366,
+      "n_clipped_roi": 321,
+      "mean_delta_dice_intent_to_treat": -0.04247786113739191
+    },
+    "predicted": {
+      "variant": "predicted",
+      "n_total": 808,
+      "n_ok": 808,
+      "n_no_roi": 0,
+      "no_roi_reason": {},
+      "mean_global_dice_on_ok": 0.8390402334224809,
+      "mean_regional_dice_on_ok": 0.7788225938856137,
+      "mean_delta_dice_on_ok": -0.060217639536867054,
+      "mean_delta_iou_on_ok": -0.06954587598489613,
+      "n_improved_on_ok": 236,
+      "n_worsened_on_ok": 571,
+      "n_unchanged_on_ok": 1,
+      "median_delta_dice_on_ok": -0.016912974116199575,
+      "p05_delta_dice_on_ok": -0.3732890240370282,
+      "p95_delta_dice_on_ok": 0.06207963634048359,
+      "max_delta_dice_on_ok": 0.6803307135832537,
+      "min_delta_dice_on_ok": -0.81329235494601,
+      "mean_roi_area_fraction": 0.5223239343688119,
+      "median_roi_area_fraction": 0.66372608,
+      "mean_effective_magnification": 2.8391037933168315,
+      "n_clipped_roi": 322,
+      "mean_delta_dice_intent_to_treat": -0.060217639536867054
+    }
+  },
+  "fidelity": {
+    "max_abs_probability_difference_square": 0.009233653545379639,
+    "total_thresholded_disagreement_pixels": 2884,
+    "artifact": "reports/audits/phase22_regional_fidelity.json"
+  },
+  "interpretation_guard": "The ORACLE variant is an upper bound that uses ground-truth geometry. It must NEVER be presented as a deployable gain, and no claim may be made that a regional mechanism 'achieves' or 'would achieve' it. The PREDICTED variant is the deployable-shaped diagnostic, but it is still an oracle-FREE offline estimate: no benefit predictor, router, or threshold policy was trained.",
+  "tables": {
+    "per_image": "reports/tables/phase22_regional_intervention_per_image.csv",
+    "oracle_gain": "reports/tables/phase22_oracle_gain.csv",
+    "by_domain": "reports/tables/phase22_oracle_gain_by_domain.csv",
+    "roi_geometry": "reports/tables/phase22_roi_geometry.csv"
+  },
+  "elapsed_seconds": 323.7,
+  "test_reads": {
+    "test_image_reads": 0,
+    "test_mask_reads": 0,
+    "test_inference": 0,
+    "test_visualization": 0
+  }
+}

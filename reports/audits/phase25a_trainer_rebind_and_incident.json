@@ -1,0 +1,115 @@
+{
+ "artifact": "phase25a_trainer_rebind_and_incident",
+ "phase": "25A",
+ "purpose": "prospectively re-bind the Phase-25A trainer after an execution-mechanism-only hardening, and record the teardown incident",
+ "rebind_history": [
+  {
+   "trainer": "scripts/training/train_phase25a_refiner.py",
+   "sha256": "7fd9e2eed290575e826694bae1c53b9fba112e9496ca83e10bcc1fc7d4b63608",
+   "status": "ACTIVE",
+   "change_class": "EXECUTION_MECHANISM_ONLY",
+   "science_changed": false,
+   "changes": [
+    "checkpoint writes are atomic (temp file + os.replace)",
+    "history.csv and config.json / run.json writes are atomic",
+    "history row is persisted BEFORE the checkpoint, so a checkpoint always carries history for epochs 0..epoch (contiguous on resume)",
+    "resume restores ALL RNG state (python / numpy / torch CPU / torch CUDA) with CPU-uint8 coercion; previously the RNG was NOT restored",
+    "resume refuses to continue when a checkpoint lacks RNG state",
+    "resume falls back to best.pt when latest.pt is unreadable",
+    "idempotency guard: --resume on a completed run is a no-op"
+   ],
+   "supersedes_sha256": null,
+   "supersedes_note": "the pre-hardening trainer SHA was not recorded in any run artefact; it is identified by the artefacts it produced, preserved in the quarantine directory"
+  }
+ ],
+ "incident": {
+  "date_utc": "2026-09-30",
+  "log_timestamp_local": "2026-09-30T11:01:06",
+  "run": "fold0",
+  "last_completed_epoch": 30,
+  "wall_clock_survived_seconds": 1100,
+  "cause": "external process-tree teardown by the execution harness (clean log, no traceback, no crash event)",
+  "damage": {
+   "history.csv": "zero-filled (5747 bytes of 0x00) \u2014 unusable",
+   "latest.pt": "truncated tar \u2014 torch.load raises KeyError: 'storages'",
+   "best.pt": "INTACT (epoch 25, best_epoch 25, best_loss 0.0965324758241574)"
+  },
+  "defect_fired_during_training_loop": true,
+  "epochs_affected": 0,
+  "note": "the defect corrupted OUTPUT ARTEFACTS, not computed results; no epoch produced a wrong number",
+  "quarantine_dir": "reports/audits/quarantine/phase25a_teardown_2026-09-30T1101"
+ },
+ "disposition": {
+  "action": "RESTART fold0 FROM EPOCH 0 under the hardened trainer",
+  "rationale": "best.pt was written under the pre-hardening trainer whose history was persisted AFTER the checkpoint, so its history covers epochs 0..24 while its weights are epoch 25. Resuming from it would leave a one-epoch gap in the history. Restarting under ONE trainer SHA yields a contiguous, self-consistent run. The cost is ~18 minutes.",
+  "alternative_rejected": "resume from best.pt with start_epoch=26 (history gap) or start_epoch=25 (epoch replay from post-epoch weights, not bit-exact)",
+  "equivalence_evidence": "the restarted run must reproduce the per-epoch metrics logged for epochs 0..29 of the interrupted run, which is direct evidence that restart-from-0 is scientifically equivalent to an uninterrupted run"
+ },
+ "checks": [
+  {
+   "check": "scientific_constants_unchanged",
+   "pass": true,
+   "observed": [],
+   "expected": []
+  },
+  {
+   "check": "selection_rule_unchanged",
+   "pass": true,
+   "observed": "minimum EARLY_STOP total loss"
+  },
+  {
+   "check": "loss_is_half_bce_half_dice",
+   "pass": true,
+   "observed": "0.5*BCEWithLogitsLoss + 0.5*DiceLoss(eps=1e-6)"
+  },
+  {
+   "check": "amp_enabled_constant_present",
+   "pass": true,
+   "observed": true
+  },
+  {
+   "check": "atomic_write_helpers_present",
+   "pass": true,
+   "observed": [
+    "_atomic_write_bytes",
+    "_atomic_torch_save",
+    "_atomic_write_text"
+   ]
+  },
+  {
+   "check": "rng_restore_present",
+   "pass": true
+  },
+  {
+   "check": "cuda_rng_coercion_present",
+   "pass": true
+  },
+  {
+   "check": "quarantine_preserved",
+   "pass": true,
+   "observed": [
+    "fold0.run.log",
+    "fold0_best.pt.valid_old_sha",
+    "fold0_history.csv.zerofilled",
+    "fold0_latest.pt.truncated"
+   ]
+  }
+ ],
+ "n_checks": 8,
+ "n_failed": 0,
+ "verdict": "PHASE25A_TRAINER_REBIND_OK",
+ "observed_constants": {
+  "METHOD": "RA-MedFiLM-BARR",
+  "ARCH_REVISION": "ra_medfilm_barr_narrowed_v1_1",
+  "MODULE": "regional_refiner",
+  "SEED": 42,
+  "BATCH": 8,
+  "LR": 0.0001,
+  "WEIGHT_DECAY": 0.0001,
+  "MAX_EPOCHS": 100,
+  "PATIENCE": 15,
+  "T_MAX": 100
+ },
+ "generated_utc": "2026-09-30T06:10:20.054736+00:00",
+ "test_reads": 0
+}

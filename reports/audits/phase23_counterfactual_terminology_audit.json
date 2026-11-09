@@ -1,0 +1,51 @@
+{
+ "artifact": "phase23_counterfactual_terminology_audit",
+ "phase": 23,
+ "purpose": "decide whether 'counterfactual' / 'causal' language is technically defensible for the proposed DeltaQ formulation",
+ "audited_quantity": "DeltaQ = Q(refined(x), y) - Q(global(x), y)",
+ "questions": [
+  {
+   "question": "Are both potential outcomes observed during development?",
+   "answer": "YES, but only JOINTLY, not as a true counterfactual. For each development image the system can compute BOTH Q(global) and Q(refined) because it may simply run the refinement during development. This is a fully observed paired design.",
+   "implication": "Because neither arm is missing, there is no missing-data / identifiability problem."
+  },
+  {
+   "question": "Is this simply supervised paired outcome prediction?",
+   "answer": "YES. It is a supervised regression on an observed paired difference. It is exactly a T-learner-style estimate of a paired contrast where both arms are always observed.",
+   "implication": "Supervised paired-outcome prediction is the accurate description."
+  },
+  {
+   "question": "Is causal identification actually needed?",
+   "answer": "NO. Causal identification machinery (ignorability, overlap, propensity weighting, IV) exists to handle a MISSING potential outcome. Here both outcomes are measured for every development unit, so no identification strategy is required.",
+   "implication": "Invoking causal identification would be unnecessary and, worse, misdescribed."
+  },
+  {
+   "question": "Would 'counterfactual refinement benefit' be technically defensible?",
+   "answer": "WEAKLY / MISLEADING. The refinement is deterministic given (x, frozen model, frozen ROI rule). The 'effect' is therefore a deterministic function of the inputs and the frozen rule, not a stochastic individual treatment effect. Labelling it 'counterfactual' imports causal connotations (stochastic potential outcomes, unobserved counterfactuals) that the design does not have.",
+   "implication": "Use paired-gain language; reserve 'counterfactual' for the strictly hypothetical framing if ever needed, with an explicit caveat."
+  },
+  {
+   "question": "Is 'treatment effect' language misleading?",
+   "answer": "YES, if used without qualification. 'Treatment' implies an intervention with a causal estimand and possibly confounding. Here the 'treatment' is a fixed computational procedure applied to a fixed input, and the estimand is a deterministic paired contrast.",
+   "implication": "Avoid 'treatment effect' in the method naming; at most cite the formal analogy to CATE and state the difference."
+  }
+ ],
+ "determinism_note": "The Phase-22 evidence (phase22_future_benefit_label_contract.json) fixes the label as delta_dice = dice(regional_fused) - dice(global) with a FROZEN decision rule and a FROZEN ROI rule. A frozen deterministic rule makes the 'effect' a deterministic contrast, further weakening any causal framing.",
+ "outcome": "PREFER_PAIRED_REFINEMENT_GAIN",
+ "allowed_wording": [
+  "paired refinement gain",
+  "paired benefit of the optional refinement",
+  "predicted quality gain of the refinement over the global prediction",
+  "benefit-aware routing (descriptive, not causal)"
+ ],
+ "disallowed_wording": [
+  "counterfactual benefit (without an explicit caveat that both arms are observed)",
+  "causal effect of the refinement",
+  "treatment effect (unqualified)",
+  "individual treatment effect"
+ ],
+ "residual_defensible_usage": "A single, clearly-caveated sentence may note the formal analogy: 'the target has the form of a conditional average treatment effect, but because both arms are observed for every development image the estimand is a deterministic paired contrast rather than a causal effect.'",
+ "reviewer_credibility_note": "Using causal language where a paired design suffices invites reviewer rejection as overclaiming. The conservative term is stronger, not weaker.",
+ "test_reads": 0,
+ "generated_utc": "2026-09-29T13:53:57.249732+00:00"
+}

@@ -1,0 +1,54 @@
+{
+ "classification": "SUPERSEDED_VOID_ATTEMPT_PRESERVED",
+ "run_id": "segformer_b0_seed42",
+ "defect": "D99",
+ "void_epochs": 5,
+ "observed_series": [
+  {
+   "epoch": 1,
+   "loss": 0.3898,
+   "macro": 0.0
+  },
+  {
+   "epoch": 2,
+   "loss": 0.3872,
+   "macro": 0.0
+  },
+  {
+   "epoch": 3,
+   "loss": 0.3498,
+   "macro": 0.0
+  },
+  {
+   "epoch": 4,
+   "loss": 0.3499,
+   "macro": 0.0027
+  },
+  {
+   "epoch": 5,
+   "loss": "nan",
+   "macro": 0.0
+  }
+ ],
+ "poisoned_tensors": {
+  "backbone.decode_head.batch_norm.running_mean": "inf",
+  "backbone.decode_head.batch_norm.running_var": "nan"
+ },
+ "reason_for_removal": "A checkpoint whose BatchNorm running statistics contain inf/nan yields NaN on every eval-mode forward pass. The runner resumes whenever latest.pt exists, so leaving it in place would have re-entered the NaN state instead of restarting.",
+ "disposition": "MOVED (not deleted) to recovery_evidence; run restarts at epoch 1 under lr=1e-4.",
+ "preserved_artifacts": [
+  {
+   "file": "latest.pt",
+   "sha256": "5c0050d651caa6f29bb694f740ca4d2642e6d4ca671933a819fc1120bec1e0d3",
+   "size": 44849466,
+   "moved_to": "reports\\baselines\\recovery_evidence\\segformer_b0_seed42_d99_void_ep5\\latest.pt"
+  },
+  {
+   "file": "best.pt",
+   "sha256": "0ca6c0237a0f61e24d610f4b97ffd54525d353ed760faf7037e1df7e5641454e",
+   "size": 14932758,
+   "moved_to": "reports\\baselines\\recovery_evidence\\segformer_b0_seed42_d99_void_ep5\\best.pt"
+  }
+ ],
+ "preserved_at_local": "2026-10-25T21:20:55"
+}

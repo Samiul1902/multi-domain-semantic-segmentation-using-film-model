@@ -1,0 +1,127 @@
+{
+ "artifact": "phase33_phase11_failure_taxonomy_provenance",
+ "phase": 33,
+ "section": "\u00a7H",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase33_failure_boundary_v1_0",
+ "phase11_authority": {
+  "protocol": "reports/audits/phase11_clean_v3_failure_protocol_frozen.json",
+  "protocol_sha256": "ee420a2efab5d1946d2a38766a6aca351d832fa5563cfb142833df6ddcc556b1",
+  "strata": "reports/audits/phase11_failure_strata_definitions.json",
+  "strata_sha256": "02e6b67aeb9eb1e435c1a53d8ca369870019df234063021f74d5a6f8f0bb2350",
+  "population": "KUB VAL280 (clean_v3)",
+  "n": 280,
+  "models": [
+   "UNet",
+   "Attention U-Net",
+   "UNet++",
+   "DeepLabV3+"
+  ],
+  "not_the_final_system": true
+ },
+ "phase11_frozen_protocol_keys": [
+  "1A_low_dice_stratum",
+  "1B_historical_replication_anchor",
+  "1C_shared_failure",
+  "1D_architecture_disagreement",
+  "1E_hd95_stratum",
+  "1F_fp_burden",
+  "1G_pixel_error_extension",
+  "1H_multicomponent",
+  "1I_phase12_reference_model"
+ ],
+ "phase11_strata": {
+  "low_dice_decile": {
+   "cutoff": 0.5461063385009766,
+   "comparison": "dice <= cutoff",
+   "n": 29
+  },
+  "high_hd95_decile": {
+   "cutoff": 83.07246563841615,
+   "comparison": "valid hd95 >= cutoff",
+   "n": 28
+  },
+  "high_fp_decile": {
+   "cutoff": 4.0,
+   "comparison": "fp evaluation components >= cutoff",
+   "n": 39
+  },
+  "label": "descriptive failure-analysis strata; not tuning or deployment thresholds"
+ },
+ "concepts": [
+  {
+   "concept": "bottom_decile_low_dice",
+   "classification": "REUSABLE_METHOD_RECOMPUTE_THRESHOLD_IF_PROSPECTIVELY_ALLOWED",
+   "note": "np.quantile(values, 0.10, linear, float64) per model; ties included"
+  },
+  {
+   "concept": "historical_cutoff_0.5461063385009766",
+   "classification": "HISTORICAL_KUB_SPECIFIC_ONLY",
+   "note": "KUB VAL280 UNet++ v2 provenance value; not transferable"
+  },
+  {
+   "concept": "all_four_low_shared_failure",
+   "classification": "NOT_APPLICABLE_TO_FINAL_SYSTEM",
+   "note": "requires four segmentation models; final system is one bundle"
+  },
+  {
+   "concept": "architecture_disagreement_dice_range",
+   "classification": "NOT_APPLICABLE_TO_FINAL_SYSTEM",
+   "note": "requires multiple architectures"
+  },
+  {
+   "concept": "high_hd95_decile_Q90",
+   "classification": "POST_HOC_IF_INTRODUCED_NOW",
+   "note": "requires GT boundary distances; frozen final-system tables lack HD95"
+  },
+  {
+   "concept": "historical_hd95_83.07246563841615",
+   "classification": "HISTORICAL_KUB_SPECIFIC_ONLY",
+   "note": "v2 provenance only"
+  },
+  {
+   "concept": "high_fp_component_decile_Q90",
+   "classification": "POST_HOC_IF_INTRODUCED_NOW",
+   "note": "requires evaluation-512 connected components; not in frozen tables"
+  },
+  {
+   "concept": "historical_fp_integer_4",
+   "classification": "HISTORICAL_KUB_SPECIFIC_ONLY",
+   "note": "v2 provenance only"
+  },
+  {
+   "concept": "8_connectivity",
+   "classification": "REUSABLE_DEFINITION",
+   "note": "standard connectivity; only if component analysis becomes authorized"
+  },
+  {
+   "concept": "minimum_overlap_ge_1_pixel",
+   "classification": "REUSABLE_DEFINITION",
+   "note": "standard object-match rule; only if component analysis becomes authorized"
+  },
+  {
+   "concept": "regime_stratification",
+   "classification": "HISTORICAL_KUB_SPECIFIC_ONLY",
+   "note": "KUB tiny-object taxonomy"
+  },
+  {
+   "concept": "empty_prediction",
+   "classification": "REUSABLE_DEFINITION",
+   "note": "derivable from frozen per-sample Dice / predicted masks only if authorized"
+  },
+  {
+   "concept": "object_miss",
+   "classification": "POST_HOC_IF_INTRODUCED_NOW",
+   "note": "requires GT objects; not in frozen tables"
+  },
+  {
+   "concept": "hard_case_selection_procedure",
+   "classification": "REUSABLE_METHOD_RECOMPUTE_THRESHOLD_IF_PROSPECTIVELY_ALLOWED",
+   "note": "method reusable; thresholds must be prospectively re-frozen for Phase33"
+  }
+ ],
+ "numeric_thresholds_auto_transferred": false,
+ "kub_specific_taxonomy_auto_transferred": false,
+ "generated_utc": "2026-10-04T08:10:49+00:00",
+ "all_pass": true
+}

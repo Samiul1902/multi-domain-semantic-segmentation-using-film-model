@@ -1,0 +1,36 @@
+{
+ "artifact": "phase29_seed123_somega_oof_integrity",
+ "phase": 29,
+ "stage": "SOMEGA_OOF_INTEGRITY",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_phase29_repro_v1_1",
+ "generated_utc": "2026-10-02T18:32:20+00:00",
+ "master_seed": 123,
+ "fold_seed_rule": "1000*s + 12000 + k",
+ "fold_seeds": [
+  135000,
+  135001,
+  135002,
+  135003,
+  135004
+ ],
+ "oof_path": "data_cache\\phase29_seed123\\phase29_seed123_somega_oof_predictions.csv",
+ "oof_sha256": "2e2e267c1ead79cf594c9e87eb7998dc1d6ee134cfe5d6fc1acb62da4e2ea993",
+ "n_accept": 2537,
+ "n_fallback": 2420,
+ "checks": {
+  "rows_4957": true,
+  "unique_ids_4957": true,
+  "exactly_once_score": true,
+  "all_finite_logits": true,
+  "all_finite_probs": true,
+  "threshold_is_0p50": true,
+  "decisions_consistent_with_threshold": true,
+  "no_final_checkpoint_in_oof": true,
+  "fold_ownership_matches_canonical_folds": true
+ },
+ "n_failed": 0,
+ "failed": [],
+ "blocked_terminal_if_fail": "PHASE29_PHASE_C_BLOCKED__SOMEGA_TRAINING_OR_OOF_FAILURE",
+ "all_pass": true
+}

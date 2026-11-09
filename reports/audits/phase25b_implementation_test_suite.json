@@ -1,0 +1,280 @@
+{
+ "artifact": "phase25b_implementation_test_suite",
+ "phase": "25B",
+ "classification": "CANONICAL_PHASE25B_GT_FREE_FEATURES",
+ "checks": [
+  {
+   "check": "correct_phase21_checkpoint",
+   "passed": true,
+   "detail": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7"
+  },
+  {
+   "check": "model_eval_mode",
+   "passed": true,
+   "detail": "set in build_model()"
+  },
+  {
+   "check": "parameters_frozen",
+   "passed": true,
+   "detail": "requires_grad_(False) in build_model()"
+  },
+  {
+   "check": "tap_bridge_present",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "tap_decoder2_present",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "tap_decoder1_present",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "native_widths_256_48_24",
+   "passed": true,
+   "detail": {
+    "bridge": 256,
+    "decoder2": 48,
+    "decoder1": 24
+   }
+  },
+  {
+   "check": "global_replay_probability_equivalence",
+   "passed": true,
+   "detail": {
+    "max_abs": 0.0,
+    "tol": 1e-06
+   }
+  },
+  {
+   "check": "hook_lifecycle_clean",
+   "passed": true,
+   "detail": "TapRecorder closed in finally block"
+  },
+  {
+   "check": "six_vector_ordering_exact",
+   "passed": true,
+   "detail": [
+    "bridge_global",
+    "bridge_roi",
+    "decoder2_global",
+    "decoder2_roi",
+    "decoder1_global",
+    "decoder1_roi"
+   ]
+  },
+  {
+   "check": "c_to_32_operation_exact",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "reduction_valid_C256",
+   "passed": true,
+   "detail": {
+    "bins": 32,
+    "dtype": "float32"
+   }
+  },
+  {
+   "check": "reduction_valid_C48",
+   "passed": true,
+   "detail": {
+    "bins": 32,
+    "dtype": "float32"
+   }
+  },
+  {
+   "check": "reduction_valid_C24",
+   "passed": true,
+   "detail": {
+    "bins": 32,
+    "dtype": "float32"
+   }
+  },
+  {
+   "check": "roi_mapping_floor_start",
+   "passed": true,
+   "detail": [
+    0,
+    0,
+    512,
+    512
+   ]
+  },
+  {
+   "check": "roi_mapping_ceil_end",
+   "passed": true,
+   "detail": [
+    0,
+    0,
+    1,
+    1
+   ]
+  },
+  {
+   "check": "clipping_exact",
+   "passed": true,
+   "detail": [
+    31,
+    31,
+    32,
+    32
+   ]
+  },
+  {
+   "check": "external_padding_excluded_from_pooling",
+   "passed": true,
+   "detail": {
+    "over": [
+     31.5,
+     95.5,
+     159.5
+    ],
+    "full": [
+     31.5,
+     95.5,
+     159.5
+    ]
+   }
+  },
+  {
+   "check": "all_mapped_rois_nonempty",
+   "passed": true,
+   "detail": 0
+  },
+  {
+   "check": "ten_scalars_exact",
+   "passed": true,
+   "detail": [
+    "entropy_proxy_mean",
+    "frac_prob_within_0p05_of_boundary",
+    "frac_prob_within_0p02_of_boundary",
+    "mean_boundary_margin",
+    "pred_foreground_fraction",
+    "pred_foreground_pixels",
+    "pred_roi_exists",
+    "pred_empty",
+    "predicted_roi_area_fraction",
+    "predicted_roi_side"
+   ]
+  },
+  {
+   "check": "threshold_roles_exact",
+   "passed": true,
+   "detail": {
+    "THRESHOLD_FREE": 1,
+    "SEGMENTATION_OUTPUT_PROBABILITY_BOUNDARY": 3,
+    "ROI_PROPOSAL": 6
+   }
+  },
+  {
+   "check": "D1_corrected_formula_used",
+   "passed": true,
+   "detail": "predicted_roi_area_fraction = w_in*h_in/512^2 on clip_* bounds"
+  },
+  {
+   "check": "old_gt1_area_formula_absent",
+   "passed": true,
+   "detail": {
+    "max": 1.0
+   }
+  },
+  {
+   "check": "area_fraction_range_within_0_1",
+   "passed": true,
+   "detail": {
+    "min": 1.52587890625e-05,
+    "max": 1.0
+   }
+  },
+  {
+   "check": "predicted_roi_side_may_exceed_512",
+   "passed": true,
+   "detail": {
+    "max": 768.0,
+    "n_gt512": 1257
+   }
+  },
+  {
+   "check": "feature_order_exactly_202",
+   "passed": true,
+   "detail": [
+    4957,
+    202
+   ]
+  },
+  {
+   "check": "task_embedding_absent",
+   "passed": true,
+   "detail": "202 columns, no task embedding"
+  },
+  {
+   "check": "no_GT_inputs",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "no_regional_refiner_forward",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "no_benefit_router",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "no_post_safety_model",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "no_paired_gain",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "no_holdout_IDs",
+   "passed": true,
+   "detail": 0
+  },
+  {
+   "check": "sample_ids_equal_router_development",
+   "passed": true,
+   "detail": {
+    "cache": 4957,
+    "dev": 4957
+   }
+  },
+  {
+   "check": "no_VAL_IDs",
+   "passed": true,
+   "detail": "VAL808 is a separate evaluation population; 0 rows"
+  },
+  {
+   "check": "no_TEST_IDs",
+   "passed": true,
+   "detail": "TEST is content-locked; 0 rows"
+  },
+  {
+   "check": "no_NaN",
+   "passed": true,
+   "detail": 0
+  },
+  {
+   "check": "no_Inf",
+   "passed": true,
+   "detail": 0
+  }
+ ],
+ "n_checks": 38,
+ "n_failed": 0,
+ "verdict": "PHASE25B_IMPLEMENTATION_TESTS_PASS",
+ "generated_utc": "2026-09-30T16:08:48.498989+00:00",
+ "test_reads": 0
+}

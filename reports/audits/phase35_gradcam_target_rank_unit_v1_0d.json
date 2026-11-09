@@ -1,0 +1,143 @@
+{
+ "artifact": "phase35_gradcam_target_rank_unit_v1_0d",
+ "phase": 35,
+ "section": "\u00a7G",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase35_interpretability_v1_0d",
+ "classification": "MODEL_FREE_CPU_TENSOR_UNIT_TESTS__NOT_SCIENTIFIC_EXECUTION",
+ "tested_object": {
+  "module": "scripts/analysis/phase35_interpretability_execution_v1_0d.py",
+  "function": "gradcam_target_scalar_rank_safe",
+  "is_the_scientific_and_smoke_helper": true
+ },
+ "defect_reproduction_target": {
+  "module": "scripts/analysis/phase35_interpretability_execution_v1_0b.py",
+  "function": "gradcam_target_scalar",
+  "defect_id": "PHASE35_V1_0B_GRADCAM_TARGET_MASK_RANK_INCOMPATIBILITY"
+ },
+ "device": "cpu",
+ "dtype": "float32",
+ "cuda_used": false,
+ "results": [
+  {
+   "test": "T1_nonempty_rank2_mask",
+   "expected": 2.5,
+   "observed": 2.5,
+   "pass": true,
+   "note": "selected values [0.0, 1.0, 4.0, 5.0]; mean = 2.5; returns 0-dim tensor"
+  },
+  {
+   "test": "T2_empty_mask_full_field_fallback",
+   "expected": 7.5,
+   "observed": 7.5,
+   "pass": true,
+   "note": "mean over the full [0,0,4,4] foreground plane"
+  },
+  {
+   "test": "T3_spatial_mismatch_rejected",
+   "expected": "fail_closed",
+   "observed": {
+    "raised": true,
+    "exc": "RuntimeError"
+   },
+   "pass": true,
+   "note": "GRADCAM_TARGET: mask spatial shape must equal logits H,W (4, 4), got (3, 4)"
+  },
+  {
+   "test": "T4_rank4_mask_rejected",
+   "expected": "fail_closed",
+   "observed": {
+    "raised": true,
+    "exc": "RuntimeError"
+   },
+   "pass": true,
+   "note": "GRADCAM_TARGET: mask rank must be 2, got 4 (shape (1, 1, 4, 4)) | the scientific contract is deliberately rank 2"
+  },
+  {
+   "test": "T5a_float_mask_rejected",
+   "expected": "fail_closed",
+   "observed": {
+    "raised": true,
+    "exc": "RuntimeError"
+   },
+   "pass": true,
+   "note": "GRADCAM_TARGET: mask dtype must be bool, got torch.float32"
+  },
+  {
+   "test": "T5b_integer_mask_rejected",
+   "expected": "fail_closed",
+   "observed": {
+    "raised": true,
+    "exc": "RuntimeError"
+   },
+   "pass": true,
+   "note": "GRADCAM_TARGET: mask dtype must be bool, got torch.int64"
+  },
+  {
+   "test": "T6_logits_rank3_rejected",
+   "expected": "fail_closed",
+   "observed": {
+    "raised": true,
+    "exc": "RuntimeError"
+   },
+   "pass": true,
+   "note": "GRADCAM_TARGET: logits rank must be 4, got 2"
+  },
+  {
+   "test": "T7_logits_batch2_rejected",
+   "expected": "fail_closed",
+   "observed": {
+    "raised": true,
+    "exc": "RuntimeError"
+   },
+   "pass": true,
+   "note": "GRADCAM_TARGET: logits batch must be 1, got 2"
+  },
+  {
+   "test": "T8_logits_channels2_rejected",
+   "expected": "fail_closed",
+   "observed": {
+    "raised": true,
+    "exc": "RuntimeError"
+   },
+   "pass": true,
+   "note": "GRADCAM_TARGET: logits channels must be 1, got 2"
+  },
+  {
+   "test": "T9_numpy_rank2_bool_mask_accepted",
+   "expected": 2.5,
+   "observed": 2.5,
+   "pass": true,
+   "note": "rank-2 numpy Boolean is the canonical mask representation"
+  },
+  {
+   "test": "D1_frozen_v1_0b_logits_mask_indexing_reproduced",
+   "expected": "IndexError",
+   "observed": {
+    "raised": true,
+    "exc": "IndexError"
+   },
+   "pass": true,
+   "note": "The shape of the mask [4, 4] at index 0 does not match the shape of the indexed tensor [1, 1, 4, 4] at index 0 | frozen v1.0b `logits[mask]` on rank-4 logits with a rank-2 mask"
+  }
+ ],
+ "n_tests": 11,
+ "n_failed": 0,
+ "all_pass": true,
+ "execution_counters": {
+  "model_constructions": 0,
+  "checkpoint_deserializations": 0,
+  "model_forwards": 0,
+  "model_autograd_calls": 0,
+  "gradcam_executions": 0,
+  "router_attribution_executions": 0,
+  "raw_val_reads": 0,
+  "real_persisted_p_global_reads": 0,
+  "gt_reads": 0,
+  "router_holdout_reads": 0,
+  "test_reads": 0,
+  "training_steps": 0,
+  "model_free_cpu_unit_tests": 11
+ },
+ "generated_utc": "2026-10-04T16:03:16+00:00"
+}

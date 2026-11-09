@@ -1,0 +1,137 @@
+{
+ "artifact": "phase25f_spec_repair_entry_gate",
+ "phase": "25F",
+ "stage": "SPEC_REPAIR_ENTRY_GATE",
+ "method": "RA-MedFiLM-BARR",
+ "classification": "PRE_EXECUTION_POST_SAFETY_SPECIFICATION_COMPLETENESS_REPAIR",
+ "specification_revision": "ra_medfilm_barr_post_safety_v1_0",
+ "required_blocked_terminal": "PHASE25F_BLOCKED__POST_SAFETY_EXECUTION_SPEC_INCOMPLETE",
+ "observed_blocked_terminal": "PHASE25F_BLOCKED__POST_SAFETY_EXECUTION_SPEC_INCOMPLETE",
+ "blocking_field_count": 54,
+ "hard_stop_triggered_count": 12,
+ "predecessor_bindings": {
+  "phase25f_specification_final_check": {
+   "path": "reports/audits/phase25f_specification_final_check.json",
+   "exists": true,
+   "sha256": "352f458cd24bb52781145263f72f7c8b3e17b8b4629c2b3ae67f6a30658159a1"
+  },
+  "phase25e_postclosure_reconciliation_final_check": {
+   "path": "reports/audits/phase25e_postclosure_reconciliation_final_check.json",
+   "exists": true,
+   "sha256": "0736931bb2aebb3e18a7eedfbac2a22d84ccd51a6e9050047bf0dff4728a61ed"
+  },
+  "phase25e_resource_gate_notebook": {
+   "path": "notebooks/phasewise/phase_25e_resource_gate/phase25e_resource_gate.ipynb",
+   "sha256": "b587cc925fa178f1a0eaaa986caa3cb77dbc71ecd9fd520312af7f2097091797"
+  },
+  "phase25e_final_freeze": {
+   "path": "reports/audits/phase25e_final_freeze.json",
+   "sha256": "e20581efab5bb81ec63d118923558df82089b2509f7d5a964da42db4252bab4e"
+  }
+ },
+ "phase25c_source_bindings": {
+  "label_csv": {
+   "path": "data_cache/phase25c_barr_oof_paired_gain_labels_v1_2/phase25c_oof_paired_gain_labels.csv",
+   "exists": true,
+   "sha256": "fd6ca32c33a3bddb75f986b1350d54ec35b11d3bf5cb0fdc029962a5aa94865f"
+  },
+  "writer": {
+   "path": "scripts/analysis/run_phase25c_oof_inference.py",
+   "exists": true,
+   "sha256": "261cc73f5755775d48cb162b2c82333ec691962ed487ccf50802110f8ab04fae"
+  },
+  "common": {
+   "path": "notebooks/phasewise/phase_25c_paired_gain_labels/code/phase25c_common.py",
+   "exists": true,
+   "sha256": "3959ca9c247ba3b545ea1f2fc8557cfa5f047aaa65ebc78fc5f8c82a385a116b"
+  }
+ },
+ "blocked_attempt_artifacts": {
+  "reports/audits/phase25f_frozen_spec_entry_gate.json": "235a61a9befe31ec8ad8c96b0c5c6abe1e65d05f77285c78e3cead0383ab5e05",
+  "reports/audits/phase25f_role_and_novelty_boundary.json": "04760fcc6d994677383a5bbd1922d6e0976c7566d6aac7740745dad6c70a4b19",
+  "reports/audits/phase25f_post_safety_spec_binding.json": "cbd0de2d4a71b60c0fe174b4532530087d7880bd6eb506e4e4de4a98b0b626ca",
+  "reports/audits/phase25f_training_data_source_audit.json": "c31ba9092bd0ae97e58a5486723217131caad68e1b3ccb1e33cf9b9093be93e4",
+  "reports/audits/phase25f_leakage_safety_audit.json": "52a7c94a6edde1e24d61a9f31f17b25b5a7dccafb6b6f2afbd9ed7811d3b9fca",
+  "reports/audits/phase25f_threshold_semantics_audit.json": "6b7b6c4978ad58e400dc4166ee8f2378f079d8fb3fcb7d04b30b1ec3ade3ed6f",
+  "reports/audits/phase25f_fusion_fallback_contract_audit.json": "4f6549beb82ef291f460c3b5dc49c48430c0498b44adac0f9aa7aa0afcc5de65",
+  "reports/audits/phase25f_a7_a8_evaluation_ownership.json": "eb98fd55f7822fdc2cf9f1c1b47bbbb6ae3eaf8c354056bc4fbc0f9f269b2bcc",
+  "reports/audits/phase25f_scope_guard.json": "043e8282bf824f2bbba798de55b48500d417664f0202c5b6015d6485ba3c64db",
+  "reports/audits/phase25f_test_lock_audit.json": "779898a5c7df0549bf1a7e3f8ccaf6694277841178ff5cbcaab56f04fee4ed5f",
+  "reports/audits/phase25f_specification_final_check.json": "352f458cd24bb52781145263f72f7c8b3e17b8b4629c2b3ae67f6a30658159a1",
+  "reports/tables/phase25f_specification_completeness.csv": "5d7513bd113b8ddf00567a39cd6dae4f94f0a28d7fd33deae2e296ff69ff14bb",
+  "reports/tables/phase25f_training_data_leakage_contract.csv": "f382779ff2dfa63683111a23b33c1a11f236194d93a9c21ee915305532bbc41b",
+  "reports/tables/phase25f_post_safety_input_contract.csv": "e5b7c9ec986d8cf7dcc11816165b04461ba0b724136f0216f5322d22769c644a"
+ },
+ "blocked_attempt_artifact_count": 14,
+ "cache25f_present_at_gate_time": true,
+ "no_execution_invariants": {
+  "model_constructed": false,
+  "training_runs": 0,
+  "forward_passes": 0,
+  "new_refinement": false,
+  "new_delta_dice": false,
+  "router_holdout_reads": 0,
+  "val808_reads": 0,
+  "test_reads": 0,
+  "phase25g_started": false
+ },
+ "checks": {
+  "blocked_audit_present": true,
+  "blocked_terminal_exact": true,
+  "phase25f_spec_complete_false": true,
+  "phase25f_execution_status_blocked": true,
+  "blocking_field_count_54": true,
+  "hard_stop_triggered_count_12": true,
+  "model_constructed_false": true,
+  "training_runs_zero": true,
+  "forward_passes_zero": true,
+  "new_refinement_false": true,
+  "new_delta_dice_false": true,
+  "router_holdout_reads_zero": true,
+  "val808_reads_zero": true,
+  "test_reads_zero": true,
+  "phase25g_started_false": true,
+  "no_phase25f_notebook": true,
+  "phase25e_recon_final_check_present": true,
+  "phase25e_reconciled_terminal_exact": true,
+  "phase25e_phase25f_status_eligible": true,
+  "phase25e_reconciled_notebook_sha_exact": true,
+  "phase25e_final_freeze_sha_immutable": true,
+  "phase25c_label_csv_sha_exact": true,
+  "phase25c_writer_present": true,
+  "phase25c_common_present": true,
+  "roi030_cache_BUSI_prob512_present": true,
+  "roi030_cache_BUSI_meta_present": true,
+  "phase25c_tmp_refined_BUSI_present": true,
+  "roi030_cache_ISIC_prob512_present": true,
+  "roi030_cache_ISIC_meta_present": true,
+  "phase25c_tmp_refined_ISIC_present": true,
+  "roi030_cache_KUB_prob512_present": true,
+  "roi030_cache_KUB_meta_present": true,
+  "phase25c_tmp_refined_KUB_present": true,
+  "roi030_cache_KVASIR_prob512_present": true,
+  "roi030_cache_KVASIR_meta_present": true,
+  "phase25c_tmp_refined_KVASIR_present": true,
+  "phase25d_cv5_manifest_present": true,
+  "phase25d_fold0_fit_present": true,
+  "phase25d_fold0_early_stop_present": true,
+  "phase25d_fold0_outer_target_present": true,
+  "phase25d_fold1_fit_present": true,
+  "phase25d_fold1_early_stop_present": true,
+  "phase25d_fold1_outer_target_present": true,
+  "phase25d_fold2_fit_present": true,
+  "phase25d_fold2_early_stop_present": true,
+  "phase25d_fold2_outer_target_present": true,
+  "phase25d_fold3_fit_present": true,
+  "phase25d_fold3_early_stop_present": true,
+  "phase25d_fold3_outer_target_present": true,
+  "phase25d_fold4_fit_present": true,
+  "phase25d_fold4_early_stop_present": true,
+  "phase25d_fold4_outer_target_present": true,
+  "blocked_attempt_artifacts_captured": true
+ },
+ "checks_passed": 53,
+ "checks_total": 53,
+ "failures": [],
+ "all_pass": true
+}

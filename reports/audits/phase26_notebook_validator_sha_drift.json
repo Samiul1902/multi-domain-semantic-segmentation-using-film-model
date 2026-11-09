@@ -1,0 +1,21 @@
+{
+ "artifact": "phase26_notebook_validator_sha_drift",
+ "phase": "26",
+ "classification": "PHASE26_NOTEBOOK_PRE_FINAL_CLOSURE_SOURCE_IDENTITY_STALE",
+ "governance_only": true,
+ "no_execution": true,
+ "stage": "VALIDATOR_SHA_MISMATCH",
+ "cell_id": "p-046",
+ "notebook_rendered_validator_sha256": "ec10f03d115811ab6e16895286953df679a8bb88aec73f6b26b269b2e167cf85",
+ "canonical_final_validator_sha256": "912d886599adae810db14edf17331a25c37d4e92abd8fbe1fe67f94ab7810300",
+ "source_integrity_audit_validator_sha256": "912d886599adae810db14edf17331a25c37d4e92abd8fbe1fe67f94ab7810300",
+ "source_integrity_audit_current_on_disk": true,
+ "values_physically_differ": true,
+ "notebook_rendered_stale": true,
+ "science_changed": false,
+ "bundle_changed": false,
+ "wrapper_changed": false,
+ "model_weights_changed": false,
+ "cause": "The notebook output text for cell p-046 was captured before the validator script was finalized at closure. The on-disk audit phase26_source_code_integrity.json already carries the canonical validator SHA; only the embedded reviewer output is stale.",
+ "all_pass": true
+}

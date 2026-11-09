@@ -1,0 +1,28 @@
+{
+ "artifact": "phase29_resume_semantics_contract",
+ "phase": 29,
+ "generated_utc": "2026-10-02T15:51:51+00:00",
+ "governance_only": true,
+ "execution": "NONE",
+ "frozen": true,
+ "rules": [
+  "resume only from that run's own latest/state checkpoint",
+  "restore full RNG state where the canonical trainer supports it",
+  "same master seed",
+  "same derived fold seed",
+  "same manifests",
+  "same configuration fingerprint"
+ ],
+ "forbidden_on_resume": [
+  "restart with a new seed",
+  "change batch size",
+  "change worker count",
+  "change AMP",
+  "change patience",
+  "change scheduler"
+ ],
+ "resumed_interrupted_run_is_one_logical_run": true,
+ "unresumable_failed_run_action": "STOP_FOR_REVIEW",
+ "silent_restart_with_changed_semantics": false,
+ "all_pass": true
+}

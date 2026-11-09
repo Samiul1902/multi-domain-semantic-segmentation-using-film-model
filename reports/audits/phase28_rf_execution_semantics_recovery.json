@@ -1,0 +1,80 @@
+{
+ "artifact": "phase28_rf_execution_semantics_recovery",
+ "phase": 28,
+ "classification": "PHASE28_R1_R2_R3_F1_EXECUTION_SEMANTICS_RECOVERY",
+ "governance_only": true,
+ "execution": "NONE",
+ "search_protocol": "Every authoritative source was searched for an EXPLICIT statement of whether each ablation is (A) a separately trained architectural/input variant, (B) the canonical frozen model with an inference-time feature/channel intervention, or (C) another exact mechanism. No inference from the words 'without' or 'scalar-only' was permitted.",
+ "sources_searched": [
+  {
+   "path": "reports/tables/phase24_ablation_plan.csv",
+   "sha256": "422967fa3484b19d90bfc3b2146278aa69c6bd7a34e42ae3dbcb43a9ccca9087",
+   "finding": "names + family + purpose only; no execution mechanism"
+  },
+  {
+   "path": "reports/audits/phase24_architecture_spec.json",
+   "sha256": "bd5522678571f9b40e3ae887c7fd6c2d7862b3e73152eab1ae7db13cab6c6071",
+   "finding": "router/refiner architecture; no R1/R2/R3/F1 execution mechanism"
+  },
+  {
+   "path": "reports/audits/phase24_exact_implementation_spec.json",
+   "sha256": "6b1a71d5e88ce06baa8f200523be32773428417ffd233ff218d7e50b6af271dd",
+   "finding": "exact architecture+training spec for the PRIMARY router/refiner; no variant training or intervention defined"
+  },
+  {
+   "path": "reports/audits/phase24_phase25_module_plan.json",
+   "sha256": "ef9426a9cff94f2727b84c5c97488e20bf6355764a0c5d1df69851bd728883b8",
+   "finding": "25A-25G modules; no R/F variant module"
+  },
+  {
+   "path": "reports/phase24_narrowed_architecture_spec.md",
+   "sha256": "b9f56e2e80a04a13d839505e8689ff5f9db38d78844750ef33aa014316b0ff6b",
+   "finding": "section 9 lists R1-R3/F1 as ablation-plan rows, executed_in_phase24=False; no execution mechanism"
+  },
+  {
+   "path": "reports/audits/phase25g_ablation_scope_audit.json",
+   "sha256": "3481ba1fd81f824755c8e13fcd96760fe8ac9c3bb91d1e9aca103ee73d48dcc1",
+   "finding": "explicitly DEFERS R1/R2/R3/F1 to Phase28; no mechanism"
+  },
+  {
+   "path": "reports/audits/phase25g_authoritative_source_binding.json",
+   "sha256": "ea01f00a0556ebf981cc455e3e9d97c6a984347f405ba612dbf3347565363e60",
+   "finding": "38 Phase25 sources bound; none define an R/F variant execution mechanism"
+  },
+  {
+   "path": "reports/audits/phase24_final_check.json",
+   "sha256": "05208462f253460e73a9cbed426e4ad00ee6ae980849363a8eb5ed4064f3fdfd",
+   "finding": "ablations_none_executed=true"
+  }
+ ],
+ "result": {
+  "R1": {
+   "execution_semantics": "NOT_SPECIFIED_IN_ANY_AUTHORITATIVE_SOURCE",
+   "option_A_separately_trained_variant": "NOT_STATED",
+   "option_B_inference_time_intervention": "NOT_STATED",
+   "option_C_other": "NOT_STATED"
+  },
+  "R2": {
+   "execution_semantics": "NOT_SPECIFIED_IN_ANY_AUTHORITATIVE_SOURCE",
+   "option_A_separately_trained_variant": "NOT_STATED",
+   "option_B_inference_time_intervention": "NOT_STATED",
+   "option_C_other": "NOT_STATED"
+  },
+  "R3": {
+   "execution_semantics": "NOT_SPECIFIED_IN_ANY_AUTHORITATIVE_SOURCE",
+   "option_A_separately_trained_variant": "NOT_STATED",
+   "option_B_inference_time_intervention": "NOT_STATED",
+   "option_C_other": "NOT_STATED"
+  },
+  "F1": {
+   "execution_semantics": "NOT_SPECIFIED_IN_ANY_AUTHORITATIVE_SOURCE",
+   "option_A_separately_trained_variant": "NOT_STATED",
+   "option_B_inference_time_intervention": "NOT_STATED",
+   "option_C_other": "NOT_STATED"
+  }
+ },
+ "label_inference_used": false,
+ "conclusion": "NONE of the four deferred ablations has an authoritatively frozen execution mechanism. The frozen plan states WHAT each ablation removes (feature/channel) but never HOW that removal is realized physically (retrain vs intervention).",
+ "generated_utc": "2026-10-02T18:35:00Z",
+ "all_pass": true
+}

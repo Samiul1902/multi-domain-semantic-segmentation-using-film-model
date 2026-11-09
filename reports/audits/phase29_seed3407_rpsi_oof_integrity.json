@@ -1,0 +1,35 @@
+{
+ "artifact": "phase29_seed3407_rpsi_oof_integrity",
+ "phase": 29,
+ "stage": "RPSI_OOF_INTEGRITY",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_phase29_repro_v1_1",
+ "generated_utc": "2026-10-02T20:17:35+00:00",
+ "master_seed": 3407,
+ "classification": "SEED_SPECIFIC_RPSI_OOF__FOLD_CHECKPOINTS_ONLY",
+ "n_rows": 4957,
+ "n_unique": 4957,
+ "fold_checkpoint_sha256": {
+  "0": "5d610f64bb47f982854b8c0b89810f3264771b47102b50253ef300d996fda7b3",
+  "1": "000f00b54286f46b36117fbf79e5479a370c0314ef2227cf70f93e5b1e2b3c4e",
+  "2": "40d1a89298552397fa0a97d50ba253bd467cc7b9c786a8a3e9d19180373e22f5"
+ },
+ "global_dice_max_abs_diff_vs_canonical": 1.1102230246251565e-16,
+ "final_checkpoint_used_for_oof": false,
+ "global_model_forward_passes": 0,
+ "checks": {
+  "rows_4957": true,
+  "unique_ids_4957": true,
+  "exactly_one_candidate_per_sample": true,
+  "no_fold_ownership_violations": true,
+  "all_finite_delta": true,
+  "no_final_checkpoint_used": true,
+  "global_dice_reproduces_canonical": true,
+  "global_model_forward_passes": true,
+  "fold_checkpoints_are_seed_specific": true
+ },
+ "n_failed": 0,
+ "failed": [],
+ "blocked_terminal_if_fail": "PHASE29_PHASE_C_BLOCKED__RPSI_TRAINING_OR_OOF_FAILURE",
+ "all_pass": true
+}

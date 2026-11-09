@@ -1,0 +1,20 @@
+{
+ "artifact": "phase29_phase_b_entry_gate",
+ "phase": 29,
+ "generated_utc": "2026-10-02T15:51:51+00:00",
+ "governance_only": true,
+ "execution": "NONE",
+ "required_terminal": "PHASE29_PHASE_A_GATES_PASS__TRAINING_NOT_STARTED",
+ "observed_terminal": "PHASE29_PHASE_A_GATES_PASS__TRAINING_NOT_STARTED",
+ "checks": {
+  "phase_a_terminal_exact": true,
+  "training_runs_0": true,
+  "model_forwards_0": true,
+  "val808_reads_0": true,
+  "router_holdout_reads_0": true,
+  "test_reads_0": true
+ },
+ "gate_pass": true,
+ "blocked_terminal_if_fail": "PHASE29_PHASE_B_BLOCKED__TRAINER_PARAMETERIZATION_INCOMPLETE",
+ "all_pass": true
+}

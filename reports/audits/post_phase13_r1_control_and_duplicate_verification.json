@@ -1,0 +1,110 @@
+{
+  "artifact": "POST_PHASE13_R1_CONTROL_AND_DUPLICATE_VERIFICATION",
+  "status": "PASS",
+  "created_utc": "2026-09-22T06:20:00Z",
+  "run_id": "post_phase13_regional_revision_r1_selective_acceptance",
+  "control_reproduction": {
+    "config": "R1-C0",
+    "reference": "frozen Part-1D-B PREDICTED_REGION_FLOAT_GLOBAL_RETAINED",
+    "primary_criterion": "max abs per-case Dice difference <= 1e-6",
+    "per_model": {
+      "unet": {
+        "max_abs_dice_diff": 0.0,
+        "max_abs_iou_diff": 0.0,
+        "max_abs_precision_diff": 0.0,
+        "max_abs_recall_diff": 0.0,
+        "max_abs_tp_pixels_diff": 0.0,
+        "max_abs_fp_pixels_diff": 0.0,
+        "max_abs_fn_pixels_diff": 0.0,
+        "cases": "103/103",
+        "dice_pass_1e6": true
+      },
+      "attention_unet": {
+        "max_abs_dice_diff": 0.0,
+        "max_abs_iou_diff": 0.0,
+        "max_abs_precision_diff": 0.0,
+        "max_abs_recall_diff": 0.0,
+        "max_abs_tp_pixels_diff": 0.0,
+        "max_abs_fp_pixels_diff": 0.0,
+        "max_abs_fn_pixels_diff": 0.0,
+        "cases": "103/103",
+        "dice_pass_1e6": true
+      },
+      "unetpp": {
+        "max_abs_dice_diff": 0.0,
+        "max_abs_iou_diff": 0.0,
+        "max_abs_precision_diff": 0.0,
+        "max_abs_recall_diff": 0.0,
+        "max_abs_tp_pixels_diff": 0.0,
+        "max_abs_fp_pixels_diff": 0.0,
+        "max_abs_fn_pixels_diff": 0.0,
+        "cases": "103/103",
+        "dice_pass_1e6": true
+      },
+      "deeplabv3plus": {
+        "max_abs_dice_diff": 0.0,
+        "max_abs_iou_diff": 0.0,
+        "max_abs_precision_diff": 0.0,
+        "max_abs_recall_diff": 0.0,
+        "max_abs_tp_pixels_diff": 0.0,
+        "max_abs_fp_pixels_diff": 0.0,
+        "max_abs_fn_pixels_diff": 0.0,
+        "cases": "103/103",
+        "dice_pass_1e6": true
+      }
+    },
+    "result": "PASS",
+    "secondary_note": "IoU / precision / recall / TP / FP / FN differences are reported descriptively; no new scientific threshold is created from them."
+  },
+  "c1_c3_duplicate": {
+    "membership_equal": {
+      "844f70d35188815bb1fc42c464ae83ee78726d78777d4c10b24de24dda709354": [
+        "R1-C1",
+        "R1-C3"
+      ]
+    },
+    "membership_equal_result": "YES",
+    "downstream": {
+      "max_abs_diff_policy_dice": 0.0,
+      "max_abs_diff_policy_iou": 0.0,
+      "max_abs_diff_policy_precision": 0.0,
+      "max_abs_diff_policy_recall": 0.0,
+      "max_abs_diff_policy_tp_pixels": 0.0,
+      "max_abs_diff_policy_fp_pixels": 0.0,
+      "max_abs_diff_policy_fn_pixels": 0.0,
+      "max_abs_diff_accepted_union_area_fraction": 0.0,
+      "accepted_proposal_ranks_equal": true,
+      "policy_prediction_empty_equal": true,
+      "policy_hd95_valid_equal": true,
+      "policy_hd95_invalid_reason_equal": true,
+      "component_detection_equal": true,
+      "max_abs_float_diff": 0.0
+    },
+    "output_equal": "YES",
+    "treated_as_independent_evidence": "NO"
+  },
+  "counters": {
+    "regional_forwards": 1976,
+    "regional_forwards_expected": 1976,
+    "regional_forwards_per_model": {
+      "UNet": 494,
+      "Attention U-Net": 494,
+      "UNet++": 494,
+      "DeepLabV3+": 494
+    },
+    "global_forwards": 0,
+    "global_forwards_note": "verified Part-1D-B global cache reused; no new global model pass",
+    "training": 0,
+    "optimizer": 0,
+    "localizer_forwards": 0,
+    "proposal_generation": 0,
+    "oracle_reruns": 0,
+    "test_reads": 0,
+    "external_test_reads": 0
+  },
+  "hd95_compute": {
+    "hd95_calls": 1184,
+    "hd95_memo_hits": 1700,
+    "note": "memoised by binary-prediction hash; C1 and C3 share one computation"
+  }
+}

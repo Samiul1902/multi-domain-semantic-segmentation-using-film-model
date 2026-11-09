@@ -1,0 +1,212 @@
+{
+  "artifact": "ext03_supervisor_decision_memorandum",
+  "version": "1.1",
+  "classification": "EXT03_SUPERVISOR_DECISION_MEMORANDUM",
+  "generated_local": "2026-10-26T21:42:00+06:00",
+  "mode": "STRICT_READ_ONLY",
+  "training_performed": false,
+  "inference_performed": false,
+  "frozen_artifacts_modified": false,
+  "test_accessed": false,
+  "router_holdout_accessed": false,
+  "authorization_granted": false,
+  "decision_made_by_this_document": false,
+  "companion_markdown": {
+    "path": "reports/audits/ext03_disposition_v1_1/ext03_supervisor_decision_memorandum_v1_1.md",
+    "sha256": "8ca944cdf59d6423d024965d57dcf9ebc60c5e10661ebf05f8578c94dcae2540",
+    "bytes": 16844
+  },
+  "authority_chain": [
+    "reports/audits/ext03_scientific_acceptance_and_protocol_adjudication_v1_0.md",
+    "reports/audits/ext03_scientific_acceptance_and_protocol_adjudication_v1_0.json",
+    "reports/audits/ext03_disposition_v1_1/ext03_evidence_provenance_reconciliation_v1_1.json",
+    "reports/audits/ext03_disposition_v1_1/ext03_scientific_adjudication_addendum_v1_1.md",
+    "reports/audits/ext03_disposition_v1_1/ext03_scientific_adjudication_addendum_v1_1.json",
+    "reports/audits/ext03_disposition_v1_1/ext03_false_certification_supersession_register_v1_1.json",
+    "reports/audits/ext03_disposition_v1_1/ext03_missing_evidence_disposition_v1_1.json"
+  ],
+  "terminal_disposition_unchanged": "EXT03_PROTOCOL_DEVIATION_DOCUMENTED__GOVERNANCE_REPAIR_COMPLETE__SCIENTIFIC_REAUTHORIZATION_PENDING",
+  "decision_question": "Does the project (a) withdraw the protocol-faithful baseline claim and proceed on other evidence, (b) fund a prospective protocol-faithful baseline study to earn the claim back, or (c) redirect the next unit of compute at the project's central claim, whose control experiment has never been run?",
+  "options": [
+    {
+      "id": "A",
+      "name": "Declare EXT-03 exploratory and proceed on other evidence",
+      "action": "Accept v1.0/v1.1 disposition as final; report EXT-03 only as a reduced-protocol exploratory ranking and negative-results record; withdraw AS-08 as UNRESOLVED; run no further training.",
+      "repairs": [],
+      "does_not_repair": [
+        "AS-08",
+        "FiLM attribution",
+        "six missing epoch histories",
+        "false fields in S1/S2"
+      ],
+      "compute": "none",
+      "time_to_result": "immediate",
+      "risk": "LOW",
+      "authorization_required": "none - this is the default state if no decision is made"
+    },
+    {
+      "id": "B",
+      "name": "Prospective protocol-faithful baseline study (EXT-04)",
+      "action": "Five architectures x three seeds under the frozen phase09/10 recipe (AdamW, lr 1e-4, wd 1e-4, bce_dice 0.5/0.5 eps 1e-6, full augmentation, 1-channel input, cosine T_max 100, batch 4, patience 15) behind a rebuilt prelaunch gate containing at least one direct edge to the frozen authority comparing concrete values, and binding the executing harness by digest per run.",
+      "repairs": [
+        "AS-08 (the only option that can)"
+      ],
+      "does_not_repair": [
+        "FiLM attribution",
+        "AS-27 reproducibility (n=3 remains)",
+        "EXT-03's own defects"
+      ],
+      "compute": "15 runs; ~2-4 weeks of compute",
+      "time_to_result": "3-5 weeks including gate construction, gate testing and the negative-control battery",
+      "risk": "MODERATE_TO_HIGH",
+      "risk_detail": "Three host terminations during EXT-03 (2026-10-22 ep52, 2026-10-25 ep98, 2026-10-25 segformer ep5) attributed to a failing CMOS battery / RTC drift (5.19 days behind, Time-Service ID 52, offset 448320 s) with no UPS. Launching fifteen more runs before remediation repeats a known, diagnosed, unfixed fault.",
+      "authorization_required": "new work order + frozen protocol-faithful harness + rebuilt gate + battery and UPS remediation + explicit supervisor sign-off (none of which exists)"
+    },
+    {
+      "id": "C",
+      "name": "FiLM-off control - redirect the next unit of compute at the central claim",
+      "action": "Because the FiLM output projection is zero-initialised, freezing film_layers and task_embedding at initialisation yields a plain residual UNet exactly identical to GlobalMedFiLM at step 0, differing only by the absence of task conditioning during training. Same architecture, same parameter count, same protocol, same seed, same data.",
+      "repairs": [
+        "FiLM attribution (the only option that can)"
+      ],
+      "does_not_repair": [
+        "AS-08",
+        "AS-27 reproducibility"
+      ],
+      "compute": "~10-11 h per seed under the Phase-21 protocol; 22-33 h for three seeds",
+      "time_to_result": "1-2 days per seed",
+      "risk": "LOW_TO_MODERATE",
+      "limitation": "One seed is a point estimate, not a variance estimate; a defensible claim wants three seeds or an explicit single-seed limitation statement.",
+      "authorization_required": "separate work order + frozen control harness + prelaunch gate + explicit sign-off (not authorised here, not executed here)"
+    }
+  ],
+  "comparison_matrix": {
+    "columns": [
+      "A_exploratory_only",
+      "B_protocol_faithful_ext04",
+      "C_film_off_control"
+    ],
+    "rows": {
+      "compute": [
+        "none",
+        "~2-4 weeks (15 runs)",
+        "~11 h/seed (1-3 seeds)"
+      ],
+      "time_to_result": [
+        "immediate",
+        "3-5 weeks",
+        "1-2 days"
+      ],
+      "repairs_AS08": [
+        false,
+        true,
+        false
+      ],
+      "repairs_film_attribution": [
+        false,
+        false,
+        true
+      ],
+      "restores_EXT03_usability": [
+        false,
+        false,
+        false
+      ],
+      "new_gate_required": [
+        false,
+        true,
+        true
+      ],
+      "host_risk_exposure": [
+        "none",
+        "high",
+        "low-moderate"
+      ],
+      "manuscript_impact": [
+        "loses baseline table",
+        "gains baseline table",
+        "gains central claim"
+      ],
+      "prerequisite": [
+        "none",
+        "battery + UPS",
+        "battery + UPS (advisable)"
+      ],
+      "can_run_concurrently": [
+        null,
+        false,
+        false
+      ]
+    },
+    "note": "Only one training process may run at a time, so A/B/C are exclusive as next actions."
+  },
+  "permanently_unrepairable": [
+    "the six missing epoch histories (unet x3, attention_unet x3) - MISSING_FROM_AVAILABLE_ARTIFACTS",
+    "the retroactive authorisation class of D6",
+    "the intent behind the string 'Adam (phase09/10 authority)' - template error, stale field, or deliberate restatement",
+    "whether any D97-exposed run's best.pt was overwritten by a worse model (error direction strictly conservative: understated, never inflated; question unanswerable)"
+  ],
+  "recommendation": {
+    "primary": "C",
+    "sequencing": "C first; B deferred; A as the default if no authorisation is granted.",
+    "reasons": [
+      "The larger gap is the central claim: FiLM attribution is NOT_ESTABLISHED, meaning the project's contribution has no control arm in its own ablation family. A protocol-faithful baseline table strengthens a supporting comparison, not the contribution. Value per unit compute favours C by roughly two orders of magnitude.",
+      "C is an order of magnitude cheaper (11 h vs 3 weeks) and more decisive: a positive FiLM-off result is interpretable on its own, whereas B's product is a table that still cannot isolate FiLM because the 0.1694 gap bundles task conditioning, protocol, architecture and seed treatment.",
+      "B's expected value is conditional on a framing decision the supervisor has not made. If the manuscript reframes around conditioning rather than a baseline leaderboard, AS-08 stops being load-bearing and B becomes optional.",
+      "C does not foreclose B; they are sequential, not exclusive. Doing C first sharpens what the baseline comparison is for and makes the case for or against B on evidence rather than on hope.",
+      "A is honest, costs nothing, and is what happens by default. A project that discloses a divergent baseline study and reframes around a controlled result stands better than one that runs fifteen more experiments to protect a table."
+    ],
+    "if_C_approved_sequence": [
+      "battery + UPS remediation",
+      "control harness frozen",
+      "prelaunch gate with an authority edge",
+      "negative-control battery",
+      "one seed",
+      "review",
+      "decide on seeds 2-3 and on B"
+    ],
+    "is_advice_not_authorization": true
+  },
+  "consequential_items_regardless_of_decision": [
+    {
+      "id": "O4",
+      "item": "Correct the false field recipe.optimizer = 'Adam (phase09/10 authority)' additively, leaving original bytes intact",
+      "authorized": false
+    },
+    {
+      "id": "O5",
+      "item": "Correct ext03r_param_verification.json's 1-channel counts and vacuous all_match=true additively",
+      "authorized": false
+    },
+    {
+      "id": "O6",
+      "item": "Record the retroactive Stage B harness SHA (bcdbada2...) and the version chain",
+      "authorized": false
+    },
+    {
+      "id": "O8",
+      "item": "Replace CMOS battery, install UPS",
+      "authorized": false,
+      "note": "O8 should precede any training authorisation; recommending compute on a host with a known, diagnosed, unfixed fault would be indefensible"
+    }
+  ],
+  "explicit_non_authorizations": [
+    "EXT-04 at large",
+    "FiLM-control execution beyond whatever scope the supervisor records",
+    "re-scoring existing checkpoints",
+    "TEST access (PHASE39-only)",
+    "ROUTER_HOLDOUT access",
+    "any change to a frozen artifact",
+    "any relaunch of a consumed revision",
+    "result-driven retry"
+  ],
+  "supervisor_decision": {
+    "status": "PENDING",
+    "recorded_in": "section 6 of the companion markdown",
+    "decision": null,
+    "scope_authorised": null,
+    "seeds_authorised": null,
+    "prerequisites_confirmed": null,
+    "date": null
+  }
+}

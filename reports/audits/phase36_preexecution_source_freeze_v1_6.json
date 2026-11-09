@@ -1,0 +1,90 @@
+{
+  "artifact": "phase36_preexecution_source_freeze",
+  "section": "§O",
+  "phase": 36,
+  "method": "RA-MedFiLM-BARR",
+  "revision": "ra_medfilm_barr_phase36_robustness_v1_6",
+  "type": "PRE_EXECUTION_SOURCE_FREEZE",
+  "frozen": true,
+  "source_freeze_complete": true,
+  "frozen_only_after": [
+    "unit PASS",
+    "preflight PASS",
+    "NC31-NC35 PASS",
+    "direct source-byte audit PASS"
+  ],
+  "frozen_sources": {
+    "execution": {
+      "path": "scripts/analysis/phase36_robustness_execution_v1_6.py",
+      "sha256": "d2c4dfd8ab37bf6f4153cf42c2b0f45664b431af6ec626d3bdfbc4038fcfdc2b"
+    },
+    "unit": {
+      "path": "scripts/analysis/phase36_robustness_unit_v1_6.py",
+      "sha256": "e9a1933875c2d0b9aace0b127e91395744bbe4c3b13e767d20289c38d911544d"
+    },
+    "preflight": {
+      "path": "scripts/analysis/phase36_robustness_preflight_v1_6.py",
+      "sha256": "29b7c29721e87f31dd072f013ee499ac0cd7760cccbd852199741b2d881fce29"
+    },
+    "negative_controls": {
+      "path": "scripts/analysis/phase36_robustness_negative_controls_v1_6.py",
+      "sha256": "cbb0703177e9d7bb7552de388e837300be0752753865e9a807af474ee8eaff4d"
+    }
+  },
+  "gate_results": {
+    "unit": {
+      "artifact": "phase36_robustness_unit_v1_6.json",
+      "sha256": "e00bae7a5e4f2ef8af117ccd287d4ec524f10ebb4b1c985bfd24a6b206ae0382",
+      "passed": 55,
+      "total": 55,
+      "all_pass": true
+    },
+    "preflight": {
+      "artifact": "phase36_robustness_static_preflight_v1_6.json",
+      "sha256": "f8e37923d0dbed1b73834167c9ed0b4165f60d98c069cb11dff26b883295b0ec",
+      "passed": 30,
+      "total": 30,
+      "all_pass": true
+    },
+    "negative_controls": {
+      "artifact": "phase36_v1_6_negative_controls.json",
+      "sha256": "4b9c76a12d4e091e8e2c53d3e2aa8318cedeffaaa3b222b921112ea9f7e156f6",
+      "passed": 5,
+      "total": 5,
+      "all_pass": true,
+      "nc_range": "NC31-NC35",
+      "repair_controls": "3/3"
+    },
+    "direct_source_byte_audit": {
+      "artifact": "phase36_v1_6_direct_source_byte_audit.json",
+      "sha256": "af41b8ca9b902572ca9cc87686088a7e86a98850aa64f51705192633683fb3e3",
+      "all_pass": true,
+      "verdict": "PASS"
+    }
+  },
+  "defect_record": {
+    "artifact": "phase36_v1_5_protected_population_runtime_access_defects_v1_6.json",
+    "sha256": "bee5fc7e28cd5cc33ff3c3b0d8664f5afd76b9cafb84390e14baa7b5e897e488",
+    "defect_count": 2
+  },
+  "semantic_diff": {
+    "artifact": "phase36_v1_5_to_v1_6_execution_semantic_diff.json",
+    "sha256": "10acca579691acba26cb6c6bef1334e0e167dfcf439b5f323c3c2d77666a7d19",
+    "new_scientific_choice": false,
+    "all_unchanged_confirmed": true
+  },
+  "future_phase36_smoke_must_use_exact_v1_6_bytes": true,
+  "future_phase36_science_must_use_exact_v1_6_bytes": true,
+  "protected_runtime_population": "VAL808_ONLY",
+  "router_holdout_runtime_reads_allowed": false,
+  "test_runtime_reads_allowed": false,
+  "preserved_history": {
+    "v1_5_execution_source_sha256": "f219d06cb83c43b24be446205df2223b964c417e9547d5a657799aa3218f9876",
+    "v1_5_direct_source_byte_audit_sha256": "30feed4daa24dcff30b2b79a03cbba32fd630c01e5f2c75ef3dd7363bad7ccf8",
+    "v1_5_source_freeze_sha256": "b52b30f50ca0753e1d49f44cdcdefb8c7d99391450703e3efdf4c5a382476a0b",
+    "historical_terminals_rewritten": false
+  },
+  "no_execution": true,
+  "torch_imported": false,
+  "generated_utc": "2026-10-06T09:10:15Z"
+}

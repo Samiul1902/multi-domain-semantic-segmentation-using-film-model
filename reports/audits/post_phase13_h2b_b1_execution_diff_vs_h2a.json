@@ -1,0 +1,112 @@
+{
+  "artifact": "POST_PHASE13_H2B_B1_EXECUTION_DIFF_VS_H2A",
+  "status": "PASS",
+  "created_utc": "2026-09-23T08:57:00Z",
+  "purpose": "Prove the H2B executable runner/config differ from the accepted H2A lineage ONLY by provenance bindings and the single authorized scientific axis (loss / objective semantics).",
+  "runner": {
+    "h2a": "scripts/training/post_phase13_h2a_localizer_replay.py",
+    "h2a_sha": "fead851788c69a4220de4cbcb0b3761651d60e5c568176206879198667cd60c1",
+    "h2b": "scripts/training/post_phase13_h2b_localizer_train.py",
+    "h2b_sha": "444f0ea7b5f6ce76c3d0955febfc67ebd0c36a80913604384ded054c443f7ddd"
+  },
+  "config": {
+    "h2a": "configs/phase13_clean_v3/post_phase13_h2a_kub_localizer_r512_h128_sigmaeq075_centernetfocal_deploymentbalance_seed42_clean_v3.yaml",
+    "h2a_sha": "b4813b42e49b8cbe1e9265fd5b2b6ac9213a609d3216e21cd966d385c1927ae4",
+    "h2b": "configs/phase13_clean_v3/post_phase13_h2b_kub_localizer_r512_h128_sigmaeq075_softtargetfocalgamma2_deploymentbalance_seed42_clean_v3.yaml",
+    "h2b_sha": "0ee34404c67e36aa27ef880c59295208f662908af996cf634f6a922875340f12"
+  },
+  "runner_changed_lines": 217,
+  "config_changed_lines": 47,
+  "scientific_axis_differences": 1,
+  "scientific_axis": "LOSS / OBJECTIVE",
+  "gradient_affecting_differences_beyond_criterion_objective": 0,
+  "checkpoint_selection": "UNCHANGED",
+  "proposal_config": "UNCHANGED",
+  "architecture": "UNCHANGED",
+  "target": "UNCHANGED",
+  "optimizer": "UNCHANGED",
+  "scheduler": "UNCHANGED",
+  "data": "UNCHANGED",
+  "augmentation": "UNCHANGED",
+  "seed": "UNCHANGED",
+  "initialization": "FRESH_FROM_SCRATCH_SEED42",
+  "warm_start": "NO",
+  "scientific_parameter_changes": 1,
+  "scientific_change_register": {
+    "CHANGE_H2B_001": "loss/objective semantics only"
+  },
+  "provenance_repair_r0": {
+    "stale_loss_alpha_beta_removed_from_resume_contract": "YES",
+    "stale_loss_alpha_beta_removed_from_checkpoint_metadata": "YES",
+    "h2b_objective_identity_bound": "YES",
+    "audit_labels_moved_to_h2b_identity": "YES",
+    "scientific_parameter_changed": "NO"
+  },
+  "allowed_executable_differences": [
+    "experiment id / provenance bindings",
+    "loss import",
+    "criterion construction: CenterNetFocalLoss(...) -> SoftTargetFocalBCE(gamma=2.0)",
+    "objective-name reporting / metadata",
+    "loss-block validation (enforces the new objective; does not alter gradient math)"
+  ],
+  "runner_diff_regions": [
+    "module docstring (reporting)",
+    "EXPERIMENT_ID (provenance)",
+    "H2B_PROTOCOL_PATH / SHA / required status (provenance binding)",
+    "LOSS_CLASS / LOSS_LABEL (objective identity)",
+    "verify_loss_binding() body (validates the frozen objective)",
+    "loss import (objective)",
+    "criterion construction (objective)",
+    "training-start audit text (reporting)"
+  ],
+  "config_diff_regions": [
+    "header comment (reporting)",
+    "experiment_id (provenance)",
+    "part: H2B_B1 (provenance)",
+    "loss block (THE scientific axis)",
+    "checkpoint_selection label + frozen_by (provenance)"
+  ],
+  "gradient_update_code_unchanged": {
+    "model_construction": "UNCHANGED",
+    "initialization": "UNCHANGED",
+    "forward_pass": "UNCHANGED",
+    "target_generation": "UNCHANGED",
+    "dataset_membership": "UNCHANGED",
+    "sample_preprocessing": "UNCHANGED",
+    "augmentation": "UNCHANGED",
+    "dataloader_construction": "UNCHANGED",
+    "shuffle_semantics": "UNCHANGED",
+    "generator_seed": "UNCHANGED",
+    "batch_size": "UNCHANGED",
+    "amp_autocast_semantics": "UNCHANGED",
+    "scaler_semantics": "UNCHANGED",
+    "zero_grad": "UNCHANGED",
+    "backward": "UNCHANGED",
+    "optimizer_step": "UNCHANGED",
+    "scheduler_step": "UNCHANGED",
+    "gradient_accumulation": "UNCHANGED",
+    "optimizer": "UNCHANGED",
+    "lr": "UNCHANGED",
+    "weight_decay": "UNCHANGED",
+    "scheduler": "UNCHANGED",
+    "checkpoint_selection_rule": "UNCHANGED",
+    "proposal_generation_config": "UNCHANGED"
+  },
+  "unexpected_gradient_affecting_difference": "NONE",
+  "check_required": "NO",
+  "initialization_semantics": {
+    "INITIALIZATION": "FRESH_FROM_SCRATCH_SEED42",
+    "WARM_START": "NO",
+    "PRETRAINED_LOCALIZER_STATE": "NONE",
+    "loads_h2a_epoch83_weights": "NO",
+    "loads_phase13_epoch53_weights": "NO",
+    "fine_tuning_previous_checkpoint": "NO",
+    "partial_state_loading": "NO",
+    "head_only_init_from_trained_model": "NO"
+  },
+  "counters": {
+    "cuda_requests": 0,
+    "training": 0,
+    "model_constructions": 0
+  }
+}

@@ -1,0 +1,103 @@
+{
+ "classification": "EXT03_HOST_INTERRUPTION_ADJUDICATION",
+ "schema_version": "1.0",
+ "generated_local": "2026-10-22T11:25:00",
+ "scope": "EXT-03 baseline matrix, interrupted run unetpp_seed123",
+ "interrupted_run": {
+  "run_id": "unetpp_seed123",
+  "last_completed_epoch": 52,
+  "last_completed_epoch_walltime": "2026-10-22T06:04:58",
+  "best_metric_at_interruption": 0.6122732631421357,
+  "best_epoch": 50,
+  "bad_epochs": 2,
+  "process_state_after_interruption": "ABSENT",
+  "gpu_state_after_interruption": "IDLE (566 MiB, 22% util, no CUDA context from trainer)"
+ },
+ "evidence": {
+  "system_log_silence_window": [
+   "2026-10-22T06:10:00",
+   "2026-10-22T10:40:00"
+  ],
+  "system_log_events_in_silence_window": 0,
+  "last_boot_up_time": "2026-10-22T10:47:46",
+  "boot_type": "COLD_BOOT (LastBootUpTime reset, not a sleep resume)",
+  "application_crash_events_1000_1001_since_2026-10-21T18:00Z": 0,
+  "wer_python_reports_found": 0,
+  "partial_tmp_artifacts_found": 0,
+  "ac_standby_timeout_seconds": 0,
+  "ac_standby_note": "AC sleep timeout is 0 (never); host sleep is NOT the mechanism on AC power"
+ },
+ "checkpoint_integrity_at_recovery": {
+  "path": "reports/baselines/runs/unetpp_seed123/latest.pt",
+  "size_bytes": 110096442,
+  "loads_cleanly": true,
+  "keys_present": [
+   "model",
+   "opt",
+   "sched",
+   "scaler",
+   "epoch",
+   "best",
+   "best_epoch",
+   "bad",
+   "py_rng",
+   "np_rng",
+   "torch_rng",
+   "cuda_rng"
+  ],
+  "model_tensors": 182,
+  "optimizer_state_entries": 92,
+  "optimizer_param_groups": 1,
+  "rng_state_complete": true,
+  "best_pt_consistent": true,
+  "best_pt": {
+   "epoch": 50,
+   "macro": 0.6122732631421357
+  }
+ },
+ "adjudication": {
+  "cause_class": "HOST_LEVEL_TERMINATION__NOT_A_TRAINER_DEFECT",
+  "is_scientific_failure": false,
+  "is_technical_failure_of_runner": false,
+  "origin_claimed": false,
+  "origin_note": "The proximate host event (power loss vs manual shutdown/restart) is NOT claimed; only that the host stopped logging and cold-booted.",
+  "rerun_from_scratch_required": false,
+  "disposition": "RESUME",
+  "resume_rationale": "Checkpoint carries complete model/optimizer/scheduler/scaler/RNG state and no partial-write residue; resume is bit-exact eligible and preserves 52 completed epochs."
+ },
+ "resume_execution": {
+  "command": "python -u scripts/training/run_ext03_baseline_matrix.py --resume",
+  "interpreter": "D:/Softfors/jup/.venv/Scripts/python.exe",
+  "launched_local": "2026-10-22T10:57:53",
+  "first_resumed_epoch": 53,
+  "first_resumed_epoch_walltime": "2026-10-22T11:17:26",
+  "first_resumed_epoch_metrics": {
+   "loss": 0.1274,
+   "macro": 0.5801,
+   "best": 0.6123,
+   "bad": 3
+  },
+  "epoch_continuity": "CONTIGUOUS_52_TO_53",
+  "first_epoch_duration_minutes": 19.6,
+  "pre_interruption_steady_state_minutes": 14.61,
+  "first_epoch_slowdown_note": "Cold page cache after cold boot; steady-state recovery not yet established as of this record."
+ },
+ "defect_observation": {
+  "id": "D98",
+  "name": "EXT03_CUDA_RNG_STATE_NOT_RESTORED_ON_RESUME",
+  "location": "scripts/training/run_ext03_baseline_matrix.py, cuda_rng restore branch in run_one()",
+  "mechanism": "Checkpoint is loaded with map_location=<cuda device>, so saved ByteTensors are relocated to CUDA; torch.cuda.set_rng_state_all requires CPU ByteTensors, raises, and the surrounding except Exception: pass swallows it.",
+  "verified_by_execution": false,
+  "verification_method": "STATIC_ANALYSIS_ONLY (no live GPU test performed to avoid perturbing the running job)",
+  "scientific_impact": "EXPECTED_NONE",
+  "impact_rationale": "Per-epoch sample order is driven by random.Random(seed*100000+ep).shuffle(), not by any global RNG; the pipeline applies no stochastic augmentation. py_rng/np_rng/torch_rng restores are present and correct (torch_rng is explicitly coerced to CPU).",
+  "gating": false,
+  "recommended_action": "Add the same .to(dtype=torch.uint8, device='cpu') coercion to the cuda_rng branch before any EXT-04 run that relies on bit-exact resume."
+ },
+ "matrix_state_at_record": {
+  "COMPLETE": 7,
+  "RUNNING": 1,
+  "NOT_STARTED": 7,
+  "note": "registry status for unetpp_seed123 remained RUNNING across the interruption; no status correction was required."
+ }
+}

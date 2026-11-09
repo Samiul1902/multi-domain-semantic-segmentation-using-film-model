@@ -1,0 +1,114 @@
+{
+ "artifact": "phase26_budget_selection_ruling_v1_0",
+ "phase": "26",
+ "classification": "SUPERVISOR_SPECIFICATION_REPAIR__PHASE26_OPERATIONAL_REDEFINITION",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase26_integration_v1_0",
+ "governance_only": true,
+ "selection_rule": "largest informative Phase25E PRIMARY H1-passing budget with Phase25G A8 preservation pass",
+ "candidate_budgets": [
+  "0.10",
+  "0.25",
+  "0.50"
+ ],
+ "excluded_budgets": {
+  "0.00": "endpoint anchor",
+  "1.00": "endpoint anchor"
+ },
+ "eligibility_definition": [
+  "Phase25E reconciled PRIMARY S1 budget_pass[b] == true",
+  "AND Phase25G A8 preservation criterion_pass[b] == true"
+ ],
+ "per_candidate_binding": [
+  {
+   "budget": "0.10",
+   "s1_primary_pass": true,
+   "s1_primary_raw_significant_values": [
+    true,
+    true,
+    true,
+    true
+   ],
+   "s1_primary_comparators": [
+    "C3",
+    "C4",
+    "C5",
+    "C6"
+   ],
+   "a8_preservation_pass": true,
+   "a8_ci_lower_min": 0.0007468965811394,
+   "eligible": true
+  },
+  {
+   "budget": "0.25",
+   "s1_primary_pass": true,
+   "s1_primary_raw_significant_values": [
+    true,
+    true,
+    true,
+    true
+   ],
+   "s1_primary_comparators": [
+    "C3",
+    "C4",
+    "C5",
+    "C6"
+   ],
+   "a8_preservation_pass": true,
+   "a8_ci_lower_min": 0.0010914638258477,
+   "eligible": true
+  },
+  {
+   "budget": "0.50",
+   "s1_primary_pass": false,
+   "s1_primary_raw_significant_values": [
+    true,
+    false,
+    false,
+    true
+   ],
+   "s1_primary_comparators": [
+    "C3",
+    "C4",
+    "C5",
+    "C6"
+   ],
+   "a8_preservation_pass": true,
+   "a8_ci_lower_min": 0.0012129598922968,
+   "eligible": false
+  }
+ ],
+ "physical_evidence_sources": {
+  "s1": {
+   "path": "reports/tables/phase25e_s1_primary_vs_multiplicity_sensitivity.csv",
+   "exists": true,
+   "sha256": "691abbcea85ee89bce76dde36648ee06a6241cf8f2bcc63373b1753176b9bfe0"
+  },
+  "preservation": {
+   "path": "reports/tables/phase25g_preservation_noninferiority.csv",
+   "exists": true,
+   "sha256": "f6e960ea37513b179c96b668e104a66ff199c1d293a935be3b16ea9cf8d8f46f"
+  }
+ },
+ "expected_s1_primary_pass": {
+  "0.10": true,
+  "0.25": true,
+  "0.50": false
+ },
+ "binding_disagreements": [],
+ "eligible_budgets": [
+  "0.10",
+  "0.25"
+ ],
+ "selected_budget": "0.25",
+ "canonical_budget": 0.25,
+ "expected_dev_selected_count": 1239,
+ "selected_dev_count": 1239,
+ "selection_rule_frozen_before_holdout": true,
+ "selection_rule_frozen_before_phase25g": false,
+ "selection_uses_development_evidence": true,
+ "holdout_used": false,
+ "terminal_on_policy_binding_failure": "PHASE26_SPEC_REPAIR_BLOCKED__DEVELOPMENT_POLICY_RULE_BINDING_FAILURE",
+ "policy_rule_binding_ok": true,
+ "all_pass": true
+}

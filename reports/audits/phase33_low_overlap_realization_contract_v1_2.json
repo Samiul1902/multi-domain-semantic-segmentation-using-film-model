@@ -1,0 +1,142 @@
+{
+ "artifact": "phase33_low_overlap_realization_contract_v1_2",
+ "phase": 33,
+ "section": "\u00a7C",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase33_failure_boundary_v1_2",
+ "purpose": "freeze the FULLY EXPLICIT 8-element LOW_OVERLAP realization rule prospectively (pre-outcome), resolving the three elements left unresolved in v1.1",
+ "supersedes_by_addition": [
+  "reports/audits/phase33_low_overlap_realization_adjudication.json",
+  "reports/audits/phase33_low_overlap_rule_element_adjudication_v2.json"
+ ],
+ "resolves_ambiguity_record": "reports/audits/phase33_low_overlap_v1_1_ambiguity_record.json",
+ "elements": [
+  {
+   "n": 1,
+   "element": "target Dice field",
+   "status": "NOW_EXPLICIT",
+   "previous_v1_1_status": "DETERMINABLE_BY_TEXT_NOT_EXPLICIT",
+   "value": "a8_dice",
+   "statement": "The LOW_OVERLAP stratum is defined on the FINAL A8/C9 system's per-sample Dice, i.e. the column `a8_dice` of the frozen ROUTER_HOLDOUT scored table. `global_dice` is the REFERENCE comparator only and is NOT used to realize the cutoff.",
+   "reference_only_column": "global_dice"
+  },
+  {
+   "n": 2,
+   "element": "population",
+   "status": "PREVIOUSLY_EXPLICIT",
+   "previous_v1_1_status": "EXPLICIT",
+   "value": "frozen ROUTER_HOLDOUT table (all 875 rows)",
+   "statement": "Computed on the frozen ROUTER_HOLDOUT scored table; n = 875 samples.",
+   "n_rows": 875
+  },
+  {
+   "n": 3,
+   "element": "quantile probability",
+   "status": "PREVIOUSLY_EXPLICIT",
+   "previous_v1_1_status": "EXPLICIT",
+   "value": 0.1,
+   "statement": "Bottom-decile quantile probability q = 0.10."
+  },
+  {
+   "n": 4,
+   "element": "quantile algorithm/interpolation",
+   "status": "PREVIOUSLY_EXPLICIT",
+   "previous_v1_1_status": "EXPLICIT",
+   "value": "np.quantile(values, 0.10, method='linear') on float64",
+   "statement": "values = a8_dice cast to float64; NumPy linear (type-7) interpolation."
+  },
+  {
+   "n": 5,
+   "element": "inclusive/exclusive comparison rule",
+   "status": "NOW_EXPLICIT",
+   "previous_v1_1_status": "DETERMINABLE_BY_TEXT_NOT_EXPLICIT",
+   "value": "<=",
+   "statement": "A sample is LOW_OVERLAP iff `a8_dice <= cutoff` (INCLUSIVE). The operator is written explicitly as <= ; the phrase 'below' is hereby bound to an inclusive comparison, consistent with the frozen 'ties included' clause."
+  },
+  {
+   "n": 6,
+   "element": "tie handling",
+   "status": "PREVIOUSLY_EXPLICIT",
+   "previous_v1_1_status": "EXPLICIT",
+   "value": "ties included",
+   "statement": "Samples whose a8_dice equals the cutoff exactly ARE counted as LOW_OVERLAP (equivalent to <=)."
+  },
+  {
+   "n": 7,
+   "element": "missing/NaN handling",
+   "status": "NOW_EXPLICIT",
+   "previous_v1_1_status": "ABSENT",
+   "value": "REQUIRE_ALL_FINITE_NO_EXCLUSION",
+   "statement": "REQUIRE_ALL_FINITE_NO_EXCLUSION: all 875 a8_dice values MUST be finite. No exclusion, no imputation, no silent drop is permitted. If any a8_dice value is non-finite (NaN/inf) or empty, realization is BLOCKED and no cutoff is computed.",
+   "block_terminal_if_violated": "PHASE33_LOW_OVERLAP_REALIZATION_BLOCKED__A8_DICE_NOT_COMPLETE_FINITE_875__NO_CUTOFF_COMPUTED"
+  },
+  {
+   "n": 8,
+   "element": "global vs domain-specific cutoff",
+   "status": "PREVIOUSLY_EXPLICIT",
+   "previous_v1_1_status": "EXPLICIT",
+   "value": "GLOBAL (single cutoff over all 875 rows)",
+   "statement": "A single GLOBAL cutoff is realized over the pooled 875 ROUTER_HOLDOUT rows; the cutoff is NOT re-derived per domain."
+  }
+ ],
+ "n_elements": 8,
+ "n_now_explicit": 3,
+ "n_previously_explicit": 5,
+ "all_elements_explicit": true,
+ "rule_exactly_frozen": true,
+ "low_overlap_target_column": "a8_dice",
+ "reference_only_column": "global_dice",
+ "comparison_operator": "<=",
+ "comparison_inclusive": true,
+ "ties_included": true,
+ "missing_policy": "REQUIRE_ALL_FINITE_NO_EXCLUSION",
+ "scope": "GLOBAL_NOT_PER_DOMAIN",
+ "quantile_probability": 0.1,
+ "quantile_algorithm": "np.quantile(float64_values, 0.10, method='linear')",
+ "population": {
+  "n_rows": 875,
+  "n_groups": 628,
+  "domain_counts": {
+   "BUSI": 90,
+   "ISIC": 383,
+   "KUB": 298,
+   "KVASIR": 104
+  }
+ },
+ "structural_precondition": {
+  "check": "REQUIRE_ALL_FINITE_NO_EXCLUSION",
+  "n_rows_expected": 875,
+  "n_rows_observed": 875,
+  "non_finite_a8_dice_rows": 0,
+  "empty_a8_dice_rows": 0,
+  "precondition_satisfied": true,
+  "satisfied_by_structural_check_only": true,
+  "note": "This is a STRUCTURAL finiteness property (presence/absence of non-finite values). It was already recorded in the v1.1 preflight (non_finite_a8_dice_rows=0). It is NOT a distributional summary.",
+  "block_terminal_if_violated": "PHASE33_LOW_OVERLAP_REALIZATION_BLOCKED__A8_DICE_NOT_COMPLETE_FINITE_875__NO_CUTOFF_COMPUTED"
+ },
+ "realization": {
+  "realized_numeric_cutoff_frozen_now": false,
+  "cutoff_value": null,
+  "cutoff_computed": false,
+  "quantile_computed": false,
+  "distributional_statistics_computed": false,
+  "distribution_inspected": false,
+  "min_max_inspected": false,
+  "realization_deferred_to_execution": true,
+  "deterministic": true,
+  "outcome_selected": false,
+  "pseudocode": [
+   "x = scored_table['a8_dice'].astype('float64')",
+   "assert len(x) == 875",
+   "assert np.isfinite(x).all()  # REQUIRE_ALL_FINITE_NO_EXCLUSION -> else BLOCK",
+   "cutoff = np.quantile(x, 0.10, method='linear')",
+   "low_overlap = (x <= cutoff)  # inclusive, ties included",
+   "assert not per_domain  # single GLOBAL cutoff"
+  ]
+ },
+ "historical_phase11_precedent_used_as_permission": false,
+ "science_definition_changed": false,
+ "execution_eligibility_changed": false,
+ "generated_utc": "2026-10-04T08:56:12+00:00",
+ "all_pass": true
+}

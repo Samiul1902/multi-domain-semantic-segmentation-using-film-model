@@ -1,0 +1,63 @@
+{
+ "artifact": "phase30_component_inference_semantics_contract_v1_1",
+ "phase": 30,
+ "section": "\u00a7C/\u00a7I",
+ "classification": "PRE_FIRST_OPEN_NUMERICAL_ORDER_SPECIFICATION_REPAIR",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_phase30_final_dev_validation_v1_1",
+ "supersedes_by_addition": "reports/audits/phase30_component_inference_semantics_contract.json",
+ "v1_0_disposition": "PRESERVED_BYTE_FOR_BYTE_AS_PROVENANCE",
+ "correction_scope": {
+  "G_batch_membership_scientific_materiality": true,
+  "non_load_bearing_statement_removed_for_G": true,
+  "other_component_semantics_changed": false
+ },
+ "G": {
+  "device": "cuda",
+  "model_dtype": "float32",
+  "input_dtype": "float32",
+  "eval_state": "eval()",
+  "autocast_enabled": true,
+  "autocast_dtype": "float16",
+  "grad_context": "torch.no_grad()",
+  "inference_mode": false,
+  "batch_size": 8,
+  "batch_membership_scientifically_material": true,
+  "sample_ordering": "(dataset asc, sample_id asc)",
+  "domain_batching": "contiguous chunks of 8 inside a single domain",
+  "probability_computation": "torch.sigmoid(logits.float())",
+  "probability_persistence": "float16 (decision taken in float32 first)"
+ },
+ "R_psi": {
+  "device": "cuda",
+  "model_dtype": "float32",
+  "input_dtype": "float32",
+  "eval_state": "eval()",
+  "autocast_enabled": false,
+  "inference_mode": true,
+  "batch_size": 8,
+  "probability_computation": "torch.sigmoid(model(x).float())[:, 0]"
+ },
+ "B_phi": {
+  "device": "cuda",
+  "model_dtype": "float32",
+  "input_dtype": "float32",
+  "eval_state": "eval()",
+  "autocast_enabled": false,
+  "inference_mode": true,
+  "batch_size": "FULL_MATRIX_SINGLE_FORWARD",
+  "score": "raw logit delta_hat (no sigmoid)"
+ },
+ "S_omega": {
+  "device": "cuda",
+  "model_dtype": "float32",
+  "input_dtype": "float32",
+  "eval_state": "eval()",
+  "autocast_enabled": false,
+  "inference_mode": true,
+  "batch_size": 128,
+  "accept_threshold": 0.5
+ },
+ "generated_utc": "2026-10-04T02:53:20+00:00",
+ "all_pass": true
+}

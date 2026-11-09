@@ -1,0 +1,118 @@
+{
+ "artifact": "phase29_val808_shared_global_cache_contract_v1_2",
+ "phase": 29,
+ "stage": "VAL808_SHARED_CACHE_CONTRACT_V1_2",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_phase29_repro_v1_1",
+ "generated_utc": "2026-10-03T15:08:24+00:00",
+ "classification": "NUMERICAL_INFERENCE_SEMANTICS_RECONCILIATION",
+ "supersedes": "phase29_val808_shared_global_cache_contract_v1_1",
+ "v1_1_disposition": "PRESERVED_BYTE_FOR_BYTE_UNDER_pre_reconciliation_provenance",
+ "v1_1_numeric_semantics": "SUPERSEDED__CONTRADICTED_PHASE27_FROZEN_RUNTIME",
+ "binding": {
+  "authority": "reports/audits/phase27_reproducibility_contract_v1_1.json",
+  "authority_sha256": "daf9e93b9bd23fb131b9918c3dd3b9c5620440406ca5c6eac2f4e01507b6937c",
+  "authority_all_pass": true
+ },
+ "phase27_frozen_global_inference_semantics": {
+  "device": "cuda",
+  "input_dtype": "float32",
+  "model_dtype": "float32",
+  "model_eval": true,
+  "autocast_enabled": true,
+  "autocast_dtype": "float16",
+  "torch_no_grad": true,
+  "torch_inference_mode": false,
+  "batch_size": 8,
+  "sample_order": "(dataset ascending, sample_id ascending)",
+  "batch_partition": "contiguous chunks of 8 inside a single domain, sorted by (dataset, sample_id)",
+  "probability_computation": "sigmoid(logits.float()) -> float32",
+  "probability_storage_dtype": "float16",
+  "batch_membership_sensitivity": "SENSITIVE_UNDER_AUTOCAST_FP16__EXACT_PARTITION_MANDATORY",
+  "canonical_global_extraction_semantics": "EXACT_PHASE27_VALUES"
+ },
+ "val808_opened": false,
+ "execution": "NONE",
+ "inspection_only": true,
+ "no_VAL808_access_during_repair": true,
+ "cache_schema": {
+  "sample_id_order": "frozen VAL808 population order (domain asc, sample_id asc)",
+  "domain_task_mapping": "ISIC=0, BUSI=1, KVASIR=2, KUB=3 (frozen)",
+  "global_probability": {
+   "name": "val808_global_prob_f16.npy",
+   "shape": [
+    808,
+    512,
+    512
+   ],
+   "dtype": "float16",
+   "semantics": "canonical fixed-G full-canvas probability computed under EXACT Phase27 autocast semantics"
+  },
+  "router_deep_features_192d": {
+   "name": "val808_router_deep_features_f32.npy",
+   "shape": [
+    808,
+    192
+   ],
+   "dtype": "float32",
+   "semantics": "Phase25B deep-feature block (indices 0..191) of the frozen pre-refinement feature extractor"
+  },
+  "gt_free_router_scalar_ingredients": {
+   "name": "val808_router_scalars_f32.npy",
+   "shape": [
+    808,
+    10
+   ],
+   "dtype": "float32",
+   "semantics": "10 GT-free scalars (indices 192..201) required to reconstruct the 202-D router vector"
+  },
+  "roi_proposal_inputs_geometry": {
+   "name": "val808_roi_geometry.json",
+   "semantics": "ROI-0.30 proposal geometry per sample re-derived from the global probability",
+   "decision": "REGENERABLE_FROM_STORED_GLOBAL_PROBABILITY"
+  }
+ },
+ "shared_G_single_logical_pass": {
+  "shared_G_logical_passes": 1,
+  "shared_G_sample_forwards": 808,
+  "shared_G_batch_forwards": 102,
+  "runs_once_not_per_seed": true,
+  "G_retrained": false,
+  "not_one_model_forward": true,
+  "batching": {
+   "batch_size": 8,
+   "BUSI": {
+    "n": 84,
+    "batches": 11
+   },
+   "ISIC": {
+    "n": 357,
+    "batches": 45
+   },
+   "KUB": {
+    "n": 280,
+    "batches": 35
+   },
+   "KVASIR": {
+    "n": 87,
+    "batches": 11
+   },
+   "total_fixed_G_batch_forwards": 102
+  },
+  "batch_membership_material_under_autocast": true
+ },
+ "checks": {
+  "phase27_authority_all_pass": true,
+  "autocast_enabled_matches_phase27": true,
+  "autocast_dtype_float16": true,
+  "inference_mode_false": true,
+  "no_grad_true": true,
+  "batch_size_8": true,
+  "storage_float16": true,
+  "shared_G_logical_passes_1": true,
+  "shared_G_sample_forwards_808": true,
+  "shared_G_batch_forwards_102": true,
+  "VAL808_reads_zero": true
+ },
+ "all_pass": true
+}

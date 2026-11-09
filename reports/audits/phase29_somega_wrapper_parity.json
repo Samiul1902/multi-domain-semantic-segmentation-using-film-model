@@ -1,0 +1,148 @@
+{
+ "artifact": "phase29_somega_wrapper_parity",
+ "phase": 29,
+ "generated_utc": "2026-10-02T15:51:51+00:00",
+ "governance_only": true,
+ "execution": "NONE",
+ "retrained": false,
+ "canonical_fold_seeds": [
+  54000,
+  54001,
+  54002,
+  54003,
+  54004
+ ],
+ "wrapper_fold_seeds_seed42": [
+  54000,
+  54001,
+  54002,
+  54003,
+  54004
+ ],
+ "wrapper_final_seed_seed42": 42,
+ "fingerprint": {
+  "component": "S_omega",
+  "architecture": "BARRPostSafetyV1",
+  "param_count": 1217,
+  "feature_dim": 20,
+  "numeric_idx": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11,
+   12,
+   13,
+   14,
+   15
+  ],
+  "onehot_idx": [
+   16,
+   17,
+   18,
+   19
+  ],
+  "hidden": [
+   32,
+   16
+  ],
+  "loss": "BCEWithLogitsLoss(reduction='mean')",
+  "optimizer": {
+   "name": "AdamW",
+   "lr": 0.001,
+   "weight_decay": 0.0001
+  },
+  "scheduler": {
+   "name": "ReduceLROnPlateau"
+  },
+  "batch_size": 128,
+  "max_epochs": 200,
+  "patience": 20,
+  "improvement_eps": 1e-12,
+  "checkpoint_rule": "minimum EARLY_STOP mean BCE",
+  "decision_threshold": 0.5,
+  "fold_seed_rule": "1000*s + 12000 + k",
+  "final_refit_seed_rule": "s",
+  "final_epoch_rule": "integer median of five best fold epochs",
+  "n_folds": 5,
+  "normalization": {
+   "fit_only": true,
+   "ddof": 0,
+   "numeric_idx": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+   ],
+   "binary_flags_unchanged": true
+  }
+ },
+ "runtime_constants_seed42": {
+  "CV_SEEDS": {
+   "0": 54000,
+   "1": 54001,
+   "2": 54002,
+   "3": 54003,
+   "4": 54004
+  },
+  "FINAL_SEED": 42,
+  "CKPT_ROOT": "D:\\Softfors\\jup\\checkpoints\\phase29_seed42\\somega",
+  "EXP_ROOT": "D:\\Softfors\\jup\\experiments\\phase29_seed42\\somega",
+  "FEATURES_NPY": "D:\\Softfors\\jup\\data_cache\\phase25f_barr_post_safety_v1_0\\features.npy",
+  "TARGETS_CSV": "D:\\Softfors\\jup\\data_cache\\phase25f_barr_post_safety_v1_0\\targets.csv"
+ },
+ "spec_fold0": {
+  "component": "S_omega",
+  "role": "fold0",
+  "is_final_refit": false,
+  "master_seed": 42,
+  "training_seed": 54000,
+  "features_path": "D:\\Softfors\\jup\\data_cache\\phase25f_barr_post_safety_v1_0\\features.npy",
+  "targets_path": "D:\\Softfors\\jup\\data_cache\\phase25f_barr_post_safety_v1_0\\targets.csv",
+  "fold_members_source": "reports/tables/phase25f_cv_fold_role_assignments.csv",
+  "checkpoint_root": "D:\\Softfors\\jup\\checkpoints\\phase29_seed42",
+  "experiment_root": "D:\\Softfors\\jup\\experiments\\phase29_seed42",
+  "run_checkpoint_dir": "D:\\Softfors\\jup\\checkpoints\\phase29_seed42\\somega\\fold0",
+  "run_experiment_dir": "D:\\Softfors\\jup\\experiments\\phase29_seed42\\somega\\fold0",
+  "decision_threshold": 0.5
+ },
+ "spec_final": {
+  "component": "S_omega",
+  "role": "final",
+  "is_final_refit": true,
+  "master_seed": 42,
+  "training_seed": 42,
+  "features_path": "D:\\Softfors\\jup\\data_cache\\phase25f_barr_post_safety_v1_0\\features.npy",
+  "targets_path": "D:\\Softfors\\jup\\data_cache\\phase25f_barr_post_safety_v1_0\\targets.csv",
+  "checkpoint_root": "D:\\Softfors\\jup\\checkpoints\\phase29_seed42",
+  "experiment_root": "D:\\Softfors\\jup\\experiments\\phase29_seed42",
+  "run_checkpoint_dir": "D:\\Softfors\\jup\\checkpoints\\phase29_seed42\\somega\\final",
+  "run_experiment_dir": "D:\\Softfors\\jup\\experiments\\phase29_seed42\\somega\\final_refit",
+  "final_epochs_rule": "integer median of five best fold epochs",
+  "final_epochs_resolved": null,
+  "early_stopping": false,
+  "decision_threshold": 0.5
+ },
+ "fold_seeds_match": true,
+ "scientific_config_matches": true,
+ "all_pass": true
+}

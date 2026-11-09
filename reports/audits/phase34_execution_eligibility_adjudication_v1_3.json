@@ -1,0 +1,106 @@
+{
+ "artifact": "phase34_execution_eligibility_adjudication_v1_3",
+ "phase": 34,
+ "section": "\u00a7R",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase34_efficiency_profiling_v1_3",
+ "families": {
+  "G_model_import_eligible": {
+   "value": true,
+   "basis": "importability probe G PASS"
+  },
+  "R_psi_model_import_eligible": {
+   "value": true,
+   "basis": "importability probe R_psi PASS"
+  },
+  "B_phi_model_import_eligible": {
+   "value": true,
+   "basis": "importability probe B_phi PASS"
+  },
+  "S_omega_model_import_eligible": {
+   "value": true,
+   "basis": "importability probe S_omega PASS"
+  },
+  "component_smoke_execution_eligible": {
+   "value": true,
+   "basis": "v1.3 worker smoke_component + --mode smoke"
+  },
+  "SKIP_controlled_path_smoke_eligible": {
+   "value": true,
+   "basis": "v1.3 worker smoke_path + supervisor SKIP confirmation"
+  },
+  "EXECUTE_controlled_path_smoke_eligible": {
+   "value": true,
+   "basis": "v1.3 worker smoke_path EXECUTE_CONTROLLED_PATH"
+  },
+  "G_component_runtime_eligible": {
+   "value": true,
+   "basis": "v1.2 eligibility"
+  },
+  "R_psi_component_runtime_eligible": {
+   "value": true,
+   "basis": "v1.2 eligibility"
+  },
+  "B_phi_component_runtime_eligible": {
+   "value": true,
+   "basis": "v1.2 eligibility"
+  },
+  "S_omega_component_runtime_eligible": {
+   "value": true,
+   "basis": "v1.2 eligibility"
+  },
+  "GLOBAL_ONLY_C1_runtime_eligible": {
+   "value": true,
+   "basis": "v1.2 eligibility"
+  },
+  "SKIP_controlled_path_runtime_eligible": {
+   "value": true,
+   "basis": "v1.2 supervisor confirmation (SUPERVISOR_CONFIRMED_DERIVED_DISCLOSED)"
+  },
+  "EXECUTE_controlled_path_runtime_eligible": {
+   "value": true,
+   "basis": "v1.2 eligibility"
+  },
+  "batch1_latency_eligible": {
+   "value": true,
+   "basis": "v1.1 latency contract"
+  },
+  "batch8_throughput_eligible": {
+   "value": true,
+   "basis": "v1.1 throughput contract"
+  },
+  "GPU_memory_eligible": {
+   "value": true,
+   "basis": "v1.1 memory contract"
+  },
+  "conditional_weighted_runtime_eligible": {
+   "value": true,
+   "basis": "requires BOTH valid measured SKIP and EXECUTE path means; harness fails closed otherwise"
+  },
+  "synthetic_natural_route_replay_eligible": {
+   "value": false,
+   "basis": "not authorized"
+  },
+  "new_MAC_FLOP_profiler_eligible": {
+   "value": false,
+   "basis": "no profiler installed"
+  },
+  "raw_ROUTER_HOLDOUT_execution_eligible": {
+   "value": false,
+   "basis": "data access"
+  },
+  "TEST_execution_eligible": {
+   "value": false,
+   "basis": "TEST LOCKED_UNTIL_PHASE39"
+  },
+  "training_eligible": {
+   "value": false,
+   "basis": "profiling phase only"
+  }
+ },
+ "supersedes": "phase34_execution_eligibility_adjudication_v1_2.json",
+ "v1_2_eligibility_preserved": true,
+ "first_measured_execution_started": false,
+ "generated_utc": "2026-10-04T13:12:36+00:00",
+ "all_pass": true
+}

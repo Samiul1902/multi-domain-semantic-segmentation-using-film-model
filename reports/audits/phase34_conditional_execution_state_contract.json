@@ -1,0 +1,35 @@
+{
+ "artifact": "phase34_conditional_execution_state_contract",
+ "phase": 34,
+ "section": "\u00a7I",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase34_efficiency_profiling_v1_0",
+ "purpose": "frozen routing-state frequencies used ONLY as weighting metadata",
+ "anchors_verified": {
+  "SKIP": 635,
+  "EXECUTE_THEN_ACCEPT": 236,
+  "EXECUTE_THEN_REJECT": 4,
+  "total_EXECUTE": 240,
+  "n": 875
+ },
+ "anchors_forced": false,
+ "anchor_source": "reports/audits/phase33_phase30_count_reproduction_v1_2.json (reproduced=true) + reports/tables/phase30_router_holdout_scored_results.csv",
+ "phase30_qualifier": "ONE_SHOT_ROUTER_HOLDOUT_RESULT_WITH_DISCLOSED_POST_FIRST_OPEN_SCIENTIFIC_SOURCE_FREEZE_DEVIATION",
+ "phase30_status": "COMPLETE_WITH_PROTOCOL_DEVIATION__NOT_COMPLETE_CANONICAL",
+ "router_holdout_images_or_GT_opened": false,
+ "routing_states_recalculated_from_images": false,
+ "phase30_decisions_rerun": false,
+ "measured_per_path_runtime_definition": "MEASURED_PER_PATH_RUNTIME = synchronized synthetic-tensor latency per branch",
+ "weighted_estimate_definition": "WEIGHTED_RUNTIME_ESTIMATE_FROM_FROZEN_PATH_FREQUENCIES = sum_s p_s * latency_s",
+ "weighted_estimate_is_literal_holdout_runtime": false,
+ "accept_reject_compute_identical": {
+  "authority": "Phase26 state_machine_contract",
+  "ETA_refiner": 1,
+  "ETA_s_omega": 1,
+  "ETR_refiner": 1,
+  "ETR_s_omega": 1,
+  "identical": true
+ },
+ "generated_utc": "2026-10-04T09:50:07+00:00",
+ "all_pass": true
+}

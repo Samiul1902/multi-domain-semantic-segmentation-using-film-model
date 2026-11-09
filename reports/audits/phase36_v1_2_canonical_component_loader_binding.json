@@ -1,0 +1,174 @@
+{
+ "artifact": "phase36_v1_2_canonical_component_loader_binding",
+ "section": "§D",
+ "phase": 36,
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase36_robustness_v1_2",
+ "classification": "CANONICAL_COMPONENT_LOADER_AUTHORITY_BINDING__DISCOVERED_NOT_RECONSTRUCTED",
+ "principle": "Loader callables are LOCATED in the already-completed Phase25/Phase26/Phase29 executions; never reconstructed from memory.",
+ "discovery_evidence": {
+  "canonical_strict_loader_authority": {
+   "path": "scripts/analysis/run_phase26_exec_tests.py",
+   "function": "load_components()/_load()",
+   "sha256": "050bacf8b5d87eb30f7e965ef7451c8286b492d083dc0a2b5bdca08185444484",
+   "note": "the Phase26 Section-16 canonical strict-load audit; performs strict=True load, missing/unexpected capture, param count, finiteness, eval(), requires_grad_(False)"
+  },
+  "canonical_constants_authority": {
+   "path": "scripts/analysis/phase26_exec_common.py",
+   "sha256": "e0dd5c20a61961541fb1824c5d3763c25dea66035e57f3f10b7c4dad3b3bcf65",
+   "note": "GLOBAL_CHECKPOINT/SHA, REFINER_CHECKPOINT/SHA, ROUTER_CHECKPOINT/SHA, SOMEGA_CHECKPOINT/SHA, ROUTER_NORMALIZATION, SOMEGA_NORMALIZATION, A8/C9 policy"
+  },
+  "canonical_full_system_inference_authority": {
+   "path": "scripts/analysis/phase29_phase_d_canonical_seed_inference.py",
+   "sha256": "7c0d0039e6e215b6a73607b9892a9cd2785620cfcc75e7baf655d486f594f2f6",
+   "functions": ["image_only_transform", "crop_and_resize_vec", "fuse_full_field", "somega_features", "load_router_class", "load_somega_class", "run_seed"],
+   "note": "the completed canonical full-system VAL808 inference; binds R_psi 4-channel crop + fusion + S_omega feature contract"
+  },
+  "canonical_tap_extractor_authority": {
+   "path": "scripts/analysis/run_phase25b_feature_extraction.py",
+   "sha256": "63aec26c563fd38e93e9820029f78f2c2547217877024147ff16eba1e96afade",
+   "class": "TapRecorder",
+   "note": "canonical forward-hook capture of the three G taps (bridge/decoder2/decoder1); inference-only readers of module output"
+  }
+ },
+ "components": {
+  "G": {
+   "class_name": "GlobalMedFiLM",
+   "source_path": "src/models/film/global_medfilm.py",
+   "source_sha256": "a04ff3e61b4d900ff47c2f390da4a999e73bd6047b28a19e41b05115e431d11f",
+   "checkpoint_path": "checkpoints/phase21_global_medfilm_fourdomain_seed42_clean_v3/best.pt",
+   "checkpoint_sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+   "checkpoint_sha256_verified_on_disk": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+   "constructor_authority": "scripts/analysis/run_phase25b_feature_extraction.py::build_model(cfg)",
+   "constructor_kwargs_source": "experiments/phase21_global_medfilm_fourdomain_seed42_clean_v3/config.json::model",
+   "constructor_kwargs": {
+    "task_count": 4,
+    "in_channels": 3,
+    "out_channels": 1,
+    "channels": [24, 48, 96, 192, 256],
+    "task_embedding_dim": 32,
+    "film_hidden_dim": 64
+   },
+   "state_dict_key": "model_state",
+   "expected_parameters": 3523001,
+   "parameter_count_authority": "run_phase25b_feature_extraction.py:165 assert n_params == 3523001",
+   "device": "cpu (map_location='cpu'); device placement delegated to runtime device resolution",
+   "dtype": "float32 weights; autocast fp16 permitted on the canonical forward path",
+   "eval_mode": true,
+   "requires_grad": false,
+   "strict_load_semantics": "load_state_dict(state['model_state']) default strict=True",
+   "task_embedding_handling": "Internal nn.Embedding(task_count=4, 32). forward(images, task_ids) validates task_ids shape [B] and range [0, task_count).",
+   "forward_path": "no_grad + torch.amp.autocast(device_type, enabled=True); logits = model(batch_img, batch_task); prob = sigmoid(logits.float())[:, 0]"
+  },
+  "B_phi": {
+   "class_name": "BARRBenefitRouterV1",
+   "source_path": "scripts/analysis/train_phase25d_router.py",
+   "source_sha256": "fc7c1bdf263ae4551dcb8f170d3203adb8540fbc189846265b74f6eca1541e91",
+   "checkpoint_path": "checkpoints/phase25d_barr_benefit_router_v1_2_1_seed42/final/final.pt",
+   "checkpoint_sha256": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+   "checkpoint_sha256_verified_on_disk": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+   "constructor": "BARRBenefitRouterV1()  (no arguments)",
+   "state_dict_key": "model_state",
+   "expected_parameters": 36801,
+   "parameter_count_authority": "train_phase25d_router.py:147 assert _test_count == 36801; run_phase26_exec_tests.py:89 B_phi_parameters_36801",
+   "device": "cpu",
+   "dtype": "float32",
+   "eval_mode": true,
+   "requires_grad": false,
+   "strict_load_semantics": "load_state_dict(state['model_state']) strict=True (run_phase29 uses strict default; run_phase26 audits strict=True)",
+   "numeric_dim": 202,
+   "task_embed_dim": 16,
+   "total_dim": 218,
+   "router_normalization": {
+    "mu_key": "normalizer_mu",
+    "sigma_key": "normalizer_sigma",
+    "constant_mask_key": "normalizer_constant_mask",
+    "scalar_indices": [192, 193, 194, 195, 196, 197, 200, 201],
+    "rule": "norm = (x[scalars] - mu) / where(sigma<1e-12, 1, sigma); norm[:, constant] = 0; zero_sigma_rule frozen",
+    "frozen_csv_authority": "reports/tables/phase25d_final_normalization_stats.csv",
+    "frozen_csv_sha256": "ba37742e96610ec5e46fb47c093bf71ae1afd85b2a0db9696b612c873a4ba1fb"
+   },
+   "seed_assertion": "checkpoint must carry seed==42 (Phase29 asserts int(st['seed'])==s)"
+  },
+  "R_psi": {
+   "class_name": "BARRRegionalRefinerV1",
+   "source_path": "src/models/barr/regional_refiner.py",
+   "source_sha256": "4fe0abde3ec3a183d930f676c4400b4d9ba778793ea64abf1755c5b8dabf947a",
+   "checkpoint_path": "checkpoints/phase25a_barr_regional_refiner_v1_1_roi030/final/final.pt",
+   "checkpoint_sha256": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109",
+   "checkpoint_sha256_verified_on_disk": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109",
+   "constructor": "BARRRegionalRefinerV1()  (defaults in_channels=4, out_channels=1, channels=(16,32,64,96,128))",
+   "state_dict_key": "model_state",
+   "expected_parameters": 1276401,
+   "parameter_count_authority": "run_phase26_exec_tests.py:88 R_psi_parameters_1276401",
+   "device": "cpu",
+   "dtype": "float32",
+   "eval_mode": true,
+   "requires_grad": false,
+   "strict_load_semantics": "load_state_dict(state['model_state']) strict=True",
+   "input_contract": {
+    "channels": 4,
+    "order": "[R, G, B, p_global_crop]",
+    "spatial": "256x256",
+    "construction_authority": "phase29_phase_d_canonical_seed_inference.py:252-255",
+    "rgb_crop_rule": "image_only_transform(image,512) -> crop_and_resize_vec(rgb, geom, 256) BILINEAR",
+    "prob_crop_rule": "crop_and_resize_vec(p_global, geom, 256) BILINEAR",
+    "concatenation": "np.concatenate([rgb_crop(3,256,256), prob_crop(1,256,256)], axis=0) -> (4,256,256)"
+   },
+   "crop_geometry_rule": "geom from src.data.barr_roi.roi_geometry(p_global, 0.30, margin=0.25); clipped window [clip_y1:clip_y2, clip_x1:clip_x2] zero-padded to crop_side_pixels square, then bilinear to 256"
+  },
+  "S_omega": {
+   "class_name": "BARRPostSafetyV1",
+   "source_path": "scripts/analysis/phase25f_execution_common.py",
+   "source_sha256": "98cf958a377e2de30e0b67e63fd56bafea418b2b061a362ee7284e852012cd2e",
+   "checkpoint_path": "checkpoints/phase25f_barr_post_safety_v1_0_seed42/final/final.pt",
+   "checkpoint_sha256": "eee9b97b9921e53fc07eac9281dce64ba518c6e1659916b97b0b3bec21ec6d2e",
+   "checkpoint_sha256_verified_on_disk": "eee9b97b9921e53fc07eac9281dce64ba518c6e1659916b97b0b3bec21ec6d2e",
+   "constructor": "BARRPostSafetyV1()  (FEATURE_DIM=20, HIDDEN=(32,16))",
+   "state_dict_key": "model_state",
+   "expected_parameters": 1217,
+   "parameter_count_authority": "run_phase26_exec_tests.py:90 S_omega_parameters_1217",
+   "device": "cpu",
+   "dtype": "float32",
+   "eval_mode": true,
+   "requires_grad": false,
+   "strict_load_semantics": "load_state_dict(state['model_state']) strict=True",
+   "input_contract": {
+    "numeric_dim": 16,
+    "onehot_dim": 4,
+    "total_dim": 20,
+    "order": "[normalized 16 numeric features, one-hot task id]",
+    "feature_builder": "scripts/analysis/phase25f_post_safety_features.py::compute_numeric_features(p_g_256, p_r_256, area_fraction, crop_side_pixels) -> 16",
+    "construction_authority": "phase29_phase_d_canonical_seed_inference.py:262-275"
+   },
+   "normalization": {
+    "mu_key": "normalizer_mu",
+    "sigma_key": "normalizer_sigma",
+    "constant_mask_key": "normalizer_constant_mask",
+    "frozen_json_authority": "reports/audits/phase25f_final_normalization.json",
+    "frozen_csv_authority": "reports/tables/phase25f_final_normalization_stats.csv"
+   },
+   "accept_rule": "accept iff sigmoid(logit) >= 0.50 (SOMEGA_ACCEPT_PROB_THRESHOLD)",
+   "seed_assertion": "checkpoint must carry seed==42"
+  }
+ },
+ "parameter_identity_summary": {
+  "G": 3523001,
+  "B_phi": 36801,
+  "R_psi": 1276401,
+  "S_omega": 1217,
+  "total_resident": 4837420
+ },
+ "total_resident_arithmetic": "3523001 + 36801 + 1276401 + 1217 = 4837420",
+ "loader_source_binding": {
+  "run_phase26_exec_tests.py": "050bacf8b5d87eb30f7e965ef7451c8286b492d083dc0a2b5bdca08185444484",
+  "phase26_exec_common.py": "e0dd5c20a61961541fb1824c5d3763c25dea66035e57f3f10b7c4dad3b3bcf65",
+  "phase29_phase_d_canonical_seed_inference.py": "7c0d0039e6e215b6a73607b9892a9cd2785620cfcc75e7baf655d486f594f2f6",
+  "run_phase25b_feature_extraction.py": "63aec26c563fd38e93e9820029f78f2c2547217877024147ff16eba1e96afade"
+ },
+ "forbidden_in_v1_2_loader": [
+  "NotImplementedError", "placeholder RuntimeError", "pass", "TODO", "FIXME", "empty dummy component replacing a canonical learned component"
+ ],
+ "generated_utc": "2026-10-05T15:40:00Z",
+ "all_pass": true
+}

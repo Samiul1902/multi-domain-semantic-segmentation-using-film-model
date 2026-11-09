@@ -1,0 +1,30 @@
+{
+ "artifact": "phase29_seed3407_bphi_oof_integrity",
+ "phase": 29,
+ "stage": "BPHI_OOF_INTEGRITY",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_phase29_repro_v1_1",
+ "generated_utc": "2026-10-02T20:18:59+00:00",
+ "master_seed": 3407,
+ "fold_seed_rule": "1000*s + k",
+ "fold_seeds": [
+  3407000,
+  3407001,
+  3407002,
+  3407003,
+  3407004
+ ],
+ "oof_path": "data_cache\\phase29_seed3407\\bphi_out\\phase25d_oof_router_predictions.csv",
+ "oof_sha256": "bb7e8d42096566cebb2f0bf3e55bc4aa042a93caa3a55ec8408322a5a3f39946",
+ "n_rows": 4957,
+ "checks": {
+  "rows_4957": true,
+  "unique_ids_4957": true,
+  "exactly_once_per_sample": true,
+  "all_finite_scores": true,
+  "oof_source_is_fold_checkpoints_only": true
+ },
+ "n_failed": 0,
+ "blocked_terminal_if_fail": "PHASE29_PHASE_C_BLOCKED__BPHI_TRAINING_OR_OOF_FAILURE",
+ "all_pass": true
+}

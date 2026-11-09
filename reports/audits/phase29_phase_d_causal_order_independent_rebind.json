@@ -1,0 +1,114 @@
+{
+ "artifact": "phase29_phase_d_causal_order_independent_rebind",
+ "phase": 29,
+ "stage": "PHASE_D_CAUSAL_ORDER_INDEPENDENT_REBIND",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_phase29_repro_v1_1",
+ "generated_utc": "2026-10-03T15:35:04+00:00",
+ "method_note": "Reopened and hashed the decisive artifacts directly; verification is from artifact contents, not from the previous terminal.",
+ "bound_artifacts": {
+  "causal_order_defect": {
+   "path": "reports/audits/phase29_phase_d_causal_order_defect.json",
+   "sha256": "4dc020838461df2fadb5d3a6c4cef41e03714a18f73cccc4693ea52916150b1f",
+   "classification": "POST_SAFETY_CAUSAL_ORDER_SEMANTIC_DEFECT",
+   "all_pass": true
+  },
+  "post_safety_causal_dependency_proof": {
+   "path": "reports/audits/phase29_phase_d_post_safety_causal_dependency_proof.json",
+   "sha256": "61fa2d196e763091155d22497182841024a3262f9c95d096e2a0feac7fa0d228",
+   "all_pass": true
+  },
+  "component_inference_semantics_contract_v1_1": {
+   "path": "reports/audits/phase29_phase_d_component_inference_semantics_contract_v1_1.json",
+   "sha256": "dc721c1143bdd03b542da95e1cfb22c638362535aea6bbcefaf28a99323c7526",
+   "all_pass": true
+  }
+ },
+ "verified_chain": {
+  "G": "runs exactly once",
+  "pre_refinement_B_phi_features": true,
+  "B_phi_score_then_per_seed_frozen_threshold": true,
+  "SKIP": {
+   "R_psi_exec": 0,
+   "S_omega_exec": 0,
+   "final": "global"
+  },
+  "EXECUTE": {
+   "R_psi_exec": 1,
+   "ROI_and_refiner_candidate_constructed": true,
+   "20D_Somega_vector_from_candidate": true,
+   "S_omega_exec": 1,
+   "ACCEPT": "final refined",
+   "REJECT": "final global"
+  }
+ },
+ "frozen_relations": {
+  "R_psi_exec": "router_execute",
+  "S_omega_exec": "R_psi_exec",
+  "EXECUTE_THEN_REJECT_incurs_Rpsi_compute": true,
+  "S_omega_saves_compute": false,
+  "savings_source": "B_phi/C8 pre-execution router gate"
+ },
+ "runtime_physical_evidence": {
+  "seed42": {
+   "n_selected": 279,
+   "n_refiner_forwards": 279,
+   "n_somega_forwards": 279,
+   "n_accepted": 268,
+   "n_rejected": 11
+  },
+  "seed123": {
+   "n_selected": 256,
+   "n_refiner_forwards": 256,
+   "n_somega_forwards": 256,
+   "n_accepted": 231,
+   "n_rejected": 25
+  },
+  "seed3407": {
+   "n_selected": 262,
+   "n_refiner_forwards": 262,
+   "n_somega_forwards": 262,
+   "n_accepted": 256,
+   "n_rejected": 6
+  }
+ },
+ "runtime_expected_match": true,
+ "decisions_csv_structural_check": {
+  "detail": {
+   "seed42": {
+    "rows": 808,
+    "skip_rows_empty_safety_score": true,
+    "selected_rows_populated_safety_score": true,
+    "reject_rows_populated_safety_score": true
+   },
+   "seed123": {
+    "rows": 808,
+    "skip_rows_empty_safety_score": true,
+    "selected_rows_populated_safety_score": true,
+    "reject_rows_populated_safety_score": true
+   },
+   "seed3407": {
+    "rows": 808,
+    "skip_rows_empty_safety_score": true,
+    "selected_rows_populated_safety_score": true,
+    "reject_rows_populated_safety_score": true
+   }
+  },
+  "skip_rows_have_empty_safety_score": true,
+  "every_selected_row_including_reject_has_populated_safety_score": true
+ },
+ "checks": {
+  "causal_order_artifact_rehashed": true,
+  "proof_artifact_rehashed": true,
+  "contract_v1_1_artifact_rehashed": true,
+  "R_psi_exec_equals_router_execute": true,
+  "Somega_exec_equals_Rpsi_exec": true,
+  "STATE_D_incurs_Rpsi_compute": true,
+  "S_omega_saves_compute_false": true,
+  "runtime_counts_match_expected": true,
+  "decisions_csv_structure_holds": true,
+  "skip_rows_empty_safety_score": true,
+  "selected_rows_including_reject_populated": true
+ },
+ "all_pass": true
+}

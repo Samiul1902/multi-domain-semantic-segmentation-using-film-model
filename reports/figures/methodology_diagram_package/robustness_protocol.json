@@ -1,0 +1,110 @@
+{
+  "artifact": "phase36_methodology_diagram_evidence_package__robustness_protocol",
+  "method": "RA-MedFiLM-BARR",
+  "phase": 36,
+  "frozen_revision": "ra_medfilm_barr_phase36_robustness_v1_12",
+  "governance_note": "Design-only extraction from the frozen Phase36 spec and registries. No smoke or science execution was performed to produce this file.",
+  "status": "SPECIFICATION_COMPLETE__EXECUTION_NOT_STARTED",
+  "population": {
+    "name": "VAL808",
+    "n": 808,
+    "manifest": "manifests/phase4_v3/val.csv",
+    "manifest_sha256": "082c80b2bda63fd73f371f109c34643adf01edaead921643fb2e44993ba53315",
+    "domains": ["ISIC", "BUSI", "KVASIR", "KUB"],
+    "domain_counts": {"ISIC": 357, "BUSI": 84, "KVASIR": 87, "KUB": 280},
+    "may_read": ["VAL808_RAW_IMAGES", "VAL808_GT"],
+    "must_not_read": ["ROUTER_HOLDOUT", "TEST"],
+    "source_file": "scripts/analysis/phase36_robustness_common_v1_0.py:60-71"
+  },
+  "image_conditions": {
+    "n_conditions": 13,
+    "generation_rule": "Each perturbed image is generated from the ORIGINAL clean input independently. NO chaining.",
+    "domain": "float32 [0,1]",
+    "conditions": {
+      "CLEAN": {"kind": "identity"},
+      "BRIGHTNESS_NEG": {"kind": "brightness", "delta": -0.10},
+      "BRIGHTNESS_POS": {"kind": "brightness", "delta": 0.10},
+      "CONTRAST_LOW": {"kind": "contrast", "factor": 0.80, "mean": "per_image_channel_spatial_mean"},
+      "CONTRAST_HIGH": {"kind": "contrast", "factor": 1.20, "mean": "per_image_channel_spatial_mean"},
+      "GAMMA_LOW": {"kind": "gamma", "gamma": 0.80},
+      "GAMMA_HIGH": {"kind": "gamma", "gamma": 1.20},
+      "GAUSSIAN_NOISE_LOW": {"kind": "gaussian_noise", "sigma": 0.02, "base_seeds": [42, 123, 3407]},
+      "GAUSSIAN_NOISE_HIGH": {"kind": "gaussian_noise", "sigma": 0.05, "base_seeds": [42, 123, 3407]},
+      "GAUSSIAN_BLUR_LOW": {"kind": "gaussian_blur", "sigma": 0.5, "radius_rule": "ceil(3*sigma)", "padding": "reflect", "separable": true, "learned": false},
+      "GAUSSIAN_BLUR_HIGH": {"kind": "gaussian_blur", "sigma": 1.0, "radius_rule": "ceil(3*sigma)", "padding": "reflect", "separable": true, "learned": false},
+      "RESOLUTION_075": {"kind": "resolution", "factor": 0.75, "working_resolution": 512, "restore": "bilinear", "align_corners": false},
+      "RESOLUTION_050": {"kind": "resolution", "factor": 0.50, "working_resolution": 512, "restore": "bilinear", "align_corners": false}
+    },
+    "forbidden_perturbations": ["jpeg", "color_space_conversion", "rotation", "crop", "random_augmentation", "adversarial_optimization"],
+    "source_file": "scripts/analysis/phase36_robustness_common_v1_0.py:183-207"
+  },
+  "noise_seeds": {
+    "base_seeds": [42, 123, 3407],
+    "seed_rule": "SHA256(\"phase36|gaussian_noise|<base_seed>|<sample_id>\")",
+    "seed_derivation": "deterministic_seed = int.from_bytes(sha256(f'phase36|gaussian_noise|{base_seed}|{sample_id}'.encode()).digest()[:8], 'big') -> Generator(PCG64(deterministic_seed)); one realization frozen per (sample, base_seed, severity)",
+    "generation": "CPU-side float32; then clip to [0,1]",
+    "note": "v1.1 seed conversion supersedes v1.0 for all execution; base seeds unchanged.",
+    "source_file": "scripts/analysis/phase36_robustness_common_v1_1.py:79-82; scripts/analysis/phase36_robustness_common_v1_0.py:210-217"
+  },
+  "image_realization_counts": {
+    "deterministic_nonclean": 10,
+    "noise_nonclean": 6,
+    "nonclean_per_sample": 16,
+    "incl_clean_per_sample": 17,
+    "clean_executions_expected": 808,
+    "nonclean_image_executions_expected": 12928,
+    "logical_image_table_rows_max": 13736,
+    "source_file": "scripts/analysis/phase36_robustness_execution_v1_12.py:605-623"
+  },
+  "proposal_conditions": {
+    "n_conditions": 7,
+    "generation_rule": "From CLEAN image / CLEAN global probability (p_global).",
+    "proposal_threshold": 0.30,
+    "proposal_threshold_note": "Canonical p_global >= 0.30 - NEVER altered by Phase36.",
+    "shift_base": "0.10 x canonical_crop_side",
+    "bounds": "clamped_to_image_bounds_deterministic_center_adjustment",
+    "empty_proposal_handling": "NOT_APPLICABLE_EMPTY_PROPOSAL",
+    "conditions": {
+      "PROPOSAL_CLEAN": {"kind": "identity"},
+      "SHIFT_LEFT_10": {"kind": "shift", "axis": "x", "direction": "left", "magnitude_frac": 0.10},
+      "SHIFT_RIGHT_10": {"kind": "shift", "axis": "x", "direction": "right", "magnitude_frac": 0.10},
+      "SHIFT_UP_10": {"kind": "shift", "axis": "y", "direction": "up", "magnitude_frac": 0.10},
+      "SHIFT_DOWN_10": {"kind": "shift", "axis": "y", "direction": "down", "magnitude_frac": 0.10},
+      "SCALE_085": {"kind": "scale", "side_factor": 0.85},
+      "SCALE_115": {"kind": "scale", "side_factor": 1.15}
+    },
+    "nonclean_per_sample": 6,
+    "nonclean_proposal_executions_max": 4848,
+    "source_file": "scripts/analysis/phase36_robustness_common_v1_0.py:225-233; scripts/analysis/phase36_robustness_execution_v1_12.py:626-633"
+  },
+  "metrics": {
+    "primary": ["paired_delta_Dice = Dice_perturbed - Dice_clean (impl src.metrics.evaluation_metrics.dice, eps=1e-7)"],
+    "secondary": ["iou", "hd95"],
+    "consistency": ["prediction_consistency_Dice"],
+    "routing": ["route_state_clean", "route_state_perturbed", "route_state_changed", "B_phi_execute_clean", "B_phi_execute_perturbed", "B_phi_decision_changed", "S_omega_state"],
+    "rates": ["execution_rate", "accept_rate", "reject_rate"],
+    "proposal": ["proposal_valid", "proposal_crop_geometry"],
+    "worst_case": {"image": "min paired_delta_Dice over the image condition set", "proposal": "min paired_delta_Dice over the applicable proposal set"},
+    "hd95_undefined_handling": "NaN (never substituted)",
+    "source_file": "docs/phase36_robustness_spec_v1_0.md §7; scripts/analysis/phase36_robustness_common_v1_0.py:STATE_METRICS; scripts/analysis/phase36_robustness_common_v1_1.py:185-189"
+  },
+  "subgroup_summaries": {
+    "KUB_reporting_only": true,
+    "KUB_subgroups": ["Kidney_Stone", "Bladder_Stone", "Ureteric_Stone"],
+    "note": "KUB subgroup summaries are REPORTING METADATA only - never a segmentation class or task id.",
+    "source_file": "scripts/analysis/phase36_robustness_common_v1_0.py:77-82"
+  },
+  "figures_planned": {
+    "R1": "image mean-delta-Dice heatmap",
+    "R2": "severity curves",
+    "R3": "route-state-change / execution-rate heatmap",
+    "R4": "proposal delta-Dice",
+    "R5": "worst-case distribution",
+    "availability": "NOT_AVAILABLE_WITHOUT_NEW_MODEL_EXECUTION (Phase36 science NOT_STARTED; reports/figures/phase36_robustness/ does not exist)",
+    "output_dir_if_executed": "reports/figures/phase36_robustness/"
+  },
+  "protected_populations": {
+    "ROUTER_HOLDOUT": "NOT_ACCESSED",
+    "TEST": "NOT_ACCESSED"
+  }
+}

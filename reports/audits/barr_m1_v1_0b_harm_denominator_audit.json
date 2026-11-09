@@ -1,0 +1,232 @@
+{
+  "artifact": "barr_m1_v1_0b_harm_denominator_audit",
+  "revision": "RA_MEDFILM_BARR_BARR_M1_V1_0B__NUMERICAL_AND_CONTRAST_AUTHORITY_RECONCILIATION",
+  "generated_utc": "2026-10-27T01:57:57Z",
+  "scope": "STRICT_READ_ONLY_AUDIT",
+  "question": "The v1.0a record compared an A1 harm rate of 42.67% with an A8 harm rate of ~32.37%. Under the stated semantics an A8 all-population harmed-case rate cannot exceed 1205/4957 = 24.31%. Determine the exact numerator and denominator behind 32.37%.",
+  "inputs": {
+    "phase25c_oof_labels": {
+      "path": "data_cache/phase25c_barr_oof_paired_gain_labels_v1_2/phase25c_oof_paired_gain_labels.csv",
+      "sha256": "fd6ca32c33a3bddb75f986b1350d54ec35b11d3bf5cb0fdc029962a5aa94865f",
+      "rows": 4957
+    },
+    "phase25f_oof_safety": {
+      "path": "data_cache/phase25f_barr_post_safety_v1_0/phase25f_oof_safety_predictions.csv",
+      "sha256": "a9f63edd6d58a9a1d78a052a3e4539c6e0dd4d68bfb1c09c4c36789c441ebdee",
+      "rows": 4957
+    },
+    "phase25e_c8_membership": {
+      "path": "reports/tables/phase25e_policy_memberships_v1_0/C8_lambda0.25_budget0.25.csv",
+      "sha256": "4c411d589866434b824245d3c940bc09873f3cbc096ddc8a44776cd56273393b",
+      "rows": 4957
+    },
+    "phase28_table_02": {
+      "path": "reports/tables/phase28_table_02_arm_primary_metrics.csv",
+      "sha256": "171168f973d0a210913b567c4b743f134b1918f3d22be55a6e7046890400e3fc",
+      "rows": 13
+    }
+  },
+  "denominators_resolved": {
+    "N_population": 4957,
+    "n_selected": 1239,
+    "n_accepted": 1205,
+    "n_not_accepted": 3752
+  },
+  "requested_numbers": {
+    "1_harmed_among_all_4957_A8": 390,
+    "2_harmed_among_selected_1239_A7": 412,
+    "3_harmed_among_accepted_1205_A8": 390,
+    "4_harm_rate_over_all_4957_A8": 0.07867661892273553,
+    "5_harm_rate_conditional_on_selection_A7": 0.33252623083131555,
+    "6_harm_rate_conditional_on_acceptance_A8": 0.3236514522821577,
+    "7_strict_vs_tolerance": {
+      "A1_strict": 2115,
+      "A1_tol_1e9": 2107,
+      "A1_near_zero_negatives": 8,
+      "A7_strict": 412,
+      "A7_tol_1e9": 412,
+      "A8_strict": 390,
+      "A8_tol_1e9": 390,
+      "tolerance_affects_only_A1": true,
+      "reason": "All 8 cases with -1e-9 <= delta < 0 lie outside both the selected and accepted sets, so the tolerance changes only A1's count (2115 -> 2107)."
+    },
+    "8_accepted_and_zero_delta_consistency": {
+      "n_accepted": 1205,
+      "n_skipped_or_rejected": 3752,
+      "all_non_accepted_delta_exactly_zero": true,
+      "all_non_selected_delta_exactly_zero": true,
+      "harm_only_possible_where_executed": true
+    }
+  },
+  "per_arm": {
+    "A0": {
+      "n_population": 4957,
+      "n_executed": 0,
+      "sum_delta": 0.0,
+      "harmed_strict": 0,
+      "harmed_tol_1e9": 0,
+      "rate_all_4957_strict": 0.0,
+      "rate_all_4957_tol": 0.0
+    },
+    "A1": {
+      "n_population": 4957,
+      "n_executed": 4890,
+      "sum_delta": 8.219101516,
+      "harmed_strict": 2115,
+      "harmed_tol_1e9": 2107,
+      "rate_all_4957_strict": 0.4266693564656042,
+      "rate_all_4957_tol": 0.42505547710308655
+    },
+    "A7": {
+      "n_population": 4957,
+      "n_executed": 1239,
+      "sum_delta": 8.9785736244,
+      "harmed_strict": 412,
+      "harmed_tol_1e9": 412,
+      "rate_all_4957_strict": 0.08311478716965907,
+      "rate_all_4957_tol": 0.08311478716965907
+    },
+    "A8": {
+      "n_population": 4957,
+      "n_executed": 1205,
+      "sum_delta": 9.0564839294,
+      "harmed_strict": 390,
+      "harmed_tol_1e9": 390,
+      "rate_all_4957_strict": 0.07867661892273553,
+      "rate_all_4957_tol": 0.07867661892273553
+    }
+  },
+  "conditional_rates": {
+    "A1": {
+      "condition": "ALL_4957",
+      "n": 4957,
+      "harmed_strict": 2115,
+      "rate_conditional_strict": 0.4266693564656042
+    },
+    "A7": {
+      "condition": "SELECTED",
+      "n": 1239,
+      "harmed_strict": 412,
+      "rate_conditional_strict": 0.33252623083131555
+    },
+    "A8": {
+      "condition": "ACCEPTED",
+      "n": 1205,
+      "harmed_strict": 390,
+      "rate_conditional_strict": 0.3236514522821577
+    }
+  },
+  "frozen_table_02_field_semantics": {
+    "field": "harmful_activation_share",
+    "definition": "n_harmful_routed / n_routed",
+    "per_arm_verification": {
+      "A1": {
+        "n_routed": 4957,
+        "n_harmful_routed": 2115,
+        "harmful_activation_share": 0.426669356466,
+        "recomputed_n_harmful_over_n_routed": 0.4266693564656042,
+        "equals_share": true
+      },
+      "A2": {
+        "n_routed": 1239,
+        "n_harmful_routed": 550,
+        "harmful_activation_share": 0.44390637611,
+        "recomputed_n_harmful_over_n_routed": 0.44390637610976597,
+        "equals_share": true
+      },
+      "A3": {
+        "n_routed": 1239,
+        "n_harmful_routed": 395,
+        "harmful_activation_share": 0.318805488297,
+        "recomputed_n_harmful_over_n_routed": 0.3188054882970137,
+        "equals_share": true
+      },
+      "A4": {
+        "n_routed": 1239,
+        "n_harmful_routed": 396,
+        "harmful_activation_share": 0.319612590799,
+        "recomputed_n_harmful_over_n_routed": 0.3196125907990315,
+        "equals_share": true
+      },
+      "A5": {
+        "n_routed": 1239,
+        "n_harmful_routed": 575,
+        "harmful_activation_share": 0.46408393866,
+        "recomputed_n_harmful_over_n_routed": 0.46408393866020986,
+        "equals_share": true
+      },
+      "A6": {
+        "n_routed": 1239,
+        "n_harmful_routed": 412,
+        "harmful_activation_share": 0.332526230831,
+        "recomputed_n_harmful_over_n_routed": 0.33252623083131555,
+        "equals_share": true
+      },
+      "A7": {
+        "n_routed": 1239,
+        "n_harmful_routed": 412,
+        "harmful_activation_share": 0.332526230831,
+        "recomputed_n_harmful_over_n_routed": 0.33252623083131555,
+        "equals_share": true
+      },
+      "A8": {
+        "n_routed": 1205,
+        "n_harmful_routed": 390,
+        "harmful_activation_share": 0.323651452282,
+        "recomputed_n_harmful_over_n_routed": 0.3236514522821577,
+        "equals_share": true
+      },
+      "R1": {
+        "n_routed": 1239,
+        "n_harmful_routed": 463,
+        "harmful_activation_share": 0.373688458434,
+        "recomputed_n_harmful_over_n_routed": 0.37368845843422116,
+        "equals_share": true
+      },
+      "R2": {
+        "n_routed": 1239,
+        "n_harmful_routed": 539,
+        "harmful_activation_share": 0.435028248588,
+        "recomputed_n_harmful_over_n_routed": 0.4350282485875706,
+        "equals_share": true
+      },
+      "R3": {
+        "n_routed": 1239,
+        "n_harmful_routed": 524,
+        "harmful_activation_share": 0.422921711057,
+        "recomputed_n_harmful_over_n_routed": 0.42292171105730425,
+        "equals_share": true
+      },
+      "F1": {
+        "n_routed": 1239,
+        "n_harmful_routed": 853,
+        "harmful_activation_share": 0.688458434221,
+        "recomputed_n_harmful_over_n_routed": 0.688458434221146,
+        "equals_share": true
+      }
+    },
+    "all_arms_consistent": true
+  },
+  "upper_bound_check": {
+    "rule": "A8 all-population harmed count must not exceed the accepted count",
+    "harmed": 390,
+    "accepted": 1205,
+    "pass": true,
+    "rate_bound": 0.24309057897922132,
+    "observed_rate": 0.07867661892273553,
+    "within_bound": true
+  },
+  "finding": {
+    "defect_confirmed": true,
+    "defect": "DENOMINATOR_SWITCH__UNCONDITIONAL_A1_RATE_COMPARED_WITH_CONDITIONAL_A8_RATE",
+    "32_37_percent_is": "390 / 1205 — conditional on ACCEPTANCE",
+    "42_67_percent_is": "2115 / 4957 — all-population (A1 executes every case, so its conditional and unconditional rates coincide)",
+    "comparison_in_v1_0a_valid": false,
+    "corrected_like_for_like_unconditional": "A1 42.6670% (2115/4957) -> A8 7.8677% (390/4957)",
+    "corrected_like_for_like_conditional": "A1 42.6670% (2115/4957) -> A7 33.2526% (412/1239) -> A8 32.3651% (390/1205)",
+    "decomposition_note": "The unconditional gap mixes SELECTION with the fact that unexecuted cases cannot be harmed; only the conditional chain separates selection (42.67 -> 33.25 among executed) from safety (33.25 -> 32.37).",
+    "must_not_replace_conditional_with_unconditional": true
+  },
+  "new_contrast_computed": false,
+  "model_inference": 0
+}

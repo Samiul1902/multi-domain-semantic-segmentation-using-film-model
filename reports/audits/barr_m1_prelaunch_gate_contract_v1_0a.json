@@ -1,0 +1,138 @@
+{
+  "artifact": "barr_m1_prelaunch_gate_contract_v1_0a",
+  "revision": "RA_MEDFILM_BARR_BARR_M1_V1_0A__SCIENTIFIC_DESIGN_RECONCILIATION",
+  "generated_utc": "2026-10-27T01:38:09Z",
+  "scope": "PLANNING_CORRECTION_ONLY",
+  "framework": "R1-R10 retained; each requirement specialised for an inference / re-analysis study",
+  "requirements": [
+    {
+      "id": "R1",
+      "title": "Documented scientific authorization",
+      "demand": "Named, dated, attributable authorisation with scope, population, seeds and exclusions.",
+      "inference_specialisation": "Identical. Scope must enumerate: arms A0/A1/A8 only, population ROUTER_DEVELOPMENT, mode RE_ANALYSIS_ONLY, and the exclusion list.",
+      "training_only_na_reason": null,
+      "fail_closed_code": [
+        "E_AUTHORIZATION_ABSENT",
+        "E_AUTHORIZATION_SCOPE_MISMATCH",
+        "E_AUTHORIZATION_EXCLUSION_VIOLATED"
+      ]
+    },
+    {
+      "id": "R2",
+      "title": "Frozen protocol and frozen population",
+      "demand": "Freeze the training recipe and the populations by digest before the first training step.",
+      "inference_specialisation": "No training recipe exists. Substitute frozen inputs: (a) four component checkpoint SHA-256; (b) frozen ROI/fusion/threshold config (0.30 / 1.50 / 256 / 0.50 / 0.50); (c) frozen membership artifact C8_lambda0.25_budget0.25.csv with its SHA and selected_ids_sha256; (d) manifest digests for DEV and (if approved) VAL808; (e) exact row-count and sample_id-set equality checks at load.",
+      "training_only_na_reason": "No optimiser, loss, augmentation, LR, batch size, epoch ceiling or patience exists in a re-analysis; freezing a training recipe would be meaningless.",
+      "fail_closed_code": [
+        "E_PROTOCOL_UNFROZEN",
+        "E_PROTOCOL_NOT_LOADED_FROM_FROZEN",
+        "E_POPULATION_SHA_MISMATCH",
+        "E_POPULATION_COUNT_MISMATCH",
+        "E_ROW_IDENTITY_MISMATCH"
+      ]
+    },
+    {
+      "id": "R3",
+      "title": "Direct source-to-authority field comparison",
+      "demand": "At least one edge must read the frozen authority and compare a concrete value.",
+      "inference_specialisation": "Compare the harness's effective constants against the frozen authority VALUES, field by field: roi_proposal_threshold 0.30, roi_expansion 1.50, roi_resolution 256, segmentation_output_threshold 0.50, safety_accept_threshold 0.50, budget 0.25, K 1239, lambda 0.25, bootstrap 2000 / seed 42. Plus a second authority edge: recompute the A0/A1/A7/A8 aggregates and compare them to the frozen Phase-28 table 02 values (this is a VALUE comparison, not a digest comparison).",
+      "training_only_na_reason": null,
+      "fail_closed_code": [
+        "E_NO_AUTHORITY_EDGE",
+        "E_AUTHORITY_FIELD_MISMATCH",
+        "E_DIGEST_COMPARISON_SUBSTITUTED_FOR_VALUE_COMPARISON",
+        "E_FROZEN_AGGREGATE_NOT_REPRODUCED"
+      ]
+    },
+    {
+      "id": "R4",
+      "title": "Exact harness SHA binding",
+      "demand": "The digest of the executing harness must be recorded and re-verified at launch.",
+      "inference_specialisation": "Identical and non-negotiable: the re-analysis harness computes its own raw-byte SHA-256 at start, compares it to the authorised digest, aborts on mismatch, and writes the digest into every per-arm registry entry.",
+      "training_only_na_reason": null,
+      "fail_closed_code": [
+        "E_HARNESS_SHA_ABSENT",
+        "E_HARNESS_SHA_MISMATCH",
+        "E_HARNESS_NOT_BOUND_AT_LAUNCH"
+      ]
+    },
+    {
+      "id": "R5",
+      "title": "Parameter-count checks",
+      "demand": "Measure total and trainable parameter counts and compare to declared expectations.",
+      "inference_specialisation": "No training, so 'trainable' is meaningless. Substitute INFERENCE_LOAD_VERIFICATION: at load, verify each state_dict's tensor count and summed numel against declared values (G 3,523,001; R_psi 1,276,401; B_phi 36,801; S_omega 1,217) and require 0 missing / 0 unexpected keys. If BARR-M1 runs purely on frozen per-case arrays (no model load at all), this becomes a NEGATIVE requirement: assert that NO model was constructed and that the parameter counters are exactly 0.",
+      "training_only_na_reason": "Gradient/optimiser state does not exist in a frozen inference or re-analysis path.",
+      "fail_closed_code": [
+        "E_PARAM_TOTAL_MISMATCH",
+        "E_PARAM_EXPECTATION_NOT_DECLARED",
+        "E_STATE_DICT_KEY_MISMATCH",
+        "E_MODEL_CONSTRUCTED_WITHOUT_AUTHORIZATION"
+      ]
+    },
+    {
+      "id": "R6",
+      "title": "Prespecified seed policy",
+      "demand": "Declare the seed set and what claim the count supports before launch.",
+      "inference_specialisation": "Training seeds are not applicable. Substitute: (a) declare that inference is deterministic and that NO inference RNG is consumed; (b) fix the bootstrap seed at 42 with 2000 resamples; (c) declare explicitly that BARR-M1 provides ONE frozen bundle and therefore no seed-to-seed uncertainty; (d) declare that the Phase-29 three-seed spread is NOT a BARR-M1 uncertainty estimate.",
+      "training_only_na_reason": "There are no training seeds in a re-analysis over a single frozen bundle.",
+      "fail_closed_code": [
+        "E_SEED_POLICY_ABSENT",
+        "E_SEED_SET_MISMATCH",
+        "E_SINGLE_SEED_CLAIM_UNLABELLED",
+        "E_THREE_SEED_SPREAD_MISUSED_AS_UNCERTAINTY"
+      ]
+    },
+    {
+      "id": "R7",
+      "title": "Checkpoint and complete epoch-log persistence",
+      "demand": "Persist per-epoch logs plus latest.pt / best.pt with correct selection metadata.",
+      "inference_specialisation": "No epochs and no checkpoints are produced. Substitute: (a) per-case output persistence for every arm (sample_id, dice_global, dice_arm, delta, executed flag, safety decision) so harm is independently recomputable; (b) write-once outputs (O_CREAT|O_EXCL) with post-write size and SHA verification; (c) a resume manifest making each arm idempotent; (d) a per-arm completion marker that records the exact input SHAs consumed.",
+      "training_only_na_reason": "A re-analysis has no epoch loop, no early stopping and no checkpoint selection.",
+      "fail_closed_code": [
+        "E_CKPT_ABSENT",
+        "E_CKPT_SHA_MISMATCH",
+        "E_PER_CASE_OUTPUT_ABSENT",
+        "E_OUTPUT_NOT_WRITE_ONCE",
+        "E_RESUME_NOT_IDEMPOTENT"
+      ]
+    },
+    {
+      "id": "R8",
+      "title": "Positive and negative gate controls",
+      "demand": "Demonstrate the gate FAILS when it should.",
+      "inference_specialisation": "Identical plus inference-specific negative controls: corrupt a component SHA; swap the A8 membership artifact for C7; drop one case; duplicate one case; change K from 1239 to 1238; shuffle case order and assert per-case output stability; point the population at VAL808 while the contract says DEV. Each must abort with its named code. A pass-through on any negative case is a release blocker.",
+      "training_only_na_reason": null,
+      "fail_closed_code": [
+        "E_NEGATIVE_CONTROL_NOT_FAILING",
+        "E_GATE_NEVER_OBSERVED_FAILING"
+      ]
+    },
+    {
+      "id": "R9",
+      "title": "Separated development-validation and independent-evidence claim boundary",
+      "demand": "State which population each metric uses and what claim it can support.",
+      "inference_specialisation": "Identical, and stricter here: the primary population is the TRAINING population of B_phi and S_omega and a subset of TRAIN for G and R_psi. The claim boundary must record `DESCRIPTIVE_DEV`, `IN_SAMPLE_FOR_ROUTER_AND_SAFETY = true`, and prohibit HELD_OUT, CONFIRMATORY, GENERALISATION and CLINICAL_SAFETY.",
+      "training_only_na_reason": null,
+      "fail_closed_code": [
+        "E_CLAIM_BOUNDARY_ABSENT",
+        "E_DEV_METRIC_LABELLED_HELD_OUT",
+        "E_SELECTION_SET_USED_AS_INDEPENDENT"
+      ]
+    },
+    {
+      "id": "R10",
+      "title": "No protected TEST access, no unapproved external inference",
+      "demand": "TEST is Phase39-only; ROUTER_HOLDOUT is locked; external inference needs approval.",
+      "inference_specialisation": "Identical, and additionally: enumerate every file opened, abort on any path matching TEST / ROUTER_HOLDOUT / external markers, and require read counters to be zero before launch and zero at completion.",
+      "training_only_na_reason": null,
+      "fail_closed_code": [
+        "E_TEST_ACCESS",
+        "E_ROUTER_HOLDOUT_ACCESS",
+        "E_EXTERNAL_INFERENCE_UNAPPROVED",
+        "E_ACCESS_STATEMENT_NOT_ENUMERATED"
+      ]
+    }
+  ],
+  "release_rule": "All ten must be PASS and the negative-control battery green before launch.",
+  "real_data_forward_pass_authorised_by_this_task": false
+}

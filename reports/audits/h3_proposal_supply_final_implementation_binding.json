@@ -1,0 +1,49 @@
+{
+  "artifact": "H3_PROPOSAL_SUPPLY_FINAL_IMPLEMENTATION_BINDING",
+  "status": "FROZEN_IMPLEMENTATION_BOUND__AWAITING_PROSPECTIVE_TRAINING_AUTHORIZATION",
+  "generated_utc": "2026-09-23T15:49:51Z",
+  "axis": "A_PROPOSAL_SUPPLY_RECALL_LIMITATION",
+  "intervention_family": "A_TARGET_SUPPORT_REDESIGN",
+  "intervention_wording": "FIXED_TARGET_SUPPORT_MAY_BE_MISMATCHED_TO_COMPONENT_SCALE",
+  "corrected_mapping": "sigma_i = clip(0.35 + 0.40 * sqrt(A128_i / 14.0), 0.35, 0.75)",
+  "a_ref": 14.0,
+  "training_status": {
+    "epochs_trained": 0,
+    "h3_checkpoint_exists": false,
+    "note": "No H3 training launched. Implementation is bound only."
+  },
+  "implementation_sha256": {
+    "src/inference/heatmap_targets.py": "4fe01377b5fb2f15377fda37ef2114a04185fa44a6dacef4983f2c0b15122d1c",
+    "src/data/kub_localizer_dataset.py": "b1c4645f8860d557ffc6cb145c224a7ddb5d804e558147fd37b8d8903feb3c5f",
+    "src/training/clean_v3_selection.py": "807a70181c1f0da7481a26f1d06e1a1f2ca21dd0e93d44d987e630f38f500fbb",
+    "scripts/training/train_phase13b_localizer.py": "c7b1824b5b215db167bd5293d2899052e356fb2eb118c4377f84b2c5d03519fd",
+    "tests/test_h3_size_adaptive_sigma.py": "57094021876284e14449804f0a70ca5cfe62062612a5de5803726be27cd33367",
+    "scripts/audit/h3_calibrate_size_adaptive_sigma.py": "71fd74e19f07f5b9475bd8d14373ce847bea6dc803e250f4f93969590632861c",
+    "configs/kub/phase13b_localizer_h3_size_adaptive_sigma.yaml": "13a12bea2e5f2a84737f350fd26dae56da622960aa32db5dfb26a93ff69aefd1"
+  },
+  "verification_artifact_sha256": {
+    "reports/tables/h3_code_exact_sigma_distribution.json": "9041302110d6dd67c23df3c786cb62d08eed38f206c398e9b3fca783a6abf568",
+    "reports/tables/h3_code_exact_component_areas.csv": "a9beb700b619649b43e190b5ca0f18c1fc5cc457f2213cb55c66133582a80990",
+    "reports/tables/h3_aref_code_exact.json": "2bf540f1ea6bceab9bc13b11c5f8966f5f1cbd016e6fb8f3f4dc430f700db42d"
+  },
+  "correction_artifact_sha256": {
+    "reports/audits/h3_proposal_supply_design_correction.json": "82c2ca08c6a215605c2ce491cbea5d879bdfffa21a029438af942122755d329a",
+    "reports/audits/h3_proposal_supply_design_correction.md": "cd59091495120441f1def29aed435f6bde0621e0644cb49609cdd150385cb023"
+  },
+  "checklist_sha256": {
+    "reports/audits/h3_proposal_supply_pre_execution_checklist.json": "0f37520ea37ccf23511b9ede89e292e29ae837f5c98fd2b059431bfbf300836d"
+  },
+  "preserved_original_design_sha256": {
+    "reports/audits/h3_proposal_supply_design_protocol.json": "51a1e0ae02f07506438da9e77ba0d8edd29c6382c2a8d6ddd15e6136c45827b3",
+    "reports/audits/h3_proposal_supply_code_change_spec.json (DEFECTIVE, preserved)": "0e94d95653e2f492293b43d20bff4511a41d52c4a3ed9072e01eb72cd3b0c6b4",
+    "reports/audits/h3_proposal_supply_checkpoint_selection_rule.json": "e796196bf14636d09f20c2b4104e6ae232a0eaf208ae633cb7fc27e93dd62d5f",
+    "reports/audits/h3_proposal_supply_success_failure_criteria.json": "9bfc361ddaee939d7cc0bd3f120e5ff4a504c403877a2cb1350ca00804074489",
+    "reports/audits/h3_proposal_supply_unchanged_axes_matrix.json": "077495e6c087bb808b2020d162b7e42c4ccfd08f18df2b62bc11905e7791b7f1",
+    "reports/audits/h3_proposal_supply_static_baseline_trace.json": "06bb2436352a7fc873e8896276c00c613bcdc04afaf2ad43ef616533cd0fb5c3",
+    "reports/audits/h3_proposal_supply_changed_files.json": "73e23a59f9a56cd96184aab393d4e3f419bac46919bb87c723fe152ee5f5508a"
+  },
+  "non_degeneracy_verdict": "PASS (14 distinct sigma levels; 23.3% at ceiling; TINY median sigma 0.457 < non-TINY 0.633)",
+  "backward_compatibility": "Default branches unchanged; 12/12 new unit tests pass; existing test_kub_localizer / clean_v3_selection selection tests unchanged except the 1 pre-existing unrelated failure.",
+  "ready_state": "H3_IMPLEMENTATION_BOUND__AWAITING_PROSPECTIVE_TRAINING_AUTHORIZATION",
+  "next_action_required": "Supervisor authorization of H3 TRAINING. On authorization: train_phase13b_localizer.py --config configs/kub/phase13b_localizer_h3_size_adaptive_sigma.yaml --resolution 512 --heatmap_resolution 128 --sigma 0.75 --size_adaptive_sigma --selection_rule max_localization_recall"
+}

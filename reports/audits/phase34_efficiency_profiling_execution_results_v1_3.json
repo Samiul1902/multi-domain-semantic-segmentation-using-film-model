@@ -1,0 +1,1139 @@
+{
+ "revision": "ra_medfilm_barr_phase34_efficiency_profiling_v1_3",
+ "repo_root": "D:\\Softfors\\jup",
+ "started_utc": "2026-10-04T13:34:28Z",
+ "gate_1_source_and_hashes": {
+  "freeze": "reports\\audits\\phase34_preexecution_source_freeze_v1_3.json",
+  "all_sources_match": true,
+  "n_sources": 10
+ },
+ "gate_2_environment": {
+  "os": "Windows-10-10.0.26200-SP0",
+  "python": "3.11.9",
+  "torch": "2.6.0+cu124",
+  "cuda_runtime": "12.4",
+  "cudnn": 90100,
+  "gpu": "NVIDIA GeForce RTX 3060 Ti",
+  "cc": "8.6",
+  "vram_bytes": 8589279232
+ },
+ "gate_3_checkpoints": {
+  "G": {
+   "sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+   "file_bytes": 42369710
+  },
+  "R_psi": {
+   "sha256": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109",
+   "file_bytes": 15425424
+  },
+  "B_phi": {
+   "sha256": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+   "file_bytes": 455682
+  },
+  "S_omega": {
+   "sha256": "eee9b97b9921e53fc07eac9281dce64ba518c6e1659916b97b0b3bec21ec6d2e",
+   "file_bytes": 7816
+  }
+ },
+ "gate_4_component_smoke": {
+  "results": {
+   "G_COMPONENT": {
+    "arm": "G_COMPONENT",
+    "batch_size": 1,
+    "revision": "ra_medfilm_barr_phase34_efficiency_profiling_v1_3",
+    "repo_root": "D:\\Softfors\\jup",
+    "repo_root_resolution": "FILE_RELATIVE",
+    "runtime_profile": "COMPONENT_SPECIFIC_CANONICAL_PRECISION_SEMANTICS",
+    "batch1_label": "CANONICAL_GRAPH_HARDWARE_MICROBENCHMARK__BATCH1_NOT_CANONICAL_G_NUMERICAL_REPRODUCTION",
+    "batch8_label": "SYNTHETIC_HARDWARE_THROUGHPUT_BENCHMARK",
+    "canonical_numerical_reproduction": false,
+    "timing_scope": "SYNTHETIC_COMPONENT_RUNTIME",
+    "generator": "PYTORCH_CUDA_GENERATOR_SEED_42",
+    "started_utc": "2026-10-04T13:34:34Z",
+    "mode": "smoke",
+    "scope": "COMPONENT",
+    "component": {
+     "component": "G",
+     "constructed": true,
+     "eval": true,
+     "strict_load": {
+      "missing_keys": [],
+      "unexpected_keys": []
+     },
+     "parameter_count": 3523001,
+     "parameter_dtypes": [
+      "torch.float32"
+     ],
+     "checkpoint_sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+     "smoke_task_id": 0,
+     "smoke_domain": "ISIC",
+     "forward_calls": 1,
+     "timed": false,
+     "output_shape": [
+      1,
+      1,
+      512,
+      512
+     ],
+     "output_dtype": "torch.float32",
+     "finite": true
+    },
+    "individual_component_smoke_model_forward_calls": 1,
+    "controlled_path_smoke_model_forward_calls": 0,
+    "total_smoke_model_forward_calls": 1
+   },
+   "R_PSI_COMPONENT": {
+    "arm": "R_PSI_COMPONENT",
+    "batch_size": 1,
+    "revision": "ra_medfilm_barr_phase34_efficiency_profiling_v1_3",
+    "repo_root": "D:\\Softfors\\jup",
+    "repo_root_resolution": "FILE_RELATIVE",
+    "runtime_profile": "COMPONENT_SPECIFIC_CANONICAL_PRECISION_SEMANTICS",
+    "batch1_label": "CANONICAL_GRAPH_HARDWARE_MICROBENCHMARK__BATCH1_NOT_CANONICAL_G_NUMERICAL_REPRODUCTION",
+    "batch8_label": "SYNTHETIC_HARDWARE_THROUGHPUT_BENCHMARK",
+    "canonical_numerical_reproduction": false,
+    "timing_scope": "SYNTHETIC_COMPONENT_RUNTIME",
+    "generator": "PYTORCH_CUDA_GENERATOR_SEED_42",
+    "started_utc": "2026-10-04T13:34:38Z",
+    "mode": "smoke",
+    "scope": "COMPONENT",
+    "component": {
+     "component": "R_psi",
+     "constructed": true,
+     "eval": true,
+     "strict_load": {
+      "missing_keys": [],
+      "unexpected_keys": []
+     },
+     "parameter_count": 1276401,
+     "parameter_dtypes": [
+      "torch.float32"
+     ],
+     "checkpoint_sha256": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109",
+     "smoke_task_id": 0,
+     "smoke_domain": "ISIC",
+     "forward_calls": 1,
+     "timed": false,
+     "output_shape": [
+      1,
+      1,
+      256,
+      256
+     ],
+     "output_dtype": "torch.float32",
+     "finite": true
+    },
+    "individual_component_smoke_model_forward_calls": 1,
+    "controlled_path_smoke_model_forward_calls": 0,
+    "total_smoke_model_forward_calls": 1
+   },
+   "B_PHI_COMPONENT": {
+    "arm": "B_PHI_COMPONENT",
+    "batch_size": 1,
+    "revision": "ra_medfilm_barr_phase34_efficiency_profiling_v1_3",
+    "repo_root": "D:\\Softfors\\jup",
+    "repo_root_resolution": "FILE_RELATIVE",
+    "runtime_profile": "COMPONENT_SPECIFIC_CANONICAL_PRECISION_SEMANTICS",
+    "batch1_label": "CANONICAL_GRAPH_HARDWARE_MICROBENCHMARK__BATCH1_NOT_CANONICAL_G_NUMERICAL_REPRODUCTION",
+    "batch8_label": "SYNTHETIC_HARDWARE_THROUGHPUT_BENCHMARK",
+    "canonical_numerical_reproduction": false,
+    "timing_scope": "SYNTHETIC_COMPONENT_RUNTIME",
+    "generator": "PYTORCH_CUDA_GENERATOR_SEED_42",
+    "started_utc": "2026-10-04T13:34:42Z",
+    "mode": "smoke",
+    "scope": "COMPONENT",
+    "component": {
+     "component": "B_phi",
+     "constructed": true,
+     "eval": true,
+     "strict_load": {
+      "missing_keys": [],
+      "unexpected_keys": []
+     },
+     "parameter_count": 36801,
+     "parameter_dtypes": [
+      "torch.float32"
+     ],
+     "checkpoint_sha256": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+     "smoke_task_id": 0,
+     "smoke_domain": "ISIC",
+     "forward_calls": 1,
+     "timed": false,
+     "output_shape": [
+      1
+     ],
+     "output_dtype": "torch.float32",
+     "finite": true
+    },
+    "individual_component_smoke_model_forward_calls": 1,
+    "controlled_path_smoke_model_forward_calls": 0,
+    "total_smoke_model_forward_calls": 1
+   },
+   "S_OMEGA_COMPONENT": {
+    "arm": "S_OMEGA_COMPONENT",
+    "batch_size": 1,
+    "revision": "ra_medfilm_barr_phase34_efficiency_profiling_v1_3",
+    "repo_root": "D:\\Softfors\\jup",
+    "repo_root_resolution": "FILE_RELATIVE",
+    "runtime_profile": "COMPONENT_SPECIFIC_CANONICAL_PRECISION_SEMANTICS",
+    "batch1_label": "CANONICAL_GRAPH_HARDWARE_MICROBENCHMARK__BATCH1_NOT_CANONICAL_G_NUMERICAL_REPRODUCTION",
+    "batch8_label": "SYNTHETIC_HARDWARE_THROUGHPUT_BENCHMARK",
+    "canonical_numerical_reproduction": false,
+    "timing_scope": "SYNTHETIC_COMPONENT_RUNTIME",
+    "generator": "PYTORCH_CUDA_GENERATOR_SEED_42",
+    "started_utc": "2026-10-04T13:34:46Z",
+    "mode": "smoke",
+    "scope": "COMPONENT",
+    "component": {
+     "component": "S_omega",
+     "constructed": true,
+     "eval": true,
+     "strict_load": {
+      "missing_keys": [],
+      "unexpected_keys": []
+     },
+     "parameter_count": 1217,
+     "parameter_dtypes": [
+      "torch.float32"
+     ],
+     "checkpoint_sha256": "eee9b97b9921e53fc07eac9281dce64ba518c6e1659916b97b0b3bec21ec6d2e",
+     "smoke_task_id": 0,
+     "smoke_domain": "ISIC",
+     "forward_calls": 1,
+     "timed": false,
+     "output_shape": [
+      1
+     ],
+     "output_dtype": "torch.float32",
+     "finite": true
+    },
+    "individual_component_smoke_model_forward_calls": 1,
+    "controlled_path_smoke_model_forward_calls": 0,
+    "total_smoke_model_forward_calls": 1
+   }
+  },
+  "pass": true
+ },
+ "gate_5_path_smoke": {
+  "results": {
+   "SKIP_CONTROLLED_PATH": {
+    "arm": "SKIP_CONTROLLED_PATH",
+    "batch_size": 1,
+    "revision": "ra_medfilm_barr_phase34_efficiency_profiling_v1_3",
+    "repo_root": "D:\\Softfors\\jup",
+    "repo_root_resolution": "FILE_RELATIVE",
+    "runtime_profile": "COMPONENT_SPECIFIC_CANONICAL_PRECISION_SEMANTICS",
+    "batch1_label": "CANONICAL_GRAPH_HARDWARE_MICROBENCHMARK__BATCH1_NOT_CANONICAL_G_NUMERICAL_REPRODUCTION",
+    "batch8_label": "SYNTHETIC_HARDWARE_THROUGHPUT_BENCHMARK",
+    "canonical_numerical_reproduction": false,
+    "timing_scope": "MODEL_COMPUTE_PATH_RUNTIME",
+    "generator": "PYTORCH_CUDA_GENERATOR_SEED_42",
+    "started_utc": "2026-10-04T13:34:49Z",
+    "mode": "smoke",
+    "scope": "CONTROLLED_PATH",
+    "path": {
+     "arm": "SKIP_CONTROLLED_PATH",
+     "components": [
+      "G",
+      "B_phi"
+     ],
+     "forward_calls": 2,
+     "timed": false,
+     "route_forced": true,
+     "natural_route_replay": false,
+     "b_phi_output_used_to_choose_route": false,
+     "outputs": {
+      "G": {
+       "output_shape": [
+        1,
+        1,
+        512,
+        512
+       ],
+       "output_dtype": "torch.float32",
+       "finite": true
+      },
+      "B_phi": {
+       "output_shape": [
+        1
+       ],
+       "output_dtype": "torch.float32",
+       "finite": true
+      }
+     }
+    },
+    "individual_component_smoke_model_forward_calls": 0,
+    "controlled_path_smoke_model_forward_calls": 2,
+    "total_smoke_model_forward_calls": 2
+   },
+   "EXECUTE_CONTROLLED_PATH": {
+    "arm": "EXECUTE_CONTROLLED_PATH",
+    "batch_size": 1,
+    "revision": "ra_medfilm_barr_phase34_efficiency_profiling_v1_3",
+    "repo_root": "D:\\Softfors\\jup",
+    "repo_root_resolution": "FILE_RELATIVE",
+    "runtime_profile": "COMPONENT_SPECIFIC_CANONICAL_PRECISION_SEMANTICS",
+    "batch1_label": "CANONICAL_GRAPH_HARDWARE_MICROBENCHMARK__BATCH1_NOT_CANONICAL_G_NUMERICAL_REPRODUCTION",
+    "batch8_label": "SYNTHETIC_HARDWARE_THROUGHPUT_BENCHMARK",
+    "canonical_numerical_reproduction": false,
+    "timing_scope": "MODEL_COMPUTE_PATH_RUNTIME",
+    "generator": "PYTORCH_CUDA_GENERATOR_SEED_42",
+    "started_utc": "2026-10-04T13:34:54Z",
+    "mode": "smoke",
+    "scope": "CONTROLLED_PATH",
+    "path": {
+     "arm": "EXECUTE_CONTROLLED_PATH",
+     "components": [
+      "G",
+      "B_phi",
+      "R_psi",
+      "S_omega"
+     ],
+     "forward_calls": 4,
+     "timed": false,
+     "route_forced": true,
+     "natural_route_replay": false,
+     "b_phi_output_used_to_choose_route": false,
+     "outputs": {
+      "G": {
+       "output_shape": [
+        1,
+        1,
+        512,
+        512
+       ],
+       "output_dtype": "torch.float32",
+       "finite": true
+      },
+      "B_phi": {
+       "output_shape": [
+        1
+       ],
+       "output_dtype": "torch.float32",
+       "finite": true
+      },
+      "R_psi": {
+       "output_shape": [
+        1,
+        1,
+        256,
+        256
+       ],
+       "output_dtype": "torch.float32",
+       "finite": true
+      },
+      "S_omega": {
+       "output_shape": [
+        1
+       ],
+       "output_dtype": "torch.float32",
+       "finite": true
+      }
+     }
+    },
+    "individual_component_smoke_model_forward_calls": 0,
+    "controlled_path_smoke_model_forward_calls": 4,
+    "total_smoke_model_forward_calls": 4
+   }
+  },
+  "pass": true
+ },
+ "arm_order": [
+  "GLOBAL_ONLY_C1",
+  "SKIP_CONTROLLED_PATH",
+  "EXECUTE_CONTROLLED_PATH",
+  "FINAL_ROUTED_A8_C9",
+  "G_COMPONENT",
+  "R_PSI_COMPONENT",
+  "B_PHI_COMPONENT",
+  "S_OMEGA_COMPONENT"
+ ],
+ "worker_results": [
+  {
+   "arm": "GLOBAL_ONLY_C1",
+   "batch_size": 1,
+   "revision": "ra_medfilm_barr_phase34_efficiency_profiling_v1_3",
+   "repo_root": "D:\\Softfors\\jup",
+   "repo_root_resolution": "FILE_RELATIVE",
+   "runtime_profile": "COMPONENT_SPECIFIC_CANONICAL_PRECISION_SEMANTICS",
+   "batch1_label": "CANONICAL_GRAPH_HARDWARE_MICROBENCHMARK__BATCH1_NOT_CANONICAL_G_NUMERICAL_REPRODUCTION",
+   "batch8_label": "SYNTHETIC_HARDWARE_THROUGHPUT_BENCHMARK",
+   "canonical_numerical_reproduction": false,
+   "timing_scope": "MODEL_COMPUTE_PATH_RUNTIME",
+   "generator": "PYTORCH_CUDA_GENERATOR_SEED_42",
+   "started_utc": "2026-10-04T13:34:58Z",
+   "mode": "latency",
+   "latency": {
+    "n_observations": 1000,
+    "blocks": 5,
+    "iterations_per_block": 200,
+    "batch_size": 1,
+    "mean_ms": 3120.52431640625,
+    "min_ms": 3098.46435546875,
+    "max_ms": 3135.845458984375,
+    "median_ms": 3124.8291015625,
+    "p50_ms": 3124.8291015625,
+    "p90_ms": 3135.845458984375,
+    "p95_ms": 3135.845458984375,
+    "p99_ms": 3135.845458984375,
+    "wall_clock_block_ms": [
+     3155.7576000050176,
+     3098.5472000029404,
+     3124.834099995496,
+     3111.602299999504,
+     3135.8450000043376
+    ],
+    "timer": "torch.cuda.Event(enable_timing=True) + torch.cuda.synchronize()",
+    "wall_clock_cross_check_ms": 3125.317240001459,
+    "task_schedule": "iteration_index mod 4 (0=ISIC,1=BUSI,2=KVASIR,3=KUB)",
+    "warmup_iterations": 50
+   }
+  },
+  {
+   "arm": "GLOBAL_ONLY_C1",
+   "batch_size": 8,
+   "revision": "ra_medfilm_barr_phase34_efficiency_profiling_v1_3",
+   "repo_root": "D:\\Softfors\\jup",
+   "repo_root_resolution": "FILE_RELATIVE",
+   "runtime_profile": "COMPONENT_SPECIFIC_CANONICAL_PRECISION_SEMANTICS",
+   "batch1_label": "CANONICAL_GRAPH_HARDWARE_MICROBENCHMARK__BATCH1_NOT_CANONICAL_G_NUMERICAL_REPRODUCTION",
+   "batch8_label": "SYNTHETIC_HARDWARE_THROUGHPUT_BENCHMARK",
+   "canonical_numerical_reproduction": false,
+   "timing_scope": "MODEL_COMPUTE_PATH_RUNTIME",
+   "generator": "PYTORCH_CUDA_GENERATOR_SEED_42",
+   "started_utc": "2026-10-04T13:35:19Z",
+   "mode": "throughput",
+   "throughput": {
+    "batch_size": 8,
+    "processed_samples": 8000,
+    "timed_seconds": 85.41441559999657,
+    "fps": 93.66100492292452,
+    "fps_definition": "processed_samples / synchronized_wall_seconds",
+    "task_vector": [
+     0,
+     1,
+     2,
+     3,
+     0,
+     1,
+     2,
+     3
+    ],
+    "warmup_iterations": 50
+   }
+  },
+  {
+   "arm": "GLOBAL_ONLY_C1",
+   "batch_size": 1,
+   "revision": "ra_medfilm_barr_phase34_efficiency_profiling_v1_3",
+   "repo_root": "D:\\Softfors\\jup",
+   "repo_root_resolution": "FILE_RELATIVE",
+   "runtime_profile": "COMPONENT_SPECIFIC_CANONICAL_PRECISION_SEMANTICS",
+   "batch1_label": "CANONICAL_GRAPH_HARDWARE_MICROBENCHMARK__BATCH1_NOT_CANONICAL_G_NUMERICAL_REPRODUCTION",
+   "batch8_label": "SYNTHETIC_HARDWARE_THROUGHPUT_BENCHMARK",
+   "canonical_numerical_reproduction": false,
+   "timing_scope": "MODEL_COMPUTE_PATH_RUNTIME",
+   "generator": "PYTORCH_CUDA_GENERATOR_SEED_42",
+   "started_utc": "2026-10-04T13:36:53Z",
+   "mode": "memory",
+   "memory": {
+    "baseline_gpu_allocated_after_model_load": 26690560,
+    "baseline_gpu_reserved_after_model_load": 48234496,
+    "peak_gpu_allocated_during_inference": 336083968,
+    "peak_gpu_reserved_during_inference": 411041792,
+    "incremental_peak_allocated_over_loaded_baseline": 309393408,
+    "reserved_memory_labeled_model_memory": false
+   }
+  },
+  {
+   "arm": "SKIP_CONTROLLED_PATH",
+   "batch_size": 1,
+   "revision": "ra_medfilm_barr_phase34_efficiency_profiling_v1_3",
+   "repo_root": "D:\\Softfors\\jup",
+   "repo_root_resolution": "FILE_RELATIVE",
+   "runtime_profile": "COMPONENT_SPECIFIC_CANONICAL_PRECISION_SEMANTICS",
+   "batch1_label": "CANONICAL_GRAPH_HARDWARE_MICROBENCHMARK__BATCH1_NOT_CANONICAL_G_NUMERICAL_REPRODUCTION",
+   "batch8_label": "SYNTHETIC_HARDWARE_THROUGHPUT_BENCHMARK",
+   "canonical_numerical_reproduction": false,
+   "timing_scope": "MODEL_COMPUTE_PATH_RUNTIME",
+   "generator": "PYTORCH_CUDA_GENERATOR_SEED_42",
+   "started_utc": "2026-10-04T13:36:57Z",
+   "mode": "latency",
+   "latency": {
+    "n_observations": 1000,
+    "blocks": 5,
+    "iterations_per_block": 200,
+    "batch_size": 1,
+    "mean_ms": 3143.79365234375,
+    "min_ms": 3128.846435546875,
+    "max_ms": 3161.132080078125,
+    "median_ms": 3140.082763671875,
+    "p50_ms": 3140.082763671875,
+    "p90_ms": 3161.132080078125,
+    "p95_ms": 3161.132080078125,
+    "p99_ms": 3161.132080078125,
+    "wall_clock_block_ms": [
+     3150.3719999964233,
+     3161.1169000025257,
+     3128.8423000005423,
+     3138.5582000002614,
+     3140.089100001205
+    ],
+    "timer": "torch.cuda.Event(enable_timing=True) + torch.cuda.synchronize()",
+    "wall_clock_cross_check_ms": 3143.7957000001916,
+    "task_schedule": "iteration_index mod 4 (0=ISIC,1=BUSI,2=KVASIR,3=KUB)",
+    "warmup_iterations": 50
+   }
+  },
+  {
+   "arm": "SKIP_CONTROLLED_PATH",
+   "batch_size": 8,
+   "revision": "ra_medfilm_barr_phase34_efficiency_profiling_v1_3",
+   "repo_root": "D:\\Softfors\\jup",
+   "repo_root_resolution": "FILE_RELATIVE",
+   "runtime_profile": "COMPONENT_SPECIFIC_CANONICAL_PRECISION_SEMANTICS",
+   "batch1_label": "CANONICAL_GRAPH_HARDWARE_MICROBENCHMARK__BATCH1_NOT_CANONICAL_G_NUMERICAL_REPRODUCTION",
+   "batch8_label": "SYNTHETIC_HARDWARE_THROUGHPUT_BENCHMARK",
+   "canonical_numerical_reproduction": false,
+   "timing_scope": "MODEL_COMPUTE_PATH_RUNTIME",
+   "generator": "PYTORCH_CUDA_GENERATOR_SEED_42",
+   "started_utc": "2026-10-04T13:37:18Z",
+   "mode": "throughput",
+   "throughput": {
+    "batch_size": 8,
+    "processed_samples": 8000,
+    "timed_seconds": 85.85938400000305,
+    "fps": 93.17560442781323,
+    "fps_definition": "processed_samples / synchronized_wall_seconds",
+    "task_vector": [
+     0,
+     1,
+     2,
+     3,
+     0,
+     1,
+     2,
+     3
+    ],
+    "warmup_iterations": 50
+   }
+  },
+  {
+   "arm": "SKIP_CONTROLLED_PATH",
+   "batch_size": 1,
+   "revision": "ra_medfilm_barr_phase34_efficiency_profiling_v1_3",
+   "repo_root": "D:\\Softfors\\jup",
+   "repo_root_resolution": "FILE_RELATIVE",
+   "runtime_profile": "COMPONENT_SPECIFIC_CANONICAL_PRECISION_SEMANTICS",
+   "batch1_label": "CANONICAL_GRAPH_HARDWARE_MICROBENCHMARK__BATCH1_NOT_CANONICAL_G_NUMERICAL_REPRODUCTION",
+   "batch8_label": "SYNTHETIC_HARDWARE_THROUGHPUT_BENCHMARK",
+   "canonical_numerical_reproduction": false,
+   "timing_scope": "MODEL_COMPUTE_PATH_RUNTIME",
+   "generator": "PYTORCH_CUDA_GENERATOR_SEED_42",
+   "started_utc": "2026-10-04T13:38:52Z",
+   "mode": "memory",
+   "memory": {
+    "baseline_gpu_allocated_after_model_load": 26845696,
+    "baseline_gpu_reserved_after_model_load": 48234496,
+    "peak_gpu_allocated_during_inference": 336239104,
+    "peak_gpu_reserved_during_inference": 411041792,
+    "incremental_peak_allocated_over_loaded_baseline": 309393408,
+    "reserved_memory_labeled_model_memory": false
+   }
+  },
+  {
+   "arm": "EXECUTE_CONTROLLED_PATH",
+   "batch_size": 1,
+   "revision": "ra_medfilm_barr_phase34_efficiency_profiling_v1_3",
+   "repo_root": "D:\\Softfors\\jup",
+   "repo_root_resolution": "FILE_RELATIVE",
+   "runtime_profile": "COMPONENT_SPECIFIC_CANONICAL_PRECISION_SEMANTICS",
+   "batch1_label": "CANONICAL_GRAPH_HARDWARE_MICROBENCHMARK__BATCH1_NOT_CANONICAL_G_NUMERICAL_REPRODUCTION",
+   "batch8_label": "SYNTHETIC_HARDWARE_THROUGHPUT_BENCHMARK",
+   "canonical_numerical_reproduction": false,
+   "timing_scope": "MODEL_COMPUTE_PATH_RUNTIME",
+   "generator": "PYTORCH_CUDA_GENERATOR_SEED_42",
+   "started_utc": "2026-10-04T13:38:56Z",
+   "mode": "latency",
+   "latency": {
+    "n_observations": 1000,
+    "blocks": 5,
+    "iterations_per_block": 200,
+    "batch_size": 1,
+    "mean_ms": 3740.71328125,
+    "min_ms": 3731.411865234375,
+    "max_ms": 3748.51171875,
+    "median_ms": 3743.12548828125,
+    "p50_ms": 3743.12548828125,
+    "p90_ms": 3748.51171875,
+    "p95_ms": 3748.51171875,
+    "p99_ms": 3748.51171875,
+    "wall_clock_block_ms": [
+     3748.468400001002,
+     3747.099599997455,
+     3743.0658000012045,
+     3731.3505000056466,
+     3733.317899997928
+    ],
+    "timer": "torch.cuda.Event(enable_timing=True) + torch.cuda.synchronize()",
+    "wall_clock_cross_check_ms": 3740.660440000647,
+    "task_schedule": "iteration_index mod 4 (0=ISIC,1=BUSI,2=KVASIR,3=KUB)",
+    "warmup_iterations": 50
+   }
+  },
+  {
+   "arm": "EXECUTE_CONTROLLED_PATH",
+   "batch_size": 8,
+   "revision": "ra_medfilm_barr_phase34_efficiency_profiling_v1_3",
+   "repo_root": "D:\\Softfors\\jup",
+   "repo_root_resolution": "FILE_RELATIVE",
+   "runtime_profile": "COMPONENT_SPECIFIC_CANONICAL_PRECISION_SEMANTICS",
+   "batch1_label": "CANONICAL_GRAPH_HARDWARE_MICROBENCHMARK__BATCH1_NOT_CANONICAL_G_NUMERICAL_REPRODUCTION",
+   "batch8_label": "SYNTHETIC_HARDWARE_THROUGHPUT_BENCHMARK",
+   "canonical_numerical_reproduction": false,
+   "timing_scope": "MODEL_COMPUTE_PATH_RUNTIME",
+   "generator": "PYTORCH_CUDA_GENERATOR_SEED_42",
+   "started_utc": "2026-10-04T13:39:20Z",
+   "mode": "throughput",
+   "throughput": {
+    "batch_size": 8,
+    "processed_samples": 8000,
+    "timed_seconds": 99.67247860000498,
+    "fps": 80.26287810203608,
+    "fps_definition": "processed_samples / synchronized_wall_seconds",
+    "task_vector": [
+     0,
+     1,
+     2,
+     3,
+     0,
+     1,
+     2,
+     3
+    ],
+    "warmup_iterations": 50
+   }
+  },
+  {
+   "arm": "EXECUTE_CONTROLLED_PATH",
+   "batch_size": 1,
+   "revision": "ra_medfilm_barr_phase34_efficiency_profiling_v1_3",
+   "repo_root": "D:\\Softfors\\jup",
+   "repo_root_resolution": "FILE_RELATIVE",
+   "runtime_profile": "COMPONENT_SPECIFIC_CANONICAL_PRECISION_SEMANTICS",
+   "batch1_label": "CANONICAL_GRAPH_HARDWARE_MICROBENCHMARK__BATCH1_NOT_CANONICAL_G_NUMERICAL_REPRODUCTION",
+   "batch8_label": "SYNTHETIC_HARDWARE_THROUGHPUT_BENCHMARK",
+   "canonical_numerical_reproduction": false,
+   "timing_scope": "MODEL_COMPUTE_PATH_RUNTIME",
+   "generator": "PYTORCH_CUDA_GENERATOR_SEED_42",
+   "started_utc": "2026-10-04T13:41:09Z",
+   "mode": "memory",
+   "memory": {
+    "baseline_gpu_allocated_after_model_load": 36166144,
+    "baseline_gpu_reserved_after_model_load": 56623104,
+    "peak_gpu_allocated_during_inference": 345559552,
+    "peak_gpu_reserved_during_inference": 423624704,
+    "incremental_peak_allocated_over_loaded_baseline": 309393408,
+    "reserved_memory_labeled_model_memory": false
+   }
+  },
+  {
+   "arm": "FINAL_ROUTED_A8_C9",
+   "batch_size": 1,
+   "revision": "ra_medfilm_barr_phase34_efficiency_profiling_v1_3",
+   "repo_root": "D:\\Softfors\\jup",
+   "repo_root_resolution": "FILE_RELATIVE",
+   "runtime_profile": "COMPONENT_SPECIFIC_CANONICAL_PRECISION_SEMANTICS",
+   "batch1_label": "CANONICAL_GRAPH_HARDWARE_MICROBENCHMARK__BATCH1_NOT_CANONICAL_G_NUMERICAL_REPRODUCTION",
+   "batch8_label": "SYNTHETIC_HARDWARE_THROUGHPUT_BENCHMARK",
+   "canonical_numerical_reproduction": false,
+   "timing_scope": "MODEL_COMPUTE_PATH_RUNTIME",
+   "generator": "PYTORCH_CUDA_GENERATOR_SEED_42",
+   "started_utc": "2026-10-04T13:41:13Z",
+   "mode": "latency",
+   "latency": {
+    "n_observations": 1000,
+    "blocks": 5,
+    "iterations_per_block": 200,
+    "batch_size": 1,
+    "mean_ms": 3734.817333984375,
+    "min_ms": 3717.64501953125,
+    "max_ms": 3744.60107421875,
+    "median_ms": 3737.281494140625,
+    "p50_ms": 3737.281494140625,
+    "p90_ms": 3744.60107421875,
+    "p95_ms": 3744.60107421875,
+    "p99_ms": 3744.60107421875,
+    "wall_clock_block_ms": [
+     3744.5978999967338,
+     3741.552599996794,
+     3737.2375999984797,
+     3733.019899998908,
+     3717.609599996649
+    ],
+    "timer": "torch.cuda.Event(enable_timing=True) + torch.cuda.synchronize()",
+    "wall_clock_cross_check_ms": 3734.803519997513,
+    "task_schedule": "iteration_index mod 4 (0=ISIC,1=BUSI,2=KVASIR,3=KUB)",
+    "warmup_iterations": 50
+   }
+  },
+  {
+   "arm": "FINAL_ROUTED_A8_C9",
+   "batch_size": 8,
+   "revision": "ra_medfilm_barr_phase34_efficiency_profiling_v1_3",
+   "repo_root": "D:\\Softfors\\jup",
+   "repo_root_resolution": "FILE_RELATIVE",
+   "runtime_profile": "COMPONENT_SPECIFIC_CANONICAL_PRECISION_SEMANTICS",
+   "batch1_label": "CANONICAL_GRAPH_HARDWARE_MICROBENCHMARK__BATCH1_NOT_CANONICAL_G_NUMERICAL_REPRODUCTION",
+   "batch8_label": "SYNTHETIC_HARDWARE_THROUGHPUT_BENCHMARK",
+   "canonical_numerical_reproduction": false,
+   "timing_scope": "MODEL_COMPUTE_PATH_RUNTIME",
+   "generator": "PYTORCH_CUDA_GENERATOR_SEED_42",
+   "started_utc": "2026-10-04T13:41:37Z",
+   "mode": "throughput",
+   "throughput": {
+    "batch_size": 8,
+    "processed_samples": 8000,
+    "timed_seconds": 99.79687310000008,
+    "fps": 80.16283227615469,
+    "fps_definition": "processed_samples / synchronized_wall_seconds",
+    "task_vector": [
+     0,
+     1,
+     2,
+     3,
+     0,
+     1,
+     2,
+     3
+    ],
+    "warmup_iterations": 50
+   }
+  },
+  {
+   "arm": "FINAL_ROUTED_A8_C9",
+   "batch_size": 1,
+   "revision": "ra_medfilm_barr_phase34_efficiency_profiling_v1_3",
+   "repo_root": "D:\\Softfors\\jup",
+   "repo_root_resolution": "FILE_RELATIVE",
+   "runtime_profile": "COMPONENT_SPECIFIC_CANONICAL_PRECISION_SEMANTICS",
+   "batch1_label": "CANONICAL_GRAPH_HARDWARE_MICROBENCHMARK__BATCH1_NOT_CANONICAL_G_NUMERICAL_REPRODUCTION",
+   "batch8_label": "SYNTHETIC_HARDWARE_THROUGHPUT_BENCHMARK",
+   "canonical_numerical_reproduction": false,
+   "timing_scope": "MODEL_COMPUTE_PATH_RUNTIME",
+   "generator": "PYTORCH_CUDA_GENERATOR_SEED_42",
+   "started_utc": "2026-10-04T13:43:26Z",
+   "mode": "memory",
+   "memory": {
+    "baseline_gpu_allocated_after_model_load": 36166144,
+    "baseline_gpu_reserved_after_model_load": 56623104,
+    "peak_gpu_allocated_during_inference": 345559552,
+    "peak_gpu_reserved_during_inference": 423624704,
+    "incremental_peak_allocated_over_loaded_baseline": 309393408,
+    "reserved_memory_labeled_model_memory": false
+   }
+  },
+  {
+   "arm": "G_COMPONENT",
+   "batch_size": 1,
+   "revision": "ra_medfilm_barr_phase34_efficiency_profiling_v1_3",
+   "repo_root": "D:\\Softfors\\jup",
+   "repo_root_resolution": "FILE_RELATIVE",
+   "runtime_profile": "COMPONENT_SPECIFIC_CANONICAL_PRECISION_SEMANTICS",
+   "batch1_label": "CANONICAL_GRAPH_HARDWARE_MICROBENCHMARK__BATCH1_NOT_CANONICAL_G_NUMERICAL_REPRODUCTION",
+   "batch8_label": "SYNTHETIC_HARDWARE_THROUGHPUT_BENCHMARK",
+   "canonical_numerical_reproduction": false,
+   "timing_scope": "SYNTHETIC_COMPONENT_RUNTIME",
+   "generator": "PYTORCH_CUDA_GENERATOR_SEED_42",
+   "started_utc": "2026-10-04T13:43:30Z",
+   "mode": "latency",
+   "latency": {
+    "n_observations": 1000,
+    "blocks": 5,
+    "iterations_per_block": 200,
+    "batch_size": 1,
+    "mean_ms": 3132.053125,
+    "min_ms": 3122.448486328125,
+    "max_ms": 3141.7958984375,
+    "median_ms": 3134.17431640625,
+    "p50_ms": 3134.17431640625,
+    "p90_ms": 3141.7958984375,
+    "p95_ms": 3141.7958984375,
+    "p99_ms": 3141.7958984375,
+    "wall_clock_block_ms": [
+     3134.20970000152,
+     3122.443400003249,
+     3138.1689999980154,
+     3123.6503000036464,
+     3141.7619999992894
+    ],
+    "timer": "torch.cuda.Event(enable_timing=True) + torch.cuda.synchronize()",
+    "wall_clock_cross_check_ms": 3132.046880001144,
+    "task_schedule": "iteration_index mod 4 (0=ISIC,1=BUSI,2=KVASIR,3=KUB)",
+    "warmup_iterations": 50
+   }
+  },
+  {
+   "arm": "G_COMPONENT",
+   "batch_size": 8,
+   "revision": "ra_medfilm_barr_phase34_efficiency_profiling_v1_3",
+   "repo_root": "D:\\Softfors\\jup",
+   "repo_root_resolution": "FILE_RELATIVE",
+   "runtime_profile": "COMPONENT_SPECIFIC_CANONICAL_PRECISION_SEMANTICS",
+   "batch1_label": "CANONICAL_GRAPH_HARDWARE_MICROBENCHMARK__BATCH1_NOT_CANONICAL_G_NUMERICAL_REPRODUCTION",
+   "batch8_label": "SYNTHETIC_HARDWARE_THROUGHPUT_BENCHMARK",
+   "canonical_numerical_reproduction": false,
+   "timing_scope": "SYNTHETIC_COMPONENT_RUNTIME",
+   "generator": "PYTORCH_CUDA_GENERATOR_SEED_42",
+   "started_utc": "2026-10-04T13:43:51Z",
+   "mode": "throughput",
+   "throughput": {
+    "batch_size": 8,
+    "processed_samples": 8000,
+    "timed_seconds": 86.16568170000392,
+    "fps": 92.84438818522847,
+    "fps_definition": "processed_samples / synchronized_wall_seconds",
+    "task_vector": [
+     0,
+     1,
+     2,
+     3,
+     0,
+     1,
+     2,
+     3
+    ],
+    "warmup_iterations": 50
+   }
+  },
+  {
+   "arm": "G_COMPONENT",
+   "batch_size": 1,
+   "revision": "ra_medfilm_barr_phase34_efficiency_profiling_v1_3",
+   "repo_root": "D:\\Softfors\\jup",
+   "repo_root_resolution": "FILE_RELATIVE",
+   "runtime_profile": "COMPONENT_SPECIFIC_CANONICAL_PRECISION_SEMANTICS",
+   "batch1_label": "CANONICAL_GRAPH_HARDWARE_MICROBENCHMARK__BATCH1_NOT_CANONICAL_G_NUMERICAL_REPRODUCTION",
+   "batch8_label": "SYNTHETIC_HARDWARE_THROUGHPUT_BENCHMARK",
+   "canonical_numerical_reproduction": false,
+   "timing_scope": "SYNTHETIC_COMPONENT_RUNTIME",
+   "generator": "PYTORCH_CUDA_GENERATOR_SEED_42",
+   "started_utc": "2026-10-04T13:45:25Z",
+   "mode": "memory",
+   "memory": {
+    "baseline_gpu_allocated_after_model_load": 26690560,
+    "baseline_gpu_reserved_after_model_load": 48234496,
+    "peak_gpu_allocated_during_inference": 336083968,
+    "peak_gpu_reserved_during_inference": 411041792,
+    "incremental_peak_allocated_over_loaded_baseline": 309393408,
+    "reserved_memory_labeled_model_memory": false
+   }
+  },
+  {
+   "arm": "R_PSI_COMPONENT",
+   "batch_size": 1,
+   "revision": "ra_medfilm_barr_phase34_efficiency_profiling_v1_3",
+   "repo_root": "D:\\Softfors\\jup",
+   "repo_root_resolution": "FILE_RELATIVE",
+   "runtime_profile": "COMPONENT_SPECIFIC_CANONICAL_PRECISION_SEMANTICS",
+   "batch1_label": "CANONICAL_GRAPH_HARDWARE_MICROBENCHMARK__BATCH1_NOT_CANONICAL_G_NUMERICAL_REPRODUCTION",
+   "batch8_label": "SYNTHETIC_HARDWARE_THROUGHPUT_BENCHMARK",
+   "canonical_numerical_reproduction": false,
+   "timing_scope": "SYNTHETIC_COMPONENT_RUNTIME",
+   "generator": "PYTORCH_CUDA_GENERATOR_SEED_42",
+   "started_utc": "2026-10-04T13:45:30Z",
+   "mode": "latency",
+   "latency": {
+    "n_observations": 1000,
+    "blocks": 5,
+    "iterations_per_block": 200,
+    "batch_size": 1,
+    "mean_ms": 937.51787109375,
+    "min_ms": 918.0303344726562,
+    "max_ms": 957.9867553710938,
+    "median_ms": 936.5043334960938,
+    "p50_ms": 936.5043334960938,
+    "p90_ms": 957.9867553710938,
+    "p95_ms": 957.9867553710938,
+    "p99_ms": 957.9867553710938,
+    "wall_clock_block_ms": [
+     930.6146000017179,
+     918.0407999956515,
+     944.5096999988891,
+     936.692099996435,
+     958.0008999982965
+    ],
+    "timer": "torch.cuda.Event(enable_timing=True) + torch.cuda.synchronize()",
+    "wall_clock_cross_check_ms": 937.571619998198,
+    "task_schedule": "iteration_index mod 4 (0=ISIC,1=BUSI,2=KVASIR,3=KUB)",
+    "warmup_iterations": 50
+   }
+  },
+  {
+   "arm": "R_PSI_COMPONENT",
+   "batch_size": 8,
+   "revision": "ra_medfilm_barr_phase34_efficiency_profiling_v1_3",
+   "repo_root": "D:\\Softfors\\jup",
+   "repo_root_resolution": "FILE_RELATIVE",
+   "runtime_profile": "COMPONENT_SPECIFIC_CANONICAL_PRECISION_SEMANTICS",
+   "batch1_label": "CANONICAL_GRAPH_HARDWARE_MICROBENCHMARK__BATCH1_NOT_CANONICAL_G_NUMERICAL_REPRODUCTION",
+   "batch8_label": "SYNTHETIC_HARDWARE_THROUGHPUT_BENCHMARK",
+   "canonical_numerical_reproduction": false,
+   "timing_scope": "SYNTHETIC_COMPONENT_RUNTIME",
+   "generator": "PYTORCH_CUDA_GENERATOR_SEED_42",
+   "started_utc": "2026-10-04T13:45:39Z",
+   "mode": "throughput",
+   "throughput": {
+    "batch_size": 8,
+    "processed_samples": 8000,
+    "timed_seconds": 13.321764100001019,
+    "fps": 600.5210676264255,
+    "fps_definition": "processed_samples / synchronized_wall_seconds",
+    "task_vector": [
+     0,
+     1,
+     2,
+     3,
+     0,
+     1,
+     2,
+     3
+    ],
+    "warmup_iterations": 50
+   }
+  },
+  {
+   "arm": "R_PSI_COMPONENT",
+   "batch_size": 1,
+   "revision": "ra_medfilm_barr_phase34_efficiency_profiling_v1_3",
+   "repo_root": "D:\\Softfors\\jup",
+   "repo_root_resolution": "FILE_RELATIVE",
+   "runtime_profile": "COMPONENT_SPECIFIC_CANONICAL_PRECISION_SEMANTICS",
+   "batch1_label": "CANONICAL_GRAPH_HARDWARE_MICROBENCHMARK__BATCH1_NOT_CANONICAL_G_NUMERICAL_REPRODUCTION",
+   "batch8_label": "SYNTHETIC_HARDWARE_THROUGHPUT_BENCHMARK",
+   "canonical_numerical_reproduction": false,
+   "timing_scope": "SYNTHETIC_COMPONENT_RUNTIME",
+   "generator": "PYTORCH_CUDA_GENERATOR_SEED_42",
+   "started_utc": "2026-10-04T13:45:56Z",
+   "mode": "memory",
+   "memory": {
+    "baseline_gpu_allocated_after_model_load": 9311744,
+    "baseline_gpu_reserved_after_model_load": 10485760,
+    "peak_gpu_allocated_during_inference": 48668160,
+    "peak_gpu_reserved_during_inference": 73400320,
+    "incremental_peak_allocated_over_loaded_baseline": 39356416,
+    "reserved_memory_labeled_model_memory": false
+   }
+  },
+  {
+   "arm": "B_PHI_COMPONENT",
+   "batch_size": 1,
+   "revision": "ra_medfilm_barr_phase34_efficiency_profiling_v1_3",
+   "repo_root": "D:\\Softfors\\jup",
+   "repo_root_resolution": "FILE_RELATIVE",
+   "runtime_profile": "COMPONENT_SPECIFIC_CANONICAL_PRECISION_SEMANTICS",
+   "batch1_label": "CANONICAL_GRAPH_HARDWARE_MICROBENCHMARK__BATCH1_NOT_CANONICAL_G_NUMERICAL_REPRODUCTION",
+   "batch8_label": "SYNTHETIC_HARDWARE_THROUGHPUT_BENCHMARK",
+   "canonical_numerical_reproduction": false,
+   "timing_scope": "SYNTHETIC_COMPONENT_RUNTIME",
+   "generator": "PYTORCH_CUDA_GENERATOR_SEED_42",
+   "started_utc": "2026-10-04T13:46:00Z",
+   "mode": "latency",
+   "latency": {
+    "n_observations": 1000,
+    "blocks": 5,
+    "iterations_per_block": 200,
+    "batch_size": 1,
+    "mean_ms": 76.90975189208984,
+    "min_ms": 72.74281311035156,
+    "max_ms": 82.50675201416016,
+    "median_ms": 74.5011215209961,
+    "p50_ms": 74.5011215209961,
+    "p90_ms": 82.50675201416016,
+    "p95_ms": 82.50675201416016,
+    "p99_ms": 82.50675201416016,
+    "wall_clock_block_ms": [
+     74.4288999994751,
+     82.55620000272756,
+     72.78729999961797,
+     74.54539999889676,
+     80.52019999740878
+    ],
+    "timer": "torch.cuda.Event(enable_timing=True) + torch.cuda.synchronize()",
+    "wall_clock_cross_check_ms": 76.96759999962524,
+    "task_schedule": "iteration_index mod 4 (0=ISIC,1=BUSI,2=KVASIR,3=KUB)",
+    "warmup_iterations": 50
+   }
+  },
+  {
+   "arm": "B_PHI_COMPONENT",
+   "batch_size": 8,
+   "revision": "ra_medfilm_barr_phase34_efficiency_profiling_v1_3",
+   "repo_root": "D:\\Softfors\\jup",
+   "repo_root_resolution": "FILE_RELATIVE",
+   "runtime_profile": "COMPONENT_SPECIFIC_CANONICAL_PRECISION_SEMANTICS",
+   "batch1_label": "CANONICAL_GRAPH_HARDWARE_MICROBENCHMARK__BATCH1_NOT_CANONICAL_G_NUMERICAL_REPRODUCTION",
+   "batch8_label": "SYNTHETIC_HARDWARE_THROUGHPUT_BENCHMARK",
+   "canonical_numerical_reproduction": false,
+   "timing_scope": "SYNTHETIC_COMPONENT_RUNTIME",
+   "generator": "PYTORCH_CUDA_GENERATOR_SEED_42",
+   "started_utc": "2026-10-04T13:46:04Z",
+   "mode": "throughput",
+   "throughput": {
+    "batch_size": 8,
+    "processed_samples": 8000,
+    "timed_seconds": 0.38608089999615913,
+    "fps": 20721.04577066513,
+    "fps_definition": "processed_samples / synchronized_wall_seconds",
+    "task_vector": [
+     0,
+     1,
+     2,
+     3,
+     0,
+     1,
+     2,
+     3
+    ],
+    "warmup_iterations": 50
+   }
+  },
+  {
+   "arm": "B_PHI_COMPONENT",
+   "batch_size": 1,
+   "revision": "ra_medfilm_barr_phase34_efficiency_profiling_v1_3",
+   "repo_root": "D:\\Softfors\\jup",
+   "repo_root_resolution": "FILE_RELATIVE",
+   "runtime_profile": "COMPONENT_SPECIFIC_CANONICAL_PRECISION_SEMANTICS",
+   "batch1_label": "CANONICAL_GRAPH_HARDWARE_MICROBENCHMARK__BATCH1_NOT_CANONICAL_G_NUMERICAL_REPRODUCTION",
+   "batch8_label": "SYNTHETIC_HARDWARE_THROUGHPUT_BENCHMARK",
+   "canonical_numerical_reproduction": false,
+   "timing_scope": "SYNTHETIC_COMPONENT_RUNTIME",
+   "generator": "PYTORCH_CUDA_GENERATOR_SEED_42",
+   "started_utc": "2026-10-04T13:46:08Z",
+   "mode": "memory",
+   "memory": {
+    "baseline_gpu_allocated_after_model_load": 155136,
+    "baseline_gpu_reserved_after_model_load": 2097152,
+    "peak_gpu_allocated_during_inference": 9725952,
+    "peak_gpu_reserved_during_inference": 23068672,
+    "incremental_peak_allocated_over_loaded_baseline": 9570816,
+    "reserved_memory_labeled_model_memory": false
+   }
+  },
+  {
+   "arm": "S_OMEGA_COMPONENT",
+   "batch_size": 1,
+   "revision": "ra_medfilm_barr_phase34_efficiency_profiling_v1_3",
+   "repo_root": "D:\\Softfors\\jup",
+   "repo_root_resolution": "FILE_RELATIVE",
+   "runtime_profile": "COMPONENT_SPECIFIC_CANONICAL_PRECISION_SEMANTICS",
+   "batch1_label": "CANONICAL_GRAPH_HARDWARE_MICROBENCHMARK__BATCH1_NOT_CANONICAL_G_NUMERICAL_REPRODUCTION",
+   "batch8_label": "SYNTHETIC_HARDWARE_THROUGHPUT_BENCHMARK",
+   "canonical_numerical_reproduction": false,
+   "timing_scope": "SYNTHETIC_COMPONENT_RUNTIME",
+   "generator": "PYTORCH_CUDA_GENERATOR_SEED_42",
+   "started_utc": "2026-10-04T13:46:12Z",
+   "mode": "latency",
+   "latency": {
+    "n_observations": 1000,
+    "blocks": 5,
+    "iterations_per_block": 200,
+    "batch_size": 1,
+    "mean_ms": 45.09717712402344,
+    "min_ms": 44.29004669189453,
+    "max_ms": 45.97555160522461,
+    "median_ms": 45.15641784667969,
+    "p50_ms": 45.15641784667969,
+    "p90_ms": 45.97555160522461,
+    "p95_ms": 45.97555160522461,
+    "p99_ms": 45.97555160522461,
+    "wall_clock_block_ms": [
+     45.41270000481745,
+     46.036400002776645,
+     44.77829999814276,
+     45.202399996924214,
+     44.336399994790554
+    ],
+    "timer": "torch.cuda.Event(enable_timing=True) + torch.cuda.synchronize()",
+    "wall_clock_cross_check_ms": 45.153239999490324,
+    "task_schedule": "iteration_index mod 4 (0=ISIC,1=BUSI,2=KVASIR,3=KUB)",
+    "warmup_iterations": 50
+   }
+  },
+  {
+   "arm": "S_OMEGA_COMPONENT",
+   "batch_size": 8,
+   "revision": "ra_medfilm_barr_phase34_efficiency_profiling_v1_3",
+   "repo_root": "D:\\Softfors\\jup",
+   "repo_root_resolution": "FILE_RELATIVE",
+   "runtime_profile": "COMPONENT_SPECIFIC_CANONICAL_PRECISION_SEMANTICS",
+   "batch1_label": "CANONICAL_GRAPH_HARDWARE_MICROBENCHMARK__BATCH1_NOT_CANONICAL_G_NUMERICAL_REPRODUCTION",
+   "batch8_label": "SYNTHETIC_HARDWARE_THROUGHPUT_BENCHMARK",
+   "canonical_numerical_reproduction": false,
+   "timing_scope": "SYNTHETIC_COMPONENT_RUNTIME",
+   "generator": "PYTORCH_CUDA_GENERATOR_SEED_42",
+   "started_utc": "2026-10-04T13:46:16Z",
+   "mode": "throughput",
+   "throughput": {
+    "batch_size": 8,
+    "processed_samples": 8000,
+    "timed_seconds": 0.23166499999933876,
+    "fps": 34532.62253695135,
+    "fps_definition": "processed_samples / synchronized_wall_seconds",
+    "task_vector": [
+     0,
+     1,
+     2,
+     3,
+     0,
+     1,
+     2,
+     3
+    ],
+    "warmup_iterations": 50
+   }
+  },
+  {
+   "arm": "S_OMEGA_COMPONENT",
+   "batch_size": 1,
+   "revision": "ra_medfilm_barr_phase34_efficiency_profiling_v1_3",
+   "repo_root": "D:\\Softfors\\jup",
+   "repo_root_resolution": "FILE_RELATIVE",
+   "runtime_profile": "COMPONENT_SPECIFIC_CANONICAL_PRECISION_SEMANTICS",
+   "batch1_label": "CANONICAL_GRAPH_HARDWARE_MICROBENCHMARK__BATCH1_NOT_CANONICAL_G_NUMERICAL_REPRODUCTION",
+   "batch8_label": "SYNTHETIC_HARDWARE_THROUGHPUT_BENCHMARK",
+   "canonical_numerical_reproduction": false,
+   "timing_scope": "SYNTHETIC_COMPONENT_RUNTIME",
+   "generator": "PYTORCH_CUDA_GENERATOR_SEED_42",
+   "started_utc": "2026-10-04T13:46:19Z",
+   "mode": "memory",
+   "memory": {
+    "baseline_gpu_allocated_after_model_load": 8704,
+    "baseline_gpu_reserved_after_model_load": 2097152,
+    "peak_gpu_allocated_during_inference": 9577984,
+    "peak_gpu_reserved_during_inference": 23068672,
+    "incremental_peak_allocated_over_loaded_baseline": 9569280,
+    "reserved_memory_labeled_model_memory": false
+   }
+  }
+ ],
+ "technical_failures": [],
+ "conditional_weighted_runtime": {
+  "eligible": true,
+  "classification": "WEIGHTED_HARDWARE_SPECIFIC_RUNTIME_ESTIMATE",
+  "weighted_mean_ms": 3307.520179129465,
+  "formula": "L_weighted = (635/875)*L_SKIP + (240/875)*L_EXECUTE",
+  "statistic": "mean",
+  "NOT_DIRECT_HOLDOUT_RUNTIME": true,
+  "NOT_END_TO_END_PIPELINE_LATENCY": true,
+  "phase30_qualifier": "ONE_SHOT_ROUTER_HOLDOUT_RESULT_WITH_DISCLOSED_POST_FIRST_OPEN_SCIENTIFIC_SOURCE_FREEZE_DEVIATION"
+ },
+ "analytical_macs": {
+  "C1": 31551740928,
+  "C2": 34782403584,
+  "A8_C9": 32437902022.582855,
+  "gated_C9": 34782440912
+ },
+ "flop_mac_profiler_executions": 0
+}

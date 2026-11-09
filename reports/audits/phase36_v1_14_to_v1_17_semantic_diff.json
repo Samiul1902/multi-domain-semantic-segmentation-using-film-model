@@ -1,0 +1,74 @@
+{
+ "artifact": "phase36_v1_14_to_v1_17_semantic_diff",
+ "from_revision": "ra_medfilm_barr_phase36_robustness_v1_14",
+ "to_revision": "ra_medfilm_barr_phase36_robustness_v1_17",
+ "from_sha256": "ac09ff8ded3610244920e66612145b246b33127140d344a9730d454bab27cff5",
+ "to_sha256": "81d78460b2f20f176bc697cba662c43bc7c7443ea555ba95a30609faf0ccbe31",
+ "hunk_count": 71,
+ "scientific_delta_count": 4,
+ "scientific_deltas": [
+  {
+   "tag": "insert",
+   "a_span": [
+    372,
+    372
+   ],
+   "b_span": [
+    378,
+    403
+   ],
+   "a_preview": "",
+   "b_preview": "\n\n# --------------------------------------------------------------------------- #\n# v1.15 REPAIR 2 (D75 / POLICY_B): AUTHORITATIVE segmentation scoring.\n#\n# The historical Phase27 Phase-B scored authority thresholds the PERSISTED float16\n# representation recast up to float32 (f16 -> f32 -> >= 0.50)."
+  },
+  {
+   "tag": "replace",
+   "a_span": [
+    1730,
+    1731
+   ],
+   "b_span": [
+    1865,
+    1866
+   ],
+   "a_preview": "    res[\"final_binary\"] = (prob >= float(system.segmentation_output_threshold)).astype(np.float32)\n",
+   "b_preview": "    res[\"final_binary\"] = _phase27_scored_final_binary(prob)\n"
+  },
+  {
+   "tag": "replace",
+   "a_span": [
+    1988,
+    1989
+   ],
+   "b_span": [
+    2123,
+    2125
+   ],
+   "a_preview": "        fused = system._fuse_global_with_regional(p_global, refined, window)\n",
+   "b_preview": "        # v1.15 REPAIR 1 (D61): canonical Phase27 pad-aware ACCEPT fusion.\n        fused = fuse_full_field(p_global, refined, geom)\n"
+  },
+  {
+   "tag": "replace",
+   "a_span": [
+    2413,
+    2414
+   ],
+   "b_span": [
+    2549,
+    2550
+   ],
+   "a_preview": "    final_binary = (final_prob >= SEGMENTATION_OUTPUT_THRESHOLD).astype(np.float32)\n",
+   "b_preview": "    final_binary = _phase27_scored_final_binary(final_prob)\n"
+  }
+ ],
+ "unclassified_delta_count": 0,
+ "unclassified_deltas": [],
+ "classification_counts": {
+  "SCIENTIFIC_DELTA": 4,
+  "OPERATIONAL_GOVERNANCE": 67,
+  "UNCLASSIFIED": 0
+ },
+ "note": "v1.17 carries the D61 canonical ACCEPT fusion and the D75 POLICY_B representation EXACTLY as v1.14 does.  D80/D81/D82/D83 are operational/governance-only.  Therefore the NET scientific surface between v1.14 and v1.17 is IDENTICAL: scientific_delta_count MUST be 0; any UNCLASSIFIED hunk fails closed.",
+ "scientific_semantics_effect": "NONE",
+ "model_free": true,
+ "new_scientific_choice": false
+}

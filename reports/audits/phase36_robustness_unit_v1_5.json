@@ -1,0 +1,454 @@
+{
+  "artifact": "phase36_robustness_unit_v1_5",
+  "revision": "ra_medfilm_barr_phase36_robustness_v1_5",
+  "model_free": true,
+  "torch_imported": false,
+  "checks": [
+    {
+      "check": "01_v1_4_execution_preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "02_v1_4_unit_preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "03_v1_4_preflight_preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "04_v1_4_negative_controls_preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "05_v1_4_direct_byte_audit_preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "06_v1_4_defect_record_preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "07_defect_record_three_defects",
+      "passed": true,
+      "detail": 3
+    },
+    {
+      "check": "08_defect_ids_d11_d12_d13",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "09_defect_subject_is_v1_4",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "10_d11_three_sites_proven",
+      "passed": true,
+      "detail": 3
+    },
+    {
+      "check": "11_batch_caveat_adjudicated_not_a_new_defect",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "12_canonical_operator_expression",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "13_canonical_operator_output_dtype",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "14_central_site_count_required_one",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "15_central_operator_function_defined",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "16_no_executable_manual_numpy_sigmoid",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "17_exactly_one_g_probability_implementation",
+      "passed": true,
+      "detail": [
+        [
+          1086,
+          "torch.sigmoid(t.float())"
+        ]
+      ]
+    },
+    {
+      "check": "18_g_forward_returns_probability",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "19_probability_float32_before_float16",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "20_clean_g_reference_consumes_canonical_probability",
+      "passed": true,
+      "detail": [
+        "_assemble_202d",
+        "_chunks",
+        "_clean_row_index",
+        "_geo_row",
+        "_load_clean_image_tensor",
+        "_roi_geometry_from_prob",
+        "_roi_row_from_window",
+        "canonical_batch_partition",
+        "canonical_g_forward_batched",
+        "canonical_images_tensor",
+        "canonical_task_ids_tensor",
+        "proposal_geometry_plan"
+      ]
+    },
+    {
+      "check": "20_shared_core_consumes_canonical_probability",
+      "passed": true,
+      "detail": [
+        "_assemble_202d",
+        "_core_result",
+        "_geo_row",
+        "_roi_geometry_from_prob",
+        "_roi_row_from_window",
+        "canonical_g_forward_batched",
+        "canonical_probability_from_logits",
+        "component_autocast_disabled",
+        "component_inference_context",
+        "crop_and_resize_vec",
+        "somega_features"
+      ]
+    },
+    {
+      "check": "20_image_driver_consumes_canonical_probability",
+      "passed": true,
+      "detail": [
+        "_chunks",
+        "_clean_row_index",
+        "_derived_seed_for",
+        "_dice",
+        "_final_source_of",
+        "_hd95",
+        "_iou",
+        "_load_clean_image_tensor",
+        "_load_val_gt",
+        "_prediction_consistency_dice",
+        "_row_has_identity",
+        "build_image_result_row",
+        "canonical_batch_partition",
+        "canonical_g_forward_batched",
+        "canonical_images_tensor",
+        "canonical_learned_core",
+        "canonical_task_ids_tensor",
+        "image_realization_plan"
+      ]
+    },
+    {
+      "check": "20_smoke_consumes_canonical_probability",
+      "passed": true,
+      "detail": [
+        "_dice",
+        "_finite_summary",
+        "_gate_smoke",
+        "_hd95",
+        "_iou",
+        "_load_models",
+        "_prediction_consistency_dice",
+        "_synth_image",
+        "_synthetic_batch_image_np",
+        "canonical_g_forward_batched",
+        "canonical_images_tensor",
+        "canonical_learned_core",
+        "canonical_task_ids_tensor",
+        "now",
+        "smoke_branch_controls",
+        "smoke_empty_proposal_pipeline",
+        "smoke_nonempty_proposal_pipeline"
+      ]
+    },
+    {
+      "check": "21_phase27_authority_path_unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "22_phase27_authority_sha_unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "23_phase27_authority_shape_dtype",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "24_authority_file_present_and_sha_matches",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "25_reproduction_gate_uses_array_equal",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "26_gate_stops_before_downstream",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "27_device_contract_call_explicit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "28_required_device_type_cuda",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "29_cpu_fallback_forbidden",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "30_no_executable_cpu_device_fallback",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "31_fail_closed_runtime_guard",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "32_device_type_checked_after_resolution",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "33_explicit_G_to_device",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "34_explicit_B_phi_to_device",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "35_explicit_R_psi_to_device",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "36_explicit_S_omega_to_device",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "37_component_device_binding_verified",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "38_wrapg_non_module_hazard_documented",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "39_G_inference_mode_false_autocast_true",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "40_G_grad_context_no_grad",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "41_G_autocast_dtype_fp16",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "42_B_phi_inference_mode_true_autocast_false",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "42_R_psi_inference_mode_true_autocast_false",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "42_S_omega_inference_mode_true_autocast_false",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "43_context_helper_defined",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "44_autocast_disabled_helper_defined",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "45_B_phi_uses_component_context",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "46_R_psi_uses_component_context",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "47_S_omega_uses_component_context",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "48_contexts_not_interchangeable",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "49_nonG_not_under_G_autocast",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "50_decision_before_R_psi",
+      "passed": true,
+      "detail": {
+        "decision": 1297,
+        "r_psi": 1315
+      }
+    },
+    {
+      "check": "51_decision_before_S_omega",
+      "passed": true,
+      "detail": {
+        "decision": 1297,
+        "s_omega": 1334
+      }
+    },
+    {
+      "check": "52_skip_branch_zero_forwards",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "53_router_decision_separate",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "54_exact_branch_comparator",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "55_real_proposal_smoke",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "56_real_empty_proposal_smoke",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "57_three_branch_controls",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "58_sample_level_image_loop",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "59_sample_level_proposal_loop",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "60_case_b_and_deny_authorities",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "61_feature_dependency_contract_98_104",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "62_kub_subgroup_and_figures",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "63_noise_seed_rule_v1_1",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "64_thresholds_unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "65_component_identities_unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "66_frozen_counts_unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "67_canonical_batch_partition_unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "68_import_safety_no_torch",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "69_no_training_paths",
+      "passed": true,
+      "detail": null
+    }
+  ],
+  "passed": 74,
+  "total": 74,
+  "all_pass": true
+}

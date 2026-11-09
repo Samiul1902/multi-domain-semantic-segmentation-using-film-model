@@ -1,0 +1,126 @@
+{
+ "artifact": "phase29_terminal_state",
+ "phase": 29,
+ "classification": "PHASE29_THREE_SEED_REPRODUCIBILITY_PRE_EXECUTION_SPECIFICATION_AUDIT",
+ "method": "RA-MedFiLM-BARR",
+ "canonical_title": "Three-Seed Deterministic Reproducibility Study",
+ "governance_only": true,
+ "execution": "NONE",
+ "entry_gate_terminal_required": "PHASE28_CANONICAL_CLOSURE_REPAIRED__EXECUTED_FULL_18_RUN_HISTORY_NOTEBOOK_FROZEN__SCIENTIFIC_ARTIFACTS_UNCHANGED__PHASE29_ELIGIBLE_NOT_STARTED",
+ "entry_gate_terminal_observed": "PHASE28_CANONICAL_CLOSURE_REPAIRED__EXECUTED_FULL_18_RUN_HISTORY_NOTEBOOK_FROZEN__SCIENTIFIC_ARTIFACTS_UNCHANGED__PHASE29_ELIGIBLE_NOT_STARTED",
+ "entry_gate_pass": true,
+ "seeds": [
+  42,
+  123,
+  3407
+ ],
+ "seed_set_authoritatively_frozen": true,
+ "seed_policy_sources": [
+  {
+   "path": "configs/research_protocol.json",
+   "sha256": "df4b137f613f0f30a2efd244f096934e75e0898a9f4f43df08e5c0554b711212",
+   "binds_seeds": [
+    42,
+    123,
+    3407
+   ],
+   "role": "AUTHORITATIVE_MACHINE_READABLE",
+   "binding_level": "PRIMARY"
+  },
+  {
+   "path": "reports/audits/research_protocol.md",
+   "sha256": "f0dc4cd03df7d01fd237331b6c798330847fc85c8c2f09b8dee3368dbdbd64f4",
+   "binds_seeds": "Seeds: 42, 123, 3407",
+   "role": "AUTHORITATIVE_HUMAN_READABLE",
+   "binding_level": "PRIMARY"
+  },
+  {
+   "path": "notebooks/phasewise/phase_00_governance/phase00_governance_reproducibility_and_protocol.ipynb",
+   "sha256": "60e0bc1745482e244dacfbe376526158fb4ead8ced8c4dc264e615e6e6e1afa0",
+   "binds_seeds": "Random Seeds | NO | Supervisor Authorization Required | Deterministic multi-seed evaluation",
+   "role": "GOVERNANCE_POLICY",
+   "binding_level": "SUPPORTING"
+  },
+  {
+   "path": "reports/audits/phase20_shared_global_baseline_protocol.json",
+   "sha256": "b74f1f9f429adbce374f0306180943b9f373f872e1e69e115b7d17e81414283c",
+   "binds_seeds": {
+    "seed": 42,
+    "second_seed_belongs_to_phase_29": true
+   },
+   "role": "PHASE_OWNERSHIP_OF_SECOND_SEED",
+   "binding_level": "SUPPORTING"
+  },
+  {
+   "path": "reports/audits/phase21_global_medfilm_architecture_binding.json",
+   "sha256": "21e2c195c8da33da761965817bab99f0eeec5fa84a846d05ae765b9567017e78",
+   "binds_seeds": {
+    "seed": 42,
+    "second_seed_belongs_to_later_phase": true,
+    "logical_runs_authorized": 1
+   },
+   "role": "PHASE_OWNERSHIP_OF_SECOND_SEED",
+   "binding_level": "SUPPORTING"
+  },
+  {
+   "path": "docs/DESIGN.md",
+   "sha256": "971c9e66d4a8b6f5d889153d4e412cad16ed2c91121835f5133d9bfab1c2b5d2",
+   "binds_seeds": "Still NOT performed: Phase 29 three-seed reproducibility",
+   "role": "PROJECT_STATE",
+   "binding_level": "SUPPORTING"
+  }
+ ],
+ "seed_policy_primary_binding_source": "configs/research_protocol.json",
+ "seed_policy_primary_binding_key": "policies.multi_seed",
+ "specification_complete": false,
+ "blocking_incomplete_fields": [
+  "training_scope",
+  "seed42_reuse_rule",
+  "data_split_rule",
+  "crossfit_fold_rule",
+  "seed_dependency_model",
+  "feature_regeneration_rule",
+  "gain_target_regeneration_rule",
+  "safety_target_regeneration_rule",
+  "final_router_calibration_rule",
+  "evaluation_population",
+  "training_run_count"
+ ],
+ "active_hard_blockers": [
+  "reproducibility_training_scope_unresolved",
+  "multiseed_split_or_fold_rule_unresolved",
+  "seed_specific_dependency_chain_unresolved",
+  "seed_specific_router_target_dependency_unresolved",
+  "multiseed_router_calibration_rule_unresolved",
+  "reproducibility_evaluation_population_unresolved"
+ ],
+ "n_active_hard_blockers": 6,
+ "terminal": "PHASE29_BLOCKED__REPRODUCIBILITY_TRAINING_SCOPE_UNRESOLVED",
+ "exit_class": "BLOCKED",
+ "success_terminal": "PHASE29_REPRODUCIBILITY_SPEC_COMPLETE__THREE_SEEDS_TRAINING_SCOPE_DEPENDENCY_CHAIN_AND_EVALUATION_PROTOCOL_FROZEN__PHASE29_EXECUTION_ELIGIBLE_NOT_STARTED",
+ "blocked_terminals": {
+  "PREDECESSOR_ARTIFACT_DRIFT": "PHASE29_BLOCKED__PREDECESSOR_ARTIFACT_DRIFT",
+  "THREE_SEED_SET_NOT_AUTHORITATIVELY_FROZEN": "PHASE29_BLOCKED__THREE_SEED_SET_NOT_AUTHORITATIVELY_FROZEN",
+  "REPRODUCIBILITY_TRAINING_SCOPE_UNRESOLVED": "PHASE29_BLOCKED__REPRODUCIBILITY_TRAINING_SCOPE_UNRESOLVED",
+  "MULTISEED_SPLIT_OR_FOLD_RULE_UNRESOLVED": "PHASE29_BLOCKED__MULTISEED_SPLIT_OR_FOLD_RULE_UNRESOLVED",
+  "SEED_SPECIFIC_DEPENDENCY_CHAIN_UNRESOLVED": "PHASE29_BLOCKED__SEED_SPECIFIC_DEPENDENCY_CHAIN_UNRESOLVED",
+  "MULTISEED_ROUTER_CALIBRATION_RULE_UNRESOLVED": "PHASE29_BLOCKED__MULTISEED_ROUTER_CALIBRATION_RULE_UNRESOLVED",
+  "REPRODUCIBILITY_EVALUATION_POPULATION_UNRESOLVED": "PHASE29_BLOCKED__REPRODUCIBILITY_EVALUATION_POPULATION_UNRESOLVED",
+  "SEED_SPECIFIC_ROUTER_TARGET_DEPENDENCY_UNRESOLVED": "PHASE29_BLOCKED__SEED_SPECIFIC_ROUTER_TARGET_DEPENDENCY_UNRESOLVED",
+  "REPRODUCIBILITY_SPEC_INCOMPLETE": "PHASE29_BLOCKED__REPRODUCIBILITY_SPEC_INCOMPLETE"
+ },
+ "phase29_execution_eligible": false,
+ "phase29_execution_started": false,
+ "phase30_started": false,
+ "notebook_created": false,
+ "training_runs": 0,
+ "model_forwards": 0,
+ "predictions_created": 0,
+ "router_holdout_reads": 0,
+ "router_holdout_status": "RESERVED_UNOPENED_FOR_PHASE30",
+ "val808_reads": 0,
+ "test_reads": 0,
+ "test_status": "LOCKED_UNTIL_PHASE39",
+ "predecessor_artifact_drift": false,
+ "directive": "STOP. DO NOT TRAIN. DO NOT START PHASE30. DO NOT OPEN ROUTER_HOLDOUT. DO NOT OPEN TEST."
+}

@@ -1,0 +1,41 @@
+{
+ "artifact": "phase25g_primary_metrics_contract",
+ "phase": "25G",
+ "classification": "PHASE25G_PRE_EXECUTION_INTEGRATED_EVALUATION_SPECIFICATION_AUDIT",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_integrated_evaluation_v1_0",
+ "governance_only": true,
+ "no_execution": true,
+ "stage": "PRIMARY_METRICS_FREEZE",
+ "for_A7_and_A8": [
+  "macro-domain Dice delta vs global",
+  "per-domain Dice delta vs global",
+  "pooled mean Dice delta vs global",
+  "harmful replacement rate",
+  "fallback rate",
+  "accepted-refinement rate",
+  "rejected-refinement rate"
+ ],
+ "for_A8_minus_A7": [
+  "mean Dice difference",
+  "macro-domain difference",
+  "per-domain difference",
+  "number of harmful executed refinements rejected",
+  "number of beneficial executed refinements rejected",
+  "number of neutral executed refinements rejected"
+ ],
+ "harmful_replacement_definition": "an executed regional candidate with delta_dice < 0 that becomes the final output",
+ "A8_harmful_rejected_note": "For A8, a harmful candidate rejected to global is NOT a harmful replacement.",
+ "benefit_category_thresholds_not_redefined": {
+  "BENEFICIAL": "d_i >= +0.02",
+  "HARMFUL": "d_i <= -0.01",
+  "NEUTRAL": "otherwise",
+  "source": "phase25e_evaluation_statistics_contract_v1_0.json:benefit_labels"
+ },
+ "checks": {
+  "metrics_frozen_before_evaluation": true,
+  "harmful_replacement_defined": true,
+  "benefit_thresholds_reused_not_redefined": true
+ },
+ "all_pass": true
+}

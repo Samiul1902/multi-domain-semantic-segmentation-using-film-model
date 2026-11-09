@@ -1,0 +1,151 @@
+{
+  "artifact": "post_phase14_h3_axis_priority_diagnostic_protocol",
+  "task": "POST-PHASE14 H3 SINGLE-AXIS PRIORITY DIAGNOSTIC",
+  "status": "FROZEN_AWAITING_EXECUTION",
+  "authorization_context": {
+    "phase14_outcome": "DIAGNOSTIC_PROPOSAL_BOTTLENECK__F_MIXED_BOTTLENECK",
+    "phase15_status": "NOT_STARTED_AND_NOT_AUTHORIZED",
+    "h3_status": "H3_NOT_READY__CAUSE_UNRESOLVED (pre-this-task)",
+    "h3_training_authorized": false,
+    "task_type": "CAUSAL_PRIORITY_DECOMPOSITION__NO_TRAINING__NO_H3",
+    "sole_purpose": "Determine whether ONE scientific axis (A_PROPOSAL_SUPPLY_RECALL vs C_PROPOSAL_CONTAMINATION) can be uniquely selected prospectively for H3. Do NOT train H3."
+  },
+  "population": {
+    "manifest_version": "phase4_v3",
+    "view_type": "FULL_FIELD",
+    "split": "VAL (frozen clean-v3)",
+    "n_images": 103,
+    "n_components": 152,
+    "size_strata": {
+      "TINY": 72,
+      "SMALL": 28,
+      "MEDIUM": 36,
+      "LARGE": 16
+    },
+    "hard_tiny_denominator": 15,
+    "global_empty_denominator": 5,
+    "test_split": "CLOSED (0 reads)",
+    "external_data": "CLOSED"
+  },
+  "frozen_checkpoints": {
+    "global_unetpp_clean_v3": {
+      "path": "checkpoints/phase10_kub_unetpp_seed42_512_clean_v3/best.pt",
+      "sha256": "ec7eb13f32e43af27eab7fc617bd1a2a8fcce1d6651a1b4a3653f3e4d1283269",
+      "role": "GLOBAL_ONLY baseline"
+    },
+    "regional_refiner_clean_v3": {
+      "path": "checkpoints/phase14_kub_refiner_unet_a3_256_seed42_clean_v3/best.pt",
+      "sha256": "2e09e3a9c39c731687db1a9fef0c80881ed6235e4cda070bb4b8b382caa45daa",
+      "epoch": 56,
+      "role": "Stage-4D regional refiner (256 crop)"
+    },
+    "stage4d_localizer_clean_v3": {
+      "path": "checkpoints/phase13b_kub_localizer_r512_h128_sigmaeq075_centernetfocal_seed42_clean_v3/best.pt",
+      "sha256": "7673c34a2f2c86eca2e45c1bc6abe77842d17cd09f122f2da0f2d414ca492273",
+      "epoch": 53,
+      "role": "Stage-4D proposal localizer (Centernet-Focal, 512)"
+    }
+  },
+  "frozen_proposal_policy": {
+    "threshold": 0.1,
+    "margin": 0.2,
+    "top_k": 5,
+    "nms_iou": 0.3,
+    "note": "Stage-4D contract; unchanged. A-only keeps all predicted proposals (incl FPs) and only ADDS GT-assisted ROIs for zero-proposal components."
+  },
+  "frozen_references": {
+    "Tg_tiny_recall_gate": 0.7916666666666666,
+    "G_1minus_Tg": 0.20833333333333337,
+    "Dg": 0.6359172411726776,
+    "Dice_gate_Dg_minus_0.02": 0.6159172411726777
+  },
+  "scientific_question": "Can the first H3 axis be uniquely selected between A_PROPOSAL_SUPPLY_RECALL_LIMITATION and C_PROPOSAL_CONTAMINATION_LIMITATION without changing both? Decisive test: if missing proposal supply is repaired while contamination is left untouched, does the frozen system recover the Tiny-recall signal required by Phase 14?",
+  "interventions": {
+    "A_ONLY": {
+      "label": "GT_ASSISTED_MISSING_PROPOSAL_SUPPLY_COMPLETION__NON_DEPLOYABLE",
+      "definition": "For every GT component receiving NO matched predicted proposal under the frozen Stage-4D policy, add exactly ONE GT-derived diagnostic ROI using the frozen Oracle geometry convention (margin=0.20); KEEP every original predicted proposal including all background FPs; same refiner, regional preprocessing, fusion rule, segmentation threshold (0.50).",
+      "purpose": "Identify causal necessity of supply for the regional Tiny-recall signal."
+    },
+    "C_ONLY": {
+      "label": "GT_ASSISTED_FALSE_POSITIVE_DECOMPOSITION__NON_DEPLOYABLE",
+      "definition": "Remove confirmed-background proposals (overlap no GT); proposal supply unchanged. Reuse metrics from the existing root-cause diagnostic (C-only Dice approx 0.6288, Tiny Recall approx 79.17%).",
+      "purpose": "Isolated contamination intervention."
+    },
+    "A_PLUS_C": {
+      "label": "GT_ASSISTED_SUPPLY_PLUS_FP_REMOVAL__UPPER_BOUND_ONLY",
+      "definition": "Combine missing-proposal supply completion + GT-confirmed FP removal. NON-DEPLOYABLE upper bound only; answers whether A+C jointly approach Oracle-regional potential. Not an H3 design.",
+      "optional": true
+    }
+  },
+  "conditions_reported": [
+    "GLOBAL",
+    "PREDICTED",
+    "A_ONLY",
+    "C_ONLY",
+    "A_PLUS_C",
+    "ORACLE_REGIONAL"
+  ],
+  "no_training_no_tuning_no_search": {
+    "retraining": false,
+    "fine_tuning": false,
+    "h3_training": false,
+    "threshold_changes": false,
+    "threshold_sweeps": false,
+    "top_k_changes": false,
+    "nms_changes": false,
+    "margin_changes": false,
+    "proposal_policy_changes": false,
+    "checkpoint_comparisons": false,
+    "architecture_comparisons": false,
+    "loss_changes": false,
+    "augmentation_changes": false,
+    "hyperparameter_search": false,
+    "test_reads": false,
+    "external_test_reads": false,
+    "counters": {
+      "search_sweeps": 0,
+      "tuning_runs": 0,
+      "checkpoint_comparisons": 0,
+      "retraining": 0,
+      "h3_training": 0,
+      "test_reads": 0,
+      "external_test_reads": 0
+    }
+  },
+  "priority_rule": {
+    "A_PRIORITY": "H3_DESIGN_ELIGIBLE__AXIS_PROPOSAL_SUPPLY_RECALL if A-only materially increases Tiny Recall over frozen PREDICTED (lift>=0.10); R_A>=0.50; C-only does NOT materially increase Tiny Recall.",
+    "C_PRIORITY": "H3_DESIGN_ELIGIBLE__AXIS_PROPOSAL_CONTAMINATION_SUPPRESSION only if C-only corrects the dominant downstream failure AND A-only fails to restore meaningful Tiny Recall.",
+    "STILL_MIXED": "H3_NOT_READY__TWO_AXES_JOINTLY_REQUIRED if both single axes individually repair their failures and neither can test a necessary causal bottleneck in isolation.",
+    "INSUFFICIENT": "H3_NOT_READY__INSUFFICIENT_CAUSAL_SEPARATION if no rule is cleanly satisfied.",
+    "note": "Do not invent another label post hoc. If eligible, name EXACTLY ONE axis."
+  },
+  "implementation_binding": {
+    "diagnostic_evaluator": "scripts/evaluation/diagnose_h3_axis_priority.py",
+    "diagnostic_evaluator_sha256": "5029c4bf1666756e9c31b8c4fa82b74680036e1c50ec4f010e6828d8a637b680",
+    "reuses_frozen_pipeline_from": "scripts/evaluation/evaluate_phase14_clean_v3_diagnostic.py",
+    "bound_artifacts": {
+      "phase14_root_cause_json": "D:/Softfors/jup/reports/audits/phase14_diag_root_cause.json",
+      "phase14_root_cause_json_sha256": "dd9b5b86ab1933e766ad01c33f672d096a33471078138204884b03f7ec0442ea",
+      "component_table": "D:/Softfors/jup/reports/tables/phase14_diag_component_level.csv",
+      "component_table_sha256": "59605f3b05c34031cadcfc8b39160a330d4b6e70fe87abafe72a6cc555e9acb7",
+      "proposal_table": "D:/Softfors/jup/reports/tables/phase14_diag_proposal_level.csv",
+      "proposal_table_sha256": "7632a261f647d016feafde80b887769aa631bc3a9358468ab2a465742f22c26c",
+      "image_table": "D:/Softfors/jup/reports/tables/phase14_diag_image_summary.csv",
+      "image_table_sha256": "d446828877cb18f51794686c7f38ca7b44026c5d3ed22b6ad23e4a8dab00b6be",
+      "phase14_governance_reconciliation": "D:/Softfors/jup/reports/audits/phase14_clean_v3_final_governance_reconciliation.json",
+      "phase14_governance_reconciliation_sha256": "d4ebe2b4d3e65d7ee166834ad2dbab71f2e3330a7ac7b32b1573f60ffe18b207"
+    }
+  },
+  "required_artifacts": [
+    "reports/audits/post_phase14_h3_axis_priority_protocol.json (this)",
+    "reports/audits/post_phase14_h3_axis_priority_protocol.md",
+    "reports/tables/phase15_h3_axis_priority_component_level.csv",
+    "reports/tables/phase15_h3_axis_priority_image_summary.csv",
+    "reports/tables/phase15_h3_axis_priority_aonly_injected.csv",
+    "reports/tables/phase15_h3_axis_priority_ac_component_level.csv",
+    "reports/audits/post_phase14_h3_axis_priority_results.json",
+    "reports/audits/post_phase14_h3_axis_priority_report.md",
+    "reports/audits/post_phase14_h3_axis_priority_execution_audit.json"
+  ],
+  "generated_utc": "2026-09-25T03:19:47Z"
+}

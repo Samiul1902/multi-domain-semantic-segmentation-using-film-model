@@ -1,0 +1,174 @@
+{
+ "artifact": "phase34_latency_execution_source_preflight_v1_4",
+ "phase": 34,
+ "section": "\u00a7F",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase34_efficiency_profiling_v1_4",
+ "additive_filename": true,
+ "v1_4_terminal_exact": true,
+ "v1_4_source_freeze_exact": true,
+ "v1_4_arm_registry_exact": true,
+ "authority_bindings": [
+  {
+   "path": "reports/audits/phase34_latency_repair_terminal_v1_4.json",
+   "expected_sha256": "fb5e335764fe1ea05726a1c8cfbfb37f0ac37cad5b2301f6211571d5afb3a57c",
+   "observed_sha256": "fb5e335764fe1ea05726a1c8cfbfb37f0ac37cad5b2301f6211571d5afb3a57c",
+   "match": true
+  },
+  {
+   "path": "reports/audits/phase34_preexecution_source_freeze_v1_4.json",
+   "expected_sha256": "6f3505ec91f3f229dfb7f3f502fd1952683fe2e7d691d119b26b0372d39c1221",
+   "observed_sha256": "6f3505ec91f3f229dfb7f3f502fd1952683fe2e7d691d119b26b0372d39c1221",
+   "match": true
+  },
+  {
+   "path": "reports/tables/phase34_latency_arm_registry_v1_4.csv",
+   "expected_sha256": "1a3de4baa126cb6e1cc400d6dd173d076bb8c73cbfd0648c0c918cf3d8f804f0",
+   "observed_sha256": "1a3de4baa126cb6e1cc400d6dd173d076bb8c73cbfd0648c0c918cf3d8f804f0",
+   "match": true
+  },
+  {
+   "path": "reports/audits/phase34_v1_3_latency_source_root_cause.json",
+   "expected_sha256": "a4ca49f3ffb5622785ac4eca3227165bd3f7b7530fc2cf0159544418bef3ac22",
+   "observed_sha256": "a4ca49f3ffb5622785ac4eca3227165bd3f7b7530fc2cf0159544418bef3ac22",
+   "match": true
+  },
+  {
+   "path": "reports/audits/phase34_latency_preflight_v1_4.json",
+   "expected_sha256": "366b313dd380d5d6d83aa7a078189fdec11a0cac062c917c4a162e6f317392c5",
+   "observed_sha256": "366b313dd380d5d6d83aa7a078189fdec11a0cac062c917c4a162e6f317392c5",
+   "match": true
+  }
+ ],
+ "authority_all_match": true,
+ "source_verification": [
+  {
+   "key": "worker_v1_4",
+   "path": "scripts/analysis/phase34_latency_worker_v1_4.py",
+   "expected_sha256": "369ae8c65b78f61acd59973d9b184e15be5733c6049f586ae0eb917b0168fab3",
+   "observed_sha256": "369ae8c65b78f61acd59973d9b184e15be5733c6049f586ae0eb917b0168fab3",
+   "match": true
+  },
+  {
+   "key": "harness_v1_4",
+   "path": "scripts/analysis/phase34_latency_execution_v1_4.py",
+   "expected_sha256": "1c96183c5554a3d3f8f734dd50a048407558338900f4924c4ed695cd3e236960",
+   "observed_sha256": "1c96183c5554a3d3f8f734dd50a048407558338900f4924c4ed695cd3e236960",
+   "match": true
+  },
+  {
+   "key": "preflight_v1_4",
+   "path": "scripts/analysis/phase34_latency_preflight_v1_4.py",
+   "expected_sha256": "f0fce5b58693d0dc1f3b42fcfe494df5cbf83ea907c3c83b9f5d7304218d4852",
+   "observed_sha256": "f0fce5b58693d0dc1f3b42fcfe494df5cbf83ea907c3c83b9f5d7304218d4852",
+   "match": true
+  },
+  {
+   "key": "common_v1_2",
+   "path": "scripts/analysis/phase34_v1_2_common.py",
+   "expected_sha256": "ca74fe88a8314b6099b2455f3450ea6f075dcd3cf69208cdd8a784ad24e9a0f9",
+   "observed_sha256": "ca74fe88a8314b6099b2455f3450ea6f075dcd3cf69208cdd8a784ad24e9a0f9",
+   "match": true
+  },
+  {
+   "key": "model_G",
+   "path": "src/models/film/global_medfilm.py",
+   "expected_sha256": "a04ff3e61b4d900ff47c2f390da4a999e73bd6047b28a19e41b05115e431d11f",
+   "observed_sha256": "a04ff3e61b4d900ff47c2f390da4a999e73bd6047b28a19e41b05115e431d11f",
+   "match": true
+  },
+  {
+   "key": "model_R_psi",
+   "path": "src/models/barr/regional_refiner.py",
+   "expected_sha256": "4fe0abde3ec3a183d930f676c4400b4d9ba778793ea64abf1755c5b8dabf947a",
+   "observed_sha256": "4fe0abde3ec3a183d930f676c4400b4d9ba778793ea64abf1755c5b8dabf947a",
+   "match": true
+  },
+  {
+   "key": "model_B_phi_authority",
+   "path": "scripts/analysis/train_phase25d_router.py",
+   "expected_sha256": "fc7c1bdf263ae4551dcb8f170d3203adb8540fbc189846265b74f6eca1541e91",
+   "observed_sha256": "fc7c1bdf263ae4551dcb8f170d3203adb8540fbc189846265b74f6eca1541e91",
+   "match": true
+  },
+  {
+   "key": "model_S_omega_authority",
+   "path": "scripts/analysis/phase25f_execution_common.py",
+   "expected_sha256": "98cf958a377e2de30e0b67e63fd56bafea418b2b061a362ee7284e852012cd2e",
+   "observed_sha256": "98cf958a377e2de30e0b67e63fd56bafea418b2b061a362ee7284e852012cd2e",
+   "match": true
+  },
+  {
+   "key": "domain_task_registry",
+   "path": "src/analysis/multidomain_harmonization.py",
+   "expected_sha256": "3f009d994ed24d9c2edf8e48646e93700ab4e54dea786fb4bd03180c825cbf92",
+   "observed_sha256": "3f009d994ed24d9c2edf8e48646e93700ab4e54dea786fb4bd03180c825cbf92",
+   "match": true
+  }
+ ],
+ "all_sources_match": true,
+ "preserved_valid_v1_3_evidence": [
+  {
+   "path": "reports/tables/phase34_batch8_throughput_results_v1_3.csv",
+   "expected_sha256": "ac2b21aa89086870af59cd341ac51122568a871981fc9df9a4f323ae58c84c6c",
+   "observed_sha256": "ac2b21aa89086870af59cd341ac51122568a871981fc9df9a4f323ae58c84c6c",
+   "match": true
+  },
+  {
+   "path": "reports/tables/phase34_gpu_memory_results_v1_3.csv",
+   "expected_sha256": "6df4e0941dcd33ab90196f7572528afbc7848d9329c6bcb6940978813dd02979",
+   "observed_sha256": "6df4e0941dcd33ab90196f7572528afbc7848d9329c6bcb6940978813dd02979",
+   "match": true
+  },
+  {
+   "path": "reports/tables/phase34_static_resource_profile_v1_3.csv",
+   "expected_sha256": "f4c36efd4fedb07778cf8b752a1e54ec91b19b78d9d1c6f4ef300cb5bdb73343",
+   "observed_sha256": "f4c36efd4fedb07778cf8b752a1e54ec91b19b78d9d1c6f4ef300cb5bdb73343",
+   "match": true
+  },
+  {
+   "path": "reports/tables/phase34_analytical_compute_summary_v1_3.csv",
+   "expected_sha256": "bbe1d933c24e297454ec7afee0f64d00bc79dbcf815d747df2ec2f742c93f71f",
+   "observed_sha256": "bbe1d933c24e297454ec7afee0f64d00bc79dbcf815d747df2ec2f742c93f71f",
+   "match": true
+  }
+ ],
+ "preserved_valid_v1_3_all_match": true,
+ "checkpoint_verification": [
+  {
+   "component": "G",
+   "path": "checkpoints/phase21_global_medfilm_fourdomain_seed42_clean_v3/best.pt",
+   "expected_sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+   "observed_sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+   "match": true
+  },
+  {
+   "component": "R_psi",
+   "path": "checkpoints/phase25a_barr_regional_refiner_v1_1_roi030/final/final.pt",
+   "expected_sha256": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109",
+   "observed_sha256": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109",
+   "match": true
+  },
+  {
+   "component": "B_phi",
+   "path": "checkpoints/phase25d_barr_benefit_router_v1_2_1_seed42/final/final.pt",
+   "expected_sha256": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+   "observed_sha256": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+   "match": true
+  },
+  {
+   "component": "S_omega",
+   "path": "checkpoints/phase25f_barr_post_safety_v1_0_seed42/final/final.pt",
+   "expected_sha256": "eee9b97b9921e53fc07eac9281dce64ba518c6e1659916b97b0b3bec21ec6d2e",
+   "observed_sha256": "eee9b97b9921e53fc07eac9281dce64ba518c6e1659916b97b0b3bec21ec6d2e",
+   "match": true
+  }
+ ],
+ "all_checkpoints_match": true,
+ "static_preflight_22_0": true,
+ "frozen_artifact_overwritten": false,
+ "model_constructed": false,
+ "checkpoint_deserialized": false,
+ "generated_utc": "2026-10-04T14:10:09+00:00",
+ "all_pass": true
+}

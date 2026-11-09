@@ -1,0 +1,92 @@
+{
+  "artifact": "PHASE13_CLEAN_V3_LOCALIZER_TRAINING_ABORT_INCIDENT",
+  "document_type": "INCIDENT_RECORD_AND_ROOT_CAUSE",
+  "experiment_id": "phase13b_kub_localizer_r512_h128_sigmaeq075_centernetfocal_seed42_clean_v3",
+  "stopped_by": "SUPERVISOR_ORDER",
+  "stop_signal": "SIGTERM (exit code 143)",
+  "run_status": "ABORTED_NOT_COMPLETED",
+  "completion_audit_written": false,
+  "epochs_completed": 28,
+  "checkpoint_epoch": 27,
+  "history_path": "D:\\Softfors\\jup\\experiments\\phase13b_kub_localizer_r512_h128_sigmaeq075_centernetfocal_seed42_clean_v3\\history.csv",
+  "history_sha": "70fca5b796d112b1322ae945570ec94a271f3502af0bac61664954a4b0d13031",
+  "stdout_log_path": "D:\\Softfors\\jup\\reports\\audits\\phase13_clean_v3_localizer_training_stdout.log",
+  "stdout_log_sha": "92a9bb910e2dc545f2ebe204f4dc79b37fcd8dfb0a6bdbb9ecc62cdd09a26170",
+  "best_checkpoint_path": "D:\\Softfors\\jup\\checkpoints\\phase13b_kub_localizer_r512_h128_sigmaeq075_centernetfocal_seed42_clean_v3\\best.pt",
+  "best_checkpoint_sha": "d71aed3e084653bfc49acf9461cc2f0b3332c03b43026947a54393f89cebd04c",
+  "latest_checkpoint_path": "D:\\Softfors\\jup\\checkpoints\\phase13b_kub_localizer_r512_h128_sigmaeq075_centernetfocal_seed42_clean_v3\\latest.pt",
+  "latest_checkpoint_sha": "7f6f0b2e0d6fe2d61743ec0e3f8d2cf5e986f5711442cdf3113932da59152407",
+  "stale_lock_present": true,
+  "defect_class": "DEGENERATE_ALL_NEGATIVE_HEATMAP",
+  "defect_severity": "SCIENTIFICALLY_BLOCKING",
+  "observed": {
+    "tiny_recall90_all_epochs": [
+      0.0
+    ],
+    "overall_recall90_all_epochs": [
+      0.0
+    ],
+    "mean_roi_area_fraction_all_epochs": [
+      0.0
+    ],
+    "val_loss_first": 10.361776975484995,
+    "val_loss_last": 2.2075677880874047,
+    "val_loss_reduction_fraction": 0.7869508489412284,
+    "epochs_with_recall_above_zero": 0,
+    "proposals_ever_generated": false
+  },
+  "checkpoint_evidence": {
+    "head_bias": -2.2245101928710938,
+    "head_weight_mean": -0.1486053168773651,
+    "head_weight_min": -0.15079878270626068,
+    "head_weight_max": -0.14705722033977509,
+    "implied_peak_probability": 0.0975709564818953,
+    "proposal_threshold": 0.1,
+    "threshold_gap": 0.0024290435181047038,
+    "bias_required_to_cross_threshold": -2.197224577336219,
+    "best_validation_score": [
+      0.0,
+      0.0,
+      -0.0,
+      -2.188045249535487
+    ]
+  },
+  "mechanism": {
+    "summary": "The model converged to a spatially uniform, sub-threshold logit field. Every pixel predicts sigmoid(head.bias) below the frozen 0.10 proposal threshold, so the proposal generator emits zero proposals on every validation image. Recall therefore cannot be anything but 0, and the 4-term selection tuple (tiny_recall90, overall_recall90, -mean_roi_area_fraction, -val_loss) has its first three terms pinned to constants (0, 0, 0). The entire best-checkpoint decision was driven by term 4 (-val_loss) alone.",
+    "selection_tuple_degeneracy": "With terms 1-3 constant across all epochs, strict lexicographic comparison reduces to minimising val_loss. Every epoch that lowered val_loss was accepted as a new best, including epoch 27 whose recall is still 0.",
+    "target_density": {
+      "sigma_128_space": 0.75,
+      "sigma_512_equivalent": 3.0,
+      "heatmap_resolution": 128,
+      "positive_pixels_per_target": 1,
+      "background_pixels_per_target": 16383,
+      "positive_to_background_ratio": "1:16383",
+      "note": "sigma=0.75 in 128-space yields a target that is effectively a single-pixel spike. The positive branch is vanishingly sparse relative to an enormous background, which is the upstream reason the optimiser prefers to suppress the whole field rather than raise isolated peaks."
+    },
+    "loss_normalisation": {
+      "loss_class": "CenterNetFocalLoss",
+      "alpha": 2.0,
+      "beta": 4.0,
+      "normaliser": "num_positive_pixels (batch-wide)",
+      "note": "neg_loss is a SUM over ~16384 background pixels per heatmap, while pos_loss has only a handful of contributing pixels. Both are divided by the same num_pos. At the degenerate point the background term dominates, and driving every logit down is the cheapest way to reduce total loss."
+    }
+  },
+  "why_not_early_stopping": "Early stopping never triggered because every val_loss improvement counted as a new best (terms 1-3 were tied constants, never a regression). bad_epochs reset to 0 each time val_loss fell, so the patience counter could not accumulate towards 15.",
+  "protocol_integrity": {
+    "provenance_binding_held": true,
+    "superseded_fields_absent": true,
+    "grid_search_ran": false,
+    "test_reads": 0,
+    "manifest_validation": "phase4_v3 PASS (7 files)",
+    "note": "The manifest-provenance amendment itself is intact. This defect is scientific/optimisation, not provenance."
+  },
+  "recommended_supervisor_decisions": [
+    "COMPLETE_HALT: treat this as an unresolved scientific blocker and re-plan the localizer objective before any further compute.",
+    "TARGET_DENSITY_REPAIR: re-derive sigma so the target is learnable (wider Gaussian), which is a SCIENTIFIC parameter change requiring explicit authorisation.",
+    "THRESHOLD_REPAIR: lower the frozen proposal threshold so sub-threshold fields still yield proposals -- also a SCIENTIFIC parameter change.",
+    "LOSS_REBALANCE: address the num_pos normalisation / background dominance -- also a SCIENTIFIC parameter change."
+  ],
+  "no_repair_performed": true,
+  "no_new_experiment_id_created": true,
+  "awaiting": "SUPERVISOR_PHASE13_PART1B_INCIDENT_REVIEW"
+}

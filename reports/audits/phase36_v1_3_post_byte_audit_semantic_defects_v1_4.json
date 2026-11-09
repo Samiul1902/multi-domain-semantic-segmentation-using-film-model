@@ -1,0 +1,161 @@
+{
+  "artifact": "phase36_v1_3_post_byte_audit_semantic_defects",
+  "phase": 36,
+  "section": "\u00a7B",
+  "method": "RA-MedFiLM-BARR",
+  "revision": "ra_medfilm_barr_phase36_robustness_v1_4",
+  "type": "PRE_SCIENTIFIC_SOURCE_SEMANTIC_AND_SMOKE_COVERAGE_DEFECT_RECORD",
+  "generated_utc": "2026-10-06T08:07:15Z",
+  "subject": "scripts/analysis/phase36_robustness_execution_v1_3.py",
+  "subject_sha256": "a3290c640f9632499905b974606d4c7e7e7be89886ef1f8507a9007814da297c",
+  "discovery_basis": "DIRECT_INDEPENDENT_AST_AND_SOURCE_BYTE_INSPECTION_OF_THE_FROZEN_V1_3_BYTES",
+  "no_source_modification": true,
+  "no_execution": true,
+  "torch_imported": false,
+  "classification": "PRE_SCIENTIFIC_SOURCE_SEMANTIC_AND_SMOKE_COVERAGE_DEFECTS__NO_SCIENTIFIC_EFFECT",
+  "scientific_effect": "NONE__DEFECTS_AFFECT_SMOKE_COVERAGE_NUMERICAL_CONTRACT_AND_REPORTING_SHAPE_ONLY",
+  "defects": [
+    {
+      "id": "D1",
+      "title": "run_smoke does NOT call _evaluate_frozen_system_proposal",
+      "proof_method": "AST call-graph extraction of the frozen v1.3 run_smoke function body",
+      "evidence": {
+        "run_smoke_calls__evaluate_frozen_system_proposal": false,
+        "run_smoke_calls__evaluate_frozen_system": true,
+        "run_smoke_calls__apply_proposal_condition": true
+      },
+      "consequence": "The real learned-component PROPOSAL pipeline (B_phi re-decision + conditional R_psi + conditional S_omega on a perturbed geometry) is never exercised by smoke; only the geometry transform is.",
+      "repair_target": "\u00a7I",
+      "severity": "SMOKE_COVERAGE_GAP"
+    },
+    {
+      "id": "D2",
+      "title": "empty-proposal smoke does NOT call the real proposal evaluator",
+      "proof_method": "source-byte inspection of the v1.3 run_smoke empty-proposal block",
+      "evidence": {
+        "v1_3_empty_block_only_checks_roi_geometry_from_prob_zeros_is_none": true,
+        "v1_3_calls_proposal_evaluator_with_none_proposal": false
+      },
+      "consequence": "The frozen NOT_APPLICABLE_EMPTY_PROPOSAL contract (status, zero R_psi forwards, zero S_omega forwards, no replacement geometry) is asserted by constant, never executed.",
+      "repair_target": "\u00a7J",
+      "severity": "SMOKE_COVERAGE_GAP"
+    },
+    {
+      "id": "D3",
+      "title": "_smoke_state_machine checks B_phi SKIP/EXECUTE only",
+      "proof_method": "AST extraction of the v1.3 _smoke_state_machine case registry",
+      "evidence": {
+        "v1_3_cases": ["CONTROL_SKIP", "CONTROL_EXECUTE"],
+        "v1_3_mentions_execute_then_accept_in_that_function": false,
+        "v1_3_mentions_execute_then_reject_in_that_function": false
+      },
+      "consequence": "The EXECUTE_THEN_ACCEPT and EXECUTE_THEN_REJECT final branches are never branch-controlled in smoke.",
+      "repair_target": "\u00a7K",
+      "severity": "SMOKE_COVERAGE_GAP"
+    },
+    {
+      "id": "D4",
+      "title": "clean/image/proposal evaluators execute R_psi BEFORE the B_phi SKIP/EXECUTE decision whenever ROI exists",
+      "proof_method": "source-byte line ordering inside each v1.3 evaluator function",
+      "evidence": {
+        "_evaluate_clean_sample": {"r_psi_forward_line": 739, "forward_inference_line": 750, "r_psi_precedes_decision": true},
+        "_evaluate_frozen_system": {"r_psi_forward_line": 956, "forward_inference_line": 964, "r_psi_precedes_decision": true},
+        "_evaluate_frozen_system_proposal": {"r_psi_forward_line": 1010, "forward_inference_line": 1021, "r_psi_precedes_decision": true}
+      },
+      "consequence": "Speculative pre-decision R_psi compute. On a true SKIP_GLOBAL sample the frozen state machine requires R_psi forwards = 0, but v1.3 has already run R_psi. The conditional-execution semantics of the frozen system are not reproduced.",
+      "repair_target": "\u00a7F",
+      "severity": "CONDITIONAL_EXECUTION_SEMANTICS_DEFECT"
+    },
+    {
+      "id": "D5",
+      "title": "G numerical execution does not inherit the canonical Phase27 VAL808 numerical contract",
+      "proof_method": "source-byte inspection of every G forward call site in v1.3",
+      "evidence": {
+        "autocast_present_anywhere_in_v1_3": false,
+        "torch_inference_mode_present": false,
+        "g_batch_size_used": 1,
+        "canonical_batch_size_required": 8,
+        "canonical_domain_local_partition_implemented": false,
+        "canonical_requires": ["cuda", "float32 model/input", "autocast float16", "no_grad", "domain-local contiguous batch-8"]
+      },
+      "consequence": "The clean G probability path in v1.3 is numerically different from the frozen Phase27 authority, so the \u00a7E bit-identical clean global reproduction gate could never have been satisfied.",
+      "repair_target": "\u00a7D/\u00a7E",
+      "severity": "NUMERICAL_CONTRACT_DEFECT"
+    },
+    {
+      "id": "D6",
+      "title": "direct G calls create task-id tensors without binding them to the same device as the G model/input",
+      "proof_method": "regex enumeration of every torch.tensor([...task_id...]) construction in v1.3",
+      "evidence": {
+        "bare_torch_tensor_task_id_sites": 4,
+        "device_bound_torch_tensor_task_id_sites": 0,
+        "note": "The only device-bound task-id tensor in v1.3 is inside _smoke_state_machine._router_score, not in any G call."
+      },
+      "consequence": "CPU task-id tensor passed to a CUDA G forward; device mismatch.",
+      "repair_target": "\u00a7D",
+      "severity": "DEVICE_BINDING_DEFECT"
+    },
+    {
+      "id": "D7",
+      "title": "clean route equivalence compares only global-vs-nonglobal, not exact state_machine_branch",
+      "proof_method": "source-byte inspection of the v1.3 _clean_equivalence_gate comparator",
+      "evidence": {
+        "v1_3_uses_global_vs_nonglobal_collapse": true,
+        "v1_3_binds_exact_state_machine_branch_comparison": false,
+        "collapse_expression": "gen_global != bound_global"
+      },
+      "consequence": "EXECUTE_THEN_ACCEPT and EXECUTE_THEN_REJECT are collapsed into one 'non-global' class, so a REJECT that should be ACCEPT (or vice versa) passes the gate.",
+      "repair_target": "\u00a7G",
+      "severity": "EQUIVALENCE_GATE_DEFECT"
+    },
+    {
+      "id": "D8",
+      "title": "router_decision is populated from final state rather than the actual B_phi SKIP/EXECUTE decision",
+      "proof_method": "source-byte inspection of every router_decision assignment in v1.3",
+      "evidence": {
+        "v1_3_clean_store_router_decision_assigned_from": "out.get(\"state\")",
+        "v1_3_perturbed_router_decision_assigned_from": "out.get(\"state\")"
+      },
+      "consequence": "router_decision \u2208 {FORCED_SKIP, SKIP_GLOBAL, EXECUTE_THEN_ACCEPT, EXECUTE_THEN_REJECT} instead of the required {SKIP, EXECUTE}. The B_phi decision is not separable from the final state.",
+      "repair_target": "\u00a7G",
+      "severity": "DECISION_SEPARATION_DEFECT"
+    },
+    {
+      "id": "D9",
+      "title": "KUB 'subgroup' output is not actually subgrouped by the frozen Kidney/Bladder/Ureteric reporting metadata",
+      "proof_method": "source-byte inspection of the v1.3 kub_subgroup_robustness function (lines 1420-1431)",
+      "evidence": {
+        "v1_3_reads_val_csv_category_column": false,
+        "v1_3_emits_kidney_stone_label": false,
+        "v1_3_emits_bladder_stone_label": false,
+        "v1_3_emits_ureteric_stone_label": false,
+        "v1_3_emits_only": ["sample_id", "condition", "paired_delta_dice"]
+      },
+      "consequence": "The KUB table carries no subgroup labels and no per-subgroup robustness summary; the frozen reporting authority is unused.",
+      "repair_target": "\u00a7L",
+      "severity": "REPORTING_SHAPE_DEFECT"
+    },
+    {
+      "id": "D10",
+      "title": "R1-R5 figure generation is absent from the Phase36 science path",
+      "proof_method": "AST function-definition enumeration and FIG-path usage scan of v1.3",
+      "evidence": {
+        "figure_builder_definitions_in_v1_3": [],
+        "FIG_path_referenced": false
+      },
+      "consequence": "The frozen Phase36 figure registry R1-R5 is unimplemented and unreachable from run_science.",
+      "repair_target": "\u00a7M",
+      "severity": "FIGURE_PATH_DEFECT"
+    }
+  ],
+  "defect_count": 10,
+  "all_defects_independently_proven": true,
+  "defects_affecting_scientific_claims": 0,
+  "preserved_history": {
+    "v1_3_execution_source_sha256": "a3290c640f9632499905b974606d4c7e7e7be89886ef1f8507a9007814da297c",
+    "v1_3_source_freeze_sha256": "9e80b62d03cb3186eec75b1ef389c000b8c1959c58ebb3099dbb2ebcadde0724",
+    "v1_3_direct_source_byte_audit_sha256": "6549f713c6e7e6ea90f77289db8634feeab4ef3ef1f824e814befda54dbf813d",
+    "v1_3a_case_b_governance_result": "V1_3_DIRECT_SOURCE_AND_VAL_ALLOWLIST_PRIMARY_SPLIT_AUTHORITY_AUDIT_PASS__EXPLICIT_HOLDOUT_DENY_SET_NOT_POPULATED__SCIENTIFICALLY_SAFE_GOVERNANCE_WORDING_RECONCILED",
+    "historical_terminals_rewritten": false
+  }
+}

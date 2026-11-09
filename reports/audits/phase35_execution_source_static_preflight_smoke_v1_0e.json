@@ -1,0 +1,59 @@
+{
+ "artifact": "phase35_execution_source_static_preflight_smoke_v1_0e",
+ "phase": 35,
+ "section": "\u00A7E",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase35_interpretability_v1_0e",
+ "purpose": "Additive pre-smoke binding of the frozen v1.0e static preflight and the model-free numerical-guard unit tests, with a re-verified guard-reachability inventory over the exact frozen source bytes.",
+ "bound_preflight": {
+  "path": "reports/audits/phase35_execution_source_static_preflight_v1_0e.json",
+  "sha256": "4dd6376947446fa87caa271dae8d8fd4cac3e83bf99e21723ab6a77012d05b0f",
+  "matched": true
+ },
+ "bound_numerical_guard_unit": {
+  "path": "reports/audits/phase35_gradcam_numerical_guard_unit_v1_0e.json",
+  "sha256": "f368c53d740c0e6346edaec07f1a438e40eab489e325f720a4fdf035d8c9a86b",
+  "matched": true
+ },
+ "bound_source": {
+  "path": "scripts/analysis/phase35_interpretability_execution_v1_0e.py",
+  "sha256": "1ca50b773a185384b9f0a7eae47fe95c64eb84bad3826c70cbe88edefe535941",
+  "matched": true
+ },
+ "static_preflight": {
+  "n_checks": 118,
+  "n_failed": 0,
+  "all_pass": true,
+  "original_54_all_pass": true,
+  "cumulative_amendment_all_pass": true,
+  "numerical_guard_all_pass": true
+ },
+ "numerical_guard_unit_tests": {
+  "n_tests": 12,
+  "n_pass": 12,
+  "all_pass": true,
+  "model_free": true,
+  "device": "cpu"
+ },
+ "guard_reachability_reverified": {
+  "target_finite_guard_reachable": true,
+  "gradient_finite_guards_reachable": true,
+  "alpha_finite_guards_reachable": true,
+  "pre_relu_finite_guard_reachable": true,
+  "post_relu_finite_guard_reachable": true,
+  "upsampled_prenormalization_finite_guard_reachable": true,
+  "prenormalization_range_finite_guard_reachable": true,
+  "normalized_finite_guard_reachable": true,
+  "nonfinite_cam_cannot_reach_zero_fallback": true,
+  "finite_zero_range_fallback_remains_allowed": true,
+  "smoke_gradcam_science_share_guarded_gradcam_implementation": true
+ },
+ "method_of_inspection": "AST_PARSE_CONTROL_FLOW_CALL_GRAPH_AND_SHA256_HASHING",
+ "model_constructed": false,
+ "checkpoint_deserialized": false,
+ "forward_executed": false,
+ "gradcam_executed": false,
+ "gate_env_set": false,
+ "mode_invoked": false,
+ "all_pass": true
+}

@@ -1,0 +1,272 @@
+{
+ "artifact": "phase35_first_scientific_execution_final_check_v1_0",
+ "section": "§W",
+ "phase": 35,
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase35_interpretability_v1_0",
+ "checks": [
+  {
+   "id": "01",
+   "desc": "single authorized invocation, no retry, no post-open patch",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "02",
+   "desc": "source freeze precedes first scientific read",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "03",
+   "desc": "driver was frozen before the first protected read",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "04",
+   "desc": "static preflight passed all checks before execution",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "05",
+   "desc": "all authority gates matched at execution time",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "06",
+   "desc": "exactly one G and one B_phi construction",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "07",
+   "desc": "exactly two checkpoint deserializations (G + B_phi)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "08",
+   "desc": "raw VAL image reads within the 64-sample authorization",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "09",
+   "desc": "persisted p_global read exactly once per gallery case",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "10",
+   "desc": "exactly one Grad-CAM forward per gallery case",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "11",
+   "desc": "exactly one Grad-CAM autograd call per gallery case",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "12",
+   "desc": "exactly two CAM maps per gallery case (128 total)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "13",
+   "desc": "router attribution covers all 808 VAL808 rows",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "14",
+   "desc": "exactly one router forward and one router autograd call",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "15",
+   "desc": "ZERO ground-truth reads",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "16",
+   "desc": "ZERO ROUTER_HOLDOUT reads",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "17",
+   "desc": "ZERO TEST reads",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "18",
+   "desc": "ZERO TRAIN raw reads",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "19",
+   "desc": "R_psi never constructed/loaded/forwarded",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "20",
+   "desc": "S_omega never constructed/loaded/forwarded",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "21",
+   "desc": "no optimizer constructed, stepped, or used",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "22",
+   "desc": "no training backward call",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "23",
+   "desc": "zero parameter mutations",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "24",
+   "desc": "model parameters verified unchanged before/after",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "25",
+   "desc": "no parameter .grad populated (attribution targets are activations/inputs)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "26",
+   "desc": "four families implemented and never merged",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "27",
+   "desc": "seven figures F1-F7 produced (PNG+PDF)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "28",
+   "desc": "F8 regional evidence NOT implemented (resolved ineligible)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "29",
+   "desc": "no outcome-selected panels used",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "30",
+   "desc": "display subset resolved before any saliency existed",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "31",
+   "desc": "segmentation and ROI thresholds never conflated",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "32",
+   "desc": "Grad-CAM arrays persisted as float32 [64,512,512]",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "33",
+   "desc": "router attribution arrays persisted as float32 [808,202]",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "34",
+   "desc": "scientific result artifact emitted",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "35",
+   "desc": "router attribution uses raw delta_hat with no sigmoid",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "36",
+   "desc": "no epsilon denominator and no renormalization in zero-denominator policy",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "37",
+   "desc": "no perturbation / retraining / optimization in router attribution",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "38",
+   "desc": "counterfactual task-id analysis remains INELIGIBLE_NOT_REQUIRED",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "39",
+   "desc": "FiLM analysis performed no image forward",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "40",
+   "desc": "no significance tests performed in the FiLM family",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "41",
+   "desc": "all produced output files exist on disk",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "42",
+   "desc": "claim type is the frozen descriptive mechanism evidence class",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "43",
+   "desc": "execution terminated with exit code 0 (single successful attempt)",
+   "pass": true,
+   "detail": ""
+  }
+ ],
+ "total_checks": 43,
+ "passed": 43,
+ "failed": 0,
+ "generated_utc": "2026-10-05T14:11:53Z",
+ "all_pass": true
+}

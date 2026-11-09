@@ -1,0 +1,114 @@
+{
+ "artifact": "phase35_v1_0h1_freeze_consistency_check",
+ "section": "§G",
+ "phase": 35,
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase35_interpretability_v1_0h1",
+ "contracts_compared": [
+  "runtime_source",
+  "v1_0h1_reconciled_freeze",
+  "unit_test_canonical",
+  "static_preflight_extracted",
+  "final_check_extracted"
+ ],
+ "contract_key_counts": {
+  "runtime_source": 35,
+  "v1_0h1_reconciled_freeze": 35,
+  "unit_test_canonical": 35,
+  "static_preflight_extracted": 35,
+  "final_check_extracted": 35
+ },
+ "unit_test_contract_binding": {
+  "unit_source_path": "scripts/analysis/phase35_full_counter_contract_unit_v1_0h.py",
+  "unit_source_sha256": "7fb6e4253e1ccfbbc1ce516727cf5f2a7baa4bbe45b04fafc6c33ee746a8dbbf",
+  "unit_imports_execution_source_as_H": true,
+  "unit_uses_H_EXPECTED_COUNTERS_V1_0H": true,
+  "unit_embeds_literal_35_key_table": false,
+  "unit_effective_contract_derived_from": "single-source-of-truth binding to phase35_interpretability_execution_v1_0h.EXPECTED_COUNTERS_V1_0H",
+  "unit_artifact_all_pass": true,
+  "unit_artifact_assertions_failed": 0
+ },
+ "all_5_contracts_keyset_identical": true,
+ "all_5_contracts_values_identical": true,
+ "all_5_counter_counts": [
+  35,
+  35,
+  35,
+  35,
+  35
+ ],
+ "all_5_counter_counts_equal_35": true,
+ "required_spot_checks": {
+  "synthetic_CAM_maps": {
+   "expected": 2,
+   "in_all_five": true
+  },
+  "additional_G_forwards_for_empty_mask": {
+   "expected": 0,
+   "in_all_five": true
+  },
+  "additional_autograd_calls_for_empty_mask": {
+   "expected": 0,
+   "in_all_five": true
+  },
+  "B_phi_synthetic_forwards": {
+   "expected": 1,
+   "in_all_five": true
+  },
+  "router_numeric_input_autograd_calls": {
+   "expected": 1,
+   "in_all_five": true
+  },
+  "total_model_forwards": {
+   "expected": 2,
+   "in_all_five": true
+  },
+  "total_autograd_calls": {
+   "expected": 2,
+   "in_all_five": true
+  },
+  "synthetic_router_attribution_rows": {
+   "expected": 4,
+   "in_all_five": true
+  }
+ },
+ "canonical_contract_used": {
+  "G_model_constructions": 1,
+  "B_phi_model_constructions": 1,
+  "checkpoint_deserializations": 2,
+  "strict_loads": 2,
+  "G_synthetic_forwards": 1,
+  "B_phi_synthetic_forwards": 1,
+  "total_model_forwards": 2,
+  "G_gradcam_autograd_calls": 1,
+  "router_numeric_input_autograd_calls": 1,
+  "total_autograd_calls": 2,
+  "synthetic_CAM_maps": 2,
+  "synthetic_router_attribution_rows": 4,
+  "synthetic_smoke_target_masks": 1,
+  "R_psi_model_constructions": 0,
+  "R_psi_checkpoint_loads": 0,
+  "R_psi_forwards": 0,
+  "S_omega_model_constructions": 0,
+  "S_omega_checkpoint_loads": 0,
+  "S_omega_forwards": 0,
+  "optimizer_constructions": 0,
+  "optimizer_step_calls": 0,
+  "training_backward_calls": 0,
+  "parameter_mutations": 0,
+  "raw_VAL_image_reads": 0,
+  "real_persisted_VAL_probability_reads": 0,
+  "VAL_GT_reads": 0,
+  "router_feature_cache_rows_read": 0,
+  "ROUTER_HOLDOUT_reads": 0,
+  "TEST_reads": 0,
+  "TRAIN_raw_reads": 0,
+  "scientific_outputs": 0,
+  "primary_synthetic_target_masks": 1,
+  "actual_logits_empty_mask_helper_checks": 1,
+  "additional_G_forwards_for_empty_mask": 0,
+  "additional_autograd_calls_for_empty_mask": 0
+ },
+ "generated_utc": "2026-10-05T13:00:57Z",
+ "all_pass": true
+}

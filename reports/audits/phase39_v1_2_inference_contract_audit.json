@@ -1,0 +1,131 @@
+{
+  "classification": "PHASE39_V1_2_INFERENCE_CONTRACT_AUDIT",
+  "generated_utc": "2026-10-11T08:30:00Z",
+  "phase": 39,
+  "canonical_reference": "scripts/analysis/phase36_robustness_execution_v1_23.py",
+  "canonical_reference_sha256": "2287cc78ba60d715ff371ba58f0ea90f772219b510e198bea6053a7043159396",
+  "v1_1_never_reached_evaluate_sample": true,
+  "method": "line-by-line / contract-by-contract comparison of the v1.1 inference implementation against the successful canonical Phase36 v1.23 implementation",
+  "deterministic_interface_mismatches": [
+    {
+      "id": "D99",
+      "component": "manifest schema",
+      "v1_1_behavior": "read row.get('domain','')",
+      "canonical_behavior": "row['dataset'] (canonical Phase4-v3 schema)",
+      "defect": true,
+      "repair": "canonical parse_population_row (dataset/task_id)",
+      "repaired_in_v1_2": true
+    },
+    {
+      "id": "M1",
+      "component": "GlobalMedFiLM.forward",
+      "v1_1_behavior": "g(image_tensor) with no task_ids",
+      "canonical_behavior": "canonical_g_forward_batched(ctx, x, t) with canonical_task_ids_tensor",
+      "defect": true,
+      "repair": "delegate to canonical batched G",
+      "repaired_in_v1_2": true
+    },
+    {
+      "id": "M2",
+      "component": "ROI geometry",
+      "v1_1_behavior": "roi_geometry(prob, threshold, margin, expansion, canvas, crop)",
+      "canonical_behavior": "_roi_geometry_from_prob(prob, threshold, margin) -> roi_geometry(prob, threshold=, margin=)",
+      "defect": true,
+      "repair": "delegate to canonical _roi_geometry_from_prob / _geo_row",
+      "repaired_in_v1_2": true
+    },
+    {
+      "id": "M3",
+      "component": "202-D router features",
+      "v1_1_behavior": "NOT constructed; used a synthetic geom.get('delta_hat')",
+      "canonical_behavior": "_assemble_202d(taps, p_global, roi_row) via build_feature_vector",
+      "defect": true,
+      "repair": "delegate to canonical _assemble_202d",
+      "repaired_in_v1_2": true
+    },
+    {
+      "id": "M4",
+      "component": "B_phi router",
+      "v1_1_behavior": "canonical_utility(geom.get('delta_hat', 0.0)) on a fabricated value",
+      "canonical_behavior": "B_phi forward on the real 202-D vector inside canonical_learned_core",
+      "defect": true,
+      "repair": "delegate to canonical_learned_core",
+      "repaired_in_v1_2": true
+    },
+    {
+      "id": "M5",
+      "component": "R_psi refiner input",
+      "v1_1_behavior": "models['R_psi'](image_tensor) directly",
+      "canonical_behavior": "RGB crop + p_global channel built from ROI geometry inside canonical_learned_core",
+      "defect": true,
+      "repair": "delegate to canonical_learned_core",
+      "repaired_in_v1_2": true
+    },
+    {
+      "id": "M6",
+      "component": "S_omega interface",
+      "v1_1_behavior": "models['S_omega'].accept(score, 0.50) -- METHOD DOES NOT EXIST",
+      "canonical_behavior": "S_omega forward on the 16-D post-safety features + task one-hot; sigmoid >= 0.50",
+      "defect": true,
+      "repair": "delegate to canonical_learned_core; no .accept() call anywhere",
+      "repaired_in_v1_2": true
+    },
+    {
+      "id": "M7",
+      "component": "D61 fusion",
+      "v1_1_behavior": "module-level fuse_full_field with a p_global fallback",
+      "canonical_behavior": "fuse_full_field(p_global, refined_crop_256, geom) used INSIDE canonical_learned_core",
+      "defect": true,
+      "repair": "delegate to canonical_learned_core",
+      "repaired_in_v1_2": true
+    },
+    {
+      "id": "M8",
+      "component": "D75/POLICY_B final scoring",
+      "v1_1_behavior": "thresholded raw prob; _phase27_scored_final_binary NOT applied",
+      "canonical_behavior": "_phase27_scored_final_binary(final_prob)",
+      "defect": true,
+      "repair": "delegate to canonical _phase27_scored_final_binary",
+      "repaired_in_v1_2": true
+    },
+    {
+      "id": "M9",
+      "component": "metrics",
+      "v1_1_behavior": "M.dice(iou)(_confusion(...)); M.hd95 may not exist",
+      "canonical_behavior": "_dice / _iou / _hd95 on the preprocessed mask",
+      "defect": true,
+      "repair": "delegate to canonical _dice/_iou/_hd95",
+      "repaired_in_v1_2": true
+    },
+    {
+      "id": "M10",
+      "component": "state machine",
+      "v1_1_behavior": "partial branch strings only",
+      "canonical_behavior": "FORCED_SKIP / SKIP_GLOBAL / EXECUTE_THEN_ACCEPT / EXECUTE_THEN_REJECT via canonical_learned_core",
+      "defect": true,
+      "repair": "delegate to canonical_learned_core",
+      "repaired_in_v1_2": true
+    }
+  ],
+  "n_defects": 11,
+  "all_repaired_in_v1_2": true,
+  "approach": "CANONICAL_DELEGATION (v1.2 calls the frozen Phase36 functions; no independent approximation)",
+  "reused_canonical_functions": [
+    "_load_models",
+    "canonical_g_forward_batched",
+    "canonical_images_tensor",
+    "canonical_task_ids_tensor",
+    "_roi_geometry_from_prob",
+    "_geo_row",
+    "_roi_row_from_window",
+    "_assemble_202d",
+    "canonical_learned_core",
+    "_phase27_scored_final_binary",
+    "_final_source_of",
+    "_load_clean_image_tensor",
+    "_load_val_gt",
+    "_dice",
+    "_iou",
+    "_hd95"
+  ]
+}

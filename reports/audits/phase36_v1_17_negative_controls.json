@@ -1,0 +1,211 @@
+{
+ "artifact": "phase36_robustness_negative_controls_v1_17",
+ "phase": 36,
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase36_robustness_v1_17",
+ "type": "NEGATIVE_CONTROL_REPORT",
+ "in_memory_mutants_only": true,
+ "canonical_files_modified": false,
+ "torch_imported": false,
+ "protected_population_read": false,
+ "subject_execution_sha256": "81d78460b2f20f176bc697cba662c43bc7c7443ea555ba95a30609faf0ccbe31",
+ "subject_launcher_sha256": "11d88feec5b47802165ee9b873c6042e8b60a49f4e183034ef66eec769d2148b",
+ "subject_supervisor_sha256": "88852d3341feffba3ce687169f0dcf1df89366a16a7412c12140a48c8f457eb5",
+ "controls_total": 27,
+ "controls_passed": 27,
+ "controls_failed": 0,
+ "all_pass": true,
+ "records": [
+  {
+   "id": "NC_SRC",
+   "control": "v1_17_source_sha_frozen",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": {
+    "sha256": "81d78460b2f20f176bc697cba662c43bc7c7443ea555ba95a30609faf0ccbe31"
+   }
+  },
+  {
+   "id": "NC_D61_1",
+   "control": "restore_old_pad_unaware_fusion_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "old call restored -> detector returns False (rejected)"
+  },
+  {
+   "id": "NC_D61_2",
+   "control": "change_fusion_geom_source_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "geom replaced by window -> detector returns False (rejected)"
+  },
+  {
+   "id": "NC_D75_1",
+   "control": "helper_thresholds_live_f32_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "no f16 round-trip -> rejected"
+  },
+  {
+   "id": "NC_D75_2",
+   "control": "helper_drops_f16_cast_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "f16 cast removed -> rejected"
+  },
+  {
+   "id": "NC_D75_3",
+   "control": "helper_drops_cast_back_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "f16->f32 cast-back removed -> rejected"
+  },
+  {
+   "id": "NC_D75_4",
+   "control": "helper_threshold_change_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "threshold 0.51 -> rejected"
+  },
+  {
+   "id": "NC_D75_5",
+   "control": "helper_omitted_from_core_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "core wiring removed -> rejected"
+  },
+  {
+   "id": "NC_D75_6",
+   "control": "helper_omitted_from_clean_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "clean wiring removed -> rejected"
+  },
+  {
+   "id": "NC_G_1",
+   "control": "downstream_G_quantization_introduced_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "f16 cast injected -> rejected"
+  },
+  {
+   "id": "NC_D80_A",
+   "control": "launcher_dispatch_mode_science_omitted_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "mode args emptied -> rejected"
+  },
+  {
+   "id": "NC_D80_B",
+   "control": "execution_science_namespace_v1_16_reverted_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "start marker namespace reverted -> rejected"
+  },
+  {
+   "id": "NC_D80_C",
+   "control": "launch_authority_token_v1_16_reverted_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "authority token reverted -> rejected"
+  },
+  {
+   "id": "NC_D80_D",
+   "control": "operator_gate_v1_16_reverted_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "science gate reverted -> rejected"
+  },
+  {
+   "id": "NC_D80_E",
+   "control": "runtime_manifest_v1_16_reverted_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "manifest path reverted -> rejected"
+  },
+  {
+   "id": "NC_D80_F",
+   "control": "release_revision_v1_16_reverted_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "release revision reverted -> rejected"
+  },
+  {
+   "id": "NC_D80_G",
+   "control": "stage_journal_module_removed_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "journal module removed -> rejected"
+  },
+  {
+   "id": "NC_D80_H_launcher",
+   "control": "launcher_exact_sha_pin_removed_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "launcher pin mismatched -> rejected"
+  },
+  {
+   "id": "NC_D80_H_supervisor",
+   "control": "supervisor_launcher_pin_enforcement_removed_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "supervisor fail-closed pin removed -> rejected"
+  },
+  {
+   "id": "NC_D81_1",
+   "control": "omitted_table_target_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "remove the worst_case_by_domain table row from the inventory -> detector returns False (rejected)"
+  },
+  {
+   "id": "NC_D81_2",
+   "control": "generic_nonversioned_table_target_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "add an unversioned reports/tables/phase36_*.csv -> detector returns False (rejected)"
+  },
+  {
+   "id": "NC_D81_3",
+   "control": "generic_inherited_figure_dir_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "an inherited reports/figures/phase36_robustness/ path -> detector returns False (rejected)"
+  },
+  {
+   "id": "NC_D81_4",
+   "control": "csv_writer_open_w_overwrite_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "restore path.open(w) overwrite semantics -> detector returns False (rejected)"
+  },
+  {
+   "id": "NC_D82_1",
+   "control": "gate_requiring_v1_17_smoke_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "gate re-requires a v1.17 smoke -> detector returns False (rejected)"
+  },
+  {
+   "id": "NC_D82_2",
+   "control": "attestation_missing_d40_field_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "drop the 'release_gate' field -> detector returns False (rejected)"
+  },
+  {
+   "id": "NC_D83_1",
+   "control": "validator_revision_string_only_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "a revision-string-only validator -> detector returns False (rejected)"
+  },
+  {
+   "id": "NC_D83_2",
+   "control": "gate_not_released_while_eligible_detected",
+   "mutant_rejected": true,
+   "passed": true,
+   "detail": "ELIGIBLE revision with NOT_RELEASED gate -> detector returns False (rejected)"
+  }
+ ]
+}

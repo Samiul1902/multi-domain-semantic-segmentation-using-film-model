@@ -1,0 +1,31 @@
+{
+ "artifact": "phase29_deterministic_runtime_rule",
+ "phase": 29,
+ "classification": "PHASE29_DETERMINISTIC_RUNTIME_RULE",
+ "per_seed_deterministic_controls": {
+  "python_rng": "torch.manual_seed(seed) + random.seed(seed)",
+  "numpy_rng": "np.random.seed(seed)",
+  "torch_cpu_rng": "torch.manual_seed(seed)",
+  "cuda_rng": "torch.cuda.manual_seed_all(seed)",
+  "dataloader_generator": "torch.Generator().manual_seed(make_generator_seed)",
+  "worker_seed_init": "seed_worker() from torch.initial_seed()",
+  "cudnn_deterministic": true,
+  "cudnn_benchmark": false,
+  "amp": true,
+  "batch_size": "per component (G=512-pipeline, R_psi=8, B_phi=128, S_omega=per protocol)",
+  "sample_order": "deterministic (generator-seeded shuffle)",
+  "augmentation_rng": "derived from the per-seed seeded generator"
+ },
+ "environment_identity_recorded": true,
+ "environment": {
+  "python": "3.11.9",
+  "torch": "2.6.0+cu124",
+  "cuda": true,
+  "gpu": "NVIDIA GeForce RTX 3060 Ti 8GB",
+  "numpy": "2.4.6",
+  "scikit_learn": "1.9.1"
+ },
+ "no_seed_may_silently_use_different_deterministic_settings": true,
+ "deterministic_rule_frozen": true,
+ "all_pass": true
+}

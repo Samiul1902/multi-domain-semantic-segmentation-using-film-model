@@ -1,0 +1,43 @@
+{
+ "artifact": "phase30_stage_b_defect_chronology",
+ "phase": 30,
+ "section": "\u00a7B",
+ "traceback_lines": [
+  "Traceback (most recent call last):",
+  "  File \"D:\\Softfors\\jup\\scripts\\analysis\\phase30_execution_stage_b.py\", line 390, in <module>",
+  "  File \"D:\\Softfors\\jup\\scripts\\analysis\\phase30_execution_stage_b.py\", line 284, in main",
+  "  File \"D:\\Softfors\\jup\\scripts\\analysis\\phase30_execution_stage_b.py\", line 284, in <genexpr>",
+  "TypeError: string indices must be integers, not 'str'"
+ ],
+ "stage_b_process_start_utc": "2026-10-04T03:18:19Z (derived: 26s duration, end 03:18:45Z)",
+ "gt_opening_began_utc": "2026-10-04T03:18:19Z-03:18:44Z (log: '\u00a714 opening ... GT read')",
+ "scientific_scoring_completed_utc": "2026-10-04T03:18:44.741189Z (last scientific write)",
+ "scientific_artifact_write_times_utc": {
+  "per_domain_results.csv": "2026-10-04T03:18:44.057320+00:00",
+  "primary_noninferiority_result.json": "2026-10-04T03:18:44.142874+00:00",
+  "scored_results.csv": "2026-10-04T03:18:44.202883+00:00",
+  "router_metric_results.json": "2026-10-04T03:18:44.282403+00:00",
+  "a7_descriptive_companion_result.json": "2026-10-04T03:18:44.616232+00:00",
+  "h3_descriptive_result.json": "2026-10-04T03:18:44.674633+00:00",
+  "compute_results.json": "2026-10-04T03:18:44.741189+00:00"
+ },
+ "exception_utc": "2026-10-04T03:18:45.205Z (process end; task duration 26s)",
+ "exception_type": "TypeError",
+ "exception_message": "string indices must be integers, not 'str'",
+ "exception_location": "scripts/analysis/phase30_execution_stage_b.py line 284, in main()",
+ "exception_section": "\u00a725 post-open immutability audit (comprehension over mixed single-bind / group-bind entries)",
+ "failure_after_all_scientific_results_persisted": true,
+ "incomplete_scientific_write_at_failure": false,
+ "process_exit_status": 1,
+ "log_preserved": "reports/audits/phase30_stage_b_execution_log_preserved.log",
+ "log_sha256": "d180e46c12ba02a317e4a5b3578bc60d51f7253c516648fcf05a372de67b2481",
+ "governance_writes_after_exception_utc": {
+  "stage_b_execution_defect_record.json": "2026-10-04T03:19:19.907051+00:00",
+  "post_open_immutability_audit.json": "2026-10-04T03:19:21.028647+00:00",
+  "execution_final_check.json": "2026-10-04T03:19:21.079161+00:00",
+  "final_freeze.json": "2026-10-04T03:19:22.129588+00:00",
+  "execution_terminal.json": "2026-10-04T03:19:22.187180+00:00"
+ },
+ "generated_utc": "2026-10-04T03:41:37+00:00",
+ "all_pass": true
+}

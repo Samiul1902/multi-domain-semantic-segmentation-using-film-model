@@ -1,0 +1,417 @@
+{
+  "artifact": "project_evaluation_metrics_inventory",
+  "status": "PROJECT_EVALUATION_METRICS_INVENTORY_COMPLETE",
+  "generated_utc": "2026-09-25T14:49:05Z",
+  "scope": "KUB research line: Phases 09-14, post-Phase14 H3 (training / supply / downstream), and this audit.",
+  "out_of_scope_note": "Phase-15/16+ and the multi-domain (MedFILM) notebook directories were not evaluated as they are not part of the completed KUB chain under audit.",
+  "metric_domains": {
+    "A": "PIXEL_SEGMENTATION",
+    "B": "OBJECT_COMPONENT_DETECTION",
+    "C": "LOCALIZATION_PROPOSAL_SUPPLY",
+    "D": "BOUNDARY_SURFACE_QUALITY",
+    "E": "PROBABILITY_CALIBRATION",
+    "F": "TRAINING_OPTIMIZATION",
+    "G": "CAUSAL_COUNTERFACTUAL_DIAGNOSTIC",
+    "H": "SYSTEM_PIPELINE_PERFORMANCE"
+  },
+  "governance": {
+    "new_metrics_are_descriptive": true,
+    "label": "DESCRIPTIVE_SUPPORTING_METRIC__NOT_PROSPECTIVE_GATE",
+    "frozen_gates_unchanged": true,
+    "test_reads": 0,
+    "external_test_reads": 0,
+    "phase15_status": "NOT_STARTED_AND_NOT_AUTHORIZED"
+  },
+  "rows": [
+    {
+      "phase_or_step": "Phase 09 \u2014 KUB UNet baseline training",
+      "task_type": "TRAINING",
+      "metric_domains": [
+        "F"
+      ],
+      "prediction_type": "per-epoch training/validation loss + VAL macro Dice",
+      "ground_truth_type": "native binary KUB masks",
+      "population": "clean-v3 VAL (all view types)",
+      "existing_metrics": [
+        "train loss (bce_dice)",
+        "val loss",
+        "val macro Dice",
+        "epoch timing",
+        "early-stop state"
+      ],
+      "missing_recommended_metrics": [
+        "per-image Dice distribution",
+        "IoU",
+        "pixel confusion",
+        "boundary metrics",
+        "calibration"
+      ],
+      "derivable_from_saved_artifacts": [
+        "per-image Dice (only aggregate persisted)"
+      ],
+      "requires_new_inference": true,
+      "scientifically_appropriate": true,
+      "usable_for_formal_adjudication": false,
+      "status": "EXISTING_PARTIAL__TRAINING_SCOPE_METRICS_SUFFICIENT"
+    },
+    {
+      "phase_or_step": "Phase 10 \u2014 baseline comparison (clean-v3)",
+      "task_type": "SEGMENTATION",
+      "metric_domains": [
+        "A",
+        "H"
+      ],
+      "prediction_type": "UNet vs UNet++ binary masks",
+      "ground_truth_type": "native binary KUB masks",
+      "population": "clean-v3 VAL",
+      "existing_metrics": [
+        "mean/median Dice",
+        "macro Dice",
+        "runtime"
+      ],
+      "missing_recommended_metrics": [
+        "IoU",
+        "precision",
+        "recall",
+        "specificity",
+        "MCC",
+        "pixel confusion",
+        "HD95",
+        "surface Dice",
+        "calibration",
+        "per-image CIs"
+      ],
+      "derivable_from_saved_artifacts": [
+        "per-image Dice (persisted for the GLOBAL arm)"
+      ],
+      "requires_new_inference": true,
+      "scientifically_appropriate": true,
+      "usable_for_formal_adjudication": false,
+      "status": "EXISTING_PARTIAL__DESCRIPTIVE_BACKFILL_AVAILABLE"
+    },
+    {
+      "phase_or_step": "Phase 11 \u2014 failure analysis",
+      "task_type": "DIAGNOSTIC",
+      "metric_domains": [
+        "G"
+      ],
+      "prediction_type": "failure taxonomy over saved predictions",
+      "ground_truth_type": "saved failure labels",
+      "population": "clean-v3 VAL",
+      "existing_metrics": [
+        "failure counts by category",
+        "empty-prediction analysis"
+      ],
+      "missing_recommended_metrics": [
+        "none required (qualitative/diagnostic)"
+      ],
+      "derivable_from_saved_artifacts": [],
+      "requires_new_inference": false,
+      "scientifically_appropriate": true,
+      "usable_for_formal_adjudication": false,
+      "status": "EXISTING_SUFFICIENT"
+    },
+    {
+      "phase_or_step": "Phase 12 \u2014 oracle ROI",
+      "task_type": "LOCALIZATION",
+      "metric_domains": [
+        "C"
+      ],
+      "prediction_type": "GT-derived ROI proposals",
+      "ground_truth_type": "GT component bboxes",
+      "population": "clean-v3 VAL",
+      "existing_metrics": [
+        "oracle ROI coverage",
+        "retention metrics"
+      ],
+      "missing_recommended_metrics": [
+        "proposal precision/recall",
+        "ROI area fraction"
+      ],
+      "derivable_from_saved_artifacts": [
+        "coverage tables"
+      ],
+      "requires_new_inference": false,
+      "scientifically_appropriate": true,
+      "usable_for_formal_adjudication": false,
+      "status": "EXISTING_SUFFICIENT__ORACLE_BOUND"
+    },
+    {
+      "phase_or_step": "Phase 13 \u2014 predicted ROI / localizer",
+      "task_type": "LOCALIZATION",
+      "metric_domains": [
+        "C",
+        "B"
+      ],
+      "prediction_type": "localizer heatmap -> proposals (GT-free)",
+      "ground_truth_type": "GT component bboxes",
+      "population": "clean-v3 VAL",
+      "existing_metrics": [
+        "coverage_fraction",
+        "covered90",
+        "covered50",
+        "any_overlap",
+        "zero-proposal counts",
+        "best_proposal_score"
+      ],
+      "missing_recommended_metrics": [
+        "PR curve",
+        "FROC",
+        "proposal-to-GT IoU",
+        "center displacement",
+        "duplicate rate"
+      ],
+      "derivable_from_saved_artifacts": [
+        "coverage + best_proposal_score (enables descriptive PR/FROC)"
+      ],
+      "requires_new_inference": false,
+      "scientifically_appropriate": true,
+      "usable_for_formal_adjudication": false,
+      "status": "EXISTING_PARTIAL__PR_FROC_DERIVABLE"
+    },
+    {
+      "phase_or_step": "Phase 13 Part1D \u2014 predicted-region downstream",
+      "task_type": "SEGMENTATION",
+      "metric_domains": [
+        "A",
+        "B"
+      ],
+      "prediction_type": "regional model masks",
+      "ground_truth_type": "native binary KUB masks",
+      "population": "clean-v3 VAL",
+      "existing_metrics": [
+        "per-model Dice",
+        "component coverage"
+      ],
+      "missing_recommended_metrics": [
+        "pixel confusion",
+        "boundary metrics",
+        "calibration"
+      ],
+      "derivable_from_saved_artifacts": [],
+      "requires_new_inference": true,
+      "scientifically_appropriate": true,
+      "usable_for_formal_adjudication": false,
+      "status": "EXISTING_PARTIAL__PREDICTIONS_NOT_PERSISTED"
+    },
+    {
+      "phase_or_step": "Phase 14 \u2014 regional refiner diagnostic (clean-v3)",
+      "task_type": "SEGMENTATION+DETECTION",
+      "metric_domains": [
+        "A",
+        "B",
+        "H"
+      ],
+      "prediction_type": "GLOBAL / ORACLE_REGIONAL / PREDICTED_REGIONAL masks",
+      "ground_truth_type": "native binary KUB masks",
+      "population": "103 FULL_FIELD VAL images, 152 components",
+      "existing_metrics": [
+        "mean/median Dice",
+        "detection recall@90 by size",
+        "component recall",
+        "FP/image",
+        "hard-Tiny",
+        "global-empty",
+        "runtime",
+        "ROI burden"
+      ],
+      "missing_recommended_metrics": [
+        "pixel confusion",
+        "IoU",
+        "precision",
+        "specificity",
+        "MCC",
+        "HD95",
+        "ASSD",
+        "surface Dice",
+        "PR-AUC",
+        "ROC-AUC",
+        "Brier",
+        "ECE",
+        "bootstrap CIs"
+      ],
+      "derivable_from_saved_artifacts": [
+        "per-image Dice",
+        "per-component overlap pixels",
+        "coverage ratios"
+      ],
+      "requires_new_inference": true,
+      "scientifically_appropriate": true,
+      "usable_for_formal_adjudication": false,
+      "status": "EXISTING_PARTIAL__BACKFILLED_DESCRIPTIVELY"
+    },
+    {
+      "phase_or_step": "Post-Phase14 root-cause analysis",
+      "task_type": "CAUSAL_DIAGNOSTIC",
+      "metric_domains": [
+        "G"
+      ],
+      "prediction_type": "counterfactual A-only vs C-only interventions",
+      "ground_truth_type": "saved component-level tables",
+      "population": "clean-v3 VAL",
+      "existing_metrics": [
+        "R_A",
+        "R_C",
+        "axis-priority verdict",
+        "component-level deltas"
+      ],
+      "missing_recommended_metrics": [
+        "none required (causal diagnostic)"
+      ],
+      "derivable_from_saved_artifacts": [],
+      "requires_new_inference": false,
+      "scientifically_appropriate": true,
+      "usable_for_formal_adjudication": false,
+      "status": "EXISTING_SUFFICIENT"
+    },
+    {
+      "phase_or_step": "H3 training (size-adaptive sigma localizer)",
+      "task_type": "TRAINING",
+      "metric_domains": [
+        "F",
+        "C"
+      ],
+      "prediction_type": "heatmap localization + proposal supply",
+      "ground_truth_type": "saved localization targets",
+      "population": "clean-v3 TRAIN/VAL",
+      "existing_metrics": [
+        "val_localization_recall",
+        "val_loss",
+        "epoch timing",
+        "selection replay"
+      ],
+      "missing_recommended_metrics": [
+        "PR/FROC on peak scores"
+      ],
+      "derivable_from_saved_artifacts": [
+        "epoch-level metrics table"
+      ],
+      "requires_new_inference": false,
+      "scientifically_appropriate": true,
+      "usable_for_formal_adjudication": false,
+      "status": "EXISTING_SUFFICIENT__TRAINING_SCOPE"
+    },
+    {
+      "phase_or_step": "H3 supply-axis evaluation",
+      "task_type": "LOCALIZATION",
+      "metric_domains": [
+        "C",
+        "B"
+      ],
+      "prediction_type": "H3 proposals (GT-free)",
+      "ground_truth_type": "GT component bboxes",
+      "population": "103 FULL_FIELD VAL images, 152 components",
+      "existing_metrics": [
+        "zero-proposal GT/TINY",
+        "any-overlap recall",
+        "coverage90",
+        "proposal precision (descriptive)",
+        "proposals/image"
+      ],
+      "missing_recommended_metrics": [
+        "PR curve",
+        "FROC",
+        "proposal-to-GT IoU",
+        "center displacement"
+      ],
+      "derivable_from_saved_artifacts": [
+        "coverage + score tables"
+      ],
+      "requires_new_inference": false,
+      "scientifically_appropriate": true,
+      "usable_for_formal_adjudication": false,
+      "status": "EXISTING_PARTIAL__PROPOSAL_DOMAIN_ONLY"
+    },
+    {
+      "phase_or_step": "H3 downstream evaluation",
+      "task_type": "SEGMENTATION+DETECTION",
+      "metric_domains": [
+        "A",
+        "B",
+        "H"
+      ],
+      "prediction_type": "H3 localizer -> frozen proposals -> Phase-14 refiner -> fused mask",
+      "ground_truth_type": "native binary KUB masks",
+      "population": "103 FULL_FIELD VAL images, 152 components",
+      "existing_metrics": [
+        "mean/median Dice",
+        "detection recall@90 by size",
+        "component recall",
+        "FP/image",
+        "hard-Tiny",
+        "global-empty",
+        "proposal burden"
+      ],
+      "missing_recommended_metrics": [
+        "pixel confusion",
+        "IoU",
+        "precision",
+        "specificity",
+        "MCC",
+        "HD95",
+        "ASSD",
+        "surface Dice",
+        "PR-AUC",
+        "ROC-AUC",
+        "Brier",
+        "ECE",
+        "bootstrap CIs"
+      ],
+      "derivable_from_saved_artifacts": [
+        "per-image Dice",
+        "per-component overlap pixels"
+      ],
+      "requires_new_inference": true,
+      "scientifically_appropriate": true,
+      "usable_for_formal_adjudication": false,
+      "status": "EXISTING_PARTIAL__BACKFILLED_DESCRIPTIVELY"
+    },
+    {
+      "phase_or_step": "Project-wide evaluation-metrics backfill (this task)",
+      "task_type": "SEGMENTATION+BOUNDARY+CALIBRATION",
+      "metric_domains": [
+        "A",
+        "D",
+        "E"
+      ],
+      "prediction_type": "GLOBAL / ORACLE / PREDICTED / H3 masks + probability maps",
+      "ground_truth_type": "native binary KUB masks",
+      "population": "103 FULL_FIELD VAL images, 152 components",
+      "existing_metrics": [
+        "pixel confusion",
+        "Dice",
+        "IoU",
+        "precision",
+        "recall",
+        "specificity",
+        "NPV",
+        "accuracy",
+        "balanced accuracy",
+        "MCC",
+        "kappa",
+        "HD95",
+        "ASSD",
+        "surface Dice",
+        "Brier",
+        "ECE",
+        "MCE",
+        "ROC-AUC",
+        "PR-AUC",
+        "bootstrap CIs",
+        "paired tests"
+      ],
+      "missing_recommended_metrics": [
+        "per-pixel spacing (unavailable)",
+        "multi-class metrics (not applicable)",
+        "component TN (undefined)"
+      ],
+      "derivable_from_saved_artifacts": [
+        "all backfilled values derived from the single safe replay"
+      ],
+      "requires_new_inference": true,
+      "scientifically_appropriate": true,
+      "usable_for_formal_adjudication": false,
+      "status": "NEW__DESCRIPTIVE_ONLY__NOT_GATES"
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+ "artifact": "phase25g_preservation_adjudication",
+ "phase": "25G",
+ "stage": "PRESERVATION_NONINFERIORITY",
+ "rule": "Delta = Dice(final routed system) - Dice(global reference); macro-domain",
+ "margin": 0.005,
+ "claim_only_if": "lower 95% CI > -0.005 (strict)",
+ "final_integrated_claim_refers_to": "A8",
+ "per_domain_reporting": "mandatory",
+ "macro_may_not_hide_domain_harm": true,
+ "policy_specific": true,
+ "policy_selected": false,
+ "A7_preservation_all_policies_pass": true,
+ "A8_preservation_all_policies_pass": true,
+ "A8_min_ci_lower": 0.0,
+ "A7_min_ci_lower": 0.0,
+ "per_domain_collapse": [
+  {
+   "budget": "0.00",
+   "domain_means_A8": {
+    "BUSI": 0.0,
+    "ISIC": 0.0,
+    "KUB": 0.0,
+    "KVASIR": 0.0
+   },
+   "collapse": false
+  },
+  {
+   "budget": "0.10",
+   "domain_means_A8": {
+    "BUSI": 0.0,
+    "ISIC": 9.028411633520229e-05,
+    "KUB": 0.003798172847049045,
+    "KVASIR": 0.0
+   },
+   "collapse": false
+  },
+  {
+   "budget": "0.25",
+   "domain_means_A8": {
+    "BUSI": 8.505583503952466e-06,
+    "ISIC": 0.0005941916280039896,
+    "KUB": 0.00462000870707547,
+    "KVASIR": -1.1215623155547307e-06
+   },
+   "collapse": false
+  },
+  {
+   "budget": "0.50",
+   "domain_means_A8": {
+    "BUSI": 4.584042957843821e-05,
+    "ISIC": 0.0008553306030592243,
+    "KUB": 0.0047851792646792434,
+    "KVASIR": 4.076104855728743e-05
+   },
+   "collapse": false
+  },
+  {
+   "budget": "1.00",
+   "domain_means_A8": {
+    "BUSI": 0.00010443394467888321,
+    "ISIC": 0.0009053592267432183,
+    "KUB": 0.004020491994192486,
+    "KVASIR": 0.00017473326490936053
+   },
+   "collapse": false
+  }
+ ],
+ "any_domain_collapse_A8": false,
+ "all_pass": true
+}

@@ -1,0 +1,15 @@
+Traceback (most recent call last):
+  File "D:\Softfors\jup\scripts\analysis\phase36_robustness_execution_v1_19.py", line 4668, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "D:\Softfors\jup\scripts\analysis\phase36_robustness_execution_v1_19.py", line 4391, in main
+    return _run_science_with_durable_evidence(journal=_ScienceJournal(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Softfors\jup\scripts\analysis\phase36_robustness_execution_v1_19.py", line 4270, in _run_science_with_durable_evidence
+    _j.begin("START")
+  File "D:\Softfors\jup\scripts\analysis\phase36_robustness_execution_v1_19.py", line 577, in begin
+    _journal_record(stage, "BEGIN", self.attempt_id)
+  File "D:\Softfors\jup\scripts\analysis\phase36_robustness_execution_v1_19.py", line 561, in _journal_record
+    _write_once_json(path, payload)
+    ^^^^^^^^^^^^^^^^
+NameError: name '_write_once_json' is not defined

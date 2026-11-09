@@ -1,0 +1,55 @@
+{
+ "artifact": "phase28_notebook_compliance_repair_entry_gate",
+ "phase": 28,
+ "method": "RA-MedFiLM-BARR",
+ "classification": "PHASE28_REVIEWER_NOTEBOOK_COMPLIANCE_REPAIR_ONLY",
+ "required_terminal": "PHASE28_COMPREHENSIVE_ABLATION_MATRIX_COMPLETE__CORE_ROUTER_AND_REFINER_ABLATIONS_FROZEN__PHASE29_ELIGIBLE_NOT_STARTED",
+ "observed_terminal": "PHASE28_COMPREHENSIVE_ABLATION_MATRIX_COMPLETE__CORE_ROUTER_AND_REFINER_ABLATIONS_FROZEN__PHASE29_ELIGIBLE_NOT_STARTED",
+ "terminal_match": true,
+ "base_final_freeze": {
+  "path": "reports/audits/phase28_final_freeze.json",
+  "sha256": "ac4b9f72ce663e57d4f7049a979e3bad8cd3ec460cca494c332e9ebc32bb098a",
+  "classification": "PHASE28_CANONICAL_COMPREHENSIVE_SYSTEM_ABLATION_EXECUTION"
+ },
+ "canonical_notebook": {
+  "path": "notebooks/phasewise/phase_28_model_ablation/phase28_comprehensive_ablation.ipynb",
+  "sha256": "72cfbc12e76a58fab3449e6dbf8163cbe988e7473e716e10bf87741fa8c10326",
+  "required_sha256": "72cfbc12e76a58fab3449e6dbf8163cbe988e7473e716e10bf87741fa8c10326",
+  "sha_exact": true
+ },
+ "governance_state": {
+  "phase29_started": false,
+  "phase30_started": false,
+  "ROUTER_HOLDOUT_reads": 0,
+  "VAL808_reads": 0,
+  "TEST_reads": 0
+ },
+ "checks": {
+  "terminal_exact": true,
+  "base_final_freeze_exists": true,
+  "base_final_freeze_sha": "ac4b9f72ce663e57d4f7049a979e3bad8cd3ec460cca494c332e9ebc32bb098a",
+  "canonical_notebook_exists": true,
+  "canonical_notebook_sha_exact": true,
+  "phase29_started_false": true,
+  "phase30_started_false": true,
+  "ROUTER_HOLDOUT_reads_zero": true,
+  "VAL808_reads_zero": true,
+  "TEST_reads_zero": true,
+  "test_lock_all_pass": true,
+  "holdout_lock_all_pass": true,
+  "val808_rule_all_pass": true
+ },
+ "scope": {
+  "training": false,
+  "model_forward": false,
+  "OOF_recomputation": false,
+  "membership_recomputation": false,
+  "metric_recomputation": false,
+  "bootstrap_recomputation": false,
+  "ROUTER_HOLDOUT": false,
+  "VAL808": false,
+  "TEST": false
+ },
+ "gate_pass": true,
+ "all_pass": true
+}

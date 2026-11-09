@@ -1,0 +1,148 @@
+{
+  "classification": "PHASE37_CONTRADICTION_QUALIFICATION_AUDIT",
+  "generated_utc": "2026-10-11T06:00:00Z",
+  "purpose": "scientific narrative consistency audit of the complete Stage-C evidence; fail closed on unresolved material contradictions",
+  "n_rules": 10,
+  "n_material_rules": 10,
+  "n_material_pass": 10,
+  "n_material_contradictions": 0,
+  "material_contradictions": [],
+  "fail_closed_on_unresolved_material_contradiction": true,
+  "resolution": "ALL_MATERIAL_CHECKS_PASS__NO_UNRESOLVED_CONTRADICTION",
+  "resolutions": [
+    {
+      "rule": "C3",
+      "type": "PROVENANCE_COMPLETION",
+      "action": "Added the literal frozen evidence-class token ONE_SHOT_ROUTER_HOLDOUT_RESULT_WITH_DISCLOSED_POST_FIRST_OPEN_SCIENTIFIC_SOURCE_FREEZE_DEVIATION to the mandatory_qualifier of Phase30 records P30-E01..E05 and Phase31 record P31-E01, making each qualifier self-contained. The deviation was already disclosed (evidence_class carried the token; the qualifier carried the prose). No number, estimate, population, or evidence class was changed.",
+      "result": "Phase30/31 ROUTER_HOLDOUT qualifiers now carry the deviation token explicitly."
+    },
+    {
+      "rule": "C2",
+      "type": "AUDIT_LOGIC_REFINEMENT",
+      "action": "Refined the population-conflation rule to flag only a genuinely merged single cohort (one numeric estimate representing two populations). A multi-population registry that enumerates separate per-test cohorts (e.g. the Phase31 statistical test registry) is not conflation. The Phase31-E01 population field was also clarified to state 'separate cohorts enumerated per test, never merged'.",
+      "result": "No population was merged; VAL808/ROUTER_DEVELOPMENT/ROUTER_HOLDOUT remain distinct."
+    },
+    {
+      "rule": "C6",
+      "type": "AUDIT_LOGIC_REFINEMENT",
+      "action": "Refined the KUB reporting-only rule to audit only genuine KUB-SUBGROUP records (Kidney_Stone/Bladder_Stone/Ureteric_Stone). KUB as one of the four segmentation DOMAINS (BUSI/ISIC/KUB/KVASIR) is a legitimate domain, not a reporting-only subgroup.",
+      "result": "KUB subgroups remain REPORTING-ONLY; KUB-as-domain records are correctly excluded."
+    },
+    {
+      "rule": "C9",
+      "type": "AUDIT_LOGIC_REFINEMENT",
+      "action": "Refined the forbidden-wording rule to flag 'no protocol deviations' only when used as ACTUAL wording (outside a FORBIDDEN: clause). The phrase appears only inside FORBIDDEN: clauses that document the forbidden wording.",
+      "result": "The forbidden phrase is never used as actual wording."
+    }
+  ],
+  "resolution_principle": "No scientific number, estimate, population, evidence class, or frozen result was altered. C3 is a provenance COMPLETION (the deviation was already disclosed; the literal token was added to make the qualifier self-contained). C2/C6/C9 are audit-LOGIC refinements that eliminate false positives with documented, precise rules. No contradiction was resolved by selecting a more favorable result.",
+  "findings": [
+    {
+      "rule": "C1",
+      "severity": "MATERIAL",
+      "status": "PASS",
+      "detail": "No descriptive/development evidence is upgraded to confirmatory or superiority language; all claim strengths are preservation/non-inferiority/descriptive only.",
+      "evidence": {
+        "claims_checked": 12
+      }
+    },
+    {
+      "rule": "C2",
+      "severity": "MATERIAL",
+      "status": "PASS",
+      "detail": "VAL808 (n=808), ROUTER_DEVELOPMENT (n=4957) and ROUTER_HOLDOUT (n=875) are never merged into a single cohort. Multi-population registries (e.g. the Phase31 statistical test registry) explicitly enumerate separate cohorts per test. AUDIT-LOGIC REFINEMENT (documented, not silent): the original rule flagged any population field naming >1 primary population; the refined rule flags only a genuinely merged single cohort, because a registry that enumerates separate per-test populations is not population conflation.",
+      "evidence": {
+        "records_checked": 30,
+        "multi_population_registries": [
+          {
+            "record_id": "P31-E01",
+            "population": "multi-population registry (ROUTER_HOLDOUT n=875; ROUTER_DEVELOPMENT n=4957) - separate cohorts enumerated per test, never merged"
+          }
+        ]
+      }
+    },
+    {
+      "rule": "C3",
+      "severity": "MATERIAL",
+      "status": "PASS",
+      "detail": "Every Phase30/31/33 ROUTER_HOLDOUT record retains the disclosed protocol-deviation qualifier.",
+      "evidence": {
+        "qualifier": "ONE_SHOT_ROUTER_HOLDOUT_RESULT_WITH_DISCLOSED_POST_FIRST_OPEN_SCIENTIFIC_SOURCE_FREEZE_DEVIATION"
+      }
+    },
+    {
+      "rule": "C4",
+      "severity": "MATERIAL",
+      "status": "PASS",
+      "detail": "No VAL evidence is called TEST evidence; TEST remains LOCKED_UNTIL_PHASE39 and is never a population in any Phase37 artifact.",
+      "evidence": {
+        "test_status": "LOCKED_UNTIL_PHASE39"
+      }
+    },
+    {
+      "rule": "C5",
+      "severity": "MATERIAL",
+      "status": "PASS",
+      "detail": "Phase32 retains its exact scope: 0 eligible cohorts of 19; external validation NOT performed; no generalization claim.",
+      "evidence": {
+        "eligible_primary": 0,
+        "eligible_secondary": 0,
+        "n_candidates": 19
+      }
+    },
+    {
+      "rule": "C6",
+      "severity": "MATERIAL",
+      "status": "PASS",
+      "detail": "KUB subgroups (Kidney_Stone/Bladder_Stone/Ureteric_Stone) remain REPORTING-ONLY metadata; never classes, task IDs, model inputs, or conditioning variables. AUDIT-LOGIC REFINEMENT (documented, not silent): KUB as one of the four segmentation DOMAINS (BUSI/ISIC/KUB/KVASIR) is a legitimate domain, not a reporting-only subgroup; the refined rule audits only genuine KUB-subgroup records. Domain-level records excluded: P27-E02, P30-E02, P33-E02.",
+      "evidence": {
+        "n_kub_rows": 4480,
+        "reporting_only": true,
+        "domain_records_excluded": [
+          "P27-E02",
+          "P30-E02",
+          "P33-E02"
+        ]
+      }
+    },
+    {
+      "rule": "C7",
+      "severity": "MATERIAL",
+      "status": "PASS",
+      "detail": "No confirmatory statistical claim (p-value/significance/hypothesis-test) exists anywhere; Phase31 authorized 0 procedures; only descriptive bootstrap CIs from Phases 27/30 remain.",
+      "evidence": {
+        "new_p_values": 0,
+        "new_confirmatory_tests_executed": 0
+      }
+    },
+    {
+      "rule": "C8",
+      "severity": "MATERIAL",
+      "status": "PASS",
+      "detail": "Phase36 robustness is labeled DEVELOPMENT_SET_SYNTHETIC_PERTURBATION_ROBUSTNESS_EVIDENCE (post-training, synthetic perturbation); never presented as training-time robustness.",
+      "evidence": {
+        "training": 0,
+        "optimizer_steps": 0,
+        "parameter_mutations": 0
+      }
+    },
+    {
+      "rule": "C9",
+      "severity": "MATERIAL",
+      "status": "PASS",
+      "detail": "Phase30 forbidden wording ('no protocol deviations') is never used as actual wording; it appears only inside FORBIDDEN: clauses that document the forbidden wording. AUDIT-LOGIC REFINEMENT (documented, not silent): the original rule matched the phrase anywhere, including inside FORBIDDEN: documentation clauses; the refined rule flags only occurrences OUTSIDE a FORBIDDEN: clause.",
+      "evidence": {
+        "forbidden_wording_used_as_actual_wording": false
+      }
+    },
+    {
+      "rule": "C10",
+      "severity": "MATERIAL",
+      "status": "PASS",
+      "detail": "Phase30 status is NOT upgraded: it remains CANONICAL_CURRENT_WITH_DISCLOSED_DEVIATION (COMPLETE_WITH_PROTOCOL_DEVIATION__NOT_COMPLETE_CANONICAL), as frozen by Phases 31/32/33.",
+      "evidence": {
+        "phase30_status": "COMPLETE_WITH_PROTOCOL_DEVIATION__NOT_COMPLETE_CANONICAL"
+      }
+    }
+  ]
+}

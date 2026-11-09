@@ -1,0 +1,59 @@
+{
+ "artifact_kind": "PHASE36_FINAL_PROBABILITY_AUTHORITY_DIAGNOSTIC_V1_1_TO_V1_2_DIFF",
+ "revision": "ra_medfilm_barr_phase36_final_probability_authority_diagnostic_v1_2",
+ "from_revision": "ra_medfilm_barr_phase36_final_probability_authority_diagnostic_v1_1",
+ "to_revision": "ra_medfilm_barr_phase36_final_probability_authority_diagnostic_v1_2",
+ "additive": true,
+ "v1_0_state": "FROZEN_NEVER_CONSUMED_NOT_AUTHORIZED",
+ "v1_0_modified": false,
+ "v1_1_state": "CONSUMED_FAILED",
+ "v1_1_modified": false,
+ "scientific_path_changed": false,
+ "scientific_path_identical_steps": true,
+ "changes": {
+  "D56": {
+   "v1_1": "_clean_final_probability_only() SUBSCRIPTED the imported frozen v1.14 module: _FROZEN_MOD[\"_load_clean_image_tensor\"](row) and _FROZEN_MOD[\"canonical_learned_core\"](...). A module is not subscriptable => TypeError: 'module' object is not subscriptable (v1.1 diagnostic line 446), one-shot run terminated (rc 2).",
+   "v1_2": "ATTRIBUTE access only: _FROZEN_MOD._load_clean_image_tensor(row) and _FROZEN_MOD.canonical_learned_core(...). MINIMAL repair; no other scientific-path change."
+  },
+  "AUTHORITY_TOKEN": {
+   "v1_1": "PHASE36_FINAL_PROB_AUTHORITY_V1_1_LAUNCH_AUTHORITY",
+   "v1_2": "PHASE36_FINAL_PROB_AUTHORITY_V1_2_LAUNCH_AUTHORITY"
+  },
+  "MARKERS": {
+   "v1_1": [
+    "..._start_v1_1.json",
+    "..._result_v1_1.json",
+    "..._failure_v1_1.json"
+   ],
+   "v1_2": [
+    "..._start_v1_2.json",
+    "..._result_v1_2.json",
+    "..._failure_v1_2.json"
+   ]
+  },
+  "NEW_PRECONSUMPTION_GATE": {
+   "v1_1": "none",
+   "v1_2": "v1.1 consumed-state binding (v1.1 START sha + FAILURE sha + RESULT absent + failure predicates + D56 adjudication) AND the D56 module-interface AST control, both ordered AFTER the D52 final-authority gate and BEFORE the verify-only STOP / token set"
+  }
+ },
+ "preserved_unchanged": [
+  "frozen v1.14 exec + manifest",
+  "v1.2 clean-equivalence consumed evidence (start/result + D51 adjudication/reconciliation)",
+  "prior-failure provenance",
+  "one-shot env gate PHASE36_FINAL_PROB_AUTHORITY_EXECUTE",
+  "forbidden foreign token PHASE36_V1_14_LAUNCH_AUTHORITY",
+  "the D52 final-authority pre-consumption gate",
+  "the D53 shared GT runtime-evidence state",
+  "the D54 computed-evidence preservation on result-write failure",
+  "the finite-probability fail-closed hardening",
+  "the clean scientific path (13-step enumerated contract)"
+ ],
+ "source_sha256": {
+  "v1_1_diagnostic": "b9f6a449445d8ac5edd1dafe30e2f0b5005d487be314011bd2ff9162db770672",
+  "v1_2_diagnostic": "981f772fd42e35ac8e3acde17344e9bcd3fb48c39aba191200a0d811f76f29f9",
+  "v1_1_launcher": "4c9737362fcf01f0ef8ef629f489cdff07c72e63b46f34e4ea508b7ba0df83ae",
+  "v1_2_launcher": "de916786f8237d6f04a4deebde4186a5120164bce073ffa1d0343cf6e265aaee"
+ },
+ "scientific_output": false,
+ "generated_utc": "2026-10-08T03:48:05Z"
+}

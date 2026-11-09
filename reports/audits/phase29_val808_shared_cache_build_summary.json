@@ -1,0 +1,72 @@
+{
+ "artifact": "phase29_val808_shared_cache_build_summary",
+ "phase": 29,
+ "stage": "SHARED_FIXED_G_CACHE",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_phase29_repro_v1_1",
+ "generated_utc": "2026-10-03T14:15:32+00:00",
+ "population": "VAL808",
+ "population_n": 808,
+ "domain_counts": {
+  "ISIC": 357,
+  "KUB": 280,
+  "KVASIR": 87,
+  "BUSI": 84
+ },
+ "domain_task_id": {
+  "ISIC": 0,
+  "BUSI": 1,
+  "KVASIR": 2,
+  "KUB": 3
+ },
+ "shared_G_logical_passes": 1,
+ "shared_G_samples": 808,
+ "runs_once_not_per_seed": true,
+ "G_retrained": false,
+ "global_forward_count": 808,
+ "deep_feature_rows_written": 808,
+ "scalar_rows_written": 808,
+ "n_no_roi": 0,
+ "domain_batches": {
+  "BUSI": {
+   "n": 84,
+   "batches": 11,
+   "last_batch_size": 4,
+   "total_batches": 11,
+   "canonical_order": "(dataset asc, sample_id asc)"
+  },
+  "ISIC": {
+   "n": 357,
+   "batches": 45,
+   "last_batch_size": 5,
+   "total_batches": 45,
+   "canonical_order": "(dataset asc, sample_id asc)"
+  },
+  "KUB": {
+   "n": 280,
+   "batches": 35,
+   "last_batch_size": 8,
+   "total_batches": 35,
+   "canonical_order": "(dataset asc, sample_id asc)"
+  },
+  "KVASIR": {
+   "n": 87,
+   "batches": 11,
+   "last_batch_size": 7,
+   "total_batches": 11,
+   "canonical_order": "(dataset asc, sample_id asc)"
+  }
+ },
+ "val808_images_read": 808,
+ "val808_gt_reads": 0,
+ "gt_derived_information_persisted": false,
+ "device": "cuda:0",
+ "autocast_enabled": false,
+ "inference_mode": true,
+ "numeric_mode": "FP32 eval, torch.inference_mode(), no autocast",
+ "batch_size": 8,
+ "global_params": 3523001,
+ "G_checkpoint_sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+ "elapsed_seconds": 115.8,
+ "all_pass": true
+}

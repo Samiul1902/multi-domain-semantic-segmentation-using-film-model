@@ -1,0 +1,55 @@
+{
+ "artifact": "phase25g_preserved_contracts_v1_1",
+ "phase": "25G",
+ "classification": "PHASE25G_PRE_EXECUTION_INTEGRATED_EVALUATION_SPECIFICATION_AUDIT",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_integrated_evaluation_v1_0",
+ "governance_only": true,
+ "no_execution": true,
+ "stage": "CONTRACT_PRESERVATION",
+ "h3": {
+  "hypothesis": "post-refinement fallback reduces harmful replacement relative to always accepting an executed refinement.",
+  "reporting": "effect size, paired bootstrap CI, paired p-value where appropriate, harmful-replacement counts/rates",
+  "binary_threshold_invented": false,
+  "H3_NUMERICAL_SUCCESS_THRESHOLD_NOT_PRE_REGISTERED": true,
+  "prior_audit_sha256": "f447ce15179212ec3e9d0dc366511bc4c2a03b5c0bcc3572261d52aded2434a2"
+ },
+ "preservation": {
+  "rule": "Delta = Dice(final routed system) - Dice(global reference)",
+  "margin": 0.005,
+  "claim_only_if": "lower 95% CI > -0.005",
+  "per_domain_reporting": "mandatory",
+  "scope": "DEVELOPMENT PRESERVATION EVIDENCE (not holdout/TEST/deployment)",
+  "prior_audit_sha256": "ae7da98fa914fbb518de2b8ecaf6a0eaead087395ae3e50158ed38b99e6a7b88"
+ },
+ "statistics": {
+  "reuse_phase25e_bootstrap_plan": true,
+  "n_boot": 2000,
+  "seed": 42,
+  "type": "DOMAIN_STRATIFIED_GROUP_BOOTSTRAP",
+  "paired": true,
+  "no_new_multiplicity_rule": true,
+  "prior_audit_sha256": "24afc07c70853861ddb53a9e3c1c36d42886447069ae362be6a0262eebf7f25f"
+ },
+ "compute": {
+  "A7_cost": "GLOBAL + ROUTER + activation_fraction * REFINER",
+  "A8_cost": "GLOBAL + ROUTER + activation_fraction * (REFINER + 1168)",
+  "somega_macs": 1168,
+  "somega_saves_compute": false,
+  "forbidden_labels": [
+   "measured latency",
+   "runtime",
+   "energy",
+   "memory",
+   "mobile speed"
+  ],
+  "prior_audit_sha256": "8e495855910aca05838ad9f95aced34f869fc617de94d2153562613c59bcd874"
+ },
+ "checks": {
+  "h3_threshold_not_invented": true,
+  "preservation_unchanged": true,
+  "statistics_unchanged": true,
+  "compute_unchanged": true
+ },
+ "all_pass": true
+}

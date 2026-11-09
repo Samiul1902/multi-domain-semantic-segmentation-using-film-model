@@ -1,0 +1,16 @@
+{
+ "artifact": "phase35_synthetic_smoke_terminal_v1_0b",
+ "phase": 35,
+ "section": "\u00a7X",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase35_interpretability_v1_0b",
+ "terminal": "PHASE35_SYNTHETIC_SMOKE_V1_0B_BLOCKED__CANONICAL_MODEL_OR_INTERPRETABILITY_INTERFACE_SMOKE_FAILED__ZERO_RAW_VAL_GT_HOLDOUT_TEST_OR_SCIENTIFIC_OUTPUT_ACCESS",
+ "status": "BLOCKED_SMOKE",
+ "root_cause": "frozen v1.0b `--mode smoke` entry point is a stub (no constructions, no forwards, no autograd, no CAM)",
+ "required_remediation": "an additive v1.0c source amendment implementing `mode_smoke()` so it constructs G and B_phi, strict-loads them, verifies parameters, exercises the FiLM accessor and task embeddings, runs ONE synthetic gradient-enabled Grad-CAM forward on deterministic synthetic input with a synthetic target mask, runs ONE synthetic router Gradient x Input pass, and verifies model immutability - with no raw/GT/HOLDOUT/TEST reads - then re-freeze and re-authorize",
+ "phase35_scientific_execution_started": false,
+ "phase36_started": false,
+ "TEST": "LOCKED_UNTIL_PHASE39",
+ "generated_utc": "2026-10-04T15:30:46+00:00",
+ "all_pass": true
+}

@@ -1,0 +1,368 @@
+{
+ "artifact_kind": "PHASE36_FINAL_PROBABILITY_AUTHORITY_DIAGNOSTIC_V1_2_RESULT_ADJUDICATION",
+ "adjudication_revision": "v1_0",
+ "target": "D60_ACCEPTED_BRANCH_REFINED_FINAL_SOURCE_LOCALIZATION",
+ "mode": "STATIC_EXISTING_ARTIFACT_FORENSICS_ONLY",
+ "consumed_v1_2_evidence": {
+  "classification": "D51_END_TO_END_FINAL_AUTHORITY_NOT_REPRODUCED",
+  "start_sha256": "88723028df230a8b1e2c98c8c248d2de44e73bcb95669efd9bd8d44cff4a69be",
+  "result_sha256": "4a3753867e72f7cfbc357511475623bd0ecfff2dc0e3aca0f16ecbe1effa98d5",
+  "stdout_sha256": "5444cab5d19fcba310b4af06f5c91eeb969ede872e05069f75d672cb5b8afd72",
+  "diagnostic_source_sha256": "981f772fd42e35ac8e3acde17344e9bcd3fb48c39aba191200a0d811f76f29f9",
+  "launcher_sha256": "de916786f8237d6f04a4deebde4186a5120164bce073ffa1d0343cf6e265aaee",
+  "d59_reconciliation_sha256": "ad426132273ee72908556cab3fd1cd15e42816fc674f28c33dd56c8b99ed4ff7",
+  "stderr_state": {
+   "state": "PRESENT_EMPTY",
+   "size": 0,
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "failure_v1_2_absent": true
+ },
+ "affected_set_derivation": {
+  "n_per_sample_rows": 808,
+  "len_A_reported": 266,
+  "len_A_derived": 266,
+  "A_reported_eq_A_derived": true,
+  "n_zero_mismatch_rows": 542
+ },
+ "phase29_routing_authority": {
+  "csv_path": "data_cache/phase29_seed42/phase29_seed42_val808_decisions.csv",
+  "csv_sha256": "df4a0f376a7edab221d584b2a7152bf7e8f55c00ade87e39cd94c9bb13fedea6",
+  "columns": [
+   "sample_id",
+   "domain",
+   "task_id",
+   "router_score",
+   "router_threshold",
+   "selected",
+   "safety_score",
+   "safety_accept",
+   "final_source",
+   "roi_available"
+  ],
+  "final_source_vocabulary": [
+   "GLOBAL",
+   "REFINED"
+  ],
+  "row_count": 808,
+  "unique_sample_id_count": 808,
+  "cardinalities": {
+   "SKIP": 529,
+   "EXECUTE": 279,
+   "ACCEPT": 268,
+   "REJECT": 11,
+   "R_refined": 268,
+   "G_global": 540
+  },
+  "frozen_cardinality_checks": {
+   "SKIP_eq_529": true,
+   "EXECUTE_eq_279": true,
+   "ACCEPT_eq_266": false,
+   "REJECT_eq_13": false
+  },
+  "observed_vs_expected_note": "The frozen work-order cardinalities (ACCEPT=266 / REJECT=13) DO NOT match the Phase29 GT-free routing authority, which encodes ACCEPT=268 / REJECT=11. The table itself is internally consistent (all 268 ACCEPT have safety_score>=0.50; all 11 REJECT have safety_score<0.50).",
+  "R_eq_ACCEPT": true,
+  "G_eq_SKIP_union_REJECT": true,
+  "R_inter_G_empty": true,
+  "R_union_G_all": true
+ },
+ "d60": {
+  "d60_verdict": "REFINED_FINAL_SOURCE_LOCALIZATION_NOT_EXACT",
+  "d60_root_localization_established": false,
+  "affected_count": 266,
+  "refined_final_source_count": 268,
+  "global_final_source_count": 540,
+  "unaffected_count": 542,
+  "affected_equals_refined": false,
+  "unaffected_equals_global": false,
+  "affected_minus_refined": [],
+  "refined_minus_affected": [
+   "a9e2b6a8e3c137d5ef1bcff2930be437",
+   "b74c7743789d526e421cb065034bb590"
+  ],
+  "global_minus_unaffected": [],
+  "unaffected_minus_global": [
+   "a9e2b6a8e3c137d5ef1bcff2930be437",
+   "b74c7743789d526e421cb065034bb590"
+  ],
+  "count_equality_is_not_set_equality": true,
+  "note": "Count equality (266 affected vs 268 ACCEPT) is NOT exact; set equality FAILS. Exactly two REFINED-final-source samples reproduce the Phase27 final-f16 authority bit-identically (all mismatch metrics zero) and are therefore NOT in the affected set.",
+  "interpretation_guard": "This localization does NOT prove R_psi itself is wrong, and does NOT prove G is globally identical in live float32. It localizes where the discrepancy becomes observable in the frozen f16 final authority."
+ },
+ "source_shas": {
+  "run_phase27_exec_phaseA.py": "ac0ffbdadbfe60349061a926f5a664716a3a3690ac3a90c21a35802263975841",
+  "phase36_robustness_execution_v1_14.py": "ac09ff8ded3610244920e66612145b246b33127140d344a9730d454bab27cff5",
+  "src/models/barr/ra_medfilm_barr.py": "342f2163690c2fa8d5a601ab1d18178b982d701b916935c33e0793b0801c3724",
+  "r_psi_checkpoint": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109",
+  "r_psi_checkpoint_path": "checkpoints/phase25a_barr_regional_refiner_v1_1_roi030/final/final.pt"
+ },
+ "accept_path_static_comparison": {
+  "phase27_accept_fusion_call_site": "run_phase27_exec_phaseA.py L349: p_final = fuse_full_field(p_global, refined, geom)",
+  "v1_14_accept_fusion_call_site": "phase36_robustness_execution_v1_14.py L1989: fused = system._fuse_global_with_regional(p_global, refined, window)",
+  "v1_14_module_level_fuse_full_field_defined_at": "phase36_robustness_execution_v1_14.py L1480",
+  "v1_14_module_level_fuse_full_field_is_dead_code": true,
+  "r_psi_input_preprocessing_equivalent": true,
+  "r_psi_input_note": "run_phase27_exec_phaseA.crop_and_resize_vec (L493-516) is byte-identical to phase36_robustness_execution_v1_14.crop_and_resize_vec (L1461-1477): same clip, same constant-zero pad, same per-channel PIL mode='F' BILINEAR resize.",
+  "somega_features_equivalent": true,
+  "somega_note": "Both call phase25f_post_safety_features.compute_numeric_features with the same area_fraction + crop_side_pixels.",
+  "fusion_mechanism_difference": {
+   "fuse_full_field_pad_aware": "resize refined256 -> (crop_side_pixels, crop_side_pixels) via PIL BILINEAR, then slice [pad_top : pad_top+(clip_y2-clip_y1), pad_left : pad_left+(clip_x2-clip_x1)] and insert at out[clip_y1:clip_y2, clip_x1:clip_x2].",
+   "fuse_global_with_regional_pad_unaware": "resize refined256 -> (clip_y2-clip_y1, clip_x2-clip_x1) via torch F.interpolate bilinear align_corners=False, then insert at out[clip_y1:clip_y2, clip_x1:clip_x2]; NO pad_top/pad_left offset.",
+   "consequence": "When pad_top/pad_left != 0 (clipped ROI at canvas borders) the two insert a differently-resized, differently-offset crop; even with no padding they use different resamplers (PIL BILINEAR vs torch bilinear align_corners=False)."
+  }
+ },
+ "synthetic_fusion_comparison": {
+  "fusion_static_equivalent": false,
+  "fusion_synthetic_equivalent": false,
+  "any_case_differs": true,
+  "max_abs_over_cases": 0.1666666716337204,
+  "cases": {
+   "interior_square_no_pad": {
+    "geom": {
+     "crop_side_pixels": 384,
+     "clip_y1": 64,
+     "clip_y2": 448,
+     "clip_x1": 64,
+     "clip_x2": 448,
+     "pad_top": 0,
+     "pad_bottom": 0,
+     "pad_left": 0,
+     "pad_right": 0
+    },
+    "window": [
+     64,
+     448,
+     64,
+     448
+    ],
+    "shape_a": [
+     512,
+     512
+    ],
+    "shape_b": [
+     512,
+     512
+    ],
+    "dtype_a": "float32",
+    "dtype_b": "float32",
+    "same_shape": true,
+    "same_dtype": true,
+    "array_equal": false,
+    "max_abs": 1.7881393432617188e-07,
+    "mismatch_count": 81842
+   },
+   "top_clipped": {
+    "geom": {
+     "crop_side_pixels": 384,
+     "clip_y1": 0,
+     "clip_y2": 320,
+     "clip_x1": 64,
+     "clip_x2": 448,
+     "pad_top": 64,
+     "pad_bottom": 0,
+     "pad_left": 0,
+     "pad_right": 0
+    },
+    "window": [
+     0,
+     320,
+     64,
+     448
+    ],
+    "shape_a": [
+     512,
+     512
+    ],
+    "shape_b": [
+     512,
+     512
+    ],
+    "dtype_a": "float32",
+    "dtype_b": "float32",
+    "same_shape": true,
+    "same_dtype": true,
+    "array_equal": false,
+    "max_abs": 0.1666666716337204,
+    "mismatch_count": 122302
+   },
+   "bottom_clipped": {
+    "geom": {
+     "crop_side_pixels": 384,
+     "clip_y1": 192,
+     "clip_y2": 512,
+     "clip_x1": 64,
+     "clip_x2": 448,
+     "pad_top": 0,
+     "pad_bottom": 64,
+     "pad_left": 0,
+     "pad_right": 0
+    },
+    "window": [
+     192,
+     512,
+     64,
+     448
+    ],
+    "shape_a": [
+     512,
+     512
+    ],
+    "shape_b": [
+     512,
+     512
+    ],
+    "dtype_a": "float32",
+    "dtype_b": "float32",
+    "same_shape": true,
+    "same_dtype": true,
+    "array_equal": false,
+    "max_abs": 0.16666662693023682,
+    "mismatch_count": 122177
+   },
+   "left_clipped": {
+    "geom": {
+     "crop_side_pixels": 384,
+     "clip_y1": 64,
+     "clip_y2": 448,
+     "clip_x1": 0,
+     "clip_x2": 320,
+     "pad_top": 0,
+     "pad_bottom": 0,
+     "pad_left": 64,
+     "pad_right": 0
+    },
+    "window": [
+     64,
+     448,
+     0,
+     320
+    ],
+    "shape_a": [
+     512,
+     512
+    ],
+    "shape_b": [
+     512,
+     512
+    ],
+    "dtype_a": "float32",
+    "dtype_b": "float32",
+    "same_shape": true,
+    "same_dtype": true,
+    "array_equal": false,
+    "max_abs": 0.1666666716337204,
+    "mismatch_count": 122315
+   },
+   "right_clipped": {
+    "geom": {
+     "crop_side_pixels": 384,
+     "clip_y1": 64,
+     "clip_y2": 448,
+     "clip_x1": 192,
+     "clip_x2": 512,
+     "pad_top": 0,
+     "pad_bottom": 0,
+     "pad_left": 0,
+     "pad_right": 64
+    },
+    "window": [
+     64,
+     448,
+     192,
+     512
+    ],
+    "shape_a": [
+     512,
+     512
+    ],
+    "shape_b": [
+     512,
+     512
+    ],
+    "dtype_a": "float32",
+    "dtype_b": "float32",
+    "same_shape": true,
+    "same_dtype": true,
+    "array_equal": false,
+    "max_abs": 0.16666662693023682,
+    "mismatch_count": 122177
+   },
+   "corner_clipped_TL": {
+    "geom": {
+     "crop_side_pixels": 384,
+     "clip_y1": 0,
+     "clip_y2": 320,
+     "clip_x1": 0,
+     "clip_x2": 320,
+     "pad_top": 64,
+     "pad_bottom": 0,
+     "pad_left": 64,
+     "pad_right": 0
+    },
+    "window": [
+     0,
+     320,
+     0,
+     320
+    ],
+    "shape_a": [
+     512,
+     512
+    ],
+    "shape_b": [
+     512,
+     512
+    ],
+    "dtype_a": "float32",
+    "dtype_b": "float32",
+    "same_shape": true,
+    "same_dtype": true,
+    "array_equal": false,
+    "max_abs": 0.1666666716337204,
+    "mismatch_count": 102399
+   }
+  },
+  "method": "pure synthetic arrays (512x512 p_global float32, 256x256 refined float32); NO model, NO checkpoint, NO image, NO GT"
+ },
+ "d61": {
+  "status": "ESTABLISHED",
+  "classification": "ACCEPT_FINAL_FUSION_SEMANTICS_DIVERGE_FROM_PHASE27",
+  "more_exact_candidate": "REFINED_CROP_PADDING_REINSERTION_MISMATCH",
+  "evidence": "Phase27 ACCEPT path calls fuse_full_field (pad-aware, PIL BILINEAR to crop_side_pixels); v1.14 ACCEPT path calls _fuse_global_with_regional (pad-unaware, torch bilinear to the clipped window size). Synthetic equivalence test shows semantic divergence in ALL 6 geometries (max_abs up to ~0.1667 in clipped cases; ~1.8e-7 even with no padding).",
+  "scope_guard": "D61 establishes that the two fusion implementations are NOT equivalent. It does NOT establish that fusion is the SOLE cause of the D60 non-reproduction, because exact D60 localization FAILED (2 REFINED samples reproduce bit-identically). No further inference was executed.",
+  "no_further_inference_executed": true
+ },
+ "scientific_semantics_effect": "NONE",
+ "new_scientific_output": false,
+ "model_execution": false,
+ "checkpoint_deserialization": false,
+ "val_image_read": false,
+ "gt_read": false,
+ "test_reads": 0,
+ "router_holdout_reads": 0,
+ "perturbations": false,
+ "prohibitions_observed": [
+  "no_model_execution",
+  "no_checkpoint_deserialization",
+  "no_val_image_read",
+  "no_val_gt_read",
+  "no_test",
+  "no_router_holdout",
+  "no_perturbations",
+  "no_v1_2_retry",
+  "no_v1_3_diagnostic",
+  "no_v1_15_science",
+  "no_phase37"
+ ],
+ "governance_state": {
+  "v1_2_final_prob": "CONSUMED_RESULT (retry FORBIDDEN)",
+  "v1_1_final_prob": "CONSUMED_FAILED (retry FORBIDDEN)",
+  "v1_14_science": "CONSUMED_FAILED (retry FORBIDDEN)",
+  "v1_15_science": "NOT_CREATED",
+  "phase37": "NOT_STARTED",
+  "test": "PHASE39_ONLY",
+  "router_holdout": "NOT_ACCESSED"
+ },
+ "generated_utc": "2026-10-08T08:07:14Z",
+ "write_semantics": "O_CREAT|O_EXCL + full-write + fsync (exclusive-create, write-once)"
+}

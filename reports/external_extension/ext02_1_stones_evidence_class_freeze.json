@@ -1,0 +1,28 @@
+{
+  "classification": "EXT02_1_STONES_EVIDENCE_CLASS_FREEZE",
+  "generated_utc": "2026-10-11T15:00:00Z",
+  "dataset": "Stones_where_are_you? v3 (Roboflow COCO-seg)",
+  "path": "D:\\Softfors\\final\\external_test_ds\\Stones_where_are_you-.v3i.coco-segmentation",
+  "final_evidence_class": "DOMAIN_SHIFT_STRESS_TEST",
+  "secondary_classification": "SECONDARY_EXTERNAL_BENCHMARK",
+  "mandatory_statement": "PRIMARY_EXTERNAL_VALIDATION_NOT_ESTABLISHED",
+  "track_a_primary": false,
+  "reason": "annotation completeness for 'stone' not established; source-independence not proven",
+  "counts": {
+    "variant_total": 460,
+    "variant_evaluable": 456,
+    "variant_excluded": 4,
+    "source_group_total": 115,
+    "source_group_evaluable": 114
+  },
+  "zero_annotation_images": [
+    "997c58b19d2abed696be424c68ad51_jumbo_jpeg.rf.48a314fe562eb71611c41b709f28f876.jpg",
+    "997c58b19d2abed696be424c68ad51_jumbo_jpeg.rf.6f7821945b2bcb4e53921b715723d5f8.jpg",
+    "997c58b19d2abed696be424c68ad51_jumbo_jpeg.rf.9493b03381ec0882010ecc565d4ca1d0.jpg",
+    "997c58b19d2abed696be424c68ad51_jumbo_jpeg.rf.dda38d3748b9204f7aed7760ef7aa494.jpg"
+  ],
+  "zero_annotation_source_group": "997c58b19d2abed696be424c68ad51_jumbo_jpeg (4 variants of one source)",
+  "zero_annotation_handling": "evaluable=false, exclusion_reason=ANNOTATION_COMPLETENESS_UNRESOLVED__ZERO_ANNOTATION; NOT treated as legitimate stone-negative GT",
+  "statistical_unit": "source_group_id",
+  "within_source_aggregation_rule": "compute metric per variant; average variants within source_group; then source-group-level bootstrap; do NOT weight by number of variants"
+}

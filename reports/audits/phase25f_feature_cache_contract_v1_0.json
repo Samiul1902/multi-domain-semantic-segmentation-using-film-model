@@ -1,0 +1,75 @@
+{
+ "artifact": "phase25f_feature_cache_contract_v1_0",
+ "phase": "25F",
+ "stage": "MATERIALIZE_20D_GT_FREE_FEATURE_CACHE",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_post_safety_v1_0",
+ "cache_root": "data_cache/phase25f_barr_post_safety_v1_0",
+ "features_shape": [
+  4957,
+  20
+ ],
+ "features_dtype": "float32",
+ "rows": 4957,
+ "feature_row_index_range": [
+  0,
+  4956
+ ],
+ "nan_count": 0,
+ "inf_count": 0,
+ "all_sample_ids_exact": true,
+ "onehot_dims_are_valid_one_hot": true,
+ "feature_value_range_observed": [
+  0.0,
+  17.0
+ ],
+ "feature_schema_fields": [
+  "feature_index",
+  "name",
+  "formula",
+  "source",
+  "dtype",
+  "units",
+  "normalization_role",
+  "GT_free"
+ ],
+ "built_before_targets": true,
+ "construction_never_inspected": [
+  "DeltaDice",
+  "gain category",
+  "global Dice",
+  "candidate Dice"
+ ],
+ "inputs_used": {
+  "P_g": "data_cache/phase25f_barr_post_safety_v1_0/oof_global_crop_prob.npy",
+  "P_r": "data_cache/phase25f_barr_post_safety_v1_0/oof_refined_crop_prob.npy",
+  "roi_area_fraction": "data_cache/phase25b_barr_pre_refinement_features_v1_2 (scalar index 200)",
+  "roi_side": "data_cache/phase25b_barr_pre_refinement_features_v1_2 (scalar index 201)",
+  "task_id": "data_cache/phase25f_barr_post_safety_v1_0/oof_refined_crop_prob_metadata.csv"
+ },
+ "canonical_artifacts": {
+  "features.npy": {
+   "path": "data_cache/phase25f_barr_post_safety_v1_0/features.npy",
+   "exists": true,
+   "sha256": "8b3a9c99aeb3935118e6f409b7451b23cc593bed9ea5053c4d6242100d6fe966"
+  },
+  "metadata.csv": {
+   "path": "data_cache/phase25f_barr_post_safety_v1_0/metadata.csv",
+   "exists": true,
+   "sha256": "0fda2ec5001dc2eee7c3a4d1c155b4c1e74ffde9f40c090daf6dda5ce3979c67"
+  },
+  "feature_schema.csv": {
+   "path": "data_cache/phase25f_barr_post_safety_v1_0/feature_schema.csv",
+   "exists": true,
+   "sha256": "3e70e20c541b93de752980c34cdfb6fe5af17ebe4c18cbb64397c0bbae465ee5"
+  }
+ },
+ "feature_equation_contract": {
+  "path": "reports/audits/phase25f_feature_equation_contract_v1_0.json",
+  "exists": true,
+  "sha256": "a8ac5c04d5d4f91d6bf16a89115846b30c4399705f1380b95757cc0bb1e4271e"
+ },
+ "model_forwards": 0,
+ "test_reads": 0,
+ "all_pass": true
+}

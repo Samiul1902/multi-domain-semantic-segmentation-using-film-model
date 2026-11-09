@@ -1,0 +1,44 @@
+{
+  "classification": "EXT02_1_COMPARATOR_PANEL_FINAL_FREEZE",
+  "generated_utc": "2026-10-11T15:00:00Z",
+  "panel": [
+    {
+      "id": "A",
+      "model": "GlobalMedFiLM",
+      "protocol_class": "SAME_PROTOCOL_REFERENCE"
+    },
+    {
+      "id": "B",
+      "model": "RA-MedFiLM-BARR V1",
+      "protocol_class": "SAME_PROTOCOL_TARGET"
+    },
+    {
+      "id": "C",
+      "model": "U-Net",
+      "protocol_class": "SAME_PROTOCOL_CANDIDATE"
+    },
+    {
+      "id": "D",
+      "model": "Attention U-Net",
+      "protocol_class": "SAME_PROTOCOL_CANDIDATE"
+    },
+    {
+      "id": "E",
+      "model": "UNet++",
+      "protocol_class": "SAME_PROTOCOL_CANDIDATE"
+    },
+    {
+      "id": "F",
+      "model": "DeepLabV3+",
+      "protocol_class": "SAME_PROTOCOL_CANDIDATE"
+    },
+    {
+      "id": "G",
+      "model": "SegFormer-B0",
+      "protocol_class": "SAME_PROTOCOL_CANDIDATE"
+    }
+  ],
+  "optional_hybrid": "NOT_INCLUDED",
+  "post_amendment_rule": "no external-facing architecture may be added after this amendment unless labelled POST_HOC_CONTEXTUAL_ONLY and never used to strengthen a prespecified comparative claim",
+  "class_transition": "candidate -> SAME_PROTOCOL only if training/eval audit proves compliance; else CONTEXTUAL_ONLY; decision depends on compliance, NEVER on performance"
+}

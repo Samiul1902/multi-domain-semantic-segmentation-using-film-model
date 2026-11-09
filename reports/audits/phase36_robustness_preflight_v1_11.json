@@ -1,0 +1,455 @@
+{
+  "artifact": "phase36_robustness_preflight_v1_11",
+  "phase": 36,
+  "section": "§N",
+  "method": "RA-MedFiLM-BARR",
+  "revision": "ra_medfilm_barr_phase36_robustness_v1_11",
+  "type": "PREFLIGHT_CHECK_REPORT",
+  "static_only": true,
+  "model_free": true,
+  "torch_imported": false,
+  "protected_population_read": false,
+  "subject_execution": "scripts/analysis/phase36_robustness_execution_v1_11.py",
+  "subject_execution_sha256": "dc4928417444304ad637907c53089e512577254b368e438d0098ade6202083f0",
+  "subject_unit": "scripts/analysis/phase36_robustness_unit_v1_11.py",
+  "subject_unit_sha256": "189b9957704beccff1ba9c198e7f2f9ed29fa351e9cfc6f46d03441adeaeac41",
+  "subject_launcher": "scripts/analysis/launch_phase36_v1_11.py",
+  "subject_launcher_sha256": "56612332d220f93611fc627b1f495aca3013bb3578ab801ee10b4ee0386b25b0",
+  "subject_manifest": "reports/audits/phase36_v1_11_runtime_source_integrity_manifest.json",
+  "subject_manifest_sha256": "d795d41152accde6cf59717d2d17ab429b0cdf8fc1ff98bca11dcb13a591bda7",
+  "passed": 68,
+  "total": 68,
+  "all_pass": true,
+  "checks": [
+    {
+      "check": "A01_v1_9_execution_byte_preserved",
+      "passed": true,
+      "detail": {
+        "expected": "433bad87b4ef77fd6997c77f688eb295e526bfa3e88dece4ec5d3d550255cbd0",
+        "observed": "433bad87b4ef77fd6997c77f688eb295e526bfa3e88dece4ec5d3d550255cbd0"
+      }
+    },
+    {
+      "check": "A02_v1_9_unit_history_byte_preserved",
+      "passed": true,
+      "detail": {
+        "expected": "c39edd7764a0e9733cc5905e5e54935b1bcd9cc62c345189f618b0c6f4ea690e",
+        "observed": "c39edd7764a0e9733cc5905e5e54935b1bcd9cc62c345189f618b0c6f4ea690e"
+      }
+    },
+    {
+      "check": "A03_v1_10_unit_history_byte_preserved",
+      "passed": true,
+      "detail": {
+        "expected": "9b880c92469e7daca8f6563e64bf2e2e712d4eb8ac304298fbb52f89ab87c329",
+        "observed": "9b880c92469e7daca8f6563e64bf2e2e712d4eb8ac304298fbb52f89ab87c329"
+      }
+    },
+    {
+      "check": "B01_v1_11_unit_no_or_true_boolop",
+      "passed": true,
+      "detail": {
+        "offending_lines": []
+      }
+    },
+    {
+      "check": "B02_v1_11_unit_has_self_guard",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "B03_v1_11_unit_no_lower_bound_transitive_count",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "B04_v1_11_unit_no_substring_call_count",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "B05_unit_d26_ast_dataflow_assertion",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "B06_unit_d27_exact_set_equality",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "B07_unit_d28_ast_four_call_sites",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "B08_unit_d30_science_gate_present",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "B09_unit_d31_unique_paths_present",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "B10_unit_d32_first_attempt_present",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "B11_unit_d33_launcher_anchor_present",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "C01_attempt_provenance_dict_present",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "C02_write_once_flag_not_literal_true",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "C03_transitive_dependencies_exactly_14",
+      "passed": true,
+      "detail": {
+        "observed": 14
+      }
+    },
+    {
+      "check": "C04_four_actual_hd95_call_sites",
+      "passed": true,
+      "detail": {
+        "n": 4
+      }
+    },
+    {
+      "check": "D01_D30_science_calls_integrity_verify",
+      "passed": true,
+      "detail": {
+        "science_calls": [
+          "OrderedDict",
+          "_verify_transitive_source_integrity",
+          "SystemExit",
+          "_load_models",
+          "_bind_clean_reference",
+          "_generate_clean_g_reference",
+          "_phase27_global_reproduction_gate",
+          "SystemExit",
+          "_clean_row_index",
+          "_evaluate_clean_sample",
+          "_clean_equivalence_gate",
+          "SystemExit",
+          "run_image_perturbations",
+          "run_proposal_perturbations",
+          "SystemExit",
+          "SystemExit",
+          "summarize_image_per_sample",
+          "summarize_image_by_domain_condition",
+          "summarize_noise_seed",
+          "summarize_proposal_per_sample",
+          "summarize_proposal_by_domain_condition",
+          "summarize_route_stability",
+          "summarize_execution_rate",
+          "worst_case_per_sample",
+          "worst_case_by_domain",
+          "kub_subgroup_robustness",
+          "generate_all_figures",
+          "len",
+          "len",
+          "now"
+        ]
+      }
+    },
+    {
+      "check": "D02_D30_science_gate_before_load_models",
+      "passed": true,
+      "detail": {
+        "science_calls": [
+          "OrderedDict",
+          "_verify_transitive_source_integrity",
+          "SystemExit",
+          "_load_models",
+          "_bind_clean_reference",
+          "_generate_clean_g_reference",
+          "_phase27_global_reproduction_gate",
+          "SystemExit",
+          "_clean_row_index",
+          "_evaluate_clean_sample",
+          "_clean_equivalence_gate",
+          "SystemExit",
+          "run_image_perturbations",
+          "run_proposal_perturbations",
+          "SystemExit",
+          "SystemExit",
+          "summarize_image_per_sample",
+          "summarize_image_by_domain_condition",
+          "summarize_noise_seed",
+          "summarize_proposal_per_sample",
+          "summarize_proposal_by_domain_condition",
+          "summarize_route_stability",
+          "summarize_execution_rate",
+          "worst_case_per_sample",
+          "worst_case_by_domain",
+          "kub_subgroup_robustness",
+          "generate_all_figures",
+          "len",
+          "len",
+          "now"
+        ]
+      }
+    },
+    {
+      "check": "D03_D30_science_fail_closed_terminal",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "D04_D30_same_gate_function_both_paths",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "D05_D30_no_load_models_before_science_gate",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "E01_D31_science_result_v1_11_path_declared",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "E02_D31_science_start_v1_11_path_declared",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "E03_D31_science_failure_v1_11_path_declared",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "E04_D31_no_v1_8_write_target_in_code",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "E05_D31_sentinel_declared",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "E06_D31_no_historical_write_scientific_result_v1_8.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "E06_D31_no_historical_write_scientific_result_v1_9.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "F01_D32_science_start_marker_helper",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "F02_D32_science_failure_helper",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "F03_D32_science_success_helper",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "F04_D32_durable_evidence_wrapper",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "F05_D32_start_marker_exclusive_create",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "F06_D32_systemexit_recorded",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "F07_D32_exception_recorded",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "F08_D32_attempt_existence_guard",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "G01_D33_launcher_exists",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "G02_D33_launcher_verifies_exec_sha",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "G03_D33_launcher_verifies_manifest_sha",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "G04_D33_launch_authority_token_declared",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "G05_D33_source_requires_launch_token",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "G06_D33_manifest_present",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "G07_D33_manifest_declares_exec_sha",
+      "passed": true,
+      "detail": {
+        "declared": "dc4928417444304ad637907c53089e512577254b368e438d0098ade6202083f0",
+        "observed": "dc4928417444304ad637907c53089e512577254b368e438d0098ade6202083f0"
+      }
+    },
+    {
+      "check": "G08_D33_manifest_no_launcher_sha_cycle",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "G09_D33_co_edit_negative_control_recorded",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "H01_smoke_gate_separate_from_science_gate",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "H02_no_v1_11_smoke_artifact_exists_yet",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "H03_no_v1_11_smoke_start_marker_exists_yet",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "H04_no_v1_11_smoke_failure_artifact_exists_yet",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "H05_no_v1_11_science_output_exists",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "H06_no_v1_11_science_start_exists",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "H07_no_v1_11_science_failure_exists",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "H08_entrypoint_guarded_by_main_guard",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "I01_test_runtime_reads_disallowed_flag",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "I02_holdout_runtime_reads_disallowed_flag",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "I03_val_manifest_only_runtime_authority",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "J01_sigmoid_logits_float_preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "J02_seeds_preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "J03_thresholds_preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "J04_batch8_preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "J05_science_semantics_tokens_present",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "K01_unit_report_all_pass",
+      "passed": true,
+      "detail": {
+        "passed": 74,
+        "total": 74
+      }
+    },
+    {
+      "check": "K02_unit_report_subject_is_v1_11_exec",
+      "passed": true,
+      "detail": {
+        "declared": "dc4928417444304ad637907c53089e512577254b368e438d0098ade6202083f0",
+        "observed": "dc4928417444304ad637907c53089e512577254b368e438d0098ade6202083f0"
+      }
+    },
+    {
+      "check": "L01_D29_availability_record_exists",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "L02_D29_record_binds_v1_10_sha",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "L03_D29_record_states_availability_truthfully",
+      "passed": true,
+      "detail": null
+    }
+  ]
+}

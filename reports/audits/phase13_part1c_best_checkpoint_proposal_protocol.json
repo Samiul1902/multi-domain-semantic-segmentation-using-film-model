@@ -1,0 +1,51 @@
+{
+  "artifact": "PHASE13_PART1C_BEST_CHECKPOINT_PROPOSAL_PROTOCOL",
+  "document_type": "PRE_INFERENCE_PROTOCOL_FREEZE",
+  "status": "SUPERVISOR_FROZEN_PART1C",
+  "experiment_id": "phase13b_kub_localizer_r512_h128_sigmaeq075_centernetfocal_seed42_clean_v3",
+  "best_checkpoint_epoch": 53,
+  "best_checkpoint_path": "checkpoints/phase13b_kub_localizer_r512_h128_sigmaeq075_centernetfocal_seed42_clean_v3/best.pt",
+  "best_checkpoint_sha": "7673c34a2f2c86eca2e45c1bc6abe77842d17cd09f122f2da0f2d414ca492273",
+  "manifest": "phase4_v3",
+  "taxonomy": "kub_size_clean_v3_v1",
+  "population": "KUB FULL_FIELD VAL only",
+  "val_images": 103,
+  "native_components": 152,
+  "strata": {
+    "TINY": 72,
+    "SMALL": 28,
+    "MEDIUM": 36,
+    "LARGE": 16
+  },
+  "hard_tiny_components": 15,
+  "global_empty_images": 5,
+  "component_source": "reports/tables/phase12_clean_v3_oracle_geometry.csv",
+  "component_source_sha": "29326d5b9a3bf71add74d8743750511f146d8c4dfbd1dc5b04a5e1b647c37cc0",
+  "heatmap": {
+    "input": 512,
+    "output": 128
+  },
+  "proposal_threshold": 0.1,
+  "proposal_margin": 0.2,
+  "proposal_top_k": 5,
+  "proposal_nms_iou": 0.3,
+  "proposal_configurations": 1,
+  "grid_search": "DISABLED",
+  "primary_coverage": "HISTORICAL_EXECUTING_BBOX_COVERAGE",
+  "secondary_sensitivity": "PIXEL_MASK_COMPONENT_COVERAGE",
+  "test": "LOCKED",
+  "test_reads": 0,
+  "gate_threshold_introduced": "NONE",
+  "gate_judgment_authorized": false,
+  "roi_acquisitions": "EXCLUDED",
+  "descriptive_precision_definitions": {
+    "proposal_bbox_any_hit_precision": "fraction of emitted proposals intersecting at least one native GT bbox",
+    "proposal_pixel_any_hit_precision": "fraction of emitted proposals containing at least one native GT foreground pixel",
+    "role": "DESCRIPTIVE_ONLY_NOT_SELECTION_NOT_GATE_NOT_TUNED"
+  },
+  "max_new_full_val_inference_passes": 1,
+  "existing_aggregate_artifact": "reports/audits/phase13_clean_v3_localizer_final_best_checkpoint_integrity.json",
+  "existing_detailed_rows_present": false,
+  "inference_justification": "Aggregate audit exists but per-case/per-proposal/per-component rows do NOT exist.",
+  "created_utc": "2026-09-22T03:35:00Z"
+}

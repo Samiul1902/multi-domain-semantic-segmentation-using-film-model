@@ -1,0 +1,26 @@
+{
+ "artifact": "phase29_seed_specific_target_rule_v1_1",
+ "phase": 29,
+ "revision": "ra_medfilm_barr_phase29_repro_v1_1",
+ "classification": "SUPERVISOR_PROSPECTIVE_REPRODUCIBILITY_SPECIFICATION_REPAIR",
+ "governance_only": true,
+ "execution": "NONE",
+ "generated_utc": "2026-10-02T15:05:09+00:00",
+ "target": "DeltaDice",
+ "definition": "DeltaDice_s = Dice(R_psi_s_OOF, y) - Dice(G_fixed, y)",
+ "seed_specific": true,
+ "regenerated_per_seed": true,
+ "thresholds_frozen": {
+  "BENEFICIAL": ">= +0.02",
+  "HARMFUL": "<= -0.01",
+  "neutral": "otherwise",
+  "BENEFICIAL_value": 0.02,
+  "HARMFUL_value": -0.01
+ },
+ "gain_target_regeneration_rule": "SEED_SPECIFIC_FROM_R_PSI_OOF",
+ "gt_target_created_only_after_oof_candidate_frozen": true,
+ "seed42_deltadice_reused_as_target_for_other_seeds": false,
+ "cross_seed_target_reuse_permitted": false,
+ "gain_target_regeneration_resolved": true,
+ "all_pass": true
+}

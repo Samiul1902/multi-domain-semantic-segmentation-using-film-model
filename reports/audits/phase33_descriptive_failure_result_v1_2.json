@@ -1,0 +1,256 @@
+{
+ "artifact": "phase33_descriptive_failure_result_v1_2",
+ "phase": 33,
+ "section": "\u00a7X",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase33_failure_boundary_v1_2",
+ "evidence_class": "DESCRIPTIVE_FROZEN_TABLE_ANALYSIS__TIER_0_TIER_1",
+ "phase30_qualifier": "ONE_SHOT_ROUTER_HOLDOUT_RESULT_WITH_DISCLOSED_POST_FIRST_OPEN_SCIENTIFIC_SOURCE_FREEZE_DEVIATION",
+ "phase30_status": "COMPLETE_WITH_PROTOCOL_DEVIATION__NOT_COMPLETE_CANONICAL",
+ "population": {
+  "n": 875,
+  "domain_counts": {
+   "BUSI": 90,
+   "ISIC": 383,
+   "KUB": 298,
+   "KVASIR": 104
+  },
+  "groups": 628
+ },
+ "low_overlap": {
+  "rule": "a8_dice <= np.quantile(a8_dice[float64], 0.10, 'linear'), GLOBAL, ties included",
+  "cutoff": 0.8255302581341691,
+  "n_ties": 0,
+  "n": 88,
+  "rate": 0.10057142857142858
+ },
+ "dice_zero_proxy": {
+  "n": 0,
+  "rate": 0.0,
+  "labeling": "DICE_ZERO_PROXY_ONLY__NOT_A_CONFIRMED_EMPTY_MASK"
+ },
+ "benefit_counts": {
+  "NEUTRAL": 785,
+  "HARMFUL": 31,
+  "BENEFICIAL": 59
+ },
+ "failure_prevalence_overall": [
+  {
+   "family": "LOW_OVERLAP",
+   "eligible_population_n": "875",
+   "failure_n": "88",
+   "failure_rate": "0.10057142857142858",
+   "population_definition": "all 875 ROUTER_HOLDOUT rows"
+  },
+  {
+   "family": "EMPTY_PREDICTION",
+   "eligible_population_n": "875",
+   "failure_n": "0",
+   "failure_rate": "0.0",
+   "population_definition": "all 875 ROUTER_HOLDOUT rows"
+  },
+  {
+   "family": "ROUTER_HARMFUL_ACTIVATION",
+   "eligible_population_n": "240",
+   "failure_n": "31",
+   "failure_rate": "0.12916666666666668",
+   "population_definition": "EXECUTE rows (240)"
+  },
+  {
+   "family": "ROUTER_MISSED_BENEFIT",
+   "eligible_population_n": "635",
+   "failure_n": "0",
+   "failure_rate": "0.0",
+   "population_definition": "SKIP rows (635)"
+  },
+  {
+   "family": "EXECUTE_THEN_REJECT",
+   "eligible_population_n": "240",
+   "failure_n": "4",
+   "failure_rate": "0.016666666666666666",
+   "population_definition": "EXECUTE rows (240)"
+  }
+ ],
+ "failure_prevalence_by_domain": [
+  {
+   "dataset": "BUSI",
+   "n": "90",
+   "low_overlap_n": "0",
+   "low_overlap_rate": "0.0",
+   "dice_zero_proxy_n": "0",
+   "dice_zero_proxy_rate": "0.0",
+   "harmful_activation_n": "0",
+   "harmful_activation_rate": "0.0",
+   "missed_benefit_n": "0",
+   "missed_benefit_rate": "0.0",
+   "execute_then_reject_n": "0",
+   "execute_then_reject_rate": "0.0"
+  },
+  {
+   "dataset": "ISIC",
+   "n": "383",
+   "low_overlap_n": "15",
+   "low_overlap_rate": "0.0391644908616188",
+   "dice_zero_proxy_n": "0",
+   "dice_zero_proxy_rate": "0.0",
+   "harmful_activation_n": "5",
+   "harmful_activation_rate": "0.013054830287206266",
+   "missed_benefit_n": "0",
+   "missed_benefit_rate": "0.0",
+   "execute_then_reject_n": "4",
+   "execute_then_reject_rate": "0.010443864229765013"
+  },
+  {
+   "dataset": "KUB",
+   "n": "298",
+   "low_overlap_n": "73",
+   "low_overlap_rate": "0.24496644295302014",
+   "dice_zero_proxy_n": "0",
+   "dice_zero_proxy_rate": "0.0",
+   "harmful_activation_n": "26",
+   "harmful_activation_rate": "0.087248322147651",
+   "missed_benefit_n": "0",
+   "missed_benefit_rate": "0.0",
+   "execute_then_reject_n": "0",
+   "execute_then_reject_rate": "0.0"
+  },
+  {
+   "dataset": "KVASIR",
+   "n": "104",
+   "low_overlap_n": "0",
+   "low_overlap_rate": "0.0",
+   "dice_zero_proxy_n": "0",
+   "dice_zero_proxy_rate": "0.0",
+   "harmful_activation_n": "0",
+   "harmful_activation_rate": "0.0",
+   "missed_benefit_n": "0",
+   "missed_benefit_rate": "0.0",
+   "execute_then_reject_n": "0",
+   "execute_then_reject_rate": "0.0"
+  }
+ ],
+ "router_state_summary": [
+  {
+   "state_machine": "SKIP",
+   "n": "635",
+   "share": "0.7257142857142858",
+   "global_dice_mean": "0.9295679681359211",
+   "global_dice_median": "0.955388724464176",
+   "a8_dice_mean": "0.9295679681359211",
+   "a8_dice_median": "0.955388724464176",
+   "delta_dice_a8_mean": "0.0",
+   "delta_dice_a8_median": "0.0",
+   "beneficial_n": "0",
+   "neutral_n": "635",
+   "harmful_n": "0",
+   "low_overlap_n": "52",
+   "dice_zero_proxy_n": "0"
+  },
+  {
+   "state_machine": "EXECUTE_THEN_ACCEPT",
+   "n": "236",
+   "share": "0.26971428571428574",
+   "global_dice_mean": "0.8679962202323224",
+   "global_dice_median": "0.8833287479135361",
+   "a8_dice_mean": "0.8771140882621219",
+   "a8_dice_median": "0.8927681693911741",
+   "delta_dice_a8_mean": "0.009117868029799666",
+   "delta_dice_a8_median": "0.005952414052531052",
+   "beneficial_n": "59",
+   "neutral_n": "146",
+   "harmful_n": "31",
+   "low_overlap_n": "36",
+   "dice_zero_proxy_n": "0"
+  },
+  {
+   "state_machine": "EXECUTE_THEN_REJECT",
+   "n": "4",
+   "share": "0.004571428571428572",
+   "global_dice_mean": "0.9239793952794251",
+   "global_dice_median": "0.9281168724867835",
+   "a8_dice_mean": "0.9239793952794251",
+   "a8_dice_median": "0.9281168724867835",
+   "delta_dice_a8_mean": "0.0",
+   "delta_dice_a8_median": "0.0",
+   "beneficial_n": "0",
+   "neutral_n": "4",
+   "harmful_n": "0",
+   "low_overlap_n": "0",
+   "dice_zero_proxy_n": "0"
+  }
+ ],
+ "router_harmful_activation": {
+  "n": 31,
+  "rate_over_execute": 0.12916666666666668
+ },
+ "router_missed_benefit": {
+  "n": 0,
+  "rate_over_skip": 0.0
+ },
+ "execute_then_reject": {
+  "n": 4,
+  "rate_over_execute": 0.016666666666666666
+ },
+ "per_domain_findings": {
+  "BUSI": {
+   "low_overlap_n": 0,
+   "harmful_activation_n": 0,
+   "execute_then_reject_n": 0
+  },
+  "ISIC": {
+   "low_overlap_n": 15,
+   "harmful_activation_n": 5,
+   "execute_then_reject_n": 4
+  },
+  "KUB": {
+   "low_overlap_n": 73,
+   "harmful_activation_n": 26,
+   "execute_then_reject_n": 0
+  },
+  "KVASIR": {
+   "low_overlap_n": 0,
+   "harmful_activation_n": 0,
+   "execute_then_reject_n": 0
+  },
+  "note": "LOW_OVERLAP and harmful activation concentrate in KUB; execute-then-reject occurs only in ISIC; BUSI and KVASIR contribute none."
+ },
+ "router_state_findings": "SKIP (n=635, all NEUTRAL) | EXECUTE_THEN_ACCEPT (n=236: 59 beneficial, 146 neutral, 31 harmful) | EXECUTE_THEN_REJECT (n=4, all NEUTRAL, delta_dice_a8 = 0).",
+ "group_concentration_findings": {
+  "n_groups": 628,
+  "groups_with_any_failure": 65,
+  "singleton_groups_named_patients": false
+ },
+ "failure_overlap": {
+  "distinct_combinations": 5,
+  "LOW_OVERLAP_x_HARMFUL_ACTIVATION": 9,
+  "note": "no other overlap; EMPTY_PREDICTION and ROUTER_MISSED_BENEFIT are empty strata."
+ },
+ "delta_hat_error_diagnostics": {
+  "definition": "delta_prediction_error = delta_hat - delta_dice_a8",
+  "overall_mean": -0.00128483121079715,
+  "overall_MAE": 0.005365725892494232,
+  "beneficial_mean_error": -0.028779725776452308,
+  "harmful_mean_error": 0.03627399110604803,
+  "note": "delta_hat is biased toward zero relative to realized delta_dice_a8 (negative mean error for BENEFICIAL, positive for HARMFUL). Descriptive only; no calibration claim."
+ },
+ "hard_case_id_selection": {
+  "status": "SELECTED",
+  "n": 20,
+  "shortfall": {
+   "low_dice_bottom_decile": 0,
+   "harmful_activation": 0,
+   "missed_benefit": 8,
+   "execute_then_reject": 4
+  },
+  "classification": "DESCRIPTIVE_FAILURE_CASE_SELECTION"
+ },
+ "BOUNDARY_ERROR": "INELIGIBLE",
+ "COMPONENT_ANALYSIS": "INELIGIBLE",
+ "QUALITATIVE_GALLERY": "INELIGIBLE",
+ "causal_claim": false,
+ "significance_claim": false,
+ "confidence_interval": null,
+ "new_hypothesis_test": false,
+ "generated_utc": "2026-10-04T09:06:41+00:00",
+ "all_pass": true
+}

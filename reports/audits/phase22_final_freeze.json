@@ -1,0 +1,327 @@
+{
+  "artifact": "phase22_final_freeze",
+  "phase": 22,
+  "freeze_verified": true,
+  "terminal_state": "PHASE22_MULTIDOMAIN_SCALE_REGIONAL_RESOURCE_GAP_ANALYSIS_COMPLETE__PHASE23_ELIGIBLE_NOT_STARTED",
+  "protocol": {
+    "path": "reports/audits/phase22_diagnostic_protocol.json",
+    "protocol_id": "phase22_diagnostic_protocol_v1",
+    "frozen": true,
+    "declared_before_outcome_analysis": true,
+    "sha256": "9d620d6c85276e1a9a086ec60172cdef3b94dc58fe8288222378d196dd4609b7",
+    "sha_matches_reference_binding": true
+  },
+  "reference": {
+    "experiment_id": "phase21_global_medfilm_fourdomain_seed42_clean_v3",
+    "architecture_id": "global_medfilm_shared_residual_unet_film5_no_se_no_deep_supervision_v1",
+    "checkpoint": "checkpoints/phase21_global_medfilm_fourdomain_seed42_clean_v3/best.pt",
+    "checkpoint_sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+    "checkpoint_expected_sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+    "checkpoint_unchanged": true,
+    "params": 3523001,
+    "phase21_reference_macro_domain_dice": 0.8350794169575282,
+    "reference_is_final_ra_medfilm_seg_plus_plus": false,
+    "reference_is_global_reference_only": true
+  },
+  "checks": [
+    {
+      "check": "all_required_outputs_present",
+      "pass": true,
+      "observed": 29,
+      "expected": 29,
+      "missing": []
+    },
+    {
+      "check": "no_required_output_is_empty",
+      "pass": true,
+      "observed": 0,
+      "expected": 0,
+      "empty": []
+    },
+    {
+      "check": "no_output_declares_training_or_test",
+      "pass": true,
+      "observed": 0,
+      "expected": 0,
+      "violations": []
+    },
+    {
+      "check": "checkpoint_byte_identity_vs_phase21",
+      "pass": true,
+      "observed": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+      "expected": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7"
+    },
+    {
+      "check": "protocol_sha_matches_reference_binding",
+      "pass": true,
+      "observed": "9d620d6c85276e1a9a086ec60172cdef3b94dc58fe8288222378d196dd4609b7",
+      "expected": "9d620d6c85276e1a9a086ec60172cdef3b94dc58fe8288222378d196dd4609b7"
+    },
+    {
+      "check": "notebook_three_build_byte_identical",
+      "pass": true,
+      "observed": "b98c8602541cf7bc7190ac285d3bd9991de9f7b0876ef274b3b46954ef760553",
+      "expected": [
+        "b98c8602541cf7bc7190ac285d3bd9991de9f7b0876ef274b3b46954ef760553",
+        "b98c8602541cf7bc7190ac285d3bd9991de9f7b0876ef274b3b46954ef760553",
+        "b98c8602541cf7bc7190ac285d3bd9991de9f7b0876ef274b3b46954ef760553"
+      ]
+    },
+    {
+      "check": "test_reads_zero_everywhere",
+      "pass": true,
+      "observed": 0,
+      "expected": 0
+    }
+  ],
+  "n_checks": 7,
+  "n_passed": 7,
+  "validation_problems": [],
+  "hard_failures": [],
+  "pending_checks": [],
+  "science_summary": {
+    "failure_atlas": {
+      "n_samples": 808,
+      "mean_dice": 0.8387815425121063,
+      "median_dice": 0.8900949538512055,
+      "p05_dice": 0.5149409807368478,
+      "taxonomy_counts": {
+        "EMPTY_CASE_BOTH": 0,
+        "EMPTY_CASE_FALSE_POS": 0,
+        "EMPTY_CASE_MISSED": 0,
+        "OVER_SEGMENTATION": 43,
+        "UNDER_SEGMENTATION": 32,
+        "MIXED_BOUNDARY": 25,
+        "GOOD": 708
+      }
+    },
+    "scale": [
+      {
+        "probe_size": 256,
+        "is_canonical_reference": false,
+        "n": 808,
+        "macro_domain_dice_native": 0.6884987673610603,
+        "macro_domain_dice_delta_vs_512": -0.13823991783628448,
+        "delta_ci_low": -0.1552532908820662,
+        "delta_ci_high": -0.12217223483435337,
+        "delta_p_value": 0.0,
+        "delta_separable_from_512": true,
+        "dice_ISIC": 0.8078811283950837,
+        "dice_BUSI": 0.6532656862185053,
+        "dice_KVASIR": 0.720407962892929,
+        "dice_KUB": 0.5724402919377233
+      },
+      {
+        "probe_size": 512,
+        "is_canonical_reference": true,
+        "n": 808,
+        "macro_domain_dice_native": 0.8353433576469,
+        "macro_domain_dice_delta_vs_512": 0.0,
+        "delta_ci_low": 0.0,
+        "delta_ci_high": 0.0,
+        "delta_p_value": 1.0,
+        "delta_separable_from_512": false,
+        "dice_ISIC": 0.8971816155115423,
+        "dice_BUSI": 0.8591869183150126,
+        "dice_KVASIR": 0.820323317947201,
+        "dice_KUB": 0.7646815788138442
+      },
+      {
+        "probe_size": 768,
+        "is_canonical_reference": false,
+        "n": 808,
+        "macro_domain_dice_native": 0.776819081711754,
+        "macro_domain_dice_delta_vs_512": -0.03688789010381927,
+        "delta_ci_low": -0.04463243450248566,
+        "delta_ci_high": -0.02915998185469751,
+        "delta_p_value": 0.0,
+        "delta_separable_from_512": true,
+        "dice_ISIC": 0.8822940042571304,
+        "dice_BUSI": 0.7428757914325047,
+        "dice_KVASIR": 0.747312234832715,
+        "dice_KUB": 0.7347942963246656
+      },
+      {
+        "probe_size": 1024,
+        "is_canonical_reference": false,
+        "n": 808,
+        "macro_domain_dice_native": 0.6825608407149975,
+        "macro_domain_dice_delta_vs_512": -0.10041294963314609,
+        "delta_ci_low": -0.11064502494972948,
+        "delta_ci_high": -0.09044540222448447,
+        "delta_p_value": 0.0,
+        "delta_separable_from_512": true,
+        "dice_ISIC": 0.8599241696175102,
+        "dice_BUSI": 0.5482153911313868,
+        "dice_KVASIR": 0.6550323352218201,
+        "dice_KUB": 0.6670714668892732
+      }
+    ],
+    "regional": {
+      "oracle": {
+        "n_ok": 808,
+        "n_no_roi": 0,
+        "mean_delta_dice_on_ok": -0.04247786113739191,
+        "mean_delta_dice_intent_to_treat": -0.04247786113739191
+      },
+      "predicted": {
+        "n_ok": 808,
+        "n_no_roi": 0,
+        "mean_delta_dice_on_ok": -0.060217639536867054,
+        "mean_delta_dice_intent_to_treat": -0.060217639536867054
+      }
+    },
+    "oracle_ceiling": {
+      "acceptance_rate": 0.335396,
+      "ceiling_pooled_dice": 0.8600744777001257,
+      "ceiling_gain_over_always_global": 0.021034244277644776,
+      "is_deployable": false
+    },
+    "harm": {
+      "harm_rate_intent_to_treat": 0.663366,
+      "worst_harm": -0.8334218445650708
+    },
+    "prediction_derived_roi": {
+      "no_predicted_roi_rate": 0.0,
+      "mean_delta_intent_to_treat": -0.06021763953686703
+    },
+    "resource_gap": {
+      "reference_params": 3523001,
+      "reference_gmacs_at_512": 31.5517,
+      "absolute_cost_is_small": false
+    },
+    "scale_vs_regional_axes": [
+      "scale_256",
+      "scale_512",
+      "scale_768",
+      "scale_1024",
+      "regional_oracle_512",
+      "regional_predicted_512",
+      "baseline_512_global"
+    ]
+  },
+  "artifacts": {
+    "audits": [
+      "phase22_benefit_heterogeneity.json",
+      "phase22_candidate_method_evidence.json",
+      "phase22_conditional_compute_envelopes.json",
+      "phase22_cpu_baseline.json",
+      "phase22_diagnostic_protocol.json",
+      "phase22_domain_preservation.json",
+      "phase22_entry_gate.json",
+      "phase22_final_freeze.json",
+      "phase22_future_benefit_label_contract.json",
+      "phase22_global_failure_atlas.json",
+      "phase22_governance_sync.json",
+      "phase22_harm_analysis.json",
+      "phase22_kub_tiny_analysis.json",
+      "phase22_no_new_training_audit.json",
+      "phase22_notebook_determinism.json",
+      "phase22_oracle_accept_if_beneficial.json",
+      "phase22_oracle_regional_intervention.json",
+      "phase22_phase21_reference_binding.json",
+      "phase22_prediction_derived_roi.json",
+      "phase22_regional_fidelity.json",
+      "phase22_resource_frontier.json",
+      "phase22_resource_gap.json",
+      "phase22_routing_regret.json",
+      "phase22_scale_probe_fidelity.json",
+      "phase22_scale_sensitivity.json",
+      "phase22_scale_vs_regional.json",
+      "phase22_statistics.json",
+      "phase22_threshold_rule_audit.json",
+      "phase22_uncertainty_vs_benefit.json"
+    ],
+    "tables": [
+      "phase22_benefit_heterogeneity.csv",
+      "phase22_boundary_metrics_subset.csv",
+      "phase22_conditional_compute_envelopes.csv",
+      "phase22_cpu_baseline.csv",
+      "phase22_domain_preservation.csv",
+      "phase22_failure_by_domain.csv",
+      "phase22_failure_taxonomy.csv",
+      "phase22_global_failure_atlas.csv",
+      "phase22_harm_analysis.csv",
+      "phase22_kub_tiny_analysis.csv",
+      "phase22_oracle_gain.csv",
+      "phase22_oracle_gain_by_domain.csv",
+      "phase22_prediction_derived_roi.csv",
+      "phase22_regional_intervention_per_image.csv",
+      "phase22_resource_frontier.csv",
+      "phase22_roi_geometry.csv",
+      "phase22_routing_regret.csv",
+      "phase22_scale_sensitivity.csv",
+      "phase22_scale_sensitivity_by_domain.csv",
+      "phase22_scale_sensitivity_per_image.csv",
+      "phase22_scale_vs_regional.csv",
+      "phase22_statistics.csv",
+      "phase22_threshold_rule_per_sample.csv",
+      "phase22_uncertainty_vs_benefit.csv",
+      "phase22_worst_cases_per_domain.csv"
+    ],
+    "figures": [
+      "p22_atlas_dice_distribution.png",
+      "p22_atlas_taxonomy.png",
+      "p22_atlas_worst_cases.png",
+      "p22_kub_strata.png",
+      "p22_regional_gain_distribution.png",
+      "p22_regional_harm.png",
+      "p22_regional_roi_geometry.png",
+      "p22_resource_envelopes.png",
+      "p22_resource_frontier.png",
+      "p22_resource_six_model.png",
+      "p22_routing_regret.png",
+      "p22_scale_curve.png",
+      "p22_scale_delta_ci.png",
+      "p22_scale_vs_regional.png",
+      "p22_uncertainty_vs_benefit.png"
+    ],
+    "n_figures": 15,
+    "n_tables": 25,
+    "n_audits": 29
+  },
+  "notebook": {
+    "path": "notebooks/phasewise/phase_22_resource_gap/phase22_resource_gap_analysis.ipynb",
+    "sha256": "b98c8602541cf7bc7190ac285d3bd9991de9f7b0876ef274b3b46954ef760553",
+    "three_builds_byte_identical": true,
+    "sha256_per_build": [
+      "b98c8602541cf7bc7190ac285d3bd9991de9f7b0876ef274b3b46954ef760553",
+      "b98c8602541cf7bc7190ac285d3bd9991de9f7b0876ef274b3b46954ef760553",
+      "b98c8602541cf7bc7190ac285d3bd9991de9f7b0876ef274b3b46954ef760553"
+    ]
+  },
+  "report": {
+    "path": "reports/phase22_resource_gap_report.md",
+    "sha256": "ad2eafaf17992a56a0769677aefb8f132e20dc723260f597070b05dbd9b19693"
+  },
+  "governance": {
+    "is_training_phase": false,
+    "training_jobs_started": 0,
+    "architecture_modified": false,
+    "benefit_predictor_trained": false,
+    "phase23_started": false,
+    "test_locks": {
+      "test_image_reads": 0,
+      "test_mask_reads": 0,
+      "test_inference": 0,
+      "test_visualization": 0
+    },
+    "canonical_val_reused_not_rerun": true
+  },
+  "forbidden_claims": [
+    "that the ORACLE regional variant is a deployable method or an achieved result",
+    "that any regional mechanism 'achieves' the oracle upper bound",
+    "that FiLM caused any measured difference (no architecture-matched control exists)",
+    "that a single model is the winner where the paired CI overlaps zero",
+    "that the persisted float16 probability maps reproduce the persisted predictions",
+    "that Phase 22 identifies the optimal inference resolution",
+    "any TEST-derived statement of any kind"
+  ],
+  "generated_utc": "2026-09-29T03:22:06.744080+00:00",
+  "test_reads": {
+    "test_image_reads": 0,
+    "test_mask_reads": 0,
+    "test_inference": 0,
+    "test_visualization": 0
+  }
+}

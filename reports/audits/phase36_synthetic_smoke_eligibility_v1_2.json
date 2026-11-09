@@ -1,0 +1,37 @@
+{
+ "artifact": "phase36_synthetic_smoke_eligibility_v1_2",
+ "section": "§W",
+ "phase": 36,
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase36_robustness_v1_2",
+ "generated_utc": "2026-10-05T00:00:00Z",
+ "no_execution": true,
+ "smoke_eligible": true,
+ "smoke_run_authorized_in_this_work_order": false,
+ "smoke_run_performed_in_this_work_order": false,
+ "gate_env": "PHASE36_SMOKE_EXECUTE",
+ "gate_state": "UNSET",
+ "requirement": "Future Phase36 v1.2 smoke MUST run with PHASE36_SMOKE_EXECUTE=1 against the EXACT frozen v1.2 bytes.",
+ "frozen_execution_source": "scripts/analysis/phase36_robustness_execution_v1_2.py",
+ "frozen_execution_sha256": "66fe435d7ec1d6e6ea10475776992b16fe049c9f3bfd7261caf78792e10bc29a",
+ "what_this_smoke_verifies": [
+  "STRICT construction + load of the four canonical components (0 missing / 0 unexpected keys; param counts 3523001/1276401/36801/1217)",
+  "one synthetic CLEAN sample through the REAL G + 202-D extractor + state machine",
+  "one synthetic IMAGE perturbation through the REAL full system (no clean reuse)",
+  "one non-empty synthetic PROPOSAL perturbation (G reused, 202-D reassembled, R_psi + S_omega recomputed)",
+  "empty-proposal -> NOT_APPLICABLE_EMPTY_PROPOSAL with zero R_psi executions",
+  "Dice/IoU/HD95 metric plumbing under canonical eps semantics",
+  "REAL B_phi router scores with expected/observed/comparison_pass per branch"
+ ],
+ "what_this_smoke_MUST_NOT_do": [
+  "read any VAL808 image, mask or cache",
+  "deserialize any protective/GT artifact",
+  "produce a Phase36 scientific robustness result",
+  "be described as Phase36 scientific evidence"
+ ],
+ "scientific_output": false,
+ "synthetic_only": true,
+ "expected_smoke_output_artifact": "reports/audits/phase36_robustness_smoke_v1_2.json",
+ "stop_condition_respected": "STOP. DO NOT RUN v1.2 SMOKE. (honoured)",
+ "all_pass": true
+}

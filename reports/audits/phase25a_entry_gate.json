@@ -1,0 +1,155 @@
+{
+ "artifact": "phase25a_entry_gate",
+ "phase": "25A",
+ "purpose": "fail-closed verification of every declared predecessor before the first implementation/training phase after the Phase-24 freeze",
+ "predecessor_terminal": "PHASE24_SPEC_COMPLETENESS_REPAIR_COMPLETE__RA_MEDFILM_BARR_V1_1_FROZEN__PHASE25_ELIGIBLE_NOT_STARTED",
+ "architecture_id": "ra_medfilm_barr_narrowed_v1_1",
+ "method_name": "RA-MedFiLM-BARR",
+ "master_development_seed": 42,
+ "n_checks": 22,
+ "n_passed": 22,
+ "n_failed": 0,
+ "verdict": "PHASE25A_ENTRY_GATE_PASS",
+ "training_may_start": true,
+ "fail_closed": true,
+ "predecessor_scientific_state_repaired": false,
+ "checks": [
+  {
+   "check": "phase24_v1_1_exact_spec_exists",
+   "pass": true,
+   "observed": "True"
+  },
+  {
+   "check": "phase24_spec_completeness_audit_pass",
+   "pass": true,
+   "observed": "PHASE24_SPEC_COMPLETENESS_REPAIR_PASS",
+   "expected": "PHASE24_SPEC_COMPLETENESS_REPAIR_PASS"
+  },
+  {
+   "check": "phase24_notebook_sha_exact",
+   "pass": true,
+   "observed": "612d71700c1c1a45b94b8fcb8a3ff427bf32f6f6453130febeec49c6ec78caef",
+   "expected": "612d71700c1c1a45b94b8fcb8a3ff427bf32f6f6453130febeec49c6ec78caef"
+  },
+  {
+   "check": "method_name",
+   "pass": true,
+   "observed": "RA-MedFiLM-BARR",
+   "expected": "RA-MedFiLM-BARR"
+  },
+  {
+   "check": "architecture_revision",
+   "pass": true,
+   "observed": "ra_medfilm_barr_narrowed_v1_1",
+   "expected": "ra_medfilm_barr_narrowed_v1_1"
+  },
+  {
+   "check": "master_development_seed",
+   "pass": true,
+   "observed": 42,
+   "expected": 42
+  },
+  {
+   "check": "router_development_exists_n_4957",
+   "pass": true,
+   "observed": 4957,
+   "expected": 4957
+  },
+  {
+   "check": "router_holdout_exists_n_875",
+   "pass": true,
+   "observed": 875,
+   "expected": 875
+  },
+  {
+   "check": "group_overlap_dev_holdout_zero",
+   "pass": true,
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "overlap_with_val_zero",
+   "pass": true,
+   "observed": true,
+   "expected": true
+  },
+  {
+   "check": "overlap_with_test_zero",
+   "pass": true,
+   "observed": true,
+   "expected": true
+  },
+  {
+   "check": "router_holdout_outcomes_read_zero",
+   "pass": true,
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "phase21_checkpoint_exists",
+   "pass": true,
+   "observed": "True"
+  },
+  {
+   "check": "phase21_checkpoint_sha_matches",
+   "pass": true,
+   "observed": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+   "expected": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7"
+  },
+  {
+   "check": "phase25_modules_previously_started_zero",
+   "pass": true,
+   "expected": 0
+  },
+  {
+   "check": "phase24_declared_phase25_not_started",
+   "pass": true,
+   "observed": false,
+   "expected": false
+  },
+  {
+   "check": "test_lock_closed",
+   "pass": true,
+   "observed": "CLOSED",
+   "expected": "CLOSED"
+  },
+  {
+   "check": "test_counters_all_zero",
+   "pass": true,
+   "observed": {
+    "test_reads": 0,
+    "test_image_reads": 0,
+    "test_mask_reads": 0,
+    "test_inference_calls": 0,
+    "test_visualizations": 0
+   },
+   "expected": 0
+  },
+  {
+   "check": "phase24_repair_terminal_matches",
+   "pass": true,
+   "observed": "PHASE24_SPEC_COMPLETENESS_REPAIR_COMPLETE__RA_MEDFILM_BARR_V1_1_FROZEN__PHASE25_ELIGIBLE_NOT_STARTED",
+   "expected": "PHASE24_SPEC_COMPLETENESS_REPAIR_COMPLETE__RA_MEDFILM_BARR_V1_1_FROZEN__PHASE25_ELIGIBLE_NOT_STARTED"
+  },
+  {
+   "check": "split_manifest_sha_matches",
+   "pass": true,
+   "observed": "b5da52d6220ef9b59b4ba70d0b403b38bf5234b897615b6ad55d718114db6555",
+   "expected": "b5da52d6220ef9b59b4ba70d0b403b38bf5234b897615b6ad55d718114db6555"
+  },
+  {
+   "check": "phase22_protocol_sha_matches",
+   "pass": true,
+   "observed": "9d620d6c85276e1a9a086ec60172cdef3b94dc58fe8288222378d196dd4609b7",
+   "expected": "9d620d6c85276e1a9a086ec60172cdef3b94dc58fe8288222378d196dd4609b7"
+  },
+  {
+   "check": "no_phase25a_training_artifacts_preexisting",
+   "pass": true,
+   "observed": [],
+   "expected": []
+  }
+ ],
+ "generated_utc": "2026-09-30T04:22:52.051824+00:00",
+ "test_reads": 0
+}

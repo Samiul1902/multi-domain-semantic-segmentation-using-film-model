@@ -1,0 +1,48 @@
+{
+ "artifact": "phase36_v1_20_prelaunch_authority_bundle",
+ "phase": 36,
+ "revision": "ra_medfilm_barr_phase36_robustness_v1_20",
+ "type": "FINAL_PRELAUNCH_AUTHORITY_BUNDLE",
+ "mode": "STATIC_NON_CONSUMING_GOVERNANCE_ONLY",
+ "generated_utc": "2026-10-11T00:00:00Z",
+ "authority_order": "ACYCLIC (A->B->C->D->E)",
+ "supersedes_revision": "v1.19",
+ "supervisor_sha256_present": false,
+ "count_semantics": {
+  "table_figure_target_count": 16,
+  "total_reachable_write_target_count": 23,
+  "unclassified_write_target_count": 0,
+  "namespace_overlap_count": 0
+ },
+ "v1_19_consumed_state": {
+  "classification": "CONSUMED_POST_START_PRE_MODEL_FAILURE",
+  "defect": "D93A",
+  "attempt_consumed": true,
+  "retry_permitted": false
+ },
+ "binds": {
+  "v1_20_execution_source": {
+   "path": "scripts/analysis/phase36_robustness_execution_v1_20.py",
+   "sha256": "b9d128240596c5c6b7c040480823f4cc653d26a4bc665fc69b396d00e4fe0ad8"
+  },
+  "v1_20_launcher": {
+   "path": "scripts/analysis/launch_phase36_v1_20.py",
+   "sha256": "8df467446a4fe7a1fdaf44a2e15889ea783ea2a8b4e81b773030c51d56697722",
+   "role": "PINNED_BY_DEDICATED_LAUNCH_AUTHORITY_FILE"
+  },
+  "v1_20_runtime_manifest": {
+   "path": "reports/audits/phase36_v1_20_runtime_source_integrity_manifest.json",
+   "sha256": "5881d0ba239fa6e5f0c517217e485d024a73b0a19c035e7179229f4ded507de2"
+  },
+  "v1_19_failure_adjudication": {
+   "path": "reports/audits/phase36_v1_19_execution_failure_adjudication_v1_0.json",
+   "sha256": "76be9d8d75eb0dd45bffd1cb963e1093c52c4d5e8faa2cb7fefb2e33e6730b98"
+  }
+ },
+ "acyclicity": {
+  "bundle_contains_supervisor_sha256": false,
+  "bundle_contains_launch_authority_file_sha256": false,
+  "note": "The bundle binds exec/manifest/governance. It NEVER carries the supervisor SHA (acyclic by construction). The launcher's expected SHAs are read from a SEPARATELY-FROZEN launch-authority constant file whose OWN raw bytes are pinned by the supervisor."
+ },
+ "terminal": "PHASE36_V1_20_PRELAUNCH_AUTHORITY_BUNDLE_WRITTEN"
+}

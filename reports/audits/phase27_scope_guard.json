@@ -1,0 +1,53 @@
+{
+ "artifact": "phase27_scope_guard.json",
+ "phase": "27",
+ "classification": "PHASE27_PRE_EXECUTION_PRESERVATION_AUDIT_SPECIFICATION",
+ "method": "RA-MedFiLM-BARR",
+ "governance_only": true,
+ "no_execution": true,
+ "stage": "SCOPE_GUARD",
+ "operational_meaning": "GOVERNANCE_SPECIFICATION_ONLY__NO_INFERENCE",
+ "run_log": {
+  "model_forwards": 0,
+  "scientific_forwards": 0,
+  "synthetic_forwards": 0,
+  "backward_passes": 0,
+  "optimizer_steps": 0,
+  "training_runs": 0,
+  "val808_images_read": 0,
+  "val808_masks_read": 0,
+  "holdout_reads": 0,
+  "test_reads": 0
+ },
+ "forbidden_actions": [
+  "VAL808 scientific inference",
+  "model construction",
+  "training",
+  "fine-tuning",
+  "backward pass",
+  "optimizer step",
+  "threshold recalibration",
+  "policy reselection",
+  "budget change",
+  "lambda change",
+  "ROUTER_HOLDOUT access",
+  "TEST access"
+ ],
+ "checks": {
+  "no_model_forwards": true,
+  "no_scientific_forwards": true,
+  "no_backward": true,
+  "no_optimizer": true,
+  "no_training": true,
+  "no_val808_image_read": true,
+  "no_val808_mask_read": true,
+  "no_holdout_read": true,
+  "no_test_read": true,
+  "no_threshold_change": true,
+  "no_policy_reselection": true,
+  "no_lambda_change": true,
+  "no_budget_change": true,
+  "no_model_construction": true
+ },
+ "all_pass": true
+}

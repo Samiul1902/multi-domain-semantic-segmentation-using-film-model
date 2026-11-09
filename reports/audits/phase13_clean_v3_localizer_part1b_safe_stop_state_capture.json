@@ -1,0 +1,138 @@
+{
+  "artifact": "PHASE13_CLEAN_V3_LOCALIZER_PART1B_SAFE_STOP_STATE_CAPTURE",
+  "document_type": "EMERGENCY_SCIENTIFIC_STOP_STATE_CAPTURE",
+  "model": "Gemini 3.8 Flash Medium",
+  "project_root": "D:\\Softfors\\jup",
+  "experiment_id": "phase13b_kub_localizer_r512_h128_sigmaeq075_centernetfocal_seed42_clean_v3",
+  "created_utc": "2026-09-21T13:56:00Z",
+
+  "status": "PASS",
+
+  "1_stop": {
+    "trainer_stopped": true,
+    "stop_semantics_used": "SIGTERM (graceful termination request; NOT SIGKILL)",
+    "stop_signal_observed": "exit code 143 (128 + SIGTERM)",
+    "trainer_pid": 1931,
+    "hard_kill_required": false,
+    "note": "The trainer had already been terminated in the preceding supervisor stop order. A Ctrl+C (SIGINT) path was no longer available because the process had already exited. SIGTERM was used, which is the graceful termination signal, not SIGKILL.",
+    "relaunch_performed": false,
+    "resume_performed": false
+  },
+
+  "2_preservation": {
+    "history_csv_modified": false,
+    "best_pt_modified": false,
+    "latest_pt_modified": false,
+    "config_modified": false,
+    "runner_modified": false,
+    "training_start_audit_modified": false,
+    "stdout_log_modified": false,
+    "runner_sha_unchanged_vs_launch_audit": true,
+    "config_sha_unchanged_vs_launch_audit": true,
+    "new_experiment_id_created": false,
+    "proposal_analysis_run": false,
+    "predicted_region_segmentation_run": false,
+    "test_touched": false
+  },
+
+  "3_last_completed_epoch": {
+    "final_completed_history_epoch": 28,
+    "history_rows": 28,
+    "history_contiguous_1_to_N": true,
+    "latest_pt_epoch": 28,
+    "best_pt_epoch": 27,
+    "partial_epoch_29_reconstructed": false,
+    "partial_epoch_29_note": "Epoch 29 was in progress when the process was terminated. It produced no completed history row and is therefore NOT scientific evidence. It was not reconstructed.",
+    "best_pt_lags_latest_pt_reason": "Epoch 28 was not a new best (is_new_best=False, bad_epochs=1); best.pt therefore still holds epoch 27."
+  },
+
+  "4_lock_and_process_state": {
+    "trainer_process_running": false,
+    "second_trainer_exists": false,
+    "background_waiters_running": false,
+    "background_waiters_stopped": true,
+    "lock_present": true,
+    "lock_stale": true,
+    "lock_pid": 29652,
+    "lock_pid_alive": false,
+    "lock_contents": {
+      "experiment_id": "phase13b_kub_localizer_r512_h128_sigmaeq075_centernetfocal_seed42_clean_v3",
+      "pid": 29652,
+      "host": "DESKTOP-A568FKR",
+      "started_utc": "2026-09-21T05:48:04.327634+00:00",
+      "recovered_stale_lock": false,
+      "recovered_reason": null
+    },
+    "lock_released": false,
+    "lock_disposition": "PRESERVED_AS_EVIDENCE_NOT_DELETED",
+    "lock_blocking_risk": "acquire_lock(..., recover_stale=False) will REFUSE to start while this file exists. It must be cleared before any future run of this experiment ID.",
+    "action_taken_on_lock": "NONE (no deletion, no modification)"
+  },
+
+  "5_evidence_hashes": {
+    "history_csv": {
+      "path": "experiments/phase13b_kub_localizer_r512_h128_sigmaeq075_centernetfocal_seed42_clean_v3/history.csv",
+      "sha256": "70fca5b796d112b1322ae945570ec94a271f3502af0bac61664954a4b0d13031",
+      "size_bytes": 8213
+    },
+    "latest_pt": {
+      "path": "checkpoints/phase13b_kub_localizer_r512_h128_sigmaeq075_centernetfocal_seed42_clean_v3/latest.pt",
+      "sha256": "7f6f0b2e0d6fe2d61743ec0e3f8d2cf5e986f5711442cdf3113932da59152407",
+      "size_bytes": 5919482
+    },
+    "best_pt": {
+      "path": "checkpoints/phase13b_kub_localizer_r512_h128_sigmaeq075_centernetfocal_seed42_clean_v3/best.pt",
+      "sha256": "d71aed3e084653bfc49acf9461cc2f0b3332c03b43026947a54393f89cebd04c",
+      "size_bytes": 5918278
+    },
+    "runner": {
+      "path": "scripts/training/train_phase13_clean_v3_localizer.py",
+      "sha256": "f9d8c0d4166b283f279a43102083ad2d898724385729ab30ab6a3723fc4744f0",
+      "size_bytes": 62477,
+      "matches_launch_audit": true
+    },
+    "config": {
+      "path": "configs/phase13_clean_v3/phase13b_kub_localizer_r512_h128_sigmaeq075_centernetfocal_seed42_clean_v3.yaml",
+      "sha256": "922ff26916c1f7ebea0ea526fbaa6adbb9a7419f1f08b16d33ed5df049c4c8bf",
+      "size_bytes": 18345,
+      "matches_launch_audit": true
+    },
+    "training_log": {
+      "path": "reports/audits/phase13_clean_v3_localizer_training_stdout.log",
+      "sha256": "92a9bb910e2dc545f2ebe204f4dc79b37fcd8dfb0a6bdbb9ecc62cdd09a26170",
+      "size_bytes": 438420,
+      "separate_stderr_log_exists": false,
+      "stderr_disposition": "merged into stdout log via 2>&1"
+    },
+    "training_start_audit": {
+      "path": "reports/audits/phase13_clean_v3_localizer_training_start.json",
+      "sha256": "814cd94091752be67e700bdb7ae543323ec372e05457e9a2755f8a685856e645",
+      "size_bytes": 3612
+    },
+    "files_altered_after_hashing": false
+  },
+
+  "6_side_effect_counts": {
+    "completed_epochs": 28,
+    "optimizer_steps_physically_recorded": 5404,
+    "optimizer_steps_cross_check": "28 epochs x 193 train batches = 5404 (exact match with persisted global_step)",
+    "grid_configurations_evaluated": 0,
+    "test_content_reads": 0,
+    "expected_grid_configurations": 0,
+    "expected_test_reads": 0,
+    "grid_and_test_match_expected": true
+  },
+
+  "7_closure": {
+    "code_modified_during_stop": false,
+    "resume_started": false,
+    "next_action": "WAIT_FOR_SUPERVISOR_METRIC_SEMANTICS_REPAIR",
+    "stopped": true,
+    "protocol_identity": "R2 + R2A_LOSS_BINDING",
+    "provenance_binding_intact": true,
+    "defect_class_carried_forward": "DEGENERATE_ALL_NEGATIVE_HEATMAP",
+    "defect_repair_performed": false,
+    "best_checkpoint_trustworthy": false,
+    "best_checkpoint_guidance": "DO_NOT_USE_FOR_DOWNSTREAM_ANALYSIS"
+  }
+}

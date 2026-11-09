@@ -1,0 +1,150 @@
+{
+  "artifact": "phase36_robustness_static_preflight_v1_3",
+  "revision": "ra_medfilm_barr_phase36_robustness_v1_3",
+  "method": "AST_CALL_GRAPH_AND_BYTE_PREFLIGHT",
+  "torch_imported": false,
+  "checks": [
+    {
+      "check": "01_run_science_exists",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "02_science_calls_clean_generator",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "03_science_calls_clean_gate",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "04_science_calls_image_driver",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "05_science_calls_proposal_driver",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "06_clean_stage_precedes_perturbations",
+      "passed": true,
+      "detail": {
+        "gen": 1447,
+        "img": 1457,
+        "prop": 1462
+      }
+    },
+    {
+      "check": "07_clean_gate_precedes_perturbations",
+      "passed": true,
+      "detail": {
+        "gate": 1450,
+        "img": 1457,
+        "prop": 1462
+      }
+    },
+    {
+      "check": "08_image_evaluator_in_driver",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "09_proposal_evaluator_in_driver",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "10_image_driver_sample_first",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "11_proposal_driver_sample_first",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "12_image_row_builder_requires_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "13_row_required_fields",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "14_missing_identity_raises_not_continue",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "15_no_silent_missing_sample_continue",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "16_fixed_summaries_reachable",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "17_worstcase_reachable",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "18_manifest_authority_used",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "19_no_test_substring_split",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "20_no_train_substring_split",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "21_231_training_input_authorized",
+      "passed": true,
+      "detail": {
+        "authorized": 231,
+        "accepted": 231
+      }
+    },
+    {
+      "check": "22_112_test_input_authorized",
+      "passed": true,
+      "detail": {
+        "authorized": 112,
+        "accepted": 112
+      }
+    },
+    {
+      "check": "23_holdout_identity_deny_present",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "24_test_identity_deny_present",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "25_v12_loader_repairs_retained",
+      "passed": true,
+      "detail": null
+    }
+  ],
+  "passed": 25,
+  "total": 25,
+  "all_pass": true
+}

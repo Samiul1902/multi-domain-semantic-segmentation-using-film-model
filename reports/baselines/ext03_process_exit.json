@@ -1,0 +1,43 @@
+{
+  "classification": "EXT03_PROCESS_EXIT",
+  "generated_utc": "2026-10-11T17:00:00Z",
+  "exit": "STOPPED_AT_STAGE_A",
+  "success_terminal": null,
+  "blocker_terminal": "EXT03_BLOCKED__SEGFORMER_B0_LIBRARY_ABSENT_AND_FULL_15_RUN_TRAINING_COMPUTE_INFEASIBLE__STAGE_A_NOT_PASSED__NO_SCIENTIFIC_TRAINING_PERFORMED",
+  "runner_results": {
+    "unet": {
+      "instantiated": true,
+      "smoke": {},
+      "parameters_total": 7762465,
+      "parameters_trainable": 7762465,
+      "error": "Given groups=1, weight of size [32, 1, 3, 3], expected input[2, 3, 64, 64] to have 1 channels, but got 3 channels instead"
+    },
+    "attention_unet": {
+      "instantiated": true,
+      "smoke": {},
+      "parameters_total": 7850709,
+      "parameters_trainable": 7850709,
+      "error": "Given groups=1, weight of size [32, 1, 3, 3], expected input[2, 3, 64, 64] to have 1 channels, but got 3 channels instead"
+    },
+    "unetpp": {
+      "instantiated": true,
+      "smoke": {},
+      "parameters_total": 9159105,
+      "parameters_trainable": 9159105,
+      "error": "Given groups=1, weight of size [32, 1, 3, 3], expected input[2, 3, 64, 64] to have 1 channels, but got 3 channels instead"
+    },
+    "deeplabv3plus": {
+      "instantiated": true,
+      "smoke": {},
+      "parameters_total": 40340769,
+      "parameters_trainable": 40340769,
+      "error": "Given groups=1, weight of size [64, 1, 7, 7], expected input[2, 3, 64, 64] to have 1 channels, but got 3 channels instead"
+    },
+    "segformer_b0": {
+      "instantiated": false,
+      "lib_timm": false,
+      "lib_transformers": false,
+      "error": "no library available to construct SegFormer-B0 (timm/transformers MISSING); no in-repo implementation"
+    }
+  }
+}

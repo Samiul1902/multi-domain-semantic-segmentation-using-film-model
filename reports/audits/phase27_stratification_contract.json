@@ -1,0 +1,44 @@
+{
+ "artifact": "phase27_stratification_contract.json",
+ "phase": "27",
+ "classification": "PHASE27_PRE_EXECUTION_PRESERVATION_AUDIT_SPECIFICATION",
+ "method": "RA-MedFiLM-BARR",
+ "governance_only": true,
+ "no_execution": true,
+ "stage": "STRATIFICATION_CONTRACT",
+ "strata": [
+  "BUSI",
+  "ISIC",
+  "KUB",
+  "KVASIR"
+ ],
+ "strata_n": {
+  "ISIC": 357,
+  "KUB": 280,
+  "KVASIR": 87,
+  "BUSI": 84
+ },
+ "strata_groups": {
+  "ISIC": 357,
+  "BUSI": 84,
+  "KVASIR": 87,
+  "KUB": 111
+ },
+ "group_identity_by_domain": {
+  "KUB": "PATIENT (patient_id) - multi-image patients present",
+  "ISIC": "SINGLETON (sample_id)",
+  "BUSI": "SINGLETON (sample_id)",
+  "KVASIR": "SINGLETON (sample_id)"
+ },
+ "patient_level_grouping_only_available_for_KUB": true,
+ "macro_weighting": "equal weight 1/4 per domain, independent of sample counts",
+ "rationale": "The estimand is the mean of domain means, not a pooled row mean. This prevents the larger ISIC/KUB domains from dominating and prevents a macro average from masking harm in a small domain (e.g. BUSI 84 rows / 84 groups).",
+ "checks": {
+  "four_strata": true,
+  "equal_domain_weight": true,
+  "domain_counts_used_for_reporting_only": true,
+  "no_pooled_row_mean": true,
+  "patient_groups_only_in_kub": true
+ },
+ "all_pass": true
+}

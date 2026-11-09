@@ -1,0 +1,72 @@
+{
+ "artifact": "phase25c_metric_binding",
+ "phase": "25C",
+ "method": "RA-MedFiLM-BARR",
+ "metric_source_file": "src/metrics/evaluation_metrics.py",
+ "metric_function": "dice",
+ "metric_source_sha256": "6c515f6f1a495315c79238292c385a082ae8347489130ad5bff34d74c4f181f6",
+ "confusion_source_function": "binary_confusion_counts",
+ "formula": "dice = (2*tp + eps) / (2*tp + fp + fn + eps)",
+ "epsilon": 1e-07,
+ "dtype": "float64 (python float)",
+ "empty_mask_convention": {
+  "gt_empty_pred_empty": {
+   "dice": 1.0,
+   "iou": 1.0,
+   "precision": 1.0,
+   "recall": 1.0,
+   "specificity": 1.0,
+   "npv": 1.0,
+   "accuracy": 1.0,
+   "balanced_accuracy": 1.0,
+   "mcc": 1.0,
+   "cohen_kappa": 1.0,
+   "hd95": "nan_invalid",
+   "assd": "nan_invalid",
+   "surface_dice": "nan_invalid",
+   "rationale": "Perfect agreement on an empty foreground; boundary distances undefined."
+  },
+  "gt_empty_pred_nonempty": {
+   "dice": 0.0,
+   "iou": 0.0,
+   "precision": 0.0,
+   "recall": "nan_invalid",
+   "specificity": 1.0,
+   "npv": "nan_invalid",
+   "accuracy": "nan_invalid",
+   "balanced_accuracy": "nan_invalid",
+   "mcc": "nan_invalid",
+   "cohen_kappa": "nan_invalid",
+   "hd95": "nan_invalid",
+   "assd": "nan_invalid",
+   "surface_dice": "nan_invalid",
+   "rationale": "False-positive-only case; recall/NPV/accuracy are undefined without positives."
+  },
+  "gt_nonempty_pred_empty": {
+   "dice": 0.0,
+   "iou": 0.0,
+   "precision": "nan_invalid",
+   "recall": 0.0,
+   "specificity": 1.0,
+   "npv": 0.0,
+   "accuracy": "nan_invalid",
+   "balanced_accuracy": "nan_invalid",
+   "mcc": "nan_invalid",
+   "cohen_kappa": "nan_invalid",
+   "hd95": "nan_invalid",
+   "assd": "nan_invalid",
+   "surface_dice": "nan_invalid",
+   "rationale": "False-negative-only case; boundary distances require both masks non-empty."
+  },
+  "both_nonempty": {
+   "note": "All metrics defined by their standard formulas."
+  }
+ },
+ "foreground_rule": "prediction > 0 and target > 0",
+ "canonical_decision_rule": "pred = (float32(prob) >= 0.50)",
+ "new_dice_formula_introduced": false,
+ "conflicting_metric_definitions_found": false,
+ "verdict": "PHASE25C_METRIC_BOUND",
+ "test_reads": 0,
+ "generated_utc": "2026-09-30T17:07:00+00:00"
+}

@@ -1,0 +1,40 @@
+{
+ "artifact": "phase27_conditional_branch_batch_semantics",
+ "phase": "27",
+ "classification": "PHASE27_CANONICAL_MULTIDOMAIN_PRESERVATION_EXECUTION",
+ "method": "RA-MedFiLM-BARR",
+ "execution_phase": true,
+ "global_G": {
+  "batching": "BATCHED_SIZE_8_CONTIGUOUS_WITHIN_DOMAIN",
+  "forward_dtype_path": "torch.amp.autocast(float16), torch.no_grad",
+  "global_forward_count_per_sample": 1,
+  "membership_sensitive": true
+ },
+ "router_B_phi": {
+  "batching": "PER_SAMPLE_SINGLE_FORWARD",
+  "input": "202-D normalized numeric + task embedding (module-internal concat)",
+  "membership_sensitive": false,
+  "deterministic_single_sample": true
+ },
+ "refiner_R_psi": {
+  "batching": "PER_SAMPLE_SINGLE_FORWARD_ON_EXECUTE_BRANCH",
+  "input": "4x256x256 assembled from global crop + p_global crop",
+  "membership_sensitive": false,
+  "deterministic_single_sample": true,
+  "forward_dtype_path": "float32, torch.no_grad (canonical Phase25C path)"
+ },
+ "safety_S_omega": {
+  "batching": "PER_SAMPLE_SINGLE_FORWARD_ON_EXECUTE_BRANCH",
+  "input": "20-D (16 numeric normalized + 4 one-hot)",
+  "membership_sensitive": false,
+  "deterministic_single_sample": true
+ },
+ "note": "Only the AMPlified G forward is batch-membership sensitive.  All conditional components are evaluated one sample at a time, so their conditional-branch results are membership-independent and reproducible.",
+ "checks": {
+  "G_membership_rule_frozen": true,
+  "conditional_components_per_sample": true,
+  "no_cross_sample_batching_of_conditional_components": true,
+  "conditional_branch_membership_independent": true
+ },
+ "all_pass": true
+}

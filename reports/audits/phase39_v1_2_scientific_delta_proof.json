@@ -1,0 +1,47 @@
+{
+  "classification": "PHASE39_V1_2_SCIENTIFIC_DELTA_PROOF",
+  "generated_utc": "2026-10-11T08:30:00Z",
+  "phase": 39,
+  "scientific_delta_v1_1_to_v1_2": 0,
+  "unchanged": {
+    "checkpoints": true,
+    "architecture": true,
+    "weights": true,
+    "thresholds": true,
+    "comparators": true,
+    "population": true,
+    "sample_inclusion": true,
+    "metrics": true,
+    "D61": true,
+    "D75_POLICY_B": true,
+    "statistics": true,
+    "claim_policy": true,
+    "KUB_reporting_only_semantics": true
+  },
+  "allowed_changes": {
+    "manifest_schema_parsing_correction": "domain read from canonical 'dataset' column (D99)",
+    "canonical_inference_reuse": "per-sample inference delegates to frozen Phase36 v1.23 functions",
+    "operational_observability": "independent failure-state counters (manifest/image/gt/forward/metric)",
+    "version_namespace_provenance": "v1_2 namespace; v1.0/v1.1 history bound",
+    "post_protocol_authority_binding": "authority derives from the post-protocol amendment"
+  },
+  "no_change_to": [
+    "checkpoints",
+    "architecture",
+    "weights",
+    "thresholds",
+    "comparators",
+    "population",
+    "sample_inclusion",
+    "metrics",
+    "D61",
+    "D75/POLICY_B",
+    "statistical method",
+    "claim policy",
+    "KUB reporting-only semantics"
+  ],
+  "evidence": {
+    "canonical_delegation": "reports/audits/phase39_v1_2_inference_contract_audit.json",
+    "production_and_equivalence_regression": "reports/audits/phase39_v1_2_production_and_equivalence_regression.json"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "artifact": "POST_PHASE13_H2C_PREEXECUTION_COUNTER_CLARIFICATION",
+  "status": "PASS",
+  "created_utc": "2026-09-23T16:33:00Z",
+  "purpose": "Additively clarify the H2C pre-execution counters so that the single synthetic shape-check forward disclosed in the frozen protocol is recorded truthfully and not confused with project-data inference. The frozen protocol is NOT rewritten.",
+  "frozen_protocol": {
+    "path": "reports/audits/post_phase13_h2c_protocol_frozen.json",
+    "sha256": "91166259c10a84e9526eda43e83b227cc760a37b8834a4d4a65fe3e5a90ba4b6",
+    "rewritten": "NO"
+  },
+  "counters": {
+    "PROJECT_DATA_MODEL_FORWARDS": 0,
+    "TRAINING_FORWARDS": 0,
+    "VAL_FORWARDS": 0,
+    "TEST_FORWARDS": 0,
+    "SYNTHETIC_SHAPE_CHECK_FORWARDS": 1,
+    "SYNTHETIC_INPUT_ONLY": "YES",
+    "CUDA": "NO",
+    "TRAINED_WEIGHTS": "NO",
+    "SCIENTIFIC_MEASUREMENT": "NO"
+  },
+  "what_the_synthetic_forward_was": "A single forward pass of a freshly-constructed, UNTRAINED H2C model on a random synthetic tensor of shape (1,1,512,512), performed on CPU to verify the output spatial shape is (1,1,128,128) and that the frozen terminal-zero initialization yields spatially constant initial logits (measured max-min = 0.0).",
+  "what_it_was_not": [
+    "not project data",
+    "not a TRAIN forward",
+    "not a VAL forward",
+    "not a TEST forward",
+    "not on CUDA",
+    "not using trained weights",
+    "not a scientific measurement"
+  ],
+  "changes": {
+    "scientific_protocol": "NO",
+    "scientific_result": "NO",
+    "h2c_axis": "NO"
+  },
+  "counters_summary": {
+    "training_epochs": 0,
+    "optimizer_steps": 0,
+    "checkpoint_writes": 0,
+    "test_reads": 0,
+    "external_test_reads": 0
+  }
+}

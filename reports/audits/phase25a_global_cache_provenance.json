@@ -1,0 +1,29 @@
+{
+ "artifact": "phase25a_global_cache_provenance",
+ "phase": "25A",
+ "purpose": "prove the global cache is TRAIN-only, GT-routing-metric-free and TEST-free",
+ "population": "ROUTER_DEVELOPMENT only",
+ "population_n": 4957,
+ "global_checkpoint_sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+ "global_forward_passes": 4957,
+ "device": "cuda:0",
+ "amp": true,
+ "threshold": 0.5,
+ "preprocessing_binding": "src.data.transforms.SegmentationTransform(size=512, train=False, image_mode='RGB') \u2014 aspect-preserving resize + centre pad to the 512 canvas",
+ "cache_manifest_sha256": "f1fff7bed87d73e26a14d9aeae3496ac4122d01ef9782a28a3faee1998ef6dc2",
+ "environment": {
+  "python": "3.11.9",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "torch": "2.6.0+cu124",
+  "cuda": "12.4"
+ },
+ "router_holdout_outcomes_read": 0,
+ "router_holdout_images_used_for_outcome_evaluation": 0,
+ "val_outcome_reads": 0,
+ "test_reads": 0,
+ "gt_derived_routing_metric_created": false,
+ "dice_computed": 0,
+ "deltadice_computed": 0,
+ "verdict": "PHASE25A_GLOBAL_CACHE_PROVENANCE_PASS",
+ "generated_utc": "2026-09-30T04:29:40.158108+00:00"
+}

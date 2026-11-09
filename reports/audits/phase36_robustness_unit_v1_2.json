@@ -1,0 +1,226 @@
+{
+ "artifact": "phase36_robustness_unit_v1_2",
+ "section": "§S",
+ "phase": 36,
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase36_robustness_v1_2",
+ "classification": "MODEL_FREE_UNIT_TESTS__V1_2_ACTUAL_EXECUTABLE_REPAIR",
+ "model_free": true,
+ "torch_model_construction": false,
+ "checks": [
+  {
+   "id": "01",
+   "desc": "v1.2 execution source is a distinct successor",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "02",
+   "desc": "_load_models has NO unconditional placeholder RuntimeError",
+   "pass": true,
+   "detail": "False"
+  },
+  {
+   "id": "03",
+   "desc": "_load_models strict-loads G/B_phi/R_psi/S_omega",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "04",
+   "desc": "missing/unexpected key verification present",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "05",
+   "desc": "param-count verification 3523001/1276401/36801/1217",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "06",
+   "desc": "_evaluate_clean_sample real path exists",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "07",
+   "desc": "clean generator iterates _load_population + returns records",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "08",
+   "desc": "equivalence gate is STRICT (808 enforced, missing-data fails)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "09",
+   "desc": "gate comparator isclose(atol=1e-7, rtol=0)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "10",
+   "desc": "image perturbation re-runs full system (no clean reuse)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "11",
+   "desc": "proposal perturbation reuses G + reassembles 202-D",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "12",
+   "desc": "empty proposal -> NOT_APPLICABLE_EMPTY_PROPOSAL (R_psi=0)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "13",
+   "desc": "run_science rows carry sample_id + execute image/proposal",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "14",
+   "desc": "CLEAN generation -> gate -> perturbations ordering",
+   "pass": true,
+   "detail": "(31068, 43862, 44329)"
+  },
+  {
+   "id": "15",
+   "desc": "smoke STRICT-loads all four real components (_load_models)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "16",
+   "desc": "smoke state machine uses real B_phi + expected/observed/comparison",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "17",
+   "desc": "'Training' vendor dir is NOT rejected (§L fix)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "18",
+   "desc": "TEST/HOLDOUT/ROUTER_HOLDOUT still rejected (fail closed)",
+   "pass": true,
+   "detail": "[True, True, True]"
+  },
+  {
+   "id": "19",
+   "desc": "authorized-path rule is exact manifest-row match",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "20",
+   "desc": "v1.1 seed = int(sha256.hexdigest()[:8], 16) preserved",
+   "pass": true,
+   "detail": "426663635"
+  },
+  {
+   "id": "21",
+   "desc": "v1.0 brightness/gamma algebra unchanged",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "22",
+   "desc": "Dice both-empty == 1.0; one-empty ~ eps/(N+eps) (not 0.0)",
+   "pass": true,
+   "detail": "(1.0, 2.4999999993749995e-10)"
+  },
+  {
+   "id": "23",
+   "desc": "IoU both-empty == 1.0; one-empty ~ eps/(N+eps)",
+   "pass": true,
+   "detail": "(1.0, 2.4999999993749995e-10)"
+  },
+  {
+   "id": "24",
+   "desc": "HD95 empty -> NaN + valid=False (never substituted)",
+   "pass": true,
+   "detail": "nan"
+  },
+  {
+   "id": "25",
+   "desc": "§Q reconciliation: code is authority, conflict disclosed",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "26",
+   "desc": "§Q difference (2.5e-10) < gate atol (1e-7)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "27",
+   "desc": "no reachable stub markers in v1.2 source",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "id": "28",
+   "desc": "no placeholder return {} in v1.2 source",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "29",
+   "desc": "no training/optimizer/backward in v1.2 source",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "30",
+   "desc": "canonical 202-D extractor + state machine bound",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "31",
+   "desc": "metrics bound to canonical evaluation_metrics",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "32",
+   "desc": "science/smoke gates fail closed unless env=='1'",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "33",
+   "desc": "registries 13/7 + thresholds 0.30/0.50 unchanged",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "34",
+   "desc": "§R negative controls NC1..NC6 recorded and all valid",
+   "pass": true,
+   "detail": "6"
+  },
+  {
+   "id": "35",
+   "desc": "v1.1 execution source preserved byte-for-byte",
+   "pass": true,
+   "detail": "e3ba09b868eb49cbe0a03f90d51af73f22c1785e051dbd38c78edc0185e8aebc"
+  }
+ ],
+ "total_checks": 35,
+ "passed": 35,
+ "failed": 0,
+ "all_pass": true
+}

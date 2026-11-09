@@ -1,0 +1,67 @@
+{
+ "artifact": "phase24_benefit_data_protocol",
+ "phase": 24,
+ "critical_leakage_constraint": "Benefit-router training labels MUST NOT be generated from the existing Phase-22 VAL population. Only original TRAIN may be used.",
+ "original_train": {
+  "manifest": "manifests/phase4_v3/train.csv",
+  "n_cases": 5832,
+  "manifest_version": "phase4_v3",
+  "domains": {
+   "KUB": 1978,
+   "KVASIR": 696,
+   "ISIC": 2556,
+   "BUSI": 602
+  },
+  "grouping_key": "patient_id"
+ },
+ "split": {
+  "ROUTER_HOLDOUT": {
+   "fraction": 0.15,
+   "approx_cases": 875,
+   "status": "designated_never_inspected_for_outcomes"
+  },
+  "ROUTER_DEVELOPMENT": {
+   "fraction": 0.85,
+   "approx_cases": 4957,
+   "status": "used for cross-fitted label generation and router fitting in Phase 25"
+  },
+  "seed": "TO_BE_FROZEN_IN_PHASE25_FROM_A_FIXED_CONSTANT",
+  "deterministic": true,
+  "domain_stratified": true,
+  "group_safe": true,
+  "grouping_key": "patient_id",
+  "overlap": 0,
+  "train_only": true,
+  "uses_phase22_val": false,
+  "uses_test": false
+ },
+ "phase24_inspection_allowed": [
+  "sample ids",
+  "domain counts",
+  "group integrity",
+  "manifest sha",
+  "split seed"
+ ],
+ "phase24_inspection_forbidden": [
+  "DeltaDice distribution",
+  "Dice",
+  "router AUC",
+  "benefit distribution",
+  "routing policy performance"
+ ],
+ "holdout_outcomes_read_in_phase24": 0,
+ "crossfit": {
+  "folds": 3,
+  "within": "ROUTER_DEVELOPMENT",
+  "purpose": "prevent refiner-overfit gain labels from entering the router target",
+  "executed_in_phase24": false
+ },
+ "existing_val_role": {
+  "population": "frozen Phase-22 808-case VAL",
+  "role": "SECONDARY / CONTINUITY DEVELOPMENT BENCHMARK",
+  "is_router_training_data": false,
+  "is_untouched_routing_holdout": false
+ },
+ "generated_utc": "2026-09-29T14:45:29.300871+00:00",
+ "test_reads": 0
+}

@@ -1,0 +1,41 @@
+{
+ "artifact": "phase27_prediction_artifact_contract.json",
+ "phase": "27",
+ "classification": "PHASE27_PRE_EXECUTION_PRESERVATION_AUDIT_SPECIFICATION",
+ "method": "RA-MedFiLM-BARR",
+ "governance_only": true,
+ "no_execution": true,
+ "stage": "PREDICTION_ARTIFACT_CONTRACT",
+ "artifact_path_planned": "reports/tables/phase27_val808_predictions.csv",
+ "columns": [
+  "sample_id",
+  "dataset",
+  "task_id",
+  "group_key",
+  "router_utility",
+  "router_decision",
+  "state_machine_branch",
+  "somega_logit",
+  "somega_accept",
+  "global_mask_path",
+  "final_mask_path"
+ ],
+ "forbidden_columns": [
+  "dice",
+  "iou",
+  "gt_",
+  "delta"
+ ],
+ "row_count": 808,
+ "masks_written_to": "reports/figures/phase27_preservation/masks/",
+ "hashed_before_gt_read": true,
+ "deterministic_format": "csv, lineterminator=LF, sorted by dataset,sample_id",
+ "checks": {
+  "per_sample_rows_808": true,
+  "global_and_final_both_stored": true,
+  "hashed_before_gt": true,
+  "deterministic_format": true,
+  "no_gt_columns": true
+ },
+ "all_pass": true
+}

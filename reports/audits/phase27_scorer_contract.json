@@ -1,0 +1,29 @@
+{
+ "artifact": "phase27_scorer_contract.json",
+ "phase": "27",
+ "classification": "PHASE27_PRE_EXECUTION_PRESERVATION_AUDIT_SPECIFICATION",
+ "method": "RA-MedFiLM-BARR",
+ "governance_only": true,
+ "no_execution": true,
+ "stage": "SCORER_CONTRACT",
+ "primary_metric": "Dice coefficient",
+ "mask_construction_rule": "binary = (p >= 0.50); p is the final probability map",
+ "segmentation_output_threshold": 0.5,
+ "threshold_is_distinct_from": {
+  "roi_proposal": 0.3,
+  "somega_accept": 0.5
+ },
+ "dice_definition": "Dice = 2|A n B| / (|A| + |B|)",
+ "dice_tolerance": 1e-12,
+ "empty_both_rule": "if |A|=|B|=0 -> Dice = 1.0",
+ "empty_one_rule": "if only one set is empty -> Dice = 0.0",
+ "same_gt_for_both_systems": true,
+ "same_scorer_for_both_systems": true,
+ "checks": {
+  "dice_soft_or_binary_declared": true,
+  "segmentation_threshold_0p50": true,
+  "dice_tolerance_bound": true,
+  "empty_gt_rule_declared": true
+ },
+ "all_pass": true
+}

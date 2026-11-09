@@ -1,0 +1,307 @@
+{
+  "artifact": "phase36_robustness_static_preflight_v1_7",
+  "revision": "ra_medfilm_barr_phase36_robustness_v1_7",
+  "method": "AST_CALL_GRAPH_AND_BYTE_PREFLIGHT",
+  "audited_source": "scripts/analysis/phase36_robustness_execution_v1_7.py",
+  "entrypoints": [
+    "run_science",
+    "run_smoke"
+  ],
+  "run_science_reachable_functions": 77,
+  "run_smoke_reachable_functions": 45,
+  "run_science_protected_io_sites": [],
+  "run_smoke_protected_io_sites": [],
+  "smoke_check_ids_count": 32,
+  "smoke_success_contract": {
+    "ids": [
+      "four_component_checkpoint_loads_strict",
+      "four_parameter_counts_exact",
+      "all_component_weights_finite",
+      "four_components_on_canonical_cuda_device",
+      "canonical_G_probability_dtype_float32",
+      "canonical_G_output_finite",
+      "router_vector_dim_exactly_202",
+      "router_vector_finite",
+      "real_B_phi_forward_proven",
+      "real_R_psi_forward_proven",
+      "real_S_omega_forward_proven",
+      "clean_synthetic_final_probability_finite",
+      "image_synthetic_final_probability_finite",
+      "nonempty_proposal_adapter_called",
+      "empty_proposal_adapter_called",
+      "empty_proposal_R_psi_zero",
+      "empty_proposal_S_omega_zero",
+      "empty_proposal_no_replacement_geometry",
+      "skip_policy_control_exact",
+      "accept_policy_control_exact",
+      "reject_policy_control_exact",
+      "forced_control_counts_reported_honestly",
+      "perturbation_registry_outputs_finite",
+      "clean_perturbation_bitwise_identity",
+      "gaussian_noise_same_input_determinism",
+      "different_seed_changes_realization",
+      "different_synthetic_sample_id_changes_realization",
+      "metric_plumbing_valid",
+      "prediction_consistency_metric_finite",
+      "protected_test_holdout_runtime_io_statically_unreachable",
+      "scientific_output_false",
+      "synthetic_only_true"
+    ],
+    "n_checks": 32,
+    "aggregation": "smoke_all_pass = all(smoke_checks.values())",
+    "declared_before_execution": true,
+    "classification_only_ids": [
+      "scientific_output_false",
+      "synthetic_only_true"
+    ],
+    "artifact_written_even_when_failed": true,
+    "automatic_retry": false,
+    "exit_nonzero_when_failed": true
+  },
+  "torch_imported": false,
+  "checks": [
+    {
+      "check": "01_actual_forward_locals_initialized",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "02_r_psi_increment_after_real_call",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "03_s_omega_increment_after_real_call",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "04_forced_safety_bypass_precedes_increment",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "05_no_hardcoded_forward_counts_in_result_branches",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "06_policy_control_flags_present",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "07_forced_safety_expected_actual_somega_zero",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "08_skip_control_actual_counts_zero",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "09_forced_controls_do_not_claim_real_somega",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "10_policy_controls_labelled_not_scientific",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "11_real_execute_probe_defined",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "12_probe_forces_router_execute",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "13_probe_does_not_force_somega_logit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "14_probe_not_outcome_selected",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "15_probe_reports_actual_counts_and_finiteness",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "16_probe_reachable_from_run_smoke",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "17_real_B_phi_evidence_present",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "18_B_phi_from_counter_not_router_string",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "19_proposal_probe_does_not_force_router_score",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "20_B_phi_proof_requires_unforced_router",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "21_router_vector_diagnostics_emitted",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "22_router_dim_guard_202",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "23_router_finite_guard_before_b_phi",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "24_router_finite_from_rf202",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "25_rf202_finite_not_bound_to_final_probability",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "26_smoke_check_ids_count_32",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "27_smoke_checks_built",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "28_smoke_all_pass_derives_from_checks",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "29_contract_id_mismatch_fails_closed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "30_only_two_classification_hardcoded_true",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "31_protected_io_check_computed_not_hardcoded",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "32_artifact_written_before_exit_check",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "33_nonzero_exit_when_failed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "34_no_retry_loop_or_except",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "35_failed_artifact_terminal_present",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "36_automatic_retry_declared_false",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "37_run_science_protected_sites_zero",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "38_run_smoke_protected_sites_zero",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "39_val808_only_runtime_authority",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "40_protected_reader_functions_absent",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "41_val_guards_preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "42_no_posthoc_protected_counter_reset",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "43_canonical_probability_cuda_device_context_preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "44_conditional_execution_preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "45_kub_and_figures_preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "46_no_training",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "47_torch_not_imported_by_preflight",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "48_frozen_counts_and_partition",
+      "passed": true,
+      "detail": null
+    }
+  ],
+  "passed": 48,
+  "total": 48,
+  "all_pass": true
+}

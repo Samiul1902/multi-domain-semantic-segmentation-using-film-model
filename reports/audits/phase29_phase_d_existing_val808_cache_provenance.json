@@ -1,0 +1,40 @@
+{
+ "artifact": "phase29_phase_d_existing_val808_cache_provenance",
+ "phase": 29,
+ "stage": "PHASE_D_EXISTING_VAL808_CACHE_PROVENANCE",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_phase29_repro_v1_1",
+ "generated_utc": "2026-10-03T15:25:42+00:00",
+ "case_determination": "CASE_A",
+ "case_A_rule": "CACHE GENERATED DURING PHASE29 BY OPENING VAL808 IMAGES -> record honest historical access and separate the canonical future reads from the noncanonical pre-reconciliation reads.",
+ "evidence": {
+  "build_summary_path": "reports/audits/phase29_val808_shared_cache_build_summary.json",
+  "build_summary_sha256": "53419138a0d4183c384488f952aaa82c3fc2fd3f298096a0d79dae121a614eab",
+  "build_generated_utc": "2026-10-03T14:15:32+00:00",
+  "val808_images_read_recorded": 808,
+  "val808_gt_reads_recorded": 0,
+  "cache_dir_created_during_phase29": true,
+  "read_audit_path": "reports/audits/phase29_phase_d_read_counter_audit.json",
+  "read_audit_sha256": "c4cd64276613201263e71fddf0c3271ce200f24d7e8072557585f88e8ffeeb0e",
+  "filesystem_mtime_evidence": "cache files written 2026-10-03 (Phase29 window)"
+ },
+ "read_counters": {
+  "canonical_Phase_D_VAL808_reads_before_authorized_execution": 0,
+  "noncanonical_pre_reconciliation_VAL808_reads": 808,
+  "note": "The 808 reads happened DURING the pre-reconciliation Phase29 cache build, under the SUPERSEDED no-autocast numeric mode. They are NONCANONICAL for Phase D scientific use. Zero CANONICAL Phase-D authorised reads have occurred.",
+  "Phase29_raw_VAL808_image_reads": 808
+ },
+ "counter_inference_policy": "NEVER infer zero reads from a counter file; the counter is positive and is recorded honestly.",
+ "cache_disposition": "NONCANONICAL_PRE_RECONCILIATION_VAL808_CACHE",
+ "scientifically_reusable": false,
+ "preservation_required": true,
+ "checks": {
+  "provenance_case_determined": true,
+  "historical_reads_recorded_honestly": true,
+  "canonical_phase_d_reads_zero": true,
+  "noncanonical_reads_recorded": true,
+  "gt_reads_zero": true,
+  "not_inferred_from_counter_file": true
+ },
+ "all_pass": true
+}

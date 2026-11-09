@@ -1,0 +1,184 @@
+{
+ "artifact": "phase36_robustness_static_preflight_v1_1",
+ "section": "§S",
+ "phase": 36,
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase36_robustness_v1_1",
+ "preflight_class": "STATIC_NO_EXECUTION",
+ "no_execution": true,
+ "torch_imported": false,
+ "source_hashes": {
+  "common_v1_1": "edcdd33d22ae996b2f7ef60e8242a89f3cebab8c6992406508fec23cb068710c",
+  "execution_v1_1": "e3ba09b868eb49cbe0a03f90d51af73f22c1785e051dbd38c78edc0185e8aebc",
+  "unit_v1_1": "25199c24771527ca95f8603af4f04a75e3a4d88ca0e40b950b0aaacf90601b59",
+  "amendment_v1_1": "b46276b2281cd5ef60f409cc20a7df0652754883ae0d536ffb4c29bd8b1aff7d"
+ },
+ "checks": [
+  {
+   "id": "01",
+   "desc": "v1.0 history preserved byte-for-byte (8/8)",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "id": "02",
+   "desc": "v1.0 execution source unchanged",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "03",
+   "desc": "v1.1 amendment doc present",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "04",
+   "desc": "v1.1 common module present",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "05",
+   "desc": "smoke/science call graph has no reachable NotImplementedError",
+   "pass": true,
+   "detail": "[]"
+  },
+  {
+   "id": "06",
+   "desc": "no NotImplementedError anywhere in v1.1 source",
+   "pass": true,
+   "detail": "0"
+  },
+  {
+   "id": "07",
+   "desc": "no placeholder return {} in reachable helpers",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "08",
+   "desc": "only 1 RuntimeError (guarded model-load marker)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "09",
+   "desc": "CLEAN generation -> equivalence gate -> perturbations ordering",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "10",
+   "desc": "CLEAN808 equivalence gate precedes perturbation execution",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "11",
+   "desc": "proposal insertion point exact (perturbed roi_row -> build_feature_vector)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "12",
+   "desc": "G not re-run for proposal perturbation (g_reused_for_proposal)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "13",
+   "desc": "Phase25B 202-D extractor bound",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "14",
+   "desc": "B_phi recomputed: router_features_202 reassembled",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "15",
+   "desc": "R_psi crop uses perturbed window (roi_window=perturbed)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "16",
+   "desc": "S_omega inside canonical forward_inference EXECUTE branch",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "17",
+   "desc": "image perturbations re-run full frozen system",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "18",
+   "desc": "A8/C9 policy bound unchanged",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "19",
+   "desc": "thresholds 0.30/0.50 unchanged",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "20",
+   "desc": "registries unchanged 13/7",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "21",
+   "desc": "metrics bound to canonical evaluation_metrics",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "22",
+   "desc": "VAL-only path guard present (_reject_protected)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "23",
+   "desc": "TEST path rejected",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "24",
+   "desc": "ROUTER_HOLDOUT path rejected",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "25",
+   "desc": "no training/optimizer/TODO stub",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "26",
+   "desc": "v1.1 seed conversion first-8-hex base16",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "27",
+   "desc": "all v1.1 sources parse",
+   "pass": true,
+   "detail": ""
+  }
+ ],
+ "total_checks": 27,
+ "passed": 27,
+ "failed": 0,
+ "all_pass": true
+}

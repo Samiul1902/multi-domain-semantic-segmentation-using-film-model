@@ -1,0 +1,120 @@
+{
+ "artifact": "phase33_hard_case_group_cap_scope_ambiguity_record_v1_2",
+ "phase": 33,
+ "section": "\u00a7C",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase33_failure_boundary_v1_2",
+ "purpose": "Record that the one-sample-per-group cap SCOPE in the frozen hard-case selection contract is NOT unambiguous, and that the Phase33 post-execution hard-case selection reconciliation task is STOPPED fail-closed pending supervisor resolution. No repair artifact was created; no frozen artifact was modified.",
+ "task": "PHASE 33 - POST-EXECUTION HARD-CASE SELECTION RECONCILIATION",
+ "task_asserted_defect_classification": "HARD_CASE_GLOBAL_GROUP_CAP_VIOLATION__CORE_TIER0_TIER1_SCIENCE_UNAFFECTED",
+ "frozen_contract": {
+  "path": "reports/audits/phase33_hard_case_selection_contract.json",
+  "sha256": "37642ea1fc0706e134c86444310e949665039fdfc90d8095559488abe90f79d8",
+  "revision": "ra_medfilm_barr_phase33_failure_boundary_v1_0",
+  "section": "\u00a7N",
+  "group_cap_clause": "at most one sample per group_key within a panel",
+  "cross_stratum_clause": "first stratum in the declared order wins; a sample may appear in at most one panel",
+  "term_panel_explicitly_defined": false,
+  "term_panel_defined_anywhere_in_authority_artifacts": false
+ },
+ "original_table": {
+  "path": "reports/tables/phase33_hard_case_ids_v1_2.csv",
+  "sha256": "6d4bc1d01682e719617d8814913a6b2cd34b10253a144505849b44b8a2c84d3b",
+  "rows": 20,
+  "unique_sample_id": 20,
+  "unique_group_key": 19,
+  "cross_stratum_sample_id_duplicates": 0,
+  "stratum_counts": {
+   "low_dice_bottom_decile": 8,
+   "harmful_activation": 8,
+   "missed_benefit": 0,
+   "execute_then_reject": 4
+  },
+  "within_stratum_group_key_unique": {
+   "low_dice_bottom_decile": true,
+   "harmful_activation": true,
+   "missed_benefit": true,
+   "execute_then_reject": true
+  },
+  "duplicated_group_key_across_cohort": [
+   {
+    "group_key": "PATIENT::patient-00373",
+    "occurrences": [
+     {"stratum": "low_dice_bottom_decile", "rank_within_stratum": 2, "sample_id": "b62d3eca98733312c3d1beace38c9fac"},
+     {"stratum": "harmful_activation", "rank_within_stratum": 7, "sample_id": "4ad21902a0d874377d3c5d854b10f984"}
+    ]
+   }
+  ],
+  "duplicate_group_count": 1
+ },
+ "competing_readings": [
+  {
+   "reading": "PER_PANEL_EQUALS_PER_STRATUM",
+   "supporting_evidence": [
+    "contract 'deduplication_across_strata' uses the same word 'panel' to mean a single stratum ('a sample may appear in at most one panel')",
+    "execution code scripts/analysis/phase33_tier0_tier1_execution_v1_2.py resets 'used_groups' once per stratum while keeping the sample-level 'selected' set global",
+    "the frozen 20-row table satisfies this reading: every stratum has unique group_key and no sample_id repeats across strata"
+   ],
+   "original_table_status": "COMPLIANT"
+  },
+  {
+   "reading": "GLOBAL_ACROSS_COHORT",
+   "supporting_evidence": [
+    "the reconciliation task directive (\u00a7E/\u00a7F) requires 'group_key unique' and 'one selected sample maximum per group' over the whole selected cohort"
+   ],
+   "original_table_status": "NON_COMPLIANT"
+  }
+ ],
+ "execution_code_realization": {
+  "path": "scripts/analysis/phase33_tier0_tier1_execution_v1_2.py",
+  "behavior": "sample-level 'selected' set is global across strata; 'used_groups' group cap is reset per stratum (per-panel)",
+  "consistent_with_contract_literal_text": true
+ },
+ "determination": "HARD_CASE_GROUP_CAP_SCOPE_NOT_UNAMBIGUOUS__STOP_FAIL_CLOSED",
+ "blocking_section": "\u00a7C",
+ "blocking_rule": "if the one-sample-per-group scope is not unambiguous: STOP and report the ambiguity; do not invent a rule",
+ "why_stopped": "The frozen contract does not define 'panel'. Two mutually exclusive scopes (per-stratum vs global) are both textually admissible. Under the per-panel reading the original table is compliant and no repair is required; under the global reading a repair would be required but would require inventing a global rule the frozen contract does not state. The task directive also simultaneously requires 'use the FROZEN hard-case contract exactly' and 'enforce globally', which cannot both hold. A repair artifact produced now would misrepresent the frozen contract and could corrupt the governance record.",
+ "action_taken": {
+  "reconciled_table_created": false,
+  "defect_record_asserting_violation_created": false,
+  "reconciled_result_created": false,
+  "reconciled_execution_audit_created": false,
+  "reconciled_notebook_created": false,
+  "reconciled_terminal_created": false,
+  "frozen_artifacts_modified": 0,
+  "new_files_created_by_this_task": 1,
+  "new_file": "reports/audits/phase33_hard_case_group_cap_scope_ambiguity_record_v1_2.json"
+ },
+ "core_science": {
+  "core_scientific_results_invalidated": false,
+  "low_overlap_invalidated": false,
+  "prevalence_results_invalidated": false,
+  "router_results_invalidated": false,
+  "delta_diagnostics_invalidated": false,
+  "core_scientific_tables_byte_identical": true,
+  "low_overlap_cutoff": 0.8255302581341691,
+  "low_overlap_n": 88,
+  "benefit_counts": {"BENEFICIAL": 59, "HARMFUL": 31, "NEUTRAL": 785},
+  "phase30_counts": {"execute": 240, "skip": 635, "execute_then_reject": 4, "harmful_activated": 31, "missed_benefit": 0}
+ },
+ "required_supervisor_resolution": [
+  "Option A - amend the frozen hard-case selection contract (new revision) to state an explicit GLOBAL one-sample-per-group cap, then re-issue the reconciliation task; or",
+  "Option B - confirm that the per-panel (per-stratum) scope is authoritative, in which case the original 20-row table reports COMPLIANT and no repair is required; or",
+  "Option C - provide an explicit definition of 'panel' in the frozen contract."
+ ],
+ "prohibited_access": {
+  "raw_image_reads": 0,
+  "raw_GT_reads": 0,
+  "prediction_array_reads": 0,
+  "probability_array_reads": 0,
+  "model_loads": 0,
+  "model_forwards": 0,
+  "TEST_reads": 0,
+  "external_TEST_reads": 0,
+  "training_steps": 0
+ },
+ "phase33_closure_status": "NOT_CLOSED__BLOCKED_PENDING_SCOPE_RESOLUTION",
+ "phase34_status": "NOT_STARTED",
+ "generated_utc": "2026-10-04T09:28:30Z",
+ "all_pass": true
+}

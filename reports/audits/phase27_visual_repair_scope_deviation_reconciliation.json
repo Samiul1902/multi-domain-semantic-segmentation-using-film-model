@@ -1,0 +1,32 @@
+{
+  "artifact": "phase27_visual_repair_scope_deviation_reconciliation",
+  "phase": "27",
+  "method": "RA-MedFiLM-BARR",
+  "classification": "REVIEWER_VISUAL_REPAIR_SCOPE_DEVIATION__RAW_VAL808_RGB_GT_REREAD",
+  "operational_meaning": "GOVERNANCE_SCOPE_DEVIATION__VISUALIZATION_ONLY__NO_SCIENTIFIC_IMPACT",
+  "deviation": {
+    "work_order_scope": "FROZEN_REVIEWER_ARTIFACTS_ONLY",
+    "observed_action": "The qualitative visual-repair rebuild re-read raw VAL808 RGB images and GT masks to populate the RGB and GT columns.",
+    "responsible_script": "scripts/analysis/build_phase27_qualitative.py",
+    "responsible_lines": "L120-123 (image_only_transform(Image.open(row['image_path'])) and full_field_gt(row['mask_path']))",
+    "deviation_class": "SCOPE_ONLY__NO_MODEL_NO_TRAINING_NO_METRIC__VISUALIZATION_ONLY"
+  },
+  "scientific_result_invalidated": false,
+  "predictions_changed": false,
+  "metrics_changed": false,
+  "bootstrap_changed": false,
+  "sample_selection_changed": false,
+  "GT_used_in_scoring_changed": false,
+  "TP_FN_FP_semantics_changed": false,
+  "model_forward_passes": 0,
+  "training_runs": 0,
+  "policy_selection_runs": 0,
+  "ROUTER_HOLDOUT_reads": 0,
+  "TEST_reads": 0,
+  "reason": "The qualitative visual-repair work order required frozen reviewer artifacts only, but the repair re-read raw VAL808 RGB images and GT masks for visualization (RGB/GT columns). These reads were purely presentational: no model was executed, no metric was recomputed, no bootstrap was recomputed, no prediction or mask changed, and the scientific freeze values are unaffected.",
+  "phase27_scientific_terminal": "PHASE27_MULTIDOMAIN_PRESERVATION_AUDIT_COMPLETE__VAL808_CONTINUITY_RESULT_FROZEN__PHASE28_ELIGIBLE_NOT_STARTED",
+  "visual_repair_terminal_recorded": "PHASE27_VISUAL_CLARITY_REPAIR_COMPLETE__QUALITATIVE_PANELS_RELAYOUT_HIGH_RES__SCIENTIFIC_FREEZE_UNCHANGED__PHASE28_ELIGIBLE_NOT_STARTED",
+  "phase27_state": "COMPLETE_CANONICAL",
+  "reconciliation_action": "CANONICAL_VISUAL_REBUILT_FROM_FROZEN_ARTIFACTS_ONLY__DEVIATING_OUTPUT_PRESERVED_AS_PROVENANCE",
+  "generated_utc": "2026-10-02T12:05:47Z"
+}

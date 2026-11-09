@@ -1,0 +1,332 @@
+{
+ "artifact": "phase35_execution_source_static_preflight_v1_0h",
+ "section": "§M",
+ "phase": 35,
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase35_interpretability_v1_0h",
+ "preflight_class": "STATIC_SOURCE_ANALYSIS__NO_MODEL_EXECUTION",
+ "no_execution": true,
+ "torch_imported": false,
+ "source_hashes": {
+  "v1_0h_execution": "48193f09672b047757e0eba9fa674df12c5b00a41629ba9671e48b50fe81ee81",
+  "v1_0g_predecessor": "88456e46c94e53d45b10d864d9dbcd38eb773d7dd441441def9e6f221a0c9be3",
+  "v1_0f_predecessor": "6a6097f4a3c346df38ab5ec452dc97717cdb65d789bf8bde8031442cb236e3e5",
+  "v1_0c_legacy": "4058fc5544e6e1af15339df20a88da4880549ea8d4dd434395df04e0fa261baa",
+  "v1_0d": "cccc109ade27eb5ad7883912004c1e911e9e253a659146f3d64820af92244056",
+  "v1_0e": "1ca50b773a185384b9f0a7eae47fe95c64eb84bad3826c70cbe88edefe535941",
+  "v1_0h_unit": "7fb6e4253e1ccfbbc1ce516727cf5f2a7baa4bbe45b04fafc6c33ee746a8dbbf"
+ },
+ "checks": [
+  {
+   "id": "01",
+   "desc": "v1.0f blocked smoke preserved (byte-hash)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "02",
+   "desc": "v1.0g blocked smoke preserved (byte-hash)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "03",
+   "desc": "v1.0g terminal preserved (byte-hash)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "04-v1_0g_predecessor",
+   "desc": "v1_0g_predecessor source sha256 frozen",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "04-v1_0f_predecessor",
+   "desc": "v1_0f_predecessor source sha256 frozen",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "04-v1_0c_legacy",
+   "desc": "v1_0c_legacy source sha256 frozen",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "04-v1_0d",
+   "desc": "v1_0d source sha256 frozen",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "07",
+   "desc": "v1.0h aliases the live V0C legacy store (no independent copy)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "08",
+   "desc": "v1.0h does NOT shallow-copy the legacy store into SMOKE_COUNTERS",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "09",
+   "desc": "extension store owns exactly the four post-v1.0c counters",
+   "pass": true,
+   "detail": "got ['primary_synthetic_target_masks', 'actual_logits_empty_mask_helper_checks', 'additional_G_forwards_for_empty_mask', 'additional_autograd_calls_for_empty_mask']"
+  },
+  {
+   "id": "10",
+   "desc": "extension disjointness asserted in source",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "11",
+   "desc": "V0C.smoke_router writes unqualified SMOKE_COUNTERS (live V0C store)",
+   "pass": true,
+   "detail": "[\"SMOKE_COUNTERS['B_phi_synthetic_forwards']\", \"SMOKE_COUNTERS['total_model_forwards']\", \"SMOKE_COUNTERS['router_numeric_input_autograd_calls']\", \"SMOKE_COUNTERS['total_autograd_calls']\", \"SMOKE_COUNTERS['synthetic_router_attribution_rows']\"]"
+  },
+  {
+   "id": "12",
+   "desc": "V0D aliases the same live store (writer/reader bridge intact)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "13",
+   "desc": "v1.0h merge reads the SAME live legacy store",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "14",
+   "desc": "v1.0h exposes writer/reader identity evidence",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "15",
+   "desc": "primary helper increments PRIMARY in extension store exactly once",
+   "pass": true,
+   "detail": "['SMOKE_COUNTERS_EXT[PRIMARY_TARGET_MASK_COUNTER]']"
+  },
+  {
+   "id": "16",
+   "desc": "primary helper invokes the frozen V0D producer exactly once",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "17",
+   "desc": "empty helper increments ONLY the empty observability extension counter",
+   "pass": true,
+   "detail": "['SMOKE_COUNTERS_EXT[EMPTY_MASK_OBSERVABILITY_COUNTER]']"
+  },
+  {
+   "id": "18",
+   "desc": "empty helper does NOT increment primary or alias",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "19",
+   "desc": "expected table has exactly 35 keys",
+   "pass": true,
+   "detail": "got 35"
+  },
+  {
+   "id": "20",
+   "desc": "all 8 protected-data keys explicitly present",
+   "pass": true,
+   "detail": "missing []"
+  },
+  {
+   "id": "21",
+   "desc": "all 8 protected-data keys expected 0",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "22",
+   "desc": "expected primary=1 alias=1 empty=1",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "23",
+   "desc": "expected router rows 1/1/2/2/4",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "24",
+   "desc": "35-key count asserted at import time",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "25",
+   "desc": "exact keyset equality uses set() == comparison",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "26",
+   "desc": "three separate booleans emitted",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "27",
+   "desc": "merge fails on duplicate ownership",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "28",
+   "desc": "merge fails on keyset mismatch vs expected table",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "29",
+   "desc": "no hardcoded post-hoc router count injection",
+   "pass": true,
+   "detail": "no '= value' assignments to router counters"
+  },
+  {
+   "id": "30",
+   "desc": "router counters only reachable through the delegated V0C writer",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "31",
+   "desc": "baseline gate precedes model construction",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "32",
+   "desc": "baseline gate never resets a nonzero counter",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "33",
+   "desc": "all inherited scientific call sites present verbatim",
+   "pass": true,
+   "detail": "missing []"
+  },
+  {
+   "id": "34",
+   "desc": "eight finite guard stages inherited from V0E",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "35",
+   "desc": "actual-logits helper reused mathematically (atol/rtol unchanged)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "36",
+   "desc": "parameter .grad audit reused verbatim from V0E",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "37",
+   "desc": "FiLM semantics unchanged (V0C.smoke_film_validate)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "38",
+   "desc": "router mathematics unchanged (V0C.smoke_router / router_gradient_x_input)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "39",
+   "desc": "R_psi / S_omega excluded (no construction/load/forward)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "40",
+   "desc": "Grad-CAM gradient impl string unchanged",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "41",
+   "desc": "four unambiguous terminal fields present",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "42",
+   "desc": "all_pass is an alias of smoke_success (never true when blocked)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "43",
+   "desc": "terminal_state emitted",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "44",
+   "desc": "unit test declares torch-free / model-free",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "45",
+   "desc": "unit test does not import torch at module level",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "46",
+   "desc": "unit reproduces both historical defects (negative controls)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "47",
+   "desc": "unit artifact exists",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "48",
+   "desc": "unit artifact all_pass",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "id": "49",
+   "desc": "unit artifact 0 failures",
+   "pass": true,
+   "detail": "failed=0"
+  },
+  {
+   "id": "50",
+   "desc": "preflight is torch-free (static only)",
+   "pass": true,
+   "detail": ""
+  }
+ ],
+ "total_checks": 51,
+ "passed": 51,
+ "failed": 0,
+ "generated_utc": "2026-10-05T05:55:16Z",
+ "all_pass": true
+}

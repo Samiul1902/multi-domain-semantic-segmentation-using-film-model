@@ -1,0 +1,128 @@
+{
+ "artifact": "phase29_training_scope_audit",
+ "phase": 29,
+ "classification": "PHASE29_TRAINING_SCOPE_AUDIT",
+ "hard_blocker": true,
+ "question": "exactly which canonical learned components must Phase29 retrain per seed?",
+ "candidate_components": [
+  "G",
+  "R_psi",
+  "B_phi",
+  "S_omega"
+ ],
+ "phase26_wrapper_fusion_learned_params": 0,
+ "canonical_checkpoint_physical_binding": {
+  "G": {
+   "path": "checkpoints/phase21_global_medfilm_fourdomain_seed42_clean_v3/best.pt",
+   "exists": true,
+   "sha256_on_disk": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+   "sha256_expected": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+   "sha_match": true
+  },
+  "R_psi": {
+   "path": "checkpoints/phase25a_barr_regional_refiner_v1_1_roi030/final/final.pt",
+   "exists": true,
+   "sha256_on_disk": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109",
+   "sha256_expected": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109",
+   "sha_match": true
+  },
+  "B_phi": {
+   "path": "checkpoints/phase25d_barr_benefit_router_v1_2_1_seed42/final/final.pt",
+   "exists": true,
+   "sha256_on_disk": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+   "sha256_expected": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+   "sha_match": true
+  },
+  "S_omega": {
+   "path": "checkpoints/phase25f_barr_post_safety_v1_0_seed42/final/final.pt",
+   "exists": true,
+   "sha256_on_disk": "eee9b97b9921e53fc07eac9281dce64ba518c6e1659916b97b0b3bec21ec6d2e",
+   "sha256_expected": "eee9b97b9921e53fc07eac9281dce64ba518c6e1659916b97b0b3bec21ec6d2e",
+   "sha_match": true
+  }
+ },
+ "canonical_checkpoints_all_present_and_match": true,
+ "canonical_component_checkpoints": {
+  "G": {
+   "checkpoint": "checkpoints/phase21_global_medfilm_fourdomain_seed42_clean_v3/best.pt",
+   "sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+   "spec": "Phase21 (inherits Phase20 global protocol)"
+  },
+  "R_psi": {
+   "checkpoint": "checkpoints/phase25a_barr_regional_refiner_v1_1_roi030/final/final.pt",
+   "sha256": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109",
+   "spec": "Phase25A ROI-0.30 cross-fit 3-fold + final refit"
+  },
+  "B_phi": {
+   "checkpoint": "checkpoints/phase25d_barr_benefit_router_v1_2_1_seed42/final/final.pt",
+   "sha256": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+   "spec": "Phase25D v1.2.1 5-fold OOF + final refit"
+  },
+  "S_omega": {
+   "checkpoint": "checkpoints/phase25f_barr_post_safety_v1_0_seed42/final/final.pt",
+   "sha256": "eee9b97b9921e53fc07eac9281dce64ba518c6e1659916b97b0b3bec21ec6d2e",
+   "spec": "Phase25F post-safety 5-fold OOF + final refit"
+  }
+ },
+ "scope_search_sources": [
+  {
+   "path": "notebooks/phasewise/phase_29_3seed_reproducibility/README.md",
+   "sha256": "01878d1f1507e4ef936bd8afe6574818710aafb37b57fafdee10d520ab35b3f6",
+   "defines_component_scope": false,
+   "declares_spec_doc_that_does_not_exist": "docs/phase29_repro_spec.md"
+  },
+  {
+   "path": "configs/research_protocol.json",
+   "sha256": "df4b137f613f0f30a2efd244f096934e75e0898a9f4f43df08e5c0554b711212",
+   "defines_component_scope": false,
+   "binds_seeds_only": true
+  },
+  {
+   "path": "PROJECT_MASTER_PLAN.md",
+   "sha256": "a3ffe83e39b24172b39663c06f058d74fff04367dea87de965495774db5e3696",
+   "defines_component_scope": false,
+   "title_and_status_only": true
+  },
+  {
+   "path": "docs/TASKS.md",
+   "sha256": "663c8f29fb6353b2fbf5b5326d8bdc75b2d6230901601cf992d3cad58c47d42f",
+   "defines_component_scope": false,
+   "title_and_status_only": true
+  },
+  {
+   "path": "docs/DESIGN.md",
+   "sha256": "971c9e66d4a8b6f5d889153d4e412cad16ed2c91121835f5133d9bfab1c2b5d2",
+   "defines_component_scope": false,
+   "notes_scope": "records that Phase29 three-seed reproducibility is still NOT performed"
+  },
+  {
+   "path": "reports/audits/phase26_downstream_phase_boundary_audit.json",
+   "sha256": "9703974040e67487deabf067e2492872b9c5e8b9c64de349a1e8497663d1c4fe",
+   "defines_component_scope": false,
+   "binds": "title + population ROUTER_DEVELOPMENT + NOT_STARTED"
+  },
+  {
+   "path": "reports/audits/phase28_phase29_boundary_audit.json",
+   "sha256": "77bf3647b1fa4139fbb112dfc4abfe1446378203856d91c7d8fc9f525ac7e485",
+   "defines_component_scope": false,
+   "binds": "population DEV"
+  }
+ ],
+ "scope_physically_defined": false,
+ "scope_definition_absent_reason": "No authoritative artifact states which of G / R_psi / B_phi / S_omega Phase29 must retrain. The Phase29 README points to docs/phase29_repro_spec.md, which does not exist. The word 'three-seed system' does not automatically imply all four components are retrained.",
+ "must_not_assume": "three-seed system == all four components retrained",
+ "per_component_status": {
+  "G": "UNRESOLVED",
+  "R_psi": "UNRESOLVED",
+  "B_phi": "UNRESOLVED",
+  "S_omega": "UNRESOLVED"
+ },
+ "allowed_classifications": [
+  "IN_SCOPE_RETRAIN",
+  "REUSE_CANONICAL_FIXED",
+  "NOT_APPLICABLE"
+ ],
+ "scope_resolved": false,
+ "blocked_terminal_if_unresolved": "PHASE29_BLOCKED__REPRODUCIBILITY_TRAINING_SCOPE_UNRESOLVED",
+ "all_pass": false
+}

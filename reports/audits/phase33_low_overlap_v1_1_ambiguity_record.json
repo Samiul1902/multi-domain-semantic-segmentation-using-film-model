@@ -1,0 +1,49 @@
+{
+ "artifact": "phase33_low_overlap_v1_1_ambiguity_record",
+ "phase": 33,
+ "section": "\u00a7B",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase33_failure_boundary_v1_2",
+ "purpose": "record that the v1.1 LOW_OVERLAP realization rule was NOT exactly frozen, and bind the evidence that produced the fail-closed BLOCK",
+ "v1_1_determination": "LOW_OVERLAP_REALIZATION_RULE_NOT_EXACTLY_FROZEN",
+ "v1_1_action": "BLOCK",
+ "v1_1_blocked_terminal": "PHASE33_TIER0_TIER1_EXECUTION_BLOCKED_PREANALYSIS__LOW_OVERLAP_REALIZATION_RULE_NOT_EXACTLY_FROZEN__NO_RESULTS_COMPUTED",
+ "blocking_evidence": [
+  {
+   "path": "reports/audits/phase33_low_overlap_realization_adjudication.json",
+   "sha256": "a3fe87c19d0377ad7188a7a36c6d78305e24d691569350cb5683484c8cdbfc18",
+   "blocking_element_count": 3
+  },
+  {
+   "path": "reports/audits/phase33_low_overlap_rule_element_adjudication_v2.json",
+   "sha256": "73123ce1554d52bccfe87d75ec240d941712a3ddaaa88ed711470a9b2e7978a8",
+   "blocking_element_count": 3
+  }
+ ],
+ "unresolved_elements": [
+  {
+   "n": 1,
+   "element": "target Dice field",
+   "v1_1_status": "DETERMINABLE_BY_TEXT_NOT_EXPLICIT",
+   "why": "taxonomy v1.1 LOW_OVERLAP required_fields lists BOTH global_dice and a8_dice; no single column was named outright"
+  },
+  {
+   "n": 5,
+   "element": "inclusive/exclusive comparison rule",
+   "v1_1_status": "DETERMINABLE_BY_TEXT_NOT_EXPLICIT",
+   "why": "the operator symbol was never written; 'below' alone would read as '<'"
+  },
+  {
+   "n": 7,
+   "element": "missing/NaN handling",
+   "v1_1_status": "ABSENT",
+   "why": "no Phase33 authority artifact stated a missing/NaN policy"
+  }
+ ],
+ "unresolved_element_count": 3,
+ "resolved_prospectively_by": "reports/audits/phase33_low_overlap_realization_contract_v1_2.json",
+ "resolution_scope": "prospective, pre-outcome, additive; no cutoff, distributional summary, failure prevalence or Phase33 descriptive result had been computed prior to this resolution",
+ "science_definition_changed": false,
+ "generated_utc": "2026-10-04T08:56:12+00:00",
+ "all_pass": true
+}

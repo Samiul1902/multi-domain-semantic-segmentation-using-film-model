@@ -1,0 +1,79 @@
+{
+  "artifact": "PHASE13_PART1B_EPOCH31_CANONICAL_BBOX_EVALUATION",
+  "document_type": "R2C_CANONICAL_REEVALUATION",
+  "created_utc": "2026-09-21T15:27:20.646645Z",
+  "experiment_id": "phase13b_kub_localizer_r512_h128_sigmaeq075_centernetfocal_seed42_clean_v3",
+  "checkpoint": "D:\\Softfors\\jup\\checkpoints\\phase13b_kub_localizer_r512_h128_sigmaeq075_centernetfocal_seed42_clean_v3\\latest.pt",
+  "checkpoint_epoch": 31,
+  "val_cases": 103,
+  "val_components": 152,
+  "component_contract": {
+    "cases": 103,
+    "components": 152,
+    "unique_identities": 152,
+    "strata": {
+      "TINY": 72,
+      "LARGE": 16,
+      "MEDIUM": 36,
+      "SMALL": 28
+    },
+    "hard_tiny_components": 15,
+    "global_empty_images": 5
+  },
+  "proposal_config": {
+    "threshold": 0.1,
+    "margin": 0.2,
+    "top_k": 5,
+    "nms_iou": 0.3
+  },
+  "grid_configurations_evaluated": 0,
+  "val_loss": 2.178007864035093,
+  "bbox_primary": {
+    "tiny_recall90": 0.3888888888888889,
+    "overall_recall90": 0.3881578947368421,
+    "mean_roi_area_fraction": 0.003918121982149612,
+    "hard_tiny_recovered90": 1,
+    "hard_tiny_total": 15,
+    "global_empty_images_covered90": 0,
+    "global_empty_total": 5,
+    "multi_component_recall90": 0.3673469387755102,
+    "mean_proposals_per_image": 4.145631067961165,
+    "overall_recall50": 0.5657894736842105,
+    "any_overlap_recall": 0.625,
+    "mean_coverage": 0.5282302073042642,
+    "zero_denominator": false
+  },
+  "pixel_secondary": {
+    "tiny_recall90": 0.4027777777777778,
+    "overall_recall90": 0.4276315789473684,
+    "mean_roi_area_fraction": 0.003918121982149612,
+    "hard_tiny_recovered90": 1,
+    "hard_tiny_total": 15,
+    "global_empty_images_covered90": 0,
+    "global_empty_total": 5,
+    "multi_component_recall90": 0.40816326530612246,
+    "mean_proposals_per_image": 4.145631067961165,
+    "overall_recall50": 0.5657894736842105,
+    "any_overlap_recall": 0.625,
+    "mean_coverage": 0.547105479528936,
+    "zero_denominator": false
+  },
+  "history_epoch31": {
+    "tiny_recall90": 0.4027777777777778,
+    "overall_recall90": 0.4276315789473684,
+    "mean_roi_area_fraction": 0.003918121982149612,
+    "mean_proposals_per_image": 4.145631067961165,
+    "val_loss": 2.178007864035093
+  },
+  "pixel_reproduction": {
+    "tiny_recall90_abs_diff": 0.0,
+    "overall_recall90_abs_diff": 0.0,
+    "mean_roi_area_fraction_abs_diff": 0.0,
+    "mean_proposals_per_image_abs_diff": 0.0,
+    "val_loss_abs_diff": 0.0,
+    "tolerance": 1e-06
+  },
+  "test_reads": 0,
+  "pixel_reproduction_ok": true,
+  "status": "PASS"
+}

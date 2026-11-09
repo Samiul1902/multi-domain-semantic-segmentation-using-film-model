@@ -1,0 +1,68 @@
+{
+  "artifact": "post_phase14_h3_axis_priority_execution_audit",
+  "task": "POST-PHASE14 H3 SINGLE-AXIS PRIORITY DIAGNOSTIC",
+  "population": {
+    "val_full_field_images": 103,
+    "components": 152,
+    "strata": {
+      "TINY": 72,
+      "SMALL": 28,
+      "MEDIUM": 36,
+      "LARGE": 16
+    },
+    "hard_tiny_denominator": 15,
+    "global_empty_denominator": 5
+  },
+  "frozen_checkpoints": {
+    "global_unetpp_phase10": {
+      "sha256": "ec7eb13f32e43af27eab7fc617bd1a2a8fcce1d6651a1b4a3653f3e4d1283269"
+    },
+    "regional_refiner_phase14_epoch56": {
+      "sha256": "2e09e3a9c39c731687db1a9fef0c80881ed6235e4cda070bb4b8b382caa45daa"
+    },
+    "stage4d_localizer_phase13b_epoch53": {
+      "sha256": "7673c34a2f2c86eca2e45c1bc6abe77842d17cd09f122f2da0f2d414ca492273"
+    }
+  },
+  "counters": {
+    "search_sweeps": 0,
+    "tuning_runs": 0,
+    "checkpoint_comparisons": 0,
+    "retraining": 0,
+    "h3_training": 0,
+    "test_reads": 0,
+    "external_test_reads": 0
+  },
+  "governance": {
+    "no_training": true,
+    "no_h3": true,
+    "no_threshold_search": true,
+    "no_proposal_search": true,
+    "no_checkpoint_change": true,
+    "external_data_used": false,
+    "test_split_reads": 0,
+    "phase15_status": "NOT_STARTED_AND_NOT_AUTHORIZED",
+    "h3_training": "NOT_STARTED"
+  },
+  "run_metadata": {
+    "device": "cuda (NVIDIA GeForce RTX 3060 Ti)",
+    "duration_sec": 217,
+    "n_images_processed": 103,
+    "n_components": 152,
+    "n_injected_rois": 79,
+    "interventions_executed": [
+      "A_ONLY",
+      "C_ONLY_reused",
+      "A_PLUS_C_upper_bound",
+      "ORACLE_REGIONAL"
+    ],
+    "no_search_no_tuning_confirmed": true
+  },
+  "frozen_references": {
+    "Tg": 0.7916666666666666,
+    "G": 0.20833333333333337,
+    "Dg": 0.6359172411726776,
+    "Dice_gate": 0.6159172411726777
+  },
+  "generated_utc": "2026-09-25T03:26:11Z"
+}

@@ -1,0 +1,26 @@
+{
+ "artifact": "phase29_seed3407_somega_target_freeze",
+ "phase": 29,
+ "stage": "SEED_SPECIFIC_SOMEGA_TARGET_FREEZE",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_phase29_repro_v1_1",
+ "generated_utc": "2026-10-02T20:19:35+00:00",
+ "master_seed": 3407,
+ "target_path": "data_cache\\phase29_seed3407\\phase29_seed3407_somega_targets.csv",
+ "target_sha256": "ad06af816ee3c83c37541acc7e1ee2f0cab69295ac0ba45ca03a92ffc3a8f903",
+ "rule": "target = 1 iff DeltaDice > 0; exact zero -> 0",
+ "rows": 4957,
+ "n_positive": 2631,
+ "n_negative": 2326,
+ "n_zero_delta": 41,
+ "checks": {
+  "rows_4957": true,
+  "no_missing": true,
+  "no_duplicate": true,
+  "zero_delta_maps_to_0": true,
+  "target_rule_strict_positive": true
+ },
+ "n_failed": 0,
+ "blocked_terminal_if_fail": "PHASE29_PHASE_C_BLOCKED__SEED_SPECIFIC_TARGET_FAILURE",
+ "all_pass": true
+}

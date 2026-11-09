@@ -1,0 +1,156 @@
+{
+ "artifact": "phase35_v1_0g_to_v1_0h_semantic_diff",
+ "section": "§J",
+ "phase": 35,
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase35_interpretability_v1_0h",
+ "diff_method": "AST_FUNCTION_BODY_HASH + MODULE_LEVEL_ASSIGNMENT_AST_DUMP + NUMERIC_TOKEN_MULTISET",
+ "v1_0g_source": "scripts/analysis/phase35_interpretability_execution_v1_0g.py",
+ "v1_0g_source_sha256": "88456e46c94e53d45b10d864d9dbcd38eb773d7dd441441def9e6f221a0c9be3",
+ "v1_0h_source": "scripts/analysis/phase35_interpretability_execution_v1_0h.py",
+ "v1_0h_source_sha256": "48193f09672b047757e0eba9fa674df12c5b00a41629ba9671e48b50fe81ee81",
+ "changed_functions": [
+  "empty_mask_helper_check_insession_actual_logits",
+  "exact_counter_contract_check",
+  "extension_counter_baseline_check",
+  "legacy_counter_baseline_check",
+  "merge_observed_counters",
+  "mode_smoke",
+  "smoke_synthetic_target_mask_rank2"
+ ],
+ "changed_module_level_assign_targets": [
+  "CLASSIFICATION",
+  "EXPECTED_COUNTERS_V1_0G",
+  "EXPECTED_COUNTERS_V1_0H",
+  "EXPECTED_COUNTER_COUNT_V1_0H",
+  "LEGACY_COUNTER_STORE",
+  "ONLY_CHANGE",
+  "REVISION",
+  "SMOKE_COUNTERS",
+  "SMOKE_COUNTERS_EXT",
+  "SMOKE_EXPECTED_COUNTERS",
+  "V1_0H_EXTENSION_COUNTER_KEYS",
+  "V1_0H_LEGACY_COUNTER_OWNER_MODULE",
+  "_FROZEN_V1_0C_EXPECTED",
+  "_FULL_EXPECTED_COUNTERS_V1_0H"
+ ],
+ "numeric_token_differences": {
+  "7": [
+   3,
+   4
+  ],
+  "1.0": [
+   42,
+   71
+  ],
+  "31": [
+   0,
+   1
+  ],
+  "4": [
+   5,
+   8
+  ],
+  "2": [
+   18,
+   25
+  ],
+  "8": [
+   3,
+   4
+  ],
+  "9175": [
+   0,
+   1
+  ],
+  "1": [
+   75,
+   99
+  ],
+  "0": [
+   117,
+   178
+  ],
+  "35": [
+   21,
+   31
+  ]
+ },
+ "scientific_protocol_changed": false,
+ "model_execution_semantics_changed": false,
+ "gradcam_mathematics_changed": false,
+ "router_mathematics_changed": false,
+ "protected_data_semantics_changed": false,
+ "allowed_changes": [
+  "COUNTER_STORE_OWNERSHIP_RECONCILIATION",
+  "PRIMARY_ALIAS_MIRROR_RESTORATION",
+  "FULL_35_KEY_EXPECTED_TABLE",
+  "EXACT_COUNTER_KEYSET_VALIDATION",
+  "TERMINAL_REPORTING_SEMANTIC_CLARIFICATION"
+ ],
+ "forbidden_change_audit": {
+  "G_construction_loading": "UNCHANGED (inherited V0B.load_g_component call site identical)",
+  "B_phi_construction_loading": "UNCHANGED",
+  "checkpoint_identity": "UNCHANGED",
+  "FiLM_semantics": "UNCHANGED (V0C.smoke_film_validate call)",
+  "task_embeddings": "UNCHANGED (V0C.smoke_embedding_validate call)",
+  "synthetic_image": "UNCHANGED (V0C.smoke_synthetic_image)",
+  "scientific_target_helper": "UNCHANGED (V0D.gradcam_target_scalar_rank_safe)",
+  "mask_rank": "UNCHANGED",
+  "GradCAM_hooks": "UNCHANGED",
+  "target_scalar": "UNCHANGED",
+  "autograd_mathematics": "UNCHANGED",
+  "alpha_calculation": "UNCHANGED",
+  "ReLU": "UNCHANGED",
+  "upsampling": "UNCHANGED (bilinear 512x512 align_corners=False)",
+  "CAM_normalization": "UNCHANGED (cam_normalize_guarded)",
+  "eight_stage_finite_guards": "UNCHANGED",
+  "actual_same_forward_logits_check": "UNCHANGED mathematically (same helper, same atol/rtol)",
+  "atol_rtol": "UNCHANGED (1e-7 / 0)",
+  "parameter_grad_audit": "UNCHANGED",
+  "model_state_immutability": "UNCHANGED",
+  "router_numeric_input": "UNCHANGED",
+  "router_normalization": "UNCHANGED",
+  "raw_delta_hat": "UNCHANGED",
+  "GradientxInput": "UNCHANGED",
+  "zero_denominator_NULL_policy": "UNCHANGED",
+  "R_psi_S_omega_exclusion": "UNCHANGED",
+  "protected_data_guards": "UNCHANGED"
+ },
+ "generated_utc": "2026-10-05T05:50:16Z",
+ "all_pass": true,
+ "scientific_adjacent_function_diffs": {
+  "empty_mask_helper_check_insession_actual_logits": {
+   "mathematical_changes": "NONE",
+   "changes": [
+    "counter target: SMOKE_COUNTERS -> SMOKE_COUNTERS_EXT (bookkeeping)",
+    "comment v1.0g->v1.0h",
+    "string label (v1.0g)->(v1.0h)"
+   ],
+   "atol": "1e-7 (unchanged)",
+   "rtol": "0 (unchanged)",
+   "same_actual_G_logits_used": true,
+   "surrogate_zero_logits_used": false,
+   "additional_G_forwards": 0,
+   "additional_autograd_calls": 0
+  },
+  "smoke_synthetic_target_mask_rank2": {
+   "mathematical_changes": "NONE",
+   "changes": [
+    "counter target: SMOKE_COUNTERS -> SMOKE_COUNTERS_EXT (bookkeeping)"
+   ],
+   "documented_contract": "invokes frozen V0D producer exactly once; its inherited alias increment (V0D.SMOKE_COUNTERS['synthetic_smoke_target_masks'], live legacy store) occurs exactly once; extension primary incremented exactly once"
+  },
+  "mode_smoke": {
+   "mathematical_changes": "NONE",
+   "changes": [
+    "added counter_baseline gate BEFORE construction",
+    "added canonical merge_observed_counters()",
+    "added exact_counter_contract_check() three separate booleans",
+    "added unambiguous terminal reporting fields",
+    "counter_contract now reads primary/empty from EXT and the alias from the LEGACY store"
+   ]
+  },
+  "result_artifact_sha256": null
+ }
+}

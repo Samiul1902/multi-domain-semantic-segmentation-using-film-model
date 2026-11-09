@@ -1,0 +1,98 @@
+{
+  "release": "BARR-M1 v1.0d RC1",
+  "date": "2026-10-27",
+  "date_basis": "client Asia/Dhaka; not trusted authorization time",
+  "executable": "scripts/analysis/barr_m1_release_candidate_v1_0d_rc1.py",
+  "executable_sha256": "1021c9b2b73227b6401d46000f7d108bd8e577cbcf6901f61d88f23fab4b1af8",
+  "dependencies": {
+    "scripts/analysis/barr_m1_v1_0d_repaired/analysis.py": "1e778cd5f9a44075a65e5702703b471aa9f75974f698e0af3611b793a5daf0d2",
+    "scripts/analysis/barr_m1_v1_0d_repaired/authorization.py": "d85975c0c020f791ae9fc6c516a3251821a2bebb929617858070b4611edf995b",
+    "scripts/analysis/barr_m1_v1_0d_repaired/contracts.py": "0257eb71f66a73a933a0ebdf086801c05977bc1afd05eee728bcb85fbf52f5cf",
+    "scripts/analysis/barr_m1_v1_0d_repaired/storage.py": "8ff6d536ab6aa99b7b333db2962373f2138b51cf1c90c8d52230a30f9cab583b",
+    "scripts/analysis/barr_m1_v1_0d_repaired/__init__.py": "ae26a7a4e44634aa836da4073befd3b5c4593cdbff8dd77ef77ac6f06712fb5d",
+    "scripts/analysis/barr_m1_v1_0d_repaired/__main__.py": "ebe41f5013ed78dbc4149b91ef8e2c1a5a84f6b1b8dfe1dccf779478c69b538a",
+    "scripts/analysis/barr_m1_v1_0d_repaired/requirements.txt": "5b67f202126e0492b824fcb17c6b54b726ef95bc9eb2cad1403757a0e14aa7c8"
+  },
+  "frozen_gate_sha256": "e82ecdb781a56355a9a0a1ebabd948932fee0e15e71d90770bbd0b8459e96c32",
+  "protocol_sha256": "a1a59cffc83e7b167b6ae28f75123167abf06d37d080e09c3cc0cdf519419a42",
+  "erratum_sha256": "7653cefd5b1bf6a1e28e5c9f65e1850a561f7316d48226dfb0859195c1c38f45",
+  "inputs": {
+    "phase25c_oof_labels": {
+      "path": "data_cache/phase25c_barr_oof_paired_gain_labels_v1_2/phase25c_oof_paired_gain_labels.csv",
+      "sha256": "fd6ca32c33a3bddb75f986b1350d54ec35b11d3bf5cb0fdc029962a5aa94865f"
+    },
+    "phase25e_c8_membership": {
+      "path": "reports/tables/phase25e_policy_memberships_v1_0/C8_lambda0.25_budget0.25.csv",
+      "sha256": "4c411d589866434b824245d3c940bc09873f3cbc096ddc8a44776cd56273393b"
+    },
+    "phase25f_oof_safety": {
+      "path": "data_cache/phase25f_barr_post_safety_v1_0/phase25f_oof_safety_predictions.csv",
+      "sha256": "a9f63edd6d58a9a1d78a052a3e4539c6e0dd4d68bfb1c09c4c36789c441ebdee"
+    },
+    "phase25b_dev_metadata": {
+      "path": "data_cache/phase25b_barr_pre_refinement_features_v1_2/metadata.csv",
+      "sha256": "ee8c304350d28d907c053a355da1f878ff7f9dd137761034283459aeed071093"
+    },
+    "patient_grouping": {
+      "path": "manifests/phase4_v3/train.csv",
+      "sha256": "28702fc3a5ff8b950db372f03232d335e3a30b1fc2f21db7cd8c066055826ed6"
+    }
+  },
+  "checkpoint_lineage_shas": {
+    "G": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+    "R_psi": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109",
+    "B_phi": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+    "S_omega": "eee9b97b9921e53fc07eac9281dce64ba518c6e1659916b97b0b3bec21ec6d2e"
+  },
+  "population": {
+    "name": "ROUTER_DEVELOPMENT",
+    "n": 4957,
+    "domain_counts": {
+      "BUSI": 512,
+      "ISIC": 2173,
+      "KUB": 1680,
+      "KVASIR": 592
+    },
+    "kub_patients": 267,
+    "evaluation": "IN_SAMPLE"
+  },
+  "arms": [
+    "A0",
+    "A1",
+    "A8"
+  ],
+  "classification": "DESCRIPTIVE_POLICY_COMPARISON",
+  "claims": "DESCRIPTIVE_DEV only",
+  "config": {
+    "K": 1239,
+    "budget": 0.25,
+    "population": "ROUTER_DEVELOPMENT",
+    "n": 4957,
+    "arms": [
+      "A0",
+      "A1",
+      "A8"
+    ],
+    "bootstrap_reps": 2000,
+    "seed": 42
+  },
+  "exclusions": [
+    "A7",
+    "BARR-M2",
+    "EXT-03B baseline training",
+    "EXT-04 onward",
+    "FiLM-off training control",
+    "ROUTER_HOLDOUT",
+    "TEST",
+    "external-data evaluation",
+    "forward inference",
+    "model construction",
+    "new retrospective arms",
+    "training"
+  ],
+  "approval_granted": false,
+  "production_activated": false,
+  "trust_anchor": "NOT_CONFIGURED",
+  "trusted_time": "NOT_ESTABLISHED",
+  "separate_launch_work_order": "ABSENT"
+}

@@ -1,0 +1,121 @@
+{
+ "artifact": "phase27_reproducibility_contract_v1_1",
+ "phase": "27",
+ "classification": "GOVERNANCE_AND_REVIEWER_EVIDENCE_REPAIR_ONLY",
+ "method": "RA-MedFiLM-BARR",
+ "governance_only": true,
+ "no_execution": true,
+ "stage": "REPRODUCIBILITY_CONTRACT_V1_1",
+ "fields": {
+  "device": {
+   "value": "cuda",
+   "source": "src/utils/device.py",
+   "source_sha": "9adabfbd145a5952275aa25b0ec99aab8a5114bb41aa443ecde52ce19a8448b6"
+  },
+  "torch_dtype": {
+   "value": "float32",
+   "source": "src/data/transforms.py",
+   "source_sha": "09fcff4887ff8cda4daa215efad1d504d4d61f70982262022b6c2a30c8cf8bd1"
+  },
+  "amp_autocast_enabled": {
+   "value": true,
+   "source": "reports/audits/phase25b_global_checkpoint_binding.json",
+   "source_sha": "809dff61c25ad1cf183e9bf33d4bd1c3e23f9c7c91c703a0ad686fb8b94c2225"
+  },
+  "amp_dtype": {
+   "value": "float16",
+   "source": "torch.amp.autocast('cuda') default",
+   "source_sha": "58b5586b1ef0a447f81ada61a45cbf9f467dae1a9941ce239e8b8981d3fe870e"
+  },
+  "inference_mode": {
+   "value": false,
+   "source": "canonical uses torch.no_grad()",
+   "source_sha": "58b5586b1ef0a447f81ada61a45cbf9f467dae1a9941ce239e8b8981d3fe870e"
+  },
+  "no_grad": {
+   "value": true,
+   "source": "build_phase25a_global_cache.py",
+   "source_sha": "58b5586b1ef0a447f81ada61a45cbf9f467dae1a9941ce239e8b8981d3fe870e"
+  },
+  "model_eval": {
+   "value": true,
+   "source": "reports/audits/phase25b_global_checkpoint_binding.json",
+   "source_sha": "809dff61c25ad1cf183e9bf33d4bd1c3e23f9c7c91c703a0ad686fb8b94c2225"
+  },
+  "sample_ordering": {
+   "value": "(dataset asc, sample_id asc)",
+   "source": "build_phase25a_global_cache.py:97",
+   "source_sha": "58b5586b1ef0a447f81ada61a45cbf9f467dae1a9941ce239e8b8981d3fe870e"
+  },
+  "batch_size": {
+   "value": 8,
+   "source": "build_phase25a_global_cache.py:66",
+   "source_sha": "58b5586b1ef0a447f81ada61a45cbf9f467dae1a9941ce239e8b8981d3fe870e"
+  },
+  "batch_partition_rule": {
+   "value": "contiguous chunks of 8 inside a single domain, sorted by (dataset, sample_id)",
+   "source": "run_phase25b_determinism.py docstring",
+   "source_sha": "4997cd6fff2c8a3f9b46c478350d1699b7de2445225acc004b0e380cd77c8557"
+  },
+  "num_workers": {
+   "value": "NOT_APPLICABLE__SINGLE_PROCESS_MANUAL_BATCHING",
+   "source": "canonical caches batch manually, no DataLoader workers",
+   "source_sha": "58b5586b1ef0a447f81ada61a45cbf9f467dae1a9941ce239e8b8981d3fe870e"
+  },
+  "pin_memory": {
+   "value": "NOT_APPLICABLE__MANUAL_BATCHING",
+   "source": "manual torch.stack(...).to(device)",
+   "source_sha": "58b5586b1ef0a447f81ada61a45cbf9f467dae1a9941ce239e8b8981d3fe870e"
+  },
+  "non_blocking_transfer": {
+   "value": false,
+   "source": "canonical uses .to(device) without non_blocking",
+   "source_sha": "58b5586b1ef0a447f81ada61a45cbf9f467dae1a9941ce239e8b8981d3fe870e"
+  },
+  "seed": {
+   "value": 42,
+   "source": "MASTER_DEVELOPMENT_SEED ; bootstrap seed 42",
+   "source_sha": "58b5586b1ef0a447f81ada61a45cbf9f467dae1a9941ce239e8b8981d3fe870e"
+  },
+  "probability_output_dtype": {
+   "value": "float32",
+   "source": "torch.sigmoid(logits.float()).cpu().numpy()",
+   "source_sha": "58b5586b1ef0a447f81ada61a45cbf9f467dae1a9941ce239e8b8981d3fe870e"
+  },
+  "probability_storage_dtype": {
+   "value": "float16",
+   "source": "prob512[gi] = p512.astype(np.float16)",
+   "source_sha": "58b5586b1ef0a447f81ada61a45cbf9f467dae1a9941ce239e8b8981d3fe870e"
+  },
+  "interpolation_mode": {
+   "value": "BILINEAR",
+   "source": "src/data/transforms.py",
+   "source_sha": "09fcff4887ff8cda4daa215efad1d504d4d61f70982262022b6c2a30c8cf8bd1"
+  },
+  "align_corners": {
+   "value": false,
+   "source": "torch interpolate default / transforms",
+   "source_sha": "09fcff4887ff8cda4daa215efad1d504d4d61f70982262022b6c2a30c8cf8bd1"
+  },
+  "deterministic_algorithm_settings": {
+   "value": "cudnn.benchmark NOT forced True; determinism established by exact batch membership replay (max_abs 0.0), not by cudnn.deterministic",
+   "source": "run_phase25b_determinism.py + phase25b_feature_determinism.json",
+   "source_sha": "4997cd6fff2c8a3f9b46c478350d1699b7de2445225acc004b0e380cd77c8557"
+  },
+  "batch_membership_sensitivity": {
+   "value": "SENSITIVE_UNDER_AUTOCAST_FP16__EXACT_PARTITION_MANDATORY",
+   "source": "run_phase25b_determinism.py",
+   "source_sha": "4997cd6fff2c8a3f9b46c478350d1699b7de2445225acc004b0e380cd77c8557"
+  }
+ },
+ "all_scientifically_material_values_sourced": true,
+ "checks": {
+  "device_sourced": true,
+  "dtype_sourced": true,
+  "autocast_sourced": true,
+  "batch_sourced": true,
+  "storage_dtype_sourced": true,
+  "membership_sensitivity_classified": true
+ },
+ "all_pass": true
+}

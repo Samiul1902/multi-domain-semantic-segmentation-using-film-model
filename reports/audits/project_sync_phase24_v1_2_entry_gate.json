@@ -1,0 +1,206 @@
+{
+ "artifact": "project_sync_phase24_v1_2_entry_gate",
+ "phase": "24/25A/25B",
+ "classification": "SPECIFICATION_COMPLETENESS_AND_GOVERNANCE_SYNC",
+ "expected": {
+  "phase25a_terminal": "PHASE25A_CANONICAL_RERUN_COMPLETE__ROI_PROPOSAL_THRESHOLD_0P30__SEGMENTATION_OUTPUT_THRESHOLD_0P50__PHASE25B_ELIGIBLE_NOT_STARTED",
+  "phase25a_notebook_sha256": "fd2bab0168eb3477125c655ada1bd5eb4b060f41a5b354fdbaaf6fd621dfb2dd",
+  "phase25a_final_checkpoint_sha256": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109",
+  "phase25a_refiner_params": 1276401,
+  "phase25a_gmacs": 3.230663,
+  "roi_proposal_threshold": 0.3,
+  "segmentation_output_threshold": 0.5,
+  "phase25b_terminal": "PHASE25B_BLOCKED__FROZEN_FEATURE_SPEC_INCOMPLETE",
+  "phase24_v1_1_notebook_sha256": "612d71700c1c1a45b94b8fcb8a3ff427bf32f6f6453130febeec49c6ec78caef",
+  "phase24_v1_2_notebook_sha256_before": "97f0efd99a9be662b2c5ba2338132b70131e07ddb01eec58eac2b80295adddff",
+  "phase24_v1_2_terminal": "PHASE24_ROUTER_FEATURE_SPEC_V1_2_BLOCKED__SUPERVISOR_REVIEW_REQUIRED",
+  "phase24_v1_2_terminal_post_closure": "PHASE24_ROUTER_FEATURE_SPEC_V1_2_COMPLETE__RF1_RF2_RF3_RESOLVED__PHASE25B_REENTRY_ELIGIBLE_NOT_STARTED",
+  "defect_ids": [
+   "RF3-DEFECT",
+   "ROUTER-PARAM-DISCREPANCY"
+  ]
+ },
+ "observed": {
+  "phase25a_notebook_sha256": "fd2bab0168eb3477125c655ada1bd5eb4b060f41a5b354fdbaaf6fd621dfb2dd",
+  "phase25a_terminal": "PHASE25A_CANONICAL_RERUN_COMPLETE__ROI_PROPOSAL_THRESHOLD_0P30__SEGMENTATION_OUTPUT_THRESHOLD_0P50__PHASE25B_ELIGIBLE_NOT_STARTED",
+  "phase25b_terminal": "PHASE25B_BLOCKED__FROZEN_FEATURE_SPEC_INCOMPLETE",
+  "phase24_v1_2_terminal": "PHASE24_ROUTER_FEATURE_SPEC_V1_2_COMPLETE__RF1_RF2_RF3_RESOLVED__PHASE25B_REENTRY_ELIGIBLE_NOT_STARTED",
+  "phase24_v1_2_failed_checks": []
+ },
+ "checks": [
+  {
+   "check": "phase25a_canonical_notebook_sha_exact",
+   "passed": true,
+   "detail": "fd2bab0168eb3477125c655ada1bd5eb4b060f41a5b354fdbaaf6fd621dfb2dd"
+  },
+  {
+   "check": "phase25a_canonical_final_checkpoint_sha_exact",
+   "passed": true,
+   "detail": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109"
+  },
+  {
+   "check": "phase25a_roi_proposal_threshold_0p30",
+   "passed": true,
+   "detail": 0.3
+  },
+  {
+   "check": "phase25a_segmentation_threshold_0p50",
+   "passed": true,
+   "detail": 0.5
+  },
+  {
+   "check": "phase25a_terminal_exact",
+   "passed": true,
+   "detail": "PHASE25A_CANONICAL_RERUN_COMPLETE__ROI_PROPOSAL_THRESHOLD_0P30__SEGMENTATION_OUTPUT_THRESHOLD_0P50__PHASE25B_ELIGIBLE_NOT_STARTED"
+  },
+  {
+   "check": "phase25a_refiner_params",
+   "passed": true,
+   "detail": 1276401
+  },
+  {
+   "check": "phase25a_gmacs",
+   "passed": true,
+   "detail": 3.230663
+  },
+  {
+   "check": "phase25a_final_freeze_pass",
+   "passed": true,
+   "detail": {
+    "verdict": "PHASE25A_CANONICAL_FINAL_FREEZE_PASS",
+    "n_failed": 0
+   }
+  },
+  {
+   "check": "phase25a_roi050_noncanonical",
+   "passed": true,
+   "detail": "NONCANONICAL_PROTOCOL_DEVIATION__ROI_THRESHOLD_0P50"
+  },
+  {
+   "check": "phase25a_roi050_preserved",
+   "passed": true,
+   "detail": true
+  },
+  {
+   "check": "phase25b_blocked_artifact_exists",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "phase25b_terminal_blocked",
+   "passed": true,
+   "detail": "PHASE25B_BLOCKED__FROZEN_FEATURE_SPEC_INCOMPLETE"
+  },
+  {
+   "check": "phase25b_feature_rows_0",
+   "passed": true,
+   "detail": 0
+  },
+  {
+   "check": "phase25b_notebook_created_false",
+   "passed": true,
+   "detail": false
+  },
+  {
+   "check": "phase25b_global_forward_replay_0",
+   "passed": true,
+   "detail": 0
+  },
+  {
+   "check": "phase25b_router_training_0",
+   "passed": true,
+   "detail": 0
+  },
+  {
+   "check": "phase25c_started_false",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "phase25d_started_false",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "phase25b_no_notebook_on_disk",
+   "passed": true,
+   "detail": []
+  },
+  {
+   "check": "phase25b_no_feature_cache_on_disk",
+   "passed": true,
+   "detail": []
+  },
+  {
+   "check": "phase24_v1_1_provenance_preserved",
+   "passed": true,
+   "detail": "612d71700c1c1a45b94b8fcb8a3ff427bf32f6f6453130febeec49c6ec78caef"
+  },
+  {
+   "check": "phase24_v1_2_rf1_resolved",
+   "passed": true,
+   "detail": "RF1_RESOLVED"
+  },
+  {
+   "check": "phase24_v1_2_rf2_resolved",
+   "passed": true,
+   "detail": "RF2_RESOLVED"
+  },
+  {
+   "check": "phase24_v1_2_rf3_definitions_resolved",
+   "passed": true,
+   "detail": 0
+  },
+  {
+   "check": "post_closure_no_failed_checks",
+   "passed": true,
+   "detail": {
+    "failed_checks": []
+   }
+  },
+  {
+   "check": "phase24_v1_2_terminal_complete",
+   "passed": true,
+   "detail": "PHASE24_ROUTER_FEATURE_SPEC_V1_2_COMPLETE__RF1_RF2_RF3_RESOLVED__PHASE25B_REENTRY_ELIGIBLE_NOT_STARTED"
+  },
+  {
+   "check": "post_closure_defects_remaining_0",
+   "passed": true,
+   "detail": 0
+  },
+  {
+   "check": "dimension_contract_present",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "holdout_outcome_reads_0",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "val_outcome_reads_0_for_repair",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "test_all_zero",
+   "passed": true,
+   "detail": {
+    "test_reads": 0,
+    "test_image_reads": 0,
+    "test_mask_reads": 0,
+    "test_inference": 0
+   }
+  }
+ ],
+ "n_checks": 31,
+ "n_failed": 0,
+ "verdict": "PROJECT_SYNC_PHASE24_V1_2_ENTRY_GATE_PASS",
+ "fail_closed": false,
+ "science_changed": false,
+ "model_instantiations": 0,
+ "training_runs": 0,
+ "feature_rows_extracted": 0,
+ "test_reads": 0
+}

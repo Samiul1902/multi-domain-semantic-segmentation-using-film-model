@@ -1,0 +1,63 @@
+{
+  "artifact": "phase36_v1_2_source_defects_repair_record_v1_3",
+  "section": "\u00a7B",
+  "phase": 36,
+  "method": "RA-MedFiLM-BARR",
+  "revision": "ra_medfilm_barr_phase36_robustness_v1_3",
+  "type": "PRE_SCIENTIFIC_IMPLEMENTATION_REPAIR_ONLY",
+  "classification": "PHASE36_V1_2_SOURCE_AUDIT_BLOCK__SCIENCE_LOOP_SAMPLE_IDENTITY_LOSS_AND_VENDOR_PATH_SUBSTRING_SPLIT_DEFECT__NO_SCIENTIFIC_EFFECT",
+  "generated_utc": "2026-10-05T22:30:00Z",
+  "no_execution": true,
+  "no_source_modification_of_v1_2": true,
+  "torch_imported": false,
+  "v1_2_execution_source": "scripts/analysis/phase36_robustness_execution_v1_2.py",
+  "v1_2_execution_sha256": "66fe435d7ec1d6e6ea10475776992b16fe049c9f3bfd7261caf78792e10bc29a",
+  "v1_2_execution_sha256_reverified": "66fe435d7ec1d6e6ea10475776992b16fe049c9f3bfd7261caf78792e10bc29a",
+  "v1_2a_audit_sha256": "42e819e41eca20ff2b49e11054a1e270b20b2d01f5dea8d8893abd022eb1222d",
+  "v1_2a_audit_sha256_reverified": "42e819e41eca20ff2b49e11054a1e270b20b2d01f5dea8d8893abd022eb1222d",
+  "D1": {
+    "id": "E_SCIENCE_SAMPLE_LEVEL_ROWS",
+    "class": "CONDITION_NAME_ONLY_PLACEHOLDER_ROWS__SAMPLE_IDENTITY_LOSS",
+    "v1_2_sites": [
+      "line 977: image_rows.append({\"condition\": cond, \"base_seed\": bs})",
+      "line 984: proposal_rows.append({\"proposal_condition\": cond})",
+      "downstream: sid = row.get(\"sample_id\") followed by `if sid is None: continue` (lines 991-993, 1011-1013)"
+    ],
+    "effect": "ZERO scientific perturbation evaluations would execute.",
+    "effect_detail": "Every image/proposal row was anonymous (condition-only); the execution loops recovered identity only via row.get('sample_id'), which was always None, so every row was silently skipped. Additionally missing: domain, task_id on perturbation rows; fixed summaries; worst-case summaries.",
+    "verdict_v1_2": "FAIL",
+    "repaired_in_v1_3": true
+  },
+  "D2": {
+    "id": "H_MANIFEST_SPLIT_AUTHORITY",
+    "class": "VENDOR_PATH_SUBSTRING_SPLIT_INFERENCE",
+    "v1_2_sites": [
+      "line 146: _PROTECTED_ROW_TOKENS = (\"holdout\", \"router_holdout\", \"test\")",
+      "line 164: if any(tok == p or tok in p for p in parts): raise ValueError(...)"
+    ],
+    "defect": "v1_2 used substring matching (`\"test\" in path_segment`), which falsely rejects authorized VAL rows under ISIC2018_Task1-2_Test_Input.",
+    "measured_authorized_val_counts": {
+      "Training_Input": 231,
+      "Test_Input": 112
+    },
+    "verdict_v1_2": "FAIL",
+    "repaired_in_v1_3": true
+  },
+  "required_classification": "PHASE36_V1_2_SOURCE_AUDIT_BLOCK__SCIENCE_LOOP_SAMPLE_IDENTITY_LOSS_AND_VENDOR_PATH_SUBSTRING_SPLIT_DEFECT__NO_SCIENTIFIC_EFFECT",
+  "scientific_effect": "NONE__NO_SCIENTIFIC_RESULTS_EXISTED__V1_2_SMOKE_AND_SCIENCE_NEVER_RAN",
+  "authorized_changes_v1_3": [
+    "SAMPLE_LEVEL_SCIENCE_LOOP_IMPLEMENTATION_REPAIR",
+    "MANIFEST_AUTHORITATIVE_SPLIT_GUARD_REPAIR",
+    "GOVERNANCE_LABEL_RECONCILIATION"
+  ],
+  "scientific_semantics_changed": false,
+  "expected_counts_frozen_prospectively": {
+    "authorized_population": 808,
+    "clean_executions": 808,
+    "nonclean_image_realizations_per_sample": 16,
+    "nonclean_image_executions": 12928,
+    "nonclean_proposal_conditions_per_sample": 6,
+    "nonclean_proposal_executions_max": 4848,
+    "logical_image_table_rows_max": 13736
+  }
+}

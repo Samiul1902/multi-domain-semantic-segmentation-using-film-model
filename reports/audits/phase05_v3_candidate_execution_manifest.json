@@ -1,0 +1,139 @@
+{
+  "phase": "Phase-05 Part-1D-R6",
+  "generated_at": "2026-09-19T18:38:38.773688Z",
+  "notebook": {
+    "path": "notebooks/phasewise/phase_05_leakage_audit/phase05_leakage_safe_manifest_v3_candidate.ipynb",
+    "sha256": "2d94668e4ec34a98eb20e87f90757460797298063df4d8b6950a2b3f4f6ec3f0",
+    "file_size_bytes": 1780470,
+    "total_cells": 31,
+    "markdown_cells": 17,
+    "code_cells": 14,
+    "executed_cells": 14,
+    "unexecuted_cells": 0,
+    "errors": 0,
+    "embedded_png": 5
+  },
+  "candidate_counts": {
+    "TRAIN": 5832,
+    "VAL": 808,
+    "TEST": 1683,
+    "QUARANTINED": 118,
+    "TOTAL": 8441
+  },
+  "dataset_split_counts": {
+    "KUB": {
+      "TRAIN": 1978,
+      "VAL": 280,
+      "TEST": 558,
+      "QUARANTINED": 4
+    },
+    "ISIC": {
+      "TRAIN": 2556,
+      "VAL": 357,
+      "TEST": 735,
+      "QUARANTINED": 46
+    },
+    "BUSI": {
+      "TRAIN": 602,
+      "VAL": 84,
+      "TEST": 174,
+      "QUARANTINED": 67
+    },
+    "KVASIR": {
+      "TRAIN": 696,
+      "VAL": 87,
+      "TEST": 216,
+      "QUARANTINED": 1
+    }
+  },
+  "test_immutability": {
+    "test_sha256": "9361eba61c91c034a9aa4988a4df229bba591a5cbd553c98689ac7915da29727",
+    "byte_identical_to_v2": true,
+    "test_count": 1683,
+    "test_content_reads": 0
+  },
+  "busi_provenance": {
+    "source_file": "D:\\Softfors\\omni_seg\\data_raw\\BUSI_WHU Breast Cancer Ultrasound Image  Dataset\\Patient_infos_BUSI-WHU.xlsx",
+    "source_sha256": "14f6bb5332036218e4c59d119d12ea67281b0a4d1373668d35530763f9121d44",
+    "source_file_size_bytes": 92017,
+    "original_manifest_patient_id_field": "NOT_AVAILABLE",
+    "recovered_group_mapping_artifact": "reports/tables/phase05_busi_patient_group_mapping.csv",
+    "recovered_group_mapping_sha256": "df4b01487ea6e1cb5c004e11535e4c3252c19dc3b84cbb21816c737dbaf2753b",
+    "total_cases": 927,
+    "mapped": 927,
+    "unmapped": 0,
+    "ambiguous": 0,
+    "unique_patient_groups": 816,
+    "multi_image_patients": 38,
+    "v2_train_val_group_overlap": 12,
+    "v2_train_test_group_overlap": 20,
+    "v2_val_test_group_overlap": 7,
+    "unique_multi_split_groups": 25,
+    "test_linked_quarantines": 62,
+    "train_val_only_quarantines": 5,
+    "total_busi_quarantined": 67,
+    "v3_active_train_val_group_overlap": 0,
+    "v3_active_train_test_group_overlap": 0,
+    "v3_active_val_test_group_overlap": 0,
+    "scientific_busi_grouping_gate": "PASS"
+  },
+  "artifact_registry": {
+    "manifests/phase4_v3_candidate/all_paired_v3_candidate.csv": "eb3062fa0e84f9952f994df79ed4d767417a912e18dce86560f6e2edcdd02ded",
+    "manifests/phase4_v3_candidate/train_v3_candidate.csv": "28702fc3a5ff8b950db372f03232d335e3a30b1fc2f21db7cd8c066055826ed6",
+    "manifests/phase4_v3_candidate/val_v3_candidate.csv": "082c80b2bda63fd73f371f109c34643adf01edaead921643fb2e44993ba53315",
+    "manifests/phase4_v3_candidate/test_v3_candidate.csv": "9361eba61c91c034a9aa4988a4df229bba591a5cbd553c98689ac7915da29727",
+    "manifests/phase4_v3_candidate/quarantined_v3_candidate.csv": "a4ec1a8c46692f3c2d55d03c73569ce7b44aeeef734abd41e31bf5bf3e60059c",
+    "manifests/phase4_v3_candidate/duplicate_groups_v3_candidate.csv": "830d3c0ce08f735081e5a44fe3a740031da1c70cfc19ebcb4ef89c31acd704fb",
+    "manifests/phase4_v3_candidate/grouping_provenance_v3_candidate.csv": "3eff84851d33e1c8b5894ce05049433287067a5e6088a90f5c67394230317f66",
+    "reports/audits/phase05_v3_candidate_manifest_audit.json": "a74f4d33bcb4fa282b66cd993d6810745601985cb3cf00cbb60295e2c53ec289",
+    "reports/audits/phase05_v3_test_linked_high_risk_audit.json": "11a75d8f5299ab7efd557f627f09f3a5377f79cf47c1b4caccf9145477950ef6",
+    "reports/tables/phase05_v3_population_changes.csv": "f3c206ab913a9f4ac9fcc9835fb210b64a42d8d79c89f97d159359c2524c74a5",
+    "reports/tables/phase05_v3_quarantine_list.csv": "0251eeb4d2a928b5f348f8c6de11e65740b72f54221b30d9711799f573c41006",
+    "reports/tables/phase05_v3_dataset_split_comparison.csv": "f2be9ef520f5723e946b8d5c7d08d1f884083e20b84b7172f32e0b6ec24273f4",
+    "reports/tables/phase05_v3_group_overlap_audit.csv": "5b9b2fe9b8240944d1c6d319e8801c1313054329a14397ee0dc980cc28e31668",
+    "reports/tables/phase05_test_linked_high_risk_phash_pairs.csv": "3bed0ac2f541eb08b1252e7a8f37c40f7f39d218aead85549331abac11dfbc2e",
+    "reports/tables/phase05_busi_patient_group_mapping.csv": "df4b01487ea6e1cb5c004e11535e4c3252c19dc3b84cbb21816c737dbaf2753b",
+    "notebooks/phasewise/phase_05_leakage_audit/code/phase05_build_v3_candidate.py": "86bb5f8ec3af4d11f5ab6573e74c4d1634a06d02e252c112c24b6ceca5a72079",
+    "notebooks/phasewise/phase_05_leakage_audit/code/phase05_validate_v3_candidate.py": "5d570efa68df7c96e4e376c9e41fe80f76995580a57844a004cc720910b840ec",
+    "notebooks/phasewise/phase_05_leakage_audit/code/phase05_v3_visualization.py": "3dfd62ef7116020c1f2326cfe82e4c996cc82e95dc044dcbb8536a096bdcb157"
+  },
+  "leakage_gates": {
+    "active_sample_overlap_TRAIN_VAL_TEST": "0/0/0",
+    "active_kub_patient_overlap_TV_TT_VT": "0/0/0",
+    "active_busi_patient_group_overlap_TV_TT_VT": "0/0/0",
+    "active_exact_train_val_image_duplicates": 0,
+    "active_train_val_d0_high_risk": 0,
+    "active_train_val_d2_high_risk": 0,
+    "active_test_linked_d_leq_2_development_risks": 0,
+    "d4_d6_historical_evidence": "PRESERVED",
+    "busi_group_disjoint_validated_via": "phase05_busi_patient_group_mapping.csv (Patient_infos_BUSI-WHU.xlsx)"
+  },
+  "quarantine_terminology": {
+    "obsolete_term_QUARANTINED_TEST_LINKED_DUPLICATE_RISK": 0,
+    "reason_counts": {
+      "QUARANTINED_TEST_LINKED_PHASH_HIGH_RISK": 34,
+      "QUARANTINED_TEST_LINKED_PATIENT_OVERLAP": 62,
+      "QUARANTINED_SAME_ACQUISITION": 13,
+      "QUARANTINED_BUSI_PATIENT_OVERLAP": 5,
+      "CONSERVATIVE_HIGH_RISK_GROUPING": 3,
+      "QUARANTINED_EXACT_DUPLICATE": 1
+    }
+  },
+  "r5_notebook_sha_historical": "108e719c7f511a689d9e7c326de1ef0261c2be3091346eef280a3f6dda745484",
+  "r6_changes": [
+    "Added phase05_busi_patient_group_mapping.csv (927/927 mapped, 0 unmapped)",
+    "Updated phase05_validate_v3_candidate.py: BUSI disjointness now uses recovered group IDs from mapping CSV (not path-stem heuristic)",
+    "Updated notebook cell 15: BUSI Clinical Metadata Audit with complete provenance table and corrected v2 cross-split group counts (12/20/7)",
+    "Updated notebook cell 16: BUSI disjointness code displays busi_group_source and original_patient_id_field",
+    "Updated notebook cell 29: SHA registry includes BUSI mapping artifact, test-linked high-risk CSV, and test-linked high-risk audit JSON",
+    "Removed misleading 'structural/dataset-level' characterization of BUSI patient overlap (was in R5 note only, corrected in R6)"
+  ],
+  "candidate_membership_changed": false,
+  "scientific_gate": "CHECK_REQUIRED",
+  "training": false,
+  "model_inference": false,
+  "v2_modified": false,
+  "v3_promoted": false,
+  "r6_completed": true,
+  "next_action": "WAIT_FOR_SUPERVISOR_PROMOTION_DECISION"
+}

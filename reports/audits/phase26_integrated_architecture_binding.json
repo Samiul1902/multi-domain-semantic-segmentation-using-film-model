@@ -1,0 +1,46 @@
+{
+ "artifact": "phase26_integrated_architecture_binding",
+ "phase": "26",
+ "classification": "PHASE26_PRE_EXECUTION_TRAINING_SPECIFICATION_AUDIT",
+ "method": "RA-MedFiLM-BARR",
+ "governance_only": true,
+ "architecture_id": "ra_medfilm_barr_narrowed_v1_1",
+ "architecture_spec_source": "reports/audits/phase24_exact_implementation_spec.json",
+ "components": {
+  "G": {
+   "role": "global segmentation (MedFiLM)",
+   "defined": true,
+   "origin": "Phase21"
+  },
+  "R_psi": {
+   "role": "regional refiner",
+   "defined": true,
+   "origin": "Phase25A",
+   "params": 1276401
+  },
+  "B_phi": {
+   "role": "benefit router",
+   "defined": true,
+   "origin": "Phase25D",
+   "params": 36353
+  },
+  "S_omega": {
+   "role": "post-safety selector",
+   "defined": true,
+   "origin": "Phase25F"
+  },
+  "FUSION": {
+   "role": "mask fusion",
+   "defined": true,
+   "rule": "outside frozen ROI: p_final_candidate = p_global; inside frozen ROI: p_final_candidate = resized p_refined",
+   "segmentation_threshold": 0.5
+  }
+ },
+ "forward_architecture_fully_frozen": true,
+ "integrated_forward_composition_defined": true,
+ "phase26_training_architecture_defined": false,
+ "note": "The forward composition of the four frozen components is fully specified and was already exercised at the artifact level in Phase25G.  However, no authoritative source defines a Phase26 TRAINING architecture (whether any component is re-instantiated, shared, or jointly trained).",
+ "verdict": "FORWARD_ARCHITECTURE_FROZEN__TRAINING_ARCHITECTURE_UNDEFINED",
+ "blocking": true,
+ "all_pass": false
+}

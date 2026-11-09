@@ -1,0 +1,32 @@
+{
+ "artifact": "phase34_v1_0_runtime_semantics_and_comparator_defect_record",
+ "phase": 34,
+ "section": "\u00a7B",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase34_efficiency_profiling_v1_1",
+ "classification": "PRE_EXECUTION_SPECIFICATION_SEMANTICS_REPAIR__NO_MEASURED_RESULTS_EXIST",
+ "issues": [
+  {
+   "issue_id": "ISSUE 1",
+   "code": "UNIFORM_FP32_RUNTIME_PROTOCOL_DOES_NOT_MATCH_CANONICAL_COMPONENT_SPECIFIC_INFERENCE_SEMANTICS",
+   "description": "v1.0 froze a uniform float32 / autocast-OFF / inference_mode protocol for ALL components. The frozen canonical G extraction actually runs under autocast(float16) with torch.no_grad() and inference_mode=FALSE.",
+   "authority": "reports/audits/phase29_phase_d_component_inference_semantics_contract_v1_1.json + reports/audits/phase30_component_inference_semantics_contract.json"
+  },
+  {
+   "issue_id": "ISSUE 2",
+   "code": "LITERAL_ALWAYS_REFINE_PREDECESSOR_COMPARATOR_CONFLATED_WITH_GATED_EXECUTE_ALL_GRAPH",
+   "description": "v1.0 treated 'ALWAYS_REFINE' as the gated full graph. The frozen predecessor semantics define the literal C2 ALWAYS_REFINE anchor as MAC(G) + MAC(R_psi) with NO router (routing bypassed); the gated K=N_eligible graph retains router overhead and must be labelled separately.",
+   "authority": "reports/audits/phase25e_execution_metrics_contract_v1_0.json (anchor_clarification: 'C1 and C2 bypass routing; gated K=0 and gated K=N_eligible retain router overhead and must be labeled separately')"
+  }
+ ],
+ "model_measurements_already_performed": false,
+ "scientific_runtime_results_exist": false,
+ "latency_results_exist": false,
+ "throughput_results_exist": false,
+ "memory_results_exist": false,
+ "runtime_results_invalidated": false,
+ "repair_required_before_first_measurement": true,
+ "v1_0_artifacts_preserved": true,
+ "generated_utc": "2026-10-04T10:35:59+00:00",
+ "all_pass": true
+}

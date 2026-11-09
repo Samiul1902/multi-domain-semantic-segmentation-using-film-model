@@ -1,0 +1,42 @@
+{
+ "artifact": "phase30_causal_execution_contract",
+ "phase": 30,
+ "section": "\u00a78",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_phase30_final_dev_validation_v1_0",
+ "order": [
+  "1. G: run frozen GlobalMedFiLM once over the holdout population",
+  "2. construct pre-refinement B_phi 202-D inputs from G outputs",
+  "3. B_phi: compute raw logit delta_hat (GT-free)",
+  "4. apply frozen decision threshold (EXECUTE iff utility >= tau_C8)",
+  "5a. SKIP: final = p_global; R_psi NOT run; S_omega NOT run",
+  "5b. EXECUTE: construct ROI -> run R_psi -> construct regional fused candidate",
+  "6. construct canonical 20-D S_omega input from the candidate",
+  "7. S_omega: run; ACCEPT -> final = refined candidate; REJECT -> final = global",
+  "8. threshold final probability at 0.50"
+ ],
+ "SKIP": {
+  "R_psi_exec": 0,
+  "S_omega_exec": 0,
+  "final": "global"
+ },
+ "EXECUTE": {
+  "R_psi_exec": 1,
+  "roi_constructed": true,
+  "regional_candidate_constructed": true,
+  "s_omega_input_from_candidate": true,
+  "S_omega_exec": 1,
+  "ACCEPT": "final refined",
+  "REJECT": "final global"
+ },
+ "formal_relations": {
+  "R_psi_exec": "router_execute",
+  "S_omega_exec": "R_psi_exec",
+  "EXECUTE_THEN_REJECT_incurs_refiner_compute": true,
+  "S_omega_saves_refiner_compute": false,
+  "compute_saving_decision": "B_phi / C8 pre-execution router pre-gate"
+ },
+ "authority": "reports/audits/phase29_phase_d_component_inference_semantics_contract_v1_1.json",
+ "generated_utc": "2026-10-04T02:46:58+00:00",
+ "all_pass": true
+}

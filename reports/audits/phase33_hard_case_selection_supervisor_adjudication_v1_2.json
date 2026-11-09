@@ -1,0 +1,76 @@
+{
+ "artifact": "phase33_hard_case_selection_supervisor_adjudication_v1_2",
+ "phase": 33,
+ "section": "\u00a7C-\u00a7D",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase33_failure_boundary_v1_2",
+ "bound_table": {
+  "path": "reports/tables/phase33_hard_case_ids_v1_2.csv",
+  "sha256": "6d4bc1d01682e719617d8814913a6b2cd34b10253a144505849b44b8a2c84d3b",
+  "preserved": true
+ },
+ "bound_supervisor_resolution": {
+  "path": "reports/audits/phase33_hard_case_panel_scope_supervisor_resolution_v1_2.json",
+  "sha256": "88fc9b56a6458ae6f19381b5c83c8115f07098d17fedab6b72504e2798d45222"
+ },
+ "verification": {
+  "rows": 20,
+  "rows_expected": 20,
+  "rows_match": true,
+  "unique_sample_id": 20,
+  "unique_sample_id_expected": 20,
+  "unique_sample_id_match": true,
+  "cross_stratum_duplicate_sample_id": 0,
+  "cross_stratum_duplicate_sample_id_expected": 0,
+  "cross_stratum_duplicate_sample_id_match": true,
+  "unique_group_key": 19,
+  "unique_group_key_expected": 19,
+  "unique_group_key_match": true,
+  "duplicated_group_across_combined_cohort": [
+   "PATIENT::patient-00373"
+  ],
+  "duplicated_group_expected": [
+   "PATIENT::patient-00373"
+  ],
+  "per_panel_group_key_unique": {
+   "execute_then_reject": true,
+   "harmful_activation": true,
+   "low_dice_bottom_decile": true,
+   "missed_benefit": true
+  },
+  "all_panels_individually_group_key_unique": true,
+  "stratum_counts": {
+   "low_dice_bottom_decile": 8,
+   "harmful_activation": 8,
+   "execute_then_reject": 4,
+   "missed_benefit": 0
+  },
+  "stratum_counts_expected": {
+   "low_dice_bottom_decile": 8,
+   "harmful_activation": 8,
+   "missed_benefit": 0,
+   "execute_then_reject": 4
+  },
+  "stratum_counts_match": true
+ },
+ "conclusion": "ORIGINAL_HARD_CASE_TABLE_COMPLIANT_UNDER_SUPERVISOR_RESOLVED_PER_PANEL_GROUP_CAP_SCOPE",
+ "sample_global_dedup_pass": true,
+ "per_panel_group_cap_pass": true,
+ "global_group_key_uniqueness_required": false,
+ "reselection_required": false,
+ "reselection_authorized": false,
+ "original_hard_case_table_preserved": true,
+ "defect_retraction": {
+  "previously_asserted_classification": "HARD_CASE_GLOBAL_GROUP_CAP_VIOLATION__CORE_TIER0_TIER1_SCIENCE_UNAFFECTED",
+  "previously_asserted_classification_is_final_phase33_adjudication": false,
+  "final_disposition": "ASSERTED_GLOBAL_GROUP_CAP_DEFECT_NOT_ESTABLISHED_BY_FROZEN_CONTRACT__ORIGINAL_SELECTION_COMPLIANT_UNDER_SUPERVISOR_PANEL_SCOPE_RESOLUTION",
+  "prior_audit_history_deleted": false,
+  "preserved_governance_trail": [
+   "the earlier asserted global-cap concern (this task's originating directive)",
+   "the subsequent fail-closed ambiguity record (reports/audits/phase33_hard_case_group_cap_scope_ambiguity_record_v1_2.json, sha256 2212bd2ec567a1fd9918c1119f434f8b6f7062428080f9d2cdc120a604197b0e)",
+   "this supervisor per-panel scope resolution + adjudication"
+  ]
+ },
+ "generated_utc": "2026-10-04T09:35:17+00:00",
+ "all_pass": true
+}

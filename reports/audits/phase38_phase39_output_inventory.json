@@ -1,0 +1,89 @@
+{
+  "classification": "PHASE38_PHASE39_OUTPUT_INVENTORY",
+  "generated_utc": "2026-10-11T06:40:00Z",
+  "phase": 38,
+  "purpose": "predeclared Phase39 output namespace; write-once/exclusive-create where applicable",
+  "n_outputs": 13,
+  "write_semantics": "open(x, 'x') exclusive-create; no overwrite fallback",
+  "all_scientific_targets_absent_now": true,
+  "outputs": [
+    {
+      "name": "START",
+      "path": "reports/audits/phase39_final_test_start.json",
+      "write_once": true,
+      "absent_now": true
+    },
+    {
+      "name": "RESULT",
+      "path": "reports/audits/phase39_final_test_scientific_result.json",
+      "write_once": true,
+      "absent_now": true
+    },
+    {
+      "name": "FAILURE",
+      "path": "reports/audits/phase39_final_test_failure.json",
+      "write_once": true,
+      "absent_now": true
+    },
+    {
+      "name": "PROCESS_EXIT",
+      "path": "reports/audits/phase39_final_test_process_exit.json",
+      "write_once": true,
+      "absent_now": true
+    },
+    {
+      "name": "stdout",
+      "path": "<console>",
+      "write_once": false,
+      "absent_now": true
+    },
+    {
+      "name": "stderr",
+      "path": "<console>",
+      "write_once": false,
+      "absent_now": true
+    },
+    {
+      "name": "journal",
+      "path": "reports/audits/phase39_final_test_journal.jsonl",
+      "write_once": false,
+      "absent_now": true
+    },
+    {
+      "name": "per_sample_TEST_table",
+      "path": "reports/tables/phase39_final_test/per_sample.csv",
+      "write_once": true,
+      "absent_now": true
+    },
+    {
+      "name": "domain_level_summary",
+      "path": "reports/tables/phase39_final_test/per_domain.csv",
+      "write_once": true,
+      "absent_now": true
+    },
+    {
+      "name": "statistical_outputs",
+      "path": "reports/audits/phase39_final_test_statistical.json",
+      "write_once": true,
+      "absent_now": true
+    },
+    {
+      "name": "TEST_figures",
+      "path": "reports/figures/phase39_final_test/",
+      "write_once": true,
+      "absent_now": true
+    },
+    {
+      "name": "figure_registry",
+      "path": "reports/audits/phase39_final_test_figure_registry.json",
+      "write_once": true,
+      "absent_now": true
+    },
+    {
+      "name": "provenance_audit",
+      "path": "reports/audits/phase39_final_test_runtime_source_integrity_manifest.json",
+      "write_once": true,
+      "absent_now": true
+    }
+  ]
+}

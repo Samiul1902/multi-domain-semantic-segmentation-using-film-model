@@ -1,0 +1,31 @@
+{
+  "classification": "PHASE38_PHASE39_PREEXECUTION_SOURCE_FREEZE",
+  "generated_utc": "2026-10-11T06:45:00Z",
+  "phase": 38,
+  "frozen_before_test_access": true,
+  "execution_source": "scripts/analysis/phase39_final_test_execution_v1_0.py",
+  "execution_source_sha256": "0f2fcad3fc2de19cd24b86777a48fe7fe30349cef5fef9467b84a3faf274c7df",
+  "launcher": "scripts/analysis/launch_phase39_final_test_v1_0.py",
+  "launcher_sha256": "bd06c74e977a5c3a9cf4a1246c616d5a18c4f9b10c6c4483ddc2000247d6f1ac",
+  "supervisor": "scripts/analysis/supervise_phase39_final_test_v1_0.py",
+  "supervisor_sha256": "5e4e24fec2c0614363b15f0ccea976cb13d08b9b0d13ce5e80a0e8ba32a2f485",
+  "common_sha256": "3e3fa76f5462b0cf85f4a6d4002da7b74e9c524845b07ba39f901438635e68b6",
+  "model_loader_sha256": "5e47ea1cc92ef86a8bcd7d28dd37a3590461609ef4ac5a2112456d3ac22ecc92",
+  "inference_sha256": "6af3adb9531decfa5896564d9e13297ca0d819dbde0faaa66ca9d9a0492654f8",
+  "authority_bundle_sha256": "ffe5e14717a6117df16df6a80ab2ac3ea801d9c5bce6f12c50b7c4fc56c38ca1",
+  "no_same_version_rerun": true,
+  "fail_closed_conditions": [
+    "checkpoint_sha_mismatch",
+    "source_sha_mismatch",
+    "authority_bundle_mismatch",
+    "wrong_interpreter",
+    "duplicate_START_RESULT_FAILURE_PROCESS_EXIT",
+    "existing_output_target",
+    "unauthorized_population",
+    "wrong_population_cardinality",
+    "unexpected_task_domain",
+    "missing_required_input",
+    "non_finite_model_weights",
+    "output_schema_mismatch"
+  ]
+}

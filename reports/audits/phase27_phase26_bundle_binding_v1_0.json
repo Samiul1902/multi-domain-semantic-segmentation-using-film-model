@@ -1,0 +1,53 @@
+{
+ "artifact": "phase27_phase26_bundle_binding_v1_0",
+ "phase": "27",
+ "classification": "PHASE27_PRE_EXECUTION_PRESERVATION_AUDIT_SPECIFICATION",
+ "method": "RA-MedFiLM-BARR",
+ "governance_only": true,
+ "no_execution": true,
+ "stage": "PHASE26_BUNDLE_BINDING",
+ "binding_target": "artifacts/phase26_ra_medfilm_barr_bundle_v1_0/canonical_bundle_manifest.json",
+ "bundle_manifest_sha256": "f7aebb0f646bcc8de49fa91b70a4c4cc1051c9998ab6b055a8d4d187809cb3d9",
+ "integration_wrapper": "src/models/barr/ra_medfilm_barr.py",
+ "integration_wrapper_sha256": "342f2163690c2fa8d5a601ab1d18178b982d701b916935c33e0793b0801c3724",
+ "phase26_notebook_sha256": "57552c16b5a444f1b2404077eeac0004d37fd198355d679a66eb5c24ea15b4e0",
+ "runtime_policy": {
+  "variant": "A8_C9",
+  "nominal_budget": 0.25,
+  "score": "delta_hat_final - 0.25*C",
+  "threshold_exact": "-5003565381643716252018011/205414980000000000000000000",
+  "decision": "EXECUTE iff utility >= -5003565381643716252018011/205414980000000000000000000",
+  "threshold_space": "C8_FINAL_ROUTER_RESOURCE_AWARE_UTILITY_SPACE",
+  "runtime_authority": true
+ },
+ "component_checkpoint_shas": {
+  "global_medfilm": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+  "regional_refiner": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109",
+  "benefit_router": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+  "post_safety": "eee9b97b9921e53fc07eac9281dce64ba518c6e1659916b97b0b3bec21ec6d2e"
+ },
+ "normalization_shas": {
+  "router_normalization": "ba37742e96610ec5e46fb47c093bf71ae1afd85b2a0db9696b612c873a4ba1fb",
+  "post_safety_normalization": "e112e18b134c6edcdcd0c254c362d0a954a75faffe634cc37a2a17e4fe6f4e7b"
+ },
+ "schema_shas": {
+  "router_schema": "da76aa34f14006146f46ca799f173378274d8c9d0792dc18edb30711a2486dd4",
+  "post_safety_schema": "3e70e20c541b93de752980c34cdfb6fe5af17ebe4c18cbb64397c0bbae465ee5"
+ },
+ "phase27_reuses_frozen_bundle_no_parameter_change": true,
+ "checks": {
+  "bundle_manifest_sha": true,
+  "wrapper_sha": true,
+  "notebook_sha": true,
+  "freeze_runtime_threshold_matches": true,
+  "freeze_wrapper_trainable_parameters_zero": true,
+  "freeze_variant_A8_C9": true,
+  "freeze_budget_0p25": true,
+  "freeze_threshold_authority_final_router": true,
+  "freeze_oof_not_runtime_authority": true,
+  "component_shas_match_freeze": true,
+  "normalization_shas_match_freeze": true,
+  "schema_shas_match_freeze": true
+ },
+ "all_pass": true
+}

@@ -1,0 +1,53 @@
+{
+  "classification": "EXT01_EXTERNAL_OVERLAP_AUDIT",
+  "generated_utc": "2026-10-11T13:00:00Z",
+  "method": "basename + ISIC-stem comparison vs frozen manifests/phase4_v3/{train,val,test,all_paired,quarantined}.csv (image_path, patient_id, case_id, sample_id). No protected TEST pixels opened; no new hashes of frozen data.",
+  "frozen_authorities": {
+    "train": 5832,
+    "val": 808,
+    "test": 1683,
+    "all_paired": 8441,
+    "quarantined": 118
+  },
+  "frozen_naming": {
+    "KUB": "00003-00-2500001.png / patient-0000N",
+    "KVASIR": "cju...UUID.jpg",
+    "ISIC": "ISIC_00NNNNN.jpg",
+    "BUSI": "NNNNN.bmp"
+  },
+  "findings": [
+    {
+      "dataset": "HAM10000",
+      "exact_filename_overlap": 0,
+      "id_overlap": 0,
+      "semantic_risk": "HIGH",
+      "status": "SUSPECTED_SEMANTIC_DUPLICATE__CHECK_REQUIRED",
+      "note": "frozen ISIC images use the same ISIC_ namespace/archive lineage (ISIC-2018 Task 3). No exact filename match found, but content-level independence is not established by filenames alone."
+    },
+    {
+      "dataset": "Stones_where_are_you",
+      "exact_filename_overlap": 0,
+      "id_overlap": 0,
+      "semantic_risk": "LOW",
+      "status": "NO_OVERLAP_DETECTED",
+      "note": "external '.rf.' Roboflow names vs frozen KUB numeric names; different sources."
+    },
+    {
+      "dataset": "CVC-ClinicDB",
+      "exact_filename_overlap": 0,
+      "id_overlap": 0,
+      "semantic_risk": "LOW",
+      "status": "NO_OVERLAP_DETECTED",
+      "note": "numeric N.png vs frozen Kvasir UUID names."
+    },
+    {
+      "dataset": "BrEaST-Lesions_USG",
+      "exact_filename_overlap": 0,
+      "id_overlap": 0,
+      "semantic_risk": "LOW",
+      "status": "NO_OVERLAP_DETECTED",
+      "note": "caseXXX.png vs frozen BUSI NNNNN.bmp names."
+    }
+  ],
+  "conclusion": "No exact filename/ID overlap for any dataset. HAM10000 carries an unresolved same-namespace semantic-duplicate risk requiring content-level adjudication before use."
+}

@@ -1,0 +1,135 @@
+{
+  "artifact": "phase36_science_eligibility_v1_23",
+  "schema": "phase36_science_eligibility/v1",
+  "written_by": "build_phase36_v1_23_eligibility.py",
+  "revision": "ra_medfilm_barr_phase36_robustness_v1_23",
+  "supersedes_revision": "v1.22",
+  "defect_repaired": "D97_V1_22_SUMMARY_REFERENCES_UNDEFINED_COMMON_BEST_SEED_SELECTION",
+  "canonical_interpreter": "D:\\Softfors\\jup\\.venv\\Scripts\\python.exe",
+  "execution_source_sha256": "2287cc78ba60d715ff371ba58f0ea90f772219b510e198bea6053a7043159396",
+  "launcher_sha256": "1f761db7e3b49b41d7d238b8a39ecc288e56f578b5a84a191ccd83225b0de2a2",
+  "supervisor_sha256": "e52a81a3991431fa4b05a2f458a91b12ec2872ece7c83e3cd4e3d9acad874c63",
+  "regression_report": "reports\\audits\\phase36_v1_23_d97_regression_report.json",
+  "regression_report_sha256": "93edd7c98405e58c7a3fbce1307395eab650b7f84ec541ac5315160ae35164e0",
+  "gates": {
+    "1_d97_regression_pass": true,
+    "2_c_attribute_resolution_audit_pass": true,
+    "3_late_path_symbol_resolution_audit_pass": true,
+    "4_v1_22_consumed_history_gate_pass": true,
+    "5_v1_23_output_absence_gate_pass": true,
+    "6_launcher_verify_only_pass": true,
+    "7_supervisor_verify_only_pass": true,
+    "8_existing_contract_coherence_tests_pass": true,
+    "9_TEST_accessed_false": true,
+    "9_ROUTER_HOLDOUT_accessed_false": true,
+    "10_scientific_delta_v1_22_to_v1_23_zero": true,
+    "11_v1_23_science_markers_absent": true
+  },
+  "consumed_history_v1_22": {
+    "revision": "ra_medfilm_barr_phase36_robustness_v1_22",
+    "attempt_consumed": true,
+    "rerun_v1_22_permitted": false,
+    "START_present": true,
+    "RESULT_present": false,
+    "FAILURE_present": true,
+    "PROCESS_EXIT_present": true,
+    "attempt_id": "v1_22sup_32580_2026-10-11T02:24:18Z",
+    "child_exit_code": 1,
+    "termination_observed": true,
+    "termination_kind": "NORMAL_CHILD_COMPLETION",
+    "supervisor_return_rc": 1,
+    "exception_type": "AttributeError",
+    "exception_message": "module 'scripts.analysis.phase36_robustness_common_v1_1' has no attribute 'BEST_SEED_SELECTION'",
+    "failing_stage": "run_science_exception",
+    "failure_source_sha256": "29d29da8a9514db464f2db45f06a1ccaabf65aa302c18cd53bbb7419e2fbbd2b",
+    "automatic_retry": false,
+    "overwrite_permitted": false,
+    "failure_class": "POST_PERTURBATION__STAGE5_SUMMARY_RUNTIME_DEFECT",
+    "failure_terminal": "PHASE36_V1_22_SCIENCE_FIRST_ATTEMPT_FAILED__ARTIFACT_PRESERVED__NO_RETRY",
+    "scientific_model_failure": false,
+    "new_scientific_choice": false,
+    "TEST_accessed": false,
+    "ROUTER_HOLDOUT_accessed": false
+  },
+  "v1_23_output_absence": {
+    "n_reachable_write_targets": 23,
+    "present_targets": [],
+    "all_absent": true
+  },
+  "launcher_verify_only": {
+    "returncode": 0,
+    "verify_only_pass": true,
+    "stdout_tail": "patch_output_absence_pass\": true,\n  \"test_lock_manifest_present\": false,\n  \"router_holdout_lock_manifest_present\": false,\n  \"TEST_accessed\": false,\n  \"ROUTER_HOLDOUT_accessed\": false,\n  \"all_gates_pass\": true\n}\nVERIFY_ONLY=PHASE36_V1_23_LAUNCH_VERIFY_ONLY_PASS\nPURE_RELEASE_STATE=RELEASED\nOUTPUT_ABSENCE=PHASE36_V1_23_REAL_LAUNCH_OUTPUT_ABSENCE_GATE_PASS\nRETURN_BEFORE_TOKEN_SET / START / MODEL_LOAD\n"
+  },
+  "supervisor_verify_only": {
+    "returncode": 0,
+    "verify_only_pass": true,
+    "stdout_tail": "rminal\": {\n   \"scenario\": \"exit_before_terminal\",\n   \"pid\": 37760,\n   \"killed_by_supervisor\": false,\n   \"returncode\": 7,\n   \"stdout_nonempty\": false,\n   \"stderr_nonempty\": false,\n   \"start_like_marker_present\": false,\n   \"expect\": \"returncode == 7 and no terminal artifact\",\n   \"pass\": true\n  }\n },\n \"all_pass\": true,\n \"note\": \"SYNTHETIC TEMPORARY-DIRECTORY FIXTURES ONLY; never the real launcher\"\n}\n"
+  },
+  "scientific_delta_v1_22_to_v1_23": {
+    "value": 0,
+    "round_trip_proof_v1_22_equals_stripped_unbased_v1_23": true,
+    "n_diff_lines": 314,
+    "allowed_delta": "D97 reporting/runtime repair + version-token rebase + provenance/governance version updates only"
+  },
+  "existing_contract_coherence_tests": {
+    "validate_phase36_v1_22_science_repairs.py": {
+      "expected_terminal": "PHASE36_V1_22_SCIENCE_REPAIR_VALIDATION_PASS",
+      "returncode": 0,
+      "pass": true
+    },
+    "phase36_robustness_negative_controls_v1_22.py": {
+      "expected_terminal": "PHASE36_V1_22_NEGATIVE_CONTROLS_PASS",
+      "returncode": 0,
+      "pass": true
+    },
+    "validate_phase36_v1_22_operational_cross_contract.py": {
+      "expected_terminal": "PHASE36_V1_22_OPERATIONAL_CROSS_CONTRACT_PASS",
+      "returncode": 0,
+      "pass": true
+    },
+    "verify_phase36_v1_22_governance_coherence_readonly.py": {
+      "expected_terminal": "PHASE36_V1_22_COHERENCE_VERIFY_PASS",
+      "returncode": 0,
+      "pass": true
+    },
+    "verify_phase36_v1_22_pure_release_gate_readonly.py": {
+      "expected_terminal": "PHASE36_V1_22_PURE_RELEASE_GATE_READONLY_PASS",
+      "returncode": 0,
+      "pass": true
+    },
+    "phase36_robustness_unit_v1_18.py": {
+      "expected_terminal": "PHASE36_V1_18_UNIT_PASS",
+      "returncode": 0,
+      "pass": true
+    }
+  },
+  "existing_interruption_regression_v1_22": {
+    "supervisor_decision_logic_checks_A_E_pass": true,
+    "pre_execution_marker_absence_check_F": false,
+    "note": "Check F asserts the PRE-EXECUTION window (no real v1.22 START/RESULT/FAILURE). The consumed v1.22 attempt legitimately created START+FAILURE markers (bound by the D97 adjudication); check F is therefore expected-false post-consumption and is a consumed-history fact, not a contract/coherence regression. Supervisor decision logic (the actual D95 contract) passes."
+  },
+  "v1_23_science_markers": {
+    "START": {
+      "path": "reports\\audits\\phase36_robustness_science_start_v1_23.json",
+      "exists": false
+    },
+    "RESULT": {
+      "path": "reports\\audits\\phase36_robustness_scientific_result_v1_23.json",
+      "exists": false
+    },
+    "FAILURE": {
+      "path": "reports\\audits\\phase36_robustness_science_failure_v1_23.json",
+      "exists": false
+    },
+    "PROCESS_EXIT": {
+      "path": "reports\\audits\\phase36_robustness_science_process_exit_v1_23.json",
+      "exists": false
+    }
+  },
+  "TEST_accessed": false,
+  "ROUTER_HOLDOUT_accessed": false,
+  "v1_23_science_started": false,
+  "eligibility_state": "ELIGIBLE_NOT_STARTED",
+  "all_gates_pass": true
+}

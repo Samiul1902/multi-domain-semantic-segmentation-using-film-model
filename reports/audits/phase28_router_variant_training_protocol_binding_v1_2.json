@@ -1,0 +1,112 @@
+{
+ "phase": 28,
+ "method": "RA-MedFiLM-BARR",
+ "governance_only": true,
+ "execution": "NONE",
+ "generated_utc": "2026-10-02T12:35:00Z",
+ "artifact": "phase28_router_variant_training_protocol_binding_v1_2",
+ "classification": "ROUTER_ABLATION_TRAINING_PROTOCOL_INHERITANCE_BINDING",
+ "applies_to": [
+  "R1",
+  "R2",
+  "R3"
+ ],
+ "inherits": "Phase25D router-training protocol",
+ "protocol_revision": "ra_medfilm_barr_router_training_v1_2_1",
+ "physically_recovered": true,
+ "recovery_method": "physical_artifact_inspection__not_memory",
+ "authoritative_sources": {
+  "phase25d_frozen_training_spec_binding_v1_2_1": {
+   "path": "reports/audits/phase25d_frozen_training_spec_binding_v1_2_1.json",
+   "sha256": "f590b7170dad0a149d5b9c69a00dd88e76504466318599d2bbd8b3daf86ca6c6"
+  },
+  "phase25d_cv_protocol_v1_2_1": {
+   "path": "reports/audits/phase25d_cv_protocol_v1_2_1.json",
+   "sha256": "276e45f42fa00d74a5338dbef15ed990f548d1a992223e2afb2623c7fe08471e"
+  },
+  "phase25d_nested_cv_split_contract_v1_2_1": {
+   "path": "reports/audits/phase25d_nested_cv_split_contract_v1_2_1.json",
+   "sha256": "15eaa4d177d965bdc6b79588a428e24a0f7778ef42a1830c78774ae01e4db793"
+  },
+  "phase25d_checkpoint_selection_contract_v1_2_1": {
+   "path": "reports/audits/phase25d_checkpoint_selection_contract_v1_2_1.json",
+   "sha256": "77858eaea2e7a5d9bb31a2e4db85eda9d3095c3437e55bd2d2aa9cf5d3258a97"
+  },
+  "phase25d_feature_normalization_contract_v1_2_1": {
+   "path": "reports/audits/phase25d_feature_normalization_contract_v1_2_1.json",
+   "sha256": "63071f65a94df462cdd0880430b7b7ec3e49dc7b397407d61050208d378555a7"
+  },
+  "phase25d_final_refit_seed_contract_v1_2_1": {
+   "path": "reports/audits/phase25d_final_refit_seed_contract_v1_2_1.json",
+   "sha256": "b7f4f82e12ec265a4766fb9fcfa7b57a860803655faee6c1f6acbbf7b3be006e"
+  },
+  "phase25d_cv5_manifest.csv": {
+   "path": "reports/tables/phase25d_cv5_manifest.csv",
+   "sha256": "008b92963664f38e84f33c771cea1db90caae02a366f02b6a83635a535639707"
+  },
+  "train_phase25d_router.py": {
+   "path": "scripts/analysis/train_phase25d_router.py",
+   "sha256": "fc7c1bdf263ae4551dcb8f170d3203adb8540fbc189846265b74f6eca1541e91"
+  },
+  "phase25c_oof_paired_gain_labels.csv": {
+   "path": "data_cache/phase25c_barr_oof_paired_gain_labels_v1_2/phase25c_oof_paired_gain_labels.csv",
+   "sha256": "fd6ca32c33a3bddb75f986b1350d54ec35b11d3bf5cb0fdc029962a5aa94865f"
+  },
+  "phase25b_features.npy": {
+   "path": "data_cache/phase25b_barr_pre_refinement_features_v1_2/features.npy",
+   "sha256": "9c241963b54f23de1c9671ff6670dde7d6f7e2510869ef5ebc1baf3f7c833e0a"
+  }
+ },
+ "bound_fields": {
+  "outer_folds": 5,
+  "outer_cv_algorithm": "sklearn.model_selection.StratifiedGroupKFold(n_splits=5, shuffle=True, random_state=42)",
+  "outer_cv_group_key": "canonical composite group_key from phase24_router_split_manifest.csv",
+  "outer_cv_stratification_key": "domain only",
+  "sort_before_split": [
+   "domain",
+   "group_key",
+   "sample_id"
+  ],
+  "inner_cv_algorithm": "sklearn.model_selection.StratifiedGroupKFold(n_splits=10, shuffle=True, random_state=4200+outer_fold_index)",
+  "inner_split_rule": "inner fold 0 = EARLY_STOP_k; inner folds 1-9 = FIT_k",
+  "cv_manifest_path": "reports/tables/phase25d_cv5_manifest.csv",
+  "cv_manifest_sha256": "008b92963664f38e84f33c771cea1db90caae02a366f02b6a83635a535639707",
+  "per_fold_role_manifests": "reports/tables/phase25d_cv_fold{k}_{fit,early_stop,outer_target}_ids.csv",
+  "group_identities": "phase24_router_split_manifest.csv composite group_key",
+  "outer_target_identities": "phase25d_cv_fold{k}_outer_target_ids.csv",
+  "fold_construction": "StratifiedGroupKFold over ROUTER_DEVELOPMENT (n=4957)",
+  "normalization_mechanics": "fit on FIT_k only; population std ddof=0; constant<1e-12 -> 0.0; apply to FIT_k/ES_k/OT_k",
+  "loss": "HuberLoss(delta=0.05, reduction='mean')",
+  "optimizer": "AdamW(lr=1e-3, weight_decay=1e-4)",
+  "learning_rate": 0.001,
+  "weight_decay": 0.0001,
+  "batch_size": 128,
+  "max_epochs": 200,
+  "early_stop_patience": 20,
+  "scheduler": "ReduceLROnPlateau(mode='min', factor=0.5, patience=8, threshold=1e-4, threshold_mode='rel', cooldown=0, min_lr=1e-6, eps=1e-8)",
+  "checkpoint_metric": "EARLY_STOP mean Huber loss",
+  "checkpoint_direction": "MINIMIZE",
+  "checkpoint_tie_rule": "earlier epoch wins; ties count as non-improvement for patience",
+  "scheduler_ordering": "scheduler.step(es_huber) after checkpoint test",
+  "random_seeds": "42000 + outer_fold_index",
+  "deterministic_settings": "random.seed + np.random.seed + torch.manual_seed(fold_seed) (+ cuda all)"
+ },
+ "fold_seed_policy": {
+  "formula": "42000 + outer_fold_index",
+  "observed_in_checkpoint": "fold0/best.pt seed=42000",
+  "verified": true
+ },
+ "checkpoint_cross_verification": {
+  "phase25d_fold0_best_pt": "checkpoints/phase25d_barr_benefit_router_v1_2_1_seed42/fold0/best.pt",
+  "observed_seed": 42000,
+  "observed_first_layer_shape": [
+   128,
+   218
+  ],
+  "matches_frozen_contract": true
+ },
+ "material_values_unrecoverable": [],
+ "blocking_fields": [],
+ "protocol_recoverable": true,
+ "verdict": "PHASE28_ROUTER_VARIANT_TRAINING_PROTOCOL_BOUND"
+}

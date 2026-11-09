@@ -1,0 +1,80 @@
+{
+  "classification": "PHASE25F_POST_SAFETY_SPEC_COMPLETENESS_AUDIT",
+  "stage": "ROLE_AND_NOVELTY_BOUNDARY",
+  "method": "RA-MedFiLM-BARR",
+  "frozen_role": "POST-REFINEMENT preservation / safety selector (S_omega) + ROI-weighted fusion",
+  "is_pre_execution_compute_saving_router": false,
+  "executes_after_regional_refinement": true,
+  "post_safety_saves_compute": false,
+  "post_safety_saves_compute_expected": false,
+  "pre_execution_compute_saving_claim_for_Somega": false,
+  "is_source_of_phase25e_conditional_compute_savings": false,
+  "phase25e_compute_savings_source": "Phase25E conditional-compute savings come from the PRE-execution resource gate (C7/C8), never from S_omega.",
+  "frozen_statements": {
+    "phase24_architecture_spec.post_safety.role": "quality preservation AFTER refinement",
+    "phase24_architecture_spec.post_safety.saves_compute": false,
+    "phase24_architecture_spec.post_safety.importance": "This is the component closest to JFS. S_omega must NEVER be presented as the compute-saving mechanism, because JFS already occupies the post-hoc decision.",
+    "phase24_exact_implementation_spec.post_safety.primary_evaluation_excludes_it": true,
+    "phase24_exact_implementation_spec.post_safety.primary_evaluation": "A7 / benefit + resource gate WITHOUT post-safety",
+    "phase24_exact_implementation_spec.post_safety.included_in": "A8"
+  },
+  "post_safety_novelty_claimed": false,
+  "post_safety_novelty_claimed_required": false,
+  "jfs_adjacent_component": true,
+  "jfs_boundary_statement": "This is the component closest to JFS. S_omega must NEVER be presented as the compute-saving mechanism, because JFS already occupies the post-hoc decision.",
+  "novelty_bearing_component": "PRE-EXECUTION learned benefit gate in the integrated system: a learned, GT-free, pre-refinement predictor of the paired refinement gain, used to route an optional regional refinement, with preservation fallback and an explicit resource-cost term, inside one shared multi-domain medical segmentation system.",
+  "non_novel_preserved_components_includes_Somega": true,
+  "mandatory_controlled_comparison": {
+    "A7": "pre-execution router / resource gate WITHOUT post-safety",
+    "A8": "the matched routed policy PLUS post-safety / fallback",
+    "frozen_A7_definition": "A6 + resource cost",
+    "frozen_A8_definition": "A7 + post-safety",
+    "frozen_A8_purpose": "H3 test; isolates S_omega",
+    "comparator_equivalent": {
+      "A7": "C8",
+      "A8": "C9"
+    },
+    "comparator_plan_C8": "LEARNED_GAIN_PLUS_RESOURCE_COST (tests H5)",
+    "comparator_plan_C9": "LEARNED_GAIN_PLUS_RESOURCE_COST_PLUS_POST_SAFETY (tests H3)"
+  },
+  "module_plan_25F": {
+    "id": "25F",
+    "name": "Post-refinement preservation selector + fusion",
+    "deliverable": "S_omega + ROI-weighted fusion",
+    "starts_after": [
+      "25A"
+    ]
+  },
+  "module_plan_25G": {
+    "id": "25G",
+    "name": "Integrated controlled development evaluation / freeze",
+    "deliverable": "comparator + ablation evaluation report and freeze",
+    "starts_after": [
+      "25E",
+      "25F"
+    ]
+  },
+  "module_plan_25E": {
+    "id": "25E",
+    "name": "Resource-aware pre-execution gate",
+    "deliverable": "U_hat = Delta_hat - lambda*C, budget sweep calibration",
+    "starts_after": [
+      "25D"
+    ]
+  },
+  "authoritative_sources": {
+    "reports/audits/phase24_architecture_spec.json": "bd5522678571f9b40e3ae887c7fd6c2d7862b3e73152eab1ae7db13cab6c6071",
+    "reports/audits/phase24_exact_implementation_spec.json": "6b1a71d5e88ce06baa8f200523be32773428417ffd233ff218d7e50b6af271dd",
+    "reports/audits/phase24_novelty_boundary.json": "3c6e7c79719ddaa040ab03c9bb194117b2bc0488546bc72ccaff80c78f916f92",
+    "reports/audits/phase24_phase25_module_plan.json": "ef9426a9cff94f2727b84c5c97488e20bf6355764a0c5d1df69851bd728883b8",
+    "reports/tables/phase24_ablation_plan.csv": "422967fa3484b19d90bfc3b2146278aa69c6bd7a34e42ae3dbcb43a9ccca9087",
+    "reports/tables/phase24_comparator_plan.csv": "6ac9808056db2d8745e4059f77debc0ccdd897263a99dd00910192517280222a"
+  },
+  "required_flags": {
+    "post_safety_novelty_claimed": false,
+    "JFS_adjacent_component": true,
+    "pre_execution_compute_saving_claim_for_Somega": false
+  },
+  "failures": [],
+  "all_pass": true
+}

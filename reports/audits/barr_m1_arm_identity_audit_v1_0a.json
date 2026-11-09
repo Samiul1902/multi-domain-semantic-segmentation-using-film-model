@@ -1,0 +1,119 @@
+{
+  "artifact": "barr_m1_arm_identity_audit_v1_0a",
+  "revision": "RA_MEDFILM_BARR_BARR_M1_V1_0A__SCIENTIFIC_DESIGN_RECONCILIATION",
+  "generated_utc": "2026-10-27T01:38:09Z",
+  "scope": "PLANNING_CORRECTION_ONLY",
+  "authority": {
+    "phase28_one_factor_control_contract": "reports/audits/phase28_one_factor_control_contract.json",
+    "phase28_ablation_registry": "reports/audits/phase28_ablation_registry.json",
+    "phase28_core_contrast_map": "reports/audits/phase28_core_contrast_map.json",
+    "phase28_ablation_family_post_safety": "reports/audits/phase28_ablation_family_post_safety.json",
+    "phase28_table_01_arm_definitions": "reports/tables/phase28_table_01_arm_definitions.csv",
+    "phase28_table_02_arm_primary_metrics": "reports/tables/phase28_table_02_arm_primary_metrics.csv",
+    "phase28_execution_statistics": "reports/audits/phase28_execution_statistics.json"
+  },
+  "arm_identities_from_frozen_authority": {
+    "A0": "global-only (routing absent; no refinement) — ENDPOINT_BY_CONSTRUCTION",
+    "A1": "always-refine (routing absent, full budget) — ENDPOINT_BY_CONSTRUCTION",
+    "A8": "A7 + post-safety S_omega (canonical baseline) — PRIOR_CANONICAL_EVIDENCE_EXACT",
+    "A7": "A6 + resource cost U = delta_hat - lambda*C"
+  },
+  "field_by_field_comparison": {
+    "benefit_router_state": {
+      "A0": "ABSENT — no B_phi evaluation; no score, no membership",
+      "A1": "ABSENT — no B_phi evaluation; refine every case",
+      "A8": "PRESENT — frozen B_phi 8a412b2f…; score = delta_hat - 0.25*C",
+      "differs_A0_A8": true,
+      "differs_A1_A8": true
+    },
+    "post_safety_state": {
+      "A0": "ABSENT / UNREACHABLE — no refinement candidate exists to accept or reject",
+      "A1": "ABSENT — always accept the refined candidate",
+      "A8": "PRESENT — frozen S_omega eee9b97b…; ACCEPT iff sigmoid >= 0.50",
+      "differs_A0_A8": true,
+      "differs_A1_A8": true
+    },
+    "refiner_execution_policy": {
+      "A0": "NEVER — 0 / 4957",
+      "A1": "ALWAYS — 4957 / 4957",
+      "A8": "CONDITIONAL — 1239 selected, 1205 accepted after safety",
+      "differs_A0_A8": true,
+      "differs_A1_A8": true
+    },
+    "roi_source": {
+      "A0": "NONE — no crop is taken",
+      "A1": "GT-FREE predicted ROI (threshold 0.30, expansion 1.50, resolution 256)",
+      "A8": "GT-FREE predicted ROI (identical rule)",
+      "differs_A0_A8": true,
+      "differs_A1_A8": false
+    },
+    "fusion_rule": {
+      "A0": "N/A — final = global",
+      "A1": "outside ROI p_global; inside ROI p_refined; output threshold 0.50",
+      "A8": "outside ROI p_global; inside ROI p_refined; output threshold 0.50",
+      "differs_A0_A8": true,
+      "differs_A1_A8": false
+    },
+    "thresholds": {
+      "A0": "segmentation output 0.50 only",
+      "A1": "ROI proposal 0.30 + segmentation output 0.50",
+      "A8": "ROI proposal 0.30 + segmentation output 0.50 + safety accept 0.50",
+      "differs_A0_A8": true,
+      "differs_A1_A8": true
+    },
+    "evaluation_population": {
+      "A0": "ROUTER_DEVELOPMENT n=4957",
+      "A1": "ROUTER_DEVELOPMENT n=4957",
+      "A8": "ROUTER_DEVELOPMENT n=4957",
+      "differs_A0_A8": false,
+      "differs_A1_A8": false
+    },
+    "budget_semantics": {
+      "A0": "budget = 0 (degenerate; nothing is executed)",
+      "A1": "budget = 1.00 (full; 4957 of 4957)",
+      "A8": "budget = 0.25 nominal; K = 1239 selected of 4957",
+      "differs_A0_A8": true,
+      "differs_A1_A8": true
+    },
+    "ground_truth_access_rules": {
+      "A0": "NO GT at inference. GT used only for post-hoc Dice scoring.",
+      "A1": "NO GT at inference. GT used only for post-hoc Dice scoring.",
+      "A8": "NO GT at inference. GT used only for post-hoc Dice scoring.",
+      "differs_A0_A8": false,
+      "differs_A1_A8": false
+    }
+  },
+  "n_fields_differing_A8_vs_A1": 5,
+  "n_fields_differing_A8_vs_A0": 7,
+  "frozen_contrast_status": {
+    "frozen_matched_contrasts": [
+      "A7_vs_A8"
+    ],
+    "adjacent_incremental_contrasts": [
+      "A6_vs_A0",
+      "A7_vs_A6"
+    ],
+    "descriptive_rows_no_formal_pairwise_reference": [
+      "A0",
+      "A1",
+      "R1",
+      "R2",
+      "R3",
+      "F1"
+    ],
+    "A0_A1_A8_is_pre_registered_contrast": false,
+    "A8_vs_A1_pre_registered": false,
+    "A8_vs_A0_pre_registered": false,
+    "A1_vs_A0_pre_registered": false,
+    "note": "The frozen core contrast map pre-registers ONLY A7_vs_A8 as a matched contrast. A0 and A1 are explicitly listed as descriptive rows with no formal pairwise reference. Any A0/A1/A8 contrast is therefore a NEW contrast (descriptive), not a pre-registered one."
+  },
+  "verdict": {
+    "classification": "POLICY_COMPARISON",
+    "not_router_causal_ablation": true,
+    "router_effect_identifiable_from_A0_A1_A8": false,
+    "reason": "A8 differs from A1 simultaneously in (i) benefit-router presence, (ii) resource-cost term, (iii) post-safety S_omega presence, and (iv) budget semantics (0.25 vs 1.00). Four factors change at once, so A8-A1 cannot be attributed to the router. A1-A0 changes refinement execution, ROI availability and budget. No frozen arm holds routing and safety constant while varying only routing, so the router effect is NOT identifiable within A0/A1/A8.",
+    "only_isolating_contrast_available": "A7_vs_A8 isolates S_omega alone (frozen)",
+    "new_arms_created": false,
+    "note_on_authorisation": "Executing A0/A1/A8 is not post-hoc factor addition: all three are already defined frozen arms. The contract's prohibition is on ADDING factors/arms, not on executing defined ones."
+  }
+}

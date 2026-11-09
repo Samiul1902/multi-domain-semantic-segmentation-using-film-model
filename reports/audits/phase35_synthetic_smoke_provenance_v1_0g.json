@@ -1,0 +1,75 @@
+{
+ "artifact": "phase35_synthetic_smoke_provenance_v1_0g",
+ "section": "§O",
+ "phase": 35,
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase35_interpretability_v1_0g",
+ "invocation": {
+  "command": "./.venv/Scripts/python.exe scripts/analysis/phase35_interpretability_execution_v1_0g.py --mode smoke",
+  "mode": "smoke",
+  "gate_env_set": "PHASE35_SMOKE_EXECUTE=1",
+  "science_gate_env_set": false,
+  "invocation_count": 1,
+  "retry_performed": false,
+  "exit_code": 0,
+  "stderr_bytes": 0,
+  "stdout_bytes": 18443,
+  "wall_first_byte_utc": "2026-10-05T11:30:46Z",
+  "first_valid_attempt_preserved": true
+ },
+ "authorities_bound": {
+  "v1_0g_counter_authority_bound": true,
+  "v1_0f_scientific_authority_bound": true,
+  "binding_artifact": "reports/audits/phase35_v1_0g_transitive_authority_binding.json",
+  "binding_artifact_sha256": "3a4b453763022ea83105c8ac47bbc20518225900a08c473fdd5f9a6f136df574",
+  "all_hashes_match": true,
+  "scientific_semantics_changed": false
+ },
+ "frozen_sources_verified_pre_and_post_run": {
+  "scripts/analysis/phase35_interpretability_execution_v1_0g.py": "88456e46c94e53d45b10d864d9dbcd38eb773d7dd441441def9e6f221a0c9be3",
+  "scripts/analysis/phase35_interpretability_execution_v1_0f.py": "6a6097f4a3c346df38ab5ec452dc97717cdb65d789bf8bde8031442cb236e3e5",
+  "scripts/analysis/phase35_execution_preflight_v1_0f.py": "7d535fcc22283b868616ef1e2259d6a7e4ed3d1e76747d5f31ba35e23ea8b552",
+  "scripts/analysis/phase35_execution_preflight_v1_0g.py": "245d3d9387f947eae7419a5d9a3d6c49b5315c68827b6537822dda6d88855d4b",
+  "scripts/analysis/phase35_smoke_counter_contract_unit_v1_0g.py": "a33587bca5c79fb21765025c766b2d948be080c22f5a75011af799dd0f782cc1"
+ },
+ "frozen_v1_0f_artifacts_byte_preserved": {
+  "reports/audits/phase35_synthetic_interpretability_smoke_v1_0f.json": "05c02a34d61df1c6d3e53e2dd127f889501a5f5e99247aa8ef96fb947bc1d0fb",
+  "reports/audits/phase35_synthetic_smoke_provenance_v1_0f.json": "5e7cb9956e56dddf6951562e36047361311e69dc687d976362e90749ad75d866",
+  "reports/audits/phase35_synthetic_smoke_final_check_v1_0f.json": "040fc28379700e207ed324067594259c0c9e4ecaa2f9a6e2388824fbd0b29b7f",
+  "reports/audits/phase35_synthetic_smoke_terminal_v1_0f.json": "728d1535c39c27109aeea7fcfaf0cda5577734bc0327833c35efed5e7599b8b0",
+  "reports/audits/phase35_preexecution_source_freeze_v1_0f.json": "56dab00eb2e7ab29c2702de294c03d090d062741ba3177f4ec0edd8f8852775b",
+  "notebooks/phasewise/phase_35_interpretability/phase35_interpretability_synthetic_smoke_v1_0f_review.ipynb": "291c817751b159fc9956c5d7a3e94ff4dfcf8bf292cbd47d110bc96297fed8fa",
+  "reports/audits/phase35_synthetic_smoke_reviewer_notebook_audit_v1_0f.json": "2054699ffa5425ad9a016dfc4e3fdad710a57b9c208ac5dc370af31267ecb8fa"
+ },
+ "checkpoint_hashes": {
+  "G": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+  "B_phi": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b"
+ },
+ "environment": {
+  "os": "Windows-10-10.0.26200-SP0",
+  "python": "3.11.9",
+  "torch": "2.6.0+cu124",
+  "cuda_runtime": "12.4",
+  "cuda_driver_version": "596.36",
+  "cudnn": 90100,
+  "cuda_available": true,
+  "gpu": "NVIDIA GeForce RTX 3060 Ti",
+  "cc": "8.6",
+  "vram_bytes": 8589279232,
+  "compatible": true
+ },
+ "protected_data_touched": false,
+ "gallery_content_read": false,
+ "raw_val_images_read": false,
+ "val_gt_read": false,
+ "router_holdout_read": false,
+ "test_data_read": false,
+ "scientific_outputs_emitted": false,
+ "phase36_started": false,
+ "result_artifact": "reports/audits/phase35_synthetic_interpretability_smoke_v1_0g.json",
+ "result_artifact_sha256": "d20fb2ebe4464b563061db41be1f9816d15710c483135385df5b23ae5a595fd1",
+ "terminal_state": "BLOCKED",
+ "success": false,
+ "generated_utc": "2026-10-05T05:32:50Z",
+ "all_pass": true
+}

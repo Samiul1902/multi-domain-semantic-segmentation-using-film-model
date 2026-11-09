@@ -1,0 +1,52 @@
+{
+  "classification": "PHASE25E_PRE_EXECUTION_RESOURCE_GATE_SPECIFICATION_FREEZE",
+  "specification_revision": "ra_medfilm_barr_resource_gate_v1_0",
+  "budgets": [
+    "0.00",
+    "0.10",
+    "0.25",
+    "0.50",
+    "1.00"
+  ],
+  "cardinalities": [
+    {
+      "budget": "0.00",
+      "N_eligible": 4957,
+      "K_b": 0,
+      "denominator": "eligible action-available rows",
+      "rounding": "floor except 1.00 = N_eligible"
+    },
+    {
+      "budget": "0.10",
+      "N_eligible": 4957,
+      "K_b": 495,
+      "denominator": "eligible action-available rows",
+      "rounding": "floor except 1.00 = N_eligible"
+    },
+    {
+      "budget": "0.25",
+      "N_eligible": 4957,
+      "K_b": 1239,
+      "denominator": "eligible action-available rows",
+      "rounding": "floor except 1.00 = N_eligible"
+    },
+    {
+      "budget": "0.50",
+      "N_eligible": 4957,
+      "K_b": 2478,
+      "denominator": "eligible action-available rows",
+      "rounding": "floor except 1.00 = N_eligible"
+    },
+    {
+      "budget": "1.00",
+      "N_eligible": 4957,
+      "K_b": 4957,
+      "denominator": "eligible action-available rows",
+      "rounding": "floor except 1.00 = N_eligible"
+    }
+  ],
+  "rule": "K_b = N_eligible if b == 1 else floor(b * N_eligible)",
+  "exact_decimal_arithmetic": true,
+  "forced_skip_excluded": true,
+  "realized_fraction_never_exceeds_budget": true
+}

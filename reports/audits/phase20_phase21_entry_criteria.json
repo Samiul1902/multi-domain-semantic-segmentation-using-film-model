@@ -1,0 +1,95 @@
+{
+  "artifact": "phase20_phase21_entry_criteria",
+  "phase": 20,
+  "next_phase": 21,
+  "next_phase_title": "Global MedFiLM (task-conditioned FiLM on top of this frozen baseline)",
+  "status": "NOT_STARTED__AWAITING_SUPERVISOR_AUTHORIZATION",
+  "criteria": [
+    {
+      "id": "P21-1",
+      "criterion": "Phase-20 training naturally terminated",
+      "met": true,
+      "observed": "EARLY_STOPPING_PATIENCE"
+    },
+    {
+      "id": "P21-2",
+      "criterion": "checkpoint-selection replay PASS",
+      "met": true,
+      "observed": "PHASE20_CHECKPOINT_SELECTION_REPLAY_PASS"
+    },
+    {
+      "id": "P21-3",
+      "criterion": "all four domains evaluated",
+      "met": true,
+      "observed": [
+        "BUSI",
+        "ISIC",
+        "KUB",
+        "KVASIR"
+      ]
+    },
+    {
+      "id": "P21-4",
+      "criterion": "macro-domain score available",
+      "met": true,
+      "observed": 0.79200985543761
+    },
+    {
+      "id": "P21-5",
+      "criterion": "per-domain scores available for every domain",
+      "met": true,
+      "observed": "4/4"
+    },
+    {
+      "id": "P21-6",
+      "criterion": "prediction artifacts persisted",
+      "met": true,
+      "observed": 808
+    },
+    {
+      "id": "P21-7",
+      "criterion": "complete notebook executed",
+      "met": true,
+      "observed": "notebooks\\phasewise\\phase_20_multidomain_baselines\\phase20_shared_global_unetpp_baseline.ipynb"
+    },
+    {
+      "id": "P21-8",
+      "criterion": "64 deterministic cases available",
+      "met": true,
+      "observed": 64
+    },
+    {
+      "id": "P21-9",
+      "criterion": "TEST reads = 0",
+      "met": true,
+      "observed": {
+        "test_image_reads": 0,
+        "test_mask_reads": 0,
+        "test_inference": 0,
+        "test_visualization": 0
+      }
+    },
+    {
+      "id": "P21-10",
+      "criterion": "architecture/input/training artifacts SHA-bound",
+      "met": true,
+      "observed": 15
+    },
+    {
+      "id": "P21-11",
+      "criterion": "no unresolved TRAIN<->VAL leakage",
+      "met": true,
+      "observed": "no blocking pairs"
+    },
+    {
+      "id": "P21-12",
+      "criterion": "baseline frozen and immutable",
+      "met": true,
+      "observed": "best.pt + history SHA-bound; no further tuning authorized"
+    }
+  ],
+  "phase21_may_start": false,
+  "phase21_started": false,
+  "authorization_required": true,
+  "all_criteria_met": true
+}

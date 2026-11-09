@@ -1,0 +1,61 @@
+{
+ "phase": 28,
+ "governance_only": true,
+ "execution": "NONE",
+ "method": "RA-MedFiLM-BARR",
+ "canonical_baseline": "A8_C9 (budget 0.25, lambda 0.25)",
+ "one_factor_contract_ref": "reports/audits/phase28_one_factor_control_contract.json",
+ "population": "ROUTER_DEVELOPMENT (n=4957)",
+ "artifact": "phase28_ablation_family_post_safety",
+ "classification": "PHASE28_ABLATION_FAMILY__POST_SAFETY",
+ "family_scope": "Post-refinement preservation selector S_omega (A7 vs A8)",
+ "recovered_spec": {
+  "name": "BARRPostSafetyV1",
+  "symbol": "S_omega",
+  "role": "quality preservation AFTER refinement; saves_compute=False",
+  "classification": "CONTROLLED_CORE_EXTENSION",
+  "saves_compute": false,
+  "jfs_differentiation_required": true,
+  "inputs_from": "already-computed post-refinement quantities only",
+  "feature_family_examples": [
+   "global/refined probability summary difference",
+   "foreground-area change",
+   "component-count change",
+   "mean probability change",
+   "boundary-size change",
+   "ROI geometry",
+   "task_id"
+  ],
+  "gt_at_inference": false,
+  "target": "ACCEPT iff DeltaDice > 0",
+  "target_source": "OOF refinement predictions from ROUTER_DEVELOPMENT only",
+  "architecture": "input -> 32 -> 16 -> 1 (sigmoid/logit)",
+  "loss": "binary cross entropy",
+  "checkpoint": "checkpoints/phase25f_barr_post_safety_v1_0_seed42/final/final.pt",
+  "checkpoint_sha256": "eee9b97b9921e53fc07eac9281dce64ba518c6e1659916b97b0b3bec21ec6d2e",
+  "analytical_macs": 1168,
+  "accept_threshold": 0.5,
+  "mandatory_ablation": "A7 (router, no post-safety) vs A8 (router + post-safety)"
+ },
+ "A7_definition": "Phase25E C8 routing + always accept the executed regional candidate (= C8)",
+ "A8_definition": "same membership + Phase25F S_omega post-safety decision (= C9)",
+ "isolation": "controlled isolation of S_omega (single difference)",
+ "status": "SATISFIED_BY_PHASE25G_CANONICAL_EVIDENCE",
+ "retraining_required": false,
+ "source_refs": [
+  {
+   "path": "reports/audits/phase24_architecture_spec.json",
+   "sha256": "bd5522678571f9b40e3ae887c7fd6c2d7862b3e73152eab1ae7db13cab6c6071"
+  },
+  {
+   "path": "reports/audits/phase24_exact_implementation_spec.json",
+   "sha256": "6b1a71d5e88ce06baa8f200523be32773428417ffd233ff218d7e50b6af271dd"
+  },
+  {
+   "path": "reports/audits/phase25g_a7_a8_controlled_comparison_contract.json",
+   "sha256": "ef3c25da49a530e99cc33adaced031be4988432370181c7e8a994803ede1c503"
+  }
+ ],
+ "generated_utc": "2026-10-02T18:44:00Z",
+ "all_pass": true
+}

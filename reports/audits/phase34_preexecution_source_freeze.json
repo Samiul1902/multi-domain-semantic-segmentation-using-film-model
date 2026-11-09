@@ -1,0 +1,56 @@
+{
+ "artifact": "phase34_preexecution_source_freeze",
+ "phase": 34,
+ "section": "\u00a7Y",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase34_efficiency_profiling_v1_0",
+ "frozen_sources": [
+  {
+   "path": "scripts/analysis/phase34_efficiency_profiling_execution_v1_0.py",
+   "sha256": "1f60de9e415c13d71b49a5f59646f4ea7139ea9508d866de829b33396d9b7b97",
+   "role": "FUTURE_EXECUTION_HARNESS",
+   "exists": true
+  },
+  {
+   "path": "scripts/analysis/phase34_efficiency_profiling_worker_v1_0.py",
+   "sha256": "a8e2034d26aa7cd41c89cebc15ebff456466aeece56a2391dfcfeab89c7d1185",
+   "role": "ISOLATED_PER_ARM_WORKER",
+   "exists": true
+  },
+  {
+   "path": "scripts/analysis/phase34_specification_v1_0.py",
+   "sha256": "6d0343ce905e629166f005e49e50f2c7e4cda84733f6e16f3c77c83f53f6d82c",
+   "role": "SPECIFICATION_GENERATOR__LOAD_BEARING_FOR_CONTRACTS_ONLY",
+   "exists": true
+  },
+  {
+   "path": "src/models/barr/ra_medfilm_barr.py",
+   "sha256": "342f2163690c2fa8d5a601ab1d18178b982d701b916935c33e0793b0801c3724",
+   "role": "CANONICAL_WRAPPER_SOURCE",
+   "exists": true
+  },
+  {
+   "path": "src/models/barr/regional_refiner.py",
+   "sha256": "4fe0abde3ec3a183d930f676c4400b4d9ba778793ea64abf1755c5b8dabf947a",
+   "role": "R_psi_SOURCE",
+   "exists": true
+  },
+  {
+   "path": "src/models/barr/router_variants.py",
+   "sha256": "f8dab77d2dc01bd84d7569ee1ca839607be55e852fa462f5212c229097de0ad0",
+   "role": "B_phi_SOURCE",
+   "exists": true
+  },
+  {
+   "path": "src/models/film/global_medfilm.py",
+   "sha256": "a04ff3e61b4d900ff47c2f390da4a999e73bd6047b28a19e41b05115e431d11f",
+   "role": "G_SOURCE",
+   "exists": true
+  }
+ ],
+ "future_execution_must_use_exact_frozen_bytes": true,
+ "scientific_result_produced_before_source_freeze": false,
+ "post_measurement_edit_policy": "preserve the original measurement and create an explicit deviation record; never silently overwrite",
+ "generated_utc": "2026-10-04T09:50:07+00:00",
+ "all_pass": true
+}

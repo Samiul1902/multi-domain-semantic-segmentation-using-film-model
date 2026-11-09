@@ -1,0 +1,63 @@
+{
+ "phase": "25D",
+ "classification": "PRE_EXECUTION_SPECIFICATION_COMPLETENESS_REPAIR",
+ "router_training_spec_revision": "ra_medfilm_barr_router_training_v1_2_1",
+ "method": "RA-MedFiLM-BARR",
+ "architecture_revision": "ra_medfilm_barr_narrowed_v1_2",
+ "generated_utc": "2026-10-01T02:01:22+00:00",
+ "artifact": "phase25d_router_training_spec_completion_v1_2_1",
+ "purpose": "Additive completion of all fields previously absent from phase24_exact_implementation_spec.json#router",
+ "carried_forward_unchanged": {
+  "router_class": "BARRBenefitRouterV1",
+  "input_dim": 218,
+  "input_breakdown": {
+   "deep_features": 192,
+   "scalars": 10,
+   "task_embedding": 16
+  },
+  "architecture": "Embedding(4,16) -> Linear(218,128) -> LayerNorm(128,elementwise_affine=True) -> SiLU -> Dropout(0.10) -> Linear(128,64) -> LayerNorm(64,elementwise_affine=True) -> SiLU -> Dropout(0.10) -> Linear(64,1)",
+  "output": "Delta_hat_Dice (single unconstrained scalar)",
+  "canonical_total_trainable_parameters": 36801,
+  "loss": "Huber(delta=0.05, reduction='mean')",
+  "optimizer": "AdamW(lr=1e-3, weight_decay=1e-4)",
+  "batch_size": 128,
+  "max_epochs": 200,
+  "early_stopping_patience": 20,
+  "scheduler_class": "ReduceLROnPlateau",
+  "scheduler_base_params": {
+   "mode": "min",
+   "factor": 0.5,
+   "patience": 8,
+   "threshold": 0.0001,
+   "threshold_mode": "rel",
+   "cooldown": 0,
+   "min_lr": 1e-06,
+   "eps": 1e-08
+  },
+  "seed": 42,
+  "target": "Phase25C delta_dice",
+  "resource_cost_enters_delta_hat": false,
+  "ROUTER_HOLDOUT_for_fitting_or_epoch_selection": false
+ },
+ "newly_frozen_fields": [
+  "cv_fold_count",
+  "cv_assignment_algorithm",
+  "cv_group_key",
+  "cv_stratification_key",
+  "inner_split_rule",
+  "checkpoint_selection_metric",
+  "checkpoint_selection_direction",
+  "checkpoint_tie_rule",
+  "target_scaling",
+  "feature_normalization_columns",
+  "normalization_statistic_definition",
+  "normalization_constant_behavior",
+  "final_epoch_rule",
+  "final_refit_seed",
+  "final_refit_scheduler_monitor",
+  "final_refit_early_stopping",
+  "final_checkpoint_rule",
+  "oof_prediction_rule",
+  "fold_seed_derivation"
+ ]
+}

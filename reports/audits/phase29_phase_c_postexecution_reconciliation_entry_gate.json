@@ -1,0 +1,53 @@
+{
+ "artifact": "phase29_phase_c_postexecution_reconciliation_entry_gate",
+ "phase": 29,
+ "stage": "PHASE_C_POSTEXECUTION_RECONCILIATION_ENTRY_GATE",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_phase29_repro_v1_1",
+ "generated_utc": "2026-10-03T15:01:54+00:00",
+ "required_phase_c_scientific_terminal": "PHASE29_PHASE_C_NEW_SEED_TRAINING_COMPLETE__32_RUNS_AND_THREE_SEED_DEV_REPRODUCIBILITY_FROZEN__PRE_VAL808_GATE_PASS",
+ "observed_phase_c_scientific_terminal": "PHASE29_PHASE_C_NEW_SEED_TRAINING_COMPLETE__32_RUNS_AND_THREE_SEED_DEV_REPRODUCIBILITY_FROZEN__PRE_VAL808_GATE_PASS",
+ "classification": "PHASE29_PHASE_C_POSTEXECUTION_RECONCILIATION",
+ "repair_class": "ARTIFACT_LEVEL_METRIC_AND_EXECUTION_CONTRACT_REPAIR_ONLY",
+ "purpose": "Repair three PRE-VAL808 issues WITHOUT retraining: A. restore frozen Phase25E router metric semantics; B. restore frozen Phase27 numerical inference semantics for VAL808; C. canonically adjudicate the declared Phase25A trainer entrypoint drift.",
+ "execution_frozen_flags": {
+  "training_changed": false,
+  "checkpoints_changed": false,
+  "OOF_predictions_changed": false,
+  "memberships_changed": false,
+  "DeltaDice_targets_changed": false,
+  "integrated_predictions_changed": false,
+  "macro_DEV_Dice_changed": false,
+  "VAL808_opened": false
+ },
+ "no_execution_declaration": {
+  "training_steps": 0,
+  "optimizer_steps": 0,
+  "backward_passes": 0,
+  "model_forwards": 0,
+  "new_scientific_predictions": 0,
+  "VAL808_reads": 0,
+  "ROUTER_HOLDOUT_reads": 0,
+  "TEST_reads": 0,
+  "authorized_recomputation": "ARTIFACT_ONLY_FROM_FROZEN_MEMBERSHIP_AND_OUTCOME_FILES"
+ },
+ "checks": {
+  "phase_c_scientific_terminal_present": true,
+  "phase_c_final_check_all_pass": true,
+  "new_training_runs_32": true,
+  "unauthorized_training_runs_zero": true,
+  "VAL808_reads_zero": true,
+  "ROUTER_HOLDOUT_reads_zero": true,
+  "TEST_reads_zero": true,
+  "best_seed_selected_false": true,
+  "canonical_bundle_changed_false": true,
+  "pre_val808_freeze_gate_all_pass": true,
+  "pre_val808_freeze_gate_VAL808_reads_zero": true,
+  "reconciliation_repair_is_artifact_level_only": true
+ },
+ "n_checks": 12,
+ "n_failed": 0,
+ "failed": [],
+ "blocked_terminal_if_fail": "PHASE29_PHASE_C_REPAIR_BLOCKED__FROZEN_MEMBERSHIP_UNAVAILABLE",
+ "all_pass": true
+}

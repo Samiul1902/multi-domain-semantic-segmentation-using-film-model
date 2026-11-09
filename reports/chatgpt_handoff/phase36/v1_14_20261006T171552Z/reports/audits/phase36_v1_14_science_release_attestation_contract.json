@@ -1,0 +1,37 @@
+{
+ "artifact": "phase36_v1_14_science_release_attestation_contract",
+ "phase": 36,
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase36_robustness_v1_14",
+ "type": "SCIENCE_RELEASE_ATTESTATION_CONTRACT",
+ "attestation_path": "reports/audits/phase36_v1_14_science_release_attestation.json",
+ "smoke_artifact_path": "reports/audits/phase36_robustness_smoke_v1_14.json",
+ "release_gate_literal": "POST_SMOKE_RELEASE_ADJUDICATION",
+ "required_attestation_fields": {
+  "revision": "ra_medfilm_barr_phase36_robustness_v1_14",
+  "execution_source_sha256": "SHA-256 of THIS execution source's bytes (write-time binding)",
+  "smoke_artifact_sha256": "SHA-256 of reports/audits/phase36_robustness_smoke_v1_14.json bytes",
+  "smoke_all_pass": true,
+  "scientific_output": false,
+  "release_gate": "POST_SMOKE_RELEASE_ADJUDICATION"
+ },
+ "positive_chain_property": "A plain editable JSON that merely says {'released': true} CANNOT satisfy the gate: the attestation must bind BOTH this source's bytes AND the successful smoke artifact's bytes (which are themselves write-once).  Science is released ONLY after a successful v1.14 smoke PLUS this post-smoke release adjudication.",
+ "fail_closed_reasons": [
+  "NO_ATTESTATION",
+  "ATTESTATION_MALFORMED",
+  "REVISION_MISMATCH",
+  "SOURCE_SHA_MISMATCH",
+  "SMOKE_ARTIFACT_MISSING",
+  "SMOKE_ARTIFACT_SHA_MISMATCH",
+  "SMOKE_NOT_SUCCESSFUL",
+  "SCIENTIFIC_OUTPUT_NOT_FALSE",
+  "RELEASE_GATE_MISMATCH"
+ ],
+ "science_terminal": "PHASE36_V1_14_SCIENCE_NOT_RELEASED__SUCCESSFUL_SMOKE_REQUIRED__NO_ATTEMPT_CONSUMED",
+ "enforced_in": [
+  "scripts/analysis/phase36_robustness_execution_v1_14.py::_gate_science_release_state",
+  "scripts/analysis/launch_phase36_v1_14.py::_science_release_evidence"
+ ],
+ "attestation_present_now": false,
+ "note": "The attestation is INTENTIONALLY ABSENT at v1.14 freeze: it may only be written by a POST-SMOKE RELEASE ADJUDICATION after a successful v1.14 smoke."
+}

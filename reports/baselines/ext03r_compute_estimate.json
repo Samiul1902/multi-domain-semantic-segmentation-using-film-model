@@ -1,0 +1,58 @@
+{
+  "classification": "EXT03R_COMPUTE_ESTIMATE",
+  "generated_utc": "2026-10-11T18:30:00Z",
+  "evidence_class": "ENGINEERING_ESTIMATE_ONLY__NOT_SCIENTIFIC",
+  "device": "cuda",
+  "measured_batch_size": 2,
+  "input": [
+    2,
+    3,
+    512,
+    512
+  ],
+  "architectures": {
+    "unet": {
+      "sec_per_batch_bs2": 0.0807,
+      "images_per_sec": 24.78,
+      "epoch_seconds_est": 235.4,
+      "peak_gpu_mem_mb": 1612.9,
+      "run_seconds_est_100ep": 23537.0,
+      "params": 7763041
+    },
+    "attention_unet": {
+      "sec_per_batch_bs2": 0.0929,
+      "images_per_sec": 21.53,
+      "epoch_seconds_est": 270.9,
+      "peak_gpu_mem_mb": 1933.8,
+      "run_seconds_est_100ep": 27092.0,
+      "params": 7851285
+    },
+    "unetpp": {
+      "sec_per_batch_bs2": 0.2591,
+      "images_per_sec": 7.72,
+      "epoch_seconds_est": 755.6,
+      "peak_gpu_mem_mb": 4809.4,
+      "run_seconds_est_100ep": 75565.0,
+      "params": 9159681
+    },
+    "deeplabv3plus": {
+      "sec_per_batch_bs2": 0.0977,
+      "images_per_sec": 20.46,
+      "epoch_seconds_est": 285.0,
+      "peak_gpu_mem_mb": 1861.6,
+      "run_seconds_est_100ep": 28498.0,
+      "params": 40347041
+    },
+    "segformer_b0": {
+      "sec_per_batch_bs2": 0.0692,
+      "images_per_sec": 28.91,
+      "epoch_seconds_est": 201.7,
+      "peak_gpu_mem_mb": 1082.9,
+      "run_seconds_est_100ep": 20174.0,
+      "params": 3714401
+    }
+  },
+  "full_matrix_seconds_est_100ep": 174866.0,
+  "full_matrix_hours_est_100ep": 48.57,
+  "note": "engineering estimate using short synthetic runs at batch 2; NOT a scientific outcome"
+}

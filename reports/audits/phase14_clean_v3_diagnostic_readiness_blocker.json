@@ -1,0 +1,157 @@
+{
+  "artifact": "PHASE14_CLEAN_V3_DIAGNOSTIC_READINESS_BLOCKER",
+  "status": "BLOCKED__AWAITING_SUPERVISOR_RULING",
+  "kind": "ADDITIVE_READINESS_ASSESSMENT",
+  "created_utc": "2026-09-25T00:35:00Z",
+  "created_local_bst": "2026-09-25T06:35:00+06:00",
+  "phase": "PHASE_14_CLEAN_V3",
+  "changes_scientific_parameter": false,
+  "executed_anything": false,
+  "purpose": "Report a material conflict between the frozen Phase-14 diagnostic protocol and the frozen clean_v3 population, discovered while preparing the authorized three-contrast diagnostic. The diagnostic was NOT run, because running it would require either asserting false population constants or substituting new gate reference values, both of which are scientific decisions reserved to the supervisor.",
+
+  "summary": "The frozen Phase-14 diagnostic script (scripts/evaluation/evaluate_phase14_diagnostic.py) is a v1/v2-era artifact. It hard-codes the v2 population (106 FULL_FIELD images, 156 components, size strata 73/29/36/18) and asserts those counts. The frozen clean_v3 population is 103 images / 152 components with strata 72/28/36/16. The script would therefore FAIL its own assertions on clean_v3 inputs. Additionally, the frozen gate reference values Tg=0.780822 and Dg=0.632776 are v2-era, and no clean_v3 equivalents exist.",
+
+  "population_conflict": {
+    "frozen_protocol_amendment": {
+      "path": "reports/audits/phase14_diagnostic_protocol_amendment.json",
+      "sha256": "a65025ba4861a575d1cada7983e75c7ebf852c33d4da24f54abaff7115fb09a9",
+      "phase14_population": {
+        "train_population": "FULL_FIELD TRAIN only (771 images)",
+        "val_population": "FULL_FIELD VAL only (106 images)"
+      },
+      "component_counts": {
+        "train_full_field_images": 771,
+        "train_full_field_components": 1162,
+        "val_full_field_images": 106,
+        "val_full_field_components": 156
+      }
+    },
+    "frozen_clean_v3_manifest": {
+      "path": "reports/audits/phase14_clean_v3_freeze_manifest.json",
+      "train_population": {"images": 770, "components": 1161},
+      "val_population": {"images": 103, "components": 152}
+    },
+    "measured_from_frozen_manifests": {
+      "method": "KUB + VAL from manifests/phase4_v3/val.csv intersected with reports/tables/kub_view_type_inventory.csv filtered to FULL_FIELD",
+      "clean_v3_val_images": 103,
+      "clean_v3_val_components": 152,
+      "clean_v3_val_strata": {"TINY": 72, "SMALL": 28, "MEDIUM": 36, "LARGE": 16},
+      "clean_v3_train_images": 770,
+      "agrees_with_freeze_manifest": true,
+      "agrees_with_protocol_amendment": false
+    },
+    "relationship": {
+      "clean_v3_is_strict_subset_of_v2_table": true,
+      "v2_table_images": 106,
+      "clean_v3_images": 103,
+      "images_dropped_in_clean_v3": [
+        "5c2a14deb7948564d7b538aa41b07e12",
+        "a62708e2834fab0c56d4f575f49f7c61",
+        "ff96d383c86c30902bd89e6c39190923"
+      ],
+      "components_dropped": 4,
+      "interpretation": "clean_v3 is the v2 population minus 3 images (and their 4 components). The amendment's constants therefore describe the v2 population, not clean_v3."
+    }
+  },
+
+  "script_assertions_that_would_fail": [
+    {"assertion": "len(ff_samples) == 106", "clean_v3_actual": 103, "would_pass": false},
+    {"assertion": "len(ff_components) == 156", "clean_v3_actual": 152, "would_pass": false},
+    {"assertion": "size_counts['TINY'] == 73", "clean_v3_actual": 72, "would_pass": false},
+    {"assertion": "size_counts['SMALL'] == 29", "clean_v3_actual": 28, "would_pass": false},
+    {"assertion": "size_counts['MEDIUM'] == 36", "clean_v3_actual": 36, "would_pass": true},
+    {"assertion": "size_counts['LARGE'] == 18", "clean_v3_actual": 16, "would_pass": false},
+    {"assertion": "len(hard_tiny_rows) == 16", "clean_v3_actual": 16, "would_pass": true},
+    {"assertion": "len(global_empty_rows) == 7", "clean_v3_actual": 7, "would_pass": true}
+  ],
+
+  "frozen_sets_survive": {
+    "hard_tiny_16_components": {
+      "contained_in_clean_v3": true,
+      "unique_images": 14,
+      "note": "16 hard-Tiny components spanning 14 unique sample_ids; all 14 sample_ids are present in the clean_v3 population"
+    },
+    "global_empty_7_images": {
+      "contained_in_clean_v3": true,
+      "note": "all 7 global-empty sample_ids are present in the clean_v3 population"
+    }
+  },
+
+  "reference_value_conflict": {
+    "frozen_gate_thresholds_from_amendment": {
+      "step_1": "G >= 0.05 AND Oracle FULL_FIELD Dice >= 0.632776",
+      "step_2": "R >= 0.50",
+      "step_3": "Tp >= 0.780822 AND Predicted FULL_FIELD Dice >= 0.632776 AND Hard Tiny >= 2/16 AND Global-empty >= 1/7"
+    },
+    "reference_values_used_by_script": {"Tg": 0.780822, "Dg": 0.632776},
+    "reference_values_provenance": "v2-era global-baseline measurement on the 106-image FULL_FIELD VAL population",
+    "clean_v3_equivalents_exist": false,
+    "clean_v3_global_baseline_available_but_different_metric": {
+      "model": "UNet++",
+      "experiment_id": "phase10_kub_unetpp_seed42_512_clean_v3",
+      "val_macro_dice_all_view_types": 0.7641601653354622,
+      "note": "this is macro Dice across ALL view types, NOT the FULL_FIELD-only Dice the gate requires; it is therefore NOT a substitute for Dg"
+    },
+    "why_this_blocks": "The gate compares Oracle and Predicted results against Tg and Dg. If those references describe a different population than the one being evaluated, any PASS/FAIL verdict is not comparable to the frozen gate. Substituting fresh values would silently redefine the gate."
+  },
+
+  "checkpoint_bindings_that_would_also_change": {
+    "note": "the v1 script also hard-codes v1 checkpoint paths and v1 SHAs; a clean_v3 run requires the clean_v3 bindings",
+    "v1_script_global": "checkpoints/phase10_kub_unetpp_seed42_512/best.pt",
+    "v1_script_regional": "checkpoints/phase14_diag_regional_unet_oracletrain_a3_seed42_v1/best.pt",
+    "v1_script_localizer": "checkpoints/phase13b_kub_localizer_r512_h128_sigmaeq075_centernetfocal_seed42_v1/best.pt",
+    "clean_v3_required_global": "checkpoints/phase10_kub_unetpp_seed42_512_clean_v3/best.pt (epoch 70)",
+    "clean_v3_required_regional": "checkpoints/phase14_kub_refiner_unet_a3_256_seed42_clean_v3/best.pt (epoch 56)",
+    "clean_v3_required_localizer": "checkpoints/phase13b_kub_localizer_r512_h128_sigmaeq075_centernetfocal_seed42_clean_v3/best.pt (epoch 53)"
+  },
+
+  "margin_consistency_check": {
+    "note": "positive finding: the diagnostic script's margins already agree with the resolved role binding",
+    "oracle_path_uses": "apply_context_margin(bbox, shape, margin=0.20)",
+    "matches_ORACLE_DOWNSTREAM_MARGIN": true,
+    "predicted_path_uses": "generate_predicted_rois(..., threshold=0.10, margin=0.20, top_k=5, nms_iou=0.30)",
+    "matches_PREDICTED_PROPOSAL_MARGIN": true,
+    "conclusion": "no margin conflict exists on the evaluation side; the conflict is purely population and reference values"
+  },
+
+  "options_for_supervisor": [
+    {
+      "option": "A",
+      "name": "RUN_ON_CLEAN_V3_SUBSET_WITH_DUAL_REFERENCE_REPORTING",
+      "description": "Filter the v2 population tables down to the 103 clean_v3 sample_ids, run the diagnostic with the clean_v3 checkpoints, compute fresh clean_v3 Tg/Dg as clearly-labelled descriptive references, and report the gate against BOTH the frozen v2 references and the fresh clean_v3 references. No frozen value is overwritten; the discrepancy is reported explicitly.",
+      "requires": "authorization, because it introduces clean_v3 reference values that the frozen gate does not currently define"
+    },
+    {
+      "option": "B",
+      "name": "FORMAL_PROTOCOL_AMENDMENT_FOR_CLEAN_V3_REFERENCES",
+      "description": "Create an additive protocol amendment that defines the clean_v3 population constants (103/152, strata 72/28/36/16) and the clean_v3 reference values Tg/Dg, then run the diagnostic against that amendment.",
+      "requires": "authorization and a new frozen reference set"
+    },
+    {
+      "option": "C",
+      "name": "RUN_FROZEN_SCRIPT_UNCHANGED_ON_V2_POPULATION",
+      "description": "Run the v1 script exactly as frozen on the 106-image v2 population.",
+      "requires": "nothing new, but it would NOT evaluate the clean_v3 refiner, defeating the purpose of the clean_v3 revalidation"
+    }
+  ],
+
+  "recommendation": "Option A, because it preserves every frozen artifact unmodified, evaluates the correct clean_v3 population with the correct clean_v3 checkpoints, and reports both reference bases side by side so the supervisor can adjudicate the gate rather than have it silently redefined.",
+
+  "actions_taken": {
+    "diagnostic_executed": false,
+    "frozen_artifacts_modified": false,
+    "population_tables_regenerated": false,
+    "reference_values_substituted": false,
+    "checkpoint_selection_replay_executed": true,
+    "checkpoint_selection_replay_verdict": "REPLAY_PASS__FROZEN_RULE_HONOURED"
+  },
+
+  "counters": {
+    "model_forwards": 0,
+    "backward_passes": 0,
+    "inference_passes": 0,
+    "test_reads": 0,
+    "external_test_reads": 0,
+    "scientific_parameters_changed": 0
+  }
+}

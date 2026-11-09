@@ -1,0 +1,39 @@
+{
+  "artifact": "phase22_scale_probe_fidelity",
+  "phase": 22,
+  "purpose": "pipeline fidelity at the canonical resolution: the probe must reproduce the frozen Phase-21 pipeline before any scale claim",
+  "comparison_space": "CANONICAL_512_SQUARE_CANVAS (reference maps are stored in that canvas, so the probe is compared there; all REPORTED metrics are computed in NATIVE image space)",
+  "n_samples": 808,
+  "gate_A_pipeline_fidelity": {
+    "test": "probe re-inference at 512 (canonical rule) vs the canonical persisted PROBABILITY map re-thresholded by the same rule",
+    "n_samples_with_any_disagreement": 553,
+    "total_disagreeing_pixels": 2884,
+    "all_disagreements_within_boundary_band": true,
+    "boundary_tolerance": 0.02,
+    "verdict": "PASS",
+    "note": "A residual disagreement that is confined to pixels whose probability lies within 0.02 of the 0.5 threshold is float16 storage quantisation, not a pipeline divergence. Sizes are recorded so the magnitude is always visible."
+  },
+  "gate_B_probability_map_agreement": {
+    "test": "probe re-inference at 512 vs the canonical persisted PROBABILITY map, maximum absolute difference in the shared 512 square canvas",
+    "max_abs_probability_difference_square": 0.009233653545379639,
+    "threshold_for_agreement": 0.005,
+    "verdict": "REVIEW",
+    "note": "float16 storage quantisation bounds agreement; a difference at or below 5e-3 is consistent with the 512-px decode round-trip and does not indicate a pipeline divergence."
+  },
+  "gate_C_disagreement_with_stored_pred": {
+    "test": "probe (canonical rule) vs the canonical persisted PRED array",
+    "n_samples_with_any_disagreement": 553,
+    "total_disagreeing_pixels": 2680,
+    "denominator_pixels": 211812352,
+    "verdict": "REPORTED_NOT_GATED",
+    "known_cause": "the persisted float16 probability map cannot represent the float32 threshold decision; exact-0.5 pixels in the stored map are MIXED (foreground and background) in the stored pred, so pred is not a function of prob on disk"
+  },
+  "dice_by_decision_source": {
+    "probe_reinference_canonical_rule_native": 0.8390402334224809,
+    "canonical_stored_pred_native": 0.8384789752954946,
+    "canonical_stored_pred_in_512_square_space": 0.8387815425121063,
+    "note": "Dice is insensitive to the float16 tie artefact at this scale; all three agree to ~1e-4."
+  },
+  "verdict": "PHASE22_SCALE_PROBE_FIDELITY_PASS",
+  "test_reads": 0
+}

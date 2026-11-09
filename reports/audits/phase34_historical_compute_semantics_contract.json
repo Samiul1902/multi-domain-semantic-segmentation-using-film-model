@@ -1,0 +1,35 @@
+{
+ "artifact": "phase34_historical_compute_semantics_contract",
+ "phase": 34,
+ "section": "\u00a7E",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase34_efficiency_profiling_v1_0",
+ "ruling": "ANALYTICAL_MAC_LOWER_BOUND",
+ "must_not_be_relabeled_as": [
+  "measured runtime",
+  "latency",
+  "FPS",
+  "energy",
+  "memory",
+  "mobile efficiency"
+ ],
+ "counted_operations": [
+  "Conv2d",
+  "Linear"
+ ],
+ "excluded_operations_confirmed_by_authority": [
+  "GroupNorm affine/statistics",
+  "SiLU",
+  "MaxPool2d",
+  "bilinear interpolation",
+  "FiLM elementwise modulation",
+  "sigmoid",
+  "Embedding lookup (router)",
+  "LayerNorm (router)"
+ ],
+ "exclusion_source": "reports/audits/phase21_analytical_mac_count.json (excluded_ops) + reports/tables/phase25e_analytical_compute_contract.csv + artifacts/phase26_ra_medfilm_barr_bundle_v1_0/resource_contract.json (never_call)",
+ "invented_exclusions": [],
+ "semantics": "LOWER BOUND on total arithmetic; exact for Conv2d and Linear layers",
+ "generated_utc": "2026-10-04T09:50:07+00:00",
+ "all_pass": true
+}

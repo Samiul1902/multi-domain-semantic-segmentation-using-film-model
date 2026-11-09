@@ -1,0 +1,92 @@
+{
+ "artifact": "phase36_v1_14_handoff_notebook_safety_audit",
+ "phase": 36,
+ "revision": "v1_14",
+ "type": "HANDOFF_NOTEBOOK_STATIC_SAFETY_AUDIT",
+ "method": "RA-MedFiLM-BARR",
+ "method_note": "AST-level analysis of executed operations (not substring search)",
+ "notebook_path": "D:\\Softfors\\jup\\notebooks\\RA_MedFiLM_Phase_Handoff_Builder.ipynb",
+ "notebook_sha256": "a69e75d3031e722a8ed343565f3a95176b3380327430ddbde8e134412e2bd12d",
+ "n_cells": 25,
+ "n_code_cells": 12,
+ "syntax_ok": true,
+ "imported_modules": [
+  "datetime",
+  "hashlib",
+  "json",
+  "os",
+  "pathlib",
+  "shutil",
+  "sys",
+  "zipfile"
+ ],
+ "unexpected_imports": [],
+ "torch_import": false,
+ "model_execution": false,
+ "checkpoint_deserialization": false,
+ "smoke_execution": false,
+ "science_execution": false,
+ "val_gt_read": false,
+ "test_read": false,
+ "router_holdout_read": false,
+ "training": false,
+ "frozen_artifact_mutation": false,
+ "forbidden_calls_detected": [],
+ "read_operations": [
+  "Path(path).read_bytes()"
+ ],
+ "mutation_calls": [
+  {
+   "attr": "mkdir",
+   "target": "BUNDLE.mkdir(parents=True, exist_ok=True)",
+   "arg0": null
+  },
+  {
+   "attr": "mkdir",
+   "target": "(BUNDLE / \"scripts\").mkdir(exist_ok=True)",
+   "arg0": null
+  },
+  {
+   "attr": "mkdir",
+   "target": "(BUNDLE / \"reports\").mkdir(exist_ok=True)",
+   "arg0": null
+  },
+  {
+   "attr": "mkdir",
+   "target": "dst.parent.mkdir(parents=True, exist_ok=True)",
+   "arg0": null
+  },
+  {
+   "attr": "copy2",
+   "target": "shutil.copy2(src, dst)",
+   "arg0": "src"
+  },
+  {
+   "attr": "write_text",
+   "target": "(BUNDLE / \"HANDOFF_INDEX.json\").write_text(     json.dumps(handoff_index, indent=1), encoding=\"utf-8\")",
+   "arg0": "json.dumps(handoff_index, indent=1)"
+  },
+  {
+   "attr": "write_text",
+   "target": "(BUNDLE / \"HANDOFF_SUMMARY.md\").write_text(     \"\\n\".join(lines) + \"\\n\", encoding=\"utf-8\")",
+   "arg0": "'\\n'.join(lines) + '\\n'"
+  },
+  {
+   "attr": "mkdir",
+   "target": "AUD.mkdir(parents=True, exist_ok=True)",
+   "arg0": null
+  },
+  {
+   "attr": "write_text",
+   "target": "GEN_AUDIT.write_text(json.dumps(generation, indent=1), encoding=\"utf-8\")",
+   "arg0": "json.dumps(generation, indent=1)"
+  }
+ ],
+ "bad_writes": [],
+ "allowed_write_roots": [
+  "reports/chatgpt_handoff",
+  "reports/audits/phase36_v1_14_chatgpt_handoff_generation.json"
+ ],
+ "allowed_ops_only": true,
+ "safe_to_run": true
+}

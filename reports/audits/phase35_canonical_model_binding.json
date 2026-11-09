@@ -1,0 +1,60 @@
+{
+ "artifact": "phase35_canonical_model_binding",
+ "phase": 35,
+ "section": "\u00a7I",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase35_interpretability_v1_0",
+ "components": {
+  "G": {
+   "component": "G",
+   "class": "GlobalMedFiLM",
+   "source_path": "src/models/film/global_medfilm.py",
+   "source_sha256": "a04ff3e61b4d900ff47c2f390da4a999e73bd6047b28a19e41b05115e431d11f",
+   "checkpoint_path": "checkpoints/phase21_global_medfilm_fourdomain_seed42_clean_v3/best.pt",
+   "checkpoint_sha256_expected": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+   "checkpoint_sha256_observed": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+   "parameter_count": 3523001,
+   "role": "GLOBAL_SEGMENTER",
+   "deserialized_during_specification": false
+  },
+  "R_psi": {
+   "component": "R_psi",
+   "class": "BARRRegionalRefinerV1",
+   "source_path": "src/models/barr/regional_refiner.py",
+   "source_sha256": "4fe0abde3ec3a183d930f676c4400b4d9ba778793ea64abf1755c5b8dabf947a",
+   "checkpoint_path": "checkpoints/phase25a_barr_regional_refiner_v1_1_roi030/final/final.pt",
+   "checkpoint_sha256_expected": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109",
+   "checkpoint_sha256_observed": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109",
+   "parameter_count": 1276401,
+   "role": "REGIONAL_REFINER",
+   "deserialized_during_specification": false
+  },
+  "B_phi": {
+   "component": "B_phi",
+   "class": "BARRBenefitRouterV1",
+   "source_path": "scripts/analysis/train_phase25d_router.py",
+   "source_sha256": "fc7c1bdf263ae4551dcb8f170d3203adb8540fbc189846265b74f6eca1541e91",
+   "checkpoint_path": "checkpoints/phase25d_barr_benefit_router_v1_2_1_seed42/final/final.pt",
+   "checkpoint_sha256_expected": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+   "checkpoint_sha256_observed": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+   "parameter_count": 36801,
+   "role": "BENEFIT_ROUTER",
+   "deserialized_during_specification": false
+  },
+  "S_omega": {
+   "component": "S_omega",
+   "class": "BARRPostSafetyV1",
+   "source_path": "scripts/analysis/phase25f_execution_common.py",
+   "source_sha256": "98cf958a377e2de30e0b67e63fd56bafea418b2b061a362ee7284e852012cd2e",
+   "checkpoint_path": "checkpoints/phase25f_barr_post_safety_v1_0_seed42/final/final.pt",
+   "checkpoint_sha256_expected": "eee9b97b9921e53fc07eac9281dce64ba518c6e1659916b97b0b3bec21ec6d2e",
+   "checkpoint_sha256_observed": "eee9b97b9921e53fc07eac9281dce64ba518c6e1659916b97b0b3bec21ec6d2e",
+   "parameter_count": 1217,
+   "role": "POST_SAFETY",
+   "deserialized_during_specification": false
+  }
+ },
+ "checkpoint_deserialized": false,
+ "generated_utc": "2026-10-04T14:41:26+00:00",
+ "all_pass": true
+}

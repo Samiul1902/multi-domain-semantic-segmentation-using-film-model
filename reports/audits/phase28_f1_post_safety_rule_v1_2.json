@@ -1,0 +1,32 @@
+{
+ "phase": 28,
+ "method": "RA-MedFiLM-BARR",
+ "governance_only": true,
+ "execution": "NONE",
+ "generated_utc": "2026-10-02T12:40:00Z",
+ "artifact": "phase28_f1_post_safety_rule_v1_2",
+ "classification": "F1_INTEGRATED_POST_SAFETY_RULING",
+ "applies_to": [
+  "F1"
+ ],
+ "f1_changes_candidate_prediction": true,
+ "post_safety_feature_vector_may_change": true,
+ "integrated_rule": "recompute ONLY the deterministic 20-D S_omega feature vector from the F1 candidate, then run the corresponding already-frozen OOF Phase25F S_omega fold model for that OUTER_TARGET sample",
+ "retrain_S_omega": false,
+ "use_final_all_dev_S_omega_on_OOF": false,
+ "leakage_safe_fold_ownership_required": true,
+ "S_omega_feature_dimension": 20,
+ "S_omega_numeric_dim": 16,
+ "S_omega_onehot_dim": 4,
+ "fold_checkpoints": [
+  "checkpoints/phase25f_barr_post_safety_v1_0_seed42/cv_fold0/best.pt",
+  "checkpoints/phase25f_barr_post_safety_v1_0_seed42/cv_fold1/best.pt",
+  "checkpoints/phase25f_barr_post_safety_v1_0_seed42/cv_fold2/best.pt",
+  "checkpoints/phase25f_barr_post_safety_v1_0_seed42/cv_fold3/best.pt",
+  "checkpoints/phase25f_barr_post_safety_v1_0_seed42/cv_fold4/best.pt"
+ ],
+ "fold_checkpoints_all_present": true,
+ "phase25f_reuses_phase25d_cv5_manifest": true,
+ "integrated_analysis_availability": "AVAILABLE",
+ "contingency_if_absent": "PRIMARY F1 refiner-level comparison remains executable; integrated comparison marked unavailable, not improvised"
+}

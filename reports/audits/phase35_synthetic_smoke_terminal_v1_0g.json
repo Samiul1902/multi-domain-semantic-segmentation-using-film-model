@@ -1,0 +1,113 @@
+{
+ "artifact": "phase35_synthetic_smoke_terminal_v1_0g",
+ "section": "§P",
+ "phase": 35,
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase35_interpretability_v1_0g",
+ "terminal_state": "BLOCKED",
+ "success": false,
+ "terminal_string": "RA_MEDFILM_BARR_PHASE35_V1_0G_FINAL_PRE_SCIENTIFIC_SYNTHETIC_INTERPRETABILITY_SMOKE_BLOCKED__SCIENTIFIC_INTERFACE_CHECKS_ALL_PASS__COUNTER_CONTRACT_LOAD_BEARING_DEFECT_EXPECTED_COUNTER_TABLE_PARTIAL_AND_ALIAS_STALE__FIRST_VALID_ATTEMPT_PRESERVED_NO_RETRY__NO_SCIENTIFIC_EXECUTION__NO_PHASE36",
+ "blocking_defect": {
+  "id": "PHASE35_V1_0G_EXPECTED_COUNTER_TABLE_PARTIAL_AND_ALIAS_STALE",
+  "class": "BOOKKEEPING_VALIDATION_DEFECT__NOT_A_SCIENTIFIC_OR_INTERFACE_DEFECT",
+  "observations": [
+   {
+    "counter": "synthetic_smoke_target_masks",
+    "observed": 0,
+    "expected": 1,
+    "cause": "ALIAS_NOT_MIRRORED_FROM_PRIMARY (primary=1, alias=0)"
+   },
+   {
+    "counter": "B_phi_synthetic_forwards",
+    "observed": 0,
+    "expected": 1,
+    "cause": "EXPECTED_TABLE_OMITS_V0C.smoke_router_based_forward (V0C helper increments; expected table never did)"
+   },
+   {
+    "counter": "router_numeric_input_autograd_calls",
+    "observed": 0,
+    "expected": 1,
+    "cause": "SAME_AS_ABOVE__EXPECTED_TABLE_TOKEN_NOT_UPDATED"
+   },
+   {
+    "counter": "total_autograd_calls",
+    "observed": 1,
+    "expected": 2,
+    "cause": "SAME_ROOT_CAUSE"
+   },
+   {
+    "counter": "total_model_forwards",
+    "observed": 1,
+    "expected": 2,
+    "cause": "SAME_ROOT_CAUSE"
+   },
+   {
+    "counter": "synthetic_router_attribution_rows",
+    "observed": 0,
+    "expected": 4,
+    "cause": "SAME_ROOT_CAUSE"
+   }
+  ],
+  "additional_disclosure": [
+   "EXPECTED_TABLE_KEY_SET_IS_STRICT_SUBSET_OF_COUNTER_STORE (23 of 31 keys): the frozen V0C.SMOKE_EXPECTED_COUNTERS never declared expectations for the 8 protected-data counters (raw_VAL_image_reads, real_persisted_VAL_probability_reads, VAL_GT_reads, router_feature_cache_rows_read, ROUTER_HOLDOUT_reads, TEST_reads, TRAIN_raw_reads, scientific_outputs). All 8 observed 0, consistent with the intent that they must remain 0.",
+   "v1.0g REPAIRED the PRIMARY count correctly: primary_synthetic_target_masks observed 1, expected 1, empty-mask observability observed 1, expected 1, and the empty mask was NOT counted as primary. The load-bearing REPAIR ITSELF is effective.",
+   "The FAILURE MODE IS IDENTICAL IN CLASS TO THE v1.0f BLOCKER: a bookkeeping/expected-table defect, not a scientific or interface defect."
+  ],
+  "scientific_semantics_changed": false,
+  "repaired_contract_verified": {
+   "primary_synthetic_target_masks": 1,
+   "actual_logits_empty_mask_helper_checks": 1,
+   "alias_equals_primary": false,
+   "empty_mask_not_counted_as_primary": true
+  }
+ },
+ "classification_summary": {
+  "scientific_and_interface_checks": "ALL_PASS",
+  "load_bearing_counter_repair": "EFFECTIVE_FOR_PRIMARY_AND_EMPTY_MASK_CATEGORIES",
+  "counts_match_expected": false,
+  "counter_contract_ok": false,
+  "all_pass": false
+ },
+ "final_check": {
+  "artifact": "reports/audits/phase35_synthetic_smoke_final_check_v1_0g.json",
+  "sha256": "5e1573beac6f5284bb352270581d5a8ee469929c696a0bc737790049eabd47b9",
+  "passed": 61,
+  "failed": 2,
+  "total": 63,
+  "failed_checks": [
+   "FC051 alias_equals_primary",
+   "FC054 counter_contract_ok"
+  ]
+ },
+ "frozen_sources_unchanged": true,
+ "frozen_v1_0f_artifacts_unchanged": true,
+ "protected_data_touched": false,
+ "scientific_outputs_emitted": false,
+ "phase36_started": false,
+ "invocation_count": 1,
+ "retry_performed": false,
+ "first_valid_attempt_preserved": true,
+ "first_phase35_scientific_execution_eligible_for_supervisor_review": false,
+ "supervisor_action_required": "REPAIR_EXPECTED_COUNTER_TABLE_AND_ALIAS_MIRROR__SOURCE_AND_GOVERNANCE_ONLY",
+ "recommended_next_revision": "ra_medfilm_barr_phase35_interpretability_v1_0h",
+ "artifacts": {
+  "smoke": "reports/audits/phase35_synthetic_interpretability_smoke_v1_0g.json",
+  "smoke_sha256": "d20fb2ebe4464b563061db41be1f9816d15710c483135385df5b23ae5a595fd1",
+  "provenance": "reports/audits/phase35_synthetic_smoke_provenance_v1_0g.json",
+  "provenance_sha256": "5bc29f184a0956bdeba3d8b9b04c44270f58b39da4387acc525b8a251d8c02f7",
+  "final_check_sha256": "5e1573beac6f5284bb352270581d5a8ee469929c696a0bc737790049eabd47b9",
+  "transitive_authority_binding_sha256": "3a4b453763022ea83105c8ac47bbc20518225900a08c473fdd5f9a6f136df574"
+ },
+ "generated_utc": "2026-10-05T05:34:06Z",
+ "all_pass": true,
+ "reviewer_notebook": {
+  "notebook": "notebooks/phasewise/phase_35_interpretability/phase35_interpretability_synthetic_smoke_v1_0g_review.ipynb",
+  "notebook_sha256": "1eff87d3739843960d2b5eb6a4a3f6b6cfb991dd0e43d70fa93a18a950ad08ac",
+  "notebook_audit": "reports/audits/phase35_synthetic_smoke_reviewer_notebook_audit_v1_0g.json",
+  "notebook_audit_sha256": "6f59fa63cb726292bd90f70b152c2ce9ed7fa7f21c517f7481d55640c2d95d8c",
+  "notebook_audit_all_pass": true,
+  "read_only": true,
+  "cell_errors": 0,
+  "executable_token_violations": 0
+ }
+}

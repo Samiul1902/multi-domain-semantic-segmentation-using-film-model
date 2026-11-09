@@ -1,0 +1,20 @@
+{
+  "artifact": "POST_PHASE13_H2A_B1_CHECKPOINT_CROSSCHECK_LIMITATION",
+  "status": "DISCLOSED",
+  "classification": "NONBLOCKING_SECONDARY_INTEGRITY_CHECK_UNAVAILABLE",
+  "best_epoch": 83,
+  "latest_epoch": 98,
+  "requested_historical_epochs": [
+    31,
+    53,
+    68
+  ],
+  "historical_snapshots_available": false,
+  "reason": "H2A training did not retain epoch-specific model snapshots at those epochs",
+  "canonical_wording": "The 68-epoch loss/LR trajectory reproduction provides strong empirical support that gradient-update semantics were unchanged. Direct model-tensor equality at epochs 31/53/68 was not available because H2A did not retain epoch-specific snapshots at those epochs.",
+  "b1_status_changed": "NO",
+  "scientific_result_changed": "NO",
+  "retraining_required": false,
+  "trajectory_reproduction_available": true,
+  "trajectory_result": "PASS"
+}

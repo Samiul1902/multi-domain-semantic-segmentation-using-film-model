@@ -1,0 +1,100 @@
+{
+ "artifact": "phase35_v1_0d_to_v1_0e_semantic_diff",
+ "phase": 35,
+ "section": "\u00a7E",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase35_interpretability_v1_0e",
+ "classification": "IMPLEMENTATION_NUMERICAL_SAFETY_AND_OBSERVABILITY_ONLY",
+ "from_revision": "ra_medfilm_barr_phase35_interpretability_v1_0d",
+ "to_revision": "ra_medfilm_barr_phase35_interpretability_v1_0e",
+ "from_source": {
+  "path": "scripts/analysis/phase35_interpretability_execution_v1_0d.py",
+  "expected_sha256": "cccc109ade27eb5ad7883912004c1e911e9e253a659146f3d64820af92244056",
+  "observed_sha256": "cccc109ade27eb5ad7883912004c1e911e9e253a659146f3d64820af92244056",
+  "match": true
+ },
+ "to_source": {
+  "path": "scripts/analysis/phase35_interpretability_execution_v1_0e.py",
+  "sha256": "1ca50b773a185384b9f0a7eae47fe95c64eb84bad3826c70cbe88edefe535941"
+ },
+ "immutable_predecessors": {
+  "execution_v1_0b": {
+   "path": "scripts/analysis/phase35_interpretability_execution_v1_0b.py",
+   "expected_sha256": "581926840d7717e19ed15ad77c7c5339b709efc881b938924d6eec0a2ceb1872",
+   "observed_sha256": "581926840d7717e19ed15ad77c7c5339b709efc881b938924d6eec0a2ceb1872",
+   "match": true
+  },
+  "execution_v1_0c": {
+   "path": "scripts/analysis/phase35_interpretability_execution_v1_0c.py",
+   "expected_sha256": "4058fc5544e6e1af15339df20a88da4880549ea8d4dd434395df04e0fa261baa",
+   "observed_sha256": "4058fc5544e6e1af15339df20a88da4880549ea8d4dd434395df04e0fa261baa",
+   "match": true
+  },
+  "execution_v1_0d": {
+   "path": "scripts/analysis/phase35_interpretability_execution_v1_0d.py",
+   "expected_sha256": "cccc109ade27eb5ad7883912004c1e911e9e253a659146f3d64820af92244056",
+   "observed_sha256": "cccc109ade27eb5ad7883912004c1e911e9e253a659146f3d64820af92244056",
+   "match": true
+  },
+  "common_v1_0b": {
+   "path": "scripts/analysis/phase35_interpretability_common_v1_0b.py",
+   "expected_sha256": "9963215e1431e968e11bacbcd917d96a8a985a7181000258b90f458ff0a778ac",
+   "observed_sha256": "9963215e1431e968e11bacbcd917d96a8a985a7181000258b90f458ff0a778ac",
+   "match": true
+  }
+ },
+ "functions_removed": [],
+ "functions_replaced": {
+  "gradcam_gradient_enabled_rank_safe": {
+   "superseded_by": "gradcam_gradient_enabled_numerically_guarded",
+   "superseded_only_for_the_v1_0e_effective_path": true,
+   "frozen_v1_0d_module_still_imports_and_uses_it": true
+  },
+  "cam_normalize (frozen v1.0b)": {
+   "superseded_by": "cam_normalize_guarded",
+   "superseded_only_on_the_guarded_path": true,
+   "frozen_v1_0b_cam_normalize_retained_and_referenced": true
+  }
+ },
+ "functions_added": [
+  "_require_finite_tensor",
+  "_require_finite_scalar",
+  "_tensor_stats",
+  "cam_normalize_guarded",
+  "gradcam_gradient_enabled_numerically_guarded",
+  "gradcam_per_sample_runner",
+  "empty_mask_helper_check_insession",
+  "parameter_grad_state_audit_insession",
+  "smoke_synthetic_target_mask_rank2",
+  "smoke_gradcam",
+  "mode_smoke",
+  "mode_gradcam",
+  "mode_science"
+ ],
+ "scientific_semantics_changed": false,
+ "behavioral_change_on_finite_inputs": "NONE (guards only add raises on non-finite states and only ADD observability)",
+ "behavioral_change_on_nonfinite_inputs": "FAIL_CLOSED raise instead of silent all-zero fallback",
+ "frozen_rank_safe_target_reused": true,
+ "gradcam_layers": [
+  "bridge",
+  "decoder1"
+ ],
+ "thresholds_unchanged": {
+  "T_SEGMENTATION_OUTPUT": 0.5,
+  "T_ROI_PROPOSAL": 0.3
+ },
+ "preflight": {
+  "path": "reports/audits/phase35_execution_source_static_preflight_v1_0e.json",
+  "total_n_checks": 118,
+  "total_n_failed": 0,
+  "all_pass": true
+ },
+ "unit_tests": {
+  "path": "reports/audits/phase35_gradcam_numerical_guard_unit_v1_0e.json",
+  "n_tests": 12,
+  "n_pass": 12,
+  "all_pass": true
+ },
+ "generated_utc": "2026-10-05T02:12:42Z",
+ "all_pass": true
+}

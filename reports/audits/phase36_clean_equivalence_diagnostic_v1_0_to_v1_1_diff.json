@@ -1,0 +1,146 @@
+{
+ "artifact_kind": "PHASE36_CLEAN_EQUIVALENCE_DIAGNOSTIC_V1_0_TO_V1_1_DIFF",
+ "revision": "ra_medfilm_barr_phase36_clean_equivalence_diagnostic_v1_1",
+ "change_class": "ADDITIVE_GOVERNANCE_REPAIR__NO_V1_0_MUTATION",
+ "v1_0_preserved_byte_for_byte": {
+  "diagnostic": true,
+  "launcher": true,
+  "unit": true,
+  "preflight": true
+ },
+ "new_files": [
+  "scripts/analysis/phase36_clean_equivalence_diagnostic_v1_1.py",
+  "scripts/analysis/launch_phase36_clean_equivalence_diagnostic_v1_1.py",
+  "scripts/analysis/phase36_clean_equivalence_diagnostic_unit_v1_1.py",
+  "scripts/analysis/phase36_clean_equivalence_diagnostic_preflight_v1_1.py",
+  "scripts/analysis/phase36_clean_equivalence_diagnostic_negative_controls_v1_1.py"
+ ],
+ "modified_files": [],
+ "deleted_files": [],
+ "source_sha256": {
+  "v1_0": {
+   "diagnostic": "7cc51cceacfa314d7f84acb8a6dc482a2b46ea81de0ec695c0c8f0ca8b0b50f7",
+   "launcher": "a34923faf6c27dd741ee1a1a1b4d1cbef1233664c2b02825e53b42c22c75b228",
+   "unit": "33e72386699aa0100c314846ffe2592f740ca7fb76e926a704cf4d46fbf78bf5",
+   "preflight": "92c2d855e931d037e965d862a2ce0feb091d53e1bff0f91020f85729842e6653"
+  },
+  "v1_1": {
+   "diagnostic": "04fa6252ff2533464553fb1a6c1f55ae009ee7ff00c1dbf89c1f901b089c839e",
+   "launcher": "205dd4b877d8b6505c9479de9979087f19c341769ba2c5157a25701c212d14f6",
+   "unit": "89190b297e7bc4e2868f7bb52fc46d836e6866317403523e8bbf0d167bc50aee",
+   "preflight": "3634a3f4314fb5712d958cda2effc3b3027257663692b51b3b4176b258fab529",
+   "negative_controls": "b43649898d5be2fb96737f683aa208ea84d55a66ab807ac0d06e0fba4a7b3ee1"
+  }
+ },
+ "defect_repairs": [
+  {
+   "id": "D45",
+   "title": "source requires launch-authority token before start marker",
+   "v1_0": "only the one-shot execute gate guarded the start marker",
+   "v1_1": "one-shot gate -> prior-attempt absence -> launch-authority token -> provenance gate -> derived authorized_attempt -> start marker",
+   "fail_closed_terminal": "PHASE36_CLEAN_EQ_DIAGNOSTIC_V1_1_FAIL_CLOSED__LAUNCH_AUTHORITY_REQUIRED__NO_ATTEMPT_CONSUMED",
+   "status": "REPAIRED"
+  },
+  {
+   "id": "D46",
+   "title": "exact frozen counter authority; no fallback",
+   "v1_0": "counter authority not bound to the frozen v1.14 module C",
+   "v1_1": "OrderedDict from mod.C.COUNTERS_REQUIRED + mod.C.COUNTERS_FOREVER_ZERO; no alternate common module; no empty-dict fallback; fail closed",
+   "fail_closed_terminal": "PHASE36_CLEAN_EQ_DIAGNOSTIC_V1_1_FAIL_CLOSED__FROZEN_COUNTER_AUTHORITY_UNAVAILABLE",
+   "status": "REPAIRED"
+  },
+  {
+   "id": "D47",
+   "title": "durable terminal evidence",
+   "v1_0": "result write not proven inside the guarded terminal region",
+   "v1_1": "run_diagnostic() AND the result write are INSIDE one guarded try-block; every terminal path writes a durable failure artifact with full fields (O_CREAT|O_EXCL + full-write loop + fsync + loud short-write failure)",
+   "status": "REPAIRED"
+  },
+  {
+   "id": "D48",
+   "title": "launcher transitive hash-only integrity before authority",
+   "v1_0": "launcher verified the anchor SHA only",
+   "v1_1": "manifest SHA + execution_source_sha256 + exactly 14 deps + exactly 4 ckpts + every dep/ckpt SHA + launcher_sha256 absent; NO torch.load",
+   "fail_closed_terminal": "PHASE36_CLEAN_EQ_DIAGNOSTIC_V1_1_FAIL_CLOSED__TRANSITIVE_INTEGRITY_FAILED__NO_ATTEMPT_CONSUMED",
+   "status": "REPAIRED"
+  },
+  {
+   "id": "D49",
+   "title": "validator coverage repair",
+   "v1_0": "validator used substring-only / tautological checks",
+   "v1_1": "real AST / control-flow bindings; 14 enumerated requirements; unit 67/67, preflight 63/63, negative controls 55/55",
+   "status": "REPAIRED"
+  }
+ ],
+ "prior_failure_provenance_binding": {
+  "v1_14_science_start": {
+   "path": "reports/audits/phase36_robustness_science_start_v1_14.json",
+   "present": true,
+   "expected": "e2c42b05f4fd0450022d7bcde091c0bea13638788b4f83a123016ab894630e0a",
+   "observed": "e2c42b05f4fd0450022d7bcde091c0bea13638788b4f83a123016ab894630e0a",
+   "match": true
+  },
+  "v1_14_science_failure": {
+   "path": "reports/audits/phase36_robustness_science_failure_v1_14.json",
+   "present": true,
+   "expected": "0fcc3c211d7bcd53b4f8e53d7b09f518fd83a929e8a979c7174762958fff754b",
+   "observed": "0fcc3c211d7bcd53b4f8e53d7b09f518fd83a929e8a979c7174762958fff754b",
+   "match": true
+  },
+  "v1_14_forensic_adjudication": {
+   "path": "reports/audits/phase36_v1_14_science_failure_forensic_adjudication.json",
+   "present": true,
+   "expected": "f1d4712ae7b3f0b333a22c852f99d6b3812218ffb258f8f58ddba62c7193c17e",
+   "observed": "f1d4712ae7b3f0b333a22c852f99d6b3812218ffb258f8f58ddba62c7193c17e",
+   "match": true
+  },
+  "forensic_reconciliation_v2": {
+   "path": "reports/audits/phase36_v1_14_science_failure_forensic_reconciliation_v2.json",
+   "present": true,
+   "expected": "cc9a3b502f59e3855c395b9d6afa2f5616f513d60af4756e4477a9370889cc3c",
+   "observed": "cc9a3b502f59e3855c395b9d6afa2f5616f513d60af4756e4477a9370889cc3c",
+   "match": true
+  },
+  "targeted_static_audit": {
+   "path": "reports/audits/phase36_clean_equivalence_targeted_static_audit_v1_0.json",
+   "present": true,
+   "expected": "8def086c44a7e80461c729f41ab61c0be347ef1589c94d6884a082adbde64ed4",
+   "observed": "8def086c44a7e80461c729f41ab61c0be347ef1589c94d6884a082adbde64ed4",
+   "match": true
+  }
+ },
+ "required_static_audit_verdict": "STATIC_ROOT_CAUSE_NOT_ESTABLISHED",
+ "observed_static_audit_verdict": "STATIC_ROOT_CAUSE_NOT_ESTABLISHED",
+ "validator_results": {
+  "unit": {
+   "n_checks": 67,
+   "n_pass": 67,
+   "all_pass": true
+  },
+  "preflight": {
+   "n_checks": 63,
+   "n_pass": 63,
+   "all_pass": true
+  },
+  "negative_controls": {
+   "n_checks": 55,
+   "n_pass": 55,
+   "all_pass": true
+  }
+ },
+ "no_execution_state": {
+  "diagnostic_v1_0": "FROZEN_NEVER_CONSUMED_NOT_AUTHORIZED",
+  "diagnostic_v1_1": "ELIGIBLE_NOT_STARTED",
+  "v1_1_start_marker": "ABSENT",
+  "v1_1_result_marker": "ABSENT",
+  "v1_1_failure_marker": "ABSENT",
+  "v1_14_science": "CONSUMED_FAILED",
+  "v1_14_science_retry": "FORBIDDEN",
+  "v1_15": "NOT_CREATED",
+  "phase37": "NOT_STARTED",
+  "test": "REMAINS_PHASE39_ONLY",
+  "router_holdout": "NOT_ACCESSED"
+ },
+ "scientific_output": false,
+ "generated_utc": "2026-10-07T03:14:50Z"
+}

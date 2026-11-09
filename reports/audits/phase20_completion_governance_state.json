@@ -1,0 +1,101 @@
+{
+  "artifact": "phase20_completion_governance_state",
+  "status": "PHASE20_SHARED_GLOBAL_BASELINE_COMPLETE__PHASE21_ELIGIBLE_NOT_STARTED",
+  "generated_by": "scripts/notebooks/sync_phase20_completion.py",
+  "phase20_protocol": {
+    "path": "reports/audits/phase20_shared_global_baseline_protocol.json",
+    "sha256": "b74f1f9f429adbce374f0306180943b9f373f872e1e69e115b7d17e81414283c",
+    "status": "PHASE20_PROTOCOL_FROZEN__AWAITING_EXECUTION"
+  },
+  "phase20_experiment": {
+    "experiment_id": "phase20_shared_unetpp_fourdomain_seed42_clean_v3",
+    "best_epoch": 55,
+    "best_macro_domain_dice": 0.792007328746103,
+    "final_epoch": 70,
+    "stop_reason": "EARLY_STOPPING_PATIENCE",
+    "checkpoint_sha256": "d647ac52bf39704549ce2eea4fee8e17dfcb5ce9ace5e0b24ffb1f7db86a059f"
+  },
+  "governance": {
+    "stage_b": "ACTIVE",
+    "phase_19": "COMPLETE",
+    "phase_20": "COMPLETE",
+    "phase_21": "ELIGIBLE_NOT_STARTED",
+    "phase_21_authorization_required": true,
+    "phase_21_started": false,
+    "film_used": false,
+    "regional_module_used": false,
+    "localizer_used": false,
+    "roi_proposal_used": false,
+    "task_conditioning_used": false,
+    "test": "CLOSED",
+    "test_reads": 0,
+    "frozen_historical_artifacts_modified": 0
+  },
+  "synchronized": {
+    "phasewise_notebook_map": {
+      "path": "reports/audits/phasewise_notebook_map.json",
+      "old_sha256": "088fbb16b40be9cc8a8d439116be96a113ecb3b18c077f0fc105cdf9d4e31540",
+      "new_sha256": "088fbb16b40be9cc8a8d439116be96a113ecb3b18c077f0fc105cdf9d4e31540",
+      "status_changes": [
+        {
+          "phase_id": "19",
+          "from": "CURRENT_AUTHORIZED",
+          "to": "COMPLETE"
+        },
+        {
+          "phase_id": "20",
+          "from": "NOT_STARTED_AND_NOT_AUTHORIZED",
+          "to": "COMPLETE"
+        },
+        {
+          "phase_id": "21",
+          "from": "NOT_STARTED",
+          "to": "ELIGIBLE_NOT_STARTED"
+        }
+      ],
+      "status_changes_baseline": "declared_post_stage_b_activation (canonical, run-independent)",
+      "status_changes_baseline_provenance": "reports/audits/stage_b_governance_state.json (phase 19) + notebooks/phasewise/README.md roadmap rows (phases 20-21)"
+    },
+    "phasewise_readme": {
+      "path": "notebooks/phasewise/README.md",
+      "old_sha256": "16a7bba308de2a070b1a20ab4ad7a8508dc08fc92e7f70a0b6ab14928765f436",
+      "new_sha256": "16a7bba308de2a070b1a20ab4ad7a8508dc08fc92e7f70a0b6ab14928765f436"
+    },
+    "phase_readmes": {
+      "phase_19": {
+        "path": "notebooks/phasewise/phase_19_harmonization/README.md",
+        "old_sha256": "4d3b4ba833223525b297e72b1a67c3a61342a326d573cc092a4299033ee397f9",
+        "new_sha256": "4d3b4ba833223525b297e72b1a67c3a61342a326d573cc092a4299033ee397f9"
+      },
+      "phase_20": {
+        "path": "notebooks/phasewise/phase_20_multidomain_baselines/README.md",
+        "old_sha256": "98b650f63ef08eb5246b4e06a4aa9308bd0a5804ed0af5fbf42adeaaa6dbc482",
+        "new_sha256": "98b650f63ef08eb5246b4e06a4aa9308bd0a5804ed0af5fbf42adeaaa6dbc482"
+      },
+      "phase_21": {
+        "path": "notebooks/phasewise/phase_21_global_medfilm/README.md",
+        "old_sha256": "661883a479f9a21d71449e40e0f3cc0b58faa21491575f1ce2ce2ee54666296b",
+        "new_sha256": "661883a479f9a21d71449e40e0f3cc0b58faa21491575f1ce2ce2ee54666296b"
+      }
+    },
+    "project_master_plan": {
+      "path": "PROJECT_MASTER_PLAN.md",
+      "old_sha256": "917c774713208cba6fb625b7269268ab1db5a92459fe75fa73fd1b34367d0582",
+      "new_sha256": "917c774713208cba6fb625b7269268ab1db5a92459fe75fa73fd1b34367d0582"
+    },
+    "phasewise_index": {
+      "path": "notebooks/phasewise/00_PHASEWISE_PROJECT_INDEX.ipynb",
+      "old_sha256": "c83592038e1e0b0f5cd6ecffc946b12ded5fd52261100cfcc2805f56a7e3a212",
+      "new_sha256": "c83592038e1e0b0f5cd6ecffc946b12ded5fd52261100cfcc2805f56a7e3a212",
+      "change": "added Phase-20 completion / Phase-21 eligibility section",
+      "code_cells": 7,
+      "tracebacks": 0,
+      "monotonic": true
+    }
+  },
+  "idempotence": {
+    "all_synchronized_files_converged": true,
+    "files_checked": 7,
+    "note": "Every synchronized file was byte-identical before and after this run; the sync is convergent/idempotent. Transitions are recorded from a declared baseline, never from observed on-disk deltas."
+  }
+}

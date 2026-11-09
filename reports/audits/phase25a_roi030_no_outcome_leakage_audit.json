@@ -1,0 +1,251 @@
+{
+ "artifact": "phase25a_roi030_no_outcome_leakage_audit",
+ "phase": "25A",
+ "purpose": "prove no ROUTER_HOLDOUT / VAL / TEST outcome information reached Phase 25A",
+ "router_holdout": {
+  "images_used_for_outcome_evaluation": 0,
+  "gt_masks_read_for_evaluation": 0,
+  "refiner_inference": 0,
+  "dice": 0,
+  "deltadice": 0,
+  "holdout_sample_ids_in_cache": 0,
+  "holdout_outcomes_inspected": false
+ },
+ "existing_val": {
+  "outcome_evaluation": 0,
+  "refiner_inference": 0,
+  "val_sample_ids_in_cache": 0
+ },
+ "test": {
+  "image_reads": 0,
+  "mask_reads": 0,
+  "inference": 0,
+  "visualization": 0,
+  "test_sample_ids_in_cache": 0
+ },
+ "outer_oof_target_folds": {
+  "used_for_training": false,
+  "used_for_checkpoint_selection": false,
+  "used_for_early_stopping": false,
+  "note": "each fold's OUTER_TARGET is excluded from both FIT and EARLY_STOP; the crossfit audit asserts zero group overlap"
+ },
+ "paired_gain_labels_created": false,
+ "deltadice_computed": false,
+ "benefit_router_instantiated": false,
+ "benefit_router_training_runs": 0,
+ "benefit_router_inference_runs": 0,
+ "post_safety_instantiated": false,
+ "post_safety_training_runs": 0,
+ "static_scan": {
+  "analysis_and_source_scripts_scanned": 25,
+  "analysis_training_constructs": 0,
+  "test_constructs_across_all_phase25a_scripts": 0,
+  "scanned_scripts": [
+   "scripts/analysis/run_phase25a_entry_gate.py",
+   "scripts/analysis/build_phase25a_bindings.py",
+   "scripts/analysis/run_phase25a_arch_gate.py",
+   "scripts/analysis/build_phase25a_global_cache.py",
+   "scripts/analysis/build_phase25a_crossfit.py",
+   "scripts/training/train_phase25a_refiner.py",
+   "scripts/analysis/build_phase25a_final_refit_rule.py",
+   "scripts/analysis/run_phase25a_resource_accounting.py",
+   "scripts/analysis/build_phase25a_figures.py",
+   "scripts/analysis/build_phase25a_tables.py",
+   "scripts/analysis/run_phase25a_impl_tests.py",
+   "scripts/analysis/run_phase25a_notebook_gates.py",
+   "scripts/notebooks/build_phase25a_notebook.py",
+   "scripts/analysis/run_phase25a_final_freeze.py",
+   "scripts/analysis/build_phase25a_roi030_cache.py",
+   "scripts/analysis/build_phase25a_roi030_tables.py",
+   "scripts/analysis/build_phase25a_roi030_figures.py",
+   "scripts/analysis/build_phase25a_roi030_final_refit_rule.py",
+   "scripts/analysis/run_phase25a_threshold_semantics_audit.py",
+   "scripts/analysis/run_phase25a_canonical_final_freeze.py",
+   "scripts/analysis/run_phase25a_post_threshold_repair_check.py",
+   "scripts/analysis/run_phase25a_roi030_notebook_gates.py",
+   "scripts/notebooks/build_phase25a_roi030_notebook.py",
+   "src/models/barr/regional_refiner.py",
+   "src/data/barr_roi.py",
+   "src/data/barr_refiner_dataset.py"
+  ],
+  "excluded_from_scan": [
+   "scripts/analysis/run_phase25a_audits.py"
+  ],
+  "exclusion_rationale": "the auditor names the TEST manifest only to compare sample_id sets; it never loads a TEST image or mask",
+  "per_script": {
+   "scripts/analysis/run_phase25a_entry_gate.py": {
+    "exists": true,
+    "training_constructs": [],
+    "inference_constructs": [],
+    "test_constructs": []
+   },
+   "scripts/analysis/build_phase25a_bindings.py": {
+    "exists": true,
+    "training_constructs": [],
+    "inference_constructs": [],
+    "test_constructs": []
+   },
+   "scripts/analysis/run_phase25a_arch_gate.py": {
+    "exists": true,
+    "training_constructs": [],
+    "inference_constructs": [],
+    "test_constructs": []
+   },
+   "scripts/analysis/build_phase25a_global_cache.py": {
+    "exists": true,
+    "training_constructs": [],
+    "inference_constructs": [
+     "model.eval()"
+    ],
+    "test_constructs": []
+   },
+   "scripts/analysis/build_phase25a_crossfit.py": {
+    "exists": true,
+    "training_constructs": [],
+    "inference_constructs": [],
+    "test_constructs": []
+   },
+   "scripts/training/train_phase25a_refiner.py": {
+    "exists": true,
+    "training_constructs": [
+     "scaler.scale(",
+     "GradScaler(",
+     "torch.optim."
+    ],
+    "inference_constructs": [
+     "model.eval()"
+    ],
+    "test_constructs": []
+   },
+   "scripts/analysis/build_phase25a_final_refit_rule.py": {
+    "exists": true,
+    "training_constructs": [],
+    "inference_constructs": [],
+    "test_constructs": []
+   },
+   "scripts/analysis/run_phase25a_resource_accounting.py": {
+    "exists": true,
+    "training_constructs": [],
+    "inference_constructs": [
+     "model.eval()"
+    ],
+    "test_constructs": []
+   },
+   "scripts/analysis/build_phase25a_figures.py": {
+    "exists": true,
+    "training_constructs": [],
+    "inference_constructs": [],
+    "test_constructs": []
+   },
+   "scripts/analysis/build_phase25a_tables.py": {
+    "exists": true,
+    "training_constructs": [],
+    "inference_constructs": [],
+    "test_constructs": []
+   },
+   "scripts/analysis/run_phase25a_impl_tests.py": {
+    "exists": true,
+    "training_constructs": [],
+    "inference_constructs": [
+     "model.eval()"
+    ],
+    "test_constructs": []
+   },
+   "scripts/analysis/run_phase25a_notebook_gates.py": {
+    "exists": true,
+    "training_constructs": [],
+    "inference_constructs": [],
+    "test_constructs": []
+   },
+   "scripts/notebooks/build_phase25a_notebook.py": {
+    "exists": true,
+    "training_constructs": [],
+    "inference_constructs": [],
+    "test_constructs": []
+   },
+   "scripts/analysis/run_phase25a_final_freeze.py": {
+    "exists": true,
+    "training_constructs": [],
+    "inference_constructs": [],
+    "test_constructs": []
+   },
+   "scripts/analysis/build_phase25a_roi030_cache.py": {
+    "exists": true,
+    "training_constructs": [],
+    "inference_constructs": [
+     "model.eval()"
+    ],
+    "test_constructs": []
+   },
+   "scripts/analysis/build_phase25a_roi030_tables.py": {
+    "exists": true,
+    "training_constructs": [],
+    "inference_constructs": [],
+    "test_constructs": []
+   },
+   "scripts/analysis/build_phase25a_roi030_figures.py": {
+    "exists": true,
+    "training_constructs": [],
+    "inference_constructs": [],
+    "test_constructs": []
+   },
+   "scripts/analysis/build_phase25a_roi030_final_refit_rule.py": {
+    "exists": true,
+    "training_constructs": [],
+    "inference_constructs": [],
+    "test_constructs": []
+   },
+   "scripts/analysis/run_phase25a_threshold_semantics_audit.py": {
+    "exists": true,
+    "training_constructs": [],
+    "inference_constructs": [],
+    "test_constructs": []
+   },
+   "scripts/analysis/run_phase25a_canonical_final_freeze.py": {
+    "exists": true,
+    "training_constructs": [],
+    "inference_constructs": [],
+    "test_constructs": []
+   },
+   "scripts/analysis/run_phase25a_post_threshold_repair_check.py": {
+    "exists": true,
+    "training_constructs": [],
+    "inference_constructs": [],
+    "test_constructs": []
+   },
+   "scripts/analysis/run_phase25a_roi030_notebook_gates.py": {
+    "exists": true,
+    "training_constructs": [],
+    "inference_constructs": [],
+    "test_constructs": []
+   },
+   "scripts/notebooks/build_phase25a_roi030_notebook.py": {
+    "exists": true,
+    "training_constructs": [],
+    "inference_constructs": [],
+    "test_constructs": []
+   },
+   "src/models/barr/regional_refiner.py": {
+    "exists": true,
+    "training_constructs": [],
+    "inference_constructs": [],
+    "test_constructs": []
+   },
+   "src/data/barr_roi.py": {
+    "exists": true,
+    "training_constructs": [],
+    "inference_constructs": [],
+    "test_constructs": []
+   },
+   "src/data/barr_refiner_dataset.py": {
+    "exists": true,
+    "training_constructs": [],
+    "inference_constructs": [],
+    "test_constructs": []
+   }
+  }
+ },
+ "generated_utc": "2026-09-30T13:38:53.953787+00:00",
+ "test_reads": 0,
+ "verdict": "PHASE25A_NO_OUTCOME_LEAKAGE_PASS"
+}

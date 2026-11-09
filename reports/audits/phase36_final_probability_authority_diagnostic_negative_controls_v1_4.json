@@ -1,0 +1,60 @@
+{
+ "artifact_kind": "PHASE36_FINAL_PROBABILITY_AUTHORITY_DIAGNOSTIC_NEGATIVE_CONTROLS",
+ "revision": "ra_medfilm_barr_phase36_final_probability_authority_diagnostic_v1_4",
+ "source": {
+  "path": "scripts/analysis/phase36_final_probability_authority_diagnostic_negative_controls_v1_4.py",
+  "sha256": "492c03fd231969dc80347713c3106c7970854d060d2d5780e285ffbac8372256"
+ },
+ "headline_control": {
+  "statement": "inherited foreign v1.14 token => launcher refuses (rc 2) before dispatch; diagnostic main() refuses (rc 8); no marker; any GT access fails closed",
+  "exit_code_expected_no_one_shot_gate": 3,
+  "exit_code_expected_no_launch_authority": 5,
+  "exit_code_expected_foreign_token_present": 8,
+  "exit_code_expected_launcher_foreign_token": 2
+ },
+ "d61_controls": [
+  "v1.4 diagnostic ACCEPT branch calls canonical fuse_full_field",
+  "v1.4 diagnostic ACCEPT branch does NOT call _fuse_global_with_regional",
+  "v1.4 diagnostic contains NO _fuse_global_with_regional CALL anywhere",
+  "MUTATION: swap `fused = mod.fuse_full_field(...)` -> `fused = system._fuse_global_with_regional(...)` is DETECTED",
+  "canonical pad-aware fuse_full_field DIVERGES from the old pad-unaware model fusion",
+  "canonical fuse_full_field is deterministic (idempotent replicate)"
+ ],
+ "d69_controls": [
+  "v1.4 core scientific-path identity vs v1.3 core: DERIVED (not hard-coded)",
+  "observability-only statements are journal/stage-only",
+  "MUTATION: reverting the canonical fusion call FAILS the validator"
+ ],
+ "d70_controls": [
+  "journal disabled vs enabled => np.array_equal identical outputs, max_abs == 0.0",
+  "journal records are GT-free (no probabilities/masks/metrics)",
+  "journal writes are write-once (O_CREAT|O_EXCL)"
+ ],
+ "d56_controls": [
+  "real types.ModuleType is NOT subscriptable (TypeError reproduced)",
+  "real v1.4 diagnostic contains NO _FROZEN_MOD[...] subscript site",
+  "_FROZEN_MOD._load_clean_image_tensor present as ATTRIBUTE access",
+  "launcher check_d56_module_interface() passes on the real diagnostic"
+ ],
+ "d52_controls": [
+  "FINAL_AUTHORITY_ABSENT",
+  "FINAL_AUTHORITY_SHA_MISMATCH",
+  "FINAL_AUTHORITY_SHAPE_MISMATCH",
+  "FINAL_AUTHORITY_DTYPE_MISMATCH",
+  "FINAL_AUTHORITY_SAMPLE_ORDER_MISMATCH"
+ ],
+ "supervisor_controls": [
+  "6 synthetic abrupt-termination fixtures (temporary dirs ONLY)",
+  "supervisor writes durable process/exit evidence (write-once + fsync)",
+  "supervisor NEVER creates/alters scientific START/RESULT/FAILURE",
+  "supervisor NEVER relaunches"
+ ],
+ "run": {
+  "returncode": 0,
+  "n_checks": 31,
+  "n_pass": 31,
+  "all_pass": true
+ },
+ "scientific_output": false,
+ "generated_utc": "2026-10-10T03:20:53Z"
+}

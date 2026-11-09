@@ -1,0 +1,106 @@
+{
+  "classification": "PHASE39_V1_1_EXTRACTED_DEPENDENCY_AUDIT",
+  "generated_utc": "2026-10-11T07:20:00Z",
+  "phase": 39,
+  "revision": "ra_medfilm_barr_phase39_final_test_v1_1",
+  "d98_defect": "v1_0 AST extraction omitted required module globals FEATURE_DIM and HIDDEN for BARRPostSafetyV1",
+  "extracted_class_records": [
+    {
+      "component": "B_phi",
+      "class": "BARRBenefitRouterV1",
+      "source": "scripts/analysis/train_phase25d_router.py",
+      "source_sha256": "fc7c1bdf263ae4551dcb8f170d3203adb8540fbc189846265b74f6eca1541e91",
+      "required_module_globals": [],
+      "symbol_classification": {
+        "emb": "RESOLVED_LOCAL",
+        "nn": "RESOLVED_IMPORTED",
+        "self": "RESOLVED_LOCAL",
+        "super": "RESOLVED_LOCAL",
+        "task_ids": "RESOLVED_LOCAL",
+        "torch": "RESOLVED_IMPORTED",
+        "x": "RESOLVED_LOCAL",
+        "x_numeric": "RESOLVED_LOCAL"
+      },
+      "n_unresolved": 0,
+      "unresolved": []
+    },
+    {
+      "component": "S_omega",
+      "class": "BARRPostSafetyV1",
+      "source": "scripts/analysis/phase25f_execution_common.py",
+      "source_sha256": "98cf958a377e2de30e0b67e63fd56bafea418b2b061a362ee7284e852012cd2e",
+      "required_module_globals": [
+        "FEATURE_DIM",
+        "HIDDEN"
+      ],
+      "symbol_classification": {
+        "FEATURE_DIM": "RESOLVED_FROZEN_CONSTANT",
+        "HIDDEN": "RESOLVED_FROZEN_CONSTANT",
+        "bound": "RESOLVED_LOCAL",
+        "lin": "RESOLVED_LOCAL",
+        "nn": "RESOLVED_IMPORTED",
+        "np": "RESOLVED_IMPORTED",
+        "self": "RESOLVED_LOCAL",
+        "super": "RESOLVED_LOCAL",
+        "torch": "RESOLVED_IMPORTED",
+        "x": "RESOLVED_LOCAL"
+      },
+      "n_unresolved": 0,
+      "unresolved": []
+    }
+  ],
+  "imported_symbols": [
+    {
+      "component": "G",
+      "symbol": "src.models.film.global_medfilm.GlobalMedFiLM",
+      "status": "RESOLVED_IMPORTED",
+      "module_path_exists": false
+    },
+    {
+      "component": "R_psi",
+      "symbol": "src.models.barr.regional_refiner.BARRRegionalRefinerV1",
+      "status": "RESOLVED_IMPORTED",
+      "module_path_exists": false
+    },
+    {
+      "component": "helper",
+      "symbol": "src.data.barr_roi.roi_geometry",
+      "status": "RESOLVED_IMPORTED",
+      "module_path_exists": true
+    },
+    {
+      "component": "helper",
+      "symbol": "src.models.barr.ra_medfilm_barr.canonical_utility",
+      "status": "RESOLVED_IMPORTED",
+      "module_path_exists": false
+    },
+    {
+      "component": "helper",
+      "symbol": "src.models.barr.ra_medfilm_barr.TAU_C8_FINAL_FLOAT",
+      "status": "RESOLVED_IMPORTED",
+      "module_path_exists": false
+    },
+    {
+      "component": "helper",
+      "symbol": "src.data.transforms.SegmentationTransform",
+      "status": "RESOLVED_IMPORTED",
+      "module_path_exists": true
+    },
+    {
+      "component": "metric",
+      "symbol": "src.metrics.evaluation_metrics.dice/iou/hd95",
+      "status": "RESOLVED_IMPORTED",
+      "module_path_exists": true
+    }
+  ],
+  "late_path_undefined_names": {
+    "scripts/analysis/phase39_final_test_execution_v1_1.py": [],
+    "scripts/analysis/phase39_final_test_inference_v1_1.py": [],
+    "scripts/analysis/phase39_final_test_model_loader_v1_1.py": []
+  },
+  "n_extracted_unresolved_v1_0": 2,
+  "n_extracted_unresolved_v1_1": 0,
+  "n_late_path_undefined": 0,
+  "require_unresolved_zero": true,
+  "all_pass": true
+}

@@ -1,0 +1,51 @@
+{
+ "artifact": "phase35_v1_0d_no_model_execution_audit",
+ "phase": 35,
+ "section": "\u00a7S",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase35_interpretability_v1_0d",
+ "zero_model_execution_declaration": true,
+ "model_execution_counters": {
+  "model_constructions": 0,
+  "checkpoint_deserializations": 0,
+  "strict_loads": 0,
+  "forwards": 0,
+  "autograd_calls": 0,
+  "gradcam_executions": 0,
+  "router_attribution_executions": 0,
+  "raw_val_reads": 0,
+  "real_persisted_p_global_reads": 0,
+  "gt_reads": 0,
+  "router_holdout_reads": 0,
+  "test_reads": 0,
+  "training": 0,
+  "gate_env_vars_set": 0,
+  "mode_invocations": 0
+ },
+ "allowed_separately": {
+  "model_free_cpu_rank_unit_tests": 11,
+  "model_free_cpu_rank_unit_tests_failed": 0,
+  "model_free_cpu_rank_unit_tests_artifact": {
+   "path": "reports/audits/phase35_gradcam_target_rank_unit_v1_0d.json",
+   "sha256": "66a16c411b30852e32701f424384b925b42ab074bf2c199521f422f5b5e58933"
+  },
+  "device": "cpu",
+  "cuda_used": false,
+  "models_touched": 0,
+  "checkpoints_touched": 0,
+  "data_touched": 0
+ },
+ "static_inspections_performed": [
+  "AST parsing + call-graph reachability over the v1.0d / v1.0b execution sources",
+  "SHA-256 hashing of source files and audit artifacts",
+  "source-text reads of the frozen v1.0b / v1.0c execution sources and shared contracts"
+ ],
+ "inspections_that_are_not_execution": true,
+ "scientific_result_produced": false,
+ "phase35_scientific_execution_started": false,
+ "phase36_started": false,
+ "TEST": "LOCKED_UNTIL_PHASE39",
+ "ROUTER_HOLDOUT": "OPENED_AND_FROZEN",
+ "generated_utc": "2026-10-04T16:06:06+00:00",
+ "all_pass": true
+}

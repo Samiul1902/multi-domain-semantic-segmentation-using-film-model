@@ -1,0 +1,28 @@
+{
+ "artifact": "phase29_seed3407_bphi_oof_membership_freeze",
+ "phase": 29,
+ "stage": "BPHI_OOF_MEMBERSHIP_FREEZE",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_phase29_repro_v1_1",
+ "generated_utc": "2026-10-02T20:19:00+00:00",
+ "master_seed": 3407,
+ "N": 4957,
+ "K": 1239,
+ "budget_b": 0.25,
+ "ranking": "delta_hat_oof desc, sample_id asc",
+ "membership_path": "data_cache\\phase29_seed3407\\phase29_seed3407_bphi_oof_membership.csv",
+ "membership_sha256": "638229a07f49a860c3f07b5f7f84765666d098c4b617b77dc3681d7e30da5989",
+ "selected_ids_sha256": "bdce204def6877e7bdcb3fc02e5a6903c3ea49ea461e75220125e3d0286eb34d",
+ "selected_count": 1239,
+ "checks": {
+  "membership_rows_4957": true,
+  "selected_count_1239": true,
+  "ranks_are_1_to_4957": true,
+  "ranking_uses_only_oof_scores": true,
+  "true_deltadice_unused_in_ranking": true,
+  "membership_frozen_before_evaluation": true
+ },
+ "n_failed": 0,
+ "blocked_terminal_if_fail": "PHASE29_PHASE_C_BLOCKED__BPHI_TRAINING_OR_OOF_FAILURE",
+ "all_pass": true
+}

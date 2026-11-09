@@ -1,0 +1,149 @@
+{
+  "artifact": "ext03_missing_evidence_disposition",
+  "version": "1.1",
+  "classification": "EXT03_MISSING_EVIDENCE_DISPOSITION",
+  "generated_local": "2026-10-26T22:00:00+06:00",
+  "mode": "STRICT_READ_ONLY",
+  "training_performed": false,
+  "inference_performed": false,
+  "curves_manufactured": false,
+
+  "recovery_attempts": {
+    "principle": "read-only search of every artifact class on the host; nothing reconstructed, interpolated or synthesised",
+    "attempts": [
+      {
+        "method": "exhaustive regex search for the runner's epoch-line format",
+        "patterns": ["unet_seed(42|123|3407) ep\\d+ loss=", "attention_unet_seed(42|123|3407) ep\\d+ loss="],
+        "scope": "entire repository, all file types, excluding .git",
+        "result": "0 matches"
+      },
+      {
+        "method": "enumerated every EXT-03 log file on disk",
+        "scope": "*.log anywhere in the repository",
+        "found": [
+          "logs/ext03_matrix_console_20261022_105753.log",
+          "logs/ext03_matrix_console_20261025_191646.log",
+          "logs/ext03_matrix_console_20261025_212108.log",
+          "reports/baselines/logs/ext03_matrix_resume_20261020_164747.log",
+          "reports/baselines/logs/ext03_matrix_resume_20261021_000959.log"
+        ],
+        "result": "5 files total; no log from the initial 2026-10-16 launch survives"
+      },
+      {
+        "method": "archive search and read-only inspection of every archive on the host",
+        "scope": "*.zip / *.7z / *.tar / *.tar.gz / *.tgz / *.bz2 / *.xz",
+        "found": ["reports/chatgpt_handoff/phase36/v1_14_20261006T171552Z.zip"],
+        "inspection": "26 entries, all Phase-36 handoff artifacts dated 2026-10-06 (ten days before EXT-03 began); 0 entries matching ext03 or unet_seed",
+        "result": "no EXT-03 epoch evidence in any archive"
+      },
+      {
+        "method": "inspection of per-run directories",
+        "scope": "reports/baselines/runs/<run_id>/",
+        "found": "every run directory contains exactly best.pt and latest.pt; no train.log, no metrics file, no curve artifact",
+        "result": "the registry log_path field points to runs/<id>/train.log, which does not exist for any of the 15 runs (15/15 dangling)"
+      }
+    ],
+    "recovery_conclusion": "No read-only recovery path remains. The affected histories are permanently MISSING_FROM_AVAILABLE_ARTIFACTS."
+  },
+
+  "epoch_coverage": {
+    "total_epochs_executed": 1142,
+    "total_epochs_recoverable_from_logs": 672,
+    "recoverable_fraction": 0.5884,
+    "per_run": [
+      {"run": "unet_seed42", "executed": 81, "recoverable": 0, "range": null, "status": "MISSING_FROM_AVAILABLE_ARTIFACTS"},
+      {"run": "unet_seed123", "executed": 31, "recoverable": 0, "range": null, "status": "MISSING_FROM_AVAILABLE_ARTIFACTS"},
+      {"run": "unet_seed3407", "executed": 100, "recoverable": 0, "range": null, "status": "MISSING_FROM_AVAILABLE_ARTIFACTS"},
+      {"run": "attention_unet_seed42", "executed": 90, "recoverable": 0, "range": null, "status": "MISSING_FROM_AVAILABLE_ARTIFACTS"},
+      {"run": "attention_unet_seed123", "executed": 86, "recoverable": 0, "range": null, "status": "MISSING_FROM_AVAILABLE_ARTIFACTS"},
+      {"run": "attention_unet_seed3407", "executed": 53, "recoverable": 0, "range": null, "status": "MISSING_FROM_AVAILABLE_ARTIFACTS"},
+      {"run": "unetpp_seed42", "executed": 100, "recoverable": 71, "range": "ep30-100", "status": "PARTIAL_MISSING_EP1_TO_29"},
+      {"run": "unetpp_seed123", "executed": 85, "recoverable": 85, "range": "ep1-85", "status": "COMPLETE"},
+      {"run": "unetpp_seed3407", "executed": 86, "recoverable": 86, "range": "ep1-86", "status": "COMPLETE"},
+      {"run": "deeplabv3plus_seed42", "executed": 77, "recoverable": 77, "range": "ep1-77", "status": "COMPLETE"},
+      {"run": "deeplabv3plus_seed123", "executed": 100, "recoverable": 100, "range": "ep1-100", "status": "COMPLETE"},
+      {"run": "deeplabv3plus_seed3407", "executed": 100, "recoverable": 100, "range": "ep1-100", "status": "COMPLETE"},
+      {"run": "segformer_b0_seed42", "executed": 55, "recoverable": 55, "range": "ep1-55", "status": "COMPLETE"},
+      {"run": "segformer_b0_seed123", "executed": 55, "recoverable": 55, "range": "ep1-55", "status": "COMPLETE"},
+      {"run": "segformer_b0_seed3407", "executed": 43, "recoverable": 43, "range": "ep1-43", "status": "COMPLETE"}
+    ]
+  },
+
+  "partial_independent_evidence_that_DOES_survive": {
+    "note": "The absence of curves does not leave the six affected runs unevidenced. Two independent, non-registry artifacts corroborate their final selection state.",
+    "sources": [
+      {
+        "artifact": "best.pt (all 15)",
+        "fields": ["epoch", "macro", "model state_dict"],
+        "corroborates": "the selected epoch and its macro Dice, independently of the registry",
+        "limitation": "carries no history - only the winning point"
+      },
+      {
+        "artifact": "latest.pt (all 15)",
+        "fields": ["epoch", "best", "best_epoch", "bad", "optimizer/scheduler/scaler/RNG state"],
+        "corroborates": "final selection state, and - via the bad counter - whether the writing harness had the D97 lag",
+        "limitation": "carries no per-epoch history; for the six D97-exposed runs its bad counter is one lower than the true final value"
+      },
+      {
+        "artifact": "registry start_time / completion_time",
+        "corroborates": "run ordering and wall-clock span; supports the pre/post D97-repair split without exception",
+        "limitation": "wall clock includes interruption dead time; last_resume_time is overwritten every epoch and is not a resume instant"
+      }
+    ],
+    "net_effect": "final-state integrity for all 15 runs is established by three independent sources; trajectory integrity for 6 runs is not recoverable by any means."
+  },
+
+  "future_derivability_of_missing_metrics": {
+    "question": "could per-domain results and secondary metrics later be obtained from the frozen checkpoints on eligible development populations, under a separately approved descriptive-evaluation protocol?",
+    "answer": "YES_FEASIBLE_NOT_AUTHORIZED_NOT_EXECUTED",
+    "preconditions_that_are_already_met": [
+      "15/15 best.pt exist and are SHA-verified against the registry",
+      "manifests/phase4_v3/val.csv exists with frozen SHA 082c80b2... and population 808",
+      "the evaluation rule is frozen: threshold 0.5, per-image Dice, unweighted mean over the four domains",
+      "the model sources are byte-identical to their frozen identities, so the checkpoints are loadable into the same architectures"
+    ],
+    "metrics_that_could_be_derived": [
+      {"metric": "per-domain Dice", "derivable": true, "method": "deterministic forward pass on VAL808, threshold 0.5, split by domain", "caveat": "selection-contaminated - see below"},
+      {"metric": "IoU", "derivable": true, "method": "same confusion counts"},
+      {"metric": "precision / recall / specificity", "derivable": true, "method": "same confusion counts"},
+      {"metric": "MCC / balanced accuracy", "derivable": true, "method": "same confusion counts"},
+      {"metric": "HD95 / ASSD / surface Dice", "derivable": true, "method": "surface distance on the same masks", "caveat": "implementation-dependent; the distance implementation and the empty-mask convention would have to be frozen before the run or the values are not comparable across architectures"},
+      {"metric": "per-subclass Dice (KUB stone type)", "derivable": true, "method": "join on the KUB category field", "caveat": "selection-contaminated; subclass n is small"}
+    ],
+    "metrics_that_cannot_be_derived": [
+      "training curves (any epoch, any run)",
+      "per-epoch or per-domain history",
+      "the identity of every epoch ever written to best.pt",
+      "the true per-epoch loss trajectory for the six affected runs",
+      "any metric requiring the original training-time RNG state at an intermediate epoch"
+    ],
+    "critical_scientific_caveat": {
+      "statement": "VAL808 is the checkpoint-selection set for all 15 runs (equal-domain macro Dice, patience 15). Any per-domain or secondary metric computed from these checkpoints on VAL808 is a DECOMPOSITION of a selection-contaminated number, not independent validation.",
+      "consequence": [
+        "it may be reported as a descriptive decomposition of the recorded metric",
+        "it may NOT be reported as held-out performance",
+        "it may NOT be used to re-rank architectures or to revise any reported mean",
+        "it must not trigger re-selection of any checkpoint"
+      ]
+    },
+    "additional_constraints_on_any_future_execution": [
+      "requires a separate, explicitly approved descriptive-evaluation protocol; this document does not authorize it",
+      "must not read TEST (PHASE39-only) or ROUTER_HOLDOUT",
+      "must be labelled post-hoc and descriptive in any manuscript use",
+      "must be versioned and write-once, with the evaluation implementation SHA recorded",
+      "must not be run to rescue the AS-08 status - AS-08 is a training-protocol question and cannot be answered by re-scoring existing checkpoints"
+    ],
+    "why_it_would_not_repair_AS08": "AS-08 asks whether protocol-faithful baselines were produced. Per-domain metrics from checkpoints trained under a divergent protocol are more detailed measurements of a divergent experiment. The defect is upstream of the metrics."
+  },
+
+  "disposition_summary": {
+    "permanently_missing": 6,
+    "partially_missing": 1,
+    "complete": 8,
+    "recovery_exhausted": true,
+    "manufactured_evidence": 0,
+    "future_derivation_feasible": true,
+    "future_derivation_authorized": false,
+    "future_derivation_executed": false
+  }
+}

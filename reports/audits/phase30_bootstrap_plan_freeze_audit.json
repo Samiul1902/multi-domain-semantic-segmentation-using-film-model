@@ -1,0 +1,39 @@
+{
+ "artifact": "phase30_bootstrap_plan_freeze_audit",
+ "phase": 30,
+ "section": "\u00a7G",
+ "classification": "PRE_FIRST_OPEN_NUMERICAL_ORDER_SPECIFICATION_REPAIR",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_phase30_final_dev_validation_v1_1",
+ "plan_path": "data_cache/phase30_final_dev_validation_v1_0/phase30_router_holdout_bootstrap_plan.npz",
+ "plan_sha256": "59c97ccf6fbea823d38a1fba12d5e81b7e5fb103f31bc7fdfe443fd4971faab1",
+ "materialized_before_image_access": true,
+ "n_boot": 2000,
+ "seed": 42,
+ "rng": "PCG64(42)",
+ "strata": [
+  "BUSI",
+  "ISIC",
+  "KUB",
+  "KVASIR"
+ ],
+ "strata_group_counts": {
+  "BUSI": 90,
+  "ISIC": 383,
+  "KUB": 51,
+  "KVASIR": 104
+ },
+ "total_groups": 628,
+ "ci_percentiles": [
+  2.5,
+  97.5
+ ],
+ "paired": true,
+ "gt_used": false,
+ "predictions_used": false,
+ "outcomes_used": false,
+ "val808_phase27_plan_copied": false,
+ "immutable_after_first_image_access": true,
+ "generated_utc": "2026-10-04T02:53:21+00:00",
+ "all_pass": true
+}

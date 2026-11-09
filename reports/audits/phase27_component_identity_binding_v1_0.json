@@ -1,0 +1,58 @@
+{
+ "artifact": "phase27_component_identity_binding_v1_0",
+ "phase": "27",
+ "classification": "PHASE27_PRE_EXECUTION_PRESERVATION_AUDIT_SPECIFICATION",
+ "method": "RA-MedFiLM-BARR",
+ "governance_only": true,
+ "no_execution": true,
+ "no_model_construction": true,
+ "stage": "COMPONENT_IDENTITY_BINDING",
+ "components": {
+  "G": {
+   "name": "GlobalMedFiLM",
+   "origin": "Phase21",
+   "path": "checkpoints/phase21_global_medfilm_fourdomain_seed42_clean_v3/best.pt",
+   "sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+   "role_in_phase27": "GLOBAL_REFERENCE_AND_ROUTED_SYSTEM_BACKBONE",
+   "trainable_in_phase27": false
+  },
+  "R_psi": {
+   "name": "BARRRegionalRefinerV1",
+   "origin": "Phase25A",
+   "path": "checkpoints/phase25a_barr_regional_refiner_v1_1_roi030/final/final.pt",
+   "sha256": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109",
+   "trainable_in_phase27": false
+  },
+  "B_phi": {
+   "name": "BARRBenefitRouterV1",
+   "origin": "Phase25D",
+   "path": "checkpoints/phase25d_barr_benefit_router_v1_2_1_seed42/final/final.pt",
+   "sha256": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+   "trainable_in_phase27": false
+  },
+  "S_omega": {
+   "name": "BARRPostSafetyV1",
+   "origin": "Phase25F",
+   "path": "checkpoints/phase25f_barr_post_safety_v1_0_seed42/final/final.pt",
+   "sha256": "eee9b97b9921e53fc07eac9281dce64ba518c6e1659916b97b0b3bec21ec6d2e",
+   "trainable_in_phase27": false
+  }
+ },
+ "global_reference_rule": "The preservation baseline is the SAME frozen GlobalMedFiLM used inside the Phase26 bundle. No separate global baseline is trained or selected.",
+ "thresholds_never_conflated": {
+  "roi_proposal": 0.3,
+  "segmentation_output": 0.5,
+  "somega_accept": 0.5
+ },
+ "checks": {
+  "four_components_declared": true,
+  "global_is_phase21": true,
+  "refiner_is_phase25a_roi030": true,
+  "router_is_phase25d": true,
+  "safety_is_phase25f": true,
+  "router_params_36801": true,
+  "no_weight_bytes_read": true,
+  "global_reference_same_as_bundle": true
+ },
+ "all_pass": true
+}

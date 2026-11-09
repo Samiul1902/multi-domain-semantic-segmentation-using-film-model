@@ -1,0 +1,89 @@
+{
+  "artifact": "phase21_analytical_mac_count",
+  "phase": 21,
+  "method": "exact closed-form count for Conv2d and Linear layers",
+  "not_a_third_party_flop_library": true,
+  "excluded_ops": [
+    "GroupNorm affine/statistics",
+    "SiLU",
+    "MaxPool2d",
+    "bilinear interpolation",
+    "FiLM elementwise modulation",
+    "sigmoid"
+  ],
+  "semantics": "LOWER BOUND on total arithmetic; exact for conv and linear layers",
+  "input_shape": [
+    1,
+    3,
+    512,
+    512
+  ],
+  "batch_size": 1,
+  "device": "cpu",
+  "task_ids_passed": true,
+  "measured_parameter_count": 3523001,
+  "parameter_count_cross_check_pass": true,
+  "total_macs": 31551740928,
+  "total_gmacs": 31.5517,
+  "total_flops_convention": 63103481856,
+  "total_gflops_convention": 63.1035,
+  "flops_note": "FLOPs = 2 x MACs (multiply + accumulate), the common convention",
+  "by_layer_type": {
+    "Conv2d": {
+      "macs": 31551651840,
+      "gmacs": 31.5517
+    },
+    "Linear": {
+      "macs": 89088,
+      "gmacs": 0.0001
+    }
+  },
+  "by_block": {
+    "decoder3": {
+      "macs": 5888802816,
+      "gmacs": 5.8888
+    },
+    "decoder2": {
+      "macs": 5888802816,
+      "gmacs": 5.8888
+    },
+    "decoder1": {
+      "macs": 5888802816,
+      "gmacs": 5.8888
+    },
+    "decoder4": {
+      "macs": 4882169856,
+      "gmacs": 4.8822
+    },
+    "encoder2": {
+      "macs": 2113929216,
+      "gmacs": 2.1139
+    },
+    "encoder3": {
+      "macs": 2113929216,
+      "gmacs": 2.1139
+    },
+    "encoder4": {
+      "macs": 2113929216,
+      "gmacs": 2.1139
+    },
+    "encoder1": {
+      "macs": 1547698176,
+      "gmacs": 1.5477
+    },
+    "bridge": {
+      "macs": 1107296256,
+      "gmacs": 1.1073
+    },
+    "head": {
+      "macs": 6291456,
+      "gmacs": 0.0063
+    },
+    "film_layers": {
+      "macs": 89088,
+      "gmacs": 0.0001
+    }
+  },
+  "n_counted_layers": 38,
+  "test_reads": 0
+}

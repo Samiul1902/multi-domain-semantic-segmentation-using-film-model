@@ -1,0 +1,24 @@
+{
+ "artifact": "phase27_decision_rule_contract.json",
+ "phase": "27",
+ "classification": "PHASE27_PRE_EXECUTION_PRESERVATION_AUDIT_SPECIFICATION",
+ "method": "RA-MedFiLM-BARR",
+ "governance_only": true,
+ "no_execution": true,
+ "stage": "DECISION_RULE_CONTRACT",
+ "primary_decision": "PRESERVATION_ASSERTED iff macro lower 95% percentile-CI bound > -0.005 (strict).",
+ "primary_gating_statistic": "lower 95% CI bound of the macro-domain estimand",
+ "p_value_role": "secondary / descriptive only for the primary preservation claim",
+ "per_domain_rule": "A domain is reported as HARM if its own 95% CI upper bound is below 0; preservation cannot be claimed while any domain CI indicates harm.",
+ "macro_may_not_hide_domain_harm": true,
+ "no_optional_stopping": true,
+ "no_margin_change_after_outcomes": true,
+ "checks": {
+  "preservation_iff_lower_ci_gt_neg_0p005": true,
+  "no_p_value_gating_for_primary": true,
+  "per_domain_secondary": true,
+  "no_optional_stopping": true,
+  "no_post_hoc_margin_change": true
+ },
+ "all_pass": true
+}

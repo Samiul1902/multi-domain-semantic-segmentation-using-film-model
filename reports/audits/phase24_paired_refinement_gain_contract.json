@@ -1,0 +1,33 @@
+{
+ "artifact": "phase24_paired_refinement_gain_contract",
+ "phase": 24,
+ "primary_term": "PAIRED REFINEMENT GAIN",
+ "definition": "DeltaDice_i = Dice(R_i, y_i) - Dice(G_i, y_i)",
+ "symbols": {
+  "G_i": "frozen global output for sample i",
+  "R_i": "dedicated crop-trained refiner result under the frozen regional rule",
+  "y_i": "ground-truth mask (label side only)"
+ },
+ "nature": "supervised paired contrast (both arms fully observed during TRAIN development)",
+ "must_not_be_described_as": [
+  "causal treatment effect",
+  "counterfactual effect",
+  "individual treatment effect"
+ ],
+ "why_not_causal": "Both potential outcomes are fully observed for every development image because the system may simply run the refinement during development. There is no missing arm and therefore no identification problem. The refinement is also deterministic given (x, frozen model, frozen ROI rule). See Phase-23 outcome PREFER_PAIRED_REFINEMENT_GAIN.",
+ "formal_analogy": "Formally analogous to a CATE, but that analogy may be stated at most once, with the clarification that the estimand is a deterministic paired contrast.",
+ "primary_target": "continuous DeltaDice (regression)",
+ "optional_development_labels": {
+  "beneficial": "DeltaDice >= +0.02",
+  "harmful": "DeltaDice <= -0.01",
+  "neutral": "otherwise"
+ },
+ "label_status": "PROSPECTIVE. If changed, the change must be justified BEFORE Phase 25 and must NEVER be tuned on VAL.",
+ "uses_GT_for_labels": true,
+ "uses_GT_for_inputs": false,
+ "computation_requires_refinement_to_have_run": true,
+ "computation_used_as_router_input": false,
+ "training_population": "original TRAIN only (never Phase-22 VAL, never TEST)",
+ "generated_utc": "2026-09-29T14:45:29.300871+00:00",
+ "test_reads": 0
+}

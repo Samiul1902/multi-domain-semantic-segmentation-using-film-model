@@ -1,0 +1,534 @@
+{
+ "artifact": "phase35_execution_source_static_preflight_v1_0e",
+ "phase": 35,
+ "section": "\u00a7Q",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase35_interpretability_v1_0e",
+ "method_of_inspection": "AST_PARSE_CONTROL_FLOW_CALL_GRAPH_AND_SHA256_HASHING",
+ "effective_execution_source_set": [
+  "scripts/analysis/phase35_interpretability_execution_v1_0e.py",
+  "scripts/analysis/phase35_interpretability_execution_v1_0b.py"
+ ],
+ "sources": {
+  "common_v1_0b": "scripts/analysis/phase35_interpretability_common_v1_0b.py",
+  "execution_v1_0b": "scripts/analysis/phase35_interpretability_execution_v1_0b.py",
+  "execution_v1_0c": "scripts/analysis/phase35_interpretability_execution_v1_0c.py",
+  "execution_v1_0d": "scripts/analysis/phase35_interpretability_execution_v1_0d.py",
+  "execution_v1_0e": "scripts/analysis/phase35_interpretability_execution_v1_0e.py",
+  "rank_unit_v1_0d": "scripts/analysis/phase35_gradcam_target_rank_unit_v1_0d.py",
+  "numeric_guard_unit_v1_0e": "scripts/analysis/phase35_gradcam_numerical_guard_unit_v1_0e.py",
+  "preflight_v1_0e": "scripts/analysis/phase35_execution_preflight_v1_0e.py"
+ },
+ "preservation": [
+  {
+   "path": "reports/audits/phase35_specification_terminal_v1_0.json",
+   "expected_sha256": "cec3b2aadbc90a7a8ebd06e8149cd7a53122d42e3f6077c30634e7de96ac312b",
+   "observed_sha256": "cec3b2aadbc90a7a8ebd06e8149cd7a53122d42e3f6077c30634e7de96ac312b",
+   "match": true,
+   "bound_dynamically": false
+  },
+  {
+   "path": "docs/phase35_interpretability_spec_v1_0.md",
+   "expected_sha256": "6405ba5f7ad9f046226da916559a0d7a1166a1245bb56e8d38bc9971959acb37",
+   "observed_sha256": "6405ba5f7ad9f046226da916559a0d7a1166a1245bb56e8d38bc9971959acb37",
+   "match": true,
+   "bound_dynamically": false
+  },
+  {
+   "path": "reports/audits/phase35_preexecution_source_freeze_v1_0.json",
+   "expected_sha256": "582c950c96622e84b67e691db4ca02e392c68ff11885c5ddc3f3a785de87fc98",
+   "observed_sha256": "582c950c96622e84b67e691db4ca02e392c68ff11885c5ddc3f3a785de87fc98",
+   "match": true,
+   "bound_dynamically": false
+  },
+  {
+   "path": "reports/audits/phase35_gallery_sha_reconciliation_v1_0a.json",
+   "expected_sha256": "ef7a4c6580d06ede0cfc8ca56bba1ddfdb6fb6839b1dafdf2928e3bc38e1e72d",
+   "observed_sha256": "ef7a4c6580d06ede0cfc8ca56bba1ddfdb6fb6839b1dafdf2928e3bc38e1e72d",
+   "match": true,
+   "bound_dynamically": false
+  },
+  {
+   "path": "reports/audits/phase35_execution_source_static_preflight_v1_0a.json",
+   "expected_sha256": "bed25b64d83d8076f07f42569977351d0fef757faa476191acf4792d0aedd5fd",
+   "observed_sha256": "bed25b64d83d8076f07f42569977351d0fef757faa476191acf4792d0aedd5fd",
+   "match": true,
+   "bound_dynamically": false
+  },
+  {
+   "path": "reports/audits/phase35_preexecution_smoke_terminal_v1_0a.json",
+   "expected_sha256": "447e202196b2de79d21d88d76ebbc7be841afa00361ca613a4b7c04cade0fac9",
+   "observed_sha256": "447e202196b2de79d21d88d76ebbc7be841afa00361ca613a4b7c04cade0fac9",
+   "match": true,
+   "bound_dynamically": false
+  },
+  {
+   "path": "scripts/analysis/phase35_interpretability_common_v1_0.py",
+   "expected_sha256": "fce9527fbad3714e01beadf5f697646dbbad215e98fe233ddb4b9948c6071843",
+   "observed_sha256": "fce9527fbad3714e01beadf5f697646dbbad215e98fe233ddb4b9948c6071843",
+   "match": true,
+   "bound_dynamically": false
+  },
+  {
+   "path": "scripts/analysis/phase35_interpretability_execution_v1_0.py",
+   "expected_sha256": "a2e150d89018087112c71dbaa92137b667e4269430463fd55fc1601f9ee99d27",
+   "observed_sha256": "a2e150d89018087112c71dbaa92137b667e4269430463fd55fc1601f9ee99d27",
+   "match": true,
+   "bound_dynamically": false
+  },
+  {
+   "path": "scripts/analysis/phase35_interpretability_common_v1_0b.py",
+   "expected_sha256": "9963215e1431e968e11bacbcd917d96a8a985a7181000258b90f458ff0a778ac",
+   "observed_sha256": "9963215e1431e968e11bacbcd917d96a8a985a7181000258b90f458ff0a778ac",
+   "match": true,
+   "bound_dynamically": false
+  },
+  {
+   "path": "scripts/analysis/phase35_interpretability_execution_v1_0b.py",
+   "expected_sha256": "581926840d7717e19ed15ad77c7c5339b709efc881b938924d6eec0a2ceb1872",
+   "observed_sha256": "581926840d7717e19ed15ad77c7c5339b709efc881b938924d6eec0a2ceb1872",
+   "match": true,
+   "bound_dynamically": false
+  },
+  {
+   "path": "scripts/analysis/phase35_execution_preflight_v1_0b.py",
+   "expected_sha256": "498e68277168a8ee200842d799cb186bd410f09764d1fdb796ad463912704e63",
+   "observed_sha256": "498e68277168a8ee200842d799cb186bd410f09764d1fdb796ad463912704e63",
+   "match": true,
+   "bound_dynamically": false
+  },
+  {
+   "path": "reports/audits/phase35_v1_0_execution_source_defect_record_v1_0b.json",
+   "expected_sha256": "523d991c7c2b259a2828879c003e532f4705d6dad3322d648a66bf28c0bd8855",
+   "observed_sha256": "523d991c7c2b259a2828879c003e532f4705d6dad3322d648a66bf28c0bd8855",
+   "match": true,
+   "bound_dynamically": false
+  },
+  {
+   "path": "reports/audits/phase35_execution_source_static_preflight_v1_0b.json",
+   "expected_sha256": "8c026c1b01304747da0f49148a5cf9f0757313bb98870cebfd78a4f589d647df",
+   "observed_sha256": "8c026c1b01304747da0f49148a5cf9f0757313bb98870cebfd78a4f589d647df",
+   "match": true,
+   "bound_dynamically": false
+  },
+  {
+   "path": "reports/audits/phase35_preexecution_source_freeze_v1_0b.json",
+   "expected_sha256": "95bcd7913b4ebfdb915134ff6cace69efec1edbdcaa31d828f840548f886a06f",
+   "observed_sha256": "95bcd7913b4ebfdb915134ff6cace69efec1edbdcaa31d828f840548f886a06f",
+   "match": true,
+   "bound_dynamically": false
+  },
+  {
+   "path": "reports/audits/phase35_source_amendment_terminal_v1_0b.json",
+   "expected_sha256": "c1fa5d2d8b2cc70f8615fbd7dee3fcc75ac2d51dd86bf785a25bdb2c5b0f0c79",
+   "observed_sha256": "c1fa5d2d8b2cc70f8615fbd7dee3fcc75ac2d51dd86bf785a25bdb2c5b0f0c79",
+   "match": true,
+   "bound_dynamically": false
+  },
+  {
+   "path": "reports/audits/phase35_source_amendment_final_check_v1_0b.json",
+   "expected_sha256": "f7b99345e56ca0b32e233b7d0896a23e4d6175a26705bdf8a696d590a5972469",
+   "observed_sha256": "f7b99345e56ca0b32e233b7d0896a23e4d6175a26705bdf8a696d590a5972469",
+   "match": true,
+   "bound_dynamically": false
+  },
+  {
+   "path": "reports/audits/phase35_synthetic_smoke_terminal_v1_0b.json",
+   "expected_sha256": "3def25817370ce9a90942610d4a474f56384a99e86ba8ba6a2630ad8002e80ee",
+   "observed_sha256": "3def25817370ce9a90942610d4a474f56384a99e86ba8ba6a2630ad8002e80ee",
+   "match": true,
+   "bound_dynamically": false
+  },
+  {
+   "path": "reports/audits/phase35_synthetic_smoke_final_check_v1_0b.json",
+   "expected_sha256": "0a57dca0d13c0dd20beb1a2546fc89948b02e99f45ed6bc070189f91037b8267",
+   "observed_sha256": "0a57dca0d13c0dd20beb1a2546fc89948b02e99f45ed6bc070189f91037b8267",
+   "match": true,
+   "bound_dynamically": false
+  },
+  {
+   "path": "reports/audits/phase35_synthetic_interpretability_smoke_v1_0b.json",
+   "expected_sha256": "bd51d09cca091244b46db11d61988572368539fbf4d46ddbfcbc4afc93137ff2",
+   "observed_sha256": "bd51d09cca091244b46db11d61988572368539fbf4d46ddbfcbc4afc93137ff2",
+   "match": true,
+   "bound_dynamically": false
+  },
+  {
+   "path": "reports/audits/phase35_synthetic_smoke_provenance_v1_0b.json",
+   "expected_sha256": "f44b2b0e5c38b9a695a6fe02fbb55856af33718948ddd399838153539a30f27c",
+   "observed_sha256": "f44b2b0e5c38b9a695a6fe02fbb55856af33718948ddd399838153539a30f27c",
+   "match": true,
+   "bound_dynamically": false
+  },
+  {
+   "path": "docs/phase35_interpretability_source_amendment_v1_0b.md",
+   "expected_sha256": "ed42edb9059d3d78d64e730c730075b2df19798f8274af86301bb3053155b4a5",
+   "observed_sha256": "ed42edb9059d3d78d64e730c730075b2df19798f8274af86301bb3053155b4a5",
+   "match": true,
+   "bound_dynamically": false
+  },
+  {
+   "path": "scripts/analysis/phase35_interpretability_execution_v1_0c.py",
+   "expected_sha256": "4058fc5544e6e1af15339df20a88da4880549ea8d4dd434395df04e0fa261baa",
+   "observed_sha256": "4058fc5544e6e1af15339df20a88da4880549ea8d4dd434395df04e0fa261baa",
+   "match": true,
+   "bound_dynamically": false
+  },
+  {
+   "path": "reports/audits/phase35_execution_source_static_preflight_v1_0c.json",
+   "expected_sha256": "80c90c1130ae3bc22fc9cb5baf6a6bd6e6024cf97b9adc913bbe75b0598bb7bf",
+   "observed_sha256": "80c90c1130ae3bc22fc9cb5baf6a6bd6e6024cf97b9adc913bbe75b0598bb7bf",
+   "match": true,
+   "bound_dynamically": false
+  },
+  {
+   "path": "reports/audits/phase35_v1_0b_smoke_stub_defect_record_v1_0c.json",
+   "expected_sha256": "192b0bdc8f844e68f5270a04e15f423f9e0dbc6f3f008b45cfd4fc074e89fa27",
+   "observed_sha256": "192b0bdc8f844e68f5270a04e15f423f9e0dbc6f3f008b45cfd4fc074e89fa27",
+   "match": true,
+   "bound_dynamically": false
+  },
+  {
+   "path": "reports/audits/phase35_v1_0b_to_v1_0c_scientific_semantics_diff.json",
+   "expected_sha256": "1ec634bcac1c690c3c82d43b328074e2ac9af7fd59587405b62199154c5ceccf",
+   "observed_sha256": "1ec634bcac1c690c3c82d43b328074e2ac9af7fd59587405b62199154c5ceccf",
+   "match": true,
+   "bound_dynamically": false
+  },
+  {
+   "path": "reports/audits/phase35_preexecution_source_freeze_v1_0c.json",
+   "expected_sha256": "16961263fb2f974f61525b70ea70582e2382b86431c7f343f20ebe0948136340",
+   "observed_sha256": "16961263fb2f974f61525b70ea70582e2382b86431c7f343f20ebe0948136340",
+   "match": true,
+   "bound_dynamically": false
+  },
+  {
+   "path": "reports/audits/phase35_synthetic_smoke_eligibility_v1_0c.json",
+   "expected_sha256": "993ccd824d0b98c438afed05c14d2269b33ac1380bd96b10f485e855cbaf01f4",
+   "observed_sha256": "993ccd824d0b98c438afed05c14d2269b33ac1380bd96b10f485e855cbaf01f4",
+   "match": true,
+   "bound_dynamically": false
+  },
+  {
+   "path": "reports/audits/phase35_v1_0c_no_execution_audit.json",
+   "expected_sha256": "ed0d14cd98c469f73d6669c9dc8bac27ef98cf3d97a2e58263f9b68fc61be400",
+   "observed_sha256": "ed0d14cd98c469f73d6669c9dc8bac27ef98cf3d97a2e58263f9b68fc61be400",
+   "match": true,
+   "bound_dynamically": false
+  },
+  {
+   "path": "reports/audits/phase35_smoke_amendment_final_check_v1_0c.json",
+   "expected_sha256": "d6a29d55819aadcabf5f4c8199c6580aa70c93f6f1eee15a513879bfea9fe6e0",
+   "observed_sha256": "d6a29d55819aadcabf5f4c8199c6580aa70c93f6f1eee15a513879bfea9fe6e0",
+   "match": true,
+   "bound_dynamically": false
+  },
+  {
+   "path": "reports/audits/phase35_smoke_amendment_terminal_v1_0c.json",
+   "expected_sha256": "8aee98fc29e1aa9dffba37079e0935fb8319d096a96f9da8892aab41a503b4bb",
+   "observed_sha256": "8aee98fc29e1aa9dffba37079e0935fb8319d096a96f9da8892aab41a503b4bb",
+   "match": true,
+   "bound_dynamically": false
+  },
+  {
+   "path": "docs/phase35_interpretability_smoke_amendment_v1_0c.md",
+   "expected_sha256": "079303c442edd057c4f5f9d3850df191f0fc3e7daf3aa038c76bbae341ccb716",
+   "observed_sha256": "079303c442edd057c4f5f9d3850df191f0fc3e7daf3aa038c76bbae341ccb716",
+   "match": true,
+   "bound_dynamically": false
+  },
+  {
+   "path": "notebooks/phasewise/phase_35_interpretability/phase35_interpretability_smoke_amendment_v1_0c_review.ipynb",
+   "expected_sha256": "9479e4ae292542852e353ec4704158c3a4317b2c2ee4d5a4f238e79bfc12f212",
+   "observed_sha256": "9479e4ae292542852e353ec4704158c3a4317b2c2ee4d5a4f238e79bfc12f212",
+   "match": true,
+   "bound_dynamically": false
+  },
+  {
+   "path": "reports/tables/phase21_gallery_selection_64.csv",
+   "expected_sha256": "2bc7c16286999ced374840cc987dcd352c3e546668322a9ccc4d1e8e8a097fd9",
+   "observed_sha256": "2bc7c16286999ced374840cc987dcd352c3e546668322a9ccc4d1e8e8a097fd9",
+   "match": true,
+   "bound_dynamically": false
+  },
+  {
+   "path": "scripts/analysis/phase35_interpretability_execution_v1_0d.py",
+   "expected_sha256": "cccc109ade27eb5ad7883912004c1e911e9e253a659146f3d64820af92244056",
+   "observed_sha256": "cccc109ade27eb5ad7883912004c1e911e9e253a659146f3d64820af92244056",
+   "match": true,
+   "bound_dynamically": false
+  },
+  {
+   "path": "scripts/analysis/phase35_execution_preflight_v1_0d.py",
+   "expected_sha256": "07cdab4b4eeb2051c2007ff5bdfaf3dba8b91c6e510b4a11979c0def53bbf356",
+   "observed_sha256": "07cdab4b4eeb2051c2007ff5bdfaf3dba8b91c6e510b4a11979c0def53bbf356",
+   "match": true,
+   "bound_dynamically": false
+  },
+  {
+   "path": "reports/audits/phase35_execution_source_static_preflight_v1_0d.json",
+   "expected_sha256": "6d1438e139436cef7c08c9eca52d5a4f068f1412c4e45f22c60cdb4d90783cb3",
+   "observed_sha256": "6d1438e139436cef7c08c9eca52d5a4f068f1412c4e45f22c60cdb4d90783cb3",
+   "match": true,
+   "bound_dynamically": false
+  },
+  {
+   "path": "reports/audits/phase35_gradcam_target_rank_defect_v1_0d.json",
+   "expected_sha256": "413840cc768cc84d66ef4aac93d1ec9383424f02938bc1f0cded88a7cff9b297",
+   "observed_sha256": "413840cc768cc84d66ef4aac93d1ec9383424f02938bc1f0cded88a7cff9b297",
+   "match": true,
+   "bound_dynamically": false
+  },
+  {
+   "path": "reports/audits/phase35_gradcam_rank_repair_reviewer_notebook_audit_v1_0d.json",
+   "expected_sha256": "77ce53a15e4157c31ec51f170cc45e26ea4e0fed960b789fb66f40d584784106",
+   "observed_sha256": "77ce53a15e4157c31ec51f170cc45e26ea4e0fed960b789fb66f40d584784106",
+   "match": true,
+   "bound_dynamically": false
+  },
+  {
+   "path": "reports/audits/phase35_preexecution_source_freeze_v1_0d.json",
+   "expected_sha256": "d349dccfa949ab9e31ff24e49377e6fb237b6f787846c3820c8dff1c211b5b53",
+   "observed_sha256": "d349dccfa949ab9e31ff24e49377e6fb237b6f787846c3820c8dff1c211b5b53",
+   "match": true,
+   "bound_dynamically": false
+  },
+  {
+   "path": "reports/audits/phase35_execution_eligibility_adjudication_v1_0d.json",
+   "expected_sha256": "0bed46a1c1e3c7f87759d5bb67ef0c02af42f32ad11f55bbda66a114babe3f70",
+   "observed_sha256": "0bed46a1c1e3c7f87759d5bb67ef0c02af42f32ad11f55bbda66a114babe3f70",
+   "match": true,
+   "bound_dynamically": false
+  },
+  {
+   "path": "reports/audits/phase35_gradcam_rank_repair_final_check_v1_0d.json",
+   "expected_sha256": "0f4cd1a77bb4204f5fdc9429edc53c20bac9e187d14e7772dea94d5a717e62d6",
+   "observed_sha256": "0f4cd1a77bb4204f5fdc9429edc53c20bac9e187d14e7772dea94d5a717e62d6",
+   "match": true,
+   "bound_dynamically": false
+  },
+  {
+   "path": "reports/audits/phase35_gradcam_rank_repair_terminal_v1_0d.json",
+   "expected_sha256": "8af9bcaff95b4cf5ac91f482810e7267816b9c649e321d917188f3dbe204f799",
+   "observed_sha256": "8af9bcaff95b4cf5ac91f482810e7267816b9c649e321d917188f3dbe204f799",
+   "match": true,
+   "bound_dynamically": false
+  },
+  {
+   "path": "scripts/analysis/phase35_gradcam_target_rank_unit_v1_0d.py",
+   "expected_sha256": "6c3896b01e60c5e8361d0af9d98ebd29c5b592a906257c487c6c9140242ec19f",
+   "observed_sha256": "6c3896b01e60c5e8361d0af9d98ebd29c5b592a906257c487c6c9140242ec19f",
+   "match": true,
+   "bound_dynamically": false
+  },
+  {
+   "path": "reports/audits/phase35_gradcam_target_rank_unit_v1_0d.json",
+   "expected_sha256": "66a16c411b30852e32701f424384b925b42ab074bf2c199521f422f5b5e58933",
+   "observed_sha256": "66a16c411b30852e32701f424384b925b42ab074bf2c199521f422f5b5e58933",
+   "match": true,
+   "bound_dynamically": false
+  },
+  {
+   "path": "reports/audits/phase35_synthetic_interpretability_smoke_v1_0d.json",
+   "expected_sha256": "5bf61bc52d0c83ffb50849db973fb89133f0fa741140e58de8408a395979fee0",
+   "observed_sha256": "5bf61bc52d0c83ffb50849db973fb89133f0fa741140e58de8408a395979fee0",
+   "match": true,
+   "bound_dynamically": false
+  },
+  {
+   "path": "reports/audits/phase35_synthetic_smoke_provenance_v1_0d.json",
+   "expected_sha256": "8a7633cf05cbdb55453903e9bed31d09c953e0ab675b6b90df5567a0506a5dcf",
+   "observed_sha256": "8a7633cf05cbdb55453903e9bed31d09c953e0ab675b6b90df5567a0506a5dcf",
+   "match": true,
+   "bound_dynamically": false
+  },
+  {
+   "path": "reports/audits/phase35_synthetic_smoke_final_check_v1_0d.json",
+   "expected_sha256": "1cae9c7b45d679b8fc1d3e863d022795ad6f4c8a96fc441dde95d6fec436807f",
+   "observed_sha256": "1cae9c7b45d679b8fc1d3e863d022795ad6f4c8a96fc441dde95d6fec436807f",
+   "match": true,
+   "bound_dynamically": false
+  },
+  {
+   "path": "reports/audits/phase35_synthetic_smoke_reporting_gap_disclosure_v1_0d.json",
+   "expected_sha256": "4d9fc89ab58658891cb56f9645c26ef5cf9cfa195379e5eea3e5d89d4d68cff3",
+   "observed_sha256": "4d9fc89ab58658891cb56f9645c26ef5cf9cfa195379e5eea3e5d89d4d68cff3",
+   "match": true,
+   "bound_dynamically": false
+  },
+  {
+   "path": "scripts/analysis/phase35_smoke_gate_v1_0d.py",
+   "expected_sha256": "6a890141838d995b681686c5b67b7a4a772e052bef70220d0595d31b0637ebd8",
+   "observed_sha256": "6a890141838d995b681686c5b67b7a4a772e052bef70220d0595d31b0637ebd8",
+   "match": true,
+   "bound_dynamically": false
+  }
+ ],
+ "preservation_all_match": true,
+ "n_predecessors_preserved": 49,
+ "original_v1_0a_checks": {
+  "01_repo_imports_cwd_independent": true,
+  "02_phase34_closure_handoff_hashes_checked": true,
+  "03_canonical_gallery_sha_checked_before_raw_read": true,
+  "04_gallery_ownership_checked_before_raw_read": true,
+  "05_router_holdout_prohibited": true,
+  "06_TEST_prohibited": true,
+  "07_GT_reads_prohibited": true,
+  "08_canonical_G_checkpoint_used": true,
+  "09_canonical_B_phi_checkpoint_used": true,
+  "10_R_psi_not_executed_v1_0": true,
+  "11_S_omega_not_executed_v1_0": true,
+  "12_G_strict_loaded": true,
+  "13_B_phi_strict_loaded": true,
+  "14_G_parameter_count_verified": true,
+  "15_B_phi_parameter_count_verified": true,
+  "16_film_parameters_for_tasks_implemented": true,
+  "17_G_task_embedding_extraction_implemented": true,
+  "18_B_phi_task_embedding_extraction_implemented": true,
+  "19_gradcam_bridge_hook_exact": true,
+  "20_gradcam_decoder1_hook_exact": true,
+  "21_target_mask_from_persisted_p_global_050": true,
+  "22_target_mask_not_recomputed_from_new_forward": true,
+  "23_no_GT_in_target_selection": true,
+  "24_scalar_target_matches_frozen_definitions": true,
+  "25_gradcam_forward_semantics_exact": true,
+  "26_no_optimizer": true,
+  "27_no_parameter_update": true,
+  "28_cam_formula_exact": true,
+  "29_align_corners_false": true,
+  "30_minmax_and_zero_range_exact": true,
+  "31_no_blur_smoothing_posthoc_threshold": true,
+  "32_ROI_proposal_uses_030": true,
+  "33_segmentation_foreground_uses_050": true,
+  "34_thresholds_never_conflated": true,
+  "35_64_case_raw_read_ceiling_enforced": true,
+  "36_display_subset_frozen_without_saliency_inspection": true,
+  "37_router_uses_canonical_VAL808_artifacts": true,
+  "38_router_population_n_808": true,
+  "39_router_raw_image_reads_0": true,
+  "40_router_GT_reads_0": true,
+  "41_B_phi_receives_canonical_task_ids": true,
+  "42_B_phi_receives_canonical_normalization": true,
+  "43_router_target_raw_delta_hat": true,
+  "44_no_sigmoid_on_delta_hat": true,
+  "45_numeric_feature_gradient_enabled": true,
+  "46_attribution_x_times_grad": true,
+  "47_integer_task_ids_no_numeric_gradient": true,
+  "48_B_phi_task_embedding_static": true,
+  "49_zero_denominator_NULL_and_flag": true,
+  "50_outcome_selected_galleries_prevented": true,
+  "51_no_phase30_holdout_raw_evidence_needed": true,
+  "52_no_TEST_access": true,
+  "53_no_training_path": true,
+  "54_phase36_not_started": true
+ },
+ "original_n_checks": 54,
+ "original_n_failed": 0,
+ "original_failed": [],
+ "original_54_all_pass": true,
+ "cumulative_amendment_checks": {
+  "v1_0_chain_preserved": true,
+  "v1_0b_and_v1_0c_sources_unmodified": true,
+  "v1_0d_source_unmodified": true,
+  "v1_0e_revision_and_classification_declared": true,
+  "film_and_router_bound_verbatim_from_v1_0b": true,
+  "gradcam_and_science_are_v1_0e_local": true,
+  "film_router_helpers_not_redefined_in_v1_0e": true,
+  "v1_0c_smoke_helpers_reused_verbatim": true,
+  "smoke_counter_store_is_the_frozen_v1_0c_store": true,
+  "smoke_gate_env_distinct_from_science_gate_env": true,
+  "smoke_requires_smoke_gate": true,
+  "scientific_requires_science_gate": true,
+  "v1_0e_zero_execution_guard_present": true,
+  "v1_0e_emits_no_scientific_output": true,
+  "smoke_mode_is_not_a_stub": true,
+  "smoke_constructs_G_and_B_phi": true,
+  "smoke_uses_no_real_data_loader": true,
+  "smoke_no_R_psi_or_S_omega_execution": true,
+  "smoke_no_optimizer_no_step_no_training_backward": true,
+  "smoke_declares_synthetic_only_and_not_scientific_result": true,
+  "claim_guard_reused": true,
+  "F8_regional_still_not_implemented": true,
+  "v1_0d_rank_safe_target_reused_verbatim": true,
+  "v1_0d_defective_logits_mask_unreachable_in_v1_0e": true
+ },
+ "cumulative_n_checks": 24,
+ "cumulative_n_failed": 0,
+ "cumulative_failed": [],
+ "numerical_guard_checks": {
+  "01_finite_guard_helpers_defined": true,
+  "02_guards_use_explicit_raises_surviving_python_O": true,
+  "03_target_scalar_finite_guard_before_autograd": true,
+  "04_gradient_finite_guard_per_layer": true,
+  "05_alpha_finite_guard": true,
+  "06_pre_relu_weighted_map_finite_guard": true,
+  "07_post_relu_raw_cam_finite_guard": true,
+  "08_upsampled_prenorm_cam_finite_guard": true,
+  "09_normalized_cam_finite_guard": true,
+  "10_guarded_normalizer_preserves_frozen_semantics_on_finite_inputs": true,
+  "11_guarded_normalizer_fails_closed_on_nonfinite_never_zero_fallback": true,
+  "12_frozen_cam_normalize_retained_and_referenced": true,
+  "13_gradient_diagnostics_shape_dtype_finite_min_max_absmax": true,
+  "14_prenorm_cam_range_and_all_zero_diagnostics": true,
+  "15_normalized_cam_min_max_finite_diagnostics": true,
+  "16_target_scalar_value_and_finite_emitted": true,
+  "17_insession_empty_mask_helper_check_no_extra_forward_or_autograd": true,
+  "18_parameter_grad_state_audit_insession": true,
+  "19_parameter_grad_audit_bound_into_smoke_before_return": true,
+  "20_smoke_gradcam_uses_guarded_path_and_emits_guard_diagnostics": true,
+  "21_gradcam_and_science_reach_the_guarded_path": true,
+  "22_guarded_path_retains_rank_safe_target_and_hooks": true,
+  "23_guarded_path_retains_autograd_grad_and_autocast": true,
+  "24_scientific_mathematics_unchanged_on_finite_inputs": true,
+  "25_no_scientific_protocol_change_marker": true,
+  "26_finite_guard_stage_registry_declared": true,
+  "27_guarded_path_declares_impl_names": true,
+  "28_no_gate_set_and_no_mode_invoked_in_source": true,
+  "29_model_free_guard_unit_tests_emitted_and_pass": true,
+  "30_guard_unit_tests_are_cpu_and_model_free": true,
+  "31_no_new_counters_introduced_v1_0e": true,
+  "32_no_protected_data_read_in_guarded_path": true,
+  "33_v1_0d_smoke_preserved_and_not_rerun_by_this_source": true,
+  "34_regression_no_defective_cam_normalize_call_reachable": true,
+  "35_no_silent_zeroing_of_nonfinite_cam": true,
+  "36_all_guard_stages_emitted_in_cam_diagnostics": true,
+  "37_target_scalar_and_prenorm_range_reported_in_smoke_artifact": true,
+  "38_read_guards_and_claim_guards_intact": true,
+  "39_R_psi_S_omega_still_excluded": true,
+  "40_no_phase36_and_no_new_dataset": true
+ },
+ "numerical_guard_n_checks": 40,
+ "numerical_guard_n_failed": 0,
+ "numerical_guard_failed": [],
+ "call_graph_reachability": {
+  "mode_smoke_to_gradcam_gradient_enabled_numerically_guarded": true,
+  "smoke_gradcam_to_empty_mask_helper_check_insession": true,
+  "mode_smoke_to_parameter_grad_state_audit_insession": true,
+  "mode_gradcam_to_gradcam_per_sample_runner": true,
+  "mode_science_to_gradcam_per_sample_runner": true,
+  "gradcam_per_sample_runner_to_guarded_path": true,
+  "guarded_path_uses_cross_module_v0d_rank_safe_target": true,
+  "guarded_path_to_frozen_defective_target_scalar": false,
+  "guarded_path_to_frozen_cam_normalize": false,
+  "guarded_path_to_cam_normalize_guarded": true
+ },
+ "total_n_checks": 118,
+ "total_n_failed": 0,
+ "failed": [],
+ "static_source_preflight_pass": true,
+ "model_constructed": false,
+ "checkpoint_deserialized": false,
+ "forward_executed": false,
+ "backward_executed": false,
+ "gradcam_executed": false,
+ "router_attribution_executed": false,
+ "gate_env_set": false,
+ "mode_invoked": false,
+ "model_free_cpu_unit_tests_run": 12,
+ "raw_val_reads": 0,
+ "gt_reads": 0,
+ "router_holdout_reads": 0,
+ "test_reads": 0,
+ "generated_utc": "2026-10-05T02:11:18+00:00",
+ "all_pass": true
+}

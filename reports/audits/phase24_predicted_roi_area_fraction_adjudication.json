@@ -1,0 +1,126 @@
+{
+ "artifact": "phase24_predicted_roi_area_fraction_adjudication",
+ "phase": "24",
+ "revision": "ra_medfilm_barr_narrowed_v1_2",
+ "defect_id": "D1",
+ "field": "predicted_roi_area_fraction",
+ "classification": "SPECIFICATION_COMPLETENESS_AND_GOVERNANCE_SYNC",
+ "old_definition": "crop_side_pixels^2 / (512^2)",
+ "old_status": "SUPERSEDED_PRE_EXECUTION_SPEC_FORMULA__NOT_USED_FOR_PHASE25B",
+ "old_range_observed": {
+  "min": 1.52587890625e-05,
+  "max": 2.25
+ },
+ "old_gt1_count": 1257,
+ "old_n_rows": 4957,
+ "old_defect_reason": "crop_side_pixels includes external zero-padding and may exceed the 512 canvas (max 768), so side^2/512^2 is not a canvas fraction",
+ "new_definition": "roi_in_canvas_area / (512^2), roi_in_canvas_area = w_in * h_in, w_in = max(0, min(512, x2) - max(0, x1)), h_in = max(0, min(512, y2) - max(0, y1))",
+ "new_definition_symbolic": "predicted_roi_area_fraction = w_in * h_in / (512 * 512)",
+ "new_semantic_role": "fraction of the native 512x512 image canvas occupied by the CLIPPED in-canvas ROI; external padding is excluded",
+ "new_expected_range": "[0,1]",
+ "new_observed_range": {
+  "min": 1.52587890625e-05,
+  "max": 1.0,
+  "mean": 0.5126122526038384,
+  "median": 0.4916419982910156
+ },
+ "new_gt1_count": 0,
+ "new_dtype": "float32",
+ "new_units": "fraction of the native 512x512 image canvas (clipped in-canvas ROI)",
+ "external_padding_excluded": true,
+ "clipping_rule": "w_in = max(0, min(512, x2) - max(0, x1)); h_in = max(0, min(512, y2) - max(0, y1))",
+ "uses_GT": false,
+ "not_clipped_copy_of_old": true,
+ "not_renamed_old_quantity": true,
+ "predicted_roi_side_retains_crop_side": true,
+ "predicted_roi_side_note": "predicted_roi_side continues to carry the pre-resize square crop side (canonical crop metadata field crop_side_pixels), so crop-scale information is preserved and is NOT hidden inside an area fraction",
+ "feature_rows_requiring_rewrite": 0,
+ "feature_rows_rewrite_reason": "no Phase25B feature rows exist (feature_rows = 0)",
+ "source_metadata": {
+  "cache_root": "data_cache/phase25a_barr_roi030_cache",
+  "files": [
+   "data_cache/phase25a_barr_roi030_cache/BUSI/meta.csv",
+   "data_cache/phase25a_barr_roi030_cache/ISIC/meta.csv",
+   "data_cache/phase25a_barr_roi030_cache/KUB/meta.csv",
+   "data_cache/phase25a_barr_roi030_cache/KVASIR/meta.csv"
+  ],
+  "n_rows": 4957,
+  "canvas_resolution": 512
+ },
+ "cross_checks": {
+  "clip_columns_match_recomputed": true,
+  "padding_identity_y_rows_ok": 4957,
+  "padding_identity_x_rows_ok": 4957
+ },
+ "checks": [
+  {
+   "check": "new_range_within_0_1",
+   "passed": true,
+   "detail": {
+    "min": 1.52587890625e-05,
+    "max": 1.0
+   }
+  },
+  {
+   "check": "old_defect_reproduced",
+   "passed": true,
+   "detail": {
+    "old_gt1_count": 1257
+   }
+  },
+  {
+   "check": "new_gt1_count_0",
+   "passed": true,
+   "detail": 0
+  },
+  {
+   "check": "clip_columns_match_recomputed",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "padding_identity_y",
+   "passed": true,
+   "detail": {
+    "ok_rows": 4957,
+    "n_rows": 4957
+   }
+  },
+  {
+   "check": "padding_identity_x",
+   "passed": true,
+   "detail": {
+    "ok_rows": 4957,
+    "n_rows": 4957
+   }
+  },
+  {
+   "check": "new_is_a_genuine_fraction",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "external_padding_excluded",
+   "passed": true,
+   "detail": null
+  },
+  {
+   "check": "no_feature_rows_require_rewrite",
+   "passed": true,
+   "detail": null
+  }
+ ],
+ "n_checks": 9,
+ "n_failed": 0,
+ "verdict": "D1_RESOLVED",
+ "science_changed": false,
+ "method_changed": false,
+ "model_instantiations": 0,
+ "forward_passes": 0,
+ "training_runs": 0,
+ "feature_rows_extracted": 0,
+ "uses_GT_in_adjudication": false,
+ "test_reads": 0,
+ "holdout_outcome_reads": 0,
+ "val_reads": 0
+}

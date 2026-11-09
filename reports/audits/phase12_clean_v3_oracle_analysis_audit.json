@@ -1,0 +1,116 @@
+{
+  "audit": "phase12_clean_v3_oracle_analysis_audit",
+  "created_utc": "2026-09-21T01:18:26.771911+00:00",
+  "input_part1b_shas": {
+    "case_metrics": "080f158fb8b3e3552ac7854c6d9a116e11564bcefa9efdcdbb3511dba090b436",
+    "component_metrics": "d66933a3c2821d3ab9375eadb5c0540fea145edcf49b648064fe9aa4c460c753",
+    "geometry": "29326d5b9a3bf71add74d8743750511f146d8c4dfbd1dc5b04a5e1b647c37cc0",
+    "primary_paired_deltas": "3d398aa866d478daffde71f42e1e9224c6501ddc1d77f8c33ae40557fc7d6a6e",
+    "protocol_frozen": "f5227bdd67ec780ccd4c520a9bf1576601164939d2ff4132680885bc35124a48",
+    "part1b_inference_audit": "89f1a406917f3a665599ea8f11e16350a8f5488a04f310c9cfe64496cb78a626"
+  },
+  "errata": {
+    "path": "reports/audits/phase12_part1b_analysis_errata.md",
+    "sha": "c6a4e8b21580a5c6969d065a6b435c5dcb4c9a77c9b7e5bfe34d2f19cbbc50f4",
+    "erratum_A": "DICE_IOU_GLOBAL_REPRODUCTION_GATE_PASS",
+    "erratum_B": "COMBINED_LEGACY_RESTORE_SENSITIVITY"
+  },
+  "primary_comparison": "GLOBAL_NATIVE vs ORACLE_FLOAT_GLOBAL_RETAINED",
+  "crop_only_substituted_as_primary": false,
+  "population": {
+    "full_field_cases": 103,
+    "native_components": 152,
+    "models": 4,
+    "strata": {
+      "TINY": 72,
+      "SMALL": 28,
+      "MEDIUM": 36,
+      "LARGE": 16
+    }
+  },
+  "primary_macro_dice": {
+    "UNet": {
+      "global": 0.5941796681946068,
+      "primary": 0.724721700948911,
+      "diff": 0.1305420327543042
+    },
+    "Attention U-Net": {
+      "global": 0.6298049685888003,
+      "primary": 0.6995945682479338,
+      "diff": 0.0697895996591334
+    },
+    "UNet++": {
+      "global": 0.6405155030126883,
+      "primary": 0.726679342812567,
+      "diff": 0.0861638397998786
+    },
+    "DeepLabV3+": {
+      "global": 0.5602505353552288,
+      "primary": 0.7503716374272004,
+      "diff": 0.1901211020719715
+    }
+  },
+  "delta_direction": {
+    "UNet": {
+      "improved": 67,
+      "unchanged": 0,
+      "worsened": 36
+    },
+    "Attention U-Net": {
+      "improved": 59,
+      "unchanged": 0,
+      "worsened": 44
+    },
+    "UNet++": {
+      "improved": 62,
+      "unchanged": 0,
+      "worsened": 41
+    },
+    "DeepLabV3+": {
+      "improved": 74,
+      "unchanged": 0,
+      "worsened": 29
+    }
+  },
+  "worsened_case_model_rows": 150,
+  "worsened_max": -0.5865668725243935,
+  "worsened_with_object_recall_improvement": 4,
+  "component_recovered_total": 120,
+  "component_lost_total": 0,
+  "empty_recovered_total": 27,
+  "new_empty_total": 0,
+  "hd95_both_valid_paired": {
+    "UNet": 95,
+    "Attention U-Net": 100,
+    "UNet++": 98,
+    "DeepLabV3+": 92
+  },
+  "crop_only_interpretation": {
+    "UNet": "ORACLE_BACKGROUND_SUPPRESSION_ADVANTAGE_PRESENT",
+    "Attention U-Net": "ORACLE_BACKGROUND_SUPPRESSION_ADVANTAGE_PRESENT",
+    "UNet++": "ORACLE_BACKGROUND_SUPPRESSION_ADVANTAGE_PRESENT",
+    "DeepLabV3+": "ORACLE_BACKGROUND_SUPPRESSION_ADVANTAGE_PRESENT"
+  },
+  "all_four_low_mean_delta": 0.4856896841504139,
+  "cross_arch_all_four_positive_cases": 46,
+  "evidence_matrix_status": {
+    "SUPPORTIVE_DESCRIPTIVE_EVIDENCE": 8,
+    "MIXED_DESCRIPTIVE_EVIDENCE": 5,
+    "NOT_EVALUABLE": 1
+  },
+  "model_loading": 0,
+  "inference_passes": 0,
+  "training": 0,
+  "optimizer_steps": 0,
+  "source_tables_modified": 0,
+  "test_reads": 0,
+  "statistical_testing": false,
+  "winner": "none",
+  "reference_model": null,
+  "final_phase12_conclusion": "NOT_ISSUED",
+  "regional_integration_gate_decision": "NOT_YET",
+  "part1c_status": "READY_FOR_SUPERVISOR_PHASE12_MECHANISM_CONCLUSION",
+  "notebook_sha": "7ebad54f1a7d45681138db298efff9e1af1567fac4051b27d325794be9e777a8",
+  "support_code_sha": "c162e93eb232113facf2ec3a4fa69e214517903c3b75c71eed1ac38c4a48a591",
+  "status": "PASS"
+}

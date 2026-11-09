@@ -1,0 +1,31 @@
+{
+ "artifact": "phase35_v1_0f_counter_contract_defect_v1_0g",
+ "phase": 35,
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase35_interpretability_v1_0g",
+ "classification": "PRE_SCIENTIFIC_SYNTHETIC_SMOKE_BOOKKEEPING_CONTRACT_DEFECT__NO_SCIENTIFIC_OR_INTERFACE_DEFECT",
+ "defect_id": "PHASE35_V1_0F_SMOKE_COUNTER_CONTRACT_MISMATCH",
+ "detected_by": "phase35_synthetic_smoke_final_check_v1_0f.json (checks 105, 106)",
+ "symptom": {
+  "counter": "synthetic_smoke_target_masks",
+  "observed": 2,
+  "expected": 1,
+  "harness_all_pass": false,
+  "counts_match_expected": false
+ },
+ "cause": {
+  "primary_target_mask": "V0D.smoke_synthetic_target_mask_rank2() increments synthetic_smoke_target_masks once for the PRIMARY centered-square target mask",
+  "empty_observability_mask": "empty_mask_helper_check_insession_actual_logits() incorrectly increments the SAME counter a second time for the all-False empty variant of the SAME primary mask",
+  "statement": "The two events are semantically different and must have separate counters."
+ },
+ "scientific_effect": "NONE",
+ "model_numerical_effect": "NONE",
+ "protected_data_effect": "NONE",
+ "workspace_effect": "NONE",
+ "first_v1_0f_smoke_rerun_performed": false,
+ "first_v1_0f_smoke_preserved_byte_for_byte": true,
+ "all_v1_0f_scientific_numerical_interface_checks_valid_evidence": true,
+ "first_v1_0f_smoke_classification": "VALID_PRE_SCIENTIFIC_SYNTHETIC_NUMERICAL_AND_INTERFACE_EVIDENCE_WITH_INTERNAL_COUNTER_CONTRACT_MISMATCH",
+ "repair_revision": "ra_medfilm_barr_phase35_interpretability_v1_0g",
+ "generated_utc": "2026-10-05T05:05:37Z"
+}

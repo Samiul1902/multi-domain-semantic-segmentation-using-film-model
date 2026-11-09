@@ -1,0 +1,30 @@
+{
+ "artifact": "phase30_source_freeze_postdefect_rebind",
+ "phase": 30,
+ "section": "\u00a7G",
+ "source_freeze_sha256": "8f5873f57bf48e89a8b74f4b0dc5cdfa98444b3e8c53ba13ae34146f0c5baba5",
+ "source_freeze_expected_sha256": "8f5873f57bf48e89a8b74f4b0dc5cdfa98444b3e8c53ba13ae34146f0c5baba5",
+ "first_open_marker_utc": "2026-10-04T03:15:34+00:00",
+ "stage_b_source": "scripts/analysis/phase30_execution_stage_b.py",
+ "stage_b_source_sha256": "9331c75bab2a5502c37ea4d9e1cd9afcf52766a0897b03c4d96a2c4fcc744fed",
+ "stage_b_source_mtime_utc": "2026-10-04T03:15:36.906972+00:00",
+ "stage_b_in_preopen_source_freeze": false,
+ "stage_b_authored_after_first_open_marker": true,
+ "stage_b_sha_frozen_before_first_open": null,
+ "frozen_execution_sources_unchanged": true,
+ "frozen_source_drift": [],
+ "finalize_script": "scripts/analysis/phase30_execution_stage_b_finalize.py",
+ "finalize_script_sha256": "816950ee32b02556eab606787a8dc46e0fbd29a402dc8143ca33a27b1d59a8e9",
+ "finalize_script_bound_separately": true,
+ "finalize_retroactively_inserted_into_preopen_freeze": false,
+ "adjudication": {
+  "finding": "the Stage-B scientific scoring source was NOT included in the pre-open source freeze; it was authored ~2.9 s after the first-open marker and executed exactly once (never re-executed)",
+  "stage_b_re_executed": false,
+  "stage_b_authored_before_any_holdout_prediction_existed": true,
+  "stage_b_scientific_or_provenance_only": "SCIENTIFIC",
+  "governance_exception_clause_applies": false,
+  "verdict": "BLOCK_PER_SECTION_G"
+ },
+ "generated_utc": "2026-10-04T03:41:39+00:00",
+ "all_pass": false
+}

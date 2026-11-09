@@ -1,0 +1,214 @@
+{
+  "version": "1.0",
+  "mode": "READ_ONLY_DECISION_SUPPORT",
+  "training_performed": false,
+  "inference_performed": false,
+  "frozen_artifacts_modified": false,
+  "test_accessed": false,
+  "router_holdout_accessed": false,
+  "authorization_granted": false,
+  "generated_local": "2026-10-26T22:47:47+06:00",
+  "generated_utc": "2026-10-26T16:47:47+00:00",
+  "timestamp_provenance": "COMPUTED_AT_WRITE_BY_SCRIPT",
+  "clock_uncertainty": "HOST_CLOCK_NOT_SYNCHRONIZED__ABSOLUTE_UTC_CORRESPONDENCE_UNVERIFIED",
+  "artifact": "supervisor_decision_package",
+  "classification": "RA_MEDFILM_BARR_SUPERVISOR_DECISION_PACKAGE",
+  "companion_markdown": {
+    "path": "reports/planning/reauthorization_gate_v1_0/task_b_supervisor_decision_package_v1_0.md",
+    "sha256": "0538d9d56afddc67bfad0675e4fc89b7ae30561d0ed473eb306dfe5af55db3ef",
+    "bytes": 14094
+  },
+  "standing_status": {
+    "EXT03_v1_0_v1_1_v1_2_evidence": "PRESERVED",
+    "phase01_40_record": "PRESERVED",
+    "AS08": "UNRESOLVED",
+    "C1": "NOT_ESTABLISHED",
+    "C2": "NOT_ESTABLISHED",
+    "C3": "NOT_ESTABLISHED",
+    "EXT04": "RESERVED_progression_scaling_AS01_02_03_04_05_07",
+    "EXT03B": "PROVISIONAL_NOT_AUTHORISED",
+    "film_off_study": "PROSPECTIVE_SUPPLEMENTARY_ABLATION__NEVER_A_PHASE28_ARM"
+  },
+  "correction_to_v1_2": {
+    "prior_statement": "BARR integrated-vs-backbone delta described as single-seed and within noise",
+    "corrected": "THREE-SEED and SIGN-CONSISTENT",
+    "source": "reports/audits/phase29_phase_d_three_seed_descriptive_summary.json",
+    "population": "VAL808",
+    "descriptive": true,
+    "macro_final_dice": {
+      "seed42": 0.8372891053775793,
+      "seed123": 0.8384669006659462,
+      "seed3407": 0.8379477613774475,
+      "mean": 0.837901255806991,
+      "sd_n_minus_1": 0.0005902732514585479,
+      "sign_consistent": true
+    },
+    "macro_global_dice": {
+      "mean": 0.835078960107498,
+      "note": "identical across seeds - backbone is one frozen checkpoint"
+    },
+    "macro_delta_dice": {
+      "mean": 0.0028222956994930896,
+      "sd_n_minus_1": 0.0005902732514585419,
+      "min": 0.0022101452700813433,
+      "max": 0.003387940558448247,
+      "sign_consistent": true
+    },
+    "n_selected_mean": 265.3333333333333,
+    "selected_fraction_mean": 0.32838283828382836,
+    "surviving_qualifications": [
+      "joint effect of R+B+S, not decomposed",
+      "VAL808 is the selection split - descriptive only",
+      "backbone is one frozen checkpoint so all variance sits on the integrated side"
+    ]
+  },
+  "C1": {
+    "research_question": "Holding architecture, protocol, data, seed and schedule fixed, does removing task conditioning from GlobalMedFiLM change selected VAL808 equal-domain macro Dice?",
+    "eligible_data": "internal TRAIN 5832 / VAL808 808, manifest phase4_v3; no TEST; no external",
+    "frozen_authority": [
+      "experiments/phase21_global_medfilm_fourdomain_seed42_clean_v3/config.json",
+      "GlobalMedFiLM checkpoint 286689fd..."
+    ],
+    "frozen_authority_summary": "AdamW lr1e-4 wd1e-4, bce_dice 0.5/0.5 eps1e-6, CosineAnnealingLR T_max100, batch4, 512, 3ch, patience15, AMP, seed42, phase20_domain_balanced_uniform_v1, phase20_macro_domain_mean_dice_v1",
+    "no_frozen_arm_exists": true,
+    "necessary_controls": [
+      "F1 freeze-at-init (total 3523001 unchanged, trainable 3432233)",
+      "treatment re-execution in the same session/host",
+      "positive control: reproduce Phase-21 0.835079 within pre-declared tolerance",
+      "negative control: mis-conditioned arm must differ or task signal is inert"
+    ],
+    "expected_compute": "9.61 h/seed measured (34588.8 s, 81 epochs, 427 s/epoch); 2 arms x 3 seeds ~= 57.6 h",
+    "limitations": [
+      "n=3 -> 2 df",
+      "VAL808 selection-contaminated",
+      "isolates FiLM within GlobalMedFiLM only",
+      "silent on BARR and safety",
+      "single architecture"
+    ],
+    "approval_requirements": "new work order + frozen control harness + prelaunch gate with authority edge + written supervisor authorisation; MUST NOT be inserted into Phase-28"
+  },
+  "C2": {
+    "C2a_question": "On one frozen population and fusion rule, does benefit routing change macro Dice vs refine-all and vs global-only?",
+    "C2b_question": "Does S_omega change any safety-relevant outcome vs S_omega absent?",
+    "eligible_data": "ROUTER_DEVELOPMENT n=4957 per contract held_constant; NOTE Phase-22/29 used VAL808 n=808 - different populations, must not be mixed",
+    "frozen_authority": "reports/audits/phase28_one_factor_control_contract.json - 13 arms A0-A8,R1-R3,F1; governance_only true; execution NONE; post_hoc_factor_addition_forbidden true",
+    "frozen_components": {
+      "GlobalMedFiLM": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+      "Phase25A_refiner": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109",
+      "Phase25D_B_phi": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+      "Phase25F_S_omega": "eee9b97b9921e53fc07eac9281dce64ba518c6e1659916b97b0b3bec21ec6d2e"
+    },
+    "frozen_components_verified_present": true,
+    "executed_evidence_descriptive": {
+      "phase29": "integrated 0.837901 vs backbone 0.835079 = +0.002822, SD 0.000590, sign-consistent 3 seeds; n_selected mean 265/808",
+      "phase22_harm_oracle_roi": "n=808, harmed 536, harm_rate 0.663366, mean_harm -0.095742, worst -0.833422, net_gain -34.322",
+      "phase22_harm_by_domain": {
+        "ISIC": 0.683473,
+        "BUSI": 0.809524,
+        "KVASIR": 0.724138,
+        "KUB": 0.575
+      }
+    },
+    "key_reading": "with oracle ROI refine-all is NET HARMFUL (-34.32); the routed system is slightly net positive (+0.00282) while routing only 32.8% - consistent with the router's value being harm avoidance rather than gain creation",
+    "blocking_gap_C2b": "no S_omega-absent arm exists in the frozen 13-arm design; A8 is 'S_omega present (baseline)'; post_hoc_factor_addition_forbidden prevents adding one",
+    "necessary_controls": [
+      "minimum triple A0/A1/A8",
+      "all other factors held per contract",
+      "paired bootstrap n_boot 2000 seed 42",
+      "per-arm prediction persistence"
+    ],
+    "expected_compute": "inference only - all components frozen; single-digit GPU-hours for 4957 x 3 arms",
+    "limitations": [
+      "oracle ROI != predicted ROI",
+      "+0.00282 small (0.34% relative) and descriptive",
+      "C2b unmeasurable within Phase-28 and has no metric",
+      "component attribution needs arms that exist only in a governance doc"
+    ],
+    "approval_requirements": "authorisation to EXECUTE a contract declared execution NONE; population frozen in writing; separate prospective study for C2b"
+  },
+  "C3": {
+    "research_question": "Under the frozen phase09/10 recipe (AdamW 1e-4, bce_dice, augmentation, 1-channel), what is the VAL808 equal-domain macro Dice of each of the five baselines across three seeds?",
+    "eligible_data": "internal TRAIN 5832 / VAL808 808, manifest phase4_v3; no TEST; no external",
+    "frozen_authority": [
+      "configs/phase09_clean_v3/*.yaml",
+      "configs/phase10_clean_v3/*.yaml",
+      "scripts/training/train_phase10_baselines.py L46/L89",
+      "ext02_1_baseline_training_protocol_freeze.json"
+    ],
+    "necessary_controls": [
+      "rebuilt gate with >=1 direct authority edge comparing concrete values",
+      "per-run harness SHA binding",
+      "1-channel param expectations unet 7762465 / attention_unet 7850709 / unetpp 9159105 / deeplabv3plus 40340769 / segformer_b0 3714401",
+      "full per-epoch and per-domain persistence",
+      "positive and negative gate controls"
+    ],
+    "expected_compute": "700-1100 s/epoch x ~75 epochs x 15 runs ~= 250 h ~= 10.4 d compute; 12-18 d wall",
+    "limitations": [
+      "answers only C3",
+      "no FiLM isolation",
+      "no BARR",
+      "no safety",
+      "3 seeds only",
+      "VAL808 selection-contaminated",
+      "still bundles architecture and seed treatment vs GlobalMedFiLM"
+    ],
+    "approval_requirements": "new work order + frozen protocol-faithful harness + rebuilt gate + Task A P1-P3 remediation first; identifier EXT-03B provisional, NOT EXT-04"
+  },
+  "comparison_matrix": {
+    "columns": [
+      "C1_film_off",
+      "C2_barr",
+      "C3_ext03b"
+    ],
+    "rows": {
+      "training_required": [
+        "yes",
+        "no",
+        "yes"
+      ],
+      "compute": [
+        "~57.6 h",
+        "single-digit GPU-hours",
+        "~250 h / 12-18 d"
+      ],
+      "frozen_authority": [
+        "Phase-21 config",
+        "Phase-28 contract (execution NONE)",
+        "phase09/10 configs + trainer"
+      ],
+      "executed_evidence_today": [
+        "none for the control",
+        "Phase-29 +0.00282; Phase-22 harm 0.663",
+        "EXT-03 divergent"
+      ],
+      "blocking_gap": [
+        "control never run",
+        "no S_omega-absent arm exists",
+        "five protocol divergences"
+      ],
+      "repairs_AS08": [
+        false,
+        false,
+        true
+      ],
+      "answers_safety": [
+        false,
+        false,
+        false
+      ],
+      "host_remediation_needed": [
+        true,
+        false,
+        true
+      ]
+    }
+  },
+  "binding_constraints": [
+    "no retrospective insertion into a frozen study",
+    "EXT-04 stays reserved for AS-01/02/03/04/05/07",
+    "FiLM-off is prospective supplementary, never a Phase-28 arm",
+    "AS-08 remains UNRESOLVED",
+    "C1/C2/C3 remain NOT_ESTABLISHED",
+    "no protected TEST access or unapproved external inference"
+  ]
+}

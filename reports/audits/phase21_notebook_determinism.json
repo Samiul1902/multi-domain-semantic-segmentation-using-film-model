@@ -1,0 +1,21 @@
+{
+  "artifact": "phase21_notebook_determinism",
+  "phase": 21,
+  "notebook_path": "notebooks/phasewise/phase_21_global_medfilm/phase21_global_medfilm_reference.ipynb",
+  "builds": 3,
+  "sha256_per_build": [
+    "bb916f54296719b0c38643c0a9302e713cacd33a418850dc9b316d8d9a26a4ed",
+    "bb916f54296719b0c38643c0a9302e713cacd33a418850dc9b316d8d9a26a4ed",
+    "bb916f54296719b0c38643c0a9302e713cacd33a418850dc9b316d8d9a26a4ed"
+  ],
+  "three_builds_byte_identical": true,
+  "deterministic_practices": [
+    "deterministic cell ids (p21000..p21NNN)",
+    "stripped metadata.execution",
+    "coalesced stream outputs",
+    "fixed pandas Styler uuids via set_uuid",
+    "normalised object memory addresses (0x... -> 0xADDR)",
+    "stable output ordering"
+  ],
+  "test_reads": 0
+}

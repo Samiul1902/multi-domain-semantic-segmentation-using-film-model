@@ -1,0 +1,34 @@
+{
+ "artifact": "phase25a_roi030_final_refit_epoch_rule",
+ "phase": "25A",
+ "classification": "CANONICAL_PHASE25A_AFTER_THRESHOLD_ADJUDICATION",
+ "roi_proposal_threshold": 0.3,
+ "segmentation_output_threshold": 0.5,
+ "rule": "FINAL_REFIT_EPOCHS_ROI030 = integer median of the 3 ROI-0.30 fold best epochs",
+ "per_fold_best_epoch": {
+  "fold0": 25,
+  "fold1": 20,
+  "fold2": 25
+ },
+ "source_best_epochs": [
+  20,
+  25,
+  25
+ ],
+ "final_refit_epochs": 25,
+ "roi050_value": 27,
+ "roi050_value_reused": false,
+ "roi050_value_reused_note": "false means the ROI-0.30 median genuinely differs from the superseded ROI-0.50 median",
+ "persisted_before_final_refit": true,
+ "early_stopping_in_final_refit": false,
+ "holdout_used": false,
+ "val_used": false,
+ "test_used": false,
+ "fold_run_json_sha256": {
+  "fold0": "fcddfb061fc11375e5a9a5ce4e6ab7ede869ab9009cfd6af1464d7269742cd8e",
+  "fold1": "1d5c9966f08ffd08f867282866c20391c287674b6aa02bcd378713578b4c8f37",
+  "fold2": "33a0af9eb4580b67a4646abc99435b89982dd1dc004a544bcbe0fb200b808bee"
+ },
+ "generated_utc": "2026-09-30T13:12:39.234075+00:00",
+ "verdict": "PHASE25A_ROI030_FINAL_REFIT_EPOCH_RULE_PERSISTED"
+}

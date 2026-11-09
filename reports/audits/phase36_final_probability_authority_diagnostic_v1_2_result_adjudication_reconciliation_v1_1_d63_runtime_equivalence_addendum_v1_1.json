@@ -1,0 +1,64 @@
+{
+ "artifact_kind": "PHASE36_FINAL_PROB_AUTHORITY_DIAGNOSTIC_V1_2_RESULT_ADJUDICATION_RECONCILIATION_D63_RUNTIME_EQUIVALENCE_ADDENDUM",
+ "addendum_revision": "v1_1",
+ "amends": "phase36_final_probability_authority_diagnostic_v1_2_result_adjudication_reconciliation_v1_1.json",
+ "amends_sha256": "a85aaf4a0668effaecb148c3ada7a8f25c1bcd0216740e0c009df2115a3833bb",
+ "supplements": "phase36_final_probability_authority_diagnostic_v1_2_result_adjudication_reconciliation_v1_1_d63_addendum_v1_0.json",
+ "supplements_sha256": "7e073a03d2a7659e143873816f41ab62e762796033b0877612d19b2c0fb87103",
+ "additive": true,
+ "mode": "STATIC_EXISTING_ARTIFACT_FORENSICS_ONLY",
+ "purpose": "Record RUNTIME ARRAY-EQUALITY evidence for the two cosmetic-only source pairs. AST-semantic-body hashes differ (split vs inlined syntactic forms) but the functions are runtime array-identical; runtime equality is the authoritative equivalence evidence for D63.",
+ "crop_and_resize_vec_runtime_equivalence": {
+  "cases": {
+   "interior_no_pad": {
+    "array_equal": true,
+    "max_abs": 0.0
+   },
+   "top_clip": {
+    "array_equal": true,
+    "max_abs": 0.0
+   }
+  },
+  "runtime_array_equivalent": true,
+  "ast_semantic_body_hashes_differ": true,
+  "explanation": "Phase27 splits resize into two statements; v1.14 inlines it. Syntactic-form difference only; runtime arrays are bit-identical."
+ },
+ "module_fuse_full_field_runtime_equivalence": {
+  "cases": {
+   "interior_no_pad": {
+    "array_equal": true,
+    "max_abs": 0.0
+   },
+   "top_clip": {
+    "array_equal": true,
+    "max_abs": 0.0
+   }
+  },
+  "runtime_array_equivalent": true,
+  "ast_semantic_body_hashes_differ": true,
+  "explanation": "Phase27 uses temp vars wy1/wy2/wx1/wx2 then slices; v1.14 inlines the slice. Syntactic-form difference only; runtime arrays are bit-identical."
+ },
+ "d63_final_determination": {
+  "phase27_accept_calls_fuse_full_field": true,
+  "v1_14_accept_calls_fuse_global_with_regional": true,
+  "v1_14_module_fuse_full_field_is_dead_code": true,
+  "r_psi_input_preprocessing_equivalent": true,
+  "somega_features_equivalent": true,
+  "fusion_static_equivalent": false,
+  "fusion_static_equivalent_basis": "The ACTIVE v1.14 ACCEPT path calls the model method _fuse_global_with_regional, which is a STRUCTURALLY DIFFERENT function (resize target = clipped window size, torch interpolate align_corners=False, NO pad_top/pad_left offset), not the module-level fuse_full_field (which is dead code).",
+  "d63_status": "PASS"
+ },
+ "verdicts_unchanged": {
+  "D60_RECONCILED": "FINAL_AUTHORITY_MISMATCH_EXACTLY_LOCALIZED_TO_PHASE27_ACCEPT_FINAL_SOURCE",
+  "D61": "ESTABLISHED",
+  "D61_classification": "ACCEPT_FINAL_FUSION_SEMANTICS_DIVERGE_FROM_PHASE27",
+  "D61_sole_cause_established": false,
+  "D62": "RESOLVED",
+  "D63": "PASS",
+  "D64": "PASS"
+ },
+ "no_new_science": true,
+ "no_model_run": true,
+ "generated_utc": "2026-10-08T08:19:14Z",
+ "write_semantics": "O_CREAT|O_EXCL + full-write + fsync (exclusive-create, write-once)"
+}

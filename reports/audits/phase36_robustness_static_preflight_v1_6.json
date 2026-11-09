@@ -1,0 +1,192 @@
+{
+  "artifact": "phase36_robustness_static_preflight_v1_6",
+  "revision": "ra_medfilm_barr_phase36_robustness_v1_6",
+  "method": "AST_CALL_GRAPH_AND_BYTE_PREFLIGHT_FROM_BOTH_ENTRYPOINTS",
+  "audited_source": "scripts/analysis/phase36_robustness_execution_v1_6.py",
+  "entrypoints": [
+    "run_science",
+    "run_smoke"
+  ],
+  "run_science_reachable_functions": 77,
+  "run_smoke_reachable_functions": 41,
+  "run_science_reachable_test_file_reads": 0,
+  "run_science_reachable_router_holdout_file_reads": 0,
+  "run_smoke_reachable_test_file_reads": 0,
+  "run_smoke_reachable_router_holdout_file_reads": 0,
+  "run_science_protected_io_sites": [],
+  "run_smoke_protected_io_sites": [],
+  "protected_counter_posthoc_force_zero_assignments": 0,
+  "val_manifest_runtime_authority": true,
+  "val_manifest_sha_guard_present": true,
+  "val_population_expected_n": 808,
+  "val_unique_sample_id_guard_present": true,
+  "val_split_guard_present": true,
+  "vendor_path_substring_split_inference_absent": true,
+  "canonical_torch_sigmoid_preserved": true,
+  "cuda_fail_closed_preserved": true,
+  "four_component_device_binding_preserved": true,
+  "component_inference_contexts_preserved": true,
+  "conditional_execution_preserved": true,
+  "proposal_smoke_preserved": true,
+  "branch_controls_preserved": true,
+  "torch_imported": false,
+  "checks": [
+    {
+      "check": "01_run_science_reachable_test_file_reads",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "02_run_science_reachable_router_holdout_file_reads",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "03_run_smoke_reachable_test_file_reads",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "04_run_smoke_reachable_router_holdout_file_reads",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "05_run_science_protected_io_sites_zero",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "06_run_smoke_protected_io_sites_zero",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "07_no_protected_reader_functions_defined",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "08_protected_counter_posthoc_force_zero_assignments",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "09_protected_counters_initialized_and_asserted",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "10_val_manifest_runtime_authority",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "11_val_manifest_sha_guard_present",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "12_val_population_expected_n",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "13_val_unique_sample_id_guard_present",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "14_val_split_guard_present",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "15_val_row_path_source",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "16_vendor_path_substring_split_inference_absent",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "17_no_stem_identity_inference",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "18_canonical_torch_sigmoid_preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "19_no_executable_manual_numpy_sigmoid",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "20_cuda_fail_closed_preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "21_four_component_device_binding_preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "22_component_inference_contexts_preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "23_conditional_execution_preserved",
+      "passed": true,
+      "detail": {
+        "decision": 1308,
+        "r_psi": 1326,
+        "s_omega": 1345
+      }
+    },
+    {
+      "check": "24_proposal_smoke_preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "25_branch_controls_preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "26_kub_and_figures_preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "27_router_decision_separation_preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "28_no_training",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "29_torch_not_imported_by_preflight",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "30_frozen_counts_and_partition",
+      "passed": true,
+      "detail": null
+    }
+  ],
+  "passed": 30,
+  "total": 30,
+  "all_pass": true
+}

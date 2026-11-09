@@ -1,0 +1,37 @@
+{
+ "artifact": "phase26_two_score_spaces_frozen_v1_2",
+ "phase": "26",
+ "classification": "ROUTER_CALIBRATION_ROLE_RECONCILIATION",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase26_deployment_semantics_v1_2",
+ "governance_only": true,
+ "SPACE_B_scientific_oof_policy_space": {
+  "designation": "SPACE_B_SCIENTIFIC_OOF_POLICY_SPACE",
+  "score_variable": "delta_hat_oof",
+  "purpose": "Phase25E / Phase25G development-performance analysis",
+  "C7_raw_threshold_25pct_exact": "29487973/10000000000",
+  "C8_lambda025_utility_threshold_exact": "-2326256430798223/102707490000000000",
+  "membership": "exact frozen Phase25E OOF 25% C8 membership",
+  "selected_count": 1239,
+  "selected_ids_sha256": "e71e368cbb95b8d3398b47427df243bb8b387dd6d442ccf038188446677f446f",
+  "role": "SCIENTIFIC_DEVELOPMENT_MEMBERSHIP_ONLY",
+  "immutable": true
+ },
+ "SPACE_A_final_router_dev_calibration_space": {
+  "designation": "SPACE_A_FINAL_ROUTER_DEV_CALIBRATION_SPACE",
+  "score_variable": "delta_hat_final_dev",
+  "producer": "Phase25D FINAL benefit-router checkpoint",
+  "population": "4957 ROUTER_DEVELOPMENT feature rows",
+  "purpose": "future inference threshold calibration",
+  "C7_final_router_raw_threshold_exact": "24796109646558761/20000000000000000000",
+  "role": "CANONICAL_FINAL_ROUTER_CALIBRATION",
+  "oof_id_equality_required": false
+ },
+ "checks": {
+  "space_B_score_is_oof": true,
+  "space_B_role_scientific": true,
+  "space_A_score_is_final_dev": true,
+  "space_A_role_runtime": true
+ },
+ "all_pass": true
+}

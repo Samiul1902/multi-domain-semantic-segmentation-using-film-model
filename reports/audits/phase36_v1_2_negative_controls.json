@@ -1,0 +1,200 @@
+{
+ "artifact": "phase36_v1_2_negative_controls",
+ "section": "§R",
+ "phase": 36,
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase36_robustness_v1_2",
+ "classification": "STATIC_NEGATIVE_CONTROLS__AUDITOR_WOULD_REJECT_V1_1",
+ "no_execution": true,
+ "torch_imported": false,
+ "v1_1_subject_sha256": "e3ba09b868eb49cbe0a03f90d51af73f22c1785e051dbd38c78edc0185e8aebc",
+ "v1_2_subject_sha256": "66fe435d7ec1d6e6ea10475776992b16fe049c9f3bfd7261caf78792e10bc29a",
+ "controls": [
+  {
+   "control": "NC1",
+   "desc": "unconditional reachable RuntimeError in _load_models",
+   "defect_id": "D1",
+   "subject": "v1_1_subject",
+   "auditor_fires_reject": true,
+   "detail": {
+    "body_has_bare_raise_runtimeerror": true
+   }
+  },
+  {
+   "control": "NC1",
+   "desc": "unconditional reachable RuntimeError in _load_models",
+   "defect_id": "D1",
+   "subject": "v1_2_subject",
+   "auditor_fires_reject": false,
+   "detail": {
+    "body_has_bare_raise_runtimeerror": false
+   }
+  },
+  {
+   "control": "NC2",
+   "desc": "clean generator is metadata-only (no 808 loop)",
+   "defect_id": "D3",
+   "subject": "v1_1_subject",
+   "auditor_fires_reject": true,
+   "detail": {
+    "iterates_population": false,
+    "returns_records": false
+   }
+  },
+  {
+   "control": "NC2",
+   "desc": "clean generator is metadata-only (no 808 loop)",
+   "defect_id": "D3",
+   "subject": "v1_2_subject",
+   "auditor_fires_reject": false,
+   "detail": {
+    "iterates_population": true,
+    "returns_records": true
+   }
+  },
+  {
+   "control": "NC3",
+   "desc": "clean equivalence gate does not enforce 808 population",
+   "defect_id": "D4",
+   "subject": "v1_1_subject",
+   "auditor_fires_reject": true,
+   "detail": {
+    "gate_enforces_808": false,
+    "declared_empty_geometry": true,
+    "declared_empty_pred": true
+   }
+  },
+  {
+   "control": "NC3",
+   "desc": "clean equivalence gate does not enforce 808 population",
+   "defect_id": "D4",
+   "subject": "v1_2_subject",
+   "auditor_fires_reject": false,
+   "detail": {
+    "gate_enforces_808": true,
+    "declared_empty_geometry": true,
+    "declared_empty_pred": true
+   }
+  },
+  {
+   "control": "NC4",
+   "desc": "clean equivalence gate permissive (silent skip)",
+   "defect_id": "D5",
+   "subject": "v1_1_subject",
+   "auditor_fires_reject": true,
+   "detail": {
+    "silent_skip_present": true,
+    "strict_missing_checks": false
+   }
+  },
+  {
+   "control": "NC4",
+   "desc": "clean equivalence gate permissive (silent skip)",
+   "defect_id": "D5",
+   "subject": "v1_2_subject",
+   "auditor_fires_reject": false,
+   "detail": {
+    "silent_skip_present": false,
+    "strict_missing_checks": true
+   }
+  },
+  {
+   "control": "NC5",
+   "desc": "science loop has no sample_id / no real execution",
+   "defect_id": "D7",
+   "subject": "v1_1_subject",
+   "auditor_fires_reject": true,
+   "detail": {
+    "rows_have_sample_id": true,
+    "executes_image_perturbation": false,
+    "executes_proposal_perturbation": false
+   }
+  },
+  {
+   "control": "NC5",
+   "desc": "science loop has no sample_id / no real execution",
+   "defect_id": "D7",
+   "subject": "v1_2_subject",
+   "auditor_fires_reject": false,
+   "detail": {
+    "rows_have_sample_id": true,
+    "executes_image_perturbation": true,
+    "executes_proposal_perturbation": true
+   }
+  },
+  {
+   "control": "NC6",
+   "desc": "smoke never loads components / hardcoded truth flags",
+   "defect_id": "D8",
+   "subject": "v1_1_subject",
+   "auditor_fires_reject": true,
+   "detail": {
+    "smoke_loads_real_components": false,
+    "hardcoded_truth_flags_present": true
+   }
+  },
+  {
+   "control": "NC6",
+   "desc": "smoke never loads components / hardcoded truth flags",
+   "defect_id": "D8",
+   "subject": "v1_2_subject",
+   "auditor_fires_reject": false,
+   "detail": {
+    "smoke_loads_real_components": true,
+    "hardcoded_truth_flags_present": false
+   }
+  }
+ ],
+ "verdicts": [
+  {
+   "control": "NC1",
+   "desc": "unconditional reachable RuntimeError in _load_models",
+   "defect_id": "D1",
+   "v1_1_auditor_rejects": true,
+   "v1_2_auditor_passes": true,
+   "control_valid": true
+  },
+  {
+   "control": "NC2",
+   "desc": "clean generator is metadata-only (no 808 loop)",
+   "defect_id": "D3",
+   "v1_1_auditor_rejects": true,
+   "v1_2_auditor_passes": true,
+   "control_valid": true
+  },
+  {
+   "control": "NC3",
+   "desc": "clean equivalence gate does not enforce 808 population",
+   "defect_id": "D4",
+   "v1_1_auditor_rejects": true,
+   "v1_2_auditor_passes": true,
+   "control_valid": true
+  },
+  {
+   "control": "NC4",
+   "desc": "clean equivalence gate permissive (silent skip)",
+   "defect_id": "D5",
+   "v1_1_auditor_rejects": true,
+   "v1_2_auditor_passes": true,
+   "control_valid": true
+  },
+  {
+   "control": "NC5",
+   "desc": "science loop has no sample_id / no real execution",
+   "defect_id": "D7",
+   "v1_1_auditor_rejects": true,
+   "v1_2_auditor_passes": true,
+   "control_valid": true
+  },
+  {
+   "control": "NC6",
+   "desc": "smoke never loads components / hardcoded truth flags",
+   "defect_id": "D8",
+   "v1_1_auditor_rejects": true,
+   "v1_2_auditor_passes": true,
+   "control_valid": true
+  }
+ ],
+ "all_controls_valid": true,
+ "interpretation": "Each control fires on the frozen v1.1 subject and stays silent on the v1.2 subject, proving the v1.2 static auditor detects the recorded v1.1 defects rather than accepting them."
+}

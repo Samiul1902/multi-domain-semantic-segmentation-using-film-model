@@ -1,0 +1,175 @@
+{
+ "artifact": "phase36_v1_19_terminal_history_disclosure",
+ "phase": 36,
+ "revision": "ra_medfilm_barr_phase36_robustness_v1_19",
+ "type": "TERMINAL_HISTORY_DISCLOSURE",
+ "work_order": "WO#19A",
+ "section": "§2 D93 + §3 D94",
+ "mode": "STATIC_ADDITIVE_GOVERNANCE_ONLY_NON_CONSUMING",
+ "generated_utc": "2026-10-10T16:54:54Z",
+ "bindings": {
+  "canonical_terminal_artifact": {
+   "path": "reports/audits/phase36_v1_19_terminal_success_state.json",
+   "sha256": "7eba2b45c619973c29bdca99f50eb94d9ab01497c66011d058c0110db08cc1a0",
+   "size": 6926,
+   "modified_by_this_artifact": false
+  },
+  "v1_18_consumed_adjudication": {
+   "path": "reports/audits/phase36_v1_18_consumed_prestart_failure_adjudication_v1_0.json",
+   "sha256": "41c6d79790f302e0863b0646b659729594cdc15834b3697169d5503907d809f9",
+   "modified_by_this_artifact": false
+  },
+  "v1_19_execution": {
+   "path": "scripts/analysis/phase36_robustness_execution_v1_19.py",
+   "sha256": "3ec5ea920af2b6d66864b3bbc7e5362f0756777512c29be70d3e5453e18693cd"
+  },
+  "v1_19_launcher": {
+   "path": "scripts/analysis/launch_phase36_v1_19.py",
+   "sha256": "c2b81f8d7d65dc44fba6ee58ba74ea59815d46c415a052ea4aff86005167c9c5"
+  },
+  "v1_19_supervisor": {
+   "path": "scripts/analysis/supervise_phase36_v1_19.py",
+   "sha256": "8a33c6facbef13a7792fc0de968ec06257cb591890c13204aaad3d337e1d8cf4"
+  }
+ },
+ "frozen_authorities_all_match": true,
+ "frozen_authorities_verified": {
+  "reports/audits/phase36_v1_19_terminal_success_state.json": "7eba2b45c619973c29bdca99f50eb94d9ab01497c66011d058c0110db08cc1a0",
+  "reports/audits/phase36_v1_18_consumed_prestart_failure_adjudication_v1_0.json": "41c6d79790f302e0863b0646b659729594cdc15834b3697169d5503907d809f9",
+  "scripts/analysis/phase36_robustness_execution_v1_19.py": "3ec5ea920af2b6d66864b3bbc7e5362f0756777512c29be70d3e5453e18693cd",
+  "scripts/analysis/launch_phase36_v1_19.py": "c2b81f8d7d65dc44fba6ee58ba74ea59815d46c415a052ea4aff86005167c9c5",
+  "scripts/analysis/supervise_phase36_v1_19.py": "8a33c6facbef13a7792fc0de968ec06257cb591890c13204aaad3d337e1d8cf4",
+  "reports/audits/phase36_v1_19_runtime_source_integrity_manifest.json": "06f7d0368b1f1f7e02ca950fe54c375d8d2d7e0f97800c8318d4451f408a1301",
+  "reports/audits/phase36_v1_19_prelaunch_authority_bundle.json": "9d14991f0a7fa979484246e70868ed23ac41663c1ba2a27ee08c075a7f2bacd3",
+  "reports/audits/phase36_v1_19_launch_authority_sha.json": "d44a91a683233972439ccce4f40e70cf10a28f354cbee1d6876af31b3027b2e9",
+  "reports/audits/phase36_v1_19_science_release_attestation.json": "c3f5068f51693c8441965255d55821c35e583c6d60d9ab5cbbbe5c43ed476b0e"
+ },
+ "D93": {
+  "defect_id": "D93",
+  "defect_code": "V1_19_TERMINAL_SUCCESS_STATE_MISCLASSIFIES_V1_15_V1_16_V1_17_HISTORY",
+  "status": "DISCLOSED_AND_RECONCILED",
+  "root_cause_established": true,
+  "root_cause_statement": "The frozen v1.19 terminal artifact's `revisions` block carried placeholder/incorrect historical labels for v1.15 (NOT_CREATED), v1.16 (CONSUMED_RESULT) and v1.17 (CONSUMED_RESULT). Frozen evidence shows none of these revisions ever consumed a scientific attempt; v1.15's source/revision EXISTED and all three were eligible-not-started.",
+  "frozen_artifact_stated_labels": {
+   "v1_15": "NOT_CREATED",
+   "v1_16": "CONSUMED_RESULT",
+   "v1_17": "CONSUMED_RESULT"
+  },
+  "corrected_history": {
+   "v1_15": {
+    "source_or_revision_existed": true,
+    "source_path": "scripts/analysis/phase36_robustness_execution_v1_15.py",
+    "science_eligibility_artifact": "reports/audits/phase36_science_eligibility_v1_15.json",
+    "scientific_execution": false,
+    "scientific_attempt_consumed": false,
+    "attempt_state_from_frozen_evidence": "ELIGIBLE_NOT_STARTED",
+    "execution_source_sha256": "b194ad28345ea8b268748be383ca98b936cb051d85854666e3141250f3eae002",
+    "existing_frozen_state_label": null,
+    "note": "No stronger frozen state label supplied; explicit booleans used. `NOT_CREATED` (as stated in the frozen terminal artifact) is FALSE."
+   },
+   "v1_16": {
+    "source_or_revision_existed": true,
+    "scientific_execution": false,
+    "scientific_attempt_consumed": false,
+    "state_from_frozen_evidence": "ELIGIBLE_NOT_STARTED",
+    "existing_frozen_state_label": "ELIGIBLE_NOT_STARTED",
+    "no_scientific_execution_audit_sha256": "9f71189c8c8bf92f4c984dcec7da3f381ef2541d3ba2fbdc7baf4016249997ac",
+    "note": "`CONSUMED_RESULT` (as stated) is FALSE."
+   },
+   "v1_17": {
+    "source_or_revision_existed": true,
+    "scientific_execution": false,
+    "scientific_output": false,
+    "scientific_attempt_consumed": false,
+    "state": "ELIGIBLE_NOT_STARTED",
+    "existing_frozen_state_label": "ELIGIBLE_NOT_STARTED",
+    "no_scientific_execution_audit_sha256": "45dbfaddb8f398187e2b693dfbb4cfe7cc97964242262dbbd82457ce7f4203ee",
+    "note": "`CONSUMED_RESULT` (as stated) is FALSE."
+   }
+  },
+  "frozen_evidence": {
+   "phase36_science_eligibility_v1_15.json": {
+    "sha256": "e2b7608e3dee86b1ee8d09448df32a2163f5fea892750897824191924795578a",
+    "attempt_state": "ELIGIBLE_NOT_STARTED",
+    "attempt_consumed": false
+   },
+   "phase36_v1_15_no_scientific_execution_audit.json": {
+    "sha256": "4a8f6ae30d8e41cddd58459fbce7ff5de3223b257d08676c4a9567d26d2a4973",
+    "v1_15_execution_performed": false,
+    "model_inference_performed": false
+   },
+   "phase36_science_eligibility_v1_16.json": {
+    "sha256": "72504d95b681ffca3d509d98e5d5416466c04d816cee967fc8329b48700c9995",
+    "state": "ELIGIBLE_NOT_STARTED",
+    "v1_16_attempt_consumed": false
+   },
+   "phase36_v1_16_no_scientific_execution_audit.json": {
+    "sha256": "9f71189c8c8bf92f4c984dcec7da3f381ef2541d3ba2fbdc7baf4016249997ac",
+    "scientific_execution": false,
+    "scientific_output": false
+   },
+   "phase36_science_eligibility_v1_17.json": {
+    "sha256": "05cc984be6f0562ab86360cb2436a905dad8692b1016e5bfeaba08797ee970b4",
+    "state": "ELIGIBLE_NOT_STARTED",
+    "v1_17_attempt_consumed": false
+   },
+   "phase36_v1_17_no_scientific_execution_audit.json": {
+    "sha256": "45dbfaddb8f398187e2b693dfbb4cfe7cc97964242262dbbd82457ce7f4203ee",
+    "scientific_execution": false,
+    "scientific_output": false
+   }
+  },
+  "scientific_semantics_effect": "NONE",
+  "runtime_semantics_effect": "NONE",
+  "v1_19_runtime_family_effect": "NONE",
+  "governance_history_accuracy_effect": "YES"
+ },
+ "D94": {
+  "defect_id": "D94",
+  "defect_code": "V1_19_TERMINAL_SUCCESS_STATE_CANONICAL_PATH_REEMITTED_AFTER_SUPERSESSION",
+  "status": "DISCLOSED_AND_RECONCILED",
+  "root_cause_established": true,
+  "root_cause_statement": "During WO#19 the canonical terminal-state path was emitted twice: an initial draft was written, then MOVED into a superseded directory and the canonical path re-emitted. The preserved superseded copy is enumerated below; the current canonical artifact is NOT rewritten or moved by WO#19A.",
+  "superseded_draft": {
+   "durably_recovered": true,
+   "superseded_path": "_v1_19_terminal_superseded_v1/phase36_v1_19_terminal_success_state.json",
+   "superseded_path_full": "reports/audits/_v1_19_terminal_superseded_v1/phase36_v1_19_terminal_success_state.json",
+   "raw_sha256": "437602937e62113cc8ef6372d01d33ed3932a76e70a54f8d3efb8618792ddf7e",
+   "size": 6914,
+   "mtime_local": "2026-10-10T22:37:12",
+   "mtime_utc": "2026-10-10T16:37:12Z",
+   "mtime_epoch": 1791650232.2965276,
+   "recovery_method": "DIRECT_STAT_OF_PRESERVED_SUPERSEDED_FILE"
+  },
+  "current_canonical_path": "reports/audits/phase36_v1_19_terminal_success_state.json",
+  "current_canonical_sha256": "7eba2b45c619973c29bdca99f50eb94d9ab01497c66011d058c0110db08cc1a0",
+  "current_canonical_rewritten_now": false,
+  "scientific_semantics_effect": "NONE",
+  "runtime_semantics_effect": "NONE",
+  "current_final_bytes_effect": "NONE",
+  "governance_provenance_effect": "YES"
+ },
+ "v1_19_attempt_absence": {
+  "START_absent": true,
+  "RESULT_absent": true,
+  "FAILURE_absent": true,
+  "PROCESS_EXIT_absent": true,
+  "stdout_absent": true,
+  "stderr_absent": true,
+  "journal_records": 0,
+  "established_by": "READ_ONLY_PATH_EXISTENCE_CHECK__NO_VALIDATOR_EXECUTED"
+ },
+ "write_semantics": "O_CREAT|O_EXCL|O_WRONLY + O_BINARY (Windows) + full-write loop + os.fsync + post-write st_size check. Write-once; never overwritten.",
+ "provenance": {
+  "derived_from": "frozen authorities on disk (read-only)",
+  "val_gt_read": false,
+  "val_image_read": false,
+  "checkpoint_deserialization": false,
+  "test_reads": 0,
+  "router_holdout_reads": 0,
+  "model_loaded": false,
+  "validator_rerun": false,
+  "new_scientific_output": false
+ },
+ "terminal": "PHASE36_V1_19_D93_D94_DISCLOSURE_WRITTEN"
+}

@@ -1,0 +1,72 @@
+{
+ "artifact": "phase36_v1_13_to_v1_14_semantic_diff",
+ "phase": 36,
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase36_robustness_v1_14",
+ "type": "EXECUTION_SEMANTIC_DIFF",
+ "from_revision": "ra_medfilm_barr_phase36_robustness_v1_13",
+ "to_revision": "ra_medfilm_barr_phase36_robustness_v1_14",
+ "execution_source_v1_13_sha256": "57f78447e77f2bcee07265825232cf0a8f96d1a31974d5d52c4cc82229e5d39c",
+ "execution_source_v1_14_sha256": "ac09ff8ded3610244920e66612145b246b33127140d344a9730d454bab27cff5",
+ "launcher_v1_13_sha256": "5f7fc91f9f0b8689adf42fc50527e216227ce7c4b853ba82ae1bce92a4805cab",
+ "launcher_v1_14_sha256": "2339d6afa1507d68decd1b63b3f3250d86ecd01659580394c6f8dace4052e2c3",
+ "untransform_method": "RAW_BYTE_REMOVE_ADDITIVE_D40_SEGMENTS_THEN_TOKEN_UNTRANSFORM",
+ "untransform_identity": true,
+ "untransformed_sha256": "57f78447e77f2bcee07265825232cf0a8f96d1a31974d5d52c4cc82229e5d39c",
+ "frozen_v1_13_execution_sha256": "57f78447e77f2bcee07265825232cf0a8f96d1a31974d5d52c4cc82229e5d39c",
+ "untransformed_sha_equals_frozen_v1_13": true,
+ "n_unexpected_changes": 0,
+ "unexpected_changes": [],
+ "ADDITIVE_D40_SEGMENTS": {
+  "main_science_branch_release_gate_call": true,
+  "appended_D40_implementation_block": true,
+  "if_name_guard_relocated_to_module_end": true,
+  "note": "removed by exact byte anchors before the token untransform; byte equality with frozen v1.13 is established on the remainder."
+ },
+ "PERMITTED_GOVERNANCE_DIFFERENCES": {
+  "revision_identifier_update": "v1.13 -> v1.14",
+  "smoke_artifact_path_updates": true,
+  "science_artifact_path_updates": true,
+  "science_release_attestation_path": true,
+  "launch_authority_token_update": "PHASE36_V1_13_LAUNCH_AUTHORITY -> PHASE36_V1_14_LAUNCH_AUTHORITY",
+  "runtime_manifest_path_update": true,
+  "launcher_layer_new_gates": [
+   "D40 machine-enforced science-release pre-dispatch gate (launcher)",
+   "D40 machine-enforced science-release gate (execution main())",
+   "D41 non-tautological wrong-interpreter terminal binding (validator)",
+   "D42 smoke-check-ID accounting (validator)",
+   "D43 raw-byte governance-transform proof (validator)"
+  ]
+ },
+ "SCIENTIFIC_SEMANTICS": {
+  "new_scientific_choice": false,
+  "all_scientific_semantic_groups_unchanged": true,
+  "groups": {
+   "val808_population": "VAL808 (ISIC 357 / BUSI 84 / KVASIR 87 / KUB 280)",
+   "sample_ordering": "(dataset ascending, sample_id ascending)",
+   "domain_local_G_batch_size": 8,
+   "phase27_G_numerics": "float32 model/input; no_grad; autocast fp16; inference_mode false; sigmoid(logits.float())",
+   "segmentation_threshold": 0.5,
+   "proposal_threshold": 0.3,
+   "roi_margin": 0.25,
+   "image_perturbation_registry": "R1-R5",
+   "noise_seeds": [
+    42,
+    123,
+    3407
+   ],
+   "B_phi_202d_features": "202-D pre-refinement -> 218-D B_phi",
+   "R_psi": "4x256x256 -> 1x256x256",
+   "post_safety_16d_plus_4d_onehot": "20-D S_omega input; threshold 0.50",
+   "conditional_state_machine": "FORCED_SKIP/SKIP_GLOBAL/EXECUTE_THEN_ACCEPT/EXECUTE_THEN_REJECT",
+   "metrics": "Dice/IoU/HD95",
+   "kub_reporting_only": true,
+   "checkpoint_bytes": 4,
+   "dependency_bytes": 14
+  },
+  "evidence": "untransform_identity == True (v1.14 differs from v1.13 ONLY by the four governance token families + additive D40 gate segments)"
+ },
+ "smoke_check_ids_changed": false,
+ "smoke_check_ids_note": "D40-D43 belong to the gate/launcher/validator layer; the execution smoke-check matrix (53) is unchanged.",
+ "terminal": "PHASE36_V1_13_TO_V1_14_SEMANTIC_DIFF__GOVERNANCE_ONLY__NEW_SCIENTIFIC_CHOICE_FALSE"
+}

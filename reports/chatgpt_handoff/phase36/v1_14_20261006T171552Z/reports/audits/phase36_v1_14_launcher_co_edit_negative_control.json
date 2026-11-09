@@ -1,0 +1,47 @@
+{
+  "artifact": "phase36_v1_14_launcher_co_edit_negative_control",
+  "phase": 36,
+  "method": "RA-MedFiLM-BARR",
+  "revision": "ra_medfilm_barr_phase36_robustness_v1_14",
+  "type": "LAUNCHER_NEGATIVE_CONTROL",
+  "model_free": true,
+  "protected_population_read": false,
+  "production_launcher_weakened": false,
+  "production_launcher_sha256": "2339d6afa1507d68decd1b63b3f3250d86ecd01659580394c6f8dace4052e2c3",
+  "canonical_execution_sha256": "ac09ff8ded3610244920e66612145b246b33127140d344a9730d454bab27cff5",
+  "canonical_manifest_sha256": "b4c358dfcb5e7b59beb6ae1ba2cffc64677d10049e12568b4c8eea8e79bb911e",
+  "frozen_expected_exec_sha256": "ac09ff8ded3610244920e66612145b246b33127140d344a9730d454bab27cff5",
+  "frozen_expected_manifest_sha256": "b4c358dfcb5e7b59beb6ae1ba2cffc64677d10049e12568b4c8eea8e79bb911e",
+  "canonical_pair_authorized": true,
+  "mutants": {
+    "execution_only": {
+      "mutated_exec_sha256": "bc32bb6497dc3c481cc3a4cec5f6c29faf4106c0adb30bce68d7a316d5de2921",
+      "authorized": false,
+      "rejected": true
+    },
+    "manifest_only": {
+      "mutated_manifest_sha256": "a7093cb016727db7f1d3444711814a0d5bfb69f6ee8a1c9e9da423dcd28c7781",
+      "authorized": false,
+      "rejected": true
+    },
+    "co_edit_exec_and_manifest": {
+      "mutated_exec_sha256": "bc32bb6497dc3c481cc3a4cec5f6c29faf4106c0adb30bce68d7a316d5de2921",
+      "mutated_manifest_sha256": "cc0bd5c5cd50063abd7d104e081ce455d21bfa3cd2e8ea677d9501d228f3ab51",
+      "authorized": false,
+      "rejected": true
+    },
+    "old_override_env_names": {
+      "names": [
+        "PHASE36_V1_11_EXPECTED_EXEC_SHA",
+        "PHASE36_V1_11_EXPECTED_MANIFEST_SHA",
+        "PHASE36_V1_14_EXPECTED_EXEC_SHA",
+        "PHASE36_V1_14_EXPECTED_MANIFEST_SHA"
+      ],
+      "frozen_exec_under_env": "ac09ff8ded3610244920e66612145b246b33127140d344a9730d454bab27cff5",
+      "frozen_manifest_under_env": "b4c358dfcb5e7b59beb6ae1ba2cffc64677d10049e12568b4c8eea8e79bb911e",
+      "canonical_authorized_under_env": true,
+      "env_inert": true
+    }
+  },
+  "all_mutants_rejected": true
+}

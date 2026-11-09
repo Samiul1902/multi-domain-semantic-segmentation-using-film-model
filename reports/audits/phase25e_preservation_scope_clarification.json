@@ -1,0 +1,97 @@
+{
+  "classification": "PHASE25E_RESOURCE_GATE_POLICY_EVALUATION",
+  "specification_revision": "ra_medfilm_barr_resource_gate_v1_0",
+  "stage": "PRESERVATION_SCOPE_CLARIFICATION",
+  "criterion": "S2 PRESERVATION_SATISFIED",
+  "criterion_definition": "lower bound of Delta > -0.005 on macro-domain Dice and no domain collapse",
+  "operationalization": "macro_domain_mean_true_delta_dice lower 95% CI bound > -0.005 and no domain collapse",
+  "preservation_contract_ref": "reports/audits/phase24_preservation_contract.json",
+  "preservation_contract_sha256": "a4e829b07350611438aabf629315438e8bf0f995194d0fba5974c9a843b1b20c",
+  "margin": 0.005,
+  "claim_condition": "lower confidence bound of Delta > -0.005",
+  "satisfied": true,
+  "macro_domain_ci_low_by_budget": {
+    "C7_budget0.00": null,
+    "C7_budget0.10": 0.006192105783135054,
+    "C7_budget0.25": 0.0022962381029166816,
+    "C7_budget0.50": 0.0019482993834727194,
+    "C7_budget1.00": 0.000866872027782634
+  },
+  "all_ci_lows_above_minus_0.005": true,
+  "per_domain_detail_by_budget": {
+    "0.00": {
+      "domain_means": {},
+      "collapse": false,
+      "min_domain_mean": null
+    },
+    "0.10": {
+      "domain_means": {
+        "ISIC": 0.00943119450847261,
+        "KUB": 0.013413993921395443
+      },
+      "collapse": false,
+      "min_domain_mean": 0.00943119450847261
+    },
+    "0.25": {
+      "domain_means": {
+        "BUSI": 0.0001867194874747938,
+        "ISIC": 0.003529376126925712,
+        "KUB": 0.008997362124262671,
+        "KVASIR": -0.0008572533922293332
+      },
+      "collapse": false,
+      "min_domain_mean": -0.0008572533922293332
+    },
+    "0.50": {
+      "domain_means": {
+        "BUSI": 0.00014280576183213085,
+        "ISIC": 0.0017325768049410366,
+        "KUB": 0.0075064093734144065,
+        "KVASIR": -7.88113882710021e-05
+      },
+      "collapse": false,
+      "min_domain_mean": -7.88113882710021e-05
+    },
+    "1.00": {
+      "domain_means": {
+        "BUSI": 0.0001427991224328995,
+        "ISIC": 0.0008997353137673146,
+        "KUB": 0.0036683322095754337,
+        "KVASIR": 4.740779804263123e-05
+      },
+      "collapse": false,
+      "min_domain_mean": 4.740779804263123e-05
+    }
+  },
+  "domain_collapse_triggered": false,
+  "what_the_claim_covers": [
+    "NON-INFERIORITY of the routed system vs the frozen global reference on the macro-domain mean true paired DeltaDice, on ROUTER_DEVELOPMENT (4957), at the frozen budget grid.",
+    "The lower 95% CI bound of the macro-domain mean Delta exceeds -0.005 at every informative budget (0.10/0.25/0.50) and at the degenerate 1.00 budget.",
+    "No domain collapse: no domain shows a routed mean at or below -0.01 while another domain is positive (F5 not triggered).",
+    "The global output remains AVAILABLE until the final selection (no destructive replacement before the final decision); SKIP and EXECUTE_THEN_REJECT both return the global output."
+  ],
+  "what_the_claim_does_NOT_cover": [
+    "It is NOT a per-domain IMPROVEMENT claim. Routed benefit is strongly heterogeneous: KUB carries most of the positive mean; BUSI and KVASIR are near zero and KVASIR is marginally negative at 0.25/0.50 (but far above the -0.01 collapse threshold).",
+    "It is NOT a claim that no individual sample is harmed: the harmful activation rate among routed samples is strictly positive at every budget.",
+    "It is NOT a holdout or TEST claim: it is scoped to ROUTER_DEVELOPMENT only; ROUTER_HOLDOUT, VAL808 and TEST are untouched.",
+    "It is NOT a claim about the C9 post-safety comparator (not evaluated in Phase25E).",
+    "It is NOT a measured-latency or real-deployment claim: all compute is an ANALYTICAL MAC LOWER BOUND.",
+    "It is NOT a claim about the always-refine system; it compares the ROUTED system against the global-only reference."
+  ],
+  "allowed_phrases": [
+    "performance preserving",
+    "non-inferior on the macro-domain mean"
+  ],
+  "forbidden_phrases_until_further_validation": [
+    "improves every domain",
+    "harmless",
+    "no sample is harmed",
+    "validated on holdout/TEST"
+  ],
+  "raw_scientific_values_changed": false,
+  "router_holdout_reads": 0,
+  "VAL808_reads": 0,
+  "TEST_reads": 0,
+  "failures": [],
+  "all_pass": true
+}

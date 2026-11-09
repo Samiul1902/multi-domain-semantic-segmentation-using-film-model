@@ -1,0 +1,152 @@
+{
+ "artifact": "phase36_v1_19_terminal_success_state",
+ "phase": 36,
+ "revision": "ra_medfilm_barr_phase36_robustness_v1_19",
+ "type": "TERMINAL_SUCCESS_STATE",
+ "work_order": "WO#19",
+ "section": "§13 SUCCESS STATE + §14 STOP",
+ "mode": "PREPARATION_ONLY_NON_CONSUMING",
+ "generated_utc": "2026-10-10T16:37:35Z",
+ "terminal_states": {
+  "v1_19": "ELIGIBLE_NOT_STARTED",
+  "v1_18": "CONSUMED_PRE_START_RUNTIME_FAILURE",
+  "phase36": "NOT_COMPLETE_PENDING_V1_19_EXECUTION",
+  "phase37": "NOT_STARTED",
+  "TEST": false,
+  "ROUTER_HOLDOUT": false
+ },
+ "revisions": {
+  "v1_14": {
+   "state": "CONSUMED_FAILED",
+   "retry_permitted": false
+  },
+  "v1_15": {
+   "state": "NOT_CREATED"
+  },
+  "v1_16": {
+   "state": "CONSUMED_RESULT"
+  },
+  "v1_17": {
+   "state": "CONSUMED_RESULT"
+  },
+  "v1_18": {
+   "state": "CONSUMED_PRE_START_RUNTIME_FAILURE",
+   "retry_permitted": false,
+   "relaunch_permitted": false,
+   "execution_source_sha256": "2259ce22e75ba9a3a8943769dc1e0ed5724f94902f5e8955976cd6ebeb8ce63e",
+   "classification": "CONSUMED_PRE_START_RUNTIME_FAILURE",
+   "defect": "D92",
+   "defect_code": "V1_18_REAL_EXECUTION_OUTPUT_ABSENCE_GATE_REFERENCES_UNDEFINED_JOURNAL_SYMBOL",
+   "adjudication_sha256": "41c6d79790f302e0863b0646b659729594cdc15834b3697169d5503907d809f9"
+  },
+  "v1_19": {
+   "state": "ELIGIBLE_NOT_STARTED",
+   "executed": false,
+   "execution_source_sha256": "3ec5ea920af2b6d66864b3bbc7e5362f0756777512c29be70d3e5453e18693cd",
+   "launcher_sha256": "c2b81f8d7d65dc44fba6ee58ba74ea59815d46c415a052ea4aff86005167c9c5",
+   "supervisor_sha256": "8a33c6facbef13a7792fc0de968ec06257cb591890c13204aaad3d337e1d8cf4",
+   "launch_authority_sha256": "d44a91a683233972439ccce4f40e70cf10a28f354cbee1d6876af31b3027b2e9",
+   "escape_token": "PHASE36_V1_19_EXECUTE",
+   "launch_authority_token": "PHASE36_V1_19_LAUNCH_AUTHORITY"
+  }
+ },
+ "d92_repair": {
+  "defect_id": "D92",
+  "defect_code": "V1_18_REAL_EXECUTION_OUTPUT_ABSENCE_GATE_REFERENCES_UNDEFINED_JOURNAL_SYMBOL",
+  "root_cause": "ESTABLISHED",
+  "erroneously_referenced_symbol": "SCIENCE_V1_18_JOURNAL_DIR",
+  "canonical_defined_symbol": "V1_18_JOURNAL_DIR",
+  "failing_function": "v1_18_reachable_write_targets",
+  "failing_source_line": 4531,
+  "caller_function": "verify_v1_18_output_absence",
+  "science_main_call_site_line": 4367,
+  "repair": "D92_UNDEFINED_JOURNAL_SYMBOL_REPAIRED",
+  "repair_implementation": "targets.append(V1_19_JOURNAL_DIR)",
+  "canonical_journal_authority_unified": true,
+  "canonical_journal_authority_count": 1,
+  "repaired_in_revision": "v1.19",
+  "scientific_semantics_effect": "NONE",
+  "d92_classified_as": "OPERATIONAL_RUNTIME_REPAIR__NOT_SCIENTIFIC"
+ },
+ "scientific_delta": {
+  "from_revision": "v1.14",
+  "to_revision": "v1.19",
+  "scientific_delta_count": 2,
+  "scientific_delta_distinct_classes": [
+   "D61",
+   "D75"
+  ],
+  "unclassified_scientific_delta_count": 0,
+  "carried_from_v1_18": true,
+  "v1_18_to_v1_19_scientific_delta_count": 0,
+  "note": "The v1.18->v1.19 transition carries ALL science unchanged (sci delta 0). D92 is operational only."
+ },
+ "preparation_validation": {
+  "science_repair_validation": "PASS_38_OF_38",
+  "negative_controls": "PASS_47_OF_47",
+  "operational_cross_contract": "PASS_67_OF_67",
+  "pure_release_gate_test": "PASS_7_OF_7_MUTATIONS_NOT_RELEASED",
+  "governance_coherence_readonly": "ALL_CHECKS_PASS",
+  "pure_release_gate_readonly": "ALL_PASS",
+  "d92_name_resolution": "PASS_23_OF_23",
+  "d92_negative_controls_all_detected": true,
+  "model_free_real_path_mirror": "PASS_17_OF_17",
+  "reachable_write_targets_classified": 23,
+  "reachable_write_targets_unclassified": 0,
+  "launcher_verify_only": "PASS",
+  "supervisor_verify_only": "PASS",
+  "pre_eq_post": true,
+  "pre_post_files_tracked": 22,
+  "pre_post_files_changed": 0
+ },
+ "journal_authority": {
+  "v1_19_journal_dir": "reports/audits/phase36_robustness_science_v1_19_journal",
+  "v1_18_journal_dir": "reports/audits/phase36_robustness_science_v1_18_journal",
+  "v1_19_namespace_tables": "reports/tables/phase36_robustness_v1_19",
+  "v1_19_namespace_figures": "reports/figures/phase36_robustness_v1_19",
+  "v1_19_namespace_arrays": "reports/arrays/phase36_robustness_v1_19",
+  "single_canonical_authority": true
+ },
+ "v1_19_real_execution": {
+  "executed": false,
+  "start_marker_present": false,
+  "result_present": false,
+  "failure_present": false,
+  "tables_dir_present": false,
+  "figures_dir_present": false,
+  "journal_dir_present": false,
+  "stop_enforced": true
+ },
+ "frozen_evidence_verification": {
+  "all_sha_match": true,
+  "verified_authorities": {
+   "scripts/analysis/phase36_robustness_execution_v1_19.py": "3ec5ea920af2b6d66864b3bbc7e5362f0756777512c29be70d3e5453e18693cd",
+   "scripts/analysis/launch_phase36_v1_19.py": "c2b81f8d7d65dc44fba6ee58ba74ea59815d46c415a052ea4aff86005167c9c5",
+   "scripts/analysis/supervise_phase36_v1_19.py": "8a33c6facbef13a7792fc0de968ec06257cb591890c13204aaad3d337e1d8cf4",
+   "reports/audits/phase36_v1_19_runtime_source_integrity_manifest.json": "06f7d0368b1f1f7e02ca950fe54c375d8d2d7e0f97800c8318d4451f408a1301",
+   "reports/audits/phase36_v1_19_prelaunch_authority_bundle.json": "9d14991f0a7fa979484246e70868ed23ac41663c1ba2a27ee08c075a7f2bacd3",
+   "reports/audits/phase36_v1_19_launch_authority_sha.json": "d44a91a683233972439ccce4f40e70cf10a28f354cbee1d6876af31b3027b2e9",
+   "reports/audits/phase36_v1_19_science_release_attestation.json": "c3f5068f51693c8441965255d55821c35e583c6d60d9ab5cbbbe5c43ed476b0e",
+   "scripts/analysis/phase36_robustness_execution_v1_18.py": "2259ce22e75ba9a3a8943769dc1e0ed5724f94902f5e8955976cd6ebeb8ce63e",
+   "reports/audits/phase36_robustness_science_process_exit_v1_18.json": "c1676285dc0bb5919f45f1ccc704b9c26da32a316b706432ad0623ea4a39eeaa",
+   "reports/audits/phase36_robustness_science_stdout_v1_18.txt": "d87bd1e9d230ef8dd8670883c17804910c505774d2200f18c711fb20cb72043b",
+   "reports/audits/phase36_robustness_science_stderr_v1_18.txt": "ceae105b9a91199091c53e8fa9301bf736903fc28c09a412461b91fdd1a24b30",
+   "reports/audits/phase36_v1_18_supervisor_console_wo18.txt": "8f4baaaa817ea6d0b52c7b7d4a22507eb981de56448be62560186ea0f521b4a4",
+   "reports/audits/phase36_v1_18_consumed_prestart_failure_adjudication_v1_0.json": "41c6d79790f302e0863b0646b659729594cdc15834b3697169d5503907d809f9"
+  },
+  "v1_18_evidence_modified": false
+ },
+ "provenance": {
+  "derived_from": "frozen authorities on disk + v1.19 preparation artifacts",
+  "val_gt_read": false,
+  "val_image_read": false,
+  "checkpoint_deserialization": false,
+  "test_reads": 0,
+  "router_holdout_reads": 0,
+  "new_scientific_output": false,
+  "model_loaded": false
+ },
+ "write_semantics": "O_CREAT|O_EXCL|O_WRONLY + O_BINARY (Windows) + full-write loop + os.fsync + post-write st_size check. Write-once; never overwritten.",
+ "next_action": "NONE_UNTIL_EXPLICIT_AUTHORIZATION_FOR_V1_19_REAL_EXECUTION",
+ "terminal": "PHASE36_V1_19_TERMINAL_SUCCESS_STATE_WRITTEN"
+}

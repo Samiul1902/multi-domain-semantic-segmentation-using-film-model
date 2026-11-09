@@ -1,0 +1,167 @@
+{
+  "attestation_revision": "ra_medfilm_barr_phase36_final_probability_authority_diagnostic_v1_4_final_readiness_attestation_v1_0",
+  "work_order": "PHASE36_WORK_ORDER_11__D72_FINAL_POST_GOVERNANCE_READINESS_ATTESTATION",
+  "d72_classification": "RECONCILED",
+  "d72_defect_original": "POST_GOVERNANCE_FINAL_READINESS_NOT_DURABLY_BOUND",
+  "d72_resolution": "POST_GOVERNANCE_FINAL_READINESS_DURABLY_FROZEN_IN_WRITE_ONCE_ATTESTATION",
+  "mode": "STATIC_NON_CONSUMING_VALIDATION_ONLY",
+  "v1_4_executed": false,
+  "scientific_semantics_effect": "NONE",
+  "runtime_execution_effect": "NONE",
+  "governance_evidence_effect": "YES",
+  "diagnostic_v1_4": "ELIGIBLE_NOT_STARTED",
+  "attempt_consumed": false,
+  "created_utc": "2026-10-10T05:35:30Z",
+  "score_sha_remediation": {
+    "issue": "D55_D57_D66_SCORE_SHA_TRANSCRIPTION_DRIFT",
+    "canonical_phase27_scores_csv": "reports/tables/phase27_val808_per_sample_scores.csv",
+    "canonical_phase27_scores_sha256": "702133930ce14ac9513c992833396e3e250d08417b17d1032cbd260a405cfb12",
+    "canonical_derived_by_hashing": true,
+    "historical_incorrect_sha256": "702133930ce14ac9513c992833396e3e250d08417a17d1032cbd260a405cfb12",
+    "historical_incorrect_sha_occurrences_in_v1_4_family": {},
+    "historical_incorrect_sha_absent_from_family": true
+  },
+  "frozen_pins": {
+    "n_source_pins": 7,
+    "n_governance_pins": 7,
+    "all_pins_match": true,
+    "source": {
+      "diagnostic": {
+        "path": "scripts/analysis/phase36_final_probability_authority_diagnostic_v1_4.py",
+        "expected_sha256": "778af67fe41e44cec0717365b2c3427bcfd43442145af09a7aca2abe1f4a3eab",
+        "actual_sha256": "778af67fe41e44cec0717365b2c3427bcfd43442145af09a7aca2abe1f4a3eab",
+        "match": true
+      },
+      "launcher": {
+        "path": "scripts/analysis/launch_phase36_final_probability_authority_diagnostic_v1_4.py",
+        "expected_sha256": "221a15a1f2dd341c59a65d9f8c0f57f4e339ff5a66f8bece6c7b2a5d8ad10a0a",
+        "actual_sha256": "221a15a1f2dd341c59a65d9f8c0f57f4e339ff5a66f8bece6c7b2a5d8ad10a0a",
+        "match": true
+      },
+      "supervisor": {
+        "path": "scripts/analysis/supervise_phase36_final_probability_authority_diagnostic_v1_4.py",
+        "expected_sha256": "792302085ccde4f09bfc7d3ca6534f411a9b776b54cbca5b83e8a7ad02277c2b",
+        "actual_sha256": "792302085ccde4f09bfc7d3ca6534f411a9b776b54cbca5b83e8a7ad02277c2b",
+        "match": true
+      },
+      "unit": {
+        "path": "scripts/analysis/phase36_final_probability_authority_diagnostic_unit_v1_4.py",
+        "expected_sha256": "a4f1ddb854847435388e1dd9984812bc0b295c42443f63c76ac5d55c01b34738",
+        "actual_sha256": "a4f1ddb854847435388e1dd9984812bc0b295c42443f63c76ac5d55c01b34738",
+        "match": true
+      },
+      "preflight": {
+        "path": "reports/audits/phase36_final_probability_authority_diagnostic_preflight_v1_4.json",
+        "expected_sha256": "224cf6d1f108119caf3ce365bfa4cfe36945d0fd4a7d334e472f2b3e7cd32006",
+        "actual_sha256": "224cf6d1f108119caf3ce365bfa4cfe36945d0fd4a7d334e472f2b3e7cd32006",
+        "match": true
+      },
+      "negative_controls": {
+        "path": "reports/audits/phase36_final_probability_authority_diagnostic_negative_controls_v1_4.json",
+        "expected_sha256": "fe35ac673bca59e6bcb20900f4c541f283ba3bc6aaf3bf8b4e82ba537a08bcb2",
+        "actual_sha256": "fe35ac673bca59e6bcb20900f4c541f283ba3bc6aaf3bf8b4e82ba537a08bcb2",
+        "match": true
+      },
+      "builder": {
+        "path": "scripts/analysis/build_phase36_final_probability_authority_diagnostic_v1_4.py",
+        "expected_sha256": "ec5432ac875580b331a9e2e5910499d15c41f30de843c01e589005d9ea8fb29b",
+        "actual_sha256": "ec5432ac875580b331a9e2e5910499d15c41f30de843c01e589005d9ea8fb29b",
+        "match": true
+      }
+    },
+    "governance": {
+      "preflight": {
+        "path": "reports/audits/phase36_final_probability_authority_diagnostic_preflight_v1_4.json",
+        "expected_sha256": "224cf6d1f108119caf3ce365bfa4cfe36945d0fd4a7d334e472f2b3e7cd32006",
+        "actual_sha256": "224cf6d1f108119caf3ce365bfa4cfe36945d0fd4a7d334e472f2b3e7cd32006",
+        "match": true
+      },
+      "negative_controls": {
+        "path": "reports/audits/phase36_final_probability_authority_diagnostic_negative_controls_v1_4.json",
+        "expected_sha256": "fe35ac673bca59e6bcb20900f4c541f283ba3bc6aaf3bf8b4e82ba537a08bcb2",
+        "actual_sha256": "fe35ac673bca59e6bcb20900f4c541f283ba3bc6aaf3bf8b4e82ba537a08bcb2",
+        "match": true
+      },
+      "contract": {
+        "path": "reports/audits/phase36_final_probability_authority_diagnostic_contract_v1_4.json",
+        "expected_sha256": "1052946e87b9060bec5e06488569ab06b1cb85cf52d2969e2876a4a7355d5a57",
+        "actual_sha256": "1052946e87b9060bec5e06488569ab06b1cb85cf52d2969e2876a4a7355d5a57",
+        "match": true
+      },
+      "source_freeze": {
+        "path": "reports/audits/phase36_final_probability_authority_diagnostic_source_freeze_v1_4.json",
+        "expected_sha256": "ff1d23e11da61645cc117bbc0e7674b680056c83164cad9266beb24d6c5e0ba0",
+        "actual_sha256": "ff1d23e11da61645cc117bbc0e7674b680056c83164cad9266beb24d6c5e0ba0",
+        "match": true
+      },
+      "eligibility": {
+        "path": "reports/audits/phase36_final_probability_authority_diagnostic_eligibility_v1_4.json",
+        "expected_sha256": "9ba0c2fd94c6d5d7d29b50430b2c78d13e48e7003725c80cac2012b6ddb1ad11",
+        "actual_sha256": "9ba0c2fd94c6d5d7d29b50430b2c78d13e48e7003725c80cac2012b6ddb1ad11",
+        "match": true
+      },
+      "no_execution_audit": {
+        "path": "reports/audits/phase36_final_probability_authority_diagnostic_no_execution_audit_v1_4.json",
+        "expected_sha256": "09feb4bfc9e7c9ffa157a3afb93a0d9085e462d4b6c2bc3676295d03f3c80a37",
+        "actual_sha256": "09feb4bfc9e7c9ffa157a3afb93a0d9085e462d4b6c2bc3676295d03f3c80a37",
+        "match": true
+      },
+      "v1_3_to_v1_4_diff": {
+        "path": "reports/audits/phase36_final_probability_authority_diagnostic_v1_3_to_v1_4_diff.json",
+        "expected_sha256": "ccffd91d4dff41a6ea4d9a6be3c66237e5c17a4cc6bb92103e122eb9dbae8ee2",
+        "actual_sha256": "ccffd91d4dff41a6ea4d9a6be3c66237e5c17a4cc6bb92103e122eb9dbae8ee2",
+        "match": true
+      }
+    }
+  },
+  "attempt_absence": {
+    "start_absent": true,
+    "result_absent": true,
+    "failure_absent": true,
+    "process_exit_absent": true,
+    "start_result_failure_process_exit_absent": true,
+    "journal_dirname": "phase36_final_probability_authority_diagnostic_v1_4_journal",
+    "real_journal_records": 0,
+    "real_journal_records_is_zero": true
+  },
+  "post_governance_readiness": {
+    "unit_checks": 68,
+    "unit_pass": 68,
+    "unit_all_pass": true,
+    "preflight_checks": 102,
+    "preflight_pass": 102,
+    "preflight_all_pass": true,
+    "preflight_note": "POST-GOVERNANCE run; governance-dependent preflight checks now exist on disk ⇒ 102/102 (builder-time run without governance was 84/84)",
+    "negative_controls_checks": 31,
+    "negative_controls_pass": 31,
+    "negative_controls_all_pass": true,
+    "supervisor_synthetic_scenarios": 6,
+    "supervisor_all_pass": true,
+    "supervisor_scenarios_all_pass": true,
+    "launcher_verify_only_rc": 0,
+    "launcher_verify_only_terminal": "PHASE36_FINAL_PROB_AUTHORITY_DIAGNOSTIC_V1_4_LAUNCH_READINESS_VERIFIED__DISPATCH_SUPPRESSED_BY_VERIFY_ONLY",
+    "launcher_verify_only_pass": true,
+    "launcher_verify_only_all_gates_true": true
+  },
+  "builder_time_preflight_artifact": {
+    "path": "reports/audits/phase36_final_probability_authority_diagnostic_preflight_v1_4.json",
+    "sha256": "224cf6d1f108119caf3ce365bfa4cfe36945d0fd4a7d334e472f2b3e7cd32006",
+    "recorded_unit": "68/68",
+    "recorded_preflight": "84/84",
+    "recorded_preflight_note": "governance-dependent preflight checks did not yet exist on disk at builder time — superseded by the post-governance 102/102 run recorded here"
+  },
+  "prohibitions_observed": {
+    "v1_4_execution": "NOT_PERFORMED",
+    "model_run": "NOT_PERFORMED",
+    "checkpoint_deserialization": "NOT_PERFORMED",
+    "val_image_read": "NOT_PERFORMED",
+    "val_gt_read": "NOT_PERFORMED",
+    "test_access": "NOT_PERFORMED",
+    "router_holdout_access": "NOT_PERFORMED",
+    "perturbations": "NOT_PERFORMED",
+    "v1_15_science": "NOT_PERFORMED",
+    "phase37": "NOT_PERFORMED"
+  },
+  "no_retry_assertion": "NO v1.4 ATTEMPT CONSUMED; NO RETRY PERFORMED",
+  "note": "Additive governance-evidence only. No scientific-path change. v1.4 remains ELIGIBLE_NOT_STARTED; attempt not consumed. This attestation merely durably binds the post-governance final readiness evidence."
+}

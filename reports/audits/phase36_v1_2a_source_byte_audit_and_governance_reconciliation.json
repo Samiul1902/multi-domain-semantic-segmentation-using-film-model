@@ -1,0 +1,178 @@
+{
+  "artifact": "phase36_v1_2a_source_byte_audit_and_governance_reconciliation",
+  "section": "\u00a7N",
+  "phase": 36,
+  "method": "RA-MedFiLM-BARR",
+  "revision": "ra_medfilm_barr_phase36_robustness_v1_2a",
+  "type": "INDEPENDENT_EXECUTABLE_SOURCE_BYTE_AUDIT__READ_ONLY",
+  "classification": "PRE_SMOKE_SOURCE_AUDIT__GOVERNANCE_TERMINAL_RECONCILIATION",
+  "generated_utc": "2026-10-05T21:50:00Z",
+  "status": "BLOCK",
+  "no_execution": true,
+  "no_source_modification": true,
+  "torch_imported": false,
+  "verdict": "BLOCKED__SOURCE_AUDIT_FOUND_TWO_LOAD_BEARING_DEFECTS__SMOKE_NOT_RUN__SCIENCE_NOT_RUN",
+  "A_sha_gate": {
+    "execution": "66fe435d7ec1d6e6ea10475776992b16fe049c9f3bfd7261caf78792e10bc29a",
+    "unit": "4d367ab8b6485d1d4f9b18db6174228b925f27561148d241b82c3173e946703f",
+    "preflight": "e51816f5251dbd140ba7154294d004ed9a7404eec2318f56ceb4d91c468ef1aa",
+    "negative_controls": "a8372275dab3a2550524014f4d67804c221bf22fb8f451ba11f498b920a75bac",
+    "expected": {
+      "execution": "66fe435d7ec1d6e6ea10475776992b16fe049c9f3bfd7261caf78792e10bc29a",
+      "unit": "4d367ab8b6485d1d4f9b18db6174228b925f27561148d241b82c3173e946703f",
+      "preflight": "e51816f5251dbd140ba7154294d004ed9a7404eec2318f56ceb4d91c468ef1aa",
+      "negative_controls": "a8372275dab3a2550524014f4d67804c221bf22fb8f451ba11f498b920a75bac"
+    },
+    "all_match": true,
+    "verdict": "PASS"
+  },
+  "N_1_actual_source_byte_audit_result": {
+    "executed": true,
+    "method": "read-only byte inspection of scripts/analysis/phase36_robustness_execution_v1_2.py",
+    "sections_audited": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L",
+      "M"
+    ],
+    "sections_passed": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "F",
+      "G",
+      "I",
+      "J",
+      "K",
+      "L",
+      "M"
+    ],
+    "sections_failed": [
+      "E",
+      "H"
+    ],
+    "overall": "FAIL__TWO_LOAD_BEARING_DEFECTS",
+    "defects": [
+      {
+        "id": "E_SCIENCE_SAMPLE_LEVEL_ROWS",
+        "section": "\u00a7E",
+        "severity": "BLOCK",
+        "class": "CONDITION_NAME_ONLY_PLACEHOLDER_ROWS",
+        "sites": [
+          "scripts/analysis/phase36_robustness_execution_v1_2.py:977  image_rows.append({\"condition\": cond, \"base_seed\": bs})",
+          "scripts/analysis/phase36_robustness_execution_v1_2.py:984  proposal_rows.append({\"proposal_condition\": cond})",
+          "scripts/analysis/phase36_robustness_execution_v1_2.py:991-993  sid = row.get(\"sample_id\"); if sid is None: continue",
+          "scripts/analysis/phase36_robustness_execution_v1_2.py:1011-1013  sid = row.get(\"sample_id\"); if sid is None: continue"
+        ],
+        "detail": "run_science() expands the perturbation registries into SAMPLE-LESS rows keyed only by condition/base_seed. The downstream execution loops recover identity via row.get('sample_id') and SILENTLY continue when it is None, so ZERO perturbations execute even at science time. Perturbation rows carry no sample_id, no domain, no task_id. No fixed summaries and no worst-case summaries are produced. This is precisely the 'condition-name-only placeholder rows' the work order forbids.",
+        "required_fields_missing": [
+          "sample_id (perturbation rows)",
+          "domain (all science rows)",
+          "task_id (perturbation rows)"
+        ],
+        "fixed_summaries_present": false,
+        "worst_case_summaries_present": false,
+        "verdict": "FAIL"
+      },
+      {
+        "id": "H_MANIFEST_SPLIT_AUTHORITY",
+        "section": "\u00a7H",
+        "severity": "BLOCK",
+        "class": "SUBSET_TOKEN_REJECTS_AUTHORIZED_ROWS",
+        "sites": [
+          "scripts/analysis/phase36_robustness_execution_v1_2.py:146  _PROTECTED_ROW_TOKENS = (\"holdout\", \"router_holdout\", \"test\")",
+          "scripts/analysis/phase36_robustness_execution_v1_2.py:163-165  for tok in _PROTECTED_ROW_TOKENS: if any(tok == p or tok in p for p in parts): raise ..."
+        ],
+        "detail": "The guard uses SUBSTRING matching ('tok in p') for the token 'test', which matches the legitimate ISIC vendor directory word 'ISIC2018_Task1-2_Test_Input'. All authorized ISIC VAL rows that live under that vendor dir are wrongly rejected. The manifest-membership authority is otherwise correctly implemented (231 Training_Input rows admitted; manifest SHA verified; exact path equality via _authorized_path).",
+        "measured_authorized_rows_under_ISIC2018_Task1-2_Training_Input": 231,
+        "measured_authorized_rows_wrongly_rejected": 112,
+        "measured_rejected_dataset": "ISIC",
+        "measured_reject_hit_token": "test",
+        "verdict": "FAIL"
+      }
+    ]
+  },
+  "N_2_historical_v1_0_exact_terminal": {
+    "artifact_path": "reports/audits/phase36_protocol_terminal_v1_0.json",
+    "artifact_sha256": "6eb4b9fa2f1f64f2cbf996dae3499b77cbca06b03dccdefe6eb4c45b654265aa",
+    "terminal_field": "terminal_string",
+    "terminal_string": "PHASE36_ROBUSTNESS_AND_IMAGE_PERTURBATION_PROTOCOL_V1_0_COMPLETE__PHASE35_COMPLETE_CANONICAL_AUTHORITY_BOUND__VAL808_ONLY_ROBUSTNESS_POPULATION_FROZEN__IMAGE_AND_REGION_PROPOSAL_PERTURBATION_REGISTRIES_FROZEN_BEFORE_EXECUTION__FULL_RA_MEDFILM_BARR_STATE_MACHINE_AND_A8_C9_POLICY_PRESERVED__DETERMINISTIC_METRIC_AND_REPORTING_CONTRACT_FROZEN__ZERO_ROUTER_HOLDOUT_OR_TEST_ACCESS__NO_MODEL_OR_PROTECTED_DATA_EXECUTION__PHASE36_SYNTHETIC_SMOKE_ELIGIBLE_NOT_STARTED__PHASE36_SCIENTIFIC_EXECUTION_NOT_STARTED__TEST_REMAINS_PHASE39_ONLY",
+    "note": "No top-level 'terminal' key exists; the exact terminal is the 'terminal_string' key."
+  },
+  "N_3_historical_v1_1_exact_terminal": {
+    "artifact_path": "reports/audits/phase36_v1_1_executable_source_repair_terminal.json",
+    "artifact_sha256": "a8a044df1e8509c41788e40851647cb55cf7404526fb25c00316c979a8fd117d",
+    "terminal_field": "terminal_string",
+    "terminal_string": "PHASE36_V1_1_EXECUTABLE_ROBUSTNESS_SOURCE_COMPLETION_AND_PREEXECUTION_PROTOCOL_AMENDMENT_COMPLETE__V1_0_PRECONSTRUCTION_BLOCK_PRESERVED_WITH_ZERO_MODEL_OR_PROTECTED_DATA_EXECUTION__CLEAN808_GENERATION_AND_PREPERTURBATION_EQUIVALENCE_GATE_FROZEN__CLEAN_FINAL_BINARY_MASK_AUTHORITY_GENERATED_PROSPECTIVELY_WITHIN_FUTURE_SCIENCE_EXECUTION__PROPOSAL_PERTURBATION_INSERTION_RECOMPUTATION_CONTRACT_FROZEN__CANONICAL_PHASE25B_202D_FEATURE_EXTRACTOR_AND_PHASE26_FULL_STATE_MACHINE_BOUND__IMAGE_AND_PROPOSAL_REGISTRIES_A8_C9_THRESHOLDS_AND_MODEL_CHECKPOINTS_UNCHANGED__NO_SCIENTIFIC_RESULTS_EXISTED_BEFORE_AMENDMENT__V1_1_SOURCE_FREEZE_COMPLETE__SYNTHETIC_SMOKE_ELIGIBLE_NOT_STARTED__PHASE36_SCIENCE_NOT_STARTED__TEST_REMAINS_PHASE39_ONLY",
+    "note": "No top-level 'terminal' key exists; the exact terminal is the 'terminal_string' key."
+  },
+  "N_4_v1_2_predecessor_alias_finding": {
+    "artifact_path": "reports/audits/phase36_v1_2_actual_executable_source_terminal.json",
+    "predecessor_v1_0_terminal": "PHASE36_EXECUTABLE_ROBUSTNESS_PROTOCOL_AND_SYNTHETIC_SMOKE_DESIGN_COMPLETE__EXECUTION_NOT_STARTED",
+    "predecessor_v1_1_terminal": "PHASE36_V1_1_EXECUTABLE_ROBUSTNESS_SOURCE_COMPLETION_AND_PREEXECUTION_PROTOCOL_AMENDMENT_COMPLETE__EXECUTION_NOT_STARTED__TEST_REMAINS_PHASE39_ONLY",
+    "actual_v1_0_terminal_string_matches": false,
+    "actual_v1_1_terminal_string_matches": false,
+    "finding": "The v1.2 terminal's predecessor.v1_0_terminal and predecessor.v1_1_terminal strings are DESCRIPTIVE ALIASES, not the exact historical terminal_string values. They must not be treated as verbatim lineage tokens."
+  },
+  "N_5_semantic_diff_classification": {
+    "artifact_path": "reports/audits/phase36_v1_1_to_v1_2_execution_semantic_diff.json",
+    "classification": "IMPLEMENTATION_COMPLETION_OF_ALREADY_PROSPECTIVELY_FROZEN_V1_1_SCIENTIFIC_SEMANTICS",
+    "interpretation": "v1.2 completes the executable implementation of scientific semantics that were ALREADY prospectively frozen in v1.1. It does not introduce new scientific semantics, thresholds, registries, or policies."
+  },
+  "N_6_governance_label_defect": {
+    "artifact_path": "reports/audits/phase36_v1_2_actual_executable_source_final_check.json",
+    "field": "checks.semantic_diff_classified_documentation_only",
+    "observed_value": true,
+    "defect": "The field name asserts the v1.1->v1.2 semantic diff is DOCUMENTATION-ONLY, but the actual diff is IMPLEMENTATION_COMPLETION_OF_ALREADY_PROSPECTIVELY_FROZEN_V1_1_SCIENTIFIC_SEMANTICS. This is a GOVERNANCE-LABEL defect (a mis-label), not a scientific defect.",
+    "disposition": "RECORDED_ONLY__NO_SOURCE_MODIFICATION__TO_BE_CORRECTED_IN_A_FUTURE_GOVERNANCE_SUCCESSOR",
+    "scientific_source_modified": false
+  },
+  "O_zero_execution_audit": {
+    "model_constructions": 0,
+    "checkpoint_loads": 0,
+    "forward_passes": 0,
+    "autograd_enabled": 0,
+    "val_reads": 0,
+    "val_gt_reads": 0,
+    "val808_cache_writes": 0,
+    "router_holdout_reads": 0,
+    "test_reads": 0,
+    "smoke_runs": 0,
+    "science_runs": 0,
+    "source_writes": 0,
+    "torch_imported": false,
+    "verdict": "ZERO_EXECUTION"
+  },
+  "P_disposition": {
+    "outcome": "BLOCK",
+    "reason": "The ACTUAL source-byte audit FAILED on \u00a7E (condition-name-only placeholder rows in run_science) and \u00a7H (112 authorized ISIC VAL rows wrongly rejected by the substring token 'test').",
+    "source_modified": false,
+    "smoke_run": false,
+    "science_run": false,
+    "success_terminal_emitted": false
+  },
+  "Q_stop": {
+    "v1_2_smoke_run": false,
+    "science_run": false,
+    "instruction": "STOP. DO NOT RUN v1.2 SMOKE. DO NOT RUN SCIENCE."
+  },
+  "input_artifact_hashes": {
+    "manifests/phase4_v3/val.csv": "082c80b2bda63fd73f371f109c34643adf01edaead921643fb2e44993ba53315",
+    "reports/audits/phase36_protocol_terminal_v1_0.json": "6eb4b9fa2f1f64f2cbf996dae3499b77cbca06b03dccdefe6eb4c45b654265aa",
+    "reports/audits/phase36_v1_1_executable_source_repair_terminal.json": "a8a044df1e8509c41788e40851647cb55cf7404526fb25c00316c979a8fd117d",
+    "reports/audits/phase36_v1_2_actual_executable_source_terminal.json": "3d947777c0fea9773df1f2ed364ee9382c1269cce99d519c42a622867c5baf28",
+    "reports/audits/phase36_v1_2_actual_executable_source_final_check.json": "3d716648ff09b64640626128c4219a22d165b40a121c9e6c02a52862f3bf501a",
+    "reports/audits/phase36_v1_1_to_v1_2_execution_semantic_diff.json": "b596c9ee36817c06d51bfb6ba2d0138cafed642a5d21205d3c197c46344128e2",
+    "reports/audits/phase36_v1_2_metric_empty_case_authority_reconciliation.json": "7db33033f259a378243b9355b9c4033e05f2875e2acf3476456607a4e67dda6e"
+  }
+}

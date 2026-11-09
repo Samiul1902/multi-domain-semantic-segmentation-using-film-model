@@ -1,0 +1,29 @@
+{
+ "artifact": "phase25g_bootstrap_plan_reuse_audit",
+ "phase": "25G",
+ "stage": "BOOTSTRAP_PLAN_REUSE",
+ "bootstrap_type": "DOMAIN_STRATIFIED_GROUP_BOOTSTRAP",
+ "plan_file": "data_cache\\phase25e_barr_resource_gate_v1_0\\phase25e_bootstrap_plan_v1_0.npz",
+ "plan_file_sha256": "241ed5232b35709494adbf230151cec21259f86f88e1f06e5b2881a6d88f9b63",
+ "plan_file_sha256_expected": "241ed5232b35709494adbf230151cec21259f86f88e1f06e5b2881a6d88f9b63",
+ "n_boot": 2000,
+ "seed": 42,
+ "group_unit": "phase24_router_split_manifest.csv:group_key (canonical composite PATIENT/ASSET/RISK/SINGLETON)",
+ "total_groups": 3544,
+ "strata": [
+  "BUSI",
+  "ISIC",
+  "KUB",
+  "KVASIR"
+ ],
+ "strata_group_counts": {
+  "BUSI": 512,
+  "ISIC": 2173,
+  "KUB": 267,
+  "KVASIR": 592
+ },
+ "sample_universe": 4957,
+ "n_new_bootstrap_samples": 0,
+ "reused_exact_frozen_draws": true,
+ "all_pass": true
+}

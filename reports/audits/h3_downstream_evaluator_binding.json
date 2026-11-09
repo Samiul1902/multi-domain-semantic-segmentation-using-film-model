@@ -1,0 +1,58 @@
+{
+  "artifact": "h3_downstream_evaluator_binding",
+  "status": "BOUND_PROSPECTIVE__BEFORE_RESULTS",
+  "generated_utc": "2026-09-25T14:25:00Z",
+  "evaluator": {
+    "path": "scripts/evaluation/h3_downstream_evaluator.py",
+    "sha256": "5afb3d9419ebebd2096ed29c52fe744af6197e5260ed1f8d91f9e7de61688a1d"
+  },
+  "dependency_sha256": {
+    "src/analysis/oracle_roi.py": "0d1ab96b71c8f1c7280679d0f089d19110ca681fbecdce17dfa178176545623d",
+    "src/data/regional_dataset.py": "e7eb24968e9946b8c4190093152b0c7790d2f740cc710a7e232548ea179a06c8",
+    "src/data/transforms.py": "8a8b636b58843d36810ebf5f3527a8ca1287b93483b962d5cf8e323a92566223",
+    "src/inference/kub_predict.py": "b0397d2c30d7e5d270b8087f68997026d30ea1e2c99b7371eb7121a6406e4282",
+    "src/inference/predicted_roi.py": "bd9f8be84595f49ff1e25e6052b548488fb6ae6a48aa7adbc78b880fb8f2d4e7",
+    "src/inference/regional_evaluator.py": "ea09b9efc12b832ad1a7f6a3746fc30756193555ae4c5bfe2929a54b395773f2",
+    "src/inference/learned_roi_clean_v3.py": "613e03d6e4dccccce2b743974dfaccd8a29a2c0932048f0af3d37a6d2a0241bf",
+    "src/metrics/object_metrics.py": "9824397f0c2b5d8807fadd2ba79ec565902ae47b8a36f719a4ae5a4e99a81238",
+    "src/models/factory.py": "3377bbe021d7bd13c07350ff5c4927705c2d67f93fa99c388caf2cc79ef4086d",
+    "src/models/unet.py": "62edc8fb481eb02c46c2c64f6e7219254a57d7ba935a4c840a5a7965b41bdfc2",
+    "src/utils/checkpointing.py": "08366f72f3141e5d18f008981465f5e9138c0b51336fd65cae7c619456ee1eca",
+    "src/utils/manifest_guard.py": "64c5f4d11bbb443c7b47aff7ab84b41e2d2496af981d7b1c6877758cf3461bea",
+    "src/utils/test_lock.py": "7cff4732b1f643738c410d672372684486d79e475eae18da5fee7ae10d2d22f3",
+    "reports/tables/kub_val_samples_sized_clean_v3.csv": "19dabc2b917adcc50256431ed0604433f9bdf0220be0b3befbfccbe2312a5d10",
+    "reports/tables/kub_val_components_sized_clean_v3.csv": "c219f6b6947d6b3408654a8e0de61319d0dd2141991773b6b6a0ff8d52140ec7",
+    "reports/tables/phase13_clean_v3_hard_tiny_replication_set.csv": "2f9828d77c008e7c90cd69e82d0af3568902ca9d508fdfcb9d8ccf8abd569538",
+    "reports/tables/phase13_clean_v3_global_empty_replication_set.csv": "a0b332cad6bca4466ccc528cbe18cc527ef6503603ab69c55b9d699d7979f0ea"
+  },
+  "bound_checkpoints": {
+    "h3_localizer_epoch54": "d875cac7d09bbc3d32232191f0af2c138e5a74682fc63e4d6e01f30345eca75e",
+    "phase14_refiner_epoch56": "2e09e3a9c39c731687db1a9fef0c80881ed6235e4cda070bb4b8b382caa45daa",
+    "phase10_global_epoch70": "ec7eb13f32e43af27eab7fc617bd1a2a8fcce1d6651a1b4a3653f3e4d1283269"
+  },
+  "frozen_proposal_config": {
+    "threshold": 0.1,
+    "margin": 0.2,
+    "top_k": 5,
+    "nms_iou": 0.3
+  },
+  "fusion_semantics": "MAX probability replacement inside proposal union (aggregate_and_fuse)",
+  "final_fusion_threshold": 0.5,
+  "global_threshold": 0.5,
+  "h3_heatmap_resolution": 128,
+  "formal_R_H3_source": "DOWNSTREAM_TINY_RECALL",
+  "metric_definitions": {
+    "downstream_recall90": "overlap/component_pixels>=0.90",
+    "dice": "binary Dice eps=1e-7",
+    "R_H3": "(TinyRecall_H3-Tg)/G"
+  },
+  "governance_note": "Hashed prospectively before any H3 downstream result is observed. Post-binding modification invalidates this binding.",
+  "inference_counters_at_binding": {
+    "h3_downstream_inference_runs": 0,
+    "alternate_h3_checkpoints_evaluated": 0,
+    "proposal_policy_searches": 0,
+    "refiner_checkpoints_searched": 0,
+    "test_reads": 0,
+    "external_test_reads": 0
+  }
+}

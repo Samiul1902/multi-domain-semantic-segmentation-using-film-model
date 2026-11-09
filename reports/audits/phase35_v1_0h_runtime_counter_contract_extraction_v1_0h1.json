@@ -1,0 +1,95 @@
+{
+ "artifact": "phase35_v1_0h_runtime_counter_contract_extraction_v1_0h1",
+ "section": "§C",
+ "phase": 35,
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase35_interpretability_v1_0h1",
+ "extraction_method": "AST_ONLY__NO_EXECUTION__NO_IMPORT_OF_EXECUTION_SOURCE",
+ "source_path": "scripts/analysis/phase35_interpretability_execution_v1_0h.py",
+ "source_sha256": "48193f09672b047757e0eba9fa674df12c5b00a41629ba9671e48b50fe81ee81",
+ "extraction_independence_statement": "extracted directly from the frozen v1.0h execution source AST; NOT from the source-freeze JSON, the final-check summary, prose, or copied documentation",
+ "runtime_expected_variable": "_FULL_EXPECTED_COUNTERS_V1_0H",
+ "runtime_expected_key_count": 35,
+ "runtime_expected_mapping": {
+  "G_model_constructions": 1,
+  "B_phi_model_constructions": 1,
+  "checkpoint_deserializations": 2,
+  "strict_loads": 2,
+  "G_synthetic_forwards": 1,
+  "B_phi_synthetic_forwards": 1,
+  "total_model_forwards": 2,
+  "G_gradcam_autograd_calls": 1,
+  "router_numeric_input_autograd_calls": 1,
+  "total_autograd_calls": 2,
+  "synthetic_CAM_maps": 2,
+  "synthetic_router_attribution_rows": 4,
+  "synthetic_smoke_target_masks": 1,
+  "R_psi_model_constructions": 0,
+  "R_psi_checkpoint_loads": 0,
+  "R_psi_forwards": 0,
+  "S_omega_model_constructions": 0,
+  "S_omega_checkpoint_loads": 0,
+  "S_omega_forwards": 0,
+  "optimizer_constructions": 0,
+  "optimizer_step_calls": 0,
+  "training_backward_calls": 0,
+  "parameter_mutations": 0,
+  "raw_VAL_image_reads": 0,
+  "real_persisted_VAL_probability_reads": 0,
+  "VAL_GT_reads": 0,
+  "router_feature_cache_rows_read": 0,
+  "ROUTER_HOLDOUT_reads": 0,
+  "TEST_reads": 0,
+  "TRAIN_raw_reads": 0,
+  "scientific_outputs": 0,
+  "primary_synthetic_target_masks": 1,
+  "actual_logits_empty_mask_helper_checks": 1,
+  "additional_G_forwards_for_empty_mask": 0,
+  "additional_autograd_calls_for_empty_mask": 0
+ },
+ "source_collector": {
+  "merge_function": "merge_observed_counters",
+  "legacy_source_expr": "LEGACY_COUNTER_STORE.items()",
+  "extension_source_expr": "SMOKE_COUNTERS_EXT.items()",
+  "raises_duplicate_ownership": true,
+  "raises_keyset_mismatch": true
+ },
+ "keyset_equality_implementation": {
+  "observed_expr": "set(observed.keys())",
+  "expected_expr": "set(EXPECTED_COUNTERS_V1_0H.keys())",
+  "equality_expr": "obs_keys == exp_keys",
+  "separate_booleans": [
+   "counter_keyset_exact",
+   "counter_count_exact",
+   "counter_values_exact"
+  ]
+ },
+ "alias_semantics": {
+  "primary_counter": "PRIMARY_TARGET_MASK_COUNTER",
+  "alias_counter": "PRIMARY_TARGET_MASK_ALIAS_COUNTER",
+  "primary_helper": "smoke_synthetic_target_mask_rank2",
+  "primary_increments": [
+   "SMOKE_COUNTERS_EXT[PRIMARY_TARGET_MASK_COUNTER]"
+  ],
+  "invokes_frozen_producer": true,
+  "alias_owner": "legacy store (V0C.SMOKE_COUNTERS) via frozen V0D producer"
+ },
+ "empty_observability_semantics": {
+  "helper": "empty_mask_helper_check_insession_actual_logits",
+  "increments": [
+   "SMOKE_COUNTERS_EXT[EMPTY_MASK_OBSERVABILITY_COUNTER]"
+  ],
+  "does_not_touch_primary_or_alias": true
+ },
+ "router_writer_reader_store_identity": {
+  "delegated_writer": "V0C.smoke_router",
+  "reader_reads_same_live_store": true,
+  "writer_store_identity_verified": true,
+  "reader_store_identity_verified": true,
+  "same_object_or_delta_bridge": true,
+  "no_post_hoc_injection": true
+ },
+ "matches_canonical_35": true,
+ "generated_utc": "2026-10-05T13:00:57Z",
+ "all_pass": true
+}

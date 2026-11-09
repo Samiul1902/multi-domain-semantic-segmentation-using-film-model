@@ -1,0 +1,83 @@
+{
+ "artifact": "phase25a_roi_transform_audit",
+ "phase": "25A",
+ "purpose": "audit the exact GT-free ROI transform and prove GT cannot influence ROI geometry",
+ "rule": [
+  "threshold p_global",
+  "tight predicted-foreground bbox",
+  "centre-preserving 1.50x expansion",
+  "clip to the valid image region",
+  "deterministic square pad",
+  "extract RGB crop",
+  "extract p_global crop",
+  "RGB -> bilinear",
+  "probability -> bilinear",
+  "GT target -> nearest",
+  "output 256x256"
+ ],
+ "constants": {
+  "predicted_foreground_threshold": 0.5,
+  "expansion_factor": 1.5,
+  "fractional_margin": 0.25,
+  "margin_constant_source": "src/data/regional_dataset.py:22 ORACLE_DERIVED_REFINER_MARGIN",
+  "input_resolution": 256,
+  "canvas_resolution": 512
+ },
+ "threshold_discrepancy": {
+  "field": "roi.predicted_foreground_threshold",
+  "phase24_v1_1_frozen_value": 0.3,
+  "phase24_v1_1_source": "reports/audits/phase24_exact_implementation_spec.json + phase24 notebook addendum A.2 table",
+  "phase25a_bound_value": 0.5,
+  "phase25a_instruction_citation": "section 5 'binary mask at threshold 0.5'; section 7 step 1 'threshold p_global at 0.5'",
+  "repository_canonical_rule": "src/analysis/phase22_common.py:54 THRESHOLD = 0.5, applied as pred = float32(prob) >= 0.5 to match torch.sigmoid(y).ge(0.5) in the frozen evaluation code",
+  "disagreement": true,
+  "resolution": "The operative Phase-25A instruction and the repository-wide canonical decision rule both specify 0.5; the v1.1 field 0.30 is a carry-over from the Phase-13 proposal-search default (ProposalConfig.proposal_threshold). Phase 25A binds 0.5 and records 0.30 as SUPERSEDED.",
+  "status": "REPORTED_NOT_SILENTLY_REPAIRED",
+  "reversal_cost": "one module constant; no retraining needed if reversed BEFORE training starts",
+  "frozen_before_training": true
+ },
+ "geometry_implementation": "src.inference.predicted_roi.apply_context_margin (the repository-authoritative centre-preserving expansion used by src/data/regional_dataset.py with ORACLE_DERIVED_REFINER_MARGIN)",
+ "gt_independence_test": {
+  "geometry_identical": true,
+  "rgb_crop_identical": true,
+  "prob_crop_identical": true,
+  "gt_crop_differs": true,
+  "gt_crop_differs_is_permitted": true,
+  "passed": true
+ },
+ "corner_clip_pad_case": {
+  "pad_top": 10,
+  "pad_left": 10,
+  "clip_y1": 0,
+  "clip_x1": 0,
+  "crop_side_pixels": 60,
+  "square_padding_exact": true
+ },
+ "empty_prediction_case": {
+  "geometry": null,
+  "behavior": "FORCED_SKIP",
+  "gt_rescue": false,
+  "synthetic_roi": false
+ },
+ "inverse_transform_metadata": {
+  "crop_side_pixels": 166,
+  "out_size": 256,
+  "scale_crop_to_out": 0.6484375,
+  "scale_out_to_crop": 1.5421686746987953,
+  "clip_y1": 156,
+  "clip_y2": 322,
+  "clip_x1": 122,
+  "clip_x2": 288,
+  "pad_top": 0,
+  "pad_bottom": 0,
+  "pad_left": 0,
+  "pad_right": 0,
+  "canvas_resolution": 512,
+  "regional_input_resolution": 256,
+  "note": "out pixel (r, c) maps to canvas pixel (clip_y1 - pad_top + r * side/out_size, clip_x1 - pad_left + c * side/out_size); positions outside [clip_y1, clip_y2) x [clip_x1, clip_x2) are zero padding."
+ },
+ "roi_geometry_determined_before_gt": true,
+ "verdict": "PHASE25A_ROI_TRANSFORM_AUDIT_PASS",
+ "generated_utc": "2026-09-30T04:27:30.880309+00:00",
+ "test_reads": 0
+}

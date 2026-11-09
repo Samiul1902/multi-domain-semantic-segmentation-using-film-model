@@ -1,0 +1,213 @@
+{
+  "artifact": "phase36_v1_7_to_v1_8_execution_semantic_diff",
+  "phase": 36,
+  "section": "§O",
+  "method": "RA-MedFiLM-BARR",
+  "revision": "ra_medfilm_barr_phase36_robustness_v1_8",
+  "type": "TWO_SIDED_EXECUTION_SEMANTIC_DIFF",
+  "no_execution": true,
+  "torch_imported": false,
+  "protected_population_read": false,
+  "v1_7_execution_sha256": "87062d2b38232c73b8ce620d7bfafb389658c4b877d9196a26b8b01d09daf192",
+  "v1_8_execution_sha256": "c95ff9884ec05a859b39ce7976376bf40e4543b1a8d8a19830e5893120039f4d",
+  "v1_7_lines": 3261,
+  "v1_8_lines": 3503,
+  "v1_7_functions": 104,
+  "v1_8_functions": 107,
+  "new_scientific_choice": false,
+  "semantic_groups": {
+    "VAL808_population": {
+      "keys": [
+        "AUTHORIZED_POPULATION_N",
+        "VAL_RUNTIME_EXPECTED_N",
+        "PROTECTED_RUNTIME_POPULATION",
+        "VAL_RUNTIME_AUTHORITY",
+        "CLEAN_EXECUTIONS_EXPECTED"
+      ],
+      "not_in_both_revisions": [],
+      "changed": [],
+      "unchanged": true
+    },
+    "perturbation_registry": {
+      "keys": [
+        "NONCLEAN_DETERMINISTIC_IMAGE_CONDITIONS",
+        "NONCLEAN_NOISE_IMAGE_CONDITIONS",
+        "NONCLEAN_PROPOSAL_CONDITIONS",
+        "PROPOSAL_CLEAN_CONDITION",
+        "NONCLEAN_IMAGE_REALIZATIONS_PER_SAMPLE",
+        "IMAGE_REALIZATIONS_PER_SAMPLE_INCL_CLEAN",
+        "NONCLEAN_PROPOSAL_CONDITIONS_PER_SAMPLE"
+      ],
+      "not_in_both_revisions": [],
+      "changed": [],
+      "unchanged": true
+    },
+    "G_numeric_semantics_phase27": {
+      "keys": [
+        "CANONICAL_G_DEVICE",
+        "CANONICAL_G_REQUIRES_CUDA",
+        "CANONICAL_G_MODEL_DTYPE",
+        "CANONICAL_G_INPUT_DTYPE",
+        "CANONICAL_G_MODEL_EVAL",
+        "CANONICAL_G_AUTOCAST_ENABLED",
+        "CANONICAL_G_AUTOCAST_DTYPE",
+        "CANONICAL_G_NO_GRAD",
+        "CANONICAL_G_INFERENCE_MODE",
+        "CANONICAL_G_BATCH_SIZE",
+        "CANONICAL_SAMPLE_ORDER",
+        "CANONICAL_BATCH_PARTITION",
+        "CANONICAL_LAST_PARTIAL_BATCH",
+        "CANONICAL_BATCH_FORWARDS_BY_DOMAIN",
+        "CANONICAL_BATCH_FORWARDS_TOTAL",
+        "CANONICAL_LAST_BATCH_SIZE_BY_DOMAIN",
+        "CANONICAL_DOMAIN_ORDER"
+      ],
+      "not_in_both_revisions": [],
+      "changed": [],
+      "unchanged": true
+    },
+    "G_probability_operator": {
+      "keys": [
+        "CANONICAL_PROBABILITY_OPERATOR",
+        "CANONICAL_PROBABILITY_COMPUTATION",
+        "CANONICAL_PROBABILITY_STORAGE_DTYPE",
+        "MANUAL_SIGMOID_FORBIDDEN"
+      ],
+      "not_in_both_revisions": [],
+      "changed": [],
+      "unchanged": true
+    },
+    "phase27_global_reproduction_authority": {
+      "keys": [
+        "PHASE27_GLOBAL_PROB_AUTHORITY",
+        "CLEAN_G_REPRODUCTION_GATE"
+      ],
+      "not_in_both_revisions": [],
+      "changed": [],
+      "unchanged": true
+    },
+    "device_contract": {
+      "keys": [
+        "CANONICAL_DEVICE_CONTRACT"
+      ],
+      "not_in_both_revisions": [],
+      "changed": [],
+      "unchanged": true
+    },
+    "component_inference_contexts": {
+      "keys": [
+        "COMPONENT_INFERENCE_CONTEXTS",
+        "COMPONENT_CONTEXTS_NOT_INTERCHANGEABLE",
+        "COMPONENT_BATCH_SIZE_ADJUDICATION"
+      ],
+      "not_in_both_revisions": [],
+      "changed": [],
+      "unchanged": true
+    },
+    "kub_reporting_only": {
+      "keys": [
+        "KUB_SUBGROUP_AUTHORITY"
+      ],
+      "not_in_both_revisions": [],
+      "changed": [],
+      "unchanged": true
+    },
+    "figure_registry_R1_R5": {
+      "keys": [
+        "FIGURE_REGISTRY"
+      ],
+      "not_in_both_revisions": [],
+      "changed": [],
+      "unchanged": true
+    },
+    "protected_population_flags": {
+      "keys": [
+        "ROUTER_HOLDOUT_RUNTIME_READS_ALLOWED",
+        "TEST_RUNTIME_READS_ALLOWED",
+        "VAL_MANIFEST_IS_ONLY_POPULATION_RUNTIME_AUTHORITY",
+        "PROTECTED_COUNTERS"
+      ],
+      "not_in_both_revisions": [],
+      "changed": [],
+      "unchanged": true
+    },
+    "route_state_machine_vocabulary": {
+      "keys": [
+        "ROUTE_STATES_FULL",
+        "ROUTER_DECISIONS"
+      ],
+      "not_in_both_revisions": [],
+      "changed": [],
+      "unchanged": true
+    },
+    "smoke_success_contract_shape": {
+      "keys": [
+        "SMOKE_CLASSIFICATION_ONLY_CHECKS",
+        "SMOKE_SUCCESS_CONTRACT"
+      ],
+      "not_in_both_revisions": [],
+      "changed": [],
+      "unchanged": true
+    }
+  },
+  "all_semantic_groups_unchanged": true,
+  "smoke_check_ids": {
+    "v1_7_count": 32,
+    "v1_8_count": 47,
+    "removed": [
+      "metric_plumbing_valid"
+    ],
+    "added": [
+      "transitive_runtime_source_integrity_pass",
+      "real_execute_router_decision_is_execute",
+      "real_execute_R_psi_output_finite",
+      "real_execute_R_psi_output_shape_valid",
+      "real_execute_post_safety_feature_dim_16",
+      "real_execute_post_safety_features_finite",
+      "real_execute_S_omega_logit_finite",
+      "real_execute_S_omega_probability_finite",
+      "real_execute_S_omega_probability_in_unit_interval",
+      "real_execute_final_state_valid",
+      "real_execute_final_probability_shape_512x512",
+      "real_execute_final_probability_finite",
+      "metric_dice_iou_plumbing_valid",
+      "metric_hd95_nonempty_plumbing_valid",
+      "metric_hd95_empty_mask_semantics_valid",
+      "smoke_attempt_is_first_write_once"
+    ],
+    "renamed": {
+      "metric_plumbing_valid": {
+        "superseded_by": [
+          "metric_dice_iou_plumbing_valid",
+          "metric_hd95_nonempty_plumbing_valid",
+          "metric_hd95_empty_mask_semantics_valid"
+        ],
+        "reason": "D21 repair: Dice/IoU plumbing retained (renamed for clarity) and HD95 plumbing + empty-mask semantics newly BOUND.",
+        "classification": "PERMITTED_PRE_SMOKE_METRIC_VALIDATION_REPAIR",
+        "scientific_effect": "NONE"
+      }
+    },
+    "unexplained_removed": [],
+    "no_unexplained_removal": true,
+    "is_strict_superset_modulo_renames": true,
+    "classification": "PERMITTED_PRE_SMOKE_VALIDATION_AND_OBSERVABILITY_GROWTH"
+  },
+  "new_functions_in_v1_8": [
+    "_smoke_attempt_already_exists",
+    "_verify_transitive_source_integrity",
+    "_write_smoke_failure_artifact"
+  ],
+  "removed_functions_in_v1_8": [],
+  "permitted_differences": [
+    "pre_smoke_validation",
+    "smoke_observability",
+    "smoke_provenance",
+    "exception_preservation",
+    "write_once_enforcement",
+    "smoke_pass_fail_predicates",
+    "source_integrity_verification",
+    "associated_static_audits_and_tests"
+  ],
+  "prohibited_differences_found": [],
+  "generated_utc": "2026-10-06T11:36:00Z"
+}

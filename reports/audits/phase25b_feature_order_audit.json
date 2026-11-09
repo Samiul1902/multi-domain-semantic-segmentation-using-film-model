@@ -1,0 +1,78 @@
+{
+ "artifact": "phase25b_feature_order_audit",
+ "phase": "25B",
+ "numeric_dimensions": 202,
+ "deep_dimensions": 192,
+ "scalar_dimensions": 10,
+ "group_offsets": {
+  "groups": [
+   {
+    "name": "bridge_global",
+    "tap": "bridge",
+    "scope": "GLOBAL",
+    "start": 0,
+    "stop": 32,
+    "dim": 32
+   },
+   {
+    "name": "bridge_roi",
+    "tap": "bridge",
+    "scope": "ROI",
+    "start": 32,
+    "stop": 64,
+    "dim": 32
+   },
+   {
+    "name": "decoder2_global",
+    "tap": "decoder2",
+    "scope": "GLOBAL",
+    "start": 64,
+    "stop": 96,
+    "dim": 32
+   },
+   {
+    "name": "decoder2_roi",
+    "tap": "decoder2",
+    "scope": "ROI",
+    "start": 96,
+    "stop": 128,
+    "dim": 32
+   },
+   {
+    "name": "decoder1_global",
+    "tap": "decoder1",
+    "scope": "GLOBAL",
+    "start": 128,
+    "stop": 160,
+    "dim": 32
+   },
+   {
+    "name": "decoder1_roi",
+    "tap": "decoder1",
+    "scope": "ROI",
+    "start": 160,
+    "stop": 192,
+    "dim": 32
+   }
+  ],
+  "deep_dim": 192,
+  "scalar_start": 192,
+  "numeric_dim": 202,
+  "scalar_order": [
+   "entropy_proxy_mean",
+   "frac_prob_within_0p05_of_boundary",
+   "frac_prob_within_0p02_of_boundary",
+   "mean_boundary_margin",
+   "pred_foreground_fraction",
+   "pred_foreground_pixels",
+   "pred_roi_exists",
+   "pred_empty",
+   "predicted_roi_area_fraction",
+   "predicted_roi_side"
+  ]
+ },
+ "names_match_frozen_order": true,
+ "task_embedding_appended": false,
+ "verdict": "PHASE25B_FEATURE_ORDER_EXACT",
+ "generated_utc": "2026-09-30T15:55:52.086198+00:00"
+}

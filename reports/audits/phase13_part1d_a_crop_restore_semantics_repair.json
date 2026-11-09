@@ -1,0 +1,176 @@
+{
+  "artifact": "PHASE13_PART1D_A_CROP_RESTORE_SEMANTICS_REPAIR",
+  "classification": "MATERIAL_PRE_INFERENCE_IMPLEMENTATION_REPAIR",
+  "created_utc": "2026-09-22T04:09:42Z",
+  "phase": "PHASE_13_PART_1D_A_R1",
+  "authorization": "SUPERVISOR_PART1D_A_R1_SQUARE_PADDING_CROP_RESTORE_SEMANTICS_REPAIR",
+  "execution_scope": "STATIC_IMPLEMENTATION_ONLY__NO_MODEL_INFERENCE",
+  "why_material": "The pre-R1 Part-1D-A regional crop/restore helpers did NOT reproduce the frozen Phase-12 square-crop + zero-padding semantics. Because regional probability maps are composed into the fusion field, a wrong map-back would have silently corrupted the primary PREDICTED_REGION_FLOAT_GLOBAL_RETAINED variant BEFORE any inference was ever run.",
+  "pre_r1_defects": [
+    {
+      "id": "D1_DIRECT_512_TO_CLIPPED_RECTANGLE_RESTORE",
+      "function": "restore_probability_to_native",
+      "defect": "resized the 512x512 probability map DIRECTLY to the CLIPPED native rectangle (size=(clip_h, clip_w))",
+      "required_by_protocol": "512 -> FULL square side (torch bilinear, align_corners=False) -> strip pad_* -> place at clip coords, i.e. Phase-12 restore_float",
+      "consequence": "interpolation grid misaligned whenever pad_top/pad_bottom/pad_left/pad_right is non-zero; zero-padded margin pixels wrongly interpolated INTO the valid region"
+    },
+    {
+      "id": "D2_CROP_WITHOUT_SQUARE_PADDING",
+      "function": "crop_native_gray",
+      "defect": "cropped the valid native region and resized it directly to 512x512 without zero-padding to the square side",
+      "required_by_protocol": "valid -> zero-pad to FULL square side -> 512 BILINEAR -> [0,1], i.e. Phase-12 crop_tensor",
+      "consequence": "regional model input geometry differed from the Phase-12 oracle path it is compared against"
+    },
+    {
+      "id": "D3_GEOMETRY_FIELDS_DISCARDED",
+      "function": "parse_proposal_geometry",
+      "defect": "reduced each frozen geometry record to clip coordinates only",
+      "required_by_protocol": "preserve the COMPLETE frozen record: y1/y2/x1/x2, clip_*, pad_*, crop_side, effective_magnification, margin",
+      "consequence": "faithful Phase-12 reproduction was IMPOSSIBLE from the parsed record alone"
+    },
+    {
+      "id": "D4_NO_GEOMETRY_INVARIANTS",
+      "function": "(absent)",
+      "defect": "no validation that a frozen geometry satisfied the square/pad contract",
+      "required_by_protocol": "fail loudly on any malformed geometry rather than silently mis-map",
+      "consequence": "a malformed record would have produced a silently wrong map-back"
+    }
+  ],
+  "repairs_applied": [
+    {
+      "id": "R1_PARSER_PRESERVES_FULL_GEOMETRY",
+      "function": "parse_proposal_geometry",
+      "change": "preserves ALL square/pad fields and normalises crop_side_pixels -> crop_side as a lossless alias; int-casts every coordinate field; performs NO additional margin operation"
+    },
+    {
+      "id": "R2_GEOMETRY_INVARIANTS_ADDED",
+      "function": "assert_geometry_invariants",
+      "change": "fail-loud checks: y2-y1 == crop_side; x2-x1 == crop_side; non-negative clip origin; clip within native bounds; vertical pad invariant; horizontal pad invariant; margin == frozen 0.20"
+    },
+    {
+      "id": "R3_PHASE12_EQUIVALENT_CROP",
+      "function": "prepare_regional_crop_512",
+      "change": "valid native region -> zero-pad to FULL square side -> 512 BILINEAR -> /255.0 [0,1]; raises if the padded shape != crop_side"
+    },
+    {
+      "id": "R4_PHASE12_EQUIVALENT_RESTORE",
+      "function": "restore_probability_to_native",
+      "change": "512 -> FULL square side via torch.nn.functional.interpolate(mode='bilinear', align_corners=False) -> strip pad_top/pad_bottom/pad_left/pad_right -> valid crop; returns (valid, (clip_y1, clip_x1, clip_y2, clip_x2)); raises if the restored extent != clipped extent. FLOAT only, no uint8 quantisation."
+    },
+    {
+      "id": "R5_FULL_NATIVE_RESTORE_ADDED",
+      "function": "restore_probability_to_full_native",
+      "change": "Phase-12 restore_float shape: full native array, zeros outside the clip"
+    },
+    {
+      "id": "R6_REGIONAL_COMPOSITION_REWIRED",
+      "function": "regional_probability_native",
+      "change": "each 512 map is now restored through the square/padding path before the regional maximum is taken"
+    },
+    {
+      "id": "R7_DEFECTIVE_HELPERS_REMOVED",
+      "function": "crop_native_gray, _float_bilinear_resize",
+      "change": "deleted; no direct 512 -> clipped-rectangle shortcut remains anywhere in the module"
+    }
+  ],
+  "materiality_measurement": {
+    "method": "compared the pre-R1 direct-resize restore against the repaired Phase-12-equivalent restore over ALL 494 frozen Part-1C proposals, using a synthetic random 512x512 probability map",
+    "interior_geometries": {
+      "n": 492,
+      "max_abs_probability_diff": 0.0,
+      "numerically_identical": true,
+      "note": "for interior crops clip extent == crop_side, so both paths resize to the same target and agree exactly"
+    },
+    "padded_geometries": {
+      "n": 2,
+      "max_abs_probability_diff": 0.877,
+      "min_abs_probability_diff": 0.823,
+      "mean_abs_probability_diff": 0.214,
+      "materially_divergent": true,
+      "details": [
+        {
+          "sample_id": "b5bbbfc3de80044febb15a558cbe3350",
+          "native": "2880x2304",
+          "crop_side": 96,
+          "clip": [2798, 1318, 2880, 1414],
+          "pad_bottom": 14,
+          "max_abs_probability_diff": 0.809189
+        },
+        {
+          "sample_id": "717b2beeb7c72cee7955b912183469fa",
+          "native": "2880x2304",
+          "crop_side": 97,
+          "clip": [2798, 1296, 2880, 1393],
+          "pad_bottom": 15,
+          "max_abs_probability_diff": 0.876666
+        }
+      ]
+    },
+    "geometries_affected": 2,
+    "geometries_total": 494,
+    "conclusion": "the defect is MATERIAL: 2 of 494 frozen proposals would have been map-backed with up to ~0.88 probability error, with a direct effect on the 0.5-threshold binarisation feeding the fused field"
+  },
+  "geometry_availability_finding": {
+    "finding": "the COMPLETE square/pad geometry IS physically available in the frozen Part-1C table column proposal_crop_geometry",
+    "fields_present": ["y1", "y2", "x1", "x2", "clip_y1", "clip_y2", "clip_x1", "clip_x2", "pad_top", "pad_bottom", "pad_left", "pad_right", "crop_side_pixels", "effective_magnification", "margin"],
+    "total_proposals": 494,
+    "interior_proposals": 492,
+    "padded_proposals": 2,
+    "pad_distribution": {"(pad_top,pad_bottom,pad_left,pad_right)": {"(0,14,0,0)": 1, "(0,15,0,0)": 1}},
+    "margin_distribution": {"0.2": 494},
+    "crop_side_min": 33,
+    "crop_side_max": 341,
+    "all_494_satisfy_invariants": true,
+    "consequence": "no re-derivation of geometry is needed; the frozen record is sufficient for faithful Phase-12-equivalent reproduction"
+  },
+  "equivalence_evidence": {
+    "method": "direct numerical comparison against the authoritative read-only Phase-12 helpers in notebooks/phasewise/phase_12_oracle_roi/code/phase12_oracle_inference.py",
+    "reference_functions": ["crop_tensor", "restore_float", "compute_square_crop"],
+    "tolerance_max_abs": 1e-07,
+    "tolerance_met": true,
+    "cases_covered": ["interior", "top_edge", "bottom_edge", "left_edge", "right_edge", "top_left_corner", "bottom_right_corner"]
+  },
+  "test_evidence": {
+    "test_file": "tests/test_phase13_part1d_a_static.py",
+    "tests_before_r1": 19,
+    "tests_after_r1": 31,
+    "tests_failed_after_r1": 0,
+    "phase13_suite_total_passed": 117,
+    "phase13_suite_total_failed": 0,
+    "new_cases": ["S parser preserves all square/pad fields", "T interior crop equals Phase-12", "U top-edge padded crop equals Phase-12", "V corner padded crop equals Phase-12", "W interior restore equals Phase-12", "X edge-padded restore equals Phase-12", "Y corner-padded restore equals Phase-12", "Z padded square dims equal crop_side", "AA valid restored extent equals clipped extent", "AB support excludes padding", "AC no direct 512 -> clipped shortcut remains", "AD all 494 real frozen geometries satisfy invariants"]
+  },
+  "provenance_limitation": {
+    "issue": "PRE_R1_DIGEST_NOT_RECOVERABLE",
+    "affected": ["scripts/inference/phase13_part1d_predicted_region_inference.py", "tests/test_phase13_part1d_a_static.py"],
+    "reason": "both files are UNTRACKED in git (never committed), no artifact recorded their pre-R1 SHA-256, and no source backup or pre-R1 bytecode was retained",
+    "fabricated_pre_r1_sha": "NO",
+    "post_r1_sha256": {
+      "module": "8cd7e39814a049a025f706c57ccea0b535a230908a177690d6289318234c6284",
+      "tests": "66df4bba0709fb1feb2c698f531a2e507f28ece1164e634aa9315a9a62e646c1"
+    },
+    "disclosure": "reported honestly rather than reconstructed; no digest is invented"
+  },
+  "bindings_unchanged": {
+    "part1c_case_proposals_sha": "d25c44ec1361365e261d36458e86e707ad3bcb58cf000763a732605db0f856ed",
+    "part1c_proposals_sha": "8c3151a3f1f9a56f0692c6ff2d2171472a777a56e99fa2e474aff8a3478a564a",
+    "part1c_component_coverage_sha": "2a3623fecbc1fc5dd5a2c2a12fbd6d5e78fe2e123a9c45431ba53ca14e4e4b87",
+    "frozen_proposals_mutated": "NO",
+    "checkpoints_mutated": "NO",
+    "phase12_artifacts_mutated": "NO"
+  },
+  "counters": {
+    "training": 0,
+    "optimizer_creations": 0,
+    "model_constructions": 0,
+    "cuda_requests": 0,
+    "real_segmentation_forwards": 0,
+    "localizer_forwards": 0,
+    "proposal_generation": 0,
+    "regional_crop_inference": 0,
+    "test_reads": 0,
+    "checkpoint_writes": 0,
+    "cache_writes": 0
+  },
+  "status": "MATERIAL_PRE_INFERENCE_IMPLEMENTATION_REPAIR_COMPLETE",
+  "next_action": "SEE_PART1D_PREDICTED_REGION_PROTOCOL_FROZEN_R1"
+}

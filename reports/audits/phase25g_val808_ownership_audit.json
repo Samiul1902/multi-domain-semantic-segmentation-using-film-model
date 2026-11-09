@@ -1,0 +1,31 @@
+{
+ "artifact": "phase25g_val808_ownership_audit",
+ "phase": "25G",
+ "classification": "PHASE25G_PRE_EXECUTION_INTEGRATED_EVALUATION_SPECIFICATION_AUDIT",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_integrated_evaluation_v1_0",
+ "governance_only": true,
+ "no_execution": true,
+ "stage": "VAL808_OWNERSHIP",
+ "val808_role": "SECONDARY / CONTINUITY DEVELOPMENT BENCHMARK",
+ "val808_population": "manifests/phase4_v3/val.csv (Phase-22 frozen)",
+ "val808_n": "808",
+ "explicitly_required_now": false,
+ "disposition": "B__RESERVED_FOR_LATER_CONTINUITY_VALIDATION",
+ "kept_unopened_in_phase25g": true,
+ "substitute_for_router_holdout": false,
+ "evidence": [
+  "phase24_data_role_contract.csv: VAL808 = SECONDARY / CONTINUITY DEVELOPMENT BENCHMARK",
+  "phase24_architecture_spec.VAL_role.is_untouched_routing_holdout = false",
+  "PROJECT_MASTER_PLAN: Phase30 = Final Development Validation Benchmark (later continuity)",
+  "phase25f_phase25g_handoff: Phase25G deliverables do not include VAL808"
+ ],
+ "val808_reads": 0,
+ "checks": {
+  "val808_is_secondary_continuity": true,
+  "not_explicitly_required_now": true,
+  "not_a_holdout_substitute": true,
+  "unopened_in_phase25g": true
+ },
+ "all_pass": true
+}

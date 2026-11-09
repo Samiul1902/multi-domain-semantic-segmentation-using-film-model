@@ -1,0 +1,53 @@
+{
+ "artifact": "phase30_metric_definition_contract",
+ "phase": 30,
+ "section": "\u00a713",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_phase30_final_dev_validation_v1_0",
+ "benefit_labels": {
+  "BENEFICIAL": "DeltaDice >= +0.02",
+  "HARMFUL": "DeltaDice <= -0.01",
+  "NEUTRAL": "otherwise"
+ },
+ "s_omega_training_target": "DeltaDice > 0",
+ "benefit_label_conflated_with_s_omega_target": false,
+ "allowed_metrics": {
+  "segmentation": [
+   "overall Dice",
+   "per-domain Dice",
+   "global-vs-final DeltaDice (macro + per-domain)"
+  ],
+  "router": [
+   "realized activation count",
+   "realized activation fraction",
+   "beneficial precision",
+   "beneficial coverage",
+   "harmful activation",
+   "missed benefit"
+  ],
+  "safety": [
+   "safety accept count",
+   "safety reject count",
+   "harmful replacement rate",
+   "fallback rate",
+   "accepted-refinement rate",
+   "rejected-refinement rate"
+  ],
+  "state_machine": [
+   "STATE_A/B/C/D counts"
+  ],
+  "compute": [
+   "analytical MAC lower bound (per component + expected/realized)"
+  ]
+ },
+ "state_machine_states": {
+  "A": "FORCED_SKIP",
+  "B": "SKIP_GLOBAL",
+  "C": "EXECUTE_THEN_ACCEPT",
+  "D": "EXECUTE_THEN_REJECT"
+ },
+ "harmful_replacement_definition": "an executed regional candidate with delta_dice < 0 that becomes the final output",
+ "metrics_defined_before_outcome": true,
+ "generated_utc": "2026-10-04T02:46:58+00:00",
+ "all_pass": true
+}

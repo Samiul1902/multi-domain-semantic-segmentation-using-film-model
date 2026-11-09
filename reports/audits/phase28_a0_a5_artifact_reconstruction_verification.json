@@ -1,0 +1,65 @@
+{
+ "artifact": "phase28_a0_a5_artifact_reconstruction_verification",
+ "phase": 28,
+ "classification": "PHASE28_A0_A5_ARTIFACT_RECONSTRUCTION_VERIFICATION",
+ "governance_only": true,
+ "execution": "NONE",
+ "rule": "Each A0-A5 row must be reconstructable from existing FROZEN artifacts with NO new model forward and WITHOUT mixing score spaces.",
+ "rows": {
+  "A0": {
+   "definition": "global-only",
+   "source_artifact": "frozen Phase21 GlobalMedFiLM global outputs (via Phase25C OOF label base + Phase25G A7/A8 reconstruction rule)",
+   "source_sha256": "fd6ca32c33a3bddb75f986b1350d54ec35b11d3bf5cb0fdc029962a5aa94865f",
+   "requires_new_model_forward": false,
+   "sufficient": true,
+   "score_space": "global Dice on ROUTER_DEVELOPMENT"
+  },
+  "A1": {
+   "definition": "always-refine",
+   "source_artifact": "frozen Phase25A final regional refiner candidate outputs (embedded in Phase25C OOF gain labels: d_i = Dice(refined) - Dice(global))",
+   "source_sha256": "fd6ca32c33a3bddb75f986b1350d54ec35b11d3bf5cb0fdc029962a5aa94865f",
+   "requires_new_model_forward": false,
+   "sufficient": true,
+   "score_space": "refined Dice on ROUTER_DEVELOPMENT"
+  },
+  "A2": {
+   "definition": "random routing",
+   "source_artifact": "reports/tables/phase25e_policy_memberships_v1_0/C3_budget{0.00,0.10,0.25,0.50,1.00}.csv",
+   "source_sha256": "30bf2a34e6f6bb1420590adea89f76cd33ba5de456dcaeae391038cb2a9e0ba0",
+   "requires_new_model_forward": false,
+   "sufficient": true,
+   "score_space": "frozen Phase25E C3 membership"
+  },
+  "A3": {
+   "definition": "entropy routing",
+   "source_artifact": "reports/tables/phase25e_policy_memberships_v1_0/C4_budget*.csv",
+   "source_sha256": "0e6f030fe56fdfc01e4b9db40f2f837a8dbe5c22ebbfee12e11855abcd8a3a03",
+   "requires_new_model_forward": false,
+   "sufficient": true,
+   "score_space": "frozen Phase25E C4 membership"
+  },
+  "A4": {
+   "definition": "margin routing",
+   "source_artifact": "reports/tables/phase25e_policy_memberships_v1_0/C5_budget*.csv",
+   "source_sha256": "7e49f69ecf2dca41b03cba02ac73a6ef42e45f29e33230bc3dba7f3d9e1fd6f2",
+   "requires_new_model_forward": false,
+   "sufficient": true,
+   "score_space": "frozen Phase25E C5 membership"
+  },
+  "A5": {
+   "definition": "predicted-ROI-size routing",
+   "source_artifact": "reports/tables/phase25e_policy_memberships_v1_0/C6_budget*.csv",
+   "source_sha256": "aa9691448f71f2fdbdb086e4fabed4f73b1411471f72e51e38edf55251c8e3f4",
+   "requires_new_model_forward": false,
+   "sufficient": true,
+   "score_space": "frozen Phase25E C6 membership"
+  }
+ },
+ "all_rows_exact_reconstructable": true,
+ "no_new_model_forward_required": true,
+ "score_space_consistent": true,
+ "membership_dir_file_count": 45,
+ "blocked_terminal": "PHASE28_BLOCKED__REQUIRED_ARTIFACT_MISSING",
+ "generated_utc": "2026-10-02T18:48:00Z",
+ "all_pass": true
+}

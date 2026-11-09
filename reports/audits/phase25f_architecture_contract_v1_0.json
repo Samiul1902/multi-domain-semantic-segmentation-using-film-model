@@ -1,0 +1,67 @@
+{
+ "artifact": "phase25f_architecture_contract_v1_0",
+ "phase": "25F",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_post_safety_v1_0",
+ "stage": "SUPERVISOR_RULING_F5_BARRPOSTSAFETYV1",
+ "ruling_id": "F5",
+ "class_name": "BARRPostSafetyV1",
+ "input_dimension": 20,
+ "layers": [
+  {
+   "layer": 1,
+   "op": "Linear",
+   "in": 20,
+   "out": 32,
+   "activation": "SiLU",
+   "params": 672
+  },
+  {
+   "layer": 2,
+   "op": "Linear",
+   "in": 32,
+   "out": 16,
+   "activation": "SiLU",
+   "params": 528
+  },
+  {
+   "layer": 3,
+   "op": "Linear",
+   "in": 16,
+   "out": 1,
+   "activation": null,
+   "params": 17
+  }
+ ],
+ "architecture_string": "Linear(20,32) -> SiLU -> Linear(32,16) -> SiLU -> Linear(16,1)",
+ "absent_components": [
+  "LayerNorm",
+  "BatchNorm",
+  "Dropout",
+  "residual connection",
+  "attention",
+  "task embedding",
+  "second image encoder"
+ ],
+ "output": "one RAW LOGIT",
+ "sigmoid_inside_model": false,
+ "inference_probability": "p_accept = sigmoid(logit)",
+ "trainable_parameter_count": 1217,
+ "parameter_count_method": "CLOSED_FORM_ARCHITECTURE_ARITHMETIC",
+ "module_instantiated": false,
+ "expected_parameter_count_closed_form": 1217,
+ "stop_if_measured_count_differs": true,
+ "initialization": {
+  "equivalent_to": "standard PyTorch Linear initialization",
+  "weight": "kaiming_uniform_(a=sqrt(5))",
+  "bias": "Uniform(-bound, +bound), bound = 1/sqrt(fan_in)",
+  "custom_output_head_zero_init": false,
+  "controlled_by": "authorized execution seed"
+ },
+ "activation_functions": "SiLU (after Linear 20->32 and after Linear 32->16); none after the output Linear",
+ "normalization_layers": "NONE (no LayerNorm, no BatchNorm)",
+ "dropout": "NONE",
+ "output_dimension": 1,
+ "output_interpretation": "raw safety logit; sigmoid(logit) = P(ACCEPT_REFINEMENT)",
+ "all_pass": true
+}

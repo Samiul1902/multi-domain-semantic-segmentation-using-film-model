@@ -1,0 +1,201 @@
+{
+  "classification": "PHASE25E_RESOURCE_GATE_POLICY_EVALUATION",
+  "specification_revision": "ra_medfilm_barr_resource_gate_v1_0",
+  "stage": "ADJUDICATION",
+  "S1_H1_status": "PARTIAL",
+  "S1_H1_supported": false,
+  "S1_informative_budgets": [
+    "0.10",
+    "0.25",
+    "0.50"
+  ],
+  "S1_budget_pass": {
+    "0.10": true,
+    "0.25": false,
+    "0.50": false
+  },
+  "S1_detail": [
+    {
+      "budget": "0.10",
+      "comparator": "C3",
+      "precision_delta": 0.2828282828282828,
+      "mean_delta_gain": 0.010711010454170482,
+      "c7_wins_precision": true,
+      "c7_wins_mean": true,
+      "holm_adjusted_p": 0.005997001499250375,
+      "significant": true
+    },
+    {
+      "budget": "0.10",
+      "comparator": "C4",
+      "precision_delta": 0.1535353535353535,
+      "mean_delta_gain": 0.005440606326271369,
+      "c7_wins_precision": true,
+      "c7_wins_mean": true,
+      "holm_adjusted_p": 0.005997001499250375,
+      "significant": true
+    },
+    {
+      "budget": "0.10",
+      "comparator": "C5",
+      "precision_delta": 0.14141414141414138,
+      "mean_delta_gain": 0.005146241497802254,
+      "c7_wins_precision": true,
+      "c7_wins_mean": true,
+      "holm_adjusted_p": 0.005997001499250375,
+      "significant": true
+    },
+    {
+      "budget": "0.10",
+      "comparator": "C6",
+      "precision_delta": 0.27474747474747474,
+      "mean_delta_gain": 0.014244086106387813,
+      "c7_wins_precision": true,
+      "c7_wins_mean": true,
+      "holm_adjusted_p": 0.005997001499250375,
+      "significant": true
+    },
+    {
+      "budget": "0.25",
+      "comparator": "C3",
+      "precision_delta": 0.1234866828087167,
+      "mean_delta_gain": 0.005833162960094928,
+      "c7_wins_precision": true,
+      "c7_wins_mean": true,
+      "holm_adjusted_p": 0.005997001499250375,
+      "significant": true
+    },
+    {
+      "budget": "0.25",
+      "comparator": "C4",
+      "precision_delta": 0.008878127522195328,
+      "mean_delta_gain": 6.115297000613105e-05,
+      "c7_wins_precision": true,
+      "c7_wins_mean": true,
+      "holm_adjusted_p": 0.0559720139930035,
+      "significant": false
+    },
+    {
+      "budget": "0.25",
+      "comparator": "C5",
+      "precision_delta": 0.008878127522195328,
+      "mean_delta_gain": 0.0001272243046815261,
+      "c7_wins_precision": true,
+      "c7_wins_mean": true,
+      "holm_adjusted_p": 0.0559720139930035,
+      "significant": false
+    },
+    {
+      "budget": "0.25",
+      "comparator": "C6",
+      "precision_delta": 0.14527845036319612,
+      "mean_delta_gain": 0.007680003640882676,
+      "c7_wins_precision": true,
+      "c7_wins_mean": true,
+      "holm_adjusted_p": 0.005997001499250375,
+      "significant": true
+    },
+    {
+      "budget": "0.50",
+      "comparator": "C3",
+      "precision_delta": 0.035108958837772396,
+      "mean_delta_gain": 0.002106966116970207,
+      "c7_wins_precision": true,
+      "c7_wins_mean": true,
+      "holm_adjusted_p": 0.005997001499250375,
+      "significant": true
+    },
+    {
+      "budget": "0.50",
+      "comparator": "C4",
+      "precision_delta": 0.0012106537530266331,
+      "mean_delta_gain": -6.507029259849965e-05,
+      "c7_wins_precision": true,
+      "c7_wins_mean": false,
+      "holm_adjusted_p": 0.6516741629185407,
+      "significant": false
+    },
+    {
+      "budget": "0.50",
+      "comparator": "C5",
+      "precision_delta": 0.0012106537530266331,
+      "mean_delta_gain": -4.912750836465023e-05,
+      "c7_wins_precision": true,
+      "c7_wins_mean": false,
+      "holm_adjusted_p": 0.6516741629185407,
+      "significant": false
+    },
+    {
+      "budget": "0.50",
+      "comparator": "C6",
+      "precision_delta": 0.07223567393058919,
+      "mean_delta_gain": 0.0038813364395800755,
+      "c7_wins_precision": true,
+      "c7_wins_mean": true,
+      "holm_adjusted_p": 0.005997001499250375,
+      "significant": true
+    }
+  ],
+  "F2_router_failure": false,
+  "S2_preservation_satisfied": true,
+  "S2_macro_domain_ci_low": {
+    "C7_budget0.00": null,
+    "C7_budget0.10": 0.006192105783135054,
+    "C7_budget0.25": 0.0022962381029166816,
+    "C7_budget0.50": 0.0019482993834727194,
+    "C7_budget1.00": 0.000866872027782634
+  },
+  "F3_preservation_failure": false,
+  "S3_frontier_measured": true,
+  "F4_resource_failure": false,
+  "F5_domain_collapse_triggered": false,
+  "F5_detail": [
+    {
+      "budget": "0.00",
+      "domain_means": {},
+      "collapse": false
+    },
+    {
+      "budget": "0.10",
+      "domain_means": {
+        "ISIC": 0.00943119450847261,
+        "KUB": 0.013413993921395443
+      },
+      "collapse": false
+    },
+    {
+      "budget": "0.25",
+      "domain_means": {
+        "BUSI": 0.0001867194874747938,
+        "ISIC": 0.003529376126925712,
+        "KUB": 0.008997362124262671,
+        "KVASIR": -0.0008572533922293332
+      },
+      "collapse": false
+    },
+    {
+      "budget": "0.50",
+      "domain_means": {
+        "BUSI": 0.00014280576183213085,
+        "ISIC": 0.0017325768049410366,
+        "KUB": 0.0075064093734144065,
+        "KVASIR": -7.88113882710021e-05
+      },
+      "collapse": false
+    },
+    {
+      "budget": "1.00",
+      "domain_means": {
+        "BUSI": 0.0001427991224328995,
+        "ISIC": 0.0008997353137673146,
+        "KUB": 0.0036683322095754337,
+        "KVASIR": 4.740779804263123e-05
+      },
+      "collapse": false
+    }
+  ],
+  "population": "ROUTER_DEVELOPMENT (4957); NONDEPLOYABLE oracle excluded from all criteria",
+  "holdout_used": false,
+  "interpretation": "H1 is scoped: C7 (learned paired-gain routing) beats all simple GT-free proxies on precision at the tight budget, with the advantage shrinking to non-significance at looser budgets; reported honestly per budget.",
+  "all_pass": true
+}

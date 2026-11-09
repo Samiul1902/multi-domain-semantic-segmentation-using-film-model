@@ -1,0 +1,28 @@
+{
+ "artifact": "phase25a_canonical_governance_pointer",
+ "phase": "25A",
+ "canonical": {
+  "classification": "CANONICAL_PHASE25A_AFTER_THRESHOLD_ADJUDICATION",
+  "roi_proposal_threshold": 0.3,
+  "segmentation_output_threshold": 0.5,
+  "cache_root": "data_cache/phase25a_barr_roi030_cache",
+  "checkpoint_root": "checkpoints/phase25a_barr_regional_refiner_v1_1_roi030",
+  "experiment_root": "experiments/phase25a_barr_regional_refiner_v1_1_roi030",
+  "notebook": "notebooks/phasewise/phase_25a_regional_refiner/phase25a_dedicated_regional_refiner.ipynb",
+  "notebook_sha256": "fd2bab0168eb3477125c655ada1bd5eb4b060f41a5b354fdbaaf6fd621dfb2dd",
+  "final_freeze": "reports/audits/phase25a_canonical_final_freeze.json"
+ },
+ "superseded": {
+  "classification": "NONCANONICAL_PROTOCOL_DEVIATION__ROI_THRESHOLD_0P50",
+  "roi_proposal_threshold": 0.5,
+  "checkpoint_root": "checkpoints/phase25a_barr_regional_refiner_v1_1",
+  "notebook_sha256": "7dfcf50540ee531e330c0338ea9326cdb73c24c9f8254b920c022598dd74733f",
+  "scientific_use_allowed": false,
+  "allowed_role": "PROVENANCE / DEBUGGING / PROTOCOL-DEVIATION RECORD ONLY",
+  "preserved": true,
+  "deleted_or_disguised": false
+ },
+ "additive_only": true,
+ "previous_pointer_retained": "reports/audits/phase25a_final_freeze.json",
+ "terminal": "PHASE25A_CANONICAL_RERUN_COMPLETE__ROI_PROPOSAL_THRESHOLD_0P30__SEGMENTATION_OUTPUT_THRESHOLD_0P50__PHASE25B_ELIGIBLE_NOT_STARTED"
+}

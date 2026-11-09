@@ -1,0 +1,269 @@
+{
+  "artifact": "phase14_clean_v3_final_governance_reconciliation",
+  "task": "PHASE 14 CLEAN-v3 FINAL GOVERNANCE RECONCILIATION",
+  "nature": "ADDITIVE_GOVERNANCE_RECONCILIATION_ONLY",
+  "authorization_constraints_honored": {
+    "no_training": true,
+    "no_phase_15": true,
+    "no_checkpoint_change": true,
+    "no_threshold_search": true,
+    "no_proposal_search": true,
+    "no_hyperparameter_search": true,
+    "test_split_reads": 0,
+    "external_test_reads": 0,
+    "external_data_used": false
+  },
+  "frozen_protocol_source": {
+    "file": "reports/audits/phase14_diagnostic_protocol_amendment.json",
+    "exact_clauses": {
+      "diagnostic_gate_hierarchical.step_1_potential": "G >= 0.05 AND Oracle FULL_FIELD Dice >= 0.632776",
+      "diagnostic_gate_hierarchical.step_2_proposal_retention": "R >= 0.50",
+      "diagnostic_gate_hierarchical.step_3_practical_signal": "Tp >= 0.780822 AND Predicted FULL_FIELD Dice >= 0.632776 AND Hard Tiny >= 2/16 AND Global-empty >= 1/7",
+      "diagnostic_gate_hierarchical.threshold_rationale": "Descriptive development gates to control resource expenditure on ablation, not TEST statistical claims. G>=0.05 requires clinically meaningful signal. R>=0.50 prevents optimizing refiner if proposal is binding bottleneck. Dice>=-0.02 tolerance prevents regression on large stones. Hard Tiny and Global-empty require qualitative breakthrough.",
+      "proposed_diagnostic_gate.Step_3_Practical_Net_Benefit": "Contrast 3 (Predicted Regional) > Global Baseline. Tiny Recall@90 >= 0.78, Full Field Dice drop <= 0.02, Hard Tiny >= 2/16 recovered.",
+      "comparison_structure.A_global_only.val_metrics.full_field_dice": 0.652776,
+      "comparison_structure.A_global_only.val_metrics.tiny_recall90": 0.780822
+    },
+    "note": "0.632776 = Dg_v2(0.652776) - 0.02 ; 0.780822 = Tg_v2. Both gate-string constants are v2-era instantiations of the structural rules, NOT absolute development constants."
+  },
+  "section_B_Dg_reconciliation": {
+    "question": "Is the Dice clause Dregional>=Dg, Dregional>=Dg-0.02, absolute 0.632776, or another formula?",
+    "bound_clause": "threshold_rationale: 'Dice>=-0.02 tolerance prevents regression on large stones' + Step_3 prose 'Full Field Dice drop <= 0.02'",
+    "resolution": "Structural rule = Dregional >= Dg - 0.02 (allow 0.02 drop vs the era's global reference Dice). The literal 0.632776 is Dg_v2 - 0.02, a population-dependent historical number.",
+    "step1_oracle_dice_rule": "Same structural rule applies: Oracle FULL_FIELD Dice >= Dg - 0.02.",
+    "corrected_clean_v3_dice_threshold": 0.6159172411726775,
+    "corrected_threshold_formula": "Dg_clean_v3 - 0.02 = 0.6359172411726776 - 0.02 = 0.6159172411726776",
+    "historical_constant_rejected_for_clean_v3": 0.632776
+  },
+  "section_C_Tg_reconciliation": {
+    "question": "Is Step-3 Tiny Recall relative to Tg, fixed 0.780822, or another formula?",
+    "bound_clause": "gate string 'Tp >= 0.780822' ; prose 'Tiny Recall@90 >= 0.78' ; A_global_only.val_metrics.tiny_recall90 = 0.780822 = Tg_v2",
+    "resolution": "Structural rule = Tp >= Tg (no regression vs the global baseline Tiny Recall); the literal 0.780822 = Tg_v2 is a population-dependent historical number. The prose absolute 0.78 floor corroborates. We preserve the structural rule, not 0.780822.",
+    "corrected_clean_v3_tiny_recall_threshold": 0.7916666666666666,
+    "corrected_threshold_basis": "Tg_clean_v3 = 0.7916666666666666 (relative) ; also satisfies absolute 0.78 floor",
+    "historical_constant_rejected_for_clean_v3": 0.780822
+  },
+  "immutable_observed_metrics": {
+    "Tg": 0.7916666666666666,
+    "To": 1.0,
+    "Tp": 0.7916666666666666,
+    "Dg": 0.6359172411726776,
+    "Do": 0.8024158112932394,
+    "Dp": 0.41853090628184875,
+    "G": 0.20833333333333337,
+    "R": 0.0,
+    "source": "reports/audits/phase14_clean_v3_diagnostic_evaluation.json (timestamp 2026-09-25T00:10:56Z)",
+    "note": "These values were NOT changed. No new inference was performed."
+  },
+  "section_A_special_set_provenance": {
+    "formal_frozen_sets": {
+      "hard_tiny": {
+        "denominator": 16,
+        "construction_source_file": "scripts/evaluation/evaluate_phase14_diagnostic.py",
+        "construction_rule": "phase13_predicted_roi_per_component.csv : kub_size_v1 == 'TINY' AND NOT global_detected ; assert len == 16",
+        "membership_key": "(sample_id, component_id)",
+        "source_table": "reports/tables/phase13_predicted_roi_per_component.csv"
+      },
+      "global_empty": {
+        "denominator": 7,
+        "construction_source_file": "scripts/evaluation/evaluate_phase14_diagnostic.py",
+        "construction_rule": "phase12_oracle_roi_per_image.csv : global_empty_prediction == True ; assert len == 7",
+        "membership_key": "sample_id",
+        "source_table": "reports/tables/phase12_oracle_roi_per_image.csv"
+      },
+      "status": "RETAINED_AS_FORMAL_GATE_PROVENANCE (no prospectively-authorized artifact redefined their construction before diagnostic results were observed)"
+    },
+    "rederived_descriptive_sets": {
+      "label": "CLEAN_V3_REDERIVED_SPECIAL_SETS__DESCRIPTIVE",
+      "hard_tiny": {
+        "denominator": 15,
+        "construction_source_file": "scripts/evaluation/evaluate_phase14_clean_v3_diagnostic.py",
+        "construction_rule": "phase13_clean_v3_hard_tiny_replication_set.csv : size_stratum == 'TINY' AND NOT global_detected ; assert len == 15"
+      },
+      "global_empty": {
+        "denominator": 5,
+        "construction_source_file": "scripts/evaluation/evaluate_phase14_clean_v3_diagnostic.py",
+        "construction_rule": "phase13_clean_v3_global_empty_replication_set.csv : prediction_empty == True ; assert len == 5"
+      },
+      "status": "RESULTS_RETAINED_BUT_RECLASSIFIED_AS_DESCRIPTIVE__NOT_FORMAL_ADJUDICATION",
+      "relationship_to_16_7": "Distinct membership (different size-threshold taxonomy: v2 kub_size_v1 vs clean-v3 kub_size_clean_v3_v1). Not a strict subset."
+    },
+    "disk_only_recomputation": {
+      "method": "Re-derived the original 16/7 membership from the v2 source tables, then re-queried the ALREADY-SAVED clean-v3 per-case diagnostic tables (phase14_clean_v3_component_metrics.csv, phase14_clean_v3_image_metrics.csv) for those members using the evaluator's own recovery definition (predicted_recall90_success for components; any-component-predicted-recall90-success AND NOT predicted_empty_pred_flag for global-empty images).",
+      "new_inference_performed": false,
+      "validation": "Method validated by exactly reproducing the evaluator's reported 0/15 (hard-tiny) and 1/5 (global-empty) from the same tables.",
+      "hard_tiny_original_16": {
+        "total": 16,
+        "present": 16,
+        "predicted_recovered_count": 4,
+        "predicted_recovered_members": [
+          "8959dfc29ab5e06d0b2a0f41a4729dde|2",
+          "a20fe2c1ca04026ab0d036e8dcdd9cca|1",
+          "e1e165d69d6844c8a599786d865cdd21|1",
+          "f3064ba364f589ffa517c2b5ff21e98c|2"
+        ],
+        "oracle_recovered_count": 16,
+        "oracle_recovered_members": [
+          "416e6f7d9e35c6bf4bde51e191a7e92d|2",
+          "5779b9fca1dec2e3598ccdcbad32608f|2",
+          "6a5d5c051d6c898d98c90422da190bf0|2",
+          "8959dfc29ab5e06d0b2a0f41a4729dde|2",
+          "8c8d2107815002b7913bd6a42f93b394|1",
+          "8c8d2107815002b7913bd6a42f93b394|2",
+          "9f367e7db192bfe532ace746fd788fb9|2",
+          "a20fe2c1ca04026ab0d036e8dcdd9cca|1",
+          "a626dd389032147c7d4ebd2b1db39e45|1",
+          "ad4af1ce1b3dde6ad04fa095aacd92f5|1",
+          "b0473630de9211114c94c7dc0363ebd9|1",
+          "da209fc5627cedade0d7fd714da2b95c|1",
+          "e1e165d69d6844c8a599786d865cdd21|1",
+          "e1e165d69d6844c8a599786d865cdd21|2",
+          "f3064ba364f589ffa517c2b5ff21e98c|2",
+          "f860cbfe7c79e5772795a64bac5de7e7|1"
+        ]
+      },
+      "global_empty_original_7": {
+        "total": 7,
+        "present": 7,
+        "predicted_recovered_count": 3,
+        "predicted_recovered_members": [
+          "5dd4436a2065b8855ce1dfbed228bce7",
+          "abe658fa57a12b1665a96d00beeffae0",
+          "e1e165d69d6844c8a599786d865cdd21"
+        ],
+        "oracle_recovered_count": 7,
+        "oracle_recovered_members": [
+          "5dd4436a2065b8855ce1dfbed228bce7",
+          "8c8d2107815002b7913bd6a42f93b394",
+          "abe658fa57a12b1665a96d00beeffae0",
+          "ad4af1ce1b3dde6ad04fa095aacd92f5",
+          "b0473630de9211114c94c7dc0363ebd9",
+          "e1e165d69d6844c8a599786d865cdd21",
+          "f860cbfe7c79e5772795a64bac5de7e7"
+        ]
+      }
+    }
+  },
+  "section_D_arithmetic_readjudication": {
+    "step_1": {
+      "condition_frozen_literal": "G >= 0.05 AND Oracle FULL_FIELD Dice >= 0.632776",
+      "structural_rule_bound": "G >= 0.05 AND Oracle FULL_FIELD Dice >= (Dg - 0.02)",
+      "dice_threshold_source": "DERIVED from Dg (era global reference), not absolute constant 0.632776",
+      "G": {
+        "value": 0.20833333333333337,
+        "threshold": 0.05,
+        "pass": true
+      },
+      "Do": {
+        "value": 0.8024158112932394,
+        "threshold": 0.6159172411726775,
+        "threshold_formula": "Dg_clean_v3 - 0.02 = 0.6359172411726776 - 0.02",
+        "pass": true
+      },
+      "overall": "PASS"
+    },
+    "step_2": {
+      "condition_frozen_literal": "R >= 0.50",
+      "structural_rule_bound": "R >= 0.50  (applies because G > 0)",
+      "R": {
+        "value": 0.0,
+        "threshold": 0.5,
+        "pass": false,
+        "note": "R = (Tp - Tg)/G = 0.0; predicted tiny recall == global tiny recall -> zero net gain."
+      },
+      "overall": "FAIL"
+    },
+    "step_3_formal_16_7": {
+      "denominator_set": "FORMAL_ORIGINAL_16_7",
+      "condition_frozen_literal": "Tp >= 0.780822 AND Predicted FULL_FIELD Dice >= 0.632776 AND Hard Tiny >= 2/16 AND Global-empty >= 1/7",
+      "structural_rule_bound": "Tp >= Tg (no regression vs global baseline; absolute 0.78 floor corroborates) AND Predicted FULL_FIELD Dice >= (Dg - 0.02) AND Hard Tiny >= 2/16 AND Global-empty >= 1/7",
+      "clauses": {
+        "Tp": {
+          "value": 0.7916666666666666,
+          "threshold": 0.7916666666666666,
+          "threshold_basis": "Tg_clean_v3 (relative) / absolute 0.78 floor",
+          "pass": true,
+          "note": "0.791667 >= 0.791667 (equality) AND >= 0.78 -> PASS"
+        },
+        "Dp": {
+          "value": 0.41853090628184875,
+          "threshold": 0.6159172411726775,
+          "threshold_formula": "Dg_clean_v3 - 0.02",
+          "pass": false,
+          "note": "0.418531 < 0.615917 -> FAIL (binding failure)"
+        },
+        "HardTiny": {
+          "recovered": 4,
+          "denominator": 16,
+          "threshold": ">= 2/16",
+          "pass": true,
+          "note": "4/16 recovered (DISK-ONLY recomputed) -> PASS"
+        },
+        "GlobalEmpty": {
+          "recovered": 3,
+          "denominator": 7,
+          "threshold": ">= 1/7",
+          "pass": true,
+          "note": "3/7 recovered (DISK-ONLY recomputed) -> PASS"
+        }
+      },
+      "overall": "FAIL"
+    },
+    "step_3_descriptive_15_5": {
+      "denominator_set": "CLEAN_V3_REDERIVED_SPECIAL_SETS__DESCRIPTIVE (15/5)",
+      "clauses": {
+        "Tp": {
+          "value": 0.7916666666666666,
+          "threshold": 0.780822,
+          "pass": true,
+          "note": "historical constant, but >= both corrected thresholds -> PASS"
+        },
+        "Dp": {
+          "value": 0.41853090628184875,
+          "threshold": 0.632776,
+          "pass": false,
+          "note": "FAIL (below even historical constant)"
+        },
+        "HardTiny": {
+          "recovered": 0,
+          "denominator": 15,
+          "threshold": ">= 2/15",
+          "pass": false,
+          "note": "0/15 -> FAIL (descriptive only)"
+        },
+        "GlobalEmpty": {
+          "recovered": 1,
+          "denominator": 5,
+          "threshold": ">= 1/5",
+          "pass": true,
+          "note": "1/5 -> PASS (descriptive only)"
+        }
+      },
+      "overall": "FAIL",
+      "status": "RECLASSIFIED_DESCRIPTIVE_ONLY__NOT_FORMAL_ADJUDICATION"
+    }
+  },
+  "section_E_outcome_stability": {
+    "step_1": "UNCHANGED PASS (Do=0.8024 far exceeds both 0.632776 and corrected 0.615917).",
+    "step_2": "UNCHANGED FAIL (R=0 by construction; threshold- and denominator-independent).",
+    "step_3": "Dice correction (0.632776->0.615917) does NOT flip Dp (0.4185<0.6159). Tiny-Recall correction does NOT flip Tp (>=0.78 and >=Tg). Special-set denominator correction (15/5->16/7) flips the Hard-Tiny sub-clause from FAIL (0/15) to PASS (4/16), but Step 3 overall remains FAIL because Dp independently fails.",
+    "overall_classification": "DIAGNOSTIC_PROPOSAL_BOTTLENECK  (UNCHANGED)",
+    "phase_15_status": "NOT_AUTHORIZED  (UNCHANGED)",
+    "denominator_independence_statement": "The OVERALL classification is denominator-independent: Step 2 fails at R=0 and Step 3 fails on predicted Dice regardless of the special-set denominator. The Hard-Tiny sub-clause is denominator-sensitive (FAIL under 15/5, PASS under 16/7) but cannot rescue Step 3.",
+    "any_governance_correction_alters_verdict": false
+  },
+  "superseded_interpretations_marked_additively": [
+    "phase14_clean_v3_diagnostic_evaluation.json & phase14_clean_v3_formal_adjudication.json used Step-3 Dice threshold 0.632776 -> SUPERSEDED by structural Dg-0.02 = 0.6159172411726776.",
+    "phase14_clean_v3_diagnostic_evaluation.json & phase14_clean_v3_formal_adjudication.json used Step-3 Tiny-Recall threshold 0.780822 -> SUPERSEDED by structural Tg-relative = 0.7916666666666666 (absolute 0.78 floor also met).",
+    "phase14_clean_v3_formal_adjudication.json used 15/5 denominators for the special-set sub-clauses -> SUPERSEDED for FORMAL adjudication by the 16/7 denominators; 15/5 results retained and reclassified as CLEAN_V3_REDERIVED_SPECIAL_SETS__DESCRIPTIVE.",
+    "phase14_clean_v3_formal_adjudication.json reported Step-3 Hard-Tiny FAIL (0/15) -> SUPERSEDED by 4/16 PASS under formal 16/7; overall Step 3 and classification unchanged."
+  ],
+  "final_phase14_classification": "DIAGNOSTIC_PROPOSAL_BOTTLENECK",
+  "phase_15_status": "NOT_STARTED_AND_NOT_AUTHORIZED",
+  "phase_15_reopen_rule": "Authorized ONLY if Phase 14 diagnostic achieves DIAGNOSTIC_PROMISING_SUPPORTING_REFINER (Step 1 AND Step 3 PASS). It does not; therefore NOT_AUTHORIZED.",
+  "new_inference_performed": false,
+  "test_reads": 0,
+  "external_test_reads": 0,
+  "governance_locks_all_zero_false": true,
+  "generated_utc": "2026-09-24T00:00:00Z"
+}

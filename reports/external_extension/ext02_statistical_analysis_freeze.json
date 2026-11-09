@@ -1,0 +1,20 @@
+{
+  "classification": "EXT02_STATISTICAL_ANALYSIS_FREEZE",
+  "generated_utc": "2026-10-11T14:00:00Z",
+  "statistical_unit": {
+    "HAM10000": "sample/lesion case (no patient authority)",
+    "CVC-ClinicDB": "cluster by sequence_id",
+    "BrEaST-Lesions_USG": "caseXXX",
+    "Stones_where_are_you": "source_group_id (NOT augmentation file)"
+  },
+  "primary_estimand_per_dataset": "mean Dice of frozen FINAL segmentation",
+  "primary_paired_estimand": "mean per-unit paired DeltaDice = FINAL - GLOBAL",
+  "ci": {
+    "method": "cluster-aware deterministic bootstrap",
+    "replicates": 10000,
+    "seed": 20261011
+  },
+  "no_phase30_language_reuse": true,
+  "no_post_hoc_margin": true,
+  "framework": "estimation with confidence intervals; NOT automatic superiority/noninferiority"
+}

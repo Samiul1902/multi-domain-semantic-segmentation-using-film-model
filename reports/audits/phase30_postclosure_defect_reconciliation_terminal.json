@@ -1,0 +1,30 @@
+{
+ "artifact": "phase30_postclosure_defect_reconciliation_terminal",
+ "phase": 30,
+ "status": "BLOCKED_AFTER_FIRST_OPEN",
+ "terminal": "PHASE30_ONE_SHOT_EXECUTION_BLOCKED_AFTER_FIRST_OPEN__STAGE_B_SCIENTIFIC_SOURCE_NOT_IN_PREOPEN_SOURCE_FREEZE__EVIDENCE_PRESERVED__NO_RERUN_AUTHORIZED",
+ "blocked_reason": "STAGE_B_SCIENTIFIC_SOURCE_NOT_IN_PREOPEN_SOURCE_FREEZE",
+ "science_changed": false,
+ "original_execution_terminal_preserved": true,
+ "original_final_freeze_preserved": true,
+ "ROUTER_HOLDOUT_state": "OPENED_AND_FROZEN",
+ "scientific_rerun": false,
+ "additional_GT_reads": 0,
+ "total_GT_reads": 875,
+ "model_rerun": false,
+ "metric_recomputation": false,
+ "bootstrap_regeneration": false,
+ "TEST_reads": 0,
+ "Phase31_started": false,
+ "section_L_conditions_all_proven": true,
+ "mitigating_facts": [
+  "Stage B was authored before ANY holdout prediction existed",
+  "all decision contracts (metrics, bootstrap plan, claim criterion, thresholds, policy) were frozen pre-open",
+  "predictions were hash-barriered with GT reads = 0",
+  "GT was physically read exactly once (875)",
+  "Stage B was executed exactly once; never re-executed",
+  "no scientific artifact was mutated after the abort"
+ ],
+ "generated_utc": "2026-10-04T03:41:39+00:00",
+ "all_pass": false
+}

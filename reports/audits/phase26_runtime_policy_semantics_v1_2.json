@@ -1,0 +1,30 @@
+{
+ "artifact": "phase26_runtime_policy_semantics_v1_2",
+ "phase": "26",
+ "classification": "ROUTER_CALIBRATION_ROLE_RECONCILIATION",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase26_deployment_semantics_v1_2",
+ "governance_only": true,
+ "superseded_for_runtime_only": {
+  "v1_1_field": "membership_identity",
+  "v1_1_value": "EXACT_PHASE25E_FROZEN_25PCT_C8_MEMBERSHIP",
+  "status": "SUPERSEDED_FOR_RUNTIME_ONLY__RETAINED_AS_SCIENTIFIC_EVIDENCE"
+ },
+ "runtime_interpretation": {
+  "canonical_policy_semantics": "25_PERCENT_DEV_CALIBRATED_A8_C9_RESOURCE_AWARE_POLICY"
+ },
+ "policy_identity_definition": {
+  "architecture": "A8/C9",
+  "budget_target": "25% DEV calibration target",
+  "lambda_representative": 0.25,
+  "threshold": "FINAL-router calibrated threshold tau_C8_final_exact",
+  "s_omega_threshold": 0.5
+ },
+ "oof_ids_role": "EVIDENCE_SET_IDENTITIES_ONLY",
+ "OOF_vs_final_membership_equality_required": false,
+ "final_router_dev_ids_may_differ_from_oof_ids": true,
+ "difference_is_drift": false,
+ "difference_reflects": "cross-fitted OOF predictor vs final all-DEV fitted predictor",
+ "oof_scientific_membership_immutable": true,
+ "all_pass": true
+}

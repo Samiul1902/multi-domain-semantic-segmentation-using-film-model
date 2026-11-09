@@ -1,0 +1,36 @@
+{
+  "phase": "14",
+  "part": "3B",
+  "audit_type": "PROPOSAL_PROVENANCE_AND_METRIC_SPACE_CONSISTENCY",
+  "discrepancies": {
+    "A_proposal_burden": {
+      "phase_13b_value": 4.660377358490566,
+      "phase_14_part3_value": 4.971698113207547,
+      "cause": "Model initialization mismatch. Phase-13B explicitly instantiated the Stage-4D localizer with `heatmap_resolution=128`, applying a 4x average-pooling layer to the 512x512 logits before sigmoid. Phase-14 Part 3 used the default `heatmap_resolution=512`, bypassing the pooling layer. Thresholding the raw 512x512 unpooled probability map generated different connected components and NMS suppression dynamics.",
+      "authoritative_source": "Phase-13B (4.66 mean proposals) is authoritative because it matches the exact architecture topology used during the Stage-4D training and validation search.",
+      "action_required": "Phase-14 Part-3 must instantiate the localizer with `heatmap_resolution=128`."
+    },
+    "B_metric_space": {
+      "frozen_gate_metrics": {
+        "dice": 0.652776,
+        "tiny_recall90": 0.780822
+      },
+      "part3_original_space_metrics": {
+        "dice": 0.642499,
+        "tiny_recall90": 0.794521
+      },
+      "cause": "Phase-10 baseline metrics were evaluated entirely in 512x512 space (GT was downsampled to 512x512 via nearest-neighbor). Phase-14 Part-0C dictates that regional refiners must restore probabilities back to the original multi-megapixel canvas using bilinear interpolation, leading to Part-3 evaluating the global model in the original space as well. The interpolation differences alter the exact Dice and overlap ratios.",
+      "authoritative_source": "The Phase-14 Part-0C protocol prospectively hardcoded the 512-space Phase-10 metrics (0.652776 and 0.780822) directly into the decision gate conditions. These are the authoritative gate constants, regardless of the space in which they were computed.",
+      "action_required": "Do not alter the official gate constants. Compute a SUPPLEMENTAL SAME-SPACE DESCRIPTIVE CONTRASTS section using the original-canvas measurements (0.642499 and 0.794521) for scientifically sound relative comparisons during re-evaluation."
+    },
+    "C_runtime_means": {
+      "notebook_csv_total_mean": 403.544449,
+      "textual_note_sum_of_rounded_means": 403.55,
+      "cause": "Floating-point rounding artifact. The individual component means are 145.3936 (Global), 37.9158 (Stage4D), 123.5979 (Refiner), and 96.6372 (Fusion). The true mean of the total pipeline is 403.5445. Summing the individual components rounded to two decimal places (145.39 + 37.92 + 123.60 + 96.64) yields 403.55, creating a 0.01 ms optical discrepancy in textual notes.",
+      "authoritative_source": "The generated CSV/notebook dataframe (403.544449 ms) is mathematically authoritative.",
+      "action_required": "None mathematically. Acknowledge visual rounding in reporting."
+    }
+  },
+  "final_decision": "PART3_REEVALUATION_REQUIRED_FROZEN_PROPOSALS"
+}
+

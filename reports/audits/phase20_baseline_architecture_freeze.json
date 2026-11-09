@@ -1,0 +1,55 @@
+{
+  "artifact": "phase20_baseline_architecture_freeze",
+  "phase": 20,
+  "experiment_id": "phase20_shared_unetpp_fourdomain_seed42_clean_v3",
+  "frozen_architecture": "UNet++",
+  "repository_implementation": "src/models/unetpp.py",
+  "factory_key": "unetpp",
+  "architecture_descriptor": "unetpp_nested_4_level_no_deep_supervision_base32",
+  "model_contract": {
+    "in_channels": 3,
+    "out_channels": 1,
+    "base_channels": 32,
+    "output": "single binary segmentation logit channel",
+    "shared_parameters_across_domains": true,
+    "forbidden_modules": [
+      "FiLM",
+      "task_embedding",
+      "domain_embedding",
+      "regional_branch",
+      "localizer",
+      "ROI_proposal",
+      "routing",
+      "dataset_specific_decoder",
+      "dataset_specific_head"
+    ],
+    "forbidden_modules_present": []
+  },
+  "selection_basis": "LEGACY_TESTED_PROJECT_PRIOR_EVIDENCE",
+  "selection_time": "PRE_TRAINING",
+  "current_phase20_results_used_for_selection": false,
+  "selection_evidence_artifact": "reports/audits/phase20_legacy_baseline_selection_evidence.json",
+  "selection_evidence_sha256": "1c3fbbe18449275704a79faaa29e72475ee85e6c29b89575fec355317b2a23c9",
+  "selection_evidence_summary": {
+    "same_repository_clean_v3_ranking": [
+      "UNet++",
+      "Attention U-Net",
+      "DeepLabV3+ (ResNet-50, no pretrained weights)",
+      "U-Net"
+    ],
+    "unetpp_best_val_macro_dice_legacy_kub": 0.7641595156062713,
+    "margin_over_next": 0.01164653,
+    "evidence_label": "LEGACY_PRIOR_EVIDENCE__NOT_CURRENT_PHASE20_RESULT"
+  },
+  "rationale": [
+    "Already implemented and tested in this repository (src/models/unetpp.py, Phase-10 clean-v3).",
+    "Strongest conventional clean-v3 architecture in the repository under a fixed protocol (best VAL macro Dice 0.764160 vs 0.752513 / 0.750914 / 0.740613).",
+    "Compatible with binary segmentation and a single 1-channel output head.",
+    "Requires no FiLM and no regional module, so it is a clean image-only reference for Phase 21."
+  ],
+  "immutability": {
+    "architecture_will_not_be_switched_after_training": true,
+    "no_architecture_search_in_phase20": true,
+    "no_post_hoc_restart_from_epoch_1": true
+  }
+}

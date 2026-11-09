@@ -1,0 +1,92 @@
+{
+ "artifact": "phase35_synthetic_smoke_provenance_v1_0b",
+ "phase": 35,
+ "section": "\u00a7U",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase35_interpretability_v1_0b",
+ "source_shas": {
+  "common_v1_0b": "9963215e1431e968e11bacbcd917d96a8a985a7181000258b90f458ff0a778ac",
+  "execution_v1_0b": "581926840d7717e19ed15ad77c7c5339b709efc881b938924d6eec0a2ceb1872",
+  "preflight_v1_0b": "498e68277168a8ee200842d799cb186bd410f09764d1fdb796ad463912704e63",
+  "model_G": "a04ff3e61b4d900ff47c2f390da4a999e73bd6047b28a19e41b05115e431d11f",
+  "model_B_phi_authority": "fc7c1bdf263ae4551dcb8f170d3203adb8540fbc189846265b74f6eca1541e91",
+  "domain_task_registry": "3f009d994ed24d9c2edf8e48646e93700ab4e54dea786fb4bd03180c825cbf92"
+ },
+ "source_freeze_sha256": "95bcd7913b4ebfdb915134ff6cace69efec1edbdcaa31d828f840548f886a06f",
+ "environment": {
+  "os": "Windows-10-10.0.26200-SP0",
+  "python_version": "3.11.9",
+  "torch_version": "2.6.0+cu124",
+  "cuda_runtime": "12.4",
+  "cuda_driver_version": "596.36",
+  "cudnn_version": 90100,
+  "cuda_available": true,
+  "gpu_model": "NVIDIA GeForce RTX 3060 Ti",
+  "gpu_compute_capability": "8.6",
+  "gpu_total_vram_bytes": 8589279232,
+  "cpu_logical_cores": 16,
+  "cpu_torch_threads": 8,
+  "system_ram_bytes": 34281005056
+ },
+ "checkpoint_shas": [
+  {
+   "component": "G",
+   "path": "checkpoints/phase21_global_medfilm_fourdomain_seed42_clean_v3/best.pt",
+   "expected_sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+   "observed_sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+   "match": true,
+   "deserialized": false
+  },
+  {
+   "component": "B_phi",
+   "path": "checkpoints/phase25d_barr_benefit_router_v1_2_1_seed42/final/final.pt",
+   "expected_sha256": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+   "observed_sha256": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+   "match": true,
+   "deserialized": false
+  }
+ ],
+ "constructor_identities": {
+  "G": "GlobalMedFiLM(task_count=4, in_channels=3, out_channels=1, channels=(24,48,96,192,256), task_embedding_dim=32, film_hidden_dim=64)",
+  "B_phi": "BARRBenefitRouterV1() from scripts/analysis/train_phase25d_router.py"
+ },
+ "strict_load_outcomes": "NOT_PERFORMED",
+ "parameter_counts": "NOT_VERIFIED",
+ "synthetic_seeds": "NOT_APPLICABLE (smoke not executed)",
+ "task_ids": "NOT_APPLICABLE",
+ "gradcam_contexts": "NOT_APPLICABLE",
+ "router_preprocessing_authority": "reports/tables/phase25d_final_normalization_stats.csv (sha ba37742e96610ec5e46fb47c093bf71ae1afd85b2a0db9696b612c873a4ba1fb)",
+ "forward_counts": {
+  "G_model_constructions": 0,
+  "B_phi_model_constructions": 0,
+  "checkpoint_deserializations": 0,
+  "strict_loads": 0,
+  "G_synthetic_forwards": 0,
+  "B_phi_synthetic_forwards": 0,
+  "total_model_forwards": 0,
+  "G_gradcam_autograd_calls": 0,
+  "router_input_gradient_autograd_calls": 0,
+  "total_autograd_calls": 0,
+  "synthetic_CAM_maps": 0,
+  "synthetic_router_attribution_rows": 0,
+  "R_psi_forwards": 0,
+  "S_omega_forwards": 0
+ },
+ "autograd_counts": {
+  "total": 0
+ },
+ "R_psi_zero_execution": {
+  "constructions": 0,
+  "checkpoint_loads": 0,
+  "forwards": 0
+ },
+ "S_omega_zero_execution": {
+  "constructions": 0,
+  "checkpoint_loads": 0,
+  "forwards": 0
+ },
+ "protected_data_counters_all_zero": true,
+ "model_immutability_verification": "TRIVIALLY_SATISFIED_NO_MODEL_CONSTRUCTED",
+ "generated_utc": "2026-10-04T15:30:46+00:00",
+ "all_pass": false
+}

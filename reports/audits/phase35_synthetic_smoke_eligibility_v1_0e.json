@@ -1,0 +1,80 @@
+{
+ "artifact": "phase35_synthetic_smoke_eligibility_v1_0e",
+ "phase": 35,
+ "section": "\u00a7T",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase35_interpretability_v1_0e",
+ "eligibility": "SYNTHETIC_SMOKE_REEXECUTION_ELIGIBLE_NOT_STARTED",
+ "basis": {
+  "static_preflight_pass": true,
+  "static_preflight_total_checks": 118,
+  "static_preflight_failed": 0,
+  "numeric_guard_unit_pass": true,
+  "numeric_guard_unit_tests": "12/12",
+  "implements_real_smoke_mode": true,
+  "guards_fail_closed": true,
+  "finite_zero_range_fallback_preserved": true,
+  "nonfinite_prenorm_cam_fails_closed": true
+ },
+ "what_is_eligible": "The v1.0e `--mode smoke` PRE-SCIENTIFIC SYNTHETIC INTERFACE VALIDATION under PHASE35_SMOKE_EXECUTE=1 ONLY.",
+ "what_is_not_eligible": [
+  "scientific Grad-CAM execution (requires PHASE35_EXECUTE=1)",
+  "any scientific Phase35 family execution",
+  "Phase36"
+ ],
+ "scientific_execution_authorized": false,
+ "smoke_executed_by_this_artwork": false,
+ "protected_reads_required": 0,
+ "predecessors": {
+  "scripts/analysis/phase35_interpretability_execution_v1_0d.py": {
+   "path": "scripts/analysis/phase35_interpretability_execution_v1_0d.py",
+   "expected_sha256": "cccc109ade27eb5ad7883912004c1e911e9e253a659146f3d64820af92244056",
+   "observed_sha256": "cccc109ade27eb5ad7883912004c1e911e9e253a659146f3d64820af92244056",
+   "match": true
+  },
+  "scripts/analysis/phase35_interpretability_execution_v1_0b.py": {
+   "path": "scripts/analysis/phase35_interpretability_execution_v1_0b.py",
+   "expected_sha256": "581926840d7717e19ed15ad77c7c5339b709efc881b938924d6eec0a2ceb1872",
+   "observed_sha256": "581926840d7717e19ed15ad77c7c5339b709efc881b938924d6eec0a2ceb1872",
+   "match": true
+  },
+  "scripts/analysis/phase35_interpretability_execution_v1_0c.py": {
+   "path": "scripts/analysis/phase35_interpretability_execution_v1_0c.py",
+   "expected_sha256": "4058fc5544e6e1af15339df20a88da4880549ea8d4dd434395df04e0fa261baa",
+   "observed_sha256": "4058fc5544e6e1af15339df20a88da4880549ea8d4dd434395df04e0fa261baa",
+   "match": true
+  },
+  "scripts/analysis/phase35_interpretability_common_v1_0b.py": {
+   "path": "scripts/analysis/phase35_interpretability_common_v1_0b.py",
+   "expected_sha256": "9963215e1431e968e11bacbcd917d96a8a985a7181000258b90f458ff0a778ac",
+   "observed_sha256": "9963215e1431e968e11bacbcd917d96a8a985a7181000258b90f458ff0a778ac",
+   "match": true
+  },
+  "reports/audits/phase35_synthetic_smoke_reporting_gap_disclosure_v1_0d.json": {
+   "path": "reports/audits/phase35_synthetic_smoke_reporting_gap_disclosure_v1_0d.json",
+   "expected_sha256": "4d9fc89ab58658891cb56f9645c26ef5cf9cfa195379e5eea3e5d89d4d68cff3",
+   "observed_sha256": "4d9fc89ab58658891cb56f9645c26ef5cf9cfa195379e5eea3e5d89d4d68cff3",
+   "match": true
+  },
+  "reports/audits/phase35_synthetic_interpretability_smoke_v1_0d.json": {
+   "path": "reports/audits/phase35_synthetic_interpretability_smoke_v1_0d.json",
+   "expected_sha256": "5bf61bc52d0c83ffb50849db973fb89133f0fa741140e58de8408a395979fee0",
+   "observed_sha256": "5bf61bc52d0c83ffb50849db973fb89133f0fa741140e58de8408a395979fee0",
+   "match": true
+  },
+  "reports/audits/phase35_synthetic_smoke_provenance_v1_0d.json": {
+   "path": "reports/audits/phase35_synthetic_smoke_provenance_v1_0d.json",
+   "expected_sha256": "8a7633cf05cbdb55453903e9bed31d09c953e0ab675b6b90df5567a0506a5dcf",
+   "observed_sha256": "8a7633cf05cbdb55453903e9bed31d09c953e0ab675b6b90df5567a0506a5dcf",
+   "match": true
+  },
+  "reports/audits/phase35_synthetic_smoke_final_check_v1_0d.json": {
+   "path": "reports/audits/phase35_synthetic_smoke_final_check_v1_0d.json",
+   "expected_sha256": "1cae9c7b45d679b8fc1d3e863d022795ad6f4c8a96fc441dde95d6fec436807f",
+   "observed_sha256": "1cae9c7b45d679b8fc1d3e863d022795ad6f4c8a96fc441dde95d6fec436807f",
+   "match": true
+  }
+ },
+ "generated_utc": "2026-10-05T02:12:42Z",
+ "all_pass": true
+}

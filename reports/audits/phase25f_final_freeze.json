@@ -1,0 +1,285 @@
+{
+ "artifact": "phase25f_final_freeze",
+ "phase": "25F",
+ "stage": "CANONICAL_POST_SAFETY_EXECUTION_FROZEN",
+ "method": "RA-MedFiLM-BARR",
+ "classification": "POST_SAFETY_EXECUTION",
+ "specification_revision": "ra_medfilm_barr_post_safety_v1_0",
+ "run_family": "phase25f_barr_post_safety_v1_0_seed42",
+ "model": {
+  "class": "BARRPostSafetyV1",
+  "parameters": 1217,
+  "architecture": "Linear(20,32)->SiLU->Linear(32,16)->SiLU->Linear(16,1)",
+  "output": "raw logit"
+ },
+ "cv": {
+  "folds": 5,
+  "seeds": {
+   "0": 54000,
+   "1": 54001,
+   "2": 54002,
+   "3": 54003,
+   "4": 54004
+  },
+  "best_epochs": [
+   16,
+   7,
+   66,
+   35,
+   23
+  ],
+  "terminations": [
+   "early_stop",
+   "early_stop",
+   "early_stop",
+   "early_stop",
+   "early_stop"
+  ]
+ },
+ "final_refit": {
+  "seed": 42,
+  "final_safety_epochs": 23,
+  "checkpoint": "checkpoints/phase25f_barr_post_safety_v1_0_seed42/final/final.pt",
+  "checkpoint_sha256": "eee9b97b9921e53fc07eac9281dce64ba518c6e1659916b97b0b3bec21ec6d2e"
+ },
+ "oof": {
+  "rows": 4957,
+  "predictions_csv": "data_cache/phase25f_barr_post_safety_v1_0/phase25f_oof_safety_predictions.csv",
+  "predictions_sha256": "a9f63edd6d58a9a1d78a052a3e4539c6e0dd4d68bfb1c09c4c36789c441ebdee",
+  "classification": "META_LEVEL_OOF_DEVELOPMENT_PREDICTIONS"
+ },
+ "classifier_metrics_overall": {
+  "n": 4957,
+  "n_pos": 2775,
+  "n_neg": 2182,
+  "bce": 0.6694794578827419,
+  "brier": 0.23863682760360122,
+  "accuracy": 0.5715150292515635,
+  "balanced_accuracy": 0.5365500697764676,
+  "precision": 0.5824259306153456,
+  "recall_sensitivity": 0.8288288288288288,
+  "f1": 0.6841165972635336,
+  "specificity": 0.24427131072410632,
+  "tp": 2300,
+  "fp": 1649,
+  "tn": 533,
+  "fn": 475,
+  "roc_auc": 0.5944726302838127,
+  "pr_auc": 0.655337484053522,
+  "threshold": 0.5
+ },
+ "c9": {
+  "policies": 20,
+  "rows": 99140,
+  "decision_manifest_sha256": "cde91c474bf19bb36368357ce4b38dd1cc7dad1b37d900fcec7cde6b9e72dbd1"
+ },
+ "notebook": {
+  "path": "notebooks/phasewise/phase_25f_post_safety/phase25f_post_safety_execution.ipynb",
+  "sha256": "d40120ab35956335e884f2b71398a4a6727e3ca3b50be788fd1d86f33e948908",
+  "sections": 41,
+  "figures": 9,
+  "byte_identical_builds": 3
+ },
+ "tables": 18,
+ "figures": 9,
+ "scope": {
+  "router_holdout_reads": 0,
+  "VAL808_reads": 0,
+  "TEST_reads": 0,
+  "A7_A8_evaluated": false,
+  "C8_C9_compared": false,
+  "preservation_adjudicated": false,
+  "threshold_tuned": false,
+  "new_budget_or_lambda": false
+ },
+ "phase25f_status": "COMPLETE_CANONICAL",
+ "phase25g_status": "ELIGIBLE_NOT_STARTED",
+ "phase25g_started": false,
+ "blocked_attempt_provenance_preserved": true,
+ "frozen_predecessors_unmodified": true,
+ "audits": {
+  "phase25f_architecture_execution_binding.json": {
+   "path": "reports/audits/phase25f_architecture_execution_binding.json",
+   "exists": true,
+   "sha256": "2cec652a2305d65bde5eba909039a4d64366f1f2c612b4de39c0703a06690001"
+  },
+  "phase25f_c9_decision_artifact.json": {
+   "path": "reports/audits/phase25f_c9_decision_artifact.json",
+   "exists": true,
+   "sha256": "d08390f2a42c1bbf55f502a78d71f6eec1474e151c76245ff71ed4ea96f0c1da"
+  },
+  "phase25f_c9_scope_guard.json": {
+   "path": "reports/audits/phase25f_c9_scope_guard.json",
+   "exists": true,
+   "sha256": "de640daf9c4dc52acdb7113aa887e5f2fe3ac9816db7f59354e49c69c6f661c9"
+  },
+  "phase25f_classifier_metric_audit.json": {
+   "path": "reports/audits/phase25f_classifier_metric_audit.json",
+   "exists": true,
+   "sha256": "14adee8159475ed0217224f040385e5305973ceb27020625657734e581bbd225"
+  },
+  "phase25f_classifier_metrics.json": {
+   "path": "reports/audits/phase25f_classifier_metrics.json",
+   "exists": true,
+   "sha256": "8cae7d644452909ca1e3dc7b1867255c516f0b69d42015f878c8cb3edfe9be1e"
+  },
+  "phase25f_cv_normalization_audit.json": {
+   "path": "reports/audits/phase25f_cv_normalization_audit.json",
+   "exists": true,
+   "sha256": "257c3d130dd43b9e06da7dbfcfd0d1d9cff1f01654e63751d6031f289b05099b"
+  },
+  "phase25f_execution_contract_binding.json": {
+   "path": "reports/audits/phase25f_execution_contract_binding.json",
+   "exists": true,
+   "sha256": "c20c7f556e3c25fc8e6d34aa2acb73aed134bc66f3f6b14938b886a262a5291a"
+  },
+  "phase25f_execution_docs_sync.json": {
+   "path": "reports/audits/phase25f_execution_docs_sync.json",
+   "exists": true,
+   "sha256": "54522472c392d8599600ce240a6ffe54454373b0bf7addb334d1552c4828c1e8"
+  },
+  "phase25f_execution_forbidden_operation_audit.json": {
+   "path": "reports/audits/phase25f_execution_forbidden_operation_audit.json",
+   "exists": true,
+   "sha256": "34da021c957b3b77564a76fbda1d2884923774fcd6fdc430003d666a89a35ef3"
+  },
+  "phase25f_execution_gate_enforcement.json": {
+   "path": "reports/audits/phase25f_execution_gate_enforcement.json",
+   "exists": true,
+   "sha256": "73d1db628b61d3fdcf788da48db4722e300c0ddffe109197e6f92a33eb770574"
+  },
+  "phase25f_execution_join_integrity.json": {
+   "path": "reports/audits/phase25f_execution_join_integrity.json",
+   "exists": true,
+   "sha256": "e6939d55aaf6b7263c16e17bec9fb93c4f9eccbf3cc0bdf4f7366be53d3e3062"
+  },
+  "phase25f_execution_reentry_gate.json": {
+   "path": "reports/audits/phase25f_execution_reentry_gate.json",
+   "exists": true,
+   "sha256": "fc4fd67bb40f96ed46e71a2f3a34558f1037a5519e6f6785578bfc0fdb9a6e90"
+  },
+  "phase25f_execution_scope_and_leakage_audit.json": {
+   "path": "reports/audits/phase25f_execution_scope_and_leakage_audit.json",
+   "exists": true,
+   "sha256": "5a10eb950c486a22d36b6151065b15cd33707b2bc19189ca87a228ce5e33e1be"
+  },
+  "phase25f_execution_split_integrity.json": {
+   "path": "reports/audits/phase25f_execution_split_integrity.json",
+   "exists": true,
+   "sha256": "f53f075b3255c3dd0bcbf939548aeb883994ace9138d57a5d2a4d1db995b5fa8"
+  },
+  "phase25f_execution_terminal.json": {
+   "path": "reports/audits/phase25f_execution_terminal.json",
+   "exists": true,
+   "sha256": "d05785515345928128cbee6b57b3ceab8a544c8f7eb5586709a04cd99a3ab4cf"
+  },
+  "phase25f_final_checkpoint_integrity.json": {
+   "path": "reports/audits/phase25f_final_checkpoint_integrity.json",
+   "exists": true,
+   "sha256": "d674647ad2b1b36563c5b42188a25f395b2d4c51355d77d9df8ffe9f5cb1255a"
+  },
+  "phase25f_final_epoch_rule_execution.json": {
+   "path": "reports/audits/phase25f_final_epoch_rule_execution.json",
+   "exists": true,
+   "sha256": "2b3f1213c28edd4b7ec460f2aeadcfdafa5f3b2485ac20176f6243f84f9ffa0a"
+  },
+  "phase25f_final_normalization.json": {
+   "path": "reports/audits/phase25f_final_normalization.json",
+   "exists": true,
+   "sha256": "e009403ee677a7189b30d54572d25f26d591e0df937128bc86ed07c771a66558"
+  },
+  "phase25f_fusion_fallback_contract_audit.json": {
+   "path": "reports/audits/phase25f_fusion_fallback_contract_audit.json",
+   "exists": true,
+   "sha256": "4f6549beb82ef291f460c3b5dc49c48430c0498b44adac0f9aa7aa0afcc5de65"
+  },
+  "phase25f_implementation_tests.json": {
+   "path": "reports/audits/phase25f_implementation_tests.json",
+   "exists": true,
+   "sha256": "525987fd0827ad67c51b5e832023c4a1aee2befac5b901a1766d643b466052e8"
+  },
+  "phase25f_initialization_binding.json": {
+   "path": "reports/audits/phase25f_initialization_binding.json",
+   "exists": true,
+   "sha256": "5e459b386ad1e5586b6ce70808b980fbf7cbffacd87a184ec3fc85d798696fc4"
+  },
+  "phase25f_leakage_safety_audit.json": {
+   "path": "reports/audits/phase25f_leakage_safety_audit.json",
+   "exists": true,
+   "sha256": "52a7c94a6edde1e24d61a9f31f17b25b5a7dccafb6b6f2afbd9ed7811d3b9fca"
+  },
+  "phase25f_notebook_determinism.json": {
+   "path": "reports/audits/phase25f_notebook_determinism.json",
+   "exists": true,
+   "sha256": "2428955ff26a9b588ee1ff607a71212819096a6730fe159865b047ff13d585e9"
+  },
+  "phase25f_oof_integrity.json": {
+   "path": "reports/audits/phase25f_oof_integrity.json",
+   "exists": true,
+   "sha256": "c4dfc8b1cf2a49a3ff674a4063319c5605d40c8f5d1ff30e4e4548cb528c8251"
+  },
+  "phase25f_oof_prediction_determinism.json": {
+   "path": "reports/audits/phase25f_oof_prediction_determinism.json",
+   "exists": true,
+   "sha256": "102d64c5c003b01a25214343649b467fcb695a4ab1a9b7a4efbab062b2bfa14d"
+  },
+  "phase25f_phase25g_handoff.json": {
+   "path": "reports/audits/phase25f_phase25g_handoff.json",
+   "exists": true,
+   "sha256": "9869597bc32b7582f6a2f21242333eca497366893ed8acfcde18e05274f78fc3"
+  },
+  "phase25f_post_safety_cost_audit.json": {
+   "path": "reports/audits/phase25f_post_safety_cost_audit.json",
+   "exists": true,
+   "sha256": "f0a56c073e316a4b537644938b35b777f54ea5ede11dd1a7b07176181cc94a17"
+  },
+  "phase25f_predecessor_preservation_audit.json": {
+   "path": "reports/audits/phase25f_predecessor_preservation_audit.json",
+   "exists": true,
+   "sha256": "0da3fb1eeec10ab291a661dd025dfcf061ca01a23b68bfee3563c4de51a5a0f4"
+  },
+  "phase25f_reproducibility_audit.json": {
+   "path": "reports/audits/phase25f_reproducibility_audit.json",
+   "exists": true,
+   "sha256": "3f33f149b794578a14bea3625f56bba0be63f38e995254b3d8f3d8a9eeb1dd9e"
+  },
+  "phase25f_test_lock_audit.json": {
+   "path": "reports/audits/phase25f_test_lock_audit.json",
+   "exists": true,
+   "sha256": "779898a5c7df0549bf1a7e3f8ccaf6694277841178ff5cbcaab56f04fee4ed5f"
+  },
+  "phase25f_threshold_semantics_audit.json": {
+   "path": "reports/audits/phase25f_threshold_semantics_audit.json",
+   "exists": true,
+   "sha256": "6b7b6c4978ad58e400dc4166ee8f2378f079d8fb3fcb7d04b30b1ec3ade3ed6f"
+  },
+  "phase25f_training_data_source_audit.json": {
+   "path": "reports/audits/phase25f_training_data_source_audit.json",
+   "exists": true,
+   "sha256": "c31ba9092bd0ae97e58a5486723217131caad68e1b3ccb1e33cf9b9093be93e4"
+  },
+  "phase25f_training_health.json": {
+   "path": "reports/audits/phase25f_training_health.json",
+   "exists": true,
+   "sha256": "cae79ca9f880bb40321c3bd17a912d21bb25fd0e4f3a05d45bb62a177e68ef63"
+  },
+  "phase25f_training_run_registry.json": {
+   "path": "reports/audits/phase25f_training_run_registry.json",
+   "exists": true,
+   "sha256": "9e6b53f8900a8511895860ecf1c49247e0111ef6407796c453cbcec203401c88"
+  },
+  "phase25f_upstream_crossfit_dependency_note.json": {
+   "path": "reports/audits/phase25f_upstream_crossfit_dependency_note.json",
+   "exists": true,
+   "sha256": "705d28b76c9736dc613d0c5be39dec5b690a335687d54368a16623a3df20e684"
+  },
+  "phase25f_visual_integrity.json": {
+   "path": "reports/audits/phase25f_visual_integrity.json",
+   "exists": true,
+   "sha256": "f06495c21b8c1409d95808ecf7cd15e4324d7767d2a6888892a34e8f67e6bc9f"
+  }
+ },
+ "audit_count": 36,
+ "terminal": "PHASE25F_POST_SAFETY_EXECUTION_COMPLETE__OOF_SAFETY_PREDICTIONS_FINAL_CHECKPOINT_AND_C9_ARTIFACTS_FROZEN__PHASE25G_ELIGIBLE_NOT_STARTED",
+ "all_pass": true
+}

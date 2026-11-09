@@ -1,0 +1,109 @@
+{
+  "artifact": "barr_m1_v1_0c_scope_freeze",
+  "revision": "RA_MEDFILM_BARR_BARR_M1_V1_0C__FINAL_APPROVAL_PACKAGE",
+  "generated_utc": "2026-10-27T02:07:53Z",
+  "identifier": "BARR-M1",
+  "classification": "DESCRIPTIVE_POLICY_COMPARISON",
+  "not_a_router_causal_ablation": true,
+  "arms": [
+    "A0",
+    "A1",
+    "A8"
+  ],
+  "arms_excluded": [
+    "A2",
+    "A3",
+    "A4",
+    "A5",
+    "A6",
+    "A7",
+    "R1",
+    "R2",
+    "R3",
+    "F1"
+  ],
+  "population": "ROUTER_DEVELOPMENT",
+  "population_n": 4957,
+  "population_digest": "data_cache/phase25b_barr_pre_refinement_features_v1_2/metadata.csv",
+  "population_digest_sha256": "ee8c304350d28d907c053a355da1f878ff7f9dd137761034283459aeed071093",
+  "evaluation_class": "IN_SAMPLE_DEVELOPMENT",
+  "execution_mode": "CPU_ONLY_RE_ANALYSIS_ONLY",
+  "source": "preserved Phase-25 and Phase-28 arrays",
+  "new_model_construction": false,
+  "new_forward_passes": false,
+  "new_training": false,
+  "A7_A8_execution_within_barr_m1": false,
+  "TEST_access": false,
+  "ROUTER_HOLDOUT_access": false,
+  "external_data_access": false,
+  "endpoint_contract": {
+    "paired_contrasts": [
+      "A8_minus_A0",
+      "A8_minus_A1",
+      "A1_minus_A0"
+    ],
+    "same_eligible_cases": true,
+    "skip_or_reject_contributes_zero": true,
+    "denominator": "all 4957 (intent-to-treat)",
+    "macro_definition": "(1/4) * sum_over_4_domains(mean_in_domain(delta))",
+    "pooled_definition": "sum(delta) / n_executed — reported separately, never as macro",
+    "harm_strict": "delta < 0",
+    "harm_tolerance_adjusted": "delta < -1e-9",
+    "harm_rates_reported_separately": true
+  },
+  "bootstrap_contract": {
+    "procedure": "paired bootstrap, common resampled indices per contrast",
+    "n_resamples": 2000,
+    "seed": 42,
+    "grouping_unit": "domain-stratified; KUB patient-clustered (267); ISIC/BUSI/KVASIR per-case (no patient id)",
+    "ci": "95% percentile",
+    "missingness": "ABORT on any missing case, NaN or duplicate sample_id",
+    "multiplicity": "DESCRIPTIVE_NO_POST_HOC_CORRECTION"
+  },
+  "claim_class": "DESCRIPTIVE_DEV",
+  "prohibited_claims": [
+    "HELD_OUT",
+    "CONFIRMATORY",
+    "GENERALISATION",
+    "CLINICAL_SAFETY",
+    "SUPERIORITY",
+    "ISOLATED_CAUSAL_ROUTER_EFFECT"
+  ],
+  "frozen_components": {
+    "G": {
+      "name": "GlobalMedFiLM",
+      "sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+      "params": 3523001
+    },
+    "R_psi": {
+      "name": "BARRRegionalRefinerV1",
+      "sha256": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109",
+      "params": 1276401
+    },
+    "B_phi": {
+      "name": "BARRBenefitRouterV1",
+      "sha256": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+      "params": 36801
+    },
+    "S_omega": {
+      "name": "BARRPostSafetyV1",
+      "sha256": "eee9b97b9921e53fc07eac9281dce64ba518c6e1659916b97b0b3bec21ec6d2e",
+      "params": 1217
+    }
+  },
+  "frozen_constants": {
+    "roi_proposal_threshold": 0.3,
+    "roi_expansion_factor": 1.5,
+    "roi_resolution": 256,
+    "segmentation_output_threshold": 0.5,
+    "safety_accept_threshold": 0.5,
+    "budget": 0.25,
+    "K": 1239,
+    "lambda": 0.25,
+    "bootstrap_replicates": 2000,
+    "bootstrap_seed": 42,
+    "harm_tolerance": 1e-09
+  },
+  "scope_is_frozen": true,
+  "approval_status": "NOT_APPROVED"
+}

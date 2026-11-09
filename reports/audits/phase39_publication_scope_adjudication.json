@@ -1,0 +1,131 @@
+{
+  "classification": "PHASE39_PUBLICATION_SCOPE_ADJUDICATION",
+  "generated_utc": "2026-10-11T10:30:00Z",
+  "phase": 39,
+  "test_access": 0,
+  "inference": 0,
+  "new_statistics": 0,
+  "bound_completeness_adjudication": {
+    "path": "reports/audits/phase39_v1_2_scientific_protocol_completeness_adjudication.json",
+    "sha256": "78a6ead5972ff6ba658dbfac3c68e686ea3662bbe22c01348652e6f083d102cc"
+  },
+  "bound_phase37_claim_matrix": {
+    "path": "reports/audits/phase37_claim_evidence_matrix.json",
+    "sha256": "822b46ecb3107eb7a2ee178003a1e84593bef5cedfbb857f6c07c768017391ce"
+  },
+  "bound_phase38_claim_policy": {
+    "path": "reports/audits/phase38_manuscript_claim_policy_freeze.json",
+    "sha256": "dad977db981583c85faec8b179328cbc727185f27576babdc810b25ccddc7256"
+  },
+  "task1_claim_inventory": {
+    "A": {
+      "classification": "SUPPORTED_WITHOUT_PHASE39_PRIMARY_ENDPOINT",
+      "basis": "Phase27 VAL808 preservation (frozen) + Phase30 one-shot ROUTER_HOLDOUT non-inferiority (frozen, with protocol-deviation qualifier)",
+      "missing_variant": "TEST-confirmed preservation/non-inferiority = REQUIRES_MISSING_PHASE39_COMPARATOR"
+    },
+    "B": {
+      "classification": "SUPPORTED_WITHOUT_PHASE39_PRIMARY_ENDPOINT",
+      "basis": "Phase28 13-arm ablation on ROUTER_DEVELOPMENT (frozen); F1 refiner negative result"
+    },
+    "C": {
+      "classification": "SUPPORTED_WITHOUT_PHASE39_PRIMARY_ENDPOINT",
+      "basis": "Phase29 three-seed reproducibility (ROUTER_DEVELOPMENT + VAL808), descriptive"
+    },
+    "D": {
+      "classification": "SUPPORTED_WITHOUT_PHASE39_PRIMARY_ENDPOINT",
+      "basis": "Phase30 one-shot ROUTER_HOLDOUT final development validation (frozen, disclosed deviation)",
+      "missing_variant": "TEST-based final validation = REQUIRES_MISSING_PHASE39_COMPARATOR"
+    },
+    "E": {
+      "classification": "SUPPORTED_DESCRIPTIVELY_ONLY",
+      "basis": "Phase31: NO NEW CONFIRMATORY SIGNIFICANCE PROCEDURE IS ELIGIBLE; descriptive CIs only"
+    },
+    "F": {
+      "classification": "SUPPORTED_DESCRIPTIVELY_ONLY",
+      "basis": "Phase32 negative result: no prospective clean external cohort eligible"
+    },
+    "G": {
+      "classification": "SUPPORTED_WITHOUT_PHASE39_PRIMARY_ENDPOINT",
+      "basis": "Phase33 descriptive failure analysis on frozen ROUTER_HOLDOUT tables"
+    },
+    "H": {
+      "classification": "SUPPORTED_WITHOUT_PHASE39_PRIMARY_ENDPOINT",
+      "basis": "Phase34 static/analytical/hardware-specific efficiency (frozen); no end-to-end claim"
+    },
+    "I": {
+      "classification": "SUPPORTED_WITHOUT_PHASE39_PRIMARY_ENDPOINT",
+      "basis": "Phase35 descriptive model-mechanism evidence (no causal claims)"
+    },
+    "J": {
+      "classification": "SUPPORTED_WITHOUT_PHASE39_PRIMARY_ENDPOINT",
+      "basis": "Phase36 VAL808 synthetic image-perturbation robustness (frozen)"
+    },
+    "K": {
+      "classification": "SUPPORTED_WITHOUT_PHASE39_PRIMARY_ENDPOINT",
+      "basis": "Phase36 VAL808 synthetic proposal-perturbation robustness (frozen)"
+    },
+    "L": {
+      "classification": "SUPPORTED_WITHOUT_PHASE39_PRIMARY_ENDPOINT",
+      "basis": "Phase36 KUB reporting-only subgroup observations (frozen)"
+    },
+    "TEST_descriptive": {
+      "classification": "SUPPORTED_DESCRIPTIVELY_ONLY",
+      "basis": "v1.2 final-system TEST Dice by domain + macro (1683 samples)"
+    },
+    "TEST_comparative": {
+      "classification": "REQUIRES_MISSING_PHASE39_COMPARATOR",
+      "basis": "C-gGLOBAL DeltaDice / CI / harm not emitted"
+    },
+    "TEST_comparative_prohibited": {
+      "classification": "PROHIBITED",
+      "basis": "superiority/noninferiority/preservation/harm-free/primary-endpoint on TEST"
+    }
+  },
+  "task2_test_claim_boundary": {
+    "allowed": [
+      "RA-MedFiLM-BARR was evaluated on all 1,683 TEST samples",
+      "final-system descriptive Dice by domain (ISIC 735 / BUSI 174 / KVASIR 216 / KUB 558)",
+      "final-system descriptive macro Dice (0.8314368385956257)",
+      "no TEST samples were excluded post hoc",
+      "the exact post-protocol evidence qualifier"
+    ],
+    "forbidden": [
+      "superior to C-gGLOBAL on TEST",
+      "noninferior to C-gGLOBAL on TEST",
+      "preservation asserted on TEST",
+      "harm-free on TEST",
+      "significant improvement on TEST",
+      "primary endpoint passed",
+      "per-domain harm gate passed"
+    ]
+  },
+  "task3_abstract_main_supplement_policy": {
+    "TEST_descriptive_final_system": {
+      "abstract_allowed": true,
+      "main_text_allowed": true,
+      "supplement_allowed": true,
+      "mandatory_qualifier": "POST_PROTOCOL_TECHNICAL_RECOVERY_TEST_RESULT_WITH_TWO_DISCLOSED_PREOUTCOME_TECHNICAL_FAILURES"
+    },
+    "missing_primary_endpoint_disclosure": {
+      "abstract_allowed": false,
+      "main_text_allowed": true,
+      "supplement_allowed": true,
+      "rule": "the missing primary comparative endpoint MUST be disclosed in the MAIN manuscript, not hidden only in the supplement"
+    },
+    "TEST_comparative_prohibited_claims": {
+      "abstract_allowed": false,
+      "main_text_allowed": false,
+      "supplement_allowed": false
+    }
+  },
+  "task4_limitation_language": "The original one-shot Phase39 TEST protocol was not completed as intended. Two pre-outcome technical failures occurred (v1.0, v1.1); neither produced a scientific TEST result and neither was outcome-dependent. A post-protocol technical-recovery execution (v1.2) then successfully evaluated the frozen RA-MedFiLM-BARR system on all 1,683 TEST samples using the canonical frozen inference implementation. That recovery produced descriptive final-system segmentation results only: it did not emit the preregistered C-gGLOBAL comparative quantities (global-reference Dice, paired/macro DeltaDice, or their confidence intervals). Consequently the frozen comparative primary endpoint and the associated per-domain harm decisions could not be evaluated, and no additional TEST inference was performed to reconstruct them. The TEST evidence is therefore descriptive, not confirmatory, and is labelled: POST_PROTOCOL_TECHNICAL_RECOVERY_TEST_RESULT_WITH_TWO_DISCLOSED_PREOUTCOME_TECHNICAL_FAILURES.",
+  "task5_evidence_class": {
+    "preserved": "POST_PROTOCOL_TECHNICAL_RECOVERY_TEST_RESULT_WITH_TWO_DISCLOSED_PREOUTCOME_TECHNICAL_FAILURES",
+    "untouched_one_shot_test": "PROHIBITED",
+    "descriptive_not_confirmatory": true
+  },
+  "task6_manuscript_viability": {
+    "decision": "MANUSCRIPT_VIABLE_WITH_DESCRIPTIVE_TEST_ONLY",
+    "reasoning": "The central contribution — the RA-MedFiLM-BARR architecture and its preservation / module-contribution claims — rests on frozen Phase27 (VAL808 preservation), Phase30 (one-shot ROUTER_HOLDOUT non-inferiority, with disclosed protocol-deviation qualifier), Phase28 (ablation), Phase29 (three-seed reproducibility), Phase33 (failure analysis), Phase34 (efficiency), Phase35 (interpretability) and Phase36 (robustness) evidence. None of those central claims depends on the missing Phase39 comparative endpoint. The Phase39 TEST was intended as the final untouched confirmation; its absence means the manuscript may present TEST only descriptively (final-system Dice by domain + macro) and must disclose the missing comparative endpoint. The TEST-confirmed variants of claims A and D remain unavailable."
+  }
+}

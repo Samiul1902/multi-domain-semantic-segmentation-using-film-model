@@ -1,0 +1,29 @@
+{
+  "artifact": "phase21_notebook_determinism_repair",
+  "phase": 21,
+  "purpose": "prove the repaired reviewer notebook is reproducible: 3 consecutive builds from persisted artifacts produce byte-identical output",
+  "notebook_path": "notebooks/phasewise/phase_21_global_medfilm/phase21_global_medfilm_reference.ipynb",
+  "builds": 3,
+  "sha256_per_build": [
+    "e7fadc7c9040d52ab6894f0f9487c29b1c3289f7d2bf68d2b71976609d644d94",
+    "e7fadc7c9040d52ab6894f0f9487c29b1c3289f7d2bf68d2b71976609d644d94",
+    "e7fadc7c9040d52ab6894f0f9487c29b1c3289f7d2bf68d2b71976609d644d94"
+  ],
+  "three_builds_byte_identical": true,
+  "final_sha256": "e7fadc7c9040d52ab6894f0f9487c29b1c3289f7d2bf68d2b71976609d644d94",
+  "original_defective_sha256": "bb916f54296719b0c38643c0a9302e713cacd33a418850dc9b316d8d9a26a4ed",
+  "deterministic_practices": [
+    "deterministic cell ids",
+    "stripped metadata.execution",
+    "coalesced stream outputs",
+    "fixed pandas Styler uuids via set_uuid",
+    "normalised object memory addresses (0x... -> 0xADDR)",
+    "binary image payloads excluded from address normalisation",
+    "stable output ordering",
+    "bounded image payloads calibrated below the measured corruption size"
+  ],
+  "test_reads": 0,
+  "training_jobs_started": 0,
+  "inference_jobs_started": 0,
+  "generated_utc": "2026-09-29T03:59:54.840780+00:00"
+}

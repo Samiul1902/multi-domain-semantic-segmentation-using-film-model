@@ -1,0 +1,122 @@
+{
+  "artifact": "phase22_statistics",
+  "phase": 22,
+  "method": "paired, domain-stratified percentile bootstrap; ONE resampled index set per replicate applied to BOTH arms; identical indices guarantee the pairing",
+  "parameters": {
+    "n_boot": 2000,
+    "seed": 42,
+    "alpha": 0.05,
+    "unit": "image",
+    "stratified_by": "dataset",
+    "identical_resampled_indices_for_both_arms": true
+  },
+  "comparisons": {
+    "oracle_regional_vs_global_executed": {
+      "delta": -0.042477861137391826,
+      "ci_low": -0.05234330765960202,
+      "ci_high": -0.0323633392102823,
+      "p_value": 0.0,
+      "ci_excludes_zero": true,
+      "n_boot": 2000,
+      "seed": 42,
+      "alpha": 0.05,
+      "unit": "image",
+      "paired": true,
+      "domain_stratified": true,
+      "n_strata": 4
+    },
+    "oracle_regional_vs_global_intent_to_treat": {
+      "delta": -0.042477861137391826,
+      "ci_low": -0.05234330765960202,
+      "ci_high": -0.0323633392102823,
+      "p_value": 0.0,
+      "ci_excludes_zero": true,
+      "n_boot": 2000,
+      "seed": 42,
+      "alpha": 0.05,
+      "unit": "image",
+      "paired": true,
+      "domain_stratified": true,
+      "n_strata": 4
+    },
+    "predicted_regional_vs_global_intent_to_treat": {
+      "delta": -0.06021763953686721,
+      "ci_low": -0.07055326336472789,
+      "ci_high": -0.05074189211261104,
+      "p_value": 0.0,
+      "ci_excludes_zero": true,
+      "n_boot": 2000,
+      "seed": 42,
+      "alpha": 0.05,
+      "unit": "image",
+      "paired": true,
+      "domain_stratified": true,
+      "n_strata": 4
+    },
+    "predicted_regional_vs_global_executed": {
+      "delta": -0.06021763953686721,
+      "ci_low": -0.07055326336472789,
+      "ci_high": -0.05074189211261104,
+      "p_value": 0.0,
+      "ci_excludes_zero": true,
+      "n_boot": 2000,
+      "seed": 42,
+      "alpha": 0.05,
+      "unit": "image",
+      "paired": true,
+      "domain_stratified": true,
+      "n_strata": 4
+    },
+    "scale_256_vs_512_native": {
+      "delta": -0.13823991783628453,
+      "ci_low": -0.1552532908820662,
+      "ci_high": -0.12217223483435337,
+      "p_value": 0.0,
+      "ci_excludes_zero": true,
+      "n_boot": 2000,
+      "seed": 42,
+      "alpha": 0.05,
+      "unit": "image",
+      "paired": true,
+      "domain_stratified": true,
+      "n_strata": 4
+    },
+    "scale_768_vs_512_native": {
+      "delta": -0.03688789010381943,
+      "ci_low": -0.04463243450248566,
+      "ci_high": -0.02915998185469751,
+      "p_value": 0.0,
+      "ci_excludes_zero": true,
+      "n_boot": 2000,
+      "seed": 42,
+      "alpha": 0.05,
+      "unit": "image",
+      "paired": true,
+      "domain_stratified": true,
+      "n_strata": 4
+    },
+    "scale_1024_vs_512_native": {
+      "delta": -0.10041294963314618,
+      "ci_low": -0.11064502494972948,
+      "ci_high": -0.09044540222448447,
+      "p_value": 0.0,
+      "ci_excludes_zero": true,
+      "n_boot": 2000,
+      "seed": 42,
+      "alpha": 0.05,
+      "unit": "image",
+      "paired": true,
+      "domain_stratified": true,
+      "n_strata": 4
+    }
+  },
+  "ci_overlap_rule": "where the CI overlaps zero the arms are NOT separable and no ordering claim may be made",
+  "threshold_rule_caveat": {
+    "rule": "pred = (float32(prob) >= 0.5)",
+    "residual_mismatch_pixels_against_stored_pred": 1078,
+    "artifact": "reports/audits/phase22_threshold_rule_audit.json",
+    "effect": "below 1e-4 on native-space Dice at this population size"
+  },
+  "table": "reports/tables/phase22_statistics.csv",
+  "test_reads": 0
+}

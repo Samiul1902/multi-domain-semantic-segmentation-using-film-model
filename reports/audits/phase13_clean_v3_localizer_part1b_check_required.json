@@ -1,0 +1,217 @@
+{
+  "phase": "13",
+  "part": "1B",
+  "document_type": "PART1B_PRE_TRAINING_GATE_RECORD",
+  "status": "CHECK_REQUIRED",
+  "date": "2026-09-21",
+  "model": "Gemini 3.8 Flash Medium",
+  "task": "CLEAN_V3_LOCALIZER_TRAINING_PRE_TRAINING_GATES",
+  "summary": "Part 1B was authorized. All pre-training verification gates that could be evaluated PASSED, but training was NOT started because the R2 frozen protocol contains no executable clean-v3 experiment_id, which is an unconditional STOP condition under Part 1B section 5. No optimizer was created, no model was constructed, no epoch was run, no checkpoint was written.",
+  "protocol_identity": {
+    "r2_protocol_path": "reports/audits/phase13_clean_v3_localizer_protocol_frozen_r2.json",
+    "r2_protocol_sha256": "ab451e03366c589fae5c303ebf1382e086f4f115b97768eb36d491256a3b5e53",
+    "r2_protocol_sha_expected": "ab451e03366c589fae5c303ebf1382e086f4f115b97768eb36d491256a3b5e53",
+    "r2_protocol_sha_verified": true,
+    "r2_status": "SUPERVISOR_FROZEN_R2_READY_FOR_PART1B_TRAINING",
+    "r2_status_verified": true,
+    "r2_md_sha256": "b9bad4e583a6a46d4482ed5aa7bf30fd93c2299858183e46c61e3c7c4b18ff89",
+    "r2_notebook_sha256": "47ff06a11116c9d43554121a2114a96b1bb7729a290f2524ed496d992610918e",
+    "r1_artifact_status_for_execution": "SUPERSEDED_BY_SUPERVISOR_R2_CHECKPOINT_SELECTION_CORRECTION",
+    "r1_artifact_preserved": true
+  },
+  "gate_results": {
+    "section_1_source_of_truth": {
+      "result": "PASS",
+      "detail": "R2 JSON loaded; SHA and status both match the authorized values."
+    },
+    "section_2_pre_training_immutability": {
+      "result": "PASS",
+      "artifacts": {
+        "part1a_notebook": {"sha256": "68f787e1f70fcf706442b342e62cc615eeb347653e753149987becf793ac2bd0", "unchanged": true},
+        "r1_amendment_notebook": {"sha256": "6a08d6bd43e173f4b8b646d130fdabca0e95f3466b5caf0a91323cc52d34a622", "unchanged": true},
+        "r1_frozen_json": {"sha256": "999144bbad4af4e1d2dc006279aef1a5fb93f450006ae2c5db159c791c913703", "unchanged": true},
+        "r2_notebook": {"sha256": "47ff06a11116c9d43554121a2114a96b1bb7729a290f2524ed496d992610918e", "unchanged": true},
+        "r2_frozen_json": {"sha256": "ab451e03366c589fae5c303ebf1382e086f4f115b97768eb36d491256a3b5e53", "unchanged": true},
+        "hard_tiny_table": {"sha256": "2f9828d77c008e7c90cd69e82d0af3568902ca9d508fdfcb9d8ccf8abd569538", "unchanged": true},
+        "global_empty_table": {"sha256": "a0b332cad6bca4466ccc528cbe18cc527ef6503603ab69c55b9d699d7979f0ea", "unchanged": true},
+        "historical_history_csv": {"sha256": "dcdb4369d0c3a087fd0bd2611db0aac3ff0afd48db8c1f9a9bb5e79b834fdb76", "unchanged": true},
+        "historical_best_pt": {"sha256": "ece906df6c73f2e93c3f873661490bf3cb1a6b82be2d2d93b58c25bc967cbace", "unchanged": true},
+        "historical_latest_pt": {"sha256": "a1461df2e8d6784984337c79b87c65833c39fed16382579088d97d7c60ba78f4", "unchanged": true}
+      }
+    },
+    "section_3_population_gates": {
+      "result": "PASS",
+      "manifest": "phase4_v3",
+      "foreground_rule": "mask > 0",
+      "connectivity": 8,
+      "train_full_field_images": 770,
+      "train_full_field_expected": 770,
+      "val_full_field_images": 103,
+      "val_full_field_expected": 103,
+      "val_components": 152,
+      "val_components_expected": 152,
+      "val_strata": {"TINY": 72, "SMALL": 28, "MEDIUM": 36, "LARGE": 16},
+      "val_strata_expected": {"TINY": 72, "SMALL": 28, "MEDIUM": 36, "LARGE": 16},
+      "roi_acquisitions_excluded": true,
+      "roi_images_excluded_train": 1208,
+      "roi_images_excluded_val": 177,
+      "train_val_patient_overlap": 0,
+      "test_content_reads": 0,
+      "method": "inner join of manifests/phase4_v3/{train,val}.csv (dataset == KUB) with reports/tables/kub_view_type_inventory.csv on sample_id; FOV from the directory-semantics rule",
+      "check_method_trap": "Filtering reports/tables/kub_view_type_inventory.csv by its own 'split' column yields 771/106 because that column carries STALE phase4_v2 split labels. The active manifest MUST be joined in. Recorded so future parts do not mis-report the clean-v3 population."
+    },
+    "section_4_hard_set_integrity": {
+      "result": "PASS",
+      "hard_tiny_count": 15,
+      "hard_tiny_sha256": "2f9828d77c008e7c90cd69e82d0af3568902ca9d508fdfcb9d8ccf8abd569538",
+      "global_empty_count": 5,
+      "global_empty_sha256": "a0b332cad6bca4466ccc528cbe18cc527ef6503603ab69c55b9d699d7979f0ea",
+      "role": "PRE_FROZEN_SECONDARY_DIAGNOSTIC_COHORT",
+      "participates_in_checkpoint_selection": false,
+      "anchor_model": "unetpp",
+      "anchor_role": "HISTORICAL_PHASE13_HARDSET_REPLICATION_ANCHOR_ONLY"
+    },
+    "section_5_experiment_id": {
+      "result": "BLOCKED",
+      "requirement": "Use the EXACT clean-v3 experiment ID specified by the R2 frozen protocol. Do NOT invent a new ID. Do NOT append _retry / _fix / _new / _v2 / _v3b. If the R2 artifact does not contain an executable experiment ID: STOP CHECK_REQUIRED before training.",
+      "finding": "The R2 frozen protocol contains NO experiment_id field.",
+      "searched": [
+        "reports/audits/phase13_clean_v3_localizer_protocol_frozen_r2.json (all 35 top-level keys)",
+        "reports/audits/phase13_clean_v3_localizer_protocol_frozen.json (R1)",
+        "reports/tables/phase13_clean_v3_localizer_protocol_candidate.csv (27 protocol fields)",
+        "reports/tables/phase13_v2_to_clean_v3_localizer_protocol_diff.csv",
+        "reports/tables/phase13_r1_to_r2_protocol_diff.csv",
+        "configs/ (no clean-v3 localizer config exists)"
+      ],
+      "only_experiment_like_key_in_r2": "experiment_a_modified (a governance flag, not an ID)",
+      "existing_experiment_ids_found_are_all_historical_v2": [
+        "phase13b_kub_localizer_r512_h128_sigmaeq075_centernetfocal_seed42_v1",
+        "phase13b_kub_localizer_r512_s3_centernetfocal_seed42_v1",
+        "phase13b_kub_localizer_r512_s3_centernetfocal_seed42_v2",
+        "phase13b_kub_localizer_r512_s3_centernetfocal_seed42_v3",
+        "phase13b_kub_localizer_r512_s3_centernetfocal_stride4_seed42_v1",
+        "phase13b_kub_localizer_r512_s3_seed42",
+        "phase13b_kub_localizer_r512_s3_seed42_v2",
+        "phase13b_kub_localizer_r512_s3_seed42_v3"
+      ],
+      "collision_risk": "The historical runner derives the ID from --exp_id or defaults to phase13b_kub_localizer_r{resolution}_h{heatmap_resolution}_s{sigma}_seed42_v1, which is EXACTLY the frozen historical experiment directory. Using it would write into an immutable historical experiment (forbidden by sections 2 and 32). Deriving or inventing an ID is therefore unsafe as well as unauthorized.",
+      "action": "STOP / CHECK_REQUIRED / NO TRAINING"
+    },
+    "section_6_run_lock": {
+      "result": "NOT_REACHED",
+      "detail": "Gate 5 stopped before run-lock acquisition. No lock was taken."
+    },
+    "section_7_cuda_contract": {
+      "result": "NOT_REACHED",
+      "detail": "No device was requested and no CUDA check was performed because no training was started."
+    },
+    "section_8_training_core": {
+      "result": "SATISFIABLE_BUT_NOT_SELF_CONTAINED",
+      "detail": "R2 does not enumerate the scientific training core; section 8 explicitly permits reading it from 'the R2 frozen protocol / accepted historical reconstruction'. The core is recoverable from the Part-1A candidate protocol table plus the accepted historical reconstruction, so this is NOT itself a blocker.",
+      "fields_present_in_r2": [
+        "heatmap_contract.input = 512x512",
+        "heatmap_contract.output_heatmap = 128x128",
+        "heatmap_contract.heatmap_resolution = 128",
+        "proposal_configuration",
+        "checkpoint_selection",
+        "population",
+        "hard_sets",
+        "coverage_contract",
+        "downstream_geometry",
+        "downstream_composition",
+        "retention_contract",
+        "gate_governance"
+      ],
+      "fields_absent_from_r2": [
+        "architecture",
+        "target_sigma",
+        "loss",
+        "loss_coefficients",
+        "optimizer",
+        "learning_rate",
+        "weight_decay",
+        "scheduler",
+        "scheduler_T_max",
+        "batch_size",
+        "amp",
+        "seed",
+        "max_epochs",
+        "experiment_id",
+        "executable_config"
+      ],
+      "fields_recoverable_from_part1a_candidate": [
+        "model_architecture (KUBLocalizer compact 3-stage U-Net, base_channels 16)",
+        "target_sigma (0.75 in 128-space)",
+        "loss (0.75 CenterNet focal + 0.25 soft Dice; alpha 0.25, gamma 2.0)",
+        "optimizer (AdamW 1e-4 / 1e-4)",
+        "scheduler (CosineAnnealingLR T_max 100)",
+        "effective_batch (4)",
+        "seed (42)",
+        "max_epochs (100)",
+        "early_stopping_patience (15)"
+      ]
+    },
+    "section_17_scheduler_early_stop_order": {
+      "result": "VERIFIED_PENDING_CLEAN_V3_RUNNER",
+      "source": "scripts/training/train_phase13b_localizer.py",
+      "source_sha256": "5985b9eb2fe43018babbd88004bf7e5b99d2783dcfa78c7404591a02bdcb555a",
+      "observed_order": [
+        "1. TRAIN epoch",
+        "2. VAL evaluate -> val_loss + 20-config proposal search",
+        "3. proposal configuration chosen from the grid (the VAL-dependent behaviour R1/R2 removed)",
+        "4. checkpoint score computed from that configuration",
+        "5. improvement test (strict >) and bad_epochs update",
+        "6. scheduler.step()",
+        "7. history row appended",
+        "8. save latest.pt",
+        "9. save best.pt only if improved"
+      ],
+      "note": "The historical localizer ordering is: scheduler stepped per epoch AFTER train+VAL and AFTER the selection bookkeeping, then history append, then latest.pt, then best.pt. Phase-10 segmentation ordering was NOT borrowed. This must be re-confirmed against the clean-v3 runner once that runner exists."
+    }
+  },
+  "blockers": [
+    {
+      "id": "B1",
+      "severity": "BLOCKING",
+      "section": "Part 1B section 5",
+      "issue": "The R2 frozen protocol contains no executable clean-v3 experiment_id.",
+      "required_from_supervisor": "The exact clean-v3 experiment ID to use, or an authorized rule for deriving it from the historical ID.",
+      "why_not_resolved_locally": "Section 5 forbids inventing an ID and forbids appending _retry/_fix/_new/_v2/_v3b; the historical default ID would collide with the immutable historical experiment directory."
+    },
+    {
+      "id": "B2",
+      "severity": "BLOCKING",
+      "section": "Part 1B section 29 (and section 8)",
+      "issue": "No executable clean-v3 localizer configuration exists. The artifact registry required by section 29 lists an 'executable config' that has no counterpart on disk. The only localizer config, configs/kub/phase13b_localizer.yaml, is the HISTORICAL v2 config (declares phase 13B; the historical runner hardcodes manifest_version 'phase4_v2').",
+      "required_from_supervisor": "Authorization to create the clean-v3 executable config (and the clean-v3-safe training/validation wrapper), or a supervisor-supplied config path and SHA."
+    }
+  ],
+  "not_executed": {
+    "training": 0,
+    "optimizer_created": false,
+    "model_constructed": false,
+    "model_forward_passes": 0,
+    "optimizer_steps": 0,
+    "epochs_completed": 0,
+    "localizer_inference": 0,
+    "proposals_generated": 0,
+    "grid_configs_evaluated": 0,
+    "predicted_region_segmentation": 0,
+    "checkpoints_written": 0,
+    "history_rows_written": 0,
+    "run_lock_acquired": false,
+    "test_content_reads": 0,
+    "phase14_started": false,
+    "historical_artifacts_modified": false
+  },
+  "artifacts_not_created_and_why": {
+    "phase13_clean_v3_localizer_training_start.json": "Section 19 requires this 'before epoch 1'. Epoch 1 was never reached; no start audit is valid.",
+    "phase13_clean_v3_localizer_training_completion.json": "Section 21 requires this after natural completion. No training occurred.",
+    "phase13_clean_v3_localizer_epoch_results.csv": "Section 22 derives this from an immutable history.csv. No history exists.",
+    "phase13_clean_v3_localizer_training_review.ipynb": "Section 24 requires a reviewer notebook over a completed run. Creating one would falsely imply training occurred.",
+    "reports/figures/phase13_clean_v3_localizer_training/": "No data to plot.",
+    "phase13_part1b_training_artifact_registry.csv": "Nothing trained to register."
+  },
+  "next_action": "WAIT_FOR_SUPERVISOR_PHASE13_PART1B_EXPERIMENT_ID_AND_CONFIG_AUTHORIZATION",
+  "stopped": true
+}

@@ -1,0 +1,64 @@
+{
+ "artifact": "phase36_v1_21_prelaunch_defect_adjudication",
+ "phase": 36,
+ "revision": "ra_medfilm_barr_phase36_robustness_v1_21",
+ "type": "PRELAUNCH_REAL_PATH_DEFECT_ADJUDICATION",
+ "mode": "PREPARATION_ONLY_NON_CONSUMING",
+ "generated_utc": "2026-10-11T00:00:00Z",
+ "classification": "NOT_EXECUTED__PRELAUNCH_REAL_PATH_DEFECT",
+ "v1_21_executed": false,
+ "real_dispatch_occurred": false,
+ "attempt_consumed": false,
+ "scientific_execution": false,
+ "relaunch_permitted": false,
+ "rerun_permitted": false,
+ "is_scientific_model_failure": false,
+ "is_consumed_attempt": false,
+ "interrupt_origin_established": false,
+ "v1_20_remains_last_consumed_real_attempt": true,
+ "bound_v1_21_launcher_sha256": "0711fd79ca117dedaf8eae1eb024d0754033e0417c506bd748577fec73402208",
+ "bound_v1_21_execution_sha256": "312886c68f056375adc3f091766777da9e1caa47c1d422673de67751e8df7b97",
+ "v1_20_consumed_state": {
+  "adjudication": "reports/audits/phase36_v1_20_interruption_adjudication_v1_0.json",
+  "adjudication_sha256": "31c29955380c6ec75d18f747dec4f91332177ddabeccef40cb0cafa8b37f5b72",
+  "classification": "CONSUMED_INTERRUPTED_POST_START_PRE_SCIENTIFIC_RESULT",
+  "attempt_consumed": true
+ },
+ "attempt_marker_state_v1_21": {
+  "START_present": false,
+  "RESULT_present": false,
+  "FAILURE_present": false,
+  "PROCESS_EXIT_present": false,
+  "JOURNAL_DIR_present": false,
+  "STDOUT_present": false,
+  "STDERR_present": false
+ },
+ "defect": {
+  "id": "D96",
+  "code": "V1_21_REAL_DISPATCH_CALLS_UNDEFINED_V1_19_CONSUMED_HISTORY_VERIFIER",
+  "called_symbol": "verify_v1_19_consumed_history",
+  "called_symbol_defined": false,
+  "called_symbol_call_sites": [
+   636
+  ],
+  "defined_symbol": "verify_v1_20_consumed_history",
+  "defined_symbol_defined": true,
+  "defined_symbol_call_sites": [],
+  "main_verify_only_early_return_line": 625,
+  "escaped_verify_only": true,
+  "escape_reason": "--verify-only returns BEFORE the real-dispatch branch, so the undefined call was never exercised in verify-only.",
+  "real_dispatch_effect": "NameError: name 'verify_v1_19_consumed_history' is not defined, at the consumed-history gate, BEFORE any dispatch / token set / model load.",
+  "scientific_semantics_effect": "NONE",
+  "operational_effect": "YES",
+  "repaired_in": "v1.22",
+  "repair_scope": "LAUNCHER_REAL_DISPATCH_CALL_ONLY"
+ },
+ "evidence_basis": "INDEPENDENT_AUDIT_OF_FROZEN_V1_21_LAUNCHER",
+ "independent_audit_reproduced_by_builder": true,
+ "protected_populations": {
+  "TEST": "PHASE39_ONLY_LOCKED",
+  "ROUTER_HOLDOUT": "LOCKED"
+ },
+ "write_semantics": "O_CREAT|O_EXCL + full-write + fsync",
+ "terminal": "PHASE36_V1_21_PRELAUNCH_DEFECT_ADJUDICATED"
+}

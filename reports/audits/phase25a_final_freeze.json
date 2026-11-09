@@ -1,0 +1,267 @@
+{
+ "artifact": "phase25a_final_freeze",
+ "phase": "25A",
+ "module": "R_psi (dedicated crop-trained regional refiner)",
+ "method": "RA-MedFiLM-BARR",
+ "architecture_id": "ra_medfilm_barr_narrowed_v1_1",
+ "architecture_revision_status": "ra_medfilm_barr_narrowed_v1_1",
+ "classification": "IMPLEMENTATION_AND_TRAINING_PHASE",
+ "science_changed": false,
+ "n_checks": 25,
+ "n_passed": 25,
+ "n_failed": 0,
+ "verdict": "PHASE25A_FINAL_FREEZE_PASS",
+ "terminal": "PHASE25A_DEDICATED_REGIONAL_REFINER_COMPLETE__PHASE25B_ELIGIBLE_NOT_STARTED",
+ "checks": [
+  {
+   "check": "all_19_required_audits_present",
+   "pass": true,
+   "observed": [],
+   "expected": []
+  },
+  {
+   "check": "all_10_required_tables_present",
+   "pass": true,
+   "observed": [],
+   "expected": []
+  },
+  {
+   "check": "all_8_required_figures_present",
+   "pass": true,
+   "observed": [],
+   "expected": []
+  },
+  {
+   "check": "frozen_predecessors_unchanged",
+   "pass": true,
+   "observed": {
+    "phase21_global_medfilm_best_pt": {
+     "exists": true,
+     "sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+     "expected": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+     "unchanged": true
+    },
+    "phase22_diagnostic_protocol": {
+     "exists": true,
+     "sha256": "9d620d6c85276e1a9a086ec60172cdef3b94dc58fe8288222378d196dd4609b7",
+     "expected": "9d620d6c85276e1a9a086ec60172cdef3b94dc58fe8288222378d196dd4609b7",
+     "unchanged": true
+    },
+    "phase24_reviewer_notebook": {
+     "exists": true,
+     "sha256": "612d71700c1c1a45b94b8fcb8a3ff427bf32f6f6453130febeec49c6ec78caef",
+     "expected": "612d71700c1c1a45b94b8fcb8a3ff427bf32f6f6453130febeec49c6ec78caef",
+     "unchanged": true
+    },
+    "phase24_router_split_manifest": {
+     "exists": true,
+     "sha256": "b5da52d6220ef9b59b4ba70d0b403b38bf5234b897615b6ad55d718114db6555",
+     "expected": "b5da52d6220ef9b59b4ba70d0b403b38bf5234b897615b6ad55d718114db6555",
+     "unchanged": true
+    }
+   }
+  },
+  {
+   "check": "four_primary_runs_complete",
+   "pass": true,
+   "observed": 4,
+   "expected": 4
+  },
+  {
+   "check": "training_health_pass",
+   "pass": true,
+   "observed": "PHASE25A_TRAINING_HEALTH_PASS",
+   "expected": "PHASE25A_TRAINING_HEALTH_PASS"
+  },
+  {
+   "check": "checkpoint_integrity_pass",
+   "pass": true,
+   "observed": "PHASE25A_CHECKPOINT_INTEGRITY_PASS",
+   "expected": "PHASE25A_CHECKPOINT_INTEGRITY_PASS"
+  },
+  {
+   "check": "final_refit_epoch_rule_frozen",
+   "pass": true,
+   "observed": 27
+  },
+  {
+   "check": "no_outcome_leakage_pass",
+   "pass": true,
+   "observed": "PHASE25A_NO_OUTCOME_LEAKAGE_PASS",
+   "expected": "PHASE25A_NO_OUTCOME_LEAKAGE_PASS"
+  },
+  {
+   "check": "test_lock_pass",
+   "pass": true,
+   "observed": "PHASE25A_TEST_LOCK_PASS",
+   "expected": "PHASE25A_TEST_LOCK_PASS"
+  },
+  {
+   "check": "test_reads_zero",
+   "pass": true,
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "implementation_test_suite_pass",
+   "pass": true,
+   "observed": {
+    "n_checks": 35,
+    "n_failed": 0
+   }
+  },
+  {
+   "check": "architecture_gate_pass",
+   "pass": true,
+   "observed": "PHASE25A_REFINER_ARCHITECTURE_FROZEN",
+   "expected": "PHASE25A_REFINER_ARCHITECTURE_FROZEN"
+  },
+  {
+   "check": "parameter_count_exact_1276401",
+   "pass": true,
+   "observed": 1276401,
+   "expected": 1276401
+  },
+  {
+   "check": "resource_accounting_present",
+   "pass": true,
+   "observed": 1276401,
+   "expected": 1276401
+  },
+  {
+   "check": "notebook_3x_byte_identical",
+   "pass": true,
+   "observed": 1,
+   "expected": 1
+  },
+  {
+   "check": "notebook_visual_integrity_pass",
+   "pass": true,
+   "observed": {
+    "corrupt": 0,
+    "missing": 0
+   }
+  },
+  {
+   "check": "reviewer_notebook_exists",
+   "pass": true,
+   "observed": "7dfcf50540ee531e330c0338ea9326cdb73c24c9f8254b920c022598dd74733f"
+  },
+  {
+   "check": "router_not_trained",
+   "pass": true,
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "no_paired_gain_labels",
+   "pass": true,
+   "observed": false
+  },
+  {
+   "check": "holdout_outcomes_not_inspected",
+   "pass": true
+  },
+  {
+   "check": "val_not_evaluated",
+   "pass": true
+  },
+  {
+   "check": "phase25b_not_started",
+   "pass": true
+  },
+  {
+   "check": "phase25c_not_started",
+   "pass": true
+  },
+  {
+   "check": "phase25d_not_started",
+   "pass": true
+  }
+ ],
+ "artifact_sha256": {
+  "audits": {
+   "phase25a_entry_gate.json": "6353d67334b923d19417cae8e13e621e4dfe86ff4a0e0c6181296ba7c8be84b8",
+   "phase25a_phase24_v1_1_binding.json": "e2d34c448734ddb2a981124931768db212ee7d1e9268341ff8b2a42d93b132b4",
+   "phase25a_data_split_binding.json": "2111a40e0b341dc223eb7b6550e9b16e632685df48711a71084fe2afc3f246e7",
+   "phase25a_global_checkpoint_binding.json": "503210ddf98cbda3ceddf961542ddf56ce18f452bcf64cdd73f163cdb0ff341a",
+   "phase25a_augmentation_binding.json": "b8b0f817e765dd5db267df6f5e5c5b33da4f81ff58b177f8a410e5d985e97f59",
+   "phase25a_roi_transform_audit.json": "1c756de5623de96b0a790ecbe0650f5dba2cf3116cb6e33ca7264c000ec323dc",
+   "phase25a_refiner_architecture_binding.json": "a227d31cf78c51c153abadd123007ff6fc404d133ced1edd993a4b4c36536cea",
+   "phase25a_crossfit_protocol.json": "6868b5562fe02929e13d63905ca74a759e20dec3c01b14eef331e4cb948f55ce",
+   "phase25a_global_cache_provenance.json": "acb7712204a70b7f5fd980acc50a94a0678825deff1a2dc2b3ccf62cd50bc950",
+   "phase25a_resource_accounting.json": "d8d918b26229c6bfe2086fd7b9ffdbdd56328f7b139d9aba1bcbdb73e5be94bb",
+   "phase25a_final_refit_epoch_rule.json": "1d4390a0ce6b0fc2643f3e64221f52fa844981d2a22b31e9dff56958137ca1e1",
+   "phase25a_training_run_registry.json": "9e066937d8945c88ebd873e885caceabe103d00d2d6d020af39ce2e5ae09a17e",
+   "phase25a_training_health.json": "3701b8ff48c91866618d67389ceee1d55f4cbfa73054fd2376f503c574ce489a",
+   "phase25a_checkpoint_integrity.json": "a5bdede516d96c367aa9371f7bc1c6f5d8cc556fd0c68aa1c3ab8215b3e79511",
+   "phase25a_no_outcome_leakage_audit.json": "3785d4cfdec7eee236e12fcdb8b2b21db170a5d895b1261fbd062600443661a8",
+   "phase25a_test_lock_audit.json": "09b6191c3c360bd459ea076ee15db233f8da8354b52179982ad2479e7a69a811",
+   "phase25a_implementation_test_suite.json": "f6729b0e9b39faac56ea7c860ba9d925b2a8c2585549f9b2f390dc764a613965",
+   "phase25a_notebook_visual_integrity.json": "e983d5a0c64e8c7669cd770f5819ff0b9fac85b04209562a1a0ee267061f975d",
+   "phase25a_notebook_visual_determinism.json": "40a0bb67d1a4083da37cfce1be3dc677b84010a6805de27301d811b9a6f091d1"
+  },
+  "tables": {
+   "phase25a_population_accounting.csv": "d45091e206eed6afd9217511cf4f19d7e43424be08582dec4d5b0533b15441d0",
+   "phase25a_action_availability_by_domain.csv": "d45091e206eed6afd9217511cf4f19d7e43424be08582dec4d5b0533b15441d0",
+   "phase25a_crossfit_fold_manifest_summary.csv": "0de818276694341ee2427206f701b5f4db8a8ae7e5360af094a086f6e29f58f2",
+   "phase25a_resource_accounting.csv": "945446bb42bae481e1aed63cbd3d6c2d84ae7e68bed4059a30c36ca5dbd93f8c",
+   "phase25a_refiner_selected_epochs.csv": "faf6c4506fb986dc671d48646cf32371fc49ff1564416b21de70d16619cfb18f",
+   "phase25a_training_epochs_fold0.csv": "bac3d8aa4174abfc32755441cf3b8177360b5aa41080fdb3ba845436dd89bb45",
+   "phase25a_training_epochs_fold1.csv": "243b1f0f7f9d2e5df629c35a0eea165648ef19e65316ea8b7f27fe1800665af7",
+   "phase25a_training_epochs_fold2.csv": "4ac2642d00c939fa31ea5a085de8fd69c8dc0bb6b70ccdf6cf101de9eafa7fa2",
+   "phase25a_training_epochs_final.csv": "4f5847815e20cf34ab44ab07087dd2ec51bd8ba70a18a2b936ae65448afa8bd0",
+   "phase25a_run_summary.csv": "7507e5126b761ccede80b1117f3e9ae7e83c99fafd71b2d88d5e962f4cb9535b"
+  },
+  "figures": {
+   "p25a_fold0_loss_curve.png": "d5da51ee8ca5fef2a9d1d854a888aa37eb9cbcbe573dff35bd50e3b0021b6f1c",
+   "p25a_fold1_loss_curve.png": "dc963615e5d29d0e7bfb10c437a6e99254b197ea3c4d2bb86bffd022f4f07ed7",
+   "p25a_fold2_loss_curve.png": "6511248b9fe39ce81431d0d269e071a6cde2c0a4fb723a6409774ab635d64980",
+   "p25a_fold_training_comparison.png": "a23d1b4e4262cd6082f22cf3073a9bc7a26942ccbb84b1a4bbfce6a1379afe63",
+   "p25a_best_epoch_summary.png": "fdbf427de9449220b25a7fe7bc7f59c43a870e7a2d7b270f4e9952e679b41b32",
+   "p25a_final_refit_training_curve.png": "9b6ed3210a0609aa0bfd07c605c37d7dbe82a683cd1a27cedfd2aa72ea0cad07",
+   "p25a_action_availability_by_domain.png": "bf74ea98abab7208a4ebb823dc336dc0a9a6abdd9990a6e762e21449de47b725",
+   "p25a_refiner_architecture_summary.png": "83b038d62d5551c78d74200676dfc03190d353a20ad01e8d946a64ba82bd8a34"
+  },
+  "reviewer_notebook": "7dfcf50540ee531e330c0338ea9326cdb73c24c9f8254b920c022598dd74733f"
+ },
+ "frozen_predecessors": {
+  "phase21_global_medfilm_best_pt": {
+   "exists": true,
+   "sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+   "expected": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+   "unchanged": true
+  },
+  "phase22_diagnostic_protocol": {
+   "exists": true,
+   "sha256": "9d620d6c85276e1a9a086ec60172cdef3b94dc58fe8288222378d196dd4609b7",
+   "expected": "9d620d6c85276e1a9a086ec60172cdef3b94dc58fe8288222378d196dd4609b7",
+   "unchanged": true
+  },
+  "phase24_reviewer_notebook": {
+   "exists": true,
+   "sha256": "612d71700c1c1a45b94b8fcb8a3ff427bf32f6f6453130febeec49c6ec78caef",
+   "expected": "612d71700c1c1a45b94b8fcb8a3ff427bf32f6f6453130febeec49c6ec78caef",
+   "unchanged": true
+  },
+  "phase24_router_split_manifest": {
+   "exists": true,
+   "sha256": "b5da52d6220ef9b59b4ba70d0b403b38bf5234b897615b6ad55d718114db6555",
+   "expected": "b5da52d6220ef9b59b4ba70d0b403b38bf5234b897615b6ad55d718114db6555",
+   "unchanged": true
+  }
+ },
+ "parameters": {
+  "refiner_trainable": 1276401,
+  "refiner_hard_ceiling": 2000000,
+  "global_anchor": 3523001
+ },
+ "resource": {
+  "analytical_macs": 3230662656,
+  "analytical_gmacs": 3.230663,
+  "analytical_flops": 6461325312,
+  "latency_note": "host-specific, not a deployment claim"
+ },
+ "test_reads": 0,
+ "generated_utc": "2026-09-30T08:00:11.584352+00:00"
+}

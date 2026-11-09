@@ -1,0 +1,287 @@
+{
+  "audit": "phase07_clean_v3_taxonomy_freeze_audit",
+  "phase": "07 \u2014 Tiny-Object Definition (Part 1B)",
+  "model": "Gemini 3.1 Pro High",
+  "generated_at": "2026-09-20T04:24:10.064495+00:00",
+  "supervisor_decision": "Part 1A PASS; taxonomy design authorized",
+  "clean_taxonomy": {
+    "taxonomy_id": "kub_size_clean_v3_v1",
+    "status": "FROZEN",
+    "unit": "object (connected component)",
+    "connectivity": 8,
+    "foreground_rule": "mask > 0",
+    "acquisition_scope": "FULL_FIELD",
+    "roi_handling": "ROI_NOT_PRIMARY_BINNED",
+    "metric": "component_ratio",
+    "thresholds": {
+      "Q25": 0.0001497998649691358,
+      "Q50": 0.0003401438395182292,
+      "Q75": 0.0008279682677469136
+    },
+    "boundary_semantics": {
+      "TINY": "x <= Q25",
+      "SMALL": "Q25 < x <= Q50",
+      "MEDIUM": "Q50 < x <= Q75",
+      "LARGE": "x > Q75",
+      "rounding": "no rounding applied before classification",
+      "boundary_value_goes_to": "lower bin"
+    }
+  },
+  "historical_taxonomy": {
+    "taxonomy_id": "kub_size_v1",
+    "status": "HISTORICAL_v2_IMMUTABLE",
+    "thresholds": {
+      "Q25": 0.0001499766777599,
+      "Q50": 0.00033976472454305,
+      "Q75": 0.0008266496069636999
+    },
+    "modified": false
+  },
+  "quantile_method": {
+    "implementation": "numpy.quantile",
+    "method": "default 'linear' interpolation",
+    "call": "np.quantile(values, [0.25, 0.50, 0.75])",
+    "sort_handling": "numpy orders the input internally; no explicit pre-sort required",
+    "nan_handling": "no NaN present; non-finite input raises (guarded)",
+    "precision": "float64",
+    "input_precision_note": "The historical thresholds were computed from the pipeline-persisted component table (reports/tables/kub_train_components_sized.csv), i.e. after the pipeline float->text->float round-trip, NOT from full-precision in-memory ratios. Phase 07 Part 1B therefore reports both a full-precision derivation and a round-trip-faithful derivation and confirms they agree."
+  },
+  "historical_reproduction": {
+    "reproduced": true,
+    "source_table": "reports/tables/kub_train_components_sized.csv",
+    "source_table_sha": "da31c7d7e4bf13b199ddba2239fc512057546ee8436daadfeac365662eb973d8",
+    "source_table_sha_matches_provenance": true,
+    "full_field_components": 1162,
+    "recomputed": {
+      "Q25": 0.0001499766777599,
+      "Q50": 0.00033976472454305,
+      "Q75": 0.0008266496069636999
+    },
+    "recorded": {
+      "Q25": 0.0001499766777599,
+      "Q50": 0.00033976472454305,
+      "Q75": 0.0008266496069636999
+    },
+    "exact_match": {
+      "Q25": true,
+      "Q50": true,
+      "Q75": true
+    }
+  },
+  "derivation_sequence": [
+    {
+      "step": "immutability",
+      "utc": "2026-09-20T04:24:10.075144+00:00",
+      "detail": "verified previous-phase artifacts unchanged"
+    },
+    {
+      "step": "historical_reproduction",
+      "utc": "2026-09-20T04:24:10.087147+00:00",
+      "detail": "kub_size_v1 reproduced exactly from historical table"
+    },
+    {
+      "step": "A_derive",
+      "utc": "2026-09-20T04:24:51.407330+00:00",
+      "detail": "TRAIN FULL_FIELD cases=770 objects=1161"
+    },
+    {
+      "step": "A_derive_quantiles",
+      "utc": "2026-09-20T04:24:51.432324+00:00",
+      "detail": "Q25=0.0001497998649691358 Q50=0.0003401438395182292 Q75=0.0008279682677469136 persistence_crosscheck_agrees=False precision_class_changes=3"
+    },
+    {
+      "step": "B_persist",
+      "utc": "2026-09-20T04:24:51.440866+00:00",
+      "detail": "reports\\audits\\kub_size_clean_v3_v1_thresholds.json (reused existing frozen artifact)"
+    },
+    {
+      "step": "C_hash",
+      "utc": "2026-09-20T04:24:51.440866+00:00",
+      "detail": "89031c51a35c24f6f939fd6206fde6002a019d4bda24ce8cb21988f04db0f0d6"
+    },
+    {
+      "step": "D_frozen",
+      "utc": "2026-09-20T04:24:51.440866+00:00",
+      "detail": "status=FROZEN"
+    },
+    {
+      "step": "E_val_unlock",
+      "utc": "2026-09-20T04:24:51.440866+00:00",
+      "detail": "VAL medical content read begins AFTER freeze artifact hashed"
+    },
+    {
+      "step": "E_val_read",
+      "utc": "2026-09-20T04:24:58.145568+00:00",
+      "detail": "VAL FULL_FIELD cases=103 objects=152"
+    },
+    {
+      "step": "F_apply",
+      "utc": "2026-09-20T04:24:58.146568+00:00",
+      "detail": "frozen thresholds applied to TRAIN and VAL unchanged"
+    }
+  ],
+  "val_reads_before_freeze": 0,
+  "test_reads": 0,
+  "derivation": {
+    "manifest_version": "phase4_v3",
+    "split": "TRAIN",
+    "full_field_cases": 770,
+    "objects": 1161,
+    "object_table": "phase07_clean_v3_threshold_derivation_objects.csv",
+    "object_table_sha": "5c270dd4cb09e5697fdd5d7eb2ae4465f82489bb71ccead019a558934f5d1a08",
+    "canonical": "exact float64 quartiles of the clean-v3 TRAIN FULL_FIELD ratios",
+    "canonical_quartiles": {
+      "Q25": 0.0001497998649691358,
+      "Q50": 0.0003401438395182292,
+      "Q75": 0.0008279682677469136
+    },
+    "persistence_crosscheck_quartiles": {
+      "Q25": 0.0001497998649691,
+      "Q50": 0.0003401438395182,
+      "Q75": 0.0008279682677469
+    },
+    "persistence_crosscheck_agrees": false,
+    "persistence_crosscheck_max_relative_difference": 2.3902409226944946e-13,
+    "precision_choice_changes_classification": 3,
+    "precision_note": "The historical kub_size_v1 thresholds were computed from a persisted component table. Phase 07 Part 1B computes the canonical clean-v3 thresholds as exact float64 quartiles of the clean-v3 TRAIN FULL_FIELD component ratios, and additionally reports the quartiles recomputed from the persisted derivation table. The two agree to ~1e-13 relative and change the classification of 0 objects, so the choice is immaterial to the taxonomy."
+  },
+  "threshold_artifact": {
+    "path": "reports/audits/kub_size_clean_v3_v1_thresholds.json",
+    "sha256": "89031c51a35c24f6f939fd6206fde6002a019d4bda24ce8cb21988f04db0f0d6"
+  },
+  "train_frozen_counts": {
+    "TINY": 291,
+    "SMALL": 290,
+    "MEDIUM": 290,
+    "LARGE": 290
+  },
+  "train_frozen_percent": {
+    "TINY": 25.064599483204134,
+    "SMALL": 24.978466838931954,
+    "MEDIUM": 24.978466838931954,
+    "LARGE": 24.978466838931954
+  },
+  "val_frozen_counts": {
+    "TINY": 72,
+    "SMALL": 28,
+    "MEDIUM": 36,
+    "LARGE": 16
+  },
+  "val_frozen_percent": {
+    "TINY": 47.36842105263158,
+    "SMALL": 18.42105263157895,
+    "MEDIUM": 23.68421052631579,
+    "LARGE": 10.526315789473685
+  },
+  "val_population": {
+    "full_field_cases": 103,
+    "objects": 152
+  },
+  "crosswalk": {
+    "objects": 1161,
+    "changed": 2,
+    "changed_percent": 0.17226528854435832
+  },
+  "thresholds_changed_after_val": false,
+  "roi_specific_taxonomy_created": false,
+  "historical_modified": false,
+  "c2_cross_regime_wording_corrected": true,
+  "immutability": {
+    "phase06_notebook": {
+      "sha": "c2164345d80843c6116093cc5c58bebfa3792b8becce0d887e6c379ab8069888",
+      "expected": "c2164345d80843c6116093cc5c58bebfa3792b8becce0d887e6c379ab8069888",
+      "unchanged": true
+    },
+    "phase07_part1a_notebook": {
+      "sha": "f2ff7969d4c446c5c7fa737c7cbf36925123c97db1ca86593dbddea842a31eb9",
+      "expected": "f2ff7969d4c446c5c7fa737c7cbf36925123c97db1ca86593dbddea842a31eb9",
+      "unchanged": true
+    },
+    "phase4_v3_manifests": {
+      "train": "28702fc3a5ff8b950db372f03232d335e3a30b1fc2f21db7cd8c066055826ed6",
+      "val": "082c80b2bda63fd73f371f109c34643adf01edaead921643fb2e44993ba53315",
+      "test": "9361eba61c91c034a9aa4988a4df229bba591a5cbd553c98689ac7915da29727",
+      "quarantined": "a4ec1a8c46692f3c2d55d03c73569ce7b44aeeef734abd41e31bf5bf3e60059c"
+    },
+    "phase06": {
+      "path": "notebooks/phasewise/phase_06_kub_characterization/phase06_kub_dataset_characterization_clean_v3.ipynb",
+      "expected": "c2164345d80843c6116093cc5c58bebfa3792b8becce0d887e6c379ab8069888",
+      "actual": "c2164345d80843c6116093cc5c58bebfa3792b8becce0d887e6c379ab8069888",
+      "unchanged": true
+    },
+    "phase07_part1a": {
+      "path": "notebooks/phasewise/phase_07_tiny_object_definition/phase07_tiny_object_definition_train_only_design.ipynb",
+      "expected": "f2ff7969d4c446c5c7fa737c7cbf36925123c97db1ca86593dbddea842a31eb9",
+      "actual": "f2ff7969d4c446c5c7fa737c7cbf36925123c97db1ca86593dbddea842a31eb9",
+      "unchanged": true
+    }
+  },
+  "table_hashes": {
+    "phase07_clean_v3_threshold_derivation_objects.csv": "5c270dd4cb09e5697fdd5d7eb2ae4465f82489bb71ccead019a558934f5d1a08",
+    "phase07_historical_vs_clean_thresholds.csv": "6ddadd8f4717db0c6bc462247345d18ecb58a5ada71ffa0a11a5c3b52ea227f4",
+    "phase07_train_historical_clean_label_crosswalk.csv": "d1cc3951c791003d6dc28f4bc7e41f93c8741cf31977270b0d65a58c856839d0",
+    "phase07_kub_v3_val_object_size_frozen.csv": "3300a266505eb4d21f91c685dea09edddb7f8b4cb51c3a217548440a3894162b",
+    "phase07_kub_v3_frozen_taxonomy_summary.csv": "74705df82683da4ae204e51d326e0e2b614174ab5c1f49a9736e42be1790a956"
+  },
+  "figures": [
+    "phase07_candidate_taxonomy_prevalence.png",
+    "phase07_candidate_threshold_overlays.png",
+    "phase07_category_stratified_ff_size.png",
+    "phase07_ff_object_size_distribution.png",
+    "phase07_normalized_size_comparison.png",
+    "phase07_object_vs_case_comparison.png",
+    "phase07_roi_object_size_distribution.png",
+    "phase07_train_gallery_page01.png",
+    "phase07_train_gallery_page02.png",
+    "phase07_train_gallery_page03.png",
+    "phase07_train_gallery_page04.png",
+    "phase07b_crosswalk.png",
+    "phase07b_threshold_overlay.png",
+    "phase07b_train_frozen_distribution.png",
+    "phase07b_train_frozen_thresholds.png",
+    "phase07b_train_val_frozen_comparison.png",
+    "phase07b_val_category_frozen.png",
+    "phase07b_val_frozen_distribution.png"
+  ],
+  "scientific_gate": {
+    "gates": {
+      "historical_kub_size_v1_immutable": true,
+      "thresholds_from_train_full_field_only": true,
+      "historical_quantile_method_reproduced": true,
+      "threshold_artifact_persisted_and_hashed_before_val": true,
+      "clean_taxonomy_frozen": true,
+      "val_used_only_after_freeze": true,
+      "thresholds_unchanged_after_val": true,
+      "roi_not_primary_binned": true,
+      "object_level_8_connectivity_frozen": true,
+      "boundary_semantics_exact": true,
+      "no_test_content_access": true,
+      "phase06_notebook_unchanged": true,
+      "phase07_part1a_notebook_unchanged": true,
+      "unit_tests_pass": true,
+      "notebook_run_all_clean": true,
+      "figures_ge_7": true
+    },
+    "status": "PASS"
+  },
+  "status": "PASS",
+  "phase07_complete": true,
+  "notebook": {
+    "path": "notebooks/phasewise/phase_07_tiny_object_definition/phase07_tiny_object_taxonomy_freeze_clean_v3.ipynb",
+    "sha256": "9d9ebf3684523a7b85df4b6fc52c4f0e970857e80f05d366445a50b6a7dfde85",
+    "sha_stable_3x": true,
+    "total_cells": 55,
+    "code_cells": 25,
+    "executed_cells": 25,
+    "unexecuted_cells": 0,
+    "errors": 0,
+    "embedded_png": 7
+  },
+  "notebook_execution_state": "RUN_ALL_CLEAN",
+  "generated_at_final": "2026-09-20T04:26:06.466340+00:00",
+  "unit_tests": {
+    "file": "tests/test_phase07_taxonomy.py",
+    "result": "PASS",
+    "summary": "22 passed in 0.73s"
+  }
+}

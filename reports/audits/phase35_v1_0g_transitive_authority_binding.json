@@ -1,0 +1,159 @@
+{
+ "artifact": "phase35_v1_0g_transitive_authority_binding",
+ "phase": 35,
+ "section": "§B",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase35_interpretability_v1_0g",
+ "purpose": "Bind v1.0g counter authority and the transitive v1.0f scientific authority BEFORE any model construction.",
+ "binding_scope": "HASH_AND_PROVENANCE_ONLY__NO_IMAGE_CONTENT_READ__NO_MODEL_CONSTRUCTION",
+ "authorities": [
+  {
+   "name": "v1_0g_execution_source",
+   "path": "scripts/analysis/phase35_interpretability_execution_v1_0g.py",
+   "expected_sha256": "88456e46c94e53d45b10d864d9dbcd38eb773d7dd441441def9e6f221a0c9be3",
+   "observed_sha256": "88456e46c94e53d45b10d864d9dbcd38eb773d7dd441441def9e6f221a0c9be3",
+   "hash_match": true,
+   "authority_tier": "V1_0G_COUNTER_AUTHORITY",
+   "exists": true
+  },
+  {
+   "name": "v1_0g_preflight",
+   "path": "scripts/analysis/phase35_execution_preflight_v1_0g.py",
+   "expected_sha256": "245d3d9387f947eae7419a5d9a3d6c49b5315c68827b6537822dda6d88855d4b",
+   "observed_sha256": "245d3d9387f947eae7419a5d9a3d6c49b5315c68827b6537822dda6d88855d4b",
+   "hash_match": true,
+   "authority_tier": "V1_0G_COUNTER_AUTHORITY",
+   "exists": true
+  },
+  {
+   "name": "v1_0g_counter_unit",
+   "path": "scripts/analysis/phase35_smoke_counter_contract_unit_v1_0g.py",
+   "expected_sha256": "a33587bca5c79fb21765025c766b2d948be080c22f5a75011af799dd0f782cc1",
+   "observed_sha256": "a33587bca5c79fb21765025c766b2d948be080c22f5a75011af799dd0f782cc1",
+   "hash_match": true,
+   "authority_tier": "V1_0G_COUNTER_AUTHORITY",
+   "exists": true
+  },
+  {
+   "name": "v1_0g_source_freeze",
+   "path": "reports/audits/phase35_preexecution_source_freeze_v1_0g.json",
+   "expected_sha256": "f55850e2ebb13a0831a940bbaa420aa5d7df954dd4d17f688b60c8b3c1ed40b0",
+   "observed_sha256": "f55850e2ebb13a0831a940bbaa420aa5d7df954dd4d17f688b60c8b3c1ed40b0",
+   "hash_match": true,
+   "authority_tier": "V1_0G_COUNTER_AUTHORITY",
+   "exists": true
+  },
+  {
+   "name": "v1_0g_eligibility",
+   "path": "reports/audits/phase35_synthetic_smoke_eligibility_v1_0g.json",
+   "expected_sha256": "d6b87104f04406b6b52835929a8ae88f0c9549a0b705df1df737f93c100dd529",
+   "observed_sha256": "d6b87104f04406b6b52835929a8ae88f0c9549a0b705df1df737f93c100dd529",
+   "hash_match": true,
+   "authority_tier": "V1_0G_COUNTER_AUTHORITY",
+   "exists": true
+  },
+  {
+   "name": "v1_0g_final_check",
+   "path": "reports/audits/phase35_counter_contract_repair_final_check_v1_0g.json",
+   "expected_sha256": "181825fbcf0c01dd96ce5a1f7cc164b539a4ffa4802442221a21332c0757b5ba",
+   "observed_sha256": "181825fbcf0c01dd96ce5a1f7cc164b539a4ffa4802442221a21332c0757b5ba",
+   "hash_match": true,
+   "authority_tier": "V1_0G_COUNTER_AUTHORITY",
+   "exists": true
+  },
+  {
+   "name": "v1_0g_terminal",
+   "path": "reports/audits/phase35_counter_contract_repair_terminal_v1_0g.json",
+   "expected_sha256": "8c0fe336c97564be65ecbda0d82c6afe3876fa5a984cab3d9ff5043c1bcbe5cd",
+   "observed_sha256": "8c0fe336c97564be65ecbda0d82c6afe3876fa5a984cab3d9ff5043c1bcbe5cd",
+   "hash_match": true,
+   "authority_tier": "V1_0G_COUNTER_AUTHORITY",
+   "exists": true
+  },
+  {
+   "name": "v1_0f_scientific_freeze",
+   "path": "reports/audits/phase35_preexecution_source_freeze_v1_0f.json",
+   "expected_sha256": "56dab00eb2e7ab29c2702de294c03d090d062741ba3177f4ec0edd8f8852775b",
+   "observed_sha256": "56dab00eb2e7ab29c2702de294c03d090d062741ba3177f4ec0edd8f8852775b",
+   "hash_match": true,
+   "authority_tier": "V1_0F_SCIENTIFIC_AUTHORITY",
+   "exists": true
+  },
+  {
+   "name": "G_checkpoint",
+   "path": "checkpoints/phase21_global_medfilm_fourdomain_seed42_clean_v3/best.pt",
+   "expected_sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+   "observed_sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+   "hash_match": true,
+   "authority_tier": "V1_0F_SCIENTIFIC_AUTHORITY",
+   "exists": true
+  },
+  {
+   "name": "B_phi_checkpoint",
+   "path": "checkpoints/phase25d_barr_benefit_router_v1_2_1_seed42/final/final.pt",
+   "expected_sha256": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+   "observed_sha256": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+   "hash_match": true,
+   "authority_tier": "V1_0F_SCIENTIFIC_AUTHORITY",
+   "exists": true
+  },
+  {
+   "name": "G_model_source",
+   "path": "src/models/film/global_medfilm.py",
+   "expected_sha256": "a04ff3e61b4d900ff47c2f390da4a999e73bd6047b28a19e41b05115e431d11f",
+   "observed_sha256": "a04ff3e61b4d900ff47c2f390da4a999e73bd6047b28a19e41b05115e431d11f",
+   "hash_match": true,
+   "authority_tier": "V1_0F_SCIENTIFIC_AUTHORITY",
+   "exists": true
+  },
+  {
+   "name": "B_phi_authority",
+   "path": "scripts/analysis/train_phase25d_router.py",
+   "expected_sha256": "fc7c1bdf263ae4551dcb8f170d3203adb8540fbc189846265b74f6eca1541e91",
+   "observed_sha256": "fc7c1bdf263ae4551dcb8f170d3203adb8540fbc189846265b74f6eca1541e91",
+   "hash_match": true,
+   "authority_tier": "V1_0F_SCIENTIFIC_AUTHORITY",
+   "exists": true
+  },
+  {
+   "name": "domain_registry",
+   "path": "src/analysis/multidomain_harmonization.py",
+   "expected_sha256": "3f009d994ed24d9c2edf8e48646e93700ab4e54dea786fb4bd03180c825cbf92",
+   "observed_sha256": "3f009d994ed24d9c2edf8e48646e93700ab4e54dea786fb4bd03180c825cbf92",
+   "hash_match": true,
+   "authority_tier": "V1_0F_SCIENTIFIC_AUTHORITY",
+   "exists": true
+  },
+  {
+   "name": "scientific_specification",
+   "path": "docs/phase35_interpretability_spec_v1_0.md",
+   "expected_sha256": "6405ba5f7ad9f046226da916559a0d7a1166a1245bb56e8d38bc9971959acb37",
+   "observed_sha256": "6405ba5f7ad9f046226da916559a0d7a1166a1245bb56e8d38bc9971959acb37",
+   "hash_match": true,
+   "authority_tier": "V1_0F_SCIENTIFIC_AUTHORITY",
+   "exists": true
+  },
+  {
+   "name": "canonical_gallery",
+   "path": "reports/tables/phase21_gallery_selection_64.csv",
+   "expected_sha256": "2bc7c16286999ced374840cc987dcd352c3e546668322a9ccc4d1e8e8a097fd9",
+   "observed_sha256": "2bc7c16286999ced374840cc987dcd352c3e546668322a9ccc4d1e8e8a097fd9",
+   "hash_match": true,
+   "authority_tier": "V1_0F_SCIENTIFIC_AUTHORITY",
+   "exists": true
+  }
+ ],
+ "v1_0g_counter_authority_bound": true,
+ "v1_0f_scientific_authority_bound": true,
+ "all_hashes_match": true,
+ "scientific_semantics_changed": false,
+ "gallery_content_read": false,
+ "model_constructed": false,
+ "checkpoint_deserialized": false,
+ "forward_executed": false,
+ "autograd_executed": false,
+ "mismatches": [],
+ "gate_env_set": false,
+ "generated_utc": "2026-10-05T05:30:33Z",
+ "all_pass": true
+}

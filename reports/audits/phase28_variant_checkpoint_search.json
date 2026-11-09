@@ -1,0 +1,51 @@
+{
+ "artifact": "phase28_variant_checkpoint_search",
+ "phase": 28,
+ "classification": "PHASE28_R1_R2_R3_F1_VARIANT_CHECKPOINT_SEARCH",
+ "governance_only": true,
+ "execution": "NONE",
+ "search_scope": "Entire checkpoints/ tree (maxdepth 2) + all checkpoint integrity/manifest/registry artifacts across the repo.",
+ "search_performed": {
+  "checkpoint_root": "checkpoints/",
+  "dirname_patterns_tried": [
+   "r1",
+   "r2",
+   "r3",
+   "_f1",
+   "no_deep",
+   "no_task",
+   "scalar",
+   "without",
+   "ablat"
+  ],
+  "matching_variant_directories": [],
+  "matching_variant_checkpoint_files": []
+ },
+ "canonical_checkpoints_found": [
+  {
+   "purpose": "global_medfilm",
+   "path": "checkpoints/phase21_global_medfilm_fourdomain_seed42_clean_v3/best.pt",
+   "is_ablation_variant": false
+  },
+  {
+   "purpose": "regional_refiner",
+   "path": "checkpoints/phase25a_barr_regional_refiner_v1_1_roi030/final/final.pt",
+   "is_ablation_variant": false
+  },
+  {
+   "purpose": "benefit_router",
+   "path": "checkpoints/phase25d_barr_benefit_router_v1_2_1_seed42/final/final.pt",
+   "is_ablation_variant": false
+  },
+  {
+   "purpose": "post_safety",
+   "path": "checkpoints/phase25f_barr_post_safety_v1_0_seed42/final/final.pt",
+   "is_ablation_variant": false
+  }
+ ],
+ "variant_checkpoints_found": 0,
+ "canonical_full_model_mistaken_as_variant": false,
+ "conclusion": "NO separately trained R1/R2/R3/F1 variant checkpoint exists anywhere in the repository.",
+ "generated_utc": "2026-10-02T18:35:00Z",
+ "all_pass": true
+}

@@ -1,0 +1,83 @@
+{
+  "artifact": "phase22_resource_frontier",
+  "phase": 22,
+  "axes": {
+    "x": "expected giga-MACs per image",
+    "y": "pooled VAL Dice"
+  },
+  "protocol": "paired, domain-stratified; each policy is evaluated on the SAME 808 VAL cases",
+  "points": [
+    {
+      "n_regional": 0,
+      "fraction_regional": 0.0,
+      "mean_macs": 31551740928.0,
+      "mean_macs_gmacs": 31.5517,
+      "total_macs": 25493806669824.0,
+      "multiplier_vs_always_global": 1.0,
+      "policy": "ALWAYS_GLOBAL",
+      "pooled_dice": 0.8390402334224809,
+      "gain_over_always_global": 0.0,
+      "regret_vs_oracle_ceiling": 0.02103424,
+      "gmacs_per_dice_point": 37.604563
+    },
+    {
+      "n_regional": 808,
+      "fraction_regional": 1.0,
+      "mean_macs": 63103481856.0,
+      "mean_macs_gmacs": 63.1035,
+      "total_macs": 50987613339648.0,
+      "multiplier_vs_always_global": 2.0,
+      "policy": "ALWAYS_REGIONAL_ORACLE",
+      "pooled_dice": 0.7965623722850891,
+      "gain_over_always_global": -0.042477861137391826,
+      "regret_vs_oracle_ceiling": 0.06351211,
+      "gmacs_per_dice_point": 79.219762
+    },
+    {
+      "n_regional": 271,
+      "fraction_regional": 0.335396,
+      "mean_macs": 42134069877.86139,
+      "mean_macs_gmacs": 42.1341,
+      "total_macs": 34044328461312.0,
+      "multiplier_vs_always_global": 1.335396,
+      "policy": "ORACLE_ACCEPT_IF_BENEFICIAL",
+      "pooled_dice": 0.8600744777001257,
+      "gain_over_always_global": 0.021034244277644776,
+      "regret_vs_oracle_ceiling": 0.0,
+      "gmacs_per_dice_point": 48.988862
+    },
+    {
+      "n_regional": 808,
+      "fraction_regional": 1.0,
+      "mean_macs": 63103481856.0,
+      "mean_macs_gmacs": 63.1035,
+      "total_macs": 50987613339648.0,
+      "multiplier_vs_always_global": 2.0,
+      "policy": "PRED_ROI_EXISTS",
+      "pooled_dice": 0.7965623722850891,
+      "gain_over_always_global": -0.042477861137391826,
+      "regret_vs_oracle_ceiling": 0.06351211,
+      "gmacs_per_dice_point": 79.219762
+    },
+    {
+      "n_regional": 236,
+      "fraction_regional": 0.292079,
+      "mean_macs": 40767348426.77228,
+      "mean_macs_gmacs": 40.7673,
+      "total_macs": 32940017528832.0,
+      "multiplier_vs_always_global": 1.292079,
+      "policy": "PRED_ACCEPT_IF_PREDICTED_BENEFICIAL",
+      "pooled_dice": 0.8518041101592042,
+      "gain_over_always_global": 0.0127638767367233,
+      "regret_vs_oracle_ceiling": 0.00827037,
+      "gmacs_per_dice_point": 47.860004
+    }
+  ],
+  "frontier_members": [
+    "ORACLE_ACCEPT_IF_BENEFICIAL",
+    "PRED_ACCEPT_IF_PREDICTED_BENEFICIAL"
+  ],
+  "interpretation_guard": "the oracle points on this frontier use ground-truth geometry and are UPPER BOUNDS. No deployable method may be reported as attaining them.",
+  "table": "reports/tables/phase22_resource_frontier.csv",
+  "test_reads": 0
+}

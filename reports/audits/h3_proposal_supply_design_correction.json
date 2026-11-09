@@ -1,0 +1,96 @@
+{
+  "artifact": "H3_PROPOSAL_SUPPLY_DESIGN_CORRECTION",
+  "status": "ADDITIVE_CORRECTION__NON_DEGENERATE_MAPPING_FROZEN",
+  "generated_utc": "2026-09-23T15:49:51Z",
+  "axis": "A_PROPOSAL_SUPPLY_RECALL_LIMITATION",
+  "intervention_family": "A_TARGET_SUPPORT_REDESIGN",
+  "intervention_wording_reassessed_to": "FIXED_TARGET_SUPPORT_MAY_BE_MISMATCHED_TO_COMPONENT_SCALE",
+  "supersedes": {
+    "target_artifact": "h3_proposal_supply_code_change_spec.json",
+    "defective_formula": "sigma_i = clip(scale_ref * sqrt(area_i), 0.35, 0.75) with scale_ref = 4.0",
+    "defect_classification": "PRE_EXECUTION_PARAMETERIZATION_DEFECT__ZERO_TRAINING_IMPACT",
+    "defect_explanation": "For every component area_i >= 1, 4.0*sqrt(area_i) >= 4.0 >= 0.75, so the clip collapses the entire mapping to the historical fixed sigma = 0.75. The active H3 branch would have been IDENTICAL to baseline, producing a NULL experiment (no supply-diversity signal). Caught prospectively before any training."
+  },
+  "preserved": {
+    "scientific_axis": "A_PROPOSAL_SUPPLY_RECALL_LIMITATION (unchanged)",
+    "intervention_family": "A_TARGET_SUPPORT_REDESIGN (unchanged)",
+    "all_non_H3_axes_frozen": true,
+    "parent_phase13b_localizer_epoch53_sha": "7673c34a...",
+    "downstream_phase14_refiner_epoch56_sha": "2e09e3a9...",
+    "downstream_phase10_unetpp_sha": "ec7eb13f...",
+    "test_reads": 0,
+    "external_test_reads": 0
+  },
+  "train_only_audit": {
+    "population": "TRAIN FULL_FIELD only (kub_train_samples_sized.csv, 771 images); VAL/TEST untouched",
+    "method": "code-exact 128-space NEAREST subsample of the padded 512 mask (m512[::4,::4]); 8-connected labeling; per-component foreground pixel count",
+    "frozen_A_ref": 14.0,
+    "a_ref_basis": "p75 of TRAIN-only FULL_FIELD 128-space component areas",
+    "a_ref_source_artifact": "reports/tables/h3_aref_code_exact.json (SHA 2bf540f1ea6bceab9bc13b11c5f8966f5f1cbd016e6fb8f3f4dc430f700db42d)",
+    "recompute_crosscheck_p75": 12.0,
+    "note": "Independent re-implementation of the runtime mask pipeline yields p75 ~= 12.0 (same order, <25% offset); frozen A_ref=14.0 retained per ruling. Non-degeneracy verdict is identical for either value."
+  },
+  "corrected_mapping": {
+    "formula": "sigma_i = clip(0.35 + 0.40 * sqrt(A128_i / A_ref), 0.35, 0.75)",
+    "parameters": {"sigma_min": 0.35, "sigma_max": 0.75, "A_ref": 14.0},
+    "space": "A128_i = per-component foreground pixel count in 128-space heatmap space",
+    "monotonic": true,
+    "semantics": "Small components (small A128_i) -> smaller sigma -> sharper, higher-contrast peak (better tiny-object supply). Large components capped at sigma_max = 0.75 (historical behavior)."
+  },
+  "non_degeneracy_verification": {
+    "passed": true,
+    "population": "TRAIN-only FULL_FIELD components",
+    "n_components": 1078,
+    "n_distinct_sigma_levels": 14,
+    "frac_at_ceil_0.75": 0.2328,
+    "frac_at_floor_0.35": 0.0,
+    "median_sigma": 0.5890,
+    "tiny_median_sigma": 0.4569,
+    "nontiny_median_sigma": 0.6328,
+    "tiny_lt_nontiny": true,
+    "verdict": "SPREAD (14 distinct levels), NOT all at ceiling (23.3%), TINY median sigma < non-TINY median sigma. Non-degenerate."
+  },
+  "backward_compatibility_and_h3_branch_tests": {
+    "test_file": "tests/test_h3_size_adaptive_sigma.py",
+    "result": "12 passed",
+    "covers": [
+      "fixed-sigma behavior byte-identical when component_areas=None",
+      "large-area component caps at sigma_max == historical fixed behavior",
+      "small-area component yields sharper peak than fixed sigma",
+      "frozen mapping spreads/monotonic/bounded/floor+ceiling reachable",
+      "heatmap_space_component_areas counts 128-space foreground correctly",
+      "dataset opt-in flag default False (Phase-13B behavior preserved)",
+      "frozen H3 supply-axis 2-term selection (recall, tiebreak val_loss)"
+    ]
+  },
+  "checkpoint_selection_audit": {
+    "finding": "The trainer (train_phase13b_localizer.py) historically selects by an in-line grid-search feasible-selection (tiny_recall90/overall_recall90/-area/-val_loss), NOT the frozen MAX VAL_LOCALIZATION_RECALL rule.",
+    "classification": "OPERATIONAL_SELECTION_IMPLEMENTATION__NO_NEW_SCIENTIFIC_AXIS",
+    "minimal_impl": "Added select_h3_supply_epoch / build_h3_supply_selection_tuple to src/training/clean_v3_selection.py and a branch in the trainer gated by --selection_rule max_localization_recall (DEFAULT unchanged = feasible grid search). Frozen config: thr=0.10, margin=0.20, top_k=5, nms=0.30, tiebreak VAL_LOSS.",
+    "default_unchanged": true
+  },
+  "dedicated_h3_config": {
+    "path": "configs/kub/phase13b_localizer_h3_size_adaptive_sigma.yaml",
+    "binds": {"size_adaptive_sigma": true, "heatmap_resolution": 128, "A_ref": 14.0, "sigma_min": 0.35, "sigma_max": 0.75, "checkpoint_selection_rule": "max_localization_recall"}
+  },
+  "implementation_bindings_sha256": {
+    "src/inference/heatmap_targets.py": "4fe01377b5fb2f15377fda37ef2114a04185fa44a6dacef4983f2c0b15122d1c",
+    "src/data/kub_localizer_dataset.py": "b1c4645f8860d557ffc6cb145c224a7ddb5d804e558147fd37b8d8903feb3c5f",
+    "src/training/clean_v3_selection.py": "807a70181c1f0da7481a26f1d06e1a1f2ca21dd0e93d44d987e630f38f500fbb",
+    "scripts/training/train_phase13b_localizer.py": "c7b1824b5b215db167bd5293d2899052e356fb2eb118c4377f84b2c5d03519fd",
+    "tests/test_h3_size_adaptive_sigma.py": "57094021876284e14449804f0a70ca5cfe62062612a5de5803726be27cd33367",
+    "scripts/audit/h3_calibrate_size_adaptive_sigma.py": "71fd74e19f07f5b9475bd8d14373ce847bea6dc803e250f4f93969590632861c",
+    "configs/kub/phase13b_localizer_h3_size_adaptive_sigma.yaml": "13a12bea2e5f2a84737f350fd26dae56da622960aa32db5dfb26a93ff69aefd1",
+    "reports/tables/h3_code_exact_sigma_distribution.json": "9041302110d6dd67c23df3c786cb62d08eed38f206c398e9b3fca783a6abf568",
+    "reports/tables/h3_code_exact_component_areas.csv": "a9beb700b619649b43e190b5ca0f18c1fc5cc457f2213cb55c66133582a80990",
+    "reports/tables/h3_aref_code_exact.json": "2bf540f1ea6bceab9bc13b11c5f8966f5f1cbd016e6fb8f3f4dc430f700db42d"
+  },
+  "original_defective_spec_preserved_sha256": "0e94d95653e2f492293b43d20bff4511a41d52c4a3ed9072e01eb72cd3b0c6b4",
+  "training_status": {
+    "epochs_trained": 0,
+    "h3_checkpoint_exists": false,
+    "note": "No H3 training launched. This is an implementation-bind only. TRAINING IS NOT AUTHORIZED."
+  },
+  "ready_state": "H3_IMPLEMENTATION_BOUND__AWAITING_PROSPECTIVE_TRAINING_AUTHORIZATION",
+  "next_action_required": "Supervisor authorization of H3 TRAINING before any run. On authorization: launch train_phase13b_localizer.py with --config configs/kub/phase13b_localizer_h3_size_adaptive_sigma.yaml --resolution 512 --heatmap_resolution 128 --sigma 0.75 --size_adaptive_sigma --selection_rule max_localization_recall."
+}

@@ -1,0 +1,133 @@
+{
+ "artifact_kind": "PHASE36_CLEAN_EQUIVALENCE_DIAGNOSTIC_V1_1_FAILURE_ADJUDICATION",
+ "revision": "ra_medfilm_barr_phase36_clean_equivalence_diagnostic_v1_2",
+ "adjudication": "D50_FOREIGN_V1_14_LAUNCH_AUTHORITY_TOKEN_COUPLING",
+ "d50_reason": "FROZEN_V1_14_GATE_CONTAINS_FOREIGN_LAUNCH_AUTHORITY_SEMANTICS",
+ "consumed_attempt": {
+  "diagnostic": "ra_medfilm_barr_phase36_clean_equivalence_diagnostic_v1_1",
+  "outcome": "CONSUMED_FAILED",
+  "retry_permitted": false,
+  "scientific_output": false,
+  "attempt_evidence": {
+   "start": {
+    "path": "reports/audits/phase36_clean_equivalence_diagnostic_start_v1_1.json",
+    "present": true,
+    "expected_sha256": "59b29875838ed6117a8441f422a17fa7bdae5088fc74b2b33a38f9c92e15fa68",
+    "observed_sha256": "59b29875838ed6117a8441f422a17fa7bdae5088fc74b2b33a38f9c92e15fa68",
+    "expected_bytes": 3046,
+    "observed_bytes": 3046,
+    "match": true
+   },
+   "failure": {
+    "path": "reports/audits/phase36_clean_equivalence_diagnostic_failure_v1_1.json",
+    "present": true,
+    "expected_sha256": "ef6cf75f5d8432e69b89ddbef437c24b409cb325105a11f78a4c0f0004a57343",
+    "observed_sha256": "ef6cf75f5d8432e69b89ddbef437c24b409cb325105a11f78a4c0f0004a57343",
+    "expected_bytes": 5955,
+    "observed_bytes": 5955,
+    "match": true
+   },
+   "stdout": {
+    "path": "reports/audits/phase36_clean_equivalence_diagnostic_stdout_first_attempt_v1_1.txt",
+    "present": true,
+    "expected_sha256": "af71235b6cbc6237ce1c1e2246342e261c38765a702b78eaf3d84b7793f44b04",
+    "observed_sha256": "af71235b6cbc6237ce1c1e2246342e261c38765a702b78eaf3d84b7793f44b04",
+    "expected_bytes": 10278,
+    "observed_bytes": 10278,
+    "match": true
+   },
+   "stderr": {
+    "path": "reports/audits/phase36_clean_equivalence_diagnostic_stderr_first_attempt_v1_1.txt",
+    "present": true,
+    "expected_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "observed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "expected_bytes": 0,
+    "observed_bytes": 0,
+    "match": true
+   },
+   "post_run_evidence": {
+    "path": "reports/audits/phase36_clean_equivalence_diagnostic_v1_1_post_run_evidence.json",
+    "present": true,
+    "expected_sha256": "a33066434cf569b77563a8028e842aefeac9a360e8e9479a3852bf9f401204af",
+    "observed_sha256": "a33066434cf569b77563a8028e842aefeac9a360e8e9479a3852bf9f401204af",
+    "expected_bytes": 2397,
+    "observed_bytes": 2397,
+    "match": true
+   }
+  },
+  "failure_facts": {
+   "terminal_artifact": "FAILURE",
+   "artifact_kind": "PHASE36_CLEAN_EQUIVALENCE_DIAGNOSTIC_FAILURE",
+   "termination_kind": "SYSTEM_EXIT",
+   "exception_type": "SystemExit",
+   "failing_stage": "run_diagnostic",
+   "marker_consumed": true,
+   "clean_equivalence_computed": false,
+   "clean_equivalence_full_is_none": true,
+   "automatic_retry": false,
+   "overwrite_permitted": false,
+   "robustness_result": false,
+   "perturbation_executed": false,
+   "scientific_output": false,
+   "model_loaded": false,
+   "checkpoint_deserialized": false,
+   "val_image_or_gt_read": false,
+   "retry_forbidden": true
+  },
+  "result_artifact_absent": true
+ },
+ "root_cause": {
+  "summary": "the frozen v1.14 module's _verify_transitive_source_integrity() reads LAUNCH_AUTHORITY_TOKEN = 'PHASE36_V1_14_LAUNCH_AUTHORITY'; launch_token_ok = os.environ.get(LAUNCH_AUTHORITY_TOKEN) == '1'; when the token is absent the gate sets all_match=False and the diagnostic aborts with DIAGNOSTIC_SOURCE_INTEGRITY_FAILED before any model load.",
+  "foreign_token": "PHASE36_V1_14_LAUNCH_AUTHORITY",
+  "all_byte_checks_passed_without_the_token": true,
+  "missing_condition": "launch_anchor.launch_authority_token_present == true (v1.14 token)",
+  "model_or_data_touched": false
+ },
+ "classification": "PRE_MODEL_GOVERNANCE_COUPLING_FAILURE",
+ "repair": {
+  "revision": "ra_medfilm_barr_phase36_clean_equivalence_diagnostic_v1_2",
+  "approach": "(A) launcher does the exact pre-consumption transitive byte-integrity proof itself; (B) both launcher and source forbid the foreign token and fail closed if present; (C) diagnostic-native authority pair; (D) invoke only the clean steps, omitting the frozen foreign-token gate; (E) preserve all eq fields.",
+  "foreign_v1_14_launch_token_used": false
+ },
+ "prior_failure_provenance": {
+  "v1_14_science_start": {
+   "path": "reports/audits/phase36_robustness_science_start_v1_14.json",
+   "present": true,
+   "expected": "e2c42b05f4fd0450022d7bcde091c0bea13638788b4f83a123016ab894630e0a",
+   "observed": "e2c42b05f4fd0450022d7bcde091c0bea13638788b4f83a123016ab894630e0a",
+   "match": true
+  },
+  "v1_14_science_failure": {
+   "path": "reports/audits/phase36_robustness_science_failure_v1_14.json",
+   "present": true,
+   "expected": "0fcc3c211d7bcd53b4f8e53d7b09f518fd83a929e8a979c7174762958fff754b",
+   "observed": "0fcc3c211d7bcd53b4f8e53d7b09f518fd83a929e8a979c7174762958fff754b",
+   "match": true
+  },
+  "v1_14_forensic_adjudication": {
+   "path": "reports/audits/phase36_v1_14_science_failure_forensic_adjudication.json",
+   "present": true,
+   "expected": "f1d4712ae7b3f0b333a22c852f99d6b3812218ffb258f8f58ddba62c7193c17e",
+   "observed": "f1d4712ae7b3f0b333a22c852f99d6b3812218ffb258f8f58ddba62c7193c17e",
+   "match": true
+  },
+  "forensic_reconciliation_v2": {
+   "path": "reports/audits/phase36_v1_14_science_failure_forensic_reconciliation_v2.json",
+   "present": true,
+   "expected": "cc9a3b502f59e3855c395b9d6afa2f5616f513d60af4756e4477a9370889cc3c",
+   "observed": "cc9a3b502f59e3855c395b9d6afa2f5616f513d60af4756e4477a9370889cc3c",
+   "match": true
+  },
+  "targeted_static_audit": {
+   "path": "reports/audits/phase36_clean_equivalence_targeted_static_audit_v1_0.json",
+   "present": true,
+   "expected": "8def086c44a7e80461c729f41ab61c0be347ef1589c94d6884a082adbde64ed4",
+   "observed": "8def086c44a7e80461c729f41ab61c0be347ef1589c94d6884a082adbde64ed4",
+   "match": true
+  }
+ },
+ "required_static_audit_verdict": "STATIC_ROOT_CAUSE_NOT_ESTABLISHED",
+ "observed_static_audit_verdict": "STATIC_ROOT_CAUSE_NOT_ESTABLISHED",
+ "scientific_output": false,
+ "generated_utc": "2026-10-07T04:03:48Z"
+}

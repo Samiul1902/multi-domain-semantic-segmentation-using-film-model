@@ -1,0 +1,60 @@
+{
+  "artifact": "phase20_training_closure",
+  "phase": 20,
+  "experiment_id": "phase20_shared_unetpp_fourdomain_seed42_clean_v3",
+  "manifest_version": "phase4_v3",
+  "selection_rule_id": "phase20_macro_domain_mean_dice_v1",
+  "best_epoch": 55,
+  "best_macro_domain_dice": 0.792007328746103,
+  "per_domain_dice_at_best": {
+    "ISIC": 0.8600706700810291,
+    "BUSI": 0.8163009576854252,
+    "KVASIR": 0.7709952691976972,
+    "KUB": 0.7206624180202605
+  },
+  "per_domain_iou_at_best": {
+    "ISIC": 0.7799642962151309,
+    "BUSI": 0.7125638495421126,
+    "KVASIR": 0.6696683340933672,
+    "KUB": 0.6018948055695045
+  },
+  "best_val_loss": 0.1825177385517866,
+  "final_epoch": 70,
+  "total_completed_epochs": 70,
+  "stop_reason": "EARLY_STOPPING_PATIENCE",
+  "early_stopping_patience": 15,
+  "history_path": "experiments/phase20_shared_unetpp_fourdomain_seed42_clean_v3/history.csv",
+  "history_sha256": "ed9abeee112a45954e458209ecff9c480a9b68ced7d76edd8dc31eaf9d2333cd",
+  "best_checkpoint_path": "checkpoints/phase20_shared_unetpp_fourdomain_seed42_clean_v3/best.pt",
+  "best_checkpoint_sha256": "d647ac52bf39704549ce2eea4fee8e17dfcb5ce9ace5e0b24ffb1f7db86a059f",
+  "latest_checkpoint_path": "checkpoints/phase20_shared_unetpp_fourdomain_seed42_clean_v3/latest.pt",
+  "latest_checkpoint_sha256": "7be70a818ff8b0f0b083bf383fa20b6b3ef3d35eb77bbef6f12121386f649959",
+  "latest_checkpoint_epoch": 70,
+  "config_sha256": "27c5015da9bbbd61c32d580ca7f08667314d8e4c37eab4afe293df3aae700769",
+  "trainer_path": "scripts/training/train_phase20_shared_unetpp.py",
+  "trainer_sha256": "7ba1ed8238c18277d62c47081a1ff2de0fd1a8fa6b9ef67c04de9d09c108bd85",
+  "model_params": 9159681,
+  "resume_events": [],
+  "resume_count": 0,
+  "history_integrity": {
+    "n_rows": 70,
+    "epochs_contiguous_from_1": true,
+    "missing_epochs": [],
+    "duplicate_epochs": [],
+    "monotonic_epochs": true,
+    "required_columns_present": true,
+    "history_sha256": "ed9abeee112a45954e458209ecff9c480a9b68ced7d76edd8dc31eaf9d2333cd"
+  },
+  "training_runs": 1,
+  "logical_runs": 1,
+  "independent_duplicate_runs": 0,
+  "test_reads": {
+    "test_image_reads": 0,
+    "test_mask_reads": 0,
+    "test_inference": 0,
+    "test_visualization": 0
+  },
+  "total_elapsed_seconds": 43001.28172945976,
+  "natural_termination": true,
+  "manually_stopped_early": false
+}

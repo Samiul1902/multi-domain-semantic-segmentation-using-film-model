@@ -1,0 +1,47 @@
+{
+ "artifact": "phase26_terminal",
+ "phase": "26",
+ "classification": "PHASE26_PRE_EXECUTION_TRAINING_SPECIFICATION_AUDIT",
+ "method": "RA-MedFiLM-BARR",
+ "stage": "TERMINAL",
+ "terminal": "PHASE26_BLOCKED__FULL_SYSTEM_TRAINING_SPEC_INCOMPLETE",
+ "phase26_status": "BLOCKED",
+ "phase26_started": false,
+ "specification_complete": false,
+ "blocking_fields_n": 30,
+ "blocked_conditions": {
+  "FULL_SYSTEM_TRAINING_SPEC_INCOMPLETE": true,
+  "NO_PROSPECTIVE_POLICY_SELECTION_RULE": true,
+  "PHASE30_HOLDOUT_CONTAMINATION_RISK": true,
+  "PREDECESSOR_ARTIFACT_DRIFT": false
+ },
+ "primary_blocking_condition": "FULL_SYSTEM_TRAINING_SPEC_INCOMPLETE",
+ "alternate_blocked_terminals": [
+  "PHASE26_BLOCKED__FULL_SYSTEM_TRAINING_SPEC_INCOMPLETE",
+  "PHASE26_BLOCKED__NO_PROSPECTIVE_POLICY_SELECTION_RULE",
+  "PHASE26_BLOCKED__PHASE30_HOLDOUT_CONTAMINATION_RISK",
+  "PHASE26_BLOCKED__PREDECESSOR_ARTIFACT_DRIFT"
+ ],
+ "holdout_owner": "PHASE30",
+ "holdout_state": "RESERVED_UNOPENED_FOR_PHASE30",
+ "do_not": [
+  "TRAIN",
+  "FINE-TUNE",
+  "CONSTRUCT A MODEL",
+  "RUN A FORWARD PASS",
+  "SELECT A POLICY",
+  "SELECT A LAMBDA",
+  "SELECT A BUDGET",
+  "OPEN ROUTER_HOLDOUT",
+  "OPEN VAL808",
+  "OPEN TEST",
+  "START PHASE27",
+  "START PHASE28",
+  "START PHASE29",
+  "START PHASE30"
+ ],
+ "failures": [
+  "specification_complete"
+ ],
+ "all_pass": false
+}

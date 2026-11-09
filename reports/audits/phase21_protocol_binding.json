@@ -1,0 +1,259 @@
+{
+  "artifact": "phase21_protocol_binding",
+  "phase": 21,
+  "generated_utc": "2026-09-28T11:25:55.545277+00:00",
+  "experiment_id": "phase21_global_medfilm_fourdomain_seed42_clean_v3",
+  "authoritative_source": {
+    "path": "reports/audits/phase20_shared_global_baseline_protocol.json",
+    "sha256": "b74f1f9f429adbce374f0306180943b9f373f872e1e69e115b7d17e81414283c",
+    "sha256_expected": "b74f1f9f429adbce374f0306180943b9f373f872e1e69e115b7d17e81414283c",
+    "sha_matches": true,
+    "role": "AUTHORITATIVE_ON_DISK"
+  },
+  "inherited_values": {
+    "manifest_version": {
+      "phase20_protocol_value": "phase4_v3",
+      "phase21_value": "phase4_v3",
+      "identical": true,
+      "source": "dataset_populations.manifest_version"
+    },
+    "task_ids": {
+      "phase20_protocol_value": {
+        "ISIC": 0,
+        "BUSI": 1,
+        "KVASIR": 2,
+        "KUB": 3
+      },
+      "phase21_value": {
+        "ISIC": 0,
+        "BUSI": 1,
+        "KVASIR": 2,
+        "KUB": 3
+      },
+      "identical": true,
+      "source": "dataset_populations.task_ids"
+    },
+    "train_total": {
+      "phase20_protocol_value": 5832,
+      "phase21_value": 5832,
+      "identical": true,
+      "source": "dataset_populations.TRAIN_total"
+    },
+    "val_total": {
+      "phase20_protocol_value": 808,
+      "phase21_value": 808,
+      "identical": true,
+      "source": "dataset_populations.VAL_total"
+    },
+    "input_channel_policy": {
+      "phase20_protocol_value": "RGB_3CH",
+      "phase21_value": "RGB_3CH",
+      "identical": true,
+      "source": "input_representation.channel_policy"
+    },
+    "input_resolution": {
+      "phase20_protocol_value": 512,
+      "phase21_value": 512,
+      "identical": true,
+      "source": "input_resolution"
+    },
+    "sampling_policy": {
+      "phase20_protocol_value": "phase20_domain_balanced_uniform_v1",
+      "phase21_value": "phase20_domain_balanced_uniform_v1",
+      "identical": true,
+      "source": "sampling_policy.policy_id"
+    },
+    "loss": {
+      "phase20_protocol_value": {
+        "name": "bce_dice",
+        "bce_weight": 0.5,
+        "dice_weight": 0.5,
+        "dice_epsilon": 1e-06
+      },
+      "phase21_value": {
+        "name": "bce_dice",
+        "bce_weight": 0.5,
+        "dice_weight": 0.5,
+        "dice_epsilon": 1e-06
+      },
+      "identical": true,
+      "source": "loss"
+    },
+    "optimizer": {
+      "phase20_protocol_value": {
+        "name": "AdamW",
+        "learning_rate": 0.0001,
+        "weight_decay": 0.0001
+      },
+      "phase21_value": {
+        "name": "AdamW",
+        "learning_rate": 0.0001,
+        "weight_decay": 0.0001
+      },
+      "identical": true,
+      "source": "optimizer"
+    },
+    "learning_rate": {
+      "phase20_protocol_value": 0.0001,
+      "phase21_value": 0.0001,
+      "identical": true,
+      "source": "learning_rate"
+    },
+    "weight_decay": {
+      "phase20_protocol_value": 0.0001,
+      "phase21_value": 0.0001,
+      "identical": true,
+      "source": "weight_decay"
+    },
+    "scheduler": {
+      "phase20_protocol_value": {
+        "name": "CosineAnnealingLR",
+        "T_max": 100,
+        "step": "per_epoch_after_train_and_val"
+      },
+      "phase21_value": {
+        "name": "CosineAnnealingLR",
+        "T_max": 100,
+        "step": "per_epoch_after_train_and_val"
+      },
+      "identical": true,
+      "source": "scheduler"
+    },
+    "batch_size": {
+      "phase20_protocol_value": 4,
+      "phase21_value": 4,
+      "identical": true,
+      "source": "batch_size"
+    },
+    "eval_batch_size": {
+      "phase20_protocol_value": 8,
+      "phase21_value": 8,
+      "identical": true,
+      "source": "eval_batch_size"
+    },
+    "num_workers": {
+      "phase20_protocol_value": 4,
+      "phase21_value": 4,
+      "identical": true,
+      "source": "num_workers"
+    },
+    "amp": {
+      "phase20_protocol_value": true,
+      "phase21_value": true,
+      "identical": true,
+      "source": "amp"
+    },
+    "seed": {
+      "phase20_protocol_value": 42,
+      "phase21_value": 42,
+      "identical": true,
+      "source": "seed"
+    },
+    "max_epochs": {
+      "phase20_protocol_value": 100,
+      "phase21_value": 100,
+      "identical": true,
+      "source": "max_epochs"
+    },
+    "early_stopping_patience": {
+      "phase20_protocol_value": 15,
+      "phase21_value": 15,
+      "identical": true,
+      "source": "early_stopping.patience"
+    },
+    "checkpoint_selection_rule": {
+      "phase20_protocol_value": "phase20_macro_domain_mean_dice_v1",
+      "phase21_value": "phase20_macro_domain_mean_dice_v1",
+      "identical": true,
+      "source": "checkpoint_selection.rule_id"
+    },
+    "evaluation_threshold": {
+      "phase20_protocol_value": 0.5,
+      "phase21_value": 0.5,
+      "identical": true,
+      "source": "evaluation_metrics.threshold"
+    },
+    "bootstrap": {
+      "phase20_protocol_value": {
+        "n_boot": 2000,
+        "seed": 42,
+        "alpha": 0.05,
+        "unit": "image"
+      },
+      "phase21_value": {
+        "n_boot": 2000,
+        "seed": 42,
+        "alpha": 0.05,
+        "unit": "image"
+      },
+      "identical": true,
+      "source": "evaluation_metrics.bootstrap"
+    },
+    "metrics_implementation": {
+      "phase20_protocol_value": "src.metrics.evaluation_metrics",
+      "phase21_value": "src.metrics.evaluation_metrics",
+      "identical": true,
+      "source": "evaluation_metrics.implementation"
+    },
+    "test_locks": {
+      "phase20_protocol_value": 0,
+      "phase21_value": 0,
+      "identical": true,
+      "source": "test_locks"
+    }
+  },
+  "n_inherited_checks": 24,
+  "n_inherited_identical": 24,
+  "all_inherited_identical": true,
+  "intentional_differences": [
+    {
+      "field": "architecture",
+      "phase20_protocol_value": "unetpp_nested_4_level_no_deep_supervision_base32",
+      "phase21_value": "global_medfilm_shared_residual_unet_film5_no_se_no_deep_supervision_v1",
+      "reason": "Phase 21 is the task-conditioned Global MedFiLM reference. The shared UNet++ architecture is replaced by the reconstructed historical GLOBAL MedFiLM (residual shared encoder-decoder + 5 FiLM sites + ONE shared head).",
+      "class": "INTENTIONAL_ARCHITECTURAL"
+    },
+    {
+      "field": "experiment_id",
+      "phase20_protocol_value": "phase20_shared_unetpp_fourdomain_seed42_clean_v3",
+      "phase21_value": "phase21_global_medfilm_fourdomain_seed42_clean_v3",
+      "reason": "New phase, new experiment identity and new isolated output directories.",
+      "class": "INTENTIONAL_IDENTITY"
+    },
+    {
+      "field": "model.input_channels_consumed",
+      "phase20_protocol_value": "RGB_3CH (in_channels=3)",
+      "phase21_value": "RGB_3CH (in_channels=3)",
+      "reason": "No change: the Phase-20 RGB_3CH channel policy is inherited EXACTLY. Listed here only to record that the legacy MedFiLM's 3-channel encoder first stage required no adapter.",
+      "class": "INTENTIONAL_NO_CHANGE_DOCUMENTED"
+    },
+    {
+      "field": "task_id_role",
+      "phase20_protocol_value": "sampling_only__never_a_model_input",
+      "phase21_value": "CONDITIONING_ALLOWED (FiLM task embedding is the ONLY task signal)",
+      "reason": "The defining Phase-21 change: task_id is permitted as a CONDITIONING input only. It is never a channel, never concatenated to the image, never a separate head, and no mask-derived metadata enters the model.",
+      "class": "INTENTIONAL_ARCHITECTURAL"
+    },
+    {
+      "field": "output_isolation",
+      "phase20_protocol_value": {
+        "experiment_dir": "experiments/phase20_shared_unetpp_fourdomain_seed42_clean_v3",
+        "checkpoint_dir": "checkpoints/phase20_shared_unetpp_fourdomain_seed42_clean_v3",
+        "overwrites_legacy_checkpoints": false,
+        "overwrites_stage_a_checkpoints": false
+      },
+      "phase21_value": {
+        "experiment_dir": "experiments/phase21_global_medfilm_fourdomain_seed42_clean_v3",
+        "checkpoint_dir": "checkpoints/phase21_global_medfilm_fourdomain_seed42_clean_v3",
+        "overwrites_phase20_checkpoints": false
+      },
+      "reason": "Isolated output directories; no frozen artifact is overwritten.",
+      "class": "INTENTIONAL_IDENTITY"
+    }
+  ],
+  "unintentional_differences": [],
+  "unintentional_differences_count": 0,
+  "test_reads": 0,
+  "training_performed_at_binding_time": false,
+  "verdict": "PHASE21_PROTOCOL_BINDING_PASS"
+}

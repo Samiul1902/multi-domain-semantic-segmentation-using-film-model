@@ -1,0 +1,42 @@
+{
+  "phase14_entry_gate": "NOT_PASSED",
+  "phase14_authorized": false,
+  "phase14_status": "BLOCKED_BY_FROZEN_ENTRY_GATE",
+  "gate_criteria": {
+    "hard_tiny": "7/16 < 8/16",
+    "global_empty": "3/7 < 4/7",
+    "tiny_recall90": "0.726027 < 0.85",
+    "overall_recall90": "0.641026 < 0.85",
+    "roi_area": "0.005899 <= 0.10",
+    "props_image": "4.660377 <= 5"
+  },
+  "later_phase_dependency_analysis": [
+    {
+      "phase": 14,
+      "title": "Regional segmentation / coarse-to-fine refinement",
+      "status": "BLOCKED_BY_PHASE14"
+    },
+    {
+      "phase": 15,
+      "title": "Loss / ROI / fusion / scale / object-size studies",
+      "status": "BLOCKED_BY_PHASE14"
+    },
+    {
+      "phase": 16,
+      "title": "Multi-domain dataset harmonization",
+      "status": "INDEPENDENT_OF_PHASE14"
+    }
+  ],
+  "next_eligible_phase": {
+    "number": 16,
+    "title": "Multi-domain dataset harmonization",
+    "rationale": "Harmonization of ISIC, BUSI, Kvasir, and KUB datasets is independent of KUB-specific learned localizer proposals and advances the global multi-domain path."
+  },
+  "roadmap_amendment": "Phase-14 gate-failure transition logic added to PROJECT_MASTER_PLAN.md. Phase 14 blocked, Phase 13 frozen, advance to Phase 16.",
+  "locks": {
+    "test_reads": 0,
+    "test_metrics": "NONE",
+    "external_used": false,
+    "experiment_a_modified": false
+  }
+}

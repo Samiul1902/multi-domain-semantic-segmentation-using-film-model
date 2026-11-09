@@ -1,0 +1,33 @@
+{
+ "artifact": "phase26_source_code_integrity",
+ "phase": "26",
+ "classification": "CANONICAL_FULL_SYSTEM_INTEGRATION_AND_CONFIGURATION_FREEZE",
+ "method": "RA-MedFiLM-BARR",
+ "wrapper_path": "src/models/barr/ra_medfilm_barr.py",
+ "wrapper_sha256": "342f2163690c2fa8d5a601ab1d18178b982d701b916935c33e0793b0801c3724",
+ "validator_path": "scripts/analysis/validate_phase26_canonical_bundle.py",
+ "validator_sha256": "912d886599adae810db14edf17331a25c37d4e92abd8fbe1fe67f94ab7810300",
+ "learned_model_sources": {
+  "global_medfilm": {
+   "path": "src/models/film/global_medfilm.py",
+   "exists": true,
+   "sha256": "a04ff3e61b4d900ff47c2f390da4a999e73bd6047b28a19e41b05115e431d11f",
+   "expected_sha256": null,
+   "match": true
+  },
+  "regional_refiner": {
+   "path": "src/models/barr/regional_refiner.py",
+   "exists": true,
+   "sha256": "4fe0abde3ec3a183d930f676c4400b4d9ba778793ea64abf1755c5b8dabf947a",
+   "expected_sha256": null,
+   "match": true
+  }
+ },
+ "learned_model_source_modified": false,
+ "checks": {
+  "wrapper_exists": true,
+  "validator_exists": true,
+  "no_learned_source_modification": true
+ },
+ "all_pass": true
+}

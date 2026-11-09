@@ -1,0 +1,136 @@
+{
+  "artifact": "H3_PROPOSAL_SUPPLY_FINAL_PRETRAINING_BINDING_V2",
+  "status": "H3_FINAL_PRETRAINING_BINDING_COMPLETE__AWAITING_TRAINING_AUTHORIZATION",
+  "generated_utc": "2026-09-23T15:49:51Z",
+  "axis": "A_PROPOSAL_SUPPLY_RECALL_LIMITATION",
+  "intervention_family": "A_TARGET_SUPPORT_REDESIGN",
+  "intervention_wording": "FIXED_TARGET_SUPPORT_MAY_BE_MISMATCHED_TO_COMPONENT_SCALE",
+  "corrected_mapping": "sigma_i = clip(0.35 + 0.40 * sqrt(A128_i / A_ref), 0.35, 0.75)",
+  "authoritative_a_ref": 13.0,
+  "a_ref_definition": "p75 of per-component 128-space foreground areas over canonical clean-v3 TRAIN FULL_FIELD (770 images / 1161 components), via the EXACT H3 runtime centroid->128-space mapping (no combined-mask relabeling).",
+  "training_status": {
+    "epochs_trained": 0,
+    "h3_checkpoint_exists": false,
+    "note": "No H3 training launched. Only pre-execution binding + dry-run performed."
+  },
+
+  "reconciliation_compliance_map": {
+    "S1_config_loss_mismatch": "RESOLVED — H3 YAML loss rewritten to CenterNetFocalLoss(alpha=2.0, beta=4.0, dice_weight=0.0), field-for-field identical to authoritative parent config (configs/phase13_clean_v3/..._centernetfocal_seed42_clean_v3.yaml). Class: PRE_EXECUTION_CONFIG_BINDING_DEFECT__ZERO_TRAINING_IMPACT.",
+    "S2_eliminate_proposal_search": "RESOLVED — H3 path evaluates EXACTLY ONE decode config (thr=0.10/margin=0.20/top_k=5/nms=0.30); proposal_search multi-value block removed; proposal_configurations_evaluated_per_epoch=1; grid_search disabled.",
+    "S3_train_population_identity": "RESOLVED — bound to manifests/phase4_v3/train.csv (770 images / 1161 components). Orphan ef36ad8332b2f33882dc668a5b6846e5 quarantined. Class: PRE_EXECUTION_CALIBRATION_POPULATION_MISMATCH (v2-era sized table carried 771 incl. orphan).",
+    "S4_component_cardinality": "RESOLVED — (sample_id, component_id) preserved; invariant len(mapped_centroids)==len(component_areas) holds in kub_localizer_dataset.py; no combined-mask relabeling; deterministic zero-area rule (sigma=sigma_min=0.35). Per-component audit: reports/tables/h3_v2_component_area_audit.csv (1161 rows).",
+    "S5_area_distribution_recomputed": "RESOLVED — reports/tables/h3_v2_area_distribution.json over canonical TRAIN-only FULL_FIELD.",
+    "S6_a_ref_set": "RESOLVED — authoritative A_ref = 13.0 (p75). Supersedes prior 14.0 (n=1149 relabeled) and 12.0 (n=1078 relabeled), both cardinality-violating.",
+    "S7_non_degeneracy_reverified": "PASS — calibration non_degeneracy.passed=true; 14 distinct sigma levels; 25.5% at ceil; 4.5% at floor; tiny median sigma 0.461 < non-tiny 0.644. 12/12 H3 unit tests pass.",
+    "S8_checkpoint_selection_audited": "PASS — exact tuple (val_localization_recall, -val_loss); no other metric; build_h3_supply_selection_tuple verified to return 2-term tuple in dry-run.",
+    "S9_h3_config_execution_exact": "RESOLVED — configs/kub/phase13b_localizer_h3_size_adaptive_sigma.yaml regenerated: correct loss, singleton decode, A_ref=13.0, size_adaptive_sigma=true.",
+    "S10_final_dry_run": "PASS — training_steps=0; no optimizer step/epoch; config/flags/A_ref/model/loss/optimizer/scheduler/manifests/decode/selection all resolved. See dry_run_result.",
+    "S11_final_binding_artifact": "THIS FILE.",
+    "S12_checklist": "C12=PASS__FINAL_IMPLEMENTATION_VERIFIED; C13=PENDING__SUPERVISOR_TRAINING_AUTHORIZATION; C15=PASS__CONFIG_AND_CALIBRATION_RECONCILED.",
+    "S13_final_response": "29-point response returned to supervisor; training NOT started."
+  },
+
+  "authoritative_calibration_summary": {
+    "source_script": "scripts/audit/h3_calibrate_size_adaptive_sigma_v2.py",
+    "source_script_sha256": "6c3eb477db3d74d75aa14b7182b11d6113204b58bbfb9372686d099e10c9855a",
+    "population": {
+      "source_manifest": "manifests/phase4_v3/train.csv",
+      "manifest_sha256": "28702fc3a5ff8b950db372f03232d335e3a30b1fc2f21db7cd8c066055826ed6",
+      "filter": "view_type == FULL_FIELD AND sample_id IN clean-v3 TRAIN manifest",
+      "n_images": 770,
+      "n_components": 1161,
+      "train_sample_id_digest_sha256": "ab33304c4fe6113a7ed086a1f7e57d582119e05372acf43028294529eac5730d",
+      "train_component_id_digest_sha256": "11c404feb7c9ebec74ebccc1cef9c75433af65c366f653b61958d42788c1b61e",
+      "orphan_samples_quarantined": ["ef36ad8332b2f33882dc668a5b6846e5"],
+      "orphan_count": 1
+    },
+    "A_ref": 13.0,
+    "area128_percentiles": {
+      "p0": 0.0, "p1": 0.0, "p5": 1.0, "p10": 1.0, "p25": 2.0, "p50": 5.0,
+      "p75": 13.0, "p90": 40.0, "p95": 73.0, "p99": 152.0000000000009, "p100": 278.0
+    },
+    "zero_area_count": 52,
+    "non_degeneracy": {
+      "n_distinct_sigma_levels": 14,
+      "frac_at_ceil_0.75": 0.2549526270456503,
+      "frac_at_floor_0.35": 0.04478897502153316,
+      "median_sigma": 0.598069469178417,
+      "tiny_median_sigma": 0.4609400392450458,
+      "nontiny_median_sigma": 0.6435197542821371,
+      "tiny_lt_nontiny": true,
+      "all_in_bounds": true,
+      "passed": true
+    },
+    "superseded_calibrations": {
+      "14.0": "relabeled 128-space components (n=1149) — MERGES components, cardinality wrong -> superseded",
+      "12.0": "relabeled direct 128-space (n=1078) — relabeling, cardinality wrong -> superseded"
+    }
+  },
+
+  "implementation_sha256": {
+    "src/inference/heatmap_targets.py": "4fe01377b5fb2f15377fda37ef2114a04185fa44a6dacef4983f2c0b15122d1c",
+    "src/data/kub_localizer_dataset.py": "b1c4645f8860d557ffc6cb145c224a7ddb5d804e558147fd37b8d8903feb3c5f",
+    "src/training/clean_v3_selection.py": "807a70181c1f0da7481a26f1d06e1a1f2ca21dd0e93d44d987e630f38f500fbb",
+    "scripts/training/train_phase13b_localizer.py": "37b64310d38222310ce060803e37d17e4b6916ce7c522d925234167dc26da366",
+    "tests/test_h3_size_adaptive_sigma.py": "57094021876284e14449804f0a70ca5cfe62062612a5de5803726be27cd33367",
+    "scripts/audit/h3_calibrate_size_adaptive_sigma_v2.py": "6c3eb477db3d74d75aa14b7182b11d6113204b58bbfb9372686d099e10c9855a",
+    "configs/kub/phase13b_localizer_h3_size_adaptive_sigma.yaml": "320a367068b6bec4ea357ebea4bca1460db2c7f7a435f19403af64fb4a05f854"
+  },
+
+  "verification_artifact_sha256": {
+    "reports/tables/h3_v2_area_distribution.json": "a68309312b9e884b90007f60de5b968b061db2a8e2cb4bda87a96ed4578b4167",
+    "reports/tables/h3_v2_component_area_audit.csv": "aec832dfa34c1d1ee9afad1ac0c909cbb8b9f86891deb78f594bd0b6f0317170"
+  },
+
+  "correction_artifact_sha256": {
+    "reports/audits/h3_proposal_supply_design_correction.json": "82c2ca08c6a215605c2ce491cbea5d879bdfffa21a029438af942122755d329a",
+    "reports/audits/h3_proposal_supply_design_correction.md": "cd59091495120441f1def29aed435f6bde0621e0644cb49609cdd150385cb023"
+  },
+
+  "manifest_bindings": {
+    "manifests/phase4_v3/train.csv": "28702fc3a5ff8b950db372f03232d335e3a30b1fc2f21db7cd8c066055826ed6",
+    "manifests/phase4_v3/val.csv": "082c80b2bda63fd73f371f109c34643adf01edaead921643fb2e44993ba53315"
+  },
+
+  "frozen_checkpoint_bindings": {
+    "_note": "The .pt files are NOT present on disk in this workspace; their SHA256 values are the FROZEN authoritative values from h3_proposal_supply_design_protocol.json (artifact_inventory / bound_*). They are bound by reference, not recomputed.",
+    "phase13b_parent_localizer_epoch53": {
+      "path": "checkpoints/phase13b_kub_localizer_r512_h128_sigmaeq075_centernetfocal_seed42_clean_v3/best.pt",
+      "sha256": "7673c34a2f2c86eca2e45c1bc6abe77842d17cd09f122f2da0f2d414ca492273",
+      "role": "PARENT localizer — target-generation code redesigned for H3; NOT fine-tuned"
+    },
+    "phase14_refiner_epoch56": {
+      "path": "checkpoints/phase14_kub_refiner_unet_a3_256_seed42_clean_v3/best.pt",
+      "sha256": "2e09e3a9c39c731687db1a9fef0c80881ed6235e4cda070bb4b8b382caa45daa",
+      "role": "Stage-4D regional refiner (downstream eval)"
+    },
+    "phase10_unetpp_epoch70": {
+      "path": "checkpoints/phase10_kub_unetpp_seed42_512_clean_v3/best.pt",
+      "sha256": "ec7eb13f32e43af27eab7fc617bd1a2a8fcce1d6651a1b4a3653f3e4d1283269",
+      "role": "GLOBAL_ONLY baseline (contrast)"
+    }
+  },
+
+  "dry_run_result": {
+    "training_steps_executed": 0,
+    "config_resolves": true,
+    "flags": {"size_adaptive_sigma": true, "A_ref": 13.0, "sigma_min": 0.35, "sigma_max": 0.75, "selection_rule": "max_localization_recall"},
+    "decode_config": {"threshold": 0.1, "margin": 0.2, "top_k": 5, "nms_iou": 0.3, "in_grid": true, "grid_search_disabled": true},
+    "proposal_configurations_evaluated_per_epoch": 1,
+    "checkpoint_selection": {"rule": "max_localization_recall", "tuple": ["val_localization_recall", "negative_val_loss"], "is_2_term": true},
+    "loss": {"type": "CenterNetFocalLoss", "alpha": 2.0, "beta": 4.0, "parent_identical": true},
+    "optimizer": {"type": "AdamW", "lr": 0.0001, "weight_decay": 0.0001, "parent_identical": true},
+    "scheduler": {"type": "CosineAnnealingLR", "T_max": 100, "parent_identical": true},
+    "model_built": true,
+    "model_param_count": 482449,
+    "manifests_resolved": true,
+    "population": {"sized_table_train_full_field": 771, "canonical_train_full_field": 770, "orphan_train_quarantined": ["ef36ad8332b2f33882dc668a5b6846e5"], "classification": "PRE_EXECUTION_CALIBRATION_POPULATION_MISMATCH"}
+  },
+
+  "exact_training_command": "python scripts/training/train_phase13b_localizer.py --config configs/kub/phase13b_localizer_h3_size_adaptive_sigma.yaml --sigma 0.75 --size_adaptive_sigma --selection_rule max_localization_recall  (requires CUDA host; dry-run already verified resolution on CPU)",
+
+  "superseded_artifact_note": "h3_proposal_supply_final_implementation_binding.json (v1) is preserved but its a_ref=14.0 is SUPERSEDED by the authoritative 13.0 in this v2. v1 remains as historical record.",
+
+  "final_status": "H3_FINAL_PRETRAINING_BINDING_COMPLETE__AWAITING_TRAINING_AUTHORIZATION",
+  "next_action_required": "Supervisor authorization of H3 TRAINING. On authorization, run the exact_training_command above on a CUDA host; select checkpoint by supply-axis rule (max VAL_LOCALIZATION_RECALL @ 0.10/0.20/5/0.30, tiebreak min VAL_LOSS)."
+}

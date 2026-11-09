@@ -1,0 +1,56 @@
+{
+ "artifact": "phase26_data_population_contract",
+ "phase": "26",
+ "classification": "PHASE26_PRE_EXECUTION_TRAINING_SPECIFICATION_AUDIT",
+ "method": "RA-MedFiLM-BARR",
+ "governance_only": true,
+ "phase26_training_population_defined": false,
+ "candidate_populations": {
+  "ORIGINAL_TRAIN": {
+   "n": 5832,
+   "composition": "ROUTER_DEVELOPMENT (4957) + ROUTER_HOLDOUT (875)",
+   "authorized_for_phase26_training": false,
+   "reason": "Using all 5832 would train on the 875 ROUTER_HOLDOUT samples that are RESERVED_UNOPENED_FOR_PHASE30, contaminating the Phase30 one-shot development validation.",
+   "contamination_risk": true
+  },
+  "ROUTER_DEVELOPMENT": {
+   "n": 4957,
+   "role": "DEV population; already used for OOF label creation in Phase25C",
+   "authorized_for_phase26_training": null,
+   "reason": "No authoritative source authorizes or forbids Phase26 training on DEV."
+  },
+  "ROUTER_HOLDOUT": {
+   "n": 875,
+   "role": "one-shot holdout",
+   "state": "RESERVED_UNOPENED_FOR_PHASE30",
+   "owner": "Phase30",
+   "authorized_for_phase26_training": false
+  },
+  "VAL808": {
+   "n": 808,
+   "role": "continuity / secondary benchmark",
+   "state": "UNOPENED",
+   "authorized_for_phase26_training": false
+  },
+  "TEST": {
+   "n": 1683,
+   "role": "untouched final test cohort",
+   "state": "LOCKED_UNTIL_PHASE39",
+   "authorized_for_phase26_training": false
+  }
+ },
+ "frozen_split_provenance": {
+  "split_manifest": "reports/audits/phase24_router_split_manifest.csv",
+  "split_manifest_sha256": "b5da52d6220ef9b59b4ba70d0b403b38bf5234b897615b6ad55d718114db6555",
+  "development_n": 4957,
+  "holdout_n": 875,
+  "total_n": 5832
+ },
+ "per_domain_sampling_policy_defined": false,
+ "epoch_definition_defined": false,
+ "holdout_exclusion_rule_defined": false,
+ "phase30_holdout_contamination_risk": true,
+ "verdict": "PHASE26_TRAINING_POPULATION_NOT_DEFINED",
+ "blocking": true,
+ "all_pass": false
+}

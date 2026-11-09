@@ -1,0 +1,124 @@
+{
+ "artifact": "phase30_system_under_test_contract",
+ "phase": 30,
+ "section": "\u00a74",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_phase30_final_dev_validation_v1_0",
+ "governance_only": true,
+ "no_execution": true,
+ "recovered_from": [
+  "artifacts/phase26_ra_medfilm_barr_bundle_v1_0/canonical_bundle_manifest.json",
+  "reports/audits/phase26_component_identity_binding_v1_0.json",
+  "reports/audits/phase26_router_deployment_semantics_terminal_v1_2.json",
+  "reports/audits/phase29_phase_d_component_inference_semantics_contract_v1_1.json"
+ ],
+ "canonical_variant": "A8_C9",
+ "system_identity": {
+  "G": {
+   "class": "GlobalMedFiLM",
+   "path": "checkpoints/phase21_global_medfilm_fourdomain_seed42_clean_v3/best.pt",
+   "sha256": "286689fdd5c63ad75a383151d267af8b476e7a98327632de292ce6ed5b5ba1b7",
+   "params": 3523001
+  },
+  "R_psi": {
+   "class": "BARRRegionalRefinerV1",
+   "path": "checkpoints/phase25a_barr_regional_refiner_v1_1_roi030/final/final.pt",
+   "sha256": "6d28608a669df497740b6594ab346136f4efdf3f66002a868a1f1a3ec6689109",
+   "params": 1276401
+  },
+  "B_phi": {
+   "class": "BARRBenefitRouterV1",
+   "path": "checkpoints/phase25d_barr_benefit_router_v1_2_1_seed42/final/final.pt",
+   "sha256": "8a412b2fe82f225f844fda07379a6436c1d73d435f885b26a1d88d5b2f9fc43b",
+   "params": 36801
+  },
+  "S_omega": {
+   "class": "BARRPostSafetyV1",
+   "path": "checkpoints/phase25f_barr_post_safety_v1_0_seed42/final/final.pt",
+   "sha256": "eee9b97b9921e53fc07eac9281dce64ba518c6e1659916b97b0b3bec21ec6d2e",
+   "params": 1217
+  }
+ },
+ "normalization_identities": {
+  "router_normalization": {
+   "path": "reports/tables/phase25d_final_normalization_stats.csv",
+   "sha256": "ba37742e96610ec5e46fb47c093bf71ae1afd85b2a0db9696b612c873a4ba1fb",
+   "expected": "ba37742e96610ec5e46fb47c093bf71ae1afd85b2a0db9696b612c873a4ba1fb",
+   "match": true
+  },
+  "post_safety_normalization": {
+   "path": "reports/tables/phase25f_final_normalization_stats.csv",
+   "sha256": "e112e18b134c6edcdcd0c254c362d0a954a75faffe634cc37a2a17e4fe6f4e7b",
+   "expected": "e112e18b134c6edcdcd0c254c362d0a954a75faffe634cc37a2a17e4fe6f4e7b",
+   "match": true
+  }
+ },
+ "feature_schema_identities": {
+  "router_schema": {
+   "path": "reports/tables/phase25b_feature_schema.csv",
+   "sha256": "da76aa34f14006146f46ca799f173378274d8c9d0792dc18edb30711a2486dd4",
+   "expected": "da76aa34f14006146f46ca799f173378274d8c9d0792dc18edb30711a2486dd4",
+   "match": true
+  },
+  "post_safety_schema": {
+   "path": "reports/tables/phase25f_feature_schema_v1_0.csv",
+   "sha256": "3e70e20c541b93de752980c34cdfb6fe5af17ebe4c18cbb64397c0bbae465ee5",
+   "expected": "3e70e20c541b93de752980c34cdfb6fe5af17ebe4c18cbb64397c0bbae465ee5",
+   "match": true
+  }
+ },
+ "feature_equations": {
+  "router": "202-D numeric vector = 192 deep (3 taps x 2 scopes x 32 adaptive-channel reduction) + 10 GT-free scalars; frozen normalizer applied to scalar indices",
+  "post_safety": "20-D = 16 post-refinement numeric features + 4-D task one-hot",
+  "router_output": "RAW logit delta_hat (no sigmoid)"
+ },
+ "roi_semantics": {
+  "predicted_foreground_threshold": 0.3,
+  "expansion_factor": 1.5,
+  "input_resolution": 256,
+  "rule": "predicted foreground -> tight bbox -> center-preserving 1.50x expansion -> clip -> square pad -> resize to 256x256",
+  "empty_prediction_behavior": "FORCED_SKIP"
+ },
+ "fusion_semantics": {
+  "rule": "outside frozen ROI: final = p_global; inside frozen ROI: final = resized p_refined",
+  "alpha_blending": false,
+  "learned_fusion": false,
+  "segmentation_threshold": 0.5
+ },
+ "preservation_semantics": {
+  "definition": "Delta = Dice(final routed system) - Dice(global reference)",
+  "margin": 0.005,
+  "claim_only_if": "lower 95% CI > -0.005",
+  "per_domain_reporting": "mandatory"
+ },
+ "task_domain_mapping": {
+  "ISIC": 0,
+  "BUSI": 1,
+  "KVASIR": 2,
+  "KUB": 3
+ },
+ "final_bundle_identity": {
+  "bundle_manifest": "artifacts/phase26_ra_medfilm_barr_bundle_v1_0/canonical_bundle_manifest.json",
+  "bundle_manifest_sha256": "f7aebb0f646bcc8de49fa91b70a4c4cc1051c9998ab6b055a8d4d187809cb3d9",
+  "expected_sha256": "f7aebb0f646bcc8de49fa91b70a4c4cc1051c9998ab6b055a8d4d187809cb3d9",
+  "variant": "A8_C9"
+ },
+ "comparator_scope_resolution": {
+  "decision": "A8_C9_FIXED_BUNDLE_IS_THE_PHASE30_EVALUATION_TARGET",
+  "authority": [
+   "phase26_evidence_class_contract_v1_0.json: phase30_role = 'first clean one-shot evaluation of the fixed Phase26 bundle'",
+   "phase26_canonical_integration_terminal.json: variant A8_C9",
+   "phase25g_role_contract.json: phase25g owns A7_vs_A8 / C8_vs_C9 on ROUTER_DEVELOPMENT",
+   "phase25g_a7_a8_controlled_comparison_contract.json: population = ROUTER_DEVELOPMENT (4957)",
+   "phase25g_final_freeze.json: A7/A8/C8/C9 controlled comparison COMPLETE_CANONICAL on DEV"
+  ],
+  "primary_claim": "A8/C9 final system non-inferiority vs the global reference",
+  "a7_c8_as_separate_phase30_comparator": false,
+  "a7_companion_byproduct_authorized": true,
+  "a7_companion_note": "A7 (=C8, always-accept on EXECUTE) shares identical routing membership and identical candidate output with A8 and differs only by the S_omega gate; it is a deterministic byproduct requiring NO additional inference and introduces no new threshold/policy. It MAY be reported descriptively as a companion. No A8-vs-A7 inferential comparator is invented.",
+  "new_comparator_invented": false,
+  "ambiguous": false
+ },
+ "generated_utc": "2026-10-04T02:46:57+00:00",
+ "all_pass": true
+}

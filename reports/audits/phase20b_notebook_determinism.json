@@ -1,0 +1,31 @@
+{
+  "artifact": "phase20b_notebook_determinism",
+  "phase": 20,
+  "subphase": "20B",
+  "notebook_path": "notebooks/phasewise/phase_20b_five_model_baselines/phase20b_five_model_conventional_baselines.ipynb",
+  "final_notebook_sha256": "77dc0aa84259ff7438253206c03f60fad5423b5ce41c3c3b00b029217ddd55b7",
+  "rebuild_sha256": "77dc0aa84259ff7438253206c03f60fad5423b5ce41c3c3b00b029217ddd55b7",
+  "build_shas": [
+    "77dc0aa84259ff7438253206c03f60fad5423b5ce41c3c3b00b029217ddd55b7",
+    "77dc0aa84259ff7438253206c03f60fad5423b5ce41c3c3b00b029217ddd55b7",
+    "77dc0aa84259ff7438253206c03f60fad5423b5ce41c3c3b00b029217ddd55b7"
+  ],
+  "consecutive_builds_compared": 3,
+  "all_builds_identical": true,
+  "deterministic": true,
+  "cells_total": 76,
+  "cells_markdown": 34,
+  "cells_code": 42,
+  "zero_tracebacks": true,
+  "monotonic_exec_counts": true,
+  "png_outputs": 130,
+  "html_table_outputs": 49,
+  "method": "deterministic cell ids (p20b###) + stripped metadata.execution + coalesced stream outputs + fixed pandas Styler uuids (.set_uuid) + normalised object memory addresses (0x[0-9a-fA-F]{6,} -> 0xADDR) in every output text/plain/text/html",
+  "nondeterminism_sources_fixed": [
+    "pandas 3.x Styler random table id T_<hex> regenerated on every render -> fixed via Styler.set_uuid(...)",
+    "pandas Styler text/plain fallback embeds the object memory address (<Styler at 0x...>) -> fixed via address normalisation"
+  ],
+  "note": "Phase-20A notebook was already deterministic because it used no pandas Styler; Phase-20B introduced .style.format(...) for reviewer-readable tables, which required the two fixes above.",
+  "generated_by": "scripts/notebooks/build_phase20b_notebook.py",
+  "recorded_at": "2026-09-28T09:56:09Z"
+}

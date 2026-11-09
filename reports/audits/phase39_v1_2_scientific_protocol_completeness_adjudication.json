@@ -1,0 +1,155 @@
+{
+  "classification": "PHASE39_V1_2_SCIENTIFIC_PROTOCOL_COMPLETENESS_ADJUDICATION",
+  "generated_utc": "2026-10-11T10:20:00Z",
+  "phase": 39,
+  "revision": "ra_medfilm_barr_phase39_final_test_v1_2",
+  "test_access": 0,
+  "model_inference": 0,
+  "rerun": 0,
+  "new_statistics": 0,
+  "bound_hashes": {
+    "RESULT": "b9d5c74a316839cace0d085f3a8330f0378755687c6e0b67635371280896959d",
+    "PROCESS_EXIT": "717c065f1ff5a5ce40dba7b5bdcad3f7258129792ff219dab0d05396c7867c74",
+    "per_sample": "819728d49e12beb656eccd9aa40e46a68ee02eb539573e0e7f30b922ead5f8d1",
+    "per_domain": "f2ec55ca3a17a5f35af28d4632aab471e9c8a3c4f97a3994a7bbe4b8e208e90c",
+    "phase38_comparator_protocol": "6232a331cd1d0c58777469dc846e7ca6fd7a5fbbcfde14f4ad3508d9297afa6b",
+    "phase38_endpoint_protocol": "eefe91871de7345facc29c1b8ee984fe03f576c4369967b082af4a8f29d353f2",
+    "phase38_statistical_protocol": "d1e9c0746519015a5e2ee531776f3e4a824ab90524db90a9865f5d7af98e1204",
+    "phase38_claim_policy": "dad977db981583c85faec8b179328cbc727185f27576babdc810b25ccddc7256",
+    "phase38_authority_bundle": "ffe5e14717a6117df16df6a80ab2ac3ea801d9c5bce6f12c50b7c4fc56c38ca1",
+    "phase38_result_shells": "48e70cd4bccdc3c224d0294184fc6b10845e97707db9384ddf5d10e993c28a05"
+  },
+  "task1_frozen_protocol_extraction": {
+    "primary_comparator": "C-gGLOBAL (frozen global G reference / canonical GlobalMedFiLM)",
+    "secondary_comparator": "C-A7 (A7 = C8 always-accept refinement; SECONDARY_DESCRIPTIVE_COMPANION)",
+    "primary_endpoint": "macro_domain_equal_weight mean Dice DELTA of A8/C9 vs C-gGLOBAL; gating statistic = lower 95% CI bound of the macro-domain estimand",
+    "secondary_endpoints": [
+      "HD95 (SECONDARY_BOUNDARY)",
+      "IoU/precision/recall (SECONDARY_IF_FROZEN)"
+    ],
+    "per_domain_requirements": "per-domain Dice + delta_dice_vs_global + CI + harm_flag (shell S39-02)",
+    "harm_noninferiority_rule": "PRESERVATION_ASSERTED iff macro lower 95% CI bound > -0.005 (strict); a domain is HARM if its own 95% CI upper bound is below 0",
+    "ci_statistical_rule": "percentile bootstrap (frozen plan); domain-stratified group bootstrap B=2000 seed=42; NO confirmatory significance procedure eligible",
+    "required_test_table_fields": {
+      "S39-01": [
+        "claim_id",
+        "system",
+        "comparator",
+        "metric",
+        "population",
+        "test_n",
+        "estimate",
+        "ci_low",
+        "ci_high",
+        "direction",
+        "evidence_class",
+        "mandatory_qualifier"
+      ],
+      "S39-02": [
+        "domain",
+        "task_id",
+        "n",
+        "dice",
+        "iou",
+        "hd95",
+        "hd95_valid_n",
+        "delta_dice_vs_global",
+        "ci_low",
+        "ci_high",
+        "harm_flag"
+      ],
+      "S39-03": [
+        "comparator_id",
+        "role",
+        "identity",
+        "macro_dice",
+        "macro_delta_dice_vs_global",
+        "test_n"
+      ],
+      "S39-04": [
+        "claim_id",
+        "estimand",
+        "point",
+        "ci_low",
+        "ci_high",
+        "criterion",
+        "decision",
+        "confirmatory_status",
+        "p_value",
+        "multiplicity",
+        "allowed_wording"
+      ]
+    },
+    "required_result_fields": [
+      "primary endpoint = macro-domain DeltaDice vs C-gGLOBAL",
+      "per-domain delta + CI + harm",
+      "comparator table",
+      "statistical decision structure"
+    ]
+  },
+  "task2_v1_2_output_requirement_classification": {
+    "final_system_Dice": "PRESENT",
+    "global_reference_Dice (C-gGLOBAL)": "NOT_DERIVABLE_WITHOUT_NEW_TEST_INFERENCE",
+    "always_accept_comparator_Dice (C-A7)": "NOT_DERIVABLE_WITHOUT_NEW_TEST_INFERENCE",
+    "paired_DeltaDice": "NOT_DERIVABLE_WITHOUT_NEW_TEST_INFERENCE",
+    "domain_DeltaDice": "NOT_DERIVABLE_WITHOUT_NEW_TEST_INFERENCE",
+    "macro_DeltaDice": "NOT_DERIVABLE_WITHOUT_NEW_TEST_INFERENCE",
+    "confidence_interval": "NOT_DERIVABLE_WITHOUT_NEW_TEST_INFERENCE",
+    "harm_checks": "NOT_DERIVABLE_WITHOUT_NEW_TEST_INFERENCE",
+    "statistical_interpretation": "NOT_DERIVABLE_WITHOUT_NEW_TEST_INFERENCE",
+    "claim_decision_fields": "NOT_DERIVABLE_WITHOUT_NEW_TEST_INFERENCE",
+    "why_not_derivable": "The v1.2 RESULT emits the FINAL-SYSTEM per-sample Dice and final_source, not a separate C-gGLOBAL global-reference Dice. For samples whose final_source=GLOBAL the global Dice coincides with the final Dice, but for EXECUTE_THEN_ACCEPT samples the global-reference Dice was never emitted; therefore the paired/macro DeltaDice cannot be assembled from frozen emitted quantities. Producing it would require re-running G on the global reference = new TEST inference."
+  },
+  "task3_no_new_science_boundary": {
+    "deterministic_assembly_permitted": false,
+    "condition1_all_required_quantities_emitted": false,
+    "condition2_no_forward_or_raw_test_read_required": false,
+    "condition3_phase38_prespecified_operation": true,
+    "condition4_endpoint_comparator_statistical_choice_unchanged": true,
+    "condition5_mathematically_determined_from_frozen": false,
+    "verdict": "COMPARATIVE_ENDPOINT_NOT_DERIVABLE_WITHOUT_NEW_TEST_INFERENCE"
+  },
+  "task4_primary_endpoint_adjudication": {
+    "value_in_question": 0.8314368385956257,
+    "is_frozen_primary_endpoint": false,
+    "is_descriptive_final_system_macro_dice_only": true,
+    "verdict": "PRIMARY_ENDPOINT_NOT_PRODUCED",
+    "note": "Per Phase38 authority the primary endpoint is the macro-domain Dice DELTA of A8/C9 vs C-gGLOBAL, not absolute final-system macro Dice."
+  },
+  "task5_statistical_protocol_adjudication": {
+    "verdict": "FROZEN_STATISTICAL_DECISION_NOT_EVALUABLE_FROM_V1_2_OUTPUT",
+    "reason": "the required comparator deltas / CI inputs are absent; no CI/significance procedure was invented."
+  },
+  "task6_scientific_classification": {
+    "classification": "PHASE39_EXECUTION_SUCCESSFUL__SCIENTIFIC_PROTOCOL_INCOMPLETE",
+    "supported_statement": "RA-MedFiLM-BARR was successfully evaluated on all 1,683 TEST samples, yielding descriptive final-system segmentation performance, but the frozen primary comparative endpoint against C-gGLOBAL was not emitted by the frozen v1.2 execution and therefore cannot be claimed."
+  },
+  "task7_manuscript_claim_boundary": {
+    "forbidden_claims": [
+      "superiority to global G",
+      "noninferiority to global G",
+      "benefit over global G",
+      "harm-free refinement",
+      "frozen primary endpoint success",
+      "frozen per-domain harm-gate success"
+    ],
+    "allowed_claims": [
+      "descriptive final-system TEST segmentation performance (per-domain + macro Dice) on 1,683 TEST samples"
+    ],
+    "mandatory_qualifier": "POST_PROTOCOL_TECHNICAL_RECOVERY_TEST_RESULT_WITH_TWO_DISCLOSED_PREOUTCOME_TECHNICAL_FAILURES",
+    "untouched_one_shot_label_forbidden": true
+  },
+  "summary_fields": {
+    "execution_success": true,
+    "scientific_result_present": true,
+    "primary_endpoint_required": true,
+    "primary_endpoint_present": false,
+    "comparator_results_present": false,
+    "per_domain_harm_checks_present": false,
+    "statistical_decision_evaluable": false,
+    "descriptive_results_valid": true,
+    "scientific_protocol_complete": false,
+    "Phase40_eligible": false,
+    "Phase40_state": "BLOCKED"
+  }
+}

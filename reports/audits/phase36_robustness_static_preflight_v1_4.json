@@ -1,0 +1,325 @@
+{
+  "artifact": "phase36_robustness_static_preflight_v1_4",
+  "revision": "ra_medfilm_barr_phase36_robustness_v1_4",
+  "method": "AST_CALL_GRAPH_AND_BYTE_PREFLIGHT",
+  "torch_imported": false,
+  "checks": [
+    {
+      "check": "01_run_science_exists",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "02_science_calls_canonical_clean_g",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "03_science_calls_phase27_gate",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "04_science_calls_clean_gate",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "05_science_calls_both_perturbation_drivers",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "06_phase27_gate_before_clean_system_eval_and_perturbations",
+      "passed": true,
+      "detail": {
+        "gen": 2250,
+        "gate": 2254,
+        "eq": 2272,
+        "img": 2279,
+        "prop": 2284
+      }
+    },
+    {
+      "check": "07_clean_gate_precedes_perturbations",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "08_decision_point_present",
+      "passed": true,
+      "detail": 1071
+    },
+    {
+      "check": "09_r_psi_only_after_execute_decision",
+      "passed": true,
+      "detail": {
+        "decision": 1071,
+        "r_psi": 1082
+      }
+    },
+    {
+      "check": "10_s_omega_only_after_execute_decision",
+      "passed": true,
+      "detail": {
+        "decision": 1071,
+        "s_omega": 1106
+      }
+    },
+    {
+      "check": "11_no_pre_decision_r_psi_forward",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "12_skip_branch_zero_r_psi_and_s_omega",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "13_autocast_enabled_fp16_constant",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "14_inference_mode_false_constant",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "15_batch_size_8_domain_local",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "16_g_forward_uses_autocast_and_no_grad",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "17_task_ids_device_bound",
+      "passed": true,
+      "detail": {
+        "bare": [],
+        "device_bound": 2
+      }
+    },
+    {
+      "check": "18_g_forward_requires_device_match",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "19_g_never_sample_by_sample_in_drivers",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "20_proposal_path_reuses_clean_g",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "21_exact_state_machine_branch_comparison",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "22_808_dice_comparisons_required",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "23_accept_reject_not_collapsed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "24_router_decision_separate_from_final_state",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "25_router_decision_vocabulary_frozen",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "26_one_shared_core_defined",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "27_science_and_smoke_use_the_same_core",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "28_real_proposal_evaluator_reachable_from_smoke",
+      "passed": true,
+      "detail": {
+        "direct": [
+          "_dice",
+          "_finite_summary",
+          "_gate_smoke",
+          "_hd95",
+          "_iou",
+          "_load_models",
+          "_prediction_consistency_dice",
+          "_synth_image",
+          "_synthetic_batch_image_np",
+          "canonical_g_forward_batched",
+          "canonical_images_tensor",
+          "canonical_learned_core",
+          "canonical_task_ids_tensor",
+          "now",
+          "smoke_branch_controls",
+          "smoke_empty_proposal_pipeline",
+          "smoke_nonempty_proposal_pipeline"
+        ]
+      }
+    },
+    {
+      "check": "29_real_empty_proposal_evaluator_reachable_from_smoke",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "30_three_branch_controls_present",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "31_branch_controls_record_required_fields",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "32_geometry_only_apply_not_counted_as_proposal_smoke",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "33_proposal_adapter_used_by_science",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "34_kub_subgroup_authority_bound",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "35_kub_subgroup_labels_frozen",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "36_kub_subgroup_map_defined",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "37_kub_subgroup_robustness_emits_labels",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "38_kub_reporting_only_reachable_from_science",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "39_all_five_figure_builders_defined",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "40_figure_registry_bound",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "41_figure_registry_check_in_generator",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "42_figures_reachable_from_science",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "43_no_test_data_read",
+      "passed": true,
+      "detail": [
+        "load_identity_authorities"
+      ]
+    },
+    {
+      "check": "44_no_holdout_data_read",
+      "passed": true,
+      "detail": [
+        "load_identity_authorities"
+      ]
+    },
+    {
+      "check": "45_no_training",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "46_no_vendor_substring_split",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "47_vendor_metadata_declared",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "48_sample_level_rows_retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "49_no_silent_missing_sample_continue",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "50_frozen_counts",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "51_loader_repairs_retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "52_torch_not_imported_on_import",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "53_no_module_level_execution",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "54_proposal_202d_bound_to_perturbed_geometry",
+      "passed": true,
+      "detail": "the proposal path consumes a 202-D vector assembled with the PERTURBED roi_row"
+    },
+    {
+      "check": "55_core_fails_closed_without_202d_or_taps",
+      "passed": true,
+      "detail": null
+    }
+  ],
+  "passed": 55,
+  "total": 55,
+  "all_pass": true
+}

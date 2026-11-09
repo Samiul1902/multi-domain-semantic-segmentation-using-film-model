@@ -1,0 +1,56 @@
+{
+  "artifact": "H3_PROPOSAL_SUPPLY_SUCCESS_FAILURE_CRITERIA",
+  "generated_utc": "2026-09-25T09:30:00Z",
+  "intervention": "A_TARGET_SUPPORT_REDESIGN",
+  "frozen_references": {
+    "Tg": 0.7916666666666666,
+    "G": 0.20833333333333337,
+    "Dg": 0.6359172411726776,
+    "Dice_gate": 0.6159172411726777,
+    "zero_proposal_tiny_baseline": 57,
+    "zero_proposal_gt_baseline": 79,
+    "val_tiny_total": 72,
+    "val_components_total": 152
+  },
+  "primary_supply_criteria": {
+    "definition": "Reduction in zero-proposal components on the frozen VAL split under the unchanged Stage-4D proposal policy.",
+    "zero_proposal_tiny_target_max": "20/72",
+    "zero_proposal_tiny_recover_min": ">= 37 of 57",
+    "zero_proposal_gt_target_max": "35/152",
+    "zero_proposal_gt_recover_min": ">= 44 of 79",
+    "role": "NECESSARY (must be met to claim supply improvement); NOT sufficient alone."
+  },
+  "minimum_meaningful_improvement": {
+    "metric": "R_H3",
+    "formula": "R_H3 = (TinyRecall_H3 - Tg) / G",
+    "gate": "R_H3 >= 0.30",
+    "equivalent_tiny_recall": 0.8541666666666666,
+    "interpretation": "H3 must close at least 30% of the [Tg, 1.0] Tiny-recall gap left by the frozen PREDICTED system."
+  },
+  "success_definition": {
+    "AND": [
+      "primary_supply_criteria met (zero_proposal_tiny <= 20/72 AND zero_proposal_gt <= 35/152)",
+      "R_H3 >= 0.30 (TinyRecall_H3 >= 0.8541666666666666)",
+      "contamination observational: fp_components_per_image reported but NOT required to improve"
+    ],
+    "consequence_if_met": "H3 proposal-supply redesign is PROSPECTIVELY SUCCESSFUL on the supply axis. Eligible for downstream promotion; Phase-15 reopen condition may be re-evaluated under separate authorization."
+  },
+  "failure_boundary": {
+    "label": "H3_SUPPLY_REDESIGN_INSUFFICIENT",
+    "fires_if_any": [
+      "zero_proposal_tiny after H3 >= 45/72 (recovers < 12 of 57)",
+      "R_H3 < 0.15  (TinyRecall_H3 < 0.8229166666666666)"
+    ],
+    "consequence_if_fired": "Target-support redesign declared insufficient for the supply axis. H3 is NOT closed. Phase-15 remains NOT_STARTED_AND_NOT_AUTHORIZED. Reconsider Option B (positive-objective reweighting) or Option C (recall-oriented output head) under fresh supervisor authorization. DO NOT promote this H3 checkpoint to the downstream Stage-4D pipeline or to Phase-15."
+  },
+  "intermediate_zone": {
+    "condition": "primary supply improved but R_H3 in [0.15, 0.30)",
+    "handling": "Report as PARTIAL; NOT a success, NOT the failure boundary. Require supervisor adjudication before any promotion; do not auto-close H3."
+  },
+  "contamination_policy": {
+    "treatment": "OBSERVATIONAL_ONLY",
+    "rationale": "C-only did not move Tiny Recall (R_C=0.0); contamination is not the recall bottleneck.",
+    "tracked": ["fp_components_per_image", "dice_mean"],
+    "gated": false
+  }
+}

@@ -1,0 +1,96 @@
+{
+ "artifact": "phase29_trainer_source_integrity",
+ "phase": 29,
+ "generated_utc": "2026-10-02T15:51:51+00:00",
+ "governance_only": true,
+ "execution": "NONE",
+ "historical_canonical_sources": [
+  {
+   "name": "train_phase25a_refiner.py",
+   "path": "scripts/training/train_phase25a_refiner.py",
+   "sha256_expected": "487efd3a934c97bf3b4db13717ac29b567a535346a2510a946943e2506345835",
+   "sha256_observed": "487efd3a934c97bf3b4db13717ac29b567a535346a2510a946943e2506345835",
+   "unchanged": true
+  },
+  {
+   "name": "train_phase25d_router.py",
+   "path": "scripts/analysis/train_phase25d_router.py",
+   "sha256_expected": "fc7c1bdf263ae4551dcb8f170d3203adb8540fbc189846265b74f6eca1541e91",
+   "sha256_observed": "fc7c1bdf263ae4551dcb8f170d3203adb8540fbc189846265b74f6eca1541e91",
+   "unchanged": true
+  },
+  {
+   "name": "phase25f_execution_common.py",
+   "path": "scripts/analysis/phase25f_execution_common.py",
+   "sha256_expected": "98cf958a377e2de30e0b67e63fd56bafea418b2b061a362ee7284e852012cd2e",
+   "sha256_observed": "98cf958a377e2de30e0b67e63fd56bafea418b2b061a362ee7284e852012cd2e",
+   "unchanged": true
+  },
+  {
+   "name": "phase25f_spec_repair_common.py",
+   "path": "scripts/analysis/phase25f_spec_repair_common.py",
+   "sha256_expected": "18caebe79fce11ad27766af157bc6acf671f9a3c29911df253ba07754c66bd4e",
+   "sha256_observed": "18caebe79fce11ad27766af157bc6acf671f9a3c29911df253ba07754c66bd4e",
+   "unchanged": true
+  },
+  {
+   "name": "run_phase25f_cv_training.py",
+   "path": "scripts/analysis/run_phase25f_cv_training.py",
+   "sha256_expected": "327d554c20bc018c08d314daec978506a590304edc579cc28efcecf2a5459f37",
+   "sha256_observed": "327d554c20bc018c08d314daec978506a590304edc579cc28efcecf2a5459f37",
+   "unchanged": true
+  },
+  {
+   "name": "run_phase25f_final_refit.py",
+   "path": "scripts/analysis/run_phase25f_final_refit.py",
+   "sha256_expected": "1b79c89c259b5cc06ce88464cf966b5e5d2d33b546f47d14c7449923cf2f7b37",
+   "sha256_observed": "1b79c89c259b5cc06ce88464cf966b5e5d2d33b546f47d14c7449923cf2f7b37",
+   "unchanged": true
+  },
+  {
+   "name": "regional_refiner.py",
+   "path": "src/models/barr/regional_refiner.py",
+   "sha256_expected": "4fe0abde3ec3a183d930f676c4400b4d9ba778793ea64abf1755c5b8dabf947a",
+   "sha256_observed": "4fe0abde3ec3a183d930f676c4400b4d9ba778793ea64abf1755c5b8dabf947a",
+   "unchanged": true
+  },
+  {
+   "name": "barr_refiner_dataset.py",
+   "path": "src/data/barr_refiner_dataset.py",
+   "sha256_expected": "6bbf0eb51f9a4f646fe9222f2d3035761577f8d41cc5c229109139bfc937e095",
+   "sha256_observed": "6bbf0eb51f9a4f646fe9222f2d3035761577f8d41cc5c229109139bfc937e095",
+   "unchanged": true
+  },
+  {
+   "name": "barr_roi.py",
+   "path": "src/data/barr_roi.py",
+   "sha256_expected": "4b1015275e4e31f9cc2b662a290c18f988eaea65cec64082cea217fad9aba9d6",
+   "sha256_observed": "4b1015275e4e31f9cc2b662a290c18f988eaea65cec64082cea217fad9aba9d6",
+   "unchanged": true
+  }
+ ],
+ "n_historical": 9,
+ "n_drift": 0,
+ "drift": [],
+ "historical_trainer_sources_unchanged": true,
+ "phase29_wrappers": [
+  {
+   "path": "scripts/analysis/phase29_train_rpsi.py",
+   "sha256": "9c0ef0dfe43f6699f77aa6ae92659eb2e682bcb484fa271b8f065d0b9c4d5313",
+   "exists": true
+  },
+  {
+   "path": "scripts/analysis/phase29_train_bphi.py",
+   "sha256": "7868d1235fb3a70a6016ebfc3ad0f84c621a40859ae5d9431f6e996f2318db5f",
+   "exists": true
+  },
+  {
+   "path": "scripts/analysis/phase29_train_somega.py",
+   "sha256": "8ae553809191c975e0591c41bafaef7498d5c17ea58a6a65b3ea93ae3d7e29cf",
+   "exists": true
+  }
+ ],
+ "phase29_wrappers_additive_only": true,
+ "blocked_terminal_if_drift": "PHASE29_PHASE_B_BLOCKED__CANONICAL_TRAINER_SOURCE_DRIFT",
+ "all_pass": true
+}

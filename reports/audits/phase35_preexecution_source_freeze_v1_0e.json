@@ -1,0 +1,98 @@
+{
+ "artifact": "phase35_preexecution_source_freeze_v1_0e",
+ "phase": 35,
+ "section": "\u00a7S",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase35_interpretability_v1_0e",
+ "purpose": "Freeze the byte-exact v1.0e pre-execution source set. The frozen v1.0d smoke artifact chain is preserved byte-for-byte and is NOT re-run by this freeze.",
+ "frozen_execution_source": {
+  "path": "scripts/analysis/phase35_interpretability_execution_v1_0e.py",
+  "sha256": "1ca50b773a185384b9f0a7eae47fe95c64eb84bad3826c70cbe88edefe535941",
+  "revision": "ra_medfilm_barr_phase35_interpretability_v1_0e"
+ },
+ "frozen_preflight_source": {
+  "path": "scripts/analysis/phase35_execution_preflight_v1_0e.py",
+  "sha256": "cad02385211356b59a13dd3e69b2a9a5ab15c8700bbdc019e9f7688642a2f9df"
+ },
+ "frozen_unit_test_source": {
+  "path": "scripts/analysis/phase35_gradcam_numerical_guard_unit_v1_0e.py",
+  "sha256": "b1f8c5280221b8230d85b1d9f49a000d6dd395945b75f57b58208339041b78b1"
+ },
+ "frozen_artifacts": {
+  "gap_record": {
+   "path": "reports/audits/phase35_v1_0d_smoke_numerical_observability_gap_v1_0e.json",
+   "sha256": "60d2b049c382d1805827dbe0052a3b2375b475421a0161c6ed7d9e401a3814fc"
+  },
+  "semantic_diff": {
+   "path": "reports/audits/phase35_v1_0d_to_v1_0e_semantic_diff.json",
+   "sha256": "083f4b19254fc03e082e469b6f53631388a1d115c0aabc6eb92c35ddc257e8a2"
+  },
+  "static_preflight": {
+   "path": "reports/audits/phase35_execution_source_static_preflight_v1_0e.json",
+   "sha256": "4dd6376947446fa87caa271dae8d8fd4cac3e83bf99e21723ab6a77012d05b0f"
+  },
+  "numeric_guard_unit": {
+   "path": "reports/audits/phase35_gradcam_numerical_guard_unit_v1_0e.json",
+   "sha256": "f368c53d740c0e6346edaec07f1a438e40eab489e325f720a4fdf035d8c9a86b"
+  }
+ },
+ "immutable_predecessors": {
+  "execution_v1_0b": {
+   "path": "scripts/analysis/phase35_interpretability_execution_v1_0b.py",
+   "expected_sha256": "581926840d7717e19ed15ad77c7c5339b709efc881b938924d6eec0a2ceb1872",
+   "observed_sha256": "581926840d7717e19ed15ad77c7c5339b709efc881b938924d6eec0a2ceb1872",
+   "match": true
+  },
+  "execution_v1_0c": {
+   "path": "scripts/analysis/phase35_interpretability_execution_v1_0c.py",
+   "expected_sha256": "4058fc5544e6e1af15339df20a88da4880549ea8d4dd434395df04e0fa261baa",
+   "observed_sha256": "4058fc5544e6e1af15339df20a88da4880549ea8d4dd434395df04e0fa261baa",
+   "match": true
+  },
+  "execution_v1_0d": {
+   "path": "scripts/analysis/phase35_interpretability_execution_v1_0d.py",
+   "expected_sha256": "cccc109ade27eb5ad7883912004c1e911e9e253a659146f3d64820af92244056",
+   "observed_sha256": "cccc109ade27eb5ad7883912004c1e911e9e253a659146f3d64820af92244056",
+   "match": true
+  },
+  "common_v1_0b": {
+   "path": "scripts/analysis/phase35_interpretability_common_v1_0b.py",
+   "expected_sha256": "9963215e1431e968e11bacbcd917d96a8a985a7181000258b90f458ff0a778ac",
+   "observed_sha256": "9963215e1431e968e11bacbcd917d96a8a985a7181000258b90f458ff0a778ac",
+   "match": true
+  },
+  "v1_0d_smoke": {
+   "path": "reports/audits/phase35_synthetic_interpretability_smoke_v1_0d.json",
+   "expected_sha256": "5bf61bc52d0c83ffb50849db973fb89133f0fa741140e58de8408a395979fee0",
+   "observed_sha256": "5bf61bc52d0c83ffb50849db973fb89133f0fa741140e58de8408a395979fee0",
+   "match": true
+  },
+  "v1_0d_provenance": {
+   "path": "reports/audits/phase35_synthetic_smoke_provenance_v1_0d.json",
+   "expected_sha256": "8a7633cf05cbdb55453903e9bed31d09c953e0ab675b6b90df5567a0506a5dcf",
+   "observed_sha256": "8a7633cf05cbdb55453903e9bed31d09c953e0ab675b6b90df5567a0506a5dcf",
+   "match": true
+  },
+  "v1_0d_final_check": {
+   "path": "reports/audits/phase35_synthetic_smoke_final_check_v1_0d.json",
+   "expected_sha256": "1cae9c7b45d679b8fc1d3e863d022795ad6f4c8a96fc441dde95d6fec436807f",
+   "observed_sha256": "1cae9c7b45d679b8fc1d3e863d022795ad6f4c8a96fc441dde95d6fec436807f",
+   "match": true
+  },
+  "v1_0d_gap_disclosure": {
+   "path": "reports/audits/phase35_synthetic_smoke_reporting_gap_disclosure_v1_0d.json",
+   "expected_sha256": "4d9fc89ab58658891cb56f9645c26ef5cf9cfa195379e5eea3e5d89d4d68cff3",
+   "observed_sha256": "4d9fc89ab58658891cb56f9645c26ef5cf9cfa195379e5eea3e5d89d4d68cff3",
+   "match": true
+  }
+ },
+ "gate_env_set": false,
+ "mode_invoked": false,
+ "smoke_rerun": false,
+ "model_constructed": false,
+ "checkpoint_deserialized": false,
+ "forward_executed": false,
+ "gradcam_executed": false,
+ "generated_utc": "2026-10-05T02:12:42Z",
+ "all_pass": true
+}

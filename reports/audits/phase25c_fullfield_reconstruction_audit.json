@@ -1,0 +1,89 @@
+{
+ "artifact": "phase25c_fullfield_reconstruction_audit",
+ "phase": "25C",
+ "method": "RA-MedFiLM-BARR",
+ "fusion_rule": "p_candidate_full = copy(p_global); inside the valid canonical ROI replace with the inverse-transformed refined probability; outside leave p_global unchanged. No alpha blending, no learned fusion, no morphology, no post-safety, no GT-based correction.",
+ "inverse_transform": "affine resize of the 256x256 refined crop to crop_side_pixels^2 (bilinear, PIL mode F), remove external zero padding, place at (clip_y1, clip_x1) on the 512 canvas",
+ "geometry_identity_checks": {
+  "y1_plus_pad_equals_clip_y1": true,
+  "x1_plus_pad_equals_clip_x1": true
+ },
+ "synthetic_cases": [
+  {
+   "case": "rect",
+   "crop_side_pixels": 300,
+   "pad_top": 0,
+   "pad_left": 0,
+   "valid_pixels": 90000,
+   "outside_unchanged": true,
+   "inside_replaced_exactly": true,
+   "y1_plus_pad_equals_clip_y1": true,
+   "x1_plus_pad_equals_clip_x1": true
+  },
+  {
+   "case": "off_canvas",
+   "crop_side_pixels": 300,
+   "pad_top": 50,
+   "pad_left": 0,
+   "valid_pixels": 51500,
+   "outside_unchanged": true,
+   "inside_replaced_exactly": true,
+   "y1_plus_pad_equals_clip_y1": true,
+   "x1_plus_pad_equals_clip_x1": true
+  },
+  {
+   "case": "small_blob",
+   "crop_side_pixels": 18,
+   "pad_top": 0,
+   "pad_left": 0,
+   "valid_pixels": 324,
+   "outside_unchanged": true,
+   "inside_replaced_exactly": true,
+   "y1_plus_pad_equals_clip_y1": true,
+   "x1_plus_pad_equals_clip_x1": true
+  }
+ ],
+ "real_cases": [
+  {
+   "domain": "BUSI",
+   "sample_id": "0075dcb0e337263eff441a6979397143",
+   "crop_side_pixels": 434,
+   "valid_pixels": 178374,
+   "outside_unchanged": true,
+   "inside_replaced_exactly": true,
+   "p_global_is_prob512_cache": true
+  },
+  {
+   "domain": "ISIC",
+   "sample_id": "00478db77fb15b4e7d7d1e1f288abef6",
+   "crop_side_pixels": 122,
+   "valid_pixels": 14884,
+   "outside_unchanged": true,
+   "inside_replaced_exactly": true,
+   "p_global_is_prob512_cache": true
+  },
+  {
+   "domain": "KUB",
+   "sample_id": "00493050556465a8114f4141b84a8534",
+   "crop_side_pixels": 468,
+   "valid_pixels": 219024,
+   "outside_unchanged": true,
+   "inside_replaced_exactly": true,
+   "p_global_is_prob512_cache": true
+  },
+  {
+   "domain": "KVASIR",
+   "sample_id": "002780d484a38cea0a12e8f76d5b0e37",
+   "crop_side_pixels": 526,
+   "valid_pixels": 213840,
+   "outside_unchanged": true,
+   "inside_replaced_exactly": true,
+   "p_global_is_prob512_cache": true
+  }
+ ],
+ "all_outside_unchanged": true,
+ "all_inside_replaced": true,
+ "verdict": "PHASE25C_RECONSTRUCTION_VERIFIED",
+ "test_reads": 0,
+ "generated_utc": "2026-09-30T17:07:00+00:00"
+}

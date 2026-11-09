@@ -1,0 +1,28 @@
+{
+ "artifact": "phase33_execution_eligibility_adjudication",
+ "phase": 33,
+ "section": "\u00a7S",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase33_failure_boundary_v1_0",
+ "table_only_execution_eligible": true,
+ "derived_nonpixel_execution_eligible": true,
+ "prediction_pixel_execution_eligible": false,
+ "raw_image_execution_eligible": false,
+ "raw_GT_execution_eligible": false,
+ "qualitative_gallery_eligible": false,
+ "boundary_metric_execution_eligible": false,
+ "component_metric_execution_eligible": false,
+ "model_rerun_eligible": false,
+ "reasons": {
+  "prediction_pixel": "frozen prediction arrays are not part of the authorized Phase30->Phase33 handoff; requires separate explicit authorization",
+  "raw_image": "ROUTER_HOLDOUT images are protected; no raw reread authorized",
+  "raw_GT": "ROUTER_HOLDOUT GT is protected; no raw reread authorized",
+  "qualitative_gallery": "requires raw images (and/or prediction pixels)",
+  "boundary_metric": "no valid boundary metric in frozen final-system evidence",
+  "component_metric": "no component information in frozen final-system evidence",
+  "model_rerun": "forbidden for Phase33"
+ },
+ "collapsed_into_one_boolean": false,
+ "generated_utc": "2026-10-04T08:10:50+00:00",
+ "all_pass": true
+}

@@ -1,0 +1,49 @@
+{
+  "artifact": "H3_PROPOSAL_SUPPLY_STATIC_BASELINE_TRACE",
+  "purpose": "Static (no-execution) trace of the frozen supply pipeline to locate where TINY components lose proposal supply. Anchored to on-disk source by SHA-256.",
+  "generated_utc": "2026-09-25T09:30:00Z",
+  "bound_source": {
+    "src/inference/heatmap_targets.py": "6bbfdb09fe955b7b2d9626a1b80be3d09734926ea1265dd7a760292f304b7de1",
+    "src/data/kub_localizer_dataset.py": "bad9bb31aa4ef88d2ebeee98b65015f7dc7743474a3d7f82b932601fc6f7ba41",
+    "src/inference/predicted_roi.py": "bd9f8be84595f49ff1e25e6052b548488fb6ae6a48aa7adbc78b880fb8f2d4e7",
+    "src/inference/learned_roi_clean_v3.py": "613e03d6e4dccccce2b743974dfaccd8a29a2c0932048f0af3d37a6d2a0241bf"
+  },
+  "trace": [
+    {
+      "stage": 1,
+      "name": "TARGET_GENERATION",
+      "location": "src/inference/heatmap_targets.py:6 make_gaussian_heatmap",
+      "observation": "Single fixed sigma=0.75 applied to ALL components. Center pixel forced to 1.0; components combined via pixelwise max.",
+      "defect": "Tiny components get the SAME wide, flat Gaussian as large ones. Peak value at center is 1.0 but the surrounding positive region is diffuse and low-contrast, giving the localizer no size-discriminating signal."
+    },
+    {
+      "stage": 2,
+      "name": "LOCALIZER_TRAINING_TARGET_USE",
+      "location": "src/data/kub_localizer_dataset.py:91 target = make_gaussian_heatmap(self.heatmap_resolution, mapped_centroids, self.sigma)  (self.sigma=0.75)",
+      "observation": "Every training target uses the fixed 0.75 sigma. Loss averages over all pixels, dominated by large components.",
+      "defect": "Gradient for tiny-component peaks is diluted; the network underfits tiny peaks and learns to emit smoothed, low-amplitude blobs at tiny locations."
+    },
+    {
+      "stage": 3,
+      "name": "INFERENCE_DECODE",
+      "location": "src/inference/predicted_roi.py:81 extract_predicted_components (threshold=0.10, 8-connected), :149 generate_predicted_rois (NMS iou=0.30, top_k=5)",
+      "observation": "Predicted prob map binarized at 0.10; components labeled 8-connected; sorted by max_prob; NMS; top_k=5; margin 0.20.",
+      "defect": "A tiny component whose predicted peak < 0.10 (or merged into a neighboring larger peak within the same sigma neighborhood) yields NO component, hence NO proposal."
+    },
+    {
+      "stage": 4,
+      "name": "SUPPLY_FAILURE_OBSERVED",
+      "location": "post_phase14_h3_axis_priority_results.json (zero_proposal_components)",
+      "observation": "79/152 GT components and 57/72 TINY components receive NO matched predicted proposal under the frozen Stage-4D policy.",
+      "defect": "Missing supply is the binding recall bottleneck."
+    },
+    {
+      "stage": 5,
+      "name": "CAUSAL_CONFIRMATION",
+      "location": "post_phase14_h3_axis_priority_results.json conditions.A_ONLY",
+      "observation": "Adding one GT-assisted ROI per zero-proposal component (A-only) restores Tiny Recall to 1.0 (R_A=1.0). C-only leaves it at 0.7917 (R_C=0.0).",
+      "defect": "Confirms supply is causally NECESSARY and uniquely selectable; contamination is NOT the recall cause."
+    }
+  ],
+  "conclusion": "Root cause is in STAGES 1-2 (diffuse fixed-sigma target support for tiny components). Option A (size-adaptive sigma in make_gaussian_heatmap) directly repairs STAGES 1-2 without touching decode (stage 3), proposal policy, refiner, or downstream eval."
+}

@@ -1,0 +1,65 @@
+{
+  "classification": "PHASE25F_POST_SAFETY_SPEC_COMPLETENESS_AUDIT",
+  "stage": "SCOPE_GUARD",
+  "method": "RA-MedFiLM-BARR",
+  "audit_only": true,
+  "forbidden_actions_executed": {
+    "model_construction": false,
+    "training": false,
+    "forward_passes": 0,
+    "new_oof_prediction": false,
+    "new_refinement": false,
+    "new_delta_dice": false,
+    "lambda_selection": false,
+    "budget_selection": false,
+    "threshold_invention": false,
+    "holdout_reads": 0,
+    "val808_reads": 0,
+    "test_reads": 0,
+    "phase25g_started": false
+  },
+  "phase25e_state_frozen": {
+    "memberships_changed": false,
+    "budgets_changed": false,
+    "lambda_grid_changed": false,
+    "routing_thresholds_changed": false,
+    "random_priorities_changed": false,
+    "c7_c8_memberships_changed": false,
+    "bootstrap_plan_changed": false,
+    "paired_tests_changed": false,
+    "primary_raw_p_adjudication_changed": false,
+    "holm_sensitivity_adjudication_changed": false,
+    "lambda_selected": false,
+    "single_budget_selected": false,
+    "retrospective_optimization_of_phase25e": false
+  },
+  "phase25e_frozen_evidence": {
+    "final_check_terminal": "PHASE25E_CANONICAL_ADJUDICATION_REPAIRED__PRIMARY_PHASE24_STATISTICS_RESTORED__HOLM_RETAINED_AS_SENSITIVITY__PHASE25F_ELIGIBLE_NOT_STARTED",
+    "final_check_all_pass": true,
+    "S1_H1_status_primary": "PARTIAL",
+    "S1_budget_pass_primary": {
+      "0.10": true,
+      "0.25": true,
+      "0.50": false
+    },
+    "holm_secondary_role": "CONSERVATIVE_MULTIPLICITY_SENSITIVITY"
+  },
+  "resource_claim_guard": {
+    "s_omega_executes_after_refinement": true,
+    "post_safety_reduces_refiner_execution_count": false,
+    "post_safety_creates_additional_pre_execution_compute_savings": false,
+    "post_safety_changes_phase25e_routing_membership": false,
+    "post_safety_may_improve_final_output_preservation_by_rejecting_already_executed_harmful_refinements": true,
+    "post_safety_macs_must_be_reported_separately": true,
+    "post_safety_macs_measured": false
+  },
+  "no_scientific_notebook_created": true,
+  "forbidden_notebook_path": "notebooks/phasewise/phase_25f_preservation_fusion/phase25f_post_safety_and_fusion.ipynb",
+  "forbidden_notebook_exists": false,
+  "blocked_audit_must_not_manufacture_empty_notebook": true,
+  "sources": {
+    "reports/audits/phase24_phase25_module_plan.json": "ef9426a9cff94f2727b84c5c97488e20bf6355764a0c5d1df69851bd728883b8",
+    "reports/audits/phase25e_postclosure_reconciliation_final_check.json": "0736931bb2aebb3e18a7eedfbac2a22d84ccd51a6e9050047bf0dff4728a61ed"
+  },
+  "all_pass": true
+}

@@ -1,0 +1,83 @@
+{
+ "artifact": "phase35_preexecution_source_freeze_v1_0g",
+ "phase": 35,
+ "section": "\u00a7I",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase35_interpretability_v1_0g",
+ "classification": "PRE_EXECUTION_SYNTHETIC_SMOKE_COUNTER_CONTRACT_REPAIR__NO_SCIENTIFIC_PROTOCOL_CHANGE",
+ "frozen_sources": {
+  "v1_0g_execution_source": {
+   "path": "scripts/analysis/phase35_interpretability_execution_v1_0g.py",
+   "sha256": "88456e46c94e53d45b10d864d9dbcd38eb773d7dd441441def9e6f221a0c9be3"
+  },
+  "v1_0g_preflight": {
+   "path": "scripts/analysis/phase35_execution_preflight_v1_0g.py",
+   "sha256": "245d3d9387f947eae7419a5d9a3d6c49b5315c68827b6537822dda6d88855d4b"
+  },
+  "v1_0g_counter_unit_source": {
+   "path": "scripts/analysis/phase35_smoke_counter_contract_unit_v1_0g.py",
+   "sha256": "a33587bca5c79fb21765025c766b2d948be080c22f5a75011af799dd0f782cc1"
+  },
+  "build_v1_0g_source": {
+   "path": "scripts/analysis/build_phase35_execution_v1_0g.py",
+   "sha256": "a14d7a590d8f57fdfcf9f26a6ff2b0f570b567de990830b9aa6b8c3bf299a990"
+  },
+  "v1_0f_source_predecessor": {
+   "path": "scripts/analysis/phase35_interpretability_execution_v1_0f.py",
+   "sha256": "6a6097f4a3c346df38ab5ec452dc97717cdb65d789bf8bde8031442cb236e3e5"
+  },
+  "v1_0f_preflight_predecessor": {
+   "path": "scripts/analysis/phase35_execution_preflight_v1_0f.py",
+   "sha256": "7d535fcc22283b868616ef1e2259d6a7e4ed3d1e76747d5f31ba35e23ea8b552"
+  },
+  "load_bearing_common_v1_0b": {
+   "path": "scripts/analysis/phase35_interpretability_common_v1_0b.py",
+   "sha256": "9963215e1431e968e11bacbcd917d96a8a985a7181000258b90f458ff0a778ac"
+  },
+  "load_bearing_execution_v1_0b": {
+   "path": "scripts/analysis/phase35_interpretability_execution_v1_0b.py",
+   "sha256": "581926840d7717e19ed15ad77c7c5339b709efc881b938924d6eec0a2ceb1872"
+  }
+ },
+ "first_v1_0f_artifacts_preserved": {
+  "smoke": {
+   "path": "reports/audits/phase35_synthetic_interpretability_smoke_v1_0f.json",
+   "sha256": "05c02a34d61df1c6d3e53e2dd127f889501a5f5e99247aa8ef96fb947bc1d0fb"
+  },
+  "provenance": {
+   "path": "reports/audits/phase35_synthetic_smoke_provenance_v1_0f.json",
+   "sha256": "5e7cb9956e56dddf6951562e36047361311e69dc687d976362e90749ad75d866"
+  },
+  "final_check": {
+   "path": "reports/audits/phase35_synthetic_smoke_final_check_v1_0f.json",
+   "sha256": "040fc28379700e207ed324067594259c0c9e4ecaa2f9a6e2388824fbd0b29b7f"
+  },
+  "terminal": {
+   "path": "reports/audits/phase35_synthetic_smoke_terminal_v1_0f.json",
+   "sha256": "728d1535c39c27109aeea7fcfaf0cda5577734bc0327833c35efed5e7599b8b0"
+  }
+ },
+ "counter_contract_frozen": {
+  "primary_target_mask_counter": "primary_synthetic_target_masks",
+  "primary_expected": 1,
+  "alias_counter": "synthetic_smoke_target_masks",
+  "alias_expected": 1,
+  "empty_observability_counter": "actual_logits_empty_mask_helper_checks",
+  "empty_expected": 1,
+  "additional_G_forwards_for_empty_mask": 0,
+  "additional_autograd_calls_for_empty_mask": 0
+ },
+ "v1_0f_first_smoke_preserved": true,
+ "v1_0g_counter_contract_repair_complete": true,
+ "scientific_protocol_changed": false,
+ "future_smoke_must_use_exact_v1_0g_bytes": true,
+ "static_preflight_pass": true,
+ "static_preflight_n_checks": 55,
+ "counter_unit_tests_pass": true,
+ "counter_unit_n_tests": 20,
+ "Phase35_scientific_execution_started": false,
+ "gate_env_set": false,
+ "mode_invoked": false,
+ "generated_utc": "2026-10-05T05:07:28Z",
+ "all_pass": true
+}

@@ -1,0 +1,42 @@
+{
+ "artifact": "phase32_metric_contract",
+ "phase": 32,
+ "section": "\u00a7N",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase32_external_domain_shift_v1_0",
+ "metrics": {
+  "Dice": {
+   "provenance": "src/metrics/evaluation_metrics.py (eps=1e-7)",
+   "status": "FROZEN"
+  },
+  "IoU": {
+   "provenance": "canonical evaluation_metrics",
+   "status": "FROZEN"
+  },
+  "precision": {
+   "provenance": "binary_confusion_counts",
+   "status": "FROZEN"
+  },
+  "recall": {
+   "provenance": "binary_confusion_counts",
+   "status": "FROZEN"
+  },
+  "accuracy": {
+   "provenance": "binary_confusion_counts",
+   "status": "FROZEN"
+  },
+  "boundary_metrics": {
+   "provenance": "not frozen for external use",
+   "status": "NOT_PROMISED"
+  },
+  "HD95_physical_mm": {
+   "provenance": "absent (no validated voxel spacing for external cohorts)",
+   "status": "NOT_PROMISED"
+  }
+ },
+ "empty_mask_policy": "empty GT supported; Dice undefined-zero handled by canonical rule",
+ "aggregation": "per-cohort; macro only if prospectively weighted",
+ "metrics_invented_after_outcomes": false,
+ "generated_utc": "2026-10-04T07:07:23+00:00",
+ "all_pass": true
+}

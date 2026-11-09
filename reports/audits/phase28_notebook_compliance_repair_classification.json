@@ -1,0 +1,35 @@
+{
+ "artifact": "phase28_notebook_compliance_repair_classification",
+ "phase": 28,
+ "classification": "PHASE28_REVIEWER_NOTEBOOK_COMPLIANCE_REPAIR_ONLY",
+ "scope_statement": "Repair the canonical Phase28 reviewer notebook ONLY. Scientific execution, checkpoints, OOF predictions, memberships, metrics, statistics, figures, tables and the final scientific freeze are frozen and MUST NOT change.",
+ "frozen_invariants": {
+  "science_changed": false,
+  "training_changed": false,
+  "checkpoints_changed": false,
+  "OOF_predictions_changed": false,
+  "memberships_changed": false,
+  "metrics_changed": false,
+  "statistics_changed": false,
+  "figures_scientific_content_changed": false,
+  "canonical_bundle_changed": false
+ },
+ "permitted_actions": [
+  "rebuild notebook source from frozen artifacts",
+  "execute notebook with nbclient",
+  "normalize reviewer-presentation nondeterminism",
+  "write additive audit artifacts"
+ ],
+ "forbidden_actions": [
+  "training",
+  "checkpoint selection",
+  "model construction for inference",
+  "model forward",
+  "OOF prediction",
+  "membership construction",
+  "outcome opening",
+  "metric recomputation",
+  "bootstrap recomputation"
+ ],
+ "all_pass": true
+}

@@ -1,0 +1,43 @@
+{
+ "artifact": "phase34_synthetic_task_schedule_contract_v1_2",
+ "phase": 34,
+ "section": "\u00a7E-\u00a7F",
+ "method": "RA-MedFiLM-BARR",
+ "revision": "ra_medfilm_barr_phase34_efficiency_profiling_v1_2",
+ "batch1_task_schedule": "task_id(iteration_index) = iteration_index mod 4",
+ "batch1_task_order": {
+  "0": "ISIC",
+  "1": "BUSI",
+  "2": "KVASIR",
+  "3": "KUB"
+ },
+ "per_200_iteration_block": {
+  "ISIC": 50,
+  "BUSI": 50,
+  "KVASIR": 50,
+  "KUB": 50
+ },
+ "across_5_blocks_conditions_per_task_id": 250,
+ "total_measured_iterations": 1000,
+ "warmup_iterations": 50,
+ "warmup_uses_same_deterministic_cycle": true,
+ "warmup_has_scientific_weighting_interpretation": false,
+ "batch8_task_vector": [
+  0,
+  1,
+  2,
+  3,
+  0,
+  1,
+  2,
+  3
+ ],
+ "batch8_task_vector_dtype": "int64",
+ "batch8_task_vector_device": "cuda",
+ "batch8_is_exactly_balanced_four_domain": true,
+ "batch8_reproduces_protected_phase30_batch_membership": false,
+ "batch1_classification": "CANONICAL_GRAPH_HARDWARE_MICROBENCHMARK__BATCH1_NOT_CANONICAL_G_NUMERICAL_REPRODUCTION",
+ "batch8_classification": "SYNTHETIC_HARDWARE_THROUGHPUT_BENCHMARK",
+ "generated_utc": "2026-10-04T11:08:33+00:00",
+ "all_pass": true
+}

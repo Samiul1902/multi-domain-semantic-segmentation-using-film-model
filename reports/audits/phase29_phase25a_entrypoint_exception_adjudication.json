@@ -1,0 +1,70 @@
+{
+ "artifact": "phase29_phase25a_entrypoint_exception_adjudication",
+ "phase": 29,
+ "stage": "PHASE25A_ENTRYPOINT_EXCEPTION_ADJUDICATION",
+ "method": "RA-MedFiLM-BARR",
+ "specification_revision": "ra_medfilm_barr_phase29_repro_v1_1",
+ "generated_utc": "2026-10-03T15:11:44+00:00",
+ "classification": "DECLARED_IMPLEMENTATION_ONLY_ENTRYPOINT_GENERALIZATION",
+ "file": "scripts/training/train_phase25a_refiner.py",
+ "sha256_frozen": "487efd3a934c97bf3b4db13717ac29b567a535346a2510a946943e2506345835",
+ "sha256_current": "f281ad8bba4ab502be41e0eebd1315133ff4032a7ae1017b961a82bb3f67c5fd",
+ "exact_reconstruction": {
+  "method": "byte_level_revert_of_declared_edits",
+  "reconstructed_sha256": "487efd3a934c97bf3b4db13717ac29b567a535346a2510a946943e2506345835",
+  "reconstruction_matches_frozen": true,
+  "proof": "Reverting EXACTLY the two declared token edits (def main signature and ap.parse_args argument) reproduces the historical frozen SHA bit-for-bit. This proves the entire physical diff consists of those two edits and nothing else."
+ },
+ "allowed_physical_diff": [
+  {
+   "line_frozen": 188,
+   "line_current": 188,
+   "before": "def main() -> int:",
+   "after": "def main(argv: list[str] | None = None) -> int:"
+  },
+  {
+   "line_frozen": 209,
+   "line_current": 209,
+   "before": "args = ap.parse_args()",
+   "after": "args = ap.parse_args(argv)"
+  }
+ ],
+ "token_level_semantic_edits": 2,
+ "byte_length_delta": 33,
+ "non_equal_line_opcodes": 2,
+ "behavioural_analysis": {
+  "parse_args_none_reads_sys_argv": "argparse.ArgumentParser.parse_args(None) reads sys.argv[1:] — identical to parse_args()",
+  "default_cli_behaviour_preserved": true,
+  "scientific_constants_touched": false,
+  "model_architecture_changed": false,
+  "loss_changed": false,
+  "optimizer_changed": false,
+  "scheduler_changed": false,
+  "augmentation_changed": false,
+  "data_manifests_changed": false
+ },
+ "adjudication": {
+  "accepted_as": "DECLARED_IMPLEMENTATION_ONLY_ENTRYPOINT_GENERALIZATION",
+  "may_be_relabelled_byte_identical": false,
+  "historical_frozen_sha_silently_replaced": false,
+  "preserve_both_shas": true,
+  "future_predecessor_audits_classification_for_this_file": "EXPECTED_DECLARED_SOURCE_EXCEPTION",
+  "all_other_canonical_trainers_byte_identical": true
+ },
+ "checks": {
+  "diff_exactly_two_token_edits": true,
+  "reconstruction_matches_frozen_sha": true,
+  "scientific_constants_touched_false": true,
+  "architecture_unchanged": true,
+  "loss_unchanged": true,
+  "optimizer_unchanged": true,
+  "scheduler_unchanged": true,
+  "augmentation_unchanged": true,
+  "manifests_unchanged": true,
+  "default_cli_behaviour_preserved": true,
+  "not_relabelled_byte_identical": true,
+  "both_shas_preserved": true
+ },
+ "blocked_terminal_if_exceeded": "PHASE29_PHASE_C_REPAIR_BLOCKED__CANONICAL_TRAINER_DRIFT_EXCEEDS_DECLARED_EXCEPTION",
+ "all_pass": true
+}
